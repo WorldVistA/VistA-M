@@ -1,5 +1,5 @@
 ONCPCS ;Hines OIFO/GWB - Collaborative Staging display ;11/09/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
  Q:$G(TOP)=""
  N DISCRIM,HIST,MO,SCHNAME,SITE
@@ -80,7 +80,7 @@ SSF ;SSF LIST
  .S SSFNUM=$E($P(^DD(165.5,SSFLIST(NUM),0),U,1),4,5)
  .S DOTS=$S($L(SSFNUM)=1:"....................: ",1:"...................: ")
  .W !," SSF",SSFNUM,DOTS,ONC(165.5,D0,SSFLIST(NUM),"I")
- E  I NUM<9 W !
+ E  I NUM<5 W !
  Q
  ;
 CLEANUP ;Cleanup

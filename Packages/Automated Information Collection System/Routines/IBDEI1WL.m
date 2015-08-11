@@ -1,0 +1,130 @@
+IBDEI1WL ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,33828,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,33829,0)
+ ;;=M05.572^^191^1977^7
+ ;;^UTILITY(U,$J,358.3,33829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33829,1,3,0)
+ ;;=3^Rheum polyneuropathy w/ rheum arthr lft ank/ft
+ ;;^UTILITY(U,$J,358.3,33829,1,4,0)
+ ;;=4^M05.572
+ ;;^UTILITY(U,$J,358.3,33829,2)
+ ;;=^5009974
+ ;;^UTILITY(U,$J,358.3,33830,0)
+ ;;=M05.571^^191^1977^9
+ ;;^UTILITY(U,$J,358.3,33830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33830,1,3,0)
+ ;;=3^Rheum polyneuropathy w/ rheum arthr rt ank/ft
+ ;;^UTILITY(U,$J,358.3,33830,1,4,0)
+ ;;=4^M05.571
+ ;;^UTILITY(U,$J,358.3,33830,2)
+ ;;=^5009973
+ ;;^UTILITY(U,$J,358.3,33831,0)
+ ;;=M05.471^^191^1977^6
+ ;;^UTILITY(U,$J,358.3,33831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33831,1,3,0)
+ ;;=3^Rheum myopathy w/ rheum arthr rt ank/ft
+ ;;^UTILITY(U,$J,358.3,33831,1,4,0)
+ ;;=4^M05.471
+ ;;^UTILITY(U,$J,358.3,33831,2)
+ ;;=^5009950
+ ;;^UTILITY(U,$J,358.3,33832,0)
+ ;;=M05.472^^191^1977^5
+ ;;^UTILITY(U,$J,358.3,33832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33832,1,3,0)
+ ;;=3^Rheum myopathy w/ rheum arthr lft ank/ft
+ ;;^UTILITY(U,$J,358.3,33832,1,4,0)
+ ;;=4^M05.472
+ ;;^UTILITY(U,$J,358.3,33832,2)
+ ;;=^5009951
+ ;;^UTILITY(U,$J,358.3,33833,0)
+ ;;=G90.523^^191^1977^1
+ ;;^UTILITY(U,$J,358.3,33833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33833,1,3,0)
+ ;;=3^Regional Pain Syndrome,Bliateral Lower Limbs,Complex
+ ;;^UTILITY(U,$J,358.3,33833,1,4,0)
+ ;;=4^G90.523
+ ;;^UTILITY(U,$J,358.3,33833,2)
+ ;;=^5004169
+ ;;^UTILITY(U,$J,358.3,33834,0)
+ ;;=G90.522^^191^1977^2
+ ;;^UTILITY(U,$J,358.3,33834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33834,1,3,0)
+ ;;=3^Regional Pain Syndrome,Lft Lower Limb,Complex
+ ;;^UTILITY(U,$J,358.3,33834,1,4,0)
+ ;;=4^G90.522
+ ;;^UTILITY(U,$J,358.3,33834,2)
+ ;;=^5133371
+ ;;^UTILITY(U,$J,358.3,33835,0)
+ ;;=G90.521^^191^1977^3
+ ;;^UTILITY(U,$J,358.3,33835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33835,1,3,0)
+ ;;=3^Regional Pain Syndrome,Rt Lower Limb,Complex
+ ;;^UTILITY(U,$J,358.3,33835,1,4,0)
+ ;;=4^G90.521
+ ;;^UTILITY(U,$J,358.3,33835,2)
+ ;;=^5004168
+ ;;^UTILITY(U,$J,358.3,33836,0)
+ ;;=M06.272^^191^1977^10
+ ;;^UTILITY(U,$J,358.3,33836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33836,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Lft Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,33836,1,4,0)
+ ;;=4^M06.272
+ ;;^UTILITY(U,$J,358.3,33836,2)
+ ;;=^5010092
+ ;;^UTILITY(U,$J,358.3,33837,0)
+ ;;=M06.271^^191^1977^11
+ ;;^UTILITY(U,$J,358.3,33837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33837,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,33837,1,4,0)
+ ;;=4^M06.271
+ ;;^UTILITY(U,$J,358.3,33837,2)
+ ;;=^5010091
+ ;;^UTILITY(U,$J,358.3,33838,0)
+ ;;=Z47.2^^191^1977^4
+ ;;^UTILITY(U,$J,358.3,33838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33838,1,3,0)
+ ;;=3^Removal of Internal Fixation Device
+ ;;^UTILITY(U,$J,358.3,33838,1,4,0)
+ ;;=4^Z47.2
+ ;;^UTILITY(U,$J,358.3,33838,2)
+ ;;=^5063026
+ ;;^UTILITY(U,$J,358.3,33839,0)
+ ;;=Z48.89^^191^1978^44
+ ;;^UTILITY(U,$J,358.3,33839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33839,1,3,0)
+ ;;=3^Surg aftercare, oth, spec
+ ;;^UTILITY(U,$J,358.3,33839,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,33839,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,33840,0)
+ ;;=R20.8^^191^1978^1
+ ;;^UTILITY(U,$J,358.3,33840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33840,1,3,0)
+ ;;=3^Skin Sensation Disturbance NEC
+ ;;^UTILITY(U,$J,358.3,33840,1,4,0)
+ ;;=4^R20.8
+ ;;^UTILITY(U,$J,358.3,33840,2)
+ ;;=^5019281
+ ;;^UTILITY(U,$J,358.3,33841,0)
+ ;;=L72.2^^191^1978^21
+ ;;^UTILITY(U,$J,358.3,33841,1,0)
+ ;;=^358.31IA^4^2

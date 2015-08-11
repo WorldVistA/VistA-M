@@ -1,6 +1,6 @@
 IBCNSBL1 ;ALB/AAS - NEW INSURANCE POLICY BULLETIN ;29-AUG-93
- ;;2.0;INTEGRATED BILLING;**6,28,82,249,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**6,28,82,249,276,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BULL ; -- send bulletin
  N IBCNT
@@ -111,6 +111,10 @@ BUFF ; -- list insurance buffer entries for the patient
  ;
  S IBBDA=0 F  S IBBDA=$O(^IBA(355.33,"C",DFN,IBBDA)) Q:'IBBDA  D
  . S IBB40=$G(^IBA(355.33,IBBDA,40)),IBB60=$G(^IBA(355.33,IBBDA,60))
+ . ;IB*2.0*516/BAA - Use HIPAA compliant fields.
+ . S $P(IBB40,U,2)=$$GET1^DIQ(355.33,IBBDA,90.01)  ;516 - baa - new group name field
+ . S $P(IBB40,U,3)=$$GET1^DIQ(355.33,IBBDA,90.02)  ;516 - baa - new group number field
+ . S $P(IBB60,U,4)=$$GET1^DIQ(355.33,IBBDA,90.03)  ;516 - baa - new subscriber id field
  . ;
  . S IBY=$P($G(^IBA(355.33,+IBBDA,20)),U,1),IBX="    "_$E($S(IBY'="":IBY,1:"UNKNOWN")_"                 ",1,16)_"  "
  . S IBX=IBX_$E($P(IBB60,"^",4)_"                ",1,16)_"  "

@@ -1,5 +1,5 @@
 LA7VIN4 ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/04/10  18:25
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,66,74**;Sep 27, 1994;Build 229
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,66,74,85**;Sep 27, 1994;Build 4
  ;
  ; This routine is a continuation of LA7VIN1 and is only called from there.
  ;
@@ -251,7 +251,8 @@ OBRSCT   ; check if SCT doesn't match any specimen in #68
  F  S R61=$O(LA761(R61)) Q:'R61  D
  . I $D(^LAHM(62.48,LA76248,"SCT","AD1",LA7SPTY(LA7I),R61_";LAB(61,")) S SCTOK=1 Q
  . S LA761SCT=$$IEN2SCT^LA7VHLU6(61,R61,DT,"")
- . I LA761SCT>0,$P(LA761SCT,"^")=LA7SPTY(LA7I) S SCTOK=1
+ . I LA761SCT'>0 S SCTOK=1
+ . I $P(LA761SCT,"^")=LA7SPTY(LA7I) S SCTOK=1
  ;
  ; If no topography found on accession with a SCT mapping that matches SCT code then flag as error.
  ; Also if SCT code in message has Lexicon exception then record as a separate error.

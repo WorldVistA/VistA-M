@@ -1,6 +1,6 @@
 IBNCPDP3 ;OAK/ELZ - STORES NDC/AWP UPDATES ;11/14/07  13:18
- ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411,435,452,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to ^PRCASER1 supported by IA# 593
  ; Reference to BPS RESPONSES file (#9002313.03) supported by IA# 4813
@@ -217,10 +217,12 @@ ELIG(DFN,IBD) ; process an Eligibility response
  ; only 2 fields are applicable here:  group# and cardholder ID
  ;
  S BPRSUB=$G(BPSR(9002313.03,ZR,302,"E"))         ; subscriber/cardholder ID
- I BPRSUB'="" S BUFF(355.33,BUDA,60.04)=BPRSUB    ; update buffer if field exists
+ ;I BPRSUB'="" S BUFF(355.33,BUDA,60.04)=BPRSUB    ; update buffer if field exists
+ I BPRSUB'="" S BUFF(355.33,BUDA,90.03)=BPRSUB    ; update new field - 516 - baa
  ;
  S BPRGRP=$G(BPSR(9002313.03,ZR,301,"E"))         ; group number
- I BPRGRP'="" S BUFF(355.33,BUDA,40.03)=BPRGRP    ; update buffer if field exists
+ ;I BPRGRP'="" S BUFF(355.33,BUDA,40.03)=BPRGRP    ; update buffer if field exists
+ I BPRGRP'="" S BUFF(355.33,BUDA,90.02)=BPRGRP    ; update new field - 516 - baa
  ;
  D FILE^DIE(,"BUFF")
  ;

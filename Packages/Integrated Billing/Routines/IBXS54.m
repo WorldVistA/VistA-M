@@ -1,4 +1,4 @@
-IBXS54 ; ;10/22/14
+IBXS54 ; ;05/12/15
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""CV"",",DIC=DIE,DP=399.047,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"CV",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=%
@@ -71,7 +71,7 @@ C1X1(DION) K X
  S X=$G(X(1))
  Q
 C1F2 Q
-X1 S DIC("S")="I +$P($G(^DGCR(399.1,+Y,0)),U,11),$$ALLOWVC^IBCVC(DA(1),+Y)" D ^DIC K DIC S DIC=$G(DIE),X=+Y K:Y<0 X
+X1 S DIC("S")="I +$P($G(^DGCR(399.1,+Y,0)),U,11),$$ALLOWVC^IBCVC(DA(1),+Y)",D="C^B" D MIX^DIC1 K DIC S DIC=$G(DIE),X=+Y K:Y<0 X
  Q
  ;
 2 D:$D(DG)>9 F^DIE17,DE S DQ=2,DW="0;2",DV="FX",DU="",DLB="VALUE",DIFLD=.02

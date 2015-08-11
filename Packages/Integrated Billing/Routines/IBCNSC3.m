@@ -1,6 +1,6 @@
 IBCNSC3 ;ALB/NLR - INACTIVATE AND REPOINT INS STUFF1 ; 20-APR-93
- ;;Version 2.0 ; INTEGRATED BILLING ;**28,46,68**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,46,68,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RPTASK ; -- ask if user wishes to repoint patients to active insurance company
  ;
@@ -82,7 +82,8 @@ BUILD ; -- set list of patients in ^tmp array
  .S X=$$PT^IBEFUNC(DFN),IBNA=$P(X,U,1),IBNO=$P(X,U,2)
  .S:IBNA="" IBNA="<Pt. "_DFN_" Name Missing>"
  .S IBD=0 F  S IBD=$O(^DPT("AB",IBCNS,DFN,IBD)) Q:'IBD  D
- ..S IBIND=$G(^DPT(DFN,.312,IBD,0))
+ ..;S IBIND=$G(^DPT(DFN,.312,IBD,0))  ;516 - baa
+ ..S IBIND=$$ZND^IBCNS1(DFN,IBD)  ;516 - baa
  ..I IBCNS'=$P(+IBIND,U) Q  ;bad x-ref,maybe later take action
  ..D SET
  Q

@@ -1,7 +1,8 @@
-RCDPESR2 ;ALB/TMK/DWA - Server auto-upd - EDI Lockbox ; 06/03/02
- ;;4.5;Accounts Receivable;**173,216,208,230,252,264,269,271**;Mar 20, 1995;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPESR2 ;ALB/TMK/DWA - Server auto-upd - EDI Lockbox ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,216,208,230,252,264,269,271,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4042 (IBCEOB)
+ ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
  ;
 TASKERA(RCTDA) ; Task to upd ERA
  ; RCTDA = ien 344.5
@@ -40,13 +41,16 @@ NEWERA(RCTDA,RCREFILE) ;Tasked
  .S RCERR(3)=" in this ERA."_$S('$G(RCREFILE):"",1:"  This error occurred during a refile attempt."),RCERR(4)=" "
  .D BULLERA^RCDPESR0("DF",RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U,11),"EDI LBOX - TOTALS FILE EXCEPTION "_$E(RCPAYER,1,20),.RCERR,0)
  .K RCERR
- I $$ADJ^RCDPEU(RCRTOT,.RCADJ) D  ;Bulletin adjs
- .S RCEC=$$ADJERR^RCDPESR3(.RCERR)
- .I RCADJ'=2 S RCEC=RCEC+1,RCERR(RCEC)=" THERE ARE ERA LEVEL ADJUSTMENT(S)",RCEC=RCEC+1,RCERR(RCEC)=" "
- .I RCADJ'=1 S RCEC=RCEC+1,RCERR(RCEC)=" THE FOLLOWING BILL(S) HAVE RETRACTIONS:" D
- ..S (Q,Z)=0 S Z=0 F  S Z=$O(RCADJ(RCRTOT,Z)) Q:'Z  S:'Q RCEC=RCEC+1,RCERR(RCEC)="  " S Q=Q+1,RCERR(RCEC)=RCERR(RCEC)_"  "_RCADJ(RCRTOT,Z) S:Q=4 Q=0
- ..S RCEC=RCEC+1,RCERR(RCEC)=" "
- .D BULLERA^RCDPESR0("D",RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U,11),"EDI LBOX - ERA HAS ADJ/TAKEBACKS "_$E(RCPAYER,1,20),.RCERR,0)
+ ;-----
+ ; PRCA*4.5*298 - MailMan message disabled, logic retained - 14 Feb 2014
+ ;I $$ADJ^RCDPEU(RCRTOT,.RCADJ) D  ;Bulletin adjs
+ ;.S RCEC=$$ADJERR^RCDPESR3(.RCERR)
+ ;.I RCADJ'=2 S RCEC=RCEC+1,RCERR(RCEC)=" THERE ARE ERA LEVEL ADJUSTMENT(S)",RCEC=RCEC+1,RCERR(RCEC)=" "
+ ;.I RCADJ'=1 S RCEC=RCEC+1,RCERR(RCEC)=" THE FOLLOWING BILL(S) HAVE RETRACTIONS:" D
+ ;..S (Q,Z)=0 S Z=0 F  S Z=$O(RCADJ(RCRTOT,Z)) Q:'Z  S:'Q RCEC=RCEC+1,RCERR(RCEC)="  " S Q=Q+1,RCERR(RCEC)=RCERR(RCEC)_"  "_RCADJ(RCRTOT,Z) S:Q=4 Q=0
+ ;..S RCEC=RCEC+1,RCERR(RCEC)=" "
+ ;.D BULLERA^RCDPESR0("D",RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U,11),"EDI LBOX - ERA HAS ADJ/TAKEBACKS "_$E(RCPAYER,1,20),.RCERR,0)
+ ;-----
  ;
 QNEW I RCTDA,'$P($G(^RCY(344.5,RCTDA,0)),U,8) D TEMPDEL^RCDPESR1(RCTDA) S RCTDA=""
  I RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U)'="" S DIE="^RCY(344.5,",DR=".04////0;.05///@"_$S('$G(RCR1)&$G(RCRTOT):";.07////"_RCRTOT,1:""),DA=RCTDA D ^DIE
@@ -59,14 +63,15 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  ;RCFILE = 4 file 344.4, 5 if 344.5
  ;DUP = msg # if dup msg, but not same # or -1 if same msg #
  ;Returned for each bill in ERA:
- ;^TMP($J,"RCDPEOB",n)=Bill ien^AR bill#^SrvDt
+ ;^TMP($J,"RCDPEOB",n)=Bill ien^AR bill#^SrvDt^ECME#
  ;^TMP($J,"RCDPEOB",n,"EOB")=EOB ien^amt pd^ins co ptr^rev flg^EEOB pn^amtbld^^^^BPNPI^RNPI^ETQual^LN^FN
  ;^TMP($J,"RCDPEOB","ADJ",x)=adj rec ('02')
  ;Also:
  ;^TMP($J,"RCDPEOB","HDR")=hdr rec from txmn
  ;^TMP($J,"RCDPEOB","CONTACT")=ERA contact rec ('01')
  ;
- N RCGBL,RC,RC0,RCCT,RCCT1,RCEOB,RCBILL,RCDPBNPI,RCMNUM,RCIFN,RCIB,RCERR,RCSTAR,RCET,RCX,RCXMG,Z,Q,DA,DR,DIE,RCPAYER,RCFILED,RCEOBD,RCNOUPD,REFORM,RCSD,RCERR1,C5
+ N RCGBL,RC,RC0,RCCT,RCCT1,RCEOB,RCBILL,RCDPBNPI,RCMNUM,RCIFN,RCIB,RCERR,RCSTAR,RCET,RCX,RCXMG,Z,Q,DA,DR,DIE
+ N RCPAYER,RCFILED,RCEOBD,RCNOUPD,REFORM,RCSD,RCERR1,C5,ECMENUM
  K ^TMP($J,"RCDP-EOB"),^TMP("RCDPERR-EOB",$J)
  ;
  S RCPAYER="",RCFILED=1,RCNOUPD=0
@@ -93,7 +98,8 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  F  S RC=$O(@RCGBL@(RC)) Q:'RC  S RC0=$G(^(RC,0)) D
  .I RC0<5 Q
  .I +RC0=5 S C5=RC,CP5=$P(RC0,U,2) Q  ;retrofit 264 into 269
- .I +RC0=40,CP5?1.12N,C5,'$D(@RCSD@(C5)) S @RCSD@(C5)=$P(RC0,U,19) ;serv date for possible ECME# matching
+ . ; service date for possible ECME# matching
+ .I +RC0=40,$$VALECME^BPSUTIL2(CP5),C5,'$D(@RCSD@(C5)) S @RCSD@(C5)=$P(RC0,U,19)
  ;
  S RC=1,(RCCT,RCCT1,RCX,REFORM)=0,RCBILL=""
  S RCERR1=$NA(^TMP("RCERR1",$J)) K @RCERR1
@@ -107,12 +113,12 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  ..S $P(^TMP($J,"RCDPEOB","ADJ",RCX),U,5)=$P(RC0,U,2)
  .;
  .I +RC0=5 S RCCT=RCCT+1,RCCT1=0 D
- ..S REFORM=0
+ ..S REFORM=0,ECMENUM="" I $$VALECME^BPSUTIL2($P(RC0,U,2)) S ECMENUM=$P(RC0,U,2)
  ..S Z=$$BILL^RCDPESR1($P(RC0,U,2),$G(@RCSD@(RC)),.RCIB)   ; look up claim ien by claim# or by ECME#
  ..I Z S RCBILL=$P($G(^PRCA(430,Z,0)),U) I RCBILL'="",RCBILL'=$P(RC0,U,2) S REFORM=1,$P(RC0,U,2)=RCBILL
  ..S RCBILL=$P(RC0,U,2)
  ..S Z=$S(Z>0:$S($G(RCIB):Z,1:-1),1:-1)
- ..S ^TMP($J,"RCDP-EOB",RCCT,0)=Z_U_RCBILL_U_$G(@RCSD@(RC))
+ ..S ^TMP($J,"RCDP-EOB",RCCT,0)=Z_U_RCBILL_U_$G(@RCSD@(RC))_U_ECMENUM
  ..S $P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,5)=$P(RC0,U,3)_","_$P(RC0,U,4)_" "_$P(RC0,U,5) ;Save pt nm
  ..I Z>0 S Q=+$P($G(^PRCA(430,Z,0)),U,9) I $P($G(^RCD(340,Q,0)),U)["DIC(36," S $P(^TMP($J,"RCDPEOB",RCCT,"EOB"),U,3)=+^RCD(340,Q,0) ;Save ins co
  .;

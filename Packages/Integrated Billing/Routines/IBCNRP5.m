@@ -1,6 +1,6 @@
 IBCNRP5 ;BHAM ISC/CMW - Group Plan Status Report ;01-NOV-2004
- ;;2.0;INTEGRATED BILLING;**276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**276,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
  ; Initialize variables
@@ -179,13 +179,18 @@ INIT ; -- init variables and create list array or report array
  ;
 SETPLAN(IBCNGP) ;
  ; create text
- N IBGPZ,I,IBPLN,IBPLNA,LINE
+ ;N IBGPZ,I,IBPLN,IBPLNA,LINE
+ N I,IBPLN,IBPLNA,LINE
  S VALMCNT=VALMCNT+1,$P(LINE,"-",80)=""
- S IBGPZ=^IBA(355.3,+IBCNGP,0)
+ ;Get new HIPAA fields - IB*2*516
+ ;S IBGPZ=^IBA(355.3,+IBCNGP,0))
+ ;S X=$$FO^IBCNEUT1($P(IBGPZ,U,3),18)
+ ;S X=X_" "_$$FO^IBCNEUT1($P(IBGPZ,U,4),17)
+ ;S X=X_" "_$$FO^IBCNEUT1($$EXPAND^IBTRE(355.3,.09,$P(IBGPZ,U,9)),13)
  ; Group Name, Group #, Group Type, Plan ID, Plan Status
- S X=$$FO^IBCNEUT1($P(IBGPZ,U,3),18)
- S X=X_" "_$$FO^IBCNEUT1($P(IBGPZ,U,4),17)
- S X=X_" "_$$FO^IBCNEUT1($$EXPAND^IBTRE(355.3,.09,$P(IBGPZ,U,9)),13)
+ S X=$$FO^IBCNEUT1($$GET1^DIQ(355.3,IBCNGP,2.01),18)
+ S X=X_" "_$$FO^IBCNEUT1($$GET1^DIQ(355.3,IBCNGP,2.02),17)
+ S X=X_" "_$$FO^IBCNEUT1($$GET1^DIQ(355.3,IBCNGP,.09,"E"),13)
  S IBPLN=$P($G(^IBA(355.3,+IBCNGP,6)),U)
  ; check for plan
  I IBPLN="" D  Q

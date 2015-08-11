@@ -1,10 +1,10 @@
-RCDPEWLA ;ALB/TMK - ELECTRONIC EOB MESSAGE WORKLIST ;06-FEB-2003
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWLA ;ALB/TMK - ELECTRONIC EOB MESSAGE WORKLIST ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,208,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
 ADDLINES(RCSCR) ; Add lines to file 344.49, delete any existing lines
  ; RCSCR = ien of entry in file 344.49
  ;
- N Z,Z0,Q,Q0,Q1,DA,DIK,X,Y,DIE,DO,DD,DR,RC0,RCA,RCA0,RCIFN,RCX,RCADJ,RCDEC,DIC,DLAYGO,RCLINE
+ N DA,DD,DIC,DIE,DIK,DLAYGO,DO,DR,Q,Q0,Q1,RC0,RCA,RCA0,RCADJ,RCDEC,RCIFN,RCLINE,RCX,X,Y,Z,Z0
  K ^TMP($J,"RCA")
  S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,1,Z)) Q:'Z  S DA(1)=RCSCR,DA=Z,DIK="^RCY(344.49,"_DA(1)_",1," D ^DIK
  ;
@@ -39,9 +39,10 @@ ADDLINES(RCSCR) ; Add lines to file 344.49, delete any existing lines
  .. K DO,DD
  .. S DIC(0)="L",DLAYGO=344.491,DA(1)=RCSCR,DIC="^RCY(344.49,"_DA(1)_",1,"
  .. S DIC("DR")=".02////"_Q_";.05////"_$P(Q0,U,3)_";.06////"_$P(Q0,U,3)_";.09////"_$P(^TMP($J,"RCA",Z,Z0),U,2)_";.13////0"
- .. I $G(^TMP($J,"BATCHES")) D
- ... ; Assign a batch # here
- ... S DIC("DR")=DIC("DR")_";.14////"_$$GETBATCH^RCDPEWLB(Q0)
+ .. ; prca*4.5*298 per requirements, keep code for creating/maintaining batches but remove from execution
+ .. ;I $G(^TMP($J,"BATCHES")) D  ;prca*4.5*298
+ .. ;.  Assign a batch # here
+ .. ;. S DIC("DR")=DIC("DR")_";.14////"_$$GETBATCH^RCDPEWLB(Q0) ;prca*4.5*298
  .. F X=$O(^RCY(344.49,RCSCR,1,"ASEQ"," "),-1)+1:1 I '$D(^RCY(344.49,RCSCR,"B",X)) Q
  .. S RCLINE=X
  .. D FILE^DICN K DIC,DO,DD
@@ -67,6 +68,8 @@ ADDLINES(RCSCR) ; Add lines to file 344.49, delete any existing lines
  ... D ^DIE
  . ;
  . I Z0=1 D  Q  ; ERA level adj, no payment for claim lev adj or mismatch
+ .. ;prca*4.5*298 - flag when an ERA level adj exists - cannot auto post ERAs with ERA level adjustments
+ .. S ^TMP($J,"RCDPEWLA","ERA LEVEL ADJUSTMENT EXISTS")=""
  .. ; Add a line
  .. K DO,DD
  .. S RCADJ=$S(Z["**ADJ":1,1:0)
@@ -100,24 +103,6 @@ ADDLINES(RCSCR) ; Add lines to file 344.49, delete any existing lines
  K ^TMP($J,"RCA")
  Q
  ;
-SELSORT(RCQUIT) ; Function returns selection of sort for worklist entries
- ; RCQUIT returned = 1 if passed by ref and user aborts question
- ; RCSCR is assumed to be the ien of the entry in file 344.49
- N DIR,X,Y,DTOUT,DUOUT,RCLSTORD,RCUSPREF,DA,DIE,DR,RCY
- S RCQUIT=0
- S RCUSPREF=+$O(^RCY(344.49,RCSCR,2,"B",DUZ,0))
- I 'RCUSPREF D  ; Add the user pref record
- . S RCUSPREF=+$$ADDUSER^RCDPEWL5(RCSCR,DUZ)
- S RCLSTORD=$P($G(^RCY(344.49,RCSCR,2,RCUSPREF,0)),U,3)
- S DIR(0)="344.492,.03A",DIR("A")="ORDER OF PAYMENTS: ",DIR("B")=$S(RCLSTORD'="":$$EXTERNAL^DILFD(344.492,.03,"",RCLSTORD),1:$$EXTERNAL^DILFD(344.492,.03,"","N")) W ! D ^DIR K DIR
- I $D(DTOUT)!$D(DUOUT) S RCQUIT=1,Y=""
- S RCY=Y
- I 'RCQUIT D
- . S $P(^TMP($J,"RC_SORTPARM"),U)=RCY
- . S DA(1)=RCSCR,DA=RCUSPREF
- . I DA,$P(^TMP($J,"RC_SORTPARM"),U)'=RCLSTORD S DIE="^RCY(344.49,"_DA(1)_",2,",DR=".03////"_$P($G(^TMP($J,"RC_SORTPARM")),U) D ^DIE ; Update user preferences
- Q RCY
- ;
 TOOOLD(RCDEP) ; Check if deposit in ien RCDPE (file 344.1) is too old to use
  N RCOLD,Q,DIR,X,Y
  S Q=$$FMADD^XLFDT(DT,-7),RCOLD=0
@@ -126,3 +111,47 @@ TOOOLD(RCDEP) ; Check if deposit in ien RCDPE (file 344.1) is too old to use
  . I Y'=1 S RCOLD=1
  Q RCOLD
  ;
+PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for EEOB Scratchpad Worklist
+ ; Input: SOURCE: "MO" - Menu Option / "CV" - Change View
+ ;Output: ^TMP("RC_SORTPARM",$J): Order of Payment ("N":No Order/"F":Zero-Payments First/"L":Zero-Payments Last)
+ ;        ^TMP("RC_EEOBPOST",$J): EEOB Posting Status ("P":Posted/"U":Unposted/"B":Both)
+ ;        Or RCQUIT=1
+ N DIR,X,Y,DUOUT,DTOUT,RCPOSTDF,F,RCXPAR,RCERROR
+ ;
+ D GETLST^XPAR(.RCXPAR,"USR","RCDPE EDI LOCKBOX WORKLIST","I")
+ S RCQUIT=0
+ ;
+ ; Setting ^TMP with user's saved parameters or System defaults
+ I '$D(^TMP($J,"RC_SORTPARM")) D
+ . S ^TMP($J,"RC_SORTPARM")=$S($G(RCXPAR("ORDER_OF_PAYMENTS"))'="":RCXPAR("ORDER_OF_PAYMENTS"),1:"N")
+ . S ^TMP($J,"RC_EEOBPOST")=$S($G(RCXPAR("EEOB_POSTING_STATUS"))'="":RCXPAR("EEOB_POSTING_STATUS"),1:"U")
+ ;
+ ; Not coming from Change View action, User Preferences Found, Quit
+ I SOURCE="MO",$G(RCXPAR("EEOB_POSTING_STATUS"))'="" Q
+ ;
+ ; ORDER OF PAYMENT (No Order/Zero Payment First/Zero Payment Last) Selection
+ S RCSORTBY=$G(^TMP($J,"RC_SORTPARM"))
+ K DIR S DIR(0)="SA^N:NO ORDER;F:ZERO-PAYMENTS FIRST;L:ZERO-PAYMENTS LAST"
+ S DIR("A")="ORDER OF PAYMENT: (N)O ORDER, ZERO-PAYMENTS (F)IRST, ZERO-PAYMENTS (L)AST: "
+ S DIR("B")="B" S:RCSORTBY'="" DIR("B")=RCSORTBY
+ W ! D ^DIR
+ I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
+ S ^TMP($J,"RC_SORTPARM")=Y
+ ;
+ ; EEOB Posting Status (Posted/Unposted/Both) Selection
+ S RCPOSTDF=$G(^TMP($J,"RC_EEOBPOST"))
+ K DIR S DIR(0)="SA^U:UNPOSTED;P:POSTED;A:ALL"
+ S DIR("A")="DISPLAY FOR AUTO-POSTED ERAS: (U)NPOSTED EEOBs, (P)OSTED EEOBs, OR (A)LL: "
+ S DIR("B")="U" S:RCPOSTDF'="" DIR("B")=RCPOSTDF
+ W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
+ S ^TMP($J,"RC_EEOBPOST")=Y
+ ;
+ ; - Save as Preferred View?
+ K DIR W ! S DIR(0)="YA",DIR("B")="NO",DIR("A")="DO YOU WANT TO SAVE THIS AS YOUR PREFERRED VIEW (Y/N)? "
+ D ^DIR
+ I Y=1 D
+ . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ORDER_OF_PAYMENTS",^TMP($J,"RC_SORTPARM"),.RCERROR)
+ . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","EEOB_POSTING_STATUS",^TMP($J,"RC_EEOBPOST"),.RCERROR)
+ ;
+PARAMSQ ; Quit
+ Q

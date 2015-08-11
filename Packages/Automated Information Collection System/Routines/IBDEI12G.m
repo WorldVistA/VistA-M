@@ -1,120 +1,128 @@
-IBDEI12G ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI12G ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19096,2)
- ;;=^274247
- ;;^UTILITY(U,$J,358.3,19097,0)
- ;;=824.0^^125^1223^14
- ;;^UTILITY(U,$J,358.3,19097,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19097,1,3,0)
- ;;=3^824.0
- ;;^UTILITY(U,$J,358.3,19097,1,5,0)
- ;;=5^Fracture of ankle; medial malleolus, closed
- ;;^UTILITY(U,$J,358.3,19097,2)
- ;;=^274245
- ;;^UTILITY(U,$J,358.3,19098,0)
- ;;=824.6^^125^1223^15
- ;;^UTILITY(U,$J,358.3,19098,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19098,1,3,0)
- ;;=3^824.6
- ;;^UTILITY(U,$J,358.3,19098,1,5,0)
- ;;=5^Fracture of ankle; trimalleolar, closed
- ;;^UTILITY(U,$J,358.3,19098,2)
- ;;=^274251
- ;;^UTILITY(U,$J,358.3,19099,0)
- ;;=825.20^^125^1223^16
- ;;^UTILITY(U,$J,358.3,19099,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19099,1,3,0)
- ;;=3^825.20
- ;;^UTILITY(U,$J,358.3,19099,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bone, closed; unspecified bone(s) of foot (except toes)
- ;;^UTILITY(U,$J,358.3,19099,2)
- ;;=^274265
- ;;^UTILITY(U,$J,358.3,19100,0)
- ;;=825.0^^125^1223^17
- ;;^UTILITY(U,$J,358.3,19100,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19100,1,3,0)
- ;;=3^825.0
- ;;^UTILITY(U,$J,358.3,19100,1,5,0)
- ;;=5^Fracture of one or more tarsal & metatarsal bone, closed; calcaneus, closed
- ;;^UTILITY(U,$J,358.3,19100,2)
- ;;=^274259
- ;;^UTILITY(U,$J,358.3,19101,0)
- ;;=825.23^^125^1223^18
- ;;^UTILITY(U,$J,358.3,19101,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19101,1,3,0)
- ;;=3^825.23
- ;;^UTILITY(U,$J,358.3,19101,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuboid
- ;;^UTILITY(U,$J,358.3,19101,2)
- ;;=^274270
- ;;^UTILITY(U,$J,358.3,19102,0)
- ;;=825.24^^125^1223^19
- ;;^UTILITY(U,$J,358.3,19102,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19102,1,3,0)
- ;;=3^825.24
- ;;^UTILITY(U,$J,358.3,19102,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuneiform, foot &
- ;;^UTILITY(U,$J,358.3,19102,2)
- ;;=^274271
- ;;^UTILITY(U,$J,358.3,19103,0)
- ;;=825.25^^125^1223^20
- ;;^UTILITY(U,$J,358.3,19103,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19103,1,3,0)
- ;;=3^825.25
- ;;^UTILITY(U,$J,358.3,19103,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Jones 
- ;;^UTILITY(U,$J,358.3,19103,2)
- ;;=^274272
- ;;^UTILITY(U,$J,358.3,19104,0)
- ;;=825.22^^125^1223^21
- ;;^UTILITY(U,$J,358.3,19104,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19104,1,3,0)
- ;;=3^825.22
- ;;^UTILITY(U,$J,358.3,19104,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Navicular (scapiod), foot & metatarsal
- ;;^UTILITY(U,$J,358.3,19104,2)
- ;;=^274269
- ;;^UTILITY(U,$J,358.3,19105,0)
- ;;=825.21^^125^1223^22
- ;;^UTILITY(U,$J,358.3,19105,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19105,1,3,0)
- ;;=3^825.21
- ;;^UTILITY(U,$J,358.3,19105,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Astragalus, talus
- ;;^UTILITY(U,$J,358.3,19105,2)
- ;;=^274266
- ;;^UTILITY(U,$J,358.3,19106,0)
- ;;=825.29^^125^1223^23
- ;;^UTILITY(U,$J,358.3,19106,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19106,1,3,0)
- ;;=3^825.29
- ;;^UTILITY(U,$J,358.3,19106,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Tarsal or tarsal w/metatarsal
- ;;^UTILITY(U,$J,358.3,19106,2)
- ;;=^274263
- ;;^UTILITY(U,$J,358.3,19107,0)
- ;;=826.0^^125^1223^24
- ;;^UTILITY(U,$J,358.3,19107,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19107,1,3,0)
- ;;=3^826.0
- ;;^UTILITY(U,$J,358.3,19107,1,5,0)
- ;;=5^Fracture of one or more phalanges of foot/toe(s), closed
- ;;^UTILITY(U,$J,358.3,19107,2)
- ;;=^274282
- ;;^UTILITY(U,$J,358.3,19108,0)
- ;;=733.16^^125^1223^25
- ;;^UTILITY(U,$J,358.3,19108,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,19004,1,3,0)
+ ;;=3^Neuropsych Tst/Hr of Psychologist/MD Time
+ ;;^UTILITY(U,$J,358.3,19005,0)
+ ;;=97150^^105^1114^7^^^^1
+ ;;^UTILITY(U,$J,358.3,19005,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19005,1,2,0)
+ ;;=2^97150
+ ;;^UTILITY(U,$J,358.3,19005,1,3,0)
+ ;;=3^Group Therapeutic Procedures
+ ;;^UTILITY(U,$J,358.3,19006,0)
+ ;;=97530^^105^1114^27^^^^1
+ ;;^UTILITY(U,$J,358.3,19006,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19006,1,2,0)
+ ;;=2^97530
+ ;;^UTILITY(U,$J,358.3,19006,1,3,0)
+ ;;=3^Therapeutic Activ,Dir Prov Contact,ea 15 min
+ ;;^UTILITY(U,$J,358.3,19007,0)
+ ;;=G0177^^105^1114^28^^^^1
+ ;;^UTILITY(U,$J,358.3,19007,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19007,1,2,0)
+ ;;=2^G0177
+ ;;^UTILITY(U,$J,358.3,19007,1,3,0)
+ ;;=3^Train/Ed for Disability > 44 Min
+ ;;^UTILITY(U,$J,358.3,19008,0)
+ ;;=H0038^^105^1114^20^^^^1
+ ;;^UTILITY(U,$J,358.3,19008,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19008,1,2,0)
+ ;;=2^H0038
+ ;;^UTILITY(U,$J,358.3,19008,1,3,0)
+ ;;=3^Self-Help/Peer Svc per 15 Min
+ ;;^UTILITY(U,$J,358.3,19009,0)
+ ;;=90899^^105^1114^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19009,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19009,1,2,0)
+ ;;=2^90899
+ ;;^UTILITY(U,$J,358.3,19009,1,3,0)
+ ;;=3^NOS Psych Service
+ ;;^UTILITY(U,$J,358.3,19010,0)
+ ;;=96116^^105^1114^10^^^^1
+ ;;^UTILITY(U,$J,358.3,19010,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19010,1,2,0)
+ ;;=2^96116
+ ;;^UTILITY(U,$J,358.3,19010,1,3,0)
+ ;;=3^Neurobehavioral Status Exam
+ ;;^UTILITY(U,$J,358.3,19011,0)
+ ;;=97804^^105^1114^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19011,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19011,1,2,0)
+ ;;=2^97804
+ ;;^UTILITY(U,$J,358.3,19011,1,3,0)
+ ;;=3^Medical Nutrition Tx,Grp,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,19012,0)
+ ;;=98961^^105^1114^21^^^^1
+ ;;^UTILITY(U,$J,358.3,19012,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19012,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,19012,1,3,0)
+ ;;=3^Self-Mgmt Ed/Train,2-4 Pts
+ ;;^UTILITY(U,$J,358.3,19013,0)
+ ;;=98962^^105^1114^22^^^^1
+ ;;^UTILITY(U,$J,358.3,19013,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19013,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,19013,1,3,0)
+ ;;=3^Self-Mgmt Ed/Train,5-8 Pts
+ ;;^UTILITY(U,$J,358.3,19014,0)
+ ;;=99078^^105^1114^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19014,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19014,1,2,0)
+ ;;=2^99078
+ ;;^UTILITY(U,$J,358.3,19014,1,3,0)
+ ;;=3^Group Health Education
+ ;;^UTILITY(U,$J,358.3,19015,0)
+ ;;=96127^^105^1114^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19015,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19015,1,2,0)
+ ;;=2^96127
+ ;;^UTILITY(U,$J,358.3,19015,1,3,0)
+ ;;=3^Brf Emot/Behav Assmt w/ Score/Doc
+ ;;^UTILITY(U,$J,358.3,19016,0)
+ ;;=96101^^105^1114^17^^^^1
+ ;;^UTILITY(U,$J,358.3,19016,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19016,1,2,0)
+ ;;=2^96101
+ ;;^UTILITY(U,$J,358.3,19016,1,3,0)
+ ;;=3^Psych Test by Psych/Phys
+ ;;^UTILITY(U,$J,358.3,19017,0)
+ ;;=96150^^105^1115^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19017,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19017,1,2,0)
+ ;;=2^96150
+ ;;^UTILITY(U,$J,358.3,19017,1,3,0)
+ ;;=3^Behavior Assess,Initial,ea 15min
+ ;;^UTILITY(U,$J,358.3,19018,0)
+ ;;=96151^^105^1115^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19018,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19018,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,19018,1,3,0)
+ ;;=3^Behavior Reassessment,ea 15min
+ ;;^UTILITY(U,$J,358.3,19019,0)
+ ;;=96152^^105^1115^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19019,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19019,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,19019,1,3,0)
+ ;;=3^Behavior Intervention,Ind,ea 15min
+ ;;^UTILITY(U,$J,358.3,19020,0)
+ ;;=96153^^105^1115^4^^^^1

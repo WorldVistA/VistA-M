@@ -1,5 +1,5 @@
-ECRECER ;ALB/DAN-Event Capture Encounter Report ;1/22/14  15:20
- ;;2.0;EVENT CAPTURE;**112,122**;8 May 96;Build 2
+ECRECER ;ALB/DAN-Event Capture Encounter Report ;9/30/14  10:49
+ ;;2.0;EVENT CAPTURE;**112,122,126**;8 May 96;Build 8
  ;
 STRPT ;
  K ^TMP("ECRECER",$J),^TMP($J,"ECRPT")
@@ -10,9 +10,9 @@ STRPT ;
  Q
  ;
 GETREC ;Find records to put on report
- N ECLI,ECDFN,ECD,ECDT,ECIEN,ECPROV,ECPATN,ECSSN,ECVOL,UNI,ECARR,ECIO,CLNODE ;122
+ N ECLI,ECDFN,ECD,ECDT,ECIEN,ECPROV,ECPATN,ECSSN,ECVOL,ECARR,ECIO,CLNODE ;122,126
  S ECLI=0 F  S ECLI=$O(ECLOC1(ECLI)) Q:'+ECLI  D
- .S ECDFN=0 K UNI
+ .S ECDFN=0 K ^TMP("UNI",$J) ;126
  .F  S ECDFN=+$O(^ECH("ADT",ECLI,ECDFN)) Q:'ECDFN  D
  ..S ECD=0
  ..F  S ECD=$O(ECDSSU(ECD)) Q:'ECD  D
@@ -21,7 +21,7 @@ GETREC ;Find records to put on report
  ....S ECIEN=0
  ....F  S ECIEN=+$O(^ECH("ADT",ECLI,ECDFN,ECD,ECDT,ECIEN)) Q:'ECIEN  D
  .....S ECPROV=$$GETPROV^ECRDSSA(ECIEN)
- .....Q:$D(UNI(ECDFN,ECDT,ECD))  S UNI(ECDFN,ECDT,ECD)="" ;don't count if already counted
+ .....Q:$D(^TMP("UNI",$J,ECDFN,ECDT,ECD))  S ^TMP("UNI",$J,ECDFN,ECDT,ECD)="" ;126 don't count if already counted
  .....K ECARR D GETS^DIQ(721,ECIEN,"1;9;26;29","IE","ECARR","ECERROR") ;122 Add associated clinic (26) to list of fields returned
  .....S ECPATN=ECARR(721,ECIEN_",",1,"E")_"~"_ECDFN
  .....S ECSSN=$$GETSSN^ECRDSSA(ECIEN)

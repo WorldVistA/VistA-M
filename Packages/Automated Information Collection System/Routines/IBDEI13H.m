@@ -1,126 +1,134 @@
-IBDEI13H ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI13H ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19625,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19625,1,4,0)
- ;;=4^428.30
- ;;^UTILITY(U,$J,358.3,19625,1,5,0)
- ;;=5^Heart Failure, Diastolic
- ;;^UTILITY(U,$J,358.3,19625,2)
- ;;=Heart Failure, Diastolic^328595
- ;;^UTILITY(U,$J,358.3,19626,0)
- ;;=428.31^^131^1276^41
- ;;^UTILITY(U,$J,358.3,19626,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19626,1,4,0)
- ;;=4^428.31
- ;;^UTILITY(U,$J,358.3,19626,1,5,0)
- ;;=5^Heart Failure, Acute Diastolic
- ;;^UTILITY(U,$J,358.3,19626,2)
- ;;=Heart Failure, Acute Diastolic^328497
- ;;^UTILITY(U,$J,358.3,19627,0)
- ;;=428.32^^131^1276^43
- ;;^UTILITY(U,$J,358.3,19627,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19627,1,4,0)
- ;;=4^428.32
- ;;^UTILITY(U,$J,358.3,19627,1,5,0)
- ;;=5^Heart Failure, Chronic Diastolic
- ;;^UTILITY(U,$J,358.3,19627,2)
- ;;=Heart Failure, Chronic Diastolic^328498
- ;;^UTILITY(U,$J,358.3,19628,0)
- ;;=428.33^^131^1276^47
- ;;^UTILITY(U,$J,358.3,19628,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19628,1,4,0)
- ;;=4^428.33
- ;;^UTILITY(U,$J,358.3,19628,1,5,0)
- ;;=5^Heart Failure, Diastolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,19628,2)
- ;;=Heart Failure, Diastolic, Acute on Chronic^328499
- ;;^UTILITY(U,$J,358.3,19629,0)
- ;;=428.40^^131^1276^46
- ;;^UTILITY(U,$J,358.3,19629,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19629,1,4,0)
- ;;=4^428.40
- ;;^UTILITY(U,$J,358.3,19629,1,5,0)
- ;;=5^Heart Failure, Diastolic& Systolic
- ;;^UTILITY(U,$J,358.3,19629,2)
- ;;=Heart Failure, Systolic and Diastolic^328596
- ;;^UTILITY(U,$J,358.3,19630,0)
- ;;=428.41^^131^1276^48
- ;;^UTILITY(U,$J,358.3,19630,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19630,1,4,0)
- ;;=4^428.41
- ;;^UTILITY(U,$J,358.3,19630,1,5,0)
- ;;=5^Heart Failure, Systolic & Diastolic, Acute
- ;;^UTILITY(U,$J,358.3,19630,2)
- ;;=Heart Failure, Systolic & Diastolic, Acute^328500
- ;;^UTILITY(U,$J,358.3,19631,0)
- ;;=428.42^^131^1276^52
- ;;^UTILITY(U,$J,358.3,19631,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19631,1,4,0)
- ;;=4^428.42
- ;;^UTILITY(U,$J,358.3,19631,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic,Chronic
- ;;^UTILITY(U,$J,358.3,19631,2)
- ;;=^328501
- ;;^UTILITY(U,$J,358.3,19632,0)
- ;;=428.43^^131^1276^51
- ;;^UTILITY(U,$J,358.3,19632,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19632,1,4,0)
- ;;=4^428.43
- ;;^UTILITY(U,$J,358.3,19632,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic
- ;;^UTILITY(U,$J,358.3,19632,2)
- ;;=^328502
- ;;^UTILITY(U,$J,358.3,19633,0)
- ;;=396.3^^131^1276^10
- ;;^UTILITY(U,$J,358.3,19633,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19633,1,4,0)
- ;;=4^396.3
- ;;^UTILITY(U,$J,358.3,19633,1,5,0)
- ;;=5^Aortic and Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,19633,2)
- ;;=Aortic and Mitral Insufficiency^269583
- ;;^UTILITY(U,$J,358.3,19634,0)
- ;;=429.9^^131^1276^28
- ;;^UTILITY(U,$J,358.3,19634,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19634,1,4,0)
- ;;=4^429.9
- ;;^UTILITY(U,$J,358.3,19634,1,5,0)
- ;;=5^Diastolic Dysfunction
- ;;^UTILITY(U,$J,358.3,19634,2)
- ;;=^54741
- ;;^UTILITY(U,$J,358.3,19635,0)
- ;;=453.79^^131^1276^27
- ;;^UTILITY(U,$J,358.3,19635,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19635,1,4,0)
- ;;=4^453.79
- ;;^UTILITY(U,$J,358.3,19635,1,5,0)
- ;;=5^Chr Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,19635,2)
- ;;=^338251
- ;;^UTILITY(U,$J,358.3,19636,0)
- ;;=453.89^^131^1276^1
- ;;^UTILITY(U,$J,358.3,19636,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19636,1,4,0)
- ;;=4^453.89
- ;;^UTILITY(U,$J,358.3,19636,1,5,0)
- ;;=5^AC Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,19636,2)
- ;;=^338259
- ;;^UTILITY(U,$J,358.3,19637,0)
- ;;=454.2^^131^1276^85
- ;;^UTILITY(U,$J,358.3,19637,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,19505,0)
+ ;;=331.4^^108^1159^8
+ ;;^UTILITY(U,$J,358.3,19505,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19505,1,2,0)
+ ;;=2^331.4
+ ;;^UTILITY(U,$J,358.3,19505,1,3,0)
+ ;;=3^Hydrocephalus
+ ;;^UTILITY(U,$J,358.3,19505,2)
+ ;;=Hydrocephalus^84947
+ ;;^UTILITY(U,$J,358.3,19506,0)
+ ;;=458.1^^108^1159^12
+ ;;^UTILITY(U,$J,358.3,19506,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19506,1,2,0)
+ ;;=2^458.1
+ ;;^UTILITY(U,$J,358.3,19506,1,3,0)
+ ;;=3^Hypotension, Chronic
+ ;;^UTILITY(U,$J,358.3,19506,2)
+ ;;=Hypotension, Chronic^269847
+ ;;^UTILITY(U,$J,358.3,19507,0)
+ ;;=306.9^^108^1159^26
+ ;;^UTILITY(U,$J,358.3,19507,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19507,1,2,0)
+ ;;=2^306.9
+ ;;^UTILITY(U,$J,358.3,19507,1,3,0)
+ ;;=3^Psychophysiologic Rxn
+ ;;^UTILITY(U,$J,358.3,19507,2)
+ ;;=Psychophysiologic Rxn^123979
+ ;;^UTILITY(U,$J,358.3,19508,0)
+ ;;=135.^^108^1159^29
+ ;;^UTILITY(U,$J,358.3,19508,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19508,1,2,0)
+ ;;=2^135.
+ ;;^UTILITY(U,$J,358.3,19508,1,3,0)
+ ;;=3^Sarcoidosis of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,19508,2)
+ ;;=Sarciodosis of CNS^107916^357.4
+ ;;^UTILITY(U,$J,358.3,19509,0)
+ ;;=780.57^^108^1159^30
+ ;;^UTILITY(U,$J,358.3,19509,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19509,1,2,0)
+ ;;=2^780.57
+ ;;^UTILITY(U,$J,358.3,19509,1,3,0)
+ ;;=3^Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,19509,2)
+ ;;=Sleep Apnea^293933
+ ;;^UTILITY(U,$J,358.3,19510,0)
+ ;;=307.49^^108^1159^33
+ ;;^UTILITY(U,$J,358.3,19510,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19510,1,2,0)
+ ;;=2^307.49
+ ;;^UTILITY(U,$J,358.3,19510,1,3,0)
+ ;;=3^Sleep Disorder, Nonorganic
+ ;;^UTILITY(U,$J,358.3,19510,2)
+ ;;=Sleep Disord, Nonorganic^268292
+ ;;^UTILITY(U,$J,358.3,19511,0)
+ ;;=780.2^^108^1159^36
+ ;;^UTILITY(U,$J,358.3,19511,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19511,1,2,0)
+ ;;=2^780.2
+ ;;^UTILITY(U,$J,358.3,19511,1,3,0)
+ ;;=3^Syncope
+ ;;^UTILITY(U,$J,358.3,19511,2)
+ ;;=Syncope^116707
+ ;;^UTILITY(U,$J,358.3,19512,0)
+ ;;=266.2^^108^1159^38
+ ;;^UTILITY(U,$J,358.3,19512,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19512,1,2,0)
+ ;;=2^266.2
+ ;;^UTILITY(U,$J,358.3,19512,1,3,0)
+ ;;=3^Vit B-12 Deficiency
+ ;;^UTILITY(U,$J,358.3,19512,2)
+ ;;=Vitamin B-12 Deficiency^87347
+ ;;^UTILITY(U,$J,358.3,19513,0)
+ ;;=780.79^^108^1159^17
+ ;;^UTILITY(U,$J,358.3,19513,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19513,1,2,0)
+ ;;=2^780.79
+ ;;^UTILITY(U,$J,358.3,19513,1,3,0)
+ ;;=3^Malaise & Fatigue
+ ;;^UTILITY(U,$J,358.3,19513,2)
+ ;;=Malaise & Fatigue^73344
+ ;;^UTILITY(U,$J,358.3,19514,0)
+ ;;=758.89^^108^1159^16
+ ;;^UTILITY(U,$J,358.3,19514,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19514,1,2,0)
+ ;;=2^758.89
+ ;;^UTILITY(U,$J,358.3,19514,1,3,0)
+ ;;=3^MERRF Syndrome
+ ;;^UTILITY(U,$J,358.3,19514,2)
+ ;;=MERRF Syndrome^87413
+ ;;^UTILITY(U,$J,358.3,19515,0)
+ ;;=782.0^^108^1159^20
+ ;;^UTILITY(U,$J,358.3,19515,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19515,1,2,0)
+ ;;=2^782.0
+ ;;^UTILITY(U,$J,358.3,19515,1,3,0)
+ ;;=3^Numbness
+ ;;^UTILITY(U,$J,358.3,19515,2)
+ ;;=Numbness^35757
+ ;;^UTILITY(U,$J,358.3,19516,0)
+ ;;=458.0^^108^1159^23
+ ;;^UTILITY(U,$J,358.3,19516,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19516,1,2,0)
+ ;;=2^458.0
+ ;;^UTILITY(U,$J,358.3,19516,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,19516,2)
+ ;;=Orthostatic Hypotension^60741
+ ;;^UTILITY(U,$J,358.3,19517,0)
+ ;;=780.54^^108^1159^10
+ ;;^UTILITY(U,$J,358.3,19517,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19517,1,2,0)
+ ;;=2^780.54
+ ;;^UTILITY(U,$J,358.3,19517,1,3,0)
+ ;;=3^Hypersomnolence
+ ;;^UTILITY(U,$J,358.3,19517,2)
+ ;;=Hypersomnolence^87644

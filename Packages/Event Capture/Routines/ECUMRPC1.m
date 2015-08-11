@@ -1,5 +1,5 @@
-ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;11/18/11  13:31
- ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112**;8 May 96;Build 18
+ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;4/9/15  17:02
+ ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126**;8 May 96;Build 8
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -11,7 +11,7 @@ DSSUNT(RESULTS,ECARY) ;
  ;               P2 =   optional field to filter based on the DSS Name
  ;               P3 =   optional field to return 1 DSS unit by IEN, if used
  ;                      no other filters evaluated
- ;               P4 =   optional field to filter based on the DSS Unit Number
+ ;               P4 =   optional field to filter based on the DSS Unit Number (DSS Dept)
  ;               
  ;               if data is passed into the other fields then all criteria
  ;               must be met for data on a unit to be returned
@@ -30,9 +30,11 @@ DSSUNT(RESULTS,ECARY) ;
  ;                 10    Associated Stop code (if not sending to PCE)
  ;                 11    Category flag
  ;                 12    Default date entry
+ ;                 13    Credit Stop Code (only available when SEND TO PCE is set to "no records"
+ ;                 14    CHAR4 code (only available when SEND TO PCE is set to "no records"
  ;
  N UNT,STAT,CNT,CAT,NODE,ECS,STR,SRV,MED,CST,UNO,INACT,ASC,PCE,ACT,NODE
- N DFD,DIEN,DNM,DUNIT,GET1
+ N DFD,DIEN,DNM,DUNIT,GET1,CSC,CHAR4 ;126
  D SETENV^ECUMRPC
  K ^TMP($J,"ECDSSUNT")
  S DNM=$P($G(ECARY),U,2),DIEN=$P($G(ECARY),U,3),DUNIT=$P($G(ECARY),U,4)
@@ -53,12 +55,14 @@ DSSUNT(RESULTS,ECARY) ;
  . S SRV=$$GET1^DIQ(49,$P(NODE,U,2),.01,"I")
  . S MED=$$GET1^DIQ(723,$P(NODE,U,3),.01,"I")
  . S CST=$$GET1^DIQ(420.1,$P(NODE,U,4),.01,"I")
- . S INACT=$P(NODE,U,6),INACT=$S(INACT:"I",1:"A"),ASC=$P(NODE,U,10)
+ . S INACT=$P(NODE,U,6),INACT=$S(INACT:"I",1:"A"),ASC=$P(NODE,U,10),CSC=$P(NODE,U,13),CHAR4=$P(NODE,U,15) ;126
  . S:ASC ASC=$$GET1^DIQ(40.7,ASC,.01,"I")
+ . S:CSC CSC=$$GET1^DIQ(40.7,CSC,.01) ;126
+ . S:CHAR4 CHAR4=$$GET1^DIQ(728.441,CHAR4,.01) ;126
  . S DFD=$S($P(NODE,U,12)="N":"N",1:"X"),PCE=$P(NODE,U,14)
  . S PCE=$S(PCE="A":PCE,PCE="O":PCE,1:"N")
  . S STR=UNT_U_$P(NODE,U)_U_UNT_U_INACT_U_PCE_U_UNO_U_SRV_U_MED_U_CST
- . S STR=STR_U_ASC_U_CAT_U_DFD,^TMP($J,"ECDSSUNT",CNT)=STR
+ . S STR=STR_U_ASC_U_CAT_U_DFD_U_CSC_U_CHAR4,^TMP($J,"ECDSSUNT",CNT)=STR ;126
  S RESULTS=$NA(^TMP($J,"ECDSSUNT"))
  Q
 CAT(RESULTS,ECARY) ;
@@ -132,14 +136,16 @@ SRCLST(RESULTS,ECARY) ;
  ;        RPC: EC GETLIST
  ;
  ;INPUTS    ECARY   - Contains the following subscripted elements
- ;          ECSTR   - Search string
  ;          ECFIL   - File to search
+ ;          ECSTR   - Search string
  ;          ECDIR   - Search order
  ;          ECNUM   - (Optional) # records to return [default=44]
  ;          ECADT   - (Optional) date to determine clinic inactivity
+ ;          ECLOC   - (Optional) location to filter associated clinics
+ ;          ECTYPE  - (Optional) primary or secondary stop codes desired
  ;OUTPUTS   RESULTS - Array of values based on the search criteria.
  ;
- N ECNT,DIC,ECSTR,ECFIL,ECORD,ECER,ECDI,ECNUM,ECDIR,ECADT ;112
+ N ECNT,DIC,ECSTR,ECFIL,ECORD,ECER,ECDI,ECNUM,ECDIR,ECADT,ECLOC,ECTYPE ;112,126
  D SETENV^ECUMRPC
  S ECNT=0,ECFIL=$P(ECARY,U),ECSTR=$P(ECARY,U,2),ECDIR=$P(ECARY,U,3)
  S ECORD=$S(ECDIR=-1:"B",1:"I")
@@ -147,6 +153,8 @@ SRCLST(RESULTS,ECARY) ;
  I ECFIL="" Q
  S ECNUM=$S(+$P(ECARY,U,4)>0:$P(ECARY,U,4),1:44)
  S ECADT=$S(+$P(ECARY,U,5):$P(ECARY,U,5),1:DT) ;112
+ S ECLOC=$P(ECARY,U,6) ;126 IEN of location if filtering.  Null if no filtering
+ S ECTYPE=$P(ECARY,U,7) ;126 Null if primary, not null for secondary
  I ECFIL=420.1 D CSTCTR            ;Cost Center search
  I ECFIL=49 D SERVC                ;Service search
  I ECFIL=723 D MEDSPC              ;Medical specialty
@@ -157,13 +165,14 @@ SRCLST(RESULTS,ECARY) ;
  I ECFIL=44 D ASCLN G EXIT         ;Associated clinic
  I ECFIL=757.01 D LEX^ECUMRPC2 G EXIT  ;Lex ICD code
  I ECFIL=200 D PROV^ECUMRPC2(ECNUM)      ;Providers
+ I ECFIL=728.441 D CHAR4                 ;126 National Clinic code (CHAR4)
  I $D(ECER) S ^TMP($J,"ECFIND",1)="0^Error occurred during search" G EXIT
  D SORT
 EXIT K ^TMP("ECSRCH",$J)
  S RESULTS=$NA(^TMP($J,"ECFIND"))
  Q
 ASCLN ;Search for active associated clinics (file #44)
- N CLN,CNT,NOD,ECDT,INACT,REACT,ERR
+ N CLN,CNT,NOD,ECDT,INACT,REACT,ERR,ECNOD ;126
  S CNT=0,ECDT=ECADT ;112
  I (ECDIR'=1)&(ECDIR'=-1) S ECDIR=1
  ;the next 2 lines of code compensate for the M collating sequence & how the
@@ -177,13 +186,15 @@ ASCLN ;Search for active associated clinics (file #44)
  F  Q:CNT=ECNUM  S ECSTR=$O(^SC("B",ECSTR),ECDIR) Q:ECSTR=""  S CLN="" D
  .F  S CLN=$O(^SC("B",ECSTR,CLN),ECDIR) Q:CLN=""  S NOD=$G(^SC(CLN,0)) D
  ..Q:NOD=""  Q:$P(NOD,U,3)'="C"  ;Q:+$G(^SC(CLN,"OOS"))
+ ..I $G(ECLOC) I ECLOC'=$P(NOD,U,4) Q  ;126 Clinic must be assoicated with the selected location, if one was selected
  ..S ERR=0 I $D(^SC(CLN,"I")) D  I ERR Q
  ...S INACT=$P(^SC(CLN,"I"),U),REACT=$P(^SC(CLN,"I"),U,2)
  ...I INACT D  I ERR Q
  ....I REACT="" S:ECDT'<INACT ERR=1 Q
  ....I ECDT'<INACT,ECDT<REACT S ERR=1 Q
  ...;I REACT,ECDT<REACT S ERR=1  removed in EC*110 - BGP
- ..S CNT=CNT+1,^TMP($J,"ECFIND",CNT)=CLN_U_$P(NOD,U)
+ ..S ECNOD=$G(^ECX(728.44,CLN,0)) ;126 Get clinic and stop code zero node for selected clinic
+ ..S CNT=CNT+1,^TMP($J,"ECFIND",CNT)=CLN_U_$P(NOD,U)_U_$P(ECNOD,U,2)_U_$P(ECNOD,U,3)_U_$P($G(^ECX(728.441,+$P(ECNOD,U,8),0)),U) ;126 Add stop code, credit stop, and char4 code
  Q
 CSTCTR ;Search for cost centers (File #420.1)
  N ECNULL,INDX,STR,NSTR,I
@@ -210,12 +221,12 @@ STPCDE ;Search for associated stop code (File #40.7)
  .S ECSTR=$O(^DIC(40.7,INDX,+ECSTR)) I ECSTR="" Q
  .F  S IEN=$O(^DIC(40.7,INDX,ECSTR,IEN)) Q:'IEN  D  I ECNT>(ECNUM-1) Q
  ..;07/27/09 llh added checks on piece 2 and 6
- ..S STR=$G(^DIC(40.7,IEN,0)) I ($P(STR,U,3)'=""&($P(STR,U,3)'>DT))!($P(STR,U,6)="S")!($P(STR,U,6)="")!($L($P(STR,U,2))'=3) Q
+ ..S STR=$G(^DIC(40.7,IEN,0)) I ($P(STR,U,3)'=""&($P(STR,U,3)'>DT))!($P(STR,U,6)=$S($G(ECTYPE)="":"S",1:"P"))!($P(STR,U,6)="")!($L($P(STR,U,2))'=3) Q  ;126 allow for searches for primary or secondary
  ..S STR=$E($P(STR,U),1,30)_"  ["_$J($P(STR,U,2),3,0)_"]"_U_$P(STR,U,2)_U_IEN
  ..S ECNT=ECNT+1,^TMP($J,"ECFIND",ECNT)=STR
  ;added validation checks here as well
  ;D LISTDIC(ECFIL,"",".01;1",ECORD,ECNUM,ECSTR,"",INDX,"I $P(^(0),U,3)=""""!($P(^(0),U,3)'<DT)&($P(^(0),U,6)'=""S"")","","^TMP(""ECSRCH"",$J)","ECER")
- D LISTDIC(ECFIL,"",".01;1",ECORD,ECNUM,ECSTR,"",INDX,"I $P(^(0),U,3)=""""!($P(^(0),U,3)'<DT)&($L($P(^(0),U,2))=3)&(($P(^(0),U,6)=""P"")!($P(^(0),U,6)=""E""))","","^TMP(""ECSRCH"",$J)","ECER")
+ D LISTDIC(ECFIL,"",".01;1",ECORD,ECNUM,ECSTR,"",INDX,"I $P(^(0),U,3)=""""!($P(^(0),U,3)'<DT)&($L($P(^(0),U,2))=3)&(($P(^(0),U,6)=$S($G(ECTYPE)="""":""P"",1:""S""))!($P(^(0),U,6)=""E""))","","^TMP(""ECSRCH"",$J)","ECER") ;126
  S ECNT=0
  F  S ECNT=$O(^TMP("ECSRCH",$J,"DILIST","ID",ECNT)) Q:'ECNT  D
  .S STR=$G(^TMP("ECSRCH",$J,"DILIST","ID",ECNT,.01))_U_$G(^(1))
@@ -248,4 +259,8 @@ SORT ;Extracts data to be returned to broker
  S ECNT=0
  F  S ECNT=$O(^TMP("ECSRCH",$J,"DILIST","ID",ECNT)) Q:'ECNT  D
  .S ^TMP($J,"ECFIND",ECNT)=$G(^TMP("ECSRCH",$J,"DILIST","ID",ECNT,.01))_U_^TMP("ECSRCH",$J,"DILIST",2,ECNT)
+ Q
+ ;
+CHAR4 ;126, returns list of CHAR4 codes from the NATIONAL CLINIC file (#728.441)
+ D LISTDIC(ECFIL,"",.01,ECORD,ECNUM,ECSTR,"","","I $P($G(^(2)),""^"")=""""!($P($G(^(2)),""^"")>DT)","","^TMP(""ECSRCH"",$J)","ECER")
  Q

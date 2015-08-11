@@ -1,0 +1,132 @@
+IBDEI1RK ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31537,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,31537,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,31537,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,31538,0)
+ ;;=B37.49^^190^1939^11
+ ;;^UTILITY(U,$J,358.3,31538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31538,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,31538,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,31538,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,31539,0)
+ ;;=B37.41^^190^1939^10
+ ;;^UTILITY(U,$J,358.3,31539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31539,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,31539,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,31539,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,31540,0)
+ ;;=B37.42^^190^1939^9
+ ;;^UTILITY(U,$J,358.3,31540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31540,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,31540,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,31540,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,31541,0)
+ ;;=A59.03^^190^1939^92
+ ;;^UTILITY(U,$J,358.3,31541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31541,1,3,0)
+ ;;=3^Trichomonal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,31541,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,31541,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,31542,0)
+ ;;=E87.6^^190^1939^53
+ ;;^UTILITY(U,$J,358.3,31542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31542,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,31542,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,31542,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,31543,0)
+ ;;=F52.0^^190^1939^52
+ ;;^UTILITY(U,$J,358.3,31543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31543,1,3,0)
+ ;;=3^Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,31543,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,31543,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,31544,0)
+ ;;=F52.22^^190^1939^89
+ ;;^UTILITY(U,$J,358.3,31544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31544,1,3,0)
+ ;;=3^Sexual Arousal Disorder,Female
+ ;;^UTILITY(U,$J,358.3,31544,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,31544,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,31545,0)
+ ;;=F52.8^^190^1939^90
+ ;;^UTILITY(U,$J,358.3,31545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31545,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
+ ;;^UTILITY(U,$J,358.3,31545,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,31545,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,31546,0)
+ ;;=F52.21^^190^1939^30
+ ;;^UTILITY(U,$J,358.3,31546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31546,1,3,0)
+ ;;=3^Erectile Disorder,Male
+ ;;^UTILITY(U,$J,358.3,31546,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,31546,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,31547,0)
+ ;;=I12.9^^190^1939^51
+ ;;^UTILITY(U,$J,358.3,31547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31547,1,3,0)
+ ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
+ ;;^UTILITY(U,$J,358.3,31547,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,31547,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,31548,0)
+ ;;=N04.9^^190^1939^68
+ ;;^UTILITY(U,$J,358.3,31548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31548,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,31548,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,31548,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,31549,0)
+ ;;=N02.9^^190^1939^46
+ ;;^UTILITY(U,$J,358.3,31549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31549,1,3,0)
+ ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
+ ;;^UTILITY(U,$J,358.3,31549,1,4,0)
+ ;;=4^N02.9
+ ;;^UTILITY(U,$J,358.3,31549,2)
+ ;;=^5015520

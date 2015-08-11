@@ -1,6 +1,6 @@
 IBCSC3 ;ALB/MJB - MCCR SCREEN 3 (PAYER/MAILING ADDRESS) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**8,43,52,80,82,51,137,232,320,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**8,43,52,80,82,51,137,232,320,377,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSC3
  ;
@@ -76,16 +76,19 @@ MAIL I $$BUFFER^IBCNBU1(DFN) W !!,?17,"***  Patient has Insurance Buffer entries
 ENDSCR K IBADI,IBDD,IBOUTP,IBINDT,I,X,X1
  G ^IBCSCP
  ;
-SHW1 S X=IBDD(I,0),Z=$G(^DIC(36,+X,0))
+SHW1 ; Display information for insurance I.
+ ; MRD;IB*2.0*516 - Rearranged some fields to allow more characters
+ ; to be displayed for Group #, Group Name, Policy #, Insured.
+ S X=IBDD(I,0),Z=$G(^DIC(36,+X,0))
  W !!?4,"Ins ",I,": " W $E($S($P(Z,U,1)'="":$P(Z,U,1),1:IBU),1,16)
  I $P(Z,U,2)="N" W ?30,"WILL NOT REIMBURSE"
- W ?51,"Policy #: ",$E($S($P(X,"^",2)]"":$P(X,"^",2),1:IBU),1,18)
- W !?4,"Grp #: ",$E($S($P(X,"^",3)]"":$P(X,"^",3),1:IBU),1,16)
- W ?30,"Whose: ",$S($P(X,"^",6)="v":"VETERAN",$P(X,"^",6)="s":"SPOUSE",1:"OTHER")
- W ?51,"Rel to Insd: ",IBIR(I)
- W !?4,"Grp Nm: ",$E($S($P(X,"^",15)]"":$P(X,"^",15),1:IBU),1,16)
- W ?30,"Insd Sex: ",$S($D(IBISEX(I)):IBISEX(I),1:IBU)
- W ?51,"Insured: ",$E($P(X,"^",17),1,19)
+ W ?51,"Whose: ",$S($P(X,"^",6)="v":"VETERAN",$P(X,"^",6)="s":"SPOUSE",1:"OTHER")
+ W !?4,"Policy #: ",$E($S($P(X,"^",2)]"":$P(X,"^",2),1:IBU),1,34)
+ W ?51,"Rel to Insd: ",$E(IBIR(I),1,15)
+ W !?4,"Insured: ",$E($P(X,"^",17),1,35)
+ W ?51,"Insd Sex: ",$S($D(IBISEX(I)):IBISEX(I),1:IBU)
+ W !?4,"Grp #: ",$E($S($P(X,"^",3)]"":$P(X,"^",3),1:IBU),1,67)
+ W !?4,"Grp Nm: ",$E($S($P(X,"^",15)]"":$P(X,"^",15),1:IBU),1,66)
  Q
  ;
 UP K IBDD D ALL^IBCNS1(DFN,"IBDD",2,IBINDT,1)

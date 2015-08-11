@@ -1,108 +1,132 @@
-IBDEI11M ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11M ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18691,0)
- ;;=11600^^122^1195^1^^^^1
- ;;^UTILITY(U,$J,358.3,18691,1,0)
+ ;;^UTILITY(U,$J,358.3,18589,0)
+ ;;=H0002^^102^1074^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18589,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18691,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,18691,1,3,0)
- ;;=3^11600
- ;;^UTILITY(U,$J,358.3,18692,0)
- ;;=11601^^122^1195^2^^^^1
- ;;^UTILITY(U,$J,358.3,18692,1,0)
+ ;;^UTILITY(U,$J,358.3,18589,1,2,0)
+ ;;=2^H0002
+ ;;^UTILITY(U,$J,358.3,18589,1,3,0)
+ ;;=3^Screen for Addictions Admit
+ ;;^UTILITY(U,$J,358.3,18590,0)
+ ;;=H0003^^102^1074^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18590,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18692,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,18692,1,3,0)
- ;;=3^11601
- ;;^UTILITY(U,$J,358.3,18693,0)
- ;;=11602^^122^1195^3^^^^1
- ;;^UTILITY(U,$J,358.3,18693,1,0)
+ ;;^UTILITY(U,$J,358.3,18590,1,2,0)
+ ;;=2^H0003
+ ;;^UTILITY(U,$J,358.3,18590,1,3,0)
+ ;;=3^Alcohol/Drug Scrn;lab analysis
+ ;;^UTILITY(U,$J,358.3,18591,0)
+ ;;=H0004^^102^1074^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18591,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18693,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,18693,1,3,0)
- ;;=3^11602
- ;;^UTILITY(U,$J,358.3,18694,0)
- ;;=11603^^122^1195^4^^^^1
- ;;^UTILITY(U,$J,358.3,18694,1,0)
+ ;;^UTILITY(U,$J,358.3,18591,1,2,0)
+ ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,18591,1,3,0)
+ ;;=3^Individual Counseling per 15 min
+ ;;^UTILITY(U,$J,358.3,18592,0)
+ ;;=H0005^^102^1074^5^^^^1
+ ;;^UTILITY(U,$J,358.3,18592,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18694,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 2.1cm to 3.0cm
- ;;^UTILITY(U,$J,358.3,18694,1,3,0)
- ;;=3^11603
- ;;^UTILITY(U,$J,358.3,18695,0)
- ;;=11604^^122^1195^5^^^^1
- ;;^UTILITY(U,$J,358.3,18695,1,0)
+ ;;^UTILITY(U,$J,358.3,18592,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,18592,1,3,0)
+ ;;=3^Addictions Group
+ ;;^UTILITY(U,$J,358.3,18593,0)
+ ;;=H0006^^102^1074^6^^^^1
+ ;;^UTILITY(U,$J,358.3,18593,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18695,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,18695,1,3,0)
- ;;=3^11604
- ;;^UTILITY(U,$J,358.3,18696,0)
- ;;=11606^^122^1195^6^^^^1
- ;;^UTILITY(U,$J,358.3,18696,1,0)
+ ;;^UTILITY(U,$J,358.3,18593,1,2,0)
+ ;;=2^H0006
+ ;;^UTILITY(U,$J,358.3,18593,1,3,0)
+ ;;=3^Alcohol/Drug Case Management
+ ;;^UTILITY(U,$J,358.3,18594,0)
+ ;;=H0020^^102^1074^7^^^^1
+ ;;^UTILITY(U,$J,358.3,18594,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18696,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; over 4.0cm
- ;;^UTILITY(U,$J,358.3,18696,1,3,0)
- ;;=3^11606
- ;;^UTILITY(U,$J,358.3,18697,0)
- ;;=11620^^122^1195^7^^^^1
- ;;^UTILITY(U,$J,358.3,18697,1,0)
+ ;;^UTILITY(U,$J,358.3,18594,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,18594,1,3,0)
+ ;;=3^Methodone Administration
+ ;;^UTILITY(U,$J,358.3,18595,0)
+ ;;=H0025^^102^1074^8^^^^1
+ ;;^UTILITY(U,$J,358.3,18595,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18697,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,18697,1,3,0)
- ;;=3^11620
- ;;^UTILITY(U,$J,358.3,18698,0)
- ;;=11621^^122^1195^8^^^^1
- ;;^UTILITY(U,$J,358.3,18698,1,0)
+ ;;^UTILITY(U,$J,358.3,18595,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,18595,1,3,0)
+ ;;=3^Addictions Education Service
+ ;;^UTILITY(U,$J,358.3,18596,0)
+ ;;=H0030^^102^1074^9^^^^1
+ ;;^UTILITY(U,$J,358.3,18596,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18698,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,18698,1,3,0)
- ;;=3^11621
- ;;^UTILITY(U,$J,358.3,18699,0)
- ;;=11622^^122^1195^9^^^^1
- ;;^UTILITY(U,$J,358.3,18699,1,0)
+ ;;^UTILITY(U,$J,358.3,18596,1,2,0)
+ ;;=2^H0030
+ ;;^UTILITY(U,$J,358.3,18596,1,3,0)
+ ;;=3^Addictions Hotline Services
+ ;;^UTILITY(U,$J,358.3,18597,0)
+ ;;=H0046^^102^1074^10^^^^1
+ ;;^UTILITY(U,$J,358.3,18597,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18699,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,18699,1,3,0)
- ;;=3^11622
- ;;^UTILITY(U,$J,358.3,18700,0)
- ;;=11623^^122^1195^10^^^^1
- ;;^UTILITY(U,$J,358.3,18700,1,0)
+ ;;^UTILITY(U,$J,358.3,18597,1,2,0)
+ ;;=2^H0046
+ ;;^UTILITY(U,$J,358.3,18597,1,3,0)
+ ;;=3^PTSD Group
+ ;;^UTILITY(U,$J,358.3,18598,0)
+ ;;=99401^^102^1075^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18598,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18700,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 2.1cm to 3.0cm
- ;;^UTILITY(U,$J,358.3,18700,1,3,0)
- ;;=3^11623
- ;;^UTILITY(U,$J,358.3,18701,0)
- ;;=11624^^122^1195^11^^^^1
- ;;^UTILITY(U,$J,358.3,18701,1,0)
+ ;;^UTILITY(U,$J,358.3,18598,1,2,0)
+ ;;=2^99401
+ ;;^UTILITY(U,$J,358.3,18598,1,3,0)
+ ;;=3^COUNSEL/RISK REDUCTION INTVN 15 MIN
+ ;;^UTILITY(U,$J,358.3,18599,0)
+ ;;=99402^^102^1075^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18599,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18701,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,18701,1,3,0)
- ;;=3^11624
- ;;^UTILITY(U,$J,358.3,18702,0)
- ;;=11626^^122^1195^12^^^^1
- ;;^UTILITY(U,$J,358.3,18702,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18702,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, gentalia; over 4.0cm
- ;;^UTILITY(U,$J,358.3,18702,1,3,0)
- ;;=3^11626
- ;;^UTILITY(U,$J,358.3,18703,0)
- ;;=12001^^122^1196^1^^^^1
- ;;^UTILITY(U,$J,358.3,18703,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18703,1,2,0)
- ;;=2^Simple Repair of Superficial Wounds of scalp, neck, azillae, external genitalia, trunk, extriemities; 2.5cm or less 
- ;;^UTILITY(U,$J,358.3,18703,1,3,0)
- ;;=3^12001
+ ;;^UTILITY(U,$J,358.3,18599,1,2,0)
+ ;;=2^99402
+ ;;^UTILITY(U,$J,358.3,18599,1,3,0)
+ ;;=3^COUNSEL/RISK REDUCTION INTVN 30 MIN
+ ;;^UTILITY(U,$J,358.3,18600,0)
+ ;;=99212^^103^1076^2
+ ;;^UTILITY(U,$J,358.3,18600,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18600,1,1,0)
+ ;;=1^PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,18600,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,18601,0)
+ ;;=99213^^103^1076^3
+ ;;^UTILITY(U,$J,358.3,18601,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18601,1,1,0)
+ ;;=1^EXPANDED PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,18601,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,18602,0)
+ ;;=99214^^103^1076^4
+ ;;^UTILITY(U,$J,358.3,18602,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18602,1,1,0)
+ ;;=1^DETAILED
+ ;;^UTILITY(U,$J,358.3,18602,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,18603,0)
+ ;;=99215^^103^1076^5
+ ;;^UTILITY(U,$J,358.3,18603,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18603,1,1,0)
+ ;;=1^COMPREHENSIVE
+ ;;^UTILITY(U,$J,358.3,18603,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,18604,0)
+ ;;=99241^^103^1077^1
+ ;;^UTILITY(U,$J,358.3,18604,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18604,1,1,0)
+ ;;=1^PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,18604,1,2,0)
+ ;;=2^99241

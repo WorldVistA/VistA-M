@@ -1,10 +1,13 @@
 IBCF21 ;ALB/ARH - HCFA 1500 19-90 DATA (gather insurance, cc) ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**8,80,51,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**8,80,51,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; requires IBIFN
 INS S IBFLD("11AD")=""
- F IBI=1,2,3 S IB("I"_IBI)=$G(^DGCR(399,IBIFN,("I"_IBI)))
+ ;IB*2.0*516/BAA - Call $$POLICY^IBCEF to insert HIPAA compliant fields into variable IBDI1. Data will
+ ;continue to be extracted from IBDI1 original location.
+ ;F IBI=1,2,3 S IB("I"_IBI)=$G(^DGCR(399,IBIFN,("I"_IBI)))  ; 516 - baa
+ F IBI=1,2,3 S IB("I"_IBI)=$$POLICY^IBCEF(IBIFN,,IBI)  ; 516 - baa
  F IBI="I1","I2","I3" I IB(IBI)'="" S IBX=+$P(IB(IBI),U,16),IBY="IBR"_IBI,@IBY=IBX I IBX'=1,IBX'=2 D  S @IBY=IBX ;pt's rel to insured
  . I $P(IB(IBI),U,6)="v" D:'$D(VAEL) ELIG^VADPT I +VAEL(4) S IBX=1 Q  ;vet is the patient
  . I $P(IB(IBI),U,6)="s" D:'$D(VAEL) ELIG^VADPT I +VAEL(4) S IBX=2 Q  ;vet is pt, so vets spouse is pt's spouse

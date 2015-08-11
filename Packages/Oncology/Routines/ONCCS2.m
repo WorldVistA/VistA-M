@@ -1,5 +1,5 @@
 ONCCS2 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
  S SCHEMA="Unable to compute schema"
  Q:$G(TOP)=""
@@ -190,7 +190,7 @@ ONCCS2 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
  ;
  I $G(SCHEMA)="GumLower" D  Q
  .D:$P($G(^ONCO(165.5,D0,"CS")),U,6)="" 2
- .D 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+ .D 12,13,14,15,16,17,18,19,20,21,22,23,24,25
  .I DATEDX>3131231 D 7,8,10    ;CS V02.05
  ;
  I $G(SCHEMA)="GumOther" D  Q
@@ -232,7 +232,7 @@ ONCCS2 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
  ;
  I $G(SCHEMA)="KidneyParenchyma" D  Q
  .D 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
- .I DATEDX>3131231 D 2,3    ;CS V02.05
+ .I DATEDX>3131231 D 5,7    ;CS V02.05
  ;
  I $G(SCHEMA)="KidneyRenalPelvis" D  Q
  .D 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25

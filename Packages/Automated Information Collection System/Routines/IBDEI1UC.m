@@ -1,0 +1,130 @@
+IBDEI1UC ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,32827,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32827,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,32827,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,32828,0)
+ ;;=W05.2XXA^^190^1962^45
+ ;;^UTILITY(U,$J,358.3,32828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32828,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32828,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,32828,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,32829,0)
+ ;;=W05.2XXD^^190^1962^46
+ ;;^UTILITY(U,$J,358.3,32829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32829,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32829,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,32829,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,32830,0)
+ ;;=W06.XXXA^^190^1962^27
+ ;;^UTILITY(U,$J,358.3,32830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32830,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32830,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,32830,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,32831,0)
+ ;;=W06.XXXD^^190^1962^28
+ ;;^UTILITY(U,$J,358.3,32831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32831,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32831,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,32831,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,32832,0)
+ ;;=W07.XXXA^^190^1962^35
+ ;;^UTILITY(U,$J,358.3,32832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32832,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32832,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,32832,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,32833,0)
+ ;;=W07.XXXD^^190^1962^36
+ ;;^UTILITY(U,$J,358.3,32833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32833,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32833,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,32833,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,32834,0)
+ ;;=W10.1XXA^^190^1962^77
+ ;;^UTILITY(U,$J,358.3,32834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32834,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32834,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,32834,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,32835,0)
+ ;;=W10.1XXD^^190^1962^78
+ ;;^UTILITY(U,$J,358.3,32835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32835,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32835,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,32835,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,32836,0)
+ ;;=W11.XXXA^^190^1962^39
+ ;;^UTILITY(U,$J,358.3,32836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32836,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32836,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,32836,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,32837,0)
+ ;;=W11.XXXD^^190^1962^40
+ ;;^UTILITY(U,$J,358.3,32837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32837,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32837,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,32837,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,32838,0)
+ ;;=W13.0XXA^^190^1962^25
+ ;;^UTILITY(U,$J,358.3,32838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32838,1,3,0)
+ ;;=3^Fall from Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32838,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,32838,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,32839,0)
+ ;;=W13.0XXD^^190^1962^26
+ ;;^UTILITY(U,$J,358.3,32839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32839,1,3,0)
+ ;;=3^Fall from Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32839,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,32839,2)
+ ;;=^5059602

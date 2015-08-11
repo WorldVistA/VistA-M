@@ -1,58 +1,140 @@
-IBDEI08D ; ; 09-FEB-2015
+IBDEI08D ; ; 20-MAY-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,3780,0)
+ ;;=173.30^^31^344^13
+ ;;^UTILITY(U,$J,358.3,3780,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3780,1,2,0)
+ ;;=2^173.30
+ ;;^UTILITY(U,$J,358.3,3780,1,5,0)
+ ;;=5^Malig neoplasm skin, face NOS
+ ;;^UTILITY(U,$J,358.3,3780,2)
+ ;;=^340599
+ ;;^UTILITY(U,$J,358.3,3781,0)
+ ;;=173.31^^31^344^14
+ ;;^UTILITY(U,$J,358.3,3781,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3781,1,2,0)
+ ;;=2^173.31
+ ;;^UTILITY(U,$J,358.3,3781,1,5,0)
+ ;;=5^BCC of skin of face
+ ;;^UTILITY(U,$J,358.3,3781,2)
+ ;;=^340473
+ ;;^UTILITY(U,$J,358.3,3782,0)
+ ;;=173.32^^31^344^15
+ ;;^UTILITY(U,$J,358.3,3782,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3782,1,2,0)
+ ;;=2^173.32
+ ;;^UTILITY(U,$J,358.3,3782,1,5,0)
+ ;;=5^SCC of skin of face
+ ;;^UTILITY(U,$J,358.3,3782,2)
+ ;;=^340474
+ ;;^UTILITY(U,$J,358.3,3783,0)
+ ;;=173.39^^31^344^16
+ ;;^UTILITY(U,$J,358.3,3783,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3783,1,2,0)
+ ;;=2^173.39
+ ;;^UTILITY(U,$J,358.3,3783,1,5,0)
+ ;;=5^Other spec neoplasm skin, face
+ ;;^UTILITY(U,$J,358.3,3783,2)
+ ;;=^340475
+ ;;^UTILITY(U,$J,358.3,3784,0)
+ ;;=173.40^^31^344^17
+ ;;^UTILITY(U,$J,358.3,3784,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3784,1,2,0)
+ ;;=2^173.40
+ ;;^UTILITY(U,$J,358.3,3784,1,5,0)
+ ;;=5^Malig neoplasm skin, scalp/neck
+ ;;^UTILITY(U,$J,358.3,3784,2)
+ ;;=^340600
+ ;;^UTILITY(U,$J,358.3,3785,0)
+ ;;=173.41^^31^344^18
+ ;;^UTILITY(U,$J,358.3,3785,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3785,1,2,0)
+ ;;=2^173.41
+ ;;^UTILITY(U,$J,358.3,3785,1,5,0)
+ ;;=5^BCC of skin of scalp/neck
+ ;;^UTILITY(U,$J,358.3,3785,2)
+ ;;=^340476
+ ;;^UTILITY(U,$J,358.3,3786,0)
+ ;;=173.42^^31^344^19
+ ;;^UTILITY(U,$J,358.3,3786,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3786,1,2,0)
+ ;;=2^173.42
+ ;;^UTILITY(U,$J,358.3,3786,1,5,0)
+ ;;=5^SCC of skin of scalp/neck
+ ;;^UTILITY(U,$J,358.3,3786,2)
+ ;;=^340477
+ ;;^UTILITY(U,$J,358.3,3787,0)
+ ;;=173.49^^31^344^20
+ ;;^UTILITY(U,$J,358.3,3787,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3787,1,2,0)
+ ;;=2^173.49
+ ;;^UTILITY(U,$J,358.3,3787,1,5,0)
+ ;;=5^Other spec neoplasm skin, scalp/neck
+ ;;^UTILITY(U,$J,358.3,3787,2)
+ ;;=^340478
+ ;;^UTILITY(U,$J,358.3,3788,0)
+ ;;=173.50^^31^344^21
+ ;;^UTILITY(U,$J,358.3,3788,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3788,1,2,0)
+ ;;=2^173.50
+ ;;^UTILITY(U,$J,358.3,3788,1,5,0)
+ ;;=5^Malig neoplasm skin, trunk
+ ;;^UTILITY(U,$J,358.3,3788,2)
+ ;;=^340601
+ ;;^UTILITY(U,$J,358.3,3789,0)
+ ;;=173.51^^31^344^22
+ ;;^UTILITY(U,$J,358.3,3789,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3789,1,2,0)
+ ;;=2^173.51
+ ;;^UTILITY(U,$J,358.3,3789,1,5,0)
+ ;;=5^BCC of skin of trunk
+ ;;^UTILITY(U,$J,358.3,3789,2)
+ ;;=^340479
+ ;;^UTILITY(U,$J,358.3,3790,0)
+ ;;=173.52^^31^344^23
+ ;;^UTILITY(U,$J,358.3,3790,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3790,1,2,0)
+ ;;=2^173.52
+ ;;^UTILITY(U,$J,358.3,3790,1,5,0)
+ ;;=5^SCC of skin of trunk
+ ;;^UTILITY(U,$J,358.3,3790,2)
+ ;;=^340480
+ ;;^UTILITY(U,$J,358.3,3791,0)
+ ;;=173.59^^31^344^24
+ ;;^UTILITY(U,$J,358.3,3791,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3791,1,2,0)
+ ;;=2^173.59
+ ;;^UTILITY(U,$J,358.3,3791,1,5,0)
+ ;;=5^Other spec neoplasm skin, trunk
+ ;;^UTILITY(U,$J,358.3,3791,2)
+ ;;=^340481
+ ;;^UTILITY(U,$J,358.3,3792,0)
+ ;;=173.60^^31^344^25
+ ;;^UTILITY(U,$J,358.3,3792,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3792,1,2,0)
+ ;;=2^173.60
+ ;;^UTILITY(U,$J,358.3,3792,1,5,0)
+ ;;=5^Malig neoplasm skin, arm/shoulder
+ ;;^UTILITY(U,$J,358.3,3792,2)
+ ;;=^340602
+ ;;^UTILITY(U,$J,358.3,3793,0)
+ ;;=173.61^^31^344^26
+ ;;^UTILITY(U,$J,358.3,3793,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3793,1,2,0)
+ ;;=2^173.61

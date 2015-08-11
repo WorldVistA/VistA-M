@@ -1,0 +1,130 @@
+IBDEI1NK ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,29718,1,3,0)
+ ;;=3^Melanocytic Nevi,Unspec
+ ;;^UTILITY(U,$J,358.3,29718,1,4,0)
+ ;;=4^D22.9
+ ;;^UTILITY(U,$J,358.3,29718,2)
+ ;;=^5002058
+ ;;^UTILITY(U,$J,358.3,29719,0)
+ ;;=D23.72^^189^1892^4
+ ;;^UTILITY(U,$J,358.3,29719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29719,1,3,0)
+ ;;=3^Benign Neop of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,29719,1,4,0)
+ ;;=4^D23.72
+ ;;^UTILITY(U,$J,358.3,29719,2)
+ ;;=^5002075
+ ;;^UTILITY(U,$J,358.3,29720,0)
+ ;;=D23.71^^189^1892^8
+ ;;^UTILITY(U,$J,358.3,29720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29720,1,3,0)
+ ;;=3^Benign Neop of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,29720,1,4,0)
+ ;;=4^D23.71
+ ;;^UTILITY(U,$J,358.3,29720,2)
+ ;;=^5002074
+ ;;^UTILITY(U,$J,358.3,29721,0)
+ ;;=D23.9^^189^1892^12
+ ;;^UTILITY(U,$J,358.3,29721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29721,1,3,0)
+ ;;=3^Benign Neop of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,29721,1,4,0)
+ ;;=4^D23.9
+ ;;^UTILITY(U,$J,358.3,29721,2)
+ ;;=^5002076
+ ;;^UTILITY(U,$J,358.3,29722,0)
+ ;;=D22.21^^189^1892^21
+ ;;^UTILITY(U,$J,358.3,29722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29722,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,29722,1,4,0)
+ ;;=4^D22.21
+ ;;^UTILITY(U,$J,358.3,29722,2)
+ ;;=^5002046
+ ;;^UTILITY(U,$J,358.3,29723,0)
+ ;;=C44.501^^189^1893^23
+ ;;^UTILITY(U,$J,358.3,29723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29723,1,3,0)
+ ;;=3^Malig Neop of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,29723,1,4,0)
+ ;;=4^C44.501
+ ;;^UTILITY(U,$J,358.3,29723,2)
+ ;;=^5001052
+ ;;^UTILITY(U,$J,358.3,29724,0)
+ ;;=C50.011^^189^1893^19
+ ;;^UTILITY(U,$J,358.3,29724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29724,1,3,0)
+ ;;=3^Malig Neop of Nipple/Areola,Right Breast
+ ;;^UTILITY(U,$J,358.3,29724,1,4,0)
+ ;;=4^C50.011
+ ;;^UTILITY(U,$J,358.3,29724,2)
+ ;;=^5001159
+ ;;^UTILITY(U,$J,358.3,29725,0)
+ ;;=C50.012^^189^1893^18
+ ;;^UTILITY(U,$J,358.3,29725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29725,1,3,0)
+ ;;=3^Malig Neop of Nipple/Areola,Left Breast
+ ;;^UTILITY(U,$J,358.3,29725,1,4,0)
+ ;;=4^C50.012
+ ;;^UTILITY(U,$J,358.3,29725,2)
+ ;;=^5001160
+ ;;^UTILITY(U,$J,358.3,29726,0)
+ ;;=C50.111^^189^1893^12
+ ;;^UTILITY(U,$J,358.3,29726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29726,1,3,0)
+ ;;=3^Malig Neop of Central Portion of Right Breast
+ ;;^UTILITY(U,$J,358.3,29726,1,4,0)
+ ;;=4^C50.111
+ ;;^UTILITY(U,$J,358.3,29726,2)
+ ;;=^5001165
+ ;;^UTILITY(U,$J,358.3,29727,0)
+ ;;=C50.112^^189^1893^11
+ ;;^UTILITY(U,$J,358.3,29727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29727,1,3,0)
+ ;;=3^Malig Neop of Central Portion of Left Breast
+ ;;^UTILITY(U,$J,358.3,29727,1,4,0)
+ ;;=4^C50.112
+ ;;^UTILITY(U,$J,358.3,29727,2)
+ ;;=^5001166
+ ;;^UTILITY(U,$J,358.3,29728,0)
+ ;;=C50.211^^189^1893^25
+ ;;^UTILITY(U,$J,358.3,29728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29728,1,3,0)
+ ;;=3^Malig Neop of Upper-Inner Quadrant of Right Breast
+ ;;^UTILITY(U,$J,358.3,29728,1,4,0)
+ ;;=4^C50.211
+ ;;^UTILITY(U,$J,358.3,29728,2)
+ ;;=^5001171
+ ;;^UTILITY(U,$J,358.3,29729,0)
+ ;;=C50.212^^189^1893^24
+ ;;^UTILITY(U,$J,358.3,29729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29729,1,3,0)
+ ;;=3^Malig Neop of Upper-Inner Quadrant of Left Breast
+ ;;^UTILITY(U,$J,358.3,29729,1,4,0)
+ ;;=4^C50.212
+ ;;^UTILITY(U,$J,358.3,29729,2)
+ ;;=^5001172
+ ;;^UTILITY(U,$J,358.3,29730,0)
+ ;;=C50.311^^189^1893^15
+ ;;^UTILITY(U,$J,358.3,29730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29730,1,3,0)
+ ;;=3^Malig Neop of Lower-Inner Quadrant of Right Breast
+ ;;^UTILITY(U,$J,358.3,29730,1,4,0)
+ ;;=4^C50.311
+ ;;^UTILITY(U,$J,358.3,29730,2)
+ ;;=^5001177

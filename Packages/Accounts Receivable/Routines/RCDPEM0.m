@@ -1,6 +1,6 @@
-RCDPEM0 ;ALB/TMK - ERA MATCHING TO EFT (cont) ;05-NOV-02
- ;;4.5;Accounts Receivable;**173,208,220**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEM0 ;ALB/TMK - ERA MATCHING TO EFT (cont) ;Jun 11, 2014@13:04:03
+ ;;4.5;Accounts Receivable;**173,208,220,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 MATCH(RCZ,RCPROC) ; Match EFT to ERA
@@ -9,8 +9,10 @@ MATCH(RCZ,RCPROC) ; Match EFT to ERA
  N RCER,RCRZ,RCMATCH,RCER,RC0,RC3444,RC34431,DIE,DA,DR,X,Y,Z,Z0
  ; Find ERA to match to EFT by trace, date, amt
  S RC34431=$G(^RCY(344.31,RCZ,0)) Q:$P(RC34431,U,8)!$O(^RCY(344,"AEFT",RCZ,0))  ; Already matched
- S RCRZ=0 F  S RCRZ=$O(^RCY(344.4,"ATRID",$P(RC34431,U,4),$P(RC34431,U,3),RCRZ)) Q:'RCRZ  S RC3444=$G(^RCY(344.4,RCRZ,0)) I '$O(^RCY(344.31,"AERA",RCRZ,0)),'$P(RC3444,U,9) D  Q:$D(Z(1))
- . S Z($S(+$P(RC34431,U,7)=+$P(RC3444,U,5):1,1:-1),RCRZ)="" ;Total match?
+ I $P(RC34431,U,3)]"",$P(RC34431,U,4)]"" D   ;Must have Payor ID and Trace #
+ . S RCRZ=0
+ . F  S RCRZ=$O(^RCY(344.4,"ATRIDUP",$$UP^XLFSTR($P(RC34431,U,4)),$$UP^XLFSTR($P(RC34431,U,3)),RCRZ)) Q:'RCRZ  S RC3444=$G(^RCY(344.4,RCRZ,0)) I '$O(^RCY(344.31,"AERA",RCRZ,0)),'$P(RC3444,U,9) D  Q:$D(Z(1))
+ .. S Z($S(+$P(RC34431,U,7)=+$P(RC3444,U,5):1,1:-1),RCRZ)="" ;Total match?
  ;
  S RCMATCH=+$O(Z(""),-1),RCRZ=+$O(Z(RCMATCH,0))
  S $P(^TMP($J,"RCDPETOT",344.31,RCZ),U)=RCMATCH
@@ -49,6 +51,19 @@ MATCH(RCZ,RCPROC) ; Match EFT to ERA
  . S DIE="^RCY(344.31,",DA=RCZ,DR=".08////"_RCMATCH_";.1////"_RCRZ D ^DIE
  . S DIE="^RCY(344.4,",DA=RCRZ,DR=".09////"_RCMATCH D ^DIE
  . S ^TMP($J,"RCTOT","MATCH")=$G(^TMP($J,"RCTOT","MATCH"))+1
+ . ;Lines below are added for Auto-posting - PRCA*4.5*298
+ . ;Quit if this is not nightly job or medical auto posting is OFF
+ . Q:'RCPROC  Q:'$P($G(^RCY(344.61,1,0)),U,2)
+ . ;Quit if this is a zero value ERA
+ . Q:+$P($G(^RCY(344.4,RCRZ,0)),U,5)=0
+ . ;Quit if ERA payer is excluded from autopost
+ . Q:$$EXCLUDE^RCDPEAP1(RCRZ)
+ . ;Quit if pharmacy ERA
+ . Q:$$PHARM^RCDPEAP1(RCRZ)
+ . ;Ignore ERA with ERA level adjustments and exceptions
+ . Q:'$$AUTOCHK^RCDPEAP1(RCRZ)
+ . ;Set AUTO-POST STATUS = UNPOSTED this is trigger for auto-post (EN^RCDPEAP)
+ . D SETSTA^RCDPEAP(RCRZ,0)
  ;
  Q
  ;
@@ -70,11 +85,14 @@ ADDDEP(RCD,RCDDT,RCZ) ; Add deposit
  ;
 ADDREC(RCDEP,RCZ) ; Add receipt, send CR to FUND 528704, Rev src cd 8NZZ
  ;   for total EFT amt
- ; RCDEP = ien of the deposit file entry
- ; RCZ = ien in file 344.3
- ; Function returns IEN of new receipt entry
+ ; RCDEP = IEN in AR DEPOSIT file (#344.1)
+ ;   RCZ = IEN in EDI LOCKBOX DEPOSIT file (#344.3)
+ ;    Function returns IEN of new receipt entry
  ;
- N RCER,RCTRANDA,RECTDA,RCQUIT,RCDPDATA,RCTOTCT,RC0,DIE,DA,DR,X,Y
+ ; RCLOCK - flag indicating lock success
+ ; RCTRANDA - transaction number
+ ; RECTDA - IEN in file #344
+ N RCER,RCLOCK,RCTRANDA,RECTDA,RCQUIT,RCDPDATA,RCTOTCT,RC0,DIE,DA,DR,X,Y
  S RC0=$G(^RCY(344.3,RCZ,0))
  S $P(^TMP($J,"RCDPETOT",344.3,RCZ),U,3)=0
  ; Single receipt - multiple transactions for EFT payments
@@ -82,9 +100,9 @@ ADDREC(RCDEP,RCZ) ; Add receipt, send CR to FUND 528704, Rev src cd 8NZZ
  ; Create detail lines for deposit amount, process whole receipt to send
  ;   CR document for deposit amount
  I RECTDA D
+ . L +^RCY(344,RECTDA):DILOCKTM S RCLOCK=$T Q:'RCLOCK  ; exit if unable to lock
  . N STATUS,RC00,RCT
  . S $P(^TMP($J,"RCDPETOT",344.3,RCZ),U)=RECTDA,^TMP($J,"RCTOT","EFT_RECPT")=$G(^TMP($J,"RCTOT","EFT_RECPT"))+1
- . L +^RCY(344,RECTDA)
  . ;  check to see if receipt has been processed (fms document)
  . D DIQ344^RCDPRPLM(RECTDA,"200;")
  . ;  code sheet already sent once, this is a retransmission, check it
@@ -140,8 +158,20 @@ ADDREC(RCDEP,RCZ) ; Add receipt, send CR to FUND 528704, Rev src cd 8NZZ
  . S ^TMP($J,"RCTOT","SUSPAMT")=$G(^TMP($J,"RCTOT","SUSPAMT"))+TOT
  . S $P(^TMP($J,"RCDPETOT",344.3,RCZ),U,3)="1"
  ;
- I RECTDA L -^RCY(344,RECTDA)
- Q RECTDA
+ I 'RCLOCK,$G(RECTDA) D  ; couldn't get LOCK send MailMan message and store error
+ .N RCBODY,XMINSTR,XMSUBJ,XMTO,XMZ
+ .S RCBODY(1)=" > "_$$FMTE^XLFDT($$NOW^XLFDT,10)
+ .S RCBODY(2)="An exception occurred during Lockbox processing."
+ .S RCBODY(3)="Receipt "_$P($G(^RCY(344,RECTDA,0)),U)_" was not processed."
+ .S RCBODY(4)="The ePayments software could not get exclusive access to the entry."
+ .S XMSUBJ="EDI LBOX "_$$FMTE^XLFDT(DT,10)_" Receipt Not Processed"
+ .S XMTO("I:G.RCDPE PAYMENTS")="",XMTO(DUZ)=""
+ .S XMINSTR("FROM")="POSTMASTER"
+ .D SENDMSG^XMXAPI(DUZ,XMSUBJ,"RCBODY",.XMTO,.XMINSTR,.XMZ)
+ .I $G(RCZ) D STORERR(344.3,RCZ,.RCBODY)
+ ;
+ I RCLOCK L -^RCY(344,RECTDA)
+ Q $S(RCLOCK:RECTDA,1:0)  ; return new IEN or zero if not processed
  ;
 SETERR(RCPROC) ; Set up first line of error message to be stored
  ; RCPROC = 1 if called from EFT-EOB automatch, 0 if from manual match

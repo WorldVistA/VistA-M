@@ -1,6 +1,6 @@
 IBCNBLP ;ALB/ARH-Ins Buffer: LM buffer process screen ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,497,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - main entry point for screen
  D EN^VALM("IBCNB INSURANCE BUFFER PROCESS")
@@ -15,7 +15,7 @@ HDR ;  header code for list manager display
  S VALMHDR(1)=IBX
  S VALMHDR(2)=$P(VADM(2),U,2)_"    DOB: "_$P(VADM(3),U,2)_"    AGE: "_VADM(4)
  S IB0=$G(^IBA(355.33,IBBUFDA,21))
- S IBY=$E($P(IB0,U,4),1,13),IBX=$P($G(^DIC(5,+$P(IB0,U,5),0)),U,2),IBY=IBY_$S(IBY'=""&(IBX'=""):", ",1:"")_IBX
+ S IBY=$E($$GET1^DIQ(355.3,IBBUFDA,2.02),1,13),IBX=$P($G(^DIC(5,+$P(IB0,U,5),0)),U,2),IBY=IBY_$S(IBY'=""&(IBX'=""):", ",1:"")_IBX  ; 516 - baa
  S IBY=$E($P(IB0,U,1),1,20)_$S(IBY'="":", ",1:"")_IBY,IBY=$S(IBY'="":"   ("_IBY_")",1:"")
  S IBX=$E($P($G(^IBA(355.33,IBBUFDA,20)),U,1),1,18)_IBY,IBX=$J("",40-($L(IBX)\2))_IBX
  S VALMHDR(3)=IBX
@@ -76,8 +76,9 @@ PATHDR(IBBUFDA) ; additional header lines:  display buffer entry for display of 
  ;
  S IBX="" I 'IB40 S IBY="-" S IBX=$$SETSTR^VALM1(IBY,IBX,4,1)
  S IBY=$P(IB20,U,1) S IBX=$$SETSTR^VALM1(IBY,IBX,5,18)
- S IBY=$P(IB40,U,3) S IBX=$$SETSTR^VALM1(IBY,IBX,25,13)
- S IBY=$P(IB60,U,4) S IBX=$$SETSTR^VALM1(IBY,IBX,40,13)
+ ;IB*2.0*516/BAA - Use HIPAA compliant fields.
+ S IBY=$$GET1^DIQ(355.33,IBBUFDA,90.02) S IBX=$$SETSTR^VALM1(IBY,IBX,25,13) ;516 - baa
+ S IBY=$$GET1^DIQ(355.33,IBBUFDA,90.03) S IBX=$$SETSTR^VALM1(IBY,IBX,40,13) ;516 - baa
  S IBY=$P(IB60,U,6),IBY=$$EXPAND^IBTRE(355.33,60.06,IBY) S IBX=$$SETSTR^VALM1(IBY,IBX,55,6)
  S IBY=$$DATE($P(IB60,U,2)) S IBX=$$SETSTR^VALM1(IBY,IBX,63,8)
  S IBY=$$DATE($P(IB60,U,3)) S IBX=$$SETSTR^VALM1(IBY,IBX,73,8)
@@ -91,9 +92,9 @@ GRPHDR(IBBUFDA) ; additional header lines:  display buffer entry for display of 
  S IBX="" I 'IB40 S IBY="-" S IBX=$$SETSTR^VALM1(IBY,IBX,5,1)
  ;S IBY=$P(IB40,U,2) S IBX=$$SETSTR^VALM1(IBY,IBX,6,20)
  ;S IBY=$P(IB40,U,3) S IBX=$$SETSTR^VALM1(IBY,IBX,30,17)
- S IBY=$P(IB40,U,2) S IBX=$$SETSTR^VALM1(IBY,IBX,6,80)
+ S IBY=$$GET1^DIQ(355.33,IBBUFDA,90.01) S IBX=$$SETSTR^VALM1(IBY,IBX,6,80)  ; 516 - baa - new grp nam field
  S VALMHDR(4)=IBX
- S IBY=$P(IB40,U,3) S IBX=$$SETSTR^VALM1(IBY,IBX,6,55)
+ S IBY=$$GET1^DIQ(355.33,IBBUFDA,90.02) S IBX=$$SETSTR^VALM1(IBY,IBX,6,55)  ; 516 - baa - new grp num field
  S VALMHDR(5)=IBX
  ;S IBY=$P(IB40,U,9) I +IBY S IBY=$P($G(^IBE(355.1,+IBY,0)),U,1) S IBX=$$SETSTR^VALM1(IBY,IBX,50,30)
  S IBY=$P(IB40,U,9) I +IBY S IBY=$P($G(^IBE(355.1,+IBY,0)),U,1) S IBX=$$SETSTR^VALM1(IBY,IBX,6,30)
@@ -102,10 +103,17 @@ GRPHDR(IBBUFDA) ; additional header lines:  display buffer entry for display of 
  ;
 PATDATA(IBBUFDA) ; create string of data from buffer entry to compare with data in existing insurance entries
  ; for the patient insurance list compare:  INS COMPANY NAME ^ GROUP NUMBER ^ SUBSCRIBER ID
- N IBX S IBX=$P($G(^IBA(355.33,IBBUFDA,20)),U,1)_U_$P($G(^IBA(355.33,IBBUFDA,40)),U,3)_U_$P($G(^IBA(355.33,IBBUFDA,60)),U,4)
+ N IBX
+ S IBX=$P($G(^IBA(355.33,IBBUFDA,20)),U,1)_U_$$GET1^DIQ(355.33,IBBUFDA,90.02)_U_$$GET1^DIQ(355.33,IBBUFDA,90.03) ;516 - baa
  Q IBX
  ;
 GRPDATA(IBBUFDA) ; create string of data from buffer entry to compare with data in existing insurance entries
  ; for the group plan list compare:  GROUP NAME ^ GROUP NUMBER ^ TYPE OF PLAN
- N IBX,IBY S IBY=$G(^IBA(355.33,IBBUFDA,40)) S IBX=$P(IBY,U,2)_U_$P(IBY,U,3)_U_$P($G(^IBE(355.1,+$P(IBY,U,9),0)),U,1)
+ N IBX,IBY,IBGNAM,IBGNUM
+ S IBY=$G(^IBA(355.33,IBBUFDA,40))
+ ; 516 - baa - get new group name and number fields
+ S IBGNAM=$$GET1^DIQ(355.33,IBBUFDA,90.01)
+ S IBGNUM=$$GET1^DIQ(355.33,IBBUFDA,90.02)
+ S IBX=IBGNAM_U_IBGNUM_U_$P($G(^IBE(355.1,+$P(IBY,U,9),0)),U,1)
+ ; end Patch 516 - baa
  Q IBX

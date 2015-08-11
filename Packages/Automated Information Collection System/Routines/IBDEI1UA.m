@@ -1,0 +1,124 @@
+IBDEI1UA ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,32803,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32803,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,32803,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,32804,0)
+ ;;=V00.838A^^190^1962^89
+ ;;^UTILITY(U,$J,358.3,32804,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32804,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32804,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,32804,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,32805,0)
+ ;;=V00.838D^^190^1962^90
+ ;;^UTILITY(U,$J,358.3,32805,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32805,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32805,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,32805,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,32806,0)
+ ;;=V00.891A^^190^1962^55
+ ;;^UTILITY(U,$J,358.3,32806,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32806,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32806,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,32806,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,32807,0)
+ ;;=V00.891D^^190^1962^56
+ ;;^UTILITY(U,$J,358.3,32807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32807,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32807,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,32807,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,32808,0)
+ ;;=V00.892A^^190^1962^95
+ ;;^UTILITY(U,$J,358.3,32808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32808,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32808,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,32808,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,32809,0)
+ ;;=V00.892D^^190^1962^96
+ ;;^UTILITY(U,$J,358.3,32809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32809,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32809,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,32809,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,32810,0)
+ ;;=V00.898A^^190^1962^93
+ ;;^UTILITY(U,$J,358.3,32810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32810,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32810,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,32810,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,32811,0)
+ ;;=V00.898D^^190^1962^94
+ ;;^UTILITY(U,$J,358.3,32811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32811,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32811,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,32811,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,32812,0)
+ ;;=W00.0XXA^^190^1962^75
+ ;;^UTILITY(U,$J,358.3,32812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32812,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32812,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,32812,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,32813,0)
+ ;;=W00.0XXD^^190^1962^76
+ ;;^UTILITY(U,$J,358.3,32813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32813,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32813,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,32813,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,32814,0)
+ ;;=W00.1XXA^^190^1962^59
+ ;;^UTILITY(U,$J,358.3,32814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32814,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32814,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,32814,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,32815,0)
+ ;;=W00.1XXD^^190^1962^60
+ ;;^UTILITY(U,$J,358.3,32815,1,0)
+ ;;=^358.31IA^4^2

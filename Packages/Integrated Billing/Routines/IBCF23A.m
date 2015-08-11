@@ -1,11 +1,11 @@
 IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**51,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 B24 ; set individual entries in print array, external format
  ; IBAUX = additional data for EDI output
  ; IBRXF = array of RX procedures
- N IBX,Z,IBD1,IBD2
+ N IBX,Z,IBD1,IBD2,IBCPLINK
  S IBI=IBI+1,IBPROC=$P(IBSS,U,2),IBD1=$$DATE^IBCF23(IBDT1),IBD2=$S(IBDT1'=IBDT2:$$DATE^IBCF23(IBDT2),1:"")
  I '$D(IBXIEN) S IBD1=$E(IBD1,5,8)_$E(IBD1,1,4),IBD2=$E(IBD2,5,8)_$E(IBD2,1,4)
  S IBFLD(24,IBI)=IBD1_U_IBD2_U_$P($G(^IBE(353.1,+$P(IBSS,U,6),0)),U)_U_$P($G(^IBE(353.2,+$P(IBSS,U,7),0)),U)
@@ -18,7 +18,10 @@ B24 ; set individual entries in print array, external format
  S:$TR($G(IBAUX),U)'="" IBFLD(24,IBI,"AUX")=$G(IBAUX)
  S:$D(IBRXF) IBFLD(24,IBI,"RX")=IBRXF
  K IBPROC,IBSS("L")
- S IBFLD(24,IBI)=IBFLD(24,IBI)_U_$P(IBSS,U,$L(IBSS,U))
+ S IBCPLINK=$P(IBSS,U,$L(IBSS,U))
+ S IBFLD(24,IBI)=IBFLD(24,IBI)_U_IBCPLINK
+ ; MRD;IB*2.0*516 - Added NDC and Units to line level of claim.
+ I IBCPLINK'="" S $P(IBFLD(24,IBI),U,14,15)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,1)),U,7,8),"-")
  Q
  ;
 AUXOK(IBSS,IBSS1) ; Check all other flds are the same to combine procs

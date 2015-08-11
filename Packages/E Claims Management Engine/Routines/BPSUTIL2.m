@@ -1,6 +1,6 @@
-BPSUTIL2 ;BHAM ISC/SS - General Utility functions ;08/01/2006
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+BPSUTIL2 ;BHAM ISC/SS - General Utility functions ;Jun 06, 2014@19:13:53
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,17**;JUN 2004;Build 99
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -213,4 +213,34 @@ LASTDOS(BP59,FMT) ;last date of service from most recent claim
  . . D DD^%DT S DOSDT=Y
  Q DOSDT
  ;
- ;BPSUTIL2
+ ;Returns the latest Date Of Service for the FILL that matches the DOS the payer returns using 9002313.57
+ ;Both DOS and SUBMIT DATE from the payer are considered when matching
+ ;OUTPUT Variables
+ ; DOS - The latest DOS for the FILL that matches the date returned by the payer
+ ;INPUT Variables
+ ; ECME - ECME number (pointer to #52)
+ ; RCDATE - The DOS returned with the payment by the payer
+ ;
+CLMECME(ECME,RCDATE) ;
+ N ARY,BEFORE,BPSTL,DATE,DOS,FILL,SUBMIT
+ I $G(ECME)=""!($G(RCDATE)="") Q ""
+ S ECME=+$G(ECME),BEFORE=0,FILL=""
+ S BPSTL="" F  S BPSTL=$O(^BPSTL("AEC",ECME,BPSTL)) Q:BPSTL=""  D  Q:BEFORE
+ . I '$D(^BPSTL(BPSTL,0)) Q  ;Bad AEC entry
+ . S SUBMIT=$P($P($G(^BPSTL(BPSTL,0)),U,7),"."),FILL=$P($G(^BPSTL(BPSTL,1)),U,1),DOS=$P($G(^BPSTL(BPSTL,12)),U,2)
+ . I FILL=""!(DOS="") Q
+ . I RCDATE<DOS S BEFORE=1 Q  ;Quit when you get to a date that is earlier than the payment date
+ . S ARY("D",DOS,FILL)="",ARY("F",FILL,DOS)=""  ;Fill arrays
+ . I SUBMIT,SUBMIT'=DOS S ARY("D",SUBMIT,FILL)="",ARY("F",FILL,SUBMIT)=""  ;If the submit date is different than the DOS, include array entries for it
+ I '$D(ARY) Q ""  ;There were no entries in the array
+ I $D(ARY("D",RCDATE)) S FILL=$O(ARY("D",RCDATE,""),-1) ;Get the fill for the matching date
+ I FILL="" Q ""  ;No matching date
+ Q $O(ARY("F",FILL,""),-1)  ;Return the last date for the correct fill
+ ;
+VALECME(ECMENUM) ; Validates the ECME Number 
+ ; Input: ECMENUM - ECME Number to be validated
+ ;Output: 1: Valid ECME Number / 0: Invalid ECME Number
+ ;
+ N NUMVAL
+ S NUMVAL=+$G(ECMENUM) I 'NUMVAL!$L(NUMVAL)>12 Q 0
+ Q ($D(^BPSTL("AEC",NUMVAL))>0)

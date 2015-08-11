@@ -1,6 +1,6 @@
 IBCEF11 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX24D(A,IB) ; Returns the lines for boxes 19-24 of the CMS-1500 display
  ; IB = flag is 1 if only box 24 is needed
@@ -17,11 +17,11 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  ;   if it already exists. If not, it builds it from N-DIAGNOSES element
  ;
  ; For EDI call: Returns IBXDATA(n)=
- ;   begin date(YYYYMMDD)^end date(YYYYMMDD)^pos^tos^
- ;   proc code/revenue code - if no procedure (not the pointers)^
- ;   type of code^dx pointer(s)^unit charge^units^modifiers separated by;
- ;   ^purchased charge amount ^anesthesia minutes^emergency indicator^
- ;   lab-type service flag.
+ ;   begin date(YYYYMMDD) ^ end date(YYYYMMDD) ^ pos ^ tos ^
+ ;   proc code/revenue code - if no procedure (not the pointers) ^
+ ;   type of code ^ dx pointer(s ) ^ unit charge ^ units ^ modifiers separated by ;
+ ;   ^ purchased charge amount ^ anesthesia minutes ^ emergency indicator ^
+ ;   lab-type service flag ^ NDC ^ Units
  ;
  ;   Also Returns IBXDATA(IBI,"COB",COB,m) with COB data for each line
  ;      item found in an accepted EOB for the bill and = the reference
@@ -65,10 +65,11 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  S IBI="" F  S IBI=$O(^TMP("IBXSAVE",$J,"DX",IBIFN,IBI)) Q:IBI=""  S IBDXI(IBI)=^(IBI)
  I '$G(IBPRINT) D RVCE^IBCF23(IBIFN,IBIFN)
  I $G(IBPRINT) D RVCE^IBCF23(,IBIFN)
- ; Returns IBFLD(24) = begin date^end date^pos^tos^
- ;     proc/bedsection/revenue code^dx pointer^unit charge^
- ;     units^modifiers^ purchased charge amount ^anesthesia minutes^
- ;     emergency indicator ^ soft pointer to PROCEDURES multiple in file 399 AND
+ ; Returns IBFLD(24) = begin date ^ end date ^ pos ^ tos ^
+ ;     proc/bedsection/revenue code ^ dx pointer ^ unit charge ^
+ ;     units ^ modifiers ^ purchased charge amount ^ anesthesia minutes ^
+ ;     emergency indicator ^ soft pointer to PROCEDURES multiple in file 399 ^
+ ;     NDC ^ Units
  ;         IBFLD(24,n,type,item)=""
  ;         IBFLD(24,n_"A") = revenue code abbreviation if no procedure
  ;         IBFLD(24,n,"AUX") = 'AUX' node of line item 
@@ -108,6 +109,11 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  . S $P(IBXDATA(IBI),U,6)=$S($D(IBFLD(24,IBI_"X")):"CJ",1:"HC")
  . S $P(IBXDATA(IBI),U,7,13)=$P(IBFLD(24,IBI),U,6,12)
  . S $P(IBXDATA(IBI),U,14)=+$$ISLAB(IBXDATA(IBI))
+ . ; MRD;IB*2.0*516 - Added NDC and Units to line level of claim,
+ . ; pieces 14 & 15 of IBFLD, pieces 15 & 16 of IBXDATA. Print
+ . ; in Box 24 by setting in IBXDATA(IBI,"TEXT").
+ . S $P(IBXDATA(IBI),U,15,16)=$P(IBFLD(24,IBI),U,14,15)
+ . I $P(IBFLD(24,IBI),U,14)'="" S IBXDATA(IBI,"TEXT")="N4"_$P(IBFLD(24,IBI),U,14)_" UN"_$P(IBFLD(24,IBI),U,15)
  . ;
  . I $D(IBFLD(24,IBI,"RX")) D  ;Rx
  .. S IBRX1=1
@@ -123,8 +129,14 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  ... Q
  .. Q
  . ;
+ . ; MRD;IB*2.0*516 - If additional service line comments to appear in
+ . ; Box 24, concatenate to front if something (NDC) is already there.
  . I $G(IBFLD(24,IBI,"AUX"))'="" D
- .. I $G(IBPRINT),$P(IBFLD(24,IBI,"AUX"),U,8)'="" S IBXDATA(IBI,"TEXT")=$P(IBFLD(24,IBI,"AUX"),U,8),$P(IBFLD(24,IBI,"AUX"),U,8)=""
+ .. I $G(IBPRINT),$P(IBFLD(24,IBI,"AUX"),U,8)'="" D
+ ... I $G(IBXDATA(IBI,"TEXT"))'="" S IBXDATA(IBI,"TEXT")=$E($P(IBFLD(24,IBI,"AUX"),U,8)_" "_IBXDATA(IBI,"TEXT"),1,59)
+ ... E  S IBXDATA(IBI,"TEXT")=$P(IBFLD(24,IBI,"AUX"),U,8)
+ ... S $P(IBFLD(24,IBI,"AUX"),U,8)=""
+ ... Q
  .. S IBXDATA(IBI,"AUX")=IBFLD(24,IBI,"AUX")
  .. Q
  . ;
@@ -227,8 +239,12 @@ GETLDAT(IBXIEN) ; Extract data for 837 transmission LDAT record
  . I FTYPE=2,$$SUB1OK^IBCEP8A(IBXIEN) S PSAMNT=$$DOLLAR^IBCEFG1($P($G(IBXDATA(Z)),U,11))
  . S (PCE1,NODE1)=""
  . I CPIEN D
- .. S NODE1=$G(^DGCR(399,IBXIEN,"CP",CPIEN,1))
- .. S PCE1=$$GET1^DIQ(399.0304,CPIEN_","_IBXIEN_",",71)
- . S IBXSAVE("LDAT",Z)=PCE1_U_$P(NODE1,U,3)_U_$P(NODE1,U)_U_$P(NODE1,U,5)_U_$G(PSPID)_U_$G(PSAMNT)
+ . . S NODE1=$G(^DGCR(399,IBXIEN,"CP",CPIEN,1))
+ . . S PCE1=$$GET1^DIQ(399.0304,CPIEN_","_IBXIEN_",",71)
+ . . Q
+ . ; MRD;IB*2.0*516 - Added addl. procedure description as piece 7 
+ . ; of IBXSAVE, which will exist only if the procedure ends in '99'
+ . ; or is an 'NOC/NOS' procedure.
+ . S IBXSAVE("LDAT",Z)=PCE1_U_$P(NODE1,U,3)_U_$P(NODE1,U)_U_$P(NODE1,U,5)_U_$G(PSPID)_U_$G(PSAMNT)_U_$P(NODE1,U,4)
  . Q
  Q

@@ -1,5 +1,5 @@
-ECOSSUM ;BIR/DMA,RHK,JPW - Ordering Section Summary ;11/16/12  11:49
- ;;2.0;EVENT CAPTURE;**5,8,18,47,72,95,119**;8 May 96;Build 12
+ECOSSUM ;BIR/DMA,RHK,JPW - Ordering Section Summary ;11/18/14  16:03
+ ;;2.0;EVENT CAPTURE;**5,8,18,47,72,95,119,126**;8 May 96;Build 8
 EN ;entry point from menu option
  W !
  K DIC S DIC=723,DIC(0)="AQEMZ",DIC("A")="Select Ordering Section: " D ^DIC K DIC
@@ -91,7 +91,7 @@ PROCESS ;get data to print
  ..I ECFILE=81 S (ECPN,ECEPN)=$S($P(ECPXD,"^",3)]"":$P(ECPXD,"^",3),1:"UNKNOWN") ;119
  ..I ECFILE=725 D
  ...S EC725=$G(^EC(725,+ECP,0)),ECPN=$P(EC725,"^",2)_" "_$P(EC725,"^"),ECEPN=$P(EC725,U),ECEPC=$P(EC725,U,2) ;119
- ..S ECPN=$E(ECPN,1,37)_$S(ECPSYN]"":" ["_ECPSYN_"] ",1:"")_"~"_ECCPT,ECEPN=ECEPN_$S(ECPSYN]"":" ["_ECPSYN_"]",1:"") ;119
+ ..S ECPN=ECPN_"~"_ECCPT ;119,126
  ..;ALB/JAM - Get Procedure CPT modifiers
  ..S ECMODF=0 I $O(^ECH(ECDA,"MOD",0))'="" D
  ...K ECMOD S ECMODF=$$MOD^ECUTL(ECDA,"E",.ECMOD)
@@ -102,14 +102,14 @@ PROCESS ;get data to print
  ..S ECV=+$P(EC,"^",10)
  ..K ECPRV S ECPRV=$$GETPRV^ECPRVMUT(ECDA,.ECPRV) I 'ECPRV D  K ECPRV
  ...M ^TMP("ECOS",$J,$S($G(ECPTYP)="E":ECLOCN,1:ECLOCA),$S($G(ECPTYP)="E":ECUNITN,1:ECUNIT),ECPATN,ECDA,"PRV")=ECPRV ;119 Use names rather than numbers if exporting
- ..I $G(ECPTYP)'="E" S ^TMP("ECOS",$J,ECLOCA,ECUNIT,ECPATN,ECDA)=ECSSN_"^"_ECPN_"^"_ECV ;119
- ..S:$G(ECPTYP)="E" ^TMP("ECOS",$J,ECLOCN,ECUNITN,ECPATN,ECDA)=ECSSN_U_ECCPT_U_ECEPC_U_ECEPN_U_ECV ;119
+ ..I $G(ECPTYP)'="E" S ^TMP("ECOS",$J,ECLOCA,ECUNIT,ECPATN,ECDA)=ECSSN_"^"_ECPN_"^"_ECPSYN_"^"_ECV ;119,126
+ ..S:$G(ECPTYP)="E" ^TMP("ECOS",$J,ECLOCN,ECUNITN,ECPATN,ECDA)=ECSSN_U_ECCPT_U_ECEPC_U_ECEPN_U_ECPSYN_U_ECV ;119,126
  ..I ECMODF D
  ...M ^TMP("ECOS",$J,$S($G(ECPTYP)="E":ECLOCN,1:ECLOCA),$S($G(ECPTYP)="E":ECUNITN,1:ECUNIT),ECPATN,ECDA,"MOD")=ECMOD ;119 use names rather than numbers when exporting
  Q
  ;
 PRINT ;output report
- N ECDA,ECLOCA,ECUNIT,ECPATN,ECSSN,ECPN,ECV
+ N ECDA,ECLOCA,ECUNIT,ECPATN,ECSSN,ECPN,ECV,ECPSYN ;126
  N PAGE,QFLAG,DASH,DASH2,PRNTDT,JJ,SS,ALOC,AUNIT,LOC,UNNAME,UNIT,DATA,PTNAME,PROV,PROVN,V,X,Y
  S (PAGE,QFLAG)=0 S $P(DASH,"-",130)="",$P(DASH2,"-",64)=""
  S Y=$P(ECSD,".",1)+1 D DD^%DT S ECSD=Y S Y=$P(ECED,".",1) D DD^%DT S ECED=Y
@@ -134,39 +134,39 @@ PRINT ;output report
  .S UNIT="" F  S UNIT=$O(AUNIT(UNIT)) Q:UNIT=""  S ECUNIT=AUNIT(UNIT),ECV("U")=0 D  Q:QFLAG
  ..I '$D(^TMP("ECOS",$J,ECLOCA,ECUNIT)) Q
  ..S UNNAME=$E(UNIT,1,20)
- ..D:($Y+6>IOSL) HEAD Q:QFLAG  W !!,UNNAME
+ ..D:($Y+6>IOSL) HEAD Q:QFLAG  W !,UNNAME ;126 Removed excess linefeed
  ..S ECPATN="" F  S ECPATN=$O(^TMP("ECOS",$J,ECLOCA,ECUNIT,ECPATN)) Q:ECPATN=""  S ECV("P")=0 D  Q:QFLAG
  ...S PTNAME=$P(ECPATN,"^",1),PTNAME=$E(PTNAME,1,22),ECSSN=$P(ECPATN,"^",2)
  ...W ?24,PTNAME,?48,ECSSN
  ...S ECDA="" F  S ECDA=$O(^TMP("ECOS",$J,ECLOCA,ECUNIT,ECPATN,ECDA)) Q:ECDA=""  S DATA=^(ECDA) D  Q:QFLAG
- ....S ECPN=$P(DATA,"^",2),ECPN=$J($P(ECPN,"~",2)_" ",6)_$P(ECPN,"~")
- ....S ECPN=$E(ECPN,1,41),ECV=$P(DATA,"^",3),ECV=ECV\1 D
+ ....S ECPN=$P(DATA,"^",2),ECPN=$S($P(ECPN,"~",2)'="":$J($P(ECPN,"~",2)_" ",6),1:"")_$P(ECPN,"~") ;126
+ ....S ECV=$P(DATA,"^",4),ECV=ECV\1,ECPSYN=$P(DATA,U,3) D  ;126
  .....F V="L","O","P","U" S ECV(V)=ECV(V)+ECV
  .....S:+ECV>9999 ECV="9999+" S ECV=$$RJ^XLFSTR(ECV,5," ") ;unusually high individual volume figure
  ....K PROV M PROV=^TMP("ECOS",$J,ECLOCA,ECUNIT,ECPATN,ECDA,"PRV")
  ....K ECMOD M ECMOD=^TMP("ECOS",$J,ECLOCA,ECUNIT,ECPATN,ECDA,"MOD")
- ....W ?54,ECPN,?96,ECV,?105,$E($P($G(PROV(1)),"^",2),1,24) K PROV(1)
+ ....W ?54,ECPN,?112,ECV,!,?25,$P($G(PROV(1)),"^",2),?60,ECPSYN K PROV(1) ;126
  ....D:($Y+6>IOSL) HEAD Q:QFLAG
  ....;ALB/JAM - write cpt procedure modifiers on same line with providers
  ....S MOD=0,PROVN=1 F  S MOD=$O(ECMOD(MOD)),PROVN=$O(PROV(PROVN)) Q:(MOD="")&(PROVN="")  D  I QFLAG Q
  .....I ($Y+6>IOSL) D HEAD Q:QFLAG  W !?54,ECPN
  .....W !
- .....I MOD'="" W ?58,"- ",MOD," ",$E($P(ECMOD(MOD),U,3),1,36) K ECMOD(MOD)
- .....I PROVN'="" W ?105,$E($P($G(PROV(PROVN)),"^",2),1,24) K PROV(PROVN)
+ .....I PROVN'="" W ?25,$P($G(PROV(PROVN)),"^",2) K PROV(PROVN) ;126
+ .....I MOD'="" W ?60,"- ",MOD," ",$P(ECMOD(MOD),U,3) K ECMOD(MOD) ;126
  ....W ! ;start a new line
  ...;write subtotal for patient
  ...Q:QFLAG  D:($Y+6>IOSL) HEAD Q:QFLAG
  ...W ?54,DASH2,!
- ...W ?24,"Subtotal for "_$P(ECPATN,"^",1)_":",?96,$$RJ^XLFSTR(ECV("P"),5," "),!!
+ ...W ?24,"Subtotal for "_$P(ECPATN,"^",1)_":",?112,$$RJ^XLFSTR(ECV("P"),5," "),!! ;126
  ..;write total for unit
  ..Q:QFLAG  D:($Y+6>IOSL) HEAD Q:QFLAG
- ..W !,"Subtotal for DSS Unit "_UNIT_":",?95,$$RJ^XLFSTR(ECV("U"),6," "),!
+ ..W !,"Subtotal for DSS Unit "_UNIT_":",?111,$$RJ^XLFSTR(ECV("U"),6," "),! ;126
  .;write the total for the location
  .Q:QFLAG  D:($Y+6>IOSL) HEAD Q:QFLAG
- .W !!,"Total for Location "_LOC_":",?95,$$RJ^XLFSTR(ECV("L"),6," "),!
+ .W !!,"Total for Location "_LOC_":",?111,$$RJ^XLFSTR(ECV("L"),6," "),! ;126
  ;write the ordering section grandtotal
  Q:QFLAG  D:($Y+8>IOSL) HEAD Q:QFLAG
- W !!!,"Grand Total for Ordering Section "_ECOSN_":",?95,$$RJ^XLFSTR(ECV("O"),6," "),!
+ W !!!,"Grand Total for Ordering Section "_ECOSN_":",?111,$$RJ^XLFSTR(ECV("O"),6," "),! ;126
  ;all done
  D FOOTER  ;print footer on last page
  I $E(IOST)="C"&('QFLAG) S DIR(0)="E" D  D ^DIR W @IOF
@@ -182,8 +182,9 @@ HEAD ;header
  W !,?26,"Event Capture Ordering Section Summary for ",ECOSN,?105,"Page: ",PAGE
  W !,?26,"for the Date Range ",$$FMTE^XLFDT(ECSD)," to ",$$FMTE^XLFDT(ECED),?102,"Printed: "_PRNTDT
  W !,?26,"Location: ",LOC,!
- W !,"DSS Unit",?24,"Patient",?48,"SSN",?54,"Procedure",?98,"Vol.",?105,"Provider(s)"
- W !,DASH,!
+ W !,"DSS Unit",?24,"Patient",?48,"SSN",?54,"Procedure",?114,"Vol." ;126
+ W !,?25,"Provider(s)",?60,"Synonym",!,?60,"- Modifier(s)" ;126
+ W !,DASH ;126 Removed extra line feed
  Q
  ;
 FOOTER ;print page footer
@@ -200,14 +201,15 @@ EXIT ;common exit point
  ;
 EXPORT ;119 Section added for exporting data to excel
  N CNT,LOC,UNIT,PAT,IEN,DATA,SUB,MODCNT,PRCNT
- S CNT=1,^TMP($J,"ECRPT",CNT)="ORDERING SECTION^LOCATION^DSS UNIT^PATIENT^SSN^CPT CODE^PROCEDURE CODE^DESCRIPTION^VOLUME^CPT MOD #1^CPT MOD #2^CPT MOD #3^PROVIDER #1^PROVIDER #2^PROVIDER #3^PROVIDER #4^PROVIDER #5^PROVIDER #6^PROVIDER #7"
+ S CNT=1,^TMP($J,"ECRPT",CNT)="ORDERING SECTION^LOCATION^DSS UNIT^PATIENT^SSN^CPT CODE^PROCEDURE CODE^PROCEDURE NAME (DESCRIPTION)^SYNONYM^VOLUME" ;126
+ S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_"^CPT MOD #1^CPT MOD #2^CPT MOD #3^PROVIDER #1^PROVIDER #2^PROVIDER #3^PROVIDER #4^PROVIDER #5^PROVIDER #6^PROVIDER #7" ;126
  I '$D(^TMP("ECOS",$J)) Q  ;Nothing to report
  S LOC="" F  S LOC=$O(^TMP("ECOS",$J,LOC)) Q:LOC=""  D
  .S UNIT="" F  S UNIT=$O(^TMP("ECOS",$J,LOC,UNIT)) Q:UNIT=""  D
  ..S PAT="" F  S PAT=$O(^TMP("ECOS",$J,LOC,UNIT,PAT)) Q:PAT=""  D
  ...S IEN=0 F  S IEN=$O(^TMP("ECOS",$J,LOC,UNIT,PAT,IEN)) Q:'+IEN  D
  ....S DATA=^TMP("ECOS",$J,LOC,UNIT,PAT,IEN)
- ....S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=ECOSN_U_LOC_U_UNIT_U_$P(PAT,U)_U_$P(DATA,U)_U_$P(DATA,U,2)_U_$P(DATA,U,3)_U_$P(DATA,U,4)_U_$P(DATA,U,5)
+ ....S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=ECOSN_U_LOC_U_UNIT_U_$P(PAT,U)_U_$P(DATA,U)_U_$P(DATA,U,2)_U_$P(DATA,U,3)_U_$P(DATA,U,4)_U_$P(DATA,U,5)_U_$P(DATA,U,6) ;126
  ....S SUB=0,MODCNT=0 F  S:SUB'="" SUB=$O(^TMP("ECOS",$J,LOC,UNIT,PAT,IEN,"MOD",SUB)) Q:MODCNT=3  S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_U_$S(SUB'="":SUB_" "_$P($G(^TMP("ECOS",$J,LOC,UNIT,PAT,IEN,"MOD",SUB)),U,3),1:""),MODCNT=MODCNT+1
  ....S SUB=0,PRCNT=0 F  S:SUB'="" SUB=$O(^TMP("ECOS",$J,LOC,UNIT,PAT,IEN,"PRV",SUB)) Q:PRCNT=7  S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_U_$S(SUB="":"",1:$P($G(^TMP("ECOS",$J,LOC,UNIT,PAT,IEN,"PRV",SUB)),U,2)) S PRCNT=PRCNT+1
  Q

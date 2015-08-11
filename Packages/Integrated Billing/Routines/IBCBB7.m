@@ -1,11 +1,13 @@
 IBCBB7 ;ALB/BGA - CONT. OF MEDICARE EDIT CHECKS ;09/10/98
- ;;2.0;INTEGRATED BILLING;**51,137,240,447,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,240,447,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Revenue Codes
  ;
- ; rev codes must be between 100 AND 999
- I $O(IBREV1(100),-1)>0!($O(IBREV1(999))>0) S IBQUIT=$$IBER^IBCBB3(.IBER,184) Q:IBQUIT
+ ; MRD;IB*2.0*516 - Remove check; allow any revenue code.
+ ;; rev codes must be between 100 AND 999
+ ;I $O(IBREV1(100),-1)>0!($O(IBREV1(999))>0) S IBQUIT=$$IBER^IBCBB3(.IBER,184) Q:IBQUIT
+ ;
  N IBRATYP
  ;
  ; ibrev1(rev cd,seq #)=Rev code^ptr cpt^unit chg^units^total^tot unc^^^mod ptrs

@@ -1,6 +1,6 @@
 IBJTLA1 ;ALB/ARH - TPI ACTIVE BILLS LIST BUILD ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,61,51,153,137,183,276,451**;21-MAR-94;Build 47
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,61,51,153,137,183,276,451,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDA ; build active list for third party joint inquiry active list
  N IBIFN,IBCNT S VALMCNT=0,IBCNT=0
@@ -11,7 +11,7 @@ BLDA ; build active list for third party joint inquiry active list
  Q
  ;
 SCRN ; add bill to screen list (IBIFN,DFN must be defined)
- N X,IBY,IBD0,IBDU,IBDM S X=""
+ N X,IBY,IBD0,IBDU,IBDM,TYPE S X=""
  S IBCNT=IBCNT+1,IBD0=$G(^DGCR(399,+IBIFN,0)),IBDU=$G(^DGCR(399,+IBIFN,"U")),IBDM=$G(^DGCR(399,+IBIFN,"M"))
  S IBY=IBCNT,X=$$SETFLD^VALM1(IBY,X,"NUMBER")
  ; IB*2.0*451 - get EEOB indicator for bill # when applicable
@@ -23,7 +23,9 @@ SCRN ; add bill to screen list (IBIFN,DFN must be defined)
  S IBY=$$DATE($P(IBDU,U,2)),X=$$SETFLD^VALM1(IBY,X,"STTO")
  ;
  S IBY=$P($$LST^DGMTU(DFN,$P(IBDU,U)),U,4),IBY=$S(IBY="C":"YES",IBY="P":"PEN",IBY="R":"REQ",IBY="G":"GMT",1:"NO"),X=$$SETFLD^VALM1(IBY,X,"MT?")
- S IBY=$$TYPE($P(IBD0,U,5))_$$TF($P(IBD0,U,6)),X=$$SETFLD^VALM1(IBY,X,"TYPE")
+ ;S IBY=$$TYPE($P(IBD0,U,5))_$$TF($P(IBD0,U,6))_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 516 - baa
+ S TYPE=$$TYPE($P(IBD0,U,5)) I $E(TYPE,2)="P" S TYPE=$E(TYPE)  ; 516 - baa
+ S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 516 - baa
  S IBY=" "_$P($$ARSTATA^IBJTU4(IBIFN),U,2),X=$$SETFLD^VALM1(IBY,X,"ARST")
  ;
  S IBY=$P($G(^DGCR(399.3,+$P(IBD0,U,7),0)),U,4),X=$$SETFLD^VALM1(IBY,X,"RATE")

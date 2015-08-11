@@ -1,0 +1,134 @@
+IBDEI1PS ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30731,0)
+ ;;=N40.0^^189^1922^6
+ ;;^UTILITY(U,$J,358.3,30731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30731,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,30731,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,30731,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,30732,0)
+ ;;=N42.89^^189^1922^33
+ ;;^UTILITY(U,$J,358.3,30732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30732,1,3,0)
+ ;;=3^Prostate Disorders NEC
+ ;;^UTILITY(U,$J,358.3,30732,1,4,0)
+ ;;=4^N42.89
+ ;;^UTILITY(U,$J,358.3,30732,2)
+ ;;=^270425
+ ;;^UTILITY(U,$J,358.3,30733,0)
+ ;;=N41.9^^189^1922^23
+ ;;^UTILITY(U,$J,358.3,30733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30733,1,3,0)
+ ;;=3^Inflammatory Disease of Prostate,Unspec
+ ;;^UTILITY(U,$J,358.3,30733,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,30733,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,30734,0)
+ ;;=N43.3^^189^1922^22
+ ;;^UTILITY(U,$J,358.3,30734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30734,1,3,0)
+ ;;=3^Hydrocele,Unspec
+ ;;^UTILITY(U,$J,358.3,30734,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,30734,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,30735,0)
+ ;;=N47.1^^189^1922^32
+ ;;^UTILITY(U,$J,358.3,30735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30735,1,3,0)
+ ;;=3^Phimosis
+ ;;^UTILITY(U,$J,358.3,30735,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,30735,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,30736,0)
+ ;;=N47.2^^189^1922^31
+ ;;^UTILITY(U,$J,358.3,30736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30736,1,3,0)
+ ;;=3^Paraphimosis
+ ;;^UTILITY(U,$J,358.3,30736,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,30736,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,30737,0)
+ ;;=N52.9^^189^1922^16
+ ;;^UTILITY(U,$J,358.3,30737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30737,1,3,0)
+ ;;=3^Erectile Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,30737,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,30737,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,30738,0)
+ ;;=N52.8^^189^1922^11
+ ;;^UTILITY(U,$J,358.3,30738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30738,1,3,0)
+ ;;=3^Erectile Dysfunction NEC
+ ;;^UTILITY(U,$J,358.3,30738,1,4,0)
+ ;;=4^N52.8
+ ;;^UTILITY(U,$J,358.3,30738,2)
+ ;;=^5015762
+ ;;^UTILITY(U,$J,358.3,30739,0)
+ ;;=N52.39^^189^1922^15
+ ;;^UTILITY(U,$J,358.3,30739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30739,1,3,0)
+ ;;=3^Erectile Dysfunction,Post-Surgical NEC
+ ;;^UTILITY(U,$J,358.3,30739,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,30739,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,30740,0)
+ ;;=N52.34^^189^1922^9
+ ;;^UTILITY(U,$J,358.3,30740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30740,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,30740,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,30740,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,30741,0)
+ ;;=N52.33^^189^1922^10
+ ;;^UTILITY(U,$J,358.3,30741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30741,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,30741,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,30741,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,30742,0)
+ ;;=N52.32^^189^1922^7
+ ;;^UTILITY(U,$J,358.3,30742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30742,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,30742,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,30742,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,30743,0)
+ ;;=N52.31^^189^1922^8
+ ;;^UTILITY(U,$J,358.3,30743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30743,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,30743,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,30743,2)
+ ;;=^5015757

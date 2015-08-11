@@ -1,5 +1,5 @@
-ONCOUTC ;Hines OIFO/GWB - [UTL *..Utility Options DS DP and EA] ;03/17/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCOUTC ;Hines OIFO/GWB - [UTL *..Utility Options DS, DP, SQ and EA] ;03/17/11
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
 INQ ;[PI Patient/Primary Inquiry]
  ;OUT OF ORDER MESSAGE: Marked for deletion
@@ -88,6 +88,22 @@ DP ;Delete ONCOLOGY PRIMARY (165.5)
  W !?5,"Deleting ONCOLOGY PRIMARY: ",$$GET1^DIQ(165.5,ONCOP0,20)
  S DA=ONCOP0,DIK="^ONCO(165.5," D ^DIK S D0=ONCOD0 H 2 W !
  Q
+ ;
+DUPSQ ;[SQ Find Duplicate Acc/Seq numbers]
+ K ONCPRLST S ONCTTLDP=0 W !
+ S ONCACSQ="" F  S ONCACSQ=$O(^ONCO(165.5,"D",ONCACSQ)) Q:ONCACSQ=""  D
+ .S ONCTTL=0,ONCDUPS=""
+ .F ZZIEN=0:0 S ZZIEN=$O(^ONCO(165.5,"D",ONCACSQ,ZZIEN)) Q:ZZIEN'>0  D
+ ..S ONCTTL=ONCTTL+1,ONCDUPS=ONCDUPS_ZZIEN_"^"
+ ..I ONCTTL>1 D
+ ...I '$D(ONCPRLST(ONCACSQ)) S ONCTTLDP=ONCTTLDP+1
+ ...S ONCPRLST(ONCACSQ)=ONCDUPS
+ I '$D(ONCPRLST) W !!?8,"No duplicate Accession/Sequence Numbers Found.",! K DIR S DIR(0)="E" D ^DIR Q
+ W ! D HDR^ONCOCOML
+ S ONCACSQ="" F  S ONCACSQ=$O(ONCPRLST(ONCACSQ)) Q:ONCACSQ=""  D  W !
+ .F X=1:1:999 S ONCXD1=$P(ONCPRLST(ONCACSQ),U,X) Q:ONCXD1=""  D DIS2^ONCOCOML
+ W !!?5,"A total of ",ONCTTLDP," Accession/Sequence numbers with duplicates found.",!?5,"You may use the EA 'Edit Site/AccSeq # Data' option to fix duplicates.",! K DIR S DIR(0)="E" D ^DIR Q
+ K ONCPRLST,ONCTTLDP,ONCTTL,ONCACSQ,ONCDUPS,ZZIEN Q
  ;
 EX ;Kill variables
  K %ZIS,ABSTAT,D,D0,DA,DIC,DIE,DIK,DIQ,DIR,DR,EAFLAG,ONC,ONCDIV

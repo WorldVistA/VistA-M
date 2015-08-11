@@ -1,16 +1,17 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
 HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  ; IBIFN = bill ien
  ; Format: IBXDATA(n) =
  ;  rev cd ptr ^ CPT CODE ptr ^ unit chg ^ units ^ tot charge
- ;    ^ tot uncov^ FL49 value ^ ien of rev code multiple entry(s)
- ;      (separated by ";")
+ ;    ^ tot uncov ^ FL49 value
+ ;    ^ ien of rev code multiple entry(s) (separated by ";")
  ;    ^ modifiers specific to rev code/proc (separated by ",")
  ;    ^ rev code date, if it can be determined by a corresponding proc
+ ;    ^ NDC from "CP" node of claim ^ Units from "CP" node
  ;
  ;   Also Returns IBXDATA(IBI,"COB",COB,m) with COB data for each line
  ;      item found in an accepted EOB for the bill and = the reference
@@ -26,14 +27,25 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  ;         -- AND --
  ;    IBXDATA(n,"CPLNK") = soft link to corresponding entry in PROCEDURES multiple of file 399
  ;
- N IBDA,IBCOMB,IBINPAT,IBLN,IBX,IBY,IBZ,IBS,IBSS,IBXTRA,IBX1,IBXS,IBP,IBPO,IBP1,IBDEF,Z,Z0,Z1,ZX,QQ,IBMOD
+ N IBDA,IBCOMB,IBINPAT,IBLN,IBX,IBY,IBZ,IBS,IBSS,IBXTRA,IBX1,IBXS,IBP,IBPO,IBP1,IBDEF,Z,Z0,Z1,ZX,QQ,IBMOD,LST
  S IBINPAT=$$INPAT^IBCEF(IBIFN,1)
  I 'IBINPAT D F^IBCEF("N-STATEMENT COVERS FROM DATE","IBZ",,IBIFN)
- S IBDEF=$G(IBZ)
- ; loop through all proc codes - sort by procedure, modifiers and print order
+ S IBDEF=$G(IBZ),LST=""
+ ;
+ ; Loop through lines of claim beneath ^DGCR(399,IBIFN,"CP") and build
+ ; the array IBP to be used below.
+ ;    IBP(Procedure ^ Modifiers, Print Order, Line#) = Procedure Date
+ ;
  S IBDA=0 F  S IBDA=$O(^DGCR(399,IBIFN,"CP",IBDA)) Q:'IBDA  S IBZ=$G(^(IBDA,0)) I IBZ D
  . S IBP(+$P(IBZ,U)_U_$$GETMOD^IBEFUNC(IBIFN,IBDA,1),$S($P(IBZ,U,4):$P(IBZ,U,4),1:999),IBDA)=$P(IBZ,U,2)
- ; loop through all rev codes - sort by rev code
+ ;
+ ; Loop through the revenue codes beneath ^DGCR(399,IBIFN,"RC") and
+ ; build the array IBX to be used below.
+ ;    IBX(" "_Revenue Code, Print Order, Revenue Line#) =
+ ;          ^DGCR(399.2, Revenue Code IEN, 0)
+ ;    IBX(" "_Revenue Code, Print Order, Revenue Line#, "DT") = Procedure Date
+ ;    IBX(" "_Revenue Code, Print Order, Revenue Line#, "MOD") = Modifiers
+ ;
  S IBDA=0 F  S IBDA=$O(^DGCR(399,IBIFN,"RC",IBDA)) Q:'IBDA  S IBZ=$G(^(IBDA,0)) I IBZ S IBMOD="" D
  . S IBX=$G(^DGCR(399.2,+IBZ,0)),IBX1="",IBPO=0
  . ; Auto-added procedure charge
@@ -60,8 +72,11 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  ... K IBP(+Z1_U_IBMOD,Z,Z0)
  . ;
  . I IBX'="" D  ; revenue code is valid
- .. F Z=900:1 S Z0=$S(IBPO:IBPO,$D(IBX(" "_$P(IBX,U),Z)):0,1:Z) I Z0 S IBPO=Z0 Q
+ .. S LST=$S(LST="":900,1:LST+1)
+ .. F Z=LST:1 S Z0=$S(IBPO:IBPO,$D(IBX(" "_$P(IBX,U),Z)):0,1:Z) I Z0 S (LST,IBPO)=Z0 Q
  .. S IBX(" "_$P(IBX,U),IBPO,IBDA)=IBX,IBX(" "_$P(IBX,U),IBPO,IBDA,"DT")=$S(IBX1:IBX1,1:IBDEF),IBX(" "_$P(IBX,U),IBPO,IBDA,"MOD")=IBMOD
+ ;
+ ; Loop through revenue codes in IBX and build the array IBX1.
  ;
  S IBS="" F  S IBS=$O(IBX(IBS)) Q:IBS=""  S IBPO=0 F  S IBPO=$O(IBX(IBS,IBPO)) Q:'IBPO  D
  . S IBDA=0 F  S IBDA=$O(IBX(IBS,IBPO,IBDA)) Q:'IBDA  S IBX=$G(IBX(IBS,IBPO,IBDA)),IBZ=$G(^DGCR(399,IBIFN,"RC",IBDA,0)) I IBX'="" D
@@ -95,14 +110,22 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  ;
  D SPLIT  ; 488 ; baa
  ;
+ ; Loop through IBX1 and build the array IBXDATA. Everything in the
+ ; array IBXDATA comes from the array IBX1.
+ ;
  S IBS="",IBLN=0
  F  S IBS=$O(IBX1(IBS)) Q:IBS=""  S IBPO=0 F  S IBPO=$O(IBX1(IBS,IBPO)) Q:'IBPO  S IBSS="" F  S IBSS=$O(IBX1(IBS,IBPO,IBSS)) Q:IBSS=""  D
  . S IBX=$G(IBX1(IBS,IBPO,IBSS,1)),IBZ=$G(IBX1(IBS,IBPO,IBSS,2))
  . S IBLN=$G(IBLN)+1,IBXDATA(IBLN)=$P(IBX,U)_U_$P(IBZ,U,6)_U_$P(IBZ,U,2)_U_+IBX1(IBS,IBPO,IBSS)_U_+$P(IBX1(IBS,IBPO,IBSS),U,2),$P(IBXDATA(IBLN),U,10)=$G(IBX1(IBS,IBPO,IBSS,"DT"))
  . S $P(IBXDATA(IBLN),U,6)=$P(IBZ,U,9),$P(IBXDATA(IBLN),U,7)=$P(IBZ,U,13),$P(IBXDATA(IBLN),U,8)=$G(IBX1(IBS,IBPO,IBSS,"IEN")),$P(IBXDATA(IBLN),U,9)=$P($P(IBSS,U,3),",",1,2)
  . S IBXDATA(IBLN,"CPLNK")=$$RC2CP(IBIFN,$P($P(IBXDATA(IBLN),U,8),";"))
+ . ;
+ . ; MRD;IB*2.0*516 - Added NDC and Units to line level of claim.
+ . I IBXDATA(IBLN,"CPLNK") S $P(IBXDATA(IBLN),U,11,12)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")
+ . ;
  . ; Extract line lev COB data for sec or tert bill
  . I $$COBN^IBCEF(IBIFN)>1 D COBLINE^IBCEU6(IBIFN,IBLN,.IBXDATA,,.IBXTRA) I $D(IBXTRA) D COMBO^IBCEU2(.IBXDATA,.IBXTRA,1) ;Handle bundled/unbundled
+ ;
  I $D(^IBA(362.4,"AIFN"_IBIFN))!$D(^IBA(362.5,"AIFN"_IBIFN)) D
  . N IBARRAY,IBX,IBZ,IBRX,IBLCNT
  . S IBLCNT=0

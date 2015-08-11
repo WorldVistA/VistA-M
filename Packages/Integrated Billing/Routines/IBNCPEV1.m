@@ -1,6 +1,6 @@
 IBNCPEV1 ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;21-MAR-2006
- ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IA# 10155 is used to read ^DD(file,field,0) node
  Q
@@ -85,8 +85,11 @@ DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event
  . I IBNXT D CHKP^IBNCPEV Q:IBQ  W !?10,"-----------"
  . D CHKP^IBNCPEV Q:IBQ  W !?10
  . ;
- . W "PLAN:",$P($G(^IBA(355.3,PLANIEN,0)),U,3)
- . W ", INSURANCE:",$P($G(^DIC(36,+$G(^IBA(355.3,PLANIEN,0)),0)),U,1)
+ . ;IB*2.0*516/baa - Use HIPAA compliant fields
+ . ;W "PLAN:",$P($G(^IBA(355.3,PLANIEN,0)),U,3)
+ . W "PLAN:",$$GET1^DIQ(355.3,PLANIEN_",",2.01)
+ . ;W ", INSURANCE:",$P($G(^DIC(36,+$G(^IBA(355.3,PLANIEN,0)),0)),U,1)
+ . W ", INSURANCE:",$$GET1^DIQ(355.3,PLANIEN_",",.01,"E")
  . I +IBD7>0 W ", COB:",$S(+IBD7=2:"S",1:"P")
  . ;
  . ; display pharmacy plan ID and name
@@ -187,7 +190,9 @@ DRUGAPI(DRUGIEN,FLDNUM) ;
 REOPEN ;
  D CHKP^IBNCPEV Q:IBQ
  D SUBHDR^IBNCPEV
- I +$P(IBD3,U,3) D CHKP^IBNCPEV Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
+ ;IB*2.0*516/baa Use HIPAA compliant fields
+ ;I +$P(IBD3,U,3) D CHKP^IBNCPEV Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
+ I +$P(IBD3,U,3) D CHKP^IBNCPEV Q:IBQ  W !?10,"PLAN:",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",2.01),", INSURANCE: ",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",.01,"E")
  I $L($P(IBD3,U,6))>2 D CHKP^IBNCPEV Q:IBQ  W !?10,"REOPEN COMMENTS:",$P(IBD3,U,6)
  D CHKP^IBNCPEV Q:IBQ
  D DISPUSR^IBNCPEV

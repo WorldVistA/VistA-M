@@ -1,8 +1,9 @@
-RCDPESR1 ;ALB/TMP - Server interface to AR from Austin ;06/03/02
- ;;4.5;Accounts Receivable;**173,214,208,202,271**;Mar 20, 1995;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPESR1 ;ALB/TMP - Server interface to AR from Austin ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,214,208,202,271,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
- ; Reference to $$RXBIL^IBNCPDPU supported by DBIA 4435
+ ;Reference to $$RXBIL^IBNCPDPU supported by DBIA 4435
+ ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
  ;
  Q
  ;
@@ -166,8 +167,8 @@ BILL(X,RCDT,RCIB) ; Returns ien of bill in X or -1 if not valid
  S X=$TR(X," "),X=$TR(X,"O","0") ; Remove spaces, change ohs to zeroes
  I X'["-",$E(X,1,3)?3N,+$E(X,1,3),$L(X)>7,$L(X)<12 S X=$E(X,1,3)_"-"_$E(X,4,$L(X))
  S DIC="^PRCA(430,",DIC(0)="MZ" D ^DIC
- I Y<0,X?1.12N D  ; Rx lookup    esg 9/7/10 *271 - ECME# up to 12 digits
- . N ARRAY
+ ; Checks if the ECME# is valid
+ I Y<0,$$VALECME^BPSUTIL2(X) D
  . S ARRAY("ECME")=X,ARRAY("FILLDT")=$G(RCDT)
  . S Y=$$RXBIL^IBNCPDPU(.ARRAY)     ; DBIA 4435
  . I Y>0 S Y(0)=$G(^PRCA(430,+Y,0))

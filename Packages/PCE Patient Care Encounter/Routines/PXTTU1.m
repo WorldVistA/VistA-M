@@ -1,5 +1,5 @@
 PXTTU1 ;ISL/JVS/ESW - Utility Routine-calls from input transforms ;5/20/96  17:14
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**106**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**106,205**;Aug 12, 1996;Build 6
  Q
  ; This routines purpose is to hold utilities used by the supporting
  ;files for the v files.
@@ -39,7 +39,8 @@ CKNA(PXB) ;Check for duplicat names.
  ;PXNAT - optional variable, see above
  N PXD
  S PXD=PXB_"""B"""_","_""""_X_""")"
- I $D(@PXD),$O(@PXD@(""))<100000 D  Q
+ ;I $D(@PXD),$O(@PXD@(""))<100000 D  Q
+ I $D(@PXD) D  Q  ;PX*1.0*205 replaced line above
  .;check for existing national
  .W !,"Duplicate NAMES not allowed." K X
  ;additional check for EDUCATION TOPICS

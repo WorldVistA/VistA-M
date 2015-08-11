@@ -1,0 +1,130 @@
+IBDEI1XD ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,34183,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,34183,1,4,0)
+ ;;=4^I25.790
+ ;;^UTILITY(U,$J,358.3,34183,2)
+ ;;=^5007139
+ ;;^UTILITY(U,$J,358.3,34184,0)
+ ;;=I25.111^^192^1990^29
+ ;;^UTILITY(U,$J,358.3,34184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34184,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,34184,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,34184,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,34185,0)
+ ;;=I25.118^^192^1990^30
+ ;;^UTILITY(U,$J,358.3,34185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34185,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,34185,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,34185,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,34186,0)
+ ;;=I25.119^^192^1990^31
+ ;;^UTILITY(U,$J,358.3,34186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34186,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,34186,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,34186,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,34187,0)
+ ;;=I25.110^^192^1990^32
+ ;;^UTILITY(U,$J,358.3,34187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34187,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,34187,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,34187,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,34188,0)
+ ;;=I25.10^^192^1990^33
+ ;;^UTILITY(U,$J,358.3,34188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34188,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,34188,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,34188,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,34189,0)
+ ;;=I48.0^^192^1990^42
+ ;;^UTILITY(U,$J,358.3,34189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34189,1,3,0)
+ ;;=3^Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,34189,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,34189,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,34190,0)
+ ;;=I49.9^^192^1990^44
+ ;;^UTILITY(U,$J,358.3,34190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34190,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,34190,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,34190,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,34191,0)
+ ;;=I42.9^^192^1990^45
+ ;;^UTILITY(U,$J,358.3,34191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34191,1,3,0)
+ ;;=3^Cardiomyopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,34191,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,34191,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,34192,0)
+ ;;=I50.42^^192^1990^47
+ ;;^UTILITY(U,$J,358.3,34192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34192,1,3,0)
+ ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34192,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,34192,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,34193,0)
+ ;;=I50.32^^192^1990^48
+ ;;^UTILITY(U,$J,358.3,34193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34193,1,3,0)
+ ;;=3^Chr Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34193,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,34193,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,34194,0)
+ ;;=I27.82^^192^1990^49
+ ;;^UTILITY(U,$J,358.3,34194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34194,1,3,0)
+ ;;=3^Chr Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,34194,1,4,0)
+ ;;=4^I27.82
+ ;;^UTILITY(U,$J,358.3,34194,2)
+ ;;=^338238
+ ;;^UTILITY(U,$J,358.3,34195,0)
+ ;;=I50.22^^192^1990^50
+ ;;^UTILITY(U,$J,358.3,34195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34195,1,3,0)
+ ;;=3^Chr Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34195,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,34195,2)
+ ;;=^5007241

@@ -1,6 +1,6 @@
 IBJPS2 ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD2 ; - continue build screen array for IB parameters
  ;
@@ -55,8 +55,14 @@ BLD2 ; - continue build screen array for IB parameters
  ;
  D RIGHT(3,1,1) ; - Pay-To Providers - section 10
  S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,19,Z)) Q:'Z  S:$P($G(^IBE(350.9,1,19,Z,0)),U,5)="" Z0=Z0+1
- S Z=+$P($G(^IBE(350.9,1,11)),U,3),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z),U),1:"")
+ S Z=+$P($G(^IBE(350.9,1,11)),U,3),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z,0),U),1:"")
  S IBLN=$$SET("Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)
+ ;
+ ; MRD;IB*2.0*516 - Added TRICARE Pay-To Providers.
+ D RIGHT(3,1,1) ; - TRICARE Pay-To Providers - section 11
+ S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,29,Z)) Q:'Z  S:$P($G(^IBE(350.9,1,29,Z,0)),U,5)="" Z0=Z0+1
+ S Z=+$P($G(^IBE(350.9,1,11)),U,4),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z,1),U),1:"")
+ S IBLN=$$SET("TRICARE Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)
  ;
  D RIGHT(3,1,1)
  S IBLN=$$SET("Inpt Health Summary",$$EXSET^IBJU1($P(IBPD2,U,8),350.9,2.08),IBLN,IBLR,IBSEL)

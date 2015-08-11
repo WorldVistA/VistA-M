@@ -1,6 +1,6 @@
 IBCEF78 ;ALB/WCJ - Provider ID functions ;13 May 2007
- ;;2.0;INTEGRATED BILLING;**371**;21-MAR-94;Build 57
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**371,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  G AWAY
 AWAY Q
@@ -24,10 +24,17 @@ PRIPAYID(IBXIEN,IBXRET) ; Primary Payer IDs
  S RET=$$PAYERID^IBCEF2(IBXIEN)
  I RET]"" S IBXRET("CI_PID",1)="PI"_U_RET
  ;
- D OTHINSID^IBCEF72(IBXIEN,.RET)
- F I=1,2 I $G(RET(I))]"" S IBXRET("OI_PID",I)="PI"_U_RET(I)
- Q
+ ; MRD;IB*2.0*516 - Added HPID here (CI) and below (OI).
+ S RET=$$HPID(IBXIEN)
+ I RET]"" S IBXRET("CI_HPID",1)="XV"_U_RET
  ;
+ S RET=""
+ D OTHINSID^IBCEF72(IBXIEN,.RET)
+ F I=1,2 D
+ . I $P($G(RET(I)),U)]"" S IBXRET("OI_PID",I)="PI"_U_$P(RET(I),U)
+ . I $P($G(RET(I)),U,2)]"" S IBXRET("OI_HPID",I)="XV"_U_$P(RET(I),U,2)
+ . Q
+ Q
  ;
 SECPAYID(IBXIEN,IBXRET) ; This returns all of the secondary payer IDs from file #36 
  ; for the insurance companies on a given claim
@@ -72,7 +79,15 @@ SPIDS(INS,FT) ;
  ;
  Q DATA
  ;
+HPID(IBXIEN) ; Determine HPID for current payer.
+ ; MRD;IB*2.0*516 - Added HPID.
+ ;
+ N IBHPID,IBSEQ
+ S IBSEQ=$$COBN^IBCEF(IBXIEN)  ; IBSEQ should be 1, 2 or 3.
+ I IBSEQ S IBHPID=$P($G(^DGCR(399,IBXIEN,"M1")),U,12+IBSEQ)  ; Pull piece 13, 14 or 15.
+ Q IBHPID
+ ;
 CLEANUP(IBRET) ;
- K IBRET("CI_PID"),IBRET("OI_PID"),IBRET("CI_PSIDS"),IBRET("OI_PSIDS")
+ K IBRET("CI_PID"),IBRET("OI_PID"),IBRET("CI_PSIDS"),IBRET("OI_PSIDS"),IBRET("CI_HPID"),IBRET("OI_HPID")
  Q
  ;

@@ -1,6 +1,6 @@
 IBCEOB01 ;ALB/ESG - 835 EDI EOB MSG PROCESSING CONT ;16-JAN-2008
- ;;2.0;INTEGRATED BILLING;**377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**377,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -80,7 +80,8 @@ UPD1 ;
  ; Loop thru patient policies looking to update all Medicare entries
  S POL=0
  F  S POL=$O(^DPT(DFN,.312,POL)) Q:'POL  D
- . S PD=$G(^DPT(DFN,.312,POL,0))   ; policy data on the 0 node
+ . ;S PD=$G(^DPT(DFN,.312,POL,0))   ; policy data on the 0 node ;516 - baa
+ . S PD=$$ZND^IBCNS1(DFN,POL)  ; policy data on the 0 node ;516 - baa
  . S INS=+PD
  . I '$$MCRWNR^IBEFUNC(INS) Q      ; quit if ins co isn't Medicare
  . I IDCHG,CORRID'=$P(PD,U,2) D UPDID(DFN,POL,CORRID)   ; ID# change
@@ -92,7 +93,7 @@ UPDX ;
 UPDID(DFN,DA,ID) ; update the subscriber ID# field
  N DR,DIE,DIC
  S DIE="^DPT("_DFN_",.312,",DA(1)=DFN
- S DR="1///^S X=ID"
+ S DR="7.02///^S X=ID" ;patch 516 - baa changes
  D ^DIE
  D UPDAUD(DFN,DA)           ; audit info
  Q
@@ -100,7 +101,7 @@ UPDID(DFN,DA,ID) ; update the subscriber ID# field
 UPDNM(DFN,DA,NM) ; update the subscriber name field
  N DR,DIE,DIC
  S DIE="^DPT("_DFN_",.312,",DA(1)=DFN
- S DR="17///^S X=NM"
+ S DR="7.01///^S X=NM" ;patch 516 - baa changes
  D ^DIE
  D UPDAUD(DFN,DA)           ; audit info
  Q

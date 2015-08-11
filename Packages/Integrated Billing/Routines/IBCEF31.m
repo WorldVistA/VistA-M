@@ -1,6 +1,6 @@
 IBCEF31 ;ALB/ESG - FORMATTER SPECIFIC BILL FLD FUNCTIONS - CONT ;14-NOV-03
- ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -107,3 +107,22 @@ AUTRF(IBXIEN,IBL,Z) ; returns auth # and referral# if room for both, separated b
  D F^IBCEF("N-"_$P("PRIMARY^SECONDARY^TERTIARY",U,Z)_" REFERRAL NUMBER","IBZ",,IBXIEN)
  ; if length of auth and referral combined is too long, only return auth code
  Q $S(IBZ="":IBXDATA,IBXDATA="":IBZ,$L(IBXDATA)+$L(IBZ)>IBL:IBXDATA,1:IBXDATA_" "_IBZ)
+ ;
+GRPNAME(IBIEN,IBXDATA) ; Populate IBXDATA with the Group Name(s).
+ ; MRD;IB*2.0*516 - Created this procedure as extract code for
+ ; ^IBA(364.5,199), N-ALL INSURANCE GROUP NAME.
+ N A,Z
+ F Z=1:1:3 I $D(^DGCR(399,IBIEN,"I"_Z)) D
+ . S IBXDATA(Z)=$$POLICY^IBCEF(IBIEN,15,Z) I IBXDATA(Z)'="" Q
+ . S A=$$POLICY^IBCEF(IBIEN,1,Z)           ; Pull piece 1, Ins. Type.
+ . I A'="" S IBXDATA(Z)=$P($G(^DIC(36,+A,0)),U)
+ . Q
+ Q
+ ;
+GRPNUM(IBXIEN,IBXDATA) ; Populate IBXDATA with the Group Number(s).
+ ; MRD;IB*2.0*516 - Created this procedure as extract code for
+ ; ^IBA(364.5,200), N-ALL INSURANCE GROUP NUMBER.
+ N Z
+ F Z=1:1:3 I $D(^DGCR(399,IBXIEN,"I"_Z)) S IBXDATA(Z)=$$POLICY^IBCEF(IBXIEN,3,Z)
+ Q
+ ;

@@ -1,0 +1,126 @@
+IBDEI1PZ ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30816,1,3,0)
+ ;;=3^Open Bite of Left Buttock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30816,1,4,0)
+ ;;=4^S31.825A
+ ;;^UTILITY(U,$J,358.3,30816,2)
+ ;;=^5024317
+ ;;^UTILITY(U,$J,358.3,30817,0)
+ ;;=S01.452A^^189^1925^7
+ ;;^UTILITY(U,$J,358.3,30817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30817,1,3,0)
+ ;;=3^Open Bite of Left Cheek/Temporomandibular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30817,1,4,0)
+ ;;=4^S01.452A
+ ;;^UTILITY(U,$J,358.3,30817,2)
+ ;;=^5020180
+ ;;^UTILITY(U,$J,358.3,30818,0)
+ ;;=S01.352A^^189^1925^8
+ ;;^UTILITY(U,$J,358.3,30818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30818,1,3,0)
+ ;;=3^Open Bite of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30818,1,4,0)
+ ;;=4^S01.352A
+ ;;^UTILITY(U,$J,358.3,30818,2)
+ ;;=^5020141
+ ;;^UTILITY(U,$J,358.3,30819,0)
+ ;;=S51.052A^^189^1925^9
+ ;;^UTILITY(U,$J,358.3,30819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30819,1,3,0)
+ ;;=3^Open Bite of Left Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30819,1,4,0)
+ ;;=4^S51.052A
+ ;;^UTILITY(U,$J,358.3,30819,2)
+ ;;=^5028653
+ ;;^UTILITY(U,$J,358.3,30820,0)
+ ;;=S91.352A^^189^1925^10
+ ;;^UTILITY(U,$J,358.3,30820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30820,1,3,0)
+ ;;=3^Open Bite of Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30820,1,4,0)
+ ;;=4^S91.352A
+ ;;^UTILITY(U,$J,358.3,30820,2)
+ ;;=^5044347
+ ;;^UTILITY(U,$J,358.3,30821,0)
+ ;;=S91.252A^^189^1925^11
+ ;;^UTILITY(U,$J,358.3,30821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30821,1,3,0)
+ ;;=3^Open Bite of Left Great Toe w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30821,1,4,0)
+ ;;=4^S91.252A
+ ;;^UTILITY(U,$J,358.3,30821,2)
+ ;;=^5137508
+ ;;^UTILITY(U,$J,358.3,30822,0)
+ ;;=S91.152A^^189^1925^12
+ ;;^UTILITY(U,$J,358.3,30822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30822,1,3,0)
+ ;;=3^Open Bite of Left Great Toe w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30822,1,4,0)
+ ;;=4^S91.152A
+ ;;^UTILITY(U,$J,358.3,30822,2)
+ ;;=^5044246
+ ;;^UTILITY(U,$J,358.3,30823,0)
+ ;;=S61.452A^^189^1925^13
+ ;;^UTILITY(U,$J,358.3,30823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30823,1,3,0)
+ ;;=3^Open Bite of Left Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30823,1,4,0)
+ ;;=4^S61.452A
+ ;;^UTILITY(U,$J,358.3,30823,2)
+ ;;=^5033014
+ ;;^UTILITY(U,$J,358.3,30824,0)
+ ;;=S71.052A^^189^1925^14
+ ;;^UTILITY(U,$J,358.3,30824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30824,1,3,0)
+ ;;=3^Open Bite of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30824,1,4,0)
+ ;;=4^S71.052A
+ ;;^UTILITY(U,$J,358.3,30824,2)
+ ;;=^5037002
+ ;;^UTILITY(U,$J,358.3,30825,0)
+ ;;=S61.351A^^189^1925^16
+ ;;^UTILITY(U,$J,358.3,30825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30825,1,3,0)
+ ;;=3^Open Bite of Left Index finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30825,1,4,0)
+ ;;=4^S61.351A
+ ;;^UTILITY(U,$J,358.3,30825,2)
+ ;;=^5135828
+ ;;^UTILITY(U,$J,358.3,30826,0)
+ ;;=S61.251A^^189^1925^15
+ ;;^UTILITY(U,$J,358.3,30826,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30826,1,3,0)
+ ;;=3^Open Bite of Left Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30826,1,4,0)
+ ;;=4^S61.251A
+ ;;^UTILITY(U,$J,358.3,30826,2)
+ ;;=^5032864
+ ;;^UTILITY(U,$J,358.3,30827,0)
+ ;;=S81.052A^^189^1925^17
+ ;;^UTILITY(U,$J,358.3,30827,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30827,1,3,0)
+ ;;=3^Open Bite of Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30827,1,4,0)
+ ;;=4^S81.052A
+ ;;^UTILITY(U,$J,358.3,30827,2)
+ ;;=^5040059
+ ;;^UTILITY(U,$J,358.3,30828,0)
+ ;;=S91.255A^^189^1925^18
+ ;;^UTILITY(U,$J,358.3,30828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30828,1,3,0)
+ ;;=3^Open Bite of Left Lesser Toe(s) w/ Nail Damage,Init Encntr

@@ -1,122 +1,144 @@
-IBDEI0RM ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI0RM ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13640,0)
- ;;=414.02^^90^848^18
- ;;^UTILITY(U,$J,358.3,13640,1,0)
+ ;;^UTILITY(U,$J,358.3,13600,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13640,1,4,0)
- ;;=4^414.02
- ;;^UTILITY(U,$J,358.3,13640,1,5,0)
- ;;=5^CAD, Occlusion of Venous Graft
- ;;^UTILITY(U,$J,358.3,13640,2)
- ;;=CAD, Occlusion of Venous Graft^303282
- ;;^UTILITY(U,$J,358.3,13641,0)
- ;;=459.10^^90^848^73
- ;;^UTILITY(U,$J,358.3,13641,1,0)
+ ;;^UTILITY(U,$J,358.3,13600,1,4,0)
+ ;;=4^789.51
+ ;;^UTILITY(U,$J,358.3,13600,1,5,0)
+ ;;=5^Malignant Acsites
+ ;;^UTILITY(U,$J,358.3,13600,2)
+ ;;=^335281
+ ;;^UTILITY(U,$J,358.3,13601,0)
+ ;;=789.59^^83^856^7
+ ;;^UTILITY(U,$J,358.3,13601,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13641,1,4,0)
- ;;=4^459.10
- ;;^UTILITY(U,$J,358.3,13641,1,5,0)
- ;;=5^Post Phlebotic Syndrome
- ;;^UTILITY(U,$J,358.3,13641,2)
- ;;=Post Phlebotic Syndrome^328597
- ;;^UTILITY(U,$J,358.3,13642,0)
- ;;=428.20^^90^848^50
- ;;^UTILITY(U,$J,358.3,13642,1,0)
+ ;;^UTILITY(U,$J,358.3,13601,1,4,0)
+ ;;=4^789.59
+ ;;^UTILITY(U,$J,358.3,13601,1,5,0)
+ ;;=5^Ascites, Other
+ ;;^UTILITY(U,$J,358.3,13601,2)
+ ;;=^335282
+ ;;^UTILITY(U,$J,358.3,13602,0)
+ ;;=790.6^^83^856^5
+ ;;^UTILITY(U,$J,358.3,13602,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13642,1,4,0)
- ;;=4^428.20
- ;;^UTILITY(U,$J,358.3,13642,1,5,0)
- ;;=5^Heart Failure, Systolic, Unspec
- ;;^UTILITY(U,$J,358.3,13642,2)
- ;;=Heart Failure, Systolic^328594
- ;;^UTILITY(U,$J,358.3,13643,0)
- ;;=428.21^^90^848^42
- ;;^UTILITY(U,$J,358.3,13643,1,0)
+ ;;^UTILITY(U,$J,358.3,13602,1,4,0)
+ ;;=4^790.6
+ ;;^UTILITY(U,$J,358.3,13602,1,5,0)
+ ;;=5^Abnormal Liver Function
+ ;;^UTILITY(U,$J,358.3,13602,2)
+ ;;=^87228
+ ;;^UTILITY(U,$J,358.3,13603,0)
+ ;;=583.9^^83^857^7
+ ;;^UTILITY(U,$J,358.3,13603,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13643,1,4,0)
- ;;=4^428.21
- ;;^UTILITY(U,$J,358.3,13643,1,5,0)
- ;;=5^Heart Failure, Acute Systolic
- ;;^UTILITY(U,$J,358.3,13643,2)
- ;;=Heart Failure, Acute Systolic^328494
- ;;^UTILITY(U,$J,358.3,13644,0)
- ;;=428.22^^90^848^44
- ;;^UTILITY(U,$J,358.3,13644,1,0)
+ ;;^UTILITY(U,$J,358.3,13603,1,4,0)
+ ;;=4^583.9
+ ;;^UTILITY(U,$J,358.3,13603,1,5,0)
+ ;;=5^Glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,13603,2)
+ ;;=^83446
+ ;;^UTILITY(U,$J,358.3,13604,0)
+ ;;=581.9^^83^857^9
+ ;;^UTILITY(U,$J,358.3,13604,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13644,1,4,0)
- ;;=4^428.22
- ;;^UTILITY(U,$J,358.3,13644,1,5,0)
- ;;=5^Heart Failure, Chronic Systolic
- ;;^UTILITY(U,$J,358.3,13644,2)
- ;;=Heart Failure, Chronic Systolic^328495
- ;;^UTILITY(U,$J,358.3,13645,0)
- ;;=428.23^^90^848^49
- ;;^UTILITY(U,$J,358.3,13645,1,0)
+ ;;^UTILITY(U,$J,358.3,13604,1,4,0)
+ ;;=4^581.9
+ ;;^UTILITY(U,$J,358.3,13604,1,5,0)
+ ;;=5^Nephrotic Syndrome
+ ;;^UTILITY(U,$J,358.3,13604,2)
+ ;;=^82357
+ ;;^UTILITY(U,$J,358.3,13605,0)
+ ;;=753.12^^83^857^13
+ ;;^UTILITY(U,$J,358.3,13605,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13645,1,4,0)
- ;;=4^428.23
- ;;^UTILITY(U,$J,358.3,13645,1,5,0)
- ;;=5^Heart Failure, Systolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,13645,2)
- ;;=Heart Failure, Systolic, Acute on Chronic^328496
- ;;^UTILITY(U,$J,358.3,13646,0)
- ;;=428.30^^90^848^45
- ;;^UTILITY(U,$J,358.3,13646,1,0)
+ ;;^UTILITY(U,$J,358.3,13605,1,4,0)
+ ;;=4^753.12
+ ;;^UTILITY(U,$J,358.3,13605,1,5,0)
+ ;;=5^Polycystic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,13605,2)
+ ;;=^67295
+ ;;^UTILITY(U,$J,358.3,13606,0)
+ ;;=596.0^^83^857^3
+ ;;^UTILITY(U,$J,358.3,13606,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13646,1,4,0)
- ;;=4^428.30
- ;;^UTILITY(U,$J,358.3,13646,1,5,0)
- ;;=5^Heart Failure, Diastolic
- ;;^UTILITY(U,$J,358.3,13646,2)
- ;;=Heart Failure, Diastolic^328595
- ;;^UTILITY(U,$J,358.3,13647,0)
- ;;=428.31^^90^848^41
- ;;^UTILITY(U,$J,358.3,13647,1,0)
+ ;;^UTILITY(U,$J,358.3,13606,1,4,0)
+ ;;=4^596.0
+ ;;^UTILITY(U,$J,358.3,13606,1,5,0)
+ ;;=5^Bladder Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,13606,2)
+ ;;=^15144
+ ;;^UTILITY(U,$J,358.3,13607,0)
+ ;;=788.1^^83^857^5
+ ;;^UTILITY(U,$J,358.3,13607,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13647,1,4,0)
- ;;=4^428.31
- ;;^UTILITY(U,$J,358.3,13647,1,5,0)
- ;;=5^Heart Failure, Acute Diastolic
- ;;^UTILITY(U,$J,358.3,13647,2)
- ;;=Heart Failure, Acute Diastolic^328497
- ;;^UTILITY(U,$J,358.3,13648,0)
- ;;=428.32^^90^848^43
- ;;^UTILITY(U,$J,358.3,13648,1,0)
+ ;;^UTILITY(U,$J,358.3,13607,1,4,0)
+ ;;=4^788.1
+ ;;^UTILITY(U,$J,358.3,13607,1,5,0)
+ ;;=5^Dysuria
+ ;;^UTILITY(U,$J,358.3,13607,2)
+ ;;=^37716
+ ;;^UTILITY(U,$J,358.3,13608,0)
+ ;;=604.90^^83^857^12
+ ;;^UTILITY(U,$J,358.3,13608,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13648,1,4,0)
- ;;=4^428.32
- ;;^UTILITY(U,$J,358.3,13648,1,5,0)
- ;;=5^Heart Failure, Chronic Diastolic
- ;;^UTILITY(U,$J,358.3,13648,2)
- ;;=Heart Failure, Chronic Diastolic^328498
- ;;^UTILITY(U,$J,358.3,13649,0)
- ;;=428.33^^90^848^47
- ;;^UTILITY(U,$J,358.3,13649,1,0)
+ ;;^UTILITY(U,$J,358.3,13608,1,4,0)
+ ;;=4^604.90
+ ;;^UTILITY(U,$J,358.3,13608,1,5,0)
+ ;;=5^Orchitis/Epididymitis
+ ;;^UTILITY(U,$J,358.3,13608,2)
+ ;;=^86178
+ ;;^UTILITY(U,$J,358.3,13609,0)
+ ;;=788.30^^83^857^18
+ ;;^UTILITY(U,$J,358.3,13609,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13649,1,4,0)
- ;;=4^428.33
- ;;^UTILITY(U,$J,358.3,13649,1,5,0)
- ;;=5^Heart Failure, Diastolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,13649,2)
- ;;=Heart Failure, Diastolic, Acute on Chronic^328499
- ;;^UTILITY(U,$J,358.3,13650,0)
- ;;=428.40^^90^848^46
- ;;^UTILITY(U,$J,358.3,13650,1,0)
+ ;;^UTILITY(U,$J,358.3,13609,1,4,0)
+ ;;=4^788.30
+ ;;^UTILITY(U,$J,358.3,13609,1,5,0)
+ ;;=5^Urinary Incontinence
+ ;;^UTILITY(U,$J,358.3,13609,2)
+ ;;=^124400
+ ;;^UTILITY(U,$J,358.3,13610,0)
+ ;;=596.54^^83^857^10
+ ;;^UTILITY(U,$J,358.3,13610,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13650,1,4,0)
- ;;=4^428.40
- ;;^UTILITY(U,$J,358.3,13650,1,5,0)
- ;;=5^Heart Failure, Diastolic& Systolic
- ;;^UTILITY(U,$J,358.3,13650,2)
- ;;=Heart Failure, Systolic and Diastolic^328596
- ;;^UTILITY(U,$J,358.3,13651,0)
- ;;=428.41^^90^848^48
- ;;^UTILITY(U,$J,358.3,13651,1,0)
+ ;;^UTILITY(U,$J,358.3,13610,1,4,0)
+ ;;=4^596.54
+ ;;^UTILITY(U,$J,358.3,13610,1,5,0)
+ ;;=5^Neurogenic Bladder 
+ ;;^UTILITY(U,$J,358.3,13610,2)
+ ;;=^304798
+ ;;^UTILITY(U,$J,358.3,13611,0)
+ ;;=788.43^^83^857^11
+ ;;^UTILITY(U,$J,358.3,13611,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,13651,1,4,0)
- ;;=4^428.41
- ;;^UTILITY(U,$J,358.3,13651,1,5,0)
- ;;=5^Heart Failure, Systolic & Diastolic, Acute
+ ;;^UTILITY(U,$J,358.3,13611,1,4,0)
+ ;;=4^788.43
+ ;;^UTILITY(U,$J,358.3,13611,1,5,0)
+ ;;=5^Nocturia
+ ;;^UTILITY(U,$J,358.3,13611,2)
+ ;;=^84740
+ ;;^UTILITY(U,$J,358.3,13612,0)
+ ;;=590.00^^83^857^15
+ ;;^UTILITY(U,$J,358.3,13612,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,13612,1,4,0)
+ ;;=4^590.00
+ ;;^UTILITY(U,$J,358.3,13612,1,5,0)
+ ;;=5^Pyelonephritis, Chr w/o Med Nec
+ ;;^UTILITY(U,$J,358.3,13612,2)
+ ;;=^270367
+ ;;^UTILITY(U,$J,358.3,13613,0)
+ ;;=788.41^^83^857^17
+ ;;^UTILITY(U,$J,358.3,13613,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,13613,1,4,0)
+ ;;=4^788.41
+ ;;^UTILITY(U,$J,358.3,13613,1,5,0)
+ ;;=5^Urinary Frequency
+ ;;^UTILITY(U,$J,358.3,13613,2)
+ ;;=^124396
+ ;;^UTILITY(U,$J,358.3,13614,0)
+ ;;=788.20^^83^857^19

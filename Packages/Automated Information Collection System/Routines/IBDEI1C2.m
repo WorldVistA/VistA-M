@@ -1,138 +1,112 @@
-IBDEI1C2 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1C2 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23890,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23890,1,2,0)
- ;;=2^593.70
- ;;^UTILITY(U,$J,358.3,23890,1,5,0)
- ;;=5^VUR w/o Nephropathy Unspec
- ;;^UTILITY(U,$J,358.3,23890,2)
- ;;=^303304
- ;;^UTILITY(U,$J,358.3,23891,0)
- ;;=593.71^^153^1524^45
- ;;^UTILITY(U,$J,358.3,23891,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23891,1,2,0)
- ;;=2^593.71
- ;;^UTILITY(U,$J,358.3,23891,1,5,0)
- ;;=5^VUR w/ Reflux Nephropathy Unilat
- ;;^UTILITY(U,$J,358.3,23891,2)
- ;;=^303302
- ;;^UTILITY(U,$J,358.3,23892,0)
- ;;=593.72^^153^1524^43
- ;;^UTILITY(U,$J,358.3,23892,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23892,1,2,0)
- ;;=2^593.72
- ;;^UTILITY(U,$J,358.3,23892,1,5,0)
- ;;=5^VUR w/ Reflux Nephropathy Bilat
- ;;^UTILITY(U,$J,358.3,23892,2)
- ;;=^303303
- ;;^UTILITY(U,$J,358.3,23893,0)
- ;;=593.73^^153^1524^44
- ;;^UTILITY(U,$J,358.3,23893,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23893,1,2,0)
- ;;=2^593.73
- ;;^UTILITY(U,$J,358.3,23893,1,5,0)
- ;;=5^VUR w/ Reflux Nephropathy NOS
- ;;^UTILITY(U,$J,358.3,23893,2)
- ;;=^303305
- ;;^UTILITY(U,$J,358.3,23894,0)
- ;;=403.90^^153^1524^20
- ;;^UTILITY(U,$J,358.3,23894,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23894,1,2,0)
- ;;=2^403.90
- ;;^UTILITY(U,$J,358.3,23894,1,5,0)
- ;;=5^HTN Chr Renal Disease,Stages I-IV
- ;;^UTILITY(U,$J,358.3,23894,2)
- ;;=^334272
- ;;^UTILITY(U,$J,358.3,23895,0)
- ;;=403.91^^153^1524^19
- ;;^UTILITY(U,$J,358.3,23895,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23895,1,2,0)
- ;;=2^403.91
- ;;^UTILITY(U,$J,358.3,23895,1,5,0)
- ;;=5^HTN Chr Renal Disease Stage V-ESRD
- ;;^UTILITY(U,$J,358.3,23895,2)
- ;;=^334242
- ;;^UTILITY(U,$J,358.3,23896,0)
- ;;=585.9^^153^1524^12
- ;;^UTILITY(U,$J,358.3,23896,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23896,1,2,0)
- ;;=2^585.9
- ;;^UTILITY(U,$J,358.3,23896,1,5,0)
- ;;=5^Chr Kidney Disease/Failure
- ;;^UTILITY(U,$J,358.3,23896,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,23897,0)
- ;;=586.^^153^1524^38
- ;;^UTILITY(U,$J,358.3,23897,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23897,1,2,0)
- ;;=2^586.
- ;;^UTILITY(U,$J,358.3,23897,1,5,0)
- ;;=5^Renal Failure NOS
- ;;^UTILITY(U,$J,358.3,23897,2)
- ;;=^104733
- ;;^UTILITY(U,$J,358.3,23898,0)
- ;;=584.9^^153^1524^39
- ;;^UTILITY(U,$J,358.3,23898,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23898,1,2,0)
- ;;=2^584.9
- ;;^UTILITY(U,$J,358.3,23898,1,5,0)
- ;;=5^Renal Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,23898,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,23899,0)
- ;;=585.1^^153^1524^7
- ;;^UTILITY(U,$J,358.3,23899,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23899,1,2,0)
- ;;=2^585.1
- ;;^UTILITY(U,$J,358.3,23899,1,5,0)
- ;;=5^Chr Kidney Disease Stage I
- ;;^UTILITY(U,$J,358.3,23899,2)
- ;;=^332807
- ;;^UTILITY(U,$J,358.3,23900,0)
- ;;=585.2^^153^1524^8
- ;;^UTILITY(U,$J,358.3,23900,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23900,1,2,0)
- ;;=2^585.2
- ;;^UTILITY(U,$J,358.3,23900,1,5,0)
- ;;=5^Chr Kidney Disease Stage II
- ;;^UTILITY(U,$J,358.3,23900,2)
- ;;=^332808
- ;;^UTILITY(U,$J,358.3,23901,0)
- ;;=585.3^^153^1524^9
- ;;^UTILITY(U,$J,358.3,23901,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23901,1,2,0)
- ;;=2^585.3
- ;;^UTILITY(U,$J,358.3,23901,1,5,0)
- ;;=5^Chr Kidney Disease Stage III
- ;;^UTILITY(U,$J,358.3,23901,2)
- ;;=^332809
- ;;^UTILITY(U,$J,358.3,23902,0)
- ;;=585.4^^153^1524^10
- ;;^UTILITY(U,$J,358.3,23902,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23902,1,2,0)
- ;;=2^585.4
- ;;^UTILITY(U,$J,358.3,23902,1,5,0)
- ;;=5^Chr Kidney Disease Stage IV
- ;;^UTILITY(U,$J,358.3,23902,2)
- ;;=^332810
- ;;^UTILITY(U,$J,358.3,23903,0)
- ;;=585.5^^153^1524^11
- ;;^UTILITY(U,$J,358.3,23903,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23903,1,2,0)
- ;;=2^585.5
+ ;;^UTILITY(U,$J,358.3,23908,1,3,0)
+ ;;=3^11403
+ ;;^UTILITY(U,$J,358.3,23909,0)
+ ;;=11404^^142^1486^5^^^^1
+ ;;^UTILITY(U,$J,358.3,23909,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23909,1,2,0)
+ ;;=2^Excision Benign Lesion-trunk,  legs; 3.1cm to 4.0cm
+ ;;^UTILITY(U,$J,358.3,23909,1,3,0)
+ ;;=3^11404
+ ;;^UTILITY(U,$J,358.3,23910,0)
+ ;;=11406^^142^1486^6^^^^1
+ ;;^UTILITY(U,$J,358.3,23910,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23910,1,2,0)
+ ;;=2^Excision Benign Lesion-trunk,  legs; over 4.0cm
+ ;;^UTILITY(U,$J,358.3,23910,1,3,0)
+ ;;=3^11406
+ ;;^UTILITY(U,$J,358.3,23911,0)
+ ;;=11420^^142^1486^7^^^^1
+ ;;^UTILITY(U,$J,358.3,23911,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23911,1,2,0)
+ ;;=2^Excisiofeet, genitalia; 0.5cm or less
+ ;;^UTILITY(U,$J,358.3,23911,1,3,0)
+ ;;=3^11420
+ ;;^UTILITY(U,$J,358.3,23912,0)
+ ;;=11421^^142^1486^8^^^^1
+ ;;^UTILITY(U,$J,358.3,23912,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23912,1,2,0)
+ ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
+ ;;^UTILITY(U,$J,358.3,23912,1,3,0)
+ ;;=3^11421
+ ;;^UTILITY(U,$J,358.3,23913,0)
+ ;;=11422^^142^1486^9^^^^1
+ ;;^UTILITY(U,$J,358.3,23913,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23913,1,2,0)
+ ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
+ ;;^UTILITY(U,$J,358.3,23913,1,3,0)
+ ;;=3^11422
+ ;;^UTILITY(U,$J,358.3,23914,0)
+ ;;=11423^^142^1486^10^^^^1
+ ;;^UTILITY(U,$J,358.3,23914,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23914,1,2,0)
+ ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 2.1cm to 4.0cm
+ ;;^UTILITY(U,$J,358.3,23914,1,3,0)
+ ;;=3^11423
+ ;;^UTILITY(U,$J,358.3,23915,0)
+ ;;=11424^^142^1486^11^^^^1
+ ;;^UTILITY(U,$J,358.3,23915,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23915,1,2,0)
+ ;;=2^Excision Benign Lesion-scalp, neck, hands,feet, genitalia; 3.1cm to 4.0cm 
+ ;;^UTILITY(U,$J,358.3,23915,1,3,0)
+ ;;=3^11424
+ ;;^UTILITY(U,$J,358.3,23916,0)
+ ;;=11426^^142^1486^12^^^^1
+ ;;^UTILITY(U,$J,358.3,23916,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23916,1,2,0)
+ ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; over 4.0cm
+ ;;^UTILITY(U,$J,358.3,23916,1,3,0)
+ ;;=3^11426
+ ;;^UTILITY(U,$J,358.3,23917,0)
+ ;;=11600^^142^1487^1^^^^1
+ ;;^UTILITY(U,$J,358.3,23917,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23917,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.5cm or less
+ ;;^UTILITY(U,$J,358.3,23917,1,3,0)
+ ;;=3^11600
+ ;;^UTILITY(U,$J,358.3,23918,0)
+ ;;=11601^^142^1487^2^^^^1
+ ;;^UTILITY(U,$J,358.3,23918,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23918,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.6cm to 1.0cm
+ ;;^UTILITY(U,$J,358.3,23918,1,3,0)
+ ;;=3^11601
+ ;;^UTILITY(U,$J,358.3,23919,0)
+ ;;=11602^^142^1487^3^^^^1
+ ;;^UTILITY(U,$J,358.3,23919,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23919,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 1.1cm to 2.0cm
+ ;;^UTILITY(U,$J,358.3,23919,1,3,0)
+ ;;=3^11602
+ ;;^UTILITY(U,$J,358.3,23920,0)
+ ;;=11603^^142^1487^4^^^^1
+ ;;^UTILITY(U,$J,358.3,23920,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23920,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 2.1cm to 3.0cm
+ ;;^UTILITY(U,$J,358.3,23920,1,3,0)
+ ;;=3^11603
+ ;;^UTILITY(U,$J,358.3,23921,0)
+ ;;=11604^^142^1487^5^^^^1
+ ;;^UTILITY(U,$J,358.3,23921,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23921,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 3.1cm to 4.0cm
+ ;;^UTILITY(U,$J,358.3,23921,1,3,0)
+ ;;=3^11604
+ ;;^UTILITY(U,$J,358.3,23922,0)
+ ;;=11606^^142^1487^6^^^^1

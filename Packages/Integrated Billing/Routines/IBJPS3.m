@@ -1,25 +1,31 @@
 IBJPS3 ;BP/YMG - IB Site Parameters, Pay-To Provider ;20-Oct-2008
- ;;2.0;INTEGRATED BILLING;**400,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**400,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
-EN ; -- main entry point for IBJP IB PAY-TO PROVIDERS
- D EN^VALM("IBJP IB PAY-TO PROVIDERS")
+ ; MRD;IB*2.0*516 - Added logic pertaining to TRICARE-Specific Pay-To
+ ; Providers, which entailed adding the parameter IBTCFLAG to many
+ ; procedures here and in ^IBJPS4.
+ ;
+EN(IBTCFLAG) ; -- main entry point for IBJP IB PAY-TO PROVIDERS
+ D EN^VALM("IBJP IB "_$S(IBTCFLAG:"TRICARE PAY-TO PROVS",1:"PAY-TO PROVIDERS"))
  Q
  ;
-HDR ; -- header code
+HDR(IBTCFLAG) ; -- header code
  ; Not setting VALMHDR causes this tag to be called upon return from every action, 
  ; this is done to keep VALMSG displayed at all times, instead of the default message on the lower bar.
- S VALMSG="* = Default Pay-to provider"
+ S VALMSG="* = Default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-to provider"
  Q
  ;
-INIT ; -- init variables and list array
- N IBCNT,IBLN,IBSTR,PIEN,PDATA
+INIT(IBTCFLAG) ; -- init variables and list array
+ N IBCNT,IBLN,IBSTR,PIEN,PDATA,IBNODE
+ S IBNODE=$$NODE^IBJPS4(IBTCFLAG)
+ ;
  S (VALMCNT,IBCNT,IBLN)=0
- S PIEN=0 F  S PIEN=$O(^IBE(350.9,1,19,PIEN)) Q:'PIEN  D
- .I $P($G(^IBE(350.9,1,19,PIEN,0)),U,5)'="" Q
- .S PDATA=$$PTG(PIEN),IBCNT=IBCNT+1
+ S PIEN=0 F  S PIEN=$O(^IBE(350.9,1,IBNODE,PIEN)) Q:'PIEN  D
+ .I $P($G(^IBE(350.9,1,IBNODE,PIEN,0)),U,5)'="" Q
+ .S PDATA=$$PTG(PIEN,IBTCFLAG),IBCNT=IBCNT+1
  .S IBSTR=$$SETSTR^VALM1(IBCNT_".","",2,4)
- .I $$ISDFLT(PIEN) S IBSTR=$$SETSTR^VALM1("*",IBSTR,7,1)
+ .I $$ISDFLT(PIEN,IBTCFLAG) S IBSTR=$$SETSTR^VALM1("*",IBSTR,7,1)
  .S IBSTR=$$SETSTR^VALM1("Name     : "_$P(PDATA,U),IBSTR,8,45)
  .S IBSTR=$$SETSTR^VALM1("State   : "_$P(PDATA,U,8),IBSTR,54,25)
  .S IBLN=$$SET(IBLN,IBSTR)
@@ -34,7 +40,9 @@ INIT ; -- init variables and list array
  .S IBLN=$$SET(IBLN,IBSTR),IBLN=$$SET(IBLN,"")
  .S @VALMAR@("ZIDX",IBCNT,PIEN)=""
  .Q
- I 'IBLN S IBLN=$$SET(IBLN,$$SETSTR^VALM1("No Pay-To Providers defined.","",13,30))
+ ;
+ I 'IBLN S IBLN=$$SET(IBLN,$$SETSTR^VALM1("No "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Providers defined.","",13,40))
+ ;
  S VALMCNT=IBLN,VALMBG=1
  Q
  ;
@@ -46,56 +54,67 @@ EXIT ; -- exit code
  D CLEAR^VALM1,CLEAN^VALM10
  Q
  ;
-PRVADD ; add new pay-to provider
- N X,Y,DIC,DA,DLAYGO,DIE,DR,DIR,DIRUT,DUOUT,DTOUT,IEN
+PRVADD(IBTCFLAG) ; add new pay-to provider
+ N X,Y,DIC,DA,DLAYGO,DIE,DR,DIR,DIRUT,DUOUT,DTOUT,IEN,IBNODE
+ S IBNODE=$$NODE^IBJPS4(IBTCFLAG)
  D FULL^VALM1
  S VALMBCK="R"
- S DIC="^IBE(350.9,1,19,",DIC(0)="AELMQ",DA(1)=1,DIC("A")="Enter Pay-to Provider: ",DLAYGO=350.9 D ^DIC S IEN=+Y
+ S DIC="^IBE(350.9,1,"_IBNODE_",",DIC(0)="AELMQ",DA(1)=1,DLAYGO=350.9
+ S DIC("A")="Enter "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-to Provider: "
+ D ^DIC S IEN=+Y
  I IEN'>0 Q
  D PRVEDIT1
- I $P($G(^IBE(350.9,1,19,IEN,0)),U,2)="" D PRVDEL1
+ I $P($G(^IBE(350.9,1,IBNODE,IEN,0)),U,2)="" D PRVDEL1
  Q
  ;
-PRVDEL ; delete a pay-to provider
- N DA,DR,DIE,X,Y,DIR,DIRUT,DUOUT,DTOUT,I,IEN,DIVS,DFLT
+PRVDEL(IBTCFLAG) ; delete a pay-to provider
+ N DA,DR,DIE,X,Y,DIR,DIRUT,DUOUT,DTOUT,I,IEN,DIVS,DFLT,IBNODE,IBDISP
+ S IBNODE=$$NODE^IBJPS4(IBTCFLAG)
+ S IBDISP=$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider"
  S VALMBCK="R"
  D FULL^VALM1
- S IEN=$$SEL Q:'IEN
- S DFLT=$$ISDFLT(IEN)
- I DFLT W !!,"WARNING: This is the default Pay-To Provider."
- D GETDIVS^IBJPS4(IEN,.DIVS)
+ S IEN=$$SEL(IBTCFLAG) Q:'IEN
+ S DFLT=$$ISDFLT(IEN,IBTCFLAG)
+ I DFLT W !!,"WARNING: This is the default "_IBDISP_"."
+ D GETDIVS^IBJPS4(IEN,.DIVS,IBTCFLAG)
  I 'DFLT D
- .W !!,"The following divisions are currently associated with this Pay-To Provider: "
+ .W !!,"The following divisions are currently associated with this "_IBDISP_": "
  .S I="" F  S I=$O(DIVS(I)) Q:I=""  W !,?5,DIVS(I)
  .W:'$D(DIVS) "None",! W !
  .Q
- S DIR("?")="Enter Yes to delete this Pay-To Provider."
- S DIR("A")="Delete Pay-To Provider "_$P($G(^IBE(350.9,1,19,IEN,0)),U,2)
+ S DIR("?")="Enter Yes to delete this "_IBDISP_"."
+ S DIR("A")="Delete "_IBDISP_" "_$P($G(^IBE(350.9,1,IBNODE,IEN,0)),U,2)
  S DIR(0)="YO",DIR("B")="NO" D ^DIR Q:'Y
- I DFLT S DIE="^IBE(350.9,",DA=1,DR="11.03////@" D ^DIE
- I $D(DIVS) K DIK S DIK="^IBE(350.9,1,19,",DA(1)=1,I="" F  S I=$O(DIVS(I)) Q:I=""  S DA=I D ^DIK
+ I DFLT S DIE="^IBE(350.9,",DA=1,DR=$S(IBTCFLAG:"11.04",1:"11.03")_"////@" D ^DIE
+ I $D(DIVS) K DIK S DIK="^IBE(350.9,1,"_IBNODE_",",DA(1)=1,I="" F  S I=$O(DIVS(I)) Q:I=""  S DA=I D ^DIK
  K DIK
 PRVDEL1 ;
  N DIK
- K DA S DIK="^IBE(350.9,1,19,",DA(1)=1,DA=IEN D ^DIK
- D CLEAN^VALM10,INIT
+ K DA
+ S DIK="^IBE(350.9,1,"_IBNODE_","
+ S DA(1)=1,DA=IEN
+ D ^DIK
+ D CLEAN^VALM10,INIT(IBTCFLAG)
  Q
  ;
-PRVEDIT ; edit existing pay-to provider
- N IEN
+PRVEDIT(IBTCFLAG) ; edit existing pay-to provider
+ N IEN,IBNODE
+ S IBNODE=$$NODE^IBJPS4(IBTCFLAG)
  S VALMBCK="R"
  D FULL^VALM1
- S IEN=$$SEL Q:'IEN
+ S IEN=$$SEL(IBTCFLAG) Q:'IEN
 PRVEDIT1 ;
  N DIE,DA,DR,DIR,DIRUT,DUOUT,DTOUT,X,Y
- S DIE="^IBE(350.9,1,19,",DA=IEN,DA(1)=1
+ S DIE="^IBE(350.9,1,"_IBNODE_","
+ S DA=IEN,DA(1)=1
  S DR=".02T;1.01T;1.02T;1.03T;1.04T;1.05T;.04T;.03T;.05///@"
  D ^DIE
- S DIR("?")="Enter Yes to make this entry the default Pay-to Provider."
- S DIR("A")="Is this the default Pay-To Provider",DIR(0)="YO"
- S DIR("B")="YES" I $$GETDFLT,'$$ISDFLT(IEN) S DIR("B")="NO"
- D ^DIR I Y K DA S DIE="^IBE(350.9,",DA=1,DR="11.03////"_IEN D ^DIE
- D CLEAN^VALM10,INIT
+ S DIR("?")="Enter Yes to make this entry the default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-to Provider."
+ S DIR("A")="Is this the default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider"
+ S DIR(0)="YO"
+ S DIR("B")="YES" I $$GETDFLT(IBTCFLAG),'$$ISDFLT(IEN,IBTCFLAG) S DIR("B")="NO"
+ D ^DIR I Y K DA S DIE="^IBE(350.9,",DA=1,DR=$S(IBTCFLAG:"11.04",1:"11.03")_"////"_IEN D ^DIE
+ D CLEAN^VALM10,INIT(IBTCFLAG)
  Q
  ;
 SET(IBLN,IBSTR) ; add a line to display list
@@ -103,23 +122,27 @@ SET(IBLN,IBSTR) ; add a line to display list
  S IBLN=IBLN+1 D SET^VALM10(IBLN,IBSTR)
  Q IBLN
  ;
-ISDFLT(PIEN) ; returns 1 if provider with ien PIEN is the default pay-to provider, 0 otherwise
+ISDFLT(PIEN,IBTCFLAG) ; returns 1 if provider with ien PIEN is the default pay-to provider, 0 otherwise
  Q:PIEN="" 0
- Q $$GETDFLT=PIEN
+ Q $$GETDFLT(IBTCFLAG)=PIEN
  ;
-GETDFLT() ; returns ien of default pay-to provider
- Q $P($G(^IBE(350.9,1,11)),U,3)
+GETDFLT(IBTCFLAG) ; returns ien of default pay-to provider
+ Q $P($G(^IBE(350.9,1,11)),U,$S(IBTCFLAG:4,1:3))
  ;
-SEL() ; select pay-to provider
+SEL(IBTCFLAG) ; select pay-to provider
  ; returns ien of selected pay-to provider, or 0 if nothing is selected
  N DIR,IEN,MAX,X,Y
  S IEN=0
  I VALMLST>4 D
- .; there is at least one entry
- .S MAX=$O(@VALMAR@("ZIDX",""),-1) S:MAX=1 Y=1
- .I MAX>1 S DIR("A")="Select Pay-To Provider (1-"_MAX_"): ",DIR(0)="NA^"_1_":"_MAX_":0" D ^DIR
- .S:+Y>0 IEN=$O(@VALMAR@("ZIDX",Y,""))
- .Q
+ . ; there is at least one entry
+ . S MAX=$O(@VALMAR@("ZIDX",""),-1) S:MAX=1 Y=1
+ . I MAX>1 D
+ . . S DIR("A")="Select "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider (1-"_MAX_"): "
+ . . S DIR(0)="NA^"_1_":"_MAX_":0"
+ . . D ^DIR
+ . . Q
+ . S:+Y>0 IEN=$O(@VALMAR@("ZIDX",Y,""))
+ . Q
  Q +IEN
  ;
 PRVDATA(IBIFN) ; Return a string of Pay-To provider information in the following format
@@ -138,8 +161,10 @@ PRVDATA(IBIFN) ; Return a string of Pay-To provider information in the following
  ; **NOTE:  pieces 12,13,14 are added to this string in output formatter data element #1624 for PRV1-1.5 for PRV1
  ; pieces 2,3,5.  If pieces are added here to this string, then adjust the code in PRV1-1.5,2,3,5 accordingly.
  ;
- N DATA,IB0,EVDT,IBDIV,INST,PIEN,IBER
+ N DATA,IB0,EVDT,IBDIV,INST,PIEN,IBER,IBTCFLAG
  S DATA="",IBER=""
+ ;
+ S IBTCFLAG=$$TRICARE^IBJPS4(IBIFN) ; Set IBTCFLAG to '1' if TRICARE claim, otherwise '0'.
  ;
  S IB0=$G(^DGCR(399,IBIFN,0))
  S EVDT=$P(IB0,U,3)                             ; event date on claim
@@ -154,29 +179,32 @@ PRVDATA(IBIFN) ; Return a string of Pay-To provider information in the following
  I INST'>0 G PRVDATX                            ; get out if no institution
  ;
  ; check to see if this institution exists as a separate Pay-To Provider subfile entry
- S PIEN=+$O(^IBE(350.9,1,19,"B",INST,""))
+ S PIEN=+$O(^IBE(350.9,1,$S(IBTCFLAG:29,1:19),"B",INST,""))
  ;
- I 'PIEN D  G PRVDATX      ; this institution does not exist in 350.9004
- . ; check to see if the default Pay-To provider information is defined (350.9;11.03)
- . S PIEN=+$P($G(^IBE(350.9,1,11)),U,3) Q:'PIEN
- . S DATA=$$PTG(PIEN)
+ I 'PIEN D  G PRVDATX      ; this institution does not exist in 350.9004/350.929.
+ . ; check to see if the default Pay-To provider information is defined (350.9;11.03/11.04)
+ . S PIEN=+$P($G(^IBE(350.9,1,11)),U,$S(IBTCFLAG:4,1:3)) Q:'PIEN
+ . S DATA=$$PTG(PIEN,IBTCFLAG)
  . Q
  ;
  ; here PIEN exists and the institution pointer was found in the 350.9004 subfile
  ; find parent pay-to provider
- S PIEN=$$GETPROV^IBJPS4(PIEN) S:PIEN DATA=$$PTG(PIEN)
+ S PIEN=$$GETPROV^IBJPS4(PIEN,IBTCFLAG) S:PIEN DATA=$$PTG(PIEN,IBTCFLAG)
  ;
 PRVDATX ;
  I DATA="" S IBER=IBER_"IB177;",$P(DATA,U,10)=IBER
  Q DATA
  ;
-PTG(PIEN) ; gather pay-to provider info
- N N0,N1,IBORG,NPI,STIEN,STATE,Z,IBER
+PTG(PIEN,IBTCFLAG) ; gather pay-to provider info
+ N N0,N1,IBORG,NPI,STIEN,STATE,Z,IBER,IBNODE
+ ;
+ S IBNODE=$$NODE^IBJPS4(+$G(IBTCFLAG))
+ ;
  S Z="",IBER="",PIEN=+$G(PIEN)
  ;
- I '$D(^IBE(350.9,1,19,PIEN)) S IBER=IBER_"IB177;",$P(Z,U,10)=IBER G PTGX
- S N0=$G(^IBE(350.9,1,19,PIEN,0))
- S N1=$G(^IBE(350.9,1,19,PIEN,1))
+ I '$D(^IBE(350.9,1,IBNODE,PIEN)) S IBER=IBER_"IB177;",$P(Z,U,10)=IBER G PTGX
+ S N0=$G(^IBE(350.9,1,IBNODE,PIEN,0))
+ S N1=$G(^IBE(350.9,1,IBNODE,PIEN,1))
  ;
  ; get the NPI# from the Institution file
  S IBORG=+$P(N0,U,1),NPI=""
@@ -206,22 +234,29 @@ PRVPHONE(IBIFN) ; Return Pay-to provider phone# for a given claim
  S PTPP=""
  I +$G(IBIFN) S PTPP=$P($$PRVDATA(IBIFN),U,4) G PRVPHNX
  ;
- S PIEN=+$P($G(^IBE(350.9,1,11)),U,3) I 'PIEN G PRVPHNX     ; no claim#, default pay-to provider
- S PTPP=$P($$PTG(PIEN),U,4)                                 ; phone#
+ S PIEN=+$P($G(^IBE(350.9,1,11)),U,3) I 'PIEN G PRVPHNX   ; no claim#, default pay-to provider
+ S PTPP=$P($$PTG(PIEN),U,4)                               ; phone#
  ;
 PRVPHNX ;
  Q PTPP
  ;
-DEF(INST,DA) ; procedure called by new style x-ref in order to default name and address fields
- ; INST - new VA institution ien to file 4 as the .01 field to this sub-file
- ; DA - DA array as passed in from FileMan.  DA(1) should equal 1 since this is the IB site params
- ;      and there is only 1 entry.  DA should equal the IEN to the pay-to provider multiple entry
- ; This procedure is only called if a new institution is being added as the .01 field or if the value of
- ; field is being changed from one institution to another.
+DEF(INST,DA,IBTCFLAG) ; This procedure is called by new style x-ref in
+ ; order to default name and address fields.
+ ; INST - IEN to file #4, Institution.  This is the value in the .01
+ ;      field of the Pay-to or TRICARE Pay-to Providers sub-fil.
+ ; DA - DA array as passed in from FileMan.  DA(1) should equal 1 since
+ ;      this is the IB site params and there is only 1 entry.  DA should
+ ;      equal the IEN to the pay-to provider multiple entry
+ ; This procedure is called only if a new institution is being added to
+ ; the sub-file or an entry in the sub-file is being changed from one
+ ; institution to another.
  ;
- NEW NAD,IENS,ST,STIEN,IBTAXID
+ NEW NAD,IENS,ST,STIEN,IBTAXID,IBFILE
  ;
  I '$G(INST) G DEFX
+ ;
+ I IBTCFLAG S IBFILE=350.929
+ E  S IBFILE=350.9004
  ;
  S ST=$$WHAT^XUAF4(INST,.02)             ; full state name
  S STIEN=$$FIND1^DIC(5,,"BX",ST,"B")     ; state ien
@@ -234,15 +269,15 @@ DEF(INST,DA) ; procedure called by new style x-ref in order to default name and 
  I INST=$P($G(^IBE(350.9,1,0)),U,2) S IBTAXID=$P($G(^IBE(350.9,1,1)),U,5)
  ;
  S IENS=DA_",1,"
- S NAD(350.9004,IENS,.02)=$$WHAT^XUAF4(INST,100)     ; official VA name
- S NAD(350.9004,IENS,.03)=IBTAXID                    ; tax#
- S NAD(350.9004,IENS,.04)=""                         ; phone# - blank it out
- S NAD(350.9004,IENS,.05)=""                         ; parent - blank it out
- S NAD(350.9004,IENS,1.01)=$$WHAT^XUAF4(INST,1.01)   ; address line 1
- S NAD(350.9004,IENS,1.02)=$$WHAT^XUAF4(INST,1.02)   ; address line 2
- S NAD(350.9004,IENS,1.03)=$$WHAT^XUAF4(INST,1.03)   ; city
- I STIEN S NAD(350.9004,IENS,1.04)=STIEN             ; state
- S NAD(350.9004,IENS,1.05)=$$WHAT^XUAF4(INST,1.04)   ; zip
+ S NAD(IBFILE,IENS,.02)=$$WHAT^XUAF4(INST,100)     ; official VA name
+ S NAD(IBFILE,IENS,.03)=IBTAXID                    ; tax#
+ S NAD(IBFILE,IENS,.04)=""                         ; phone# - blank it out
+ S NAD(IBFILE,IENS,.05)=""                         ; parent - blank it out
+ S NAD(IBFILE,IENS,1.01)=$$WHAT^XUAF4(INST,1.01)   ; address line 1
+ S NAD(IBFILE,IENS,1.02)=$$WHAT^XUAF4(INST,1.02)   ; address line 2
+ S NAD(IBFILE,IENS,1.03)=$$WHAT^XUAF4(INST,1.03)   ; city
+ I STIEN S NAD(IBFILE,IENS,1.04)=STIEN             ; state
+ S NAD(IBFILE,IENS,1.05)=$$WHAT^XUAF4(INST,1.04)   ; zip
  D FILE^DIE(,"NAD")
 DEFX ;
  Q
@@ -291,12 +326,13 @@ DIFF(IBIFN,EDI) ; This function will determine if there are any differences betw
 DIFFX ;
  Q DIFF
  ;
-MAINPRV() ; Return Pay-To provider information for main VAMC
- N DATA,IBER,IEN4,PIEN
+MAINPRV(IBTCFLAG) ; Return Pay-To provider information for main VAMC
+ N DATA,IBER,IEN4,PIEN,IBNODE
+ S IBNODE=$$NODE^IBJPS4(IBTCFLAG)
  S (DATA,IBER)="",IEN4=+$$SITE^VASITE I 'IEN4 G MAINPRVX
- S PIEN=$O(^IBE(350.9,1,19,"B",IEN4,"")) I 'PIEN G MAINPRVX
- I $P($G(^IBE(350.9,1,19,PIEN,0)),U,5)'="" G MAINPRVX   ; if this sub-entry is not a pay-to provider, then get out
- S DATA=$$PTG(PIEN)
+ S PIEN=$O(^IBE(350.9,1,IBNODE,"B",IEN4,"")) I 'PIEN G MAINPRVX
+ I $P($G(^IBE(350.9,1,IBNODE,PIEN,0)),U,5)'="" G MAINPRVX   ; if this sub-entry is not a pay-to provider, then get out
+ S DATA=$$PTG(PIEN,IBTCFLAG)
 MAINPRVX ;
  I DATA="" S IBER=IBER_"IB177;",$P(DATA,U,10)=IBER
  Q DATA

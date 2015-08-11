@@ -1,5 +1,5 @@
 ONCACD1 ;Hines OIFO/GWB - Extract NAACCR/STATE/VACCR data ;09/06/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
 EN1 ;Entry point
  K ^TMP($J)
@@ -55,10 +55,12 @@ SETUP ;Loop through appropriate cross-reference
  .F FDNUM=.03,.04,.05,.06,3,9,20,22.3,37.1,37.2,37.3,38,58.6,58.7,85,86,88 I $$GET1^DIQ(165.5,IEN,FDNUM,"I")="" S NC=1
  .I $$GET1^DIQ(165.5,IEN,3,"I")<3100000,$$GET1^DIQ(165.5,IEN,87,"I")="" S NC=1
  .Q:NC=1
- .I ($E(TPG,3,4)=50)!($E(TPG,3,4)=18)!($E(TPG,3,4)=20) D LOOP
+ .I (($E(TPG,3,4)=50)!($E(TPG,3,4)=18)!($E(TPG,3,4)=20))&(TPG'=67181) D LOOP  ; screen out 67181 (appendix) cases - p2.2*4
  ;Loop through DATE CASE LAST CHANGED (165.5,198) "AAE" cross-reference
+ ;Quit if "ADX" is before 2008 - p2.2*4
  I STEXT=3,($G(ONCLDT)=2) S SDT=SDT-1 F  S SDT=$O(^ONCO(165.5,"AAE",SDT)) Q:(SDT<1)!(SDT>EDT)!(OUT=1)  F  S IEN=$O(^ONCO(165.5,"AAE",SDT,IEN)) Q:IEN<1  I $$DIV^ONCFUNC(IEN)=DUZ(2) D  Q:OUT
  .Q:$G(^ONCO(165.5,IEN,0))=""
+ .Q:$P($G(^ONCO(165.5,IEN,0)),U,16)<3080101
  .S TPG=$P($G(^ONCO(165.5,IEN,2)),U,1)
  .S NC=0
  .F FDNUM=.03,.04,.05,.06,3,9,20,22.3,37.1,37.2,37.3,38,58.6,58.7,85,86,88 I $$GET1^DIQ(165.5,IEN,FDNUM,"I")="" S NC=1
@@ -68,6 +70,7 @@ SETUP ;Loop through appropriate cross-reference
  ;Loop through ACCESSION NUMBER (165.5,.05) "AA" cross-reference
  I STEXT=3,($G(ONCLDT)=3) S SDT=SDT-1 F  S SDT=$O(^ONCO(165.5,"AA",SDT)) Q:(SDT<1)!(SDT>EDT)!(OUT=1)  F  S IEN=$O(^ONCO(165.5,"AA",SDT,IEN)) Q:IEN<1  I $$DIV^ONCFUNC(IEN)=DUZ(2) D  Q:OUT
  .Q:$G(^ONCO(165.5,IEN,0))=""
+ .Q:$P($G(^ONCO(165.5,IEN,0)),U,16)<3080101
  .S TPG=$P($G(^ONCO(165.5,IEN,2)),U,1)
  .S NC=0
  .F FDNUM=.03,.04,.05,.06,3,9,20,22.3,37.1,37.2,37.3,38,58.6,58.7,85,86,88 I $$GET1^DIQ(165.5,IEN,FDNUM,"I")="" S NC=1

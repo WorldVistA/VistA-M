@@ -1,12 +1,17 @@
 PSGOTR ;BIR/CML3-TRANSFERS RENEW DATA FROM 53.1 TO 55 ;23 SEP 03 / 7:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,133,129,267,257**;16 DEC 97;Build 105
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,133,129,267,257,255**;16 DEC 97;Build 8
  ;
  ; Reference to ^PS(55 supported by DBIA 2191.
  ;
 START(ODA,DA) ; lock record, and write
- N OFD,PVND4 S OFD=""
+ N OFD,PVND4,PSGPV S OFD=""
  S OFD=$P($G(^PS(55,PSGP,5,DA,2)),"^",4) K:OFD ^PS(55,"AUD",+OFD,PSGP,+DA)
  S ND2=^PS(53.1,+ODA,2) S ^PS(55,"AUD",+$P(ND2,"^",4),PSGP,DA)=""
+ ;PSJ*5*255 - Record renewing provider
+ I $P(^PS(53.1,+ODA,0),U,2)]"" S PSGPV=$P(^PS(53.1,+ODA,0),U,2) D
+ . N DR,DIE
+ . S DR="1////^S X=PSGPV",DIE="^PS(55,"_PSGP_",5,",DA(1)=PSGP D ^DIE
+ ;End PSJ*5*255
  F X=6,7 I $D(^PS(53.1,+ODA,X)) S ^PS(55,PSGP,5,DA,X)=^(X)
  I $O(^PS(53.1,+ODA,1,0)) D
  .K ^PS(55,PSGP,5,DA,1)
@@ -28,6 +33,8 @@ CR ; set x-refs
  I $D(^PS(55,PSGP,5.1)),$P(^(5.1),"^",6) S X=$P(^(5.1),"^",6) I $P(ND2,"^",3),$P(ND2,"^",6)'>X S $P(^(5.1),"^",6)=$P(ND2,"^",3)
  S ^PS(55,PSGP,5,"B",+ODA,DA)="",^PS(55,"AUE",PSGP,DA)=""
  F S="C","O","P","R","OC" K ^PS(55,PSGP,5,"AU",S,+$P(PSGPND2,"^",4),DA)
+ ; PSJ*5.0*255/kill old "AU" x-ref of the last stop date
+ I $P(OND14,"^",4) F S="C","O","P","R","OC" K ^PS(55,PSGP,5,"AU",S,+$P(OND14,"^",4),DA)
  S ^PS(55,PSGP,5,"AU",$P(PSGPND0,"^",7),+$P(PSGPND2,"^",4),DA)=""
  S ^PS(55,PSGP,5,"AUS",+$P(ND2,"^",4),DA)="" I OFD,OFD'=$P(ND2,"^",4) K ^PS(55,PSGP,5,"AUS",+OFD,DA)
  D CIMOU^PSJIMO1(PSGP,DA,"",ODA)

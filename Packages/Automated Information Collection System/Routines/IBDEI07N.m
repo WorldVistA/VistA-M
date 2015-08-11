@@ -1,48 +1,144 @@
-IBDEI07N ; ; 09-FEB-2015
+IBDEI07N ; ; 20-MAY-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.91,0,"GL")
- ;;=^IBE(358.91,
- ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
- ;;=
- ;;^DIC(358.91,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.91,"%D",1,0)
- ;;= 
- ;;^DIC(358.91,"%D",2,0)
- ;;=This file is nearly identical to file #357.91. It is used by the
- ;;^DIC(358.91,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.91,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.91,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.91,0,"DDA")
- ;;=N
- ;;^DD(358.91,0,"DT")
- ;;=2960123
- ;;^DD(358.91,0,"IX","B",358.91,.01)
- ;;=
- ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
- ;;=
- ;;^DD(358.91,0,"PT",358.22,.06)
- ;;=
- ;;^DD(358.91,0,"VRPK")
- ;;=IBD
- ;;^DD(358.91,.01,0)
- ;;=NAME^RFX^^0;1^K:$L(X)>30 X
- ;;^DD(358.91,.01,1,0)
- ;;=^.1
- ;;^DD(358.91,.01,1,1,0)
- ;;=358.91^B
- ;;^DD(358.91,.01,1,1,1)
- ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
- ;;^DD(358.91,.01,1,1,2)
- ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
- ;;^DD(358.91,.01,3)
- ;;=NAME MUST BE UNDER 31 CHARACTERS
- ;;^DD(358.91,.01,21,0)
- ;;=^^1^1^2930608^
- ;;^DD(358.91,.01,21,1,0)
- ;;=The name should describe the appearance of the marking area on the form.
+ ;;^UTILITY(U,$J,358.3,3414,2)
+ ;;=^87342
+ ;;^UTILITY(U,$J,358.3,3415,0)
+ ;;=692.70^^31^280^1
+ ;;^UTILITY(U,$J,358.3,3415,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3415,1,2,0)
+ ;;=2^692.70
+ ;;^UTILITY(U,$J,358.3,3415,1,5,0)
+ ;;=5^Actinic Dermatitis
+ ;;^UTILITY(U,$J,358.3,3415,2)
+ ;;=^271910
+ ;;^UTILITY(U,$J,358.3,3416,0)
+ ;;=692.9^^31^280^3
+ ;;^UTILITY(U,$J,358.3,3416,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3416,1,2,0)
+ ;;=2^692.9
+ ;;^UTILITY(U,$J,358.3,3416,1,5,0)
+ ;;=5^Allergic Dermatitis
+ ;;^UTILITY(U,$J,358.3,3416,2)
+ ;;=^27800
+ ;;^UTILITY(U,$J,358.3,3417,0)
+ ;;=373.31^^31^280^10
+ ;;^UTILITY(U,$J,358.3,3417,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3417,1,2,0)
+ ;;=2^373.31
+ ;;^UTILITY(U,$J,358.3,3417,1,5,0)
+ ;;=5^Eyelid Dermatitis
+ ;;^UTILITY(U,$J,358.3,3417,2)
+ ;;=Eyelid Dermatitis^269060
+ ;;^UTILITY(U,$J,358.3,3418,0)
+ ;;=694.0^^31^280^12
+ ;;^UTILITY(U,$J,358.3,3418,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3418,1,2,0)
+ ;;=2^694.0
+ ;;^UTILITY(U,$J,358.3,3418,1,5,0)
+ ;;=5^Herpetiformis Dermatitis
+ ;;^UTILITY(U,$J,358.3,3418,2)
+ ;;=^33052
+ ;;^UTILITY(U,$J,358.3,3419,0)
+ ;;=698.4^^31^280^16
+ ;;^UTILITY(U,$J,358.3,3419,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3419,1,2,0)
+ ;;=2^698.4
+ ;;^UTILITY(U,$J,358.3,3419,1,5,0)
+ ;;=5^Psychogenic Dermatitis
+ ;;^UTILITY(U,$J,358.3,3419,2)
+ ;;=Psychogenic Dermatitis^186786
+ ;;^UTILITY(U,$J,358.3,3420,0)
+ ;;=698.3^^31^280^13
+ ;;^UTILITY(U,$J,358.3,3420,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3420,1,2,0)
+ ;;=2^698.3
+ ;;^UTILITY(U,$J,358.3,3420,1,5,0)
+ ;;=5^Neuro Dermatitis
+ ;;^UTILITY(U,$J,358.3,3420,2)
+ ;;=^70705
+ ;;^UTILITY(U,$J,358.3,3421,0)
+ ;;=695.3^^31^280^17
+ ;;^UTILITY(U,$J,358.3,3421,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3421,1,2,0)
+ ;;=2^695.3
+ ;;^UTILITY(U,$J,358.3,3421,1,5,0)
+ ;;=5^Rosacea, Keratitis
+ ;;^UTILITY(U,$J,358.3,3421,2)
+ ;;=^107114^370.49
+ ;;^UTILITY(U,$J,358.3,3422,0)
+ ;;=690.10^^31^280^18
+ ;;^UTILITY(U,$J,358.3,3422,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3422,1,2,0)
+ ;;=2^690.10
+ ;;^UTILITY(U,$J,358.3,3422,1,5,0)
+ ;;=5^Seborrheic Dermatitis
+ ;;^UTILITY(U,$J,358.3,3422,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,3423,0)
+ ;;=692.81^^31^280^6
+ ;;^UTILITY(U,$J,358.3,3423,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3423,1,2,0)
+ ;;=2^692.81
+ ;;^UTILITY(U,$J,358.3,3423,1,5,0)
+ ;;=5^Deodorant Dermatitis
+ ;;^UTILITY(U,$J,358.3,3423,2)
+ ;;=^271911
+ ;;^UTILITY(U,$J,358.3,3424,0)
+ ;;=693.0^^31^280^9
+ ;;^UTILITY(U,$J,358.3,3424,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3424,1,2,0)
+ ;;=2^693.0
+ ;;^UTILITY(U,$J,358.3,3424,1,5,0)
+ ;;=5^Drug Dermatitis(Internal, Taken Appropriately)
+ ;;^UTILITY(U,$J,358.3,3424,2)
+ ;;=^33042
+ ;;^UTILITY(U,$J,358.3,3425,0)
+ ;;=692.3^^31^280^8
+ ;;^UTILITY(U,$J,358.3,3425,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3425,1,2,0)
+ ;;=2^692.3
+ ;;^UTILITY(U,$J,358.3,3425,1,5,0)
+ ;;=5^Drug Dermatitis(External)
+ ;;^UTILITY(U,$J,358.3,3425,2)
+ ;;=^271905
+ ;;^UTILITY(U,$J,358.3,3426,0)
+ ;;=693.1^^31^280^11
+ ;;^UTILITY(U,$J,358.3,3426,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3426,1,2,0)
+ ;;=2^693.1
+ ;;^UTILITY(U,$J,358.3,3426,1,5,0)
+ ;;=5^Food Dermatitis
+ ;;^UTILITY(U,$J,358.3,3426,2)
+ ;;=^33044
+ ;;^UTILITY(U,$J,358.3,3427,0)
+ ;;=692.0^^31^280^7
+ ;;^UTILITY(U,$J,358.3,3427,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3427,1,2,0)
+ ;;=2^692.0
+ ;;^UTILITY(U,$J,358.3,3427,1,5,0)
+ ;;=5^Detergent Dermatitis
+ ;;^UTILITY(U,$J,358.3,3427,2)
+ ;;=^271902
+ ;;^UTILITY(U,$J,358.3,3428,0)
+ ;;=692.74^^31^280^19
+ ;;^UTILITY(U,$J,358.3,3428,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3428,1,2,0)
+ ;;=2^692.74
+ ;;^UTILITY(U,$J,358.3,3428,1,5,0)
+ ;;=5^Sun Dermatitis, Chronic

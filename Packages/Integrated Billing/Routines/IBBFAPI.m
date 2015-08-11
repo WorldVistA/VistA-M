@@ -1,6 +1,6 @@
 IBBFAPI ;OAK/ELZ - FOR OTHER PACKAGES TO QUERY INSURANCE INFO ;2/18/10 3:42pm
- ;;2.0;INTEGRATED BILLING;**267,297,249,317,361,384,404**;21-MAR-94;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**267,297,249,317,361,384,404,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; -- see IBBDOC for API documentation
  ;    no applications should call here directly
@@ -101,8 +101,8 @@ ERROR ;
  S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",.2,"I")_U_$$GET1^DIQ(2.312,N_","_DFN_",",.2)
  I RETVAL="^" S RETVAL=""
  Q
-8 ; Policy Name
- S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",.18,"I") S:RETVAL RETVAL=RETVAL_U_$$GET1^DIQ(355.3,RETVAL,.03)
+8 ; Policy Name ; patch 516 - baa
+ S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",.18,"I") S:RETVAL RETVAL=RETVAL_U_$$GET1^DIQ(355.3,RETVAL_",",2.01)
  Q
 9 ; Policy Reimbursable?
  S RETVAL=$$GET1^DIQ(36,INSP_",",1,"I")
@@ -118,11 +118,11 @@ ERROR ;
  S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",16,"I")
  S RETVAL=$S(RETVAL="01":"P^PATIENT",RETVAL="02":"S^SPOUSE",RETVAL:"O^OTHER",1:"")
  Q
-13 ; Subscriber Name
- S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",17)
+13 ; Subscriber Name ; patch 516 - baa
+ S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",7.01)
  Q
-14  ; Subscriber ID
- S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",1)
+14  ; Subscriber ID ; patch 516 - baa
+ S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",7.02)
  Q
 15 ; Pharmacy Coverage?
  N IBCOV
@@ -139,8 +139,8 @@ ERROR ;
  S IBCOV=$$PLCOV(IBPLN,IBDT,"INPATIENT")
  S RETVAL=$S(+IBCOV=0:"0^NO",1:"1^YES")
  Q
-18 ; Group Number
- S RETVAL=$$GET1^DIQ(355.3,$$GET1^DIQ(2.312,N_","_DFN_",",.18,"I")_",",.04)
+18 ; Group Number ; patch 516 - baa
+ S RETVAL=$$GET1^DIQ(355.3,$$GET1^DIQ(2.312,N_","_DFN_",",.18,"I")_",",2.02)
  Q
  ;
 19 ; Patient Relationship to Subscriber

@@ -1,6 +1,6 @@
 IBCNSJ4 ;ALB/CPM - INACTIVATE MULTIPLE INSURANCE PLANS ; 20-MAR-95
- ;;Version 2.0 ; INTEGRATED BILLING ;**28,62**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,62,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Inactivate/Delete Multiple Plans
  N DFN,IBAB,IBSEL,IBCDFN,IBSUB,IBBUM,IBBUD,IBBUMC
@@ -15,7 +15,11 @@ EN ; Inactivate/Delete Multiple Plans
  ;
  ; - select/display the master plan
  S Y=0,IBINACTM=1 D SEL4^IBCNSJ14 G:IBQUIT ENQ
- S IBPLAND=$G(^IBA(355.3,IBPLAN,0)) D MSTR
+ ;IB*2.0*516/TAZ - Use HIPAA compliant fields.
+ ;S IBPLAND=$G(^IBA(355.3,IBPLAN,0)) D MSTR  ; Patch 516 - baa
+ S IBPLAND=$G(^IBA(355.3,IBPLAN,0))
+ S $P(IBPLAND,U,3)=$$GET1^DIQ(355.3,IBPLAN_",",2.01),$P(IBPLAND,U,4)=$$GET1^DIQ(355.3,IBPLAN_",",2.02)
+ D MSTR
  ;
  ; - check annual benefits
  S X="" F  S X=$O(^IBA(355.4,"APY",IBPLAN,X)) Q:X=""  S IBAB(-X)=""

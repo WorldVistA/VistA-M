@@ -1,6 +1,6 @@
-RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ; 7/30/10 6:55pm
- ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ; RCSCR variable must be defined for this routine
  Q
  ;
@@ -100,15 +100,21 @@ NEWREC ; Create a new receipt from scratch pad entry
 NEWRECQ Q
  ;
 VRECPT ; Preview receipt lines
- N RCZ,RCOK,Z,Z0,DIR,X,Y
+ ; Assume RCSCR = ien from file 344.49 (and 344.4)
+ N DIR,RCOK,RCZ,X,Y,Z,Z0
  D FULL^VALM1
  S VALMBCK="R"
- I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL Q
- I $O(^RCY(344.49,RCSCR,3,0)) D  Q:'RCOK
- . S RCOK=1
- . S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,3,Z)) Q:'Z  I '$P($G(^(Z,0)),U,3) S RCOK=0 Q
- . I 'RCOK S DIR(0)="EA",DIR("A",1)="A RECEIPT CANNOT BE PREVIEWED UNTIL ALL BATCHES FOR THIS ERA ARE MARKED AS",DIR("A",2)="'READY TO POST'",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D VR^RCDPEWLP(RCSCR) G VRECPTQ   ; prca*4.5*298  auto-posted ERAs are handled differently
  ;
+ ;
+ ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining
+ ; batches but just remove from execution.
+ ; I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL Q
+ ;I $O(^RCY(344.49,RCSCR,3,0)) D  Q:'RCOK
+ ;. S RCOK=1
+ ;. S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,3,Z)) Q:'Z  I '$P($G(^(Z,0)),U,3) S RCOK=0 Q
+ ;. I 'RCOK S DIR(0)="EA",DIR("A",1)="A RECEIPT CANNOT BE PREVIEWED UNTIL ALL BATCHES FOR THIS ERA ARE MARKED AS",DIR("A",2)="'READY TO POST'",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ ; end of prca*4.5*298
  S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,1,Z)) Q:'Z  I $P(Z,".",2) S Z0=$G(^(Z,0)) I $P(Z0,U,6)<0 S RCZ($P(Z0,U))=$P(Z0,U,2)_U_$P(Z0,U,6)
  I $O(RCZ(""))'="" D
  . W !,"THE FOLLOWING LINES HAVE A NET PAYMENT LESS THAN 0.  THESE LINES MUST HAVE",!,"THIS NEGATIVE AMOUNT DISTRIBUTED TO OTHER LINE(S) IN THE ERA BEFORE A",!,"RECEIPT CAN BE CREATED."
@@ -117,6 +123,7 @@ VRECPT ; Preview receipt lines
  . S DIR(0)="E" D ^DIR K DIR
  ;
  D EN^VALM("RCDPE EOB RECEIPT PREVIEW")
+VRECPTQ ;
  S VALMBCK=$S('$G(RCSCR):"Q",1:"R")
  Q
  ;

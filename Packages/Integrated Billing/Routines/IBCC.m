@@ -1,6 +1,6 @@
 IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;14 JUN 88  10:12
- ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRC
  ;
@@ -68,18 +68,34 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  .Q
  ;
  ; Warning message if in a REQUEST MRA status with no MRA on file
- I IBSTAT=2,'$$MRACNT^IBCEMU1(IBIFN) D
+ ; IB*2.0*516/TAZ,MRD - Forbid the user from using the option CRD
+ ; (Correct Rejected/Denied Bill) on an MRA claim if the status is
+ ; REQUEST MRA (IBSTAT=2).
+ I IBSTAT=2,'$$MRACNT^IBCEMU1(IBIFN) D  I $G(IBQUIT) H 3 Q
  . N REJ
  . D TXSTS^IBCEMU2(IBIFN,,.REJ)
- . W *7,!!?4,"Warning!  This bill is in a status of REQUEST MRA."
+ . ;IB*2.0*516/TAZ - If CRD is from CSA allow a REJected claim to be CRD'ed without displaying a warning.
+ . I $G(IBCNCSA),REJ Q
+ . W *7,!!?4,$S('$G(IBCNCRD):"Warning!  ",1:""),"This bill is in a status of REQUEST MRA."
  . W !?4,"No MRAs have been received"
  . I REJ W ", but the most recent transmission of this",!?4,"MRA request bill was rejected."
  . I 'REJ W " and there are no rejection messages on file",!?4,"for the most recent transmission of this MRA request bill."
+ . I $G(IBCNCRD) S IBQUIT=1
  . Q
  ;
  I IBCAN=2,IB("S")]"",+$P(IB("S"),U,16),$P(IB("S"),U,17)]"" D  G 1
  . W !!,"This bill was cancelled on " S Y=$P(IB("S"),U,17) X ^DD("DD") W Y," by ",$S($P(IB("S"),U,18)']"":IBU,$D(^VA(200,$P(IB("S"),U,18),0)):$P(^(0),U,1),1:IBU),"."
  . S IBQUIT=1
+ ;
+ ; IB*2.0*516/TAZ,MRD - Forbid the user from using the option CRD
+ ; (Correct Rejected/Denied Bill) on all but primary claims.
+ I $G(IBCNCRD),($$COB^IBCEF(IBIFN)'="P") D  Q
+ . W !!,"Please note that COB data may exist for this bill."
+ . W !,"Copy and cancel (CLON) must be used to correct this bill."
+ . S IBQUIT=1
+ . H 3
+ . Q
+ ;
  ; Notify if a payment has been posted to this bill before cancel
  N PRCABILL
  S PRCABILL=$$TPR^PRCAFN(IBIFN)

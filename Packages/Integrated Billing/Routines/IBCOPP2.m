@@ -1,5 +1,6 @@
 IBCOPP2 ;ALB/NLR - LIST INS. PLANS BY CO. (COMPILE) ; 06-SEP-94
-V ;;2.0;INTEGRATED BILLING;**28,62,93**;21-MAR-94
+V ;;2.0;INTEGRATED BILLING;**28,62,93,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Queued Entry Point for Report.
  ;  Required variable input:  IBAI, IBAPL, IBAPA
@@ -46,7 +47,9 @@ COMP ; Gather Company counts and subscription information, if necessary
  .S IBCDFN=0 F  S IBCDFN=$O(^DPT("AB",IBCNS,DFN,IBCDFN)) Q:'IBCDFN  D
  ..;
  ..; - set company subscriber count; plan subscriber counts if necessary
- ..S IBIND=$G(^DPT(DFN,.312,+IBCDFN,0)) Q:+IBIND'=IBCNS
+ ..; MRD;IB*2.0*516 - Use $$ZND^IBCNS1 to pull .312 zero node.
+ ..;S IBIND=$G(^DPT(DFN,.312,+IBCDFN,0)) Q:+IBIND'=IBCNS
+ ..S IBIND=$$ZND^IBCNS1(DFN,+IBCDFN) Q:+IBIND'=IBCNS
  ..S IBPTR=+$P(IBIND,"^",18)
  ..S IBCST=IBCST+1
  ..I 'IBAPL,'$D(^TMP("IBINC",$J,IBIC,IBCNS,IBPTR)) Q  ; not a selected plan
@@ -88,8 +91,11 @@ PLANINF(PLAN) ; Return formatted Insurance Plan information.
  N ACT,NAME,NUM,TY,X
  S X=$G(^IBA(355.3,PLAN,0))
  S TY=$S($P(X,"^",2):"GRP",1:"IND")
- S NAME=$P(X,"^",3) S:NAME="" NAME="<NO GROUP NAME>"
- S NUM=$P(X,"^",4) S:NUM="" NUM="<NO GROUP NUMBER>"
+ ;S NAME=$P(X,"^",3) S:NAME="" NAME="<NO GROUP NAME>"
+ ;S NUM=$P(X,"^",4) S:NUM="" NUM="<NO GROUP NUMBER>"
+ ;Get new HIPAA fields - IB*2*516
+ S NAME=$$GET1^DIQ(355.3,PLAN,2.01) S:NAME="" NAME="<NO GROUP NAME>"
+ S NUM=$$GET1^DIQ(355.3,PLAN,2.02) S:NUM="" NUM="<NO GROUP NUMBER>"
  S ACT=$S($P(X,"^",11):"IN",1:"")_"ACTIVE"
  Q NUM_"^"_NAME_"^"_TY_"^"_ACT_"^"_$S($D(^IBA(355.4,"APY",PLAN))>0:"YES",1:"NO")_"^"_$S($D(^IBA(355.5,"B",PLAN))>0:"YES",1:"NO")
  ;

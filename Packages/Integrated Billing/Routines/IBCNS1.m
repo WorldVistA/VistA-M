@@ -1,6 +1,6 @@
 IBCNS1 ;ALB/AAS - INSURANCE MANAGEMENT SUPPORTED FUNCTIONS ;22-JULY-91
- ;;2.0;INTEGRATED BILLING;**28,60,52,85,107,51,137,240,371**;21-MAR-94;Build 57
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,60,52,85,107,51,137,240,371,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INSURED(DFN,IBINDT) ; -- Is patient insured
  ; --Input  DFN     = patient
@@ -108,10 +108,11 @@ ALL(DFN,VAR,ACT,ADT,SOP) ; -- find all insurance data on a patient
  ;           var(x,3) =: ^dpt(dfn,.312,x,3)
  ;           var(x,4) =: ^dpt(dfn,.312,x,4)
  ;           var(x,5) =: ^dpt(dfn,.312,x,5)
+ ;           var(x,7) =: ^dpt(dfn,.312,x,7)
  ;       var(x,355.3) =: ^iba(355.3,$p(var(x,0),"^",18),0)
  ;       var("S",COB sequence,x) =: (null) as an xref for COB
  ;
- N X,IBMRA,IBSP
+ N X,IBMRA,IBSP,IBIENS
  S X=0 I $G(ACT),$E($G(ADT),1,7)'?7N S ADT=DT
  S (IBMRA,IBSP)=0 ;Flag to say if pt has medicare wnr, spouse has policy
  F  S X=$O(^DPT(DFN,.312,X)) Q:'X  I $D(^(X,0)) D
@@ -123,14 +124,17 @@ ALL(DFN,VAR,ACT,ADT,SOP) ; -- find all insurance data on a patient
  .S @VAR@(X,3)=$G(^DPT(DFN,.312,X,3))
  .S @VAR@(X,4)=$G(^DPT(DFN,.312,X,4))
  .S @VAR@(X,5)=$G(^DPT(DFN,.312,X,5))
- .S @VAR@(X,355.3)=$G(^IBA(355.3,+$P($G(^DPT(DFN,.312,X,0)),"^",18),0))
+ .S @VAR@(X,7)=$G(^DPT(DFN,.312,X,7))
+ .S IBIENS=+$P($G(^DPT(DFN,.312,X,0)),"^",18)
+ .S @VAR@(X,355.3)=$G(^IBA(355.3,IBIENS,0))
+ .;IB*2.0*516/TAZ - Place HIPAA compliant fields in original location.
+ .S $P(@VAR@(X,355.3),U,3)=$$GET1^DIQ(355.3,IBIENS_",",2.01),$P(@VAR@(X,355.3),U,4)=$$GET1^DIQ(355.3,IBIENS_",",2.02)
  .I $G(SOP) D
  ..N COB,WHO
  ..S COB=$P(@VAR@(X,0),U,20)
  ..S WHO=$P(@VAR@(X,0),U,6) S:WHO="s" IBSP=1
  ..I $$MCRWNR^IBEFUNC(+@VAR@(X,0)) D
  ... S COB=.5,IBMRA=1
- ... 
  ..S COB=$S(COB'="":COB,WHO="v":1,WHO="s":$S(IBMRA:1,1:2),1:3)
  ..S @VAR@("S",COB,X)=""
  ..Q
@@ -145,13 +149,40 @@ ALLWNR(DFN,VAR,ADT) ; Returns 'all active and MEDICARE WNR'
  D ALL(DFN,VAR,4,ADT)
  Q
  ;
-ZND(DFN,NODE) ; -- set group number and group name back into zeroth node of ins. type
- N X,Y S (X,Y)=""
+ZND(DFN,NODE,ZNDFILE) ; -- Pull zeroth node from Patient's Insurance Type
+ ; subfile.  This function returns the zeroth node of the Insurance Type
+ ; subfile of the Patient file, i.e. ^DPT(DFN,.312,NODE,0).  Both DFN
+ ; and NODE must be passed in.  Pieces 3 (Group Number) and 15 (Group
+ ; Name) will be pulled from file# 355.3, Group Insurance Plan, based
+ ; on the Group Plan field on the zeroth node (piece 18).  If the
+ ; ZNDFILE/399 flag is not set to '399', then the Subscriber ID and Name
+ ; of Insured will be overwritten with the values in the new HIPAA-
+ ; compliant fields, which are on the seven node.
+ ;
+ ;IB*2.0*516/TAZ - Original code:
+ ;N X,Y S (X,Y)=""
+ ;I '$G(DFN)!('$G(NODE)) G ZNDQ
+ ;S X=$G(^DPT(+DFN,.312,+NODE,0))
+ ;S Y=$G(^IBA(355.3,+$P(X,"^",18),0)) I Y="" G ZNDQ
+ ;S $P(X,"^",3)=$P(Y,"^",4) ; move group number
+ ;S $P(X,"^",15)=$P(Y,"^",3) ; move group name
+ ;
+ N X,IBIENS
+ S X=""
  I '$G(DFN)!('$G(NODE)) G ZNDQ
  S X=$G(^DPT(+DFN,.312,+NODE,0))
- S Y=$G(^IBA(355.3,+$P(X,"^",18),0)) I Y="" G ZNDQ
- S $P(X,"^",3)=$P(Y,"^",4) ; move group number
- S $P(X,"^",15)=$P(Y,"^",3) ; move group name
+ ; IB*2.0*516/TAZ - If the ZNDFILE flag is set to '399', then the data
+ ; returned is going to be filed on a Bill/Claim in file# 399. In that
+ ; case, we do not wish to overwrite the Subscriber ID and Name of
+ ; Insured because that data will be stored on the Bill/Claim in
+ ; another place (^DGCR(399,IEN,"I?7").
+ I $G(ZNDFILE)'=399 D
+ . S IBIENS=+NODE_","_DFN
+ . S $P(X,U,2)=$$GET1^DIQ(2.312,IBIENS_",",7.02) ; Subscriber ID
+ . S $P(X,U,17)=$$GET1^DIQ(2.312,IBIENS_",",7.01) ;Name of Insured
+ S IBIENS=+$P(X,U,18) I 'IBIENS G ZNDQ
+ S $P(X,U,3)=$$GET1^DIQ(355.3,IBIENS_",",2.02)  ;group number
+ S $P(X,U,15)=$$GET1^DIQ(355.3,IBIENS_",",2.01) ;group name
  ;
 ZNDQ Q X
  ;

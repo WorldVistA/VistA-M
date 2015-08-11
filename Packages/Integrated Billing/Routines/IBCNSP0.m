@@ -1,6 +1,6 @@
 IBCNSP0 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399,438,458,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399,438,458,497,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 CONTACT ; -- Insurance Contact Information
@@ -33,19 +33,20 @@ CONTACT ; -- Insurance Contact Information
  ;
 POLICY ; -- Policy Region
  ; -- if pointer to policy file exists get data from policy file
+ ; MRD;IB*2.0*516 - Increased length of Group Name and Type of Plan.
  N OFFSET,START,IBP,IBX,IBPLNID,IBPLNNM,IBPLNNA,IBPLNLA
  S (IBPLNID,IBPLNNM,IBPLNNA,IBPLNLA)=""
  S START=$O(^TMP("IBCNSVP",$J,""),-1)+1,OFFSET=2
  D GPLAN(+IBCPOLD2)
  D SET(START,OFFSET," Plan Information ",IORVON,IORVOFF)
  D SET(START+1,OFFSET,"   Is Group Plan: "_$S($P(IBCPOLD,"^",2)=1:"YES",1:"NO"))
- D SET(START+2,OFFSET,"      Group Name: "_$E($P(IBCPOLDL,"^"),1,58))
+ D SET(START+2,OFFSET,"      Group Name: "_$E($P(IBCPOLDL,"^"),1,60))
  S IBX=3
- I $TR($E($P(IBCPOLD2,"^"),59,80)," ","")'="" D SET(START+IBX,OFFSET,$$REPEAT^XLFSTR(" ",18)_$E($P(IBCPOLD2,"^"),59,80)) S IBX=IBX+1
+ I $TR($E($P(IBCPOLDL,"^"),61,80)," ","")'="" D SET(START+IBX,OFFSET,$$REPEAT^XLFSTR(" ",18)_$E($P(IBCPOLDL,"^"),61,80)) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"    Group Number: "_$P(IBCPOLDL,"^",2)) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"             BIN: "_$P(IBCPOLD2,"^",2)) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"             PCN: "_$P(IBCPOLD2,"^",3)) S IBX=IBX+1
- D SET(START+IBX,OFFSET,"    Type of Plan: "_$E($P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^"),1,23)) S IBX=IBX+1
+ D SET(START+IBX,OFFSET,"    Type of Plan: "_$E($P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^"),1,32)) S IBX=IBX+1
  I $P(IBCPOLD,U,14)]"" D SET(START+IBX,OFFSET,"   Plan Category: "_$$EXPAND^IBTRE(355.3,.14,$P(IBCPOLD,"^",14))) S IBX=IBX+1
  I $P(IBCPOLD,U,15)]"" D SET(START+IBX,OFFSET," Electronic Type: "_$$EXPAND^IBTRE(355.3,.15,$P(IBCPOLD,"^",15))) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"  Plan Filing TF: "_$P(IBCPOLD,"^",13)_$S($P(IBCPOLD,U,16):" ("_$$FTFN^IBCNSU31(IBCPOL)_")",1:"")) S IBX=IBX+1

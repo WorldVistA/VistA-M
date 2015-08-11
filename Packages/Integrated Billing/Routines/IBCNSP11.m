@@ -1,6 +1,6 @@
 IBCNSP11 ;ALB/AAS - INSURANCE MANAGEMENT - EDIT PLAN ;23-JAN-95
- ;;2.0;INTEGRATED BILLING;**28,43,85,103,137,251,399**;21-MAR-94;Build 8
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,43,85,103,137,251,399,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PI ; -- edit plan information from policy edit
  D FULL^VALM1
@@ -53,8 +53,9 @@ CHG ; - change the plan type
 PIC ; - edit name/number/type
  S IBTL=$S($P($G(^IBA(355.3,IBCPOL,0)),"^",2):"GROUP",1:"INDIVIDUAL")_" PLAN"
  S DIE="^IBA(355.3,",DA=IBCPOL
- ;
- S DR=".03"_IBTL_" NAME;.04"_IBTL_" NUMBER;6.02;6.03;.09;.15;S Y=$S($$CATOK^IBCEMRA($P(^IBA(355.3,IBCPOL,0),U,14)):""@1"",1:""@10"");@1;.14;@10;.16;I '$$FTFV^IBCNSU31(X) S Y=""@13"";.17;@13;.13"
+ ;IB*2.0*516/baa Use HIPAA Compliant fields - .03 to 2.01 .04 to 2.02
+ ;S DR=".03"_IBTL_" NAME;.04"_IBTL_" NUMBER;6.02;6.03;.09;.15;S Y=$S($$CATOK^IBCEMRA($P(^IBA(355.3,IBCPOL,0),U,14)):""@1"",1:""@10"");@1;.14;@10;.16;I '$$FTFV^IBCNSU31(X) S Y=""@13"";.17;@13;.13"
+ S DR="2.01"_IBTL_" NAME;2.02"_IBTL_" NUMBER;6.02;6.03;.09;.15;S Y=$S($$CATOK^IBCEMRA($P(^IBA(355.3,IBCPOL,0),U,14)):""@1"",1:""@10"");@1;.14;@10;.16;I '$$FTFV^IBCNSU31(X) S Y=""@13"";.17;@13;.13"
  ;
  D ^DIE K DIC,DIE,DA,DR
  D COMP^IBCNSP3(IBCPOL)

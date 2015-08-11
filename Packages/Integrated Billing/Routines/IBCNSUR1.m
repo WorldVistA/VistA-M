@@ -1,6 +1,6 @@
 IBCNSUR1 ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN (CON'T) ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,225,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,225,276,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -45,11 +45,14 @@ PROC ; - Top of processing from IBCNSUR
  ;
  ; - set name and plan number
  S IBC1N=$P($G(^DIC(36,+IBC1,0)),U,1)
- S IBP1N=$P($G(^IBA(355.3,+IBP1,0)),U,3,4),IBP1X=$P(IBP1N,U,2)
+ ;IB*2.0*516/TAZ - Retrieve data from HIPAA compliant fields
+ ;S IBP1N=$P($G(^IBA(355.3,+IBP1,0)),U,3,4),IBP1X=$P(IBP1N,U,2)  ; 516 - baa
+ S IBP1N=$$GET1^DIQ(355.3,+IBP1,2.01)_U_$$GET1^DIQ(355.3,+IBP1,2.02),IBP1X=$P(IBP1N,U,2)
  S IBP1X=$S(IBP1X]"":IBP1X,1:"<Not Specified>")
- S IBP1N=$S($P(IBP1N,U,1)="":"<Not Specified>",1:$P(IBP1N,U,1))
  S IBC2N=$P($G(^DIC(36,+IBC2,0)),U,1)
- S IBP2N=$P($G(^IBA(355.3,+IBP2,0)),U,3,4),IBP2X=$P(IBP2N,U,2)
+ ;IB*2.0*516/TAZ - Retrieve data from HIPAA compliant fields
+ ;S IBP2N=$P($G(^IBA(355.3,+IBP2,0)),U,3,4),IBP2X=$P(IBP2N,U,2)  ; 516 - baa
+ S IBP2N=$$GET1^DIQ(355.3,+IBP2,2.01)_U_$$GET1^DIQ(355.3,+IBP2,2.02),IBP2X=$P(IBP2N,U,2)
  S IBP2X=$S(IBP2X]"":IBP2X,1:"<Not Specified>")
  S IBP2N=$S($P(IBP2N,U,1)="":"<Not Specified>",1:$P(IBP2N,U,1))
  ;

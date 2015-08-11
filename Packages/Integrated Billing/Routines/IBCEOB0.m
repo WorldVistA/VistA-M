@@ -1,12 +1,14 @@
 IBCEOB0 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 8/24/10 7:23pm
- ;;2.0;INTEGRATED BILLING;**135,280,155,431,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**135,280,155,431,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 LINE() ;Extract Provider Line Reference from 42 record
  N SUB,NODE,VAL
  S VAL="",SUB=IBA1 ; from loop in UPD3611^IBCEOB
- F  S SUB=$O(@IBFILE@(SUB)) Q:SUB=""  D  Q:+NODE>42
+ ;IB*2.0*516/TAZ - Quit when another RT 40 is encountered to prevent group of
+ ;mismatched procedures
+ F  S SUB=$O(@IBFILE@(SUB)) Q:SUB=""  D  Q:(+NODE>42)!(+NODE=40)
  .S NODE=$G(@IBFILE@(SUB,0))
  .S:NODE["RAW DATA" NODE=$P(NODE," ",3,99)
  .Q:+NODE'=42  S VAL=$P(NODE,U,5)

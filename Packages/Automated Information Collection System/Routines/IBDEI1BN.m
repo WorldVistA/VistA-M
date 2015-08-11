@@ -1,136 +1,128 @@
-IBDEI1BN ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1BN ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23663,2)
- ;;=^340482
- ;;^UTILITY(U,$J,358.3,23664,0)
- ;;=173.62^^148^1506^27
- ;;^UTILITY(U,$J,358.3,23664,1,0)
+ ;;^UTILITY(U,$J,358.3,23709,2)
+ ;;=^272744
+ ;;^UTILITY(U,$J,358.3,23710,0)
+ ;;=726.91^^141^1462^6
+ ;;^UTILITY(U,$J,358.3,23710,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23664,1,2,0)
- ;;=2^173.62
- ;;^UTILITY(U,$J,358.3,23664,1,5,0)
- ;;=5^SCC of skin of arm/shoulder
- ;;^UTILITY(U,$J,358.3,23664,2)
- ;;=^340483
- ;;^UTILITY(U,$J,358.3,23665,0)
- ;;=173.69^^148^1506^28
- ;;^UTILITY(U,$J,358.3,23665,1,0)
+ ;;^UTILITY(U,$J,358.3,23710,1,3,0)
+ ;;=3^726.91
+ ;;^UTILITY(U,$J,358.3,23710,1,5,0)
+ ;;=5^Exostosis of unspecified site
+ ;;^UTILITY(U,$J,358.3,23710,2)
+ ;;=^43688
+ ;;^UTILITY(U,$J,358.3,23711,0)
+ ;;=728.71^^141^1463^1
+ ;;^UTILITY(U,$J,358.3,23711,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23665,1,2,0)
- ;;=2^173.69
- ;;^UTILITY(U,$J,358.3,23665,1,5,0)
- ;;=5^Other spec neoplasm skin, arm/shoulder
- ;;^UTILITY(U,$J,358.3,23665,2)
- ;;=^340484
- ;;^UTILITY(U,$J,358.3,23666,0)
- ;;=173.70^^148^1506^29
- ;;^UTILITY(U,$J,358.3,23666,1,0)
+ ;;^UTILITY(U,$J,358.3,23711,1,3,0)
+ ;;=3^728.71
+ ;;^UTILITY(U,$J,358.3,23711,1,5,0)
+ ;;=5^Fascite, Plantar
+ ;;^UTILITY(U,$J,358.3,23711,2)
+ ;;=^272598
+ ;;^UTILITY(U,$J,358.3,23712,0)
+ ;;=729.1^^141^1463^2
+ ;;^UTILITY(U,$J,358.3,23712,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23666,1,2,0)
- ;;=2^173.70
- ;;^UTILITY(U,$J,358.3,23666,1,5,0)
- ;;=5^Malig neoplasm skin, leg/hip
- ;;^UTILITY(U,$J,358.3,23666,2)
- ;;=^340603
- ;;^UTILITY(U,$J,358.3,23667,0)
- ;;=173.71^^148^1506^30
- ;;^UTILITY(U,$J,358.3,23667,1,0)
+ ;;^UTILITY(U,$J,358.3,23712,1,3,0)
+ ;;=3^729.1
+ ;;^UTILITY(U,$J,358.3,23712,1,5,0)
+ ;;=5^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,23712,2)
+ ;;=^80160
+ ;;^UTILITY(U,$J,358.3,23713,0)
+ ;;=709.8^^141^1463^3
+ ;;^UTILITY(U,$J,358.3,23713,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23667,1,2,0)
- ;;=2^173.71
- ;;^UTILITY(U,$J,358.3,23667,1,5,0)
- ;;=5^BCC of skin of leg/hip
- ;;^UTILITY(U,$J,358.3,23667,2)
- ;;=^340485
- ;;^UTILITY(U,$J,358.3,23668,0)
- ;;=173.72^^148^1506^31
- ;;^UTILITY(U,$J,358.3,23668,1,0)
+ ;;^UTILITY(U,$J,358.3,23713,1,3,0)
+ ;;=3^709.8
+ ;;^UTILITY(U,$J,358.3,23713,1,5,0)
+ ;;=5^Fissured skin
+ ;;^UTILITY(U,$J,358.3,23713,2)
+ ;;=^88026
+ ;;^UTILITY(U,$J,358.3,23714,0)
+ ;;=V53.7^^141^1463^4
+ ;;^UTILITY(U,$J,358.3,23714,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23668,1,2,0)
- ;;=2^173.72
- ;;^UTILITY(U,$J,358.3,23668,1,5,0)
- ;;=5^SCC of skin of leg/hip
- ;;^UTILITY(U,$J,358.3,23668,2)
- ;;=^340486
- ;;^UTILITY(U,$J,358.3,23669,0)
- ;;=173.79^^148^1506^32
- ;;^UTILITY(U,$J,358.3,23669,1,0)
+ ;;^UTILITY(U,$J,358.3,23714,1,3,0)
+ ;;=3^V53.7
+ ;;^UTILITY(U,$J,358.3,23714,1,5,0)
+ ;;=5^Fitting of Orthotic
+ ;;^UTILITY(U,$J,358.3,23714,2)
+ ;;=^295510
+ ;;^UTILITY(U,$J,358.3,23715,0)
+ ;;=709.4^^141^1463^5
+ ;;^UTILITY(U,$J,358.3,23715,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23669,1,2,0)
- ;;=2^173.79
- ;;^UTILITY(U,$J,358.3,23669,1,5,0)
- ;;=5^Other spec neoplasm skin, leg/hip
- ;;^UTILITY(U,$J,358.3,23669,2)
- ;;=^340487
- ;;^UTILITY(U,$J,358.3,23670,0)
- ;;=173.80^^148^1506^33
- ;;^UTILITY(U,$J,358.3,23670,1,0)
+ ;;^UTILITY(U,$J,358.3,23715,1,3,0)
+ ;;=3^709.4
+ ;;^UTILITY(U,$J,358.3,23715,1,5,0)
+ ;;=5^Foreign body granuloma of skin and subcutaneous tissue (old) 
+ ;;^UTILITY(U,$J,358.3,23715,2)
+ ;;=^271943
+ ;;^UTILITY(U,$J,358.3,23716,0)
+ ;;=917.6^^141^1463^6
+ ;;^UTILITY(U,$J,358.3,23716,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23670,1,2,0)
- ;;=2^173.80
- ;;^UTILITY(U,$J,358.3,23670,1,5,0)
- ;;=5^Malig neoplasm skin, other sites NOS
- ;;^UTILITY(U,$J,358.3,23670,2)
- ;;=^340604
- ;;^UTILITY(U,$J,358.3,23671,0)
- ;;=173.81^^148^1506^34
- ;;^UTILITY(U,$J,358.3,23671,1,0)
+ ;;^UTILITY(U,$J,358.3,23716,1,3,0)
+ ;;=3^917.6
+ ;;^UTILITY(U,$J,358.3,23716,1,5,0)
+ ;;=5^Foreign body, superficial injury (splinter) of foot & toe(s)without major open wound & without mention of infection  
+ ;;^UTILITY(U,$J,358.3,23716,2)
+ ;;=^275347
+ ;;^UTILITY(U,$J,358.3,23717,0)
+ ;;=892.1^^141^1463^7
+ ;;^UTILITY(U,$J,358.3,23717,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23671,1,2,0)
- ;;=2^173.81
- ;;^UTILITY(U,$J,358.3,23671,1,5,0)
- ;;=5^BCC of skin of specified sites
- ;;^UTILITY(U,$J,358.3,23671,2)
- ;;=^340488
- ;;^UTILITY(U,$J,358.3,23672,0)
- ;;=173.82^^148^1506^35
- ;;^UTILITY(U,$J,358.3,23672,1,0)
+ ;;^UTILITY(U,$J,358.3,23717,1,3,0)
+ ;;=3^892.1
+ ;;^UTILITY(U,$J,358.3,23717,1,5,0)
+ ;;=5^Foreign body, open wound of foot except toe(s); complicated
+ ;;^UTILITY(U,$J,358.3,23717,2)
+ ;;=^275092
+ ;;^UTILITY(U,$J,358.3,23718,0)
+ ;;=893.1^^141^1463^8
+ ;;^UTILITY(U,$J,358.3,23718,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23672,1,2,0)
- ;;=2^173.82
- ;;^UTILITY(U,$J,358.3,23672,1,5,0)
- ;;=5^SCC of skin of specified sites
- ;;^UTILITY(U,$J,358.3,23672,2)
- ;;=^340489
- ;;^UTILITY(U,$J,358.3,23673,0)
- ;;=173.89^^148^1506^36
- ;;^UTILITY(U,$J,358.3,23673,1,0)
+ ;;^UTILITY(U,$J,358.3,23718,1,3,0)
+ ;;=3^893.1
+ ;;^UTILITY(U,$J,358.3,23718,1,5,0)
+ ;;=5^Foreign body, open wound of toe; complicated
+ ;;^UTILITY(U,$J,358.3,23718,2)
+ ;;=^275096
+ ;;^UTILITY(U,$J,358.3,23719,0)
+ ;;=916.6^^141^1463^9
+ ;;^UTILITY(U,$J,358.3,23719,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23673,1,2,0)
- ;;=2^173.89
- ;;^UTILITY(U,$J,358.3,23673,1,5,0)
- ;;=5^Other spec neoplasm skin, other sites
- ;;^UTILITY(U,$J,358.3,23673,2)
- ;;=^340490
- ;;^UTILITY(U,$J,358.3,23674,0)
- ;;=173.90^^148^1506^37
- ;;^UTILITY(U,$J,358.3,23674,1,0)
+ ;;^UTILITY(U,$J,358.3,23719,1,3,0)
+ ;;=3^916.6
+ ;;^UTILITY(U,$J,358.3,23719,1,5,0)
+ ;;=5^Foreign body, superficial injury (splinter) of hip, thigh, leg, and ankle w/o major open wound & w/o mention of infection
+ ;;^UTILITY(U,$J,358.3,23719,2)
+ ;;=^275336
+ ;;^UTILITY(U,$J,358.3,23720,0)
+ ;;=891.1^^141^1463^10
+ ;;^UTILITY(U,$J,358.3,23720,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23674,1,2,0)
- ;;=2^173.90
- ;;^UTILITY(U,$J,358.3,23674,1,5,0)
- ;;=5^Malig neoplasm skin, site unspec
- ;;^UTILITY(U,$J,358.3,23674,2)
- ;;=^340605
- ;;^UTILITY(U,$J,358.3,23675,0)
- ;;=173.91^^148^1506^38
- ;;^UTILITY(U,$J,358.3,23675,1,0)
+ ;;^UTILITY(U,$J,358.3,23720,1,3,0)
+ ;;=3^891.1
+ ;;^UTILITY(U,$J,358.3,23720,1,5,0)
+ ;;=5^Foreign body, open wound of knee, leg(except thigh), & ankle; complicated
+ ;;^UTILITY(U,$J,358.3,23720,2)
+ ;;=^275088
+ ;;^UTILITY(U,$J,358.3,23721,0)
+ ;;=824.8^^141^1463^11
+ ;;^UTILITY(U,$J,358.3,23721,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23675,1,2,0)
- ;;=2^173.91
- ;;^UTILITY(U,$J,358.3,23675,1,5,0)
- ;;=5^BCC of skin, unspecified site
- ;;^UTILITY(U,$J,358.3,23675,2)
- ;;=^340491
- ;;^UTILITY(U,$J,358.3,23676,0)
- ;;=173.92^^148^1506^39
- ;;^UTILITY(U,$J,358.3,23676,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23676,1,2,0)
- ;;=2^173.92
- ;;^UTILITY(U,$J,358.3,23676,1,5,0)
- ;;=5^SCC of skin, unspecified site
- ;;^UTILITY(U,$J,358.3,23676,2)
- ;;=^340492
+ ;;^UTILITY(U,$J,358.3,23721,1,3,0)
+ ;;=3^824.8
+ ;;^UTILITY(U,$J,358.3,23721,1,5,0)
+ ;;=5^Fracture of ankle; unspecified, closed
+ ;;^UTILITY(U,$J,358.3,23721,2)
+ ;;=^274256
+ ;;^UTILITY(U,$J,358.3,23722,0)
+ ;;=824.4^^141^1463^12

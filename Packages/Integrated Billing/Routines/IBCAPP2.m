@@ -1,6 +1,6 @@
-IBCAPP2 ;ALB/GEF - Claims Auto Processing  ;14-OCT-10
- ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCAPP2 ;ALB/GEF - Claims Auto Processing ;14-OCT-10
+ ;;2.0;INTEGRATED BILLING;**432,447,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
  ;            It is set by the entry action in the option file. 
@@ -13,12 +13,22 @@ CAP ; Build list from CAP x-ref entrypoint.  Called from BLD^IBCECOB1 for non-MR
  .S IBDA=$$MELG(IBIFN,IBMRADUP) Q:'IBDA
  .D BLD1(IBIFN,$S(IBDA=-1:"",1:IBDA))
  Q
+ ;
 BLD1(IBIFN,IBDA) ;
  N IB3611,IBTXT,IBX,IBPY,I,IB364,IBDT,IBAPY,IBB,IBB364,IBBPY,IBDAY,IBEUT
  N IBINS1,IBINS2,IBMRACNT,Z,Z0,IBMUT,IBNBAL,IBNDI1,IBNDI2,IBNDI3,IBNDM
  N IBPTRSP,IBQ,IBSEQ,IBSRVC,IBEXPY,IBFND,IBINS,IBNDS,IBOAM,IBPTNM,IBDENDUP
+ ;
  Q:$D(^TMP("IBCOBSTX",$J,IBIFN))  ;show each bill once on the worklist
  S IBB=$G(^DGCR(399,IBIFN,0))
+ ;
+ ; MRD;IB*2.0*516 - Use Division to sort claims.  If user has specified
+ ; one or more divisions to include, then quit if this claim's division
+ ; is not on that list.
+ ;
+ S IBDIV=$P(IBB,U,22) I IBDIV="" S IBDIV="UNKNOWN"
+ I $D(^TMP("IBBIL-DIV",$J)),'$D(^TMP("IBBIL-DIV",$J,IBDIV)) Q
+ ;
  S IBNDS=$G(^DGCR(399,IBIFN,"S")),IBNDI1=$G(^("I1")),IBNDI2=$G(^("I2")),IBNDI3=$G(^("I3")),IBNDM=$G(^("M"))
  S IBMUT=+$P(IBNDS,U,8),IBEUT=+$P(IBNDS,U,2)
  S IBINS="",IBSEQ=$$COBN^IBCEF(IBIFN),IB364="UNKNOWN",IBDT="UNKNOWN"
@@ -29,12 +39,14 @@ BLD1(IBIFN,IBDA) ;
  . S Q=(IBSEQ=I)
  . I Q S IBINS1=+@Z_U_$P($G(^DIC(36,+@Z,0)),U)
  . S IBINS=IBINS_$S(IBINS="":"",1:", ")_$P($G(^DIC(36,+@Z,0)),U)
+ ;
  ; Get the payer/insurance company that comes after Medicare WNR
  ; If WNR is Primary, get the secondary ins. co.
  ; If WNR is secondary, get the tertiary ins. co.
  D  I $P($G(IBINS2),U,2)="" S $P(IBINS2,U,2)="UNKNOWN"
  . I $$WNRBILL^IBEFUNC(IBIFN,1) S IBINS2=+IBNDI2_U_$P($G(^DIC(36,+IBNDI2,0)),U) Q
  . S IBINS2=+IBNDI3_U_$P($G(^DIC(36,+IBNDI3,0)),U)
+ ;
  S IBFND=0
  ; biller entry not ALL and no biller, then get entered/edited by user
  I $D(^TMP("IBBIL",$J)) D  Q:'IBFND
@@ -72,16 +84,25 @@ BLD1(IBIFN,IBDA) ;
  S IBSRVC=$P($G(^DGCR(399,IBIFN,"U")),U)
  S Z0=$S(IBSRT="B":IBMUT,IBSRT="D":-IBDAY,IBSRT="I":$P(IBINS2,U,2)_"~"_$P(IBINS2,U),IBSRT="M":$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13)),IBSRT="R":-IBPTRSP,IBSRT="P":IBPTNM,IBSRT="S":+IBSRVC,1:+IBDT)
  S:((IBSRT="M")&(Z0="")) Z0="UNKNOWN"   ;USE UNKNOWN IF NOT SET - BI;IB*2.0*432
- S ^TMP("IBCOBST",$J,Z0,IBIFN)=IBSRVC_U_IBOAM_U_IBAPY_U_$S(IBNBAL>0:IBNBAL,1:0)_U_$P(IBB,U,5)_U_$P(IBB,U,19)_U_IBBPY_U_$P(IBMUT,"~")_U_IBINS_U_$G(IBDA)_U_$$HIS(IBIFN)_U_$G(IBDAY)_U_$G(IBDT)_U_IBQ_U_$G(IB364)_U_IBSEQ_U_$G(IBEXPY)_U_IBPTRSP
- S ^TMP("IBCOBST",$J,Z0,IBIFN,1)=$S($G(IB3611)="":"No EEOB Received ",1:$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13))_", "_$$FMTE^XLFDT($P($P(IB3611,"^",6),"."))_"^"_$P(IB3611,"^",16))
+ ;
+ ; MRD;IB*2.0*516 - Added Division as a subscript.
+ ;S ^TMP("IBCOBST",$J,Z0,IBIFN)=IBSRVC_U_IBOAM_U_IBAPY_U_$S(IBNBAL>0:IBNBAL,1:0)_U_$P(IBB,U,5)_U_$P(IBB,U,19)_U_IBBPY_U_$P(IBMUT,"~")_U_IBINS_U_$G(IBDA)_U_$$HIS(IBIFN)_U_$G(IBDAY)_U_$G(IBDT)_U_IBQ_U_$G(IB364)_U_IBSEQ_U_$G(IBEXPY)_U_IBPTRSP
+ ;S ^TMP("IBCOBST",$J,Z0,IBIFN,1)=$S($G(IB3611)="":"No EEOB Received ",1:$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13))_", "_$$FMTE^XLFDT($P($P(IB3611,"^",6),"."))_"^"_$P(IB3611,"^",16))
+ S ^TMP("IBCOBST",$J,IBDIV,Z0,IBIFN)=IBSRVC_U_IBOAM_U_IBAPY_U_$S(IBNBAL>0:IBNBAL,1:0)_U_$P(IBB,U,5)_U_$P(IBB,U,19)_U_IBBPY_U_$P(IBMUT,"~")_U_IBINS_U_$G(IBDA)_U_$$HIS(IBIFN)_U_$G(IBDAY)_U_$G(IBDT)_U_IBQ_U_$G(IB364)_U_IBSEQ_U_$G(IBEXPY)_U_IBPTRSP
+ S ^TMP("IBCOBST",$J,IBDIV,Z0,IBIFN,1)=$S($G(IB3611)="":"No EEOB Received ",1:$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13))_", "_$$FMTE^XLFDT($P($P(IB3611,"^",6),"."))_"^"_$P(IB3611,"^",16))
  S ^TMP("IBCOBSTX",$J,IBIFN)=$G(IBDA)  ;keep track of compiled IBIFN's
  ;
  ; Save some data when there are multiple MRA's on file for this bill
  S IBMRACNT=$$MRACNT^IBCEMU1(IBIFN,$G(IBMRANOT))   ;WCJ IB*2.0*432
- I IBMRACNT>1 S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,1)="Multiple "_$S($G(IBMRANOT):"EOBs",1:"MRA's")_" on file"  ;WCJ IB*2.0*432
- S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,3)=IBMRACNT
- S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,4)=$G(IBDENDUP)
- S:$G(IBDA)'="" $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,4)=$$DENDUP^IBCEMU4(IBDA,1)
+ ; MRD;IB*2.0*516 - Added Division as a subscript.
+ ;I IBMRACNT>1 S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,1)="Multiple "_$S($G(IBMRANOT):"EOBs",1:"MRA's")_" on file"  ;WCJ IB*2.0*432
+ ;S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,3)=IBMRACNT
+ ;S $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,4)=$G(IBDENDUP)
+ ;S:$G(IBDA)'="" $P(^TMP("IBCOBST",$J,Z0,IBIFN,1),U,4)=$$DENDUP^IBCEMU4(IBDA,1)
+ I IBMRACNT>1 S $P(^TMP("IBCOBST",$J,IBDIV,Z0,IBIFN,1),U,1)="Multiple "_$S($G(IBMRANOT):"EOBs",1:"MRA's")_" on file"  ;WCJ IB*2.0*432
+ S $P(^TMP("IBCOBST",$J,IBDIV,Z0,IBIFN,1),U,3)=IBMRACNT
+ S $P(^TMP("IBCOBST",$J,IBDIV,Z0,IBIFN,1),U,4)=$G(IBDENDUP)
+ S:$G(IBDA)'="" $P(^TMP("IBCOBST",$J,IBDIV,Z0,IBIFN,1),U,4)=$$DENDUP^IBCEMU4(IBDA,1)
  Q
  ;
 HIS(IBIFN) ; COB history

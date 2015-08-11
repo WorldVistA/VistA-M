@@ -1,5 +1,5 @@
-LA7SMU ;DALOI/JMC - Shipping Manifest Utility ;11/16/11  15:10
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64,74**;Sep 27, 1994;Build 229
+LA7SMU ;DALOI/JMC - Shipping Manifest Utility ; 26 Oct 2014  9:51 PM
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64,74,86**;Sep 27, 1994;Build 6
  ;
  Q
  ;
@@ -133,8 +133,9 @@ ACCSUP(LA7UID,LA760,LA7DATA) ; Accession status update
  N FDA,LA7AA,LA7AD,LA7AN,LA7CAD,LA768,X
  S X=$Q(^LRO(68,"C",LA7UID))
  S LA7AA=$QS(X,4),LA7AD=$QS(X,5),LA7AN=$QS(X,6)
+ S LA7AD=$P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)),U,3) ; Start with original accession date in case roll over accession.
  S LA7CAD=$$AD^LA7SUTL(LA7AA) ; Get current accession date for this accession area.
- S LA7AD=LA7AD-.000000001
+ S LA7AD=$S(LA7AD>0:LA7AD-.000000001,1:0)
  F  S LA7AD=$O(^LRO(68,LA7AA,1,LA7AD)) Q:'LA7AD!(LA7AD>LA7CAD)  D
  . I '$D(^LRO(68,LA7AA,1,LA7AD,1,LA7AN)) Q
  . I $P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,.3)),"^")'=LA7UID Q

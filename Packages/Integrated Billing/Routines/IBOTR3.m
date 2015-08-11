@@ -1,6 +1,6 @@
 IBOTR3 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - OUTPUT ;5-JUN-91
- ;;2.0;INTEGRATED BILLING;**42,80,100,118,128,133,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-38, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**42,80,100,118,128,133,447,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCROTR3
  ;
@@ -50,7 +50,10 @@ BILLNO ; - Loop through all bills for an insurance company.
 LOOP ; add group# for p447 
  ;S IBBN="" F  S IBBN=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBBN)) Q:IBBN=""  S IBD=^(IBBN) D DETAIL Q:IBQUIT
  S IBGRP="" F  S IBGRP=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBGRP)) Q:IBGRP=""!(IBQUIT)  D
- .I IBPRNT="M" W !!,"Group #"_$S(IBGRP'=0:IBGRP,1:":  None Defined")
+ . ; IB*2.0*516/TAZ Print the actual group number instead of internal group number.
+ .;I IBPRNT="M" W !!,"Group #"_$S(IBGRP'=0:IBGRP,1:":  None Defined")
+ . I IBPRNT="M" W !!,"Group #: "_$S(IBGRP'=0:$$GET1^DIQ(355.3,IBGRP_",",2.02),1:"None Defined")
+ . ;
  .S IBBN="" F  S IBBN=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBGRP,IBBN)) Q:IBBN=""  S IBD=^(IBBN) D DETAIL Q:IBQUIT
  I 'IBQUIT D
  .I IBPRNT'="G" D SUBTOT^IBOTR4 ; Write insurance co. sub-totals.

@@ -1,118 +1,138 @@
-IBDEI118 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI118 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18505,1,0)
+ ;;^UTILITY(U,$J,358.3,18392,1,5,0)
+ ;;=5^Comb Drug Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,18392,2)
+ ;;=^268220
+ ;;^UTILITY(U,$J,358.3,18393,0)
+ ;;=305.01^^101^1054^1
+ ;;^UTILITY(U,$J,358.3,18393,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18505,1,3,0)
- ;;=3^825.20
- ;;^UTILITY(U,$J,358.3,18505,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bone, closed; unspecified bone(s) of foot (except toes)
- ;;^UTILITY(U,$J,358.3,18505,2)
- ;;=^274265
- ;;^UTILITY(U,$J,358.3,18506,0)
- ;;=825.0^^121^1171^17
- ;;^UTILITY(U,$J,358.3,18506,1,0)
+ ;;^UTILITY(U,$J,358.3,18393,1,2,0)
+ ;;=2^305.01
+ ;;^UTILITY(U,$J,358.3,18393,1,5,0)
+ ;;=5^Alc Abuse, Continuous
+ ;;^UTILITY(U,$J,358.3,18393,2)
+ ;;=^268228
+ ;;^UTILITY(U,$J,358.3,18394,0)
+ ;;=305.02^^101^1054^2
+ ;;^UTILITY(U,$J,358.3,18394,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18506,1,3,0)
- ;;=3^825.0
- ;;^UTILITY(U,$J,358.3,18506,1,5,0)
- ;;=5^Fracture of one or more tarsal & metatarsal bone, closed; calcaneus, closed
- ;;^UTILITY(U,$J,358.3,18506,2)
- ;;=^274259
- ;;^UTILITY(U,$J,358.3,18507,0)
- ;;=825.23^^121^1171^18
- ;;^UTILITY(U,$J,358.3,18507,1,0)
+ ;;^UTILITY(U,$J,358.3,18394,1,2,0)
+ ;;=2^305.02
+ ;;^UTILITY(U,$J,358.3,18394,1,5,0)
+ ;;=5^Alc Abuse, Episodic
+ ;;^UTILITY(U,$J,358.3,18394,2)
+ ;;=^268229
+ ;;^UTILITY(U,$J,358.3,18395,0)
+ ;;=305.21^^101^1054^33
+ ;;^UTILITY(U,$J,358.3,18395,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18507,1,3,0)
- ;;=3^825.23
- ;;^UTILITY(U,$J,358.3,18507,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuboid
- ;;^UTILITY(U,$J,358.3,18507,2)
- ;;=^274270
- ;;^UTILITY(U,$J,358.3,18508,0)
- ;;=825.24^^121^1171^19
- ;;^UTILITY(U,$J,358.3,18508,1,0)
+ ;;^UTILITY(U,$J,358.3,18395,1,2,0)
+ ;;=2^305.21
+ ;;^UTILITY(U,$J,358.3,18395,1,5,0)
+ ;;=5^Cannabis Abuse, Continued
+ ;;^UTILITY(U,$J,358.3,18395,2)
+ ;;=^268234
+ ;;^UTILITY(U,$J,358.3,18396,0)
+ ;;=305.22^^101^1054^34
+ ;;^UTILITY(U,$J,358.3,18396,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18508,1,3,0)
- ;;=3^825.24
- ;;^UTILITY(U,$J,358.3,18508,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuneiform, foot &
- ;;^UTILITY(U,$J,358.3,18508,2)
- ;;=^274271
- ;;^UTILITY(U,$J,358.3,18509,0)
- ;;=825.25^^121^1171^20
- ;;^UTILITY(U,$J,358.3,18509,1,0)
+ ;;^UTILITY(U,$J,358.3,18396,1,2,0)
+ ;;=2^305.22
+ ;;^UTILITY(U,$J,358.3,18396,1,5,0)
+ ;;=5^Cannabis Abuse, Episodic
+ ;;^UTILITY(U,$J,358.3,18396,2)
+ ;;=^268235
+ ;;^UTILITY(U,$J,358.3,18397,0)
+ ;;=305.31^^101^1054^57
+ ;;^UTILITY(U,$J,358.3,18397,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18509,1,3,0)
- ;;=3^825.25
- ;;^UTILITY(U,$J,358.3,18509,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Jones 
- ;;^UTILITY(U,$J,358.3,18509,2)
- ;;=^274272
- ;;^UTILITY(U,$J,358.3,18510,0)
- ;;=825.22^^121^1171^21
- ;;^UTILITY(U,$J,358.3,18510,1,0)
+ ;;^UTILITY(U,$J,358.3,18397,1,2,0)
+ ;;=2^305.31
+ ;;^UTILITY(U,$J,358.3,18397,1,5,0)
+ ;;=5^Hallucinogen Abuse, Continuous
+ ;;^UTILITY(U,$J,358.3,18397,2)
+ ;;=^268237
+ ;;^UTILITY(U,$J,358.3,18398,0)
+ ;;=305.32^^101^1054^58
+ ;;^UTILITY(U,$J,358.3,18398,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18510,1,3,0)
- ;;=3^825.22
- ;;^UTILITY(U,$J,358.3,18510,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Navicular (scapiod), foot & metatarsal
- ;;^UTILITY(U,$J,358.3,18510,2)
- ;;=^274269
- ;;^UTILITY(U,$J,358.3,18511,0)
- ;;=825.21^^121^1171^22
- ;;^UTILITY(U,$J,358.3,18511,1,0)
+ ;;^UTILITY(U,$J,358.3,18398,1,2,0)
+ ;;=2^305.32
+ ;;^UTILITY(U,$J,358.3,18398,1,5,0)
+ ;;=5^Hallucinogen Abuse, Episodic
+ ;;^UTILITY(U,$J,358.3,18398,2)
+ ;;=^268238
+ ;;^UTILITY(U,$J,358.3,18399,0)
+ ;;=305.41^^101^1054^25
+ ;;^UTILITY(U,$J,358.3,18399,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18511,1,3,0)
- ;;=3^825.21
- ;;^UTILITY(U,$J,358.3,18511,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Astragalus, talus
- ;;^UTILITY(U,$J,358.3,18511,2)
- ;;=^274266
- ;;^UTILITY(U,$J,358.3,18512,0)
- ;;=825.29^^121^1171^23
- ;;^UTILITY(U,$J,358.3,18512,1,0)
+ ;;^UTILITY(U,$J,358.3,18399,1,2,0)
+ ;;=2^305.41
+ ;;^UTILITY(U,$J,358.3,18399,1,5,0)
+ ;;=5^Anxiolytic Abuse, Continuous
+ ;;^UTILITY(U,$J,358.3,18399,2)
+ ;;=^331936
+ ;;^UTILITY(U,$J,358.3,18400,0)
+ ;;=305.42^^101^1054^26
+ ;;^UTILITY(U,$J,358.3,18400,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18512,1,3,0)
- ;;=3^825.29
- ;;^UTILITY(U,$J,358.3,18512,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Tarsal or tarsal w/metatarsal
- ;;^UTILITY(U,$J,358.3,18512,2)
- ;;=^274263
- ;;^UTILITY(U,$J,358.3,18513,0)
- ;;=826.0^^121^1171^24
- ;;^UTILITY(U,$J,358.3,18513,1,0)
+ ;;^UTILITY(U,$J,358.3,18400,1,2,0)
+ ;;=2^305.42
+ ;;^UTILITY(U,$J,358.3,18400,1,5,0)
+ ;;=5^Anxiolytic Abuse, Episodic
+ ;;^UTILITY(U,$J,358.3,18400,2)
+ ;;=^331937
+ ;;^UTILITY(U,$J,358.3,18401,0)
+ ;;=305.51^^101^1054^69
+ ;;^UTILITY(U,$J,358.3,18401,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18513,1,3,0)
- ;;=3^826.0
- ;;^UTILITY(U,$J,358.3,18513,1,5,0)
- ;;=5^Fracture of one or more phalanges of foot/toe(s), closed
- ;;^UTILITY(U,$J,358.3,18513,2)
- ;;=^274282
- ;;^UTILITY(U,$J,358.3,18514,0)
- ;;=733.16^^121^1171^25
- ;;^UTILITY(U,$J,358.3,18514,1,0)
+ ;;^UTILITY(U,$J,358.3,18401,1,2,0)
+ ;;=2^305.51
+ ;;^UTILITY(U,$J,358.3,18401,1,5,0)
+ ;;=5^Opioid Abuse, Continuous
+ ;;^UTILITY(U,$J,358.3,18401,2)
+ ;;=^268244
+ ;;^UTILITY(U,$J,358.3,18402,0)
+ ;;=305.52^^101^1054^70
+ ;;^UTILITY(U,$J,358.3,18402,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18514,1,3,0)
- ;;=3^733.16
- ;;^UTILITY(U,$J,358.3,18514,1,5,0)
- ;;=5^Fracture-stress/pathologic/spontaneous; tibia or fibula
- ;;^UTILITY(U,$J,358.3,18514,2)
- ;;=^295757
- ;;^UTILITY(U,$J,358.3,18515,0)
- ;;=733.19^^121^1171^26
- ;;^UTILITY(U,$J,358.3,18515,1,0)
+ ;;^UTILITY(U,$J,358.3,18402,1,2,0)
+ ;;=2^305.52
+ ;;^UTILITY(U,$J,358.3,18402,1,5,0)
+ ;;=5^Opioid Abuse, Episodic
+ ;;^UTILITY(U,$J,358.3,18402,2)
+ ;;=^268245
+ ;;^UTILITY(U,$J,358.3,18403,0)
+ ;;=305.61^^101^1054^41
+ ;;^UTILITY(U,$J,358.3,18403,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18515,1,3,0)
- ;;=3^733.19
- ;;^UTILITY(U,$J,358.3,18515,1,5,0)
- ;;=5^Fracture-stress/pathologic/spontanous; foot, toe, other of lower extremities
- ;;^UTILITY(U,$J,358.3,18515,2)
- ;;=^295758
- ;;^UTILITY(U,$J,358.3,18516,0)
- ;;=991.2^^121^1171^27
- ;;^UTILITY(U,$J,358.3,18516,1,0)
+ ;;^UTILITY(U,$J,358.3,18403,1,2,0)
+ ;;=2^305.61
+ ;;^UTILITY(U,$J,358.3,18403,1,5,0)
+ ;;=5^Cocaine Abuse, Continuous
+ ;;^UTILITY(U,$J,358.3,18403,2)
+ ;;=^268247
+ ;;^UTILITY(U,$J,358.3,18404,0)
+ ;;=305.62^^101^1054^42
+ ;;^UTILITY(U,$J,358.3,18404,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18516,1,3,0)
- ;;=3^991.2
+ ;;^UTILITY(U,$J,358.3,18404,1,2,0)
+ ;;=2^305.62
+ ;;^UTILITY(U,$J,358.3,18404,1,5,0)
+ ;;=5^Cocaine Abuse, Episodic
+ ;;^UTILITY(U,$J,358.3,18404,2)
+ ;;=^268248
+ ;;^UTILITY(U,$J,358.3,18405,0)
+ ;;=305.71^^101^1054^17
+ ;;^UTILITY(U,$J,358.3,18405,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18405,1,2,0)
+ ;;=2^305.71
+ ;;^UTILITY(U,$J,358.3,18405,1,5,0)
+ ;;=5^Amphetamine Abuse, Continuous
+ ;;^UTILITY(U,$J,358.3,18405,2)
+ ;;=^268251

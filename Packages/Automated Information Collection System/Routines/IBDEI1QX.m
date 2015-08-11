@@ -1,0 +1,128 @@
+IBDEI1QX ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31246,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,31246,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,31246,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,31247,0)
+ ;;=L89.309^^190^1932^242
+ ;;^UTILITY(U,$J,358.3,31247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31247,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,31247,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,31247,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,31248,0)
+ ;;=L89.90^^190^1932^248
+ ;;^UTILITY(U,$J,358.3,31248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31248,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,31248,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,31248,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,31249,0)
+ ;;=L89.91^^190^1932^244
+ ;;^UTILITY(U,$J,358.3,31249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31249,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,31249,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,31249,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,31250,0)
+ ;;=L89.92^^190^1932^245
+ ;;^UTILITY(U,$J,358.3,31250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31250,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,31250,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,31250,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,31251,0)
+ ;;=L89.93^^190^1932^246
+ ;;^UTILITY(U,$J,358.3,31251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31251,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,31251,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,31251,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,31252,0)
+ ;;=L89.94^^190^1932^247
+ ;;^UTILITY(U,$J,358.3,31252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31252,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,31252,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,31252,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,31253,0)
+ ;;=L89.95^^190^1932^249
+ ;;^UTILITY(U,$J,358.3,31253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31253,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,31253,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,31253,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,31254,0)
+ ;;=L92.0^^190^1932^156
+ ;;^UTILITY(U,$J,358.3,31254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31254,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,31254,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,31254,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,31255,0)
+ ;;=L95.1^^190^1932^143
+ ;;^UTILITY(U,$J,358.3,31255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31255,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,31255,1,4,0)
+ ;;=4^L95.1
+ ;;^UTILITY(U,$J,358.3,31255,2)
+ ;;=^5009477
+ ;;^UTILITY(U,$J,358.3,31256,0)
+ ;;=L97.111^^190^1932^227
+ ;;^UTILITY(U,$J,358.3,31256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31256,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,31256,1,4,0)
+ ;;=4^L97.111
+ ;;^UTILITY(U,$J,358.3,31256,2)
+ ;;=^5009485
+ ;;^UTILITY(U,$J,358.3,31257,0)
+ ;;=L97.112^^190^1932^228
+ ;;^UTILITY(U,$J,358.3,31257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31257,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,31257,1,4,0)
+ ;;=4^L97.112
+ ;;^UTILITY(U,$J,358.3,31257,2)
+ ;;=^5009486
+ ;;^UTILITY(U,$J,358.3,31258,0)
+ ;;=L97.113^^190^1932^229
+ ;;^UTILITY(U,$J,358.3,31258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31258,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,31258,1,4,0)
+ ;;=4^L97.113

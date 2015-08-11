@@ -1,6 +1,6 @@
-RCDPEX ;ALB/TMK,DWA - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.5 ; 9/29/10 6:01pm
- ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEX ;ALB/TMK,DWA - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.5 ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 UPD ; Update (File) ERA msgs manually from EOB exception list for file 344.5
@@ -114,12 +114,14 @@ DEL ; Delete messages from messages list - file 344.5
  D SEL(.RCDA,1)
  S RCDA=$O(RCDA(""))
  I RCDA="" G DELQ
+ S RCTDA=+RCDA(RCDA),RCTDAC=RCTDA_","
+ S RCPAYTP=$$PAYTYP(RCTDA)
+ I RCPAYTP="ACH" W !!,"Deletion is not allowed.  The ERA has a payment method of ACH." D PAUSE^VALM1 Q
  W !
  S DIR(0)="YA",DIR("A",1)="This action will PERMANENTLY delete an EDI Lockbox message from your system",DIR("A",2)="A bulletin will be sent to report the deletion",DIR("A",3)=" "
  S DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE? ",DIR("B")="NO"
  D ^DIR K DIR
  G:Y'=1 DELQ
- S RCTDA=+RCDA(RCDA),RCTDAC=RCTDA_","
  I '$$LOCK(RCTDA) G DELQ
  S RC0=$G(^RCY(344.5,RCTDA,0))
  ;
@@ -254,3 +256,9 @@ TXTDE(RCTDA,RCDIQ,RCNODE,RCXM1,RCCT) ; Append display data to array RCXM1
  S:RCCT'=RCCT1 RCCT=RCCT+1,RCXM1(RCCT)=" "
  Q
  ;
+PAYTYP(RCTDA) ;Find pay source - PRCA*4.5*298
+ N RCPT,X
+ S RCPT=""
+ S X=$G(^RCY(344.5,RCTDA,2,1,0))
+ I $P(X,U)="835ERA" S RCPT=$P(X,U,17)
+ Q RCPT

@@ -1,5 +1,5 @@
-ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;2/6/14  15:01
- ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122**;8 May 96;Build 2
+ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;12/5/14  16:23
+ ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122,126**;8 May 96;Build 8
  ;
 ASKCLASS(DFN,ECANS,ERR,ECTOPCE,ECPATST,ECHDA) ;  Ask classification questions
  ; (Agent Orange, Ionizing Radiation, Environmental Contaminants/South 
@@ -202,7 +202,7 @@ UNLOCK(ECIEN) ;  Unlock EC Patient record
  ;
  I $G(ECIEN) L -^ECH(ECIEN)
  Q
-RCNTVST(RESULT,DFN) ;
+RCNTVST(RESULT,ECARY) ;126 Changed parameter name from DFN to ECARY
  ;
  ;This call uses the Patient and Visit file to return a list of recent
  ;visits. It returns the most recent 20 visits using both files but does 
@@ -211,6 +211,8 @@ RCNTVST(RESULT,DFN) ;
  ;a start date of "" and an end date of "NOW". For the selected visit
  ;call, it only passes in and uses the DFN.
  ;
+ ;126 Updated code so that it filters visit by selected location.
+ ;Only visits/appts with clinics in the location will be shown.
  ;API 1905
  ;Calls    
  ;  SELECTED^VSIT(DFN,SDT,EDT,HOSLOC,ENCTPE,NNCTPE,SRVCAT,NSRVCAT,LASTN) 
@@ -224,7 +226,8 @@ RCNTVST(RESULT,DFN) ;
  ;           non clinics visits from being included in API 1905
  ;           not needed in 3859 as it contains a filter for clinics
  ;
- N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,Y,SDRESULT ;122 Changed SDRESULTS to SDRESULT
+ N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,Y,SDRESULT,DFN,LOC ;122,126
+ S DFN=$P(ECARY,U),LOC=$P(ECARY,U,2) ;126
  D NOW^%DTC S DATE=%,Y=DATE
  S VDT=3050101
  S X1=DT,X2=(-15) D C^%DTC S PDT=X    ;get appts within last 15 days
@@ -232,16 +235,15 @@ RCNTVST(RESULT,DFN) ;
  I '$G(DFN) Q
  K ^TMP("VSIT",$J)
  K ^TMP($J,"SDAMA201","GETAPPT")
- D SELECTED^VSIT(DFN,VDT,"","","","","","",30)
+ D SELECTED^VSIT(DFN,VDT,"","","","","","HE",30) ;126 Changed call to filter out hospitalization and event (historical) categories
  D GETAPPT^SDAMA201(DFN,"1;2","R;NT",PDT,DATE,.SDRESULT)
  S VIEN=0
  F  S VIEN=$O(^TMP("VSIT",$J,VIEN)) Q:VIEN=""  S NUM=0 D
  .F  S NUM=$O(^TMP("VSIT",$J,VIEN,NUM)) Q:NUM=""  D
  ..S PARAMS=$G(^TMP("VSIT",$J,VIEN,NUM))
  ..;make sure location is a clinic
- ..I $P(PARAMS,U,3)="H" Q
- ..I $P(PARAMS,U,3)="E" Q  ;122 Don't include historical visits (marked as "E" for event) in list of recent visits
  ..I $$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),2,"I")'="C" Q
+ ..I $G(LOC) I LOC'=$$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),3,"I") Q  ;126 If location sent, filter out any visits whose clinic isn't in the location
  ..S P1DT=$P(PARAMS,U,1),P1=$$FMTE^XLFDT(P1DT,"9M"),P2=$P($P(PARAMS,U,2),";",2)
  ..I '$G(P1DT)!($G(P2)="") Q
  ..I $D(ARR(P1DT,P2))=1 Q
@@ -253,6 +255,7 @@ RCNTVST(RESULT,DFN) ;
  .S P1DT=$G(^TMP($J,"SDAMA201","GETAPPT",VIEN,1))
  .S P1=$$FMTE^XLFDT(P1DT,"9M")
  .S P2=$P($G(^TMP($J,"SDAMA201","GETAPPT",VIEN,2)),U,2)
+ .I $G(LOC) I LOC'=$$GET1^DIQ(44,$P($G(^TMP($J,"SDAMA201","GETAPPT",VIEN,2)),U),3,"I") Q  ;126 If location sent, filter out any appts whos clinic isn't in the location
  .I '$G(P1DT)!($G(P2)="") Q
  .I $D(ARR(P1DT,P2))=1 Q
  .;;cntrl array, filter visits from PT file

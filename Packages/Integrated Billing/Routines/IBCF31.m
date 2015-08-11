@@ -1,6 +1,6 @@
 IBCF31 ;ALB/BGA -UB92 HCFA-1450 (GATHER CODES) ;25-AUG-1993
- ;;2.0;INTEGRATED BILLING;**17,52,80,51**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**17,52,80,51,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;This routine requires prior execution of ibcf3.
  ; OUTPUT FORMATTER DOES NOT USE THIS ROUTINE - MAY BE OBSOLETE
@@ -54,7 +54,10 @@ EN ;This routine requires prior execution of ibcf3.
  .. S IBFL(50,1)="MEDICARE ESRD",IBFL(51,1)=$P(IBSIGN,U,21),IBFL(58,1)=VADM(1),IBFL(59,1)="01",IBFL(60,1)=$P(VADM(2),U,2)
  ;
 INS ;list the primary, secondary .. insurance companies
- F IBI=1:1:3 S IBJ="I"_IBI S IBX=$G(^DGCR(399,IBIFN,IBJ)) I IBX'="" D
+ ;IB*2.0*516/BAA - Call $$POLICY^IBCEF to insert HIPAA compliant fields into variable IBDI1. Data will
+ ;continue to be extracted from IBDI1 original location.
+ ;F IBI=1:1:3 S IBJ="I"_IBI S IBX=$G(^DGCR(399,IBIFN,IBJ)) I IBX'="" D  ; 516 - baa
+ F IBI=1:1:3 S IBX=$$POLICY^IBCEF(IBIFN,,IBI) I IBX'="" D  ; 516 - baa
  . S IBY=$G(^DIC(36,+IBX,0)) Q:IBY=""
  . S IBFL(50,IBI)=$P(IBY,U,1) ; payer
  . S IBFL(51,IBI)=$P(IBMAIL1,U,(IBI+1)) ; provider #

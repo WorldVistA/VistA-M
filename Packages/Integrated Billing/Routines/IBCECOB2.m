@@ -1,6 +1,6 @@
 IBCECOB2 ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488**;21-MAR-1994;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488,516**;21-MAR-1994;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDI ;history detail display
  N IBIFN,IBDA
@@ -155,8 +155,10 @@ CLONE ; 'Copy/cancel bill' protocol action
  N IBDA,IBQ,IBEOBIFN,IBKEY,X,IBDENCT
  ;
  ; Check for security key
+ ;IB*2.0*516/TAZ - Remove check for IB CLON
  ;I '$$KCHK^XUSRB("IB AUTHORIZE") D  G CLONEQ
- S IBKEY=$S($G(IBCNCRD)=1:"IB AUTHORIZE",1:"IB CLON")
+ ;S IBKEY=$S($G(IBCNCRD)=1:"IB AUTHORIZE",1:"IB CLON")
+ S IBKEY="IB AUTHORIZE"
  I '$$KCHK^XUSRB(IBKEY) D  G CLONEQ
  . D FULL^VALM1 S VALMBCK="R"
  . ;W !!?5,"You don't hold the proper security key to access this function."

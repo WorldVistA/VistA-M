@@ -1,5 +1,6 @@
 IBCONS1 ;ALB/AAS - NSC PATIENTS W/ INS BACKGROUND PRINTS ;7 JUN 90
- ;;2.0;INTEGRATED BILLING;**66,80,137**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**66,80,137,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRONS1
  ;
@@ -172,7 +173,11 @@ PTPRNT ; print patient specific data is requested:  Rate Disabilities and expand
  . S IBY=IBX(IBI,0),IBY1=IBX(IBI,1)
  . S IBLN1=$E($P($G(^DIC(36,+IBY,0)),U,1),1,25),IBPLAN=+$P(IBY,U,18)
  . ;
- . I +$G(IBPRTIEX) W !,?5,IBLN1,?33,"Group #: ",$P($G(^IBA(355.3,+IBPLAN,0)),U,4),?65,"Effective: ",$$DATE(+$P(IBY,U,8))," - ",$$DATE(+$P(IBY,U,4)),?100,"Last Ver: ",$$DATE($P(IBY1,U,3)) S IBLN1=""
+ . ;IB*2.0*516/DRF - Retrieve HIPAA compliant Group #
+ . ;I +$G(IBPRTIEX) W !,?5,IBLN1,?33,"Group #: ",$P($G(^IBA(355.3,+IBPLAN,0)),U,4),?65,"Effective: ",$$DATE(+$P(IBY,U,8))," - ",$$DATE(+$P(IBY,U,4)),?100,"Last Ver: ",$$DATE($P(IBY1,U,3)) S IBLN1=""
+ . I +$G(IBPRTIEX) D
+ .. W !,?5,IBLN1,?33,"Group #: ",$P(IBY,U,3)
+ .. W !,?33,"Effective: ",$$DATE(+$P(IBY,U,8))," - ",$$DATE(+$P(IBY,U,4)),?68,"Last Ver: ",$$DATE($P(IBY1,U,3)) S IBLN1=""
  . ;
  . I +$G(IBPRTIPC) S IBLN2="Policy Comment: " D  I $Y>(IOSL-6) W ! D HEAD Q:IBQUIT
  .. I $P(IBY1,U,8)'="" W !,?5,IBLN1,?33,IBLN2,?51,$P(IBY1,U,8) S (IBLN1,IBLN2)=""

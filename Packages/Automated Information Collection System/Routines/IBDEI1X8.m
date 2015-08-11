@@ -1,0 +1,134 @@
+IBDEI1X8 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,34120,1,4,0)
+ ;;=4^J98.09
+ ;;^UTILITY(U,$J,358.3,34120,2)
+ ;;=^5008359
+ ;;^UTILITY(U,$J,358.3,34121,0)
+ ;;=J39.8^^192^1988^11
+ ;;^UTILITY(U,$J,358.3,34121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34121,1,3,0)
+ ;;=3^Upper Respiratory Tract Diseases
+ ;;^UTILITY(U,$J,358.3,34121,1,4,0)
+ ;;=4^J39.8
+ ;;^UTILITY(U,$J,358.3,34121,2)
+ ;;=^5008231
+ ;;^UTILITY(U,$J,358.3,34122,0)
+ ;;=M31.30^^192^1988^12
+ ;;^UTILITY(U,$J,358.3,34122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34122,1,3,0)
+ ;;=3^Wegener's Granulomatosis w/o Renal Involvement
+ ;;^UTILITY(U,$J,358.3,34122,1,4,0)
+ ;;=4^M31.30
+ ;;^UTILITY(U,$J,358.3,34122,2)
+ ;;=^5011744
+ ;;^UTILITY(U,$J,358.3,34123,0)
+ ;;=J98.11^^192^1989^1
+ ;;^UTILITY(U,$J,358.3,34123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34123,1,3,0)
+ ;;=3^Atelectasis
+ ;;^UTILITY(U,$J,358.3,34123,1,4,0)
+ ;;=4^J98.11
+ ;;^UTILITY(U,$J,358.3,34123,2)
+ ;;=^5008360
+ ;;^UTILITY(U,$J,358.3,34124,0)
+ ;;=D14.32^^192^1989^2
+ ;;^UTILITY(U,$J,358.3,34124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34124,1,3,0)
+ ;;=3^Benign Neop Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34124,1,4,0)
+ ;;=4^D14.32
+ ;;^UTILITY(U,$J,358.3,34124,2)
+ ;;=^5001984
+ ;;^UTILITY(U,$J,358.3,34125,0)
+ ;;=D19.0^^192^1989^3
+ ;;^UTILITY(U,$J,358.3,34125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34125,1,3,0)
+ ;;=3^Benign Neop Pleura Mesothelial Tissue
+ ;;^UTILITY(U,$J,358.3,34125,1,4,0)
+ ;;=4^D19.0
+ ;;^UTILITY(U,$J,358.3,34125,2)
+ ;;=^5002023
+ ;;^UTILITY(U,$J,358.3,34126,0)
+ ;;=D14.31^^192^1989^4
+ ;;^UTILITY(U,$J,358.3,34126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34126,1,3,0)
+ ;;=3^Benign Neop Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34126,1,4,0)
+ ;;=4^D14.31
+ ;;^UTILITY(U,$J,358.3,34126,2)
+ ;;=^5001983
+ ;;^UTILITY(U,$J,358.3,34127,0)
+ ;;=D02.22^^192^1989^5
+ ;;^UTILITY(U,$J,358.3,34127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34127,1,3,0)
+ ;;=3^Carcinoma in Situ Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34127,1,4,0)
+ ;;=4^D02.22
+ ;;^UTILITY(U,$J,358.3,34127,2)
+ ;;=^5001885
+ ;;^UTILITY(U,$J,358.3,34128,0)
+ ;;=D02.21^^192^1989^6
+ ;;^UTILITY(U,$J,358.3,34128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34128,1,3,0)
+ ;;=3^Carcinoma in Situ Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34128,1,4,0)
+ ;;=4^D02.21
+ ;;^UTILITY(U,$J,358.3,34128,2)
+ ;;=^5001884
+ ;;^UTILITY(U,$J,358.3,34129,0)
+ ;;=R22.2^^192^1989^7
+ ;;^UTILITY(U,$J,358.3,34129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34129,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,34129,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,34129,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,34130,0)
+ ;;=C7A.090^^192^1989^9
+ ;;^UTILITY(U,$J,358.3,34130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34130,1,3,0)
+ ;;=3^Malig Carcinoid Tumor Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34130,1,4,0)
+ ;;=4^C7A.090
+ ;;^UTILITY(U,$J,358.3,34130,2)
+ ;;=^5001371
+ ;;^UTILITY(U,$J,358.3,34131,0)
+ ;;=C34.02^^192^1989^12
+ ;;^UTILITY(U,$J,358.3,34131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34131,1,3,0)
+ ;;=3^Malig Neop Left Main Bronchus
+ ;;^UTILITY(U,$J,358.3,34131,1,4,0)
+ ;;=4^C34.02
+ ;;^UTILITY(U,$J,358.3,34131,2)
+ ;;=^5000959
+ ;;^UTILITY(U,$J,358.3,34132,0)
+ ;;=C34.32^^192^1989^11
+ ;;^UTILITY(U,$J,358.3,34132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34132,1,3,0)
+ ;;=3^Malig Neop Left Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34132,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,34132,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,34133,0)
+ ;;=C34.31^^192^1989^20
+ ;;^UTILITY(U,$J,358.3,34133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34133,1,3,0)
+ ;;=3^Malig Neop Right Lower Lobe Bronchus/Lung

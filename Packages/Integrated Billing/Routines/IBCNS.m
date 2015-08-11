@@ -1,6 +1,6 @@
 IBCNS ;ALB/AAS - IS INSURANCE ACTIVE ; 22-JULY-91
- ;;2.0;INTEGRATED BILLING;**28,43,80,82,133,399**;21-MAR-94;Build 8
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,43,80,82,133,399,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRNS
  ;
@@ -14,7 +14,9 @@ IBCNS ;ALB/AAS - IS INSURANCE ACTIVE ; 22-JULY-91
  ;        -  IBDDI() = internal node in patient file of invalid ins.
  ;
 % N J,X S IBINS=0 K IBDD,IBDDI
- S J=0 F  S J=$O(^DPT(DFN,.312,J)) Q:'J  I $D(^DPT(DFN,.312,J,0)) S X=^(0) D CHK
+ ;IB*2.0*516/TAZ - Retrieve Insurance data with HIPAA compliant Fields
+ ;S J=0 F  S J=$O(^DPT(DFN,.312,J)) Q:'J  I $D(^DPT(DFN,.312,J,0)) S X=^(0) D CHK
+ S J=0 F  S J=$O(^DPT(DFN,.312,J)) Q:'J  I $D(^DPT(DFN,.312,J,0)) S X=$$ZND^IBCNS1(DFN,J) D CHK
  Q
  ;
 CHK ;
@@ -27,18 +29,23 @@ CHK ;
  I $P($G(^IBA(355.3,+$P(X,"^",18),0)),"^",11) G CHKQ ;plan is inactive
  G:$P(X1,"^",5) CHKQ ;insurance company inactive
  I '$G(IBWNR) G:$P(X1,"^",2)="N" CHKQ ;insurance company will not reimburse
- S IBINS=1 I Z1 D
- .S IBDD(+X)=X
- .Q:'$P(IBDD(+X),"^",18)
- .S Y=$G(^IBA(355.3,+$P(IBDD(+X),"^",18),0))
- .I $P(Y,"^",4)'="" S $P(IBDD(+X),"^",3)=$P(Y,"^",4) ; move group number
- .I $P(Y,"^",3)'="" S $P(IBDD(+X),"^",15)=$P(Y,"^",3) ; move group name
-CHKQ I Z1=2&('$D(IBDD(+X))) D
- .S IBDDI(+X)=X
- .Q:'$P(IBDDI(+X),"^",18)
- .S Y=$G(^IBA(355.3,+$P(IBDDI(+X),"^",18),0))
- .I $P(Y,"^",4)'="" S $P(IBDDI(+X),"^",3)=$P(Y,"^",4) ; move group number
- .I $P(Y,"^",3)'="" S $P(IBDDI(+X),"^",15)=$P(Y,"^",3) ; move group name
+ ;IB*2.0*516/TAZ - Return Valid Insurance with HIPAA compliant fields
+ S IBINS=1 I Z1 S IBDD(+X)=X
+ ;S IBINS=1 I Z1 D
+ ;.S IBDD(+X)=X
+ ;.Q:'$P(IBDD(+X),"^",18)
+ ;.S Y=$G(^IBA(355.3,+$P(IBDD(+X),"^",18),0))
+ ;.I $P(Y,"^",4)'="" S $P(IBDD(+X),"^",3)=$P(Y,"^",4) ; move group number
+ ;.I $P(Y,"^",3)'="" S $P(IBDD(+X),"^",15)=$P(Y,"^",3) ; move group name
+CHKQ ;
+ ;IB*2.0*516/TAZ - Return Invalid Insurance with HIPAA compliant Fields
+ I Z1=2&('$D(IBDD(+X))) S IBDDI(+X)=X
+ ;I Z1=2&('$D(IBDD(+X))) D
+ ;.S IBDDI(+X)=X
+ ;.Q:'$P(IBDDI(+X),"^",18)
+ ;.S Y=$G(^IBA(355.3,+$P(IBDDI(+X),"^",18),0))
+ ;.I $P(Y,"^",4)'="" S $P(IBDDI(+X),"^",3)=$P(Y,"^",4) ; move group number
+ ;.I $P(Y,"^",3)'="" S $P(IBDDI(+X),"^",15)=$P(Y,"^",3) ; move group name
  K X,X1,Z,Z1,Y Q
  ;
 DD ;  - called from input transform and x-refs for field 101,102,103
@@ -121,11 +128,19 @@ GRP(IBCPOL) ; -- return group name/group policy
  ;    output:   group name or group number, if both group NUMBER
  ;              if neither 'Individual PLAN'
  ;
- N X,Y S X=""
- S X=$G(^IBA(355.3,+$G(IBCPOL),0))
- S Y=$S($P(X,"^",4)'="":$P(X,"^",4),1:$P(X,"^",3))
- I $P(X,"^",10) S Y="Ind. Plan "_Y
-GRPQ Q Y
+ ;IB*2.0*516/TAZ Get HIPAA Compliant Fields
+ ;original code:
+ ;N X,Y S X=""
+ ;S X=$G(^IBA(355.3,+$G(IBCPOL),0))
+ ;S Y=$S($P(X,"^",4)'="":$P(X,"^",4),1:$P(X,"^",3))
+ ;I $P(X,"^",10) S Y="Ind. Plan "_Y
+ ;
+ N Y
+ S Y=$$GET1^DIQ(355.3,+$G(IBCPOL)_",",2.02) ;Group Number
+ I Y="" S Y=$$GET1^DIQ(355.3,+$G(IBCPOL)_",",2.01) ;Group Name
+ I $$GET1^DIQ(355.3,+$G(IBCPOL)_",",.1) S Y="Ind. Plan "_Y
+GRPQ ;
+ Q Y
  ;
 D2EXT ; display Conditional Coverage Comments and Riders (DFN,IBINS,X required)
  N Y,CAT,IBX,IBY,IBZ,ARR,IBCDFN S IBCDFN=X,IBZ=0 N X

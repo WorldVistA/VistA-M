@@ -1,4 +1,4 @@
-IBXS8 ; GENERATED FROM 'IB SCREEN8' INPUT TEMPLATE(#514), FILE 399;09/29/14
+IBXS8 ; GENERATED FROM 'IB SCREEN8' INPUT TEMPLATE(#514), FILE 399;05/12/15
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
  I $D(^("U2")) S %Z=^("U2") S %=$P(%Z,U,14) S:%]"" DE(36)=% S %=$P(%Z,U,15) S:%]"" DE(39)=% S %=$P(%Z,U,16) S:%]"" DE(32)=%,DE(33)=%
@@ -70,7 +70,7 @@ X5 S:IBDR20'["82" Y="@83"
  Q
 6 S DW="U4;2",DV="FX",DU="",DLB="Claim Number",DIFLD=261
  G RE
-X6 K:$L(X)>30!($L(X)<1)!($TR(X," ")="") X
+X6 K:$L(X)>30!($L(X)<1)!($TR(X," ")="")!($E(X)=" ") X
  I $D(X),X'?.ANP K X
  Q
  ;

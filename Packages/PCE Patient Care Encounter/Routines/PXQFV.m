@@ -1,5 +1,5 @@
 PXQFV ;ISL/ARS,JVS - DEPENDENT ENTRY COUNT-VISITS(AUPNVSIT) ;5/1/97  08:30
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**4,29**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**4,29,205**;Aug 12, 1996;Build 6
  ;
 DEC(VISIT,VISUAL,EXPAND) ;Test looking through DD to find fields pointing to the visit entries.
  ; VISIT=Visit ien to looked up and counted
@@ -78,6 +78,7 @@ AUDIT(ROOT,IEN) ;---AUDIT TRAIL OF ENTRIES
  ..;W "ACTION",?26,"SOURCE",?52,"PERSON"
  ..W $$RE^PXQUTL("ACTION                   SOURCE                    PERSON")
  ..F I=1:1:$L(NOD,";") S J=$P(NOD,";",I) Q:J']""  D
+ ...Q:$P(J,"-",1)=""  Q:'($D(^PX(839.7,$P(J,"-",1),0))#2)  ;PX*1.0*205 added
  ...S SOURCE=$P(^PX(839.7,$P(J,"-",1),0),"^",1)
  ...S ACTION=$P($P(J,"-",2)," ",1) S ACTION=$S(ACTION="E":"EDIT",ACTION="A":"CREATED",1:"")
  ...S PERSON=$P(^VA(200,$P(J," ",2),0),"^",1)

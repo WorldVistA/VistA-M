@@ -1,6 +1,6 @@
-IBCOMC2 ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T); 10-09-98
- ;;2.0;INTEGRATED BILLING;**103,153**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCOMC2 ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T) ; 10-09-98
+ ;;2.0;INTEGRATED BILLING;**103,153,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
 ENH ; Sort help Text
  W !!,?5,"Enter 1 to search by a Patient Name Range. (i.e. ADAMS to ADAMSZ)"
@@ -52,7 +52,7 @@ WRT ;Write data lines
  ..S IBDA=0 F  S IBDA=$O(^TMP("IBCOMC",$J,1,IBNA,IBDFN,IBDA)) Q:('IBDA)!(IBQUIT=1)  D
  ...S IBINS=$G(^TMP("IBCOMC",$J,1,IBNA,IBDFN,IBDA))
  ...I IBSIN=3 W !,IBINS Q
- ...W !?3,$E($P(IBINS,U,1),1,30),?35,"Reimb VA? ",$P(IBINS,U,2),?50,"Plan Name: ",$E($P(IBINS,U,3),1,20)
+ ...W !?3,$E($P(IBINS,U,1),1,30),?35,"Reimb VA? ",$P(IBINS,U,2),!?4,"Plan Name: ",$E($P(IBINS,U,3),1,65)
  ...;
  Q
  ;

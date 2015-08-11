@@ -1,5 +1,5 @@
 DGPTIC10 ;ALB/AAS - PTF API TO ICD10 Remediation calls ;9/29/2011
- ;;5.3;Registration;**850**;Aug 13, 1993;Build 171
+ ;;5.3;Registration;**850,905**;Aug 13, 1993;Build 2
  ;
  ; CODEC^ICDEX     ICR 5747
  ; VLT^ICDEX       ICR 5747
@@ -63,7 +63,8 @@ CODESYS(PTFIEN) ; returns coding system for a PTF Based on Discharge Date
  S PTR=$P($G(^DGPT(PTFIEN,0)),U,13) I PTR'="" S DISDATE=$P($G(^DG(45.86,PTR,0)),U,1) G:DISDATE'="" CSQ
  ; -- requires a census
  S PTF=PTFIEN D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- D CEN^DGPTC1
+ ;905 D CEN^DGPTC1
+ N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S DISDATE=$P($G(^DG(45.86,DGCN,0)),U,1) G:DISDATE?7N CSQ
  ;
@@ -100,7 +101,8 @@ GET7DATE(PATNUM) ; FROM icdgtdrg
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" G7OUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- D CEN^DGPTC1
+ ;905 D CEN^DGPTC1
+ N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT
  ;
@@ -124,7 +126,8 @@ GET5DATE(PATNUM,MOVE) ; FROM icdgtdrg
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" G5OUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- D CEN^DGPTC1
+ ;905 D CEN^DGPTC1
+ N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT
  ;
@@ -152,7 +155,8 @@ GET6DATE(PATNUM,PROC,DGI) ; FROM icdgtdrg
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" G6OUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- D CEN^DGPTC1
+ ;905 D CEN^DGPTC1
+ N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT ; DGCNO=0th node
  ;
@@ -179,7 +183,8 @@ GETCDATE(PATNUM,CPT) ;
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" GCOUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- D CEN^DGPTC1
+ ;905 D CEN^DGPTC1
+ N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT
  ;
@@ -313,7 +318,8 @@ CENSUS(DGPTF) ; display warning to user for ICD-10 transition census records
  Q:'$D(PTF)  ; -- Called directly from fileman, no variable set up.
  ;
  ; -- Get census status (DGCST) and ien of census date (DGCN)
- D CEN^DGPTC1
+ ;905 D CEN^DGPTC1
+ N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ;
  I '$D(DGCST) G CENSUSQ
  I $G(DGCST)>0 G CENSUSQ ; status no longer open

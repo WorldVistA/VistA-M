@@ -1,0 +1,132 @@
+IBDEI1P4 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30432,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin of Head/Face/Neck
+ ;;^UTILITY(U,$J,358.3,30432,1,4,0)
+ ;;=4^D17.0
+ ;;^UTILITY(U,$J,358.3,30432,2)
+ ;;=^5002005
+ ;;^UTILITY(U,$J,358.3,30433,0)
+ ;;=D17.22^^189^1917^27
+ ;;^UTILITY(U,$J,358.3,30433,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30433,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin of Left Arm
+ ;;^UTILITY(U,$J,358.3,30433,1,4,0)
+ ;;=4^D17.22
+ ;;^UTILITY(U,$J,358.3,30433,2)
+ ;;=^5002009
+ ;;^UTILITY(U,$J,358.3,30434,0)
+ ;;=D17.24^^189^1917^28
+ ;;^UTILITY(U,$J,358.3,30434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30434,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin of Left Leg
+ ;;^UTILITY(U,$J,358.3,30434,1,4,0)
+ ;;=4^D17.24
+ ;;^UTILITY(U,$J,358.3,30434,2)
+ ;;=^5002011
+ ;;^UTILITY(U,$J,358.3,30435,0)
+ ;;=D17.39^^189^1917^25
+ ;;^UTILITY(U,$J,358.3,30435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30435,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin NEC
+ ;;^UTILITY(U,$J,358.3,30435,1,4,0)
+ ;;=4^D17.39
+ ;;^UTILITY(U,$J,358.3,30435,2)
+ ;;=^5002013
+ ;;^UTILITY(U,$J,358.3,30436,0)
+ ;;=D17.21^^189^1917^29
+ ;;^UTILITY(U,$J,358.3,30436,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30436,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin of Right Arm
+ ;;^UTILITY(U,$J,358.3,30436,1,4,0)
+ ;;=4^D17.21
+ ;;^UTILITY(U,$J,358.3,30436,2)
+ ;;=^5002008
+ ;;^UTILITY(U,$J,358.3,30437,0)
+ ;;=D17.23^^189^1917^30
+ ;;^UTILITY(U,$J,358.3,30437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30437,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin of Right Leg
+ ;;^UTILITY(U,$J,358.3,30437,1,4,0)
+ ;;=4^D17.23
+ ;;^UTILITY(U,$J,358.3,30437,2)
+ ;;=^5002010
+ ;;^UTILITY(U,$J,358.3,30438,0)
+ ;;=D17.1^^189^1917^31
+ ;;^UTILITY(U,$J,358.3,30438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30438,1,3,0)
+ ;;=3^Benign Lipomatous Neop of Skin of Trunk
+ ;;^UTILITY(U,$J,358.3,30438,1,4,0)
+ ;;=4^D17.1
+ ;;^UTILITY(U,$J,358.3,30438,2)
+ ;;=^5002006
+ ;;^UTILITY(U,$J,358.3,30439,0)
+ ;;=G56.02^^189^1917^32
+ ;;^UTILITY(U,$J,358.3,30439,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30439,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30439,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,30439,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,30440,0)
+ ;;=G56.01^^189^1917^33
+ ;;^UTILITY(U,$J,358.3,30440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30440,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30440,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,30440,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,30441,0)
+ ;;=K12.2^^189^1917^45
+ ;;^UTILITY(U,$J,358.3,30441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30441,1,3,0)
+ ;;=3^Cellulitis of Mouth
+ ;;^UTILITY(U,$J,358.3,30441,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,30441,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,30442,0)
+ ;;=L03.311^^189^1917^34
+ ;;^UTILITY(U,$J,358.3,30442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30442,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,30442,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,30442,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,30443,0)
+ ;;=L03.317^^189^1917^35
+ ;;^UTILITY(U,$J,358.3,30443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30443,1,3,0)
+ ;;=3^Cellulitis of Buttock
+ ;;^UTILITY(U,$J,358.3,30443,1,4,0)
+ ;;=4^L03.317
+ ;;^UTILITY(U,$J,358.3,30443,2)
+ ;;=^5009053
+ ;;^UTILITY(U,$J,358.3,30444,0)
+ ;;=L03.313^^189^1917^36
+ ;;^UTILITY(U,$J,358.3,30444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30444,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,30444,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,30444,2)
+ ;;=^5009049

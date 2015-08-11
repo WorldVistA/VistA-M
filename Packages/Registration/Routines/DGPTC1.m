@@ -1,5 +1,5 @@
 DGPTC1 ;ALN/MJK - Census Record Processing;JAN 27, 2005
- ;;5.3;Registration;**37,413,643,701,850**;Aug 13, 1993;Build 171
+ ;;5.3;Registration;**37,413,643,701,850,905**;Aug 13, 1993;Build 2
  ;
 CEN ; -- determine if PTF rec is current Census rec
  ; input: PTF   := ptf rec #
@@ -113,8 +113,12 @@ WARD ; -- ward @ census d/t for an adm(even if nhcu/dom adm that is ASIH)
  I $D(^DGPM(+$P(DGPMAN,U,17),0)),+^(0)<DGT Q
  F %=(9999999.9999999-DGT):0 S %=$O(^DGPM("APMV",+$G(DFN),+$G(DGPMCA),%)) Q:'%  D
  . F MVT=0:0 S MVT=$O(^DGPM("APMV",$G(DFN),$G(DGPMCA),%,MVT)) Q:'MVT  D
- .. I $D(^DGPM(MVT,0)) S M=^(0) I "^13^43^44^45^"'[(U_$P(M,U,18)_U),$D(^DIC(42,+$P(M,U,6),0)) S Y=+$P(M,U,6) G WARDQ
-WARDQ Q
+ .. I $D(^DGPM(MVT,0)) S M=^(0) D
+ ... I "^13^43^44^45^"'[(U_$P(M,U,18)_U),$D(^DIC(42,+$P(M,U,6),0)) S Y=+$P(M,U,6) S %=9999999.9999999
+ ... Q
+ ..Q
+ Q
+ ;WARDQ Q
  ;
 ASIH ; -- calc asih days
  N DGADM,DGREC,DGBDT,DGEDT,DGMVTP

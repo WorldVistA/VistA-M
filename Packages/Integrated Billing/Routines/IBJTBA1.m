@@ -1,6 +1,6 @@
-IBJTBA1 ;ALB/TMK/PJH - TPJI BILL CHARGE INFO SCREEN ;01-MAR-1995
- ;;2.0;INTEGRATED BILLING;**135,265,155,349,417,451,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBJTBA1 ;ALB/TMK/PJH - TPJI BILL CHARGE INFO SCREEN ;Sep 30, 2014@12:07:36
+ ;;2.0;INTEGRATED BILLING;**135,265,155,349,417,451,488,511**;21-MAR-94;Build 106
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 SHEOB(IBI,IBSPL,IBEOBCT,IBCTOF) ; Format EOB called from IBJTBA
  ; IBSPL = 0 if EOB represents one bill's payment
@@ -19,7 +19,7 @@ SHEOB(IBI,IBSPL,IBEOBCT,IBCTOF) ; Format EOB called from IBJTBA
  S IBST=$$EXPAND^IBTRE(361.1,.16,+IBST)
  S IBM1=$G(^IBM(361.1,IBI,1))
  ;
- S IBPT=$P(IBM1,U,2)   ; patient responsibility 1.02 fiel
+ S IBPT=$P(IBM1,U,2)   ; patient responsibility 1.02 file
  I $P(IBM,U,4),$D(^IBM(361.1,IBI,"ERR")) S IBPT=0  ; filing error
  ; If MRA & UB, then calculate patient responsiblity value
  I $P(IBM,U,4),$$FT^IBCEF(+$P(IBM,U,1))=3 S IBPT=$$PTRESPI^IBCECOB1(IBI)
@@ -50,6 +50,8 @@ SHEOB(IBI,IBSPL,IBEOBCT,IBCTOF) ; Format EOB called from IBJTBA
  . ; Normal EOB processing
  . N VALMCNT
  . K ^TMP("PRCA_EOB",$J)
+ . ; IB*2*511 - do not display EEOB detail if EEOB has been "removed"
+ . Q:$P($G(^IBM(361.1,IBI,102)),U)
  . D GETEOB^IBCECSA6(IBI,1)
  . S Z=0 F  S Z=$O(^TMP("PRCA_EOB",$J,IBI,Z)) Q:'Z  S IBSTR=$$SETLN^IBJTBA($G(^TMP("PRCA_EOB",$J,IBI,Z)),"",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  . K ^TMP("PRCA_EOB",$J)
@@ -63,6 +65,8 @@ MRA2 ;
  S IBLN=$$SET^IBJTBA("",IBLN)
  S IBD="EOB/MRA Information"_$S($D(IBCTOF):" ("_$G(IBEOBCT)_" OF "_IBCTOF_")",1:"")
  S IBSTR=$$SETLN^IBJTBA(IBD,"",30,45),$E(IBSTR,1,2)=">>",IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ ; IB*2*511 - do not display EEOB detail if EEOB has been removed
+ I IBTY'["MRA",$P($G(^IBM(361.1,IBI,102)),U) D REMOVE Q
  S IBD="EOB Type: "_IBTY,IBSTR=$$SETLN^IBJTBA(IBD,"",5,59)
  S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  S IBD="ICN: "_IBCN,IBSTR=$$SETLN^IBJTBA(IBD,"",10,30)
@@ -91,9 +95,13 @@ MRA2 ;
  ; begin IB*2.0*451
  ; display Trace # and ERA # for every EOB record found. MRAs will not have an ERA #, only a Trace #
  I IBTY]"" D
+ . N IBAPS,IBERAE,IBTRACE
  . S IBTRACE=$P($G(^IBM(361.1,IBI,0)),U,7)
  . I IBTRACE]"" S IBERAE=$O(^RCY(344.4,"D",IBTRACE,""))
  . S IBD="       ERA #: "_$G(IBERAE),IBSTR=$$SETLN^IBJTBA(IBD,"",1,25)
+ . ; include AUTO-POST STATUS for auto-posted ERAs
+ . I IBERAE]"" S IBAPS=$P($G(^RCY(344.4,IBERAE,4)),"^",2) I IBAPS]"" D
+ . . S IBD=IBD_"   Auto-Post Status: "_$S(IBAPS=2:"Complete",1:"Not Complete") S IBSTR=$$SETLN^IBJTBA(IBD,"",1,80)
  . S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  . S IBD="     Trace #: "_$G(IBTRACE),IBSTR=$$SETLN^IBJTBA(IBD,"",1,80) ; Trace # can be up to 50 characters long
  . S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
@@ -122,19 +130,15 @@ MOVE    ;
  .F  S IEN101=$O(^IBM(361.1,IBI,101,IEN101)) Q:'IEN101  D
  ..N IB101,IB102,IBDATE,IBUSER,IBJS,IBJS1,IBJS2,IBORIG,IBDIR
  ..S IB101=$G(^IBM(361.1,IBI,101,IEN101,0)) Q:IB101=""
- ..S IBDATE=$$EXTERNAL^DILFD(361.1101,.01,,$P(IB101,U,1))
- ..S IBUSER=$$EXTERNAL^DILFD(361.1101,.02,,$P(IB101,U,2))
- ..S IBJS=$E($P(IB101,U,3),1,78),IBJS1=$E($P(IB101,U,3),79,100)
- ..S IBDIR=$$EXTERNAL^DILFD(361.1101,.05,,$P(IB101,U,5)) ; kl - added MOVE/COPY field
- ..S IBORIG=$$EXTERNAL^DILFD(361.1101,.04,,$P(IB101,U,4))
+ ..D GETAUDIT(IB101)
  ..I FIRST101 D
- ...S IBSTR=$$SETLN^IBJTBA("MOVE/COPY HISTORY","",1,78),FIRST101=0
+ ...S IBSTR=$$SETLN^IBJTBA("MOVE/COPY/REMOVE HISTORY","",1,78),FIRST101=0
  ...S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  ..S IBLN=$$SET^IBJTBA("",IBLN)
  ..S:IBDIR']"" IBDIR="Move"
- ..S IBSTR=$$SETLN^IBJTBA("Date/Time of EEOB "_IBDIR_": "_IBDATE,"",1,78) ; kl
+ ..S IBSTR=$$SETLN^IBJTBA("Date/Time of EEOB "_IBDIR_": "_IBDATE,"",1,78)
  ..S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
- ..S IBSTR=$$SETLN^IBJTBA(IBDIR_" of EEOB performed by: "_IBUSER,"",1,78) ; kl
+ ..S IBSTR=$$SETLN^IBJTBA(IBDIR_" of EEOB performed by: "_IBUSER,"",1,78)
  ..S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  ..S IBSTR=$$SETLN^IBJTBA(IBDIR_" Justification Comments: ","",1,78)
  ..S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
@@ -147,16 +151,31 @@ MOVE    ;
  ...S IBSTR=$$SETLN^IBJTBA("Original Claim Number: "_IBORIG,"",1,78)
  ...S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  ..;Other claim numbers
- ..N SUB,IBOTH,OTEXT
- ..S SUB=0,OTEXT=""
- ..F  S SUB=$O(^IBM(361.1,IBI,101,IEN101,1,SUB)) Q:'SUB  D
- ...S IBOTH=$P($G(^IBM(361.1,IBI,101,IEN101,1,SUB,0)),U) Q:'IBOTH
- ...S IBOTH=$$EXTERNAL^DILFD(361.11016,.01,,IBOTH) Q:IBOTH=""
- ...S OTEXT=OTEXT_","_IBOTH
- ..S OTEXT=$P(OTEXT,",",2,99)
- ..I OTEXT]"" D
- ...S IBSTR=$$SETLN^IBJTBA("Other Claims: "_OTEXT,"",1,78)
- ...S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ ..D OTHERS(IBI,IEN101)
+ Q
+ ;
+REMOVE ; Display Removal Reason and User
+ N SUB,IB101,IBDATE,IBUSER,IBJS,IBJS1,IBJS2,IBORIG,IBDIR
+ S SUB=$O(^IBM(361.1,IBI,101,"A"),-1) Q:'SUB
+ S IB101=$G(^IBM(361.1,IBI,101,SUB,0)) Q:IB101=""
+ D GETAUDIT(IB101)
+ S IBSTR=$$SETLN^IBJTBA("                 *** EEOB REMOVED ***","",1,78)
+ S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA("MOVE/COPY/REMOVE HISTORY","",1,78)
+ S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA("Date/Time EEOB Removed: "_IBDATE,"",1,78)
+ S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA("Remove of EEOB performed by: "_IBUSER,"",1,78)
+ S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA("Remove Justification Comments: ","",1,78)
+ S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ S IBSTR=$$SETLN^IBJTBA(IBJS,"",1,78)
+ S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ I IBJS1]"" S IBSTR=$$SETLN^IBJTBA(IBJS1,"",1,78),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ ; display original claim
+ I IBORIG]"" S IBSTR=$$SETLN^IBJTBA("Original Claim Number: "_IBORIG,"",1,78),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ ;display OTHER claim numbers
+ D OTHERS(IBI,SUB)
  Q
  ;
 EOBERR ; Display information about any 361.1 message storage or filing errors
@@ -171,3 +190,26 @@ EOBERR ; Display information about any 361.1 message storage or filing errors
  .I ERRTXT["##RAW DATA" S ERRTXT=DASHES
  .S IBSTR=$$SETLN^IBJTBA(ERRTXT,"",1,79),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  Q
+ ;
+GETAUDIT(IB101) ; retrieve audit data
+ ;   IB101 - string of data at the MOVE/COPY/REMOVE HISTORY multiple (361.1,101)
+ S IBDATE=$$EXTERNAL^DILFD(361.1101,.01,,$P(IB101,U,1))
+ S IBUSER=$$EXTERNAL^DILFD(361.1101,.02,,$P(IB101,U,2))
+ S IBJS=$E($P(IB101,U,3),1,78),IBJS1=$E($P(IB101,U,3),79,100)
+ S IBDIR=$$EXTERNAL^DILFD(361.1101,.05,,$P(IB101,U,5))
+ S IBORIG=$$EXTERNAL^DILFD(361.1101,.04,,$P(IB101,U,4))
+ Q
+ ;
+OTHERS(IBI,IEN101) ; get other claim(s)
+ ; IBI - ien for entry in 361.1
+ ; IEN101 - sub-ien for entry in 361.1,101 multiple
+ N SUB,IBOTH,OTEXT
+ S SUB=0,OTEXT=""
+ F  S SUB=$O(^IBM(361.1,IBI,101,IEN101,1,SUB)) Q:'SUB  D
+ . S IBOTH=$P($G(^IBM(361.1,IBI,101,IEN101,1,SUB,0)),U) Q:'IBOTH
+ . S IBOTH=$$EXTERNAL^DILFD(361.11016,.01,,IBOTH) Q:IBOTH=""
+ . S OTEXT=OTEXT_","_IBOTH
+ S OTEXT=$P(OTEXT,",",2,99)
+ I OTEXT]"" S IBSTR=$$SETLN^IBJTBA("Other Claims: "_OTEXT,"",1,78),IBLN=$$SET^IBJTBA(IBSTR,IBLN)
+ Q
+ ;

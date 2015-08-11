@@ -1,10 +1,13 @@
-RCMSITE ;ALB/RRG - EDIT SITE PARAMETERS ;03/12/02
-V ;;4.5;Accounts Receivable;**173,236,253**;Mar 20, 1995;Build 9
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCMSITE ;ALB/RRG - EDIT SITE PARAMETERS ;Jul 02, 2014@15:46:14
+V ;;4.5;Accounts Receivable;**173,236,253,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
 BEG ;Start editing site paramters
- N DIC,DLAYGO,X,Y,DIE,DA,DR
+ N DA,DIC,DIE,DLAYGO,DR,X,Y
+ ; edit SITE field (#.01) in AR SITE PARAMETER file (#342)
  S DIC="^RC(342,",DIC(0)="QEAML",DLAYGO=342 D ^DIC I Y>0 S DA=+Y,DR=.01,DIE="^RC(342," D ^DIE
  Q
+ ;
 ALC ;Edit ALC parameter
  NEW DIC,DR,DA,Y
  S DIE="^RC(342,",DA=1,DR=".07;31" D ^DIE
@@ -43,11 +46,19 @@ UPINT ;Update Rate site parameters
  F  W ! S DA=1,DR="[RCMS RATES]",DIE="^RC(342," D ^DIE Q:$D(Y)
 Q4 Q
  ;
-EDILOCK ;Update EDI Lockbox site parameters
- N DIE,DR,DA,Y
- I '$D(^RC(342,1,0)) D BEG G:'$D(^RC(342,1,0)) Q5
+EDILOCK() ; function, Update EDI Lockbox site parameters
+ ; returns 1 on success, else "^error message"
+ N RSLT S RSLT=""
+ I '$D(^RC(342,1,0)) D BEG
+ S:'$D(^RC(342,1,0)) RSLT="^no site defined"  ; can't continue
+ ;
+ Q:RSLT]"" RSLT
+ ;
+ N DA,DIE,DR,Y
  S DA=1,DR="[RCMS EDI LOCKBOX]",DIE="^RC(342," D ^DIE
-Q5 Q
+ S RSLT=$S($D(Y):"^user aborted",1:1)  ; if Y remains from ^DIE call
+ ;
+ Q RSLT  ; success
  ;
 EDITRDDT ;Update # OF DAYS FOR RD ELIG CHG RPT site parameter
  ;This is the number of days for the Rated Disability Eligibility

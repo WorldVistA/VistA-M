@@ -1,0 +1,130 @@
+IBDEI1T8 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,32313,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,32313,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,32314,0)
+ ;;=G43.809^^190^1950^26
+ ;;^UTILITY(U,$J,358.3,32314,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32314,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,32314,1,4,0)
+ ;;=4^G43.809
+ ;;^UTILITY(U,$J,358.3,32314,2)
+ ;;=^5003901
+ ;;^UTILITY(U,$J,358.3,32315,0)
+ ;;=G43.B0^^190^1950^28
+ ;;^UTILITY(U,$J,358.3,32315,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32315,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Not Intractable
+ ;;^UTILITY(U,$J,358.3,32315,1,4,0)
+ ;;=4^G43.B0
+ ;;^UTILITY(U,$J,358.3,32315,2)
+ ;;=^5003914
+ ;;^UTILITY(U,$J,358.3,32316,0)
+ ;;=G43.C0^^190^1950^17
+ ;;^UTILITY(U,$J,358.3,32316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32316,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Not Intractable
+ ;;^UTILITY(U,$J,358.3,32316,1,4,0)
+ ;;=4^G43.C0
+ ;;^UTILITY(U,$J,358.3,32316,2)
+ ;;=^5003916
+ ;;^UTILITY(U,$J,358.3,32317,0)
+ ;;=G43.A0^^190^1950^8
+ ;;^UTILITY(U,$J,358.3,32317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32317,1,3,0)
+ ;;=3^Cyclical Vomiting Not Intractable
+ ;;^UTILITY(U,$J,358.3,32317,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,32317,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,32318,0)
+ ;;=G43.C1^^190^1950^16
+ ;;^UTILITY(U,$J,358.3,32318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32318,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Intractable
+ ;;^UTILITY(U,$J,358.3,32318,1,4,0)
+ ;;=4^G43.C1
+ ;;^UTILITY(U,$J,358.3,32318,2)
+ ;;=^5003917
+ ;;^UTILITY(U,$J,358.3,32319,0)
+ ;;=G43.B1^^190^1950^27
+ ;;^UTILITY(U,$J,358.3,32319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32319,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Intractable
+ ;;^UTILITY(U,$J,358.3,32319,1,4,0)
+ ;;=4^G43.B1
+ ;;^UTILITY(U,$J,358.3,32319,2)
+ ;;=^5003915
+ ;;^UTILITY(U,$J,358.3,32320,0)
+ ;;=G43.A1^^190^1950^7
+ ;;^UTILITY(U,$J,358.3,32320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32320,1,3,0)
+ ;;=3^Cyclical Vomiting Intractable
+ ;;^UTILITY(U,$J,358.3,32320,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,32320,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,32321,0)
+ ;;=G43.819^^190^1950^23
+ ;;^UTILITY(U,$J,358.3,32321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32321,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,32321,1,4,0)
+ ;;=4^G43.819
+ ;;^UTILITY(U,$J,358.3,32321,2)
+ ;;=^5003903
+ ;;^UTILITY(U,$J,358.3,32322,0)
+ ;;=G43.909^^190^1950^25
+ ;;^UTILITY(U,$J,358.3,32322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32322,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,32322,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,32322,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,32323,0)
+ ;;=G43.919^^190^1950^24
+ ;;^UTILITY(U,$J,358.3,32323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32323,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,32323,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,32323,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,32324,0)
+ ;;=G51.0^^190^1950^5
+ ;;^UTILITY(U,$J,358.3,32324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32324,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,32324,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,32324,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,32325,0)
+ ;;=G57.10^^190^1950^20
+ ;;^UTILITY(U,$J,358.3,32325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32325,1,3,0)
+ ;;=3^Meralgia Paresthetica Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,32325,1,4,0)
+ ;;=4^G57.10
+ ;;^UTILITY(U,$J,358.3,32325,2)
+ ;;=^5004041
+ ;;^UTILITY(U,$J,358.3,32326,0)
+ ;;=G57.12^^190^1950^21

@@ -1,6 +1,6 @@
 IBRFN3 ;ALB/ARH - PASS BILL/CLAIM TO AR ;3/18/96
- ;;2.0;INTEGRATED BILLING;**61,133,210,309,389**;21-MAR-94;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**61,133,210,309,389,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  Returns information on the bill passed in,  all data returned in external format, for AR's RC project
  ;
@@ -55,8 +55,12 @@ BILL(IBIFN,ARRAY) ; returns array of information on a specific bill, based on RC
  N IBI,IBJ,IBK,IBX,IBY,IBTMP,IBD0,IBDU,IBDU1,IBDI1,IBDS,IBDATE
  K ARRAY S ARRAY=1 I '$G(IBIFN)!($G(^DGCR(399,+$G(IBIFN),0))="") S ARRAY=0 Q
  F IBI=0,"U","U1","S" S @("IBD"_IBI)=$G(^DGCR(399,IBIFN,IBI))
- S IBX=$P(IBD0,U,21),IBX=$S(IBX="P":"I1",IBX="S":"I2",IBX="T":"I3",1:" ")
- S IBDI1=$G(^DGCR(399,IBIFN,IBX))
+ ;IB*2.0*516/TAZ - Call $$POLICY^IBCEF to insert HIPAA compliant fields into variable IBDI1. Data will
+ ;continue to be extracted from IBDI1 original location.
+ ;S IBX=$P(IBD0,U,21),IBX=$S(IBX="P":"I1",IBX="S":"I2",IBX="T":"I3",1:" ")
+ ;S IBDI1=$G(^DGCR(399,IBIFN,IBX))  ; 516 - baa
+ S IBX=$P(IBD0,U,21) ; Pass P, S, or T to $$POLICY^IBCEF
+ S IBDI1=$$POLICY^IBCEF(IBIFN,,IBX)  ; 516 - baa
  ;
  S ARRAY("TCG")=$P(IBDU1,U,1,3)
  S ARRAY("BN")=$P(IBD0,U,1)

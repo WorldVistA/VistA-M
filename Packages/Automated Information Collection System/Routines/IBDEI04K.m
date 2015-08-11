@@ -1,62 +1,142 @@
-IBDEI04K ; ; 09-FEB-2015
+IBDEI04K ; ; 20-MAY-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.5,0,"GL")
- ;;=^IBE(358.5,
- ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
- ;;=
- ;;^DIC(358.5,"%D",0)
- ;;=^^1^1^2940829^^^^
- ;;^DIC(358.5,"%D",1,0)
- ;;=Used by the import/export utility as a workspace.
- ;;^DIC(358.5,"%D",2,0)
- ;;= 
- ;;^DIC(358.5,"%D",3,0)
- ;;= 
- ;;^DIC(358.5,"%D",4,0)
- ;;=This file is nearly identical to file #357.5. It is used by the
- ;;^DIC(358.5,"%D",5,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.5,"%D",6,0)
- ;;=that is being imported or exported.
- ;;^DD(358.5,0)
- ;;=FIELD^^2^13
- ;;^DD(358.5,0,"DDA")
- ;;=N
- ;;^DD(358.5,0,"DT")
- ;;=2930730
- ;;^DD(358.5,0,"ID",.02)
- ;;=W ""
- ;;^DD(358.5,0,"ID",.03)
- ;;=W ""
- ;;^DD(358.5,0,"IX","B",358.5,.01)
- ;;=
- ;;^DD(358.5,0,"IX","C",358.5,.02)
- ;;=
- ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
- ;;=
- ;;^DD(358.5,0,"VRPK")
- ;;=IBD
- ;;^DD(358.5,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.5,.01,1,0)
- ;;=^.1
- ;;^DD(358.5,.01,1,1,0)
- ;;=358.5^B
- ;;^DD(358.5,.01,1,1,1)
- ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
- ;;^DD(358.5,.01,1,1,2)
- ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
- ;;^DD(358.5,.01,3)
- ;;=Answer must be 3-30 characters in length.
- ;;^DD(358.5,.01,21,0)
- ;;=^^3^3^2930419^^^
- ;;^DD(358.5,.01,21,1,0)
- ;;= 
- ;;^DD(358.5,.01,21,2,0)
- ;;=The name is used to identify the field within a block. It can be anything
- ;;^DD(358.5,.01,21,3,0)
- ;;=the designer of a form wants it to be.
- ;;^DD(358.5,.01,"DT")
- ;;=2930419
+ ;;^UTILITY(U,$J,358.3,1810,2)
+ ;;=^272168
+ ;;^UTILITY(U,$J,358.3,1811,0)
+ ;;=715.94^^17^160^44
+ ;;^UTILITY(U,$J,358.3,1811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1811,1,3,0)
+ ;;=3^Osteoarthros NOS-Hand
+ ;;^UTILITY(U,$J,358.3,1811,1,4,0)
+ ;;=4^715.94
+ ;;^UTILITY(U,$J,358.3,1811,2)
+ ;;=^272165
+ ;;^UTILITY(U,$J,358.3,1812,0)
+ ;;=715.96^^17^160^46
+ ;;^UTILITY(U,$J,358.3,1812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1812,1,3,0)
+ ;;=3^Osteoarthros NOS-L/Leg
+ ;;^UTILITY(U,$J,358.3,1812,1,4,0)
+ ;;=4^715.96
+ ;;^UTILITY(U,$J,358.3,1812,2)
+ ;;=^272167
+ ;;^UTILITY(U,$J,358.3,1813,0)
+ ;;=715.91^^17^160^48
+ ;;^UTILITY(U,$J,358.3,1813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1813,1,3,0)
+ ;;=3^Osteoarthros NOS-Shlder
+ ;;^UTILITY(U,$J,358.3,1813,1,4,0)
+ ;;=4^715.91
+ ;;^UTILITY(U,$J,358.3,1813,2)
+ ;;=^272162
+ ;;^UTILITY(U,$J,358.3,1814,0)
+ ;;=715.00^^17^160^14
+ ;;^UTILITY(U,$J,358.3,1814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1814,1,3,0)
+ ;;=3^General Osteoarthrosis
+ ;;^UTILITY(U,$J,358.3,1814,1,4,0)
+ ;;=4^715.00
+ ;;^UTILITY(U,$J,358.3,1814,2)
+ ;;=^272125
+ ;;^UTILITY(U,$J,358.3,1815,0)
+ ;;=716.91^^17^160^8
+ ;;^UTILITY(U,$J,358.3,1815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1815,1,3,0)
+ ;;=3^Arthropathy/Arthritis,Shoulder
+ ;;^UTILITY(U,$J,358.3,1815,1,4,0)
+ ;;=4^716.91
+ ;;^UTILITY(U,$J,358.3,1815,2)
+ ;;=^272248
+ ;;^UTILITY(U,$J,358.3,1816,0)
+ ;;=716.92^^17^160^9
+ ;;^UTILITY(U,$J,358.3,1816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1816,1,3,0)
+ ;;=3^Arthropathy/Arthritis,Upper Arm/Elbow
+ ;;^UTILITY(U,$J,358.3,1816,1,4,0)
+ ;;=4^716.92
+ ;;^UTILITY(U,$J,358.3,1816,2)
+ ;;=^272249
+ ;;^UTILITY(U,$J,358.3,1817,0)
+ ;;=716.93^^17^160^6
+ ;;^UTILITY(U,$J,358.3,1817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1817,1,3,0)
+ ;;=3^Arthropathy/Arthritis,Forearm/Wrist
+ ;;^UTILITY(U,$J,358.3,1817,1,4,0)
+ ;;=4^716.93
+ ;;^UTILITY(U,$J,358.3,1817,2)
+ ;;=^272250
+ ;;^UTILITY(U,$J,358.3,1818,0)
+ ;;=716.94^^17^160^7
+ ;;^UTILITY(U,$J,358.3,1818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1818,1,3,0)
+ ;;=3^Arthropathy/Arthritis,Hand
+ ;;^UTILITY(U,$J,358.3,1818,1,4,0)
+ ;;=4^716.94
+ ;;^UTILITY(U,$J,358.3,1818,2)
+ ;;=^272251
+ ;;^UTILITY(U,$J,358.3,1819,0)
+ ;;=715.31^^17^160^40
+ ;;^UTILITY(U,$J,358.3,1819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1819,1,3,0)
+ ;;=3^OA,localized,shoulder
+ ;;^UTILITY(U,$J,358.3,1819,1,4,0)
+ ;;=4^715.31
+ ;;^UTILITY(U,$J,358.3,1819,2)
+ ;;=^272150
+ ;;^UTILITY(U,$J,358.3,1820,0)
+ ;;=715.32^^17^160^41
+ ;;^UTILITY(U,$J,358.3,1820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1820,1,3,0)
+ ;;=3^OA,localized,upper arm
+ ;;^UTILITY(U,$J,358.3,1820,1,4,0)
+ ;;=4^715.32
+ ;;^UTILITY(U,$J,358.3,1820,2)
+ ;;=^272151
+ ;;^UTILITY(U,$J,358.3,1821,0)
+ ;;=715.33^^17^160^36
+ ;;^UTILITY(U,$J,358.3,1821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1821,1,3,0)
+ ;;=3^OA,localized,forearm
+ ;;^UTILITY(U,$J,358.3,1821,1,4,0)
+ ;;=4^715.33
+ ;;^UTILITY(U,$J,358.3,1821,2)
+ ;;=^272152
+ ;;^UTILITY(U,$J,358.3,1822,0)
+ ;;=715.34^^17^160^37
+ ;;^UTILITY(U,$J,358.3,1822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1822,1,3,0)
+ ;;=3^OA,localized,hand
+ ;;^UTILITY(U,$J,358.3,1822,1,4,0)
+ ;;=4^715.34
+ ;;^UTILITY(U,$J,358.3,1822,2)
+ ;;=^272153
+ ;;^UTILITY(U,$J,358.3,1823,0)
+ ;;=715.35^^17^160^38
+ ;;^UTILITY(U,$J,358.3,1823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1823,1,3,0)
+ ;;=3^OA,localized,hip
+ ;;^UTILITY(U,$J,358.3,1823,1,4,0)
+ ;;=4^715.35
+ ;;^UTILITY(U,$J,358.3,1823,2)
+ ;;=^272154
+ ;;^UTILITY(U,$J,358.3,1824,0)
+ ;;=715.36^^17^160^39
+ ;;^UTILITY(U,$J,358.3,1824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1824,1,3,0)
+ ;;=3^OA,localized,knee

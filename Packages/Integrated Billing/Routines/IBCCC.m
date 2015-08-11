@@ -1,6 +1,6 @@
 IBCCC ;ALB/AAS - CANCEL AND CLONE A BILL ;25-JAN-90
- ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,433,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,433,432,447,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC
  ;
@@ -13,10 +13,19 @@ IBCCC ;ALB/AAS - CANCEL AND CLONE A BILL ;25-JAN-90
  ;STEP 5 - get remainder of data to move and store in MCCR then x-ref
  ;STEP 6 - go to screens, come out to IBB1 
 EN ;
- N IBBCF,IBBCT,IBBCB,IBCCR,IBDBC,IBCNCOPY
+ N IBBCF,IBBCT,IBBCB,IBCCR,IBDBC,IBCNCOPY,IBNOCALC
  S IBDBC=DT    ;date claim was cloned
  S IBBCB=DUZ   ;user-id of person cloning the claim.
  S IBCNCOPY=1 ; flag indicating this function is entered as the copy/cancel option
+ ;
+ ; MRD;IB*2.0*516 - Added the flag IBNOCALC.  This flag is set here and
+ ; below.  When charges are recalculated in BILL^IBCRBC, the first time
+ ; that procedure is entered for the new claim, if the IBNOCALC flag is
+ ; set, it will reset the flag and quit out.  That is, it does not re-
+ ; calculate the charges the first time it otherwise would if the user
+ ; is doing either a CRD or CLON.
+ ;
+ S IBNOCALC=1
  ;
 STEP1 I $G(IBCE("EDI"))>1 G END1
  S IBCAN=2,IBQUIT=0,IBAC=6,IBU="UNSPECIFIED"
@@ -61,7 +70,7 @@ END W:$G(IBSILENT)="" !!,"No Billing Record Set up.  You must manually enter the
 END1 K %,%DT,IBCAN,IBAC,IBND0,IBNDU,IBYN,IBCCCC,IBIFN,IB,IBA,IBNWBL,IBBT,IBIDS,IBU,I,J,VA,VADM,X,X1,X2,X3,X4,D,Y
  ;I '$G(IBQUIT),$S(+$G(IBCNCOPY):1,1:'$G(IBCE("EDI"))) G STEP1
  I '$G(IBQUIT),$S(+$G(IBCNCOPY)!(+$G(IBCNCRD)):1,1:'$G(IBCE("EDI"))) G STEP1
- K IBQUIT,IBCNCOPY,IBCNCRD
+ K IBQUIT,IBCNCOPY,IBCNCRD,IBNOCALC
  Q
  ;
 ITN(IBX) ; determine iteration # for rejected or denied claim
@@ -77,10 +86,20 @@ ITN(IBX) ; determine iteration # for rejected or denied claim
  Q $P(IBCL,"-")_"-"_IBITN
  ;
 CRD ; new entry point if user comes from CRD option instead of CLON  
- N IBBCF,IBBCT,IBBCB,IBCCR,IBDBC,IBCNCRD,IBITN
+ N IBBCF,IBBCT,IBBCB,IBCCR,IBDBC,IBCNCRD,IBITN,IBNOCALC
  S IBDBC=DT    ;date claim was cloned
  S IBBCB=DUZ   ;user-id of person cloning the claim.
  S IBCNCRD=1 ; flag indicating this function is entered as the CRD option
+ ;
+ ; MRD;IB*2.0*516 - Added the flag IBNOCALC.  This flag is set here and
+ ; above.  When charges are recalculated in BILL^IBCRBC, the first time
+ ; that procedure is entered for the new claim, if the IBNOCALC flag is
+ ; set, it will reset the flag and quit out.  That is, it does not re-
+ ; calculate the charges the first time it otherwise would if the user
+ ; is doing either a CRD or CLON.
+ ;
+ S IBNOCALC=1
+ ;
  G STEP1
  Q
  ;

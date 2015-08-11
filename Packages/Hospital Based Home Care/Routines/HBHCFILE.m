@@ -1,5 +1,12 @@
 HBHCFILE ; LR VAMC(IRMS)/MJT-HBHC populates ^HBHC(632) visit file, & ^HBHC(634), file for transmitting to Austin, calls ^HBHCAPPT, ^HBHCXMC, ^HBHCXMA, ^HBHCXMV, ^HBHCXMD, & HBHCXMM ; Nov 1999
- ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,8,9,10,16,21,24**;NOV 01, 1993;Build 201
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,8,9,10,16,21,24,27**;NOV 01, 1993;Build 2
+ ;
+ ;
+ ; Reference/ICR
+ ; PATIENT FILE/10035
+ ; REGISTRATION/3744
+ ;
+ ;
  I $P(^HBHC(631.9,1,0),U,5)="" W !!,"***  NOTICE:  Hospital Number is missing from System Parameter file (#631.9).",!,"Transmission file building CANNOT proceed without this information.  Contact"
  I $P(^HBHC(631.9,1,0),U,5)="" W !,"IRM to enter this information using FileMan.",! H 10 Q
  L +^HBHC(634.5,0):0 I '$T W $C(7),!!,"Another user has the pseudo SSN file locked." H 3 G EXIT
@@ -43,7 +50,7 @@ PLOOP ; Loop thru ^HBHC(632,"C" Appointment Date cross-ref & flag as 'P' (Record
  S HBHCAPDT=0,DIE="^HBHC(632,",DR="7///P"
  F  S HBHCAPDT=$O(^HBHC(632,"C",HBHCAPDT)) Q:(HBHCAPDT'>0)!(HBHCAPDT>HBHCSTDT)  S DA="" F  S DA=$O(^HBHC(632,"C",HBHCAPDT,DA)) Q:DA'>0  D:'$D(^HBHC(632,"AC","P",DA)) ^DIE
 POP ; Populate ^HBHC(634) or ^HBHC(634.1/634.2/634.3/634.5/634.7 Error files
- D ^HBHCAPPT,^HBHCXMC,^HBHCXMA,^HBHCXMV,^HBHCXMD
+ D ^HBHCAPPT,^HBHCXMC,^HBHCXMA,^HBHCXMV,^HBHCXMD,TPATCHK
  ; MFH Sanction Date must exist for MFH data to be included in Austin transmit
  D:$P(^HBHC(631.9,1,0),U,9)]"" ^HBHCXMM
  ; Cleanup potential scrogged HBHC(632,"AC" cross-ref on Form 4 Transmit Status field (#7) as failsafe
@@ -53,6 +60,16 @@ POP ; Populate ^HBHC(634) or ^HBHC(634.1/634.2/634.3/634.5/634.7 Error files
 EXIT ; Exit module
  L -^HBHC(634.5,0)
  K DA,DIE,DIR,DIRUT,DR,DTOUT,DUOUT,HBHCAPDT,HBHCCKDT,HBHCDAT,HBHCDAYS,HBHCDTE,HBHCDIR,HBHCFLAG,HBHCLEAP,HBHCLSDT,HBHCNOW,HBHCSTDT,HBHCYEAR,%,TMP,X,X1,X2,Y
+ Q
+TPATCHK ; HBH*1.0*27 ; Identify and remove test patients from the HBHC TRANSMIT file
+ N HBHCSSN,HBHCTRDAT,HBHCDFN,HBHCTRIEN
+ S HBHCTRDAT=0 F  S HBHCTRDAT=$O(^HBHC(634,"B",HBHCTRDAT)) Q:HBHCTRDAT'>0  D
+ .S HBHCSSN=$E(HBHCTRDAT,9,17)
+ .S HBHCDFN=$O(^DPT("SSN",HBHCSSN,0))
+ .I $$TESTPAT^VADPT(HBHCDFN) D
+ ..S HBHCTRIEN=$O(^HBHC(634,"B",HBHCTRDAT,0))
+ ..N DIK,DA
+ ..S DIK="^HBHC(634,",DA=HBHCTRIEN D ^DIK
  Q
 MAIL ; Send completed mail message
  S TMP(1)=$P(HBHCDAT,"@")_" HBHC Build Transmit File is complete with no errors found.",TMP(2)="",TMP(3)="   Number of Visit Days to Scan system parameter:  "_$P(^HBHC(631.9,1,0),U,4),TMP(4)=""

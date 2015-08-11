@@ -1,126 +1,138 @@
-IBDEI115 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI115 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18467,0)
- ;;=110.4^^121^1169^15
- ;;^UTILITY(U,$J,358.3,18467,1,0)
+ ;;^UTILITY(U,$J,358.3,18352,1,2,0)
+ ;;=2^305.70
+ ;;^UTILITY(U,$J,358.3,18352,1,5,0)
+ ;;=5^Amphetamine Abuse
+ ;;^UTILITY(U,$J,358.3,18352,2)
+ ;;=^268250
+ ;;^UTILITY(U,$J,358.3,18353,0)
+ ;;=305.73^^101^1054^19
+ ;;^UTILITY(U,$J,358.3,18353,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18467,1,3,0)
- ;;=3^110.4
- ;;^UTILITY(U,$J,358.3,18467,1,5,0)
- ;;=5^Dermatophytosis of foot
- ;;^UTILITY(U,$J,358.3,18467,2)
- ;;=^33168
- ;;^UTILITY(U,$J,358.3,18468,0)
- ;;=250.00^^121^1169^4
- ;;^UTILITY(U,$J,358.3,18468,1,0)
+ ;;^UTILITY(U,$J,358.3,18353,1,2,0)
+ ;;=2^305.73
+ ;;^UTILITY(U,$J,358.3,18353,1,5,0)
+ ;;=5^Amphetamine Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,18353,2)
+ ;;=^268253
+ ;;^UTILITY(U,$J,358.3,18354,0)
+ ;;=304.50^^101^1054^62
+ ;;^UTILITY(U,$J,358.3,18354,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18468,1,3,0)
- ;;=3^250.00
- ;;^UTILITY(U,$J,358.3,18468,1,5,0)
- ;;=5^DM II w/o complication 
- ;;^UTILITY(U,$J,358.3,18468,2)
- ;;=^33605
- ;;^UTILITY(U,$J,358.3,18469,0)
- ;;=250.01^^121^1169^3
- ;;^UTILITY(U,$J,358.3,18469,1,0)
+ ;;^UTILITY(U,$J,358.3,18354,1,2,0)
+ ;;=2^304.50
+ ;;^UTILITY(U,$J,358.3,18354,1,5,0)
+ ;;=5^Hallucinogen Dependence
+ ;;^UTILITY(U,$J,358.3,18354,2)
+ ;;=^53744
+ ;;^UTILITY(U,$J,358.3,18355,0)
+ ;;=304.53^^101^1054^59
+ ;;^UTILITY(U,$J,358.3,18355,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18469,1,3,0)
- ;;=3^250.01
- ;;^UTILITY(U,$J,358.3,18469,1,5,0)
- ;;=5^DM I w/o complication 
- ;;^UTILITY(U,$J,358.3,18469,2)
- ;;=^33586
- ;;^UTILITY(U,$J,358.3,18470,0)
- ;;=838.00^^121^1169^20
- ;;^UTILITY(U,$J,358.3,18470,1,0)
+ ;;^UTILITY(U,$J,358.3,18355,1,2,0)
+ ;;=2^304.53
+ ;;^UTILITY(U,$J,358.3,18355,1,5,0)
+ ;;=5^Hallucinogen Dep-Remission
+ ;;^UTILITY(U,$J,358.3,18355,2)
+ ;;=^268210
+ ;;^UTILITY(U,$J,358.3,18356,0)
+ ;;=305.30^^101^1054^56
+ ;;^UTILITY(U,$J,358.3,18356,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18470,1,3,0)
- ;;=3^838.00
- ;;^UTILITY(U,$J,358.3,18470,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; foot, unspecified
- ;;^UTILITY(U,$J,358.3,18470,2)
- ;;=^274391
- ;;^UTILITY(U,$J,358.3,18471,0)
- ;;=838.01^^121^1169^21
- ;;^UTILITY(U,$J,358.3,18471,1,0)
+ ;;^UTILITY(U,$J,358.3,18356,1,2,0)
+ ;;=2^305.30
+ ;;^UTILITY(U,$J,358.3,18356,1,5,0)
+ ;;=5^Hallucinogen Abuse
+ ;;^UTILITY(U,$J,358.3,18356,2)
+ ;;=^53741
+ ;;^UTILITY(U,$J,358.3,18357,0)
+ ;;=305.33^^101^1054^55
+ ;;^UTILITY(U,$J,358.3,18357,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18471,1,3,0)
- ;;=3^838.01
- ;;^UTILITY(U,$J,358.3,18471,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; tarsal(bone), joint unspecified 
- ;;^UTILITY(U,$J,358.3,18471,2)
- ;;=^274394
- ;;^UTILITY(U,$J,358.3,18472,0)
- ;;=838.02^^121^1169^22
- ;;^UTILITY(U,$J,358.3,18472,1,0)
+ ;;^UTILITY(U,$J,358.3,18357,1,2,0)
+ ;;=2^305.33
+ ;;^UTILITY(U,$J,358.3,18357,1,5,0)
+ ;;=5^Hallucinog Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,18357,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,18358,0)
+ ;;=304.60^^101^1054^54
+ ;;^UTILITY(U,$J,358.3,18358,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18472,1,3,0)
- ;;=3^838.02
- ;;^UTILITY(U,$J,358.3,18472,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; midtarsal (joint)
- ;;^UTILITY(U,$J,358.3,18472,2)
- ;;=^274395
- ;;^UTILITY(U,$J,358.3,18473,0)
- ;;=838.03^^121^1169^23
- ;;^UTILITY(U,$J,358.3,18473,1,0)
+ ;;^UTILITY(U,$J,358.3,18358,1,2,0)
+ ;;=2^304.60
+ ;;^UTILITY(U,$J,358.3,18358,1,5,0)
+ ;;=5^Drug Dependence, Other
+ ;;^UTILITY(U,$J,358.3,18358,2)
+ ;;=^88038
+ ;;^UTILITY(U,$J,358.3,18359,0)
+ ;;=304.63^^101^1054^51
+ ;;^UTILITY(U,$J,358.3,18359,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18473,1,3,0)
- ;;=3^838.03
- ;;^UTILITY(U,$J,358.3,18473,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; tarsometatarsal (joint)
- ;;^UTILITY(U,$J,358.3,18473,2)
- ;;=^274396
- ;;^UTILITY(U,$J,358.3,18474,0)
- ;;=838.04^^121^1169^24
- ;;^UTILITY(U,$J,358.3,18474,1,0)
+ ;;^UTILITY(U,$J,358.3,18359,1,2,0)
+ ;;=2^304.63
+ ;;^UTILITY(U,$J,358.3,18359,1,5,0)
+ ;;=5^Drug Depend Other-Remission
+ ;;^UTILITY(U,$J,358.3,18359,2)
+ ;;=^268213
+ ;;^UTILITY(U,$J,358.3,18360,0)
+ ;;=305.90^^101^1054^76
+ ;;^UTILITY(U,$J,358.3,18360,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18474,1,3,0)
- ;;=3^838.04
- ;;^UTILITY(U,$J,358.3,18474,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; metatarsal(bone), joint unspecified
- ;;^UTILITY(U,$J,358.3,18474,2)
- ;;=^274397
- ;;^UTILITY(U,$J,358.3,18475,0)
- ;;=838.05^^121^1169^25
- ;;^UTILITY(U,$J,358.3,18475,1,0)
+ ;;^UTILITY(U,$J,358.3,18360,1,2,0)
+ ;;=2^305.90
+ ;;^UTILITY(U,$J,358.3,18360,1,5,0)
+ ;;=5^Other Drug Abuse
+ ;;^UTILITY(U,$J,358.3,18360,2)
+ ;;=^268258
+ ;;^UTILITY(U,$J,358.3,18361,0)
+ ;;=305.93^^101^1054^79
+ ;;^UTILITY(U,$J,358.3,18361,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18475,1,3,0)
- ;;=3^838.05
- ;;^UTILITY(U,$J,358.3,18475,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; metatarsophalangeal(joint)
- ;;^UTILITY(U,$J,358.3,18475,2)
- ;;=^274398
- ;;^UTILITY(U,$J,358.3,18476,0)
- ;;=838.06^^121^1169^26
- ;;^UTILITY(U,$J,358.3,18476,1,0)
+ ;;^UTILITY(U,$J,358.3,18361,1,2,0)
+ ;;=2^305.93
+ ;;^UTILITY(U,$J,358.3,18361,1,5,0)
+ ;;=5^Other Drug Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,18361,2)
+ ;;=^268261
+ ;;^UTILITY(U,$J,358.3,18362,0)
+ ;;=304.70^^101^1054^65
+ ;;^UTILITY(U,$J,358.3,18362,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18476,1,3,0)
- ;;=3^838.06
- ;;^UTILITY(U,$J,358.3,18476,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; interphalangeal(joint) foot
- ;;^UTILITY(U,$J,358.3,18476,2)
- ;;=^274399
- ;;^UTILITY(U,$J,358.3,18477,0)
- ;;=838.09^^121^1169^27
- ;;^UTILITY(U,$J,358.3,18477,1,0)
+ ;;^UTILITY(U,$J,358.3,18362,1,2,0)
+ ;;=2^304.70
+ ;;^UTILITY(U,$J,358.3,18362,1,5,0)
+ ;;=5^Opioid + Other Depend
+ ;;^UTILITY(U,$J,358.3,18362,2)
+ ;;=^268214
+ ;;^UTILITY(U,$J,358.3,18363,0)
+ ;;=304.73^^101^1054^64
+ ;;^UTILITY(U,$J,358.3,18363,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18477,1,3,0)
- ;;=3^838.09
- ;;^UTILITY(U,$J,358.3,18477,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; other, toe(s)
- ;;^UTILITY(U,$J,358.3,18477,2)
- ;;=^274400
- ;;^UTILITY(U,$J,358.3,18478,0)
- ;;=12.5^1^121^1169^16^-DIABETES MELLITUS^1^1
- ;;^UTILITY(U,$J,358.3,18478,1,0)
+ ;;^UTILITY(U,$J,358.3,18363,1,2,0)
+ ;;=2^304.73
+ ;;^UTILITY(U,$J,358.3,18363,1,5,0)
+ ;;=5^Opioid + Other Dep-Remis
+ ;;^UTILITY(U,$J,358.3,18363,2)
+ ;;=^268217
+ ;;^UTILITY(U,$J,358.3,18364,0)
+ ;;=304.80^^101^1054^50
+ ;;^UTILITY(U,$J,358.3,18364,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18478,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,18478,1,5,0)
- ;;=5
- ;;^UTILITY(U,$J,358.3,18479,0)
- ;;=64.5^1^121^1169^19^-Dislocation^1^1
- ;;^UTILITY(U,$J,358.3,18479,1,0)
+ ;;^UTILITY(U,$J,358.3,18364,1,2,0)
+ ;;=2^304.80
+ ;;^UTILITY(U,$J,358.3,18364,1,5,0)
+ ;;=5^Combination Drug Dep
+ ;;^UTILITY(U,$J,358.3,18364,2)
+ ;;=^268218
+ ;;^UTILITY(U,$J,358.3,18365,0)
+ ;;=304.83^^101^1054^47
+ ;;^UTILITY(U,$J,358.3,18365,1,0)
  ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18365,1,2,0)
+ ;;=2^304.83
+ ;;^UTILITY(U,$J,358.3,18365,1,5,0)
+ ;;=5^Comb Drug Dep-Remission

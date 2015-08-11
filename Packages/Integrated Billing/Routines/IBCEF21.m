@@ -1,6 +1,6 @@
 IBCEF21 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS CONTINUED ; 3/9/11 1:12pm
- ;;2.0;INTEGRATED BILLING;**51,296,371,389,448**;21-MAR-94;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,296,371,389,448,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 COID(IBIFN) ; Claim office ID
  N IBCOID,IBCOID1,IBIN
@@ -103,11 +103,13 @@ INSSECID(IBIFN,TYPE,SEQ) ; Extract subscriber and patient prim/sec ID's
  I '$F(".1.2.3.","."_SEQ_".") G INSSX
  S DFN=+$P($G(^DGCR(399,IBIFN,0)),U,2) I 'DFN G INSSX
  S POL=+$P($G(^DGCR(399,IBIFN,"M")),U,SEQ+11) I 'POL G INSSX
- S IB0=$G(^DPT(DFN,.312,POL,0)) I IB0="" G INSSX
+ ;IB*2.0*516/baa - Use HIPAA compliant fields
+ ;S IB0=$G(^DPT(DFN,.312,POL,0)) I IB0="" G INSSX ;516 - baa
+ S IB0=$$ZND^IBCNS1(DFN,POL) I IB0="" G INSSX  ;516 - baa
  S IB5=$G(^DPT(DFN,.312,POL,5))
  S REL=+$P(IB0,U,16)                      ; pat rel to insured
  S $P(DATA,U,1)="MI"
- S $P(DATA,U,2)=$P(IB0,U,2)               ; subscriber primary ID
+ S $P(DATA,U,2)=$P(IB0,U,2)               ; subscriber primary ID 
  S $P(DATA,U,3,8)=$P(IB5,U,2,7)           ; subscriber secondary data
  I TYPE="PAT",REL'=1 D
  . S $P(DATA,U,2)=$P(IB5,U,1)             ; patient primary ID

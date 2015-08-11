@@ -1,5 +1,5 @@
 VBECRPCC ;HOIFO/bnt - VBECS VistALink RPC Client Utilities ;07/27/2002  13:00
- ;;1.0;VBECS;;Apr 14, 2005;Build 35
+ ;;1.0;VBECS;**54**;Apr 14, 2005;Build 19
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -22,7 +22,7 @@ EXECUTE(VBECPRMS) ; -- execute rpc call
  ;
  ; -- call method to build request from parameters array
  DO REQUEST(.VBECPRMS)
- SET VBECPRMS("CLOSE MESSAGE")="<VistaLink messageType='gov.va.med.foundations.rpc.request' ></VistaLink>"
+ ;SET VBECPRMS("CLOSE MESSAGE")="<VistaLink messageType='gov.va.med.foundations.rpc.request' ></VistaLink>"
  IF $G(VBECPRMS("RESULTS"))="" SET VBECPRMS("RESULTS")=$NA(^TMP("VBECRPC",$J,"XML"))
  QUIT $$EXECUTE^VBECVLC(.VBECPRMS)
  ;

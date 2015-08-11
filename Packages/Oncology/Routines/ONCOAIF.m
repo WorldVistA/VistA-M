@@ -1,5 +1,5 @@
 ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
 BEG W @IOF,!," Post/Edit Follow-up"
  W !," -------------------",!
@@ -145,7 +145,11 @@ RECPF K DIQ,ONC S DIC="^ONCO(160,",DR=".01;2;3;8;10;15",DA=ONCOD0,DIQ="ONC"
  D SUM
  K DIC W !?1,"Select Primary for Recurrence: ",!
  ;S D="C",DIC="^ONCO(165.5,",X=ONCOD0,DIC(0)="EFZ" D IX^DIC G:Y<0 REC
- S D="C",DIC="^ONCO(165.5,",X=ONCOD0,DIC(0)="EFZ" D IX^DIC G:Y<0 KILL
+ ;added Type of First Recurrence P *2.2*4
+ N ONC16012,ONC1655
+ S D="C",DIC="^ONCO(165.5,",X=ONCOD0,DIC(0)="EFZ"
+ S DIC("W")="S ONC16012=$P($G(^(5)),U,2),ONC1655=+Y D FST^ONCODSP"
+ D IX^DIC G:Y<0 KILL
  I Y'=" " S (ONCOD0P,DA)=+Y,DR="[ONCO RECURRENCE FOLLOWUP]",DIE="^ONCO(165.5,",DATEDX=$P(^ONCO(165.5,DA,0),U,16),TX=$P($G(^ONCO(165.5,DA,2)),U,1) D ^DIE D CHKCHG S AB=2,ONCOD0P=D0 G EN:$D(ONCRFOPT)
  G KILL Q
  ;

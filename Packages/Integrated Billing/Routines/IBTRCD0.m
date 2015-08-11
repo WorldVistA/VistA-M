@@ -1,6 +1,6 @@
 IBTRCD0 ;ALB/AAS - CLAIMS TRACKING - EXPAND CONTACTS SCREEN - CONT ; 02-JUL-1993
- ;;2.0;INTEGRATED BILLING;**458**;21-MAR-94;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**458,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ;
 EN D CONT,APPEAL,INS,COMM,USER
@@ -47,8 +47,11 @@ ENINS ; -- entry point, must set start and offset
  Q
 INS1 ; -- second site of Ins. info
  S OFFSET=45
- D SET^IBCNSP(START+1,OFFSET,"Subscriber Name: "_$P(IBCDFND,"^",17))
- D SET^IBCNSP(START+2,OFFSET,"  Subscriber ID: "_$P(IBCDFND,"^",2))
+ ;IB*2.0*516/TAZ - Use HIPAA Compliant fields
+ ;D SET^IBCNSP(START+1,OFFSET,"Subscriber Name: "_$P(IBCDFND,"^",17))
+ ;D SET^IBCNSP(START+2,OFFSET,"  Subscriber ID: "_$P(IBCDFND,"^",2))
+ D SET^IBCNSP(START+1,OFFSET,"Subscriber Name: "_$$GET1^DIQ(2.312,+$P(IBTRCD1,"^",5)_","_DFN_",",7.01))
+ D SET^IBCNSP(START+2,OFFSET,"  Subscriber ID: "_$$GET1^DIQ(2.312,+$P(IBTRCD1,"^",5)_","_DFN_",",7.02))
  D SET^IBCNSP(START+3,OFFSET," Effective Date: "_$$DAT1^IBOUTL($P(IBCDFND,"^",8),"2P"))
  D SET^IBCNSP(START+4,OFFSET,"Expiration Date: "_$$DAT1^IBOUTL($P(IBCDFND,"^",4),"2P"))
  Q

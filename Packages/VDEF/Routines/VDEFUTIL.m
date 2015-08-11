@@ -1,6 +1,6 @@
 VDEFUTIL ;INTEGIC/AM & BPOIFO/JG - VDEF Utilities ;05/11/2012
- ;;1.0;VDEF;**3,10,11**;Dec 28, 2004;Build 9
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;VDEF;**3,10,11,12**;Dec 28, 2004;Build 2
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IA: #10103 - $$HTE^XLFDT
  ;
@@ -70,8 +70,9 @@ TIMEI(T) ;
  I DONE Q ""
  ;W !,$G(D),"D ",$G(H),"H ",$G(M),"M ",$G(S),"S",!
  S TIME=TIME+($G(D)*86400)+($G(H)*3600)+($G(M)*60)+$G(S)
+ ;VDEF*1*12 RRA ticket 1065808 restrict to 30 days directly in input transform
  ;minimum time is 30 days, mandated by customer
- I TIME<(30*24*60*60) Q ""
+ ;I TIME<(30*24*60*60) Q ""
  Q TIME
  ;
 TIMEE(T) ;

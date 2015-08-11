@@ -1,6 +1,6 @@
 IBJTU1 ;ALB/ARH - TPI UTILITIES ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,276,451**;21-MAR-94;Build 47
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,276,451,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PRVSCR(SCRNARR) ; called as part of a screen ACTION PROTOCOL'S ENTRY ACTION to determine if screen has already been displayed
  ; returns true if screen array already exists (ie. already displayed), 
@@ -15,7 +15,10 @@ HDR(IBIFN,DFN,LNS) ; called by a screens's LIST TEMPLATE HEADER to get lines for
  ;
  N X,Y,Z,IBD0,IBPD0,IBDI1,IBCNT S IBIFN=+$G(IBIFN),DFN=+$G(DFN),LNS=+$G(LNS) K VALMHDR
  S IBCNT=0,IBD0=$G(^DGCR(399,+IBIFN,0)),IBPD0=$G(^DPT(+DFN,0))
- S IBDI1=$P(IBD0,U,21),IBDI1=$S(IBDI1="S":"I2",IBDI1="T":"I3",1:"I1"),IBDI1=$G(^DGCR(399,+IBIFN,IBDI1))
+ ;IB*2.0*516/TAZ - Call $$POLICY^IBCEF to insert HIPAA compliant fields into variable IBDI1. Data will
+ ;continue to be extracted from IBDI1 original location.
+ ;S IBDI1=$P(IBD0,U,21),IBDI1=$S(IBDI1="S":"I2",IBDI1="T":"I3",1:"I1"),IBDI1=$G(^DGCR(399,+IBIFN,IBDI1))
+ S IBDI1=$P(IBD0,U,21),IBDI1=$$POLICY^IBCEF(IBIFN,,IBDI1)  ; 516 - baa
  ;
 1 I LNS'[1 G 2
  ; -- first line of screens: BILL NUMBER, PAT NAME, PAT ID, DOB, SUBSCRIBER ID

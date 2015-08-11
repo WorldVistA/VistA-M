@@ -1,0 +1,132 @@
+IBDEI1NH ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,29679,1,4,0)
+ ;;=4^R10.30
+ ;;^UTILITY(U,$J,358.3,29679,2)
+ ;;=^5019210
+ ;;^UTILITY(U,$J,358.3,29680,0)
+ ;;=R10.2^^189^1890^8
+ ;;^UTILITY(U,$J,358.3,29680,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29680,1,3,0)
+ ;;=3^Pelvic/Perineal Pain
+ ;;^UTILITY(U,$J,358.3,29680,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,29680,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,29681,0)
+ ;;=R10.10^^189^1890^12
+ ;;^UTILITY(U,$J,358.3,29681,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29681,1,3,0)
+ ;;=3^Upper Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,29681,1,4,0)
+ ;;=4^R10.10
+ ;;^UTILITY(U,$J,358.3,29681,2)
+ ;;=^5019205
+ ;;^UTILITY(U,$J,358.3,29682,0)
+ ;;=Z48.00^^189^1891^12
+ ;;^UTILITY(U,$J,358.3,29682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29682,1,3,0)
+ ;;=3^Change/Removal Nonsurgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,29682,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,29682,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,29683,0)
+ ;;=Z48.01^^189^1891^13
+ ;;^UTILITY(U,$J,358.3,29683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29683,1,3,0)
+ ;;=3^Change/Removal Surgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,29683,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,29683,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,29684,0)
+ ;;=Z48.02^^189^1891^14
+ ;;^UTILITY(U,$J,358.3,29684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29684,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,29684,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,29684,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,29685,0)
+ ;;=Z48.3^^189^1891^4
+ ;;^UTILITY(U,$J,358.3,29685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29685,1,3,0)
+ ;;=3^Aftercare Following Neoplasm Surgery
+ ;;^UTILITY(U,$J,358.3,29685,1,4,0)
+ ;;=4^Z48.3
+ ;;^UTILITY(U,$J,358.3,29685,2)
+ ;;=^5063046
+ ;;^UTILITY(U,$J,358.3,29686,0)
+ ;;=Z48.810^^189^1891^7
+ ;;^UTILITY(U,$J,358.3,29686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29686,1,3,0)
+ ;;=3^Aftercare Following Sense Organ Surgery
+ ;;^UTILITY(U,$J,358.3,29686,1,4,0)
+ ;;=4^Z48.810
+ ;;^UTILITY(U,$J,358.3,29686,2)
+ ;;=^5063047
+ ;;^UTILITY(U,$J,358.3,29687,0)
+ ;;=Z48.811^^189^1891^5
+ ;;^UTILITY(U,$J,358.3,29687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29687,1,3,0)
+ ;;=3^Aftercare Following Nervous System Surgery
+ ;;^UTILITY(U,$J,358.3,29687,1,4,0)
+ ;;=4^Z48.811
+ ;;^UTILITY(U,$J,358.3,29687,2)
+ ;;=^5063048
+ ;;^UTILITY(U,$J,358.3,29688,0)
+ ;;=Z48.812^^189^1891^1
+ ;;^UTILITY(U,$J,358.3,29688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29688,1,3,0)
+ ;;=3^Aftercare Following Circulatory System Surgery
+ ;;^UTILITY(U,$J,358.3,29688,1,4,0)
+ ;;=4^Z48.812
+ ;;^UTILITY(U,$J,358.3,29688,2)
+ ;;=^5063049
+ ;;^UTILITY(U,$J,358.3,29689,0)
+ ;;=Z48.813^^189^1891^6
+ ;;^UTILITY(U,$J,358.3,29689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29689,1,3,0)
+ ;;=3^Aftercare Following Respiratory System Surgery
+ ;;^UTILITY(U,$J,358.3,29689,1,4,0)
+ ;;=4^Z48.813
+ ;;^UTILITY(U,$J,358.3,29689,2)
+ ;;=^5063050
+ ;;^UTILITY(U,$J,358.3,29690,0)
+ ;;=Z48.814^^189^1891^10
+ ;;^UTILITY(U,$J,358.3,29690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29690,1,3,0)
+ ;;=3^Aftercare Following Teeth/Oral Cavity Surgery
+ ;;^UTILITY(U,$J,358.3,29690,1,4,0)
+ ;;=4^Z48.814
+ ;;^UTILITY(U,$J,358.3,29690,2)
+ ;;=^5063051
+ ;;^UTILITY(U,$J,358.3,29691,0)
+ ;;=Z48.815^^189^1891^2
+ ;;^UTILITY(U,$J,358.3,29691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29691,1,3,0)
+ ;;=3^Aftercare Following Digestive System Surgery
+ ;;^UTILITY(U,$J,358.3,29691,1,4,0)
+ ;;=4^Z48.815
+ ;;^UTILITY(U,$J,358.3,29691,2)
+ ;;=^5063052
+ ;;^UTILITY(U,$J,358.3,29692,0)
+ ;;=Z48.816^^189^1891^3
+ ;;^UTILITY(U,$J,358.3,29692,1,0)
+ ;;=^358.31IA^4^2

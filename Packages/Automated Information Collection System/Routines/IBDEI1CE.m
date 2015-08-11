@@ -1,140 +1,114 @@
-IBDEI1CE ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1CE ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24056,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,24057,0)
- ;;=99243^^154^1533^3
- ;;^UTILITY(U,$J,358.3,24057,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24057,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,24057,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,24058,0)
- ;;=99244^^154^1533^4
- ;;^UTILITY(U,$J,358.3,24058,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24058,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,24058,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,24059,0)
- ;;=99245^^154^1533^5
- ;;^UTILITY(U,$J,358.3,24059,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24059,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,24059,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,24060,0)
- ;;=443.9^^155^1534^18
- ;;^UTILITY(U,$J,358.3,24060,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24060,1,4,0)
- ;;=4^PVD
- ;;^UTILITY(U,$J,358.3,24060,1,5,0)
- ;;=5^443.9
- ;;^UTILITY(U,$J,358.3,24060,2)
- ;;=PVD^184182
- ;;^UTILITY(U,$J,358.3,24061,0)
- ;;=441.4^^155^1534^1
- ;;^UTILITY(U,$J,358.3,24061,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24061,1,4,0)
- ;;=4^Aneurysm,Abdom Aortic
- ;;^UTILITY(U,$J,358.3,24061,1,5,0)
- ;;=5^441.4
- ;;^UTILITY(U,$J,358.3,24061,2)
- ;;=^269769
- ;;^UTILITY(U,$J,358.3,24062,0)
- ;;=444.22^^155^1534^12
- ;;^UTILITY(U,$J,358.3,24062,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24062,1,4,0)
- ;;=4^Embolism/Thrombosis LE
- ;;^UTILITY(U,$J,358.3,24062,1,5,0)
- ;;=5^444.22
- ;;^UTILITY(U,$J,358.3,24062,2)
- ;;=^269790
- ;;^UTILITY(U,$J,358.3,24063,0)
- ;;=454.9^^155^1534^21
- ;;^UTILITY(U,$J,358.3,24063,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24063,1,4,0)
- ;;=4^Varicose Vein
- ;;^UTILITY(U,$J,358.3,24063,1,5,0)
- ;;=5^454.9
- ;;^UTILITY(U,$J,358.3,24063,2)
- ;;=^125437
- ;;^UTILITY(U,$J,358.3,24064,0)
- ;;=433.10^^155^1534^16
- ;;^UTILITY(U,$J,358.3,24064,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24064,1,4,0)
- ;;=4^Occ&Sten,Carotid Art
- ;;^UTILITY(U,$J,358.3,24064,1,5,0)
- ;;=5^433.10
- ;;^UTILITY(U,$J,358.3,24064,2)
- ;;=^295801
- ;;^UTILITY(U,$J,358.3,24065,0)
- ;;=454.0^^155^1534^22
- ;;^UTILITY(U,$J,358.3,24065,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24065,1,4,0)
- ;;=4^Varicose Vein w/ Ulcer
- ;;^UTILITY(U,$J,358.3,24065,1,5,0)
- ;;=5^454.0
- ;;^UTILITY(U,$J,358.3,24065,2)
- ;;=^125410
- ;;^UTILITY(U,$J,358.3,24066,0)
- ;;=444.21^^155^1534^13
- ;;^UTILITY(U,$J,358.3,24066,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24066,1,4,0)
- ;;=4^Embolism/Thrombosis UE
- ;;^UTILITY(U,$J,358.3,24066,1,5,0)
- ;;=5^444.21
- ;;^UTILITY(U,$J,358.3,24066,2)
- ;;=^269789
- ;;^UTILITY(U,$J,358.3,24067,0)
- ;;=433.80^^155^1534^17
- ;;^UTILITY(U,$J,358.3,24067,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24067,1,4,0)
- ;;=4^Occ&Sten,Precereb Art
- ;;^UTILITY(U,$J,358.3,24067,1,5,0)
- ;;=5^433.80
- ;;^UTILITY(U,$J,358.3,24067,2)
- ;;=^295804
- ;;^UTILITY(U,$J,358.3,24068,0)
- ;;=440.21^^155^1534^8
- ;;^UTILITY(U,$J,358.3,24068,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24068,1,4,0)
- ;;=4^Atherosclerosis w/ Claudication
- ;;^UTILITY(U,$J,358.3,24068,1,5,0)
- ;;=5^440.21
- ;;^UTILITY(U,$J,358.3,24068,2)
- ;;=^293885
- ;;^UTILITY(U,$J,358.3,24069,0)
- ;;=441.2^^155^1534^2
- ;;^UTILITY(U,$J,358.3,24069,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24069,1,4,0)
- ;;=4^Aneurysm,Thoracic
- ;;^UTILITY(U,$J,358.3,24069,1,5,0)
- ;;=5^441.2
- ;;^UTILITY(U,$J,358.3,24069,2)
- ;;=^269765
- ;;^UTILITY(U,$J,358.3,24070,0)
- ;;=428.0^^155^1534^10
- ;;^UTILITY(U,$J,358.3,24070,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24070,1,4,0)
- ;;=4^Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,24070,1,5,0)
- ;;=5^428.0
- ;;^UTILITY(U,$J,358.3,24070,2)
- ;;=^54758
+ ;;^UTILITY(U,$J,358.3,24074,1,2,0)
+ ;;=2^Open/Closed TX of Talus FX,w/internal fixation
+ ;;^UTILITY(U,$J,358.3,24074,1,3,0)
+ ;;=3^28445
+ ;;^UTILITY(U,$J,358.3,24075,0)
+ ;;=28450^^142^1497^10^^^^1
+ ;;^UTILITY(U,$J,358.3,24075,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24075,1,2,0)
+ ;;=2^TX of tarsal bone fracture; without manipulation, each 
+ ;;^UTILITY(U,$J,358.3,24075,1,3,0)
+ ;;=3^28450
+ ;;^UTILITY(U,$J,358.3,24076,0)
+ ;;=28455^^142^1497^11^^^^1
+ ;;^UTILITY(U,$J,358.3,24076,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24076,1,2,0)
+ ;;=2^TX of tarsal bone fracture; with manipulation, each
+ ;;^UTILITY(U,$J,358.3,24076,1,3,0)
+ ;;=3^28455
+ ;;^UTILITY(U,$J,358.3,24077,0)
+ ;;=28456^^142^1497^12^^^^1
+ ;;^UTILITY(U,$J,358.3,24077,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24077,1,2,0)
+ ;;=2^Perc Fixation Tarsal Fx
+ ;;^UTILITY(U,$J,358.3,24077,1,3,0)
+ ;;=3^28456
+ ;;^UTILITY(U,$J,358.3,24078,0)
+ ;;=28465^^142^1497^13^^^^1
+ ;;^UTILITY(U,$J,358.3,24078,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24078,1,2,0)
+ ;;=2^Open/Closed TX of tarsal FX,w/ internal fixation
+ ;;^UTILITY(U,$J,358.3,24078,1,3,0)
+ ;;=3^28465
+ ;;^UTILITY(U,$J,358.3,24079,0)
+ ;;=28470^^142^1497^14^^^^1
+ ;;^UTILITY(U,$J,358.3,24079,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24079,1,2,0)
+ ;;=2^Closed TX of metatarsal fracture; without manipulation, eachnt of me
+ ;;^UTILITY(U,$J,358.3,24079,1,3,0)
+ ;;=3^28470
+ ;;^UTILITY(U,$J,358.3,24080,0)
+ ;;=28475^^142^1497^15^^^^1
+ ;;^UTILITY(U,$J,358.3,24080,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24080,1,2,0)
+ ;;=2^Closed TX of metatarsal fracture; with manipulation, each
+ ;;^UTILITY(U,$J,358.3,24080,1,3,0)
+ ;;=3^28475
+ ;;^UTILITY(U,$J,358.3,24081,0)
+ ;;=28476^^142^1497^16^^^^1
+ ;;^UTILITY(U,$J,358.3,24081,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24081,1,2,0)
+ ;;=2^Perc Fixation Metatarsal Fx
+ ;;^UTILITY(U,$J,358.3,24081,1,3,0)
+ ;;=3^28476
+ ;;^UTILITY(U,$J,358.3,24082,0)
+ ;;=28485^^142^1497^17^^^^1
+ ;;^UTILITY(U,$J,358.3,24082,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24082,1,2,0)
+ ;;=2^Open/Closed TX of Metatarsal FX,w/internal fixation
+ ;;^UTILITY(U,$J,358.3,24082,1,3,0)
+ ;;=3^28485
+ ;;^UTILITY(U,$J,358.3,24083,0)
+ ;;=28490^^142^1497^18^^^^1
+ ;;^UTILITY(U,$J,358.3,24083,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24083,1,2,0)
+ ;;=2^Closed TX of fracture great toe, phalanx or phalanges; without manipulation
+ ;;^UTILITY(U,$J,358.3,24083,1,3,0)
+ ;;=3^28490
+ ;;^UTILITY(U,$J,358.3,24084,0)
+ ;;=28495^^142^1497^19^^^^1
+ ;;^UTILITY(U,$J,358.3,24084,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24084,1,2,0)
+ ;;=2^Closed TX of fracture great toe, phalanx or phalanges; with manipulation
+ ;;^UTILITY(U,$J,358.3,24084,1,3,0)
+ ;;=3^28495
+ ;;^UTILITY(U,$J,358.3,24085,0)
+ ;;=28496^^142^1497^20^^^^1
+ ;;^UTILITY(U,$J,358.3,24085,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24085,1,2,0)
+ ;;=2^Perc Fixation Great Toe Fx
+ ;;^UTILITY(U,$J,358.3,24085,1,3,0)
+ ;;=3^28496
+ ;;^UTILITY(U,$J,358.3,24086,0)
+ ;;=28505^^142^1497^21^^^^1
+ ;;^UTILITY(U,$J,358.3,24086,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24086,1,2,0)
+ ;;=2^Open TX of fracture great toe, phalanx or phalanges, with or without internal or external fixation
+ ;;^UTILITY(U,$J,358.3,24086,1,3,0)
+ ;;=3^28505
+ ;;^UTILITY(U,$J,358.3,24087,0)
+ ;;=28510^^142^1497^22^^^^1
+ ;;^UTILITY(U,$J,358.3,24087,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24087,1,2,0)
+ ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; without manipulation, each
+ ;;^UTILITY(U,$J,358.3,24087,1,3,0)
+ ;;=3^28510
+ ;;^UTILITY(U,$J,358.3,24088,0)
+ ;;=28515^^142^1497^23^^^^1

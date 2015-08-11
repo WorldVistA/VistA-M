@@ -1,5 +1,5 @@
 LA7VOBRB ;DALOI/JMC - LAB OBR segment builder (cont'd);Jan 8, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74**;Sep 27, 1994;Build 229
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74,85**;Sep 27, 1994;Build 4
  ;
  Q
  ;
@@ -27,6 +27,9 @@ OBR15 ; Build OBR-15 sequence - specimen source
  ; Send SNOMED as primary code
  ; If no SNOMED code and SNOMED only then allow HL7 
  I LA761,LA7SNM D
+ . ;check for override SNOMED CT ID
+ . I $G(LA76248)]"",$D(^LAHM(62.48,LA76248,"SCT","AC",LA761_";LAB(61,")) D
+ . . S $P(LA7ALT,"^",8)=$O(^LAHM(62.48,LA76248,"SCT","AC",LA761_";LAB(61,",0))
  . S LA7X=$$IEN2SCT^LA7VHLU6(61,LA761,DT,$P(LA7ALT,"^",8))
  . I LA7X="" S:LA7SNM=2 LA7SNM=1 Q
  . S $P(LA7X,"^",2)=$$CHKDATA^LA7VHLU3($P(LA7X,"^",2),LA7FS_LA7ECH)
@@ -95,6 +98,9 @@ OBR15 ; Build OBR-15 sequence - specimen source
  ; Send collection sample SNOMED CT code for DoD.
  I LA762,LA7SNM D
  . N LA7K,LA7Z
+ . ;check for override SNOMED CT ID
+ . I $G(LA76248)]"",$D(^LAHM(62.48,LA76248,"SCT","AC",LA762_";LAB(62,")) D
+ . . S $P(LA7ALT,"^",9)=$O(^LAHM(62.48,LA76248,"SCT","AC",LA762_";LAB(62,",0))
  . S LA7X=$$IEN2SCT^LA7VHLU6(62,LA762,DT,$P(LA7ALT,"^",9))
  . S $P(LA7X,"^",2)=$$CHKDATA^LA7VHLU3($P(LA7X,"^",2),LA7FS_LA7ECH)
  . S LA7K=$TR($P(LA7X,"^",1,3),"^",$E(LA7ECH,4))

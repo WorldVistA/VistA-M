@@ -1,6 +1,6 @@
-RCDPEM7 ;OIFO-BAYPINES/PJH - OVERDUE EFT AND ERA BULLETINS ;6/7/11 4:18pm
- ;;4.5;Accounts Receivable;**276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEM7 ;OIFO-BAYPINES/PJH - OVERDUE EFT AND ERA BULLETINS ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**276,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point for overdue EFT/ERA bulletins
  ;
@@ -78,7 +78,7 @@ EFTSCAN ;Scan EFT
  .;Deposit number and payment amount
  .S DEPN=$P(REC0,U,6),DEPAMT=$P(REC31,U,7)
  .;Payer ID and Trace from EFT detail file
- .S PAYER=$P(REC31,U,2),TRACE=$P(REC31,U,4)
+ .S PAYER=$P(REC31,U,2),TRACE=$P(REC31,U,4) S:PAYER="" PAYER="NO PAYER NAME RECEIVED" ; PRCA*4.5*298
  .;If payer and trace combined are >40 truncate payer name first
  .I $L(PAYER_TRACE)>40 D
  ..I $L(PAYER)>20 S PAYER=$E(PAYER,1,20) ; limit size of the name

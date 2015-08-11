@@ -1,6 +1,8 @@
-RCDPESR6 ;ALB/TMK/DWA - Server auto-update file 344.4 - EDI Lockbox ; 10/29/02
- ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271**;Mar 20, 1995;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPESR6 ;ALB/TMK/DWA - Server auto-update file 344.4 - EDI Lockbox ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
  ;
 UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  ; If passed by reference, RCRTOT is returned = "" if errors
@@ -10,8 +12,8 @@ UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  . ; Upd 344.41 with reference to this record if it doesn't already exist
  . I RCEOB>0 Q:$D(^RCY(344.4,RCRTOT,1,"AC",RCEOB,RC))
  . I RCEOB'>0,$S($P(RC1,U,2)'="":$D(^RCY(344.4,RCRTOT,1,"AD",$P(RC1,U,2),RC)),1:0) Q
- . ; Disregard ECME reject related EEOBs
- . I RCEOB'>0,'$P(RC2,U,2),$P(RC1,U,2)?1.12N,$$REJECT^IBNCPDPU($P(RC1,U,2),$P(RC1,U,3)) Q    ; esg 9/7/10 ECME# 12 digits
+ . ; Disregard ECME reject related EEOBs; ECME# can be 7 digits or 12 digits
+ . I RCEOB'>0,'$P(RC2,U,2),$$VALECME^BPSUTIL2($P(RC1,U,2)),$$REJECT^IBNCPDPU($P(RC1,U,2),$P(RC1,U,3)) Q
  . S DA(1)=RCRTOT,X=RC,DIC="^RCY(344.4,"_DA(1)_",1,",DIC(0)="L",DLAYGO=344.41
  . S DIC("DR")=$S($G(RCEOB)>0:".02////"_RCEOB,1:".05////"_$P(RC1,U,2)_";.07////1")
  . I $P(RC2,U,2)'="" S DIC("DR")=DIC("DR")_$S($L(DIC("DR")):";",1:"")_".03///"_$P(RC2,U,2) ; amt
@@ -28,6 +30,8 @@ UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  . S RCDPNM=$P(RC2,U,13) I $P(RC2,U,14)]"" S RCDPNM=RCDPNM_$S(RCDPNM]"":",",1:"")_$P(RC2,U,14)
  . S DIC("DR")=DIC("DR")_";.2////^S X=$P(RC2,U,12);.21////^S X=RCDPNM"  ; Entity Type Qualifier ^ Last name,First Name
  . S DIC("DR")=DIC("DR")_";.22////^S X=RCCOM1;.23////^S X=RCCOM2"  ;Comment on Billing provider^comment on rendering/servicing provider NPI
+ . I $$VALECME^BPSUTIL2($P(RC1,U,4)) D
+ .. S DIC("DR")=DIC("DR")_";.24////^S X=$P(RC1,U,4)"  ;Add ECME number (if valid) PRCA*4.5*298
  . D FILE^DICN K DO,DD,DLAYGO,DIC,DIK
  . S RCCT=+Y
  . I RCCT<0 D  Q
@@ -60,7 +64,7 @@ ERATOT(RCTDA,RCERR) ; File ERA TOTAL rec in 344.4 from entry RCTDA in 344.5
  I RCTRACE=""!(RCID="") S RCERR="Trace # or ins ID missing on ERA transaction.  An EEOB exception record was created." G ERATOTQ
  ; Make sure it's not already there
  S (RCDUP,Z1)=0
- F  S Z1=$O(^RCY(344.4,"ATRID",RCTRACE,RCID,Z1)) Q:'Z1  S Z0=$G(^RCY(344.4,Z1,0)) I $P(Z0,U,4)=RCDT,+$P(Z0,U,5)=+RCAMT S RCDUP=1 Q
+ F  S Z1=$O(^RCY(344.4,"ATRIDUP",$$UP^XLFSTR(RCTRACE),$$UP^XLFSTR(RCID),Z1)) Q:'Z1  S Z0=$G(^RCY(344.4,Z1,0)) I $P(Z0,U,4)=RCDT,+$P(Z0,U,5)=+RCAMT S RCDUP=1 Q
  ;
  I RCDUP,$P(Z0,U,8) D  G ERATOTQ ; Receipt already exists - no update
  . S RCERR="This is a duplicate ERA and has already been posted",RCERR(1)=-2

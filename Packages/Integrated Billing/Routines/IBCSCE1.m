@@ -1,11 +1,11 @@
 IBCSCE1 ;ALB/MRL,MJB - MCCR SCREEN EDITS  ;07 JUN 88 14:35
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSCE1
  ;
  S:'$D(DR(2,2)) DR(2,2)="" S:'$D(DGDRS1) DGDRS1="DR(2,2)" S:'$D(IB1) IB1=0 S:'$D(DGCT1) DGCT1=0 S DGDRD=$P($T(@J),";;",2) D S S K=(J*10) I $T(@K) S DGDRD=$P($T(@K),";;",2) D S
- I +J=31 S DR(3,2.312)=".01;1;2;15;8;3;6;S IBADI=X;17//^S X=$S(IBADI=""v"":$P(VADM(1),""^"",1),1:"""");16//^S X=$S(IBADI=""v"":""01"",1:"""");"
+ I +J=31 S DR(3,2.312)=".01;7.02;2;15;8;3;6;S IBADI=X;7.01//^S X=$S(IBADI=""v"":$P(VADM(1),""^"",1),1:"""");16//^S X=$S(IBADI=""v"":""01"",1:"""");"
  Q
 S I $L(@DGDRS1)+$L(DGDRD)<241 S @DGDRS1=@DGDRS1_DGDRD Q
  S DGCT1=DGCT1+1,DGDRS1="DR(2,2,"_DGCT1_")",@DGDRS1=DGDRD Q

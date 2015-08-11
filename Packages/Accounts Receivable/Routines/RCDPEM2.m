@@ -1,19 +1,37 @@
-RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;05-NOV-02
- ;;4.5;Accounts Receivable;**173,208,276,284,293**;Mar 20, 1995;Build 15
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;Jun 11, 2014@13:24:36
+ ;;4.5;Accounts Receivable;**173,208,276,284,293,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
+ ;
 MATCH1 ; Manually 'match' an ERA to an EFT
- N DA,DR,DIE,DIC,DIR,X,Y,RCEFT,RCERA,RCNAME,RCMATCH,RCQUIT,DUOUT,DTOUT
- W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MATCH AN EFT DETAIL RECORD",!,"WITH AN ERA RECORD"
-M1 S DIR("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
+ N DA,DIC,DIE,DIR,DR,DTRNG,DTOUT,DUOUT,END,RCEFT,RCERA,RCMATCH,RCNAME,RCQUIT,START,X,Y
+ W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MATCH AN EFT DETAIL RECORD",!,"WITH AN ERA RECORD."
+ ; PRCA*4.5*298 - Add ability to specify a date range
+ S DIR("A")="Select by date Range? (Y/N) ",DIR(0)="YA",DIR("B")="NO" D ^DIR K DIR
+ I $D(DUOUT)!$D(DTOUT) G M1Q
+ I Y<1 G M1
+ S DTRNG=Y  ; flag indicating date range selected
+ K DIR S DIR("?")="Enter the earliest date for the selection range."
+ ; value in DIR(0) for %DT = APE: ask date, past assumed, echo answer
+ S DIR(0)="DAO^:"_DT_":APE",DIR("A")="Start Date: " D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") G M1Q
+ S START=Y K DIR,X,Y
+ S DIR("?")="Enter the latest date for the selection range."
+ S DIR(0)="DAO^"_START_":"_DT_":APE",DIR("A")="End Date: ",DIR("B")=$$FMTE^XLFDT(DT)
+ D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") G M1Q
+ S END=Y
+ ;
+M1 ; come here if no date range slection 
+ S DIR("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
  ;
  ; ** start PRCA*4.5*293 Add extra checks to filter out EFTs that have 
  ;      a payment amount of zero or EFTs that have been removed.
  ;      Only UNMATCHED EFTs with payment amt >0 and not removed should
  ;      be selectable by the user.
  ;
- ;S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("S")="I '$P(^(0),U,8)"
  S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("S")="I ('$P(^(0),U,8))&($P($G(^(0)),U,7))&('$P($G(^(3)),U))"
+ I $G(DTRNG) S DIR("S")=DIR("S")_"&'($P($G(^(0)),U,13)<START)&'($P($G(^(0)),U,13)>END)"
  ; ** end PRCA*4.5*293
  ;
  W ! D ^DIR K DIR
@@ -48,7 +66,7 @@ M12 S DIR("A")="SELECT THE UNMATCHED ERA TO MATCH TO EFT #"_RCEFT_": "
  . I $S($D(DUOUT)!$D(DTOUT):1,Y'=1:1,1:0) S RCQUIT=1 Q
  S DIE="^RCY(344.4,",DR=".09////1",DA=RCERA D ^DIE
  I '$D(Y) S DIE="^RCY(344.31,",DR=".08////1;.1////"_RCERA,DA=RCEFT D ^DIE
- S DIR(0)="EA",DIR("A",1)="EFT #"_RCEFT_" WAS "_$S('$D(Y):"SUCCESSFULLY",1:"NOT")_" MATCHED TO ERA #"_RCERA,DIR("A")="PRESS RETURN TO CONTINUE: " D ^DIR K DIR
+ S DIR(0)="EA",DIR("A",1)="EFT #"_RCEFT_" WAS "_$S('$D(Y):"SUCCESSFULLY",1:"NOT")_" MATCHED TO ERA #"_RCERA,DIR("A")="Press ENTER to continue: " D ^DIR K DIR
 M1Q Q
  ;
 MATCH2 ; Manually 'match' a 0-balance EFT to a paper EOB
@@ -95,13 +113,13 @@ MANTR ; Mark an EFT detail record as 'TR' posted manually
  S DIR(0)="YA",DIR("B")="NO",DIR("A",1)="THIS WILL MARK EFT DETAIL #: "_RCEFT_" AS MANUALLY POSTED",DIR("A",2)="  USING TR DOC: "_RCTR
  S DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE?: " W ! D ^DIR K DIR
  I Y'=1 D  G MANTRQ
- . S DIR(0)="EA",DIR("A")="EFT NOT UPDATED - PRESS RETURN TO CONTINUE: " W ! D ^DIR K DIR
+ . S DIR(0)="EA",DIR("A")="EFT NOT UPDATED - Press ENTER to continue: " W ! D ^DIR K DIR
  S DIE="^RCY(344.31,",DA=RCEFT,DR=".16R"_DR D ^DIE
  I $D(Y) D
  . S DIE="^RCY(344.31,",DA=RCEFT,DR=".16///@;.08///"_$S($P(RCZ0,U,8)'="":$P(RCZ0,U,8),1:"@") D ^DIE
- . S DIR("A")="EFT NOT UPDATED - PRESS RETURN TO CONTINUE"
+ . S DIR("A")="EFT NOT UPDATED - Press ENTER to continue: "
  E  D
- . S DIR("A")="STATUS UPDATED FOR EFT DETAIL #: "_RCEFT_" - PRESS RETURN TO CONTINUE: "
+ . S DIR("A")="STATUS UPDATED FOR EFT DETAIL #: "_RCEFT_" - Press ENTER to continue: "
  S DIR(0)="EA"
  W ! D ^DIR K DIR
  ;
@@ -148,7 +166,7 @@ MAN1 S DIC("S")="I ""02""[+$P(^(0),U,9),$P(^(0),U,14)=0",DIC="^RCY(344.4,",DIC(0
  S DR=DR_";7.01///"_%_";7.02///"_DUZ
  D ^DIE
  I '$D(Y) D
- . S DIR(0)="EA",DIR("A",1)="ERA HAS BEEN MARKED AS POSTED USING PAPER EOB",DIR("A")="PRESS RETURN TO CONTINUE " D ^DIR K DIR
+ . S DIR(0)="EA",DIR("A",1)="ERA HAS BEEN MARKED AS POSTED USING PAPER EOB",DIR("A")="Press ENTER to continue: " D ^DIR K DIR
  ;
 MANUALQ Q
  ;
@@ -252,7 +270,7 @@ UPDERA(DA,RECEPT,FOUND) ;Mark ERA as posted to paper EOB
  .K DIR
  .S DIR(0)="EA"
  .S DIR("A",1)="ERA HAS BEEN MARKED AS POSTED USING PAPER EOB"
- .S DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ .S DIR("A")="Press ENTER to continue: " W ! D ^DIR K DIR
  .S FOUND=1
  E  W !,"Unable to update ERA for receipt "_RECEPT,!
  Q FOUND
@@ -323,7 +341,7 @@ M3 S DIR("A")="SELECT THE UNMATCHED 0-BALANCE ERA TO MARK AS MATCHED: "
  W !
  S DIC="^RCY(344.4,",DR="0",DA=RCERA D EN^DIQ
  W !
- S DIR("A")="ARE YOU SURE THIS IS THE ERA YOU WANT TO MARK AS MATCH-0 PAYMENT?: ",DIR(0)="YA",DIR("B")="YES" D ^DIR K DIR
+ S DIR("A")="ARE YOU SURE THIS IS THE ERA YOU WANT TO MARK AS MATCH-0 PAYMENT? (Y/N) ",DIR(0)="YA",DIR("B")="YES" D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT) G M3Q
  I Y'=1 G M3
  S DIE="^RCY(344.4,",DR=".09////3",DA=RCERA D ^DIE
@@ -336,18 +354,18 @@ UNMATCH ; Used to 'unmatch' an ERA matched in error
  Q:Y'>0
  S RCWL=+Y,RCQUIT=0
  I $D(^RCY(344.49,RCWL,0)) D  Q:RCQUIT
- . S DIR(0)="YA",DIR("A",1)="THIS ERA ALREADY HAS A WORKLIST ENTRY AND MUST BE DELETED BEFORE IT CAN BE UNMATCHED",DIR("A")="DO YOU WANT TO DELETE THE WORKLIST ENTRY FOR THIS ERA NOW?: "
+ . S DIR(0)="YA",DIR("A",1)="THIS ERA ALREADY HAS A WORKLIST ENTRY AND MUST BE DELETED BEFORE IT CAN BE UNMATCHED",DIR("A")="DO YOU WANT TO DELETE THE WORKLIST ENTRY FOR THIS ERA NOW? "
  . W ! D ^DIR K DIR
  . I Y'=1 S RCQUIT=1 Q
  . S DIK="^RCY(344.49,",DA=RCWL D ^DIK
  I $O(^RCY(344.31,"AERA",RCWL,0)) S RCEFT=+$O(^(0)) D  Q:RCQUIT
- . S DIR("A",1)="THIS ERA IS MATCHED TO EFT #"_RCEFT,DIR("A")="ARE YOU SURE YOU WANT TO UNMATCH THEM?: ",DIR(0)="YA"
+ . S DIR("A",1)="THIS ERA IS MATCHED TO EFT #"_RCEFT,DIR("A")="ARE YOU SURE YOU WANT TO UNMATCH THEM? ",DIR(0)="YA"
  . W ! D ^DIR K DIR
  . I Y'=1 S RCQUIT=1 Q
  . S DIE="^RCY(344.31,",DR=".1///@;.08////0",DA=RCEFT D ^DIE
  . W !,"EFT #"_RCEFT_" IS NOW UNMATCHED",!
  S DIE="^RCY(344.4,",DR=".09////0;.13///@;.14////0",DA=RCWL D ^DIE
- S DIR("A")="ERA HAS BEEN SUCCESSFULLY UNMATCHED - PRESS RETURN TO CONTINUE "
+ S DIR("A")="ERA HAS BEEN SUCCESSFULLY UNMATCHED - Press ENTER to continue: "
  S DIR(0)="EA" W ! D ^DIR K DIR
  Q
  ;
@@ -376,13 +394,13 @@ RETN ; Entrypoint for Remove ERA from Active Worklist
  I $D(Y) D NOCHNG Q
  ; PRCA*4.5*284 Set EFT MATCH STATUS (#344.4,.09) as '4' FOR REMOVED rather than '2' FOR MATCHED TO PAPER CHECK
  D NOW^%DTC S DR=".14////4;.09////4;.16////"_DUZ_";.17////"_% D ^DIE
- S DIR(0)="EA",DIR("A")="PRESS RETURN TO CONTINUE"
+ S DIR(0)="EA",DIR("A")="Press ENTER to continue: "
  W ! D ^DIR
  Q
  ;
 NOCHNG ;
  N DIR,X,Y,DTOUT,DUOUT
  D EN^DDIOL("NO CHANGES HAVE BEEN MADE.","","!")
- S DIR(0)="EA",DIR("A")="PRESS RETURN TO CONTINUE: "
+ S DIR(0)="EA",DIR("A")="Press ENTER to continue: "
  W !! D ^DIR
  Q

@@ -1,6 +1,6 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
  ;
@@ -10,7 +10,8 @@ IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
 STEP5 S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,IBIFN1,0)):1,1:0)
  ; NOTE:  any new or changed data nodes may also need to be updated in IBNCPDP5
  ;move pure data nodes
- F I="I1","I2","I3","M1" I $D(^DGCR(399,IBIFN1,I)) S ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
+ ; MRD;IB*2.0*516 - Added "In7" nodes.
+ F I="I1","I17","I2","I27","I3","I37","M1" I $D(^DGCR(399,IBIFN1,I)) S ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
  ;
  ;move top level data node. ;Do not move 'TX' node EXCEPT piece 8 (added with IB*2.0*432)
  ;F I="U","U1","U2","U3","UF2","UF3","UF31","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
@@ -120,7 +121,8 @@ CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  S IBDD=399.0304 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("CP")=^(0),IBND("CP1")=$G(^(1)),IBND("CP-AUX")=$G(^("AUX")) D
  . F K=1:1:7,9:1:14,16:1:22 S $P(^DGCR(399,IBIFN,I,J,0),"^",K)=$P(IBND("CP"),"^",K)
  . ; IB*2.0*432 add new 1 node
- . F K=1:1:5 S $P(^DGCR(399,IBIFN,I,J,1),"^",K)=$P(IBND("CP1"),"^",K)
+ . ; MRD;IB*2.0*516 - Added pieces 7 & 8 (NDC, Units) to 1-node.
+ . F K=1:1:8 S $P(^DGCR(399,IBIFN,I,J,1),"^",K)=$P(IBND("CP1"),"^",K)
  . ; esg - 11/2/06 - IB*2*348 - 50.09 field was added - AUX piece [9]
  . I IBND("CP-AUX")'="" F K=1:1:9 S $P(^DGCR(399,IBIFN,I,J,"AUX"),"^",K)=$P(IBND("CP-AUX"),"^",K)
  . ; IB*2.0*432 add new LNPRV multiple
@@ -137,12 +139,14 @@ CP1 S IBCOD=$P($G(^DGCR(399,IBIFN,0)),"^",9) Q:IBCOD=""!('$D(^DGCR(399,IBIFN1,"C
  I IBCOD=5 F DGI=7,8,9 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICPT(",DGPROCDT=$P(^("C"),"^",DGI+4) D FILE
  Q
  ;
-PRV S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
- N Z,Z0
- S Z=$P($G(^DGCR(399,IBIFN,0)),U,19),Z0=$P($G(^DGCR(399,IBIFN1,0)),U,19)
+PRV ; Copy providers for cloned claim
+ N Z,Z0,CNT
+ S Z=$P($G(^DGCR(399,IBIFN,0)),U,19),Z0=$P($G(^DGCR(399,IBIFN1,0)),U,19),CNT=0
  S IBDD=399.0222 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) D
- . S ^DGCR(399,IBIFN,I,J,0)=^DGCR(399,IBIFN1,I,J,0),X=$P(^(0),"^")
- . I Z'=Z0,$S(X=3:Z0=3,X=4:Z0=2,1:0) S $P(^DGCR(399,IBIFN,I,J,0),U)=(Z0+1)
+ . I $$GETNPI^IBCEF73A($P(^DGCR(399,IBIFN1,I,J,0),U,2))="" Q  ;Don't file provider if no NPI - IB*2*516
+ . S CNT=CNT+1,^DGCR(399,IBIFN,I,CNT,0)=^DGCR(399,IBIFN1,I,J,0),X=$P(^(0),"^")
+ . I Z'=Z0,$S(X=3:Z0=3,X=4:Z0=2,1:0) S $P(^DGCR(399,IBIFN,I,CNT,0),U)=(Z0+1)
+ I CNT S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0),$P(^DGCR(399,IBIFN,I,0),U,3)=CNT,$P(^DGCR(399,IBIFN,I,0),U,4)=CNT
  Q
  ;
 U9 ; Added for new data elements in IB*2.0*447 BI

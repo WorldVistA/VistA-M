@@ -1,0 +1,132 @@
+IBDEI1RZ ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31732,0)
+ ;;=C91.41^^190^1943^73
+ ;;^UTILITY(U,$J,358.3,31732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31732,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,31732,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,31732,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,31733,0)
+ ;;=D57.01^^190^1943^75
+ ;;^UTILITY(U,$J,358.3,31733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31733,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,31733,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,31733,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,31734,0)
+ ;;=D57.00^^190^1943^76
+ ;;^UTILITY(U,$J,358.3,31734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31734,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,31734,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,31734,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,31735,0)
+ ;;=D57.02^^190^1943^77
+ ;;^UTILITY(U,$J,358.3,31735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31735,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,31735,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,31735,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,31736,0)
+ ;;=D68.32^^190^1943^79
+ ;;^UTILITY(U,$J,358.3,31736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31736,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,31736,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,31736,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,31737,0)
+ ;;=C22.2^^190^1943^80
+ ;;^UTILITY(U,$J,358.3,31737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31737,1,3,0)
+ ;;=3^Hepatoblastoma
+ ;;^UTILITY(U,$J,358.3,31737,1,4,0)
+ ;;=4^C22.2
+ ;;^UTILITY(U,$J,358.3,31737,2)
+ ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,31738,0)
+ ;;=D58.9^^190^1943^82
+ ;;^UTILITY(U,$J,358.3,31738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31738,1,3,0)
+ ;;=3^Hereditary Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,31738,1,4,0)
+ ;;=4^D58.9
+ ;;^UTILITY(U,$J,358.3,31738,2)
+ ;;=^5002322
+ ;;^UTILITY(U,$J,358.3,31739,0)
+ ;;=D56.4^^190^1943^81
+ ;;^UTILITY(U,$J,358.3,31739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31739,1,3,0)
+ ;;=3^Herediatary Persistence of Fetal Hemoglobin
+ ;;^UTILITY(U,$J,358.3,31739,1,4,0)
+ ;;=4^D56.4
+ ;;^UTILITY(U,$J,358.3,31739,2)
+ ;;=^293655
+ ;;^UTILITY(U,$J,358.3,31740,0)
+ ;;=C81.99^^190^1943^83
+ ;;^UTILITY(U,$J,358.3,31740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31740,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,31740,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,31740,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,31741,0)
+ ;;=C81.90^^190^1943^84
+ ;;^UTILITY(U,$J,358.3,31741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31741,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,31741,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,31741,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,31742,0)
+ ;;=D89.2^^190^1943^85
+ ;;^UTILITY(U,$J,358.3,31742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31742,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,31742,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,31742,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,31743,0)
+ ;;=D05.12^^190^1943^86
+ ;;^UTILITY(U,$J,358.3,31743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31743,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,31743,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,31743,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,31744,0)
+ ;;=D05.11^^190^1943^87
+ ;;^UTILITY(U,$J,358.3,31744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31744,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,31744,1,4,0)
+ ;;=4^D05.11

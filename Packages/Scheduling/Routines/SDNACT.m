@@ -1,5 +1,5 @@
 SDNACT ;ALB/TMP - INACTIVATE A CLINIC ;9/16/10  17:38
- ;;5.3;Scheduling;**63,380,549,568**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**63,380,549,568,622**;Aug 13, 1993;Build 30
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S SDAY="Sun^Mon^Tues^Wednes^Thurs^Fri^Satur",SDZQ=1
  D DT^DICRW S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
@@ -23,7 +23,7 @@ OVR F I=SDDATE-.0001:0 S I=$O(^SC(SC,"ST",I)) Q:'I!(I>SDX1)  K ^(I)
  F I=SDDATE-.0001:0 S I=$O(^SC(SC,"T",I)) Q:'I!(I>SDX1)  K ^(I)
  F I=SDDATE-.0001:0 S I=$O(^SC(SC,"OST",I)) Q:'I!(I>SDX1)  K ^(I)
  S DIE="^SC(",DA=SC,DR="2505///^S X=SDDATE" D ^DIE  ;SD*549 use FM API to update field so Audit Trail functions properly
- W !!,"Clinic will be inactivated effective " S Y=SDDATE D DTS^SDUTL W Y G END
+ W !!,"Clinic will be inactivated effective " N SDDT S Y=SDDATE D DTS^SDUTL W Y S SDDT=Y D QUE G END ; SD*5.3*622 - call mail delivery
  ;
 CHECK W *7,!,"This clinic is to be inactivated as of " S SDX=+^("I"),Y=SDX D DTS^SDUTL W Y S SDX1=+$P(^("I"),"^",2),Y=SDX1 I Y D DTS^SDUTL W " and reactivated as of ",Y ;NAKED REFERENCE - ^SC(DFN,"I")
  S %=1 W !,"Do you want to change the inactivate date" D YN^DICN I '% W !,"RESPOND YES OR NO" G CHECK
@@ -49,3 +49,48 @@ GOT S SD=$O(^SC(SC,"T"_I,0))
  S ^SC(SC,"T"_I,9999999,1)="",^(0)=9999999
  Q
 END K A,DA,CNT,D0,DH,DO,DOW,I,I1,J,J1,POP,SC,SD,SD0,SDAY,SDEL,SDDATE,SDFSW,SDN,SDNL,SDOL,SDREACT,SI,SL,STARTDAY,SDX,SDX1,SDZQ,X,X1,X2,Y,Z,DIE,DR,DIC Q
+ ;
+MAIL ; SD*5.3*622 - send bulletin to advise of clinic inactivation date
+ N SDNAME,SDMYARR,SDTEXT,XMDUZ,XMSUB,XMTEXT,XMY
+ S XMSUB="CLINIC INACTIVATED"
+ S XMY("G.SD CLINIC INACTIVATE REMINDER")=""
+ S XMDUZ=.5
+ S XMY(DUZ)="",XMY(XMDUZ)=""
+ S SDMYARR("FILE")=200
+ S SDMYARR("FIELD")=.01
+ S SDMYARR("IENS")=DUZ
+ S SDNAME=$$BLDNAME^XLFNAME(.SDMYARR) ; covered by IA #3065
+ ;
+ S SDTEXT(1)="CLINIC NAME:   "_$$GET1^DIQ(44,+SC,.01,"E")
+ S SDTEXT(2)="INACTIVATION DATE:   "_SDDT
+ S SDTEXT(3)=" "
+ S SDTEXT(4)="Clinic inactivated by "_SDNAME_" on "_SDDT
+ S SDTEXT(5)=" "
+ S SDTEXT(6)="Please perform the following steps immediately:"
+ S SDTEXT(7)=" "
+ S SDTEXT(8)="1. Add at least 2 Z's (UPPERCASE) in front of the clinic name"
+ S SDTEXT(9)="2. Validate that the Clinic Scheduling Grid has been removed"
+ S SDTEXT(10)=" "
+ S XMTEXT="SDTEXT("
+ D ^XMD
+ Q
+ ;
+QUE ; leave job to TaskMan for dates in the future, otherwise deliver
+ ; message immediately for an inactivation date equal to the current
+ ; date
+ N SDDTH,SDTQ,Y,ZTRTN,ZTIO,ZTSAVE,ZTDESC,ZTDTH
+ S SDTQ=DT
+ I $D(^SC(SC,"I")) D
+ . S SDDT=$P(^SC(+SC,"I"),"^",1)
+ . I SDDT=SDTQ S Y=DT D DTS^SDUTL S SDDT=Y D MAIL Q
+ . I SDDT<SDTQ Q  ; don't care for dates on the past
+ . I SDDT>SDTQ D
+ .. S SDDTH=$$FMTH^XLFDT(SDDT+.0100) ; queue at 1 am on desired date
+ .. S ZTDTH=SDDTH
+ .. S Y=SDDT D DTS^SDUTL S SDDT=Y
+ .. S ZTDESC="CLINIC INACTIVATION REMINDER QUEUE"
+ .. S ZTRTN="QUE^SDNACT"
+ .. S ZTIO="NULL"
+ .. S ZTSAVE("*")=""
+ .. D ^%ZTLOAD
+ Q  ; SD*5.3*622 - end of changes

@@ -1,116 +1,138 @@
-IBDEI11V ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11V ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18813,1,3,0)
- ;;=3^64774
- ;;^UTILITY(U,$J,358.3,18814,0)
- ;;=64776^^122^1203^31^^^^1
- ;;^UTILITY(U,$J,358.3,18814,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18814,1,2,0)
- ;;=2^Excision of neuroma; digital nerve, one or both, same digit
- ;;^UTILITY(U,$J,358.3,18814,1,3,0)
- ;;=3^64776
- ;;^UTILITY(U,$J,358.3,18815,0)
- ;;=64778^^122^1203^32^^^^1
- ;;^UTILITY(U,$J,358.3,18815,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18815,1,2,0)
- ;;=2^Excision of neuroma; digital nerve, each additional digit (list separately in addition to code for primary procedure)
- ;;^UTILITY(U,$J,358.3,18815,1,3,0)
- ;;=3^64778
- ;;^UTILITY(U,$J,358.3,18816,0)
- ;;=64782^^122^1203^33^^^^1
- ;;^UTILITY(U,$J,358.3,18816,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18816,1,2,0)
- ;;=2^Excision of neuroma; hand or foot, except digital nerve
- ;;^UTILITY(U,$J,358.3,18816,1,3,0)
- ;;=3^64782
- ;;^UTILITY(U,$J,358.3,18817,0)
- ;;=64783^^122^1203^34^^^^1
- ;;^UTILITY(U,$J,358.3,18817,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18817,1,2,0)
- ;;=2^Excision of neuroma; hand or foot, each additional nerve, except same digit
- ;;^UTILITY(U,$J,358.3,18817,1,3,0)
- ;;=3^64783
- ;;^UTILITY(U,$J,358.3,18818,0)
- ;;=29999^^122^1204^11^^^^1
- ;;^UTILITY(U,$J,358.3,18818,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18818,1,2,0)
- ;;=2^Unlisted procedure, arthroscopy
- ;;^UTILITY(U,$J,358.3,18818,1,3,0)
- ;;=3^29999
- ;;^UTILITY(U,$J,358.3,18819,0)
- ;;=29893^^122^1204^3^^^^1
- ;;^UTILITY(U,$J,358.3,18819,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18819,1,2,0)
- ;;=2^Endoscopic plantar fasciotomy
- ;;^UTILITY(U,$J,358.3,18819,1,3,0)
- ;;=3^29893
- ;;^UTILITY(U,$J,358.3,18820,0)
- ;;=29894^^122^1204^4^^^^1
- ;;^UTILITY(U,$J,358.3,18820,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18820,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; w/removalof loose body or foreign body
- ;;^UTILITY(U,$J,358.3,18820,1,3,0)
- ;;=3^29894
- ;;^UTILITY(U,$J,358.3,18821,0)
- ;;=29897^^122^1204^5^^^^1
- ;;^UTILITY(U,$J,358.3,18821,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18821,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, limited
- ;;^UTILITY(U,$J,358.3,18821,1,3,0)
- ;;=3^29897
- ;;^UTILITY(U,$J,358.3,18822,0)
- ;;=29898^^122^1204^6^^^^1
- ;;^UTILITY(U,$J,358.3,18822,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18822,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, extensive
- ;;^UTILITY(U,$J,358.3,18822,1,3,0)
- ;;=3^29898
- ;;^UTILITY(U,$J,358.3,18823,0)
- ;;=20220^^122^1204^1^^^^1
- ;;^UTILITY(U,$J,358.3,18823,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18823,1,2,0)
- ;;=2^Biopsy, bone, trocar, or needle; superficial
- ;;^UTILITY(U,$J,358.3,18823,1,3,0)
- ;;=3^20220
- ;;^UTILITY(U,$J,358.3,18824,0)
- ;;=20650^^122^1204^2^^^^1
- ;;^UTILITY(U,$J,358.3,18824,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18824,1,2,0)
- ;;=2^Insertion of wire or pin with application of skeletal traction, including removal
- ;;^UTILITY(U,$J,358.3,18824,1,3,0)
- ;;=3^20650
- ;;^UTILITY(U,$J,358.3,18825,0)
- ;;=64726^^122^1204^12^^^^1
- ;;^UTILITY(U,$J,358.3,18825,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18825,1,2,0)
- ;;=2^Decompression; plantar digital nerve
- ;;^UTILITY(U,$J,358.3,18825,1,3,0)
- ;;=3^64726
- ;;^UTILITY(U,$J,358.3,18826,0)
- ;;=64999^^122^1204^13^^^^1
- ;;^UTILITY(U,$J,358.3,18826,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18826,1,2,0)
- ;;=2^Unlisted procedure, nervous system
- ;;^UTILITY(U,$J,358.3,18826,1,3,0)
- ;;=3^64999
- ;;^UTILITY(U,$J,358.3,18827,0)
- ;;=93922^^122^1204^14^^^^1
- ;;^UTILITY(U,$J,358.3,18827,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18827,1,2,0)
- ;;=2^Non-invasive physiologic studies of upper or lower extremity arteries, single level, bilateral
+ ;;^UTILITY(U,$J,358.3,18720,0)
+ ;;=296.61^^104^1095^19
+ ;;^UTILITY(U,$J,358.3,18720,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18720,1,2,0)
+ ;;=2^296.61
+ ;;^UTILITY(U,$J,358.3,18720,1,5,0)
+ ;;=5^Bipolar Mixed, Mild
+ ;;^UTILITY(U,$J,358.3,18720,2)
+ ;;=^303627
+ ;;^UTILITY(U,$J,358.3,18721,0)
+ ;;=296.62^^104^1095^20
+ ;;^UTILITY(U,$J,358.3,18721,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18721,1,2,0)
+ ;;=2^296.62
+ ;;^UTILITY(U,$J,358.3,18721,1,5,0)
+ ;;=5^Bipolar Mixed, Moderate
+ ;;^UTILITY(U,$J,358.3,18721,2)
+ ;;=Bipolar Mixed, Moderate^303628
+ ;;^UTILITY(U,$J,358.3,18722,0)
+ ;;=296.63^^104^1095^24
+ ;;^UTILITY(U,$J,358.3,18722,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18722,1,2,0)
+ ;;=2^296.63
+ ;;^UTILITY(U,$J,358.3,18722,1,5,0)
+ ;;=5^Bipolar Mixed, Sev w/o Psychosis
+ ;;^UTILITY(U,$J,358.3,18722,2)
+ ;;=^303629
+ ;;^UTILITY(U,$J,358.3,18723,0)
+ ;;=296.64^^104^1095^23
+ ;;^UTILITY(U,$J,358.3,18723,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18723,1,2,0)
+ ;;=2^296.64
+ ;;^UTILITY(U,$J,358.3,18723,1,5,0)
+ ;;=5^Bipolar Mixed, Sev W/Psychosis
+ ;;^UTILITY(U,$J,358.3,18723,2)
+ ;;=^303630
+ ;;^UTILITY(U,$J,358.3,18724,0)
+ ;;=296.65^^104^1095^22
+ ;;^UTILITY(U,$J,358.3,18724,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18724,1,2,0)
+ ;;=2^296.65
+ ;;^UTILITY(U,$J,358.3,18724,1,5,0)
+ ;;=5^Bipolar Mixed, Part Remiss
+ ;;^UTILITY(U,$J,358.3,18724,2)
+ ;;=Bipolar Mixed, Part Remiss^303631
+ ;;^UTILITY(U,$J,358.3,18725,0)
+ ;;=296.66^^104^1095^18
+ ;;^UTILITY(U,$J,358.3,18725,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18725,1,2,0)
+ ;;=2^296.66
+ ;;^UTILITY(U,$J,358.3,18725,1,5,0)
+ ;;=5^Bipolar Mixed, Full Remiss
+ ;;^UTILITY(U,$J,358.3,18725,2)
+ ;;=^303632
+ ;;^UTILITY(U,$J,358.3,18726,0)
+ ;;=296.7^^104^1095^9
+ ;;^UTILITY(U,$J,358.3,18726,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18726,1,2,0)
+ ;;=2^296.7
+ ;;^UTILITY(U,$J,358.3,18726,1,5,0)
+ ;;=5^Bipolar I Disorder, NOS
+ ;;^UTILITY(U,$J,358.3,18726,2)
+ ;;=^303633
+ ;;^UTILITY(U,$J,358.3,18727,0)
+ ;;=296.80^^104^1095^8
+ ;;^UTILITY(U,$J,358.3,18727,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18727,1,2,0)
+ ;;=2^296.80
+ ;;^UTILITY(U,$J,358.3,18727,1,5,0)
+ ;;=5^Bipolar Disorder,NOS
+ ;;^UTILITY(U,$J,358.3,18727,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,18728,0)
+ ;;=296.89^^104^1095^10
+ ;;^UTILITY(U,$J,358.3,18728,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18728,1,2,0)
+ ;;=2^296.89
+ ;;^UTILITY(U,$J,358.3,18728,1,5,0)
+ ;;=5^Bipolar II Disorder,NOS
+ ;;^UTILITY(U,$J,358.3,18728,2)
+ ;;=^331893
+ ;;^UTILITY(U,$J,358.3,18729,0)
+ ;;=297.0^^104^1096^3
+ ;;^UTILITY(U,$J,358.3,18729,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18729,1,2,0)
+ ;;=2^297.0
+ ;;^UTILITY(U,$J,358.3,18729,1,5,0)
+ ;;=5^Paranoid State, Simple
+ ;;^UTILITY(U,$J,358.3,18729,2)
+ ;;=^268149
+ ;;^UTILITY(U,$J,358.3,18730,0)
+ ;;=298.9^^104^1096^4
+ ;;^UTILITY(U,$J,358.3,18730,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18730,1,2,0)
+ ;;=2^298.9
+ ;;^UTILITY(U,$J,358.3,18730,1,5,0)
+ ;;=5^Psychosis, NOS
+ ;;^UTILITY(U,$J,358.3,18730,2)
+ ;;=^259059
+ ;;^UTILITY(U,$J,358.3,18731,0)
+ ;;=298.8^^104^1096^5
+ ;;^UTILITY(U,$J,358.3,18731,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18731,1,2,0)
+ ;;=2^298.8
+ ;;^UTILITY(U,$J,358.3,18731,1,5,0)
+ ;;=5^Psychosis, Reactive
+ ;;^UTILITY(U,$J,358.3,18731,2)
+ ;;=^87326
+ ;;^UTILITY(U,$J,358.3,18732,0)
+ ;;=297.9^^104^1096^2
+ ;;^UTILITY(U,$J,358.3,18732,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18732,1,2,0)
+ ;;=2^297.9
+ ;;^UTILITY(U,$J,358.3,18732,1,5,0)
+ ;;=5^Paranoia
+ ;;^UTILITY(U,$J,358.3,18732,2)
+ ;;=^123970
+ ;;^UTILITY(U,$J,358.3,18733,0)
+ ;;=297.1^^104^1096^1
+ ;;^UTILITY(U,$J,358.3,18733,1,0)
+ ;;=^358.31IA^5^2

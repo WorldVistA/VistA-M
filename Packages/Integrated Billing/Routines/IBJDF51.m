@@ -1,6 +1,6 @@
-IBJDF51 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (COMPILE);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,185,240,356,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBJDF51 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (COMPILE) ;15-APR-00
+ ;;2.0;INTEGRATED BILLING;**123,185,240,356,452,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
  K IB,^TMP("IBJDF5",$J) S IBQ=0
@@ -163,7 +163,8 @@ SID(DFN,INS) ; - Find the subscriber ID for a bill (if any).
  ;  Output: Subscriber ID no. or null
  N X,Y,Z S Y="" G:'$G(DFN)!('$G(INS)) SIDQ
  S Z=0 F  S Z=$O(^DPT(DFN,.312,Z)) Q:'Z  S X=$G(^(Z,0)) D  Q:Y]""
- .I +X=INS S Y=$E($P(X,U,2),1,16)
+ .;IB*2.0*516/TAZ - Use HIPAA compliant Sub ID
+ .I +X=INS S Y=$E($$GET1^DIQ(2.312,Z_","_DFN_",",7.02),1,16)
  ;
 SIDQ Q Y
  ;

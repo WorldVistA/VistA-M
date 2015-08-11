@@ -1,6 +1,6 @@
 IBCNRPM1 ;DAOU/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program selects a plan and displays the 
@@ -51,7 +51,9 @@ GIPF ;  screen for valid GIPF
  ... ;chk covered status
  ... S IBCVRD=$P(^IBA(355.32,LIM,0),U,4)
  ... I IBCVRD=0 Q
- ... S GPNAM=$P($G(GP0),U,3),GPNUM=$P($G(GP0),U,4)
+ ... ; IB*2*516/DF Get new HIPAA fields
+ ... ;S GPNAM=$P($G(GP0),U,3),GPNUM=$P($G(GP0),U,4)
+ ... S GPNAM=$$GET1^DIQ(355.3,GPIEN,2.01),GPNUM=$$GET1^DIQ(355.3,GPIEN,2.02)
  ... I $G(GPNAM)="" S GPNAM="<blank>"
  ... I $G(GPNUM)="" S GPNUM="<blank>"
  ... ;set array = pharm plan and plan type

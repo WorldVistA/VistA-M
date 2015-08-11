@@ -1,6 +1,6 @@
 IBCECOB ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,288,432,488**;21-MAR-1994;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,155,288,432,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for COB management
  K IBSRT,IBMRADUP
@@ -14,7 +14,7 @@ HDR ; -- header code
  ;
 INIT ; -- init variables and list array
  N DIC,DIRUT,DIROUT,DTOUT,DUOUT,X,Y,DIR,IB1
- K ^TMP("IBBIL",$J)
+ K ^TMP("IBBIL",$J),^TMP("IBBIL-DIV",$J)
  S IBSRT=""
  S IB1=1
  W !
@@ -25,7 +25,40 @@ INIT ; -- init variables and list array
  . S IB1=0
  I $D(DTOUT)!$D(DUOUT) S VALMQUIT=1 G INITQ
  ;
- S DIR("A")="Sort By: ",DIR("B")="BILLER"
+ I '$G(IBMRANOT) G DIVX
+ ;
+DIV ; division
+ W !
+ S DIR(0)="SA^A:All Divisions;S:Selected Divisions"
+ S DIR("A")="Include All Divisions or Selected Divisions? "
+ S DIR("B")="All"
+ D ^DIR K DIR
+ I $D(DIROUT)!$D(DIRUT) S VALMQUIT=1 G INITQ  ;Timeout or User "^"
+ I Y="A" G DIVX
+ ;
+ W !
+ S IBQUIT=0
+ F  D  I IBQUIT S IBQUIT=IBQUIT-1 Q
+ . S DIC=40.8,DIC(0)="AEMQ",DIC("A")="   Select Division: "
+ . I $O(^TMP("IBBIL-DIV",$J,"")) S DIC("A")="   Select Another Division: "
+ . D ^DIC K DIC                ; lookup
+ . I X="^^" S IBQUIT=2 Q       ; user entered ^^
+ . I +Y'>0 S IBQUIT=1 Q        ; user is done
+ . S ^TMP("IBBIL-DIV",$J,+Y)=$P(Y,U,2)
+ . Q
+ ;
+ I IBQUIT S VALMQUIT=1 G INITQ  ;User "^" out of the selection
+ ;
+ I '$O(^TMP("IBBIL-DIV",$J,"")) D  G DIV
+ . W *7,!!?3,"No divisions have been selected.  Please try again."
+ . Q
+ ;
+DIVX ; Exit Division selection.
+ ;
+ W !
+ S DIR("A")=""
+ I '$G(IBMRANOT) S DIR("A")="Within Division "
+ S DIR("A")=DIR("A")_"Sort By: ",DIR("B")="BILLER"
  S DIR(0)="SBA^B:BILLER;D:DAYS SINCE TRANSMISSION OF LATEST BILL;L:DATE LAST "_$S($G(IBMRANOT):"EOB",1:"MRA")_" RECEIVED;"
  S DIR(0)=DIR(0)_"I:SECONDARY INSURANCE COMPANY;M:"_$S($G(IBMRANOT):"EOB",1:"MRA")_" STATUS;P:PATIENT NAME;R:PATIENT RESPONSIBILITY;S:SERVICE DATE"
  S DIR("?")="Enter the code to indicate how the list should be sorted." D ^DIR K DIR
@@ -40,6 +73,7 @@ INIT ; -- init variables and list array
  I Y S IBMRADUP=1
  ;
  D BLD^IBCECOB1
+ ;
 INITQ Q
  ;
 HELP ; -- help code
@@ -47,8 +81,9 @@ HELP ; -- help code
  Q
  ;
 EXIT ; -- exit code
- K ^TMP("IBCECOB",$J),^TMP("IBCOBST",$J),^TMP("IBBIL",$J)
- K ^TMP("IBCECOB1",$J),^TMP("IBCOBSTX",$J)
+ K ^TMP("IBBIL",$J),^TMP("IBBIL-DIV",$J)
+ K ^TMP("IBCECOB",$J),^TMP("IBCECOB1",$J)
+ K ^TMP("IBCOBST",$J),^TMP("IBCOBSTX",$J)
  D CLEAN^VALM10
  Q
  ;

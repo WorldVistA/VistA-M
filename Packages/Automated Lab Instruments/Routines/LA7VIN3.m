@@ -1,5 +1,5 @@
 LA7VIN3 ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  15:55
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,86**;Sep 27, 1994;Build 6
  ;
  ;This routine is a continuation of LA7VIN1 and is only called from there.
  Q
@@ -82,6 +82,7 @@ UPDF ; Update respective files
  ;
  I LA76249(63)="" Q
  S LA7SITE=$P(LA76249(63),U,2),LA7RUID=$P(LA76249(63),U,3)
+ I LA7SITE=""!(LA7RUID="") Q
  S LA7696=$O(^LRO(69.6,"RST",LA7SITE,LA7RUID,0))
  I LA7696="" Q
  ;

@@ -1,6 +1,6 @@
 IBCNSGM ;ALB/ESG - Insurance Company Billing Provider Flag Rpt/Msg ;06-APR-2009
- ;;2.0;INTEGRATED BILLING;**400**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**400,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point also from the top
  I '$$PROD^XUPROD(1) G EX     ; production account only
@@ -143,6 +143,8 @@ EMAILX ;
  ;
 SRV ; server entry point
  ; send the report and the TaskManager schedule at the site back to the sender of the server request
+ ;IB*2.0*516/TAZ - This is an inbound server request. It cannot be removed.
+ G SRVX
  N MMHD,IBSNDRSQ
  I '$G(XMZ) G SRVX                      ; only for processing incoming server requests
  S MMHD=$$NET^XMRENT(XMZ)               ; mailman header information

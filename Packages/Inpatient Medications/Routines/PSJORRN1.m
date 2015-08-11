@@ -1,5 +1,5 @@
 PSJORRN1 ;BIR/JCH-RETURN INPATIENT MEDS (CONDENSED) SECOND 'NEW' SORT ; 3/21/11 2:54pm
- ;;5.0;INPATIENT MEDICATIONS;**134,213,225,275**;16 DEC 97;Build 157
+ ;;5.0;INPATIENT MEDICATIONS;**134,213,225,275,255**;16 DEC 97;Build 8
  ;
  ;Reference to ^PS(52.6 is supported by DBIA 1231.
  ;Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -29,7 +29,7 @@ OCL(DFN,BDT,EDT,TFN) ; Execute this section if MVIEW=1
  Q
  ;
 UDTMP ;*** Set ^TMP for Unit dose orders.
- N PROVIDER,RNWDT,EDTCMPLX,NDP2,PSJSTP,PSJLOC,PSJST2,NDDSS
+ N PROVIDER,RNWDT,EDTCMPLX,NDP2,PSJSTP,PSJLOC,PSJST2,NDDSS,NDORIG
  S (MR,SCH,INST,PON,NDDSS)="",FON=+ON_$S(F["53.1":"P",1:"U")
  I $E($G(PSJOTYP))="P",'$G(WBDT) S WBDT=+ON
  D TYPE S PSJLOC=$S($G(PSJCLIN):$P($G(^SC(+PSJCLIN,0)),"^"),1:"zzz")
@@ -57,7 +57,8 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  ;********
  S TFN2=$G(TFN2)+1
  S DN(1)=$S($G(DN(1))="":"UNKNOWN",1:DN(1))
- S ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,0)=FON_";I"_U_DN(1)_"^^"_$P(ND2,U,4)_"^^"_DO_U_UNITS_U_$P(ND0,U,21)_U_STAT_U_U_U_U_NOTGIVEN_U_($P(ND0,U,9)="P"&($P(ND0,U,24)="R"))_U_$P(ND2,U,2)_U_$G(RNWDT)
+ S DNORIG=DN(1),DN(1)=$$UP^XLFSTR(DN(1)) ;PSJ*5*255 - Fix Tallman sorting for unit dose
+ S ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,0)=FON_";I"_U_DNORIG_"^^"_$P(ND2,U,4)_"^^"_DO_U_UNITS_U_$P(ND0,U,21)_U_STAT_U_U_U_U_NOTGIVEN_U_($P(ND0,U,9)="P"&($P(ND0,U,24)="R"))_U_$P(ND2,U,2)_U_$G(RNWDT)
  K ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,"CLINIC",0) I PSJCLIN]"" S ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,"CLINIC",0)=PSJCLIN
  S PROVIDER=$P($G(@(F_+ON_",0)")),"^",2)
  I PROVIDER S ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,"P",0)=PROVIDER_"^"_$P($G(^VA(200,PROVIDER,0)),"^")
@@ -91,6 +92,7 @@ IVTMP ;*** Set ^TMP for IV orders.
  ;********
  S TFN2=$G(TFN2)+1
  S DN(1)=$S($G(DN(1))="":"UNKNOWN",1:DN(1)),CNT=0
+ S DN(1)=PSJOINM ;PSJ*5*255 - Sort IV orders with no additive
  F X=0:0 S X=$O(@(F_ON_",""AD"","_X_")")) Q:'X  S ND=$G(@(F_ON_",""AD"","_X_",0)")),DN=$P($G(^PS(52.6,+ND,0)),U),Y=DN_U_$P(ND,U,2) S:$P(ND,U,3) Y=Y_U_$P(ND,U,3) S CNT=CNT+1,DN(CNT)=Y S ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,"A",CNT,0)=Y
  S ^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,"A",0)=CNT,CNT=0
  F X=0:0 S X=$O(@(F_ON_",""SOL"","_X_")")) Q:'X  S ND=$G(@(F_ON_",""SOL"","_X_",0)")),DN=$G(^PS(52.7,+ND,0)),CNT=CNT+1,^TMP("PSJTMP",$J,DN(1),PSJST2,WBDT,TFN2,"B",CNT,0)=$P(DN,U)_U_$P(ND,U,2)_U_$P(DN,U,4)

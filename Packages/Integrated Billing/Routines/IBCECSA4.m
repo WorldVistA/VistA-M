@@ -1,6 +1,6 @@
 IBCECSA4 ;ALB/CXW - IB CLAIMS STATUS AWAITING RESOLUTION SCREEN ;5-AUG-1999
- ;;2.0;INTEGRATED BILLING;**137,155,320,371,433**;21-MAR-1994;Build 36
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,155,320,371,433,516**;21-MAR-1994;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SMSG ;select message
  N IBCOM,IBX,IBDAX,IBA
@@ -86,8 +86,11 @@ CANCELQ S VALMBCK="R"
  Q
  ;
 CRD ; enter here if correcting a bill
- N IBCNCRD
- S IBCNCRD=1
+ ;IB*2.0*516/TAZ - Added variable IBCNCSA to show the source of the CRD function.
+ ; This will allow the users to CRD a claim in CSA even though a claim has a status
+ ; of REQUEST MRA.
+ N IBCNCRD,IBCNCSA
+ S (IBCNCRD,IBCNCSA)=1
 CLONE ;'Copy/cancel bill' protocol action
  N IBX,IBA,IB364,MRACHK,IBIFN,IBKEY
  ; IBX,IBA will be killed during execution - need to protect them
@@ -95,7 +98,9 @@ CLONE ;'Copy/cancel bill' protocol action
  S IBDAX=$O(IBDAX("")),IBIFN=+$P($G(IBDAX(IBDAX)),U)
  I IBDAX="" G CLONEQ
  ; Check for security key
- S IBKEY=$S($G(IBCNCRD)=1:"IB AUTHORIZE",1:"IB CLON")
+ ;IB*2.0*516/TAZ - Remove check for IB CLON
+ ;S IBKEY=$S($G(IBCNCRD)=1:"IB AUTHORIZE",1:"IB CLON")
+ S IBKEY="IB AUTHORIZE"
  ;I '$$KCHK^XUSRB("IB AUTHORIZE") D  G CLONEQ
  I '$$KCHK^XUSRB(IBKEY) D  G CLONEQ
  . ;W !!?5,"You don't hold the proper security key to access this function."

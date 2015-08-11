@@ -1,6 +1,6 @@
 IBCEP81 ;ALB/KJH - NPI and Taxonomy Functions ;19 Apr 2008  5:17 PM
- ;;2.0;INTEGRATED BILLING;**343,391,400,476**;21-MAR-94;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**343,391,400,476,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Must call at an entry point  
  Q
@@ -161,12 +161,14 @@ DISPTAX(IBIEN,IBTXT) ; Display extra Taxonomy info (when available)
  S IBX=$$GET1^DIQ(8932.1,IBIEN,6) W !,"    ",$G(IBTXT)," Taxonomy X12 Code: ",IBX
  Q
 RULES(IBNPI,IBIEN,IBOLDNPI) ;Verify that the NPI meets all rules for usage
- N IBIEN1,IBIEN2,DUP
+ N IBIEN1,IBIEN2,DUP,SPIBIEN
  I $G(IBOLDNPI)>0,IBNPI=IBOLDNPI,$D(^VA(200,"ANPI",IBOLDNPI)) Q 1
  I IBNPI="" Q ""
  S DUP=$$DUP(IBNPI)
  ;Duplicate in 355.93
- I DUP'="",DUP'=IBIEN Q 11
+ ; If facility is sole proprietor, NPI is the one pointed to by the sole proprietor, then not a dup - IB*2*516
+ I $P(^IBA(355.93,IBIEN,0),U,17)="Y",$P(^IBA(355.93,IBIEN,0),U,18) S SPIBIEN=$P(^IBA(355.93,IBIEN,0),U,18)
+ I DUP'="",DUP'=IBIEN,DUP'=$G(SPIBIEN) Q 11
  ;Replacing an NPI that is associated to NEW PERSON file with another NPI that is associated with the NEW PERSON file
  I $G(IBOLDNPI)>0,$D(^VA(200,"ANPI",IBOLDNPI)),$D(^VA(200,"ANPI",IBNPI)) Q 14
  ;Already an inactive NPI

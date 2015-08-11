@@ -1,5 +1,5 @@
 IBJTCA1 ;ALB/ARH - TPI CLAIMS INFO BUILD ;10/31/07  14:17
- ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473,497,521**;21-MAR-94;Build 33
+ ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473,497,521,516**;21-MAR-94;Build 123
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must be defined
@@ -8,12 +8,23 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  N IBXSAVE  ; IB*2.0*473 bi
  S VALMCNT=0,X="",IBD0=$G(^DGCR(399,+$G(IBIFN),0)) I IBD0="" S VALMQUIT="" G BLDQ
  F IBI="M","M1","U","S","U2","TX" S @("IBD"_IBI)=$G(^DGCR(399,+IBIFN,IBI))
- S IBDI1=$P(IBD0,U,21),IBDI1=$S(IBDI1="S":"I2",IBDI1="T":"I3",1:"I1") S IBDI1=$G(^DGCR(399,+IBIFN,IBDI1))
+ S IBDI1=$P(IBD0,U,21),IBDI1=$S(IBDI1="S":2,IBDI1="T":3,1:1) S IBDI1=$$POLICY^IBCEF(IBIFN,,IBDI1)
  S IBID0=$G(^DIC(36,+IBDI1,0)),IBID13=$G(^DIC(36,+IBDI1,.13))
  ;
  S (IBLN,VALMCNT)=1
+ ;
+ ; MRD;IB*2.0*516 - Try to make the following more readable; also
+ ; added IBTC(7), IBTW(7) and IBSW(7).
  ;IB*2.0*432/TAZ - Added IBTW(6) and IBSW(6)
- S (IBNC(1),IBTC(1),IBTC(4),IBTC(6))=2,IBTC(5)=78,(IBNC(2),IBTC(2))=42,IBNC(3)=35,IBTW(1)=15,IBTW(2)=16,IBTW(4)=12,IBTW(5)=1,IBTW(6)=20,IBSW(1)=23,IBSW(2)=21,IBSW(4)=60,IBSW(5)=1,IBSW(6)=49
+ ;S (IBNC(1),IBTC(1),IBTC(4),IBTC(6))=2,IBTC(5)=78,(IBNC(2),IBTC(2))=42,IBNC(3)=35,IBTW(1)=15,IBTW(2)=16,IBTW(4)=12,IBTW(5)=1,IBTW(6)=20,IBSW(1)=23,IBSW(2)=21,IBSW(4)=60,IBSW(5)=1,IBSW(6)=49
+ ;
+ S IBNC(1)=2,IBTC(1)=2,IBTW(1)=15,IBSW(1)=23
+ S IBNC(2)=42,IBTC(2)=42,IBTW(2)=16,IBSW(2)=21
+ S IBNC(3)=35
+ S IBTC(4)=2,IBTW(4)=12,IBSW(4)=60
+ S IBTC(5)=78,IBTW(5)=1,IBSW(5)=1
+ S IBTC(6)=2,IBTW(6)=20,IBSW(6)=49
+ S IBTC(7)=2,IBTW(7)=20,IBSW(7)=58
  ;
  S IBLR=1
  ;
@@ -29,13 +40,16 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  S IBT="Claim Phone: ",IBD=$P($$BADD^IBJTU3(+IBIFN),U,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBLN=$$SET("","",IBLN,5)
  ;
- S IBT="Subscriber Demographics" S IBLN=$$SETN(IBT,IBLN,IBLR,1)
+ ; MRD;IB*2.0*516 - Use an IBLR of 7 for this section, then reset below.
+ S IBLR=7
+ S IBT="Subscriber Demographics" S IBLN=$$SETN(IBT,IBLN,1,1)
  S IBT="Group Number: ",IBD=$P(IBDI1,U,3) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Group Name: ",IBD=$P(IBDI1,U,15) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Subscriber ID: ",IBD=$P(IBDI1,U,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Employer: ",IBD=$$EMPL(+DFN) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Insured's Name: ",IBD=$P(IBDI1,U,17) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
  S IBT="Relationship: ",IBD=$$EXSET^IBJU1($P(IBDI1,U,16),2.312,16) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBLR=1
  ;
  S (IBNC(1),IBTC(1))=2,(IBNC(2),IBTC(2))=42,IBNC(3)=29,IBTW(1)=12,IBTW(2)=16,IBSW(1)=26,IBSW(2)=22
  S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
@@ -114,7 +128,7 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  ;
 COPAY I $O(^IBA(362.4,"C",IBIFN,0)) D
  . S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)   ; blank line
- . S IBT="Related Prescription Copay Information" S IBLN=$$SETN(IBT,IBLN,1,1)
+ . S IBNC(1)=21,IBT="Related Prescription Copay Information" S IBLN=$$SETN(IBT,IBLN,1,1)
  . N IBZ,IBX,IBC,IBCAP
  . S IBZ=0 F  S IBZ=$O(^IBA(362.4,"C",IBIFN,IBZ)) Q:'IBZ  D
  .. K ^TMP("IBTPJI",$J)

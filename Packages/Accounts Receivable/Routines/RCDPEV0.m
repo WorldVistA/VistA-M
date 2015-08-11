@@ -1,6 +1,6 @@
-RCDPEV0 ;ALB/TMK - EDI LOCKBOX WORKLIST VERIFY PAYMENTS ;18-FEB-04
- ;;4.5;Accounts Receivable;**208,261**;Mar 20, 1995;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEV0 ;ALB/TMK - EDI LOCKBOX WORKLIST VERIFY PAYMENTS ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**208,261,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 RPT(RCSCR) ; Print/display discrepancy report
@@ -43,9 +43,9 @@ DISRPT(RCSCR,RCBATCH) ; Queued job entrypoint
  . W !!,X
  . I ($Y+5)>IOSL D HDR(.RCPG,RCSCR,$G(RCBATCH),.RCSTOP) Q:RCSTOP
  . S X="VistA: ",SSN=$P(RESULT,U,10),SSN=$E($E(SSN,$L(SSN)-3,$L(SSN))_$J("",4),1,4)
- . S X=X_$S('RCBILL:"NOT RELATED TO A VistA BILL",1:$E($P(RESULT,U,2)_$J("",30),1,30)_" "_SSN_"  "_$E(AMT2_$J("",15),1,15)_"  "_$E($S(DTFR2="":"NO DATA",1:DTFR2)_$J("",9),1,9)_"-"_$S(DTTO2'="":DTTO2,1:"NO DATA"))
+ . S X=X_$S('RCBILL:"NOT RELATED TO A VistA BILL",1:$E($P(RESULT,U,2)_$J("",30),1,30)_" "_SSN_"  "_$E(AMT2_$J("",15),1,15)_"  "_$E($S(DTFR2="":"NO DATA",1:DTFR2)_$J("",9),1,9)_"- "_$S(DTTO2'="":DTTO2,1:"NO DATA"))
  . W !,X
- . S X="  ERA: "_$E($P(RESULT,U,3)_$J("",30),1,30)_$J("",7)_$E(AMT1_$J("",15),1,15)_"  "_$E($S(DTFR1="":"NO DATA",1:DTFR1)_$J("",9),1,9)_"-"_$S(DTTO1'="":DTTO1,1:"NO DATA")
+ . S X="  ERA: "_$E($P(RESULT,U,3)_$J("",30),1,30)_$J("",7)_$E(AMT1_$J("",15),1,15)_"  "_$E($S(DTFR1="":"NO DATA",1:DTFR1)_$J("",9),1,9)_"- "_$S(DTTO1'="":DTTO1,1:"NO DATA")
  . W !,X
  . Q:'SPLIT
  . W !,?9,"<<< THIS EEOB HAS BEEN SPLIT >>>"

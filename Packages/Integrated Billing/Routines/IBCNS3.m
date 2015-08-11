@@ -1,6 +1,6 @@
 IBCNS3 ;ALB/ARH - DISPLAY EXTENDED INSURANCE ; 01-DEC-04
- ;;2.0;INTEGRATED BILLING;**287,399,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**287,399,416,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DISP(DFN,DATE,DISPLAY) ;  Display all insurance company information
  ;    input: DFN     = pointer to patient
@@ -200,11 +200,14 @@ FNDGRP(IBPLNFN) ; -- return group name/group policy
  ;     input:   IBPLNFN = pointer to insurance plan entry in 355.3
  ;    output:   group name or group number, if both group NUMBER, check for Individual plans
  ;
- N IBX,IBOUT S IBOUT=""
- S IBX=$G(^IBA(355.3,+$G(IBPLNFN),0))
- S IBOUT=$S($P(IBX,U,4)'="":$P(IBX,U,4),1:$P(IBX,U,3))
- I $P(IBX,U,10) S IBOUT="Ind. Plan "_IBOUT
-FNDGRPQ Q IBOUT
+ ;IB*2.0*516/TAZ - Use HIPAA compliant fields 
+ ;N IBX,IBOUT S IBOUT=""
+ ;S IBX=$G(^IBA(355.3,+$G(IBPLNFN),0))
+ ;S IBOUT=$S($P(IBX,U,4)'="":$P(IBX,U,4),1:$P(IBX,U,3))
+ ;I $P(IBX,U,10) S IBOUT="Ind. Plan "_IBOUT
+FNDGRPQ ;
+ ;Q IBOUT
+ Q $$GRP^IBCNS(+$G(IBPLNFN))
  ;
  ;
  ;

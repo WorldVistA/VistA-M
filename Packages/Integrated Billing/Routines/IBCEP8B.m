@@ -1,6 +1,6 @@
 IBCEP8B ;ALB/CJS - Functions for NON-VA PROVIDER cont'd ;06-06-08
- ;;2.0;INTEGRATED BILLING;**391,432,476,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**391,432,476,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD(IBNPRV) ; Build/Rebuild display
  N IBLCT,IBCT,IBLST,IBPRI,IBIEN,Z,Z1,Z2,IB1
@@ -106,6 +106,9 @@ BLD(IBNPRV) ; Build/Rebuild display
  . D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
  . S Z1=$J("Mammography Certification #: ",30)_$P(Z,U,15)
+ . D SET1(.IBLCT,Z1,IBCT)
+ . S IBCT=IBCT+1
+ . S Z1=$J("Sole Proprietor: ",30)_$S($P(Z,U,18):$$GET1^DIQ(355.93,$P(Z,U,18),.01),1:"NO")
  . D SET1(.IBLCT,Z1,IBCT)
  . S IBCT=IBCT+1
  . S Z1=$J("NPI: ",30)_$$NPIGET^IBCEP81(IBNPRV) D SET1(.IBLCT,Z1,IBCT)

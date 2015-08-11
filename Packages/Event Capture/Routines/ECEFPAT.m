@@ -1,5 +1,5 @@
-ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;11/21/12  16:29
- ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114**;8 May 96;Build 20
+ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;9/29/14  12:50
+ ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126**;8 May 96;Build 8
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
@@ -86,7 +86,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  ;S ECPXREAS=$G(ECPXREAS) ;112
  D CVTREAS Q:$G(ECERR)  ;119 Convert reasons from entries in 720.4 to entries in 720.5 before storing.
  S DR=DR_";19////"_$S(+ECCPT:ECCPT,1:"@")_";20////"_ECDX
- S DR=DR_";26////"_$G(EC4)_";27////"_$G(ECID)_";29////"_ECPTSTAT
+ S DR=DR_";26////"_$S($G(EC4):EC4,1:"")_";27////"_$G(ECID)_";29////"_ECPTSTAT ;126 allow EC4 to be null if no associated clinic
  S DR=DR_";34////"_$S($G(ECPXREAS)="":"@",1:ECPXREAS) ;112
  S DR=DR_";43////"_$S($G(ECPXREA2)="":"@",1:ECPXREA2) ;112
  S DR=DR_";44////"_$S($G(ECPXREA3)="":"@",1:ECPXREA3) ;112

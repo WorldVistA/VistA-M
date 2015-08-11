@@ -1,118 +1,124 @@
-IBDEI11W ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11W ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18827,1,3,0)
- ;;=3^93922
- ;;^UTILITY(U,$J,358.3,18828,0)
- ;;=29904^^122^1204^7^^^^1
- ;;^UTILITY(U,$J,358.3,18828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18828,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/rem of foreign body
- ;;^UTILITY(U,$J,358.3,18828,1,3,0)
- ;;=3^29904
- ;;^UTILITY(U,$J,358.3,18829,0)
- ;;=29905^^122^1204^8^^^^1
- ;;^UTILITY(U,$J,358.3,18829,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18829,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/ Synovectomy
- ;;^UTILITY(U,$J,358.3,18829,1,3,0)
- ;;=3^29905
- ;;^UTILITY(U,$J,358.3,18830,0)
- ;;=29906^^122^1204^9^^^^1
- ;;^UTILITY(U,$J,358.3,18830,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18830,1,2,0)
- ;;=2^Arthroscopy, subtalar jt,w/ debridement
- ;;^UTILITY(U,$J,358.3,18830,1,3,0)
- ;;=3^29906
- ;;^UTILITY(U,$J,358.3,18831,0)
- ;;=29907^^122^1204^10^^^^1
- ;;^UTILITY(U,$J,358.3,18831,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18831,1,2,0)
- ;;=2^Arthroscopy,subtalar w/ fusion
- ;;^UTILITY(U,$J,358.3,18831,1,3,0)
- ;;=3^29907
- ;;^UTILITY(U,$J,358.3,18832,0)
- ;;=28400^^122^1205^1^^^^1
- ;;^UTILITY(U,$J,358.3,18832,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18832,1,2,0)
- ;;=2^Closed TX of calcaneal fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,18832,1,3,0)
- ;;=3^28400
- ;;^UTILITY(U,$J,358.3,18833,0)
- ;;=28405^^122^1205^2^^^^1
- ;;^UTILITY(U,$J,358.3,18833,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18833,1,2,0)
- ;;=2^Closed TX of calcaneal fracture; with manipulation
- ;;^UTILITY(U,$J,358.3,18833,1,3,0)
- ;;=3^28405
- ;;^UTILITY(U,$J,358.3,18834,0)
- ;;=28406^^122^1205^3^^^^1
- ;;^UTILITY(U,$J,358.3,18834,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18834,1,2,0)
- ;;=2^Perc Fixation of Calcaneous Fx
- ;;^UTILITY(U,$J,358.3,18834,1,3,0)
- ;;=3^28406
- ;;^UTILITY(U,$J,358.3,18835,0)
- ;;=28415^^122^1205^4^^^^1
- ;;^UTILITY(U,$J,358.3,18835,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18835,1,2,0)
- ;;=2^Open TX of calcaneal fracture, with or without internal or external fixation;
- ;;^UTILITY(U,$J,358.3,18835,1,3,0)
- ;;=3^28415
- ;;^UTILITY(U,$J,358.3,18836,0)
- ;;=28420^^122^1205^5^^^^1
- ;;^UTILITY(U,$J,358.3,18836,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18836,1,2,0)
- ;;=2^Open TX of calcaneal fracture, with or without internal or external fixation; with primary iliac or other autogenous bone graft
- ;;^UTILITY(U,$J,358.3,18836,1,3,0)
- ;;=3^28420
- ;;^UTILITY(U,$J,358.3,18837,0)
- ;;=28430^^122^1205^6^^^^1
- ;;^UTILITY(U,$J,358.3,18837,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18837,1,2,0)
- ;;=2^Closed TX of talus fracture; without manipulation 
- ;;^UTILITY(U,$J,358.3,18837,1,3,0)
- ;;=3^28430
- ;;^UTILITY(U,$J,358.3,18838,0)
- ;;=28435^^122^1205^7^^^^1
- ;;^UTILITY(U,$J,358.3,18838,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18838,1,2,0)
- ;;=2^Closed TX of talus fracture; with manipulation 
- ;;^UTILITY(U,$J,358.3,18838,1,3,0)
- ;;=3^28435
- ;;^UTILITY(U,$J,358.3,18839,0)
- ;;=28436^^122^1205^8^^^^1
- ;;^UTILITY(U,$J,358.3,18839,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18839,1,2,0)
- ;;=2^Perc Fixation Talus Fx
- ;;^UTILITY(U,$J,358.3,18839,1,3,0)
- ;;=3^28436
- ;;^UTILITY(U,$J,358.3,18840,0)
- ;;=28445^^122^1205^9^^^^1
- ;;^UTILITY(U,$J,358.3,18840,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18840,1,2,0)
- ;;=2^Open/Closed TX of Talus FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,18840,1,3,0)
- ;;=3^28445
- ;;^UTILITY(U,$J,358.3,18841,0)
- ;;=28450^^122^1205^10^^^^1
- ;;^UTILITY(U,$J,358.3,18841,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18841,1,2,0)
- ;;=2^TX of tarsal bone fracture; without manipulation, each 
- ;;^UTILITY(U,$J,358.3,18841,1,3,0)
- ;;=3^28450
+ ;;^UTILITY(U,$J,358.3,18733,1,2,0)
+ ;;=2^297.1
+ ;;^UTILITY(U,$J,358.3,18733,1,5,0)
+ ;;=5^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,18733,2)
+ ;;=^331896
+ ;;^UTILITY(U,$J,358.3,18734,0)
+ ;;=301.7^^104^1097^1
+ ;;^UTILITY(U,$J,358.3,18734,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18734,1,2,0)
+ ;;=2^301.7
+ ;;^UTILITY(U,$J,358.3,18734,1,5,0)
+ ;;=5^Antisocial Personality Dis
+ ;;^UTILITY(U,$J,358.3,18734,2)
+ ;;=Antisocial Personality Dis^9066
+ ;;^UTILITY(U,$J,358.3,18735,0)
+ ;;=301.82^^104^1097^2
+ ;;^UTILITY(U,$J,358.3,18735,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18735,1,2,0)
+ ;;=2^301.82
+ ;;^UTILITY(U,$J,358.3,18735,1,5,0)
+ ;;=5^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18735,2)
+ ;;=Avoidant Personality Disorder^265347
+ ;;^UTILITY(U,$J,358.3,18736,0)
+ ;;=301.83^^104^1097^3
+ ;;^UTILITY(U,$J,358.3,18736,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18736,1,2,0)
+ ;;=2^301.83
+ ;;^UTILITY(U,$J,358.3,18736,1,5,0)
+ ;;=5^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18736,2)
+ ;;=Borderline Personality Disorder^16372
+ ;;^UTILITY(U,$J,358.3,18737,0)
+ ;;=301.6^^104^1097^6
+ ;;^UTILITY(U,$J,358.3,18737,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18737,1,2,0)
+ ;;=2^301.6
+ ;;^UTILITY(U,$J,358.3,18737,1,5,0)
+ ;;=5^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18737,2)
+ ;;=Dependent Personality Disorder^32860
+ ;;^UTILITY(U,$J,358.3,18738,0)
+ ;;=301.50^^104^1097^8
+ ;;^UTILITY(U,$J,358.3,18738,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18738,1,2,0)
+ ;;=2^301.50
+ ;;^UTILITY(U,$J,358.3,18738,1,5,0)
+ ;;=5^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18738,2)
+ ;;=Histrionic Personality Disorder^57763
+ ;;^UTILITY(U,$J,358.3,18739,0)
+ ;;=301.81^^104^1097^11
+ ;;^UTILITY(U,$J,358.3,18739,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18739,1,2,0)
+ ;;=2^301.81
+ ;;^UTILITY(U,$J,358.3,18739,1,5,0)
+ ;;=5^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18739,2)
+ ;;=Narcissistic Personality Disorder^265353
+ ;;^UTILITY(U,$J,358.3,18740,0)
+ ;;=301.0^^104^1097^12
+ ;;^UTILITY(U,$J,358.3,18740,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18740,1,2,0)
+ ;;=2^301.0
+ ;;^UTILITY(U,$J,358.3,18740,1,5,0)
+ ;;=5^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18740,2)
+ ;;=Paranoid Personality Disorder^89982
+ ;;^UTILITY(U,$J,358.3,18741,0)
+ ;;=301.9^^104^1097^16
+ ;;^UTILITY(U,$J,358.3,18741,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18741,1,2,0)
+ ;;=2^301.9
+ ;;^UTILITY(U,$J,358.3,18741,1,5,0)
+ ;;=5^Unspecified Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18741,2)
+ ;;=Unspecified Personality Disorder^92451
+ ;;^UTILITY(U,$J,358.3,18742,0)
+ ;;=301.20^^104^1097^14
+ ;;^UTILITY(U,$J,358.3,18742,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18742,1,2,0)
+ ;;=2^301.20
+ ;;^UTILITY(U,$J,358.3,18742,1,5,0)
+ ;;=5^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18742,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,18743,0)
+ ;;=301.22^^104^1097^15
+ ;;^UTILITY(U,$J,358.3,18743,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18743,1,2,0)
+ ;;=2^301.22
+ ;;^UTILITY(U,$J,358.3,18743,1,5,0)
+ ;;=5^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18743,2)
+ ;;=Schizotypal Personality Disorder^108367
+ ;;^UTILITY(U,$J,358.3,18744,0)
+ ;;=301.4^^104^1097^4
+ ;;^UTILITY(U,$J,358.3,18744,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18744,1,2,0)
+ ;;=2^301.4
+ ;;^UTILITY(U,$J,358.3,18744,1,5,0)
+ ;;=5^Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,18744,2)
+ ;;=Compulsive Personality Disorder^27122
+ ;;^UTILITY(U,$J,358.3,18745,0)
+ ;;=301.84^^104^1097^13
+ ;;^UTILITY(U,$J,358.3,18745,1,0)
+ ;;=^358.31IA^5^2

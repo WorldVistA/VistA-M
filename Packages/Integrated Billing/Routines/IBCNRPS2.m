@@ -1,6 +1,6 @@
 IBCNRPS2 ;BHAM ISC/ALA - Plan Match ListMan ;13-NOV-2003
- ;;2.0;INTEGRATED BILLING;**276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**276,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;
 EN ; -- main entry point for IBCNR PLAN MATCH
  D EN^VALM("IBCNR PLAN STATUS INQUIRY")
@@ -55,8 +55,11 @@ SETPLAN(IBCNGP) ;
  ; if creating report and not a list 
  I $G(IBCNRRPT) D  Q
  . ; Group Name, Group #, Group Type, Plan ID, Plan Status
- . S X=$$FO^IBCNEUT1($P(IBGPZ,U,3),18)
- . S X=X_" "_$$FO^IBCNEUT1($P(IBGPZ,U,4),17)
+ . ;Get new HIPAA field - IB*2*516/df
+ . ;S X=$$FO^IBCNEUT1($P(IBGPZ,U,3),18)
+ . ;S X=X_" "_$$FO^IBCNEUT1($P(IBGPZ,U,4),17)
+ . S X=$$FO^IBCNEUT1($$GET1^DIQ(355.3,IBCNGP,2.01),18)
+ . S X=X_" "_$$FO^IBCNEUT1($$GET1^DIQ(355.3,IBCNGP,2.02),17)
  . S X=X_" "_$$FO^IBCNEUT1($$EXPAND^IBTRE(355.3,.09,$P(IBGPZ,U,9)),13)
  . S IBPLN=$P($G(^IBA(355.3,+IBCNGP,6)),U)
  . ; check for plan
@@ -80,10 +83,10 @@ SETPLAN(IBCNGP) ;
  S X=$$SETFLD^VALM1(VALMCNT,"","NUMBER")
  ;
  I '$P(IBGPZ,U,2) S $E(X,4)="+"
- S X=$$SETFLD^VALM1($P(IBGPZ,U,3),X,"GNAME")
+ S X=$$SETFLD^VALM1($$GET1^DIQ(355.3,IBCNGP,2.01),X,"GNAME") ;Get new HIPAA field - IB*2*516
  ;
  I '$P(IBGPZ,U,11) S $E(X,24)="*"
- S X=$$SETFLD^VALM1($P(IBGPZ,U,4),X,"GNUM")
+ S X=$$SETFLD^VALM1($$GET1^DIQ(355.3,IBCNGP,2.02),X,"GNUM") ;Get new HIPAA field - IB*2*516
  ; 
  S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBGPZ,U,9)),X,"TYPE")
  ; matched plan active or not

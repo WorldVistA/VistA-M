@@ -1,5 +1,5 @@
-ECMFDSSU ;ALB/JAM-Event Capture Management Filer DSS Unit ;20 Nov 00
- ;;2.0; EVENT CAPTURE ;**25,30,33**;8 May 96
+ECMFDSSU ;ALB/JAM-Event Capture Management Filer DSS Unit ;12/16/14  16:51
+ ;;2.0;EVENT CAPTURE ;**25,30,33,126**;8 May 96;Build 8
  ;
 FILE ;Used by the RPC broker to file DSS Units in file #724
  ;     Variables passed in
@@ -15,6 +15,8 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  ;       ECDFDT - Default Data Entry Date
  ;       ECPCE  - Send to PCE
  ;       ECSCN  - Event Code Screens status
+ ;       ECCSC  - Credit stop code, can be used when PCE status is "no records"
+ ;       ECHAR4 - CHAR4 code, can be used when PCE status is "no records"
  ;
  ;     Variable return
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #724^Message
@@ -35,7 +37,7 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  . I 'ECFLG K DIE S DIE="^ECD(",DA=ECIEN,DR=".01////"_ECDUNM D ^DIE
  S ECPCE=$S(ECPCE="A":"A",ECPCE="O":"O",1:"N")
  I ECPCE="N",$G(ECASC)="" D  D END Q
- . S ECERR=1,^TMP($J,"ECMSG",1)="0^No associated clinic, Send to PCE=N"
+ . S ECERR=1,^TMP($J,"ECMSG",1)="0^No associated stop code, Send to PCE=N" ;126 Corrected error message
  I ECIEN="" D NEWIEN
  K DA,DR,DIE
  S ECST=$E($G(ECST)),ECST=$S(ECST="I":1,1:0),ECDFDT=$E($G(ECDFDT))
@@ -43,6 +45,7 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  S DR="1////"_ECS_";2////"_ECM_";3////"_ECTR_";4////"_$G(ECUN)
  S DR=DR_";5////"_ECST_";7////1;9////"_$S(ECPCE'="N":"@",1:$G(ECASC))
  S DR=DR_";10////"_ECC_";11////"_ECDFDT_";13////"_ECPCE
+ S DR=DR_";14////"_$S(ECPCE'="N":"@",$G(ECCSC)="":"@",1:$G(ECCSC))_";15////"_$S(ECPCE'="N":"@",$G(ECHAR4)="":"@",1:$G(ECHAR4)) ;126 Add credit stop and char4 fields
  D ^DIE I $D(DTOUT) D RECDEL D  D END Q
  . S ^TMP($J,"ECMSG",1)="0^DSS Unit Record not Filed"
  I 'ECFLG D ECSCRNS
@@ -62,7 +65,9 @@ VALDATA ;validate data
  I $G(ECUN)'="" D CHK^DIE(724,4,"E",ECUN,.ECRRX) I ECRRX'=ECUN D  Q
  .S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Unit Number"
  I $G(ECASC)'="" D CHK^DIE(724,9,"E","`"_ECASC,.ECRRX) I ECRRX'=ECASC D  Q
- .S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Associated Clinic"
+ .S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Associated Stop Code" ;126 Corrected error message
+ I $G(ECCSC)'="" D CHK^DIE(724,14,"E","`"_ECCSC,.ECRRX) I ECRRX'=ECCSC S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Credit Stop Code" Q  ;126
+ I $G(ECHAR4)'="" D CHK^DIE(724,15,"E","`"_ECHAR4,.ECRRX) I ECRRX'=ECHAR4 S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid CHAR4 Code" Q  ;126
  Q
 ECSCRNS ;Determine if event codes should be updated based on change of DSS Unit
  ;status
@@ -91,7 +96,7 @@ RECDEL ; Delete record
  Q
 NEWIEN ;Create new IEN in file #724
  N DIC,DA,DD,DO
- L +^ECD(0)
+ L +^ECD(0):3 ;126 Added lock time out as required by standard
  S DIC=724,DIC(0)="L",X=ECDUNM
  D FILE^DICN
  L -^ECD(0)

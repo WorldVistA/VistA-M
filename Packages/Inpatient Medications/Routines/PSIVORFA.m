@@ -1,5 +1,5 @@
 PSIVORFA ;BIR/MLM-FILE/RETRIEVE ORDERS IN 53.1 ; 8/17/09 9:23am
- ;;5.0;INPATIENT MEDICATIONS;**4,7,18,28,50,71,58,91,80,110,111,134,225,267,275,279**;16 DEC 97;Build 150
+ ;;5.0;INPATIENT MEDICATIONS;**4,7,18,28,50,71,58,91,80,110,111,134,225,267,275,279,259**;16 DEC 97;Build 21
  ;
  ; Reference to ^PS(51.1 supported by DBIA 2177.
  ; Reference to ^PS(51.2 supported by DBIA 2178.
@@ -19,7 +19,7 @@ GT531(DFN,ON,PSJAPI) ; Retrieve order data from 53.1 and place into local array
  I $G(^PS(53.1,+ON,4))]"" S P("NINIT")=$P(^(4),U),P("NINITDT")=$P(^(4),U,2)
  NEW NAME S NAME=""
  I $D(^PS(53.1,+ON,1,1)) D DD^PSJLMUT1("^PS(53.1,+ON,",.NAME)
- S P("INS")=P("INS")_$S(P("INS")]"":" of ",1:"")_NAME
+ S:$P(^PS(53.1,+ON,0),U,4)="U" P("INS")=P("INS")_$S(P("INS")]"":" of ",1:"")_NAME  ;Only display instructions for unit dose orders
  S P("APPT")=$G(^PS(53.1,+ON,"DSS")),P("CLIN")=$P(P("APPT"),"^"),P("APPT")=$P(P("APPT"),"^",2)
  S Y=$G(^PS(53.1,+ON,2)),P(9)=$P(Y,U),P(11)=$P(Y,U,5),P(15)=$S($P(Y,U,6)'="":$P(Y,U,6),$G(PSGS0XT)'="":PSGS0XT,$P($G(ZZND),"^",3)'="":$P(ZZND,"^",3),1:""),P(2)=$P(Y,U,2),P(3)=$P(Y,U,4)
  S Y=$G(^PS(53.1,+ON,4)),P("CLRK")=$P(Y,U,7)_U_$P($G(^VA(200,+$P(Y,U,7),0)),U),P("REN")=$P(Y,U,9),X=P(9)

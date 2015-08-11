@@ -1,6 +1,6 @@
 RCDPEWL2 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ; 7/7/10 6:43pm
- ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; IA for call to OPTION^IBJTLA = 4121
  ; IA for call to ASK^IBRREL = 306
  ; IA call for EN1AR^IBECEA = 4047
@@ -298,7 +298,8 @@ WL(RCRCPT) ; Entrypoint to the ERA Worklist from Receipt Processing
  ;RCRCPT = ien of entry in file 344
  N DIR,X,Y,Z
  D FULL^VALM1
- S Z=+$O(^RCY(344.4,"AREC",RCRCPT,0))
+ ; if not at ERA summary level (344.4,.08), get a receipt match using the cross-reference at the ERA detail (RECEIPT (344.41, .25) 
+ S Z=$S($O(^RCY(344.4,"AREC",RCRCPT,0)):+$O(^RCY(344.4,"AREC",RCRCPT,0)),1:+$O(^RCY(344.4,"H",RCRCPT,0)))
  I 'Z D  G WLQ
  . S DIR("A")="THIS RECEIPT IS NOT ASSOCIATED WITH AN ERA RECORD - PRESS RETURN TO CONTINUE ",DIR(0)="EA" W ! D ^DIR K DIR
  ;

@@ -1,6 +1,6 @@
 IBCNRP ;DAOU/ALA - Plan Match ListMan ;13-NOV-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBCNR PLAN MATCH
  D EN^VALM("IBCNR PLAN MATCH")
@@ -27,11 +27,14 @@ HDR ; -- header code
  Q
  ;
 INIT ; -- init variables and list array
- NEW IBGP0,IBCPOLD,X,IBCPD6,IBCNRPP,IBCOV,IBCRVD,LIM
+ NEW IBCNRPP,IBCOV,IBCPD6,IBCPOLD,IBCRVD,LIM,X
  K ^TMP("IBCNR",$J)
  S VALMCNT=0,VALMBG=1
- S IBGP0=^IBA(355.3,+IBCNGP,0)
- I $G(IBGP0) D
+ ; MRD;IB*2.0*516 - Rather than pull the zero node here, use $$GET1^DIQ
+ ; to pull specific pieces down below.
+ ;S IBGP0=^IBA(355.3,+IBCNGP,0)
+ ;I $G(IBGP0) D
+ I $G(^IBA(355.3,+IBCNGP,0)) D
  . ;S IBCPD6=$G(IBGP0,U,6)) ;chk pre-cert
  . ;I 'IBIND,'$P(IBGP0,"^",2) Q  ;    exclude individual plans
  . ;I 'IBW,$P(IBGP0,"^",11) Q  ;      plan is inactive
@@ -39,13 +42,18 @@ INIT ; -- init variables and list array
  . S VALMCNT=VALMCNT+1
  . S X=$$SETFLD^VALM1(VALMCNT,"","NUMBER")
  . ;
- . I '$P(IBGP0,"^",2) S $E(X,4)="+"
- . S X=$$SETFLD^VALM1($P(IBGP0,"^",3),X,"GNAME")
+ . ;I '$P(IBGP0,"^",2) S $E(X,4)="+"
+ . ;S X=$$SETFLD^VALM1($P(IBGP0,"^",3),X,"GNAME")
+ . I '$$GET1^DIQ(355.3,+IBCNGP_",",.02,"I") S $E(X,4)="+"
+ . S X=$$SETFLD^VALM1($$GET1^DIQ(355.3,+IBCNGP_",",2.01),X,"GNAME")
  . ;
- . I $P(IBGP0,"^",11) S $E(X,24)="*"
- . S X=$$SETFLD^VALM1($P(IBGP0,"^",4),X,"GNUM")
+ . ;I $P(IBGP0,"^",11) S $E(X,24)="*"
+ . ;S X=$$SETFLD^VALM1($P(IBGP0,"^",4),X,"GNUM")
+ . I $$GET1^DIQ(355.3,+IBCNGP_",",.11,"I") S $E(X,24)="*"
+ . S X=$$SETFLD^VALM1($$GET1^DIQ(355.3,+IBCNGP_",",2.02),X,"GNUM")
  . ;
- . S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBGP0,"^",9)),X,"TYPE")
+ . ;S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBGP0,"^",9)),X,"TYPE")
+ . S X=$$SETFLD^VALM1($$GET1^DIQ(355.3,+IBCNGP_",",.09,"E"),X,"TYPE")
  . ;
  . S IBCNRPP=$$GET1^DIQ(355.3,IBCNGP_",",6.01,"I")
  . I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.02,"E")

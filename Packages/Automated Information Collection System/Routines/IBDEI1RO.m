@@ -1,0 +1,134 @@
+IBDEI1RO ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31589,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,31589,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,31590,0)
+ ;;=N47.4^^190^1939^17
+ ;;^UTILITY(U,$J,358.3,31590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31590,1,3,0)
+ ;;=3^Cyst of Prepuce,Benign
+ ;;^UTILITY(U,$J,358.3,31590,1,4,0)
+ ;;=4^N47.4
+ ;;^UTILITY(U,$J,358.3,31590,2)
+ ;;=^5015727
+ ;;^UTILITY(U,$J,358.3,31591,0)
+ ;;=N47.8^^190^1939^23
+ ;;^UTILITY(U,$J,358.3,31591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31591,1,3,0)
+ ;;=3^Disorders of Prepuce
+ ;;^UTILITY(U,$J,358.3,31591,1,4,0)
+ ;;=4^N47.8
+ ;;^UTILITY(U,$J,358.3,31591,2)
+ ;;=^5015730
+ ;;^UTILITY(U,$J,358.3,31592,0)
+ ;;=N47.7^^190^1939^54
+ ;;^UTILITY(U,$J,358.3,31592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31592,1,3,0)
+ ;;=3^Inflammatory Diseases of Prepuce
+ ;;^UTILITY(U,$J,358.3,31592,1,4,0)
+ ;;=4^N47.7
+ ;;^UTILITY(U,$J,358.3,31592,2)
+ ;;=^5015729
+ ;;^UTILITY(U,$J,358.3,31593,0)
+ ;;=N47.6^^190^1939^3
+ ;;^UTILITY(U,$J,358.3,31593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31593,1,3,0)
+ ;;=3^Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,31593,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,31593,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,31594,0)
+ ;;=N48.1^^190^1939^2
+ ;;^UTILITY(U,$J,358.3,31594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31594,1,3,0)
+ ;;=3^Balanitis
+ ;;^UTILITY(U,$J,358.3,31594,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,31594,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,31595,0)
+ ;;=N52.9^^190^1939^61
+ ;;^UTILITY(U,$J,358.3,31595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31595,1,3,0)
+ ;;=3^Male Erectile Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,31595,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,31595,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,31596,0)
+ ;;=N52.8^^190^1939^60
+ ;;^UTILITY(U,$J,358.3,31596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31596,1,3,0)
+ ;;=3^Male Erectile Dysfunction,Other
+ ;;^UTILITY(U,$J,358.3,31596,1,4,0)
+ ;;=4^N52.8
+ ;;^UTILITY(U,$J,358.3,31596,2)
+ ;;=^5015762
+ ;;^UTILITY(U,$J,358.3,31597,0)
+ ;;=N52.34^^190^1939^35
+ ;;^UTILITY(U,$J,358.3,31597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31597,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,31597,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,31597,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,31598,0)
+ ;;=N52.39^^190^1939^37
+ ;;^UTILITY(U,$J,358.3,31598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31598,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,31598,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,31598,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,31599,0)
+ ;;=N52.33^^190^1939^36
+ ;;^UTILITY(U,$J,358.3,31599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31599,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,31599,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,31599,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,31600,0)
+ ;;=N52.32^^190^1939^33
+ ;;^UTILITY(U,$J,358.3,31600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31600,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,31600,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,31600,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,31601,0)
+ ;;=N52.31^^190^1939^34
+ ;;^UTILITY(U,$J,358.3,31601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31601,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,31601,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,31601,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,31602,0)
+ ;;=N52.2^^190^1939^40
+ ;;^UTILITY(U,$J,358.3,31602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31602,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced

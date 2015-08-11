@@ -1,0 +1,130 @@
+IBDEI1OR ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30270,0)
+ ;;=C4A.61^^189^1912^14
+ ;;^UTILITY(U,$J,358.3,30270,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30270,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30270,1,4,0)
+ ;;=4^C4A.61
+ ;;^UTILITY(U,$J,358.3,30270,2)
+ ;;=^5001152
+ ;;^UTILITY(U,$J,358.3,30271,0)
+ ;;=C4A.62^^189^1912^7
+ ;;^UTILITY(U,$J,358.3,30271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30271,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30271,1,4,0)
+ ;;=4^C4A.62
+ ;;^UTILITY(U,$J,358.3,30271,2)
+ ;;=^5001153
+ ;;^UTILITY(U,$J,358.3,30272,0)
+ ;;=C4A.71^^189^1912^13
+ ;;^UTILITY(U,$J,358.3,30272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30272,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,30272,1,4,0)
+ ;;=4^C4A.71
+ ;;^UTILITY(U,$J,358.3,30272,2)
+ ;;=^5001155
+ ;;^UTILITY(U,$J,358.3,30273,0)
+ ;;=C4A.72^^189^1912^6
+ ;;^UTILITY(U,$J,358.3,30273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30273,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,30273,1,4,0)
+ ;;=4^C4A.72
+ ;;^UTILITY(U,$J,358.3,30273,2)
+ ;;=^5001156
+ ;;^UTILITY(U,$J,358.3,30274,0)
+ ;;=C4A.8^^189^1912^10
+ ;;^UTILITY(U,$J,358.3,30274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30274,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,30274,1,4,0)
+ ;;=4^C4A.8
+ ;;^UTILITY(U,$J,358.3,30274,2)
+ ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,30275,0)
+ ;;=C4A.9^^189^1912^18
+ ;;^UTILITY(U,$J,358.3,30275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30275,1,3,0)
+ ;;=3^Merkel Cell Carcinoma,Unspec
+ ;;^UTILITY(U,$J,358.3,30275,1,4,0)
+ ;;=4^C4A.9
+ ;;^UTILITY(U,$J,358.3,30275,2)
+ ;;=^5001158
+ ;;^UTILITY(U,$J,358.3,30276,0)
+ ;;=S01.20XA^^189^1913^33
+ ;;^UTILITY(U,$J,358.3,30276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30276,1,3,0)
+ ;;=3^Open Wound of Nose,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30276,1,4,0)
+ ;;=4^S01.20XA
+ ;;^UTILITY(U,$J,358.3,30276,2)
+ ;;=^5020090
+ ;;^UTILITY(U,$J,358.3,30277,0)
+ ;;=S01.00XA^^189^1913^62
+ ;;^UTILITY(U,$J,358.3,30277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30277,1,3,0)
+ ;;=3^Open Wound of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30277,1,4,0)
+ ;;=4^S01.00XA
+ ;;^UTILITY(U,$J,358.3,30277,2)
+ ;;=^5020033
+ ;;^UTILITY(U,$J,358.3,30278,0)
+ ;;=S01.402A^^189^1913^7
+ ;;^UTILITY(U,$J,358.3,30278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30278,1,3,0)
+ ;;=3^Open Wound of Left Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30278,1,4,0)
+ ;;=4^S01.402A
+ ;;^UTILITY(U,$J,358.3,30278,2)
+ ;;=^5020150
+ ;;^UTILITY(U,$J,358.3,30279,0)
+ ;;=S01.401A^^189^1913^38
+ ;;^UTILITY(U,$J,358.3,30279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30279,1,3,0)
+ ;;=3^Open Wound of Right Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30279,1,4,0)
+ ;;=4^S01.401A
+ ;;^UTILITY(U,$J,358.3,30279,2)
+ ;;=^5020147
+ ;;^UTILITY(U,$J,358.3,30280,0)
+ ;;=S01.80XA^^189^1913^1
+ ;;^UTILITY(U,$J,358.3,30280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30280,1,3,0)
+ ;;=3^Open Wound of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30280,1,4,0)
+ ;;=4^S01.80XA
+ ;;^UTILITY(U,$J,358.3,30280,2)
+ ;;=^5020222
+ ;;^UTILITY(U,$J,358.3,30281,0)
+ ;;=S01.90XA^^189^1913^2
+ ;;^UTILITY(U,$J,358.3,30281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30281,1,3,0)
+ ;;=3^Open Wound of Head,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30281,1,4,0)
+ ;;=4^S01.90XA
+ ;;^UTILITY(U,$J,358.3,30281,2)
+ ;;=^5020240
+ ;;^UTILITY(U,$J,358.3,30282,0)
+ ;;=S11.80XA^^189^1913^31
+ ;;^UTILITY(U,$J,358.3,30282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30282,1,3,0)
+ ;;=3^Open Wound of Neck NEC,Init Encntr

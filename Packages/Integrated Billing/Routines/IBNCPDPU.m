@@ -1,10 +1,12 @@
-IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPCP ;5/22/08  15:24
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPDP ;Jun 06, 2014@19:13:12
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511**;21-MAR-94;Build 106
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to ECMEACT^PSOBPSU1 supported by IA# 4702
  ;Reference to $$EN^BPSNCPDP supported by IA# 4415
  ;Reference to $$NABP^BPSBUTL supported by IA# 4719
+ ;Reference to $$CLMECME^BPSUTIL2 supported by IA# 6028
+ ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
  ;
  ;
 CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK) ; files in claims tracking
@@ -154,34 +156,17 @@ RXBIL(IBINP,IBERR) ; Matching NCPDP payments
  ;   IBINP("PNM") (optional) - the patient's last name
  ;Returns:
  ;   IBERR (by ref) - the error code, or null string if found
- ;   $$RXBIL - IB Bill IEN, or 0 if not matched
- N IBKEY,IBECME,BILLDA,IBFOUND,IBMATCH,IBDAT,IBPNAME,ECMELEN,ECMENUM
+ ;   RXBIL - IB Bill IEN, or 0 if not matched
+ N IBECME,BILLDA,IBDAT,IBPNAME,BPSDAT
  S IBERR=""
  S IBECME=$G(IBINP("ECME"))
- I IBECME'?1.12N S IBERR="Invalid ECME number" Q 0
+ I '$$VALECME^BPSUTIL2(IBECME) S IBERR="Invalid ECME number" Q 0
  S IBDAT=$G(IBINP("FILLDT")) ; Rx fill date
  I IBDAT?8N S IBDAT=($E(IBDAT,1,4)-1700)_$E(IBDAT,5,8) ; conv date to FM format
  I IBDAT'?7N Q $$RXBILND(IBECME)  ; date is not correct or null
  S IBPNAME=$G(IBINP("PNM")) ; patient's name (optional)
- ;
- ; Attempt ECME# look up with either 7 digit or 12 digit number  (IB*2*435)
- S IBFOUND=0,IBMATCH=0
- F ECMELEN=12,7 D  Q:IBFOUND
- . I $L(+IBECME)>ECMELEN Q   ; Quit if too large
- . S ECMENUM=$$RJ^XLFSTR(+IBECME,ECMELEN,0)  ; build ECME#
- . S IBKEY=ECMENUM_";"_IBDAT ; The ECME Number (BC ID) for the "AG" xref
- . S BILLDA=""
- . ; Search Backward
- . F  S BILLDA=$O(^DGCR(399,"AG",IBKEY,BILLDA),-1) Q:BILLDA=""  D  Q:IBFOUND
- .. I 'BILLDA Q  ; IEN must be numeric
- .. I '$D(^DGCR(399,BILLDA,0)) Q  ; Corrupted index
- .. S IBMATCH=1
- .. I IBPNAME'="" I '$$TXMATCH($P(IBPNAME,","),$P($G(^DPT(+$P(^DGCR(399,BILLDA,0),U,2),0)),","),8) Q  ; Patient name doesn't match
- .. S IBFOUND=1
- .. Q
- . Q
- ;
- I 'BILLDA S IBERR=$S(IBMATCH:"Patient's name does not match",1:"Matching bill not found") ; not matched
+ S BILLDA=$$ECMEMTCH(IBECME,IBDAT,IBPNAME,.IBERR)
+ I 'BILLDA S BPSDAT=$$CLMECME^BPSUTIL2(+IBECME,IBDAT) I $G(BPSDAT)>0,BPSDAT'=IBDAT S BILLDA=$$ECMEMTCH(IBECME,BPSDAT,IBPNAME,.IBERR)
  Q +BILLDA
  ;
 RXBILND(IBECME) ;Match the bill with no date
@@ -202,6 +187,7 @@ RXBILND(IBECME) ;Match the bill with no date
  ... Q
  .. Q
  . Q
+ ;
  I BILLDA Q BILLDA
  ;
  ; Search ECME# 7/12 digits backwards looking for ANY claims within cut-off date  (IB*2*435)
@@ -217,12 +203,13 @@ RXBILND(IBECME) ;Match the bill with no date
  ... Q
  .. Q
  . Q
+ ;
  Q BILLDA
  ;
  ;Check matching of two strings - case insensitive, no spaces etc.
 TXMATCH(IBTXT1,IBTXT2,IBMAX) ;
  N IBTR1,IBTR2,IBT1,IBT2
- ;Checking only first IBMAX characters (long names may be trancated
+ ;Checking only first IBMAX characters (long names may be truncated)
  S IBTR1="ABCDEFGHIJKLMNOPQRSTUVWXYZ:;"",'._()<>/\|@#$%&*-=!`~ "
  S IBTR2="abcdefghijklmnopqrstuvwxyz"
  S IBT1=$E($TR(IBTXT1,IBTR1,IBTR2),1,IBMAX)
@@ -232,6 +219,7 @@ TXMATCH(IBTXT1,IBTXT2,IBMAX) ;
 ECMEBIL(DFN,IBADT) ; Is the pat ECME Billable (pharmacy coverage only)
  ; DFN - ptr to the patient
  ; IBADT  - the date
+ ; IBINS - insurance array returned by ALL^IBCNS1
  N IBANY,IBERMSG,IBX,IBINS,IBT,IBZ,IBRES,IBCAT,IBCOV,IBPCOV
  S IBRES=0 ; Not ECME Billable by default
  S (IBCOV,IBPCOV)=0
@@ -299,6 +287,7 @@ REJECT(IBECME,IBDATE) ; Is the e-claim rejected?
  . S IBECME=$$RJ^XLFSTR(+IBECME,ECMELEN,0)    ; build ECME# with leading zeros
  . S IBTRKRN=+$O(^IBT(356,"AE",IBECME,0))
  . Q
+ ;
  I 'IBTRKRN Q 0
  S IBY=$G(^IBT(356,IBTRKRN,1))
  I $P(IBY,U,11)>0 Q 1  ; Rejected or closed
@@ -329,5 +318,23 @@ RXINS(DFN,IBADT,IBINS) ; Return an array of pharmacy insurance policies by COB o
  ;
 RXINSX ;
  Q
+ ;
+ECMEMTCH(IBECME,IBDAT,IBPNAME,IBERR) ; Attempt ECME# look up with either 7 digit or 12 digit number  (IB*2*435)
+ N IBFOUND,IBMATCH,ECMELEN,IBKEY,BILLDA
+ S IBFOUND=0,IBMATCH=0
+ F ECMELEN=12,7 D  Q:IBFOUND
+ . I $L(+IBECME)>ECMELEN Q  ; Quit if too large
+ . S ECMENUM=$$RJ^XLFSTR(+IBECME,ECMELEN,0)  ; build ECME#
+ . S IBKEY=ECMENUM_";"_IBDAT ; The ECME Number (BC ID) for the "AG" xref
+ . S BILLDA=""
+ . ; Search Backward
+ . F  S BILLDA=$O(^DGCR(399,"AG",IBKEY,BILLDA),-1) Q:BILLDA=""  D  Q:IBFOUND
+ .. I 'BILLDA Q  ; IEN must be numeric
+ .. I '$D(^DGCR(399,BILLDA,0)) Q  ; Corrupted index
+ .. S IBMATCH=1
+ .. I IBPNAME'="" I '$$TXMATCH($P(IBPNAME,","),$P($G(^DPT(+$P(^DGCR(399,BILLDA,0),U,2),0)),","),8) Q  ; Patient name doesn't match
+ .. S IBFOUND=1
+ I 'BILLDA S IBERR=$S(IBMATCH:"Patient's name does not match",1:"Matching bill not found") ; not matched
+ Q +BILLDA
  ;
  ;IBNCPDPU

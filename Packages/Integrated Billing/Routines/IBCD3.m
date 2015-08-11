@@ -1,6 +1,6 @@
 IBCD3 ;ALB/ARH - AUTOMATED BILLER (ADD NEW BILL - CREATE BILL ENTRY) ;9/5/93
- ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Called by IBCD2,IBACUS2
  ;
@@ -15,7 +15,10 @@ EN(IBQUERY) ;
  I $G(IB("PRV",.01))'="" D
  . S DIC("DR")="",I=.01
  . N IBV
- . F  S I=$O(IB("PRV",I)) Q:'I  I IB("PRV",I)'="" S IBV(I)=IB("PRV",I),DIC("DR")=DIC("DR")_$S(DIC("DR")="":"",1:";")_I_"////^S X=IBV("_I_")"
+ . F  S I=$O(IB("PRV",I)) Q:'I  D
+ .. I IB("PRV",I)="" Q
+ .. I $$GETNPI^IBCEF73A($P(IB("PRV",I),"^",2))="" Q  ;Don't file provider if no NPI - IB*2*516
+ .. S IBV(I)=IB("PRV",I),DIC("DR")=DIC("DR")_$S(DIC("DR")="":"",1:";")_I_"////^S X=IBV("_I_")"
  . S DIC="^DGCR(399,"_IBIFN_",""PRV"",",DIC(0)="L",DLAYGO=399,DA(1)=IBIFN,X=IB("PRV",.01)
  . K DO,DD D FILE^DICN K DO,DD,DLAYGO,DA,DIC
  ;

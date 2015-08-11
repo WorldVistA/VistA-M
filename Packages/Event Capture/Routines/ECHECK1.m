@@ -1,5 +1,5 @@
-ECHECK1 ;BIR/MAM,JPW-Categories and Procedures Check ;7 May 96
- ;;2.0; EVENT CAPTURE ;**4,33,47,55,63**;8 May 96
+ECHECK1 ;BIR/MAM,JPW-Categories and Procedures Check ;12/17/14  15:10
+ ;;2.0;EVENT CAPTURE ;**4,33,47,55,63,126**;8 May 96;Build 8
 CATS ; check number of categories
  K ECBUD,EC1,EC23 S CNT=0,ECAT=""
  F  S ECAT=$O(^ECJ("AP",ECL,ECD,ECAT)) Q:ECAT=""  D
@@ -27,7 +27,7 @@ ALL ;set info for all proc
  .I '$G(ECACTIV)  I ECTEMP,ECTEMP'>DT K ECPIEN,ECPROF,ECPROPP,ECPRONAM,ECTEMP,NODE1,NOD2,SYN,NATN,VOL Q
  .S NODE2=$G(^ECJ(ECPIEN,"PRO")),SYN=$S($P(NODE2,"^",2)]"":$P(NODE2,"^",2),1:"NOT DEFINED"),VOL=$P(NODE2,"^",3)
  .S ^TMP("ECPRO",$J,CNT)=^TMP("ECPRO",$J,CNT)_"^"_SYN_"^"_ECPRONAM_"^"_NATN_"^"_VOL_"^"_ECPROF_"^"_ECPROPP_"^"_ECTEMP
- .S ^TMP("ECPRO",$J,"B",ECPRONAM,CNT)="",^TMP("ECPRO",$J,"SYN",SYN,CNT)="",^TMP("ECPRO",$J,"N",NATN,CNT)=""
+ .S ^TMP("ECPRO",$J,"B",ECPRONAM,CNT)="",^TMP("ECPRO",$J,"SYN",SYN,CNT)="",^TMP("ECPRO",$J,"N",NATN,CNT)="",^TMP("ECPRO",$J,"N2",NATN_" ",CNT)="" ;126 N2 is expected sort order
  K ECPIEN,ECPROF,ECPROPP,ECPRONAM,ECTEMP,NODE1,NODE2,SYN,NATN,VOL
  Q
 SET ;set proc in ^tmp

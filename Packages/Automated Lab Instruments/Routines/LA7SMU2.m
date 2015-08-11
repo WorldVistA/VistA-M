@@ -1,5 +1,5 @@
-LA7SMU2 ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;01/07/13  17:10
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,80**;Sep 27, 1994;Build 19
+LA7SMU2 ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ; 18 Nov 2014  4:20 PM
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,80,85**;Sep 27, 1994;Build 4
  ;
  Q
  ;
@@ -25,12 +25,17 @@ DTTO(LA7SCFG,LA7VNLT,LA7HLSC,LA7HLPRI,LA7HLCSC) ; Determine test to order
  I LA7HLPRI="" S LA7HLPRI="R"
  ;
  ; If coding systems not defined then assume HL7 Table 0070 and VA NLT file
+ ; Also check for SCT override codes
  F I=1,4 D
- . I $G(LA7HLSC(I))'="",$G(LA7HLSC(I+2))="" S LA7HLSC(I+2)="HL70070"
+ . I $G(LA7HLSC(I))'="" D
+ . . I $G(LA7HLSC(I+2))="" S LA7HLSC(I+2)="HL70070"
+ . . I LA7HLSC(I+2)="SCT",$G(LA76248) S LA7HLSC(I)=$$CHKSCT(LA7HLSC(I),61,LA76248)
  . I $G(LA7VNLT(I))'="" D
  . . I $G(LA7VNLT(I+2))="" S LA7VNLT(I+2)="L"
  . . I $G(LA7VNLT(I+2))="L",$P(^LAHM(62.9,LA7SCFG,0),"^",15)=0 S LA7VNLT(I+2)="99VA64"
- . I $G(LA7HLCSC(I))'="",$G(LA7HLCSC(I+2))="" S LA7HLCSC(I+2)="L"
+ . I $G(LA7HLCSC(I))'="" D
+ . . I $G(LA7HLCSC(I+2))="" S LA7HLCSC(I+2)="L"
+ . . I LA7HLCSC(I+2)="SCT",$G(LA76248) S LA7HLCSC(I)=$$CHKSCT(LA7HLCSC(I),62,LA76248)
  ;
  ; Build index of tests if not previously done for this session.
  I '$D(^TMP("LA7TC",$J,LA7SCFG)) D BINDX^LA7SMU2A
@@ -142,6 +147,26 @@ CHKCDSYS(LA7SRC,LA7DEST,LA7CSET,LA7CS) ; Check coding system order on CE/CNE/CWE
  I $G(LA7SRC)'="" S $P(LA7DEST,LA7CS,7)=$P(LA7SRC,LA7CS,8),$P(LA7DEST,LA7CS,8)=$P(LA7SRC,LA7CS,7),$P(LA7DEST,LA7CS,9)=$P(LA7SRC,LA7CS,9)
  ;
  Q
+ ;
+ ;
+CHKSCT(LA7CODE,LA7FILE,LA76248) ;Check for SCT override (substitute).
+ ; Call with LA7CODE = SCT ID code
+ ;           LA7FILE = file number of target file (61/62)
+ ;           LA76248 = IEN of file #62.48 message configuration
+ ;
+ ;  Returns  LA7CODE = original or override (substitute) SCT code
+ ;
+ N LA7X,LA7Y
+ S LA7X=""
+ ;
+ I LA7FILE=61,LA76248 S LA7X=$O(^LAHM(62.48,LA76248,"SCT","AD1",LA7CODE,""))
+ I LA7FILE=62,LA76248 S LA7X=$O(^LAHM(62.48,LA76248,"SCT","AD2",LA7CODE,""))
+ ;
+ I LA7X>0 D
+ . S LA7Y=$$IEN2SCT^LA7VHLU6(LA7FILE,LA7X,DT,"")
+ . I LA7Y>0 S LA7CODE=$P(LA7Y,"^")
+ ;
+ Q LA7CODE
  ;
  ;
 FINDSCT(LA7FILE,LA7CODE,LA7TXT) ; Lookup SCT term in Lexicon and if possible add to target file.

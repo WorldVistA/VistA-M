@@ -1,126 +1,132 @@
-IBDEI138 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI138 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19496,0)
- ;;=17004^^130^1265^12^^^^1
- ;;^UTILITY(U,$J,358.3,19496,1,0)
+ ;;^UTILITY(U,$J,358.3,19387,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19496,1,2,0)
- ;;=2^17004
- ;;^UTILITY(U,$J,358.3,19496,1,3,0)
- ;;=3^Destr ben les,ea addl les 15 or more
- ;;^UTILITY(U,$J,358.3,19497,0)
- ;;=10060^^130^1265^13^^^^1
- ;;^UTILITY(U,$J,358.3,19497,1,0)
+ ;;^UTILITY(U,$J,358.3,19387,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,19387,1,3,0)
+ ;;=3^Prob Focused
+ ;;^UTILITY(U,$J,358.3,19388,0)
+ ;;=99202^^107^1147^2
+ ;;^UTILITY(U,$J,358.3,19388,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19497,1,2,0)
- ;;=2^10060
- ;;^UTILITY(U,$J,358.3,19497,1,3,0)
- ;;=3^I&D Abscess
- ;;^UTILITY(U,$J,358.3,19498,0)
- ;;=10061^^130^1265^14^^^^1
- ;;^UTILITY(U,$J,358.3,19498,1,0)
+ ;;^UTILITY(U,$J,358.3,19388,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,19388,1,3,0)
+ ;;=3^Expanded Prob Focus
+ ;;^UTILITY(U,$J,358.3,19389,0)
+ ;;=99203^^107^1147^3
+ ;;^UTILITY(U,$J,358.3,19389,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19498,1,2,0)
- ;;=2^10061
- ;;^UTILITY(U,$J,358.3,19498,1,3,0)
- ;;=3^I&D Complicated Abscess
- ;;^UTILITY(U,$J,358.3,19499,0)
- ;;=12001^^130^1265^21^^^^1
- ;;^UTILITY(U,$J,358.3,19499,1,0)
+ ;;^UTILITY(U,$J,358.3,19389,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,19389,1,3,0)
+ ;;=3^Detailed
+ ;;^UTILITY(U,$J,358.3,19390,0)
+ ;;=99204^^107^1147^4
+ ;;^UTILITY(U,$J,358.3,19390,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19499,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,19499,1,3,0)
- ;;=3^Suture Simple wounds 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,19500,0)
- ;;=12002^^130^1265^22^^^^1
- ;;^UTILITY(U,$J,358.3,19500,1,0)
+ ;;^UTILITY(U,$J,358.3,19390,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,19390,1,3,0)
+ ;;=3^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,19391,0)
+ ;;=99205^^107^1147^5
+ ;;^UTILITY(U,$J,358.3,19391,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19500,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,19500,1,3,0)
- ;;=3^Suture Simple Wounds 2.6-7.5 cm
- ;;^UTILITY(U,$J,358.3,19501,0)
- ;;=11042^^130^1265^9^^^^1
- ;;^UTILITY(U,$J,358.3,19501,1,0)
+ ;;^UTILITY(U,$J,358.3,19391,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,19391,1,3,0)
+ ;;=3^Comprehensive, High Complx
+ ;;^UTILITY(U,$J,358.3,19392,0)
+ ;;=433.10^^108^1148^1
+ ;;^UTILITY(U,$J,358.3,19392,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19501,1,2,0)
- ;;=2^11042
- ;;^UTILITY(U,$J,358.3,19501,1,3,0)
- ;;=3^Debridement, Skin & Subcu. Tissue,1st 20sq cm
- ;;^UTILITY(U,$J,358.3,19502,0)
- ;;=20550^^130^1265^17^^^^1
- ;;^UTILITY(U,$J,358.3,19502,1,0)
+ ;;^UTILITY(U,$J,358.3,19392,1,2,0)
+ ;;=2^433.10
+ ;;^UTILITY(U,$J,358.3,19392,1,3,0)
+ ;;=3^Carotid Artery Sten
+ ;;^UTILITY(U,$J,358.3,19392,2)
+ ;;=Carotid Artery Stenosis^295801
+ ;;^UTILITY(U,$J,358.3,19393,0)
+ ;;=437.0^^108^1148^2
+ ;;^UTILITY(U,$J,358.3,19393,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19502,1,2,0)
- ;;=2^20550
- ;;^UTILITY(U,$J,358.3,19502,1,3,0)
- ;;=3^Injection, Tendon Sheath, Ligament, Ganglion Cyst
- ;;^UTILITY(U,$J,358.3,19503,0)
- ;;=20551^^130^1265^16^^^^1
- ;;^UTILITY(U,$J,358.3,19503,1,0)
+ ;;^UTILITY(U,$J,358.3,19393,1,2,0)
+ ;;=2^437.0
+ ;;^UTILITY(U,$J,358.3,19393,1,3,0)
+ ;;=3^Intracran Arter Sten
+ ;;^UTILITY(U,$J,358.3,19393,2)
+ ;;=Intercranial Arterial Stenosis^21571
+ ;;^UTILITY(U,$J,358.3,19394,0)
+ ;;=435.2^^108^1148^6
+ ;;^UTILITY(U,$J,358.3,19394,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19503,1,2,0)
- ;;=2^20551
- ;;^UTILITY(U,$J,358.3,19503,1,3,0)
- ;;=3^Injection, Tendon Origin/Insertion
- ;;^UTILITY(U,$J,358.3,19504,0)
- ;;=20552^^130^1265^18^^^^1
- ;;^UTILITY(U,$J,358.3,19504,1,0)
+ ;;^UTILITY(U,$J,358.3,19394,1,2,0)
+ ;;=2^435.2
+ ;;^UTILITY(U,$J,358.3,19394,1,3,0)
+ ;;=3^Subclavian Stenosis
+ ;;^UTILITY(U,$J,358.3,19394,2)
+ ;;=Subclavian Stenosis^115012
+ ;;^UTILITY(U,$J,358.3,19395,0)
+ ;;=435.9^^108^1148^7
+ ;;^UTILITY(U,$J,358.3,19395,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19504,1,2,0)
- ;;=2^20552
- ;;^UTILITY(U,$J,358.3,19504,1,3,0)
- ;;=3^Injection, Trigger Point, 1 or 2 Muscle groups
- ;;^UTILITY(U,$J,358.3,19505,0)
- ;;=20600^^130^1265^1^^^^1
- ;;^UTILITY(U,$J,358.3,19505,1,0)
+ ;;^UTILITY(U,$J,358.3,19395,1,2,0)
+ ;;=2^435.9
+ ;;^UTILITY(U,$J,358.3,19395,1,3,0)
+ ;;=3^Trans Ischemic Attack
+ ;;^UTILITY(U,$J,358.3,19395,2)
+ ;;=Trans Ischemic Attack^21635
+ ;;^UTILITY(U,$J,358.3,19396,0)
+ ;;=435.3^^108^1148^8
+ ;;^UTILITY(U,$J,358.3,19396,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19505,1,2,0)
- ;;=2^20600
- ;;^UTILITY(U,$J,358.3,19505,1,3,0)
- ;;=3^Arthrocentesis, Fingers/Toes
- ;;^UTILITY(U,$J,358.3,19506,0)
- ;;=20605^^130^1265^3^^^^1
- ;;^UTILITY(U,$J,358.3,19506,1,0)
+ ;;^UTILITY(U,$J,358.3,19396,1,2,0)
+ ;;=2^435.3
+ ;;^UTILITY(U,$J,358.3,19396,1,3,0)
+ ;;=3^Vertebral Basilar Insuff
+ ;;^UTILITY(U,$J,358.3,19396,2)
+ ;;=Vertebral Basilar Insuffiency^260000
+ ;;^UTILITY(U,$J,358.3,19397,0)
+ ;;=438.20^^108^1148^4
+ ;;^UTILITY(U,$J,358.3,19397,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19506,1,2,0)
- ;;=2^20605
- ;;^UTILITY(U,$J,358.3,19506,1,3,0)
- ;;=3^Arthrocentesis, Wrist/Elbow/Ankle/AC Joint
- ;;^UTILITY(U,$J,358.3,19507,0)
- ;;=20610^^130^1265^2^^^^1
- ;;^UTILITY(U,$J,358.3,19507,1,0)
+ ;;^UTILITY(U,$J,358.3,19397,1,2,0)
+ ;;=2^438.20
+ ;;^UTILITY(U,$J,358.3,19397,1,3,0)
+ ;;=3^Stroke w/Hemiplegia
+ ;;^UTILITY(U,$J,358.3,19397,2)
+ ;;=Stroke w/Hemiplegia^317910
+ ;;^UTILITY(U,$J,358.3,19398,0)
+ ;;=438.11^^108^1148^3
+ ;;^UTILITY(U,$J,358.3,19398,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19507,1,2,0)
- ;;=2^20610
- ;;^UTILITY(U,$J,358.3,19507,1,3,0)
- ;;=3^Arthrocentesis, Knee/Shoulder/Hip
- ;;^UTILITY(U,$J,358.3,19508,0)
- ;;=92950^^130^1265^6^^^^1
- ;;^UTILITY(U,$J,358.3,19508,1,0)
+ ;;^UTILITY(U,$J,358.3,19398,1,2,0)
+ ;;=2^438.11
+ ;;^UTILITY(U,$J,358.3,19398,1,3,0)
+ ;;=3^Stroke w/Aphasia
+ ;;^UTILITY(U,$J,358.3,19398,2)
+ ;;=Stroke w/Aphasia^317907
+ ;;^UTILITY(U,$J,358.3,19399,0)
+ ;;=438.6^^108^1148^5.1
+ ;;^UTILITY(U,$J,358.3,19399,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19508,1,2,0)
- ;;=2^92950
- ;;^UTILITY(U,$J,358.3,19508,1,3,0)
- ;;=3^CPR
- ;;^UTILITY(U,$J,358.3,19509,0)
- ;;=11055^^130^1265^24^^^^1
- ;;^UTILITY(U,$J,358.3,19509,1,0)
+ ;;^UTILITY(U,$J,358.3,19399,1,2,0)
+ ;;=2^438.6
+ ;;^UTILITY(U,$J,358.3,19399,1,3,0)
+ ;;=3^Stroke w/Sensory Loss
+ ;;^UTILITY(U,$J,358.3,19399,2)
+ ;;=Stroke w/Sensory Loss^328503
+ ;;^UTILITY(U,$J,358.3,19400,0)
+ ;;=438.7^^108^1148^5.2
+ ;;^UTILITY(U,$J,358.3,19400,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19509,1,2,0)
- ;;=2^11055
- ;;^UTILITY(U,$J,358.3,19509,1,3,0)
- ;;=3^Trim Corn/Callous, One
- ;;^UTILITY(U,$J,358.3,19510,0)
- ;;=11056^^130^1265^25^^^^1
- ;;^UTILITY(U,$J,358.3,19510,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19510,1,2,0)
- ;;=2^11056
- ;;^UTILITY(U,$J,358.3,19510,1,3,0)
- ;;=3^Trim Corn/Callous, 2 to 4
- ;;^UTILITY(U,$J,358.3,19511,0)
- ;;=11057^^130^1265^26^^^^1
+ ;;^UTILITY(U,$J,358.3,19400,1,2,0)
+ ;;=2^438.7
+ ;;^UTILITY(U,$J,358.3,19400,1,3,0)
+ ;;=3^Stroke w/Vision Loss
+ ;;^UTILITY(U,$J,358.3,19400,2)
+ ;;=Stroke w/Vision Loss^328504

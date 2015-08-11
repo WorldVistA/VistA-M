@@ -1,5 +1,18 @@
-RORUTL02 ;HCIOFO/SG - UTILITIES  ; 8/25/05 10:20am
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+RORUTL02 ;HCIOFO/SG - UTILITIES  ;8/25/05 10:20am
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,27**;Feb 17, 2006;Build 58
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                 --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*27   FEB 2015    T KOPP       Changed LOCKREG entry point to loop thru
+ ;                                      registries to lock only 15 at a time to
+ ;                                      prevent maxstring errors when lock
+ ;                                      command is executed.
+ ;
+ ;******************************************************************************
  ;
  ; This routine uses the following IAs:
  ;
@@ -141,17 +154,40 @@ LNCODE(LNCODE) ;
  ;
 LOCKREG(REGLST,MODE,TO,NAME) ;
  Q:$D(REGLST)<10 1
- N LOCKLST,RC,REGIEN,REGNAME
- S REGNAME=""
+ N LOCKLST,RORLIST,RC,REGIEN,REGNAME
+ N CT,FAILS,Q,Q0,Z
+ ; RORLIST = 0 if less than 15 entries to lock
+ ;         = 1 if 15 or more entries to lock
+ ;        (n,x,y) = the array in LOCKLST(x,y) at that point
+ ;                  (where n = the # identifying the set of 15
+ ;                   registries being locked at one time)
+ ; FAILS = <0 or 1 ... lock failed     = 0 ... lock was successful
+ S REGNAME="",CT=0,RORLIST=0
  F  S REGNAME=$O(REGLST(REGNAME))  Q:REGNAME=""  D  Q:REGIEN<0
  . S REGIEN=+$G(REGLST(REGNAME))
  . I REGIEN'>0  S REGIEN=$$REGIEN^RORUTL02(REGNAME)  Q:REGIEN'>0
+ . S CT=CT+1
  . S LOCKLST(798.1,REGIEN_",")=""
+ . I '(CT#15) D  ; Split the locks into smaller chunks every 15 entries
+ .. M RORLIST(CT/15)=LOCKLST S RORLIST=1
+ .. K LOCKLST
  Q:$G(REGIEN)<0 REGIEN
- Q:$D(LOCKLST)<10 1
- I $G(MODE)  D
- . S RC=$$LOCK^RORLOCK(.LOCKLST,,,+$G(TO,3),$G(NAME))
- E  S RC=$$UNLOCK^RORLOCK(.LOCKLST)
+ I RORLIST,$O(LOCKLST(""))'="" M RORLIST((CT/15\1)+1)=LOCKLST K LOCKLST
+ Q:$D(LOCKLST)<10&'$O(RORLIST(0)) 1
+ I $G(MODE) S RC=0 D
+ . I 'RORLIST S RC=$$LOCK^RORLOCK(.LOCKLST,,,+$G(TO,3),$G(NAME)) Q
+ . F Q=1:1 Q:'$D(RORLIST(Q))!RC  D
+ .. K LOCKLST M LOCKLST=RORLIST(Q)
+ .. S FAILS=$$LOCK^RORLOCK(.LOCKLST,,,+$G(TO,3),$G(NAME)),RC=FAILS
+ .. ; If lock fails for at least one set of nodes [=1 or <0] - unlock previous locks
+ .. I FAILS D:Q>1
+ ... F Q0=1:1:Q-1 K LOCKLST M LOCKLST=RORLIST(Q0) S Z=$$UNLOCK^RORLOCK(.LOCKLST)
+ E  D
+ . I 'RORLIST S RC=$$UNLOCK^RORLOCK(.LOCKLST) Q
+ . S RC=0
+ . F Q=1:1 K LOCKLST Q:'$D(RORLIST(Q))  D
+ .. M LOCKLST=RORLIST(Q) S FAILS=$$UNLOCK^RORLOCK(.LOCKLST)
+ .. S:FAILS RC=FAILS
  Q $S('RC:1,RC<0:RC,1:0)
  ;
  ;***** RETURNS A PATIENT ID (ICN OR SSN)

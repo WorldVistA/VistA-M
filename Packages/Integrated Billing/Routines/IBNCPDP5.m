@@ -1,6 +1,6 @@
 IBNCPDP5 ;ALB/BDB - PROCESSING FOR ECME RESP FOR SECONDARY ;11/15/07 09:43
- ;;2.0;INTEGRATED BILLING;**411,452,526**;21-MAR-94;Build 17
- ;;Per VHA Directive 6402, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**411,452,526,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BILLSEC(DFN,IBD) ; Create secondary bill
  ;
@@ -96,7 +96,8 @@ STEP2 ;
  S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,IBIFN1,0)):1,1:0)
  ;
  ;move pure data nodes
- F I="I1","I2","I3","M1" I $D(^DGCR(399,IBIFN1,I)) S ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
+ ; MRD;IB*2.0*516 - Added "In7" nodes.
+ F I="I1","I17","I2","I27","I3","I37","M1" I $D(^DGCR(399,IBIFN1,I)) S ^DGCR(399,IBIFN,I)=^DGCR(399,IBIFN1,I)
  ;
  ;move top level data node. ;Do not move 'TX' node
  F I="U","U1","U2","U3","UF2","UF3","UF31","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @(I_"^IBCCC2")

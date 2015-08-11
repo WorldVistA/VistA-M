@@ -1,336 +1,412 @@
-RCDPEAR1 ;ALB/TMK/PJH - ELECTRONIC ERA AGING REPORT - FILE 344.4 ;31-OCT-02
- ;;4.5;Accounts Receivable;**173,269,276,284,293**;Mar 20, 1995;Build 15
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEAR1 ;ALB/TMK/PJH - ERA Unmatched Aging Report (file #344.4) ;Dec 20, 2014@18:41:35
+ ;;4.5;Accounts Receivable;**173,269,276,284,293,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
-EN1 ; Entry from option - run on the fly
- N RCIND,RCDISPTY,RCEND,RCRANGE,RCNP,RCJOB,RCSTART,RCJOB1
- N %ZIS,ZTSK,ZTSTOP,ZTDESC,ZTSAVE,ZTQUEUED,ZTRTN,POP,VAUTD,RCBAL,RCNP1
- S RCIND=1
- D DIVISION^VAUTOMA
+ ; PRCA*4.5*298 routine completely refactored
+EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
+ ; data from ELECTRONIC REMITTANCE ADVICE file (#344.4)
+ N RCDISPTY,RCDT,RCDTRNG,RCHDR,RCJOB,RCLNCNT,RCLSTMGR,RCOUT,RCPGNUM,RCPYRLST,RCRESPYR
+ N RCSTOP,RCTMPND,RCXCLUDE,RCZROBAL,VAUTD,Y
+ ; RCDISPTY - display type (Excel)
+ ; RCDTRNG - selected date range
+ ; RCDT("BEG") - start date, RCDT("END") - end date
+ ; RCHDR - header array
+ ; RCLSTMGR - list manager flag
+ ; RCRESPYR - payer info response: "1^first payer^last payer" or "2^^" (for all) or "3^^" (for specific)
+ ; RCDTRNG - "1^start date^end date"
+ ; RCPYRLST - payer list for selected payers
+ ; RCXCLUDE("CHAMPVA") - boolean, exclude CHAMPVA
+ ; RCXCLUDE("TRICARE") - boolean, exclude TriCare
+ ; RCZROBAL - zero balance flag
+ ; VAUTD - division information
+ ;
+ K ^TMP($J,"RC TOTAL")  ; clear old totals
+ W !,$$HDRNM D DIVISION^VAUTOMA  ; returns VAUTD
  I 'VAUTD&($D(VAUTD)'=11) G EN1Q
- S RCRANGE=$$DTRNG^RCDPEM4()
- I RCRANGE=0 G EN1Q
- I $P(RCRANGE,U,1) S RCSTART=$P(RCRANGE,U,2),RCEND=$P(RCRANGE,U,3)
+ S RCLSTMGR=""  ; initial value, won't be asked if non-null
+ S (RCXCLUDE("CHAMPVA"),RCXCLUDE("TRICARE"))=0  ; default to false
+ S RCDTRNG=$$DTRNG^RCDPEM4() I 'RCDTRNG G EN1Q
+ S RCDT("BEG")=$P(RCDTRNG,U,2),RCDT("END")=$P(RCDTRNG,U,3)
  ;Get insurance company to be used as filter
- ; PRCA*4.5*284 - RCDPEM9 now return a stack in RCNP (Type of Response(1=Range,2=All,3=Specific)^From Range^Thru Range)
- S RCNP=$$GETPAY^RCDPEM9(344.4)
- I +RCNP=-1 G EN1Q
+ ; PRCA*4.5*284 - RCRESPYR (Type of Response(1=Range,2=All,3=Specific)^From name^To name)
+ S RCRESPYR=$$GETPAY^RCDPEM9(344.4) G:RCRESPYR<0 EN1Q
  ; Get Zero Balance Filter
- S RCBAL=$$RCBAL() I RCBAL=-1 G EN1Q
+ S RCZROBAL=$$ZROBAL() G:RCZROBAL<0 EN1Q
+ ; CHAMPVA exclusion filter
+ S RCXCLUDE("CHAMPVA")=$$INCHMPVA^RCDPEARL  ; user is asked whether to include
+ G:RCXCLUDE("CHAMPVA")<0 EN1Q
+ ; TRICARE exclusion filter
+ S RCXCLUDE("TRICARE")=$$INTRICAR^RCDPEARL  ; user is asked whether to include
+ G:RCXCLUDE("TRICARE")<0 EN1Q
+ ; display type, ask for Excel format
  S RCDISPTY=$$DISPTY^RCDPEM3() I RCDISPTY=-1 G EN1Q
- I RCDISPTY D INFO^RCDPEM6
- S:$D(VAUTD)=11&(VAUTD'=1) RCIND=RCIND+1
- S:$P($G(RCRANGE),U)>0 RCIND=RCIND+3
- S:$D(^TMP("RCSELPAY",$J))&(+RCNP=1) RCIND=RCIND+5
+ ; display device info about Excel format, set ListMan flag to prevent question
+ I RCDISPTY S RCLSTMGR="^" D INFO^RCDPEM6
  I $D(DUOUT)!$D(DTOUT) G EN1Q
- S RCJOB=$J
+ S RCJOB=$J  ; needed in RPTOUT
+ ;
+ I '(+RCRESPYR=2) D  ; get payer list if not all payers
+ .N J,P S J=0
+ .F  S J=$O(^TMP("RCSELPAY",$J,J)) Q:'J  S P=$G(^(J)) S:P]"" RCPYRLST(P)=""
+ ; if not output to Excel ask for ListMan display, exit if timeout or '^' - PRCA*4.5*298
+ I RCLSTMGR="" S RCLSTMGR=$$ASKLM^RCDPEARL G:RCLSTMGR<0 EN1Q
+ ; display in ListMan format and exit on return
+ I RCLSTMGR D  G EN1Q
+ .S RCTMPND=$T(+0)_"^ERA UNMATCHED AGING"  K ^TMP($J,RCTMPND)  ; clean any residue
+ .D RPTOUT
+ .N H,L,HDR S L=0
+ .S HDR("TITLE")=$$HDRNM
+ .F H=1:1:7 I $D(RCHDR(H)) S L=H,HDR(H)=RCHDR(H)  ; take first 7 lines of report header
+ .I $O(RCHDR(L)) D  ; any remaining header lines at top of report
+ ..N N S N=0,H=L F  S H=$O(RCHDR(H)) Q:'H  S N=N+.001,^TMP($J,RCTMPND,N)=RCHDR(H)
+ .; invoke ListMan
+ .D LMRPT^RCDPEARL(.HDR,$NA(^TMP($J,RCTMPND))) ; generate ListMan display
+ ;
  ; Ask device
- S %ZIS="QM" D ^%ZIS G:POP EN1Q
- I $D(IO("Q")) D  Q
+ N %ZIS S %ZIS="QM" D ^%ZIS G:POP EN1Q
+ I $D(IO("Q")) D  G EN1Q
+ .N ZTDESC,ZTQUEUED,ZTRTN,ZTSAVE,ZTSK,ZTSTOP
  .S ZTRTN="RPTOUT^RCDPEAR1",ZTDESC="AR - EDI LOCKBOX ERA AGING REPORT"
- .S ZTSAVE("*")=""
- .; PRCA*4.5*284 - Because TMP global may be on another server, save off specific payers in local
- .I +RCNP=3 M RCNP1=^TMP("RCSELPAY",$J)
+ .S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
+ .; PRCA*4.5*284 - ^TMP may be on another server, save off specific payers in local
+ .;I +RCRESPYR=3 M RCPYRLST=^TMP("RCSELPAY",$J)
  .D ^%ZTLOAD
- .W !!,$S($D(ZTSK):"Your task number "_ZTSK_" has been queued.",1:"Unable to queue this $J.")
+ .W !!,$S($G(ZTSK):"Task number "_ZTSK_" has been queued.",1:"Unable to queue this task.")
  .K ZTSK,IO("Q") D HOME^%ZIS
- U IO
- D RPTOUT
-EN1Q K ^TMP("RCSELPAY",$J),^TMP("RCPAYER",$J)
+ ;
+ U IO S RCTMPND="" D RPTOUT
+ ;
+EN1Q ; exit and clean up
+ K ^TMP("RCSELPAY",$J),^TMP("RCPAYER",$J)
+ I '$G(RCLSTMGR) D ^%ZISC
  Q
  ;
-RPTOUT(RCPRT) ; Entrypoint for queued job, nightly job
- ; RCPRT = name of the subscript for ^TMP to use to return all lines
+RPTOUT ; Entry point for listing report
+ ; RCTMPND = name of the subscript for ^TMP to use to return all lines
  ;        (for bulletin).  If undefined or null, output is printed
- ; Return global if RCPRT not null: ^TMP($J,RCPRT,line#)=line text
- N ERAIEN,RCCT,RCPG,RCSTOP,RCNT,RCDATA,RCOUT,RCEDT,RC0,RC7,RCZ,RCZ0,RCZ1,RC00,RCTOT,Z,Z0,RCPAY
- N STA,STNUM,STNAM
- S RCPRT=$G(RCPRT),(RCCT,RCSTOP,RCPG,RCNT,RCTOT)=0
+ ; Return global if RCTMPND not null: ^TMP($J,RCTMPND,line#)=line text
+ N ERADT,PYMNTFRM,RC0,RCEDT,RCEXCEP,RCFLIEN,RCITM,RCNT,RCPAY,RCSF0,RCZ,STA,STNAM,STNUM,X,Y,Z,Z0
+ ; ERADT - date of entry
+ ; RCFLIEN - entry number in file #344.4
+ ; RCITM - entry in ^RCY(344.4,0) = ELECTRONIC REMITTANCE ADVICE^344.4I
+ ; RCSF0 - zero node of sub-file entry
+ ;
+ S RCTMPND=$G(RCTMPND)  I RCTMPND'="" K ^TMP($J,RCTMPND)  ; clear residual data
+ ; RCNT - count of items
  K ^TMP($J,"RCERA_AGED"),^TMP($J,"RCERA_ADJ")
- ; PRCA*4.5*284 - Queued job needs to reload payer selection list
- I $G(RCJOB)'="",RCJOB'=$J D
- . K ^TMP("RCSELPAY",$J)
- . D RLOAD(344.4)
- . S RCJOB=$J
- S RCNP=+RCNP
- I RCPRT'="" K ^TMP($J,RCPRT)
- S RCZ0=0 F  S RCZ0=$O(^RCY(344.4,"AMATCH",0,RCZ0)) Q:'RCZ0  D
- .Q:$P($G(RCY(344.4,RCZ0,6)),U)           ; who removed the ERA - PRCA*4.5*293
- .S RC7=$P($G(^RCY(344.4,RCZ0,0)),U,7)\1  ; era file date/time
- .; Check Station/Division
- .;I '$$CHKDIV^RCDPEDAR(RCZ0,1,.VAUTD) Q
- . I 'VAUTD D ERASTA^RCDPEM4(RCZ0,.STA,.STNUM,.STNAM) I '$D(VAUTD(STA)) Q
- .; Check for payer match
- .I '$$CHKPYR^RCDPEDAR(RCZ0,1,RCJOB) Q
+ S RCRESPYR=+RCRESPYR
+ S RCFLIEN=0,RCNT=0
+ F  S RCFLIEN=$O(^RCY(344.4,"AMATCH",0,RCFLIEN)) Q:'RCFLIEN  D
+ .K RCITM M RCITM=^RCY(344.4,RCFLIEN)  ; grab entire entry
+ .Q:$P($G(RCITM(6)),U)  ; who removed the ERA - PRCA*4.5*293
+ .S ERADT=+$P($G(RCITM(0)),U,7)  ; (#.07) FILE DATE/TIME [7D]
+ .Q:'ERADT  ; no date, don't include
  .; Check date range
- .I $P(RCRANGE,U,1) D  Q:'ERAIEN
- ..S ERAIEN=$P($G(^RCY(344.4,RCZ0,0)),U,7)\1
- .I $P(RCRANGE,U,1) Q:(RCSTART>RC7)!(RC7>RCEND)
+ .Q:(RCDT("BEG")>ERADT\1)!(ERADT\1>RCDT("END"))
+ .; Check Station/Division
+ .;I '$$CHKDIV^RCDPEDAR(RCFLIEN,1,.VAUTD) Q
+ .I 'VAUTD D ERASTA^RCDPEM4(RCFLIEN,.STA,.STNUM,.STNAM) I '$D(VAUTD(STA)) Q
+ .; Check for payer match
+ .S PYMNTFRM=$P($G(RCITM(0)),U,6)  ; PAYMENT FROM field
+ .I '(RCRESPYR=2),PYMNTFRM]"" Q:'$D(RCPYRLST($$UP^XLFSTR(PYMNTFRM)))  ; will include null payers when ALL payers selected
+ .Q:(PYMNTFRM="")&'(RCRESPYR=2)  ; null payers excluded when not ALL selected
  .; Check for Zero Bal
- . I 'RCBAL,'+$P($G(^RCY(344.4,RCZ0,0)),U,5) Q
- .;  - include on report
- .S ^TMP($J,"RCERA_AGED",$$FMDIFF^XLFDT(RC7,DT),RCZ0)=0,RCNT=RCNT+1
+ .I 'RCZROBAL,'$P($G(RCITM(0)),U,5) Q  ; (#.05) TOTAL AMOUNT PAID [5N]
+ .; CHAMPVA check
+ .I $G(RCXCLUDE("CHAMPVA")),$$CLMCHMPV^RCDPEARL("344.4;"_RCFLIEN) D  Q  ; count and quit if true
+ ..N N S N=$G(^TMP($J,"RC TOTAL","CHAMPVA"))+1,^("CHAMPVA")=N  ; total can be listed
+ .;
+ .; TRICARE check
+ .I $G(RCXCLUDE("TRICARE")),$$CLMTRICR^RCDPEARL("344.4;"_RCFLIEN) D  Q  ; count and quit if true
+ ..N N S N=$G(^TMP($J,"RC TOTAL","TRICARE"))+1,^("TRICARE")=N  ; total can be listed
+ .;
+ .; include on report
+ .S ^TMP($J,"RCERA_AGED",$$FMDIFF^XLFDT(ERADT,DT),RCFLIEN)=0,RCNT=RCNT+1
  ;
- ; build local payer array here
- D SELPAY(RCNP,RCJOB,.RCPAY)
- ; Calculate total amount for ERA
+ S ^TMP($J,"RC TOTAL","COUNT")=RCNT  ; save counter
+ ; build local payer array
+ D SELPAY(RCRESPYR,RCJOB,.RCPAY)
+ ; build header, initialize stop flag
+ D:'RCLSTMGR HDRBLD S RCSTOP=0
+ D:RCLSTMGR HDRLM
  ;
- S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCZ0=0 F  S RCZ0=$O(^TMP($J,"RCERA_AGED",RCZ,RCZ0)) Q:'RCZ0  D
- .S RC0=$G(^RCY(344.4,RCZ0,0)),RCTOT=RCTOT+$P(RC0,U,5)
- I RCDISPTY  D HDR(.RCCT,.RCPG,.RCSTOP,RCPRT,RCRANGE,.VAUTD,.RCPAY),EXCEL Q  ; prca 276  
+ ; Excel format, print and exit
+ I RCDISPTY D EXCEL,^%ZISC G EXIT
  ;
- S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCZ0=0 F  S RCZ0=$O(^TMP($J,"RCERA_AGED",RCZ,RCZ0)) Q:'RCZ0  D  G:RCSTOP PRTQ
- .I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPG) W:RCPRT="" !!,"***TASK STOPPED BY USER***" Q
- .I RCPG D SETLINE(" ",.RCCT,.RCPRT) ; On detail list, skip line
- .I 'RCPG!(($Y+5)>IOSL) D HDR(.RCCT,.RCPG,.RCSTOP,RCPRT,RCRANGE,.VAUTD,.RCPAY) Q:RCSTOP
- .S RC0=$G(^RCY(344.4,RCZ0,0)),RCTOT=RCTOT+$P(RC0,U,5)
- .S Z=$$SETSTR^VALM1($J(-RCZ,4),"",1,4)
+ D  ;  Calculate total amount for ERA
+ .N T S T=0  ; total
+ .S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCFLIEN=0 F  S RCFLIEN=$O(^TMP($J,"RCERA_AGED",RCZ,RCFLIEN)) Q:'RCFLIEN  D
+ ..S RC0=$G(^RCY(344.4,RCFLIEN,0)),T=T+$P(RC0,U,5)
+ .;
+ .S ^TMP($J,"RC TOTAL","AMOUNT")=T
+ ;
+ S RCLNCNT=0  ; line counter
+ D:'RCLSTMGR HDRLST^RCDPEARL(.RCSTOP,.RCHDR)  ; first header in report
+ ; list totals
+ S Y=" Total NUMBER Aged Electronic ERA messages found: "_$FN(^TMP($J,"RC TOTAL","COUNT"),",")
+ D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ S Y=" Total AMOUNT Aged Electronic ERA messages found: $"_$FN(^TMP($J,"RC TOTAL","AMOUNT"),",",2)
+ D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ ; if filters selected show total excluded
+ F J="CHAMPVA","TRICARE" I $G(RCXCLUDE(J)) S Y=" "_J_" exclusion count: "_(+$G(^TMP($J,"RC TOTAL",J))) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ D SL^RCDPEARL(" "_$TR($J("",78)," ","="),.RCLNCNT,RCTMPND)  ; row of equal signs
+ ;
+ S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCFLIEN=0 F  S RCFLIEN=$O(^TMP($J,"RCERA_AGED",RCZ,RCFLIEN)) Q:'RCFLIEN  D  G:RCSTOP EXIT
+ .I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPGNUM) W:RCTMPND="" !!,"***TASK STOPPED BY USER***" Q
+ .I RCPGNUM D SL^RCDPEARL(" ",.RCLNCNT,.RCTMPND) ; On detail list, skip line
+ .I 'RCLSTMGR,'RCPGNUM!(($Y+5)>IOSL) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
+ .S RC0=$G(^RCY(344.4,RCFLIEN,0))
+ .S RCEXCEP=$$XCEPT^RCDPEWLP(RCFLIEN)  ; PRCA*4.5*298  assignment of ERA exception flag (will either be "" or "x")
+ .S Z=$$SETSTR^VALM1($J(RCEXCEP_-RCZ,4),"",1,5)  ; PRCA*4.5*298 display ERA exception flag
  .S Z=$$SETSTR^VALM1("  "_$P(RC0,U,2),Z,5,50)
- .D SETLINE(Z,.RCCT,RCPRT)
+ .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
  .S Z=$$SETSTR^VALM1($P(RC0,U,6)_"/"_$P(RC0,U,3),"",11,69)
  .S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,4),2),Z,70,10)
- .D SETLINE(Z,.RCCT,RCPRT)
+ .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
  .S Z=$$SETSTR^VALM1($J("",16)_$S($P(RC0,U,7):$$FMTE^XLFDT($P(RC0,U,7)\1,2),1:""),"",1,25)
  .S Z=$$SETSTR^VALM1("  "_$J($P(RC0,U,5),15,2),Z,26,17)
  .S Z=$$SETSTR^VALM1("  "_+$P(RC0,U,11),Z,43,11)
- .S Z=$$SETSTR^VALM1("  "_$P(RC0,U),Z_$S('$$HACERA^RCDPEU(RCZ0):"",1:" (HAC ERA)"),54,26)
- .D SETLINE(Z,.RCCT,RCPRT)
- .I "23"[$$ADJ^RCDPEU(RCZ0) D SETLINE($J("",9)_"** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***",.RCCT,RCPRT)
- .I $O(^RCY(344.4,RCZ0,2,0)) D  ; ERA level adjustments exist
+ .S Z=$$SETSTR^VALM1("  "_$P(RC0,U),Z_$S('$$HACERA^RCDPEU(RCFLIEN):"",1:" (HAC ERA)"),54,26)
+ .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
+ .I "23"[$$ADJ^RCDPEU(RCFLIEN) D SL^RCDPEARL($J("",9)_"** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***",.RCLNCNT,RCTMPND)
+ .I $O(^RCY(344.4,RCFLIEN,2,0)) D  ; ERA level adjustments exist
  ..N Q
- ..D DISPADJ^RCDPESR8(RCZ0,"^TMP("_$J_",""RCERA_ADJ"")")
- ..I $O(^TMP($J,"RCERA_ADJ",0)) D SETLINE($J("",9)_"** GENERAL ADJUSTMENT DATA EXISTS FOR ERA **",.RCCT,RCPRT)
- ..S Q=0 F  S Q=$O(^TMP($J,"RCERA_ADJ",Q)) Q:'Q  D SETLINE($J("",9)_$G(^TMP($J,"RCERA_ADJ",Q)),.RCCT,RCPRT)
+ ..D DISPADJ^RCDPESR8(RCFLIEN,"^TMP("_$J_",""RCERA_ADJ"")")
+ ..I $O(^TMP($J,"RCERA_ADJ",0)) D SL^RCDPEARL($J("",9)_"** GENERAL ADJUSTMENT DATA EXIST FOR THIS ERA **",.RCLNCNT,RCTMPND)
+ ..S Q=0 F  S Q=$O(^TMP($J,"RCERA_ADJ",Q)) Q:'Q  D SL^RCDPEARL($J("",9)_$G(^TMP($J,"RCERA_ADJ",Q)),.RCLNCNT,RCTMPND)
  .;
- .S RCZ1=0 F  S RCZ1=$O(^RCY(344.4,RCZ0,1,RCZ1)) Q:'RCZ1  S RC00=$G(^(RCZ1,0)) D  Q:RCSTOP
- ..N D
- ..K RCDATA,RCOUT
- ..I ($Y+5)>IOSL D HDR(.RCCT,.RCPG,.RCSTOP,RCPRT,RCRANGE,.VAUTD,.RCPAY) Q:RCSTOP
- ..S D=$J("",7)_" EEOB Seq #: "_$P(RC00,U)_$S($D(^RCY(344.4,RCZ0,1,"ATB",1,RCZ1)):" (REVERSAL)",1:"")_"  EEOB "
- ..S D=D_$S('$P(RC00,U,2):"not on file",1:"on file for "_$P($G(^DGCR(399,+$G(^IBM(361.1,+$P(RC00,U,2),0)),0)),U))_"  "_$J(+$P(RC00,U,3),"",2)
- ..D SETLINE(D,.RCCT,RCPRT)
- ..Q:$P(RC00,U,2)
- ..D DISP^RCDPESR0("^RCY(344.4,"_RCZ0_",1,"_RCZ1_",1)","RCDATA",1,"RCOUT",68,1)
- ..I '$O(RCOUT(0)) D SETLINE($J("",9)_" NO DETAIL FOUND",.RCCT,RCPRT) Q
+ .N D,RCSFIEN S RCSFIEN=0  ; RCSFIEN - sub-file ien, RCSF0 - zero node of sub-file entry
+ .F  S RCSFIEN=$O(^RCY(344.4,RCFLIEN,1,RCSFIEN)) Q:'RCSFIEN  S RCSF0=$G(^(RCSFIEN,0)) D  Q:RCSTOP
+ ..N RCDATA,RCOUT  ; set by RCDPESR0, RCDATA - message data, RCOUT - formatted message display
+ ..I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
+ ..S D=$J("",7)_" EEOB Seq #: "_$P(RCSF0,U)_$S($D(^RCY(344.4,RCFLIEN,1,"ATB",1,RCSFIEN)):" (REVERSAL)",1:"")_"  EEOB "
+ ..S D=D_$S('$P(RCSF0,U,2):"not on file",1:"on file for "_$P($G(^DGCR(399,+$G(^IBM(361.1,+$P(RCSF0,U,2),0)),0)),U))_"  "_$J(+$P(RCSF0,U,3),"",2)
+ ..D SL^RCDPEARL(D,.RCLNCNT,RCTMPND)
+ ..Q:$P(RCSF0,U,2)
+ ..D DISP^RCDPESR0("^RCY(344.4,"_RCFLIEN_",1,"_RCSFIEN_",1)","RCDATA",1,"RCOUT",68,1)
+ ..I '$O(RCOUT(0)) D SL^RCDPEARL($J("",9)_" NO DETAIL FOUND",.RCLNCNT,RCTMPND) Q
  ..S Z=0 F  S Z=$O(RCOUT(Z)) Q:'Z  D  Q:RCSTOP
- ... I ($Y+5)>IOSL D HDR(.RCCT,.RCPG,.RCSTOP,RCPRT,RCRANGE,.VAUTD,.RCPAY) Q:RCSTOP
- ... D SETLINE($J("",9)_"*"_RCOUT(Z),.RCCT,RCPRT)
+ ...I 'RCDISPTY,'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
+ ...D SL^RCDPEARL($J("",9)_"*"_RCOUT(Z),.RCLNCNT,RCTMPND)
  ;
- F Z0=1:1:2 D SETLINE(" ",.RCCT,RCPRT)
- I ($Y+7)>IOSL!'RCPG D HDR(.RCCT,.RCPG,.RCSTOP,RCPRT,RCRANGE,.VAUTD,.RCPAY)
+ ; PRCA*4.5*298, put end-of-report into SL^RCDPEARL
+ I 'RCSTOP D SL^RCDPEARL(" ",.RCLNCNT,RCTMPND),SL^RCDPEARL($$ENDORPRT^RCDPEARL,.RCLNCNT,RCTMPND)
  ;
- W !,"******** END OF REPORT ********",!
-PRTQ I '$D(ZTQUEUED),'RCSTOP,RCPG,RCPRT="" D ASK()
- I $D(ZTQUEUED) S ZTREQ="@"
- I '$D(ZTQUEUED) D ^%ZISC
- K ^TMP($J,"RCERA_AGED"),^TMP("RCSELPAY",$J)
+EXIT ;
+ ; PRCA*4.5*298, added ListMan check
+ I '$D(ZTQUEUED),'RCLSTMGR D
+ .I 'RCSTOP,RCPGNUM,RCTMPND="" D ASK^RCDPEARL(.RCSTOP)
+ .D ^%ZISC
+ ;
+ S:$D(ZTQUEUED) ZTREQ="@"
+ K ^TMP($J,"RCERA_AGED"),^TMP("RCSELPAY",$J),^TMP($J,"RC TOTAL")
  Q
  ;
-HDR(RCCT,RCPG,RCSTOP,RCPRT,RCRANGE,VAUTD,RCPAY) ;Prints report heading
- ; Function returns RCPG = current page # and RCCT = running line count
- ;   and RCSTOP = 1 if user aborted print 
- ; Parameters must be passed by reference
- ; RCPRT = name of the subscript for ^TMP to use to return all lines
- ;        (for bulletin).  If undefined or null, output is printed
- ; RCRANGE - date range filter value to be printed as part of the header
- ; VAUTD (required/pass-by-ref) - Division filter value(s)
- ; RCPAY (required/pass-by-ref) - Payer filter value(s)
+HDRBLD ; create the report header
+ ; returns RCHDR, RCPGNUM, RCSTOP
+ ;   RCHDR(0) = header text line count
+ ;   RCHDR("XECUTE") = M code for page number
+ ;   RCHDR("RUNDATE") = date/time report generated, external format
+ ;   RCPGNUM - page counter
+ ;   RCSTOP - flag to exit
+ ; INPUT: 
+ ;   RCDISPTY - Display/print/Excel flag
+ ;   RCDTRNG - date range selected
+ ;   RCXCLUDE - TRICARE /CHAMPVA flags
+ ;   VAUTD
  ;
- N Z,Z0,START,END,SUB,%,CNT
- Q:$G(RCSTOP)
- I RCPG!($E(IOST,1,2)="C-") D  Q:$G(RCSTOP)
- .I RCPG&($E(IOST,1,2)="C-")&(RCPRT="") D ASK(.RCSTOP) Q:RCSTOP
- .I RCPRT="" W @IOF,*13 Q  ; Write form feed for report
- S RCPG=RCPG+1,Z0="ERA UNMATCHED AGING REPORT"
- S Z=$$SETSTR^VALM1($J("",80-$L(Z0)\2)_Z0,"",1,79)
- S:'RCDISPTY Z=$$SETSTR^VALM1("Page: "_RCPG,Z,64,17)
- D SETLINE(Z,.RCCT,RCPRT)
- D NOW^%DTC
- S Z="RUN DATE/TIME: "_$$FMTE^XLFDT(%,2),Z=$J("",80-$L(Z)\2)_Z
- D SETLINE(Z,.RCCT,RCPRT)
- S END=$P(RCRANGE,U,3)
+ K RCHDR S RCHDR("RUNDATE")=$$NOW^RCDPEARL,RCPGNUM=0,RCSTOP=0
+ I RCDISPTY D  Q  ; Excel format, xecute code is QUIT, null page number
+ .S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
+ .S RCHDR(1)="Aged Days^Trace #^Payment From/ID^ERA Date^File Date^Amount Paid^EEOB Cnt^ERA #^EEOB Detail"
+ ;
+ N DIV,HCNT,Y,CHATRI
+ ;
+ S RCHDR("XECUTE")="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"_$T(+0)_",RCHDR(1)=$J("" "",80-$L(Y)\2)_Y"_"_""          Page: ""_RCPGNUM"
+ S HCNT=1
+ S Y="RUN DATE: "_RCHDR("RUNDATE"),HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
+ ;
  ; divisions
- S Z="DIVISIONS: "
- I $D(VAUTD)=1 D
- .S Z=Z_"ALL",Z=$J("",80-$L(Z)\2)_Z
- .D SETLINE(Z,.RCCT,RCPRT)
- .S Z=""
- I $D(VAUTD)>1,'VAUTD D
- .S SUB=VAUTD
- .F  S SUB=$O(VAUTD(SUB)) Q:'SUB  D
- ..I Z="DIVISIONS: " S Z=Z_VAUTD(SUB) Q
- ..S Z=Z_$S(Z]"":",",1:"")_VAUTD(SUB)
- ..I $L(Z)>50 D
- ...S Z=$J("",80-$L(Z)\2)_Z
- ...D SETLINE(Z,.RCCT,RCPRT)
- ...S Z=""
- I Z]"" D
- .S Z=$J("",80-$L(Z)\2)_Z
- .D SETLINE(Z,.RCCT,RCPRT)
+ S Y="DIVISIONS: " I $D(VAUTD)=1 S Y=Y_"ALL",Y=$J("",80-$L(Y)\2)_Y,HCNT=HCNT+1,RCHDR(HCNT)=Y
+ I $D(VAUTD)>1 D
+ .N S,X S S=0 F  S S=$O(VAUTD(S)) Q:'S  D
+ ..S X=VAUTD(S)_$S($O(VAUTD(S)):", ",1:"")
+ ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",12)
+ ..S Y=Y_X
+ .;
+ .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
  ; Payers
- S Z="PAYERS: "
- I $D(RCPAY)=1 S Z=Z_RCPAY
+ S Y="PAYERS: " I $D(RCPAY)=1 S Y=Y_RCPAY,Y=Y,HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  I $D(RCPAY)=10 D
- .S CNT=0
- .F  S CNT=$O(RCPAY(CNT)) Q:'CNT  D
- ..I Z="PAYERS: " S Z=Z_RCPAY(CNT) Q
- ..S Z=Z_$S(Z]"":",",1:"")_RCPAY(CNT)
- ..I $L(Z)>50 D
- ...S Z=$J("",80-$L(Z)\2)_Z
- ...D SETLINE(Z,.RCCT,RCPRT)
- ...S Z=""
- I Z]"" D
- .S Z=$J("",80-$L(Z)\2)_Z
- .D SETLINE(Z,.RCCT,RCPRT)
- S START=$P(RCRANGE,U,2)
- S Z="DATE RANGE: "_$P($$FMTE^XLFDT(START,2),"@")_" - "_$P($$FMTE^XLFDT(END,2),"@")_" (ERA FILE DATE)",Z=$J("",80-$L(Z)\2)_Z
- D SETLINE(Z,.RCCT,RCPRT)
- Q:RCDISPTY  ; prca 276 - do not print column headers for excel format
- D SETLINE(" ",.RCCT,RCPRT)
- D SETLINE("AGED",.RCCT,RCPRT)
- S Z=$$SETSTR^VALM1("DAYS"_$J("",2)_"TRACE #","",1,79)
- D SETLINE(Z,.RCCT,RCPRT)
- S Z=$$SETSTR^VALM1($J("",10)_"PAYMENT FROM/ID"_$J("",46)_"ERA DATE","",1,79)
- D SETLINE(Z,.RCCT,RCPRT)
- S Z=$$SETSTR^VALM1($J("",16)_"FILE DATE"_$J("",6)_"AMOUNT PAID"_$J("",2)_"EEOB CNT "_$J("",2)_"ERA #",Z,1,79)
- D SETLINE(Z,.RCCT,RCPRT)
- D SETLINE($TR($J("",IOM-1)," ","="),.RCCT,RCPRT)
- I RCPG=1 D
- .D SETLINE("TOTALS:",.RCCT,RCPRT)
- .S Z=$$SETSTR^VALM1(" NUMBER AGED ELECTRONIC ERA MESSAGES FOUND: "_RCNT,"",1,79)
- .D SETLINE(Z,.RCCT,RCPRT)
- .S Z=$$SETSTR^VALM1(" AMOUNT AGED ELECTRONIC ERA MESSAGES FOUND: $"_$FN(+RCTOT,",",2),"",1,79)
- .D SETLINE(Z,.RCCT,RCPRT)
- .D SETLINE($TR($J("",IOM-1)," ","="),.RCCT,RCPRT)
+ .N S,X S S=0 F  S S=$O(RCPAY(S)) Q:'S  D
+ ..S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
+ ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",8)
+ ..S Y=Y_X
+ .;
+ .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ ;
+ S Y("1ST")=$P(RCDTRNG,U,2),Y("LST")=$P(RCDTRNG,U,3)
+ F Y="1ST","LST" S Y(Y)=$$FMTE^XLFDT(Y(Y),"2Z")
+ S Y="DATE RANGE: "_Y("1ST")_" - "_Y("LST")_" (ERA FILE DATE)"
+ S CHATRI="" F J="CHAMPVA","TRICARE" S Y=Y_"    "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
+ ;
+ S HCNT=HCNT+1,RCHDR(HCNT)=""
+ S Y="AGED"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="DAYS  TRACE #"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="          PAYMENT FROM/ID"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="                FILE DATE      AMOUNT PAID  EEOB CNT   ERA #           ERA DATE"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="",$P(Y,"=",80)="",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S RCHDR(0)=HCNT  ; total lines in header
  Q
+ ;
+HDRLM ; create the list manager version of the report header
+ ; returns RCHDR
+ ;   RCHDR(0) = header text line count
+ ;INPUT:
+ ; RCDTRNG - date range filter value to be printed as part of the header
+ ; RCPAY - Payer filter value(s)
+ ; RCLSTMGR
+ ;
+ N Z0 S Z0=""
+ K RCHDR S RCPGNUM=0,RCSTOP=0
+ N MSG,DATE,Y,DIV,HCNT
+ S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT($P(RCDTRNG,U,2),"2Z")_" - "_$$FMTE^XLFDT($P(RCDTRNG,U,3),"2Z")_" (ERA FILE DATE)"
+ S RCHDR(1)=RCHDR(1)_"    TRICARE: "_$S($G(RCXCLUDE("TRICARE")):"NO",1:"YES")
+ S RCHDR(1)=RCHDR(1)_"    CHAMPVA: "_$S($G(RCXCLUDE("CHAMPVA")):"NO",1:"YES")
+ S HCNT=1
+ ;
+ S Y="DIVISIONS: " I $D(VAUTD)=1 S Y=Y_"ALL",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ I $D(VAUTD)>1 D
+ .N S,X S S=0 F  S S=$O(VAUTD(S)) Q:'S  D
+ ..S X=VAUTD(S)_$S($O(VAUTD(S)):", ",1:"")
+ ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",12)
+ ..S Y=Y_X
+ .;
+ .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ ;
+ ; Payers
+ S Y="PAYERS: "
+ I $D(RCPAY)=1 D 
+ . S Y=Y_RCPAY,HCNT=HCNT+1,RCHDR(HCNT)=Y
+ I $D(RCPAY)=10 D
+ .N S,X S S=0 F  S S=$O(RCPAY(S)) Q:'S  D
+ ..S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
+ ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",8)
+ ..S Y=Y_X
+ .;
+ .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ ;
+ S Y="AGED"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="DAYS  TRACE #"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="          PAYMENT FROM/ID"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="                FILE DATE      AMOUNT PAID  EEOB CNT   ERA #           ERA DATE"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S RCHDR(0)=HCNT  ; total lines in header
+ Q
+ ; extrinsic variable, name for header PRCA*4.5*298
+HDRNM() Q "ERA UNMATCHED AGING REPORT"
  ;
 EXCEL ; Print report to screen, one record per line for export to MS Excel.
- N RCLFLG,RCZ,RCZ0,RC00,Z,D,RCZ1,RZ,RZ1
- W !!,"Aged Days^Trace #^Payment From/ID^ERA Date^File Date^Amount Paid^EEOB Cnt^ERA #^EEOB Detail"
- S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCZ0=0 F  S RCZ0=$O(^TMP($J,"RCERA_AGED",RCZ,RCZ0)) Q:'RCZ0  D  G:RCSTOP PRTQ2
- . I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPG) W:RCPRT="" !!,"***TASK STOPPED BY USER***" Q
- . S RC0=$G(^RCY(344.4,RCZ0,0))
- . S Z=$J(-RCZ,4)_U_$P(RC0,U,2)_U_$P(RC0,U,6)_"/"_$P(RC0,U,3)_U_$$FMTE^XLFDT($P(RC0,U,4),2)_U_$$FMTE^XLFDT($P(RC0,U,7),2)_U
- . S Z=Z_$P(RC0,U,5)_U_$P(RC0,U,11)_U_$P(RC0,U)
- . W !,Z
- . S RZ=Z,RZ1=0
- . K Z
- .;;;
- . I "23"[$$ADJ^RCDPEU(RCZ0) D EXCEL1 W "^** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***"
- . I $O(^RCY(344.4,RCZ0,2,0)) D  ; ERA level adjustments exist
- . . N Q
- . . D DISPADJ^RCDPESR8(RCZ0,"^TMP("_$J_",""RCERA_ADJ"")")
- . . I $O(^TMP($J,"RCERA_ADJ",0)) D EXCEL1 W "^** GENERAL ADJUSTMENT DATA EXISTS FOR ERA **"
- . . S Q=0 F  S Q=$O(^TMP($J,"RCERA_ADJ",Q)) Q:'Q  D EXCEL1 W "^"_$G(^TMP($J,"RCERA_ADJ",Q))
+ N D,RCSF0,RC1ST,RCEXCEP,RCFLIEN,RCLN,RCSFIEN,RCZ,Z
+ ; RCSFIEN - sub-file ien
+ D HDRLST^RCDPEARL(.RCSTOP,.RCHDR)
+ S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCFLIEN=0 F  S RCFLIEN=$O(^TMP($J,"RCERA_AGED",RCZ,RCFLIEN)) Q:'RCFLIEN  D  G:RCSTOP PRTQ2
+ .I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPGNUM) W:RCTMPND="" !!,"***TASK STOPPED BY USER***" Q
+ .S RC0=$G(^RCY(344.4,RCFLIEN,0))
+ .S RCEXCEP=$$XCEPT^RCDPEWLP(RCFLIEN)  ; PRCA*4.5*298  assignment of ERA exception flag (will either be "" or "x")
+ .S Z=$J(RCEXCEP_-RCZ,4)_U_$P(RC0,U,2)_U_$P(RC0,U,6)_"/"_$P(RC0,U,3)_U_$$FMTE^XLFDT($P(RC0,U,4),2)_U_$$FMTE^XLFDT($P(RC0,U,7),2)_U   ;PRCA*4.5*298 display ERA exception flag
+ .S Z=Z_$P(RC0,U,5)_U_$P(RC0,U,11)_U_$P(RC0,U)
+ .W !,Z
+ .S RCLN=Z,RC1ST=0
+ .K Z
+ .I "23"[$$ADJ^RCDPEU(RCFLIEN) D LSTXCEL W "^** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***"
+ .I $O(^RCY(344.4,RCFLIEN,2,0)) D  ; ERA level adjustments exist
+ ..N Q
+ ..D DISPADJ^RCDPESR8(RCFLIEN,"^TMP("_$J_",""RCERA_ADJ"")")
+ ..I $O(^TMP($J,"RCERA_ADJ",0)) D LSTXCEL W "^** GENERAL ADJUSTMENT DATA EXISTS FOR ERA **"
+ ..S Q=0 F  S Q=$O(^TMP($J,"RCERA_ADJ",Q)) Q:'Q  D LSTXCEL W "^"_$G(^TMP($J,"RCERA_ADJ",Q))
  .;
- . S RCZ1=0 F  S RCZ1=$O(^RCY(344.4,RCZ0,1,RCZ1)) Q:'RCZ1  S RC00=$G(^(RCZ1,0)) D  Q:RCSTOP
- . . N D
- . . K RCDATA,RCOUT
- . . S D=" EEOB Seq #: "_$P(RC00,U)_$S($D(^RCY(344.4,RCZ0,1,"ATB",1,RCZ1)):" (REVERSAL)",1:"")_"  EEOB "
- . . S D=D_$S('$P(RC00,U,2):"not on file",1:"on file for "_$P($G(^DGCR(399,+$G(^IBM(361.1,+$P(RC00,U,2),0)),0)),U))_"  "_$J(+$P(RC00,U,3),"",2)
- . . D EXCEL1 W "^",D
- . . Q:$P(RC00,U,2)
- . . D DISP^RCDPESR0("^RCY(344.4,"_RCZ0_",1,"_RCZ1_",1)","RCDATA",1,"RCOUT",68,1)
- . . I '$O(RCOUT(0)) D EXCEL1 W "^NO DETAIL FOUND" Q
- . . S Z=0 F  S Z=$O(RCOUT(Z)) Q:'Z  D  Q:RCSTOP
- . . . D EXCEL1 W "^*"_RCOUT(Z)
- W !,"******** END OF REPORT ********",!
+ .S RCSFIEN=0 F  S RCSFIEN=$O(^RCY(344.4,RCFLIEN,1,RCSFIEN)) Q:'RCSFIEN  S RCSF0=$G(^(RCSFIEN,0)) D  Q:RCSTOP
+ ..N D
+ ..K RCOUT
+ ..S D=" EEOB Seq #: "_$P(RCSF0,U)_$S($D(^RCY(344.4,RCFLIEN,1,"ATB",1,RCSFIEN)):" (REVERSAL)",1:"")_"  EEOB "
+ ..S D=D_$S('$P(RCSF0,U,2):"not on file",1:"on file for "_$P($G(^DGCR(399,+$G(^IBM(361.1,+$P(RCSF0,U,2),0)),0)),U))_"  "_$J(+$P(RCSF0,U,3),"",2)
+ ..D LSTXCEL W "^",D
+ ..Q:$P(RCSF0,U,2)
+ ..D DISP^RCDPESR0("^RCY(344.4,"_RCFLIEN_",1,"_RCSFIEN_",1)","RCDATA",1,"RCOUT",68,1)
+ ..I '$O(RCOUT(0)) D LSTXCEL W "^NO DETAIL FOUND" Q
+ ..S Z=0 F  S Z=$O(RCOUT(Z)) Q:'Z  D  Q:RCSTOP
+ ...D LSTXCEL W "^*"_RCOUT(Z)
+ ;
+ W !!,$$ENDORPRT^RCDPEARL
  Q
  ;
-EXCEL1 ; Display repeat info line before each EEOB detail section.
+LSTXCEL ; Display repeat info line before each EEOB detail section.
  ; First detail line does not need it
- I RZ1 W !,RZ Q
- S RZ1=1 Q
+ I RC1ST W !,RCLN Q
+ S RC1ST=1 Q
  ;
-PRTQ2 I '$D(ZTQUEUED),'RCSTOP,RCPG,RCPRT="" D ASK()
+PRTQ2 I '$D(ZTQUEUED),'RCSTOP,RCPGNUM,RCTMPND="" D ASK^RCDPEARL(.RCSTOP)
  I $D(ZTQUEUED) S ZTREQ="@"
  I '$D(ZTQUEUED) D ^%ZISC
  K ^TMP($J,"RCEFT_AGED")
  Q
  ;
-TEXT ; Filtered by messages
- ;;No Filters Applied
- ;;Station/Division
- ;;
- ;;Date Range
- ;;Station/Division, Date Range
- ;;Payer
- ;;Station/Division, Payer
- ;;
- ;;Date Range, Payer
- ;;Station/Division, Date Range, Payer
- Q
- ;
-SETLINE(Z,RCCT,RCPRT) ; Sets line into print global or writes line
- ; Z = txt to output
- ; RCCT = if defined = line counter
- ; RCPRT = if defined = flag if 1, indicates output to global, no writes 
- I $G(RCPRT)="" W !,Z Q
- S RCCT=RCCT+1
- S ^TMP($J,RCPRT,RCCT)=Z
- Q
- ;
-ASK(RCSTOP) ; Ask to continue
- ; If passed by reference ,RCSTOP is returned as 1 if print is aborted
- I $E(IOST,1,2)'["C-" Q
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- S DIR(0)="E" W ! D ^DIR K DIR
- I ($D(DIRUT))!($D(DUOUT)) S RCSTOP=1 Q
- Q
- ;
-SELPAY(RCNP,RCJOB,RCPAY) ;localize the payer filters for header display
+SELPAY(RCRESPYR,RCJOB,RCPAY) ;localize the payer filters for header display
  ; Input:
- ;   RCNP (pass-by-val/required) - payer filter response indicator (2=ALL, 3=SPECIFIC)
+ ;   RCRESPYR (pass-by-val/required) - payer filter response indicator (2=ALL, 3=SPECIFIC)
  ;   RCJOB - job number to access the populated temporary global array in case report was tasked to run
  ; Output:
  ;   RCPAY (pass-by-ref/required) - local array of payers e.g. RCPAY="ALL", RCPAY(1)="Aetna",
  ;                                  or RCPAY="start payer = end payer"
- ;
  N CNT,I
- I RCNP=2 S RCPAY="ALL" Q
+ I RCRESPYR=2 S RCPAY="ALL" Q
  S:RCJOB="" RCJOB=$J   ; RCJOB should not be null
- I RCNP=3 D  Q
+ I RCRESPYR=3 D  Q
  .S CNT=0
  .F  S CNT=$O(^TMP("RCSELPAY",RCJOB,CNT)) Q:'CNT  D
  ..S RCPAY(CNT)=^TMP("RCSELPAY",RCJOB,CNT)
- ;RCNP indicates a range of payers
+ ; RCRESPYR indicates a range of payers
  S I=$O(^TMP("RCSELPAY",RCJOB,"")),RCPAY=^(I)_" - "
  S I=$O(^TMP("RCSELPAY",RCJOB,""),-1),RCPAY=RCPAY_^(I)
  Q
-RCBAL() ; Get Zero Payment Filter
- ; INPUTS   : User input from keyboard
- ; RETURNS  : Output destination (0=Display; 1=MS Excel)
- ; LOCAL VARIABLES :
- ; DIR,DUOUT - Standard FileMan variables
- ; Y         - User input
- N DIR,DUOUT,Y
- S DIR(0)="Y"
- S DIR("A")="INCLUDE ZERO PAYMENT AMOUNTS (Y/N): "
- S DIR("B")="Y"
- D ^DIR K DIR
- I $D(DUOUT)!$D(DIRUT) S Y=-1
+ ;
+ZROBAL() ; function, Get Zero Payment Filter
+ ; returns 1 for yes, zero for no, -1 on '^' or timeout
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="YA",DIR("A")="Include Zero payment amounts? (Y/N): ",DIR("B")="YES"
+ D ^DIR
+ I $D(DUOUT)!$D(DIRUT)!$D(DTOUT) S Y=-1
  Q Y
  ;
 RLOAD(FILE) ; PRCA*4.5*284 - Load Payer temp global AFTER queued job starts
- ; Load Selected payers from local saved
- I +RCNP=3 M ^TMP("RCSELPAY",$J)=RCNP1 Q
- N CNT,RCPAY,RCINSF,RCINST,NUM,INDX
+ ; Load Selected payers from local array end exit
+ I +RCRESPYR=3 M ^TMP("RCSELPAY",$J)=RCPYRLST Q
+ N CNT,INDX,NUM,RCINSF,RCINST,RCPAY
  ;
- ; Load ALL payers
- I +RCNP=2 D  Q
+ ; Load ALL payers and exit
+ I +RCRESPYR=2 D  Q
  .S CNT=0,RCPAY="" F  S RCPAY=$O(^RCY(FILE,"C",RCPAY)) Q:RCPAY=""  S CNT=CNT+1,^TMP("RCSELPAY",$J,CNT)=RCPAY
  ;
  ; Range of Payers
  ; Build list of available stations
- ; Clear workfile
- K ^TMP("RCPAYER",$J)
+ K ^TMP("RCPAYER",$J)  ; Clear residual list data
  S CNT=0,RCPAY=""
  F  S RCPAY=$O(^RCY(FILE,"C",RCPAY)) Q:RCPAY=""  S CNT=CNT+1,^TMP("RCPAYER",$J,CNT)=RCPAY,^TMP("RCPAYER",$J,"B",RCPAY,CNT)=""
  ;
- S RCINSF=$P(RCNP,"^",2),RCINST=$P(RCNP,"^",3),INDX=1
+ S RCINSF=$P(RCRESPYR,"^",2),RCINST=$P(RCRESPYR,"^",3),INDX=1
  F  S RCINSF=$O(^TMP("RCPAYER",$J,"B",RCINSF)) Q:RCINSF=""  Q:RCINSF]RCINST  D
- . S NUM=$O(^TMP("RCPAYER",$J,"B",RCINSF,""))
- . S ^TMP("RCSELPAY",$J,INDX)=$G(^TMP("RCPAYER",$J,NUM)),INDX=INDX+1
+ .S NUM=$O(^TMP("RCPAYER",$J,"B",RCINSF,""))
+ .S ^TMP("RCSELPAY",$J,INDX)=$G(^TMP("RCPAYER",$J,NUM)),INDX=INDX+1
  Q
+ ;

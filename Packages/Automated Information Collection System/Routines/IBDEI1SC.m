@@ -1,0 +1,134 @@
+IBDEI1SC ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31898,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,31898,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,31899,0)
+ ;;=Z77.123^^190^1944^123
+ ;;^UTILITY(U,$J,358.3,31899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31899,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,31899,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,31899,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,31900,0)
+ ;;=Z77.122^^190^1944^53
+ ;;^UTILITY(U,$J,358.3,31900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31900,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,31900,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,31900,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,31901,0)
+ ;;=Z77.118^^190^1944^14
+ ;;^UTILITY(U,$J,358.3,31901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31901,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,31901,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,31901,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,31902,0)
+ ;;=Z77.9^^190^1944^43
+ ;;^UTILITY(U,$J,358.3,31902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31902,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,31902,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,31902,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,31903,0)
+ ;;=Z77.22^^190^1944^13
+ ;;^UTILITY(U,$J,358.3,31903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31903,1,3,0)
+ ;;=3^Environment Tobacco Smoke Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,31903,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,31903,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,31904,0)
+ ;;=Z80.0^^190^1944^28
+ ;;^UTILITY(U,$J,358.3,31904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31904,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,31904,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,31904,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,31905,0)
+ ;;=Z80.1^^190^1944^33
+ ;;^UTILITY(U,$J,358.3,31905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31905,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,31905,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,31905,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,31906,0)
+ ;;=Z80.3^^190^1944^27
+ ;;^UTILITY(U,$J,358.3,31906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31906,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,31906,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,31906,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,31907,0)
+ ;;=Z80.41^^190^1944^30
+ ;;^UTILITY(U,$J,358.3,31907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31907,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,31907,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,31907,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,31908,0)
+ ;;=Z80.42^^190^1944^31
+ ;;^UTILITY(U,$J,358.3,31908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31908,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,31908,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,31908,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,31909,0)
+ ;;=Z80.43^^190^1944^32
+ ;;^UTILITY(U,$J,358.3,31909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31909,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,31909,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,31909,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,31910,0)
+ ;;=Z80.6^^190^1944^26
+ ;;^UTILITY(U,$J,358.3,31910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31910,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,31910,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,31910,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,31911,0)
+ ;;=Z80.8^^190^1944^29
+ ;;^UTILITY(U,$J,358.3,31911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31911,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems

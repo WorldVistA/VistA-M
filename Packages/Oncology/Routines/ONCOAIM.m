@@ -1,5 +1,5 @@
 ONCOAIM ;Hines OIFO/GWB - Create additional primaries for a patient ;03/08/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
 EN ;Add additional primaries for patient
  D KILL
@@ -40,6 +40,9 @@ PROMPT ;SEQUENCE NUMBER (165.5,.06) prompt
  S DIR("?")="Enter the next SEQUENCE NUMBER.  Enter ?? for additional HELP"
  S DIR("??")="^D HLP^ONCOAIM2" D ^DIR I "^^"[Y D KILL Q
  I (Y'?2N)!((Y>88)&(Y<99)) W "  Allowable Values: 00-88, 99" G PROMPT
+ S XXIEN=ACN_"/"_Y I $D(^ONCO(165.5,"D",XXIEN)) D  G PROMPT
+ .W !?25,XXIEN," is already assigned.",!
+ .S XD0=ONCOD0 D CX^ONCOCOM K XXIEN Q
  S DIEN=ACN_"/"_Y
  S SN=Y,SEQ=SN,AY=$E(DT,1)+17,AY=AY_$E(DT,2,3)
  I SN="02",$D(^TMP($J,"MAL",1)),$P(^TMP($J,"MAL",1),U,1)="00" D

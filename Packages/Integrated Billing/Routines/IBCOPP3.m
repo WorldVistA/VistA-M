@@ -1,5 +1,6 @@
 IBCOPP3 ;ALB/NLR - LIST INS. PLANS BY CO. (PRINT) ; 04-OCT-94
- ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**28,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Print the report.
  ;  Required Input:  Global print array ^TMP($J,"PR"
@@ -32,25 +33,32 @@ COMP ; Print Company header
  W !,$TR($J(" ",IOM)," ","-")
  ;
  ; - sub-header
+ ; MRD;IB*2.0*516 - Adjusted columns to allow more space for Employer
+ ; and Subscriber ID.
  W !?1,$P(IBC,"^"),?45,$P(IBC,"^",4),?105,$P(IBC,"^",6)
  W !?11,$P(IBC,"^",2),?45,$P(IBC,"^",5),?105,"PLAN TOTAL= ",$P(IBC,"^",7)
  W !?11,$P(IBC,"^",3),?99,"SUBSCRIBER TOTAL= ",$P(IBC,"^",8)
- W:IBAPA !!?95,"WHOSE",?127,"BEN.",!?3,"SUBSCRIBER NAME/ID",?40,"DOB",?54,"EMPLOYER",?76,"SUBSCR ID",?95,"INS",?105,"EFF DATE",?117,"EXP DATE",?127,"USED?"
+ W:IBAPA !!?99,"WHOSE",?127,"BEN.",!?3,"SUBSCRIBER NAME/ID",?38,"DOB",?50,"EMPLOYER",?76,"SUBSCR ID",?99,"INS",?107,"EFF DATE",?117,"EXP DATE",?127,"USED?"
  W:'IBAPA !!?5,"GROUP NUMBER",?32,"GROUP NAME",?62,"GROUP OR IND",?77,"ACTIVE/INACTIVE",?96,"SUBSCRIBERS",?110,"ANN. BEN?  BEN. USED?"
  Q
  ;
 PLAN ; Print plan information.
+ ; MRD;IB*2.0*516 - Adjusted columns and added $E to Group # and Name.
  I IBAPA D
- .W !!?3,"GROUP #: ",$P(IBPD,U),?40,"ANNUAL BENEFITS ON FILE: ",$P(IBPD,U,5)
- .W !?5,"GROUP NAME: ",$P(IBPD,U,2),?42,"BENEFITS USED ON FILE: ",$P(IBPD,U,6)
+ .W !!?3,"GROUP #: ",$E($P(IBPD,U),1,62),?76,"ANNUAL BENEFITS ON FILE: ",$P(IBPD,U,5)
+ .W !?5,"GROUP NAME: ",$E($P(IBPD,U,2),1,59),?78,"BENEFITS USED ON FILE: ",$P(IBPD,U,6)
  .W !?7,"GROUP OR IND: ",$P(IBPD,U,3),!?9,"ACTIVE?: ",$P(IBPD,U,4),!?11,"NO. SUBSCRIBERS: ",$P(IBPD,U,7)
  I 'IBAPA W !!?5,$P(IBPD,U),?32,$P(IBPD,U,2),?62,$P(IBPD,U,3),?77,$P(IBPD,U,4),?100,$P(IBPD,U,7),?113,$P(IBPD,U,5),?124,$P(IBPD,U,6)
  Q
  ;
 SUBS ; Print subscriber information.
+ ; MRD;IB*2.0*516 - Shifted some fields to allow Employer and
+ ; Subscriber ID to display more characters.
  I $Y>(IOSL-4) D PAUSE Q:IBQUIT  D COMP,PLAN
- W !?3,$P(IBSD,"^"),?40,$P(IBSD,"^",2),?54,$P(IBSD,"^",3),?76,$P(IBSD,"^",4),?95,$P(IBSD,"^",5)
- W ?105,$P(IBSD,"^",6),?117,$P(IBSD,"^",7),?128,$S($P(IBSD,"^",8):"YES",1:"NO")
+ ;W !?3,$P(IBSD,"^"),?40,$P(IBSD,"^",2),?54,$P(IBSD,"^",3),?76,$P(IBSD,"^",4),?95,$P(IBSD,"^",5)
+ ;W ?105,$P(IBSD,"^",6),?117,$P(IBSD,"^",7),?128,$S($P(IBSD,"^",8):"YES",1:"NO")
+ W !?3,$P(IBSD,"^"),?38,$P(IBSD,"^",2),?50,$E($P(IBSD,"^",3),1,20),?76,$E($P(IBSD,"^",4),1,25),?99,$P(IBSD,"^",5)
+ W ?107,$P(IBSD,"^",6),?117,$P(IBSD,"^",7),?128,$S($P(IBSD,"^",8):"YES",1:"NO")
  Q
  ;
 PAUSE ; Pause for screen output.

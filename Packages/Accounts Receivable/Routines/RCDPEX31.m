@@ -1,6 +1,6 @@
-RCDPEX31 ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;10-OCT-02
- ;;4.5;Accounts Receivable;**173,208**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEX31 ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;Jun 11, 2014@15:50:59
+ ;;4.5;Accounts Receivable;**173,208,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 UPD ; Try to update the IB EOB file from exception in 344.41
  N RCDA,RCTDA,RCTDA1,RCWHY,Z,DA,DIE,DR
@@ -26,7 +26,7 @@ UPDQ S VALMBCK="R"
  Q
  ;
 DEL ; Delete exception conditions from EOB detail list - file 344.4
- N DIR,X,Y,Z,RCDA,RCOK,RCTDA,RCTDA1,RCWHY,DA,DR,DIE,RC0,RC00,RCDIQ,RCE,RCT,RCX,RCWHYTXT,XMDUZ,XMSUBJ,XMZ,XMER,XMBODY,XMTO,RCDIQ1,DTOUT,DUOUT
+ N DIR,DA,DIE,DR,DTOUT,DUOUT,RC0,RC00,RCDA,RCDIQ,RCDIQ1,RCE,RCOK,RCT,RCTDA,RCTDA1,RCWHY,RCWHYTXT,RCX,X,Y,Z
  D FULL^VALM1
  D SEL^RCDPEX3(.RCDA,1)
  S RCDA=$O(RCDA(""))
@@ -34,7 +34,7 @@ DEL ; Delete exception conditions from EOB detail list - file 344.4
  S RCTDA=+RCDA(RCDA),RCTDA1=$P(RCDA(RCDA),U,2)
  I '$$LOCK(RCTDA,RCTDA1,0) G DELQ
  W !
- S DIR(0)="YA",DIR("A",1)="This action will mark this EEOB detail record so it no longer appears as an",DIR("A",2)="exception.  A bulletin will be sent to report this action",DIR("A",3)=" "
+ S DIR(0)="YA",DIR("A",1)="This action will mark this EEOB detail record so it no longer appears as an",DIR("A",2)="exception.  A MailMan message will be sent to report this action.",DIR("A",3)=" "
  S DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE? ",DIR("B")="NO"
  D ^DIR K DIR
  G:Y'=1 DELQ
@@ -61,12 +61,12 @@ DEL ; Delete exception conditions from EOB detail list - file 344.4
  S RCT(7)=" ",RCE=+$O(RCT(""),-1)
  S Z=0 F  S Z=$O(RCX(Z)) Q:'Z  S RCE=RCE+1,RCT(RCE)=RCX(Z)
  S RCE=RCE+1,RCT(RCE)=" "
- S XMSUBJ="EDI LBOX EEOB DETAIL EXCEPTION REMOVED",XMBODY="RCT",XMDUZ="",XMTO("G.RCDPE PAYMENTS")=""
- D  ;
- . N DUZ S DUZ=.5,DUZ(0)="@"
- . D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ D  ; send MailMan message
+ .N XMBODY,XMINSTR,XMSUBJ,XMZ
+ .S XMSUBJ="EDI LBOX EEOB DETAIL EXCEPTION REMOVED",XMBODY="RCT",XMTO("G.RCDPE PAYMENTS")="",XMTO(DUZ)="",XMINSTR("FROM")="POSTMASTER"
+ .D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,.XMINSTR,.XMZ)
  ;
- W !,"A bulletin has been sent to report this action",!
+ W !,"A MailMan message has been sent to report this action.",!
  D PAUSE^VALM1
  D BLD^RCDPEX2
  ;
@@ -79,7 +79,7 @@ TXT0(RCTDA,RCDIQ,RCXM1,RC) ; Append 0-node captioned data to array RCXM1
  N LINE,DAT,Z,Z0,Z1
  S LINE="",RC=+$G(RC)
  S RC=RC+1,RCXM1(RC)="  **ERA SUMMARY DATA**"
- F Z=.02:.01 D  S Z1=+$O(RCDIQ(344.4,RCTDA_",",Z)) Q:Z1'<1!'Z1
+ S Z=0 F  S Z=$O(RCDIQ(344.4,RCTDA_",",Z)) Q:'Z  D   ;prca*4.5*298  need to get additional fields for display
  . I $G(RCDIQ(344.4,RCTDA_",",Z,"E"))="" Q
  . S Z0=$$GET1^DID(344.4,Z,,"LABEL")
  . S DAT=Z0_": "_$G(RCDIQ(344.4,RCTDA_",",Z,"E"))
@@ -97,8 +97,8 @@ TXT00(RCTDA,RCTDA1,RCDIQ1,RCXM1,RC) ; Extract 0-node data for file 344.41
  N RCT,LINE,DAT,Z,Z0,Z1
  S LINE="",RC=+$G(RC)
  S RC=RC+1,RCXM1(RC)="  **EEOB DETAIL DATA**",RCT=RCTDA1_","_RCTDA_","
- F Z=.01:.01 D  S Z1=+$O(RCDIQ1(344.41,RCT,Z)) Q:Z1'<1!'Z1
- . I $G(RCDIQ1(344.41,RCT,Z,"E"))="" Q
+ S Z=0 F  S Z=$O(RCDIQ1(344.41,RCT,Z)) Q:'Z  D   ;prca*4.5*298  need to get additional fields for display
+ . I (Z'=.25),$G(RCDIQ1(344.41,RCT,Z,"E"))="" Q   ;prca*4.5*298  even if RECEIPT # (.25) is null, display the label
  . S Z0=$$GET1^DID(344.41,Z,,"LABEL")
  . S DAT=Z0_": "_$G(RCDIQ1(344.41,RCT,Z,"E"))
  . I $L(DAT)>39 S:$L(LINE) RC=RC+1,RCXM1(RC)=LINE S RC=RC+1,RCXM1(RC)=DAT,LINE="" Q

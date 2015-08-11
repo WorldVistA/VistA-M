@@ -1,6 +1,6 @@
-RCDPEWL1 ;ALB/TMK - ELECTRONIC EOB WORKLIST SCREEN ;26-NOV-02
- ;;4.5;Accounts Receivable;**173,208,222**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWL1 ;ALB/TMK - ELECTRONIC EOB WORKLIST SCREEN ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,208,222,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ; IA for call to ^DGENA = 3812
  Q
@@ -10,13 +10,16 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  ; RCSORT = "" or 'N' for no sort  'F' for 0-pays first, 'L' for last
  ;
  N A,A0,B,B0,Q,Q0,Q1,QQ,V1,X,Y,Z,Z0,Z3,ZZ,ZZ1,RCT,RCZ,RCZ0,RCZZ0,RCSA,RCAZ,RCAZ0,RCSCT,RCS1,RCLI1,RCY34441,RCZERO,RCTS,RCTL
- S RCSORT=$P($G(RCSORT),U),RCSORT=$S(RCSORT="":"N",1:RCSORT),RCTS=0
+ N RCECME,RXARRAY,RC4,RECEIPT,AUTOERA  ;prca*4.5*298
+ S RCSORT=$P($G(RCSORT),U),RCSORT=$S(RCSORT="":"N",1:RCSORT)
  K ^TMP("RCDPE-EOB_WL",$J),^TMP("RCDPE-EOB_WLDX",$J),^TMP($J,"RCS"),^TMP("RC_BILL",$J)
  ;
  S VALMCNT=0
  S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,1,"B",Z)) Q:'Z  I Z#1=0 S ZZ=+$O(^RCY(344.49,RCSCR,1,"B",Z,0)) I ZZ D
  . S RCZ=ZZ,RCZ0=$G(^RCY(344.49,RCSCR,1,ZZ,0)),RCS1=$P(RCZ0,U,6)
- . Q:$S('$G(^TMP("RCBATCH_SELECTED",$J)):0,1:$P(RCZ0,U,14)'=+^TMP("RCBATCH_SELECTED",$J))  ; Must be entire ERA or match the selected batch to continue
+ . ; prca*4.5*298  per patch requirements, keep code related to 
+ . ; creating/maintaining batches but just remove from execution.
+ . ;Q:$S('$G(^TMP("RCBATCH_SELECTED",$J)):0,1:$P(RCZ0,U,14)'=+^TMP("RCBATCH_SELECTED",$J))  ; Must be entire ERA or match the selected batch to continue
  . S RCZERO=$S($P(RCZ0,U,2)["**ADJ":"-1",RCSORT="N":1,RCSORT="F":+RCS1'=0,1:+RCS1=0)
  . ;
  . ; This is a top-level entry - find the sublines
@@ -26,8 +29,17 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  ;
  S RCZERO="",RCTS=0 F  S RCZERO=$O(^TMP($J,"RCS",RCZERO)) Q:RCZERO=""  S ZZ=0 F  S ZZ=$O(^TMP($J,"RCS",RCZERO,ZZ)) Q:'ZZ  D
  . N A
- . S RCZ0=$G(^RCY(344.49,RCSCR,1,ZZ,0)),RCS1=$P(RCZ0,U,6),RCTS=RCTS+1,RCY34441=$G(^RCY(344.4,RCSCR,1,+$P(RCZ0,U,9),0))
- . S A=$$TOPLINE(RCZ0,RCTS)
+ . S RCZ0=$G(^RCY(344.49,RCSCR,1,ZZ,0)),RCY34441=$G(^RCY(344.4,RCSCR,1,+$P(RCZ0,U,9),0))
+ .;  get ECME# and Receipt from EEOB
+ . S RC4=$P($G(^RCY(344.4,RCSCR,1,+$P(RCZ0,U,9),4)),U,2,3)
+ . S RCECME=$P(RC4,U)
+ . S RECEIPT=$S(+$P(RC4,U,2):$P($G(^RCY(344,$P(RC4,U,2),0)),U),1:"")
+ . ; get auto-post status
+ . S AUTOERA=$S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0)
+ . ;Filtering Posted/Unposted EEOBs (Auto-Posting ERAs only)
+ . I $G(^TMP($J,"RC_EEOBPOST"))="P",RECEIPT="" Q
+ . I $G(^TMP($J,"RC_EEOBPOST"))="U",RECEIPT'="" Q
+ . S RCTS=RCTS+1,A=$$TOPLINE(RCZ0,RCTS)
  . D SET(A,RCTS,RCTS,ZZ)
  . I $P(RCY34441,U,11) D
  .. D SET("EEOB TRANSFERRED TO "_$E($P($G(^DIC(4,+$P(RCY34441,U,11),0)),U),1,20)_" "_$$FMTE^XLFDT($P(RCY34441,U,12),"2D")_" STATUS: "_$$EXTERNAL^DILFD(344.41,.1,"",+$P(RCY34441,U,10)),RCTS,RCTS,ZZ)
@@ -58,6 +70,9 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  ... D SET(Z3_"  Rx Copay: "_$E(A("RXCP"),1,17)_"  Means Tst: "_A("M/T"),RCTS,RCT,ZZ1)
  .. ;
  .. D SET($J("",4+RCTL)_"Payment Amt: "_$J(+$P(RCZZ0,U,5),"",2)_"   Total Adjustments: "_$J(+$P(RCZZ0,U,8),"",2)_"  Net: "_$J($P(RCZZ0,U,5)+$P(RCZZ0,U,8),"",2),RCTS,RCT,ZZ1)
+ .. I AUTOERA,$P(RCZZ0,U,3)>0 D SET($J("",9)_"Receipt: "_RECEIPT,RCTS,RCT,ZZ1)   ; if auto-posted ERA display EEOB level receipt number
+ .. ; displaY pharmacy EEOB data  
+ .. I RCECME]"" D PHARM(RCZZ0,RCECME,RCT,ZZ1)
  .. I $P(RCZZ0,U,10)'="" D SET($J("",9)_"Receipt Comment: "_$P(RCZZ0,U,10),RCTS,RCT,ZZ1)
  .. I $O(^RCY(344.49,RCSCR,1,ZZ1,1,0)) D
  ... S Z3=""
@@ -85,8 +100,13 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  ..... I $L(B0)>64 D SET($J("",15)_$E(B0,1,64),RCTS,RCT,ZZ1) S B0="  "_$E(B0,65,$L(B0)) ; Split line if > 64 characters in comment line
  ..... D SET($J("",15)_B0,RCTS,RCT,ZZ1)
  .. S A="",$P(A,".",79)="" D SET(A,RCTS,RCT,ZZ1)
- ;
- I VALMCNT=0,$G(^TMP("RCBATCH_SELECTED",$J)) D SET("THERE ARE NO EEOBs ASSIGNED TO THIS BATCH")
+ ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining
+ ; batches but just remove from execution.
+ ; I VALMCNT=0 D
+ ;. I $G(^TMP("RCBATCH_SELECTED",$J)) D
+ ;. . D SET("THERE ARE NO EEOBs ASSIGNED TO THIS BATCH")
+ ;. E  D SET("THERE ARE NO EEOBs MATCHING YOUR SELECTION CRITERIA")
+ I VALMCNT=0 D SET("THERE ARE NO EEOBs MATCHING YOUR SELECTION CRITERIA")
  K ^TMP($J,"RCS")
  Q
  ;
@@ -98,6 +118,15 @@ TOPLINE(RCZ0,RCTS) ; Function returns the top line of the EEOB display
  I $P($G(^TMP($J,"RC_SORTPARM")),U,2) S A=A_"  Reviewed?: "_$S($P(RCZ0,U,11)="":"NO",1:$$EXTERNAL^DILFD(344.491,.11,,$P(RCZ0,U,11)))
  S A=$E(RCTS_$J("",4),1,4)_A
  Q A
+ ;
+PHARM(RCZZ0,RCECME,RCT,ZZ1) ;
+ N RXARRAY
+ D GETPHARM^RCDPEWLP($P(RCZZ0,U,7),.RXARRAY)
+ D SET($J("",9)_"ECME #: "_RCECME,$P(RCZZ0,U),RCT,ZZ1)
+ I '$D(RXARRAY) D SET($J("",9)_" Pharmacy data does not exist for this claim",$P(RCZZ0,U),RCT,ZZ1) Q
+ D SET($J("",9)_"Rx/Fill/Release Status: "_RXARRAY("RX")_"/"_RXARRAY("FILL")_"/"_RXARRAY("RELEASED STATUS"),$P(RCZZ0,U),RCT,ZZ1)
+ D SET($J("",9)_"DOS: "_RXARRAY("DOS"),$P(RCZZ0,U),RCT,ZZ1)
+ Q
  ;
 INIT ;
  S VALMBG=$G(^TMP($J,"RC_VALMBG"))

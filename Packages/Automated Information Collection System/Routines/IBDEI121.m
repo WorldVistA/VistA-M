@@ -1,114 +1,140 @@
-IBDEI121 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI121 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18893,1,3,0)
- ;;=3^28665
- ;;^UTILITY(U,$J,358.3,18894,0)
- ;;=28666^^122^1205^64^^^^1
- ;;^UTILITY(U,$J,358.3,18894,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18894,1,2,0)
- ;;=2^Perc Fixation Interphalangeal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,18894,1,3,0)
- ;;=3^28666
- ;;^UTILITY(U,$J,358.3,18895,0)
- ;;=28675^^122^1205^65^^^^1
- ;;^UTILITY(U,$J,358.3,18895,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18895,1,2,0)
- ;;=2^Open Tx of interphalangeal joint dislocation, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,18895,1,3,0)
- ;;=3^28675
- ;;^UTILITY(U,$J,358.3,18896,0)
- ;;=27840^^122^1205^66^^^^1
- ;;^UTILITY(U,$J,358.3,18896,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18896,1,2,0)
- ;;=2^Closed Tx of ankle dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,18896,1,3,0)
- ;;=3^27840
- ;;^UTILITY(U,$J,358.3,18897,0)
- ;;=27842^^122^1205^67^^^^1
- ;;^UTILITY(U,$J,358.3,18897,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18897,1,2,0)
- ;;=2^Closed Tx of ankle dislocation; requiring anesthesia, with or w/o percutaneous skeletal fixation
- ;;^UTILITY(U,$J,358.3,18897,1,3,0)
- ;;=3^27842
- ;;^UTILITY(U,$J,358.3,18898,0)
- ;;=27846^^122^1205^68^^^^1
- ;;^UTILITY(U,$J,358.3,18898,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18898,1,2,0)
- ;;=2^Open Tx of ankle dislocation, with or w/o percutaneous skeletal fixation; w/o repair or internal fixation
- ;;^UTILITY(U,$J,358.3,18898,1,3,0)
- ;;=3^27846
- ;;^UTILITY(U,$J,358.3,18899,0)
- ;;=27848^^122^1205^69^^^^1
- ;;^UTILITY(U,$J,358.3,18899,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18899,1,2,0)
- ;;=2^Open Tx of ankle dislocation, with or w/o precutaneous skeletalfixation; with repair or internal or external fixation
- ;;^UTILITY(U,$J,358.3,18899,1,3,0)
- ;;=3^27848
- ;;^UTILITY(U,$J,358.3,18900,0)
- ;;=28750^^122^1206^1^^^^1
- ;;^UTILITY(U,$J,358.3,18900,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18900,1,2,0)
- ;;=2^Arthrodesis, great toe; metartarsophalangeal joint
- ;;^UTILITY(U,$J,358.3,18900,1,3,0)
- ;;=3^28750
- ;;^UTILITY(U,$J,358.3,18901,0)
- ;;=28755^^122^1206^2^^^^1
- ;;^UTILITY(U,$J,358.3,18901,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18901,1,2,0)
- ;;=2^Arthrodesis, great toe; interphlangeal joint
- ;;^UTILITY(U,$J,358.3,18901,1,3,0)
- ;;=3^28755
- ;;^UTILITY(U,$J,358.3,18902,0)
- ;;=27870^^122^1206^3^^^^1
- ;;^UTILITY(U,$J,358.3,18902,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18902,1,2,0)
- ;;=2^Arthrodesis, ankle, any method
- ;;^UTILITY(U,$J,358.3,18902,1,3,0)
- ;;=3^27870
- ;;^UTILITY(U,$J,358.3,18903,0)
- ;;=27871^^122^1206^4^^^^1
- ;;^UTILITY(U,$J,358.3,18903,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18903,1,2,0)
- ;;=2^Arthrodesis, tibiofibular joint, proximal or distal
- ;;^UTILITY(U,$J,358.3,18903,1,3,0)
- ;;=3^27871
- ;;^UTILITY(U,$J,358.3,18904,0)
- ;;=29358^^122^1207^2^^^^1
- ;;^UTILITY(U,$J,358.3,18904,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18904,1,2,0)
- ;;=2^Application Of Long Leg Cast Brace
- ;;^UTILITY(U,$J,358.3,18904,1,3,0)
- ;;=3^29358
- ;;^UTILITY(U,$J,358.3,18905,0)
- ;;=29405^^122^1207^4^^^^1
- ;;^UTILITY(U,$J,358.3,18905,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18905,1,2,0)
- ;;=2^Application Of Short Leg Cast
- ;;^UTILITY(U,$J,358.3,18905,1,3,0)
- ;;=3^29405
- ;;^UTILITY(U,$J,358.3,18906,0)
- ;;=29425^^122^1207^5^^^^1
- ;;^UTILITY(U,$J,358.3,18906,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18906,1,2,0)
- ;;=2^Application Of Short Leg Cast; Walking Or Ambulatory Type
- ;;^UTILITY(U,$J,358.3,18906,1,3,0)
- ;;=3^29425
- ;;^UTILITY(U,$J,358.3,18907,0)
- ;;=29440^^122^1207^1^^^^1
- ;;^UTILITY(U,$J,358.3,18907,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18799,1,5,0)
+ ;;=5^Cannabis Abuse-Remis
+ ;;^UTILITY(U,$J,358.3,18799,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,18800,0)
+ ;;=304.40^^104^1101^23
+ ;;^UTILITY(U,$J,358.3,18800,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18800,1,2,0)
+ ;;=2^304.40
+ ;;^UTILITY(U,$J,358.3,18800,1,5,0)
+ ;;=5^Amphetamine Dependence
+ ;;^UTILITY(U,$J,358.3,18800,2)
+ ;;=^268204
+ ;;^UTILITY(U,$J,358.3,18801,0)
+ ;;=304.43^^104^1101^20
+ ;;^UTILITY(U,$J,358.3,18801,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18801,1,2,0)
+ ;;=2^304.43
+ ;;^UTILITY(U,$J,358.3,18801,1,5,0)
+ ;;=5^Amphetamine Dep-Remis
+ ;;^UTILITY(U,$J,358.3,18801,2)
+ ;;=^268207
+ ;;^UTILITY(U,$J,358.3,18802,0)
+ ;;=305.70^^104^1101^16
+ ;;^UTILITY(U,$J,358.3,18802,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18802,1,2,0)
+ ;;=2^305.70
+ ;;^UTILITY(U,$J,358.3,18802,1,5,0)
+ ;;=5^Amphetamine Abuse
+ ;;^UTILITY(U,$J,358.3,18802,2)
+ ;;=^268250
+ ;;^UTILITY(U,$J,358.3,18803,0)
+ ;;=305.73^^104^1101^19
+ ;;^UTILITY(U,$J,358.3,18803,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18803,1,2,0)
+ ;;=2^305.73
+ ;;^UTILITY(U,$J,358.3,18803,1,5,0)
+ ;;=5^Amphetamine Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,18803,2)
+ ;;=^268253
+ ;;^UTILITY(U,$J,358.3,18804,0)
+ ;;=304.50^^104^1101^62
+ ;;^UTILITY(U,$J,358.3,18804,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18804,1,2,0)
+ ;;=2^304.50
+ ;;^UTILITY(U,$J,358.3,18804,1,5,0)
+ ;;=5^Hallucinogen Dependence
+ ;;^UTILITY(U,$J,358.3,18804,2)
+ ;;=^53744
+ ;;^UTILITY(U,$J,358.3,18805,0)
+ ;;=304.53^^104^1101^59
+ ;;^UTILITY(U,$J,358.3,18805,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18805,1,2,0)
+ ;;=2^304.53
+ ;;^UTILITY(U,$J,358.3,18805,1,5,0)
+ ;;=5^Hallucinogen Dep-Remission
+ ;;^UTILITY(U,$J,358.3,18805,2)
+ ;;=^268210
+ ;;^UTILITY(U,$J,358.3,18806,0)
+ ;;=305.30^^104^1101^56
+ ;;^UTILITY(U,$J,358.3,18806,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18806,1,2,0)
+ ;;=2^305.30
+ ;;^UTILITY(U,$J,358.3,18806,1,5,0)
+ ;;=5^Hallucinogen Abuse
+ ;;^UTILITY(U,$J,358.3,18806,2)
+ ;;=^53741
+ ;;^UTILITY(U,$J,358.3,18807,0)
+ ;;=305.33^^104^1101^55
+ ;;^UTILITY(U,$J,358.3,18807,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18807,1,2,0)
+ ;;=2^305.33
+ ;;^UTILITY(U,$J,358.3,18807,1,5,0)
+ ;;=5^Hallucinog Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,18807,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,18808,0)
+ ;;=304.60^^104^1101^54
+ ;;^UTILITY(U,$J,358.3,18808,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18808,1,2,0)
+ ;;=2^304.60
+ ;;^UTILITY(U,$J,358.3,18808,1,5,0)
+ ;;=5^Drug Dependence, Other
+ ;;^UTILITY(U,$J,358.3,18808,2)
+ ;;=^88038
+ ;;^UTILITY(U,$J,358.3,18809,0)
+ ;;=304.63^^104^1101^51
+ ;;^UTILITY(U,$J,358.3,18809,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18809,1,2,0)
+ ;;=2^304.63
+ ;;^UTILITY(U,$J,358.3,18809,1,5,0)
+ ;;=5^Drug Depend Other-Remission
+ ;;^UTILITY(U,$J,358.3,18809,2)
+ ;;=^268213
+ ;;^UTILITY(U,$J,358.3,18810,0)
+ ;;=305.90^^104^1101^76
+ ;;^UTILITY(U,$J,358.3,18810,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18810,1,2,0)
+ ;;=2^305.90
+ ;;^UTILITY(U,$J,358.3,18810,1,5,0)
+ ;;=5^Other Drug Abuse
+ ;;^UTILITY(U,$J,358.3,18810,2)
+ ;;=^268258
+ ;;^UTILITY(U,$J,358.3,18811,0)
+ ;;=305.93^^104^1101^79
+ ;;^UTILITY(U,$J,358.3,18811,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18811,1,2,0)
+ ;;=2^305.93
+ ;;^UTILITY(U,$J,358.3,18811,1,5,0)
+ ;;=5^Other Drug Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,18811,2)
+ ;;=^268261
+ ;;^UTILITY(U,$J,358.3,18812,0)
+ ;;=304.70^^104^1101^65
+ ;;^UTILITY(U,$J,358.3,18812,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18812,1,2,0)
+ ;;=2^304.70
+ ;;^UTILITY(U,$J,358.3,18812,1,5,0)
+ ;;=5^Opioid + Other Depend
+ ;;^UTILITY(U,$J,358.3,18812,2)
+ ;;=^268214
+ ;;^UTILITY(U,$J,358.3,18813,0)
+ ;;=304.73^^104^1101^64

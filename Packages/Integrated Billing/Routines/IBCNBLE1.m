@@ -1,6 +1,6 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,435,467**;21-MAR-94;Build 11
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
  Q
@@ -159,7 +159,8 @@ SIDERR(BUF,PIEN) ;
  ;
  N ERR,SID,APPIEN,SIDSTR,SIDREQ,SIDSSN
  S ERR=""
- S SID=$P($G(^IBA(355.33,BUF,60)),U,4)
+ ;S SID=$P($G(^IBA(355.33,BUF,60)),U,4)  ; Patch 516 - baa
+ S SID=$$GET1^DIQ(355.33,BUF,90.03)  ; Patch 516 - baa
  I SID]"" G SIDX  ; Subscriber id is populated, further checking is moot
  S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
  S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0))

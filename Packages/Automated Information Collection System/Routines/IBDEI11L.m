@@ -1,112 +1,128 @@
-IBDEI11L ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11L ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18677,1,2,0)
- ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; 15 or more lesions
- ;;^UTILITY(U,$J,358.3,18677,1,3,0)
- ;;=3^17111
- ;;^UTILITY(U,$J,358.3,18678,0)
- ;;=17250^^122^1193^6^^^^1
- ;;^UTILITY(U,$J,358.3,18678,1,0)
+ ;;^UTILITY(U,$J,358.3,18573,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,18573,1,3,0)
+ ;;=3^Behavior Reassessment,ea 15min
+ ;;^UTILITY(U,$J,358.3,18574,0)
+ ;;=96152^^102^1068^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18574,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18678,1,2,0)
- ;;=2^Chemical cauterization of granulation tissue
- ;;^UTILITY(U,$J,358.3,18678,1,3,0)
- ;;=3^17250
- ;;^UTILITY(U,$J,358.3,18679,0)
- ;;=11400^^122^1194^1^^^^1
- ;;^UTILITY(U,$J,358.3,18679,1,0)
+ ;;^UTILITY(U,$J,358.3,18574,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,18574,1,3,0)
+ ;;=3^Behavior Intervention,Ind,ea 15min
+ ;;^UTILITY(U,$J,358.3,18575,0)
+ ;;=96153^^102^1068^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18575,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18679,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; 0.5 cm or less 
- ;;^UTILITY(U,$J,358.3,18679,1,3,0)
- ;;=3^11400
- ;;^UTILITY(U,$J,358.3,18680,0)
- ;;=11401^^122^1194^2^^^^1
- ;;^UTILITY(U,$J,358.3,18680,1,0)
+ ;;^UTILITY(U,$J,358.3,18575,1,2,0)
+ ;;=2^96153
+ ;;^UTILITY(U,$J,358.3,18575,1,3,0)
+ ;;=3^Behavior Intervention,Grp,ea 15min
+ ;;^UTILITY(U,$J,358.3,18576,0)
+ ;;=96154^^102^1068^5^^^^1
+ ;;^UTILITY(U,$J,358.3,18576,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18680,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,18680,1,3,0)
- ;;=3^11401
- ;;^UTILITY(U,$J,358.3,18681,0)
- ;;=11402^^122^1194^3^^^^1
- ;;^UTILITY(U,$J,358.3,18681,1,0)
+ ;;^UTILITY(U,$J,358.3,18576,1,2,0)
+ ;;=2^96154
+ ;;^UTILITY(U,$J,358.3,18576,1,3,0)
+ ;;=3^Behav Intervent,Fam w/Pt,ea 15min
+ ;;^UTILITY(U,$J,358.3,18577,0)
+ ;;=96155^^102^1068^6^^^^1
+ ;;^UTILITY(U,$J,358.3,18577,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18681,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,18681,1,3,0)
- ;;=3^11402
- ;;^UTILITY(U,$J,358.3,18682,0)
- ;;=11403^^122^1194^4^^^^1
- ;;^UTILITY(U,$J,358.3,18682,1,0)
+ ;;^UTILITY(U,$J,358.3,18577,1,2,0)
+ ;;=2^96155
+ ;;^UTILITY(U,$J,358.3,18577,1,3,0)
+ ;;=3^Behav Intervent,Fam w/o Pt,ea 15min
+ ;;^UTILITY(U,$J,358.3,18578,0)
+ ;;=99367^^102^1069^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18578,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18682,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; 2.1cm to 3.0cm
- ;;^UTILITY(U,$J,358.3,18682,1,3,0)
- ;;=3^11403
- ;;^UTILITY(U,$J,358.3,18683,0)
- ;;=11404^^122^1194^5^^^^1
- ;;^UTILITY(U,$J,358.3,18683,1,0)
+ ;;^UTILITY(U,$J,358.3,18578,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,18578,1,3,0)
+ ;;=3^Team Conf w/o Pt By Phys>29min
+ ;;^UTILITY(U,$J,358.3,18579,0)
+ ;;=90785^^102^1070^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18579,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18683,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,18683,1,3,0)
- ;;=3^11404
- ;;^UTILITY(U,$J,358.3,18684,0)
- ;;=11406^^122^1194^6^^^^1
- ;;^UTILITY(U,$J,358.3,18684,1,0)
+ ;;^UTILITY(U,$J,358.3,18579,1,2,0)
+ ;;=2^90785
+ ;;^UTILITY(U,$J,358.3,18579,1,3,0)
+ ;;=3^Psytx Complex Interactive
+ ;;^UTILITY(U,$J,358.3,18580,0)
+ ;;=90791^^102^1071^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18580,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18684,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; over 4.0cm
- ;;^UTILITY(U,$J,358.3,18684,1,3,0)
- ;;=3^11406
- ;;^UTILITY(U,$J,358.3,18685,0)
- ;;=11420^^122^1194^7^^^^1
- ;;^UTILITY(U,$J,358.3,18685,1,0)
+ ;;^UTILITY(U,$J,358.3,18580,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,18580,1,3,0)
+ ;;=3^PSYCH DIAGNOSTIC EVALUATION
+ ;;^UTILITY(U,$J,358.3,18581,0)
+ ;;=90792^^102^1071^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18581,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18685,1,2,0)
- ;;=2^Excisiofeet, genitalia; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,18685,1,3,0)
- ;;=3^11420
- ;;^UTILITY(U,$J,358.3,18686,0)
- ;;=11421^^122^1194^8^^^^1
- ;;^UTILITY(U,$J,358.3,18686,1,0)
+ ;;^UTILITY(U,$J,358.3,18581,1,2,0)
+ ;;=2^90792
+ ;;^UTILITY(U,$J,358.3,18581,1,3,0)
+ ;;=3^PSYCH DIAG EVAL W/MED SRVCS
+ ;;^UTILITY(U,$J,358.3,18582,0)
+ ;;=90839^^102^1072^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18582,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18686,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,18686,1,3,0)
- ;;=3^11421
- ;;^UTILITY(U,$J,358.3,18687,0)
- ;;=11422^^122^1194^9^^^^1
- ;;^UTILITY(U,$J,358.3,18687,1,0)
+ ;;^UTILITY(U,$J,358.3,18582,1,2,0)
+ ;;=2^90839
+ ;;^UTILITY(U,$J,358.3,18582,1,3,0)
+ ;;=3^PSYTX CRISIS INITIAL 60 MIN
+ ;;^UTILITY(U,$J,358.3,18583,0)
+ ;;=90840^^102^1072^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18583,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18687,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,18687,1,3,0)
- ;;=3^11422
- ;;^UTILITY(U,$J,358.3,18688,0)
- ;;=11423^^122^1194^10^^^^1
- ;;^UTILITY(U,$J,358.3,18688,1,0)
+ ;;^UTILITY(U,$J,358.3,18583,1,2,0)
+ ;;=2^90840
+ ;;^UTILITY(U,$J,358.3,18583,1,3,0)
+ ;;=3^PSYTX CRISIS EA ADDL 30 MIN
+ ;;^UTILITY(U,$J,358.3,18584,0)
+ ;;=99354^^102^1073^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18584,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18688,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 2.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,18688,1,3,0)
- ;;=3^11423
- ;;^UTILITY(U,$J,358.3,18689,0)
- ;;=11424^^122^1194^11^^^^1
- ;;^UTILITY(U,$J,358.3,18689,1,0)
+ ;;^UTILITY(U,$J,358.3,18584,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,18584,1,3,0)
+ ;;=3^PROLONGED SVC,OTPT,1ST HR
+ ;;^UTILITY(U,$J,358.3,18585,0)
+ ;;=99355^^102^1073^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18585,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18689,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands,feet, genitalia; 3.1cm to 4.0cm 
- ;;^UTILITY(U,$J,358.3,18689,1,3,0)
- ;;=3^11424
- ;;^UTILITY(U,$J,358.3,18690,0)
- ;;=11426^^122^1194^12^^^^1
- ;;^UTILITY(U,$J,358.3,18690,1,0)
+ ;;^UTILITY(U,$J,358.3,18585,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,18585,1,3,0)
+ ;;=3^PROLONGED SVC,OTPT,EA ADDL 30MIN
+ ;;^UTILITY(U,$J,358.3,18586,0)
+ ;;=99356^^102^1073^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18586,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18690,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; over 4.0cm
- ;;^UTILITY(U,$J,358.3,18690,1,3,0)
- ;;=3^11426
+ ;;^UTILITY(U,$J,358.3,18586,1,2,0)
+ ;;=2^99356
+ ;;^UTILITY(U,$J,358.3,18586,1,3,0)
+ ;;=3^PROLONGED SVC,INPT,1ST HR
+ ;;^UTILITY(U,$J,358.3,18587,0)
+ ;;=99357^^102^1073^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18587,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18587,1,2,0)
+ ;;=2^99357
+ ;;^UTILITY(U,$J,358.3,18587,1,3,0)
+ ;;=3^PROLONGED SVC,INPT,EA ADDL 30MIN
+ ;;^UTILITY(U,$J,358.3,18588,0)
+ ;;=H0001^^102^1074^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18588,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18588,1,2,0)
+ ;;=2^H0001
+ ;;^UTILITY(U,$J,358.3,18588,1,3,0)
+ ;;=3^Addictions Assessment

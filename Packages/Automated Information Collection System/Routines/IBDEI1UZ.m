@@ -1,0 +1,130 @@
+IBDEI1UZ ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,33112,1,4,0)
+ ;;=4^M79.A21
+ ;;^UTILITY(U,$J,358.3,33112,2)
+ ;;=^5013362
+ ;;^UTILITY(U,$J,358.3,33113,0)
+ ;;=M79.A22^^191^1965^11
+ ;;^UTILITY(U,$J,358.3,33113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33113,1,3,0)
+ ;;=3^Compartment Syndrome,Left Lower Extremity,Nontraumatic
+ ;;^UTILITY(U,$J,358.3,33113,1,4,0)
+ ;;=4^M79.A22
+ ;;^UTILITY(U,$J,358.3,33113,2)
+ ;;=^5133870
+ ;;^UTILITY(U,$J,358.3,33114,0)
+ ;;=M21.541^^191^1965^10
+ ;;^UTILITY(U,$J,358.3,33114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33114,1,3,0)
+ ;;=3^Clubfoot,Right Foot,Acquired
+ ;;^UTILITY(U,$J,358.3,33114,1,4,0)
+ ;;=4^M21.541
+ ;;^UTILITY(U,$J,358.3,33114,2)
+ ;;=^5011125
+ ;;^UTILITY(U,$J,358.3,33115,0)
+ ;;=M21.542^^191^1965^9
+ ;;^UTILITY(U,$J,358.3,33115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33115,1,3,0)
+ ;;=3^Clubfoot,Left Foot,Acquired
+ ;;^UTILITY(U,$J,358.3,33115,1,4,0)
+ ;;=4^M21.542
+ ;;^UTILITY(U,$J,358.3,33115,2)
+ ;;=^5011126
+ ;;^UTILITY(U,$J,358.3,33116,0)
+ ;;=S80.12XA^^191^1965^28
+ ;;^UTILITY(U,$J,358.3,33116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33116,1,3,0)
+ ;;=3^Contusion of lft lwr leg, init enc
+ ;;^UTILITY(U,$J,358.3,33116,1,4,0)
+ ;;=4^S80.12XA
+ ;;^UTILITY(U,$J,358.3,33116,2)
+ ;;=^5039903
+ ;;^UTILITY(U,$J,358.3,33117,0)
+ ;;=S80.11XA^^191^1965^36
+ ;;^UTILITY(U,$J,358.3,33117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33117,1,3,0)
+ ;;=3^Contusion of rt lwr leg, init enc
+ ;;^UTILITY(U,$J,358.3,33117,1,4,0)
+ ;;=4^S80.11XA
+ ;;^UTILITY(U,$J,358.3,33117,2)
+ ;;=^5039900
+ ;;^UTILITY(U,$J,358.3,33118,0)
+ ;;=S90.31XA^^191^1965^31
+ ;;^UTILITY(U,$J,358.3,33118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33118,1,3,0)
+ ;;=3^Contusion of rt ft, init enc
+ ;;^UTILITY(U,$J,358.3,33118,1,4,0)
+ ;;=4^S90.31XA
+ ;;^UTILITY(U,$J,358.3,33118,2)
+ ;;=^5043883
+ ;;^UTILITY(U,$J,358.3,33119,0)
+ ;;=S90.32XA^^191^1965^24
+ ;;^UTILITY(U,$J,358.3,33119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33119,1,3,0)
+ ;;=3^Contusion of lft ft, init enc
+ ;;^UTILITY(U,$J,358.3,33119,1,4,0)
+ ;;=4^S90.32XA
+ ;;^UTILITY(U,$J,358.3,33119,2)
+ ;;=^5043886
+ ;;^UTILITY(U,$J,358.3,33120,0)
+ ;;=S90.02XA^^191^1965^23
+ ;;^UTILITY(U,$J,358.3,33120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33120,1,3,0)
+ ;;=3^Contusion of lft ankl, init enc
+ ;;^UTILITY(U,$J,358.3,33120,1,4,0)
+ ;;=4^S90.02XA
+ ;;^UTILITY(U,$J,358.3,33120,2)
+ ;;=^5043853
+ ;;^UTILITY(U,$J,358.3,33121,0)
+ ;;=S90.01XA^^191^1965^30
+ ;;^UTILITY(U,$J,358.3,33121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33121,1,3,0)
+ ;;=3^Contusion of rt ankl, init enc
+ ;;^UTILITY(U,$J,358.3,33121,1,4,0)
+ ;;=4^S90.01XA
+ ;;^UTILITY(U,$J,358.3,33121,2)
+ ;;=^5043850
+ ;;^UTILITY(U,$J,358.3,33122,0)
+ ;;=S90.111A^^191^1965^33
+ ;;^UTILITY(U,$J,358.3,33122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33122,1,3,0)
+ ;;=3^Contusion of rt grt toe w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,33122,1,4,0)
+ ;;=4^S90.111A
+ ;;^UTILITY(U,$J,358.3,33122,2)
+ ;;=^5043856
+ ;;^UTILITY(U,$J,358.3,33123,0)
+ ;;=S90.112A^^191^1965^26
+ ;;^UTILITY(U,$J,358.3,33123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33123,1,3,0)
+ ;;=3^Contusion of lft grt toe w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,33123,1,4,0)
+ ;;=4^S90.112A
+ ;;^UTILITY(U,$J,358.3,33123,2)
+ ;;=^5043859
+ ;;^UTILITY(U,$J,358.3,33124,0)
+ ;;=S90.121A^^191^1965^35
+ ;;^UTILITY(U,$J,358.3,33124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33124,1,3,0)
+ ;;=3^Contusion of rt lsr toe(s) w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,33124,1,4,0)
+ ;;=4^S90.121A
+ ;;^UTILITY(U,$J,358.3,33124,2)
+ ;;=^5043865
+ ;;^UTILITY(U,$J,358.3,33125,0)
+ ;;=S90.122A^^191^1965^29

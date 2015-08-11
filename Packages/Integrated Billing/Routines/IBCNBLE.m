@@ -1,5 +1,5 @@
 IBCNBLE ;ALB/ARH - Ins Buffer: LM buffer entry screen ;1-Jun-97
- ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519,516**;21-MAR-94;Build 123
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - main entry point for list manager display
@@ -107,7 +107,7 @@ BLD ; display buffer entry
  S IBL="Expiration: ",IBY=$$DATE($P(IB60,U,3)) S IBLINE=$$SETL(IBLINE,IBY,IBL,62,13)
  D SET(IBLINE) S IBLINE=""
  S IBL="Insured's Name: ",IBY=$P(IB91,U,1) S IBLINE=$$SETL("",IBY,IBL,18,56) D SET(IBLINE) S IBLINE=""
- I $TR($E(IBY,57,130)," ","")'="" S IBLINE=$$SETL("",$E(IBY,57,130),"",18,56) D SET(IBLINE) S IBLINE=""
+ I $TR($E(IBY,57,112)," ","")'="" S IBLINE=$$SETL("",$E(IBY,57,112),"",18,56) D SET(IBLINE) S IBLINE=""
  I $TR($E(IBY,113,130)," ","")'="" S IBLINE=$$SETL("",$E(IBY,113,130),"",18,18) D SET(IBLINE) S IBLINE=""
  S IBL="Subscriber Id: ",IBY=$P(IB90,U,3) S IBLINE=$$SETL("",IBY,IBL,18,56) D SET(IBLINE) S IBLINE=""
  I $TR($E(IBY,57,80)," ","")'="" S IBLINE=$$SETL("",$E(IBY,57,80),"",18,24) D SET(IBLINE) S IBLINE=""

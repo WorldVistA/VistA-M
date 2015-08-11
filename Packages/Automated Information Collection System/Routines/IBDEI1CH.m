@@ -1,138 +1,112 @@
-IBDEI1CH ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1CH ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24096,2)
- ;;=^331805
- ;;^UTILITY(U,$J,358.3,24097,0)
- ;;=250.70^^155^1537^74
- ;;^UTILITY(U,$J,358.3,24097,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24097,1,4,0)
- ;;=4^DMII Circ Nt St Uncntrld
- ;;^UTILITY(U,$J,358.3,24097,1,5,0)
- ;;=5^250.70
- ;;^UTILITY(U,$J,358.3,24097,2)
- ;;=^331807
- ;;^UTILITY(U,$J,358.3,24098,0)
- ;;=250.71^^155^1537^71
- ;;^UTILITY(U,$J,358.3,24098,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24098,1,4,0)
- ;;=4^DMI Circ Nt St Uncntrld
- ;;^UTILITY(U,$J,358.3,24098,1,5,0)
- ;;=5^250.71
- ;;^UTILITY(U,$J,358.3,24098,2)
- ;;=^331808
- ;;^UTILITY(U,$J,358.3,24099,0)
- ;;=250.80^^155^1537^76
- ;;^UTILITY(U,$J,358.3,24099,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24099,1,4,0)
- ;;=4^DMII Oth Nt St Uncntrld
- ;;^UTILITY(U,$J,358.3,24099,1,5,0)
- ;;=5^250.80
- ;;^UTILITY(U,$J,358.3,24099,2)
- ;;=^331811
- ;;^UTILITY(U,$J,358.3,24100,0)
- ;;=250.81^^155^1537^73
- ;;^UTILITY(U,$J,358.3,24100,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24100,1,4,0)
- ;;=4^DMI Oth Nt St Uncntrld
- ;;^UTILITY(U,$J,358.3,24100,1,5,0)
- ;;=5^250.81
- ;;^UTILITY(U,$J,358.3,24100,2)
- ;;=^331812
- ;;^UTILITY(U,$J,358.3,24101,0)
- ;;=354.4^^155^1537^20
- ;;^UTILITY(U,$J,358.3,24101,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24101,1,4,0)
- ;;=4^Causalgia Of Upper Limb
- ;;^UTILITY(U,$J,358.3,24101,1,5,0)
- ;;=5^354.4
- ;;^UTILITY(U,$J,358.3,24101,2)
- ;;=^20565
- ;;^UTILITY(U,$J,358.3,24102,0)
- ;;=433.10^^155^1537^45
- ;;^UTILITY(U,$J,358.3,24102,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24102,1,4,0)
- ;;=4^Occl&Sten/Car Art w/o CRB Inf
- ;;^UTILITY(U,$J,358.3,24102,1,5,0)
- ;;=5^433.10
- ;;^UTILITY(U,$J,358.3,24102,2)
- ;;=^295801
- ;;^UTILITY(U,$J,358.3,24103,0)
- ;;=433.11^^155^1537^44
- ;;^UTILITY(U,$J,358.3,24103,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24103,1,4,0)
- ;;=4^Occl&Sten/Car Art w/ CRB Inf
- ;;^UTILITY(U,$J,358.3,24103,1,5,0)
- ;;=5^433.11
- ;;^UTILITY(U,$J,358.3,24103,2)
- ;;=^295731
- ;;^UTILITY(U,$J,358.3,24104,0)
- ;;=440.21^^155^1537^15
- ;;^UTILITY(U,$J,358.3,24104,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24104,1,4,0)
- ;;=4^Athero, Nat Art Extr w/ Claud
- ;;^UTILITY(U,$J,358.3,24104,1,5,0)
- ;;=5^440.21
- ;;^UTILITY(U,$J,358.3,24104,2)
- ;;=^293885
- ;;^UTILITY(U,$J,358.3,24105,0)
- ;;=440.22^^155^1537^16
- ;;^UTILITY(U,$J,358.3,24105,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24105,1,4,0)
- ;;=4^Athero, Nat Art Of Extr w/ Pain
- ;;^UTILITY(U,$J,358.3,24105,1,5,0)
- ;;=5^440.22
- ;;^UTILITY(U,$J,358.3,24105,2)
- ;;=^293886
- ;;^UTILITY(U,$J,358.3,24106,0)
- ;;=440.23^^155^1537^18
- ;;^UTILITY(U,$J,358.3,24106,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24106,1,4,0)
- ;;=4^Atheroscl/Extrmty w/ Ulcera
- ;;^UTILITY(U,$J,358.3,24106,1,5,0)
- ;;=5^440.23
- ;;^UTILITY(U,$J,358.3,24106,2)
- ;;=^295739
- ;;^UTILITY(U,$J,358.3,24107,0)
- ;;=440.24^^155^1537^17
- ;;^UTILITY(U,$J,358.3,24107,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24107,1,4,0)
- ;;=4^Atheroscl/Extrmty w/ Gangr
- ;;^UTILITY(U,$J,358.3,24107,1,5,0)
- ;;=5^440.24
- ;;^UTILITY(U,$J,358.3,24107,2)
- ;;=^295740
- ;;^UTILITY(U,$J,358.3,24108,0)
- ;;=441.2^^155^1537^59
- ;;^UTILITY(U,$J,358.3,24108,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24108,1,4,0)
- ;;=4^Thoracic Aortic Aneurysm
- ;;^UTILITY(U,$J,358.3,24108,1,5,0)
- ;;=5^441.2
- ;;^UTILITY(U,$J,358.3,24108,2)
- ;;=^269765
- ;;^UTILITY(U,$J,358.3,24109,0)
- ;;=441.3^^155^1537^55
- ;;^UTILITY(U,$J,358.3,24109,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,24109,1,4,0)
- ;;=4^Rupt Abd Aortic Aneurysm
- ;;^UTILITY(U,$J,358.3,24109,1,5,0)
- ;;=5^441.3
- ;;^UTILITY(U,$J,358.3,24109,2)
- ;;=^269766
- ;;^UTILITY(U,$J,358.3,24110,0)
- ;;=441.4^^155^1537^9
+ ;;^UTILITY(U,$J,358.3,24112,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24112,1,2,0)
+ ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,24112,1,3,0)
+ ;;=3^28545
+ ;;^UTILITY(U,$J,358.3,24113,0)
+ ;;=28546^^142^1497^48^^^^1
+ ;;^UTILITY(U,$J,358.3,24113,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24113,1,2,0)
+ ;;=2^Perc Fixation Tarsal Bone Dislocation
+ ;;^UTILITY(U,$J,358.3,24113,1,3,0)
+ ;;=3^28546
+ ;;^UTILITY(U,$J,358.3,24114,0)
+ ;;=28555^^142^1497^49^^^^1
+ ;;^UTILITY(U,$J,358.3,24114,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24114,1,2,0)
+ ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
+ ;;^UTILITY(U,$J,358.3,24114,1,3,0)
+ ;;=3^28555
+ ;;^UTILITY(U,$J,358.3,24115,0)
+ ;;=28570^^142^1497^50^^^^1
+ ;;^UTILITY(U,$J,358.3,24115,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24115,1,2,0)
+ ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
+ ;;^UTILITY(U,$J,358.3,24115,1,3,0)
+ ;;=3^28570
+ ;;^UTILITY(U,$J,358.3,24116,0)
+ ;;=28575^^142^1497^51^^^^1
+ ;;^UTILITY(U,$J,358.3,24116,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24116,1,2,0)
+ ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,24116,1,3,0)
+ ;;=3^28575
+ ;;^UTILITY(U,$J,358.3,24117,0)
+ ;;=28576^^142^1497^52^^^^1
+ ;;^UTILITY(U,$J,358.3,24117,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24117,1,2,0)
+ ;;=2^Perc Fixation Talotarsal Joint Dislocation
+ ;;^UTILITY(U,$J,358.3,24117,1,3,0)
+ ;;=3^28576
+ ;;^UTILITY(U,$J,358.3,24118,0)
+ ;;=28585^^142^1497^53^^^^1
+ ;;^UTILITY(U,$J,358.3,24118,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24118,1,2,0)
+ ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
+ ;;^UTILITY(U,$J,358.3,24118,1,3,0)
+ ;;=3^28585
+ ;;^UTILITY(U,$J,358.3,24119,0)
+ ;;=28600^^142^1497^55^^^^1
+ ;;^UTILITY(U,$J,358.3,24119,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24119,1,2,0)
+ ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,24119,1,3,0)
+ ;;=3^28600
+ ;;^UTILITY(U,$J,358.3,24120,0)
+ ;;=28606^^142^1497^56^^^^1
+ ;;^UTILITY(U,$J,358.3,24120,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24120,1,2,0)
+ ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
+ ;;^UTILITY(U,$J,358.3,24120,1,3,0)
+ ;;=3^28606
+ ;;^UTILITY(U,$J,358.3,24121,0)
+ ;;=28615^^142^1497^57^^^^1
+ ;;^UTILITY(U,$J,358.3,24121,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24121,1,2,0)
+ ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
+ ;;^UTILITY(U,$J,358.3,24121,1,3,0)
+ ;;=3^28615
+ ;;^UTILITY(U,$J,358.3,24122,0)
+ ;;=28630^^142^1497^58^^^^1
+ ;;^UTILITY(U,$J,358.3,24122,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24122,1,2,0)
+ ;;=2^Closed Tx of metatarsophalangeal joint dislocation; w/o anesthesia
+ ;;^UTILITY(U,$J,358.3,24122,1,3,0)
+ ;;=3^28630
+ ;;^UTILITY(U,$J,358.3,24123,0)
+ ;;=28635^^142^1497^59^^^^1
+ ;;^UTILITY(U,$J,358.3,24123,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24123,1,2,0)
+ ;;=2^Closed Tx of metatarsophalangeal joint dislocation; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,24123,1,3,0)
+ ;;=3^28635
+ ;;^UTILITY(U,$J,358.3,24124,0)
+ ;;=28636^^142^1497^60^^^^1
+ ;;^UTILITY(U,$J,358.3,24124,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24124,1,2,0)
+ ;;=2^Perc Fixation Metatarsophalangeal Joint Dislocation
+ ;;^UTILITY(U,$J,358.3,24124,1,3,0)
+ ;;=3^28636
+ ;;^UTILITY(U,$J,358.3,24125,0)
+ ;;=28645^^142^1497^61^^^^1
+ ;;^UTILITY(U,$J,358.3,24125,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24125,1,2,0)
+ ;;=2^Open Tx of metatarsophalangeal joint dislocation, with or w/o internal or external fixation

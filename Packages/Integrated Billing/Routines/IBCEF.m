@@ -1,6 +1,6 @@
 IBCEF ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;22-JAN-96
- ;;2.0;INTEGRATED BILLING;**52,80,51,137,288,296,361,371,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,51,137,288,296,361,371,447,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IBIFN = bill ien throughout this routine
 COB(IBIFN) ; Bill seq
@@ -19,9 +19,22 @@ POLICY(IBIFN,IBPC,IBCOBN) ; Return raw data from policy info on bill
  ;          if null, 0-node is returned
  ; IBCOBN = bill designation 1-3 or 'PST' (optional)
  ;          if null, default to current
- N IBI
+ N IBI,IBY
  I "PST"[$G(IBCOBN) S IBCOBN=$$COBN(IBIFN,$G(IBCOBN))
  S IBI=$G(^DGCR(399,IBIFN,"I"_IBCOBN))
+ ;IB*516/TAZ - 
+ ; The I1,I2,I3 nodes of the claim are copies of the zero node insurance
+ ; information from the patient file.  Four fields on that node are now
+ ; marked for deletion because their lengths are not HIPAA-compliant.
+ ; The correct values for Name of Insured and Subscriber ID should now
+ ; be pulled from the I17,I27,I37 nodes of the claim.  The Group Name
+ ; and Number should come from file 355.3 based on the Plan.
+ S IBY=$G(^DGCR(399,IBIFN,"I"_IBCOBN_"7"))  ; new I7 node - 516 - baa
+ I $P(IBY,U,1)'="" S $P(IBI,U,17)=$P(IBY,U,1)  ; Name of insured long - 516 - baa
+ I $P(IBY,U,2)'="" S $P(IBI,U,2)=$P(IBY,U,2)  ; Subscriber ID long -516 - baa
+ S IBY=$P(IBI,U,18)
+ S $P(IBI,U,3)=$$GET1^DIQ(355.3,+IBY_",",2.02) ; Group Number - 516 -taz
+ S $P(IBI,U,15)=$$GET1^DIQ(355.3,+IBY_",",2.01) ; Group Name - 516 - taz
  I $G(IBPC) S IBI=$P(IBI,U,IBPC)
 POLICYQ Q IBI
  ;

@@ -1,5 +1,5 @@
 ONCSG1 ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
  ;DIGESTIVE SYSTEM
  ;
@@ -58,11 +58,11 @@ ESO7A ;Squamous Cell Carcinoma
  E  S TNM=$E(T,1)_N_M
  D  K TNM Q
  .I TNM="IS00" S SG=0 Q
- .I (TNM=100)&(G=1) S SG="1A" Q
+ .I (TNM=100)&((G=1)!(G=9)) S SG="1A" Q
  .I (TNM=100)&((G=2)!(G=3)) S SG="1B" Q
  .I TNM=100 S SG="1A" Q
- .I ((TNM=200)!(TNM=300))&(G=1)&((TX=67152)!(TX=67155)!(TX=67160)!(TX=67161)!(TX=67162)) S SG="1B" Q
- .I ((TNM=200)!(TNM=300))&(G=1)&((TX=67150)!(TX=67151)!(TX=67153)!(TX=67154)) S SG="2A" Q
+ .I ((TNM=200)!(TNM=300))&((G=1)!(G=9))&((TX=67152)!(TX=67155)!(TX=67160)!(TX=67161)!(TX=67162)) S SG="1B" Q
+ .I ((TNM=200)!(TNM=300))&((G=1)!(G=9))&((TX=67150)!(TX=67151)!(TX=67153)!(TX=67154)) S SG="2A" Q
  .I ((TNM=200)!(TNM=300))&((G=2)!(G=3))&((TX=67152)!(TX=67155)!(TX=67160)!(TX=67161)!(TX=67162)) S SG="2A" Q
  .I ((TNM=200)!(TNM=300))&((G=2)!(G=3))&((TX=67150)!(TX=67151)!(TX=67153)!(TX=67154)) S SG="2B" Q
  .I ((TNM=200)!(TNM=300))&(G=1) S SG="1B" Q
@@ -85,9 +85,9 @@ ESO7B ;Adenocarcinoma
  E  S TNM=$E(T,1)_N_M
  D  K TNM Q
  .I TNM="IS00" S SG=0 Q
- .I (TNM=100)&((G=1)!(G=2)) S SG="1A" Q
+ .I (TNM=100)&((G=1)!(G=2)!(G=9)) S SG="1A" Q
  .I (TNM=100)&(G=3) S SG="1B" Q
- .I (TNM=200)&((G=1)!(G=2)) S SG="1B" Q
+ .I (TNM=200)&((G=1)!(G=2)!(G=9)) S SG="1B" Q
  .I (TNM=200)&(G=3) S SG="2A" Q
  .I (TNM=300) S SG="2B" Q
  .I ((TNM=110)!(TNM=210)) S SG="2B" Q

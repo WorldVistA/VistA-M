@@ -1,10 +1,12 @@
-SDCP ;BSN/GRR - CLINIC LIST ; 15 MAR 1999  4:10 PM ;
- ;;5.3;Scheduling;**140,171,187,354**;Aug 13, 1993
+SDCP ;BSN/GRR - CLINIC LIST ;15 MAR 1999  4:10 PM
+ ;;5.3;Scheduling;**140,171,187,354,622,635**;Aug 13, 1993;Build 3
  D ASK2^SDDIV G:Y<0 END S VAUTNI=1 D CLINIC^VAUTOMA G:Y<0 END
 QUE N ZTSAVE F Y="VAUTD","VAUTD(","VAUTC","VAUTC(" S ZTSAVE(Y)=""
  D EN^XUTMDEVQ("START^SDCP","Clinic Profile",.ZTSAVE) Q
  ;
 START ;Print report
+ ; SD*5.3*622 - SDPRTTOF helps prevent double printing of Header
+ N SDPRTTOF S SDPRTTOF=1
  S END=0 D:'$D(DT) DT^SDUTL
  S Y=DT D DTS^SDUTL S PDATE=Y,SCN=0 D TOF G:'VAUTC SOME
  F  S SCN=$O(^SC("B",SCN)) Q:SCN=""!(END)  S SC=$O(^SC("B",SCN,0)) D:$$CHECK() SET0,SETSL,PRT
@@ -14,11 +16,11 @@ SOME F  S SCN=$O(VAUTC(SCN)) Q:SCN=""!(END)  S SC=+VAUTC(SCN) D:$$CHECK() SET0,S
  G END
  ;
 END W ! I $E(IOST)="C",'$G(END,1) N DIR S DIR(0)="E" D ^DIR
- K ABBR,ALV,C,DAYS,DIC,DIPH,DOW,END,HCDB,I,J,L,LOC,LOP,M,NAME,ODM,PC,PDATE,POP,SC,SCSC,SDSC,SDMX,SDNO,SDNO,SDC,SDCR,SCSC,SCN,SDIN,SDPR,SDRE,STCD,STDAT,X,Y,SD,SDCNT,VAUTC,VAUTD,VAUTNI,STRING Q
+ K ABBR,ALV,C,DAYS,DIC,DIPH,DOW,END,HCDB,I,J,L,LOC,LOP,M,NAME,ODM,PC,PDATE,POP,SC,SCSC,SDSC,SDMX,SDNO,SDNO,SDC,SDCR,SCSC,SCN,SDIN,SDPR,SDRE,STCD,STDAT,X,Y,SD,SDCNT,VAUTC,VAUTD,VAUTNI,STRING,SDPTI Q
  ;
 SET0 S STRING=^SC(SC,0)
  S NAME=$P(STRING,U,1),ABBR=$P(STRING,U,2),LOC=$P(STRING,U,11),(STCD,SDSC)=$P(STRING,U,7),SDCR=$P(STRING,U,18),SDCNT=$P(STRING,U,17)
- S:$D(^SC(SC,"SDP")) SDMX=$P(^SC(SC,"SDP"),U,2) Q
+ S:$D(^SC(SC,"SDP")) SDMX=$P(^SC(SC,"SDP"),U,2) S SDPTI=$G(^SC(SC,"PA")) Q
  ;
 SETSL S (LOP,HCDB,ALV,PC,ODM,DIPH,STDAT,STRING)="",STCD=$S(STCD="":" ",1:STCD),STCD=$S('$D(^DIC(40.7,+STCD,0)):"",1:$P(^(0),U,2)),SDSC=$S($D(^DIC(40.7,+SDSC,0)):'$P(^(0),U,3)!($P(^(0),U,3)>DT),1:0)
  S SDPR=$S('$D(^SC(SC,"SDPROT")):"NO",'$L($P(^("SDPROT"),U)):"NO",1:"YES")
@@ -37,9 +39,18 @@ L(SDT,SDCOL,SDVAL) ;Print field label
  ;Input: SDVAL=field value
  W ?(SDCOL-$L(SDT)-2),SDT,": ",SDVAL Q
  ;
-PRT I $Y+12>IOSL D:IOSL<25 SEEND:$E(IOST,1,2)="C-" Q:END  D TOF
+PRT I $Y+13>IOSL D:IOSL<25 SEEND:$E(IOST,1,2)="C-" Q:END  D TOF
  S SDNO="" W ! D L("Clinic",19,NAME),L("Abbr.",62,ABBR)
+ S SDPRTTOF=1   ; SD*5.3*622 - SDPRTTOF helps prevent double Headers
  W ! D L("Location",19,$E(LOC,1,30)),L("Telephone",62,$S($D(^SC(SC,99)):^SC(SC,99),1:""))
+ ; SD*5.3*622 - add new field telephone extension
+ W ! D L("Telephone Ext.",19,$S($D(^SC(SC,99.1)):^SC(SC,99.1),1:""))
+ ; SD*5.3*635 - add new fields #60-62
+ N DIWL,DIWF K ^UTILITY($J,"W") S DIWL=1,DIWF="C55" S X=$P(SDPTI,U) D ^DIWP
+ W ! D L("Pat Friendly Name",19,$G(^UTILITY($J,"W",1,1,0)))
+ I $G(^UTILITY($J,"W",1,2,0))'="" W ! D L(" ",19,$G(^UTILITY($J,"W",1,2,0)))
+ K ^UTILITY($J,"W") W ! D L("Direct Pat Schlng",19,$S($P(SDPTI,U,2)="N":"NO",$P(SDPTI,U,2)="Y":"YES",1:""))
+ D L("Display Clin Appt To Patients",62,$S($P(SDPTI,U,3)="N":"NO",$P(SDPTI,U,3)="Y":"YES",1:""))
  W ! D L("Days clinic meets",19,DAYS) I 'SDNO S Y=STDAT D:STDAT'="UNKNOWN" DTS^SDUTL
  D L("Start date",62,$S(STDAT="UNKNOWN":"UNKNOWN",1:Y))
  W ! D L("Increments",19,DIPH_" Minutes"),L("Hour display begins",62,$S(HCDB="":"8 AM",HCDB<13:HCDB_" AM",1:HCDB-12_" PM"))
@@ -57,7 +68,8 @@ INACT S Y=SDIN D DTS^SDUTL W !!,?4,"**** Clinic is inactive ",$S(SDRE:"from ",1:
  Q
  ;
 SEEND W ! N DIR S DIR(0)="E" D ^DIR S END=Y'=1 Q:END
-TOF W @IOF,?22,"CLINIC PROFILES AS OF: ",PDATE,! Q
+ ; SD*5.3*622 - SDPRTTOF helps prevent double printing of Header
+TOF I SDPRTTOF W @IOF,?22,"CLINIC PROFILES AS OF: ",PDATE,! S SDPRTTOF=0 Q
  ;
 CHECK() ;Check location for inclusion
  I $D(^SC(SC,0)),($P(^(0),U,3)="C"),$S(VAUTD:1,$D(VAUTD(+$P(^(0),U,15))):1,'$P(^(0),U,15)&($D(VAUTD($O(^DG(40.8,0))))):1,1:0) Q 1

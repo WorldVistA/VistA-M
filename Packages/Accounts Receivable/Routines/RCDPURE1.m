@@ -1,6 +1,6 @@
-RCDPURE1 ;WISC/RFJ-process a receipt ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296**;Mar 20, 1995;Build 24
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPURE1 ;WISC/RFJ - process a receipt ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -10,7 +10,7 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  ;  if $g(rcscreen) = 2 store messages during processing
  ; 
  N RCPAYDA,RCDPFPAY,RCERROR,RCMSG,RCEFT,RCERA
- K ^TMP($J,"RCDPEMSG")
+ K ^TMP($J,"RCDPEMSG"),^TMP("RCDPE-RECEIPT-ERROR",$J)
  ;
  ;  first mark the receipt as processed/closed to prevent changing the
  ;  data if the receipt does not fully process.  this will lock the
@@ -26,21 +26,24 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  ;  === no payments ===
  ;  if there are no payments for the receipt, quit
  I '$O(^RCY(344,RCRECTDA,1,0)) D  Q
- .   I $G(RCSCREEN) S RCMSG="Receipt does not have any payments and has been marked as processed/closed." D MSG(RCMSG,RCSCREEN,"!!")
- .   I RCERA D UPDERA(RCERA)
+ . I $G(RCSCREEN) S RCMSG="Receipt does not have any payments and has been marked as processed/closed." D MSG(RCMSG,RCSCREEN,"!!")
+ . S ^TMP("RCDPE-RECEIPT-ERROR",$J)=RCMSG  ;prca*4.5*298  used by auto-post process
+ . I RCERA D UPDERA(RCERA)
  ;
  ;  check to see if the payments have dollar amounts
  S RCPAYDA=0 F  S RCPAYDA=$O(^RCY(344,RCRECTDA,1,RCPAYDA)) Q:'RCPAYDA  I $P($G(^(RCPAYDA,0)),"^",4) S RCDPFPAY=1 Q
  I '$G(RCDPFPAY) D  Q
- .   I $G(RCSCREEN)  S RCMSG="Receipt does not have any payments and has been marked as processed/closed." D MSG(RCMSG,RCSCREEN,"!!")
- .   I RCERA D UPDERA(RCERA)
+ . I $G(RCSCREEN)  S RCMSG="Receipt does not have any payments and has been marked as processed/closed." D MSG(RCMSG,RCSCREEN,"!!")
+ . S ^TMP("RCDPE-RECEIPT-ERROR",$J)=RCMSG  ;prca*4.5*298  used by auto-post process
+ . I RCERA D UPDERA(RCERA)
  ;
  ;  === update AR accounts ===
  I $G(RCSCREEN) S RCMSG="Updating AR accounts..." D MSG(RCMSG,RCSCREEN,"!!")
  ;
  ;  loop payments and apply to account in AR
  S RCPAYDA=0 F  S RCPAYDA=$O(^RCY(344,RCRECTDA,1,RCPAYDA)) Q:'RCPAYDA  D  I RCERROR Q
- .   S RCERROR=$$PROCESS^RCBEPAY(RCRECTDA,RCPAYDA)
+ . S RCERROR=$$PROCESS^RCBEPAY(RCRECTDA,RCPAYDA)
+ . S:RCERROR ^TMP("RCDPE-RECEIPT-ERROR",$J)=RCERROR  ;prca*4.5*298  used by auto-post process
  ;
  ;  an error occurred during processing a payment
  I $G(RCERROR) D  Q
@@ -66,8 +69,9 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  ;
  ;  if no deposit ticket and not related to EFT or is a HAC payment, do not send to fms
  I '$P(^RCY(344,RCRECTDA,0),"^",6),$S('RCEFT:1,1:$$HACEFT^RCDPEU(+$P(^RCY(344,RCRECTDA,0),U,17))) D  Q
- .   D 215
- .   I $G(RCSCREEN) S RCMSG="Receipt does not have a deposit ticket and will NOT be sent to FMS." D MSG(RCMSG,RCSCREEN,"!!")
+ . D 215
+ . I $G(RCSCREEN) S RCMSG="Receipt does not have a deposit ticket and will NOT be sent to FMS." D MSG(RCMSG,RCSCREEN,"!!")
+ . S ^TMP("RCDPE-RECEIPT-ERROR",$J)=""  ;prca*4.5*298  used by auto-post process
  ;
  ;  === send fms cash receipt document ===
  N GECSDATA,FMSDOCNO,RESULT,REFMS
@@ -90,7 +94,7 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  I 'RESULT D:$G(RCSCREEN) MSG("ERROR - "_$P(RESULT,"^",2),RCSCREEN,"!!") Q
  ;
  ;  no document to send
- I $P(RESULT,"^")=-1,$G(RCSCREEN) S RCMSG="NOTE - "_$P(RESULT,"^",2) S $P(RESULT,"^",2)="" D MSG(RCMSG,RCSCREEN,"!!")
+ I $P(RESULT,"^")=-1,$G(RCSCREEN) S RCMSG="NOTE - "_$P(RESULT,"^",2) S $P(RESULT,"^",2)="" D MSG(RCMSG,RCSCREEN,"!!") S ^TMP("RCDPE-RECEIPT-ERROR",$J)=""
  ;  document built and sent
  I $P(RESULT,"^")=1,$G(RCSCREEN) D
  . N Z,DIE,DR,DA
@@ -140,6 +144,7 @@ MSG(RCMSG,RCSCREEN,PRELINE,POSTLINE) ; Write message or set into msg array
  F Z=1:1:RCPOST S ^TMP($J,"RCDPEMSG",+$O(^TMP("RCDPEMSG",""),-1)+1)=""
 MSGQ Q
  ;
+ ; PRCA*4.5*298 updated EDIT4 removing DIPA
 EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
  ;   for EDI Lockbox
  ; Input: DA,DR   Output: RCDR1,RCDR2,RCDR3
@@ -147,7 +152,7 @@ EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
  ; If old type is EDI Lockbox and scratch pad exists, no change allowed
  ; If changed to EDI Lockbox and detail already exists, no chg allowed
  ; If changed to EDI Lockbox, ask for related EFT
- N Z,Z0,RCSTRT,RCLST,RCDR,RCOE,RCNE,RCNO,RCM,RCM1,RCM2,RCM3,RCO4,RCN4,RCP,DIPA
+ N RCDR,RCLST,RCM,RCM1,RCM2,RCM3,RCN4,RCNE,RCNO,RCO4,RCOE,RCP,RCSTRT,Z,Z0
  S (RCDR1,RCDR2,RCDR3)=""
  ;
  S RCP=10 F Z=2:1 Q:DR'[("@"_RCP)&(DR'[("@"_(RCP+1)))&(DR'[("@"_(RCP+2)))&(DR'[("@"_(RCP+3)))&(DR'[("@"_(RCP+4)))  S RCP=RCP*Z
@@ -160,12 +165,14 @@ EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
  S RCDR1="S RCP="_RCP_" D SETV^RCDPURE1;"_$P(DR,".04;",1,RCSTRT)
  S RCDR2="@"_RCP_";.04;S RCNO=0,RCN4=X D TYP^RCDPUREC(.Y);.17////^S X=RCNE;S Y=""@"_(RCP+2)_""""
  ; Reset field .04 and .17 if not a valid type change
- S RCDR2=RCDR2_";@"_(RCP+1)_";.04////^S X=RCO4;I RCOE="""" S Y=""@"_(RCP+3)_""";.17////^S X=RCOE;@"_(RCP+3)_";W !,*7,$S(RCO4=14:$S('RCNO:RCM1,1:RCM2),1:RCM) S Y=""@"_RCP_""";@"_(RCP+2)
+ S RCDR2=RCDR2_";@"_(RCP+1)_";.04////^S X=RCO4;I RCOE="""" S Y=""@"_(RCP+3)_""";.17////^S X=RCOE;@"_(RCP+3)_";W !,*7,$S(RCO4=14:$S('RCNO:RCM1,1:RCM2),1:RCM),! S Y=""@"_RCP_""";@"_(RCP+2)
  S RCDR3=$P(DR,".04;",RCSTRT+1,RCLST)
  Q
  ;
-SETV ; Set up variables needed to edit change of receipt type
- S DIPA("RCPT")=$G(^RCY(344,DA,0)),RCO4=$P(DIPA("RCPT"),U,4),RCOE=$P(DIPA("RCPT"),U,17)
+ ; PRCA*4.5*298 updated SETV removing DIPA, added comments
+SETV ; Set up variables needed to edit change of receipt type, used in DR strings to edit AR BATCH PAYMENT (#344)
+ ; RCO4 = existing (#.04) TYPE OF PAYMENT value, RCOE = existing (#.17) EFT RECORD value
+ N X S X=$G(^RCY(344,DA,0)),RCO4=$P(X,U,4),RCOE=$P(X,U,17)
  S RCM="EDI Lockbox payment type is invalid for this receipt",RCM1="Payment type can't be changed once detail has been loaded from the ERA",RCM2="Must have an EFT for an EFT Lockbox payment type"
  S RCM3=">>If receipt is for an ERA and a paper check, select the ERA now"
  Q

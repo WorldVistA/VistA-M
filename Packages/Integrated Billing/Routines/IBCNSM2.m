@@ -1,6 +1,6 @@
 IBCNSM2 ;ALB/AAS - INSURANCE MANAGEMENT - EDIT ROUTINE ; 22-OCT-92
- ;;2.0;INTEGRATED BILLING;**28,103,139**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,103,139,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % S U="^"
  ;
@@ -62,7 +62,8 @@ VFY ; -- Display most recent verification
  ;
  ;  -- If Medicare WNR and Name of Insured is different from Pt. Name
  ;     display Warning message.
- S IB0=$G(^DPT(DFN,.312,$P(IBPPOL,U,4),0))
+ ;S IB0=$G(^DPT(DFN,.312,$P(IBPPOL,U,4),0))  ; 516 - baa
+ S IB0=$$ZND^IBCNS1(DFN,$P(IBPPOL,U,4))  ; 516 - baa
  I +IBWNR=+IB0 D
  .I $P(IB0,U,17)="" Q
  .I $P(IB0,U,17)=$P($G(^DPT(DFN,0)),U,1) Q

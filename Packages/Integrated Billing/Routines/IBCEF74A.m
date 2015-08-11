@@ -1,6 +1,6 @@
 IBCEF74A ;ALB/ESG - Provider ID maint ?ID continuation ;7 Mar 2006
- ;;2.0;INTEGRATED BILLING;**320,343,349,395,400,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,343,349,395,400,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -56,12 +56,16 @@ EN(IBIFN,IBQUIT,IBID) ; Display billing provider and service provider IDs as par
  I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
  W !!,"Service Facility Name and ID Information"
  ;
+ ; MRD;IB*2.0*516 - Due to fields being marked for deletion, the
+ ; function $$SENDSF^IBCEF79 will always return '1'.  Refer to
+ ; that function and INSFLGS^IBCEF79 for more information.
+ ;
  ; Display note if ins co flag to suppress lab/fac data is set (only applies in switchback mode)
- I '$$SENDSF^IBCEF79(IBIFN) D  I IBQUIT G EX
- . I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() Q:IBQUIT
- . W !!,"Note:  Service Facility Data not sent for Current Insurance"
- . W !,"       'Send VA Lab/Facility IDs or Facility Data for VAMC?' is set to NO",!
- . Q
+ ;I '$$SENDSF^IBCEF79(IBIFN) D  I IBQUIT G EX
+ ;. I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() Q:IBQUIT
+ ;. W !!,"Note:  Service Facility Data not sent for Current Insurance"
+ ;. W !,"       'Send VA Lab/Facility IDs or Facility Data for VAMC?' is set to NO",!
+ ;. Q
  ;
  S FACNAME=$$GETFAC^IBCEP8(+$P(BPZ,U,4),$P(BPZ,U,3),0)
  I FACNAME="" S FACNAME="***MISSING***"

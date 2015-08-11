@@ -1,0 +1,130 @@
+IBDEI1UJ ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,32914,0)
+ ;;=Y37.200A^^190^1962^87
+ ;;^UTILITY(U,$J,358.3,32914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32914,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32914,1,4,0)
+ ;;=4^Y37.200A
+ ;;^UTILITY(U,$J,358.3,32914,2)
+ ;;=^5137997
+ ;;^UTILITY(U,$J,358.3,32915,0)
+ ;;=Y37.200D^^190^1962^88
+ ;;^UTILITY(U,$J,358.3,32915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32915,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32915,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,32915,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,32916,0)
+ ;;=I70.201^^191^1963^63
+ ;;^UTILITY(U,$J,358.3,32916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32916,1,3,0)
+ ;;=3^Athscl Native Arteries of Extr, rt leg, unsp
+ ;;^UTILITY(U,$J,358.3,32916,1,4,0)
+ ;;=4^I70.201
+ ;;^UTILITY(U,$J,358.3,32916,2)
+ ;;=^5007573
+ ;;^UTILITY(U,$J,358.3,32917,0)
+ ;;=I70.202^^191^1963^62
+ ;;^UTILITY(U,$J,358.3,32917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32917,1,3,0)
+ ;;=3^Athscl Native Arteries of Extr, lft leg, unsp
+ ;;^UTILITY(U,$J,358.3,32917,1,4,0)
+ ;;=4^I70.202
+ ;;^UTILITY(U,$J,358.3,32917,2)
+ ;;=^5007574
+ ;;^UTILITY(U,$J,358.3,32918,0)
+ ;;=I70.203^^191^1963^61
+ ;;^UTILITY(U,$J,358.3,32918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32918,1,3,0)
+ ;;=3^Athscl Native Arteries of Extr, biltrl legs, unsp
+ ;;^UTILITY(U,$J,358.3,32918,1,4,0)
+ ;;=4^I70.203
+ ;;^UTILITY(U,$J,358.3,32918,2)
+ ;;=^5007575
+ ;;^UTILITY(U,$J,358.3,32919,0)
+ ;;=I70.208^^191^1963^60
+ ;;^UTILITY(U,$J,358.3,32919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32919,1,3,0)
+ ;;=3^Athscl Native Arteries of Extr, Oth, Unsp
+ ;;^UTILITY(U,$J,358.3,32919,1,4,0)
+ ;;=4^I70.208
+ ;;^UTILITY(U,$J,358.3,32919,2)
+ ;;=^5007576
+ ;;^UTILITY(U,$J,358.3,32920,0)
+ ;;=L02.612^^191^1963^11
+ ;;^UTILITY(U,$J,358.3,32920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32920,1,3,0)
+ ;;=3^Abscess,Cutaneous Left Foot
+ ;;^UTILITY(U,$J,358.3,32920,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,32920,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,32921,0)
+ ;;=L02.611^^191^1963^12
+ ;;^UTILITY(U,$J,358.3,32921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32921,1,3,0)
+ ;;=3^Abscess,Cutaneous Right Foot
+ ;;^UTILITY(U,$J,358.3,32921,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,32921,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,32922,0)
+ ;;=L90.8^^191^1963^103
+ ;;^UTILITY(U,$J,358.3,32922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32922,1,3,0)
+ ;;=3^Atrophic Disorders of Skin, Oth
+ ;;^UTILITY(U,$J,358.3,32922,1,4,0)
+ ;;=4^L90.8
+ ;;^UTILITY(U,$J,358.3,32922,2)
+ ;;=^5009457
+ ;;^UTILITY(U,$J,358.3,32923,0)
+ ;;=L74.4^^191^1963^23
+ ;;^UTILITY(U,$J,358.3,32923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32923,1,3,0)
+ ;;=3^Anhidrosis
+ ;;^UTILITY(U,$J,358.3,32923,1,4,0)
+ ;;=4^L74.4
+ ;;^UTILITY(U,$J,358.3,32923,2)
+ ;;=^7648
+ ;;^UTILITY(U,$J,358.3,32924,0)
+ ;;=M00.272^^191^1963^43
+ ;;^UTILITY(U,$J,358.3,32924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32924,1,3,0)
+ ;;=3^Arthritis, Streptococcal, lft ank & ft, Oth
+ ;;^UTILITY(U,$J,358.3,32924,1,4,0)
+ ;;=4^M00.272
+ ;;^UTILITY(U,$J,358.3,32924,2)
+ ;;=^5009665
+ ;;^UTILITY(U,$J,358.3,32925,0)
+ ;;=M00.271^^191^1963^44
+ ;;^UTILITY(U,$J,358.3,32925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32925,1,3,0)
+ ;;=3^Arthritis, Streptococcal, rt ank & ft, Oth
+ ;;^UTILITY(U,$J,358.3,32925,1,4,0)
+ ;;=4^M00.271
+ ;;^UTILITY(U,$J,358.3,32925,2)
+ ;;=^5009664
+ ;;^UTILITY(U,$J,358.3,32926,0)
+ ;;=M00.872^^191^1963^26
+ ;;^UTILITY(U,$J,358.3,32926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32926,1,3,0)
+ ;;=3^Arthritis d/t oth bacteria, lft ank & foot

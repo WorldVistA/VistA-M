@@ -1,0 +1,132 @@
+IBDEI1R4 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31329,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,31329,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,31329,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,31330,0)
+ ;;=H61.23^^190^1933^21
+ ;;^UTILITY(U,$J,358.3,31330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31330,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,31330,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,31330,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,31331,0)
+ ;;=H65.03^^190^1933^3
+ ;;^UTILITY(U,$J,358.3,31331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31331,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,31331,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,31331,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,31332,0)
+ ;;=H65.01^^190^1933^5
+ ;;^UTILITY(U,$J,358.3,31332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31332,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,31332,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,31332,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,31333,0)
+ ;;=H65.23^^190^1933^13
+ ;;^UTILITY(U,$J,358.3,31333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31333,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,31333,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,31333,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,31334,0)
+ ;;=H65.22^^190^1933^14
+ ;;^UTILITY(U,$J,358.3,31334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31334,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,31334,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,31334,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,31335,0)
+ ;;=H65.21^^190^1933^15
+ ;;^UTILITY(U,$J,358.3,31335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31335,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,31335,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,31335,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,31336,0)
+ ;;=H66.012^^190^1933^6
+ ;;^UTILITY(U,$J,358.3,31336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31336,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,31336,1,4,0)
+ ;;=4^H66.012
+ ;;^UTILITY(U,$J,358.3,31336,2)
+ ;;=^5133534
+ ;;^UTILITY(U,$J,358.3,31337,0)
+ ;;=H66.011^^190^1933^7
+ ;;^UTILITY(U,$J,358.3,31337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31337,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
+ ;;^UTILITY(U,$J,358.3,31337,1,4,0)
+ ;;=4^H66.011
+ ;;^UTILITY(U,$J,358.3,31337,2)
+ ;;=^5006621
+ ;;^UTILITY(U,$J,358.3,31338,0)
+ ;;=H66.91^^190^1933^36
+ ;;^UTILITY(U,$J,358.3,31338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31338,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,31338,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,31338,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,31339,0)
+ ;;=H66.92^^190^1933^35
+ ;;^UTILITY(U,$J,358.3,31339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31339,1,3,0)
+ ;;=3^Otitis Media,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,31339,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,31339,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,31340,0)
+ ;;=H66.93^^190^1933^34
+ ;;^UTILITY(U,$J,358.3,31340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31340,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,31340,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,31340,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,31341,0)
+ ;;=H81.09^^190^1933^29
+ ;;^UTILITY(U,$J,358.3,31341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31341,1,3,0)
+ ;;=3^Meniere's Disease,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,31341,1,4,0)
+ ;;=4^H81.09
+ ;;^UTILITY(U,$J,358.3,31341,2)
+ ;;=^5006863
+ ;;^UTILITY(U,$J,358.3,31342,0)
+ ;;=H81.10^^190^1933^37

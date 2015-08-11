@@ -1,6 +1,6 @@
 IBJTLB1 ;ALB/ARH - TPI INACTIVE LIST BUILD ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,61,137,276,451**;21-MAR-94;Build 47
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,61,137,276,451,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDA ; build active list for third party joint inquiry active list, DFN must be defined
  ; first search starts at dt and works backwards for 6 months of bills or IBMAXCNT bills, whichever is greater
@@ -30,7 +30,7 @@ BLDA ; build active list for third party joint inquiry active list, DFN must be 
  Q
  ;
 SCRN ; add bill to screen list (IBIFN,DFN must be defined)
- N X,IBY,IBD0,IBDU,IBDM S X=""
+ N X,IBY,IBD0,IBDU,IBDM,TYPE S X=""
  S IBCNT=IBCNT+1,IBD0=$G(^DGCR(399,+IBIFN,0)),IBDU=$G(^DGCR(399,+IBIFN,"U")),IBDM=$G(^DGCR(399,+IBIFN,"M"))
  S IBY=IBCNT,X=$$SETFLD^VALM1(IBY,X,"NUMBER")
  ; IB*2.0*451 - get EEOB indicator for bill # when applicable
@@ -42,7 +42,9 @@ SCRN ; add bill to screen list (IBIFN,DFN must be defined)
  S IBY=$$DATE($P(IBDU,U,1)),X=$$SETFLD^VALM1(IBY,X,"STFROM")
  S IBY=$$DATE($P(IBDU,U,2)),X=$$SETFLD^VALM1(IBY,X,"STTO")
  ;
- S IBY=$$TYPE($P(IBD0,U,5))_$$TF($P(IBD0,U,6)),X=$$SETFLD^VALM1(IBY,X,"TYPE")
+ ;S IBY=$$TYPE($P(IBD0,U,5))_$$TF($P(IBD0,U,6)),X=$$SETFLD^VALM1(IBY,X,"TYPE")
+ S TYPE=$$TYPE($P(IBD0,U,5)) I $E(TYPE,2)="P" S TYPE=$E(TYPE)  ; 516 - baa
+ S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 516 - baa
  S IBY=" "_$P($$ARSTATA^IBJTU4(IBIFN),U,2),X=$$SETFLD^VALM1(IBY,X,"ARST")
  ;
  S IBY=$P($G(^DGCR(399.3,+$P(IBD0,U,7),0)),U,4),X=$$SETFLD^VALM1(IBY,X,"RATE")
@@ -60,7 +62,9 @@ DATE(X) ; date in external format
  Q $E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
  ;
 TYPE(X) ; return abbreviated form of Bill Classification (399,.05)
- Q $S(X=1:"IP",X=2:"IH",X=3:"OP",X=4:"OH",1:"")
+ ; modified for 516 - baa
+ ;Q $S(X=1:"IP",X=2:"IH",X=3:"OP",X=4:"OH",1:"")
+ Q $S(X=1:"I",X=2:"IH",X=3:"O",X=4:"OH",1:"")
  ;
 TF(X) ; return abbreviated form of Timeframe of Bill (399,.06)
  Q $S(X=2:"-F",X=3:"-C",X=4:"-L",X'=1:"-O",1:"")

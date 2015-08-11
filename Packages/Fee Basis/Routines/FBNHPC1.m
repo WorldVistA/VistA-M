@@ -1,10 +1,17 @@
 FBNHPC1 ;AISC/CMR-POST COMMITMENTS TO 1358 cont. ;9/20/94
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**153**;JAN 30, 1995;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;FB*3.5*153 Added calls to tag 'CHKSITOB' to insure obligation found in file
+ ;           FB7078 for time period selected is from the same station selected
+ ;           during option process.  This is true for both monthly activity
+ ;           as well as carry over activity and Insufficient Authorization 
+ ;           Rate data on file
+ ;
 CHECK S ^XTMP("FBPOST",FBIFN)=""
  Q:$E(FBPAYDT,1,5)<$E(FBABD,1,5)
  S FBTRDYS=0 K FBELSE
- S FBERR="" D GETRAT^FBNHEP2 Q:FBERR  D CHECK^FBNHEP2 Q:FBERR
+ S FBERR=""  D CHKSITOB Q:$G(FBELSE)=1  D GETRAT^FBNHEP2 Q:FBERR  D CHECK^FBNHEP2 Q:FBERR  ;FB*3.5*153
  S FBIFN=FBHIFN
  D
  .I $E(FBABD,1,5)<$E(FBPAYDT,1,5)&($E(FBDD,1,5)>$E(FBPAYDT,1,5)) S FBTRDYS=FBDAYS D CALC Q
@@ -39,4 +46,11 @@ HED W !?11,"C O M M U N I T Y   N U R S I N G   H O M E   R E P O R T",!
  ;
 CALC S FBENDFLG=$S(FBDD'>FBENDDT:1,1:""),FBENDDT=$S(FBDD>FBENDDT:FBENDDT,1:FBDD),FBAABDT=FBABD D CALC^FBNHEP2
  S FBENDDT=FBPAYEDT K FB
+ Q
+ ;FB*3.5*153
+CHKSITOB ;INSURE ENTRY IS FOR CORRECT SITE/OBLIGATION
+ S FBOBNO=$E($P(FBZ,U),1,6)
+ S FBOBIEN=$O(^PRC(442,"B",PRC("SITE")_"-"_FBOBNO,0)) I FBOBIEN="" S FBELSE=1 Q
+ S PRC23=$G(^PRC(442,FBOBIEN,23)) I PRC23="" S FBELSE=1 Q
+ I $P(PRC23,U,7)'=FBSTA S FBELSE=1 Q
  Q

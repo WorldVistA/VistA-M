@@ -1,6 +1,6 @@
 IBJTU31 ;ALB/ARH - TPI UTILITIES - INS ; 2/14/95
- ;;2.0;INTEGRATED BILLING;**39,61**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,61,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BPP(IBIFN,ARRAY) ; returns array of patient policy info on all of a bill's carriers
  ; returns PPIFN ^ p/s/t ^ policy node from patient insurance record (2,.312), also adds correct group #/name
@@ -10,8 +10,11 @@ BPP(IBIFN,ARRAY) ; returns array of patient policy info on all of a bill's carri
  ;
  F IBI=1,2,3 S IBCDFN="" D  I +IBCDFN S ARRAY(IBI)=IBDFN_U_IBI_U_IBCDFN,ARRAY=IBI
  . S IBDFN=$P(IBDM,U,(IBI+11)) I 'IBDFN,+$P(IBDM,U,IBI) S IBDFN=$O(^DPT(DFN,.312,"B",+$P(IBDM,U,IBI),0))
- . Q:'IBDFN  S IBCDFN=$G(^DPT(DFN,.312,+IBDFN,0)) I 'IBCDFN Q
- . S IBGRP=$G(^IBA(355.3,+$P(IBCDFN,U,18),0)) S:IBGRP'="" $P(IBCDFN,U,3)=$P(IBGRP,U,4),$P(IBCDFN,U,15)=$P(IBGRP,U,3)
+ . ;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ . ;Q:'IBDFN  S IBCDFN=$G(^DPT(DFN,.312,+IBDFN,0)) I 'IBCDFN Q
+ . Q:'IBDFN  S IBCDFN=$$ZND^IBCNS1(DFN,+IBDFN) I 'IBCDFN Q  ; 516 - baa
+ . ;The following line is no longer necessary since the move is completed in the $$ZND^IBCNS1 function.
+ . ;S IBGRP=$G(^IBA(355.3,+$P(IBCDFN,U,18),0)) S:IBGRP'="" $P(IBCDFN,U,3)=$P(IBGRP,U,4),$P(IBCDFN,U,15)=$P(IBGRP,U,3)  ;516 - baa
 BPPQ Q
  ;
 PST(IBIFN) ; called by insurance screens ACTION PROTOCOL ENTRY ACTION code, allow user to choose which policy

@@ -1,45 +1,60 @@
 IBTUBO3 ;ALB/RB - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;03 Aug 2004  9:12 AM
- ;;2.0;INTEGRATED BILLING;**123,159,192,155,277**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**123,159,192,155,277,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REPORT ; - Prepare report if requested, send summary bulletin.
- N IBRUN,IBN,IBPAG,IBQ,DFN,DTE,FL,PT,X0,X1
+ N IBDIV,IBN,IBPAG,IBQ,IBRUN,DFN,DTE,FL,PT,X0,X1
  S IBRUN=$$HTE^XLFDT($H,1)
  D BULL^IBTUBUL G:'IBDET REPRTQ
  ;
-REPRT1 S (IBPAG,IBQ,IBX)=0
- I '$D(^TMP($J)) S X0="" D HDR,NIM D:'IBQ PAUSE G REPRTQ
- F X0=1,2,3 I IBSEL[X0 D  Q:IBQ
- . S X1="IBTUB-"_$S(X0=2:"OPT",X0=3:"RX",1:"INPT")
- . D HDR Q:IBQ  I '$D(^TMP($J,X1)) D NIM Q
- . S PT="" F  S PT=$O(^TMP($J,X1,PT)) Q:PT=""  D  Q:IBQ
- . . S DFN=+$P(PT,"@@",2) Q:'DFN
- . . S (DTE,FL)="" F  S DTE=$O(^TMP($J,X1,PT,DTE)) Q:DTE=""  D  Q:IBQ
- . . . S IBX="" F  S IBX=$O(^TMP($J,X1,PT,DTE,IBX)) Q:IBX=""  D  Q:IBQ
- . . . . S IBN=^TMP($J,X1,PT,DTE,IBX) D LINE Q:IBQ  I X1["OPT" D CPTS Q:IBQ
+REPRT1 ;
+ S (IBPAG,IBQ)=0
+ ;I '$D(^TMP($J)) S X0="" D HDR,NIM D:'IBQ PAUSE G REPRTQ
+ I '$O(^TMP($J,"IBTUB",0)) S X0="",IBDIV=999999 D HDR,NIM D:'IBQ PAUSE G REPRTQ
+ S IBDIV=0
+ F  S IBDIV=$O(^TMP($J,"IBTUB",IBDIV)) Q:'IBDIV  D
+ . F X0=1,2,3 I IBSEL[X0 D  Q:IBQ
+ . . S X1=$S(X0=2:"OPT",X0=3:"RX",1:"INPT")
+ . . D HDR Q:IBQ  I '$D(^TMP($J,"IBTUB",IBDIV,X1)) D NIM Q
+ . . S PT="" F  S PT=$O(^TMP($J,"IBTUB",IBDIV,X1,PT)) Q:PT=""  D  Q:IBQ
+ . . . S DFN=+$P(PT,"@@",2) Q:'DFN
+ . . . S (DTE,FL)="" F  S DTE=$O(^TMP($J,"IBTUB",IBDIV,X1,PT,DTE)) Q:DTE=""  D  Q:IBQ
+ . . . . S IBX="" F  S IBX=$O(^TMP($J,"IBTUB",IBDIV,X1,PT,DTE,IBX)) Q:IBX=""  D  Q:IBQ
+ . . . . . S IBN=^TMP($J,"IBTUB",IBDIV,X1,PT,DTE,IBX) D LINE Q:IBQ  I X1["OPT" D CPTS Q:IBQ
+ . . . . . Q
+ . . . . Q
+ . . . Q
+ . . Q
+ . Q
  ;
  D:'IBQ PAUSE
  ;
 REPRTQ Q
  ;
 HDR ; - Output header.
- N I,X,XTP
+ N I,X,XTP,IBDIVHDR
  I $E(IOST,1,2)="C-",IBPAG D PAUSE G HDRQ:IBQ
- W:'$G(IBPAG) ! I $E(IOST,1,2)="C-"!$G(IBPAG) W @IOF,*13
- S IBPAG=$G(IBPAG)+1 W !,"Unbilled Amounts Report"
+ I '$G(IBPAG) W !
+ I $E(IOST,1,2)="C-"!$G(IBPAG) W @IOF,*13
+ S IBDIVHDR=""
+ I IBDIV=999999 S IBDIVHDR="UNKNOWN"
+ E  S IBDIVHDR=$$GET1^DIQ(40.8,IBDIV_",",.01)_" ("_$$GET1^DIQ(40.8,IBDIV_",",1)_")"
+ S IBPAG=$G(IBPAG)+1
+ W !,"Unbilled Amounts Report"
  W ?60,"Run Date: ",IBRUN,?124,"Page ",$J(IBPAG,3)
  S XTP=$S(X0=1:"INPATIENT",X0=2:"OUTPATIENT",X0=3:"PRESCRIPTIONS",1:"")
- S:X0'=3 XTP=XTP_" EPISODES" S X="ALL "_XTP_" FROM "
- S X=X_$$DTE(IBBDT)_" TO "_$$DTE(IBEDT\1)
- I $G(IBCOMP) D
- .S X=X_" / DATA RECOMPILED/STORED FOR "_$$DAT2^IBOUTL(IBTIMON)
+ I X0'=3 S XTP=XTP_" EPISODES"
+ S X="ALL "_XTP_" FROM "
+ S X=X_$$DTE(IBBDT)_" TO "_$$DTE(IBEDT\1)_" FOR DIVISION: "_IBDIVHDR
+ I $G(IBCOMP) S X=X_" / DATA RECOMPILED/STORED FOR "_$$DAT2^IBOUTL(IBTIMON)
  S X=X_" / '*' AFTER THE PATIENT NAME = USUALLY BILLED MEANS TEST COPAYMENT"
  I X0=1 S X=X_" / 'H' AFTER THE ADMISSION DATE = PATIENT CURRENTLY HOSPITALIZED"
  I X0=3 S X=X_" / '$' AFTER THE ORIGINAL FILL DATE = ORIGINAL FILL DATE HAS BEEN BILLED"
  S X=X_" / 'CF' COLUMN = NUMBER OF CLAIMS ON FILE FOR THE EPISODE"
  I X0'=3 D
- .S X=X_" / 'I/P' COLUMN = 'I' - INSTUTIONAL CLAIM MISSING,"
- .S X=X_" 'P' - PROFESSIONAL CLAIM MISSING"
+ . S X=X_" / 'I/P' COLUMN = 'I' - INSTUTIONAL CLAIM MISSING,"
+ . S X=X_" 'P' - PROFESSIONAL CLAIM MISSING"
+ . Q
  F I=1:1 W !,$E(X,1,132) S X=$E(X,133,999) Q:X=""
  ;
  I 'X0 W !,$TR($J(" ",IOM)," ","-"),! G HDRQ
@@ -50,7 +65,9 @@ HDR ; - Output header.
  I X0=3 W ?52,"Date     CF Ins. Carrier(s)     MRA Drug Name        Physician",?123,"Fill Dt."
  W !,$TR($J(" ",IOM)," ","-"),!
  I $D(ZTQUEUED),$$S^%ZTLOAD D
- . W !!,"...Task stoped at user request" S (IBQ,ZTSTOP)=1
+ . W !!,"...Task stoped at user request"
+ . S (IBQ,ZTSTOP)=1
+ . Q
  ;
 HDRQ Q
  ;

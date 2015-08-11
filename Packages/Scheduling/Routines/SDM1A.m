@@ -1,5 +1,5 @@
 SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;8/18/05 12:57pm;6/22/09 6:16pm
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621**;Aug 13, 1993;Build 4
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622**;Aug 13, 1993;Build 30
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
  S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
 S1 L +^SC(SC,"S",SD,1):$G(DILOCKTM,5) W:'$T "Another user is editing this record.  Trying again.",! G:'$T S1 F SDY=1:1 I '$D(^SC(SC,"S",SD,1,SDY)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(SDY,0)=DFN_U_(+SL)_"^^^^"_$G(DUZ)_U_DT L -^SC(SC,"S",SD,1) Q
@@ -98,7 +98,47 @@ XR I $S('$D(^SC(SC,"RAD")):1,^("RAD")="Y":0,^("RAD")=1:0,1:1) S %=2 W !,"WANT PR
 SDMM S SDEMP=0 I COLLAT=7 S:SDEC'=SDCOL SDEMP=SDCOL G OV
  D ELIG^VADPT I $O(VAEL(1,0))>0 D ELIG^SDM4:"369"[SDAPTYP S SDEMP=$S(SDDECOD:SDDECOD,1:SDEMP)
 OV Q:$D(SDZM)  K SDQ1,SDEC,SDCOL I +SDEMP S $P(^SC(SC,"S",SD,1,SDY,0),"^",10)=+SDEMP
- S SDMADE=1 D EVT Q
+ S SDMADE=1 D EVT
+LET ; SD*5.3*622 - help user print the PRE-APPT letter for a patient
+ ; check for a PRE-APPT letter defined and if none, don't issue a device prompt
+ N SDFN ; new SDFN to see the patient prompt next time
+ S %=2 W !!,"WANT TO PRINT THE PRE-APPOINTMENT LETTER" D YN^DICN I %=0 W !,"RESPOND YES (Y) OR NO (N)" G:'% LET
+ I (%=2)!(%=-1) Q
+ I $P($G(^SC(SC,"LTR")),U,2)="" D  Q
+ . W $C(7),!!,"PATIENT "_$P(^DPT(DFN,0),U,1)," ",$P(^(0),U,9)," HAS FUTURE APPTS., but"
+ . W !,$P(^SC(SC,0),U,1)_" is not assigned a PRE-APPOINTMENT LETTER",!
+ . S DIR(0)="E" D ^DIR K DIR
+ ;
+ ; pre-define letter type (P), the division, date for appt, etc.
+ S (SDBD,SDED)=SDTTM,L0="P",SD9=0,VAUTNALL=1,VAUTNI=2,S1="P",SDLT=1,SDV1=1,SDFORM=""
+ S L2=$S(L0="P":"^SDL1",1:"^SDL1"),J=SDBD
+ S (A,SDFN,S)=DFN,L="^SDL1",SDCL=+$P(^SC(SC,0),U,1),SDC=SC,SDX=SDTTM
+ S SDLET=$P(^SC(SC,"LTR"),U,2) ; letter IEN
+ S SDLET1=SDLET
+ I SDY["DPT(" S SDAMTYP="P",SDFN=+SDY
+ I SDY["SC(" S SDAMTYP="C",SDCLN=+SDY
+ ; prepare to queue the letter if the user so desires
+ N %ZIS,POP,ZTDESC,ZTRTN,ZTSAVE
+ S %ZIS("B")="",POP=0,%ZIS="MQ" D ^%ZIS Q:POP
+ I $D(IO("Q")) S ZTRTN="QUE^SDM1A",ZTDESC="PRINT PRE-APPT LETTER",ZTSAVE("*")="" D ^%ZTLOAD,HOME^%ZIS K IO("Q") Q
+ D QUE ; print right away without getting into the queue
+ D HOME^%ZIS
+ Q
+ ;
+QUE ; execute whether by queue or immediate print request
+ U IO
+ D PRT^SDLT,WRAPP^SDLT
+ ; if there are x-ray, lab, or ekg appts, print them too
+ S SDATA=$G(^DPT(DFN,"S",SDX,0))
+ I $D(SDATA) F B=3,4,5 D
+ . S SDCL=$S(B=3:"LAB",B=4:"XRAY",1:"EKG")
+ . S SDX=$P($G(SDATA),U,B)
+ . S SC=SDCL Q:$G(SDX)=""  D FORM^SDLT
+ ;
+ D REST^SDLT
+ D ^%ZISC
+ Q  ; SD*5.3*622 - end of changes
+ ;
 HXR W !,"  Enter YES to have previous XRAY results sent to the clinic" G XR
  Q
 CS S SDCS=+$P(^SC(+SC,0),"^",7) I $S('$D(^DIC(40.7,SDCS,0)):1,'$P(^(0),"^",3):0,1:$P(^(0),"^",3)'>DT) W !!,*7,"** WARNING - CLINIC HAS AN INVALID OR INACTIVE STOP CODE!!!",!!

@@ -1,6 +1,6 @@
 IBNCPDS1 ;ALB/BDB - DISPLAY RX COB DETERMINATION ;30-NOV-07
- ;;2.0;INTEGRATED BILLING;**411,452**; 21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**411,452,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; -- main entry point to display rx cob determination
 EN ;
@@ -35,7 +35,9 @@ EN ;
  .. S IBINSN=$$GET1^DIQ(2.312,IBT_","_DFN_",",.01) ; ins name
  .. S IBPTYPE=$$GET1^DIQ(355.3,IBPL_",",.09) ; plan type
  .. S IBCOB=$$GET1^DIQ(2.312,IBT_","_DFN_",",.2,"I"),IBCOB=$S(IBCOB=1:"p",IBCOB=2:"s",IBCOB=3:"t",1:"p") ; cob indicator
- .. S IBGRPN=$$GET1^DIQ(355.3,$$GET1^DIQ(2.312,IBT_","_DFN_",",.18,"I")_",",.04) ; group id
+ .. ;IB*2.0*516/baa - Use HIPAA compliant Group ID
+ .. ;S IBGRPN=$$GET1^DIQ(355.3,$$GET1^DIQ(2.312,IBT_","_DFN_",",.18,"I")_",",.04) ; group id
+ .. S IBGRPN=$$GET1^DIQ(355.3,$$GET1^DIQ(2.312,IBT_","_DFN_",",.18,"I")_",",2.02) ; group id ; 516 - baa
  .. S IBHOLD=$$GET1^DIQ(2.312,IBT_","_DFN_",",6,"I") ; subscriber id
  .. S IBHOLD=$S(IBHOLD="v":"SELF",IBHOLD="s":"SPOUSE",IBHOLD="o":"OTHER",1:"")
  .. S IBEFFDT=$P(IBINS(IBT,0),U,8) I IBEFFDT]"" S IBEFFDT=$$DFORMAT(IBEFFDT) ; effective date

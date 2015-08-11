@@ -1,6 +1,6 @@
-RCDPEWL6 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;18-MAR-03
- ;;4.5;Accounts Receivable;**173,208,222,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEWL6 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,208,222,276,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
@@ -8,11 +8,11 @@ DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
  N RCDA,RCDA1,RCAMT,RCADJ,RCQUIT,Z,Z0,Z1,DIR,X,Y,CT,RCZ,RCZ1,RCZ2,RCADJOK,TOT,DTOUT,DUOUT
  N RCNONSP,RCACTIVE,RCZZ1,RCZZ2,RCADJSTR  ; prca276 - variables used to establish non-specific payment adjustments and AR BILL claim status (fix to negative claim balance issue)
  D FULL^VALM1
+ I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G DISTQ   ;prca*4.5*298  auto-posted ERAs cannot enter dISTRIBUTE ADJ AMTS action      
  I $G(RCSCR("NOEDIT")) D NOEDIT^RCDPEWL G DISTQ
  I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL G DISTQ
  ;
  S Z=0,RCADJOK="" F  S Z=$O(^TMP("RCDPE-EOB_WLDX",$J,Z)) Q:'Z  S Z1=+$P($G(^(Z)),U,2),Z0=$G(^RCY(344.49,RCSCR,1,Z1,0)) D
- . ;(^RCY(344.49,RCSCR,1,Z)) Q:'Z  S Z0=$G(^(Z,0)) D
  . I $P(Z0,U)'["." S RCADJOK=($P(Z0,U,2)["**ADJ") Q
  . I '$P(Z0,U,7),'RCADJOK Q  ; Suspense item cannot be used to adjust
  . I $P(Z0,U,6)<0 S RCZ(Z)=$P(Z0,U,6)_U_Z1 Q
@@ -124,26 +124,31 @@ DISTQ S VALMBCK="R"
  Q
  ;
 REFRESH ; Refresh the entry in file 344.49 to remove all user adjustments
- N RCREDEF,RCQUIT,DIR,X,Y,Z,Z0,DA,DIK
+ N DA,DIK,DIR,RCQUIT,RCREDEF,X,Y,Z,Z0
  D FULL^VALM1
+ I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G REFQ   ;prca*4.5*298  auto-posted ERAs cannot enter REFRESH SCRATCHPAD action      
  I $G(RCSCR("NOEDIT")) D NOEDIT^RCDPEWL G REFQ
- I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL G REFQ
+ ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining
+ ; batches but just remove from execution
+ ;I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL G REFQ  ;prca*4.5*298
  S DIR(0)="YA"
  S DIR("A",1)="THIS ACTION WILL DELETE AND REBUILD THIS EEOB WORKLIST SCRATCH PAD ENTRY",DIR("A",2)="ALL EDITS/SPLITS/DISTRIBUTE ADJUSTMENTS ENTERED FOR THIS ERA WILL BE ERASED"
  S DIR("A",3)="AND ALL ENTRIES MARKED AS MANUALLY VERIFIED WILL BE UNMARKED",DIR("A",4)=" "
  S DIR("A")="ARE YOU SURE YOU WANT TO DO THIS?: "
  W ! D ^DIR K DIR
  I Y'=1 G REFQ
- I $O(^RCY(344.49,RCSCR,3,0)) S RCQUIT=0 D  I RCQUIT G REFQ
- . S DIR(0)="YA",DIR("A")="DO YOU WANT TO REDEFINE YOUR BATCHES TOO?: ",DIR("B")="NO" W ! D ^DIR K DIR
- . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- . S RCREDEF=+Y
- . K ^TMP($J,"BATCHES")
- . S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,3,Z)) Q:'Z  S Z0=$G(^(Z,0)) D
- .. I RCREDEF S DA=Z,DA(1)=RCSCR,DIK="^RCY(344.49,"_DA(1)_",3," D ^DIK Q
- .. S ^TMP($J,"BATCHES",+$P(Z0,U,6),$P(Z0,U,7))=+Z0_U_$P(Z0,U,8)
- . I 'RCREDEF S ^TMP($J,"BATCHES")=+$O(^TMP($J,"BATCHES",0))
- . I RCREDEF D SETBATCH^RCDPEWLB(RCSCR)
+ ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining
+ ; batches but just remove from execution
+ ;I $O(^RCY(344.49,RCSCR,3,0)) S RCQUIT=0 D  I RCQUIT G REFQ
+ ;. S DIR(0)="YA",DIR("A")="DO YOU WANT TO REDEFINE YOUR BATCHES TOO?: ",DIR("B")="NO" W ! D ^DIR K DIR
+ ;. I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
+ ;. S RCREDEF=+Y
+ ;. K ^TMP($J,"BATCHES")
+ ;. S Z=0 F  S Z=$O(^RCY(344.49,RCSCR,3,Z)) Q:'Z  S Z0=$G(^(Z,0)) D
+ ;.. I RCREDEF S DA=Z,DA(1)=RCSCR,DIK="^RCY(344.49,"_DA(1)_",3," D ^DIK Q
+ ;.. S ^TMP($J,"BATCHES",+$P(Z0,U,6),$P(Z0,U,7))=+Z0_U_$P(Z0,U,8)
+ ;. I 'RCREDEF S ^TMP($J,"BATCHES")=+$O(^TMP($J,"BATCHES",0))
+ ;. I RCREDEF D SETBATCH^RCDPEWLB(RCSCR)
  D ADDLINES^RCDPEWLA(RCSCR)
  D BLD^RCDPEWL1($G(^TMP($J,"RC_SORTPARM")))
  K ^TMP($J,"BATCHES")

@@ -1,0 +1,134 @@
+IBDEI1PB ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30521,1,4,0)
+ ;;=4^D78.22
+ ;;^UTILITY(U,$J,358.3,30521,2)
+ ;;=^5002402
+ ;;^UTILITY(U,$J,358.3,30522,0)
+ ;;=K91.82^^189^1918^22
+ ;;^UTILITY(U,$J,358.3,30522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30522,1,3,0)
+ ;;=3^Postprocedural Hepatic Failure
+ ;;^UTILITY(U,$J,358.3,30522,1,4,0)
+ ;;=4^K91.82
+ ;;^UTILITY(U,$J,358.3,30522,2)
+ ;;=^5008908
+ ;;^UTILITY(U,$J,358.3,30523,0)
+ ;;=K91.83^^189^1918^23
+ ;;^UTILITY(U,$J,358.3,30523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30523,1,3,0)
+ ;;=3^Postprocedural Hepatorenal Syndrome
+ ;;^UTILITY(U,$J,358.3,30523,1,4,0)
+ ;;=4^K91.83
+ ;;^UTILITY(U,$J,358.3,30523,2)
+ ;;=^5008909
+ ;;^UTILITY(U,$J,358.3,30524,0)
+ ;;=K91.3^^189^1918^24
+ ;;^UTILITY(U,$J,358.3,30524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30524,1,3,0)
+ ;;=3^Postprocedural Intestinal Obstruction
+ ;;^UTILITY(U,$J,358.3,30524,1,4,0)
+ ;;=4^K91.3
+ ;;^UTILITY(U,$J,358.3,30524,2)
+ ;;=^5008902
+ ;;^UTILITY(U,$J,358.3,30525,0)
+ ;;=K68.11^^189^1918^25
+ ;;^UTILITY(U,$J,358.3,30525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30525,1,3,0)
+ ;;=3^Postprocedural Retroperitoneal Abscess
+ ;;^UTILITY(U,$J,358.3,30525,1,4,0)
+ ;;=4^K68.11
+ ;;^UTILITY(U,$J,358.3,30525,2)
+ ;;=^5008782
+ ;;^UTILITY(U,$J,358.3,30526,0)
+ ;;=K91.850^^189^1918^26
+ ;;^UTILITY(U,$J,358.3,30526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30526,1,3,0)
+ ;;=3^Pouchitis
+ ;;^UTILITY(U,$J,358.3,30526,1,4,0)
+ ;;=4^K91.850
+ ;;^UTILITY(U,$J,358.3,30526,2)
+ ;;=^338261
+ ;;^UTILITY(U,$J,358.3,30527,0)
+ ;;=C34.91^^189^1919^22
+ ;;^UTILITY(U,$J,358.3,30527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30527,1,3,0)
+ ;;=3^Malig Neop of Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,30527,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,30527,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,30528,0)
+ ;;=C34.92^^189^1919^21
+ ;;^UTILITY(U,$J,358.3,30528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30528,1,3,0)
+ ;;=3^Malig Neop of Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,30528,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,30528,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,30529,0)
+ ;;=J20.9^^189^1919^10
+ ;;^UTILITY(U,$J,358.3,30529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30529,1,3,0)
+ ;;=3^Acute Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30529,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,30529,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,30530,0)
+ ;;=J20.8^^189^1919^5
+ ;;^UTILITY(U,$J,358.3,30530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30530,1,3,0)
+ ;;=3^Acute Bronchitis d/t Organisms NEC
+ ;;^UTILITY(U,$J,358.3,30530,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,30530,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,30531,0)
+ ;;=J20.5^^189^1919^7
+ ;;^UTILITY(U,$J,358.3,30531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30531,1,3,0)
+ ;;=3^Acute Bronchitis d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,30531,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,30531,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,30532,0)
+ ;;=J20.6^^189^1919^8
+ ;;^UTILITY(U,$J,358.3,30532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30532,1,3,0)
+ ;;=3^Acute Bronchitis d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,30532,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,30532,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,30533,0)
+ ;;=J20.2^^189^1919^9
+ ;;^UTILITY(U,$J,358.3,30533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30533,1,3,0)
+ ;;=3^Acute Bronchitis d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,30533,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,30533,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,30534,0)
+ ;;=J20.4^^189^1919^6
+ ;;^UTILITY(U,$J,358.3,30534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30534,1,3,0)
+ ;;=3^Acute Bronchitis d/t Parainfluenza Virus

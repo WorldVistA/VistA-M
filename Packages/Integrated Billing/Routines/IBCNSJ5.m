@@ -1,6 +1,6 @@
 IBCNSJ5 ;ALB/TMP - INSURANCE PLAN MAINTENANCE ACTION PROCESSING ; 09-AUG-95
- ;;Version 2.0 ; INTEGRATED BILLING ;**43**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**43,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PL ; -- Insurance Company Plan List
  D FULL^VALM1 W !!
@@ -19,7 +19,7 @@ AB ; -- Edit Annual Benefits from insurance company edit OR plan detail edit
  .S IBCPOL=$G(^TMP("IBCNSJ",$J,"IDX",IBXX,+$O(^TMP("IBCNSJ",$J,"IDX",IBXX,0))))
  .Q:IBCPOL=""
  .D FULL^VALM1
- .W !!,"Plan Name: ",$P($G(^IBA(355.3,IBCPOL,0)),U,3),"   Number: ",$P($G(^IBA(355.3,IBCPOL,0)),U,4)
+ .W !!,"Plan Name: ",$$GET1^DIQ(355.3,IBCPOL,2.01),"   Number: ",$$GET1^DIQ(355.3,IBCPOL,2.02)  ;Get new HIPAA fields - IB*2*516
  .K IBCDFN
  .D EN^VALM("IBCNS ANNUAL BENEFITS")
  .Q
@@ -82,8 +82,10 @@ CP ;Change insurance plans
  S VALMBCK="R"
  D ^DIR K DIR I $D(DIRUT) G CPEX
  I Y S VALMBCK="Q" G CPEX
+ ; MRD;IB*2.0*516 - Display new Group Name and Number fields.
  S DIC("S")="I $P(^(0),U)=$G(IBCNS)",DIC="^IBA(355.3,",DIC(0)="AEMQ"
- S DIC("W")="N IBX S IBX=$G(^(0)) W ""  Name: "",$E($S($P(IBX,U,3)'="""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""  Number: "",$S($P(IBX,U,4)'="""":$P(IBX,U,4),1:""<none>"")"
+ ;S DIC("W")="N IBX S IBX=$G(^(0)) W ""  Name: "",$E($S($P(IBX,U,3)'="""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""  Number: "",$S($P(IBX,U,4)'="""":$P(IBX,U,4),1:""<none>"")"
+ S DIC("W")="N IBX,IBX2 S IBX=$G(^(0)),IBX2=$G(^(2)) W ""  Name: "",$E($S($P(IBX2,U,1)'="""":$P(IBX2,U,1),1:""<none>"")_$J("""",20),1,20),""  Number: "",$E($S($P(IBX2,U,2)'="""":$P(IBX2,U,2),1:""<none>""),1,14)"
  S DIC("W")=DIC("W")_",""  "",$S($P(IBX,U,2):""GROUP"",1:""INDIVIDUAL""),""  "",$S($P(IBX,U,11):""IN"",1:""""),""ACTIVE"""
  S DIC("A")="Select "_$P($G(^DIC(36,+$G(IBCNS),0)),U)_" PLAN: "
  D ^DIC K DIC

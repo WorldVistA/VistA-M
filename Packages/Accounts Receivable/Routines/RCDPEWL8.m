@@ -1,6 +1,6 @@
-RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ;12-FEB-04
- ;;4.5;Accounts Receivable;**208,269,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**208,269,276,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 FILESP ; Action that files the split lines
@@ -15,7 +15,6 @@ FILESP ; Action that files the split lines
  . S DIR("A",2)=$E("  ORIG PAY AMT: "_$J(+$P(RCDIR,U,2),"",2)_$J("",35),1,35)_" ORIG ADJ AMT: "_$J(+$P(RCDIR,U,3),"",2)
  . S DIR("A",3)=$E("   AMT ENTERED: "_$J(+RCTOT(2),"",2)_$J("",35),1,35)_"  AMT ENTERED: "_$J(+RCTOT(3),"",2)
  . S DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
- ;
  S DA(1)=RCSCR
  S RCZ0=+$P(RCLINE,U,2),RCZZ=+$G(^RCY(344.49,DA(1),1,RCZ0,0)),RCZZ(1)=""
  S RCZ=+$O(RCSPLIT(0))
@@ -60,7 +59,9 @@ SELBAT(RCERA,RCQUIT) ; Select a batch
  ; If batch is selected, global ^TMP("RCBATCH_SELECTED",$J) is set = 
  ;   batch ien selected
  ; RCQUIT = 1 if selection not made
- N RCBAT,DA,DIE,X,Y,DIC,DUOUT,DTOUT,DIR,DR
+ ; prca*4.5*298 per requirements, keep code for creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298
+ N DA,DIC,DIE,DIR,DR,DTOUT,DUOUT,RCBAT,X,Y
  S RCQUIT=0
  S DA(1)=RCERA,DIC(0)="AEMQ",DIC="^RCY(344.49,"_DA(1)_",3,",DIC("S")="I '$P(^(0),U,5)" D ^DIC
  I Y'>0 S RCQUIT=1 Q
@@ -143,7 +144,9 @@ ORDQ I RCQUIT K RCS
  Q ORD
  ;
 BATDSP ; Ask Display/Hide batch info on ERA list screen
- N DIR,X,Y,RCZ,DUOUT,DTOUT
+ ; prca*4.5*298 per requirements, keep code for creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298
+ N DIR,DTOUT,DUOUT,RCZ,X,Y
  D FULL^VALM1
  S RCZ=+$G(^TMP("RCERA_PARAMS",$J,"BATCHON"))
  S DIR("A",1)="BATCH INFO DISPLAY IS CURRENTLY TURNED "_$S('RCZ:"OFF",1:"ON"),DIR("A")="DO YOU WANT TO TURN IT "_$S('RCZ:"ON",1:"OFF")_" NOW?: "
@@ -168,11 +171,12 @@ HASADJ(RCSCR,RCOK) ; Function=1 if WL entry has any adj not yet distributed
 VERIF ; Entrypoint to verification options
  N DIR,X,Y,RCQUIT,DTOUT,DUOUT
  D FULL^VALM1
+ I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G VERIFQ   ;prca*4.5*298  auto-posted ERAs cannot enter VERIFY action        
  ;
  W !!!!
  S RCQUIT=0
  F  D  Q:RCQUIT
- . W !,"VERIFY EEOBs:",!,?10,"1",$J("",5),"MANUAL MARK AS VERIFIED",!,?10,"2",$J("",5),"REPORT OF UNVERIFIED WITH DISCREPANCIES",!,?10,"3",$J("",5),"QUIT AND RETURN TO WORKLIST"
+ . W !,"VERIFY EEOBs:",!,?10,"1",$J("",5),"MANUALLY MARK AS VERIFIED",!,?10,"2",$J("",5),"REPORT OF UNVERIFIED WITH DISCREPANCIES",!,?10,"3",$J("",5),"QUIT AND RETURN TO WORKLIST"
  . S DIR(0)="SAO^1:MANUAL VERIFICATION;2:REPORT UNVERIFIED DISCREPANCIES;3:QUIT"
  . S DIR("A")="Select Action: ",DIR("B")="QUIT" W ! D ^DIR K DIR
  . I Y=3!(Y="")!$D(DUOUT)!$D(DTOUT) S RCQUIT=1 Q
@@ -184,8 +188,10 @@ VERIF ; Entrypoint to verification options
 VERIFQ S VALMBCK="R"
  Q
  ;
-BATED ; Entrypoint to batch edit options
- N DIC,DA,DUOUT,DTOUT,DIR,X,Y,RCQUIT
+BATED ; Entry point to batch edit options
+ ; prca*4.5*298  per requirements, keep code for creating/maintaining batches but remove from execution
+ Q  ; prca*4.5*298
+ N DA,DIC,DIR,DTOUT,DUOUT,RCQUIT,X,Y
  D FULL^VALM1
  ;
  W !!!!
@@ -196,7 +202,8 @@ BATED ; Entrypoint to batch edit options
  F  D  Q:RCQUIT
  . I '$D(^XUSEC("PRCA ERA BATCH MAINT",DUZ)) D  Q
  .. S RCQUIT=1
- .. S DIR(0)="EA",DIR("A")="YOU DO NOT HAVE SECURITY ACCESS TO THIS ACTION - PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ .. S DIR(0)="EA",DIR("A")="YOU DO NOT HAVE SECURITY ACCESS TO THIS ACTION - Press ENTER to continue: " W ! D ^DIR K DIR
+ .;
  . W !,"BATCH MAINTENANCE:",!,?10,"1",$J("",5),"EDIT BATCH",!,?10,"2",$J("",5),"NEW BATCH ASSIGNMENT",!,?10,"3",$J("",5),"MARK ALL READY TO POST",!,?10,"4",$J("",5),"BATCH SUMMARY REPORT",!,?10,"5",$J("",5),"QUIT AND RETURN TO WORKLIST"
  . S DIR(0)="SAO^1:EDIT BATCH;2:NEW BATCHES;3:MARK ALL;4:BATCH SUMMARY;5:QUIT"
  . S DIR("A")="Select Action: ",DIR("B")="Quit" W ! D ^DIR K DIR

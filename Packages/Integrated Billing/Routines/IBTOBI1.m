@@ -1,6 +1,6 @@
 IBTOBI1 ;ALB/AAS - CLAIMS TRACKING BILLING INFORMATION PRINT ;27-OCT-93
- ;;2.0;INTEGRATED BILLING;**276,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**276,377,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ;
  F IBTAG="INS","BI","SC","CLIN^IBTOBI4","IR^IBTOBI2","HR^IBTOBI3" D @IBTAG Q:IBQUIT
@@ -17,19 +17,21 @@ INS ; -- print ins. stuff
  I $G(IBINS(0))<1 W !,?TAB,"No Insurance Information",!!! G INSQ
  S IBI=0,IBCNT=0 F  S IBI=$O(IBINS(IBI)) Q:'IBI!(IBQUIT)  S IBINS=IBINS(IBI,0) D  Q:IBQUIT
  .S IBCNT=IBCNT+1
- .I ($Y+8)>IOSL D HDR^IBTOBI Q:IBQUIT
+ .I ($Y+10)>IOSL D HDR^IBTOBI Q:IBQUIT
  .I IBCNT>1 W !
- .W !?TAB,"     Ins. Co "_IBCNT_": ",$E($P($G(^DIC(36,+IBINS,0)),"^"),1,23)
+ .W !?TAB,"     Ins. Co "_IBCNT_": ",$E($P($G(^DIC(36,+IBINS,0)),"^"),1,59)
  .S X=$G(^DIC(36,+IBINS,.13))
  .S PHON=$S($P(X,"^",3)'="":$P(X,"^",3),1:$P(X,"^"))
  .S PHON2=$S($P(X,"^",2)'="":$P(X,"^",2),1:$P(X,"^"))
  .S P=$S($P(IBETYP,"^",3)=1:5,$P(IBETYP,"^",3)=2:6,$P(IBETYP,"^",3)=3:11,1:1)
  .S PHON3=$S($P(X,"^",P)'="":$P(X,"^",P),1:$P(X,"^"))
+ .; MRD;IB*2.0*516 - Rearranged some fields to allow more characters
+ .; to be displayed for some fields.
+ .W !?TAB,"          Type: ",$E($P($G(^IBE(355.1,+$P($G(^IBA(355.3,+$P(IBINS,"^",18),0)),"^",9),0)),"^"),1,18)
  .W ?TAB2,"Pre-Cert Phone: ",PHON
- .W !?TAB,"        Subsc.: ",$P(IBINS,"^",17)
- .W ?TAB2,"          Type: ",$E($P($G(^IBE(355.1,+$P($G(^IBA(355.3,+$P(IBINS,"^",18),0)),"^",9),0)),"^"),1,18)
- .W !?TAB,"     Subsc. ID: ",$P(IBINS,"^",2)
- .W ?TAB2,"         Group: ",$$GRP^IBCNS($P(IBINS,"^",18))
+ .W !?TAB,"        Subsc.: ",$E($P(IBINS,"^",17),1,59)
+ .W !?TAB,"     Subsc. ID: ",$E($P(IBINS,"^",2),1,59)
+ .W !?TAB,"         Group: ",$E($$GRP^IBCNS($P(IBINS,"^",18)),1,59)
  .W !?TAB,"     Coord Ben: ",$E($$EXPAND^IBTRE(2.312,.2,$P(IBINS,"^",20)),1,18)
  .W ?TAB2," Billing Phone: ",PHON2
  .W !,?TAB,"Filing Time Fr: ",$$EXPAND^IBTRE(36,.12,$P($G(^DIC(36,+IBINS,0)),"^",12))

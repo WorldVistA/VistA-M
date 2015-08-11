@@ -1,138 +1,120 @@
-IBDEI1BO ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1BO ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23677,0)
- ;;=173.99^^148^1506^40
- ;;^UTILITY(U,$J,358.3,23677,1,0)
+ ;;^UTILITY(U,$J,358.3,23722,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23677,1,2,0)
- ;;=2^173.99
- ;;^UTILITY(U,$J,358.3,23677,1,5,0)
- ;;=5^Other spec neoplasm skin, site unspec
- ;;^UTILITY(U,$J,358.3,23677,2)
- ;;=^340493
- ;;^UTILITY(U,$J,358.3,23678,0)
- ;;=99441^^149^1507^1^^^^1
- ;;^UTILITY(U,$J,358.3,23678,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23678,1,1,0)
- ;;=1^99441
- ;;^UTILITY(U,$J,358.3,23678,1,2,0)
- ;;=2^PHONE E/M BY PHYS 5-10 MIN
- ;;^UTILITY(U,$J,358.3,23679,0)
- ;;=99443^^149^1507^3^^^^1
- ;;^UTILITY(U,$J,358.3,23679,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23679,1,1,0)
- ;;=1^99443
- ;;^UTILITY(U,$J,358.3,23679,1,2,0)
- ;;=2^PHONE E/M BY PHYS 21-30 MIN
- ;;^UTILITY(U,$J,358.3,23680,0)
- ;;=99442^^149^1507^2^^^^1
- ;;^UTILITY(U,$J,358.3,23680,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23680,1,1,0)
- ;;=1^99442
- ;;^UTILITY(U,$J,358.3,23680,1,2,0)
- ;;=2^PHONE E/M BY PHYS 11-20 MIN
- ;;^UTILITY(U,$J,358.3,23681,0)
- ;;=98966^^149^1508^1^^^^1
- ;;^UTILITY(U,$J,358.3,23681,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23681,1,1,0)
- ;;=1^98966
- ;;^UTILITY(U,$J,358.3,23681,1,2,0)
- ;;=2^HC PRO PHONE CALL 5-10 MIN
- ;;^UTILITY(U,$J,358.3,23682,0)
- ;;=98967^^149^1508^2^^^^1
- ;;^UTILITY(U,$J,358.3,23682,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23682,1,1,0)
- ;;=1^98967
- ;;^UTILITY(U,$J,358.3,23682,1,2,0)
- ;;=2^HC PRO PHONE CALL 11-20 MIN
- ;;^UTILITY(U,$J,358.3,23683,0)
- ;;=98968^^149^1508^3^^^^1
- ;;^UTILITY(U,$J,358.3,23683,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23683,1,1,0)
- ;;=1^98968
- ;;^UTILITY(U,$J,358.3,23683,1,2,0)
- ;;=2^HC PRO PHONE CALL 21-30 MIN
- ;;^UTILITY(U,$J,358.3,23684,0)
- ;;=V65.49^^150^1509^13
- ;;^UTILITY(U,$J,358.3,23684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23684,1,3,0)
- ;;=3^MEDICATION COUNSELING
- ;;^UTILITY(U,$J,358.3,23684,1,4,0)
- ;;=4^V65.49
- ;;^UTILITY(U,$J,358.3,23684,2)
- ;;=^303471
- ;;^UTILITY(U,$J,358.3,23685,0)
- ;;=V65.49^^150^1509^7
- ;;^UTILITY(U,$J,358.3,23685,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23685,1,3,0)
- ;;=3^HEALTH ADVICE/INSTRUCTION
- ;;^UTILITY(U,$J,358.3,23685,1,4,0)
- ;;=4^V65.49
- ;;^UTILITY(U,$J,358.3,23685,2)
- ;;=^303471
- ;;^UTILITY(U,$J,358.3,23686,0)
- ;;=401.9^^150^1509^9
- ;;^UTILITY(U,$J,358.3,23686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23686,1,3,0)
- ;;=3^HYPERTENSION
- ;;^UTILITY(U,$J,358.3,23686,1,4,0)
- ;;=4^401.9
- ;;^UTILITY(U,$J,358.3,23686,2)
- ;;=^186630
- ;;^UTILITY(U,$J,358.3,23687,0)
- ;;=250.00^^150^1509^14
- ;;^UTILITY(U,$J,358.3,23687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23687,1,3,0)
- ;;=3^NIDDM
- ;;^UTILITY(U,$J,358.3,23687,1,4,0)
- ;;=4^250.00
- ;;^UTILITY(U,$J,358.3,23687,2)
- ;;=^33605
- ;;^UTILITY(U,$J,358.3,23688,0)
- ;;=250.01^^150^1509^10
- ;;^UTILITY(U,$J,358.3,23688,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23688,1,3,0)
- ;;=3^IDDM
- ;;^UTILITY(U,$J,358.3,23688,1,4,0)
- ;;=4^250.01
- ;;^UTILITY(U,$J,358.3,23688,2)
- ;;=^33586
- ;;^UTILITY(U,$J,358.3,23689,0)
- ;;=796.4^^150^1509^3
- ;;^UTILITY(U,$J,358.3,23689,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23689,1,3,0)
- ;;=3^ABNORMAL LAB TEST
- ;;^UTILITY(U,$J,358.3,23689,1,4,0)
- ;;=4^796.4
- ;;^UTILITY(U,$J,358.3,23689,2)
- ;;=^273466
- ;;^UTILITY(U,$J,358.3,23690,0)
- ;;=794.9^^150^1509^1
- ;;^UTILITY(U,$J,358.3,23690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23690,1,3,0)
- ;;=3^ABN FUNCTION STUDY NEC
- ;;^UTILITY(U,$J,358.3,23690,1,4,0)
- ;;=4^794.9
- ;;^UTILITY(U,$J,358.3,23690,2)
- ;;=^273451
- ;;^UTILITY(U,$J,358.3,23691,0)
- ;;=790.29^^150^1509^2
- ;;^UTILITY(U,$J,358.3,23691,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23691,1,3,0)
- ;;=3^ABNORMAL GLUCOSE NEC
+ ;;^UTILITY(U,$J,358.3,23722,1,3,0)
+ ;;=3^824.4
+ ;;^UTILITY(U,$J,358.3,23722,1,5,0)
+ ;;=5^Fracture of ankle; bimalleolar, closed
+ ;;^UTILITY(U,$J,358.3,23722,2)
+ ;;=^14370
+ ;;^UTILITY(U,$J,358.3,23723,0)
+ ;;=824.2^^141^1463^13
+ ;;^UTILITY(U,$J,358.3,23723,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23723,1,3,0)
+ ;;=3^824.2
+ ;;^UTILITY(U,$J,358.3,23723,1,5,0)
+ ;;=5^Fracture of ankle; lateral malleolus, closed
+ ;;^UTILITY(U,$J,358.3,23723,2)
+ ;;=^274247
+ ;;^UTILITY(U,$J,358.3,23724,0)
+ ;;=824.0^^141^1463^14
+ ;;^UTILITY(U,$J,358.3,23724,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23724,1,3,0)
+ ;;=3^824.0
+ ;;^UTILITY(U,$J,358.3,23724,1,5,0)
+ ;;=5^Fracture of ankle; medial malleolus, closed
+ ;;^UTILITY(U,$J,358.3,23724,2)
+ ;;=^274245
+ ;;^UTILITY(U,$J,358.3,23725,0)
+ ;;=824.6^^141^1463^15
+ ;;^UTILITY(U,$J,358.3,23725,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23725,1,3,0)
+ ;;=3^824.6
+ ;;^UTILITY(U,$J,358.3,23725,1,5,0)
+ ;;=5^Fracture of ankle; trimalleolar, closed
+ ;;^UTILITY(U,$J,358.3,23725,2)
+ ;;=^274251
+ ;;^UTILITY(U,$J,358.3,23726,0)
+ ;;=825.20^^141^1463^16
+ ;;^UTILITY(U,$J,358.3,23726,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23726,1,3,0)
+ ;;=3^825.20
+ ;;^UTILITY(U,$J,358.3,23726,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bone, closed; unspecified bone(s) of foot (except toes)
+ ;;^UTILITY(U,$J,358.3,23726,2)
+ ;;=^274265
+ ;;^UTILITY(U,$J,358.3,23727,0)
+ ;;=825.0^^141^1463^17
+ ;;^UTILITY(U,$J,358.3,23727,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23727,1,3,0)
+ ;;=3^825.0
+ ;;^UTILITY(U,$J,358.3,23727,1,5,0)
+ ;;=5^Fracture of one or more tarsal & metatarsal bone, closed; calcaneus, closed
+ ;;^UTILITY(U,$J,358.3,23727,2)
+ ;;=^274259
+ ;;^UTILITY(U,$J,358.3,23728,0)
+ ;;=825.23^^141^1463^18
+ ;;^UTILITY(U,$J,358.3,23728,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23728,1,3,0)
+ ;;=3^825.23
+ ;;^UTILITY(U,$J,358.3,23728,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuboid
+ ;;^UTILITY(U,$J,358.3,23728,2)
+ ;;=^274270
+ ;;^UTILITY(U,$J,358.3,23729,0)
+ ;;=825.24^^141^1463^19
+ ;;^UTILITY(U,$J,358.3,23729,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23729,1,3,0)
+ ;;=3^825.24
+ ;;^UTILITY(U,$J,358.3,23729,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuneiform, foot &
+ ;;^UTILITY(U,$J,358.3,23729,2)
+ ;;=^274271
+ ;;^UTILITY(U,$J,358.3,23730,0)
+ ;;=825.25^^141^1463^20
+ ;;^UTILITY(U,$J,358.3,23730,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23730,1,3,0)
+ ;;=3^825.25
+ ;;^UTILITY(U,$J,358.3,23730,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Jones 
+ ;;^UTILITY(U,$J,358.3,23730,2)
+ ;;=^274272
+ ;;^UTILITY(U,$J,358.3,23731,0)
+ ;;=825.22^^141^1463^21
+ ;;^UTILITY(U,$J,358.3,23731,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23731,1,3,0)
+ ;;=3^825.22
+ ;;^UTILITY(U,$J,358.3,23731,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Navicular (scapiod), foot & metatarsal
+ ;;^UTILITY(U,$J,358.3,23731,2)
+ ;;=^274269
+ ;;^UTILITY(U,$J,358.3,23732,0)
+ ;;=825.21^^141^1463^22
+ ;;^UTILITY(U,$J,358.3,23732,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23732,1,3,0)
+ ;;=3^825.21
+ ;;^UTILITY(U,$J,358.3,23732,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Astragalus, talus
+ ;;^UTILITY(U,$J,358.3,23732,2)
+ ;;=^274266
+ ;;^UTILITY(U,$J,358.3,23733,0)
+ ;;=825.29^^141^1463^23
+ ;;^UTILITY(U,$J,358.3,23733,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23733,1,3,0)
+ ;;=3^825.29
+ ;;^UTILITY(U,$J,358.3,23733,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Tarsal or tarsal w/metatarsal

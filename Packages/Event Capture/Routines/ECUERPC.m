@@ -1,5 +1,5 @@
-ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;29 Oct 07
- ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114**;8 May 96;Build 20
+ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;12/17/14  14:34
+ ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114,126**;8 May 96;Build 8
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR5747
@@ -88,19 +88,19 @@ PROC(RESULTS,ECARY) ;
  ;              4  - Default volume (1 if no default volume)
  ;              5  - Event code screen IEN
  ;
- N ECL,ECD,ECC,CNT,DATA,STR,ECCPT,PX
+ N ECL,ECD,ECC,CNT,DATA,STR,ECCPT,PX,NAME,NUM ;126
  D SETENV^ECUMRPC
  S ECL=$P(ECARY,U),ECD=$P(ECARY,U,2),ECC=$P(ECARY,U,3) S:ECC="" ECC=0
  I (ECL="")!(ECD="") Q
  S ECDT=$P(ECARY,U,4)
  K ^TMP($J,"ECPRO")
  D PROS^ECHECK1
- S CNT=0 F  S CNT=$O(^TMP("ECPRO",$J,CNT)) Q:'CNT  D
- .S DATA=^TMP("ECPRO",$J,CNT),PX=$P(DATA,U)
+ S CNT=1,NAME="" F  S NAME=$O(^TMP("ECPRO",$J,"N2",NAME)) Q:NAME=""  S NUM=$O(^TMP("ECPRO",$J,"N2",NAME,0)) D  ;126
+ .S DATA=^TMP("ECPRO",$J,NUM),PX=$P(DATA,U) ;126
  .S ECCPT=$S(PX["EC":$P($G(^EC(725,+PX,0)),"^",5),1:+PX)
  .S STR=$P(DATA,U,5)_" "_$P(DATA,U,4)_" ["_$P(DATA,U,3)_"]"_U_PX
  .S STR=STR_U_ECCPT_U_$S($P(DATA,U,6):+$P(DATA,U,6),1:1)_U_$P(DATA,U,2)
- .S ^TMP($J,"ECPRO",CNT)=STR
+ .S ^TMP($J,"ECPRO",CNT)=STR,CNT=CNT+1 ;126
  S RESULTS=$NA(^TMP($J,"ECPRO"))
  K ^TMP("ECPRO",$J)
  Q

@@ -1,136 +1,126 @@
-IBDEI1BL ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1BL ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23637,1,0)
+ ;;^UTILITY(U,$J,358.3,23683,2)
+ ;;=^125435
+ ;;^UTILITY(U,$J,358.3,23684,0)
+ ;;=454.2^^141^1461^16
+ ;;^UTILITY(U,$J,358.3,23684,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23637,1,2,0)
- ;;=2^V76.43
- ;;^UTILITY(U,$J,358.3,23637,1,5,0)
- ;;=5^Screen for Malignant Skin Neoplasm
- ;;^UTILITY(U,$J,358.3,23637,2)
- ;;=^295657
- ;;^UTILITY(U,$J,358.3,23638,0)
- ;;=173.00^^148^1506^1
- ;;^UTILITY(U,$J,358.3,23638,1,0)
+ ;;^UTILITY(U,$J,358.3,23684,1,3,0)
+ ;;=3^454.2
+ ;;^UTILITY(U,$J,358.3,23684,1,5,0)
+ ;;=5^Dermatitis, Stasis with ulcer/ulcerated
+ ;;^UTILITY(U,$J,358.3,23684,2)
+ ;;=^269821
+ ;;^UTILITY(U,$J,358.3,23685,0)
+ ;;=110.4^^141^1461^18
+ ;;^UTILITY(U,$J,358.3,23685,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23638,1,2,0)
- ;;=2^173.00
- ;;^UTILITY(U,$J,358.3,23638,1,5,0)
- ;;=5^Malig Neopl Lip NOS
- ;;^UTILITY(U,$J,358.3,23638,2)
- ;;=^340596
- ;;^UTILITY(U,$J,358.3,23639,0)
- ;;=173.01^^148^1506^2
- ;;^UTILITY(U,$J,358.3,23639,1,0)
+ ;;^UTILITY(U,$J,358.3,23685,1,3,0)
+ ;;=3^110.4
+ ;;^UTILITY(U,$J,358.3,23685,1,5,0)
+ ;;=5^Dermatophytosis of foot
+ ;;^UTILITY(U,$J,358.3,23685,2)
+ ;;=^33168
+ ;;^UTILITY(U,$J,358.3,23686,0)
+ ;;=250.00^^141^1461^7
+ ;;^UTILITY(U,$J,358.3,23686,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23639,1,2,0)
- ;;=2^173.01
- ;;^UTILITY(U,$J,358.3,23639,1,5,0)
- ;;=5^BCC of skin of lip
- ;;^UTILITY(U,$J,358.3,23639,2)
- ;;=^340464
- ;;^UTILITY(U,$J,358.3,23640,0)
- ;;=173.02^^148^1506^3
- ;;^UTILITY(U,$J,358.3,23640,1,0)
+ ;;^UTILITY(U,$J,358.3,23686,1,3,0)
+ ;;=3^250.00
+ ;;^UTILITY(U,$J,358.3,23686,1,5,0)
+ ;;=5^DM II w/o complication 
+ ;;^UTILITY(U,$J,358.3,23686,2)
+ ;;=^33605
+ ;;^UTILITY(U,$J,358.3,23687,0)
+ ;;=250.01^^141^1461^3
+ ;;^UTILITY(U,$J,358.3,23687,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23640,1,2,0)
- ;;=2^173.02
- ;;^UTILITY(U,$J,358.3,23640,1,5,0)
- ;;=5^SCC of skin of lip
- ;;^UTILITY(U,$J,358.3,23640,2)
- ;;=^340465
- ;;^UTILITY(U,$J,358.3,23641,0)
- ;;=173.09^^148^1506^4
- ;;^UTILITY(U,$J,358.3,23641,1,0)
+ ;;^UTILITY(U,$J,358.3,23687,1,3,0)
+ ;;=3^250.01
+ ;;^UTILITY(U,$J,358.3,23687,1,5,0)
+ ;;=5^DM I w/o complication 
+ ;;^UTILITY(U,$J,358.3,23687,2)
+ ;;=^33586
+ ;;^UTILITY(U,$J,358.3,23688,0)
+ ;;=838.00^^141^1461^23
+ ;;^UTILITY(U,$J,358.3,23688,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23641,1,2,0)
- ;;=2^173.09
- ;;^UTILITY(U,$J,358.3,23641,1,5,0)
- ;;=5^Other specified neoplasm of lip
- ;;^UTILITY(U,$J,358.3,23641,2)
- ;;=^340466
- ;;^UTILITY(U,$J,358.3,23642,0)
- ;;=173.10^^148^1506^5
- ;;^UTILITY(U,$J,358.3,23642,1,0)
+ ;;^UTILITY(U,$J,358.3,23688,1,3,0)
+ ;;=3^838.00
+ ;;^UTILITY(U,$J,358.3,23688,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; foot, unspecified
+ ;;^UTILITY(U,$J,358.3,23688,2)
+ ;;=^274391
+ ;;^UTILITY(U,$J,358.3,23689,0)
+ ;;=838.01^^141^1461^24
+ ;;^UTILITY(U,$J,358.3,23689,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23642,1,2,0)
- ;;=2^173.10
- ;;^UTILITY(U,$J,358.3,23642,1,5,0)
- ;;=5^Malig neoplasm of eyelid NOS
- ;;^UTILITY(U,$J,358.3,23642,2)
- ;;=^340597
- ;;^UTILITY(U,$J,358.3,23643,0)
- ;;=173.11^^148^1506^6
- ;;^UTILITY(U,$J,358.3,23643,1,0)
+ ;;^UTILITY(U,$J,358.3,23689,1,3,0)
+ ;;=3^838.01
+ ;;^UTILITY(U,$J,358.3,23689,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; tarsal(bone), joint unspecified 
+ ;;^UTILITY(U,$J,358.3,23689,2)
+ ;;=^274394
+ ;;^UTILITY(U,$J,358.3,23690,0)
+ ;;=838.02^^141^1461^25
+ ;;^UTILITY(U,$J,358.3,23690,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23643,1,2,0)
- ;;=2^173.11
- ;;^UTILITY(U,$J,358.3,23643,1,5,0)
- ;;=5^BCC of skin of eyelid/canthus
- ;;^UTILITY(U,$J,358.3,23643,2)
- ;;=^340467
- ;;^UTILITY(U,$J,358.3,23644,0)
- ;;=173.12^^148^1506^7
- ;;^UTILITY(U,$J,358.3,23644,1,0)
+ ;;^UTILITY(U,$J,358.3,23690,1,3,0)
+ ;;=3^838.02
+ ;;^UTILITY(U,$J,358.3,23690,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; midtarsal (joint)
+ ;;^UTILITY(U,$J,358.3,23690,2)
+ ;;=^274395
+ ;;^UTILITY(U,$J,358.3,23691,0)
+ ;;=838.03^^141^1461^26
+ ;;^UTILITY(U,$J,358.3,23691,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23644,1,2,0)
- ;;=2^173.12
- ;;^UTILITY(U,$J,358.3,23644,1,5,0)
- ;;=5^SCC of skin of eyelid/canthus
- ;;^UTILITY(U,$J,358.3,23644,2)
- ;;=^340468
- ;;^UTILITY(U,$J,358.3,23645,0)
- ;;=173.19^^148^1506^8
- ;;^UTILITY(U,$J,358.3,23645,1,0)
+ ;;^UTILITY(U,$J,358.3,23691,1,3,0)
+ ;;=3^838.03
+ ;;^UTILITY(U,$J,358.3,23691,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; tarsometatarsal (joint)
+ ;;^UTILITY(U,$J,358.3,23691,2)
+ ;;=^274396
+ ;;^UTILITY(U,$J,358.3,23692,0)
+ ;;=838.04^^141^1461^27
+ ;;^UTILITY(U,$J,358.3,23692,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23645,1,2,0)
- ;;=2^173.19
- ;;^UTILITY(U,$J,358.3,23645,1,5,0)
- ;;=5^Other specified neoplasm eyelid
- ;;^UTILITY(U,$J,358.3,23645,2)
- ;;=^340469
- ;;^UTILITY(U,$J,358.3,23646,0)
- ;;=173.20^^148^1506^9
- ;;^UTILITY(U,$J,358.3,23646,1,0)
+ ;;^UTILITY(U,$J,358.3,23692,1,3,0)
+ ;;=3^838.04
+ ;;^UTILITY(U,$J,358.3,23692,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; metatarsal(bone), joint unspecified
+ ;;^UTILITY(U,$J,358.3,23692,2)
+ ;;=^274397
+ ;;^UTILITY(U,$J,358.3,23693,0)
+ ;;=838.05^^141^1461^28
+ ;;^UTILITY(U,$J,358.3,23693,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23646,1,2,0)
- ;;=2^173.20
- ;;^UTILITY(U,$J,358.3,23646,1,5,0)
- ;;=5^Malig neoplasm skin, ear/ear canal NOS
- ;;^UTILITY(U,$J,358.3,23646,2)
- ;;=^340598
- ;;^UTILITY(U,$J,358.3,23647,0)
- ;;=173.21^^148^1506^10
- ;;^UTILITY(U,$J,358.3,23647,1,0)
+ ;;^UTILITY(U,$J,358.3,23693,1,3,0)
+ ;;=3^838.05
+ ;;^UTILITY(U,$J,358.3,23693,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; metatarsophalangeal(joint)
+ ;;^UTILITY(U,$J,358.3,23693,2)
+ ;;=^274398
+ ;;^UTILITY(U,$J,358.3,23694,0)
+ ;;=838.06^^141^1461^29
+ ;;^UTILITY(U,$J,358.3,23694,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23647,1,2,0)
- ;;=2^173.21
- ;;^UTILITY(U,$J,358.3,23647,1,5,0)
- ;;=5^BCC of skin of ear/ear canal
- ;;^UTILITY(U,$J,358.3,23647,2)
- ;;=^340470
- ;;^UTILITY(U,$J,358.3,23648,0)
- ;;=173.22^^148^1506^11
- ;;^UTILITY(U,$J,358.3,23648,1,0)
+ ;;^UTILITY(U,$J,358.3,23694,1,3,0)
+ ;;=3^838.06
+ ;;^UTILITY(U,$J,358.3,23694,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; interphalangeal(joint) foot
+ ;;^UTILITY(U,$J,358.3,23694,2)
+ ;;=^274399
+ ;;^UTILITY(U,$J,358.3,23695,0)
+ ;;=838.09^^141^1461^30
+ ;;^UTILITY(U,$J,358.3,23695,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23648,1,2,0)
- ;;=2^173.22
- ;;^UTILITY(U,$J,358.3,23648,1,5,0)
- ;;=5^SCC of skin of ear/ear canal
- ;;^UTILITY(U,$J,358.3,23648,2)
- ;;=^340471
- ;;^UTILITY(U,$J,358.3,23649,0)
- ;;=173.29^^148^1506^12
- ;;^UTILITY(U,$J,358.3,23649,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23649,1,2,0)
- ;;=2^173.29
- ;;^UTILITY(U,$J,358.3,23649,1,5,0)
- ;;=5^Other spec neoplasm skin, ear/ear canal
- ;;^UTILITY(U,$J,358.3,23649,2)
- ;;=^340472
- ;;^UTILITY(U,$J,358.3,23650,0)
- ;;=173.30^^148^1506^13
- ;;^UTILITY(U,$J,358.3,23650,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23695,1,3,0)
+ ;;=3^838.09
+ ;;^UTILITY(U,$J,358.3,23695,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; other, toe(s)
+ ;;^UTILITY(U,$J,358.3,23695,2)
+ ;;=^274400

@@ -1,6 +1,11 @@
 FBUCEN ;ALBISC/TET - ENTER UNAUTHORIZED CLAIM ; 4/9/10 11:25am
- ;;3.5;FEE BASIS;**32,61,114**;JAN 30, 1995;Build 7
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**32,61,114,153**;JAN 30, 1995;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;FB*3.5*153 Insure the response to the Millenium Act 38
+ ;           U.S.C. 1725 for Y/N is set to 1/0 in field 
+ ;           #31 of file 162.7.
+ ;
  ;FBUC - unauthorized claims site parameter node
  ;FBTRACK - 1 to track incomplete claims, 0 to track complete claims only
  ;FBUCP - 0 to not automatically print letters, otherwise default device
@@ -22,7 +27,7 @@ PROG N DIC,DA S DIC="^FBAA(161.8,",DIC(0)="AEQMZ",DIC("S")="I +$P(^(0),U,3)" D ^
  .S DIR(0)="Y"
  .S DIR("A")="Is this claim being considered under Millennium Act 38 U.S.C. 1725 (Y/N)"
  .D ^DIR K DIR I $D(DIRUT) S FBOUT=1 Q
- .S FB1725=$S(Y:1,1:"")
+ .S FB1725=+Y     ;FB*3.5*153
  .D ASKDT Q:FBOUT  I FBTRACK,'FBINENT D  Q:FBOUT
  ..S DIR(0)="Y",DIR("A")="Is the unauthorized claim complete for the FEE PROGRAM" D DIRQ,^DIR K DIR S:$D(DIRUT) FBOUT=1 S:'FBOUT FBOK=Y Q:FBOUT!(FBOK)
  ..D REQ^FBUCPEND Q:FBOUT  S FBORDER=10 ;display/select pending information,set status order to incomplete if selected pending items

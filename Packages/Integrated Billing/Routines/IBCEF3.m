@@ -1,6 +1,6 @@
 IBCEF3 ;ALB/TMP - FORMATTER SPECIFIC BILL FLD FUNCTIONS ;17-JUNE-96
- ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 MPG(PG,FLDS,FORM) ; Set static flds on pages after page 1
  ;        for either 1500 or UB
@@ -26,7 +26,8 @@ MPG(PG,FLDS,FORM) ; Set static flds on pages after page 1
  .. ;
  .. D SETGBL^IBCEFG(PG,57,51,$$DOL^IBCEF77($G(IBXSAVE("TOT")),9),.IBXSIZE)
  .. D SETGBL^IBCEFG(PG,57,62,$$DOL^IBCEF77($G(IBXSAVE("PAID")),8),.IBXSIZE)
- .. D SETGBL^IBCEFG(PG,57,71,$$DOL^IBCEF77($G(IBXSAVE("BDUE")),8),.IBXSIZE)
+ .. ;IB*2.0*516/DRF - Blank Box 30 on last page of multi-page claims
+ .. ;D SETGBL^IBCEFG(PG,57,71,$$DOL^IBCEF77($G(IBXSAVE("BDUE")),8),.IBXSIZE)
  .. K IBXSAVE("PTOT"),IBXSAVE("TOT"),IBXSAVE("BDUE"),IBXSAVE("PAID")
  ;
  S Z=0 F  S Z=$O(FLDS(Z)) Q:'Z  D

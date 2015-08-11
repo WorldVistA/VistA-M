@@ -1,6 +1,6 @@
 IBCNRRP3 ;BHAM ISC/CMW - GROUP PLAN WORKSHEET REPORT PRINT ;03-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,276,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ePHARM GROUP PLAN WORKSHEET REPORT
  ;
@@ -126,7 +126,9 @@ DATA ; Gather and format lines of data to be printed
  ;
  ;Loop through and sort TMP file
  N CNT,IBINS,IBINSNM,IBGRP,IBGRPNM,IBGRPNB,RPDT,RPTOT,RPTCNT,RPTCHG
- N IBGRP0,IBGRP6,IBGRPNM,IBPLBIN,IBPLNNM,IBPLPCN,IBPPIEN
+ ;Get new HIPAA fields, IBGRP0 no longer needed - IB*2*516
+ ;N IBGRP0,IBGRP6,IBGRPNM,IBPLBIN,IBPLNNM,IBPLPCN,IBPPIEN
+ N IBGRP6,IBGRPNM,IBPLBIN,IBPLNNM,IBPLPCN,IBPPIEN
  S IBINS=0,CNT=0
  F  S IBINS=$O(^XTMP(RTN,IBINS)) Q:IBINS=""  D
  . ;get insurance company name
@@ -135,14 +137,17 @@ DATA ; Gather and format lines of data to be printed
  . S IBGRP=0
  . F  S IBGRP=$O(^XTMP(RTN,IBINS,IBGRP)) Q:IBGRP=""  D
  .. ;get group info
- .. S IBGRP0=$G(^IBA(355.3,IBGRP,0))
+ .. ;S IBGRP0=$G(^IBA(355.3,IBGRP,0))
  .. ;get pharmacy plan info
  .. S IBGRP6=$G(^IBA(355.3,IBGRP,6))
  .. I 'IBGRP6,$G(MAT) Q  ; Matched only
- .. I IBGRP0 D
+ .. ;I IBGRP0 D
+ .. I $$GET1^DIQ(355.3,IBGRP,2.01)]"" D
  ... S (IBGRPNM,IBGRPNB)=""
- ... S IBGRPNM=$P($G(IBGRP0),U,3) I $G(IBGRPNM)="" S IBGRPNM="<blank>"
- ... S IBGRPNB=$P($G(IBGRP0),U,4) I $G(IBGRPNB)="" S IBGRPNB="<blank>"
+ ... ;S IBGRPNM=$P($G(IBGRP0),U,3) I $G(IBGRPNM)="" S IBGRPNM="<blank>"
+ ... ;S IBGRPNB=$P($G(IBGRP0),U,4) I $G(IBGRPNB)="" S IBGRPNB="<blank>"
+ ... S IBGRPNM=$$GET1^DIQ(355.3,IBGRP,2.01) I $G(IBGRPNM)="" S IBGRPNM="<blank>"
+ ... S IBGRPNB=$$GET1^DIQ(355.3,IBGRP,2.02) I $G(IBGRPNB)="" S IBGRPNB="<blank>"
  ... S RPDT=IBGRPNB
  .. I IBGRP6 D
  ... S (IBPPIEN,IBPLNNM,IBPLPCN)=""

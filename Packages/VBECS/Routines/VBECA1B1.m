@@ -1,5 +1,5 @@
 VBECA1B1 ;HIOFO/BNT - VBECS Patient Data API continued ;04/12/2005 03:10
- ;;1.0;VBECS;;Apr 14, 2005;Build 35
+ ;;1.0;VBECS;**54**;Apr 14, 2005;Build 19
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -76,6 +76,7 @@ RPTSTELE(ELE,ATR) ; -- element start event handler
  . S VBECSTC=VBECSTC+1 D
  . . I ATR("printTestName")="DAT Poly CC" Q
  . . I ATR("printTestName")="DAT IgG CC" Q
+ . . I $G(ATR("orderableTestName"))="TRW" Q
  . . S @VBECRES@("SPECIMEN",VBECSTC)=$G(ATR("cprsOrderId"))_"^"_$G(ATR("divisionCode"))_"^"_$G(ATR("enteringTechId"))_"^"_$G(ATR("orderableTestName"))_"^"_$G(ATR("printTestName"))_"^"_$G(ATR("requestorId"))
  . . S @VBECRES@("SPECIMEN",VBECSTC)=@VBECRES@("SPECIMEN",VBECSTC)_"^"_$G(ATR("result"))_"^"_$G(ATR("testDate"))
  . . I $G(ATR("comment"))]"" D

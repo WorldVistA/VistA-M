@@ -1,0 +1,132 @@
+IBDEI1RW ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31694,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,31694,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,31694,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,31695,0)
+ ;;=D56.1^^190^1943^26
+ ;;^UTILITY(U,$J,358.3,31695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31695,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,31695,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,31695,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,31696,0)
+ ;;=C83.79^^190^1943^27
+ ;;^UTILITY(U,$J,358.3,31696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31696,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,31696,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,31696,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,31697,0)
+ ;;=C83.70^^190^1943^28
+ ;;^UTILITY(U,$J,358.3,31697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31697,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,31697,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,31697,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,31698,0)
+ ;;=D09.0^^190^1943^35
+ ;;^UTILITY(U,$J,358.3,31698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31698,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,31698,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,31698,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,31699,0)
+ ;;=D06.9^^190^1943^36
+ ;;^UTILITY(U,$J,358.3,31699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31699,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,31699,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,31699,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,31700,0)
+ ;;=D06.0^^190^1943^38
+ ;;^UTILITY(U,$J,358.3,31700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31700,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,31700,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,31700,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,31701,0)
+ ;;=D06.1^^190^1943^39
+ ;;^UTILITY(U,$J,358.3,31701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31701,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,31701,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,31701,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,31702,0)
+ ;;=D06.7^^190^1943^37
+ ;;^UTILITY(U,$J,358.3,31702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31702,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,31702,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,31702,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,31703,0)
+ ;;=D04.9^^190^1943^40
+ ;;^UTILITY(U,$J,358.3,31703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31703,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,31703,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,31703,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,31704,0)
+ ;;=C91.11^^190^1943^42
+ ;;^UTILITY(U,$J,358.3,31704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31704,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,31704,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,31704,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,31705,0)
+ ;;=C91.10^^190^1943^43
+ ;;^UTILITY(U,$J,358.3,31705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31705,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
+ ;;^UTILITY(U,$J,358.3,31705,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,31705,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,31706,0)
+ ;;=C92.11^^190^1943^44
+ ;;^UTILITY(U,$J,358.3,31706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31706,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
+ ;;^UTILITY(U,$J,358.3,31706,1,4,0)
+ ;;=4^C92.11
+ ;;^UTILITY(U,$J,358.3,31706,2)
+ ;;=^5001793

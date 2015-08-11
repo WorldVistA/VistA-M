@@ -1,6 +1,6 @@
 IBCNSM5 ;ALB/NLR - INSURANCE MANAGEMENT WORKSHEET ; 23-JUL-93
- ;;2.0;INTEGRATED BILLING;**28,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,497,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % G EN^IBCNSM
  ;
@@ -51,13 +51,16 @@ GETEN1Q Q
  ;
 SETVAR ; -- set variables needed for file navigation
  ;
- S IBCDFND=$G(^DPT(DFN,.312,$P(IBPPOL,"^",4),0)),IBCNS=+IBCDFND
+ ;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ ;S IBCDFND=$G(^DPT(DFN,.312,$P(IBPPOL,"^",4),0)),IBCNS=+IBCDFND  ; 516 - baa
+ S IBCDFND=$$ZND^IBCNS1(DFN,$P(IBPPOL,"^",4)),IBCNS=+IBCDFND  ; 516 - baa
  S IBCDFND1=$G(^DPT(DFN,.312,$P(IBPPOL,"^",4),1))
  S IBCDFND2=$G(^DPT(DFN,.312,$P(IBPPOL,"^",4),2))
  S IBCDFNDA=$G(^DIC(36,+IBCDFND,.11))
  S IBCDFNDB=$G(^DIC(36,+IBCDFND,.13))
  S IBCPOL=+$P(IBCDFND,"^",18),IBCNS=+IBCDFND,IBCDFN=$P(IBPPOL,"^",4)
- S IBCPOLD=$G(^IBA(355.3,+$P(IBCDFND,"^",18),0))
+ ;IB*2.0*516/TAZ - replace Group Number and Group Name with HIPAA compliant fields
+ S IBCPOLD=$G(^IBA(355.3,IBCPOL,0)),$P(IBCPOLD,U,3)=$$GET1^DIQ(355.3,IBCPOL_",",2.01),$P(IBCPOLD,U,4)=$$GET1^DIQ(355.3,IBCPOL_",",2.02)
  S FILE="^DPT("_DFN_",.312,"
  S IBCBU=$O(^IBA(355.5,"APPY",DFN,IBCPOL,-IBYR,IBCDFN,0))
  S IBCBUD=$G(^IBA(355.5,+IBCBU,0))

@@ -1,5 +1,5 @@
 ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
 ED ;[EE Abstract Edit Primary]
  W @IOF,!
@@ -90,6 +90,7 @@ MEN ;Primary Menu Options
  W !?22,"5. Performance Measures"
  W !?22,"6. Over-ride Flags"
  W !?22,"7. Case Administration"
+ W !?22,"8. EDIT Modifiers"
  W !!?22,"A  All - Complete Abstract"
  ;
 A K ONCOANS,X,Y
@@ -99,13 +100,13 @@ A K ONCOANS,X,Y
  I X=U!'$T S Y="",ONCOOUT=U Q
  I (X="A")!(X="ALL")!(X="all")!(X="All") S ONCOANS="A",Y=1 G Y
  I X="CS",$P($G(^ONCO(165.5,D0,0)),U,16)>3039999 S ONCOANS=3,Y=292 G Y
- S (ONCOANS,Y)=X I X<1!(X>7) W "??" G A
+ S (ONCOANS,Y)=X I X<1!(X>8) W "??" G A
  ;
 Y S Y="@"_Y
  Q
  ;
 HP W !!,?10,"Select 'A' for the complete abstract"
- W !?10,"Select 1-7 for the desired subsection",!
+ W !?10,"Select 1-8 for the desired subsection",!
  G A
  ;
 PAT ;Patient Identification
@@ -256,7 +257,7 @@ NR S NR=NR+1 I NR<MR G:$D(^ONCO(165.5,"AA",NR)) NR S AC=NR,SEQ="00" Q
 TOPNAM ;PRIMARY SITE and PRIMARY SITE CODE for header
  K SITTAB
  S TOP=$P($G(^ONCO(165.5,D0,2)),U,1),TOPCOD="",TOPNAM=""
- I TOP'="" S TOPNAM=$P(^ONCO(164,TOP,0),U,1),TOPCOD=$P(^ONCO(164,TOP,0),U,2)
+ I TOP'="" S TOPNAM=$P($G(^ONCO(164,TOP,0)),U,1),TOPCOD=$P($G(^ONCO(164,TOP,0)),U,2)
  S SITTAB=79-$L(SITEGP),TOPTAB=79-$L(TOPNAM_" "_TOPCOD)
  S NOS=TOPTAB-$L(PATNAM),NOS=NOS-1 K SPACES S $P(SPACES," ",NOS)=" "
  Q

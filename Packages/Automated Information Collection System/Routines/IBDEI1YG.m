@@ -1,0 +1,132 @@
+IBDEI1YG ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,34686,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,34687,0)
+ ;;=J45.990^^192^2008^17
+ ;;^UTILITY(U,$J,358.3,34687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34687,1,3,0)
+ ;;=3^Exercise Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,34687,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,34687,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,34688,0)
+ ;;=J45.22^^192^2008^19
+ ;;^UTILITY(U,$J,358.3,34688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34688,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,34688,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,34688,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,34689,0)
+ ;;=J45.20^^192^2008^20
+ ;;^UTILITY(U,$J,358.3,34689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34689,1,3,0)
+ ;;=3^Mild Intermittent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,34689,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,34689,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,34690,0)
+ ;;=J45.21^^192^2008^18
+ ;;^UTILITY(U,$J,358.3,34690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34690,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,34690,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,34690,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,34691,0)
+ ;;=J45.31^^192^2008^21
+ ;;^UTILITY(U,$J,358.3,34691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34691,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,34691,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,34691,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,34692,0)
+ ;;=J45.32^^192^2008^22
+ ;;^UTILITY(U,$J,358.3,34692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34692,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,34692,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,34692,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,34693,0)
+ ;;=J45.30^^192^2008^23
+ ;;^UTILITY(U,$J,358.3,34693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34693,1,3,0)
+ ;;=3^Mild Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,34693,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,34693,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,34694,0)
+ ;;=J45.41^^192^2008^24
+ ;;^UTILITY(U,$J,358.3,34694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34694,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,34694,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,34694,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,34695,0)
+ ;;=J45.42^^192^2008^25
+ ;;^UTILITY(U,$J,358.3,34695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34695,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,34695,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,34695,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,34696,0)
+ ;;=J45.40^^192^2008^26
+ ;;^UTILITY(U,$J,358.3,34696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34696,1,3,0)
+ ;;=3^Moderate Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,34696,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,34696,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,34697,0)
+ ;;=J41.1^^192^2008^27
+ ;;^UTILITY(U,$J,358.3,34697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34697,1,3,0)
+ ;;=3^Mucopurulent Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,34697,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,34697,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,34698,0)
+ ;;=J45.998^^192^2008^2
+ ;;^UTILITY(U,$J,358.3,34698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34698,1,3,0)
+ ;;=3^Asthma NEC
+ ;;^UTILITY(U,$J,358.3,34698,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,34698,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,34699,0)
+ ;;=J43.8^^192^2008^15
+ ;;^UTILITY(U,$J,358.3,34699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34699,1,3,0)
+ ;;=3^Emphysema NEC

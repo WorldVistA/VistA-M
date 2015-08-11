@@ -1,6 +1,6 @@
 IBCVA0 ;ALB/MJB - SET MCCR VARIABLES CONT.  ;04 AUG 88 03:02
- ;;2.0;INTEGRATED BILLING;**52,361,371**;21-MAR-94;Build 57
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,361,371,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRVA0
  ;
@@ -26,7 +26,11 @@ EN2 S:'$D(^DPT(DFN,.311)) IBEMPD="" I $D(^DPT(DFN,.311)) I ^DPT(DFN,.311)'="" S 
 EN3 D 123^IBCVA
 EN31 ; -IBdd(i) = value of ins node in dpt
  I '$D(^DGCR(399,IBIFN,"AIC")) S IBINDT=$S(+$G(IB("U")):+IB("U"),+$G(^DGCR(399,IBIFN,"U")):+$G(^("U")),1:DT) D ALL^IBCNS1(DFN,"IBDD",1,IBINDT) S I="" F  S I=$O(IBDD(I)) Q:'I  D INS
- I $D(^DGCR(399,IBIFN,"AIC")) S IBIN="I" F I=1:1:3 S IBIN=$O(^DGCR(399,IBIFN,IBIN)) Q:IBIN'?1"I".N  S IBDD(I,0)=^DGCR(399,IBIFN,IBIN) D INS
+ ;
+ ; MRD;IB*2.0*516 - Due to the introduction of the new "In7" nodes
+ ; on file# 399, this line must be modified to work correctly.
+ ;I $D(^DGCR(399,IBIFN,"AIC")) S IBIN="I" F I=1:1:3 S IBIN=$O(^DGCR(399,IBIFN,IBIN)) Q:IBIN'?1"I".N  S IBDD(I,0)=^DGCR(399,IBIFN,IBIN) D INS
+ I $D(^DGCR(399,IBIFN,"AIC")) F I=1:1:3 S IBIN="I"_I Q:'$D(^DGCR(399,IBIFN,IBIN))  S IBDD(I,0)=^DGCR(399,IBIFN,IBIN) D INS
  Q
 INS I $P(IBDD(I,0),U,6)="v" S IBISEX(I)=$P(^DPT(DFN,0),U,2)
  E  S IBISEX(I)=$P($G(^DPT(DFN,.312,+$P($G(^DGCR(399,IBIFN,"M")),U,I+11),3)),U,12) ; *361 replaces old calculation of insured's sex

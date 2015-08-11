@@ -1,6 +1,21 @@
-RORLOCK ;HCIOFO/SG - LOCKS AND TRANSACTIONS ; 11/17/06 11:37am
- ;;1.5;CLINICAL CASE REGISTRIES;**1**;Feb 17, 2006;Build 24
+RORLOCK ;HCIOFO/SG - LOCKS AND TRANSACTIONS ;17 Mar 2015  11:45 AM
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,27**;Feb 17, 2006;Build 58
  ;
+ ; This routine uses the following IAs:
+ ; #2052   GET1^DID (supported)
+ ; #2055   ROOT^DILFD (supported)
+ ; #2056   GET1^DIQ (supported)
+ ; #10103  FMTE^XLFDT (supported)
+ ; #10103  NOW^XLFDT (supported)
+ ;
+ ;******************************************************************************
+ ;                 --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*27   FEB  2015   T KOPP       Changed default lock time from 3 to
+ ;                                      DILOCKTM if DILOCKTM > 3
+ ;******************************************************************************
  Q
  ;
  ;***** FINDS THE LOCK DESCRIPTOR FOR THE GLOBAL NODE
@@ -34,7 +49,7 @@ LDSC(NODELIST) ;
  ; FILE          File/subfile number
  ; [IENS]        IENS of the record or subfile
  ; [FIELD]       Field number
- ; [TO]          Timeout (1 sec, by default)
+ ; [TO]          Timeout (DILOCKTM sec, by default)
  ; [NAME]        Process name
  ;
  ; Return Values:
@@ -59,7 +74,7 @@ LOCK(FILE,IENS,FIELD,TO,NAME) ;
  S RC=$$NODELIST(.NODELIST,.FILE,$G(IENS),$G(FIELD))
  Q:RC<0 RC  Q:NODELIST="" 0
  ;--- Try to lock the object(s)
- X "L +("_NODELIST_"):"_$S($G(TO)>0:TO,1:3)  E  Q $$LDSC(.NODELIST)
+ X "L +("_NODELIST_"):"_$S($G(TO)>0:TO,$G(DILOCKTM)>3:DILOCKTM,1:3)  E  Q $$LDSC(.NODELIST)
  ;--- Create the lock descriptor(s)
  S DESCR=$$NOW^XLFDT_U_$G(NAME)_U_U_$JOB_U_$G(ZTSK)
  S:$G(NAME)="" $P(DESCR,U,3)=$G(DUZ)
@@ -74,11 +89,11 @@ LOCK(FILE,IENS,FIELD,TO,NAME) ;
  Q 0
  ;
 LOCK1(FILE,IENS,FIELD,TO,NAME) ;
- N DESCR,NDX,NODE,TMP
- S NODE=$$NODE(FILE,$G(IENS),$G(FIELD))
+ N DESCR,NDX,NODE,TMP,RORLTM
+ S NODE=$$NODE(FILE,$G(IENS),$G(FIELD)),RORLTM=$S($G(DILOCKTM)>3:DILOCKTM,1:3)
  Q:NODE<0 NODE
  ;--- Try to lock the object
- L +@NODE:$S($G(TO)>0:TO,1:3)  E  Q $$LDSC(NODE)
+ L +@NODE:$S($G(TO)>0:TO,1:RORLTM)  E  Q $$LDSC(NODE)
  ;--- Create the lock descriptor
  S DESCR=$$NOW^XLFDT_U_$G(NAME)_U_U_$JOB_U_$G(ZTSK)
  S:$G(NAME)="" $P(DESCR,U,3)=$G(DUZ)

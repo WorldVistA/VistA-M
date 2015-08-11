@@ -1,6 +1,6 @@
 IBCNRPMT ;DAOU/ALA - Match Group Plan to Pharmacy Plan ;14-NOV-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program select an insurance company and displays
@@ -18,7 +18,9 @@ GRP NEW DIC,DTOUT,DUOUT,X,Y
  S (IBIND,IBMULT,IBW)=1
  S DIC(0)="BEFSXZ"
  S DIC("S")="S DNM=$NA(^(0)),DIEN=$QS(DNM,2),GST=$$GPS^IBCNRPMT(IBCNSP,DIEN),DIEN=$G(@DNM) I GST'=0"
- S DIC("W")="W $P(^(0),U,3),"" - "",$P(^(0),U,4)"
+ ; MRD;IB*2.0*516 - Look at new fields for Group Name and Number.
+ ;S DIC("W")="W $P(^(0),U,3),"" - "",$P(^(0),U,4)"
+ S DIC("W")="W $P(^(2),U,1),"" - "",$P(^(2),U,2)"
  S DIC="^IBA(355.3,"
  S D="B",X=IBCNSP
  D IX^DIC I Y<1 G EN

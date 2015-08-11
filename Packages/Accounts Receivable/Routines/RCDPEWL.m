@@ -1,42 +1,49 @@
-RCDPEWL ;ALB/TMK/KML - ELECTRONIC EOB MESSAGE WORKLIST ; 5/24/11 4:46pm
- ;;4.5;Accounts Receivable;**173,208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWL ;ALB/TMK/KML - ELECTRONIC EOB MESSAGE WORKLIST ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ;
 EN ; Main entry point
  N RCFASTXT,DA,DIC,X,Y,RCERA,RCNOED
  D FULL^VALM1
  ;
- S DIR(0)="SA^L:LIST;S:SPECIFIC",DIR("A")="DO YOU WANT A (L)IST OF ERAs OR A (S)PECIFIC ONE?: ",DIR("B")="LIST" W ! D ^DIR K DIR
- G:$D(DTOUT)!$D(DUOUT) ENQ
+ S DIR(0)="SA^L:LIST;S:SPECIFIC",DIR("A")="DO YOU WANT A (L)IST OF ERAs OR A (S)PECIFIC ONE?: "
+ S DIR("B")="LIST" W ! D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) G ENQ
  I Y="S" D  G ENQ
  . S DIC="^RCY(344.4,",DIC(0)="AEMQ" D ^DIC
  . I Y>0 D WL^RCDPEWL7(+Y)
- ;
- D PARAMS^RCDPEWL0
- I '$D(^TMP("RCERA_PARAMS",$J)) G ENQ
+ ; Calling Change View API in Menu Option Mode
+ D PARAMS^RCDPEWL0("MO") I $G(RCQUIT) G ENQ
  D EN^VALM("RCDPE WORKLIST ERA LIST")
  ;
 ENQ Q
  ;
 DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
- ; RCERA = ien of entry in file 344.49
+ ;  RCERA = ien of entry in file 344.49
  ; RCNOED = 1 if receipt exists/no editing allowed
  ;        = 2 if no edit and called from receipt processing
+ ;  ; prca*4.5*298 - added AUTOPOST input argument
+ ; AUTOPOST = "" if ERA is non-autopost
+ ;          = 0  if auto-posted ERA is in UNPOSTED status
+ ;          = 1 if auto-posted ERA is in PARTIAL posted status
+ ;          = 2 if auto-posted ERA is in COMPLETE status
  ;
  N DUOUT,DTOUT,DIC,DIK,X,Y,DIR,RCQUIT,DA,DIE,DR,RCSCR,RC0,RC5,RCDAT,RCUNM
  ;
  S RCSCR("NOEDIT")=+$G(RCNOED)
  S RCQUIT=0,RC0=$G(^RCY(344.4,RCERA,0)),RC5=$G(^RCY(344.4,RCERA,5))
- ;I $$HACERA^RCDPEU(RCERA) S DIR(0)="YA",DIR("A")="THIS ERA IS FROM CHAMPVA (HAC) - ARE YOU SURE YOU WANT TO CONTINUE?: ",DIR("B")="YES" D ^DIR K DIR G:Y'=1 DISPQ
  I 'RCSCR("NOEDIT"),'$O(^RCY(344.49,"B",RCERA,0)) D  G:RCQUIT DISPQ
- . S DIR(0)="YA",DIR("B")="NO",DIR("A",1)="NO WORKLIST SCRATCH PAD ENTRY EXISTS FOR THIS ERA",DIR("A")="DO YOU WANT TO CREATE ONE NOW?: "
+ . ;allow additional selections
+ . S DIR("A",1)="No worklist scratchpad entry exists for this ERA."
+ . S DIR("A")="(C)reate scratchpad, (V)iew ERA details or (E)xit:"
+ . S DIR(0)="SAO^C:CREATE SCRATCHPAD;V:VIEW ERA DETAILS;E:EXIT"
  . W ! D ^DIR K DIR
- . I Y'=1 S RCERA=-1,RCQUIT=1 Q
- . ;
+ . I (Y'="V")&(Y'="C")&(Y'="E") S RCERA=-1,RCQUIT=1 Q
+ . I Y="V" S RCSCR=RCERA D PRERA1^RCDPEWL0 S RCERA=-1,RCQUIT=1  Q
+ . I Y="E" S RCERA=-1,RCQUIT=1 Q
+ . ; prca*4.5*298  Y is = "C" therefore perform the pre-existing scratchpad creation/editing algorithm
  . I $P(RC0,U,15)'="" W !!,"PAYMENT METHOD CODE REPORTED: "_$P(RC0,U,15),!
  . I $P(RC0,U,15)="" W !!,"NO PAYMENT METHOD CODE REPORTED",!
- . ;I $P(RC0,U,9)=0,$P(RC0,U,13)="",'$$HACERA^RCDPEU(RCERA) D  Q:RCQUIT
  . I $P(RC0,U,9)=0,$P(RC5,U,2)="" D  Q:RCQUIT
  .. S RCQUIT=0,RCUNM=0
  .. I +$P(RC0,U,5)=0,"ACH"'[(U_$P(RC0,U,15)_U) D  Q:RCQUIT!RCUNM
@@ -79,28 +86,38 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  ... S DA=RCSCR,DIK="^RCY(344.49," D ^DIK S RCSCR=0
  ... S DIR(0)="EA",DIR("A",1)="ANOTHER USER HAS LOCKED THIS ENTRY - NEW RECORD NOT CREATED",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
  .. Q:'RCSCR
- .. D SETBATCH^RCDPEWLB(RCSCR)
+ .. ; prca*4.5*298  per patch requirements, keep code related to 
+ .. ; creating/maintaining batches but just remove from execution.
+ .. ;D SETBATCH^RCDPEWLB(RCSCR) ; prca*4.5*298
  .. D ADDLINES^RCDPEWLA(RCSCR)
  .. K ^TMP($J,"BATCHES")
  ;
  I RCSCR D  G:'RCSCR DISPQ
- . Q:'$$BAT^RCDPEWL7(RCSCR)
- . I 'RCSCR("NOEDIT"),'$G(^TMP("RCBATCH_SELECTED",$J)) L +^RCY(344.4,RCSCR):5 I '$T W !!,"Another user is currently editing this entry",! S DIR(0)="E" D ^DIR K DIR S RCSCR=0 Q
+ . ; prca*4.5*298  per patch requirements, keep code related to 
+ . ; creating/maintaining batches but just remove from execution.
+ . ;Q:'$$BAT^RCDPEWL7(RCSCR)
+ . ;I 'RCSCR("NOEDIT"),'$G(^TMP("RCBATCH_SELECTED",$J)) L +^RCY(344.4,RCSCR):5 I '$T W !!,"Another user is currently editing this entry",! S DIR(0)="E" D ^DIR K DIR S RCSCR=0 Q
+ . I 'RCSCR("NOEDIT") L +^RCY(344.4,RCSCR):5 I '$T W !!,"Another user is currently editing this entry",! S DIR(0)="E" D ^DIR K DIR S RCSCR=0 Q
  . D EN^VALM("RCDPE EOB WORKLIST")
  ;
 DISPQ L -^RCY(344.4,+$G(RCERA))
  Q
  ;
 INIT ; -- set up initial variables
- N RCQUIT,RCREV,RCSORT
+ N RCQUIT,RCREV
  S VALMCNT=0,VALMBG=1
  S RCQUIT=0
- I '$D(RCSCR) S VALMQUIT=1 Q
- S RCREV=+$O(^RCY(344.49,RCSCR,2,"B",DUZ,0))
- I $P($G(^RCY(344.49,RCSCR,2,RCREV,0)),U,2)=1 S $P(^TMP($J,"RC_SORTPARM"),U,2)=1
- S RCSORT=$$SELSORT^RCDPEWLA(.RCQUIT)
- I $G(RCQUIT) S VALMQUIT=1
- I '$G(RCQUIT) D BLD^RCDPEWL1(RCSORT)
+ ; PRCA*4.5*298: Removed functionality for retrieving/storing user preferences in file #344.49
+ ; and replaced with the use of parameters handled by PARAMS^RCDPEWLA.
+ D PARAMS^RCDPEWLA("MO") I $G(RCQUIT) S VALMQUIT=1 Q
+ D BLD^RCDPEWL1($G(^TMP($J,"RC_SORTPARM")))
+ Q
+ ;
+CV ; Change View Action for EEOB Worklist
+ D FULL^VALM1
+ D PARAMS^RCDPEWLA("CV")
+ D BLD^RCDPEWL1($G(^TMP($J,"RC_SORTPARM"))),HDR
+ S VALMBCK="R",VALMBG=1
  Q
  ;
 ADDREC(RCERA,RCDAT) ; Add a record to file 344.49
@@ -118,23 +135,36 @@ ADDREC(RCERA,RCDAT) ; Add a record to file 344.49
  Q RCY
  ;
 HDR ; Creates header lines for the selected ERA display
- N X,Z,RC,RC5,RCT
+ N X,Z,I,RC,RC5,RC4,RCSORTBY,RCEEOBPU
+ F I=1:1:5 S VALMHDR(I)=""
  I '$G(RCSCR) S VALMQUIT=1 Q
  S RC=$G(^RCY(344.4,+RCSCR,0)),RC5=$G(^RCY(344.4,+RCSCR,5))
- ; HIPAA 5010 - Payer Name extended from 35 to 60
- ; needs to go on separate line
+ S RC4=$G(^RCY(344.4,+RCSCR,4))  ;prca*4.5*298 
  S VALMHDR(1)=$E("ERA Entry #: "_$P(RC,U)_$J("",31),1,31)_"Total Amt Pd: "_$J(+$P(RC,U,5),"",2)
  S VALMHDR(2)="Payer Name/ID: "_$P(RC,U,6)_"/"_$P(RC,U,3)
  S Z=+$O(^RCY(344.31,"AERA",+RCSCR,0))
- ; HIPAA 5010 - Trace # - increased in length from 30 to 50; needs to be on a separate line
  I Z S VALMHDR(3)="EFT #/TRACE #: "_$P($G(^RCY(344.3,+$G(^RCY(344.31,Z,0)),0)),U)_"/"_$P(RC,U,2)
  I 'Z,$P(RC5,U,2)'="" S VALMHDR(3)="PAPER CHECK #: "_$P(RC5,U,2)
- S RCT=2
- I $G(^TMP("RCBATCH_SELECTED",$J)) D
- . N Z,Z0
- . S Z=+$G(^TMP("RCBATCH_SELECTED",$J)),Z0=$G(^RCY(344.49,RCSCR,3,Z,0))
- . S RCT=RCT+1,VALMHDR(RCT)="BATCH: "_Z_"  "_$P(Z0,U,2)_"  "_$$EXTERNAL^DILFD(344.493,.03,"",$P(Z0,U,3))
- I $G(RCSCR("NOEDIT")) S RCT=RCT+1,VALMHDR(RCT)="*** RECEIPT ALREADY CREATED ("_$P($G(^RCY(344,+$P(RC,U,8),0)),U)_") ***"
+ ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining
+ ; batches but just remove from execution.
+ ;I $G(^TMP("RCBATCH_SELECTED",$J)) D
+ ;. N Z,Z0
+ ;. S Z=+$G(^TMP("RCBATCH_SELECTED",$J)),Z0=$G(^RCY(344.49,RCSCR,3,Z,0))
+ ;. S RCT=RCT+1,VALMHDR(RCT)="BATCH: "_Z_"  "_$P(Z0,U,2)_"  "_$$EXTERNAL^DILFD(344.493,.03,"",$P(Z0,U,3))
+ I $G(RCSCR("NOEDIT")) D
+ . S VALMHDR(4)="*** RECEIPT(S) ALREADY CREATED *** ("_$$RECEIPTS(RCSCR)_")"
+ I $P(RC4,U,2)]"" D  ;AUTO-POST STATUS (344.4, 4.02);  if not null, then the selected ERA is designated for auto-post
+ . ; Setting the Auto-Post info in the header
+ . N AUTOPSTS
+ . S AUTOPSTS="Auto-Post Status: "_$S($P(RC4,U,2)=0:"Unposted",$P(RC4,U,2)=1:"Partial",1:"Complete")
+ . S AUTOPSTS=AUTOPSTS_"    Auto-Post Date: "_$S($P(RC4,U,2)=2:$$FMTE^XLFDT($P(RC4,U)),1:"")
+ . S VALMHDR(5)=AUTOPSTS
+ ; Displaying Current View (PRCA*4.5*298)
+ S $E(VALMHDR(1),60)="Current View:"
+ S RCSORTBY=$G(^TMP($J,"RC_SORTPARM"))
+ S $E(VALMHDR(2),60)=$S(RCSORTBY="F":"ZERO-PAYMENTS FIRST",RCSORTBY="L":"ZERO-PAYMENTS LAST",1:"NO SORT ORDER")
+ S RCEEOBPU=$G(^TMP($J,"RC_EEOBPOST"))
+ S $E(VALMHDR(3),60)=$S(RCEEOBPU="P":"POSTED EEOBs ONLY",RCEEOBPU="U":"UNPOSTED EEOBs ONLY",1:"ALL EEOBS")
  Q
  ;
 FNL ; -- Clean up list
@@ -167,3 +197,20 @@ NOBATCH ; Display action not allowed if working at batch level not the ERA level
  W ! D ^DIR K DIR W !
  Q
  ;
+RECEIPTS(RCSCR) ; get list of receipts for the ERA 
+ ; Input: RCSCR: ERA File (#344.4) IEN
+ ; Output: "" - No Receipt / REC# - One Receipt / REC#A-REC#Z - Range of Receipts
+ N X,RECEIPT,CTR,RC0
+ K ARRAY,STR
+ S X=0,CTR=1,(STR,RECEIPT)=""
+ F  S X=$O(^RCY(344.4,RCSCR,1,"RECEIPT",X)) Q:'X  D
+ . S:X RECEIPT=$P($G(^RCY(344,X,0)),U)  ; get external form of receipt 
+ . I RECEIPT]"" S ARRAY(RECEIPT)=""
+ ; array of receipts does not exist so this could be a non auto-posted ERA; so only 1 receipt will be assigned; retrieve at 344.4, .08
+ I '$D(ARRAY),$$GET1^DIQ(344.4,RCSCR,.08)'="" S ARRAY($$GET1^DIQ(344.4,RCSCR,.08))=""
+ ;
+ I $O(ARRAY($O(ARRAY(""))))'="" D
+ . S STR=$O(ARRAY(""))_"-"_$O(ARRAY(""),-1)
+ E  D
+ . S STR=$O(ARRAY(""))
+ Q STR

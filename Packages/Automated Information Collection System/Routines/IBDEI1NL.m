@@ -1,0 +1,128 @@
+IBDEI1NL ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,29731,0)
+ ;;=C50.312^^189^1893^14
+ ;;^UTILITY(U,$J,358.3,29731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29731,1,3,0)
+ ;;=3^Malig Neop of Lower-Inner Quadrant of Left Breast
+ ;;^UTILITY(U,$J,358.3,29731,1,4,0)
+ ;;=4^C50.312
+ ;;^UTILITY(U,$J,358.3,29731,2)
+ ;;=^5133333
+ ;;^UTILITY(U,$J,358.3,29732,0)
+ ;;=C50.411^^189^1893^27
+ ;;^UTILITY(U,$J,358.3,29732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29732,1,3,0)
+ ;;=3^Malig Neop of Upper-Outer Quadrant of Right Breast
+ ;;^UTILITY(U,$J,358.3,29732,1,4,0)
+ ;;=4^C50.411
+ ;;^UTILITY(U,$J,358.3,29732,2)
+ ;;=^5001179
+ ;;^UTILITY(U,$J,358.3,29733,0)
+ ;;=C50.412^^189^1893^26
+ ;;^UTILITY(U,$J,358.3,29733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29733,1,3,0)
+ ;;=3^Malig Neop of Upper-Outer Quadrant of Left Breast
+ ;;^UTILITY(U,$J,358.3,29733,1,4,0)
+ ;;=4^C50.412
+ ;;^UTILITY(U,$J,358.3,29733,2)
+ ;;=^5133335
+ ;;^UTILITY(U,$J,358.3,29734,0)
+ ;;=C50.511^^189^1893^17
+ ;;^UTILITY(U,$J,358.3,29734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29734,1,3,0)
+ ;;=3^Malig Neop of Lower-Outer Quadrant of Right Breast
+ ;;^UTILITY(U,$J,358.3,29734,1,4,0)
+ ;;=4^C50.511
+ ;;^UTILITY(U,$J,358.3,29734,2)
+ ;;=^5001181
+ ;;^UTILITY(U,$J,358.3,29735,0)
+ ;;=C50.512^^189^1893^16
+ ;;^UTILITY(U,$J,358.3,29735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29735,1,3,0)
+ ;;=3^Malig Neop of Lower-Outer Quadrant of Left Breast
+ ;;^UTILITY(U,$J,358.3,29735,1,4,0)
+ ;;=4^C50.512
+ ;;^UTILITY(U,$J,358.3,29735,2)
+ ;;=^5133337
+ ;;^UTILITY(U,$J,358.3,29736,0)
+ ;;=C50.611^^189^1893^10
+ ;;^UTILITY(U,$J,358.3,29736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29736,1,3,0)
+ ;;=3^Malig Neop of Axillary Tail of Right Breast
+ ;;^UTILITY(U,$J,358.3,29736,1,4,0)
+ ;;=4^C50.611
+ ;;^UTILITY(U,$J,358.3,29736,2)
+ ;;=^5001183
+ ;;^UTILITY(U,$J,358.3,29737,0)
+ ;;=C50.612^^189^1893^9
+ ;;^UTILITY(U,$J,358.3,29737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29737,1,3,0)
+ ;;=3^Malig Neop of Axillary Tail of Left Breast
+ ;;^UTILITY(U,$J,358.3,29737,1,4,0)
+ ;;=4^C50.612
+ ;;^UTILITY(U,$J,358.3,29737,2)
+ ;;=^5001184
+ ;;^UTILITY(U,$J,358.3,29738,0)
+ ;;=C50.811^^189^1893^21
+ ;;^UTILITY(U,$J,358.3,29738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29738,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Right Breast
+ ;;^UTILITY(U,$J,358.3,29738,1,4,0)
+ ;;=4^C50.811
+ ;;^UTILITY(U,$J,358.3,29738,2)
+ ;;=^5001189
+ ;;^UTILITY(U,$J,358.3,29739,0)
+ ;;=C50.812^^189^1893^20
+ ;;^UTILITY(U,$J,358.3,29739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29739,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Left Breast
+ ;;^UTILITY(U,$J,358.3,29739,1,4,0)
+ ;;=4^C50.812
+ ;;^UTILITY(U,$J,358.3,29739,2)
+ ;;=^5001190
+ ;;^UTILITY(U,$J,358.3,29740,0)
+ ;;=C50.911^^189^1893^22
+ ;;^UTILITY(U,$J,358.3,29740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29740,1,3,0)
+ ;;=3^Malig Neop of Right Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,29740,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,29740,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,29741,0)
+ ;;=C50.912^^189^1893^13
+ ;;^UTILITY(U,$J,358.3,29741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29741,1,3,0)
+ ;;=3^Malig Neop of Left Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,29741,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,29741,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,29742,0)
+ ;;=C79.81^^189^1893^32
+ ;;^UTILITY(U,$J,358.3,29742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29742,1,3,0)
+ ;;=3^Secondary Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,29742,1,4,0)
+ ;;=4^C79.81
+ ;;^UTILITY(U,$J,358.3,29742,2)
+ ;;=^267338
+ ;;^UTILITY(U,$J,358.3,29743,0)
+ ;;=D24.1^^189^1893^2
+ ;;^UTILITY(U,$J,358.3,29743,1,0)
+ ;;=^358.31IA^4^2

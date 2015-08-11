@@ -1,6 +1,6 @@
-RCDPEM8 ;OIFO-BAYPINES/PJH - EOB MOVE/COPY BULLETINS ;10/5/11 10:54am
- ;;4.5;Accounts Receivable;**276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEM8 ;OIFO-BAYPINES/PJH - EOB MOVE/COPY BULLETINS ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**276,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point for Moved/Copied EOB bulletins
  ;
@@ -14,8 +14,11 @@ EN ; Main entry point for Moved/Copied EOB bulletins
  ;
  ;Scan for today's moved/copied EOB's
  D EOBSCAN
+ ;-----
+ ; PRCA*4.5*298 - MailMan message disabled, logic retained - 14 Feb 2014
  ;Bulletin
- I EOBCNT D BULLETIN
+ ;I EOBCNT D BULLETIN
+ ;-----
  ;Clear workfiles
  K ^TMP(RCPROG,$J)
  Q

@@ -1,0 +1,132 @@
+IBDEI1X5 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,34081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34081,1,3,0)
+ ;;=3^Nicotine Dependence w/ Nicotine-Induced Disorders
+ ;;^UTILITY(U,$J,358.3,34081,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,34081,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,34082,0)
+ ;;=F17.210^^192^1985^51
+ ;;^UTILITY(U,$J,358.3,34082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34082,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,34082,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,34082,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,34083,0)
+ ;;=F17.211^^192^1985^52
+ ;;^UTILITY(U,$J,358.3,34083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34083,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes in Remission
+ ;;^UTILITY(U,$J,358.3,34083,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,34083,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,34084,0)
+ ;;=F17.213^^192^1985^55
+ ;;^UTILITY(U,$J,358.3,34084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34084,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,34084,1,4,0)
+ ;;=4^F17.213
+ ;;^UTILITY(U,$J,358.3,34084,2)
+ ;;=^5003367
+ ;;^UTILITY(U,$J,358.3,34085,0)
+ ;;=F17.218^^192^1985^54
+ ;;^UTILITY(U,$J,358.3,34085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34085,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Other Disorders
+ ;;^UTILITY(U,$J,358.3,34085,1,4,0)
+ ;;=4^F17.218
+ ;;^UTILITY(U,$J,358.3,34085,2)
+ ;;=^5003368
+ ;;^UTILITY(U,$J,358.3,34086,0)
+ ;;=F17.219^^192^1985^53
+ ;;^UTILITY(U,$J,358.3,34086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34086,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Nicotine-Induced Disorders
+ ;;^UTILITY(U,$J,358.3,34086,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,34086,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,34087,0)
+ ;;=J39.8^^192^1985^83
+ ;;^UTILITY(U,$J,358.3,34087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34087,1,3,0)
+ ;;=3^Respiratory Tract Diseases,Upper
+ ;;^UTILITY(U,$J,358.3,34087,1,4,0)
+ ;;=4^J39.8
+ ;;^UTILITY(U,$J,358.3,34087,2)
+ ;;=^5008231
+ ;;^UTILITY(U,$J,358.3,34088,0)
+ ;;=J98.09^^192^1985^15
+ ;;^UTILITY(U,$J,358.3,34088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34088,1,3,0)
+ ;;=3^Bronchus Diseases NEC
+ ;;^UTILITY(U,$J,358.3,34088,1,4,0)
+ ;;=4^J98.09
+ ;;^UTILITY(U,$J,358.3,34088,2)
+ ;;=^5008359
+ ;;^UTILITY(U,$J,358.3,34089,0)
+ ;;=A15.0^^192^1985^91
+ ;;^UTILITY(U,$J,358.3,34089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34089,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,34089,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,34089,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,34090,0)
+ ;;=J05.0^^192^1985^31
+ ;;^UTILITY(U,$J,358.3,34090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34090,1,3,0)
+ ;;=3^Laryngitis,Obstructive,Acute
+ ;;^UTILITY(U,$J,358.3,34090,1,4,0)
+ ;;=4^J05.0
+ ;;^UTILITY(U,$J,358.3,34090,2)
+ ;;=^5008141
+ ;;^UTILITY(U,$J,358.3,34091,0)
+ ;;=J06.9^^192^1985^82
+ ;;^UTILITY(U,$J,358.3,34091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34091,1,3,0)
+ ;;=3^Respiratory Infection,Upper,Acute
+ ;;^UTILITY(U,$J,358.3,34091,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,34091,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,34092,0)
+ ;;=R63.4^^192^1985^92
+ ;;^UTILITY(U,$J,358.3,34092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34092,1,3,0)
+ ;;=3^Weight Loss,Abnormal
+ ;;^UTILITY(U,$J,358.3,34092,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,34092,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,34093,0)
+ ;;=I26.09^^192^1985^93
+ ;;^UTILITY(U,$J,358.3,34093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34093,1,3,0)
+ ;;=3^Pulmonary Embolism w/ Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,34093,1,4,0)
+ ;;=4^I26.09
+ ;;^UTILITY(U,$J,358.3,34093,2)
+ ;;=^5007147

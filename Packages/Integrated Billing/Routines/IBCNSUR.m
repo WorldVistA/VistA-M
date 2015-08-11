@@ -1,6 +1,6 @@
 IBCNSUR ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,276,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,276,506,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EN ; Entry point from option. Main processing loop.
@@ -86,9 +86,11 @@ SEL(IBNP) ; Select a company and plan.
  .I 'IBPLAN W !!,*7,"*  No plan selected!",! S IBQUIT=1
  ;
  ; - allow a FileMan look-up
+ ; MRD;IB*2.0*516 - Display new Group Name and Number fields.
  S DIC("A")="Select a GROUP PLAN: "
  S DIC="^IBA(355.3,",DIC(0)="AEQM",DIC("S")="I +^(0)=IBCNS,$P(^(0),U,2)"
- S DIC("W")="N IBX S IBX=$G(^(0)) W ""   Name: "",$E($S($P(IBX,U,3)]"""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""   Number: "",$S($P(IBX,U,4)]"""":$P(IBX,U,4),1:""<none>"")"
+ ;S DIC("W")="N IBX S IBX=$G(^(0)) W ""   Name: "",$E($S($P(IBX,U,3)]"""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""   Number: "",$S($P(IBX,U,4)]"""":$P(IBX,U,4),1:""<none>"")"
+ S DIC("W")="N IBX S IBX=$G(^(2)) W ""   Name: "",$E($S($P(IBX,U,1)]"""":$P(IBX,U,1),1:""<none>"")_$J("""",20),1,20),""   Number: "",$E($S($P(IBX,U,2)]"""":$P(IBX,U,2),1:""<none>""),1,14)"
  D ^DIC K DIC S IBPLAN=+Y
  I Y<0 W !!,*7,"*  No plan selected!",! S IBQUIT=1
  ;

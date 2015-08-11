@@ -1,12 +1,11 @@
-RCDPEM ;ALB/TMK/PJH - POST EFT, ERA MATCHING TO EFT ;5/31/11 6:15pm
- ;;4.5;Accounts Receivable;**173,255,269,276,283**;Mar 20, 1995;Build 8
- ;;Per VHA Directive 2004-038, this routine should not be modified
+RCDPEM ;ALB/TMK/PJH - POST EFT, ERA MATCHING TO EFT ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,255,269,276,283,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4050 covers call to SPL1^IBCEOBAR
- Q
  ; Note - keep processing in line with RCDPXPAP 
 EN ; Post EFT deposits, auto-match EFT's and ERA's 
  ;
- K ^TMP($J,"RCDPETOT")
+ K ^TMP($J,"RCDPETOT"),^TMP("RCDPEAP",$J)
  ; ^TMP($J,"RCDPETOT",344.3 or 344.31,file ien)=
  ;  (1) match (0/1/-1)   (2) total $   (3) posted (0/1)  (4) error ref
  ;  (5) EFT deposit ien 344.1 if added for EFT
@@ -64,16 +63,27 @@ EN ; Post EFT deposits, auto-match EFT's and ERA's
  . ;
  . S DIE="^RCY(344.31," S Z=0 F  S Z=$O(^RCY(344.31,"B",RCZ,Z)) Q:'Z  S DA=Z,DR=".11////1" D ^DIE
  ;
+ ;Update payer table for new payers - PRCA*4.5*298
+ D NEWPYR^RCDPESP
+ ;Scan Non-Released Rx Exceptions for released Rx - PRCA*4.5*298
+ D EN^RCDPEX4
+ ;
  D MATCH(0,1)
+ ;
+ ;Auto Post - PRCA*4.5*298
+ D EN^RCDPEAP
+ ;Auto Decrease - PRCA*4.5*298
+ D EN^RCDPEAD
+ ;
  L -^RCY(344.3,"ALOCK")
-ENQ K ^TMP($J,"RCDPETOT")
+ENQ K ^TMP($J,"RCDPETOT"),^TMP("RCDPEAP",$J)
  ;
  ;ePayments 5010 part II enhancements
  ;Create Bulletins of EEOB Moved or Copied today
  D EN^RCDPEM8
  Q
  ;
-MATCH(RCMAN,RCPROC) ; Try to matched unmatched EFTs
+MATCH(RCMAN,RCPROC) ; match unmatched EFTs with ERAs
  ; RCMAN = 1 if job run manually, outside of nightly processing
  ; RCPROC = 1 if called from EFT-EOB automatch, 0 if from manual match
  ;
@@ -108,7 +118,7 @@ LOCKDEP(RCDEP,LOCK) ; Lock/confirm deposit ien RCDEP file 341.1
  ; If LOCK = 1 lock deposit
  ; If LOCK = 0 unlock deposit
  I $G(LOCK) D
- . L +^RCY(344.1,RCDEP,0):5
+ . L +^RCY(344.1,RCDEP,0):DILOCKTM
  . D CONFIRM^RCDPUDEP(RCDEP) ; confirm to prevent changes
  I '$G(LOCK) L -^RCY(344.1,RCDEP,0)
  Q

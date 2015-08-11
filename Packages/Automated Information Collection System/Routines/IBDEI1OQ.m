@@ -1,0 +1,132 @@
+IBDEI1OQ ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30257,1,3,0)
+ ;;=3^Melanoma in Situ of Other Sites
+ ;;^UTILITY(U,$J,358.3,30257,1,4,0)
+ ;;=4^D03.8
+ ;;^UTILITY(U,$J,358.3,30257,2)
+ ;;=^5001907
+ ;;^UTILITY(U,$J,358.3,30258,0)
+ ;;=C4A.0^^189^1912^8
+ ;;^UTILITY(U,$J,358.3,30258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30258,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Lip
+ ;;^UTILITY(U,$J,358.3,30258,1,4,0)
+ ;;=4^C4A.0
+ ;;^UTILITY(U,$J,358.3,30258,2)
+ ;;=^5001137
+ ;;^UTILITY(U,$J,358.3,30259,0)
+ ;;=C4A.11^^189^1912^12
+ ;;^UTILITY(U,$J,358.3,30259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30259,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,30259,1,4,0)
+ ;;=4^C4A.11
+ ;;^UTILITY(U,$J,358.3,30259,2)
+ ;;=^5001139
+ ;;^UTILITY(U,$J,358.3,30260,0)
+ ;;=C4A.12^^189^1912^5
+ ;;^UTILITY(U,$J,358.3,30260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30260,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,30260,1,4,0)
+ ;;=4^C4A.12
+ ;;^UTILITY(U,$J,358.3,30260,2)
+ ;;=^5001140
+ ;;^UTILITY(U,$J,358.3,30261,0)
+ ;;=C4A.21^^189^1912^11
+ ;;^UTILITY(U,$J,358.3,30261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30261,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,30261,1,4,0)
+ ;;=4^C4A.21
+ ;;^UTILITY(U,$J,358.3,30261,2)
+ ;;=^5001142
+ ;;^UTILITY(U,$J,358.3,30262,0)
+ ;;=C4A.22^^189^1912^4
+ ;;^UTILITY(U,$J,358.3,30262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30262,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,30262,1,4,0)
+ ;;=4^C4A.22
+ ;;^UTILITY(U,$J,358.3,30262,2)
+ ;;=^5001143
+ ;;^UTILITY(U,$J,358.3,30263,0)
+ ;;=C4A.30^^189^1912^3
+ ;;^UTILITY(U,$J,358.3,30263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30263,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Face,Unspec
+ ;;^UTILITY(U,$J,358.3,30263,1,4,0)
+ ;;=4^C4A.30
+ ;;^UTILITY(U,$J,358.3,30263,2)
+ ;;=^5001144
+ ;;^UTILITY(U,$J,358.3,30264,0)
+ ;;=C4A.31^^189^1912^9
+ ;;^UTILITY(U,$J,358.3,30264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30264,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Nose
+ ;;^UTILITY(U,$J,358.3,30264,1,4,0)
+ ;;=4^C4A.31
+ ;;^UTILITY(U,$J,358.3,30264,2)
+ ;;=^5001145
+ ;;^UTILITY(U,$J,358.3,30265,0)
+ ;;=C4A.39^^189^1912^2
+ ;;^UTILITY(U,$J,358.3,30265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30265,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Face NEC
+ ;;^UTILITY(U,$J,358.3,30265,1,4,0)
+ ;;=4^C4A.39
+ ;;^UTILITY(U,$J,358.3,30265,2)
+ ;;=^5001146
+ ;;^UTILITY(U,$J,358.3,30266,0)
+ ;;=C4A.4^^189^1912^15
+ ;;^UTILITY(U,$J,358.3,30266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30266,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,30266,1,4,0)
+ ;;=4^C4A.4
+ ;;^UTILITY(U,$J,358.3,30266,2)
+ ;;=^5001147
+ ;;^UTILITY(U,$J,358.3,30267,0)
+ ;;=C4A.51^^189^1912^1
+ ;;^UTILITY(U,$J,358.3,30267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30267,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Anal Skin
+ ;;^UTILITY(U,$J,358.3,30267,1,4,0)
+ ;;=4^C4A.51
+ ;;^UTILITY(U,$J,358.3,30267,2)
+ ;;=^5001148
+ ;;^UTILITY(U,$J,358.3,30268,0)
+ ;;=C4A.52^^189^1912^16
+ ;;^UTILITY(U,$J,358.3,30268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30268,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,30268,1,4,0)
+ ;;=4^C4A.52
+ ;;^UTILITY(U,$J,358.3,30268,2)
+ ;;=^5001149
+ ;;^UTILITY(U,$J,358.3,30269,0)
+ ;;=C4A.59^^189^1912^17
+ ;;^UTILITY(U,$J,358.3,30269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30269,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Trunk NEC
+ ;;^UTILITY(U,$J,358.3,30269,1,4,0)
+ ;;=4^C4A.59
+ ;;^UTILITY(U,$J,358.3,30269,2)
+ ;;=^5001150

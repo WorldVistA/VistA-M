@@ -1,6 +1,6 @@
 IBRFN4 ;ALB/TMK - Supported functions for AR/IB DATA EXTRACT ;15-FEB-2005
- ;;2.0;INTEGRATED BILLING;**301,305,389**;21-MAR-94;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**301,305,389,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 IBAREXT(IBIFN,IBD) ; Returns data for claim IBIFN for IB/AR Extract
  ; Data returned (pieces):
@@ -54,11 +54,14 @@ IBAREXT(IBIFN,IBD) ; Returns data for claim IBIFN for IB/AR Extract
  ;
  S Z=" ",IBD("IN")="",DFN=+$P(IB(0),U,2)
  F  S Z=$O(^DPT(DFN,.312,Z),-1) Q:Z=""  D  Q:Z=""
- . S IBIN=$G(^DPT(DFN,.312,Z,0))
+ . ;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ . ;S IBIN=$G(^DPT(DFN,.312,Z,0))  ; 516 - baa
+ . S IBIN=$$ZND^IBCNS1(DFN,Z)  ; 516 - baa
  . I +IB("M")=+IBIN D
  .. N IBQ,IBP
  .. S IBP=+$P(IBIN,U,18),IBQ=$G(^IBA(355.3,+IBP,0))
- .. S IBD("IN")=$S($P(IBQ,U,9):$$GET1^DIQ(355.3,IBP_",",.09,"E"),1:"")_U_$P(IBQ,U,4)_U_$P(IBIN,U,6)_U_$P($G(^DPT(DFN,.312,Z,1)),U,9)
+ .. ;S IBD("IN")=$S($P(IBQ,U,9):$$GET1^DIQ(355.3,IBP_",",.09,"E"),1:"")_U_$P(IBQ,U,4)_U_$P(IBIN,U,6)_U_$P($G(^DPT(DFN,.312,Z,1)),U,9)
+ .. S IBD("IN")=$$GET1^DIQ(355.3,IBP_",",.09,"E")_U_$P(IBIN,U,3)_U_$P(IBIN,U,6)_U_$P($G(^DPT(DFN,.312,Z,1)),U,9)
  .. S Z=""
  ;
  S Z=$G(^DIC(36,+IB("M"),3))

@@ -1,140 +1,120 @@
-IBDEI1B2 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI1B2 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23376,1,0)
+ ;;^UTILITY(U,$J,358.3,23431,1,5,0)
+ ;;=5^Fracture of ankle; lateral malleolus, closed
+ ;;^UTILITY(U,$J,358.3,23431,2)
+ ;;=^274247
+ ;;^UTILITY(U,$J,358.3,23432,0)
+ ;;=824.0^^139^1438^14
+ ;;^UTILITY(U,$J,358.3,23432,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23376,1,2,0)
- ;;=2^919.5
- ;;^UTILITY(U,$J,358.3,23376,1,5,0)
- ;;=5^Insect Bite, Skin NOS
- ;;^UTILITY(U,$J,358.3,23376,2)
- ;;=^275360
- ;;^UTILITY(U,$J,358.3,23377,0)
- ;;=912.5^^148^1455^7
- ;;^UTILITY(U,$J,358.3,23377,1,0)
+ ;;^UTILITY(U,$J,358.3,23432,1,3,0)
+ ;;=3^824.0
+ ;;^UTILITY(U,$J,358.3,23432,1,5,0)
+ ;;=5^Fracture of ankle; medial malleolus, closed
+ ;;^UTILITY(U,$J,358.3,23432,2)
+ ;;=^274245
+ ;;^UTILITY(U,$J,358.3,23433,0)
+ ;;=824.6^^139^1438^15
+ ;;^UTILITY(U,$J,358.3,23433,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23377,1,2,0)
- ;;=2^912.5
- ;;^UTILITY(U,$J,358.3,23377,1,5,0)
- ;;=5^Insect Bite, Shoulder, W Infection
- ;;^UTILITY(U,$J,358.3,23377,2)
- ;;=^275291
- ;;^UTILITY(U,$J,358.3,23378,0)
- ;;=702.0^^148^1456^1
- ;;^UTILITY(U,$J,358.3,23378,1,0)
+ ;;^UTILITY(U,$J,358.3,23433,1,3,0)
+ ;;=3^824.6
+ ;;^UTILITY(U,$J,358.3,23433,1,5,0)
+ ;;=5^Fracture of ankle; trimalleolar, closed
+ ;;^UTILITY(U,$J,358.3,23433,2)
+ ;;=^274251
+ ;;^UTILITY(U,$J,358.3,23434,0)
+ ;;=825.20^^139^1438^16
+ ;;^UTILITY(U,$J,358.3,23434,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23378,1,2,0)
- ;;=2^702.0
- ;;^UTILITY(U,$J,358.3,23378,1,5,0)
- ;;=5^Actinic Keratosis
- ;;^UTILITY(U,$J,358.3,23378,2)
- ;;=^66900
- ;;^UTILITY(U,$J,358.3,23379,0)
- ;;=757.39^^148^1456^4
- ;;^UTILITY(U,$J,358.3,23379,1,0)
+ ;;^UTILITY(U,$J,358.3,23434,1,3,0)
+ ;;=3^825.20
+ ;;^UTILITY(U,$J,358.3,23434,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bone, closed; unspecified bone(s) of foot (except toes)
+ ;;^UTILITY(U,$J,358.3,23434,2)
+ ;;=^274265
+ ;;^UTILITY(U,$J,358.3,23435,0)
+ ;;=825.0^^139^1438^17
+ ;;^UTILITY(U,$J,358.3,23435,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23379,1,2,0)
- ;;=2^757.39
- ;;^UTILITY(U,$J,358.3,23379,1,5,0)
- ;;=5^Pilaris Keratosis
- ;;^UTILITY(U,$J,358.3,23379,2)
- ;;=^87938
- ;;^UTILITY(U,$J,358.3,23380,0)
- ;;=702.19^^148^1456^5
- ;;^UTILITY(U,$J,358.3,23380,1,0)
+ ;;^UTILITY(U,$J,358.3,23435,1,3,0)
+ ;;=3^825.0
+ ;;^UTILITY(U,$J,358.3,23435,1,5,0)
+ ;;=5^Fracture of one or more tarsal & metatarsal bone, closed; calcaneus, closed
+ ;;^UTILITY(U,$J,358.3,23435,2)
+ ;;=^274259
+ ;;^UTILITY(U,$J,358.3,23436,0)
+ ;;=825.23^^139^1438^18
+ ;;^UTILITY(U,$J,358.3,23436,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23380,1,2,0)
- ;;=2^702.19
- ;;^UTILITY(U,$J,358.3,23380,1,5,0)
- ;;=5^Seborrheic Keratosis
- ;;^UTILITY(U,$J,358.3,23380,2)
- ;;=^303312
- ;;^UTILITY(U,$J,358.3,23381,0)
- ;;=702.11^^148^1456^2
- ;;^UTILITY(U,$J,358.3,23381,1,0)
+ ;;^UTILITY(U,$J,358.3,23436,1,3,0)
+ ;;=3^825.23
+ ;;^UTILITY(U,$J,358.3,23436,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuboid
+ ;;^UTILITY(U,$J,358.3,23436,2)
+ ;;=^274270
+ ;;^UTILITY(U,$J,358.3,23437,0)
+ ;;=825.24^^139^1438^19
+ ;;^UTILITY(U,$J,358.3,23437,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23381,1,2,0)
- ;;=2^702.11
- ;;^UTILITY(U,$J,358.3,23381,1,5,0)
- ;;=5^Inflamed Seborrheic Keratosis
- ;;^UTILITY(U,$J,358.3,23381,2)
- ;;=^303311
- ;;^UTILITY(U,$J,358.3,23382,0)
- ;;=702.8^^148^1456^3
- ;;^UTILITY(U,$J,358.3,23382,1,0)
+ ;;^UTILITY(U,$J,358.3,23437,1,3,0)
+ ;;=3^825.24
+ ;;^UTILITY(U,$J,358.3,23437,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuneiform, foot &
+ ;;^UTILITY(U,$J,358.3,23437,2)
+ ;;=^274271
+ ;;^UTILITY(U,$J,358.3,23438,0)
+ ;;=825.25^^139^1438^20
+ ;;^UTILITY(U,$J,358.3,23438,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23382,1,2,0)
- ;;=2^702.8
- ;;^UTILITY(U,$J,358.3,23382,1,5,0)
- ;;=5^Other Specified Dermatoses
- ;;^UTILITY(U,$J,358.3,23382,2)
- ;;=^271925
- ;;^UTILITY(U,$J,358.3,23383,0)
- ;;=880.03^^148^1457^1
- ;;^UTILITY(U,$J,358.3,23383,1,0)
+ ;;^UTILITY(U,$J,358.3,23438,1,3,0)
+ ;;=3^825.25
+ ;;^UTILITY(U,$J,358.3,23438,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Jones 
+ ;;^UTILITY(U,$J,358.3,23438,2)
+ ;;=^274272
+ ;;^UTILITY(U,$J,358.3,23439,0)
+ ;;=825.22^^139^1438^21
+ ;;^UTILITY(U,$J,358.3,23439,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23383,1,2,0)
- ;;=2^880.03
- ;;^UTILITY(U,$J,358.3,23383,1,5,0)
- ;;=5^Laceration Arm, Upper
- ;;^UTILITY(U,$J,358.3,23383,2)
- ;;=^275028
- ;;^UTILITY(U,$J,358.3,23384,0)
- ;;=873.42^^148^1457^2
- ;;^UTILITY(U,$J,358.3,23384,1,0)
+ ;;^UTILITY(U,$J,358.3,23439,1,3,0)
+ ;;=3^825.22
+ ;;^UTILITY(U,$J,358.3,23439,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Navicular (scapiod), foot & metatarsal
+ ;;^UTILITY(U,$J,358.3,23439,2)
+ ;;=^274269
+ ;;^UTILITY(U,$J,358.3,23440,0)
+ ;;=825.21^^139^1438^22
+ ;;^UTILITY(U,$J,358.3,23440,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23384,1,2,0)
- ;;=2^873.42
- ;;^UTILITY(U,$J,358.3,23384,1,5,0)
- ;;=5^Laceration Brow
- ;;^UTILITY(U,$J,358.3,23384,2)
- ;;=^274943
- ;;^UTILITY(U,$J,358.3,23385,0)
- ;;=873.41^^148^1457^3
- ;;^UTILITY(U,$J,358.3,23385,1,0)
+ ;;^UTILITY(U,$J,358.3,23440,1,3,0)
+ ;;=3^825.21
+ ;;^UTILITY(U,$J,358.3,23440,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Astragalus, talus
+ ;;^UTILITY(U,$J,358.3,23440,2)
+ ;;=^274266
+ ;;^UTILITY(U,$J,358.3,23441,0)
+ ;;=825.29^^139^1438^23
+ ;;^UTILITY(U,$J,358.3,23441,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23385,1,2,0)
- ;;=2^873.41
- ;;^UTILITY(U,$J,358.3,23385,1,5,0)
- ;;=5^Laceration Cheek
- ;;^UTILITY(U,$J,358.3,23385,2)
- ;;=^274940
- ;;^UTILITY(U,$J,358.3,23386,0)
- ;;=872.8^^148^1457^4
- ;;^UTILITY(U,$J,358.3,23386,1,0)
+ ;;^UTILITY(U,$J,358.3,23441,1,3,0)
+ ;;=3^825.29
+ ;;^UTILITY(U,$J,358.3,23441,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Tarsal or tarsal w/metatarsal
+ ;;^UTILITY(U,$J,358.3,23441,2)
+ ;;=^274263
+ ;;^UTILITY(U,$J,358.3,23442,0)
+ ;;=826.0^^139^1438^24
+ ;;^UTILITY(U,$J,358.3,23442,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23386,1,2,0)
- ;;=2^872.8
- ;;^UTILITY(U,$J,358.3,23386,1,5,0)
- ;;=5^Laceration Ear
- ;;^UTILITY(U,$J,358.3,23386,2)
- ;;=^274918
- ;;^UTILITY(U,$J,358.3,23387,0)
- ;;=873.40^^148^1457^5
- ;;^UTILITY(U,$J,358.3,23387,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23387,1,2,0)
- ;;=2^873.40
- ;;^UTILITY(U,$J,358.3,23387,1,5,0)
- ;;=5^Laceration Face
- ;;^UTILITY(U,$J,358.3,23387,2)
- ;;=^274939
- ;;^UTILITY(U,$J,358.3,23388,0)
- ;;=881.00^^148^1457^6
- ;;^UTILITY(U,$J,358.3,23388,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23388,1,2,0)
- ;;=2^881.00
- ;;^UTILITY(U,$J,358.3,23388,1,5,0)
- ;;=5^Laceration Forearm
- ;;^UTILITY(U,$J,358.3,23388,2)
- ;;=^275044
- ;;^UTILITY(U,$J,358.3,23389,0)
- ;;=891.0^^148^1457^7
- ;;^UTILITY(U,$J,358.3,23389,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23389,1,2,0)
- ;;=2^891.0
- ;;^UTILITY(U,$J,358.3,23389,1,5,0)
- ;;=5^Laceration Leg, Lower
+ ;;^UTILITY(U,$J,358.3,23442,1,3,0)
+ ;;=3^826.0
+ ;;^UTILITY(U,$J,358.3,23442,1,5,0)
+ ;;=5^Fracture of one or more phalanges of foot/toe(s), closed
+ ;;^UTILITY(U,$J,358.3,23442,2)
+ ;;=^274282
+ ;;^UTILITY(U,$J,358.3,23443,0)
+ ;;=733.16^^139^1438^25

@@ -1,128 +1,128 @@
-IBDEI139 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI139 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19511,1,0)
+ ;;^UTILITY(U,$J,358.3,19401,0)
+ ;;=438.85^^108^1148^5.3
+ ;;^UTILITY(U,$J,358.3,19401,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19511,1,2,0)
- ;;=2^11057
- ;;^UTILITY(U,$J,358.3,19511,1,3,0)
- ;;=3^Trim Corn/Callous, 5 or more
- ;;^UTILITY(U,$J,358.3,19512,0)
- ;;=12011^^130^1265^23^^^^1
- ;;^UTILITY(U,$J,358.3,19512,1,0)
+ ;;^UTILITY(U,$J,358.3,19401,1,2,0)
+ ;;=2^438.85
+ ;;^UTILITY(U,$J,358.3,19401,1,3,0)
+ ;;=3^Stroke w/Vertigo
+ ;;^UTILITY(U,$J,358.3,19401,2)
+ ;;=^328508
+ ;;^UTILITY(U,$J,358.3,19402,0)
+ ;;=438.82^^108^1148^5.5
+ ;;^UTILITY(U,$J,358.3,19402,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19512,1,2,0)
- ;;=2^12011
- ;;^UTILITY(U,$J,358.3,19512,1,3,0)
- ;;=3^Suture Simple wounds, Face,2.5 cm or less
- ;;^UTILITY(U,$J,358.3,19513,0)
- ;;=97597^^130^1265^7^^^^1
- ;;^UTILITY(U,$J,358.3,19513,1,0)
+ ;;^UTILITY(U,$J,358.3,19402,1,2,0)
+ ;;=2^438.82
+ ;;^UTILITY(U,$J,358.3,19402,1,3,0)
+ ;;=3^Stroke w/dysphagia
+ ;;^UTILITY(U,$J,358.3,19402,2)
+ ;;=Stroke w/dysphagia^317923
+ ;;^UTILITY(U,$J,358.3,19403,0)
+ ;;=438.89^^108^1148^5
+ ;;^UTILITY(U,$J,358.3,19403,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19513,1,2,0)
- ;;=2^97597
- ;;^UTILITY(U,$J,358.3,19513,1,3,0)
- ;;=3^Debridement open wnd 1st 20sq cm
- ;;^UTILITY(U,$J,358.3,19514,0)
- ;;=97598^^130^1265^8^^^^1
- ;;^UTILITY(U,$J,358.3,19514,1,0)
+ ;;^UTILITY(U,$J,358.3,19403,1,2,0)
+ ;;=2^438.89
+ ;;^UTILITY(U,$J,358.3,19403,1,3,0)
+ ;;=3^Stroke with Other Deficits
+ ;;^UTILITY(U,$J,358.3,19403,2)
+ ;;=^317924
+ ;;^UTILITY(U,$J,358.3,19404,0)
+ ;;=V12.54^^108^1148^9
+ ;;^UTILITY(U,$J,358.3,19404,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19514,1,2,0)
- ;;=2^97598
- ;;^UTILITY(U,$J,358.3,19514,1,3,0)
- ;;=3^Debridement open wnd ea addl 20sq cm
- ;;^UTILITY(U,$J,358.3,19515,0)
- ;;=11200^^130^1265^19^^^^1
- ;;^UTILITY(U,$J,358.3,19515,1,0)
+ ;;^UTILITY(U,$J,358.3,19404,1,2,0)
+ ;;=2^V12.54
+ ;;^UTILITY(U,$J,358.3,19404,1,3,0)
+ ;;=3^Stroke F/U, No Residuals
+ ;;^UTILITY(U,$J,358.3,19404,2)
+ ;;=^335309
+ ;;^UTILITY(U,$J,358.3,19405,0)
+ ;;=345.10^^108^1149^8
+ ;;^UTILITY(U,$J,358.3,19405,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19515,1,2,0)
- ;;=2^11200
- ;;^UTILITY(U,$J,358.3,19515,1,3,0)
- ;;=3^Removal Skin Tags,up to 15 Lesions
- ;;^UTILITY(U,$J,358.3,19516,0)
- ;;=11201^^130^1265^20^^^^1
- ;;^UTILITY(U,$J,358.3,19516,1,0)
+ ;;^UTILITY(U,$J,358.3,19405,1,2,0)
+ ;;=2^345.10
+ ;;^UTILITY(U,$J,358.3,19405,1,3,0)
+ ;;=3^Myoclonic Seizures
+ ;;^UTILITY(U,$J,358.3,19405,2)
+ ;;=Myoclonic Epilepsy^268463
+ ;;^UTILITY(U,$J,358.3,19406,0)
+ ;;=345.11^^108^1149^9
+ ;;^UTILITY(U,$J,358.3,19406,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19516,1,2,0)
- ;;=2^11201
- ;;^UTILITY(U,$J,358.3,19516,1,3,0)
- ;;=3^Removal Skin Tags,ea addl 10 Lesions
- ;;^UTILITY(U,$J,358.3,19517,0)
- ;;=11100^^130^1265^4^^^^1
- ;;^UTILITY(U,$J,358.3,19517,1,0)
+ ;;^UTILITY(U,$J,358.3,19406,1,2,0)
+ ;;=2^345.11
+ ;;^UTILITY(U,$J,358.3,19406,1,3,0)
+ ;;=3^Myoclonic Seizures, Intractible
+ ;;^UTILITY(U,$J,358.3,19406,2)
+ ;;=Myoclonic, Intractable Epilepsy^268464
+ ;;^UTILITY(U,$J,358.3,19407,0)
+ ;;=345.50^^108^1149^11
+ ;;^UTILITY(U,$J,358.3,19407,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19517,1,2,0)
- ;;=2^11100
- ;;^UTILITY(U,$J,358.3,19517,1,3,0)
- ;;=3^Biopsy Skin Lesion,Single Lesion
- ;;^UTILITY(U,$J,358.3,19518,0)
- ;;=11101^^130^1265^5^^^^1
- ;;^UTILITY(U,$J,358.3,19518,1,0)
+ ;;^UTILITY(U,$J,358.3,19407,1,2,0)
+ ;;=2^345.50
+ ;;^UTILITY(U,$J,358.3,19407,1,3,0)
+ ;;=3^Simple Partial Seizures
+ ;;^UTILITY(U,$J,358.3,19407,2)
+ ;;=Simple Partial Epilepsy^268470
+ ;;^UTILITY(U,$J,358.3,19408,0)
+ ;;=345.51^^108^1149^12
+ ;;^UTILITY(U,$J,358.3,19408,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19518,1,2,0)
- ;;=2^11101
- ;;^UTILITY(U,$J,358.3,19518,1,3,0)
- ;;=3^Biopsy Skin Lesion,ea addl Lesion
- ;;^UTILITY(U,$J,358.3,19519,0)
- ;;=10030^^130^1265^15^^^^1
- ;;^UTILITY(U,$J,358.3,19519,1,0)
+ ;;^UTILITY(U,$J,358.3,19408,1,2,0)
+ ;;=2^345.51
+ ;;^UTILITY(U,$J,358.3,19408,1,3,0)
+ ;;=3^Simple Partial Seizures, Intract
+ ;;^UTILITY(U,$J,358.3,19408,2)
+ ;;=Simple Epilepsy Partial, Intract^268467
+ ;;^UTILITY(U,$J,358.3,19409,0)
+ ;;=345.40^^108^1149^2
+ ;;^UTILITY(U,$J,358.3,19409,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19519,1,2,0)
- ;;=2^10030
- ;;^UTILITY(U,$J,358.3,19519,1,3,0)
- ;;=3^Image Guided Collec by Cath,Abscess
- ;;^UTILITY(U,$J,358.3,19520,0)
- ;;=29105^^130^1266^2^^^^1
- ;;^UTILITY(U,$J,358.3,19520,1,0)
+ ;;^UTILITY(U,$J,358.3,19409,1,2,0)
+ ;;=2^345.40
+ ;;^UTILITY(U,$J,358.3,19409,1,3,0)
+ ;;=3^Complex Partial Seizures
+ ;;^UTILITY(U,$J,358.3,19409,2)
+ ;;=Cmplx Partial Epilepsy^268467
+ ;;^UTILITY(U,$J,358.3,19410,0)
+ ;;=345.41^^108^1149^3
+ ;;^UTILITY(U,$J,358.3,19410,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19520,1,2,0)
- ;;=2^29105
- ;;^UTILITY(U,$J,358.3,19520,1,3,0)
- ;;=3^Long Arm Splint
- ;;^UTILITY(U,$J,358.3,19521,0)
- ;;=29125^^130^1266^4^^^^1
- ;;^UTILITY(U,$J,358.3,19521,1,0)
+ ;;^UTILITY(U,$J,358.3,19410,1,2,0)
+ ;;=2^345.41
+ ;;^UTILITY(U,$J,358.3,19410,1,3,0)
+ ;;=3^Complex Partial Seizures, Intractible
+ ;;^UTILITY(U,$J,358.3,19410,2)
+ ;;=Complex Partial Seizures, Intractible^268469
+ ;;^UTILITY(U,$J,358.3,19411,0)
+ ;;=345.90^^108^1149^6
+ ;;^UTILITY(U,$J,358.3,19411,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19521,1,2,0)
- ;;=2^29125
- ;;^UTILITY(U,$J,358.3,19521,1,3,0)
- ;;=3^Short Arm Splint; Static
- ;;^UTILITY(U,$J,358.3,19522,0)
- ;;=29126^^130^1266^3^^^^1
- ;;^UTILITY(U,$J,358.3,19522,1,0)
+ ;;^UTILITY(U,$J,358.3,19411,1,2,0)
+ ;;=2^345.90
+ ;;^UTILITY(U,$J,358.3,19411,1,3,0)
+ ;;=3^Epilepsy,Unspec
+ ;;^UTILITY(U,$J,358.3,19411,2)
+ ;;=Unspecified Epilepsy^268477
+ ;;^UTILITY(U,$J,358.3,19412,0)
+ ;;=345.91^^108^1149^5
+ ;;^UTILITY(U,$J,358.3,19412,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19522,1,2,0)
- ;;=2^29126
- ;;^UTILITY(U,$J,358.3,19522,1,3,0)
- ;;=3^Short Arm Splint; Dynamic
- ;;^UTILITY(U,$J,358.3,19523,0)
- ;;=29130^^130^1266^1^^^^1
- ;;^UTILITY(U,$J,358.3,19523,1,0)
+ ;;^UTILITY(U,$J,358.3,19412,1,2,0)
+ ;;=2^345.91
+ ;;^UTILITY(U,$J,358.3,19412,1,3,0)
+ ;;=3^Epilepsy w/ Intractable Epilepsy,Unspec
+ ;;^UTILITY(U,$J,358.3,19412,2)
+ ;;=Unspecified, Intract Epilepsy^268478
+ ;;^UTILITY(U,$J,358.3,19413,0)
+ ;;=780.02^^108^1149^13
+ ;;^UTILITY(U,$J,358.3,19413,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19523,1,2,0)
- ;;=2^29130
- ;;^UTILITY(U,$J,358.3,19523,1,3,0)
- ;;=3^Finger Splint
- ;;^UTILITY(U,$J,358.3,19524,0)
- ;;=99078^^130^1267^2^^^^1
- ;;^UTILITY(U,$J,358.3,19524,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19524,1,2,0)
- ;;=2^99078
- ;;^UTILITY(U,$J,358.3,19524,1,3,0)
- ;;=3^Group Health Education
- ;;^UTILITY(U,$J,358.3,19525,0)
- ;;=G0109^^130^1267^1^^^^1
- ;;^UTILITY(U,$J,358.3,19525,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19525,1,2,0)
- ;;=2^G0109
- ;;^UTILITY(U,$J,358.3,19525,1,3,0)
- ;;=3^Diab Manage Trn Ind/Group
- ;;^UTILITY(U,$J,358.3,19526,0)
- ;;=98960^^130^1267^3^^^^1
- ;;^UTILITY(U,$J,358.3,19526,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19526,1,2,0)
- ;;=2^98960

@@ -1,12 +1,14 @@
-RCDPEWLB ;ALB/TMK - EEOB WORKLIST BATCH PROCESSING ;10-FEB-2004
- ;;4.5;Accounts Receivable;**208**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPEWLB ;ALB/TMK - EEOB WORKLIST BATCH PROCESSING ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**208,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 SETBATCH(RCERA) ; Set up batches for a worklist entry RCERA
  ; Returns ^TMP($J,"BATCHES",batch criteria code,start param data)=
  ;              batch #^end param data
  ; Ask to split the ERA
- N DIR,DUOUT,DTOUT,X,Y,Z,Z0,RCNUM,RCY,RCBAT,RCSEL,RCZ,RCNAMES,RCS
+ ; prca*4.5*298 per requirements, keep code for creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298 
+ N DIR,DTOUT,DUOUT,RCBAT,RCNAMES,RCNUM,RCS,RCSEL,RCY,RCZ,X,Y,Z,Z0
  K ^TMP($J,"BATCHES")
  S RCNUM=+$$CTEEOB(RCERA)
  Q:RCNUM'>1
@@ -60,7 +62,9 @@ NEWBAT(RCERA,RCSEL,RCDAT,RCVAL,RCBAT,RCNAMES) ; Add a new batch at the top level
  ; RCBAT = if passed by reference, returned as the next batch #
  ; RCNAMES = 1 if user wants to name each batch, 0 to accept default
  ;
- N DA,DR,DIC,X,Y,DLAYGO,DD,DO
+ ; prca*4.5*298 per requirements, keep code related to creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298 
+ N DA,DD,DIC,DLAYGO,DO,DR,X,Y
  S RCBAT=RCBAT+1
  S DA(1)=RCERA,DIC="^RCY(344.49,"_DA(1)_",3,",DLAYGO=344.493,DIC(0)="L",X=RCBAT
  I $G(RCNAMES) W !!,"**BATCH #: "_RCBAT
@@ -102,6 +106,9 @@ EDIT(RCERA,RCB,ABORT) ; Edit name and posting status of an existing batch
  ; RCERA = the ien of the worklist entry
  ; RCB = the ien of the current batch
  ; RCABORT = if passed by reference, returned as 1 if user aborts
+ ;
+ ; prca*4.5*298 per requirements, keep code related to creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298 
  N DA,DIE,DR,X,Y
  D FULL^VALM1
  S ABORT=0
@@ -111,6 +118,8 @@ EDIT(RCERA,RCB,ABORT) ; Edit name and posting status of an existing batch
  Q
  ;
 MARKALL(RCERA) ; Mark all batches as ready to post
+ ;  prca*4.5*298 per requirements, keep code related to creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298 
  N DIR,X,Y,Z,RCT,DA,DIE,DR
  D FULL^VALM1
  S VALMBCK="R"
@@ -126,6 +135,8 @@ MARKALL(RCERA) ; Mark all batches as ready to post
  Q
  ;
 EDITALL(RCERA) ; Edit all batches
+ ; prca*4.5*298 per requirements, keep code related to creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298 
  N Z,RCQUIT
  D FULL^VALM1
  S VALMBCK="R"
@@ -135,7 +146,9 @@ EDITALL(RCERA) ; Edit all batches
  Q
  ;
 REBATCH(RCERA) ; Allow to recreate batches
- N DIR,X,Y,Z,Z0,RCQUIT,DA,DR,DIE,DIK,RCLINE
+ ;  prca*4.5*298 per requirements, keep code related to creating/maintaining batches but remove from execution
+ Q  ;prca*4.5*298 
+ N DA,DIE,DIK,DIR,DR,RCLINE,RCQUIT,X,Y,Z,Z0
  D FULL^VALM1
  I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL G REBQ
  ;

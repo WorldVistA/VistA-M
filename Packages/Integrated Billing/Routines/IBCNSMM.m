@@ -1,6 +1,6 @@
 IBCNSMM ;ALB/CMS -MEDICARE INSURANCE INTAKE ; 18-OCT-98
- ;;2.0;INTEGRATED BILLING;**103,133,184**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,133,184,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EN ; -- Entry point from Medicare Intake Standalone option
@@ -46,7 +46,9 @@ ENR(DFN,IBSOUR,IBOPT) ; -- Entry point from IBCNBME Patient Registration or Pre-
  ; -- get the patient's Medicare policies
  S (IBPOLA,IBPOLB)=0
  S IBCDFN=0 F  S IBCDFN=$O(^DPT(DFN,.312,"B",+IBCNSP,IBCDFN)) Q:'IBCDFN  D
- .S IBCPOL=$G(^DPT(DFN,.312,IBCDFN,0))
+ .;IB*2.0*516/TAZ - Retrieve Data from HIPAA compliant fields.
+ .;S IBCPOL=$G(^DPT(DFN,.312,IBCDFN,0))  ;516 - baa
+ .S IBCPOL=$$ZND^IBCNS1(DFN,IBCDFN)  ;516 - baa
  .;
  .; - is the policy for Part A?
  .I $P(IBCNSP,U,3)=$P(IBCPOL,U,18) D  Q

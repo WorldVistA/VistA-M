@@ -1,6 +1,6 @@
 IBATLM3A ;LL/ELZ - TRANSFER PRICING PT INFO SCREEN BUILD ; 16-APR-1999
- ;;2.0;INTEGRATED BILLING;**115**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**115,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N IBX,IBY,IBINPT,IBINS,IBCNT K ^TMP("IBATPT",$J)
  ;
@@ -74,7 +74,11 @@ IBATLM3A ;LL/ELZ - TRANSFER PRICING PT INFO SCREEN BUILD ; 16-APR-1999
  . S IBX=0 F  S IBX=$O(^TMP("IBINS",$J,IBX))  Q:IBX<1  S IBX(0)=^(IBX,0) D
  .. D SET($P(^DIC(36,+IBX(0),0),"^"),.IBY,5,30)
  .. D SET($P(IBX(0),"^",2),.IBY,35,15)
- .. I $P(IBX(0),"^",18),$D(^IBA(355.3,$P(IBX(0),"^",18),0)) D SET($P(^IBA(355.3,$P(IBX(0),"^",18),0),"^",3),.IBY,60,20)
+ .. ;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ .. ; HIPAA compliant Group Number is returned in piece 3 of ^TMP("IBINS",$J,IBX,0).
+ .. ;I $P(IBX(0),"^",18),$D(^IBA(355.3,$P(IBX(0),"^",18),0)) D SET($P(^IBA(355.3,$P(IBX(0),"^",18),0),"^",3),.IBY,60,20)
+ .. D SET($P(IBX(0),U,3),.IBY,60,20)
+ .. ; end changes for 516
  .. D SETVALM(.VALMCNT,.IBY)
  E  D SET("Patient has no active insurance information",.IBY,5,75),SETVALM(.VALMCNT,.IBY)
  D SETVALM(.VALMCNT,"")

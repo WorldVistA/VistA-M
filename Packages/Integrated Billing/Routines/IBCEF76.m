@@ -1,6 +1,6 @@
 IBCEF76 ;ALB/WCJ - Provider ID functions ;13 Feb 2006
- ;;2.0;INTEGRATED BILLING;**320,349,400,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,349,400,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  G AWAY
 AWAY Q
@@ -42,8 +42,12 @@ LFIDS(IBIFN,IDS,IBSTRIP,SEG) ;
  . ;
  . I OUTFAC="" D
  .. ;
+ .. ; MRD;IB*2.0*516 - Due to fields being marked for deletion, the
+ .. ; function $$SENDSF^IBCEF79 will always return '1'.  Refer to
+ .. ; that function and INSFLGS^^IBCEF79 for more information.
+ .. ;
  .. ; if ins co flag says to not send svc fac data and we're sending an EDI claim, then get out
- .. I '$$SENDSF^IBCEF79(IBIFN,COB),$G(^TMP("IBTX",$J,IBIFN)) Q
+ .. ;I '$$SENDSF^IBCEF79(IBIFN,COB),$G(^TMP("IBTX",$J,IBIFN)) Q
  .. ;
  .. ;IB*2.0*432/TAZ Moved Taxid setup inside VALF look to send as secondary ID for Medicare claims.
  .. ;S IDS("LAB/FAC",IBIFN,IBSORT1,IBSORT2,0)=$$STRIP($$TAXID^IBCEF75(),1,U,IBSTRIP)

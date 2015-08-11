@@ -1,6 +1,6 @@
 IBCEF73A ;ALB/KJH - FORMATTER AND EXTRACTOR SPECIFIC (NPI) BILL FUNCTIONS ;30 Aug 2006  10:38 AM
- ;;2.0;INTEGRATED BILLING;**343,374,395,391,400,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**343,374,395,391,400,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 PROVNPI(IBIEN399,IBNONPI) ;
@@ -91,40 +91,46 @@ ORGNPI(IBIEN399,IBNONPI) ; Extract NPIs for organizations on this claim
  ;        Piece 2) Non-VA Service Facility NPI code
  ;        Piece 3) Billing Provider NPI code (IB patch 400 definition)
  ;
- N IBRETVAL,IBORG,IBEVDT,IBDIV,NPI,BSZ,SWBCK
+ N IBRETVAL,IBORG,IBEVDT,IBDIV,NPI,BSZ
  S IBNONPI=""
  I $G(IBIEN399)="" Q ""
  S IBRETVAL=""
  S BSZ=$$B^IBCEF79(IBIEN399)    ; get billing provider/service facility information
  ;
- S SWBCK=(+$$INSFLGS^IBCEF79(IBIEN399)>0)    ; pre-patch 400 switchback flag & processing
- I SWBCK D  G ORGNPIX
- . N PHARM,DPORG,PHARMNPI
- . S PHARM=+$$ISRX^IBCEF1(IBIEN399)          ; pharmacy claim flag switchback
- . S PHARMNPI=""
- . I PHARM S DPORG=$$RXSITE(IBIEN399) I DPORG S PHARMNPI=$P($$NPI^XUSNPI("Organization_ID",DPORG),U,1)
- . ;
- . ; service facility NPI switchback
- . S NPI=""
- . S IBORG=+$P(BSZ,U,4)    ; service facility ien (either ptr file 4 or 355.93)
- . I $P(BSZ,U,3)=0,IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)    ; file 4
- . I $P(BSZ,U,3)=1,IBORG S NPI=$$NPIGET^IBCEP81(IBORG)                          ; file 355.93
- . I PHARM S NPI=PHARMNPI      ; in switchback mode for pharmacy claims, use the pharmacy NPI
- . I NPI>0 S $P(IBRETVAL,U,1)=NPI
- . I NPI<1 S IBNONPI=1
- . ;
- . ; non-VA facility NPI switchback
- . S IBORG=$$GET1^DIQ(399,IBIEN399_",",232,"I")
- . I IBORG S NPI=$$NPIGET^IBCEP81(IBORG),$P(IBRETVAL,U,2)=NPI I 'NPI S IBNONPI=$S(IBNONPI="":2,1:IBNONPI_U_2)
- . ;
- . ; billing provider NPI switchback
- . S IBORG=+$P(BSZ,U,1),NPI=""
- . I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)
- . I PHARM S NPI=PHARMNPI      ; in switchback mode for pharmacy claims, use the pharmacy NPI
- . I NPI>0 S $P(IBRETVAL,U,3)=NPI
- . I NPI<1 S IBNONPI=$S(IBNONPI="":3,1:IBNONPI_U_3)
- . ;
- . Q
+ ; MRD;IB*2.0*516 - The field used as the switchback flag is being
+ ; marked for deletion, to be deleted after 3/15/2018.  That flag
+ ; will now always be null.  The following section of code was
+ ; commented out because of this.  This section can be deleted in
+ ; the future.
+ ;
+ ;S SWBCK=(+$$INSFLGS^IBCEF79(IBIEN399)>0)    ; pre-patch 400 switchback flag & processing
+ ;I SWBCK D  G ORGNPIX
+ ;. N PHARM,DPORG,PHARMNPI
+ ;. S PHARM=+$$ISRX^IBCEF1(IBIEN399)          ; pharmacy claim flag switchback
+ ;. S PHARMNPI=""
+ ;. I PHARM S DPORG=$$RXSITE(IBIEN399) I DPORG S PHARMNPI=$P($$NPI^XUSNPI("Organization_ID",DPORG),U,1)
+ ;. ;
+ ;. ; service facility NPI switchback
+ ;. S NPI=""
+ ;. S IBORG=+$P(BSZ,U,4)    ; service facility ien (either ptr file 4 or 355.93)
+ ;. I $P(BSZ,U,3)=0,IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)    ; file 4
+ ;. I $P(BSZ,U,3)=1,IBORG S NPI=$$NPIGET^IBCEP81(IBORG)                          ; file 355.93
+ ;. I PHARM S NPI=PHARMNPI      ; in switchback mode for pharmacy claims, use the pharmacy NPI
+ ;. I NPI>0 S $P(IBRETVAL,U,1)=NPI
+ ;. I NPI<1 S IBNONPI=1
+ ;. ;
+ ;. ; non-VA facility NPI switchback
+ ;. S IBORG=$$GET1^DIQ(399,IBIEN399_",",232,"I")
+ ;. I IBORG S NPI=$$NPIGET^IBCEP81(IBORG),$P(IBRETVAL,U,2)=NPI I 'NPI S IBNONPI=$S(IBNONPI="":2,1:IBNONPI_U_2)
+ ;. ;
+ ;. ; billing provider NPI switchback
+ ;. S IBORG=+$P(BSZ,U,1),NPI=""
+ ;. I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)
+ ;. I PHARM S NPI=PHARMNPI      ; in switchback mode for pharmacy claims, use the pharmacy NPI
+ ;. I NPI>0 S $P(IBRETVAL,U,3)=NPI
+ ;. I NPI<1 S IBNONPI=$S(IBNONPI="":3,1:IBNONPI_U_3)
+ ;. ;
+ ;. Q
  ;
  ; service facility NPI regular
  S NPI=""
@@ -144,7 +150,8 @@ ORGNPI(IBIEN399,IBNONPI) ; Extract NPIs for organizations on this claim
  I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1) S:NPI>0 $P(IBRETVAL,U,3)=NPI
  I NPI<1 S IBNONPI=$S(IBNONPI="":3,1:IBNONPI_U_3)
  ;
-ORGNPIX ;
+ ;ORGNPIX ; MRD;IB*2.0*516 - Delete this label when deleting
+ ; above code commented out.
  ;
  Q IBRETVAL
  ;

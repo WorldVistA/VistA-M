@@ -1,6 +1,6 @@
 IBRBUL ;ALB/CJM - MEANS TEST HOLD CHARGE BULLETIN ;02-MAR-92
- ;;2.0;INTEGRATED BILLING;**70,95,121,153,195,347,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**70,95,121,153,195,347,452,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; This bulletin is sent even if the local site has chosen not to hold
  ; Means Test charges. In that case, IBHOLDP should be set = 0.
  ; requires: IBDD() = internal node in patient file of valid ins.
@@ -125,13 +125,17 @@ BUF ;  gets insurance buffer entries and sets up lines to add to bulletin
  D ADDLN()
  D ADDLN("INSURANCE BUFFER:")
  S IBBDA=0 F  S IBBDA=$O(^IBA(355.33,"C",DFN,IBBDA)) Q:'IBBDA  D
+ . ;IB*2.0*516/TAZ - Use HIPAA compliant fields
  . S IBB40=$G(^IBA(355.33,IBBDA,40)),IBB60=$G(^IBA(355.33,IBBDA,60))
  . ;
  . D ADDLN()
- . S IBX1=$P($G(^IBA(355.33,IBBDA,20)),U,1),IBX2=$P(IBB60,U,4)
- . D ADDLN("Company: "_$$PR(IBX1,25)_"Policy#: "_$$PR(IBX2,21))
+ . ;S IBX1=$P($G(^IBA(355.33,IBBDA,20)),U,1),IBX2=$P(IBB60,U,4)
+ . S IBX1=$P($G(^IBA(355.33,IBBDA,20)),U,1)
+ . ;D ADDLN("Company: "_$$PR(IBX1,25)_"Policy#: "_$$PR(IBX2,21))
+ . D ADDLN("Company: "_$$PR(IBX1,25)_"Policy#: "_$$PR($$GET1^DIQ(355.33,IBBDA_",",90.03),21))
  . S IBX1=$$EXPAND^IBTRE(355.33,60.05,$P(IBB60,U,5)),IBX2=$$FMTE^XLFDT($P(IBB60,U,3))
  . D ADDLN("Whose  : "_$$PR(IBX1,25)_"Expires: "_IBX2)
- . S IBX1=$P(IBB40,U,2),IBX2=$P(IBB40,U,3)
- . D ADDLN("Group  : "_$$PR(IBX1,25)_"Group# : "_IBX2)
+ . ;S IBX1=$P(IBB40,U,2),IBX2=$P(IBB40,U,3)
+ . ;D ADDLN("Group  : "_$$PR(IBX1,25)_"Group# : "_IBX2)
+ . D ADDLN("Group  : "_$$PR($$GET1^DIQ(355.33,IBBDA_",",90.01),25)_"Group# : "_$$GET1^DIQ(355.33,IBBDA_",",90.02))
  Q

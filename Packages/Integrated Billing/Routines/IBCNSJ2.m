@@ -1,6 +1,6 @@
 IBCNSJ2 ;ALB/CPM - CHANGE POLICY PLAN ; 03-JAN-95
- ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CSTP ; 'Change Policy Plan' Action
  ;   Required variable input:
@@ -14,9 +14,13 @@ CSTP ; 'Change Policy Plan' Action
  D FULL^VALM1
  I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) W !!,"Sorry, but you do not have the required privileges to change the policy plan." G CSTPQ
  ;
+ ;IB*2.0*516/TAZ - Use HIPAA Compliant fields
  S X=$G(^DPT(DFN,.312,IBCDFN,0)) I 'X W !!,"This policy is not valid!" G CSTPQ
- S IBCNS=+X,IBPLAN=+$P(X,"^",18),IBPLAND=$G(^IBA(355.3,IBPLAN,0))
- I 'IBPLAN D NOPL G CSTPQ
+ ;S IBCNS=+X,IBPLAN=+$P(X,"^",18),IBPLAND=$G(^IBA(355.3,IBPLAN,0))  ;516 - baa
+ ;I 'IBPLAN D NOPL G CSTPQ
+ S IBCNS=+X,IBPLAN=+$P(X,"^",18) I 'IBPLAN D NOPL G CSTPQ
+ ;Insert HIPAA compliant fields into the original data string.
+ S IBPLAND=$G(^IBA(355.3,IBPLAN,0)),$P(IBPLAND,U,3)=$$GET1^DIQ(355.3,IBPLAN_",",2.01),$P(IBPLAND,U,4)=$$GET1^DIQ(355.3,IBPLAN_",",2.02)
  I 'IBPLAND W !!,"This plan has no company!  Please contact your IRM for assistance." G CSTPQ
  I IBCNS'=+IBPLAND D PLAN^IBCNSM32(DFN,IBCDFN,+IBPLAND) G CSTPQ
  ;

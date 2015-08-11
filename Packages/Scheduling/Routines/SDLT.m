@@ -1,5 +1,5 @@
 SDLT ;ALB/LDB - CANCELLATION LETTERS ; 14 Feb 2003
- ;;5.3;Scheduling;**185,213,281,330,398,523,441,555**;Aug 13, 1993;Build 3
+ ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622**;Aug 13, 1993;Build 30
  ;
  ;**************************************************************************
  ;                          MODIFICATIONS
@@ -30,11 +30,38 @@ W1 W !,"Dear ",$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")
  D ^DIWW K ^UTILITY($J,"W") Q
 WRAPP ;WRITE APPOINTMENT INFORMATION
  N B
- S:$D(SC)&'$D(SDC) SDC=SC S SDCL=$P(^SC(+SDC,0),"^",1),SDCL=SDCL_" Clinic" D FORM
+ ; SD*5.3*622 - re-arrange display of clinic name
+ ;S:$D(SC)&'$D(SDC) SDC=SC S SDCL=$P(^SC(+SDC,0),"^",1),SDCL=SDCL_" Clinic" D FORM
+ S:$D(SC)&'$D(SDC) SDC=SC S SDCL=$P(^SC(+SDC,0),"^",1),SDCL="   Clinic:  "_SDCL D FORM ; SD*5.3*622 end changes
+ ;
  S SDX1=$S($D(SDX):SDX,1:X) S:$D(SDS) S=SDS F B=3,4,5 I $P(S,"^",B)]"" S SDCL=$S(B=3:"LAB",B=4:"XRAY",1:"EKG"),SDX=$P(S,"^",B) D FORM
  S (SDX,X)=SDX1 Q
-FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3)) W !?4,DOW,?14,$J(SDDAT,12)
- W ?27,$J(SDT0,8)," ",SDCL I $D(SDLT)&($Y>(IOSL-8)) W @IOF
+ ; SD*5.3*622 - add more detail for appointment and format it
+FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3))
+ W:'$D(B) !?5,"Date/Time: ",?17,DOW,?$L(DOW)+19,$J(SDDAT,12)
+ I '$D(B),$D(SDC) W ?22,$J(SDT0,9),!?5,SDCL
+ ; get default provider if defined for a given clinic, print it on the
+ ; letter only if we have a YES on file, same for clinic location
+ ; skip printing the provider label if the field is empty in file #44
+ N J,SDLOC,SDPROV,SDPRNM,SDTEL,SDTELEXT
+ S SDLOC=$P($G(^SC(+SDC,0)),"^",11) ; physical location of the clinic
+ S SDTEL=$G(^SC(+SDC,99))        ; telephone number of clinic
+ S SDTELEXT="" I SDTEL]"",$G(^SC(+SDC,99.1))]"" D
+ .S SDTELEXT=^SC(+SDC,99.1)  ; telephone ext of clinic
+ ; get default provider, if any
+ F J=0:0 S J=$O(^SC(+SDC,"PR",J)) Q:'J>0  I $P($G(^SC(+SDC,"PR",J,0)),U,2)=1 S SDPROV=+$P(^SC(+SDC,"PR",J,0),U,1)
+ I $D(SDC),'$D(B),$P($G(^VA(407.5,SDLET,3)),U,2)="Y" D
+ .W:SDLOC]"" !?6,"Location:  "_SDLOC
+ I $D(SDC),'$D(B),SDTEL]"" D
+ .W !?5,"Telephone:  ",SDTEL
+ .W:SDTELEXT]"" "   Telephone Ext.:  ",SDTELEXT
+ I $D(SDPROV) D
+ .I $D(SDC),SDPROV>0 S SDPRNM=$P(^VA(200,SDPROV,0),U,1)
+ .I $D(SDC),'$D(B),$P($G(^VA(407.5,SDLET,3)),U,1)="Y" W:SDPRNM]"" !?6,"Provider:  "_$G(SDPRNM)
+ ; call handler for LAB, XRAY, and EKG tests
+ I $D(B) D TST
+ I $D(SDLT)&($Y>(IOSL-8)) W @IOF
+ ; SD*5.3*622 end changes
  Q
 REST ;WRITE THE REMAINDER OF LETTER
  N Z5,I,X
@@ -92,3 +119,10 @@ BADADD ;Print patients with a Bad Address Indicator
  . . W !,$$LAST4(SDDFN),?10,SDNAM
  W !!,SDHDR1
  Q
+ ;
+TST ; SD*5.3*622 - handle scheduled tests
+ W !
+ W:($L(SDCL)=3&($E(SDCL,1,3)="LAB")) ?1,SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)
+ W:($L(SDCL)=4&($E(SDCL,1,4)="XRAY")) SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)
+ W:($L(SDCL)=3&($E(SDCL,1,3)="EKG")) ?1,SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)
+ Q  ; SD*5.3*622 - end of changes

@@ -1,5 +1,5 @@
 ONCOHELP ;Hines OIFO/GWB - Miscellaneous Help ;5/2/92
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
 DPD ;DRINKS PER DAY
  W !?5,"Enter the amount of alcohol consumed per day in whiskey equivalents"
  W !?10,"Note-> One whiskey is equivalent to 10.24 grams of alcohol",!!?15,"-  12 ounces of beer is equivalent to one whiskey"
@@ -27,7 +27,7 @@ DTFLGHLP ;XECUTABLE HELP CODE FOR DATE FLAG FIELDS (165.5,999.1-999.25)
  ; ONCITM = THE NAACCR ITEM # ASSOCIATED WITH THE FIELD SET IN THE ^DD
  ;
  I ONCITM=581!(ONCITM=1751) D 12,BLNK K ONCITM Q
- I ONCITM=1201!(ONCITM=1251)!(ONCITM=1271)!(ONCITM=1281)!(ONCITM=1861)!(ONCITM=3171)!(ONCITM=3181) D 10,11,12,BLNK K ONCITM Q
+ I ONCITM=1201!(ONCITM=1251)!(ONCITM=1271)!(ONCITM=1281)!(ONCITM=1861)!(ONCITM=3171)!(ONCITM=3181) D 10,11,12,15,BLNK K ONCITM Q
  D 10,11,12,15,BLNK
  K ONCITM Q
  ;

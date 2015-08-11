@@ -1,6 +1,6 @@
 IBCNSUX ;ALB/CMS - SPLIT MEDICARE COMBINATION PLANS ; 29-OCT-98
- ;;2.0;INTEGRATED BILLING;**103**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine shoud not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -63,11 +63,13 @@ SEL ; Select a MEDICARE company and plan.
  I Y<0 W "   <No Insurance Company selected>" S IBQUIT=1 G SELQ
  ;
 SELP ; - select the Combination Plan
+ ; MRD;IB*2.0*516 - Display new Group Name and Number fields.
  K DIC
  S DIC("A")="Select COMBINATION GROUP PLAN: "
  S DIC="^IBA(355.3,",DIC(0)="AEQMZ"
  S DIC("S")="I +^(0)=IBINS,$P(^(0),U,2)"
- S DIC("W")="N IBX S IBX=$G(^(0)) W ""   Name: "",$E($S($P(IBX,U,3)]"""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""   Number: "",$S($P(IBX,U,4)]"""":$P(IBX,U,4),1:""<none>"")"
+ ;S DIC("W")="N IBX S IBX=$G(^(0)) W ""   Name: "",$E($S($P(IBX,U,3)]"""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""   Number: "",$S($P(IBX,U,4)]"""":$P(IBX,U,4),1:""<none>"")"
+ S DIC("W")="N IBX S IBX=$G(^(2)) W ""   Name: "",$E($S($P(IBX,U,1)]"""":$P(IBX,U,1),1:""<none>"")_$J("""",20),1,20),""   Number: "",$E($S($P(IBX,U,2)]"""":$P(IBX,U,2),1:""<none>""),1,14)"
  D ^DIC K DIC S IBPLAN=+Y
  I IBPLAN=$P(IBWNR,U,3) W !!,?5,*7,"* Cannot select standard Part A plan" G SELP
  I IBPLAN=$P(IBWNR,U,5) W !!,?5,*7,"* Cannot select standard Part B plan" G SELP

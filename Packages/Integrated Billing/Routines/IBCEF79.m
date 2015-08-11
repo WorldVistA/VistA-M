@@ -1,6 +1,6 @@
 IBCEF79 ;ALB/ESG - Billing Provider functions ;13-Aug-2008
- ;;2.0;INTEGRATED BILLING;**400,419,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**400,419,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -38,24 +38,30 @@ B(IBIFN,COB) ; Determine Billing Provider and Service Facility information
  S BPDIV=+$$SITE^VASITE(EVDT,IBDIV)      ; division institution ptr file 4
  I BPDIV'>0 S $P(Z,U,1,2)="0^Invalid Institution for Event Date "_$$FMTE^XLFDT(EVDT,"5Z")_"." G BX
  ;
- ; check ins co switchback flag
- I $$INSFLGS(IBIFN,COB)>0 D  G BX
- . N IBZ,SVCIEN,SVCTYP
- . ; revert billing provider and service facility calculation to pre-patch 400 methods
- . ;
- . ; service facility is legacy N-RENDERING INSTITUTION data
- . D F^IBCEF("N-RENDERING INSTITUTION","IBZ",,IBIFN)
- . S SVCIEN=+IBZ              ; service facility ien
- . S SVCTYP=+$P(IBZ,U,2)      ; service facility type - 0=VA inst, 1=non-VA facility
- . ;
- . I 'SVCIEN S $P(Z,U,3)="",$P(Z,U,4)=""          ;  no svc fac
- . I SVCIEN S $P(Z,U,3)=SVCTYP,$P(Z,U,4)=SVCIEN   ; yes svc fac
- . ;
- . ; billing provider = institution of main division in the database
- . S BP=+$$SITE^VASITE
- . I BP,$$BPFACTYP(BP) S $P(Z,U,1,2)=$$CHK(BP) Q
- . S $P(Z,U,1,2)="0^Facility Type of Main Division Institution is invalid."
- . Q
+ ; MRD;IB*2.0*516 - The field used as the switchback flag is being
+ ; marked for deletion, to be deleted after 3/15/2018.  That flag
+ ; will now always be null.  The following section of code was
+ ; commented out because of this.  This section can be deleted in
+ ; the future.
+ ;
+ ;; check ins co switchback flag
+ ;I $$INSFLGS(IBIFN,COB)>0 D  G BX
+ ;. N IBZ,SVCIEN,SVCTYP
+ ;. ; revert billing provider and service facility calculation to pre-patch 400 methods
+ ;. ;
+ ;. ; service facility is legacy N-RENDERING INSTITUTION data
+ ;. D F^IBCEF("N-RENDERING INSTITUTION","IBZ",,IBIFN)
+ ;. S SVCIEN=+IBZ              ; service facility ien
+ ;. S SVCTYP=+$P(IBZ,U,2)      ; service facility type - 0=VA inst, 1=non-VA facility
+ ;. ;
+ ;. I 'SVCIEN S $P(Z,U,3)="",$P(Z,U,4)=""          ;  no svc fac
+ ;. I SVCIEN S $P(Z,U,3)=SVCTYP,$P(Z,U,4)=SVCIEN   ; yes svc fac
+ ;. ;
+ ;. ; billing provider = institution of main division in the database
+ ;. S BP=+$$SITE^VASITE
+ ;. I BP,$$BPFACTYP(BP) S $P(Z,U,1,2)=$$CHK(BP) Q
+ ;. S $P(Z,U,1,2)="0^Facility Type of Main Division Institution is invalid."
+ ;. Q
  ;
  S IBU2=$G(^DGCR(399,IBIFN,"U2"))
  S NVAFAC=+$P(IBU2,U,10)          ; non-VA facility
@@ -207,16 +213,23 @@ INSFLGS(IBIFN,COB) ; get insurance company flags for a given claim
  ; send service facility flag: field 36/4.07, empty if error has occurred or switchback flag is not set.
  ; institution file address flag: field 36/4.13, empty if error has occurred or switchback flag is not set.
  ; 
- N FLGS,FT,INSIEN,INS4
- S IBIFN=+$G(IBIFN) I 'IBIFN Q "-1^^^Invalid claim."
- I '$D(^DGCR(399,IBIFN,0)) Q "-1^^^Claim doesn't exist."
- I '$G(COB) S COB=$$COBN^IBCEF(IBIFN)    ; current payer sequence default
- I '(".1.2.3."[("."_COB_".")) Q "-1^^^Invalid Payer Sequence#: """_COB_"""."
- S INSIEN=$$POLICY^IBCEF(IBIFN,1,COB) I 'INSIEN Q "-1^^^No insurance company associated with the claim."
- S INS4=$G(^DIC(36,INSIEN,4)),FT=$$FT^IBCEF(IBIFN)
- S FLGS=$P(INS4,U,$S(FT=2:11,1:12)) I '+FLGS Q FLGS ; we are done if switchback flag is not set
- S $P(FLGS,U,2)=$P(INS4,U,7),$P(FLGS,U,3)=$P(INS4,U,13) ; if switchback is set, get the other 2 flags
- Q FLGS
+ ; MRD;IB*2.0*516 - The four flag fields described above (File #36,
+ ; Field #'s 4.07, 4.11, 4.12, 4.13) are all being marked for
+ ; deletion.  All references to those fields are being removed
+ ; as part of this patch.
+ ;
+ Q ""
+ ; 
+ ;N FLGS,FT,INSIEN,INS4
+ ;S IBIFN=+$G(IBIFN) I 'IBIFN Q "-1^^^Invalid claim."
+ ;I '$D(^DGCR(399,IBIFN,0)) Q "-1^^^Claim doesn't exist."
+ ;I '$G(COB) S COB=$$COBN^IBCEF(IBIFN)    ; current payer sequence default
+ ;I '(".1.2.3."[("."_COB_".")) Q "-1^^^Invalid Payer Sequence#: """_COB_"""."
+ ;S INSIEN=$$POLICY^IBCEF(IBIFN,1,COB) I 'INSIEN Q "-1^^^No insurance company associated with the claim."
+ ;S INS4=$G(^DIC(36,INSIEN,4)),FT=$$FT^IBCEF(IBIFN)
+ ;S FLGS=$P(INS4,U,$S(FT=2:11,1:12)) I '+FLGS Q FLGS ; we are done if switchback flag is not set
+ ;S $P(FLGS,U,2)=$P(INS4,U,7),$P(FLGS,U,3)=$P(INS4,U,13) ; if switchback is set, get the other 2 flags
+ ;Q FLGS
  ;
 GETBP(IBIFN,COB,INST,SUB,IBXSAVE) ; Get billing provider data for claim output
  ; Used to extract billing provider name, address, and phone# for PRV segment and for CMS-1500, Box 33
@@ -232,50 +245,57 @@ GETBP(IBIFN,COB,INST,SUB,IBXSAVE) ; Get billing provider data for claim output
  ;                   IBXSAVE(SUB,"ST")
  ;                   IBXSAVE(SUB,"ZIP")
  ;                   IBXSAVE(SUB,"PHONE")
- NEW INSFLGS,SWBFLG,BPTP,MAINPTP,IBZ
+ ;
+ ; MRD;IB*2.0*516 - The field used as the switchback flag is being
+ ; marked for deletion, to be deleted after 3/15/2018.  That flag
+ ; will now always be null.  Several sections of this procedure have
+ ; been commented out because of this.  Those sections can be
+ ; deleted in the future.
+ ;
+ NEW IBZ
  K IBXSAVE(SUB)
  I '$G(COB) S COB=$$COBN^IBCEF(IBIFN)
  ;
- S INSFLGS=$$INSFLGS(IBIFN,COB)           ; all ins co flags
- S SWBFLG=(+INSFLGS>0)                    ; main switchback flag
- S (BPTP,MAINPTP)=""                      ; initialize vars used only in switchback mode
- I SWBFLG D
- . S BPTP=$$MAINPRV^IBJPS3                ; main division pay-to provider data string
- . S MAINPTP=($P(BPTP,U,10)'["IB177")     ; flag that says whether main div exists as a pay-to
- . Q
+ ;S INSFLGS=$$INSFLGS(IBIFN,COB)           ; all ins co flags
+ ;S SWBFLG=(+INSFLGS>0)                    ; main switchback flag
+ ;S (BPTP,MAINPTP)=""                      ; initialize vars used only in switchback mode
+ ;I SWBFLG D
+ ;. S BPTP=$$MAINPRV^IBJPS3                ; main division pay-to provider data string
+ ;. S MAINPTP=($P(BPTP,U,10)'["IB177")     ; flag that says whether main div exists as a pay-to
+ ;. Q
  ;
  ; If Switchback is ON and the ins. company parameter Use billing provider VAMC address is not on and
  ; main div pay-to exists, then use the pay-to provider data for the main division in the database.
  ; This is the "normal" switchback data.
- I SWBFLG,'$P(INSFLGS,U,3),MAINPTP D  G GETBPX    ; switchback + billing provider address flag + main ptp exists
- . ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
- . ;S IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
- . S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
- . S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
- . S IBXSAVE(SUB,"ADDR1")=$P(BPTP,U,5)
- . S IBXSAVE(SUB,"ADDR2")=$P(BPTP,U,6)
- . S IBXSAVE(SUB,"CITY")=$P(BPTP,U,7)
- . S IBXSAVE(SUB,"ST")=$P(BPTP,U,8)
- . S IBXSAVE(SUB,"ZIP")=$P(BPTP,U,9)
- . S IBXSAVE(SUB,"PHONE")=$P(BPTP,U,4)
- . Q
+ ;I SWBFLG,'$P(INSFLGS,U,3),MAINPTP D  G GETBPX    ; switchback + billing provider address flag + main ptp exists
+ ;. ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
+ ;. ;S IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
+ ;. S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
+ ;. S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$P(BPTP,U,1)
+ ;. S IBXSAVE(SUB,"ADDR1")=$P(BPTP,U,5)
+ ;. S IBXSAVE(SUB,"ADDR2")=$P(BPTP,U,6)
+ ;. S IBXSAVE(SUB,"CITY")=$P(BPTP,U,7)
+ ;. S IBXSAVE(SUB,"ST")=$P(BPTP,U,8)
+ ;. S IBXSAVE(SUB,"ZIP")=$P(BPTP,U,9)
+ ;. S IBXSAVE(SUB,"PHONE")=$P(BPTP,U,4)
+ ;. Q
  ;
  ; Special Case:  Switchback is ON, the ins. company parameter Use billing provider VAMC address
  ; is not on, but the main division is NOT defined as a Pay-To provider.
  ; Get the name from the Institution File, but everything else from the claim's Pay-to provider
- I SWBFLG,'$P(INSFLGS,U,3),'MAINPTP D  G GETBPX
- . ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
- . ;S IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)
- . S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
- . S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)   ; Inst name
- . S IBZ=$$PRVDATA^IBJPS3(IBIFN)
- . S IBXSAVE(SUB,"ADDR1")=$P(IBZ,U,5)
- . S IBXSAVE(SUB,"ADDR2")=$P(IBZ,U,6)
- . S IBXSAVE(SUB,"CITY")=$P(IBZ,U,7)
- . S IBXSAVE(SUB,"ST")=$P(IBZ,U,8)
- . S IBXSAVE(SUB,"ZIP")=$P(IBZ,U,9)
- . S IBXSAVE(SUB,"PHONE")=$P(IBZ,U,4)
- . Q
+ ;I SWBFLG,'$P(INSFLGS,U,3),'MAINPTP D  G GETBPX
+ ;. ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
+ ;. ;S IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)
+ ;. S IBXSAVE(SUB,"NAME")=$$BNIEN^XUAF4(INST)
+ ;. S:IBXSAVE(SUB,"NAME")="" IBXSAVE(SUB,"NAME")=$$GETFAC^IBCEP8(INST,0,0)   ; Inst name
+ ;. S IBZ=$$PRVDATA^IBJPS3(IBIFN)
+ ;. S IBXSAVE(SUB,"ADDR1")=$P(IBZ,U,5)
+ ;. S IBXSAVE(SUB,"ADDR2")=$P(IBZ,U,6)
+ ;. S IBXSAVE(SUB,"CITY")=$P(IBZ,U,7)
+ ;. S IBXSAVE(SUB,"ST")=$P(IBZ,U,8)
+ ;. S IBXSAVE(SUB,"ZIP")=$P(IBZ,U,9)
+ ;. S IBXSAVE(SUB,"PHONE")=$P(IBZ,U,4)
+ ;. Q
  ;
  ; At this point, we want to get the billing provider data from the Institution file
  ; IB*2.0*432 - Retrieve the BP name from "gold standard" name field of file #4 and if not populated, retrieve from .01 field - IA#2171
@@ -288,10 +308,11 @@ GETBP(IBIFN,COB,INST,SUB,IBXSAVE) ; Get billing provider data for claim output
  S IBXSAVE(SUB,"ST")=$$GETFAC^IBCEP8(INST,0,"3S")
  S IBXSAVE(SUB,"ZIP")=$$GETFAC^IBCEP8(INST,0,"3Z")
  S IBXSAVE(SUB,"PHONE")=$$PRVPHONE^IBJPS3(IBIFN)        ; pay-to phone for claim
- I SWBFLG,MAINPTP S IBXSAVE(SUB,"PHONE")=$P(BPTP,U,4)   ; switchback: pay-to phone for main division
+ ;I SWBFLG,MAINPTP S IBXSAVE(SUB,"PHONE")=$P(BPTP,U,4)   ; switchback: pay-to phone for main division
  ;
  ; 3/30/09 - new requirement - for locally printed CMS-1500 claims, use the pay-to provider address information - Box 33
- I 'SWBFLG,SUB="BOX33" D
+ ;I 'SWBFLG,SUB="BOX33" D
+ I SUB="BOX33" D
  . S IBZ=$$PRVDATA^IBJPS3(IBIFN)
  . S IBXSAVE(SUB,"ADDR1")=$P(IBZ,U,5)
  . S IBXSAVE(SUB,"ADDR2")=$P(IBZ,U,6)
@@ -310,11 +331,18 @@ SENDSF(IBIFN,COB) ; Send service facility information for the EDI claim?
  ; This function is used in the EDI claim (segments SUB, SUB2, NPI-16, and NPI-17).
  ; IBIFN required
  ; COB optional, defaults to current payer sequence
- NEW SEND,INSFLGS,IBDIV,MAIN
+ ;
+ ; MRD;IB*2.0*516 - The field used as the switchback flag is being
+ ; marked for deletion, to be deleted after 3/15/2018.  That flag
+ ; will now always be null.  This function will now always return
+ ; '1'.
+ ;
+ NEW SEND,IBDIV,MAIN
  S SEND=1
  I '$G(COB) S COB=$$COBN^IBCEF(IBIFN)       ; current payer sequence default
- S INSFLGS=$$INSFLGS(IBIFN,COB)             ; all ins co flags
- I +INSFLGS'>0 G SENDSFX                    ; switchback is OFF...get out
+ ;S INSFLGS=$$INSFLGS(IBIFN,COB)             ; all ins co flags
+ ;I +INSFLGS'>0 G SENDSFX                    ; switchback is OFF...get out
+ G SENDSFX
  ;
  I $P($G(^DGCR(399,IBIFN,"U2")),U,10) G SENDSFX    ; if we have a non-VA facility on the claim, always send it
  ;
@@ -322,7 +350,7 @@ SENDSF(IBIFN,COB) ; Send service facility information for the EDI claim?
  S MAIN=$$MAIN^IBCEP2B()                    ; main division in database
  I IBDIV'=MAIN G SENDSFX                    ; care was not provided at the main division - always send it
  ;
- I $P(INSFLGS,U,2) G SENDSFX                ; ins. co. flag is ON so send it
+ ;I $P(INSFLGS,U,2) G SENDSFX                ; ins. co. flag is ON so send it
  ;
  S SEND=0                                   ; otherwise, do not send service facility data
  ;

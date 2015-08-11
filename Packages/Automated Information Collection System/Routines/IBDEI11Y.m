@@ -1,108 +1,140 @@
-IBDEI11Y ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11Y ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18855,1,3,0)
- ;;=3^28525
- ;;^UTILITY(U,$J,358.3,18856,0)
- ;;=28530^^122^1205^25^^^^1
- ;;^UTILITY(U,$J,358.3,18856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18856,1,2,0)
- ;;=2^Closed TX of sesamiod fracture 
- ;;^UTILITY(U,$J,358.3,18856,1,3,0)
- ;;=3^28530
- ;;^UTILITY(U,$J,358.3,18857,0)
- ;;=28531^^122^1205^26^^^^1
- ;;^UTILITY(U,$J,358.3,18857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18857,1,2,0)
- ;;=2^Open TX of sesamiod fracture, with or without internal fixation
- ;;^UTILITY(U,$J,358.3,18857,1,3,0)
- ;;=3^28531
- ;;^UTILITY(U,$J,358.3,18858,0)
- ;;=27760^^122^1205^27^^^^1
- ;;^UTILITY(U,$J,358.3,18858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18858,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; without manipulation 
- ;;^UTILITY(U,$J,358.3,18858,1,3,0)
- ;;=3^27760
- ;;^UTILITY(U,$J,358.3,18859,0)
- ;;=27762^^122^1205^28^^^^1
- ;;^UTILITY(U,$J,358.3,18859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18859,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; with manipulation, with or without skin or skeletal traction
- ;;^UTILITY(U,$J,358.3,18859,1,3,0)
- ;;=3^27762
- ;;^UTILITY(U,$J,358.3,18860,0)
- ;;=27766^^122^1205^29^^^^1
- ;;^UTILITY(U,$J,358.3,18860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18860,1,2,0)
- ;;=2^Open/Closed TX of medial matteolus FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,18860,1,3,0)
- ;;=3^27766
- ;;^UTILITY(U,$J,358.3,18861,0)
- ;;=27786^^122^1205^30^^^^1
- ;;^UTILITY(U,$J,358.3,18861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18861,1,2,0)
- ;;=2^Closed TX of distal fibular fracture (lateral malleolus); without manipulation
- ;;^UTILITY(U,$J,358.3,18861,1,3,0)
- ;;=3^27786
- ;;^UTILITY(U,$J,358.3,18862,0)
- ;;=27788^^122^1205^31^^^^1
- ;;^UTILITY(U,$J,358.3,18862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18862,1,2,0)
- ;;=2^Closed TX of distal fibular (lateral malleolus); with manipulation
- ;;^UTILITY(U,$J,358.3,18862,1,3,0)
- ;;=3^27788
- ;;^UTILITY(U,$J,358.3,18863,0)
- ;;=27792^^122^1205^32^^^^1
- ;;^UTILITY(U,$J,358.3,18863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18863,1,2,0)
- ;;=2^Open TX of distal fibular fracture (lateral malleolus), with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,18863,1,3,0)
- ;;=3^27792
- ;;^UTILITY(U,$J,358.3,18864,0)
- ;;=27808^^122^1205^33^^^^1
- ;;^UTILITY(U,$J,358.3,18864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18864,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); without manipulation
- ;;^UTILITY(U,$J,358.3,18864,1,3,0)
- ;;=3^27808
- ;;^UTILITY(U,$J,358.3,18865,0)
- ;;=27810^^122^1205^34^^^^1
- ;;^UTILITY(U,$J,358.3,18865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18865,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); with manipulation
- ;;^UTILITY(U,$J,358.3,18865,1,3,0)
- ;;=3^27810
- ;;^UTILITY(U,$J,358.3,18866,0)
- ;;=27814^^122^1205^35^^^^1
- ;;^UTILITY(U,$J,358.3,18866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18866,1,2,0)
- ;;=2^Open TX of bimalleolar ankle fracture, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,18866,1,3,0)
- ;;=3^27814
- ;;^UTILITY(U,$J,358.3,18867,0)
- ;;=27816^^122^1205^36^^^^1
- ;;^UTILITY(U,$J,358.3,18867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18867,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,18867,1,3,0)
- ;;=3^27816
- ;;^UTILITY(U,$J,358.3,18868,0)
- ;;=27818^^122^1205^37^^^^1
- ;;^UTILITY(U,$J,358.3,18868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18868,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; with manipulation
+ ;;^UTILITY(U,$J,358.3,18758,2)
+ ;;=^265356
+ ;;^UTILITY(U,$J,358.3,18759,0)
+ ;;=302.3^^104^1098^13
+ ;;^UTILITY(U,$J,358.3,18759,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18759,1,2,0)
+ ;;=2^302.3
+ ;;^UTILITY(U,$J,358.3,18759,1,5,0)
+ ;;=5^Transvestic Fetishism
+ ;;^UTILITY(U,$J,358.3,18759,2)
+ ;;=^331923
+ ;;^UTILITY(U,$J,358.3,18760,0)
+ ;;=302.50^^104^1098^9
+ ;;^UTILITY(U,$J,358.3,18760,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18760,1,2,0)
+ ;;=2^302.50
+ ;;^UTILITY(U,$J,358.3,18760,1,5,0)
+ ;;=5^Trans-sexualism NOS
+ ;;^UTILITY(U,$J,358.3,18760,2)
+ ;;=^120949
+ ;;^UTILITY(U,$J,358.3,18761,0)
+ ;;=302.51^^104^1098^10
+ ;;^UTILITY(U,$J,358.3,18761,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18761,1,2,0)
+ ;;=2^302.51
+ ;;^UTILITY(U,$J,358.3,18761,1,5,0)
+ ;;=5^Trans-sexualism w/ Asexual Hx
+ ;;^UTILITY(U,$J,358.3,18761,2)
+ ;;=^268175
+ ;;^UTILITY(U,$J,358.3,18762,0)
+ ;;=302.52^^104^1098^12
+ ;;^UTILITY(U,$J,358.3,18762,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18762,1,2,0)
+ ;;=2^302.52
+ ;;^UTILITY(U,$J,358.3,18762,1,5,0)
+ ;;=5^Trans-sexualism w/ Homosexual Hx
+ ;;^UTILITY(U,$J,358.3,18762,2)
+ ;;=^268176
+ ;;^UTILITY(U,$J,358.3,18763,0)
+ ;;=302.53^^104^1098^11
+ ;;^UTILITY(U,$J,358.3,18763,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18763,1,2,0)
+ ;;=2^302.53
+ ;;^UTILITY(U,$J,358.3,18763,1,5,0)
+ ;;=5^Trans-sexualism w/ Heterosexual Hx
+ ;;^UTILITY(U,$J,358.3,18763,2)
+ ;;=^268177
+ ;;^UTILITY(U,$J,358.3,18764,0)
+ ;;=780.52^^104^1099^3
+ ;;^UTILITY(U,$J,358.3,18764,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18764,1,2,0)
+ ;;=2^780.52
+ ;;^UTILITY(U,$J,358.3,18764,1,5,0)
+ ;;=5^Insomnia
+ ;;^UTILITY(U,$J,358.3,18764,2)
+ ;;=^87662
+ ;;^UTILITY(U,$J,358.3,18765,0)
+ ;;=780.51^^104^1099^4
+ ;;^UTILITY(U,$J,358.3,18765,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18765,1,2,0)
+ ;;=2^780.51
+ ;;^UTILITY(U,$J,358.3,18765,1,5,0)
+ ;;=5^Insomnia w/Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,18765,2)
+ ;;=^273348
+ ;;^UTILITY(U,$J,358.3,18766,0)
+ ;;=780.57^^104^1099^5
+ ;;^UTILITY(U,$J,358.3,18766,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18766,1,2,0)
+ ;;=2^780.57
+ ;;^UTILITY(U,$J,358.3,18766,1,5,0)
+ ;;=5^Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,18766,2)
+ ;;=^293933
+ ;;^UTILITY(U,$J,358.3,18767,0)
+ ;;=780.50^^104^1099^6
+ ;;^UTILITY(U,$J,358.3,18767,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18767,1,2,0)
+ ;;=2^780.50
+ ;;^UTILITY(U,$J,358.3,18767,1,5,0)
+ ;;=5^Sleep Disturbance, Unspec
+ ;;^UTILITY(U,$J,358.3,18767,2)
+ ;;=^111271
+ ;;^UTILITY(U,$J,358.3,18768,0)
+ ;;=291.82^^104^1099^1
+ ;;^UTILITY(U,$J,358.3,18768,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18768,1,2,0)
+ ;;=2^291.82
+ ;;^UTILITY(U,$J,358.3,18768,1,5,0)
+ ;;=5^Alcohol Induced Sleep D/O
+ ;;^UTILITY(U,$J,358.3,18768,2)
+ ;;=^332750
+ ;;^UTILITY(U,$J,358.3,18769,0)
+ ;;=292.85^^104^1099^2
+ ;;^UTILITY(U,$J,358.3,18769,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18769,1,2,0)
+ ;;=2^292.85
+ ;;^UTILITY(U,$J,358.3,18769,1,5,0)
+ ;;=5^Drug Induced Sleep D/O
+ ;;^UTILITY(U,$J,358.3,18769,2)
+ ;;=^332751
+ ;;^UTILITY(U,$J,358.3,18770,0)
+ ;;=316.^^104^1100^10
+ ;;^UTILITY(U,$J,358.3,18770,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18770,1,2,0)
+ ;;=2^316.
+ ;;^UTILITY(U,$J,358.3,18770,1,5,0)
+ ;;=5^Psychic Fact w/Other Dis
+ ;;^UTILITY(U,$J,358.3,18770,2)
+ ;;=^268363
+ ;;^UTILITY(U,$J,358.3,18771,0)
+ ;;=314.01^^104^1100^2
+ ;;^UTILITY(U,$J,358.3,18771,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18771,1,2,0)
+ ;;=2^314.01
+ ;;^UTILITY(U,$J,358.3,18771,1,5,0)
+ ;;=5^Attn Defic w/ Hyperactiv
+ ;;^UTILITY(U,$J,358.3,18771,2)
+ ;;=^303679
+ ;;^UTILITY(U,$J,358.3,18772,0)
+ ;;=317.^^104^1100^8
+ ;;^UTILITY(U,$J,358.3,18772,1,0)
+ ;;=^358.31IA^5^2

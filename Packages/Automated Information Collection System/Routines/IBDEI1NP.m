@@ -1,0 +1,132 @@
+IBDEI1NP ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,29781,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,29781,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,29782,0)
+ ;;=I50.41^^189^1895^2
+ ;;^UTILITY(U,$J,358.3,29782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29782,1,3,0)
+ ;;=3^Acute Combined Systolic/Diastolic Hrt Failure
+ ;;^UTILITY(U,$J,358.3,29782,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,29782,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,29783,0)
+ ;;=I50.30^^189^1895^16
+ ;;^UTILITY(U,$J,358.3,29783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29783,1,3,0)
+ ;;=3^Diastolic Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,29783,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,29783,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,29784,0)
+ ;;=I50.31^^189^1895^3
+ ;;^UTILITY(U,$J,358.3,29784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29784,1,3,0)
+ ;;=3^Acute Diastolic Heart Failure
+ ;;^UTILITY(U,$J,358.3,29784,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,29784,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,29785,0)
+ ;;=I50.32^^189^1895^13
+ ;;^UTILITY(U,$J,358.3,29785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29785,1,3,0)
+ ;;=3^Chronic Diastolic Heart Failure
+ ;;^UTILITY(U,$J,358.3,29785,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,29785,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,29786,0)
+ ;;=I50.33^^189^1895^6
+ ;;^UTILITY(U,$J,358.3,29786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29786,1,3,0)
+ ;;=3^Acute on Chronic Diastolic Heart Failure
+ ;;^UTILITY(U,$J,358.3,29786,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,29786,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,29787,0)
+ ;;=I50.21^^189^1895^4
+ ;;^UTILITY(U,$J,358.3,29787,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29787,1,3,0)
+ ;;=3^Acute Systolic Heart Failure
+ ;;^UTILITY(U,$J,358.3,29787,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,29787,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,29788,0)
+ ;;=I50.22^^189^1895^14
+ ;;^UTILITY(U,$J,358.3,29788,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29788,1,3,0)
+ ;;=3^Chronic Systolic Heart Failure
+ ;;^UTILITY(U,$J,358.3,29788,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,29788,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,29789,0)
+ ;;=I50.23^^189^1895^7
+ ;;^UTILITY(U,$J,358.3,29789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29789,1,3,0)
+ ;;=3^Acute on Chronic Systolic Heart Failure
+ ;;^UTILITY(U,$J,358.3,29789,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,29789,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,29790,0)
+ ;;=I50.20^^189^1895^28
+ ;;^UTILITY(U,$J,358.3,29790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29790,1,3,0)
+ ;;=3^Systolic Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,29790,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,29790,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,29791,0)
+ ;;=I65.23^^189^1895^23
+ ;;^UTILITY(U,$J,358.3,29791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29791,1,3,0)
+ ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,29791,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,29791,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,29792,0)
+ ;;=I65.22^^189^1895^24
+ ;;^UTILITY(U,$J,358.3,29792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29792,1,3,0)
+ ;;=3^Occlusion/Stenosis of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,29792,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,29792,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,29793,0)
+ ;;=I65.21^^189^1895^26
+ ;;^UTILITY(U,$J,358.3,29793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29793,1,3,0)
+ ;;=3^Occlusion/Stenosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,29793,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,29793,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,29794,0)
+ ;;=I65.8^^189^1895^25
+ ;;^UTILITY(U,$J,358.3,29794,1,0)
+ ;;=^358.31IA^4^2

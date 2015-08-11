@@ -1,6 +1,6 @@
 IBCNS2 ;ALB/AAS - INSURANCE POLICY CALLS FROM FILE 399 DD ;22-JULY-91
- ;;2.0;INTEGRATED BILLING;**28,43,80,51,137,155,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,43,80,51,137,155,488,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
 DD(IBX,IBDA,LEVEL) ;  - called from input transform for field 111,112,113
@@ -40,8 +40,10 @@ SEL(IBX,DFN,INSDT,ACTIVE) ; -- Select insurance policy
  N IBOUT,IBSEL2
  S IBX=$$UP^XLFSTR(IBX)
  I IBX?1A.E D  S IBX=$S($G(IBOUT):"^",$G(IBSEL2):IBSEL2,1:IBX)
- . N X,Y,ERROR,TARGET
- . D LIST^DIC(2.312,","_DFN_",",".01;.2;3;8;1;16;.18;21",,9999,,IBX,,"I $D(IBDD(+Y))",,"TARGET","ERROR")
+ . N X,Y,ERROR,TARGET,I,G
+ . ;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ . ;D LIST^DIC(2.312,","_DFN_",",".01;.2;3;8;1;16;.18;21",,9999,,IBX,,"I $D(IBDD(+Y))",,"TARGET","ERROR")
+ . D LIST^DIC(2.312,","_DFN_",",".01;.2;3;8;7.02;16;.18;21",,9999,,IBX,,"I $D(IBDD(+Y))",,"TARGET","ERROR") ;516 - baa : add 7.02
  . I $D(ERROR) S IBOUT=1 Q   ; should not hit this.  used more during test 
  . I '$D(TARGET) S IBOUT=1 Q  ; no partial matches
  . I +$G(TARGET("DILIST",0))<2 Q  ; only one match so work as before
@@ -68,7 +70,9 @@ DSPTHM ; display the insurance companies and useful information
  F I=1:1 Q:'$D(TARGET("DILIST","ID",I))  D
  . W !,I,?4,$E($G(TARGET("DILIST","ID",I,.01)),1,12)
  . W ?18,"(",$$LOW^XLFSTR($E($G(TARGET("DILIST","ID",I,.2)),1)),")"
- . W ?23,$E($G(TARGET("DILIST","ID",I,1)),1,12)
+ . ;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ . ;W ?23,$E($G(TARGET("DILIST","ID",I,1)),1,12)
+ . W ?23,$E($G(TARGET("DILIST","ID",I,7.02)),1,12)
  . W ?37,$E($G(TARGET("DILIST","ID",I,21)),1,10)
  . W ?49,$G(TARGET("DILIST","ID",I,8))
  . W ?62,$G(TARGET("DILIST","ID",I,3))
@@ -108,7 +112,9 @@ DDHELP(IBDA,LEVEL) ; -- Executable help
  S IBDTIN=$G(INSDT)
  W ! D HDR^IBCNS
  S I=0 F  S I=$O(IBD(I)) Q:'I  D
- .S IBINS=$G(^DPT(DFN,.312,$G(IBD(I)),0))
+ .;IB*2.0*516/TAZ - Use HIPAA compliant fields
+ .;S IBINS=$G(^DPT(DFN,.312,$G(IBD(I)),0))  ; 516 - baa
+ .S IBINS=$$ZND^IBCNS1(DFN,$G(IBD(I)))  ; 516 - baa
  .D D1^IBCNS
 DDHQ Q
  ;
@@ -126,12 +132,17 @@ INSCO(IBDA,IBCDFN) ; -- return pointer value of 36 from pt. file
  ;
 IX(DA,XREF) ; -- create i1, aic xrefs for fields 112, 113, 114
  ;
- S ^DGCR(399,DA,XREF)=$$ZND^IBCNS1($P($G(^DGCR(399,DA,0)),"^",2),X)
- S ^DGCR(399,DA,"AIC",+$G(^DPT($P($G(^DGCR(399,DA,0)),"^",2),.312,+X,0)))=""
+ ;IB*2.0*516/TAZ - Set up I17, I27 or I37 nodes
+ N DFN
+ S DFN=$P($G(^DGCR(399,DA,0)),"^",2)
+ S ^DGCR(399,DA,XREF)=$$ZND^IBCNS1(DFN,X,399)
+ I ",I1,I2,I3,"[(","_XREF_","),$G(^DPT(DFN,.312,+X,7))'="" S ^DGCR(399,DA,XREF_"7")=$G(^DPT(DFN,.312,+X,7))
+ S ^DGCR(399,DA,"AIC",+$G(^DPT(DFN,.312,+X,0)))=""
  Q
  ;
 KIX(DA,XREF) ; -- kill logic for above xref
  K ^DGCR(399,DA,XREF)
+ I ",I1,I2,I3,"[(","_XREF_",") K ^DGCR(399,DA,XREF_"7")
  K ^DGCR(399,DA,"AIC",+$G(^DPT($P($G(^DGCR(399,DA,0)),"^",2),.312,+X,0)))
  Q
  ;

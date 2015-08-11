@@ -1,58 +1,144 @@
-IBDEI07K ; ; 09-FEB-2015
+IBDEI07K ; ; 20-MAY-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,3372,1,5,0)
+ ;;=5^Abrasion Face-Infected
+ ;;^UTILITY(U,$J,358.3,3372,2)
+ ;;=^275264
+ ;;^UTILITY(U,$J,358.3,3373,0)
+ ;;=915.1^^31^273^3
+ ;;^UTILITY(U,$J,358.3,3373,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3373,1,2,0)
+ ;;=2^915.1
+ ;;^UTILITY(U,$J,358.3,3373,1,5,0)
+ ;;=5^Abrasion Finger-Infected
+ ;;^UTILITY(U,$J,358.3,3373,2)
+ ;;=^275320
+ ;;^UTILITY(U,$J,358.3,3374,0)
+ ;;=917.1^^31^273^4
+ ;;^UTILITY(U,$J,358.3,3374,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3374,1,2,0)
+ ;;=2^917.1
+ ;;^UTILITY(U,$J,358.3,3374,1,5,0)
+ ;;=5^Abrasion Foot/Toe-Infec
+ ;;^UTILITY(U,$J,358.3,3374,2)
+ ;;=^275342
+ ;;^UTILITY(U,$J,358.3,3375,0)
+ ;;=914.1^^31^273^5
+ ;;^UTILITY(U,$J,358.3,3375,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3375,1,2,0)
+ ;;=2^914.1
+ ;;^UTILITY(U,$J,358.3,3375,1,5,0)
+ ;;=5^Abrasion Hand-Infected
+ ;;^UTILITY(U,$J,358.3,3375,2)
+ ;;=^275309
+ ;;^UTILITY(U,$J,358.3,3376,0)
+ ;;=916.1^^31^273^6
+ ;;^UTILITY(U,$J,358.3,3376,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3376,1,2,0)
+ ;;=2^916.1
+ ;;^UTILITY(U,$J,358.3,3376,1,5,0)
+ ;;=5^Abrasion Hip/Leg-Infect
+ ;;^UTILITY(U,$J,358.3,3376,2)
+ ;;=^275331
+ ;;^UTILITY(U,$J,358.3,3377,0)
+ ;;=919.1^^31^273^7
+ ;;^UTILITY(U,$J,358.3,3377,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3377,1,2,0)
+ ;;=2^919.1
+ ;;^UTILITY(U,$J,358.3,3377,1,5,0)
+ ;;=5^Abrasion Infected NEC
+ ;;^UTILITY(U,$J,358.3,3377,2)
+ ;;=^275358
+ ;;^UTILITY(U,$J,358.3,3378,0)
+ ;;=682.3^^31^274^2
+ ;;^UTILITY(U,$J,358.3,3378,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3378,1,2,0)
+ ;;=2^682.3
+ ;;^UTILITY(U,$J,358.3,3378,1,5,0)
+ ;;=5^Abscess/cellulitis arm
+ ;;^UTILITY(U,$J,358.3,3378,2)
+ ;;=^271891
+ ;;^UTILITY(U,$J,358.3,3379,0)
+ ;;=682.5^^31^274^3
+ ;;^UTILITY(U,$J,358.3,3379,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3379,1,2,0)
+ ;;=2^682.5
+ ;;^UTILITY(U,$J,358.3,3379,1,5,0)
+ ;;=5^Abscess/cellulitis buttock
+ ;;^UTILITY(U,$J,358.3,3379,2)
+ ;;=^271893
+ ;;^UTILITY(U,$J,358.3,3380,0)
+ ;;=682.0^^31^274^4
+ ;;^UTILITY(U,$J,358.3,3380,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3380,1,2,0)
+ ;;=2^682.0
+ ;;^UTILITY(U,$J,358.3,3380,1,5,0)
+ ;;=5^Abscess/cellulitis face
+ ;;^UTILITY(U,$J,358.3,3380,2)
+ ;;=^271888
+ ;;^UTILITY(U,$J,358.3,3381,0)
+ ;;=682.7^^31^274^6
+ ;;^UTILITY(U,$J,358.3,3381,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3381,1,2,0)
+ ;;=2^682.7
+ ;;^UTILITY(U,$J,358.3,3381,1,5,0)
+ ;;=5^Abscess/cellulitis foot
+ ;;^UTILITY(U,$J,358.3,3381,2)
+ ;;=^271895
+ ;;^UTILITY(U,$J,358.3,3382,0)
+ ;;=682.4^^31^274^7
+ ;;^UTILITY(U,$J,358.3,3382,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3382,1,2,0)
+ ;;=2^682.4
+ ;;^UTILITY(U,$J,358.3,3382,1,5,0)
+ ;;=5^Abscess/cellulitis hand
+ ;;^UTILITY(U,$J,358.3,3382,2)
+ ;;=^271892
+ ;;^UTILITY(U,$J,358.3,3383,0)
+ ;;=682.6^^31^274^8
+ ;;^UTILITY(U,$J,358.3,3383,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3383,1,2,0)
+ ;;=2^682.6
+ ;;^UTILITY(U,$J,358.3,3383,1,5,0)
+ ;;=5^Abscess/cellulitis leg
+ ;;^UTILITY(U,$J,358.3,3383,2)
+ ;;=^271894
+ ;;^UTILITY(U,$J,358.3,3384,0)
+ ;;=682.1^^31^274^9
+ ;;^UTILITY(U,$J,358.3,3384,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3384,1,2,0)
+ ;;=2^682.1
+ ;;^UTILITY(U,$J,358.3,3384,1,5,0)
+ ;;=5^Abscess/cellulitis neck
+ ;;^UTILITY(U,$J,358.3,3384,2)
+ ;;=^271889
+ ;;^UTILITY(U,$J,358.3,3385,0)
+ ;;=682.2^^31^274^11
+ ;;^UTILITY(U,$J,358.3,3385,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3385,1,2,0)
+ ;;=2^682.2
+ ;;^UTILITY(U,$J,358.3,3385,1,5,0)
+ ;;=5^Abscess/cellulitis trunk
+ ;;^UTILITY(U,$J,358.3,3385,2)
+ ;;=^271890
+ ;;^UTILITY(U,$J,358.3,3386,0)
+ ;;=682.9^^31^274^1
+ ;;^UTILITY(U,$J,358.3,3386,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3386,1,2,0)
+ ;;=2^682.9

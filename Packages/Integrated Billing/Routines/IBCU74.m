@@ -1,6 +1,6 @@
 IBCU74 ;OAK/ELZ - INTERCEPT SCREEN INPUT OF PROCEDURE CODES (CONT) ;6-JAN-04
- ;;2.0;INTEGRATED BILLING;**228,260,339,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**228,260,339,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 DATA(IBP,IBLNPRV) ; this is used to add data when new procedures are added for
@@ -21,13 +21,14 @@ DATA(IBP,IBLNPRV) ; this is used to add data when new procedures are added for
  ... ;need to find what field is not occupied starting with 10
  ... S IBZ=10 F IBS=1:1 Q:$P(DR,";",IBS)=""  I $P(DR,";",IBS)[IBZ_"////" S IBZ=IBZ+1
  ... S DR=DR_IBZ_"////"_(+Y)_";"
- .. I $P(IBY,"^",13) W !!?10,"Associating Provider: ",$P($G(^VA(200,$P(IBY,"^",13),0)),"^") D  S DR=DR_"18////"_$P(IBY,"^",13)_";",IBLNPRV("IBCCPT")="`"_$P(IBY,U,13)  ;WCJ;IB*2.0*432;Save off renderring to return
- ... ;
- ... ; as requested by users, need to update the last look up value for
- ... ; the provider
- ... N DIC,X,DR,Y S DIC="^VA(200,",DIC(0)="INOS",X="`"_$P(IBY,"^",13)
- ... D ^DIC
- ... ;
+ .. I $P(IBY,"^",13) D
+ ... I $$GETNPI^IBCEF73A($P(IBY,"^",13)_";VA(200,")="" Q  ;Don't file provider if no NPI - IB*2*516
+ ... W !!?10,"Associating Provider: ",$P($G(^VA(200,$P(IBY,"^",13),0)),"^") D  S DR=DR_"18////"_$P(IBY,"^",13)_";",IBLNPRV("IBCCPT")="`"_$P(IBY,U,13)  ;WCJ;IB*2.0*432;Save off renderring to return
+ .... ; as requested by users, need to update the last look up value for
+ .... ; the provider
+ .... N DIC,X,DR,Y S DIC="^VA(200,",DIC(0)="INOS",X="`"_$P(IBY,"^",13)
+ .... D ^DIC
+ .... ;
  .. I $P(IBY,"^",14) W !?10,"Assigning Location: ",$P($G(^SC($P(IBY,"^",14),0)),"^") S DR=DR_"6////"_$P(IBY,"^",14)_";"_$S($P($G(^SC($P(IBY,"^",14),0)),"^",15):"5////"_$P(^(0),"^",15)_";",1:"")
  .. I $L(DR) S DIE="^DGCR(399,"_IBIFN_",""CP"",",DA(1)=IBIFN,DA=+IBP,IBDR=DR D ^DIE
  .. S IBC=0 F IBX=11,12 I $P(IBY,"^",IBX) S IB9=$$MOD^ICPTMOD($P(IBY,"^",IBX),"I") W !?10,"Adding Modifier: ",$P(IB9,"^",2)," - ",$P(IB9,"^",3) D

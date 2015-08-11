@@ -1,6 +1,6 @@
 IBCRBC ;ALB/ARH - RATES: BILL CALCULATION OF CHARGES ; 22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,80,106,51,137,245,370**;21-MAR-94;Build 5
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,106,51,137,245,370,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Variable DGPTUPDT may be defined on entry/exit for inpt bills so the PTF will only be updated once per session
  ; Charges may be filed on the bill and if IBRSARR is passed but does not exist it may be updated
@@ -8,6 +8,16 @@ IBCRBC ;ALB/ARH - RATES: BILL CALCULATION OF CHARGES ; 22-MAY-1996
  ;
 BILL(IBIFN,IBRSARR) ; given a bill number calculate and store all charges
  ; if IBRSARR is defined it will be used to create charges rather than the standard set for the bills Rate Type
+ ;
+ ; MRD;IB*2.0*516 - Added the flag IBNOCALC.  This flag is set two
+ ; places in ^IBCCC -- when the user is CLONing a claim (cancel and
+ ; copy) or CRDing a claim (correct rejected/denied).  The first time
+ ; this procedure is entered for the new claim, if the IBNOCALC flag is
+ ; set, it will reset the flag and quit out.  That is, it does not re-
+ ; calculate the charges the first time it otherwise would if the user
+ ; is doing either a CRD or CLON.
+ ;
+ I $G(IBNOCALC) S IBNOCALC=0 Q
  ;
  N IB0,IBU,IBBRT,IBBTYPE,IBCTYPE,DFN,PTF,IBDGPT,IBRS,IBCS,IBBEVNT Q:'$G(IBIFN)
  K ^TMP($J,"IBCRCC"),^TMP($J,"IBCRCS")

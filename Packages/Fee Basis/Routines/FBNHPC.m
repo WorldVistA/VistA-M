@@ -1,9 +1,17 @@
 FBNHPC ;AISC/GRR-POST COMMITMENTS TO 1358 ;1DEC00
- ;;3.5;FEE BASIS;**25**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
- S PRCS("TYPE")="FB",(FBNHCC,FBTOT)=0,PRCS("A")="Select Obligation Number: " K PRCS("X") D EN1^PRCS58 G:Y<0 Q S FBOBN=$P(Y,"^",2)
+ ;;3.5;FEE BASIS;**25,153**;JAN 30, 1995;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;FB*3.5*153 Save requested site internal to insure obligation found in file
+ ;           FB7078 for time period selected is from the same station selected
+ ;           during option process.  This is true for both monthly activity
+ ;           as well as carry over activity and Insufficient Authorization 
+ ;           Rate data on file
+ ;
+ S PRCS("TYPE")="FB",(FBNHCC,FBTOT)=0,PRCS("A")="Select Obligation Number: " K PRCS("X") D EN1^PRCS58 G:Y<0 Q S FBOBN=$P(Y,"^",2),FBSTA=PRC("SST")   ;FB*3.5*153
  ;entry point for estimate report FBNHCC=1,(FBSEQ,FBOBN)=""
-EN1 S FBTOT=0,%DT=$S(FBNHCC:"AEFMX",1:"AEPMX"),%DT("A")=$S(FBNHCC:"Calculate ",1:"Post ")_"Commitments for which Month/Year: " D ^%DT G:X="^"!(X="") Q S FBPAYDT=$E(+Y,1,5)_"00",FBMM=$E(+Y,4,5),FBYY=$E(+Y,2,3),X=+Y D DAYS^FBAAUTL1 S FBDAYS=X
+EN1 I FBNHCC D STA^PRCSUT Q:'$D(PRC("SITE"))  S FBSTA=PRC("SST")     ;FB*3.5*153
+ S FBTOT=0,%DT=$S(FBNHCC:"AEPMX",1:"AEPMX"),%DT("A")=$S(FBNHCC:"Calculate ",1:"Post ")_"Commitments for which Month/Year: " D ^%DT G:X="^"!(X="") Q S FBPAYDT=$E(+Y,1,5)_"00",FBMM=$E(+Y,4,5),FBYY=$E(+Y,2,3),X=+Y D DAYS^FBAAUTL1 S FBDAYS=X
  S VAR="FBOBN^FBPAYDT^FBMM^FBYY^FBDAYS^FBNHCC",VAL=FBOBN_"^"_FBPAYDT_"^"_FBMM_"^"_FBYY_"^"_FBDAYS_"^"_FBNHCC,PGM="START^FBNHPC" D ZIS^FBAAUTL G:FBPOP END
  ;
 START K ^TMP($J,"FBNHPC") S (FBPAYEDT,FBENDDT)=$E(FBPAYDT,1,5)_FBDAYS,Q="",$P(Q,"=",80)="=",(FBTOT,FBTOTAL,FBOUT)=0 U IO W:$E(IOST,1,2)["C-" @IOF D HED^FBNHPC1
@@ -20,6 +28,7 @@ Q W !!,?10,"Total ",$S(FBNHCC:"Estimated: ",1:"Posted: "),$J(FBTOT,10,2),?50,"To
  ;
 END K FBMM,FBYY,FBDEFP,FBABD,FBPAYDT,FBDAYS,FBIFN,Z1,Z2,FBVCAR,FBCD,FBSEQ,FBOBN,FBNAME,FBSSN,FBPOSDT,FBNHCC,FBTOTAL,FBPAYEDT,FB7078,FBAABDT,FBX1,FBOUT,DFN,FBVEN,FBENDFLG,FBLERR
  K %,%DT,DIC,FBDD,FBERR,FBTOT,IFN,PGM,Q,VAL,VAR,Z,FBEDT,FBENDDT,FBHIFN,FBRIFN,FBTDT,FBTRDYS,FBZ,FB,I,PRCS,Y,PRC,PRCSCPAN,X,X1,^TMP($J,"FBNHPC")
+ K FBSTA,FBOBIEN,FBOBNO,PRC23,FBPOP,FBCNT,FBHIN,FBMM
  K ^XTMP("FBPOST") D CLOSE^FBAAUTL Q
  ;
 WRT() ;determine if write to output

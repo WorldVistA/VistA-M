@@ -1,102 +1,142 @@
-IBDEI1GF ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GF ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.6,0,"GL")
- ;;=^IBE(358.6,
- ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
- ;;=
- ;;^DIC(358.6,"%D",0)
- ;;=^^1^1^2950927^^^^
- ;;^DIC(358.6,"%D",1,0)
- ;;=This file is used as a workspace by the import/export utility.
- ;;^DIC(358.6,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.6,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DIC(358.6,"%D",4,0)
- ;;= 
- ;;^DIC(358.6,"%D",5,0)
- ;;=This file contains a description of all of the interfaces with other packages.
- ;;^DIC(358.6,"%D",6,0)
- ;;=The form will invoke the proper interface routines by doing a lookup on
- ;;^DIC(358.6,"%D",7,0)
- ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
- ;;^DIC(358.6,"%D",8,0)
- ;;=fields are for documentation purposes and to verify that the proper
- ;;^DIC(358.6,"%D",9,0)
- ;;=variables are defined. Data will be exchanged between the encounter form
- ;;^DIC(358.6,"%D",10,0)
- ;;=utilities and other packages by putting the data in a predefined location.
- ;;^DIC(358.6,"%D",11,0)
- ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
- ;;^DIC(358.6,"%D",12,0)
- ;;=For output routines, but not selection routines, the fourth subscript is
- ;;^DIC(358.6,"%D",13,0)
- ;;=be the patient DFN. The next subscript is the name of the Package
- ;;^DIC(358.6,"%D",14,0)
- ;;=Interface. For single valued data and record valued data there is no
- ;;^DIC(358.6,"%D",15,0)
- ;;=additional subscript. For interfaces returning a list there is one
- ;;^DIC(358.6,"%D",16,0)
- ;;=additional subscript level, the number of the item on the list. For
- ;;^DIC(358.6,"%D",17,0)
- ;;=word processing type data the data will be in FM word-processing format,
- ;;^DIC(358.6,"%D",18,0)
- ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
- ;;^DIC(358.6,"%D",19,0)
- ;;=these items of data can have its own entry in the Package Interface file,
- ;;^DIC(358.6,"%D",20,0)
- ;;=but by using the same entry point there is a savings because all of the
- ;;^DIC(358.6,"%D",21,0)
- ;;=data on that node can be obtained at once. The routines that invoke the
- ;;^DIC(358.6,"%D",22,0)
- ;;=entry point keep track of the entry points already invoked so they are
- ;;^DIC(358.6,"%D",23,0)
- ;;=not repeated.
- ;;^DD(358.6,0)
- ;;=FIELD^^21^76
- ;;^DD(358.6,0,"DDA")
- ;;=N
- ;;^DD(358.6,0,"DT")
- ;;=3000124
- ;;^DD(358.6,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.6,0,"ID","WRITE")
- ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
- ;;^DD(358.6,0,"ID","WRITE1")
- ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
- ;;^DD(358.6,0,"IX","B",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"IX","C",358.6,.04)
- ;;=
- ;;^DD(358.6,0,"IX","D",358.6,3)
- ;;=
- ;;^DD(358.6,0,"IX","E",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
- ;;=
- ;;^DD(358.6,0,"PT",358.2,.11)
- ;;=
- ;;^DD(358.6,0,"PT",358.5,.03)
- ;;=
- ;;^DD(358.6,0,"PT",358.6,.13)
- ;;=
- ;;^DD(358.6,0,"PT",358.93,.06)
- ;;=
- ;;^DD(358.6,0,"VRPK")
- ;;=IBD
- ;;^DD(358.6,.01,0)
- ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.6,.01,1,0)
- ;;=^.1
- ;;^DD(358.6,.01,1,1,0)
- ;;=358.6^B
- ;;^DD(358.6,.01,1,1,1)
- ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
- ;;^DD(358.6,.01,1,1,2)
- ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)
- ;;^DD(358.6,.01,1,2,0)
- ;;=358.6^E^MUMPS
- ;;^DD(358.6,.01,1,2,1)
- ;;=S ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)=""
+ ;;^UTILITY(U,$J,358.3,26078,1,4,0)
+ ;;=4^Bullous Lung Disease
+ ;;^UTILITY(U,$J,358.3,26078,2)
+ ;;=^265486
+ ;;^UTILITY(U,$J,358.3,26079,0)
+ ;;=492.8^^148^1588^12
+ ;;^UTILITY(U,$J,358.3,26079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26079,1,3,0)
+ ;;=3^492.8
+ ;;^UTILITY(U,$J,358.3,26079,1,4,0)
+ ;;=4^Emphysema NEC
+ ;;^UTILITY(U,$J,358.3,26079,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,26080,0)
+ ;;=493.00^^148^1588^4
+ ;;^UTILITY(U,$J,358.3,26080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26080,1,3,0)
+ ;;=3^493.00
+ ;;^UTILITY(U,$J,358.3,26080,1,4,0)
+ ;;=4^Asthma,Extrinsic
+ ;;^UTILITY(U,$J,358.3,26080,2)
+ ;;=^330085
+ ;;^UTILITY(U,$J,358.3,26081,0)
+ ;;=493.10^^148^1588^5
+ ;;^UTILITY(U,$J,358.3,26081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26081,1,3,0)
+ ;;=3^493.10
+ ;;^UTILITY(U,$J,358.3,26081,1,4,0)
+ ;;=4^Asthma,Intrinsic
+ ;;^UTILITY(U,$J,358.3,26081,2)
+ ;;=^330087
+ ;;^UTILITY(U,$J,358.3,26082,0)
+ ;;=493.20^^148^1588^3
+ ;;^UTILITY(U,$J,358.3,26082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26082,1,3,0)
+ ;;=3^493.20
+ ;;^UTILITY(U,$J,358.3,26082,1,4,0)
+ ;;=4^Asthma,Chronic
+ ;;^UTILITY(U,$J,358.3,26082,2)
+ ;;=^330089
+ ;;^UTILITY(U,$J,358.3,26083,0)
+ ;;=493.90^^148^1588^1
+ ;;^UTILITY(U,$J,358.3,26083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26083,1,3,0)
+ ;;=3^493.90
+ ;;^UTILITY(U,$J,358.3,26083,1,4,0)
+ ;;=4^Asthma NOS
+ ;;^UTILITY(U,$J,358.3,26083,2)
+ ;;=^330091
+ ;;^UTILITY(U,$J,358.3,26084,0)
+ ;;=493.91^^148^1588^2
+ ;;^UTILITY(U,$J,358.3,26084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26084,1,3,0)
+ ;;=3^493.91
+ ;;^UTILITY(U,$J,358.3,26084,1,4,0)
+ ;;=4^Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,26084,2)
+ ;;=^269967
+ ;;^UTILITY(U,$J,358.3,26085,0)
+ ;;=494.0^^148^1588^6
+ ;;^UTILITY(U,$J,358.3,26085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26085,1,3,0)
+ ;;=3^494.0
+ ;;^UTILITY(U,$J,358.3,26085,1,4,0)
+ ;;=4^Bronchiectasis
+ ;;^UTILITY(U,$J,358.3,26085,2)
+ ;;=^321990
+ ;;^UTILITY(U,$J,358.3,26086,0)
+ ;;=496.^^148^1588^8
+ ;;^UTILITY(U,$J,358.3,26086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26086,1,3,0)
+ ;;=3^496.
+ ;;^UTILITY(U,$J,358.3,26086,1,4,0)
+ ;;=4^COPD
+ ;;^UTILITY(U,$J,358.3,26086,2)
+ ;;=^24355
+ ;;^UTILITY(U,$J,358.3,26087,0)
+ ;;=512.89^^148^1588^18
+ ;;^UTILITY(U,$J,358.3,26087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26087,1,3,0)
+ ;;=3^512.89
+ ;;^UTILITY(U,$J,358.3,26087,1,4,0)
+ ;;=4^Pneumothorax NEC
+ ;;^UTILITY(U,$J,358.3,26087,2)
+ ;;=^340533
+ ;;^UTILITY(U,$J,358.3,26088,0)
+ ;;=513.0^^148^1588^15
+ ;;^UTILITY(U,$J,358.3,26088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26088,1,3,0)
+ ;;=3^513.0
+ ;;^UTILITY(U,$J,358.3,26088,1,4,0)
+ ;;=4^Lung Abscess
+ ;;^UTILITY(U,$J,358.3,26088,2)
+ ;;=^72039
+ ;;^UTILITY(U,$J,358.3,26089,0)
+ ;;=514.^^148^1588^22
+ ;;^UTILITY(U,$J,358.3,26089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26089,1,3,0)
+ ;;=3^514.
+ ;;^UTILITY(U,$J,358.3,26089,1,4,0)
+ ;;=4^Pulmonary Congestion/Hypostasis
+ ;;^UTILITY(U,$J,358.3,26089,2)
+ ;;=^269992
+ ;;^UTILITY(U,$J,358.3,26090,0)
+ ;;=515.^^148^1588^19
+ ;;^UTILITY(U,$J,358.3,26090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26090,1,3,0)
+ ;;=3^515.
+ ;;^UTILITY(U,$J,358.3,26090,1,4,0)
+ ;;=4^Postinflam Pulm Fibrosis
+ ;;^UTILITY(U,$J,358.3,26090,2)
+ ;;=^101072
+ ;;^UTILITY(U,$J,358.3,26091,0)
+ ;;=516.31^^148^1588^24
+ ;;^UTILITY(U,$J,358.3,26091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26091,1,3,0)
+ ;;=3^516.31
+ ;;^UTILITY(U,$J,358.3,26091,1,4,0)
+ ;;=4^Pulmonary Fibrosis,Idiopathic
+ ;;^UTILITY(U,$J,358.3,26091,2)
+ ;;=^340534
+ ;;^UTILITY(U,$J,358.3,26092,0)
+ ;;=517.8^^148^1588^11
+ ;;^UTILITY(U,$J,358.3,26092,1,0)
+ ;;=^358.31IA^4^2

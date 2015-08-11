@@ -1,4 +1,4 @@
-IBXSAH9 ; ;09/29/14
+IBXSAH9 ; ;05/12/15
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""PRV"",",DIC=DIE,DP=399.0222,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"PRV",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,6) S:%]"" DE(2)=% S %=$P(%Z,U,7) S:%]"" DE(6)=% S %=$P(%Z,U,13) S:%]"" DE(1)=% S %=$P(%Z,U,14) S:%]"" DE(5)=%

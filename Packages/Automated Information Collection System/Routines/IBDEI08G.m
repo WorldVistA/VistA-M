@@ -1,48 +1,128 @@
-IBDEI08G ; ; 09-FEB-2015
+IBDEI08G ; ; 20-MAY-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.91,0,"GL")
- ;;=^IBE(358.91,
- ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
- ;;=
- ;;^DIC(358.91,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.91,"%D",1,0)
- ;;= 
- ;;^DIC(358.91,"%D",2,0)
- ;;=This file is nearly identical to file #357.91. It is used by the
- ;;^DIC(358.91,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.91,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.91,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.91,0,"DDA")
- ;;=N
- ;;^DD(358.91,0,"DT")
- ;;=2960123
- ;;^DD(358.91,0,"IX","B",358.91,.01)
- ;;=
- ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
- ;;=
- ;;^DD(358.91,0,"PT",358.22,.06)
- ;;=
- ;;^DD(358.91,0,"VRPK")
- ;;=IBD
- ;;^DD(358.91,.01,0)
- ;;=NAME^RFX^^0;1^K:$L(X)>30 X
- ;;^DD(358.91,.01,1,0)
- ;;=^.1
- ;;^DD(358.91,.01,1,1,0)
- ;;=358.91^B
- ;;^DD(358.91,.01,1,1,1)
- ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
- ;;^DD(358.91,.01,1,1,2)
- ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
- ;;^DD(358.91,.01,3)
- ;;=NAME MUST BE UNDER 31 CHARACTERS
- ;;^DD(358.91,.01,21,0)
- ;;=^^1^1^2930608^
- ;;^DD(358.91,.01,21,1,0)
- ;;=The name should describe the appearance of the marking area on the form.
+ ;;^UTILITY(U,$J,358.3,3822,1,2,0)
+ ;;=2^17266
+ ;;^UTILITY(U,$J,358.3,3822,1,3,0)
+ ;;=3^Dest Mal Lesion Tnk/Arm/Leg > 4.0cm
+ ;;^UTILITY(U,$J,358.3,3823,0)
+ ;;=11400^^32^348^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3823,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3823,1,2,0)
+ ;;=2^11400
+ ;;^UTILITY(U,$J,358.3,3823,1,3,0)
+ ;;=3^Exc Ben Lesion Tnk/Arm/Leg,0.5cm or <
+ ;;^UTILITY(U,$J,358.3,3824,0)
+ ;;=11401^^32^348^2^^^^1
+ ;;^UTILITY(U,$J,358.3,3824,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3824,1,2,0)
+ ;;=2^11401
+ ;;^UTILITY(U,$J,358.3,3824,1,3,0)
+ ;;=3^Exc Ben Lesion Tnk/Arm/Leg,0.6-1.0cm
+ ;;^UTILITY(U,$J,358.3,3825,0)
+ ;;=11402^^32^348^3^^^^1
+ ;;^UTILITY(U,$J,358.3,3825,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3825,1,2,0)
+ ;;=2^11402
+ ;;^UTILITY(U,$J,358.3,3825,1,3,0)
+ ;;=3^Exc Ben Lesion Tnk/Arm/Leg,1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,3826,0)
+ ;;=11403^^32^348^4^^^^1
+ ;;^UTILITY(U,$J,358.3,3826,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3826,1,2,0)
+ ;;=2^11403
+ ;;^UTILITY(U,$J,358.3,3826,1,3,0)
+ ;;=3^Exc Ben Lesion Tnk/Arm/Leg,2.1-3.0cm
+ ;;^UTILITY(U,$J,358.3,3827,0)
+ ;;=11404^^32^348^5^^^^1
+ ;;^UTILITY(U,$J,358.3,3827,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3827,1,2,0)
+ ;;=2^11404
+ ;;^UTILITY(U,$J,358.3,3827,1,3,0)
+ ;;=3^Exc Ben Lesion Tnk/Arm/Leg,3.1-4.0cm
+ ;;^UTILITY(U,$J,358.3,3828,0)
+ ;;=11406^^32^348^6^^^^1
+ ;;^UTILITY(U,$J,358.3,3828,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3828,1,2,0)
+ ;;=2^11406
+ ;;^UTILITY(U,$J,358.3,3828,1,3,0)
+ ;;=3^Exc Ben Lesion Tnk/Arm/Leg > 4.0cm
+ ;;^UTILITY(U,$J,358.3,3829,0)
+ ;;=11600^^32^349^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3829,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3829,1,2,0)
+ ;;=2^11600
+ ;;^UTILITY(U,$J,358.3,3829,1,3,0)
+ ;;=3^Exc Mal Lesion Tnk/Arm/Leg,0.5cm or <
+ ;;^UTILITY(U,$J,358.3,3830,0)
+ ;;=11601^^32^349^2^^^^1
+ ;;^UTILITY(U,$J,358.3,3830,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3830,1,2,0)
+ ;;=2^11601
+ ;;^UTILITY(U,$J,358.3,3830,1,3,0)
+ ;;=3^Exc Mal Lesion Tnk/Arm/Leg,0.6-1.0cm
+ ;;^UTILITY(U,$J,358.3,3831,0)
+ ;;=11602^^32^349^3^^^^1
+ ;;^UTILITY(U,$J,358.3,3831,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3831,1,2,0)
+ ;;=2^11602
+ ;;^UTILITY(U,$J,358.3,3831,1,3,0)
+ ;;=3^Exc Mal Lesion Tnk/Arm/Leg,1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,3832,0)
+ ;;=11603^^32^349^4^^^^1
+ ;;^UTILITY(U,$J,358.3,3832,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3832,1,2,0)
+ ;;=2^11603
+ ;;^UTILITY(U,$J,358.3,3832,1,3,0)
+ ;;=3^Exc Mal Lesion Tnk/Arm/Leg,2.1-3.0cm
+ ;;^UTILITY(U,$J,358.3,3833,0)
+ ;;=11604^^32^349^5^^^^1
+ ;;^UTILITY(U,$J,358.3,3833,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3833,1,2,0)
+ ;;=2^11604
+ ;;^UTILITY(U,$J,358.3,3833,1,3,0)
+ ;;=3^Exc Mal Lesion Tnk/Arm/Leg,3.1-4.0cm
+ ;;^UTILITY(U,$J,358.3,3834,0)
+ ;;=11606^^32^349^6^^^^1
+ ;;^UTILITY(U,$J,358.3,3834,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3834,1,2,0)
+ ;;=2^11606
+ ;;^UTILITY(U,$J,358.3,3834,1,3,0)
+ ;;=3^Exc Mal Lesion Tnk/Arm/Leg > 4.0cm
+ ;;^UTILITY(U,$J,358.3,3835,0)
+ ;;=10040^^32^350^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3835,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3835,1,2,0)
+ ;;=2^10040
+ ;;^UTILITY(U,$J,358.3,3835,1,3,0)
+ ;;=3^Acne Surgery
+ ;;^UTILITY(U,$J,358.3,3836,0)
+ ;;=10060^^32^350^4^^^^1
+ ;;^UTILITY(U,$J,358.3,3836,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3836,1,2,0)
+ ;;=2^10060
+ ;;^UTILITY(U,$J,358.3,3836,1,3,0)
+ ;;=3^I&D of abscess; simple or single
+ ;;^UTILITY(U,$J,358.3,3837,0)
+ ;;=10061^^32^350^3^^^^1
+ ;;^UTILITY(U,$J,358.3,3837,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3837,1,2,0)
+ ;;=2^10061
+ ;;^UTILITY(U,$J,358.3,3837,1,3,0)
+ ;;=3^I&D of abscess; complicated

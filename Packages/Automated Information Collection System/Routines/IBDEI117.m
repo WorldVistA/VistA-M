@@ -1,124 +1,136 @@
-IBDEI117 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI117 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18493,1,0)
+ ;;^UTILITY(U,$J,358.3,18379,1,2,0)
+ ;;=2^304.21
+ ;;^UTILITY(U,$J,358.3,18379,1,5,0)
+ ;;=5^Cocaine Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,18379,2)
+ ;;=^268198
+ ;;^UTILITY(U,$J,358.3,18380,0)
+ ;;=304.22^^101^1054^45
+ ;;^UTILITY(U,$J,358.3,18380,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18493,1,3,0)
- ;;=3^V53.7
- ;;^UTILITY(U,$J,358.3,18493,1,5,0)
- ;;=5^Fitting of Orthotic
- ;;^UTILITY(U,$J,358.3,18493,2)
- ;;=^295510
- ;;^UTILITY(U,$J,358.3,18494,0)
- ;;=709.4^^121^1171^5
- ;;^UTILITY(U,$J,358.3,18494,1,0)
+ ;;^UTILITY(U,$J,358.3,18380,1,2,0)
+ ;;=2^304.22
+ ;;^UTILITY(U,$J,358.3,18380,1,5,0)
+ ;;=5^Cocaine Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,18380,2)
+ ;;=^268199
+ ;;^UTILITY(U,$J,358.3,18381,0)
+ ;;=304.31^^101^1054^37
+ ;;^UTILITY(U,$J,358.3,18381,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18494,1,3,0)
- ;;=3^709.4
- ;;^UTILITY(U,$J,358.3,18494,1,5,0)
- ;;=5^Foreign body granuloma of skin and subcutaneous tissue (old) 
- ;;^UTILITY(U,$J,358.3,18494,2)
- ;;=^271943
- ;;^UTILITY(U,$J,358.3,18495,0)
- ;;=917.6^^121^1171^6
- ;;^UTILITY(U,$J,358.3,18495,1,0)
+ ;;^UTILITY(U,$J,358.3,18381,1,2,0)
+ ;;=2^304.31
+ ;;^UTILITY(U,$J,358.3,18381,1,5,0)
+ ;;=5^Cannabis Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,18381,2)
+ ;;=^268201
+ ;;^UTILITY(U,$J,358.3,18382,0)
+ ;;=304.32^^101^1054^38
+ ;;^UTILITY(U,$J,358.3,18382,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18495,1,3,0)
- ;;=3^917.6
- ;;^UTILITY(U,$J,358.3,18495,1,5,0)
- ;;=5^Foreign body, superficial injury (splinter) of foot & toe(s)without major open wound & without mention of infection  
- ;;^UTILITY(U,$J,358.3,18495,2)
- ;;=^275347
- ;;^UTILITY(U,$J,358.3,18496,0)
- ;;=892.1^^121^1171^7
- ;;^UTILITY(U,$J,358.3,18496,1,0)
+ ;;^UTILITY(U,$J,358.3,18382,1,2,0)
+ ;;=2^304.32
+ ;;^UTILITY(U,$J,358.3,18382,1,5,0)
+ ;;=5^Cannabis Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,18382,2)
+ ;;=^268202
+ ;;^UTILITY(U,$J,358.3,18383,0)
+ ;;=304.41^^101^1054^21
+ ;;^UTILITY(U,$J,358.3,18383,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18496,1,3,0)
- ;;=3^892.1
- ;;^UTILITY(U,$J,358.3,18496,1,5,0)
- ;;=5^Foreign body, open wound of foot except toe(s); complicated
- ;;^UTILITY(U,$J,358.3,18496,2)
- ;;=^275092
- ;;^UTILITY(U,$J,358.3,18497,0)
- ;;=893.1^^121^1171^8
- ;;^UTILITY(U,$J,358.3,18497,1,0)
+ ;;^UTILITY(U,$J,358.3,18383,1,2,0)
+ ;;=2^304.41
+ ;;^UTILITY(U,$J,358.3,18383,1,5,0)
+ ;;=5^Amphetamine Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,18383,2)
+ ;;=^268205
+ ;;^UTILITY(U,$J,358.3,18384,0)
+ ;;=304.42^^101^1054^22
+ ;;^UTILITY(U,$J,358.3,18384,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18497,1,3,0)
- ;;=3^893.1
- ;;^UTILITY(U,$J,358.3,18497,1,5,0)
- ;;=5^Foreign body, open wound of toe; complicated
- ;;^UTILITY(U,$J,358.3,18497,2)
- ;;=^275096
- ;;^UTILITY(U,$J,358.3,18498,0)
- ;;=916.6^^121^1171^9
- ;;^UTILITY(U,$J,358.3,18498,1,0)
+ ;;^UTILITY(U,$J,358.3,18384,1,2,0)
+ ;;=2^304.42
+ ;;^UTILITY(U,$J,358.3,18384,1,5,0)
+ ;;=5^Amphetamine Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,18384,2)
+ ;;=^268206
+ ;;^UTILITY(U,$J,358.3,18385,0)
+ ;;=304.51^^101^1054^60
+ ;;^UTILITY(U,$J,358.3,18385,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18498,1,3,0)
- ;;=3^916.6
- ;;^UTILITY(U,$J,358.3,18498,1,5,0)
- ;;=5^Foreign body, superficial injury (splinter) of hip, thigh, leg, and ankle w/o major open wound & w/o mention of infection
- ;;^UTILITY(U,$J,358.3,18498,2)
- ;;=^275336
- ;;^UTILITY(U,$J,358.3,18499,0)
- ;;=891.1^^121^1171^10
- ;;^UTILITY(U,$J,358.3,18499,1,0)
+ ;;^UTILITY(U,$J,358.3,18385,1,2,0)
+ ;;=2^304.51
+ ;;^UTILITY(U,$J,358.3,18385,1,5,0)
+ ;;=5^Hallucinogen Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,18385,2)
+ ;;=^268208
+ ;;^UTILITY(U,$J,358.3,18386,0)
+ ;;=304.52^^101^1054^61
+ ;;^UTILITY(U,$J,358.3,18386,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18499,1,3,0)
- ;;=3^891.1
- ;;^UTILITY(U,$J,358.3,18499,1,5,0)
- ;;=5^Foreign body, open wound of knee, leg(except thigh), & ankle; complicated
- ;;^UTILITY(U,$J,358.3,18499,2)
- ;;=^275088
- ;;^UTILITY(U,$J,358.3,18500,0)
- ;;=824.8^^121^1171^11
- ;;^UTILITY(U,$J,358.3,18500,1,0)
+ ;;^UTILITY(U,$J,358.3,18386,1,2,0)
+ ;;=2^304.52
+ ;;^UTILITY(U,$J,358.3,18386,1,5,0)
+ ;;=5^Hallucinogen Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,18386,2)
+ ;;=^268209
+ ;;^UTILITY(U,$J,358.3,18387,0)
+ ;;=304.61^^101^1054^52
+ ;;^UTILITY(U,$J,358.3,18387,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18500,1,3,0)
- ;;=3^824.8
- ;;^UTILITY(U,$J,358.3,18500,1,5,0)
- ;;=5^Fracture of ankle; unspecified, closed
- ;;^UTILITY(U,$J,358.3,18500,2)
- ;;=^274256
- ;;^UTILITY(U,$J,358.3,18501,0)
- ;;=824.4^^121^1171^12
- ;;^UTILITY(U,$J,358.3,18501,1,0)
+ ;;^UTILITY(U,$J,358.3,18387,1,2,0)
+ ;;=2^304.61
+ ;;^UTILITY(U,$J,358.3,18387,1,5,0)
+ ;;=5^Drug Depend-Other, Continuous
+ ;;^UTILITY(U,$J,358.3,18387,2)
+ ;;=^268211
+ ;;^UTILITY(U,$J,358.3,18388,0)
+ ;;=304.62^^101^1054^53
+ ;;^UTILITY(U,$J,358.3,18388,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18501,1,3,0)
- ;;=3^824.4
- ;;^UTILITY(U,$J,358.3,18501,1,5,0)
- ;;=5^Fracture of ankle; bimalleolar, closed
- ;;^UTILITY(U,$J,358.3,18501,2)
- ;;=^14370
- ;;^UTILITY(U,$J,358.3,18502,0)
- ;;=824.2^^121^1171^13
- ;;^UTILITY(U,$J,358.3,18502,1,0)
+ ;;^UTILITY(U,$J,358.3,18388,1,2,0)
+ ;;=2^304.62
+ ;;^UTILITY(U,$J,358.3,18388,1,5,0)
+ ;;=5^Drug Depend-Other, Episodic
+ ;;^UTILITY(U,$J,358.3,18388,2)
+ ;;=^268212
+ ;;^UTILITY(U,$J,358.3,18389,0)
+ ;;=304.71^^101^1054^66
+ ;;^UTILITY(U,$J,358.3,18389,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18502,1,3,0)
- ;;=3^824.2
- ;;^UTILITY(U,$J,358.3,18502,1,5,0)
- ;;=5^Fracture of ankle; lateral malleolus, closed
- ;;^UTILITY(U,$J,358.3,18502,2)
- ;;=^274247
- ;;^UTILITY(U,$J,358.3,18503,0)
- ;;=824.0^^121^1171^14
- ;;^UTILITY(U,$J,358.3,18503,1,0)
+ ;;^UTILITY(U,$J,358.3,18389,1,2,0)
+ ;;=2^304.71
+ ;;^UTILITY(U,$J,358.3,18389,1,5,0)
+ ;;=5^Opioid + Other Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,18389,2)
+ ;;=^268215
+ ;;^UTILITY(U,$J,358.3,18390,0)
+ ;;=304.72^^101^1054^67
+ ;;^UTILITY(U,$J,358.3,18390,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18503,1,3,0)
- ;;=3^824.0
- ;;^UTILITY(U,$J,358.3,18503,1,5,0)
- ;;=5^Fracture of ankle; medial malleolus, closed
- ;;^UTILITY(U,$J,358.3,18503,2)
- ;;=^274245
- ;;^UTILITY(U,$J,358.3,18504,0)
- ;;=824.6^^121^1171^15
- ;;^UTILITY(U,$J,358.3,18504,1,0)
+ ;;^UTILITY(U,$J,358.3,18390,1,2,0)
+ ;;=2^304.72
+ ;;^UTILITY(U,$J,358.3,18390,1,5,0)
+ ;;=5^Opioid + Other Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,18390,2)
+ ;;=^268216
+ ;;^UTILITY(U,$J,358.3,18391,0)
+ ;;=304.81^^101^1054^48
+ ;;^UTILITY(U,$J,358.3,18391,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18504,1,3,0)
- ;;=3^824.6
- ;;^UTILITY(U,$J,358.3,18504,1,5,0)
- ;;=5^Fracture of ankle; trimalleolar, closed
- ;;^UTILITY(U,$J,358.3,18504,2)
- ;;=^274251
- ;;^UTILITY(U,$J,358.3,18505,0)
- ;;=825.20^^121^1171^16
+ ;;^UTILITY(U,$J,358.3,18391,1,2,0)
+ ;;=2^304.81
+ ;;^UTILITY(U,$J,358.3,18391,1,5,0)
+ ;;=5^Comb Drug Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,18391,2)
+ ;;=^268219
+ ;;^UTILITY(U,$J,358.3,18392,0)
+ ;;=304.82^^101^1054^49
+ ;;^UTILITY(U,$J,358.3,18392,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18392,1,2,0)
+ ;;=2^304.82

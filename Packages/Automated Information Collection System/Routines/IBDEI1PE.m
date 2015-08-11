@@ -1,0 +1,128 @@
+IBDEI1PE ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,30561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30561,1,3,0)
+ ;;=3^Trigger Finger,Left Middle Finger
+ ;;^UTILITY(U,$J,358.3,30561,1,4,0)
+ ;;=4^M65.332
+ ;;^UTILITY(U,$J,358.3,30561,2)
+ ;;=^5012784
+ ;;^UTILITY(U,$J,358.3,30562,0)
+ ;;=M65.322^^189^1920^2
+ ;;^UTILITY(U,$J,358.3,30562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30562,1,3,0)
+ ;;=3^Trigger Finger,Left Index Finger
+ ;;^UTILITY(U,$J,358.3,30562,1,4,0)
+ ;;=4^M65.322
+ ;;^UTILITY(U,$J,358.3,30562,2)
+ ;;=^5012781
+ ;;^UTILITY(U,$J,358.3,30563,0)
+ ;;=M65.331^^189^1920^9
+ ;;^UTILITY(U,$J,358.3,30563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30563,1,3,0)
+ ;;=3^Trigger Finger,Right Middle Finger
+ ;;^UTILITY(U,$J,358.3,30563,1,4,0)
+ ;;=4^M65.331
+ ;;^UTILITY(U,$J,358.3,30563,2)
+ ;;=^5012783
+ ;;^UTILITY(U,$J,358.3,30564,0)
+ ;;=M65.321^^189^1920^7
+ ;;^UTILITY(U,$J,358.3,30564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30564,1,3,0)
+ ;;=3^Trigger Finger,Right Index Finger
+ ;;^UTILITY(U,$J,358.3,30564,1,4,0)
+ ;;=4^M65.321
+ ;;^UTILITY(U,$J,358.3,30564,2)
+ ;;=^5012780
+ ;;^UTILITY(U,$J,358.3,30565,0)
+ ;;=M65.312^^189^1920^6
+ ;;^UTILITY(U,$J,358.3,30565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30565,1,3,0)
+ ;;=3^Trigger Finger,Left Thumb
+ ;;^UTILITY(U,$J,358.3,30565,1,4,0)
+ ;;=4^M65.312
+ ;;^UTILITY(U,$J,358.3,30565,2)
+ ;;=^5012778
+ ;;^UTILITY(U,$J,358.3,30566,0)
+ ;;=M65.311^^189^1920^11
+ ;;^UTILITY(U,$J,358.3,30566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30566,1,3,0)
+ ;;=3^Trigger Finger,Right Thumb
+ ;;^UTILITY(U,$J,358.3,30566,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,30566,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,30567,0)
+ ;;=E08.621^^189^1921^86
+ ;;^UTILITY(U,$J,358.3,30567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30567,1,3,0)
+ ;;=3^Diabetes d/t Underlying Condition w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,30567,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,30567,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,30568,0)
+ ;;=E09.621^^189^1921^85
+ ;;^UTILITY(U,$J,358.3,30568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30568,1,3,0)
+ ;;=3^Diabetes d/t Drug/Chemical Induced w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,30568,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,30568,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,30569,0)
+ ;;=I70.231^^189^1921^22
+ ;;^UTILITY(U,$J,358.3,30569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30569,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,30569,1,4,0)
+ ;;=4^I70.231
+ ;;^UTILITY(U,$J,358.3,30569,2)
+ ;;=^5007588
+ ;;^UTILITY(U,$J,358.3,30570,0)
+ ;;=I70.232^^189^1921^23
+ ;;^UTILITY(U,$J,358.3,30570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30570,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,30570,1,4,0)
+ ;;=4^I70.232
+ ;;^UTILITY(U,$J,358.3,30570,2)
+ ;;=^5007589
+ ;;^UTILITY(U,$J,358.3,30571,0)
+ ;;=I70.233^^189^1921^24
+ ;;^UTILITY(U,$J,358.3,30571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30571,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,30571,1,4,0)
+ ;;=4^I70.233
+ ;;^UTILITY(U,$J,358.3,30571,2)
+ ;;=^5007590
+ ;;^UTILITY(U,$J,358.3,30572,0)
+ ;;=I70.234^^189^1921^25
+ ;;^UTILITY(U,$J,358.3,30572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30572,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,30572,1,4,0)
+ ;;=4^I70.234
+ ;;^UTILITY(U,$J,358.3,30572,2)
+ ;;=^5007591
+ ;;^UTILITY(U,$J,358.3,30573,0)
+ ;;=I70.235^^189^1921^26
+ ;;^UTILITY(U,$J,358.3,30573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30573,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Foot Ulcer

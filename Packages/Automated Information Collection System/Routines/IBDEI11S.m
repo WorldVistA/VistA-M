@@ -1,112 +1,140 @@
-IBDEI11S ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11S ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18774,0)
- ;;=28002^^122^1202^2^^^^1
- ;;^UTILITY(U,$J,358.3,18774,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18774,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; single bursal space 
- ;;^UTILITY(U,$J,358.3,18774,1,3,0)
- ;;=3^28002
- ;;^UTILITY(U,$J,358.3,18775,0)
- ;;=28003^^122^1202^3^^^^1
- ;;^UTILITY(U,$J,358.3,18775,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18775,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; multiple areas 
- ;;^UTILITY(U,$J,358.3,18775,1,3,0)
- ;;=3^28003
- ;;^UTILITY(U,$J,358.3,18776,0)
- ;;=28008^^122^1202^4^^^^1
- ;;^UTILITY(U,$J,358.3,18776,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18776,1,2,0)
- ;;=2^Fasciotomy, foot and/or toe
- ;;^UTILITY(U,$J,358.3,18776,1,3,0)
- ;;=3^28008
- ;;^UTILITY(U,$J,358.3,18777,0)
- ;;=28010^^122^1202^5^^^^1
- ;;^UTILITY(U,$J,358.3,18777,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18777,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; single tendon
- ;;^UTILITY(U,$J,358.3,18777,1,3,0)
- ;;=3^28010
- ;;^UTILITY(U,$J,358.3,18778,0)
- ;;=28011^^122^1202^6^^^^1
- ;;^UTILITY(U,$J,358.3,18778,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18778,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; multiple tendons
- ;;^UTILITY(U,$J,358.3,18778,1,3,0)
- ;;=3^28011
- ;;^UTILITY(U,$J,358.3,18779,0)
- ;;=28020^^122^1202^7^^^^1
- ;;^UTILITY(U,$J,358.3,18779,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18779,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; intertarsal or tarsometatarsal joint
- ;;^UTILITY(U,$J,358.3,18779,1,3,0)
- ;;=3^28020
- ;;^UTILITY(U,$J,358.3,18780,0)
- ;;=28022^^122^1202^8^^^^1
- ;;^UTILITY(U,$J,358.3,18780,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18780,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; metatarsophalangeal joint 
- ;;^UTILITY(U,$J,358.3,18780,1,3,0)
- ;;=3^28022
- ;;^UTILITY(U,$J,358.3,18781,0)
- ;;=28024^^122^1202^9^^^^1
- ;;^UTILITY(U,$J,358.3,18781,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18781,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; interphalangeal joint
- ;;^UTILITY(U,$J,358.3,18781,1,3,0)
- ;;=3^28024
- ;;^UTILITY(U,$J,358.3,18782,0)
- ;;=28035^^122^1202^11^^^^1
- ;;^UTILITY(U,$J,358.3,18782,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18782,1,2,0)
- ;;=2^Release, tarsal tunnel
- ;;^UTILITY(U,$J,358.3,18782,1,3,0)
- ;;=3^28035
- ;;^UTILITY(U,$J,358.3,18783,0)
- ;;=28055^^122^1202^10^^^^1
- ;;^UTILITY(U,$J,358.3,18783,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18783,1,2,0)
- ;;=2^Neurectomy, Foot
- ;;^UTILITY(U,$J,358.3,18783,1,3,0)
- ;;=3^28055
- ;;^UTILITY(U,$J,358.3,18784,0)
- ;;=28043^^122^1203^1^^^^1
- ;;^UTILITY(U,$J,358.3,18784,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18784,1,2,0)
- ;;=2^Excision Tumor-Foot,SQ Tissue >1.5cm
- ;;^UTILITY(U,$J,358.3,18784,1,3,0)
- ;;=3^28043
- ;;^UTILITY(U,$J,358.3,18785,0)
- ;;=28045^^122^1203^2^^^^1
- ;;^UTILITY(U,$J,358.3,18785,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18785,1,2,0)
- ;;=2^Excision Tumor-Foot,Deep Subfascial >1.5cm
- ;;^UTILITY(U,$J,358.3,18785,1,3,0)
- ;;=3^28045
- ;;^UTILITY(U,$J,358.3,18786,0)
- ;;=28050^^122^1203^3^^^^1
- ;;^UTILITY(U,$J,358.3,18786,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18786,1,2,0)
- ;;=2^Arthrotomy with biopsy; intertarsal or tarsometatarsal joint 
- ;;^UTILITY(U,$J,358.3,18786,1,3,0)
- ;;=3^28050
- ;;^UTILITY(U,$J,358.3,18787,0)
- ;;=28052^^122^1203^4^^^^1
- ;;^UTILITY(U,$J,358.3,18787,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18680,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18680,1,2,0)
+ ;;=2^293.84
+ ;;^UTILITY(U,$J,358.3,18680,1,5,0)
+ ;;=5^Anxiety Syndrome
+ ;;^UTILITY(U,$J,358.3,18680,2)
+ ;;=^304299
+ ;;^UTILITY(U,$J,358.3,18681,0)
+ ;;=293.89^^104^1092^1
+ ;;^UTILITY(U,$J,358.3,18681,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18681,1,2,0)
+ ;;=2^293.89
+ ;;^UTILITY(U,$J,358.3,18681,1,5,0)
+ ;;=5^Affective Syndrome
+ ;;^UTILITY(U,$J,358.3,18681,2)
+ ;;=^331840
+ ;;^UTILITY(U,$J,358.3,18682,0)
+ ;;=310.89^^104^1092^6
+ ;;^UTILITY(U,$J,358.3,18682,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18682,1,2,0)
+ ;;=2^310.89
+ ;;^UTILITY(U,$J,358.3,18682,1,5,0)
+ ;;=5^Oth Non Psychotic Mental Disord NEC
+ ;;^UTILITY(U,$J,358.3,18682,2)
+ ;;=^268320
+ ;;^UTILITY(U,$J,358.3,18683,0)
+ ;;=293.82^^104^1092^5
+ ;;^UTILITY(U,$J,358.3,18683,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18683,1,2,0)
+ ;;=2^293.82
+ ;;^UTILITY(U,$J,358.3,18683,1,5,0)
+ ;;=5^Hallucinosis
+ ;;^UTILITY(U,$J,358.3,18683,2)
+ ;;=^331837
+ ;;^UTILITY(U,$J,358.3,18684,0)
+ ;;=290.20^^104^1093^17
+ ;;^UTILITY(U,$J,358.3,18684,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18684,1,2,0)
+ ;;=2^290.20
+ ;;^UTILITY(U,$J,358.3,18684,1,5,0)
+ ;;=5^Dementia w/Delusion
+ ;;^UTILITY(U,$J,358.3,18684,2)
+ ;;=^303486
+ ;;^UTILITY(U,$J,358.3,18685,0)
+ ;;=290.40^^104^1093^20
+ ;;^UTILITY(U,$J,358.3,18685,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18685,1,2,0)
+ ;;=2^290.40
+ ;;^UTILITY(U,$J,358.3,18685,1,5,0)
+ ;;=5^Vascular Dementia
+ ;;^UTILITY(U,$J,358.3,18685,2)
+ ;;=^303487
+ ;;^UTILITY(U,$J,358.3,18686,0)
+ ;;=291.2^^104^1093^1
+ ;;^UTILITY(U,$J,358.3,18686,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18686,1,2,0)
+ ;;=2^291.2
+ ;;^UTILITY(U,$J,358.3,18686,1,5,0)
+ ;;=5^Alcoholic Dementia
+ ;;^UTILITY(U,$J,358.3,18686,2)
+ ;;=Alcoholic Dementia^268015
+ ;;^UTILITY(U,$J,358.3,18687,0)
+ ;;=290.0^^104^1093^19
+ ;;^UTILITY(U,$J,358.3,18687,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18687,1,2,0)
+ ;;=2^290.0
+ ;;^UTILITY(U,$J,358.3,18687,1,5,0)
+ ;;=5^Senile Dementia, Uncomplicated
+ ;;^UTILITY(U,$J,358.3,18687,2)
+ ;;=^31700
+ ;;^UTILITY(U,$J,358.3,18688,0)
+ ;;=290.3^^104^1093^16
+ ;;^UTILITY(U,$J,358.3,18688,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18688,1,2,0)
+ ;;=2^290.3
+ ;;^UTILITY(U,$J,358.3,18688,1,5,0)
+ ;;=5^Dementia w/Delirium
+ ;;^UTILITY(U,$J,358.3,18688,2)
+ ;;=^268009
+ ;;^UTILITY(U,$J,358.3,18689,0)
+ ;;=294.8^^104^1093^6
+ ;;^UTILITY(U,$J,358.3,18689,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18689,1,2,0)
+ ;;=2^294.8
+ ;;^UTILITY(U,$J,358.3,18689,1,5,0)
+ ;;=5^Dementia NOS
+ ;;^UTILITY(U,$J,358.3,18689,2)
+ ;;=^331843
+ ;;^UTILITY(U,$J,358.3,18690,0)
+ ;;=294.11^^104^1093^10
+ ;;^UTILITY(U,$J,358.3,18690,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18690,1,2,0)
+ ;;=2^294.11
+ ;;^UTILITY(U,$J,358.3,18690,1,5,0)
+ ;;=5^Dementia d/t HIV w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,18690,2)
+ ;;=^321982^042.
+ ;;^UTILITY(U,$J,358.3,18691,0)
+ ;;=294.20^^104^1093^8
+ ;;^UTILITY(U,$J,358.3,18691,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18691,1,2,0)
+ ;;=2^294.20
+ ;;^UTILITY(U,$J,358.3,18691,1,5,0)
+ ;;=5^Dementia NOS w/o Behv Dstrb
+ ;;^UTILITY(U,$J,358.3,18691,2)
+ ;;=^340607
+ ;;^UTILITY(U,$J,358.3,18692,0)
+ ;;=294.21^^104^1093^7
+ ;;^UTILITY(U,$J,358.3,18692,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18692,1,2,0)
+ ;;=2^294.21
+ ;;^UTILITY(U,$J,358.3,18692,1,5,0)
+ ;;=5^Dementia NOS w/Behav Distrb
+ ;;^UTILITY(U,$J,358.3,18692,2)
+ ;;=^340505
+ ;;^UTILITY(U,$J,358.3,18693,0)
+ ;;=331.83^^104^1093^18
+ ;;^UTILITY(U,$J,358.3,18693,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18693,1,2,0)
+ ;;=2^331.83
+ ;;^UTILITY(U,$J,358.3,18693,1,5,0)
+ ;;=5^Mild Cognitive Impairment

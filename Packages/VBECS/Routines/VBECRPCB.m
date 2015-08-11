@@ -1,5 +1,5 @@
 VBECRPCB ;HOIFO/BNT - ORDER LOOKUP BY UID ;03/24/2004
- ;;1.0;VBECS;;Apr 14, 2005;Build 35
+ ;;1.0;VBECS;**54**;Apr 14, 2005;Build 19
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -102,6 +102,7 @@ ORDNUM(RESULTS,LROIEN) ;
  . D ENDROOT^VBECRPC("UIDLookup")
  S VBA=0 F  S VBA=$O(^LRO(69,"C",LROIEN,VBA)) Q:'VBA  D  Q:QUIT
  . S VBB=0 F  S VBB=$O(^LRO(69,"C",LROIEN,VBA,VBB)) Q:'VBB  D
+ . . i $p($g(^LRO(69,VBA,1,VBB,1)),"^",4)'="C" s QUIT=1 q  ;Collection status
  . . ; Order has been merged.
  . . IF $P($G(^LRO(69,VBA,1,VBB,1)),"^",7)]"" S QUIT=1 Q
  . . D BEGROOT^VBECRPC("LabTests")

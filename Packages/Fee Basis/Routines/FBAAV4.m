@@ -1,6 +1,15 @@
 FBAAV4 ;AISC/GRR-ELECTRONICALLY TRANSMIT PATIENT MRA'S ;12/16/2003
- ;;3.5;FEE BASIS;**13,34,37,70,146,127**;JAN 30, 1995;Build 9
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**13,34,37,70,146,127,153**;JAN 30, 1995;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;FB*3.5*153 Modify MRA transmission to Austin to insure that a
+ ;           undefined state code defaults to 2 spaces.
+ ;           Also, delete the entry in file 161.26 if no auth
+ ;           pointer exists in record or the auth pointer points
+ ;           to deleted patient authorization.  In addition,
+ ;           insure processing continues if error condition
+ ;           and less than 100 stacked msgs for transmission.
+ ;
  ;D STATION^FBAAUTL,HD^FBAAUTL Q:$D(FB("ERROR"))
  S FBTXT=0,ZMCNT=1 ;FBTXT , ZMCNT 
 GO S J=0 F  S J=$O(^FBAA(161.26,"AC","P",J)) Q:J'>0  S FB0=$G(^FBAA(161.26,J,0)) I $P(FB0,U) S Y(0)=$G(^DPT($P(FB0,U),0)) I Y(0)]"" S FBTYPE=$S($P(FB0,U,4)]"":$P(FB0,U,4),1:"A"),FBFDC=$P(FB0,U,6),FBMST=$P(FB0,U,7) D
@@ -11,7 +20,7 @@ GO S J=0 F  S J=$O(^FBAA(161.26,"AC","P",J)) Q:J'>0  S FB0=$G(^FBAA(161.26,J,0))
  .I 'FBTXT S FBTXT=1 D GETBT,NEWMSG^FBAAV01,STORE^FBAAV01
  .; prepare and store patient MRA portion (can be more than 1)
  .D GOT
- D:+$G(FBOKTX) XMIT^FBAAV01
+ D:ZMCNT>1 XMIT^FBAAV01    ;FB*3.5*153
  Q
  ;GETBT - prepare the "header" of the message 
 GETBT D GETNXB^FBAAUTL ;get next batch # in FBBN
@@ -39,7 +48,7 @@ GOT ;patient MRA portion of the message
  S VAPA("P")="" D ADD^VADPT Q:$G(VAERR)
  S FBADD=$$LRJ($G(VAPA(1)),35)_$$LRJ($G(VAPA(2)),35)_$$LRJ($G(VAPA(3)),35) ;street address
  S FBCITY=$$LRJ($G(VAPA(4)),30) ;city
- S STCD=+VAPA(5) I STCD S FBSTAT=$S($D(^DIC(5,STCD,0)):$P(^(0),"^",2),1:"  ") ;state
+ S STCD=+VAPA(5),FBSTAT=$S($D(^DIC(5,STCD,0)):$P(^(0),"^",2),1:"  ") ;state     FB*3.5*153
  S FBZIP=$S('+$G(VAPA(11)):VAPA(6),+VAPA(11):$P(VAPA(11),"^"),1:VAPA(6)) ;zip
  ;check for Confidential Communication (CC) address
  S FBCCFLG=0 I 'VAERR S FBCCFLG=$$SENDCC()
@@ -65,8 +74,8 @@ GOT ;patient MRA portion of the message
  ;using pointer FEE BASIS PATIENT MRA file retrieve info from 
  ;FEE BASIS PATIENT file#161, from its authorization multiple ^FBAAA(DA(1),1,DA
  ;S FBAUTH=$P(^FBAA(161.26,J,0),"^",3) Q:FBAUTH']""  Q:'$D(^FBAAA(DFN,1,FBAUTH,0))  S Y(0)=^(0) ;Removed line to modify code - FB*3.5*127
- S FBAUTH=$P(^FBAA(161.26,J,0),"^",3) I FBAUTH']"" S FBOKTX=0 Q  ;FB*3.5*127
- I '$D(^FBAAA(DFN,1,FBAUTH,0)) S FBOKTX=0 Q  ;FB*3.5*127
+ S FBAUTH=$P(^FBAA(161.26,J,0),"^",3) I FBAUTH']"" D KILBAD Q  ;FB*3.5*153
+ I '$D(^FBAAA(DFN,1,FBAUTH,0)) D KILBAD Q  ;FB*3.5*153
  S Y(0)=^(0) ;FB*3.5*127
  ;authorisation FROM
  S FBFR=$P(Y(0),"^")
@@ -167,3 +176,8 @@ SENDCC() ;
  I ($P($G(VAPA(22,3)),"^",3)="Y"),+$G(VAPA(20))>X Q 1
  Q 0
  ;
+KILBAD ;DELETE mra W/ NO POINTER OR UNDEFINED POINTER TO PAT. AUTH
+ I $D(DA) S FBHDA=DA
+ S DA=J,DIK="^FBAA(161.26," D ^DIK K DIK
+ I $D(FBHDA) S DA=FBHDA K FBHDA
+ Q

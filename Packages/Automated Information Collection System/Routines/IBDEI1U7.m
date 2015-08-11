@@ -1,0 +1,124 @@
+IBDEI1U7 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,32767,0)
+ ;;=R40.2124^^190^1961^31
+ ;;^UTILITY(U,$J,358.3,32767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32767,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,32767,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,32767,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,32768,0)
+ ;;=R40.2211^^190^1961^17
+ ;;^UTILITY(U,$J,358.3,32768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32768,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,32768,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,32768,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,32769,0)
+ ;;=R40.2210^^190^1961^16
+ ;;^UTILITY(U,$J,358.3,32769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32769,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,32769,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,32769,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,32770,0)
+ ;;=R40.2224^^190^1961^18
+ ;;^UTILITY(U,$J,358.3,32770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32770,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,32770,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,32770,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,32771,0)
+ ;;=R40.2223^^190^1961^19
+ ;;^UTILITY(U,$J,358.3,32771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32771,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,32771,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,32771,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,32772,0)
+ ;;=R40.2222^^190^1961^20
+ ;;^UTILITY(U,$J,358.3,32772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32772,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,32772,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,32772,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,32773,0)
+ ;;=R40.2221^^190^1961^21
+ ;;^UTILITY(U,$J,358.3,32773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32773,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,32773,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,32773,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,32774,0)
+ ;;=R40.2220^^190^1961^22
+ ;;^UTILITY(U,$J,358.3,32774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32774,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,32774,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,32774,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,32775,0)
+ ;;=R40.2214^^190^1961^23
+ ;;^UTILITY(U,$J,358.3,32775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32775,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,32775,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,32775,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,32776,0)
+ ;;=R40.2213^^190^1961^25
+ ;;^UTILITY(U,$J,358.3,32776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32776,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,32776,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,32776,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,32777,0)
+ ;;=R40.2212^^190^1961^24
+ ;;^UTILITY(U,$J,358.3,32777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32777,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,32777,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,32777,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,32778,0)
+ ;;=R40.2344^^190^1961^6
+ ;;^UTILITY(U,$J,358.3,32778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32778,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,32778,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,32778,2)
+ ;;=^5019419

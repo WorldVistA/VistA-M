@@ -1,6 +1,6 @@
 IBCEQ1A ;ALB/BSL,TMK - PROVIDER ID QUERY REPORT ;25-AUG-03
- ;;2.0;INTEGRATED BILLING;**232,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,348,349,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RPTOUT ; Print from data in ^XTMP
  N IBP,IBA,IBI,IBIN,IBPNM,IBPNUM,IBSTOP,IBX,IBZ,IBPG,IBICONT,Z
@@ -29,9 +29,15 @@ RPTOUT ; Print from data in ^XTMP
  ... D WRT(1,"   "_$E($P("BOTH^UB-04^CMS-1500",U,$P(IBX,U,4)+1)_$J("",9),1,9)_"  "_$E($P(IBX,U,15)_$J("",23),1,23)_" "_$E(IBPNM_$J("",28),1,28)_"  "_$E(IBPNUM,1,11))
  .. ;
  .. I IBZ=4!(IBZ=5) D
- ... N Z
- ... S Z=$G(^IBA(355.3,+$P(IBX,U,13),0))
- ... D WRT(1,"   "_$E($P(Z,U,3)_$J("",20),1,20)_"  "_$E($P(Z,U,4)_$J("",17),1,17)_"  "_$$EXTERNAL^DILFD(355.3,.15,"",$P(Z,U,15)))
+ ... ;IB*516/TAZ - Change Group Name from piece 3 to field 2.01, and group Number from piece 4 to field 2.02
+ ... ;N Z
+ ... N GNUM,GNAM,EPTYP
+ ... ;S Z=$G(^IBA(355.3,+$P(IBX,U,13),0))
+ ... ;D WRT(1,"   "_$E($P(Z,U,3)_$J("",20),1,20)_"  "_$E($P(Z,U,4)_$J("",17),1,17)_"  "_$$EXTERNAL^DILFD(355.3,.15,"",$P(Z,U,15)))
+ ... S GNUM=$$GET1^DIQ(355.3,+$P(IBX,U,13)_",",2.02)  ;Group Number
+ ... S GNAM=$$GET1^DIQ(355.3,+$P(IBX,U,13)_",",2.01)  ;Group Name
+ ... S EPTYP=$$GET1^DIQ(355.3,+$P(IBX,U,13)_",",.15)  ;Electronic Plan Type
+ ... D WRT(1,"   "_$E(GNUM_$J("",20),1,20)_"  "_$E(GNAM_$J("",17),1,17)_"  "_EPTYP)
  .. S:'IBICONT IBICONT=1
  ;
  I 'IBSTOP D  ;Totals

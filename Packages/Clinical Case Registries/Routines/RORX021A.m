@@ -1,5 +1,5 @@
 RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27**;Feb 17, 2006;Build 58
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,6 +18,11 @@ RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
  ;ROR*1.5*19   JUN  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*27   FEB 2015    T KOPP       Remove requirement to skip patient in
+ ;                                      report if they received Boceprevir or
+ ;                                      Telaprevir, removed requirement that
+ ;                                      only genotype 1 is included on the
+ ;                                      report.
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -155,9 +160,6 @@ QUERY(REPORT,FLAGS,NSPT) ;
  . . S RORLDST=$NA(^TMP("RORX021",$J,"PAT",PATIEN,"LR"))
  . . S RC=$$LTSEARCH^RORUTL10(PATIEN,+RORREG,.RORLDST,,LTSDT,LTEDT)
  . . Q:RC'>0
- . . ;--- Skip if most recent GT result is not Genotype 1
- . . S TMP=+$O(@RORLDST@("GT","")) I TMP=0 S SKIP=1 Q
- . . I $G(@RORLDST@("GT",TMP))'[1 S SKIP=1 Q 
  . . ;=== Skip if patient no longer has HCV
  . . S ROR1=+$O(@RORLDST@("HCVOK","")),ROR2=+$O(@RORLDST@("HCVQL","")),ROR3=(+$O(@RORLDST@("HCVQT","")))
  . . I ROR1>0 D  Q:SKIP=1
@@ -228,8 +230,6 @@ RXOCB(ROR8DST,ORDER,ORDFLG,DRUG,DATE) ;
  . S DRUGIEN=+ROR8DST("RORXGEN"),DRUGNAME=$P(ROR8DST("RORXGEN"),U,2)
  E  Q 1
  Q:(DRUGIEN'>0)!(DRUGNAME="") 1
- ;--- Skip patient if med is DAA med
- I DRUGNAME="BOCEPREVIR"!(DRUGNAME="TELAPREVIR") S ROR8DST("SKIP")=1 Q 2
  ;--- Process the order
  S TMP=$G(^TMP("PS",$J,"RXN",0))
  S RXNUM=$P(TMP,U)  S:RXNUM="" RXNUM=" "

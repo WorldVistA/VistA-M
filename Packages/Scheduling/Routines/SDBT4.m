@@ -1,7 +1,8 @@
-SDBT4 ; ;08/05/14
+SDBT4 ; ;07/08/15
  D DE G BEGIN
 DE S DIE="^SC(",DIC=DIE,DP=44,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^SC(DA,""))=""
- I $D(^("SL")) S %Z=^("SL") S %=$P(%Z,U,1) S:%]"" DE(2)=% S %=$P(%Z,U,2) S:%]"" DE(4)=% S %=$P(%Z,U,6) S:%]"" DE(6)=%
+ I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,11) S:%]"" DE(1)=%
+ I $D(^("SL")) S %Z=^("SL") S %=$P(%Z,U,1) S:%]"" DE(5)=% S %=$P(%Z,U,2) S:%]"" DE(7)=% S %=$P(%Z,U,5) S:%]"" DE(2)=% S %=$P(%Z,U,6) S:%]"" DE(9)=% S %=$P(%Z,U,7) S:%]"" DE(3)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -49,36 +50,53 @@ SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$
 NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
 KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
 BEGIN S DNM="SDBT4",DQ=1
-1 S D=0 K DE(1) ;1910
- S DIFLD=1910,DGO="^SDBT5",DC="1^44.03A^SI^",DV="44.03F",DW="0;1",DOW="SPECIAL INSTRUCTIONS",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
- I $D(DSC(44.03))#2,$P(DSC(44.03),"I $D(^UTILITY(",1)="" X DSC(44.03) S D=$O(^(0)) S:D="" D=-1 G M1
- S D=$S($D(^SC(DA,"SI",0)):$P(^(0),U,3,4),$O(^(0))'="":$O(^(0)),1:-1)
-M1 I D>0 S DC=DC_D I $D(^SC(DA,"SI",+D,0)) S DE(1)=$P(^(0),U,1)
+1 S DW="0;11",DV="F",DU="",DLB="PHYSICAL LOCATION",DIFLD=10
  G RE
-R1 D DE
+X1 K:$L(X)>25!($L(X)<1) X
+ I $D(X),X'?.ANP K X
+ Q
+ ;
+2 S DW="SL;5",DV="*P44'",DU="",DLB="PRINCIPAL CLINIC",DIFLD=1916
+ S DU="SC("
+ G RE
+X2 S DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+ Q
+ ;
+3 S DW="SL;7",DV="RNJ4,0",DU="",DLB="OVERBOOKS/DAY MAXIMUM",DIFLD=1918
+ G RE
+X3 K:+X'=X!(X>9999)!(X<0)!(X?.E1"."1N.N) X
+ Q
+ ;
+4 S D=0 K DE(1) ;1910
+ S DIFLD=1910,DGO="^SDBT5",DC="1^44.03A^SI^",DV="44.03F",DW="0;1",DOW="SPECIAL INSTRUCTIONS",DLB=$P($$EZBLD^DIALOG(8042,DOW),": ") S:D DC=DC_D
+ I $D(DSC(44.03))#2,$P(DSC(44.03),"I $D(^UTILITY(",1)="" X DSC(44.03) S D=$O(^(0)) S:D="" D=-1 G M4
+ S D=$S($D(^SC(DA,"SI",0)):$P(^(0),U,3,4),$O(^(0))'="":$O(^(0)),1:-1)
+M4 I D>0 S DC=DC_D I $D(^SC(DA,"SI",+D,0)) S DE(4)=$P(^(0),U,1)
+ G RE
+R4 D DE
  G A
  ;
-2 S DW="SL;1",DV="RNJ2,0X",DU="",DLB="LENGTH OF APP'T",DIFLD=1912
+5 S DW="SL;1",DV="RNJ2,0X",DU="",DLB="LENGTH OF APP'T",DIFLD=1912
  G RE
-X2 K:+X'=X!(X>240)!(X<10)!(X?.E1"."1N.N)!($S('(X#10):0,'(X#15):0,1:1)) X I $D(X) S SDLA=X I $D(^SC(DA,"SL")),+$P(^("SL"),U,6) S SDZ0=$P(^("SL"),U,6),SDZ1=60\SDZ0 I X#SDZ1 D LAPPT^SDUTL
+X5 K:+X'=X!(X>240)!(X<10)!(X?.E1"."1N.N)!($S('(X#10):0,'(X#15):0,1:1)) X I $D(X) S SDLA=X I $D(^SC(DA,"SL")),+$P(^("SL"),U,6) S SDZ0=$P(^("SL"),U,6),SDZ1=60\SDZ0 I X#SDZ1 D LAPPT^SDUTL
  Q
  ;
-3 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=3 D X3 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X3 I '$D(SDLA) S SDLA=X
+6 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=6 D X6 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X6 I '$D(SDLA) S SDLA=X
  Q
-4 S DW="SL;2",DV="S",DU="",DLB="VARIABLE APP'NTMENT LENGTH",DIFLD=1913
+7 S DW="SL;2",DV="S",DU="",DLB="VARIABLE APP'NTMENT LENGTH",DIFLD=1913
  S DU="V:YES, VARIABLE LENGTH;"
  G RE
-X4 Q
-5 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=5 D X5 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X5 S:+$O(^SC(DA,"ST",0))>0 Y="@99"
+X7 Q
+8 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=8 D X8 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X8 S:+$O(^SC(DA,"ST",0))>0 Y="@99"
  Q
-6 S DW="SL;6",DV="RSX",DU="",DLB="DISPLAY INCREMENTS PER HOUR",DIFLD=1917
+9 S DW="SL;6",DV="RSX",DU="",DLB="DISPLAY INCREMENTS PER HOUR",DIFLD=1917
  S DU="1:60-MIN ;2:30-MIN ;4:15-MIN ;3:20-MIN ;6:10-MIN ;"
  S Y="4"
  G Y
-X6 S ZSI=$S(X=1!(X=2)!(X=3)!(X=4)!(X=6):60/X,1:0),SDLA=$S('$D(^SC(DA,"SL")):0,1:+^("SL")) K:('SDLA)!('ZSI) SDLA,ZSI,X Q:'$D(X)  I SDLA#ZSI>0 X ^DD(44,1917,9.2) Q
+X9 S ZSI=$S(X=1!(X=2)!(X=3)!(X=4)!(X=6):60/X,1:0),SDLA=$S('$D(^SC(DA,"SL")):0,1:+^("SL")) K:('SDLA)!('ZSI) SDLA,ZSI,X Q:'$D(X)  I SDLA#ZSI>0 X ^DD(44,1917,9.2) Q
  Q
  ;
-7 S DQ=8 ;@99
-8 G 0^DIE17
+10 S DQ=11 ;@99
+11 G 0^DIE17

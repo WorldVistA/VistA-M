@@ -1,5 +1,5 @@
-ECRRPT ;ALB/JAM - Event Capture Report RPC Broker ;12/9/13  12:48
- ;;2.0;EVENT CAPTURE;**25,32,41,56,61,82,94,95,108,112,119,122**;8 May 96;Build 2
+ECRRPT ;ALB/JAM - Event Capture Report RPC Broker ;12/2/14  10:40
+ ;;2.0;EVENT CAPTURE;**25,32,41,56,61,82,94,95,108,112,119,122,126**;8 May 96;Build 8
  ;
  ;119 For patch 119, added comment regarding ECPTYP being set to "E" when exporting, for those reports that are now exportable.
 REQCHK(ECV) ;Required data check
@@ -92,6 +92,8 @@ ECRDSSU ;DSS Unit Workload Summary Report
 PROSUM ;Provider (1-7) Summary Report for RPC Call 119-Updated comment to reflect 7 instead of 3
  ;     Variables passed in
  ;       ECU    - Provider IEN for file #200
+ ;       ECL0   - All, 1, or many locations
+ ;       ECD0   - All, 1, or many DSS units
  ;       ECSD   - Start Date or Report
  ;       ECED   - End Date or Report
  ;       ECRY   - Print Procedure Reason (optional)
@@ -100,14 +102,19 @@ PROSUM ;Provider (1-7) Summary Report for RPC Call 119-Updated comment to reflec
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
- N ECV,ECDATE,ECUN,ECROU,ECDESC,DIC,X,Y
- S ECV="ECU^ECSD^ECED" D REQCHK(ECV) I ECERR Q
+ N ECV,ECDATE,ECUN,ECROU,ECDESC,DIC,X,Y,ECSAVE,ECSLOC,ECSUNIT,NUM ;126
+ S ECV="ECU^ECSD^ECED^ECL0^ECD0" D REQCHK(ECV) I ECERR Q  ;126
  S DIC=200,DIC(0)="QNZX",X=ECU D ^DIC D:Y<0  Q:Y<0  S ECUN=$P(Y,U,2)
  . S ^TMP("ECMSG",$J)="1^Invalid Provider."
  D DATECHK(.ECSD,.ECED)
+ I ECL0="ALL" S ECSLOC="ALL" ;126
+ I ECL0'="ALL" F NUM=0:1 Q:'$D(@("ECL"_NUM))  S ECSLOC(@("ECL"_NUM))="" ;126
+ I ECD0="ALL" S ECSUNIT="ALL" ;126
+ I ECD0'="ALL" F NUM=0:1 Q:'$D(@("ECD"_NUM))  S ECSUNIT(@("ECD"_NUM))="" ;126
  I ECRY'="Y" K ECRY
  I ECPTYP="P" D  Q
  . S ECV="ECU^ECUN^ECDATE^ECSD^ECED^ECRY"
+ . S ECSAVE("ECSLOC*")="",ECSAVE("ECSUNIT*")="" ;126
  . S ECROU="EN^ECPRSUM1",ECDESC="Event Capture Provider Summary"
  . D QUEUE
  D EN^ECPRSUM1

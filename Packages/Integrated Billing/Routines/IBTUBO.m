@@ -1,6 +1,6 @@
 IBTUBO ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; - Entry point for manual option.
  N IBBDT,IBCOMP,IBDET,IBEDT,IBOPT,IBPRT,IBTIMON,IBQUIT,IBSEL
@@ -22,7 +22,38 @@ IBTUBO ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
  S DIR("?",10)="NOT be stored in your system, and the report may be run for"
  S DIR("?")="any date range."
  D ^DIR K DIR G:$D(DIRUT) END S IBCOMP=Y
+ ;
+ ; IB*2.0*516 - Added ability to sort by Division
+ ;
+ K ^TMP($J,"IBTUB"),^TMP($J,"IBTUB-DIV")
  I IBCOMP G RDATE
+ ;
+DIV ; division
+ W !!
+ S DIR(0)="SA^A:All Divisions;S:Selected Divisions"
+ S DIR("A")="Include All Divisions or Selected Divisions? "
+ S DIR("B")="All"
+ D ^DIR K DIR
+ I $D(DIROUT)!$D(DIRUT) Q  ;Timeout or User "^"
+ I Y="A" G DIVX
+ ;
+ W !
+ F  D  I IBQUIT S IBQUIT=IBQUIT-1 Q
+ . S DIC=40.8,DIC(0)="AEMQ",DIC("A")="   Select Division: "
+ . I $O(^TMP($J,"IBTUB-DIV","")) S DIC("A")="   Select Another Division: "
+ . D ^DIC K DIC                ; lookup
+ . I X="^^" S IBQUIT=2 Q       ; user entered ^^
+ . I +Y'>0 S IBQUIT=1 Q        ; user is done
+ . S ^TMP($J,"IBTUB-DIV",+Y)=$P(Y,U,2)
+ . Q
+ ;
+ I IBQUIT G END  ;User "^" out of the selection
+ ;
+ I '$O(^TMP($J,"IBTUB-DIV","")) D  G DIV
+ . W *7,!!?3,"No divisions have been selected.  Please try again."
+ . Q
+ ;
+DIVX ; Exit Division selection.
  ;
  ; - Select date(s) to build report.
  W ! D DT1^IBTUBOU G:IBBDT="^" END
@@ -100,6 +131,7 @@ MSG ; - Compile message.
  W !!,"NOTE: After this report is run, the Unbilled Amounts totals for"
  W !?6,"the month of "_$$DAT2^IBOUTL(IBTIMON)_" will be updated."
  Q
+ ;
 DT2(STR) ; - Select re-compile date (returns variable IBTIMON).
  ; Input: STR - String that describe the type of data that will be 
  ;        re-compiled: "Unbilled Amounts", "Average Bill Amounts", etc...

@@ -1,116 +1,140 @@
-IBDEI11R ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
+IBDEI11R ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18760,0)
- ;;=28288^^122^1201^19^^^^1
- ;;^UTILITY(U,$J,358.3,18760,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18760,1,2,0)
- ;;=2^Ostectomy, partial, exostectomy or condylectomy, metatarsal head, each metatarsal head
- ;;^UTILITY(U,$J,358.3,18760,1,3,0)
- ;;=3^28288
- ;;^UTILITY(U,$J,358.3,18761,0)
- ;;=28290^^122^1201^20^^^^1
- ;;^UTILITY(U,$J,358.3,18761,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18761,1,2,0)
- ;;=2^Correction, hallux valgus, with or without sesamoidectomy; simple exostectomy
- ;;^UTILITY(U,$J,358.3,18761,1,3,0)
- ;;=3^28290
- ;;^UTILITY(U,$J,358.3,18762,0)
- ;;=28292^^122^1201^21^^^^1
- ;;^UTILITY(U,$J,358.3,18762,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18762,1,2,0)
- ;;=2^Resection of Joint by Keller Type
- ;;^UTILITY(U,$J,358.3,18762,1,3,0)
- ;;=3^28292
- ;;^UTILITY(U,$J,358.3,18763,0)
- ;;=28293^^122^1201^22^^^^1
- ;;^UTILITY(U,$J,358.3,18763,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18763,1,2,0)
- ;;=2^Resection of joint with implant
- ;;^UTILITY(U,$J,358.3,18763,1,3,0)
- ;;=3^28293
- ;;^UTILITY(U,$J,358.3,18764,0)
- ;;=28296^^122^1201^23^^^^1
- ;;^UTILITY(U,$J,358.3,18764,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18764,1,2,0)
- ;;=2^Resection of joint with metatarsal osteotomy
- ;;^UTILITY(U,$J,358.3,18764,1,3,0)
- ;;=3^28296
- ;;^UTILITY(U,$J,358.3,18765,0)
- ;;=28298^^122^1201^25^^^^1
- ;;^UTILITY(U,$J,358.3,18765,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18765,1,2,0)
- ;;=2^Resection of joint by phalanx osteotomy
- ;;^UTILITY(U,$J,358.3,18765,1,3,0)
- ;;=3^28298
- ;;^UTILITY(U,$J,358.3,18766,0)
- ;;=28299^^122^1201^26^^^^1
- ;;^UTILITY(U,$J,358.3,18766,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18766,1,2,0)
- ;;=2^Resection of joint by double osteotomy 
- ;;^UTILITY(U,$J,358.3,18766,1,3,0)
- ;;=3^28299
- ;;^UTILITY(U,$J,358.3,18767,0)
- ;;=28300^^122^1201^27^^^^1
- ;;^UTILITY(U,$J,358.3,18767,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18767,1,2,0)
- ;;=2^Resection of joint,Lapidus Type
- ;;^UTILITY(U,$J,358.3,18767,1,3,0)
- ;;=3^28300
- ;;^UTILITY(U,$J,358.3,18768,0)
- ;;=28302^^122^1201^28^^^^1
- ;;^UTILITY(U,$J,358.3,18768,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18768,1,2,0)
- ;;=2^Osteotomy; talus
- ;;^UTILITY(U,$J,358.3,18768,1,3,0)
- ;;=3^28302
- ;;^UTILITY(U,$J,358.3,18769,0)
- ;;=28304^^122^1201^29^^^^1
- ;;^UTILITY(U,$J,358.3,18769,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18769,1,2,0)
- ;;=2^Osteotomy, tarsal bones, other than calcaneus or talus
- ;;^UTILITY(U,$J,358.3,18769,1,3,0)
- ;;=3^28304
- ;;^UTILITY(U,$J,358.3,18770,0)
- ;;=28306^^122^1201^30^^^^1
- ;;^UTILITY(U,$J,358.3,18770,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18770,1,2,0)
- ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; 1st metatarsal
- ;;^UTILITY(U,$J,358.3,18770,1,3,0)
- ;;=3^28306
- ;;^UTILITY(U,$J,358.3,18771,0)
- ;;=28308^^122^1201^32^^^^1
- ;;^UTILITY(U,$J,358.3,18771,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18771,1,2,0)
- ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; other than first metatarsal, each
- ;;^UTILITY(U,$J,358.3,18771,1,3,0)
- ;;=3^28308
- ;;^UTILITY(U,$J,358.3,18772,0)
- ;;=28315^^122^1201^33^^^^1
- ;;^UTILITY(U,$J,358.3,18772,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18772,1,2,0)
- ;;=2^Sesamoidectomy, first toe
- ;;^UTILITY(U,$J,358.3,18772,1,3,0)
- ;;=3^28315
- ;;^UTILITY(U,$J,358.3,18773,0)
- ;;=28001^^122^1202^1^^^^1
- ;;^UTILITY(U,$J,358.3,18773,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18773,1,2,0)
- ;;=2^Incision and Drainage, bursa, foot
- ;;^UTILITY(U,$J,358.3,18773,1,3,0)
- ;;=3^28001
+ ;;^UTILITY(U,$J,358.3,18666,1,5,0)
+ ;;=5^Obsessive/Compulsive
+ ;;^UTILITY(U,$J,358.3,18666,2)
+ ;;=^84904
+ ;;^UTILITY(U,$J,358.3,18667,0)
+ ;;=308.9^^104^1090^1
+ ;;^UTILITY(U,$J,358.3,18667,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18667,1,2,0)
+ ;;=2^308.9
+ ;;^UTILITY(U,$J,358.3,18667,1,5,0)
+ ;;=5^Acute Stress Reaction
+ ;;^UTILITY(U,$J,358.3,18667,2)
+ ;;=^268303
+ ;;^UTILITY(U,$J,358.3,18668,0)
+ ;;=300.15^^104^1090^6
+ ;;^UTILITY(U,$J,358.3,18668,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18668,1,2,0)
+ ;;=2^300.15
+ ;;^UTILITY(U,$J,358.3,18668,1,5,0)
+ ;;=5^Dissociative Reaction
+ ;;^UTILITY(U,$J,358.3,18668,2)
+ ;;=^35700
+ ;;^UTILITY(U,$J,358.3,18669,0)
+ ;;=291.1^^104^1091^5
+ ;;^UTILITY(U,$J,358.3,18669,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18669,1,2,0)
+ ;;=2^291.1
+ ;;^UTILITY(U,$J,358.3,18669,1,5,0)
+ ;;=5^Amnestic Syndrome Due to Alcohol
+ ;;^UTILITY(U,$J,358.3,18669,2)
+ ;;=^303492
+ ;;^UTILITY(U,$J,358.3,18670,0)
+ ;;=294.0^^104^1091^7
+ ;;^UTILITY(U,$J,358.3,18670,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18670,1,2,0)
+ ;;=2^294.0
+ ;;^UTILITY(U,$J,358.3,18670,1,5,0)
+ ;;=5^Amnestic Syndrome, NOS
+ ;;^UTILITY(U,$J,358.3,18670,2)
+ ;;=^6319
+ ;;^UTILITY(U,$J,358.3,18671,0)
+ ;;=292.83^^104^1091^6
+ ;;^UTILITY(U,$J,358.3,18671,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18671,1,2,0)
+ ;;=2^292.83
+ ;;^UTILITY(U,$J,358.3,18671,1,5,0)
+ ;;=5^Amnestic Syndrome Due to Drugs
+ ;;^UTILITY(U,$J,358.3,18671,2)
+ ;;=^268027
+ ;;^UTILITY(U,$J,358.3,18672,0)
+ ;;=291.2^^104^1091^3
+ ;;^UTILITY(U,$J,358.3,18672,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18672,1,2,0)
+ ;;=2^291.2
+ ;;^UTILITY(U,$J,358.3,18672,1,5,0)
+ ;;=5^Alcohol Persisting Dementia
+ ;;^UTILITY(U,$J,358.3,18672,2)
+ ;;=^331824
+ ;;^UTILITY(U,$J,358.3,18673,0)
+ ;;=291.3^^104^1091^1
+ ;;^UTILITY(U,$J,358.3,18673,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18673,1,2,0)
+ ;;=2^291.3
+ ;;^UTILITY(U,$J,358.3,18673,1,5,0)
+ ;;=5^Alc Ind Psy D/O w/ Hallucination
+ ;;^UTILITY(U,$J,358.3,18673,2)
+ ;;=^331825
+ ;;^UTILITY(U,$J,358.3,18674,0)
+ ;;=291.4^^104^1091^8
+ ;;^UTILITY(U,$J,358.3,18674,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18674,1,2,0)
+ ;;=2^291.4
+ ;;^UTILITY(U,$J,358.3,18674,1,5,0)
+ ;;=5^Idiosyncratic Alcohol Intox
+ ;;^UTILITY(U,$J,358.3,18674,2)
+ ;;=^4574
+ ;;^UTILITY(U,$J,358.3,18675,0)
+ ;;=291.5^^104^1091^2
+ ;;^UTILITY(U,$J,358.3,18675,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18675,1,2,0)
+ ;;=2^291.5
+ ;;^UTILITY(U,$J,358.3,18675,1,5,0)
+ ;;=5^Alc Ind Psych d/o w/ Delusions
+ ;;^UTILITY(U,$J,358.3,18675,2)
+ ;;=^331826
+ ;;^UTILITY(U,$J,358.3,18676,0)
+ ;;=291.81^^104^1091^4
+ ;;^UTILITY(U,$J,358.3,18676,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18676,1,2,0)
+ ;;=2^291.81
+ ;;^UTILITY(U,$J,358.3,18676,1,5,0)
+ ;;=5^Alcohol Withdrawal
+ ;;^UTILITY(U,$J,358.3,18676,2)
+ ;;=^123498
+ ;;^UTILITY(U,$J,358.3,18677,0)
+ ;;=310.1^^104^1092^7
+ ;;^UTILITY(U,$J,358.3,18677,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18677,1,2,0)
+ ;;=2^310.1
+ ;;^UTILITY(U,$J,358.3,18677,1,5,0)
+ ;;=5^Personality Syndrome
+ ;;^UTILITY(U,$J,358.3,18677,2)
+ ;;=^268318
+ ;;^UTILITY(U,$J,358.3,18678,0)
+ ;;=293.81^^104^1092^4
+ ;;^UTILITY(U,$J,358.3,18678,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18678,1,2,0)
+ ;;=2^293.81
+ ;;^UTILITY(U,$J,358.3,18678,1,5,0)
+ ;;=5^Delusional Syndrome
+ ;;^UTILITY(U,$J,358.3,18678,2)
+ ;;=^259055
+ ;;^UTILITY(U,$J,358.3,18679,0)
+ ;;=294.9^^104^1092^3
+ ;;^UTILITY(U,$J,358.3,18679,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18679,1,2,0)
+ ;;=2^294.9
+ ;;^UTILITY(U,$J,358.3,18679,1,5,0)
+ ;;=5^Cognitive Disorder, NOS
+ ;;^UTILITY(U,$J,358.3,18679,2)
+ ;;=^123962
+ ;;^UTILITY(U,$J,358.3,18680,0)
+ ;;=293.84^^104^1092^2

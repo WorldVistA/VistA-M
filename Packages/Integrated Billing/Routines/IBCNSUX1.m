@@ -1,6 +1,6 @@
 IBCNSUX1 ;ALB/CMS - SPLIT COMBINATION PLANS CONT. ; 04-NOV-98
- ;;2.0;INTEGRATED BILLING;**103,133**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,133,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BEG ; -- Start to process policy separation from IBCNSUX
@@ -13,7 +13,9 @@ BEG ; -- Start to process policy separation from IBCNSUX
  N DFN,DO,DD,DA,DR,DIC,DIE,DIK,DIR,DIRUT,X,Y
  N IBCDFN,IBERR,IB0,IBST,IBSUB1,IBPLANAM
  K ^TMP($J,"IBCNSUX"),^TMP($J,"IBCNSUX1")
- S IBST=$$NOW^XLFDT,IBPLANAM=$P($G(^IBA(355.3,IBPLAN,0)),U,3)
+ ;IB*2.0*516/TAZ - Retrieve HIPAA compliant Plan Name.
+ ;S IBST=$$NOW^XLFDT,IBPLANAM=$P($G(^IBA(355.3,IBPLAN,0)),U,3)
+ S IBST=$$NOW^XLFDT,IBPLANAM=$$GET1^DIQ(355.3,IBPLAN,2.01)  ; 516 - baa
  S IBSUB1=$$SUBS^IBCNSJ(IBINS,IBPLAN,0,"^TMP($J,""IBCNSUX1"")")
  S DFN=0 F  S DFN=$O(^TMP($J,"IBCNSUX1",DFN)) Q:'DFN  D
  .S IBCDFN=0 F  S IBCDFN=$O(^TMP($J,"IBCNSUX1",DFN,IBCDFN)) Q:'IBCDFN  D

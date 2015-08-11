@@ -1,6 +1,6 @@
 IBCNSJ14 ;ALB/CPM - INACTIVATE AN INSURANCE PLAN (CON'T) ; 07-MAR-95
- ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SEL ; Select a company and plan.
  ;   Required variable input:
@@ -36,9 +36,11 @@ SEL4 ; - this entry point is supported for a call from IBCNSJ4.
  .I 'IBPLAN W !!,"No plan selected!",! S IBQUIT=1
  ;
  ; - allow a FileMan look-up
+ ; MRD;IB*2.0*516 - Display new Group Name and Number fields.
  S DIC("A")="Select "_$S($G(IBINACTM):"an Active",1:"a")_" GROUP PLAN: "
  S DIC="^IBA(355.3,",DIC(0)="AEQM",DIC("S")="I +^(0)=IBCNS,$P(^(0),U,2)"
- S DIC("W")="N IBX S IBX=$G(^(0)) W ""   Name: "",$E($S($P(IBX,U,3)]"""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""   Number: "",$S($P(IBX,U,4)]"""":$P(IBX,U,4),1:""<none>"")"
+ ;S DIC("W")="N IBX S IBX=$G(^(0)) W ""   Name: "",$E($S($P(IBX,U,3)]"""":$P(IBX,U,3),1:""<none>"")_$J("""",20),1,20),""   Number: "",$S($P(IBX,U,4)]"""":$P(IBX,U,4),1:""<none>"")"
+ S DIC("W")="N IBX S IBX=$G(^(2)) W ""   Name: "",$E($S($P(IBX,U,1)]"""":$P(IBX,U,1),1:""<none>"")_$J("""",20),1,20),""   Number: "",$E($S($P(IBX,U,2)]"""":$P(IBX,U,2),1:""<none>""),1,14)"
  I $G(IBINACTM) S DIC("S")=DIC("S")_",'$P(^(0),U,11)"
  D ^DIC K DIC S IBPLAN=+Y I Y<0 S IBQUIT=1
  ;

@@ -1,0 +1,92 @@
+VPSRPC14  ;BPOIFO/KG - Patient Radiology/Imaging Exams;07/31/14 13:07
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**4**;Jul 31, 2014;Build 27
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; External Reference DBIA#
+ ; ------------------------
+ ; #3288 - LIST^ORQOR1                              (Controlled subs)
+ ; #6101 - ORDOC^ORPR07                             (Private)
+ ; #2266 - EN30^RAO7PC1                             (Supported)
+ ; #6102 - READ ACCESS TO File #100, Field 6,33     (Private)
+ ; #3074 - READ ACCESS TO File #75.1, Field 16,20   (Private)
+ ; #65   - READ ACCESS TO File #70.03, Field 2,3,17 (Controlled Subs)
+ ; #65   - READ ACCESS TO File #70.02, Field 2      (Controlled Subs)
+ ; #586  - READ ACCESS TO File #71, Field 9         (Controlled Subs)
+ ; #3505 - READ ACCESS TO File #79.2, Field .01,3   (Controlled Subs)
+ QUIT
+ ;
+GETRAD(VPSARR,DFN,PARAMS) ;given DFN, returns the patient radiology/imaging exams
+ N DATA,EXAMINFO,RIOIEN,RIOIENS,RIOINFO,ORDINFO,CPT,ORDIEN,ORDIENS,PROC,PROCIEN,PROCNAME,PROVNAME
+ N IENS7002,IENS7003,DTI,CASE,DTI,TYPIEN,TYPIENS,TYPINFO,ACTIEN
+ ;
+ ;Get Radiology/Imaging orders from ORDER File (#100)
+ N FILTER S FILTER=1 ;all orders
+ N EXIST S EXIST=0
+ S PARAMS=$G(PARAMS)
+ N STDTE S STDTE=$P(PARAMS,":")
+ N ENDTE S ENDTE=$P(PARAMS,":",2)
+ N ORDLST D LIST^ORQOR1(.ORDLST,DFN,"IMAGING",FILTER,STDTE,ENDTE)
+ ;
+ I +$P($G(ORDLST(1)),U,1)>0 D
+ . N CNT S CNT=""
+ . F  S CNT=+$O(ORDLST(CNT)) Q:CNT'>0  D
+ . . S EXIST=1
+ . . S DATA=ORDLST(CNT)
+ . . S ORDIEN=$P($P(DATA,U,1),";",1)
+ . . S ACTIEN=$P($P(DATA,U,1),";",2)
+ . . Q:ORDIEN=""
+ . . S ORDIENS=ORDIEN_","
+ . . K ORDINFO
+ . . D GETS^DIQ(100,ORDIENS,"6;33","IE","ORDINFO")
+ . . S PROVNAME=$$ORDOC^ORPR07(ORDIEN,ACTIEN)
+ . . S PROCNAME=$P(DATA,U,2)
+ . . D SET(.VPSARR,100,DFN_";"_ORDIEN,.01,ORDIEN,"CPRS ORDER IEN")
+ . . D SET(.VPSARR,100,DFN_";"_ORDIEN,1,PROCNAME,"PROCEDURE NAME")
+ . . D SET(.VPSARR,100,DFN_";"_ORDIEN,6,$G(ORDINFO(100,ORDIENS,6,"E")),"REQUESTING LOCATION")
+ . . D SET(.VPSARR,100.008,DFN_";"_ORDIEN_";"_ACTIEN,3,PROVNAME,"REQUESTING PHYSICIAN")
+ . . ;
+ . . ;get info from Radiology/Imaging Order File (#75.1)
+ . . S RIOIEN=+$G(ORDINFO(100,ORDIENS,33,"I")) ;radiology/imaging order, pointer to 75.1
+ . . Q:RIOIEN'>0
+ . . S RIOIENS=RIOIEN_","
+ . . K RIOINFO
+ . . D GETS^DIQ(75.1,RIOIENS,"16;20","IE","RIOINFO")
+ . . D SET(.VPSARR,75.1,DFN_";"_RIOIEN,16,$G(RIOINFO(75.1,RIOIENS,16,"E")),"EXAM REQUESTED DATE")
+ . . D SET(.VPSARR,75.1,DFN_";"_RIOIEN,20,$G(RIOINFO(75.1,RIOIENS,20,"E")),"IMAGING LOCATION NAME")
+ . . ;
+ . . ;get Exam info from Radiology/Imaging Patient File (#70)
+ . . D EN30^RAO7PC1(RIOIEN)   ;DBIA 2266
+ . . Q:'$D(^TMP($J,"RAE2",DFN))  ;no examinations
+ . . S DTI=+$O(^RADPT("AO",RIOIEN,DFN,0)) Q:'DTI
+ . . S CASE=+$O(^TMP($J,"RAE2",DFN,0)) Q:'CASE
+ . . S PROC=$O(^TMP($J,"RAE2",DFN,CASE,""))
+ . . S DATA=^TMP($J,"RAE2",DFN,CASE,PROC)
+ . . ;
+ . . S IENS7002=DTI_","_DFN_","     ;IENS for #70.02
+ . . S TYPIEN=$$GET1^DIQ(70.02,IENS7002,"2","I")
+ . . S TYPIENS=TYPIEN_","
+ . . K TYPINFO
+ . . D GETS^DIQ(79.2,TYPIENS,".01;3","IE","TYPINFO")
+ . . D SET(.VPSARR,79.2,DFN_";"_TYPIEN,.01,$G(TYPINFO(79.2,TYPIENS,.01,"E")),"IMAGING TYPE ABBR")
+ . . D SET(.VPSARR,79.2,DFN_";"_TYPIEN,3,$G(TYPINFO(79.2,TYPIENS,3,"E")),"IMAGING TYPE NAME")
+ . . ;
+ . . S IENS7003=CASE_","_IENS7002   ;IENS for #70.03
+ . . D SET(.VPSARR,70.03,DFN_";"_IENS7003,.01,CASE,"RADIOLOGY CASE#")
+ . . D SET(.VPSARR,70.03,DFN_";"_IENS7003,17,$P(DATA,U,1),"REPORT STATUS")
+ . . D SET(.VPSARR,70.03,DFN_";"_IENS7003,13,$P(DATA,U,2),"ABNORMAL RESULTS FLAG")
+ . . K EXAMINFO
+ . . D GETS^DIQ(70.03,IENS7003,"2;3;17","IE","EXAMINFO")
+ . . D SET(.VPSARR,70.03,DFN_";"_IENS7003,3,$G(EXAMINFO(70.03,IENS7003,3,"I")),"EXAM STATUS ORDER#")
+ . . D SET(.VPSARR,70.03,DFN_";"_IENS7003,3,$G(EXAMINFO(70.03,IENS7003,3,"E")),"EXAM STATUS NAME")
+ . . D SET(.VPSARR,70.03,DFN_";"_IENS7003,17,$G(EXAMINFO(70.03,IENS7003,17,"I")),"REPORT IEN")
+ . . ;
+ . . S PROCIEN=$G(EXAMINFO(70.03,IENS7003,2,"I"))  ;Procedure IEN, pointer to File #71
+ . . S CPT=$$GET1^DIQ(71,PROCIEN_",",9,"I")
+ . . D SET(.VPSARR,71,DFN_";"_PROCIEN,9,CPT,"CPT CODE")
+ ;
+ I 'EXIST D SET(.VPSARR,"E",DFN,"","NO RAD ORDERS FOUND FOR PATIENT","RAD NOT FOUND")
+ QUIT
+ ;
+SET(VPSARR,VPSFL,VPSIEN,VPSFLD,VPSDA,VPSDS) ;Set line item to output array
+ I VPSDA'="" D SET^VPSRPC1(.VPSARR,VPSFL,VPSIEN,VPSFLD,VPSDA,$G(VPSDS),4) ;Set line item to output array
+ QUIT

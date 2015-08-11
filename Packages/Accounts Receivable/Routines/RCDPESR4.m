@@ -1,6 +1,8 @@
-RCDPESR4 ;ALB/TMK/PJH - Server interface 835ERA processing ; 06/03/02
- ;;4.5;Accounts Receivable;**173,216,208,230,269,271**;Mar 20, 1995;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPESR4 ;ALB/TMK/PJH - Server interface 835ERA processing ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**173,216,208,230,269,271,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
  ;
 ERAEOBIN(RCTXN,RCD,RCGBL,RCEFLG) ; Store/process 835ERA or 835XFR
  ;  transaction coming into the site
@@ -79,7 +81,8 @@ EXTERA(RCTXN,RCLAST,RCBILL) ;Extract 835ERA or 835XFR transaction
  . I +XMRG=99,$P(XMRG,U,2)="$" S RCLAST=1 Q
  . S CT=CT+1
  . I +XMRG=5,$P(XMRG,U,2)'="" S C5=CT
- . I +XMRG=40,$P(XMRG,U,2)?1.12N,C5,$P(XMRG,U,19),'$D(@RCSD@(C5)) S ^(C5)=+$P(XMRG,U,19)  ; save the service date for possible ECME# look up
+ . ; save the service date for possible ECME# look up
+ . I +XMRG=40,$$VALECME^BPSUTIL2($P(XMRG,U,2)),C5,$P(XMRG,U,19),'$D(@RCSD@(C5)) S ^(C5)=+$P(XMRG,U,19)
  . S ^TMP("RCMSG",$J,2,"D",CT)=XMRG
  ;
  ; reformat bill# if needed
@@ -202,11 +205,14 @@ LOADDET(RCTDA,RCGBL,RCHDR,RCBILL,RCD,RCERR) ; Load the rest of the text
  ... N DA,DIE,DR,X,Y
  ... S DA=RCTDA,DR=".08////0;.1///@",DIE="^RCY(344.5," D ^DIE
  ... I '$O(^RCY(344.5,RCTDA,"B","AV",1,0)) D  ; No valid bills found
- .... N RCE
- .... S RCE(1)="No valid bills for this site were found in this ERA"
- .... S RCE(2)="Review/correct the bill #'s on this ERA in your transmission exceptions"
- .... S RCE(3)="Please contact the Implementation Manager group to report this situation",RCE(4)=" "
- .... D BULLERA^RCDPESR0("D"_$S($O(^RCY(344.5,RCTDA,2,0)):"F",1:""),RCTDA,$G(RCD("MSG#")),"EDI LBOX - NO VALID BILLS ON ERA "_$E($G(RCD("PAYFROM")),1,20),.RCE,0)
+ ....;-----
+ ....; PRCA*4.5*298 - MailMan message disabled, logic retained - 14 Feb 2014
+ ....;N RCE
+ ....;S RCE(1)="No valid bills for this site were found in this ERA"
+ ....;S RCE(2)="Review/correct the bill #'s on this ERA in your transmission exceptions"
+ ....;S RCE(3)="Please contact the Implementation Manager group to report this situation",RCE(4)=" "
+ ....;D BULLERA^RCDPESR0("D"_$S($O(^RCY(344.5,RCTDA,2,0)):"F",1:""),RCTDA,$G(RCD("MSG#")),"EDI LBOX - NO VALID BILLS ON ERA "_$E($G(RCD("PAYFROM")),1,20),.RCE,0)
+ ....;-----
  .... S DA=RCTDA,DR=".08////1;.1////6",DIE="^RCY(344.5," D ^DIE
  ;
  ;

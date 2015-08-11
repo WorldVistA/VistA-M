@@ -1,6 +1,6 @@
 IBCEF72 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;8/6/03 10:56am
- ;;2.0;INTEGRATED BILLING;**232,320,349,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,320,349,432,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
  ;Input:
@@ -124,8 +124,13 @@ OUTPRV(IBREC,IBXIEN,IBXSAVE) ; Extract the outside provider or facility ids
 OTHINS(IB399,IBRES) ;
  N IBFRMTYP,Z,Z1,Z2,Z4
  S Z=$$COBN^IBCEF(IB399),Z0=0
- F Z1=1:1:3 I Z1'=Z,$D(^DGCR(399,IB399,"I"_Z1)) S Z0=Z0+1,IBRES(Z0)=+$G(^DGCR(399,IB399,"I"_Z1))
+ F Z1=1:1:3 I Z1'=Z,$D(^DGCR(399,IB399,"I"_Z1)) D
+ . S Z0=Z0+1
+ . ; MRD;IB*2.0*516 - Added HPID as second piece.
+ . S IBRES(Z0)=+$G(^DGCR(399,IB399,"I"_Z1))_U_$P(^DGCR(399,IB399,"M1"),U,12+Z1)
+ . Q
  Q
+ ;
  ;get other insurance EDI ID NUMBERs
 OTHINSID(IB399,IBRES) ;insurance EDI 
  N IBFRMTYP,IBZ,Z0,Z1,Z4
@@ -133,7 +138,11 @@ OTHINSID(IB399,IBRES) ;insurance EDI
  S Z4=$S(IBFRMTYP=1:4,1:2) ;UB - piece4,1500 or BOTH -piece 2
  D OTHINS(IB399,.IBZ)
  S Z1=0
- F Z0=1:1:2 I $G(IBZ(Z0)) S IBRES(Z0)=$S($$MCRWNR^IBEFUNC(+IBZ(Z0)):$S(IBFRMTYP=1:"12M61",1:"SMTX1"),1:$P($G(^DIC(36,+IBZ(Z0),3)),U,Z4))
+ F Z0=1,2 I $G(IBZ(Z0)) D
+ . S IBRES(Z0)=$S($$MCRWNR^IBEFUNC(+IBZ(Z0)):$S(IBFRMTYP=1:"12M61",1:"SMTX1"),1:$P($G(^DIC(36,+IBZ(Z0),3)),U,Z4))
+ . ; MRD;IB*2.0*516 - Added HPID as second piece.
+ . S $P(IBRES(Z0),U,2)=$P(IBZ(Z0),U,2)
+ . Q
  Q
  ;
  ;get other insurance addresses

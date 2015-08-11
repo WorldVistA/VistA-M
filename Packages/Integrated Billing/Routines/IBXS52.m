@@ -1,4 +1,4 @@
-IBXS52 ; ;10/22/14
+IBXS52 ; ;05/12/15
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""OC"",",DIC=DIE,DP=399.041,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"OC",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(4)=% S %=$P(%Z,U,4) S:%]"" DE(8)=%
@@ -49,7 +49,7 @@ SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$
 NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
 KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
 BEGIN S DNM="IBXS52",DQ=1+D G B
-1 S DW="0;1",DV="M*P399.1'",DU="",DLB="OCCURRENCE CODE",DIFLD=.01
+1 S DW="0;1",DV="M*P399.1'X",DU="",DLB="OCCURRENCE CODE",DIFLD=.01
  S DE(DW)="C1^IBXS52"
  S DU="DGCR(399.1,"
  G RE:'D S DQ=2 G 2
@@ -60,7 +60,7 @@ C1S S X="" G:DG(DQ)=X C1F1 K DB
  S X=DG(DQ),DIC=DIE
  S ^DGCR(399,DA(1),"OC","B",$E(X,1,30),DA)=""
 C1F1 Q
-X1 S DIC("S")="I $P(^DGCR(399.1,+Y,0),U,4)=1,$S(+Y'=22:1,$P(^DPT($P(^DGCR(399,DA,0),U,2),0),U,2)=""F"":1,1:0)" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+X1 S DIC("S")="I $P(^DGCR(399.1,+Y,0),U,4)=1,$S(+Y'=22:1,$P(^DPT($P(^DGCR(399,DA,0),U,2),0),U,2)=""F"":1,1:0)",D="C^B" D MIX^DIC1 K DIC S DIC=DIE,X=+Y K:Y<0 X
  Q
  ;
 2 D:$D(DG)>9 F^DIE17,DE S DQ=2,DW="0;2",DV="RD",DU="",DLB="DATE",DIFLD=.02

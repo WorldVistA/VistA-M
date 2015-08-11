@@ -1,5 +1,5 @@
 IBCNSGE ;ALB/ESG - Insurance Company EDI Parameter Report ;07-JAN-2005
- ;;2.0;INTEGRATED BILLING;**296,400,521**;21-MAR-94;Build 33
+ ;;2.0;INTEGRATED BILLING;**296,400,521,516**;21-MAR-94;Build 123
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eClaims Plus
@@ -105,9 +105,11 @@ RANGEX ;
  Q
  ;
 SORT ; Choose the sorting method
+ ; MRD;IB*2.0*516 - Removed sort option 6, Use VAMC as Billing Provider.
  NEW DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  W !!?5,"*** Sort Criteria ***"
- S DIR(0)="SO^1:Insurance Company Name;2:Prof Electronic Bill ID;3:Inst Electronic Bill ID;4:Electronic Type;5:Type Of Coverage;6:Use VAMC as Billing Provider"
+ ;S DIR(0)="SO^1:Insurance Company Name;2:Prof Electronic Bill ID;3:Inst Electronic Bill ID;4:Electronic Type;5:Type Of Coverage;6:Use VAMC as Billing Provider"
+ S DIR(0)="SO^1:Insurance Company Name;2:Prof Electronic Bill ID;3:Inst Electronic Bill ID;4:Electronic Type;5:Type Of Coverage"
  S DIR("A")="Sort By",DIR("B")=1
  D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SORTX
@@ -118,7 +120,7 @@ SORTX ;
 COMPILE ; Entry point for task; compile scratch global, print, clean-up
  ;
  NEW RTN,INSIEN,INSNM,DATA,ADDR,EDI,PROFID,INSTID,NAME,STREET,CITY
- NEW STATE,TYPCOV,TRANS,INSTYP,SORT,TMP,FLG,FLGP,FLGI,SWBCK,IBHPD
+ NEW STATE,TYPCOV,TRANS,INSTYP,SORT,TMP,IBHPID
  ;
  S RTN="IBCNSGE"
  KILL ^TMP($J,RTN)   ; init
@@ -157,11 +159,14 @@ CALC(INS) ; extract insurance data for company ien=INS
  S DATA=$G(^DIC(36,INS,0))
  S ADDR=$G(^DIC(36,INS,.11))
  S EDI=$G(^DIC(36,INS,3))
- S FLG=$G(^DIC(36,INS,4))
- S FLGP=+$P(FLG,U,11)      ; prof switchback flag
- S FLGI=+$P(FLG,U,12)      ; inst switchback flag
+ ; MRD;IB*2.0*516 - Removed logic pertaining to using VAMC as billing provider.
+ ;S FLG=$G(^DIC(36,INS,4))
+ ;S FLGP=+$P(FLG,U,11)      ; prof switchback flag
+ ;S FLGI=+$P(FLG,U,12)      ; inst switchback flag
  S PROFID=$P(EDI,U,2)
  S INSTID=$P(EDI,U,4)
+ ; MRD;IB*2.0*516 - Added HPID/OEID.
+ S IBHPID=$$HPD^IBCNHUT1(INS,1)
  ;
  I IBRBID,PROFID'="",INSTID'="",$$UP^XLFSTR(PROFID)'["PRNT",$$UP^XLFSTR(INSTID)'["PRNT" G CALCX
  ;
@@ -173,10 +178,11 @@ CALC(INS) ; extract insurance data for company ien=INS
  S TYPCOV=$$EXTERNAL^DILFD(36,.13,,$P(DATA,U,13))
  S TRANS=$$EXTERNAL^DILFD(36,3.01,,$P(EDI,U,1))
  S INSTYP=$$EXTERNAL^DILFD(36,3.09,,$P(EDI,U,9))
- S SWBCK="~"     ; default no switchback flags set; sort these at the end
- I FLGP,FLGI S SWBCK="BOTH"
- I FLGP,'FLGI S SWBCK="PROF"
- I 'FLGP,FLGI S SWBCK="INST"
+ ; MRD;IB*2.0*516 - Removed logic pertaining to using VAMC as billing provider.
+ ;S SWBCK="~"     ; default no switchback flags set; sort these at the end
+ ;I FLGP,FLGI S SWBCK="BOTH"
+ ;I FLGP,'FLGI S SWBCK="PROF"
+ ;I 'FLGP,FLGI S SWBCK="INST"
  ;
  S SORT=" "
  I IBRSORT=1,NAME'="" S SORT=" "_NAME
@@ -184,8 +190,11 @@ CALC(INS) ; extract insurance data for company ien=INS
  I IBRSORT=3,INSTID'="" S SORT=" "_INSTID
  I IBRSORT=4,INSTYP'="" S SORT=" "_INSTYP
  I IBRSORT=5,TYPCOV'="" S SORT=" "_TYPCOV
- I IBRSORT=6,SWBCK'="" S SORT=" "_SWBCK
- S TMP=NAME_U_STREET_U_CITY_U_STATE_U_INSTYP_U_TYPCOV_U_TRANS_U_INSTID_U_PROFID_U_SWBCK
+ ; MRD;IB*2.0*516 - Removed logic pertaining to using VAMC as billing provider.
+ ;I IBRSORT=6,SWBCK'="" S SORT=" "_SWBCK
+ ;
+ ;S TMP=NAME_U_STREET_U_CITY_U_STATE_U_INSTYP_U_TYPCOV_U_TRANS_U_INSTID_U_PROFID_U_SWBCK
+ S TMP=NAME_U_STREET_U_CITY_U_STATE_U_INSTYP_U_TYPCOV_U_TRANS_U_INSTID_U_PROFID_U_IBHPID
  S ^TMP($J,RTN,SORT,NAME,INS)=TMP
 CALCX ;
  Q
@@ -197,6 +206,10 @@ PRINT ; print the report to the specified device
  S PAGECNT=0,STOP=0
  ;
  I '$D(^TMP($J,RTN)) D HEADER W !!!?5,"No Data Found"
+ ;
+ ; IB*2.0*521 add validated HPID to report and adjust Electronic type display
+ ; MRD;IB*2.0*516 - Removed Bill Prov column, lengthened Electronic
+ ; Type and Coverage Type.
  ;
  S SORT=""
  F  S SORT=$O(^TMP($J,RTN,SORT)) Q:SORT=""  D  Q:STOP
@@ -215,14 +228,12 @@ PRINT ; print the report to the specified device
  ... W ?65,$E($P(DATA,U,7),1,8)      ; transmit elec
  ... W ?75,$E($P(DATA,U,8),1,8)      ; inst payer id
  ... W ?84,$E($P(DATA,U,9),1,8)      ; prof payer id
- ... ; IB*2.0*521 add validated HPID to report and adjust Electronic type display
- ... S IBHPD=$$HPD^IBCNHUT1(INS,1)
- ... W ?93,IBHPD
+ ... W ?93,$E($P(DATA,U,10),1,11)    ; HPID/OEID
  ... ;W ?94,$E($P(DATA,U,5),1,12)     ; ins type
  ... ;W ?108,$E($P(DATA,U,6),1,18)    ; type of cov
- ... W ?105,$S($E($P(DATA,U,5))="G":"GP PLAN",1:$E($P(DATA,U,5),1,7))     ; ins type
- ... W ?113,$E($P(DATA,U,6),1,14)    ; type of cov
- ... W ?128,$E($P(DATA,U,10),1,4)    ; switchback flag
+ ... W ?105,$S($E($P(DATA,U,5))="G":"GROUP PLAN",1:$E($P(DATA,U,5),1,10))  ; ins type
+ ... W ?116,$E($P(DATA,U,6),1,16)    ; type of cov
+ ... ;W ?128,$E($P(DATA,U,10),1,4)    ; switchback flag
  ... Q
  .. Q
  . Q
@@ -263,19 +274,24 @@ HEADER ; page break and report header information
  I IBRSORT=3 W "Inst ID"
  I IBRSORT=4 W "Electronic Type"
  I IBRSORT=5 W "Type of Coverage"
- I IBRSORT=6 W "Use VAMC as Billing Provider"
+ ;I IBRSORT=6 W "Use VAMC as Billing Provider"  ; MRD;IB*2.0*516
  S HDR=$$FMTE^XLFDT($$NOW^XLFDT,"1Z"),TAB=132-$L(HDR)-1
  W ?TAB,HDR
  ;
  ; IB*2.0*521 add validated HPID to report
+ ; MRD;IB*2.0*516 - Removed Bill Prov column, lengthened Electronic
+ ; Type and Coverage Type.
+ ;
  ;W !,"Only Blank or 'PRNT' Bill ID's = ",$S(IBRBID:"YES",1:"NO"),?128,"VAMC"
- ;W !?65,"Electron",?75,"Inst",?84,"Prof",?94,"Electronic",?128,"Bill"
  W !,"Only Blank or 'PRNT' Bill ID's = ",$S(IBRBID:"YES",1:"NO")
- W !,"'*' indicates the HPID/OEID failed validation checks",?128,"VAMC"
- W !?65,"Electron",?75,"Inst",?84,"Prof",?93,"HPID/",?102,"Electronic",?128,"Bill"
+ W !,"'*' indicates the HPID/OEID failed validation checks"
+ ;W !?65,"Electron",?75,"Inst",?84,"Prof",?94,"Electronic",?128,"Bill" ; Removed by 521.
+ ;W !?65,"Electron",?75,"Inst",?84,"Prof",?93,"HPID/",?102,"Electronic",?128,"Bill" ; Removed by 516.
+ W !?65,"Electron",?75,"Inst",?84,"Prof",?93,"HPID/",?105,"Electronic"
  W !,"Insurance Company Name",?27,"Street Address",?47,"City"
- ;W ?65,"Transmit",?76,"ID",?85,"ID",?97,"Type",?108,"Type of Coverage",?128,"Prov"
- W ?65,"Transmit",?76,"ID",?85,"ID",?93,"OEID",?105,"Type",?113,"Coverage Type",?128,"Prov"
+ ;W ?65,"Transmit",?76,"ID",?85,"ID",?97,"Type",?108,"Type of Coverage",?128,"Prov" ; Removed by 521.
+ ;W ?65,"Transmit",?76,"ID",?85,"ID",?93,"OEID",?105,"Type",?113,"Coverage Type",?128,"Prov" ; Removed by 516.
+ W ?65,"Transmit",?76,"ID",?85,"ID",?93,"OEID",?105,"Type",?116,"Coverage Type"
  W !,$$RJ^XLFSTR("",132,"=")
  ;
  ; check for a stop request

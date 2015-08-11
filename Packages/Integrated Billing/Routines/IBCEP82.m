@@ -1,6 +1,6 @@
 IBCEP82 ;ALB/CLT - Special cross references and data entry for fields in file 355.93 ;18 Apr 2008  3:46 PM
- ;;2.0;INTEGRATED BILLING;**343,374,377,391**;21-MAR-94;Build 39
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**343,374,377,391,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Call at tags only
  Q
@@ -20,6 +20,11 @@ EN1 ;
  K DIR
  S DIR(0)="FO^10:10",DIR("A")="NPI",DIR("?")="Enter a 10 digit National Provider Identifier"
  I $G(DA) S:$P($G(^IBA(355.93,DA,0)),U,14)'="" (DIR("B"),IBOLDNPI,IBNPI)=$P($G(^IBA(355.93,DA,0)),U,14)
+ ;Sole Proprietor IB*2*516
+ I $P($G(^IBA(355.93,DA,0)),U,17)="Y" D
+ . N IBA35593
+ . S IBA35593=$P($G(^IBA(355.93,DA,0)),U,18)
+ . I IBA35593,$P($G(^IBA(355.93,IBA35593,0)),U,14)]"" S DIR("B")=$P(^(0),U,14)
  D ^DIR S IBCHECK=$S(Y=IBOLDNPI:2,1:0)
  I X="^" W *7,!,"   EXIT NOT ALLOWED ??" G EN1
  I $E(X)="^" W *7,!,"   JUMPING NOT ALLOWED ??" G EN1
@@ -73,14 +78,14 @@ DEL ;NPI HAS BEEN DELETED
  S DIR("?")="You have indicated you wish to delete the NPI.  This is a second chance check."
  D ^DIR
  G:Y(0)="NO" XIT
- S DIR(0)="S^E:ERROR;V:VALID",DIR("A")="Was this a Valid NPI or an NPI entered in Error"
- S DIR("?",1)="An example of an NPI entered in error is if the entry person transposed numbers,"
- S DIR("?",2)="or if the NPI for one provider is accidentally assigned to a different provider."
- S DIR("?")="Enter an 'E' for Error or a 'V' for Valid."
- D ^DIR
- I Y="E" D COMP W !,"The NPI has been deleted.",!
- I Y="V" S IBCHECK=2 D INACT W !,"The NPI is now inactive.",!
- Q:$D(DTOUT)!($D(DUOUT))
+ ;S DIR(0)="S^E:ERROR;V:VALID",DIR("A")="Was this a Valid NPI or an NPI entered in Error"
+ ;S DIR("?",1)="An example of an NPI entered in error is if the entry person transposed numbers,"
+ ;S DIR("?",2)="or if the NPI for one provider is accidentally assigned to a different provider."
+ ;S DIR("?")="Enter an 'E' for Error or a 'V' for Valid."
+ ;D ^DIR
+ D COMP W !,"This NPI will be designated as Entered in Error.",!
+ ;I Y="V" S IBCHECK=2 D INACT W !,"The NPI is now inactive.",!
+ ;Q:$D(DTOUT)!($D(DUOUT))
  S IBOLDNPI=IBNPI D WARND(IBIEN,IBOLDNPI,IBKEY)
  Q
  ;

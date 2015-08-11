@@ -1,0 +1,132 @@
+IBDEI1SA ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31873,0)
+ ;;=Z85.820^^190^1944^68
+ ;;^UTILITY(U,$J,358.3,31873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31873,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,31873,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,31873,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,31874,0)
+ ;;=Z85.828^^190^1944^83
+ ;;^UTILITY(U,$J,358.3,31874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31874,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,31874,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,31874,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,31875,0)
+ ;;=Z85.71^^190^1944^63
+ ;;^UTILITY(U,$J,358.3,31875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31875,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,31875,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,31875,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,31876,0)
+ ;;=Z65.8^^190^1944^121
+ ;;^UTILITY(U,$J,358.3,31876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31876,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,31876,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,31876,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,31877,0)
+ ;;=Z86.11^^190^1944^102
+ ;;^UTILITY(U,$J,358.3,31877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31877,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,31877,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,31877,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,31878,0)
+ ;;=Z86.13^^190^1944^67
+ ;;^UTILITY(U,$J,358.3,31878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31878,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,31878,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,31878,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,31879,0)
+ ;;=Z86.73^^190^1944^98
+ ;;^UTILITY(U,$J,358.3,31879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31879,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,31879,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,31879,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,31880,0)
+ ;;=Z86.79^^190^1944^60
+ ;;^UTILITY(U,$J,358.3,31880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31880,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,31880,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,31880,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,31881,0)
+ ;;=Z87.39^^190^1944^88
+ ;;^UTILITY(U,$J,358.3,31881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31881,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal & Connective Tissue Diseases
+ ;;^UTILITY(U,$J,358.3,31881,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,31881,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,31882,0)
+ ;;=Z91.040^^190^1944^65
+ ;;^UTILITY(U,$J,358.3,31882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31882,1,3,0)
+ ;;=3^Personal Hx of Latex Allergy
+ ;;^UTILITY(U,$J,358.3,31882,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,31882,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,31883,0)
+ ;;=Z98.89^^190^1944^106
+ ;;^UTILITY(U,$J,358.3,31883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31883,1,3,0)
+ ;;=3^Postprocedural States
+ ;;^UTILITY(U,$J,358.3,31883,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,31883,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,31884,0)
+ ;;=Z92.3^^190^1944^64
+ ;;^UTILITY(U,$J,358.3,31884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31884,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,31884,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,31884,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,31885,0)
+ ;;=Z87.820^^190^1944^100
+ ;;^UTILITY(U,$J,358.3,31885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31885,1,3,0)
+ ;;=3^Personal Hx of Traumatic Brain Injury
+ ;;^UTILITY(U,$J,358.3,31885,1,4,0)
+ ;;=4^Z87.820

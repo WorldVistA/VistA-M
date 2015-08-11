@@ -1,6 +1,6 @@
 IBCNSC4 ;ALB/TMP - INSURANCE PLAN DETAIL SCREEN UTILITIES ; 09-AUG-94
- ;;2.0;INTEGRATED BILLING;**43,85,103,251,416,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**43,85,103,251,416,497,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; -- Load the plan detail segments
  N IBLCNT
@@ -19,7 +19,10 @@ INIT ; -- Load the plan detail segments
  ;
 UR ; -- UR region
  N START,OFFSET
- S START=1,OFFSET=43,VALMCNT=+$O(@VALMAR@(""),-1)
+ ; MRD;IB*2.0*516 - Moved the UR section to be on its own lines, no
+ ; longer to the right of the Plan Information.
+ ;S START=1,OFFSET=43,VALMCNT=+$O(@VALMAR@(""),-1)
+ S START=+$O(@VALMAR@(""),-1)+1,OFFSET=2,VALMCNT=+$O(@VALMAR@(""),-1)
  D SET(START,OFFSET," Utilization Review Info ",IORVON,IORVOFF)
  D SET(START+1,OFFSET,"         Require UR: "_$$EXPAND^IBTRE(355.3,.05,$P(IBCPOLD,"^",5)))
  D SET(START+2,OFFSET,"   Require Amb Cert: "_$$EXPAND^IBTRE(355.3,.12,$P(IBCPOLD,"^",12)))

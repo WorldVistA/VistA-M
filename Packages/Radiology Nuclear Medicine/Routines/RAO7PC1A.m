@@ -1,5 +1,6 @@
 RAO7PC1A ;HISC/GJC-Procedure Call utilities (cont) ;1/22/03  12:41
- ;;5.0;Radiology/Nuclear Medicine;**1,10,26,31,36,45,56**;Mar 16, 1998;Build 3
+ ;;5.0;Radiology/Nuclear Medicine;**1,10,26,31,36,45,56,122**;Mar 16, 1998;Build 3
+ ; 03/31/2015 KAM RA*5*122 Rem Ticket 1113213 Missing 'Abnormal' Notation in CPRS report list
  ;Supported IA #10040 ^SC(
  ;Supported IA #10103 DT^XLFDT, FMADD^XLFDT
  ;Supported IA #2056 GET1^DIQ
@@ -44,8 +45,23 @@ SETDATA ; Called from within the EN1 subroutine of RAO7PC1
  .. I $P($G(^RA(79,+$P(RAREX(0),"^",3),.1)),"^",22)="Y",RARPT S RASHOCAN=1
  .. Q
  . S RABNOR=$$UP^XLFSTR($P($G(^RA(78.3,RADIAG,0)),U,4))
+ . ;
+ . ; 03/31/2015 KAM RA*5*122 Rem Ticket 1113213
+ . ; Added the next 5 lines
+ . ;
+ . N RADX,RADIAG2
+ . I RABNOR'="Y" D
+ .. S RADX=0 F  S RADX=$O(^RADPT(RADFN,"DT",RAIBDT,"P",RANO,"DX",RADX)) Q:(RADX'?1N)!(RADX="")!(RABNOR="Y")  D
+ ... S RADIAG2=$P(^RADPT(RADFN,"DT",RAIBDT,"P",RANO,"DX",RADX,0),"^")
+ ... S RABNOR=$$UP^XLFSTR($P($G(^RA(78.3,RADIAG2,0)),U,4))
+ . ;
  . S:RABNOR'="Y" RABNOR=""
  . S RABNORMR=$$UP^XLFSTR($P($G(^RA(78.3,RADIAG,0)),U,3))
+ . ;
+ . ; 03/31/2015 KAM RA*5*122 Rem Ticket 1113213  Added the next line
+ . ;
+ . I (RABNORMR'="Y"),($G(RADIAG2)'="") S RABNORMR=$$UP^XLFSTR($P($G(^RA(78.3,RADIAG2,0)),U,3))
+ . ;
  . S:RABNORMR'="Y" RABNORMR=""
  . S RARPTST=$$RSTAT(),RARPTST=$$UL(RARPTST)
  . S ^TMP($J,"RAE1",RADFN,RAXID)=RAPRC_U_RACSE_U_RARPTST_U_RABNOR_U_$S(RARPT=0:"",1:RARPT)_U_$P(RAXSTAT(0),"^",3)_"~"_$P(RAXSTAT(0),"^")_U_RAILOC_U_$P(RAITY(0),"^",3)_"~"_$P(RAITY(0),"^")_U_RABNORMR_U_RACPT_U_$G(RAORDER(7))

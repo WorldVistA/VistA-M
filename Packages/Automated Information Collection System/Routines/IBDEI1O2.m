@@ -1,0 +1,130 @@
+IBDEI1O2 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,29946,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,29947,0)
+ ;;=I70.361^^189^1904^18
+ ;;^UTILITY(U,$J,358.3,29947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29947,1,3,0)
+ ;;=3^Athscl Bypass Graft of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29947,1,4,0)
+ ;;=4^I70.361
+ ;;^UTILITY(U,$J,358.3,29947,2)
+ ;;=^5007641
+ ;;^UTILITY(U,$J,358.3,29948,0)
+ ;;=I70.362^^189^1904^17
+ ;;^UTILITY(U,$J,358.3,29948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29948,1,3,0)
+ ;;=3^Athscl Bypass Graft of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29948,1,4,0)
+ ;;=4^I70.362
+ ;;^UTILITY(U,$J,358.3,29948,2)
+ ;;=^5007642
+ ;;^UTILITY(U,$J,358.3,29949,0)
+ ;;=I70.363^^189^1904^16
+ ;;^UTILITY(U,$J,358.3,29949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29949,1,3,0)
+ ;;=3^Athscl Bypass Graft of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29949,1,4,0)
+ ;;=4^I70.363
+ ;;^UTILITY(U,$J,358.3,29949,2)
+ ;;=^5007643
+ ;;^UTILITY(U,$J,358.3,29950,0)
+ ;;=I70.661^^189^1904^21
+ ;;^UTILITY(U,$J,358.3,29950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29950,1,3,0)
+ ;;=3^Athscl Nonbio Bypass of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29950,1,4,0)
+ ;;=4^I70.661
+ ;;^UTILITY(U,$J,358.3,29950,2)
+ ;;=^5007755
+ ;;^UTILITY(U,$J,358.3,29951,0)
+ ;;=I70.662^^189^1904^20
+ ;;^UTILITY(U,$J,358.3,29951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29951,1,3,0)
+ ;;=3^Athscl Nonbio Bypass of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29951,1,4,0)
+ ;;=4^I70.662
+ ;;^UTILITY(U,$J,358.3,29951,2)
+ ;;=^5007756
+ ;;^UTILITY(U,$J,358.3,29952,0)
+ ;;=I70.663^^189^1904^19
+ ;;^UTILITY(U,$J,358.3,29952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29952,1,3,0)
+ ;;=3^Athscl Nonbio Bypass of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29952,1,4,0)
+ ;;=4^I70.663
+ ;;^UTILITY(U,$J,358.3,29952,2)
+ ;;=^5007757
+ ;;^UTILITY(U,$J,358.3,29953,0)
+ ;;=I70.761^^189^1904^24
+ ;;^UTILITY(U,$J,358.3,29953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29953,1,3,0)
+ ;;=3^Athscl Oth Type Bypass of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29953,1,4,0)
+ ;;=4^I70.761
+ ;;^UTILITY(U,$J,358.3,29953,2)
+ ;;=^5007777
+ ;;^UTILITY(U,$J,358.3,29954,0)
+ ;;=I70.762^^189^1904^23
+ ;;^UTILITY(U,$J,358.3,29954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29954,1,3,0)
+ ;;=3^Athscl Oth Type Bypass of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29954,1,4,0)
+ ;;=4^I70.762
+ ;;^UTILITY(U,$J,358.3,29954,2)
+ ;;=^5133608
+ ;;^UTILITY(U,$J,358.3,29955,0)
+ ;;=I70.763^^189^1904^22
+ ;;^UTILITY(U,$J,358.3,29955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29955,1,3,0)
+ ;;=3^Athscl Oth Type Bypass of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29955,1,4,0)
+ ;;=4^I70.763
+ ;;^UTILITY(U,$J,358.3,29955,2)
+ ;;=^5007778
+ ;;^UTILITY(U,$J,358.3,29956,0)
+ ;;=I73.01^^189^1904^83
+ ;;^UTILITY(U,$J,358.3,29956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29956,1,3,0)
+ ;;=3^Raynaud's Syndrome w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29956,1,4,0)
+ ;;=4^I73.01
+ ;;^UTILITY(U,$J,358.3,29956,2)
+ ;;=^5007797
+ ;;^UTILITY(U,$J,358.3,29957,0)
+ ;;=I96.^^189^1904^59
+ ;;^UTILITY(U,$J,358.3,29957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29957,1,3,0)
+ ;;=3^Gangrene NEC
+ ;;^UTILITY(U,$J,358.3,29957,1,4,0)
+ ;;=4^I96.
+ ;;^UTILITY(U,$J,358.3,29957,2)
+ ;;=^5008081
+ ;;^UTILITY(U,$J,358.3,29958,0)
+ ;;=K85.0^^189^1904^67
+ ;;^UTILITY(U,$J,358.3,29958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29958,1,3,0)
+ ;;=3^Idiopathic Acute Pancreatitis
+ ;;^UTILITY(U,$J,358.3,29958,1,4,0)
+ ;;=4^K85.0
+ ;;^UTILITY(U,$J,358.3,29958,2)
+ ;;=^5008882
+ ;;^UTILITY(U,$J,358.3,29959,0)
+ ;;=K85.1^^189^1904^26
+ ;;^UTILITY(U,$J,358.3,29959,1,0)
+ ;;=^358.31IA^4^2

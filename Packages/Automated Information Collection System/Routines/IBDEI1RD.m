@@ -1,0 +1,132 @@
+IBDEI1RD ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31448,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,31448,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,31448,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,31449,0)
+ ;;=H11.31^^190^1936^7
+ ;;^UTILITY(U,$J,358.3,31449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31449,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,31449,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,31449,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,31450,0)
+ ;;=H01.002^^190^1936^3
+ ;;^UTILITY(U,$J,358.3,31450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31450,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,31450,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,31450,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,31451,0)
+ ;;=H01.004^^190^1936^2
+ ;;^UTILITY(U,$J,358.3,31451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31451,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,31451,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,31451,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,31452,0)
+ ;;=H01.005^^190^1936^1
+ ;;^UTILITY(U,$J,358.3,31452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31452,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,31452,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,31452,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,31453,0)
+ ;;=H01.001^^190^1936^4
+ ;;^UTILITY(U,$J,358.3,31453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31453,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,31453,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,31453,2)
+ ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,31454,0)
+ ;;=H57.13^^190^1936^10
+ ;;^UTILITY(U,$J,358.3,31454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31454,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,31454,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,31454,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,31455,0)
+ ;;=H57.12^^190^1936^11
+ ;;^UTILITY(U,$J,358.3,31455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31455,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,31455,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,31455,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,31456,0)
+ ;;=H57.11^^190^1936^12
+ ;;^UTILITY(U,$J,358.3,31456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31456,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,31456,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,31456,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,31457,0)
+ ;;=S05.02XA^^190^1937^1
+ ;;^UTILITY(U,$J,358.3,31457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31457,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
+ ;;^UTILITY(U,$J,358.3,31457,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,31457,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,31458,0)
+ ;;=S05.01XA^^190^1937^2
+ ;;^UTILITY(U,$J,358.3,31458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31458,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,31458,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,31458,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,31459,0)
+ ;;=B96.81^^190^1938^51
+ ;;^UTILITY(U,$J,358.3,31459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31459,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,31459,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,31459,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,31460,0)
+ ;;=B15.9^^190^1938^53
+ ;;^UTILITY(U,$J,358.3,31460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31460,1,3,0)
+ ;;=3^Hepatitis A w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,31460,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,31460,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,31461,0)
+ ;;=B16.9^^190^1938^54

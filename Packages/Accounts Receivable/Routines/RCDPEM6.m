@@ -1,210 +1,258 @@
-RCDPEM6 ;OIFO-BAYPINES/RBN - DUPLICATE EFT DEPOSITS AUDIT REPORTS ;8/14/11 3:20pm
- ;;4.5;Accounts Receivable;**276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEM6 ;OIFO-BAYPINES/RBN - DUPLICATE EFT DEPOSITS AUDIT REPORT ;Jun 11, 2014@18:03:49
+ ;;4.5;Accounts Receivable;**276,298**;Mar 20, 1995;Build 121
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
- ; General read access of IB EOB file #361.1 is allowed from AR by IA 4051
+ ; completely refactored for PRCA*4.5*298
  Q
  ;
- ; DESCRIPTION: The following generates an audit report that dislays all EFTs
- ;              that have been removed by the user.  The user must select
- ;              a date range to limit the number of EFTs displayed.
+ ; generate an audit report that displays EFTs that have been removed by the user
+ ; user selects a date range to limit the number of EFTs displayed.
+ ; EDI THIRD PARTY EFT DETAIL file (#344.31)
  ;
- ; INPUTS:  The user is prompted for the Date/Time range
+ ; INPUT: user prompted for Date/Time range
  ;
- ; OUTPUTS: A report which displays EFTs that have been removed.  The report has the following
- ;          headings:
- ;          * Trace number
- ;          * Payer name
- ;          * Deposit number
- ;          * Date removed
- ;          * User
- ;          * Justification for removal
+ ; OUTPUT:
+ ; report OF EFTs that have been removed.  
+ ; The report has the following:
+ ;   Trace number, Payer name, Deposit number, Date removed, User, Justification for removal
+ ; data taken from EDI THIRD PARTY EFT DETAIL file (#344.31)
+ ; report formatted for 80 columns
  ;
- ; LOCAL VARIABLES: RCEXCEL - Display/print/Excel flag.
- ;                  RCPAGE - Current page number of the report.
- ;                  RCRANGE - Three ^ pieces:
- ;                            1:Dates provided successfully - 1 (Yes), 0 (No)
- ;                            2:Start Date for report
- ;                            3:End Date for report
- ;                  RCSTOP - User Requests Abort (1)
- ;                  FileMan- Several standard FileMan variables (v.gr. DIR,DIC,etc..
- ;                  Misc.  - X, Y, I and other used for counters and temp values.
+ ; put into ^TMP($J,"RCDPEM6",counter) for ListMan
+ ; $pieces: DEPOSIT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION
  ;
- ; GLOBALS: ^RCY(344.31 - EDI THIRD PARTY EFT DETAIL file (#344.31).
- ;          ^TMP($J,"RCDPEM6",LINE #) - Report data (body of report).  Data structure:
+EN1 ; entry point for EFT Audit Report
+ N I,RCDISPTY,RCDTRNG,RCHDR,RCLSTMGR,RCPGNUM,RCSTOP,RCTMPND,X,Y
+ ; RCDISPTY - Display/print/Excel flag
+ ; RCDTRNG - date range selected
+ ; RCHDR - header array
+ ; RCLSTMGR - ListMan flag
+ ; RCPGNUM - report page number
+ ; RCSTOP - boolean, User indicated to stop
+ ; RCTMPND - storage node in ^TMP
  ;
- ;           DEPOSIT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION
+ W !,"    "_$$HDRNM,!
+ S RCDTRNG=$$DTRNG^RCDPEM4() G:'(RCDTRNG>0) EXIT
+ S RCLSTMGR=""  ; ListMan flag, set to '^' if sent to Excel
+ S RCTMPND=""  ; if null, report lines not stored in ^TMP, written directly
+ S RCDISPTY=$$DISPTY^RCDPEM3() G:RCDISPTY<0 EXIT
+ ; display information for Excel, indicate not to ask for ListMan
+ I RCDISPTY D INFO S RCLSTMGR=U
+ ; if not output to Excel ask for ListMan display, exit if timeout or '^' - PRCA*4.5*298
+ I RCLSTMGR="" S RCLSTMGR=$$ASKLM^RCDPEARL G:RCLSTMGR<0 EXIT
+ I RCLSTMGR D  G EXIT
+ .S RCTMPND=$T(+0)_"^DUP EFT"  K ^TMP($J,RCTMPND)  ; clean any residue
+ .D GENRPRT,DSPRPRT  ; generate report and store it in ^TMP
+ .N H,L,HDR S L=0
+ .S HDR("TITLE")=$$HDRNM
+ .F H=1:1 Q:'$D(RCHDR(H))  S L=H,HDR(H)=RCHDR(H)  ; take first 3 lines of report header
+ .I $O(RCHDR(L)) D  ; any remaining header lines at top of report
+ ..N N S N=0,H=L F  S H=$O(RCHDR(H)) Q:'H  S N=N+.001,^TMP($J,RCTMPND,N)=RCHDR(H)
+ .D LMRPT^RCDPEARL(.HDR,$NA(^TMP($J,RCTMPND))) ; generate ListMan display
  ;
-EN1 ; Main entry point for EFT Audit Report
- N RCRANGE,RCEXCEL,RCPAGE,Y,RCSTOP,I,START,END,ZTDESC,ZTRTN,ZTSAVE
- S (RCPAGE,RCSTOP)=0
- S RCRANGE=$$DTRNG^RCDPEM4()
- I RCRANGE=0 G EXIT
- S RCEXCEL=$$DISPTY^RCDPEM3() G:+RCEXCEL=-1 EXIT
- ;Display capture information for Excel
- I RCEXCEL D INFO
- ;Select output device
+ ; Select output device
  S %ZIS="QM" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
- . S ZTRTN="ENREM^RCDPEM6"
- . S ZTDESC="Duplicate EFT Deposits Report"
- . S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
- . D ^%ZTLOAD
- . I $D(ZTSK) W !!,"Your task number "_ZTSK_" has been queued."
- . E  W !!,"Unable to queue this job."
- . K ZTSK,IO("Q") D HOME^%ZIS
- U IO
+ .N ZTDESC,ZTRTN,ZTSAVE,ZTSK
+ .S ZTRTN="ENFRMQ^RCDPEM6",ZTDESC=$$HDRNM,ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
+ .D ^%ZTLOAD
+ .W !!,$S($G(ZTSK):"Task number "_ZTSK_" queued.",1:"Unable to queue this task.")
+ .K IO("Q") D HOME^%ZIS
  ;
-ENREM ;
- D REPORT
- D DISPLAY(RCEXCEL)
+ U IO
+ ; fall through to generate report
+ ;
+ENFRMQ ; entry point from TaskMan Queue
+ D GENRPRT,DSPRPRT
  D EXIT
  Q
  ;
-REPORT ; Generate the report ^TMP array
- ; INPUTS :  None
- ; LOCAL VARIABLES:
- ;  DTIEN    - IEN of EFT from "E" index (date/time)
- ;  START    - Start date of report date range
- ;  END      - End date of report date range
- ;  EFTIEN   - IEN of EFT
+GENRPRT ; Generate the report ^TMP array
+ ; INPUT: RCDTRNG - date range for report
  ;
- N DTIEN,EFTIEN,X1,X2,X,Y
- K ^TMP($J,"RCDPEM6")
- S (DTIEN,EFTIEN)=""
- S END=$P(RCRANGE,U,3),START=$P(RCRANGE,U,2)
- I $P($G(RCRANGE),U,1) D
- . S DTIEN=$P(RCRANGE,U,1)-1
- . F  S DTIEN=$O(^RCY(344.31,"E",DTIEN)) Q:'DTIEN  D
- .. S EFTIEN=$O(^RCY(344.31,"E",DTIEN,EFTIEN)) Q:'EFTIEN
- .. Q:'$D(^RCY(344.31,EFTIEN,3))
- .. I (START'>DTIEN\1)&(DTIEN\1'>END) D
- .. . D PROC(EFTIEN)
- .. S EFTIEN=""
- I '$P($G(RCRANGE),U,1) D
- . F  S DTIEN=$O(^RCY(344.31,"E",DTIEN)) Q:'DTIEN  D
- .. S EFTIEN=$O(^RCY(344.31,"E",DTIEN,EFTIEN)) Q:'EFTIEN
- .. Q:'$D(^RCY(344.31,EFTIEN,3))
- .. D PROC(EFTIEN)
- .. S EFTIEN=""
+ N EFTIEN,FRSTDT,INDXDT,LSTDT,X,Y
+ ; INDXDT - date of EFT from "E" x-ref
+ ; FRSTDT  - Start date of report date range
+ ; LSTDT - End date of report date range
+ ; EFTIEN - IEN of EFT
+ ;
+ K ^TMP($J,"RC DUP EFT")  ; used for report
+ S FRSTDT=$P(RCDTRNG,U,2) S:FRSTDT<1 FRSTDT=2010101  ; 1 Jan 1901
+ S LSTDT=$P(RCDTRNG,U,3) S:LSTDT<1 LSTDT=4010101  ; 1 Jan 2101
+ S INDXDT=FRSTDT-.00000001  ; initial value for x-ref
+ ;
+ ; ^RCY(344.31,D0,3) = (#.17) USER WHO REMOVED EFT [1P:200] ^ (#.18) DATE/TIME DUPLICATE REMOVED [2D] ^ (#.19) EFT REMOVAL REASON [3F]
+ F  S INDXDT=$O(^RCY(344.31,"E",INDXDT)) Q:'INDXDT!(INDXDT>LSTDT)  D
+ .S EFTIEN=0 F  S EFTIEN=$O(^RCY(344.31,"E",INDXDT,EFTIEN)) Q:'EFTIEN  D:$D(^RCY(344.31,EFTIEN,3)) PROC(EFTIEN)
+ ;
  Q
  ;
-DISPLAY(RCEXCEL) ; Format the display for screen/printer or MS Excel
- ; INPUTS  : RCEXCEL -  Display/print/Excel flag.
- ; RETURNS : Nothing - builds the actual report
- ; LOCAL VARIABLES:
- ;  IEN - line number of the data in ^TMP (see above)
- ;  DATE - Date/Time report was run for header
- ;  CNT - Count of EFT Deposits removed
- ;  DATA - Data stored in ^TMP($J,"DUPLICATE EFT",IEN)
+DSPRPRT ; Format display for screen/printer, Excel, or ListMan
+ ; RCDISPTY - display for Excel flag
+ ; RCLSTMGR - display for ListMan flag
  ;
- N IEN,CNT,DATE,LINE,DATA
- S IEN="",CNT=0,DATE=$$NOW()
- D HDR(RCEXCEL)
- F  S IEN=$O(^TMP($J,"DUPLICATE EFT",IEN)) Q:'IEN!RCSTOP  D
- . S CNT=CNT+1
- . S DATA=^TMP($J,"DUPLICATE EFT",IEN)
- . I 'RCEXCEL D
- .. I $Y>(IOSL-5) D HDR(RCEXCEL) Q:RCSTOP
- .. W ?1,$P(DATA,U,1)
- .. W ?16,$P(DATA,U,3),!
- .. W ?6,$P(DATA,U,2),!
- .. W ?16,$J($P(DATA,U,4),0,2)
- .. W ?28,$P(DATA,U,5)
- .. W ?50,$E($P(DATA,U,6),1,25),!
- .. D WP($P(DATA,U,7)) W !
- . I RCEXCEL D
- .. W DATA,!
- I 'RCEXCEL D
- . W !,?1,"Total number of duplicates removed: "_CNT,!
- . W !,?1,"*** END OF REPORT ***",!
+ N CNT,DUPEFT,IEN,LINE,RCLNCNT,Y
+ ; CNT - Count of EFT Deposits removed
+ ; IEN - line number of the data in ^TMP
+ ; DUPEFT - Data from ^TMP($J,"RC DUP EFT",IEN)
+ ; RCLNCNT - line counter for SL^RCDPEARL
+ ;
+ D:'RCLSTMGR HDRBLD
+ D:RCLSTMGR HDRLM
+ ;
+ I $G(RCTMPND)'="" K ^TMP($J,RCTMPND) S RCLNCNT=0
+ D:'RCLSTMGR HDRLST^RCDPEARL(.RCSTOP,.RCHDR)  ; initial report header
+ S IEN="",CNT=0
+ F  S IEN=$O(^TMP($J,"RC DUP EFT",IEN)) Q:'IEN!RCSTOP  D
+ .S CNT=CNT+1,DUPEFT=^TMP($J,"RC DUP EFT",IEN)
+ .I RCDISPTY D SL^RCDPEARL(DUPEFT,.RCLNCNT,RCTMPND) Q  ; Excel format, write line and quit
+ .I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
+ .S Y=$$PAD^RCDPEARL(" "_$P(DUPEFT,U),16)_$P(DUPEFT,U,3) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ .S Y=$J(" ",6)_$P(DUPEFT,U,2) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ .S Y=$$PAD^RCDPEARL($J(" ",16)_$J($P(DUPEFT,U,4),0,2),28)_$P(DUPEFT,U,5)
+ .S Y=$$PAD^RCDPEARL(Y,50)_$E($P(DUPEFT,U,6),1,25) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ .D WP($P(DUPEFT,U,7)) D SL^RCDPEARL(" ",.RCLNCNT,RCTMPND)
+ ;
+ I 'RCDISPTY,'RCSTOP D  ; not for Excel
+ .S Y=" Total number of duplicates removed: "_CNT D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND),SL^RCDPEARL(" ",.RCLNCNT,RCTMPND)
+ ;
+ I 'RCSTOP D SL^RCDPEARL($$ENDORPRT^RCDPEARL,.RCLNCNT,RCTMPND)
+ ;
  Q
  ;
-PROC(EFTIEN) ;  Put the actual data into the ^TMP global based on filters.
- ; INPUTS   : EFTIEN = ien of the EFT in question
- ; RETURNS  : Nothing - Builds each entry in the ^TMP global
- ; LOCAL VARIABLES :
- ; DTRTN  - Date EFT returned
- ; JUST   - Justification for returning EFT
- ; TRACE  - Trace number of the EFT
- ; AMT    - Total amount of the EFT
- ; PAYER  - EFT payer
- ; USER   - User who completed the return EFT transaction
- ; DEPO   - Deposit # of EFT deposit
+PROC(EFTIEN) ;  gather data into ^TMP
+ ; EFTIEN = ien of the EFT
  ;
- N DTRTN,JUST,TRACE,AMT,PAYER,USER,Y,DEPO,DATA0,DATA3,Z
- S DATA0=$G(^RCY(344.31,EFTIEN,0))
- S DATA3=$G(^RCY(344.31,EFTIEN,3))
- S USER=$P(DATA3,U,1),USER=$$NAME^XUSER(USER,"F")
- S DTRTN=$$FMTE^XLFDT($P(^RCY(344.31,EFTIEN,3),U,2),2)
- S JUST=$P(DATA3,U,3)
- S PAYER=$P(DATA0,U,2) S:PAYER="" PAYER="UNKNOWN"
- S TRACE=$P(DATA0,U,4),AMT=$P(DATA0,U,7)
- S Z=$P(DATA0,U)
- S:Z]"" DEPO=$P($G(^RCY(344.3,Z,0)),U,6)
- S:'$G(DEPO) DEPO="UNKNOWN"
- S ^TMP($J,"DUPLICATE EFT",EFTIEN)=DEPO_"^"_PAYER_"^"_TRACE_"^"_AMT_"^"_DTRTN_"^"_USER_"^"_JUST
+ N AMT,DEPNO,JUST,PAYER,PTR,RCRD,RTRNDT,TRACE,USER
+ ; JUST - Justification for returning EFT
+ ; TRACE - EFT Trace number
+ ; AMT - amount of the EFT
+ ; PAYER - EFT payer
+ ; PTR - pointer to #344.3
+ ; RTRNDT - Date EFT returned
+ ; USER - User who completed the transaction
+ ; DEPNO - Deposit # of EFT
+ ;
+ S RCRD(0)=$G(^RCY(344.31,EFTIEN,0)),RCRD(3)=$G(^(3))
+ S USER=$$NAME^XUSER($P(RCRD(3),U),"F")
+ S RTRNDT=$$FMTE^XLFDT($P(^RCY(344.31,EFTIEN,3),U,2),2)
+ S JUST=$P(RCRD(3),U,3)
+ S PAYER=$P(RCRD(0),U,2) S:PAYER="" PAYER="Unknown Payer"
+ S TRACE=$P(RCRD(0),U,4),AMT=$P(RCRD(0),U,7)
+ S PTR=+$P(RCRD(0),U)
+ ; EDI LOCKBOX DEPOSIT (#344.3), (#.06) DEPOSIT NUMBER [6F]
+ S:PTR>0 DEPNO=$P($G(^RCY(344.3,PTR,0)),U,6)
+ S:DEPNO="" DEPNO="Unknown"
+ S ^TMP($J,"RC DUP EFT",EFTIEN)=DEPNO_"^"_PAYER_"^"_TRACE_"^"_AMT_"^"_RTRNDT_"^"_USER_"^"_JUST
  Q
  ;
-HDR(RCEXCEL) ; Print the report header
- ; INPUTS   : RCEXCEL - Display/print/Excel flag
- ; RETURNS  : Nothing - Displays the report header to the screen formated for type of output selected
- I 'RCEXCEL D  Q  ;Print report header
- . I RCPAGE D ASK^RCDPEM3(.RCSTOP,0) Q:RCSTOP
- . S RCPAGE=RCPAGE+1
- . W @IOF
- . W ?18,"Duplicate EFT Deposits - Audit Report",?66,"Page "_RCPAGE,!
- . W ?24,"Run Date: "_DATE,!
- . W ?14,"Date Range: ",$$FMTE^XLFDT(START,2)," - ",$$FMTE^XLFDT(END,2)," (DATE EFT REMOVAL)",!!
- . W ?1,"Deposit#",?16,"Trace #",!
- . W ?6,"Payer Name",?28,"Date/Time",?50,"User Who",!
- . W ?16,"Amount",?28,"Removed",?50,"Removed",!
- . W ?1,"===============================================================================",!
- ;Otherwise, print Excel header
- W "DEPOSIT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION",!
+HDRBLD ; create the report header
+ ; returns RCHDR, RCPGNUM, RCSTOP
+ ;   RCHDR(0) = header text line count
+ ;   RCHDR("XECUTE") = M code for page number
+ ;   RCHDR("RUNDATE") = date/time report generated, external format
+ ;   RCPGNUM - page counter
+ ;   RCSTOP - flag to exit
+ ; INPUT: 
+ ;   RCDISPTY - Display/print/Excel flag
+ ;   RCRTYP - Report Type (EOB or ERA)
+ ;   RCDTRNG - selected dates
+ ;
+ K RCHDR S RCHDR("RUNDATE")=$$NOW^RCDPEARL,RCPGNUM=0,RCSTOP=0
+ ;
+ I RCDISPTY D  Q  ; Excel format, xecute code is QUIT, null page number
+ .S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
+ .S RCHDR(1)="DEPOSIT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION"
+ ;
+ N DIV,HCNT,Y
+ S HCNT=0  ; counter for header
+ ;
+ S Y=$$HDRNM,HCNT=1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y  ; line 1 will be replaced by XECUTE code below
+ S RCHDR("XECUTE")="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"_$T(+0)_",RCHDR(1)=$J("" "",80-$L(Y)\2)_Y_""            Page: ""_RCPGNUM"
+ S Y="RUN DATE: "_RCHDR("RUNDATE"),HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y  ; line 1 will be replaced by XECUTE code below
+ ;
+ S Y("1ST")=$P(RCDTRNG,U,2),Y("LST")=$P(RCDTRNG,U,3)
+ F Y="1ST","LST" S Y(Y)=$$FMTE^XLFDT(Y(Y),"2Z")
+ S Y="Date Range: "_Y("1ST")_" - "_$$FMTE^XLFDT(Y("LST"),"2Z")_" (DATE EFT REMOVAL)"
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
+ S HCNT=HCNT+1,RCHDR(HCNT)=""
+ K Y  ; delete Y subscripts
+ I $G(RCLSTMGR) S HCNT=HCNT+1,RCHDR(HCNT)="",HCNT=HCNT+1,RCHDR(HCNT)=""
+ S Y=$$PAD^RCDPEARL(" Deposit#",16)_"Trace #",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y=$$PAD^RCDPEARL($J(" ",6)_"Payer Name",28),Y=Y_"Date/Time",Y=$$PAD^RCDPEARL(Y,50)_"User Who"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y=$J(" ",16)_"Amount",Y=$$PAD^RCDPEARL(Y,28)_"Removed",Y=$$PAD^RCDPEARL(Y,50)_"Removed"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="",$P(Y,"=",81)="",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ ;
+ S RCHDR(0)=HCNT
  Q
  ;
-EXIT ; Gracefully exit
- ; Kills of any remaining variables
+HDRLM ; create the Listman Screen header section
+ ; returns RCHDR
+ ;   RCHDR(0) = header text line count
+ ; INPUT: 
+ ;   RCDTRNG - selected dates
+ ;
+ K RCHDR S RCPGNUM=0,RCSTOP=0
+ ;
+ N DIV,HCNT,Y
+ S HCNT=0  ; counter for header
+ ;
+ S Y("1ST")=$P(RCDTRNG,U,2),Y("LST")=$P(RCDTRNG,U,3)
+ F Y="1ST","LST" S Y(Y)=$$FMTE^XLFDT(Y(Y),"2Z")
+ S Y="Date Range: "_Y("1ST")_" - "_$$FMTE^XLFDT(Y("LST"),"2Z")_" (DATE EFT REMOVAL)"
+ S HCNT=HCNT+1,RCHDR(HCNT)=""
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ K Y  ; delete Y subscripts
+ S HCNT=HCNT+1,RCHDR(HCNT)=""
+ S HCNT=HCNT+1,RCHDR(HCNT)=""
+ S Y=$$PAD^RCDPEARL(" Deposit#",16)_"Trace #",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y=$$PAD^RCDPEARL($J(" ",6)_"Payer Name",28),Y=Y_"Date/Time",Y=$$PAD^RCDPEARL(Y,50)_"User Who"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y=$J(" ",16)_"Amount",Y=$$PAD^RCDPEARL(Y,28)_"Removed",Y=$$PAD^RCDPEARL(Y,50)_"Removed"
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
+ ;
+ S RCHDR(0)=HCNT
+ Q
+ ;
+ ; extrinsic variable, header text
+HDRNM() Q "Duplicate EFT Deposits - Audit Report"
+ ;
+EXIT ;
  D ^%ZISC
- K X,^TMP($J,"DUPLICATE EFT"),STNAM,POP,%ZIS,Y,VAUTD
+ K ^TMP($J,"RC DUP EFT")  ; clean up
  Q
  ;
-INFO ;Useful Info for Excel capture
- W !!!,?10,"Before continuing, please set up your terminal to capture the"
- W !,?10,"report data as this report may take a while to run."
- W !!,?10,"To avoid  undesired  wrapping of the data  saved to the"
- W !,?10,"file, please enter '0;256;999' at the 'DEVICE:' prompt."
- W !!,?10,"It may be necessary to set up the terminal display width"
- W !,?10,"to 256 characters which can be performed by selecting the"
- W !,?10,"Display option located within the 'Setup' menu on the"
- W !,?10,"tool bar of the terminal emulation software (e.g. KEA,"
- W !,?10,"Reflections or Smarterm).",!!
+INFO ; Useful Info for Excel capture
+ N SP S SP=$J(" ",10)  ; spaces
+ W !!!,SP_"Before continuing, please set up your terminal to capture the"
+ W !,SP_"report data as this report may take a while to run."
+ W !!,SP_"To avoid undesired wrapping of the data saved to the"
+ W !,SP_"file, please enter '0;256;999' at the 'DEVICE:' prompt."
+ W !!,SP_"It may be necessary to set the terminal's display width"
+ W !,SP_"to 256 characters, which can be performed by selecting the"
+ W !,SP_"Display option located within the 'Setup' menu on the"
+ W !,SP_"tool bar of the terminal emulation software (e.g. KEA,"
+ W !,SP_"Reflection, or Smarterm).",!!
  Q
  ;
-WP(A) ; Pretty print the justification comments
- ; INPUTS   : A - Justification text
- ; RETURNS  : NOTHING
- ; LOCAL VARIABLES :
- ;                 B - Character length of the justification comment
- ;                 C - Number of words in the justification comment
- ;                 I - Loop counter
- ;                 J - Line counter
- ;                 LINE - Justification text to be displayed
- I A="" Q
- N B,C,I,J,LINE
- S B=$L(A),C=$L(A," "),J=1
- S LINE(J)="Justification Comments: "
- F I=1:1:C D
- . I $L(LINE(J))+$L($P(A," ",I))>72 D
- .. S J=J+1,LINE(J)="                        "
- . S LINE(J)=LINE(J)_" "_$P(A," ",I)
- S LINE(0)=J
- F I=1:1:LINE(0) W ?1,LINE(I),!
+WP(JC) ; format justification comments
+ ; JC - Justification Comment
+ I JC="" Q
+ N PCS,I,CNTR,CMNT,Y
+ ; PCS - Number of " " $pieces in the comment
+ ; CNTR - CMNT line counter
+ ; CMNT - comment text to be displayed
+ S PCS=$L(JC," "),CNTR=1,CMNT(CNTR)=" Justification Comments: "
+ F I=1:1:PCS D
+ .S Y=$P(JC," ",I)
+ .S:$L(CMNT(CNTR))+$L(Y)>72 CNTR=CNTR+1,CMNT(CNTR)=$J(" ",25)
+ .S CMNT(CNTR)=CMNT(CNTR)_" "_Y
+ ;
+ F I=1:1:CNTR D SL^RCDPEARL(CMNT(I),.RCLNCNT,RCTMPND)
  Q
  ;
-NOW()  ;Returns current date/time in format mm/dd/yy@hh:mm:ss
- N Y,%
- D NOW^%DTC
- S Y=$$FMTE^XLFDT(%,2)
- Q Y
+NOW() ;function, Returns current date/time in format mm/dd/yy@hh:mm:ss
+ Q $$FMTE^XLFDT($$NOW^XLFDT,2)
+ ;

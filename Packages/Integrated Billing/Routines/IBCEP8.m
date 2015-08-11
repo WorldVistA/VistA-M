@@ -1,6 +1,6 @@
 IBCEP8 ;ALB/TMP/OIFO-BP/RBN - Functions for NON-VA PROVIDER ;11-07-00
- ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432,476**;21-MAR-94;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436,432,476,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point
  N IBNPRV
@@ -100,9 +100,16 @@ EDIT1(IBNPRV,IBNOLM) ; Edit non-VA provider/facility demographics
  . ; End IB*2.0*436 - RBN
  . ;IB*2.0*432  - add contact phone and name
  . S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;1.01;I X="""" S Y=""@2"";1.02R;S Y=""@3"";@2;1.02;@3;1.03;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")
+ . D ^DIE
+ . I 'IBP D
+ . . S DR=".17" D ^DIE
+ . . I X="Y" D  ;If sole proprietor, prompt for pointer to #355.93
+ . . . S DR=".18" D ^DIE
+ . . . N NPIDEF S NPIDEF=$P($G(^IBA(355.93,IBNPRV,0)),U,14)
+ . . I X="N" D  ;If not sole proprietor, clear sole proprietor pointer to #355.93
+ . . . S DR=".18////@" D ^DIE
  . ;IB*2.0*476 - Add FEE BASIS allow multiple value
- . ;S DR=DR_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
- . S DR=DR_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"");D FBTGLSET^IBCEP8C1(IBNPRV)"
+ . S DR="D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"");D FBTGLSET^IBCEP8C1(IBNPRV)"
  . D ^DIE
  . Q:$G(IBNOLM)
  . D BLD^IBCEP8B(IBNPRV)

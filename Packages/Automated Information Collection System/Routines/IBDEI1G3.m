@@ -1,62 +1,136 @@
-IBDEI1G3 ; ; 12-AUG-2014
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 15, 2014
- Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1G3 ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.5,0,"GL")
- ;;=^IBE(358.5,
- ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
- ;;=
- ;;^DIC(358.5,"%D",0)
- ;;=^^1^1^2940829^^^^
- ;;^DIC(358.5,"%D",1,0)
- ;;=Used by the import/export utility as a workspace.
- ;;^DIC(358.5,"%D",2,0)
- ;;= 
- ;;^DIC(358.5,"%D",3,0)
- ;;= 
- ;;^DIC(358.5,"%D",4,0)
- ;;=This file is nearly identical to file #357.5. It is used by the
- ;;^DIC(358.5,"%D",5,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.5,"%D",6,0)
- ;;=that is being imported or exported.
- ;;^DD(358.5,0)
- ;;=FIELD^^2^13
- ;;^DD(358.5,0,"DDA")
- ;;=N
- ;;^DD(358.5,0,"DT")
- ;;=2930730
- ;;^DD(358.5,0,"ID",.02)
- ;;=W ""
- ;;^DD(358.5,0,"ID",.03)
- ;;=W ""
- ;;^DD(358.5,0,"IX","B",358.5,.01)
- ;;=
- ;;^DD(358.5,0,"IX","C",358.5,.02)
- ;;=
- ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
- ;;=
- ;;^DD(358.5,0,"VRPK")
- ;;=IBD
- ;;^DD(358.5,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.5,.01,1,0)
- ;;=^.1
- ;;^DD(358.5,.01,1,1,0)
- ;;=358.5^B
- ;;^DD(358.5,.01,1,1,1)
- ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
- ;;^DD(358.5,.01,1,1,2)
- ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
- ;;^DD(358.5,.01,3)
- ;;=Answer must be 3-30 characters in length.
- ;;^DD(358.5,.01,21,0)
- ;;=^^3^3^2930419^^^
- ;;^DD(358.5,.01,21,1,0)
- ;;= 
- ;;^DD(358.5,.01,21,2,0)
- ;;=The name is used to identify the field within a block. It can be anything
- ;;^DD(358.5,.01,21,3,0)
- ;;=the designer of a form wants it to be.
- ;;^DD(358.5,.01,"DT")
- ;;=2930419
+ ;;^UTILITY(U,$J,358.3,25914,1,4,0)
+ ;;=4^Homelessness
+ ;;^UTILITY(U,$J,358.3,25914,2)
+ ;;=^295539
+ ;;^UTILITY(U,$J,358.3,25915,0)
+ ;;=511.0^^148^1573^7
+ ;;^UTILITY(U,$J,358.3,25915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25915,1,3,0)
+ ;;=3^511.0
+ ;;^UTILITY(U,$J,358.3,25915,1,4,0)
+ ;;=4^Pleurisy
+ ;;^UTILITY(U,$J,358.3,25916,0)
+ ;;=501.^^148^1573^1
+ ;;^UTILITY(U,$J,358.3,25916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25916,1,3,0)
+ ;;=3^501.
+ ;;^UTILITY(U,$J,358.3,25916,1,4,0)
+ ;;=4^Asbestos Plaques/Pleural Thickening
+ ;;^UTILITY(U,$J,358.3,25916,2)
+ ;;=Asbestos Plaques^10704
+ ;;^UTILITY(U,$J,358.3,25917,0)
+ ;;=510.9^^148^1573^3
+ ;;^UTILITY(U,$J,358.3,25917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25917,1,3,0)
+ ;;=3^510.9
+ ;;^UTILITY(U,$J,358.3,25917,1,4,0)
+ ;;=4^Empyema
+ ;;^UTILITY(U,$J,358.3,25917,2)
+ ;;=^39810
+ ;;^UTILITY(U,$J,358.3,25918,0)
+ ;;=511.9^^148^1573^6
+ ;;^UTILITY(U,$J,358.3,25918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25918,1,3,0)
+ ;;=3^511.9
+ ;;^UTILITY(U,$J,358.3,25918,1,4,0)
+ ;;=4^Pleural Effusion
+ ;;^UTILITY(U,$J,358.3,25918,2)
+ ;;=Pleural Effusion^123973
+ ;;^UTILITY(U,$J,358.3,25919,0)
+ ;;=510.0^^148^1573^4
+ ;;^UTILITY(U,$J,358.3,25919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25919,1,3,0)
+ ;;=3^510.0
+ ;;^UTILITY(U,$J,358.3,25919,1,4,0)
+ ;;=4^Empyema w/ Fistula
+ ;;^UTILITY(U,$J,358.3,25919,2)
+ ;;=^39807
+ ;;^UTILITY(U,$J,358.3,25920,0)
+ ;;=511.81^^148^1573^5
+ ;;^UTILITY(U,$J,358.3,25920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25920,1,3,0)
+ ;;=3^511.81
+ ;;^UTILITY(U,$J,358.3,25920,1,4,0)
+ ;;=4^Malignant Pleural Effusion
+ ;;^UTILITY(U,$J,358.3,25920,2)
+ ;;=^336603
+ ;;^UTILITY(U,$J,358.3,25921,0)
+ ;;=511.89^^148^1573^2
+ ;;^UTILITY(U,$J,358.3,25921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25921,1,3,0)
+ ;;=3^511.89
+ ;;^UTILITY(U,$J,358.3,25921,1,4,0)
+ ;;=4^Effusion NEC Exc TB
+ ;;^UTILITY(U,$J,358.3,25921,2)
+ ;;=^336604
+ ;;^UTILITY(U,$J,358.3,25922,0)
+ ;;=039.1^^148^1574^30
+ ;;^UTILITY(U,$J,358.3,25922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25922,1,3,0)
+ ;;=3^039.1
+ ;;^UTILITY(U,$J,358.3,25922,1,4,0)
+ ;;=4^Nocardiosis, Pulmonary
+ ;;^UTILITY(U,$J,358.3,25922,2)
+ ;;=Nocardiosis, Pulmonary^266495
+ ;;^UTILITY(U,$J,358.3,25923,0)
+ ;;=466.0^^148^1574^7
+ ;;^UTILITY(U,$J,358.3,25923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25923,1,3,0)
+ ;;=3^466.0
+ ;;^UTILITY(U,$J,358.3,25923,1,4,0)
+ ;;=4^Bronchitis,Acute
+ ;;^UTILITY(U,$J,358.3,25923,2)
+ ;;=Acute Bronchitis^259084
+ ;;^UTILITY(U,$J,358.3,25924,0)
+ ;;=518.6^^148^1574^2
+ ;;^UTILITY(U,$J,358.3,25924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25924,1,3,0)
+ ;;=3^518.6
+ ;;^UTILITY(U,$J,358.3,25924,1,4,0)
+ ;;=4^Allergic Bronchopulm Aspergillosis
+ ;;^UTILITY(U,$J,358.3,25924,2)
+ ;;=Allergic Bronchopulm Aspergillosis^10945
+ ;;^UTILITY(U,$J,358.3,25925,0)
+ ;;=486.^^148^1574^58
+ ;;^UTILITY(U,$J,358.3,25925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25925,1,3,0)
+ ;;=3^486.
+ ;;^UTILITY(U,$J,358.3,25925,1,4,0)
+ ;;=4^Pneumonia,Organism Unspec
+ ;;^UTILITY(U,$J,358.3,25925,2)
+ ;;=Atypical Pneumonia^95632
+ ;;^UTILITY(U,$J,358.3,25926,0)
+ ;;=482.9^^148^1574^5
+ ;;^UTILITY(U,$J,358.3,25926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25926,1,3,0)
+ ;;=3^482.9
+ ;;^UTILITY(U,$J,358.3,25926,1,4,0)
+ ;;=4^Bacterial Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,25926,2)
+ ;;=Bacterial Pneumonia^12347
+ ;;^UTILITY(U,$J,358.3,25927,0)
+ ;;=466.19^^148^1574^1
+ ;;^UTILITY(U,$J,358.3,25927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25927,1,3,0)
+ ;;=3^466.19
+ ;;^UTILITY(U,$J,358.3,25927,1,4,0)
+ ;;=4^Acute Bronchiolitis
+ ;;^UTILITY(U,$J,358.3,25927,2)
+ ;;=Acute Bronchiolitis^304310

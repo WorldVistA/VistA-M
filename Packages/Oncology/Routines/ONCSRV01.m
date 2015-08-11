@@ -1,5 +1,5 @@
 ONCSRV01 ;HIRMFO/RVD-SERVER ROUTINE FOR 160.16 AND REPORTS ;6/12/13
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
  ;
 16016 ;process if update, delete or new entry.
  ;* separates the mailman message
@@ -14,7 +14,6 @@ NUE ;new and update an entry in file #160.16
  ;#*^ seperate the message from the ien
  S ONCSS=$G(ONCSRDAT(IEN)) G:'$D(ONCSS)!(ONCSS="") EXIT
  S ONCOLD=$P(ONCSS,"#*^",1),ONCRUDA=$P(ONCSS,"#*^",2)
- S ^RUFINO("TEST UPDATE",IEN)=ONCSS  ;only for testing, remove when RElease
  I ONCOLD=0 G UP160
  I (ONCOLD=1),((IEN=2)!(IEN=3)) S ^ONCO(160.16,ONC16016,"FIELD",ONCIEN,1)=^ONCO(160.16,ONC16016,"FIELD",ONCIEN,1)_ONCRUDA S IEN=IEN+1 G NUE
  I ONCOLD=1 S ^ONCO(160.16,ONC16016,"FIELD",ONCIEN,1)=ONCRUDA

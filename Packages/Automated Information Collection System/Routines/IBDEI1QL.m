@@ -1,0 +1,128 @@
+IBDEI1QL ; ; 20-MAY-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,31088,0)
+ ;;=I70.633^^190^1932^72
+ ;;^UTILITY(U,$J,358.3,31088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31088,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,31088,1,4,0)
+ ;;=4^I70.633
+ ;;^UTILITY(U,$J,358.3,31088,2)
+ ;;=^5007742
+ ;;^UTILITY(U,$J,358.3,31089,0)
+ ;;=I70.634^^190^1932^73
+ ;;^UTILITY(U,$J,358.3,31089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31089,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,31089,1,4,0)
+ ;;=4^I70.634
+ ;;^UTILITY(U,$J,358.3,31089,2)
+ ;;=^5007743
+ ;;^UTILITY(U,$J,358.3,31090,0)
+ ;;=I70.635^^190^1932^74
+ ;;^UTILITY(U,$J,358.3,31090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31090,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,31090,1,4,0)
+ ;;=4^I70.635
+ ;;^UTILITY(U,$J,358.3,31090,2)
+ ;;=^5007744
+ ;;^UTILITY(U,$J,358.3,31091,0)
+ ;;=I70.641^^190^1932^65
+ ;;^UTILITY(U,$J,358.3,31091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31091,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,31091,1,4,0)
+ ;;=4^I70.641
+ ;;^UTILITY(U,$J,358.3,31091,2)
+ ;;=^5007747
+ ;;^UTILITY(U,$J,358.3,31092,0)
+ ;;=I70.642^^190^1932^66
+ ;;^UTILITY(U,$J,358.3,31092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31092,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,31092,1,4,0)
+ ;;=4^I70.642
+ ;;^UTILITY(U,$J,358.3,31092,2)
+ ;;=^5007748
+ ;;^UTILITY(U,$J,358.3,31093,0)
+ ;;=I70.643^^190^1932^67
+ ;;^UTILITY(U,$J,358.3,31093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31093,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,31093,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,31093,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,31094,0)
+ ;;=I70.644^^190^1932^68
+ ;;^UTILITY(U,$J,358.3,31094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31094,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,31094,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,31094,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,31095,0)
+ ;;=I70.645^^190^1932^69
+ ;;^UTILITY(U,$J,358.3,31095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31095,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,31095,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,31095,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,31096,0)
+ ;;=K12.0^^190^1932^259
+ ;;^UTILITY(U,$J,358.3,31096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31096,1,3,0)
+ ;;=3^Recurrent Oral Aphthae
+ ;;^UTILITY(U,$J,358.3,31096,1,4,0)
+ ;;=4^K12.0
+ ;;^UTILITY(U,$J,358.3,31096,2)
+ ;;=^5008483
+ ;;^UTILITY(U,$J,358.3,31097,0)
+ ;;=K12.1^^190^1932^272
+ ;;^UTILITY(U,$J,358.3,31097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31097,1,3,0)
+ ;;=3^Stomatitis NEC
+ ;;^UTILITY(U,$J,358.3,31097,1,4,0)
+ ;;=4^K12.1
+ ;;^UTILITY(U,$J,358.3,31097,2)
+ ;;=^5008484
+ ;;^UTILITY(U,$J,358.3,31098,0)
+ ;;=K12.2^^190^1932^94
+ ;;^UTILITY(U,$J,358.3,31098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31098,1,3,0)
+ ;;=3^Cellulitis & Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,31098,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,31098,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,31099,0)
+ ;;=L02.01^^190^1932^120
+ ;;^UTILITY(U,$J,358.3,31099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31099,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,31099,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,31099,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,31100,0)
+ ;;=L02.11^^190^1932^125
+ ;;^UTILITY(U,$J,358.3,31100,1,0)
+ ;;=^358.31IA^4^2

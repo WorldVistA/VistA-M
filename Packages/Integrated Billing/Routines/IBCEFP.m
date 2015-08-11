@@ -1,6 +1,6 @@
 IBCEFP ;ALB/TAZ - Provider ID functions ;28-OCT-10
- ;;2.0;INTEGRATED BILLING;**432,447,473**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,447,473,516**;21-MAR-94;Build 123
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -288,11 +288,17 @@ SNDS2(IBXDATA,PIECE) ;Determine if a SUB2 record is necessary.
  ; 2. If the service facility is a VA Institution in file 4 or a non-VA facility in file 355.93 SEND
  ; 3. Not a switchback payer $$SENDSF^IBCEF79(IBXIEN)'=0 SEND
  ;
+ ; MRD;IB*2.0*516 - Due to fields being marked for deletion, the
+ ; function $$SENDSF^IBCEF79 will always return '1'.  Refer to
+ ; that function and INSFLGS^^IBCEF79 for more information.
+ ;
  I IBXDATA="" D
- . N Z,Z1
+ . N Z
  . S Z=$P($$B^IBCEF79(IBXIEN),U,3)
- . S Z1=$$SENDSF^IBCEF79(IBXIEN)
- . S IBXDATA=$S(Z="":0,'Z1:0,1:1)
+ . ;S Z1=$$SENDSF^IBCEF79(IBXIEN)
+ . ;S IBXDATA=$S(Z="":0,'Z1:0,1:1)
+ . S IBXDATA=$S(Z="":0,1:1)
+ . Q
  I 'IBXDATA S IBXDATA=""
  I IBXDATA'="" S IBXDATA=$S(PIECE=2:77,PIECE=3:2,1:1)
  Q IBXDATA
