@@ -1,140 +1,130 @@
-IBDEI1SK ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SK ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32003,0)
- ;;=A52.9^^190^1945^44
- ;;^UTILITY(U,$J,358.3,32003,1,0)
+ ;;^UTILITY(U,$J,358.3,31607,0)
+ ;;=M06.011^^180^1962^60
+ ;;^UTILITY(U,$J,358.3,31607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32003,1,3,0)
- ;;=3^Late Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,32003,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,32003,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,32004,0)
- ;;=A53.9^^190^1945^72
- ;;^UTILITY(U,$J,358.3,32004,1,0)
+ ;;^UTILITY(U,$J,358.3,31607,1,3,0)
+ ;;=3^Rheum arthritis w/o rheumatoid factor, right shoulder
+ ;;^UTILITY(U,$J,358.3,31607,1,4,0)
+ ;;=4^M06.011
+ ;;^UTILITY(U,$J,358.3,31607,2)
+ ;;=^5010048
+ ;;^UTILITY(U,$J,358.3,31608,0)
+ ;;=M06.031^^180^1962^61
+ ;;^UTILITY(U,$J,358.3,31608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32004,1,3,0)
- ;;=3^Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,32004,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,32004,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,32005,0)
- ;;=B37.3^^190^1945^16
- ;;^UTILITY(U,$J,358.3,32005,1,0)
+ ;;^UTILITY(U,$J,358.3,31608,1,3,0)
+ ;;=3^Rheum arthritis w/o rheumatoid factor, right wrist
+ ;;^UTILITY(U,$J,358.3,31608,1,4,0)
+ ;;=4^M06.031
+ ;;^UTILITY(U,$J,358.3,31608,2)
+ ;;=^5010054
+ ;;^UTILITY(U,$J,358.3,31609,0)
+ ;;=M06.08^^180^1962^62
+ ;;^UTILITY(U,$J,358.3,31609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32005,1,3,0)
- ;;=3^Candidiasis Vulva/Vagina
- ;;^UTILITY(U,$J,358.3,32005,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,32005,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,32006,0)
- ;;=B58.9^^190^1945^74
- ;;^UTILITY(U,$J,358.3,32006,1,0)
+ ;;^UTILITY(U,$J,358.3,31609,1,3,0)
+ ;;=3^Rheum arthritis w/o rheumatoid factor, vertebrae
+ ;;^UTILITY(U,$J,358.3,31609,1,4,0)
+ ;;=4^M06.08
+ ;;^UTILITY(U,$J,358.3,31609,2)
+ ;;=^5010069
+ ;;^UTILITY(U,$J,358.3,31610,0)
+ ;;=M06.272^^180^1962^63
+ ;;^UTILITY(U,$J,358.3,31610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32006,1,3,0)
- ;;=3^Toxoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,32006,1,4,0)
- ;;=4^B58.9
- ;;^UTILITY(U,$J,358.3,32006,2)
- ;;=^5000733
- ;;^UTILITY(U,$J,358.3,32007,0)
- ;;=A59.01^^190^1945^75
- ;;^UTILITY(U,$J,358.3,32007,1,0)
+ ;;^UTILITY(U,$J,358.3,31610,1,3,0)
+ ;;=3^Rheumatoid bursitis, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,31610,1,4,0)
+ ;;=4^M06.272
+ ;;^UTILITY(U,$J,358.3,31610,2)
+ ;;=^5010092
+ ;;^UTILITY(U,$J,358.3,31611,0)
+ ;;=M06.222^^180^1962^64
+ ;;^UTILITY(U,$J,358.3,31611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32007,1,3,0)
- ;;=3^Trichomonal Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,32007,1,4,0)
- ;;=4^A59.01
- ;;^UTILITY(U,$J,358.3,32007,2)
- ;;=^121763
- ;;^UTILITY(U,$J,358.3,32008,0)
- ;;=B59.^^190^1945^61
- ;;^UTILITY(U,$J,358.3,32008,1,0)
+ ;;^UTILITY(U,$J,358.3,31611,1,3,0)
+ ;;=3^Rheumatoid bursitis, left elbow
+ ;;^UTILITY(U,$J,358.3,31611,1,4,0)
+ ;;=4^M06.222
+ ;;^UTILITY(U,$J,358.3,31611,2)
+ ;;=^5010077
+ ;;^UTILITY(U,$J,358.3,31612,0)
+ ;;=M06.242^^180^1962^65
+ ;;^UTILITY(U,$J,358.3,31612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32008,1,3,0)
- ;;=3^Pneumocystosis
- ;;^UTILITY(U,$J,358.3,32008,1,4,0)
- ;;=4^B59.
- ;;^UTILITY(U,$J,358.3,32008,2)
- ;;=^5000734
- ;;^UTILITY(U,$J,358.3,32009,0)
- ;;=H83.09^^190^1945^43
- ;;^UTILITY(U,$J,358.3,32009,1,0)
+ ;;^UTILITY(U,$J,358.3,31612,1,3,0)
+ ;;=3^Rheumatoid bursitis, left hand
+ ;;^UTILITY(U,$J,358.3,31612,1,4,0)
+ ;;=4^M06.242
+ ;;^UTILITY(U,$J,358.3,31612,2)
+ ;;=^5010083
+ ;;^UTILITY(U,$J,358.3,31613,0)
+ ;;=M06.252^^180^1962^66
+ ;;^UTILITY(U,$J,358.3,31613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32009,1,3,0)
- ;;=3^Labyrinthitis,Unspec Ear
- ;;^UTILITY(U,$J,358.3,32009,1,4,0)
- ;;=4^H83.09
- ;;^UTILITY(U,$J,358.3,32009,2)
- ;;=^5006897
- ;;^UTILITY(U,$J,358.3,32010,0)
- ;;=H83.01^^190^1945^42
- ;;^UTILITY(U,$J,358.3,32010,1,0)
+ ;;^UTILITY(U,$J,358.3,31613,1,3,0)
+ ;;=3^Rheumatoid bursitis, left hip
+ ;;^UTILITY(U,$J,358.3,31613,1,4,0)
+ ;;=4^M06.252
+ ;;^UTILITY(U,$J,358.3,31613,2)
+ ;;=^5010086
+ ;;^UTILITY(U,$J,358.3,31614,0)
+ ;;=M06.262^^180^1962^67
+ ;;^UTILITY(U,$J,358.3,31614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32010,1,3,0)
- ;;=3^Labyrinthitis,Right Ear
- ;;^UTILITY(U,$J,358.3,32010,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,32010,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,32011,0)
- ;;=H83.03^^190^1945^40
- ;;^UTILITY(U,$J,358.3,32011,1,0)
+ ;;^UTILITY(U,$J,358.3,31614,1,3,0)
+ ;;=3^Rheumatoid bursitis, left knee
+ ;;^UTILITY(U,$J,358.3,31614,1,4,0)
+ ;;=4^M06.262
+ ;;^UTILITY(U,$J,358.3,31614,2)
+ ;;=^5010089
+ ;;^UTILITY(U,$J,358.3,31615,0)
+ ;;=M06.212^^180^1962^68
+ ;;^UTILITY(U,$J,358.3,31615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32011,1,3,0)
- ;;=3^Labyrinthitis,Bilateral
- ;;^UTILITY(U,$J,358.3,32011,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,32011,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,32012,0)
- ;;=H83.02^^190^1945^41
- ;;^UTILITY(U,$J,358.3,32012,1,0)
+ ;;^UTILITY(U,$J,358.3,31615,1,3,0)
+ ;;=3^Rheumatoid bursitis, left shoulder
+ ;;^UTILITY(U,$J,358.3,31615,1,4,0)
+ ;;=4^M06.212
+ ;;^UTILITY(U,$J,358.3,31615,2)
+ ;;=^5010074
+ ;;^UTILITY(U,$J,358.3,31616,0)
+ ;;=M06.232^^180^1962^69
+ ;;^UTILITY(U,$J,358.3,31616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32012,1,3,0)
- ;;=3^Labyrinthitis,Left Ear
- ;;^UTILITY(U,$J,358.3,32012,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,32012,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,32013,0)
- ;;=J01.91^^190^1945^69
- ;;^UTILITY(U,$J,358.3,32013,1,0)
+ ;;^UTILITY(U,$J,358.3,31616,1,3,0)
+ ;;=3^Rheumatoid bursitis, left wrist
+ ;;^UTILITY(U,$J,358.3,31616,1,4,0)
+ ;;=4^M06.232
+ ;;^UTILITY(U,$J,358.3,31616,2)
+ ;;=^5010080
+ ;;^UTILITY(U,$J,358.3,31617,0)
+ ;;=M06.29^^180^1962^70
+ ;;^UTILITY(U,$J,358.3,31617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32013,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,32013,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,32013,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,32014,0)
- ;;=J03.90^^190^1945^73
- ;;^UTILITY(U,$J,358.3,32014,1,0)
+ ;;^UTILITY(U,$J,358.3,31617,1,3,0)
+ ;;=3^Rheumatoid bursitis, multiple sites
+ ;;^UTILITY(U,$J,358.3,31617,1,4,0)
+ ;;=4^M06.29
+ ;;^UTILITY(U,$J,358.3,31617,2)
+ ;;=^5010095
+ ;;^UTILITY(U,$J,358.3,31618,0)
+ ;;=M06.271^^180^1962^71
+ ;;^UTILITY(U,$J,358.3,31618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32014,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,32014,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,32014,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,32015,0)
- ;;=J01.90^^190^1945^70
- ;;^UTILITY(U,$J,358.3,32015,1,0)
+ ;;^UTILITY(U,$J,358.3,31618,1,3,0)
+ ;;=3^Rheumatoid bursitis, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,31618,1,4,0)
+ ;;=4^M06.271
+ ;;^UTILITY(U,$J,358.3,31618,2)
+ ;;=^5010091
+ ;;^UTILITY(U,$J,358.3,31619,0)
+ ;;=M06.221^^180^1962^72
+ ;;^UTILITY(U,$J,358.3,31619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32015,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,32015,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,32015,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,32016,0)
- ;;=J20.1^^190^1945^10
- ;;^UTILITY(U,$J,358.3,32016,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32016,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,31619,1,3,0)
+ ;;=3^Rheumatoid bursitis, right elbow

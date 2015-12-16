@@ -1,5 +1,5 @@
-XUMF5II ;ISS/PAVEL - XUMF5 MD5 Hash Entry point ;5/9/06  11:01
- ;;8.0;KERNEL;**407**;July 10, 1995;Build 8
+XUMF5II ;ISS/PAVEL - XUMF5 MD5 Hash Entry point ;02/02/2015
+ ;;8.0;KERNEL;**407,654**;July 10, 1995;Build 32
  ;
  ;MD5 based on info from 4.005 SORT BY VUID
  ;
@@ -31,6 +31,8 @@ INIT ;
  .;+++++++++++++++Set array of columns with Unique value into TMP5 +++++++++++++++++++++++++
  .;TMP1(4.00511,A,4) = Unique value YES
  .S:TMP1(4.00511,A,4)="YES" TMP5(X1,X2)=1
+ .;TMP1(4.00511,A,5) = Post processing logic XU*8.0*654 
+ .S X=$G(TMP1(4.00511,A,5)) S:$L(X) TMP8(X1,X2)=X ; XU*8.0*654
  ;
  ;MODE set from input parameter or from file.
  S A=$C(1,35,69,103)
@@ -50,6 +52,7 @@ INIT ;
  ;TMP5(file#, field #)= 1  if unique value requested
  ;TMP6(file#, field #)= 1  if column mode.. it's not used yet...
  ;TMP7(file#, field #)=file # of pointer type field
+ ;TMP8(file#, field #)= Postprocessing logic ; XU*8.0*654
  S START=1,X1=0,LEV=0,X2OLD=0,XMD5=$O(^TMP("XUMF ERROR",$J,9999999999999),-1)+1,EXITMD5=0
  Q
 END ;************ So get the final ABCD value... ************

@@ -1,128 +1,140 @@
-IBDEI1TQ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1TQ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32553,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,32553,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,32554,0)
- ;;=R89.9^^190^1955^17
- ;;^UTILITY(U,$J,358.3,32554,1,0)
+ ;;^UTILITY(U,$J,358.3,32137,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32137,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,32137,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,32138,0)
+ ;;=L26.^^182^1981^148
+ ;;^UTILITY(U,$J,358.3,32138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32554,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,32554,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,32554,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,32555,0)
- ;;=R90.0^^190^1955^92
- ;;^UTILITY(U,$J,358.3,32555,1,0)
+ ;;^UTILITY(U,$J,358.3,32138,1,3,0)
+ ;;=3^Exfoliative Dermatitis
+ ;;^UTILITY(U,$J,358.3,32138,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,32138,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,32139,0)
+ ;;=L27.0^^182^1981^266
+ ;;^UTILITY(U,$J,358.3,32139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32555,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,32555,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,32555,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,32556,0)
- ;;=R90.89^^190^1955^12
- ;;^UTILITY(U,$J,358.3,32556,1,0)
+ ;;^UTILITY(U,$J,358.3,32139,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,32139,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,32139,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,32140,0)
+ ;;=L27.1^^182^1981^267
+ ;;^UTILITY(U,$J,358.3,32140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32556,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,32556,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,32556,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,32557,0)
- ;;=R91.1^^190^1955^142
- ;;^UTILITY(U,$J,358.3,32557,1,0)
+ ;;^UTILITY(U,$J,358.3,32140,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;^UTILITY(U,$J,358.3,32140,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,32140,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,32141,0)
+ ;;=L29.0^^182^1981^251
+ ;;^UTILITY(U,$J,358.3,32141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32557,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,32557,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,32557,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,32558,0)
- ;;=R91.8^^190^1955^16
- ;;^UTILITY(U,$J,358.3,32558,1,0)
+ ;;^UTILITY(U,$J,358.3,32141,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,32141,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,32141,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,32142,0)
+ ;;=L29.9^^182^1981^252
+ ;;^UTILITY(U,$J,358.3,32142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32558,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,32558,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,32558,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,32559,0)
- ;;=R92.0^^190^1955^111
- ;;^UTILITY(U,$J,358.3,32559,1,0)
+ ;;^UTILITY(U,$J,358.3,32142,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,32142,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,32142,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,32143,0)
+ ;;=L30.0^^182^1981^233
+ ;;^UTILITY(U,$J,358.3,32143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32559,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,32559,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,32559,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,32560,0)
- ;;=R92.1^^190^1955^110
- ;;^UTILITY(U,$J,358.3,32560,1,0)
+ ;;^UTILITY(U,$J,358.3,32143,1,3,0)
+ ;;=3^Nummular Dermatitis
+ ;;^UTILITY(U,$J,358.3,32143,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,32143,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,32144,0)
+ ;;=L30.1^^182^1981^140
+ ;;^UTILITY(U,$J,358.3,32144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32560,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,32560,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,32560,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,32561,0)
- ;;=R92.2^^190^1955^86
- ;;^UTILITY(U,$J,358.3,32561,1,0)
+ ;;^UTILITY(U,$J,358.3,32144,1,3,0)
+ ;;=3^Dyshidrosis
+ ;;^UTILITY(U,$J,358.3,32144,1,4,0)
+ ;;=4^L30.1
+ ;;^UTILITY(U,$J,358.3,32144,2)
+ ;;=^5009154
+ ;;^UTILITY(U,$J,358.3,32145,0)
+ ;;=L30.2^^182^1981^132
+ ;;^UTILITY(U,$J,358.3,32145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32561,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,32561,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,32561,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,32562,0)
- ;;=R93.0^^190^1955^10
- ;;^UTILITY(U,$J,358.3,32562,1,0)
+ ;;^UTILITY(U,$J,358.3,32145,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,32145,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,32145,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,32146,0)
+ ;;=L30.4^^182^1981^144
+ ;;^UTILITY(U,$J,358.3,32146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32562,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,32562,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,32562,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,32563,0)
- ;;=R93.2^^190^1955^9
- ;;^UTILITY(U,$J,358.3,32563,1,0)
+ ;;^UTILITY(U,$J,358.3,32146,1,3,0)
+ ;;=3^Erythema Intertrigo
+ ;;^UTILITY(U,$J,358.3,32146,1,4,0)
+ ;;=4^L30.4
+ ;;^UTILITY(U,$J,358.3,32146,2)
+ ;;=^5009157
+ ;;^UTILITY(U,$J,358.3,32147,0)
+ ;;=L30.8^^182^1981^135
+ ;;^UTILITY(U,$J,358.3,32147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32563,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,32563,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,32563,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,32564,0)
- ;;=R93.3^^190^1955^7
- ;;^UTILITY(U,$J,358.3,32564,1,0)
+ ;;^UTILITY(U,$J,358.3,32147,1,3,0)
+ ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,32147,1,4,0)
+ ;;=4^L30.8
+ ;;^UTILITY(U,$J,358.3,32147,2)
+ ;;=^5009158
+ ;;^UTILITY(U,$J,358.3,32148,0)
+ ;;=L30.9^^182^1981^136
+ ;;^UTILITY(U,$J,358.3,32148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32564,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,32564,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,32564,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,32565,0)
- ;;=R93.4^^190^1955^11
- ;;^UTILITY(U,$J,358.3,32565,1,0)
+ ;;^UTILITY(U,$J,358.3,32148,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32148,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,32148,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,32149,0)
+ ;;=L40.0^^182^1981^254
+ ;;^UTILITY(U,$J,358.3,32149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32565,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,32565,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,32565,2)
- ;;=^5019717
+ ;;^UTILITY(U,$J,358.3,32149,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,32149,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,32149,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,32150,0)
+ ;;=L40.1^^182^1981^257
+ ;;^UTILITY(U,$J,358.3,32150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32150,1,3,0)
+ ;;=3^Pustulosis Psoriasis,Generalized
+ ;;^UTILITY(U,$J,358.3,32150,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,32150,2)
+ ;;=^5009161

@@ -1,5 +1,5 @@
-ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;6/5/14  09:59
- ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149**;Dec 22,1997;Build 27
+ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;3/26/15  16:33
+ ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154**;Dec 22,1997;Build 13
  ;
 OUTPTTM(ECXDFN,ECXDT) ;* Return PC Team from PCMM files or DPT
  ; Variables -
@@ -68,9 +68,11 @@ PAT(ECXDFN,ECXDATE,ECXDATA,ECXPAT) ;Return basic patient data for extract
  N DA,DR,PELG,MELIG,ZIP,MPI
  I ECXDFN="" Q 0
  S SSN=$$GET1^DIQ(2,ECXDFN,.09,"I"),DFN=ECXDFN,ECXPAT=0
- I $E(SSN,1,3)="000"!(SSN="") K ECXPAT Q 0  ;test patient
+ ;I $E(SSN,1,3)="000"!(SSN="") K ECXPAT Q 0  ;154 removed as these checks are done in ECXUTL5 ;test patient
  ;test patient extended checks; mtl extract excluded
- I $G(ECHEAD)'="MTL",'$$SSN^ECXUTL5(SSN) K ECXPAT Q 0
+ I $G(ECHEAD)'="MTL" D  I $G(ECXPAT)="" Q 0  ;154 modified section for SSN testing
+ .I $G(ECHEAD)="ECS" I $E(SSN,1,5)="00000" I "^CH103^CH104^CH105^CH106^CH107^CH108^CH109^"[("^"_$G(ECPNM)_"^") Q  ;154 If event capture extract and 5 leading zeroes test patient and workload is CH103 to CH109 then allow test SSN
+ .I '$$SSN^ECXUTL5(SSN) K ECXPAT
  S STR="NAME;SSN;DOB;SEX;RACE;RELIGION;STATE;COUNTY;ZIP;SC%;MEANS;ELIG;"
  S STR=STR_"EMPLOY;AO STAT;IR STAT;EC STAT;POW STAT;POW LOC;MST STAT;"
  S STR=STR_"ENROLL LOC;MPI;VIETNAM;POS;MARITAL;CL STAT;COMBSVCI;COMBSVCL" ;149 COMB SVS IND,LOC

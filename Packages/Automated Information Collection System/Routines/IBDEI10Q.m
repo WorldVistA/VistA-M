@@ -1,128 +1,138 @@
-IBDEI10Q ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI10Q ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18151,1,2,0)
- ;;=2^295.52
- ;;^UTILITY(U,$J,358.3,18151,1,5,0)
- ;;=5^Latent Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,18151,2)
- ;;=Latent Schizophrenia, Chronic^268073
- ;;^UTILITY(U,$J,358.3,18152,0)
- ;;=295.54^^98^1032^5
- ;;^UTILITY(U,$J,358.3,18152,1,0)
+ ;;^UTILITY(U,$J,358.3,17934,1,2,0)
+ ;;=2^V61.05
+ ;;^UTILITY(U,$J,358.3,17934,1,5,0)
+ ;;=5^Fmily Dsrpt-Chld Custody
+ ;;^UTILITY(U,$J,358.3,17934,2)
+ ;;=^336803
+ ;;^UTILITY(U,$J,358.3,17935,0)
+ ;;=V61.09^^94^1138^9
+ ;;^UTILITY(U,$J,358.3,17935,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18152,1,2,0)
- ;;=2^295.54
- ;;^UTILITY(U,$J,358.3,18152,1,5,0)
- ;;=5^Latent Schizophrenia, Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,18152,2)
- ;;=^268075
- ;;^UTILITY(U,$J,358.3,18153,0)
- ;;=295.32^^98^1032^8
- ;;^UTILITY(U,$J,358.3,18153,1,0)
+ ;;^UTILITY(U,$J,358.3,17935,1,2,0)
+ ;;=2^V61.09
+ ;;^UTILITY(U,$J,358.3,17935,1,5,0)
+ ;;=5^Family Disruption NEC
+ ;;^UTILITY(U,$J,358.3,17935,2)
+ ;;=^336805
+ ;;^UTILITY(U,$J,358.3,17936,0)
+ ;;=V62.21^^94^1138^4
+ ;;^UTILITY(U,$J,358.3,17936,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18153,1,2,0)
- ;;=2^295.32
- ;;^UTILITY(U,$J,358.3,18153,1,5,0)
- ;;=5^Paranoid Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,18153,2)
- ;;=Paranoid Schizophrenia, Chronic^268061
- ;;^UTILITY(U,$J,358.3,18154,0)
- ;;=295.34^^98^1032^9
- ;;^UTILITY(U,$J,358.3,18154,1,0)
+ ;;^UTILITY(U,$J,358.3,17936,1,2,0)
+ ;;=2^V62.21
+ ;;^UTILITY(U,$J,358.3,17936,1,5,0)
+ ;;=5^Current Military Deployment
+ ;;^UTILITY(U,$J,358.3,17936,2)
+ ;;=^336806
+ ;;^UTILITY(U,$J,358.3,17937,0)
+ ;;=V62.22^^94^1138^16
+ ;;^UTILITY(U,$J,358.3,17937,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18154,1,2,0)
- ;;=2^295.34
- ;;^UTILITY(U,$J,358.3,18154,1,5,0)
- ;;=5^Paranoid, Schizophrenia Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,18154,2)
- ;;=^268063
- ;;^UTILITY(U,$J,358.3,18155,0)
- ;;=295.62^^98^1032^23
- ;;^UTILITY(U,$J,358.3,18155,1,0)
+ ;;^UTILITY(U,$J,358.3,17937,1,2,0)
+ ;;=2^V62.22
+ ;;^UTILITY(U,$J,358.3,17937,1,5,0)
+ ;;=5^HX Retrn Military Deploy
+ ;;^UTILITY(U,$J,358.3,17937,2)
+ ;;=^336807
+ ;;^UTILITY(U,$J,358.3,17938,0)
+ ;;=V62.29^^94^1138^38
+ ;;^UTILITY(U,$J,358.3,17938,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18155,1,2,0)
- ;;=2^295.62
- ;;^UTILITY(U,$J,358.3,18155,1,5,0)
- ;;=5^Undifferentiated Schizophrenia, Chr
- ;;^UTILITY(U,$J,358.3,18155,2)
- ;;=^268078
- ;;^UTILITY(U,$J,358.3,18156,0)
- ;;=295.72^^98^1032^11
- ;;^UTILITY(U,$J,358.3,18156,1,0)
+ ;;^UTILITY(U,$J,358.3,17938,1,2,0)
+ ;;=2^V62.29
+ ;;^UTILITY(U,$J,358.3,17938,1,5,0)
+ ;;=5^Occupationl Circumst NEC
+ ;;^UTILITY(U,$J,358.3,17938,2)
+ ;;=^87746
+ ;;^UTILITY(U,$J,358.3,17939,0)
+ ;;=V60.81^^94^1138^15
+ ;;^UTILITY(U,$J,358.3,17939,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18156,1,2,0)
- ;;=2^295.72
- ;;^UTILITY(U,$J,358.3,18156,1,5,0)
- ;;=5^Schizoaffective Disorder, Chr
- ;;^UTILITY(U,$J,358.3,18156,2)
- ;;=^268083
- ;;^UTILITY(U,$J,358.3,18157,0)
- ;;=295.74^^98^1032^12
- ;;^UTILITY(U,$J,358.3,18157,1,0)
+ ;;^UTILITY(U,$J,358.3,17939,1,2,0)
+ ;;=2^V60.81
+ ;;^UTILITY(U,$J,358.3,17939,1,5,0)
+ ;;=5^Foster Care (Status)
+ ;;^UTILITY(U,$J,358.3,17939,2)
+ ;;=^338505
+ ;;^UTILITY(U,$J,358.3,17940,0)
+ ;;=V60.89^^94^1138^19
+ ;;^UTILITY(U,$J,358.3,17940,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18157,1,2,0)
- ;;=2^295.74
- ;;^UTILITY(U,$J,358.3,18157,1,5,0)
- ;;=5^Schizoaffective Disorder, w/Exacerb.
- ;;^UTILITY(U,$J,358.3,18157,2)
- ;;=^268085
- ;;^UTILITY(U,$J,358.3,18158,0)
- ;;=295.42^^98^1032^17
- ;;^UTILITY(U,$J,358.3,18158,1,0)
+ ;;^UTILITY(U,$J,358.3,17940,1,2,0)
+ ;;=2^V60.89
+ ;;^UTILITY(U,$J,358.3,17940,1,5,0)
+ ;;=5^Housing/Econom Circum NEC
+ ;;^UTILITY(U,$J,358.3,17940,2)
+ ;;=^295545
+ ;;^UTILITY(U,$J,358.3,17941,0)
+ ;;=V61.22^^94^1138^44
+ ;;^UTILITY(U,$J,358.3,17941,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18158,1,2,0)
- ;;=2^295.42
- ;;^UTILITY(U,$J,358.3,18158,1,5,0)
- ;;=5^Schizophreniform Disorder, Chr
- ;;^UTILITY(U,$J,358.3,18158,2)
- ;;=^268068
- ;;^UTILITY(U,$J,358.3,18159,0)
- ;;=295.44^^98^1032^18
- ;;^UTILITY(U,$J,358.3,18159,1,0)
+ ;;^UTILITY(U,$J,358.3,17941,1,2,0)
+ ;;=2^V61.22
+ ;;^UTILITY(U,$J,358.3,17941,1,5,0)
+ ;;=5^Perpetrator-Parental Child
+ ;;^UTILITY(U,$J,358.3,17941,2)
+ ;;=^304358
+ ;;^UTILITY(U,$J,358.3,17942,0)
+ ;;=V61.23^^94^1138^40
+ ;;^UTILITY(U,$J,358.3,17942,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18159,1,2,0)
- ;;=2^295.44
- ;;^UTILITY(U,$J,358.3,18159,1,5,0)
- ;;=5^Schizophreniform Disorderw/Exacerb.
- ;;^UTILITY(U,$J,358.3,18159,2)
- ;;=^268070
- ;;^UTILITY(U,$J,358.3,18160,0)
- ;;=295.02^^98^1032^21
- ;;^UTILITY(U,$J,358.3,18160,1,0)
+ ;;^UTILITY(U,$J,358.3,17942,1,2,0)
+ ;;=2^V61.23
+ ;;^UTILITY(U,$J,358.3,17942,1,5,0)
+ ;;=5^Parent-Biological Child Prob
+ ;;^UTILITY(U,$J,358.3,17942,2)
+ ;;=^338508
+ ;;^UTILITY(U,$J,358.3,17943,0)
+ ;;=V61.24^^94^1138^39
+ ;;^UTILITY(U,$J,358.3,17943,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18160,1,2,0)
- ;;=2^295.02
- ;;^UTILITY(U,$J,358.3,18160,1,5,0)
- ;;=5^Simple Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,18160,2)
- ;;=Simple Schizophrenia, Chronic^268046
- ;;^UTILITY(U,$J,358.3,18161,0)
- ;;=295.04^^98^1032^20
- ;;^UTILITY(U,$J,358.3,18161,1,0)
+ ;;^UTILITY(U,$J,358.3,17943,1,2,0)
+ ;;=2^V61.24
+ ;;^UTILITY(U,$J,358.3,17943,1,5,0)
+ ;;=5^Parent-Adopted Child Prob
+ ;;^UTILITY(U,$J,358.3,17943,2)
+ ;;=^338509
+ ;;^UTILITY(U,$J,358.3,17944,0)
+ ;;=V61.25^^94^1138^42
+ ;;^UTILITY(U,$J,358.3,17944,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18161,1,2,0)
- ;;=2^295.04
- ;;^UTILITY(U,$J,358.3,18161,1,5,0)
- ;;=5^Simple Schizophrenia,  Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,18161,2)
- ;;=^268048
- ;;^UTILITY(U,$J,358.3,18162,0)
- ;;=295.92^^98^1032^14
- ;;^UTILITY(U,$J,358.3,18162,1,0)
+ ;;^UTILITY(U,$J,358.3,17944,1,2,0)
+ ;;=2^V61.25
+ ;;^UTILITY(U,$J,358.3,17944,1,5,0)
+ ;;=5^Parent-Foster Child Prob
+ ;;^UTILITY(U,$J,358.3,17944,2)
+ ;;=^338510
+ ;;^UTILITY(U,$J,358.3,17945,0)
+ ;;=V40.31^^94^1138^52
+ ;;^UTILITY(U,$J,358.3,17945,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18162,1,2,0)
- ;;=2^295.92
- ;;^UTILITY(U,$J,358.3,18162,1,5,0)
- ;;=5^Schizophrenia, NOS, Chronic
- ;;^UTILITY(U,$J,358.3,18162,2)
- ;;=Schizophrenia, NOS, Chronic^268093
- ;;^UTILITY(U,$J,358.3,18163,0)
- ;;=295.94^^98^1032^15
- ;;^UTILITY(U,$J,358.3,18163,1,0)
+ ;;^UTILITY(U,$J,358.3,17945,1,2,0)
+ ;;=2^V40.31
+ ;;^UTILITY(U,$J,358.3,17945,1,5,0)
+ ;;=5^Wandering-Dis Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,17945,2)
+ ;;=^340621
+ ;;^UTILITY(U,$J,358.3,17946,0)
+ ;;=V40.39^^94^1138^1
+ ;;^UTILITY(U,$J,358.3,17946,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18163,1,2,0)
- ;;=2^295.94
- ;;^UTILITY(U,$J,358.3,18163,1,5,0)
- ;;=5^Schizophrenia, NOS, Chronic w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,17946,1,2,0)
+ ;;=2^V40.39
+ ;;^UTILITY(U,$J,358.3,17946,1,5,0)
+ ;;=5^Behavioral Problem NEC
+ ;;^UTILITY(U,$J,358.3,17946,2)
+ ;;=^340622
+ ;;^UTILITY(U,$J,358.3,17947,0)
+ ;;=V65.19^^94^1138^45
+ ;;^UTILITY(U,$J,358.3,17947,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17947,1,2,0)
+ ;;=2^V65.19
+ ;;^UTILITY(U,$J,358.3,17947,1,5,0)
+ ;;=5^Person Consulting on Behalf of Pt

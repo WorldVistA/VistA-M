@@ -1,5 +1,5 @@
 LROS ;SLC/CJS/DALOI/FHS-LAB ORDER STATUS ;8/11/97
- ;;5.2;LAB SERVICE;**121,153,202,210,221,263**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**121,153,202,210,221,263,450**;Sep 27, 1994;Build 1
  N LRLOOKUP S LRLOOKUP=1 ; Variable to indicate to lookup patients, prevent adding new entries in ^LRDPA
 EN K DIC,LRDPAF,%DT("B") S DIC(0)="A"
  D ^LRDPA G:(LRDFN=-1)!$D(DUOUT)!$D(DTOUT) LREND D L0 G EN
@@ -25,7 +25,7 @@ ORDER ;call with LRSN, from LROE, LROE1, LRORD1, LROW2, LROR1
  Q
 TEST N LRY,LRURG
  S LRROD=$P(LRACN0,U,6),(Y,LRLL,LROT,LROS,LROSD,LRURG)="",X3=0
- I $P(LRACN0,"^",11) G CANC
+ I $P(LRACN0,"^",11)!($P(LRACN0,U,9)="CA") G CANC
  S X=$P(LROD0,U,4),LROT=$S(X="WC":"Requested (WARD COL)",X="SP":"Requested (SEND PATIENT)",X="LC":"Requested (LAB COL)",X="I":"Requested (IMM LAB COL)",1:"undetermined")
  S X=$P(LROD1,U,4),(LROOS,LROS)=$S(X="C":"Collected",X="U":"Uncollected, cancelled",1:"On Collection List") S:X="C" LROT=""
  I '(+LRACN0) W !!,"BAD ORDER ",LRSN,!,$C(7) D WAIT Q
@@ -92,7 +92,7 @@ WAIT Q:$Y<(IOSL-3)  I $E(IOST)'="C" W @IOF Q
  W !,"  PRESS '^' TO STOP " R X:DTIME S:X="" X=1 S LREND=".^"[X Q:$G(LREND)  W @IOF
  Q
 CANC ;For Canceled tests
- S LRTSTS=+$G(LRACN0),LROT="*Canceled by: "_$P(^VA(200,$P(LRACN0,"^",11),0),U)
+ S LRTSTS=+$G(LRACN0),LROT="*Canceled by: "_$S($P(LRACN0,U,11):$P(^VA(200,$P(LRACN0,U,11),0),U),1:"Not Specified")
  I LRTSTS D WRITE,COM(1.1),COM(1) ;second call for backward compatitility - can be removed in future years (1/98)
  Q
 OERR(X) ;Get order status for predefined patient

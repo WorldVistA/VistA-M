@@ -1,5 +1,5 @@
-MAGDRPC8 ;WOIFO/EdM/BT - RPCs for Master Files ; 22 Mar 2013 9:52 AM
- ;;3.0;IMAGING;**11,30,51,54,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDRPC8 ;WOIFO/EdM,BT,DAC - RPCs for Master Files ; 31 Aug 2014 9:52 AM
+ ;;3.0;IMAGING;**11,30,51,54,118,138,156,161**;Mar 19, 2002;Build 20;Sep 1, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -22,7 +22,7 @@ UPDTAPP(OUT,APP) ; RPC = MAG DICOM UPDATE SCU LIST
  S (GWNAM,GWLOC)="",N=0
  S A="" F  S A=$O(APP(A)) Q:A=""  D
  . Q:A["_"
- . S X=APP(A) F I=1:1:7 S:$P(X,"^",I)="" N=N+1
+ . S X=APP(A) F I=1:1:7 S:$P(X,"^",I)="" N=N+1 ; P161 DAC - fix for SCU LIST field checking
  . S:GWNAM="" GWNAM=$P(X,"^",5)
  . S:GWLOC="" GWLOC=$P(X,"^",7)
  . S:GWNAM'=$P(X,"^",5) N=N+1
@@ -45,7 +45,7 @@ UPDTAPP(OUT,APP) ; RPC = MAG DICOM UPDATE SCU LIST
  . . K ^MAG(2006.587,D0),^MAG(2006.587,"B",SERVNAM,D0) S MIN=MIN+1
  . . Q
  . S X=APP(A(SERVNAM)),$P(X,"^",8)=NOW K APP(A(SERVNAM))
- . S ^MAG(2006.587,D0,0)=$P(X,"^",1,8),UP=UP+1
+ . S ^MAG(2006.587,D0,0)=$P(X,"^",1,9),UP=UP+1
  . S ^MAG(2006.587,"C",SERVNAM,GWLOC,GWNAM,D0)=""
  . S ^MAG(2006.587,"D",GWNAM,GWLOC,D0)=""
  . K DIMSE S DIMSE=A(SERVNAM)_"_"

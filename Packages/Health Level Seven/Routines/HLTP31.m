@@ -1,6 +1,6 @@
 HLTP31 ;SFIRMFO/RSD - Cont. Transaction Processor for TCP ;07/08/2009  15:33
- ;;1.6;HEALTH LEVEL SEVEN;**57,58,66,109,120,145**;Oct 13, 1995;Build 4
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**57,58,66,109,120,145,163**;Oct 13, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
 RSP(X,HLN) ;process response msg. X=ien in 773^msg. ien in 772
@@ -79,8 +79,16 @@ SETINQUE ;
  ;
  ; patch HL*1.6*120 start
  ; assume the format is <domain>:<port #>
- I HLDOMAIN[":" S HL("PORT")=$P(HLDOMAIN,":",2)
- S HLDOMAIN=$P(HLDOMAIN,":")
+ ; patch HL*1.6*163 can no longer assume one format for <domain><port> with IPV6
+ ; check for IPV6 address with delimiter of "]:" and process accordingly
+ ;$$FORCEIP6^XLFIPV(IP) API (ICR #5844) 
+ I HLDOMAIN["]" D
+ . S HL("PORT")=$P(HLDOMAIN,"]:",2)
+ . S HLDOMAIN=$E($P(HLDOMAIN,"]"),2,99)
+ . S HLDOMAIN=$$FORCEIP6^XLFIPV(HLDOMAIN)
+ E  I HLDOMAIN[":" D
+ . S HL("PORT")=$P(HLDOMAIN,":",2)
+ . S HLDOMAIN=$P(HLDOMAIN,":")
  S HL("DOMAIN")=HLDOMAIN
  ; change from lower case to upper case
  S HLDOMAIN=$$UP^XLFSTR(HLDOMAIN)

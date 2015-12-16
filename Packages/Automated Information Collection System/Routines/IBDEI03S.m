@@ -1,142 +1,132 @@
-IBDEI03S ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI03S ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1411,1,5,0)
- ;;=5^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,1411,2)
- ;;=Atrial Fibrillation^11378
- ;;^UTILITY(U,$J,358.3,1412,0)
- ;;=427.32^^11^122^8
- ;;^UTILITY(U,$J,358.3,1412,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1412,1,4,0)
- ;;=4^427.32
- ;;^UTILITY(U,$J,358.3,1412,1,5,0)
- ;;=5^Atrial Flutter
- ;;^UTILITY(U,$J,358.3,1412,2)
- ;;=Atrial Flutter^11387
- ;;^UTILITY(U,$J,358.3,1413,0)
- ;;=427.41^^11^122^35
- ;;^UTILITY(U,$J,358.3,1413,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1413,1,4,0)
- ;;=4^427.41
- ;;^UTILITY(U,$J,358.3,1413,1,5,0)
- ;;=5^Ventricular Fibrillation
- ;;^UTILITY(U,$J,358.3,1413,2)
- ;;=Ventricular Fibrillation^125951
- ;;^UTILITY(U,$J,358.3,1414,0)
- ;;=427.42^^11^122^36
- ;;^UTILITY(U,$J,358.3,1414,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1414,1,4,0)
- ;;=4^427.42
- ;;^UTILITY(U,$J,358.3,1414,1,5,0)
- ;;=5^Ventricular Flutter
- ;;^UTILITY(U,$J,358.3,1414,2)
- ;;=^265315
- ;;^UTILITY(U,$J,358.3,1415,0)
- ;;=427.5^^11^122^12
- ;;^UTILITY(U,$J,358.3,1415,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1415,1,4,0)
- ;;=4^427.5
- ;;^UTILITY(U,$J,358.3,1415,1,5,0)
- ;;=5^Cardiac Arrest
- ;;^UTILITY(U,$J,358.3,1415,2)
- ;;=^54657
- ;;^UTILITY(U,$J,358.3,1416,0)
- ;;=427.60^^11^122^24
- ;;^UTILITY(U,$J,358.3,1416,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1416,1,4,0)
- ;;=4^427.60
- ;;^UTILITY(U,$J,358.3,1416,1,5,0)
- ;;=5^Premature Beats
- ;;^UTILITY(U,$J,358.3,1416,2)
- ;;=^43974
- ;;^UTILITY(U,$J,358.3,1417,0)
- ;;=427.61^^11^122^9
- ;;^UTILITY(U,$J,358.3,1417,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1417,1,4,0)
- ;;=4^427.61
- ;;^UTILITY(U,$J,358.3,1417,1,5,0)
- ;;=5^Atrial Premature Beats
- ;;^UTILITY(U,$J,358.3,1417,2)
- ;;=Atrial Premature Beats^116007
- ;;^UTILITY(U,$J,358.3,1418,0)
- ;;=427.69^^11^122^25
- ;;^UTILITY(U,$J,358.3,1418,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1418,1,4,0)
- ;;=4^427.69
- ;;^UTILITY(U,$J,358.3,1418,1,5,0)
- ;;=5^Premature Ventric Contractions
- ;;^UTILITY(U,$J,358.3,1418,2)
- ;;=Premature Ventric Contractions^87804
- ;;^UTILITY(U,$J,358.3,1419,0)
- ;;=427.81^^11^122^33
- ;;^UTILITY(U,$J,358.3,1419,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1419,1,4,0)
- ;;=4^427.81
- ;;^UTILITY(U,$J,358.3,1419,1,5,0)
- ;;=5^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,1419,2)
- ;;=^110852
- ;;^UTILITY(U,$J,358.3,1420,0)
- ;;=427.89^^11^122^11
- ;;^UTILITY(U,$J,358.3,1420,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1420,1,4,0)
- ;;=4^427.89
- ;;^UTILITY(U,$J,358.3,1420,1,5,0)
- ;;=5^Bradycardia
- ;;^UTILITY(U,$J,358.3,1420,2)
- ;;=Bradycardia^87896
- ;;^UTILITY(U,$J,358.3,1421,0)
- ;;=996.01^^11^122^18
- ;;^UTILITY(U,$J,358.3,1421,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1421,1,4,0)
- ;;=4^996.01
- ;;^UTILITY(U,$J,358.3,1421,1,5,0)
- ;;=5^Mech Comp Pacemaker
- ;;^UTILITY(U,$J,358.3,1421,2)
- ;;=^276264
- ;;^UTILITY(U,$J,358.3,1422,0)
- ;;=996.04^^11^122^17
- ;;^UTILITY(U,$J,358.3,1422,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1422,1,4,0)
- ;;=4^996.04
- ;;^UTILITY(U,$J,358.3,1422,1,5,0)
- ;;=5^Mech Comp AICD
- ;;^UTILITY(U,$J,358.3,1422,2)
- ;;=^303359
- ;;^UTILITY(U,$J,358.3,1423,0)
- ;;=V45.01^^11^122^32
- ;;^UTILITY(U,$J,358.3,1423,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1423,1,4,0)
- ;;=4^V45.01
- ;;^UTILITY(U,$J,358.3,1423,1,5,0)
- ;;=5^S/P Pacemaker
- ;;^UTILITY(U,$J,358.3,1423,2)
- ;;=^303419
- ;;^UTILITY(U,$J,358.3,1424,0)
- ;;=V45.02^^11^122^31
- ;;^UTILITY(U,$J,358.3,1424,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1424,1,4,0)
- ;;=4^V45.02
- ;;^UTILITY(U,$J,358.3,1424,1,5,0)
- ;;=5^S/P AICD
- ;;^UTILITY(U,$J,358.3,1424,2)
- ;;=^303420
- ;;^UTILITY(U,$J,358.3,1425,0)
- ;;=V53.31^^11^122^28
- ;;^UTILITY(U,$J,358.3,1425,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1239,1,3,0)
+ ;;=3^Malignant neoplasm of unsp site of left female breast
+ ;;^UTILITY(U,$J,358.3,1239,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,1239,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,1240,0)
+ ;;=C46.9^^3^39^43
+ ;;^UTILITY(U,$J,358.3,1240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1240,1,3,0)
+ ;;=3^Kaposi's sarcoma, unspecified
+ ;;^UTILITY(U,$J,358.3,1240,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,1240,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,1241,0)
+ ;;=C61.^^3^39^72
+ ;;^UTILITY(U,$J,358.3,1241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1241,1,3,0)
+ ;;=3^Malignant neoplasm of prostate
+ ;;^UTILITY(U,$J,358.3,1241,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,1241,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,1242,0)
+ ;;=C62.11^^3^39^57
+ ;;^UTILITY(U,$J,358.3,1242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1242,1,3,0)
+ ;;=3^Malignant neoplasm of descended right testis
+ ;;^UTILITY(U,$J,358.3,1242,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,1242,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,1243,0)
+ ;;=C62.12^^3^39^56
+ ;;^UTILITY(U,$J,358.3,1243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1243,1,3,0)
+ ;;=3^Malignant neoplasm of descended left testis
+ ;;^UTILITY(U,$J,358.3,1243,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,1243,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,1244,0)
+ ;;=C62.91^^3^39^76
+ ;;^UTILITY(U,$J,358.3,1244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1244,1,3,0)
+ ;;=3^Malignant neoplasm of right testis, unsp descended or undescended
+ ;;^UTILITY(U,$J,358.3,1244,1,4,0)
+ ;;=4^C62.91
+ ;;^UTILITY(U,$J,358.3,1244,2)
+ ;;=^5001237
+ ;;^UTILITY(U,$J,358.3,1245,0)
+ ;;=C62.92^^3^39^65
+ ;;^UTILITY(U,$J,358.3,1245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1245,1,3,0)
+ ;;=3^Malignant neoplasm of left testis, unsp descended or undescended
+ ;;^UTILITY(U,$J,358.3,1245,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,1245,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,1246,0)
+ ;;=C67.9^^3^39^52
+ ;;^UTILITY(U,$J,358.3,1246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1246,1,3,0)
+ ;;=3^Malignant neoplasm of bladder, unspecified
+ ;;^UTILITY(U,$J,358.3,1246,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,1246,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,1247,0)
+ ;;=C64.2^^3^39^63
+ ;;^UTILITY(U,$J,358.3,1247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1247,1,3,0)
+ ;;=3^Malignant neoplasm of left kidney, except renal pelvis
+ ;;^UTILITY(U,$J,358.3,1247,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,1247,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,1248,0)
+ ;;=C64.1^^3^39^74
+ ;;^UTILITY(U,$J,358.3,1248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1248,1,3,0)
+ ;;=3^Malignant neoplasm of right kidney, except renal pelvis
+ ;;^UTILITY(U,$J,358.3,1248,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,1248,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,1249,0)
+ ;;=C65.1^^3^39^75
+ ;;^UTILITY(U,$J,358.3,1249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1249,1,3,0)
+ ;;=3^Malignant neoplasm of right renal pelvis
+ ;;^UTILITY(U,$J,358.3,1249,1,4,0)
+ ;;=4^C65.1
+ ;;^UTILITY(U,$J,358.3,1249,2)
+ ;;=^5001251
+ ;;^UTILITY(U,$J,358.3,1250,0)
+ ;;=C65.2^^3^39^64
+ ;;^UTILITY(U,$J,358.3,1250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1250,1,3,0)
+ ;;=3^Malignant neoplasm of left renal pelvis
+ ;;^UTILITY(U,$J,358.3,1250,1,4,0)
+ ;;=4^C65.2
+ ;;^UTILITY(U,$J,358.3,1250,2)
+ ;;=^5001252
+ ;;^UTILITY(U,$J,358.3,1251,0)
+ ;;=C71.9^^3^39^53
+ ;;^UTILITY(U,$J,358.3,1251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1251,1,3,0)
+ ;;=3^Malignant neoplasm of brain, unspecified
+ ;;^UTILITY(U,$J,358.3,1251,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,1251,2)
+ ;;=^5001297

@@ -1,12 +1,11 @@
 FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
- ;;5.5;DIETETICS;**8,13,23,25,28,35,37**;Jan 28, 2005;Build 2
+ ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39**;Jan 28, 2005;Build 3
  ;
  ;10/9/2009 SLC/GDU FH*5.5*23
  ;  Remedy 317642 FGH - patient food allergy not mapping to N&FS food preferences
  ;  Adding the following food allergies:
  ;  Arugula, Capers, Curry, Gooseberries, Meat Tenderizer, Olestra, Orange Dye
  ;  Pomegranates, Pudding, Saffron, Stevia, Water Chestnuts
- ;
  ;6/22/2011 SLC/GDU FH*5.5*28
  ;  Remedy 490577 - Need N&FS patch to add OCTOPUS, KIDNEY BEANS as food allergies
  ;  Adding the following food allergies: Kidney Beans, Octopus
@@ -18,6 +17,10 @@ FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
  ;  Adding the following food allergies: 
  ;  Margarine, Raw Onions, Raw Vegetables, Turmeric, Canola Oil, Erythritol,
  ;  Kale, Agave, Hemp Milk, Taro Root
+ ;6/2/2015 SLC/GDU FH*5.5*39
+ ;  Remedy 1260817 - PSPO 1380 changes needed due to NTRT
+ ;  Adding the following food allergies:
+ ;  PAWPAW, MULBERRY, MOLASSES
 TMPGL ; Create ^TMP Global
  K ^TMP($J,"FHALG") S FHK=0
  F  S FHK=FHK+1,FHFPS=$T(FPS+FHK),FHZ1=$P(FHFPS,";",3) Q:FHZ1=""  D
@@ -349,3 +352,6 @@ FPS ;;
  ;;AGAVE;AGAVE
  ;;MILK, HEMP;HEMP MILK
  ;;ROOT, TARO;TARO ROOT
+ ;;PAWPAW;PAWPAW
+ ;;MULBERRY;MULBERRY
+ ;;MOLASSES;MOLASSES

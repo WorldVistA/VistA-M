@@ -1,148 +1,136 @@
-IBDEI02I ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02I ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,704,1,0)
+ ;;^UTILITY(U,$J,358.3,622,1,4,0)
+ ;;=4^D49.3
+ ;;^UTILITY(U,$J,358.3,622,2)
+ ;;=^5002273
+ ;;^UTILITY(U,$J,358.3,623,0)
+ ;;=D49.4^^2^26^4
+ ;;^UTILITY(U,$J,358.3,623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,704,1,3,0)
- ;;=3^385.09
- ;;^UTILITY(U,$J,358.3,704,1,4,0)
- ;;=4^Tympnsclr-Oth Site Comb
- ;;^UTILITY(U,$J,358.3,704,2)
- ;;=^269443
- ;;^UTILITY(U,$J,358.3,705,0)
- ;;=388.9^^8^85^47
- ;;^UTILITY(U,$J,358.3,705,1,0)
+ ;;^UTILITY(U,$J,358.3,623,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of bladder
+ ;;^UTILITY(U,$J,358.3,623,1,4,0)
+ ;;=4^D49.4
+ ;;^UTILITY(U,$J,358.3,623,2)
+ ;;=^5002274
+ ;;^UTILITY(U,$J,358.3,624,0)
+ ;;=D49.5^^2^26^10
+ ;;^UTILITY(U,$J,358.3,624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,705,1,3,0)
- ;;=3^388.9
- ;;^UTILITY(U,$J,358.3,705,1,4,0)
- ;;=4^Disorder Of Ear Nos
- ;;^UTILITY(U,$J,358.3,705,2)
- ;;=^123831
- ;;^UTILITY(U,$J,358.3,706,0)
- ;;=386.19^^8^85^98
- ;;^UTILITY(U,$J,358.3,706,1,0)
+ ;;^UTILITY(U,$J,358.3,624,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of other genitourinary organs
+ ;;^UTILITY(U,$J,358.3,624,1,4,0)
+ ;;=4^D49.5
+ ;;^UTILITY(U,$J,358.3,624,2)
+ ;;=^5002275
+ ;;^UTILITY(U,$J,358.3,625,0)
+ ;;=D49.6^^2^26^6
+ ;;^UTILITY(U,$J,358.3,625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,706,1,3,0)
- ;;=3^386.19
- ;;^UTILITY(U,$J,358.3,706,1,4,0)
- ;;=4^Vertigo, Otogenic
- ;;^UTILITY(U,$J,358.3,706,2)
- ;;=^87791
- ;;^UTILITY(U,$J,358.3,707,0)
- ;;=386.2^^8^85^97
- ;;^UTILITY(U,$J,358.3,707,1,0)
+ ;;^UTILITY(U,$J,358.3,625,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of brain
+ ;;^UTILITY(U,$J,358.3,625,1,4,0)
+ ;;=4^D49.6
+ ;;^UTILITY(U,$J,358.3,625,2)
+ ;;=^5002276
+ ;;^UTILITY(U,$J,358.3,626,0)
+ ;;=D49.7^^2^26^9
+ ;;^UTILITY(U,$J,358.3,626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,707,1,3,0)
- ;;=3^386.2
- ;;^UTILITY(U,$J,358.3,707,1,4,0)
- ;;=4^Vertigo, Central
- ;;^UTILITY(U,$J,358.3,707,2)
- ;;=^269484
- ;;^UTILITY(U,$J,358.3,708,0)
- ;;=386.11^^8^85^96
- ;;^UTILITY(U,$J,358.3,708,1,0)
+ ;;^UTILITY(U,$J,358.3,626,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of endo glands
+ ;;^UTILITY(U,$J,358.3,626,1,4,0)
+ ;;=4^D49.7
+ ;;^UTILITY(U,$J,358.3,626,2)
+ ;;=^5002277
+ ;;^UTILITY(U,$J,358.3,627,0)
+ ;;=D49.81^^2^26^13
+ ;;^UTILITY(U,$J,358.3,627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,708,1,3,0)
- ;;=3^386.11
- ;;^UTILITY(U,$J,358.3,708,1,4,0)
- ;;=4^Vertigo, BPPV
- ;;^UTILITY(U,$J,358.3,708,2)
- ;;=^269480
- ;;^UTILITY(U,$J,358.3,709,0)
- ;;=388.40^^8^85^24
- ;;^UTILITY(U,$J,358.3,709,1,0)
+ ;;^UTILITY(U,$J,358.3,627,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of retina and choroid
+ ;;^UTILITY(U,$J,358.3,627,1,4,0)
+ ;;=4^D49.81
+ ;;^UTILITY(U,$J,358.3,627,2)
+ ;;=^5002278
+ ;;^UTILITY(U,$J,358.3,628,0)
+ ;;=D49.89^^2^26^11
+ ;;^UTILITY(U,$J,358.3,628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,709,1,3,0)
- ;;=3^388.40
- ;;^UTILITY(U,$J,358.3,709,1,4,0)
- ;;=4^Auditory Perception, Abnormal NOS
- ;;^UTILITY(U,$J,358.3,709,2)
- ;;=^269531
- ;;^UTILITY(U,$J,358.3,710,0)
- ;;=386.10^^8^85^99
- ;;^UTILITY(U,$J,358.3,710,1,0)
+ ;;^UTILITY(U,$J,358.3,628,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of other specified sites
+ ;;^UTILITY(U,$J,358.3,628,1,4,0)
+ ;;=4^D49.89
+ ;;^UTILITY(U,$J,358.3,628,2)
+ ;;=^5002279
+ ;;^UTILITY(U,$J,358.3,629,0)
+ ;;=D49.9^^2^26^14
+ ;;^UTILITY(U,$J,358.3,629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,710,1,3,0)
- ;;=3^386.10
- ;;^UTILITY(U,$J,358.3,710,1,4,0)
- ;;=4^Vertigo, Peripheral Nos
- ;;^UTILITY(U,$J,358.3,710,2)
- ;;=^269478
- ;;^UTILITY(U,$J,358.3,711,0)
- ;;=386.01^^8^85^19
- ;;^UTILITY(U,$J,358.3,711,1,0)
+ ;;^UTILITY(U,$J,358.3,629,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of unspecified site
+ ;;^UTILITY(U,$J,358.3,629,1,4,0)
+ ;;=4^D49.9
+ ;;^UTILITY(U,$J,358.3,629,2)
+ ;;=^5002280
+ ;;^UTILITY(U,$J,358.3,630,0)
+ ;;=D68.51^^2^26^1
+ ;;^UTILITY(U,$J,358.3,630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,711,1,3,0)
- ;;=3^386.01
- ;;^UTILITY(U,$J,358.3,711,1,4,0)
- ;;=4^Actv Menieres, Cochleuest
- ;;^UTILITY(U,$J,358.3,711,2)
- ;;=^269469
- ;;^UTILITY(U,$J,358.3,712,0)
- ;;=386.02^^8^85^18
- ;;^UTILITY(U,$J,358.3,712,1,0)
+ ;;^UTILITY(U,$J,358.3,630,1,3,0)
+ ;;=3^Activated protein C resistance
+ ;;^UTILITY(U,$J,358.3,630,1,4,0)
+ ;;=4^D68.51
+ ;;^UTILITY(U,$J,358.3,630,2)
+ ;;=^5002358
+ ;;^UTILITY(U,$J,358.3,631,0)
+ ;;=D68.52^^2^26^16
+ ;;^UTILITY(U,$J,358.3,631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,712,1,3,0)
- ;;=3^386.02
- ;;^UTILITY(U,$J,358.3,712,1,4,0)
- ;;=4^Actv Menieres, Cochlear
- ;;^UTILITY(U,$J,358.3,712,2)
- ;;=^269471
- ;;^UTILITY(U,$J,358.3,713,0)
- ;;=386.03^^8^85^20
- ;;^UTILITY(U,$J,358.3,713,1,0)
+ ;;^UTILITY(U,$J,358.3,631,1,3,0)
+ ;;=3^Prothrombin gene mutation
+ ;;^UTILITY(U,$J,358.3,631,1,4,0)
+ ;;=4^D68.52
+ ;;^UTILITY(U,$J,358.3,631,2)
+ ;;=^5002359
+ ;;^UTILITY(U,$J,358.3,632,0)
+ ;;=D68.59^^2^26^15
+ ;;^UTILITY(U,$J,358.3,632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,713,1,3,0)
- ;;=3^386.03
- ;;^UTILITY(U,$J,358.3,713,1,4,0)
- ;;=4^Actv Menieres, Vestibular
- ;;^UTILITY(U,$J,358.3,713,2)
- ;;=^269473
- ;;^UTILITY(U,$J,358.3,714,0)
- ;;=386.12^^8^85^100
- ;;^UTILITY(U,$J,358.3,714,1,0)
+ ;;^UTILITY(U,$J,358.3,632,1,3,0)
+ ;;=3^Primary Thrombophilia NEC
+ ;;^UTILITY(U,$J,358.3,632,1,4,0)
+ ;;=4^D68.59
+ ;;^UTILITY(U,$J,358.3,632,2)
+ ;;=^5002360
+ ;;^UTILITY(U,$J,358.3,633,0)
+ ;;=D68.61^^2^26^2
+ ;;^UTILITY(U,$J,358.3,633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,714,1,3,0)
- ;;=3^386.12
- ;;^UTILITY(U,$J,358.3,714,1,4,0)
- ;;=4^Vestibular Neuronitis
- ;;^UTILITY(U,$J,358.3,714,2)
- ;;=^126186
- ;;^UTILITY(U,$J,358.3,715,0)
- ;;=388.41^^8^85^46
- ;;^UTILITY(U,$J,358.3,715,1,0)
+ ;;^UTILITY(U,$J,358.3,633,1,3,0)
+ ;;=3^Antiphospholipid syndrome
+ ;;^UTILITY(U,$J,358.3,633,1,4,0)
+ ;;=4^D68.61
+ ;;^UTILITY(U,$J,358.3,633,2)
+ ;;=^185421
+ ;;^UTILITY(U,$J,358.3,634,0)
+ ;;=D68.62^^2^26^3
+ ;;^UTILITY(U,$J,358.3,634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,715,1,3,0)
- ;;=3^388.41
- ;;^UTILITY(U,$J,358.3,715,1,4,0)
- ;;=4^Diplacusis
- ;;^UTILITY(U,$J,358.3,715,2)
- ;;=^265456
- ;;^UTILITY(U,$J,358.3,716,0)
- ;;=388.45^^8^85^17
- ;;^UTILITY(U,$J,358.3,716,1,0)
+ ;;^UTILITY(U,$J,358.3,634,1,3,0)
+ ;;=3^Lupus anticoagulant syndrome
+ ;;^UTILITY(U,$J,358.3,634,1,4,0)
+ ;;=4^D68.62
+ ;;^UTILITY(U,$J,358.3,634,2)
+ ;;=^5002361
+ ;;^UTILITY(U,$J,358.3,635,0)
+ ;;=Z85.810^^2^27^3
+ ;;^UTILITY(U,$J,358.3,635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,716,1,3,0)
- ;;=3^388.45
- ;;^UTILITY(U,$J,358.3,716,1,4,0)
- ;;=4^Acq Auditory Process Disorder
- ;;^UTILITY(U,$J,358.3,716,2)
- ;;=^335255
- ;;^UTILITY(U,$J,358.3,717,0)
- ;;=386.41^^8^85^85
- ;;^UTILITY(U,$J,358.3,717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,717,1,3,0)
- ;;=3^386.41
- ;;^UTILITY(U,$J,358.3,717,1,4,0)
- ;;=4^Round Window Fistula
- ;;^UTILITY(U,$J,358.3,717,2)
- ;;=^269497
- ;;^UTILITY(U,$J,358.3,718,0)
- ;;=380.01^^8^85^10
- ;;^UTILITY(U,$J,358.3,718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,718,1,3,0)
- ;;=3^380.01
+ ;;^UTILITY(U,$J,358.3,635,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of tongue
+ ;;^UTILITY(U,$J,358.3,635,1,4,0)
+ ;;=4^Z85.810

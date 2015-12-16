@@ -1,142 +1,126 @@
-IBDEI05H ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05H ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2279,2)
- ;;=Splenomegaly^113452
- ;;^UTILITY(U,$J,358.3,2280,0)
- ;;=786.50^^21^191^37
- ;;^UTILITY(U,$J,358.3,2280,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2280,1,4,0)
- ;;=4^786.50
- ;;^UTILITY(U,$J,358.3,2280,1,5,0)
- ;;=5^Chest pain/Discomfort (nonsp) chest pain diff from discomfort
- ;;^UTILITY(U,$J,358.3,2280,2)
- ;;=^22485
- ;;^UTILITY(U,$J,358.3,2281,0)
- ;;=786.2^^21^191^39
- ;;^UTILITY(U,$J,358.3,2281,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2281,1,4,0)
- ;;=4^786.2
- ;;^UTILITY(U,$J,358.3,2281,1,5,0)
- ;;=5^Cough
- ;;^UTILITY(U,$J,358.3,2281,2)
- ;;=Cough^28905
- ;;^UTILITY(U,$J,358.3,2282,0)
- ;;=786.52^^21^191^53
- ;;^UTILITY(U,$J,358.3,2282,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2282,1,4,0)
- ;;=4^786.52
- ;;^UTILITY(U,$J,358.3,2282,1,5,0)
- ;;=5^Painful Respiration
- ;;^UTILITY(U,$J,358.3,2282,2)
- ;;=^89126
- ;;^UTILITY(U,$J,358.3,2283,0)
- ;;=786.1^^21^191^58
- ;;^UTILITY(U,$J,358.3,2283,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2283,1,4,0)
- ;;=4^786.1
- ;;^UTILITY(U,$J,358.3,2283,1,5,0)
- ;;=5^Stridor
- ;;^UTILITY(U,$J,358.3,2283,2)
- ;;=Stridor^114767
- ;;^UTILITY(U,$J,358.3,2284,0)
- ;;=786.07^^21^191^62
- ;;^UTILITY(U,$J,358.3,2284,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2284,1,4,0)
- ;;=4^786.07
- ;;^UTILITY(U,$J,358.3,2284,1,5,0)
- ;;=5^Wheezing
- ;;^UTILITY(U,$J,358.3,2284,2)
- ;;=Wheezing^127848
- ;;^UTILITY(U,$J,358.3,2285,0)
- ;;=786.59^^21^191^36
- ;;^UTILITY(U,$J,358.3,2285,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2285,1,4,0)
- ;;=4^786.59
- ;;^UTILITY(U,$J,358.3,2285,1,5,0)
- ;;=5^Chest Pain
- ;;^UTILITY(U,$J,358.3,2285,2)
- ;;=Chest Pain^87384
- ;;^UTILITY(U,$J,358.3,2286,0)
- ;;=781.0^^21^191^28
- ;;^UTILITY(U,$J,358.3,2286,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2286,1,4,0)
- ;;=4^781.0
- ;;^UTILITY(U,$J,358.3,2286,1,5,0)
- ;;=5^Abnormal Involuntary Movement
- ;;^UTILITY(U,$J,358.3,2286,2)
- ;;=Abnormal Involuntary MMovement^23827
- ;;^UTILITY(U,$J,358.3,2287,0)
- ;;=781.2^^21^191^31
- ;;^UTILITY(U,$J,358.3,2287,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2287,1,4,0)
- ;;=4^781.2
- ;;^UTILITY(U,$J,358.3,2287,1,5,0)
- ;;=5^Abnormality of Gait
- ;;^UTILITY(U,$J,358.3,2287,2)
- ;;=^48820
- ;;^UTILITY(U,$J,358.3,2288,0)
- ;;=784.3^^21^191^32
- ;;^UTILITY(U,$J,358.3,2288,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2288,1,4,0)
- ;;=4^784.3
- ;;^UTILITY(U,$J,358.3,2288,1,5,0)
- ;;=5^Aphasia
- ;;^UTILITY(U,$J,358.3,2288,2)
- ;;=Aphasia^9453
- ;;^UTILITY(U,$J,358.3,2289,0)
- ;;=781.3^^21^191^47
- ;;^UTILITY(U,$J,358.3,2289,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2289,1,4,0)
- ;;=4^781.3
- ;;^UTILITY(U,$J,358.3,2289,1,5,0)
- ;;=5^Lack of Coordination
- ;;^UTILITY(U,$J,358.3,2289,2)
- ;;=^11172
- ;;^UTILITY(U,$J,358.3,2290,0)
- ;;=781.4^^21^191^60
- ;;^UTILITY(U,$J,358.3,2290,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2290,1,4,0)
- ;;=4^781.4
- ;;^UTILITY(U,$J,358.3,2290,1,5,0)
- ;;=5^Transient Limb Paralysis
- ;;^UTILITY(U,$J,358.3,2290,2)
- ;;=^273353
- ;;^UTILITY(U,$J,358.3,2291,0)
- ;;=368.9^^21^191^61
- ;;^UTILITY(U,$J,358.3,2291,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2291,1,4,0)
- ;;=4^368.9
- ;;^UTILITY(U,$J,358.3,2291,1,5,0)
- ;;=5^Visual disturbance
- ;;^UTILITY(U,$J,358.3,2291,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,2292,0)
- ;;=719.7^^21^191^40
- ;;^UTILITY(U,$J,358.3,2292,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2292,1,4,0)
- ;;=4^719.7
- ;;^UTILITY(U,$J,358.3,2292,1,5,0)
- ;;=5^Difficulty In Walking
- ;;^UTILITY(U,$J,358.3,2292,2)
- ;;=^329945
- ;;^UTILITY(U,$J,358.3,2293,0)
- ;;=799.01^^21^191^34
- ;;^UTILITY(U,$J,358.3,2293,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2293,1,4,0)
- ;;=4^799.01
+ ;;^UTILITY(U,$J,358.3,2045,1,3,0)
+ ;;=3^Open bite, left forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2045,1,4,0)
+ ;;=4^S51.852A
+ ;;^UTILITY(U,$J,358.3,2045,2)
+ ;;=^5028692
+ ;;^UTILITY(U,$J,358.3,2046,0)
+ ;;=S40.861A^^4^62^111
+ ;;^UTILITY(U,$J,358.3,2046,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2046,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of right upper arm, init encntr
+ ;;^UTILITY(U,$J,358.3,2046,1,4,0)
+ ;;=4^S40.861A
+ ;;^UTILITY(U,$J,358.3,2046,2)
+ ;;=^5026261
+ ;;^UTILITY(U,$J,358.3,2047,0)
+ ;;=S40.862A^^4^62^109
+ ;;^UTILITY(U,$J,358.3,2047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2047,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of left upper arm, init encntr
+ ;;^UTILITY(U,$J,358.3,2047,1,4,0)
+ ;;=4^S40.862A
+ ;;^UTILITY(U,$J,358.3,2047,2)
+ ;;=^5026264
+ ;;^UTILITY(U,$J,358.3,2048,0)
+ ;;=S50.861A^^4^62^110
+ ;;^UTILITY(U,$J,358.3,2048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2048,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of right forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,2048,1,4,0)
+ ;;=4^S50.861A
+ ;;^UTILITY(U,$J,358.3,2048,2)
+ ;;=^5028590
+ ;;^UTILITY(U,$J,358.3,2049,0)
+ ;;=S50.862A^^4^62^108
+ ;;^UTILITY(U,$J,358.3,2049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2049,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of left forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2049,1,4,0)
+ ;;=4^S50.862A
+ ;;^UTILITY(U,$J,358.3,2049,2)
+ ;;=^5028593
+ ;;^UTILITY(U,$J,358.3,2050,0)
+ ;;=S91.351A^^4^62^148
+ ;;^UTILITY(U,$J,358.3,2050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2050,1,3,0)
+ ;;=3^Open bite, right foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,2050,1,4,0)
+ ;;=4^S91.351A
+ ;;^UTILITY(U,$J,358.3,2050,2)
+ ;;=^5044344
+ ;;^UTILITY(U,$J,358.3,2051,0)
+ ;;=S91.352A^^4^62^140
+ ;;^UTILITY(U,$J,358.3,2051,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2051,1,3,0)
+ ;;=3^Open bite, left foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,2051,1,4,0)
+ ;;=4^S91.352A
+ ;;^UTILITY(U,$J,358.3,2051,2)
+ ;;=^5044347
+ ;;^UTILITY(U,$J,358.3,2052,0)
+ ;;=S61.451A^^4^62^151
+ ;;^UTILITY(U,$J,358.3,2052,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2052,1,3,0)
+ ;;=3^Open bite, right hand, initial encounter
+ ;;^UTILITY(U,$J,358.3,2052,1,4,0)
+ ;;=4^S61.451A
+ ;;^UTILITY(U,$J,358.3,2052,2)
+ ;;=^5033011
+ ;;^UTILITY(U,$J,358.3,2053,0)
+ ;;=S61.452A^^4^62^143
+ ;;^UTILITY(U,$J,358.3,2053,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2053,1,3,0)
+ ;;=3^Open bite, left hand, initial encounter
+ ;;^UTILITY(U,$J,358.3,2053,1,4,0)
+ ;;=4^S61.452A
+ ;;^UTILITY(U,$J,358.3,2053,2)
+ ;;=^5033014
+ ;;^UTILITY(U,$J,358.3,2054,0)
+ ;;=S81.851A^^4^62^153
+ ;;^UTILITY(U,$J,358.3,2054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2054,1,3,0)
+ ;;=3^Open bite, right lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,2054,1,4,0)
+ ;;=4^S81.851A
+ ;;^UTILITY(U,$J,358.3,2054,2)
+ ;;=^5040095
+ ;;^UTILITY(U,$J,358.3,2055,0)
+ ;;=S81.852A^^4^62^145
+ ;;^UTILITY(U,$J,358.3,2055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2055,1,3,0)
+ ;;=3^Open bite, left lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,2055,1,4,0)
+ ;;=4^S81.852A
+ ;;^UTILITY(U,$J,358.3,2055,2)
+ ;;=^5040098
+ ;;^UTILITY(U,$J,358.3,2056,0)
+ ;;=S91.151A^^4^62^150
+ ;;^UTILITY(U,$J,358.3,2056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2056,1,3,0)
+ ;;=3^Open bite, right great toe w/o damage to nail, init encntr
+ ;;^UTILITY(U,$J,358.3,2056,1,4,0)
+ ;;=4^S91.151A
+ ;;^UTILITY(U,$J,358.3,2056,2)
+ ;;=^5044243
+ ;;^UTILITY(U,$J,358.3,2057,0)
+ ;;=S91.152A^^4^62^142
+ ;;^UTILITY(U,$J,358.3,2057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2057,1,3,0)
+ ;;=3^Open bite, left great toe w/o damage to nail, init encntr

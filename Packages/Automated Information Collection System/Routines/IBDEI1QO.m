@@ -1,134 +1,126 @@
-IBDEI1QO ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QO ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31126,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,31126,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,31127,0)
- ;;=M34.1^^190^1932^91
- ;;^UTILITY(U,$J,358.3,31127,1,0)
+ ;;^UTILITY(U,$J,358.3,30757,1,3,0)
+ ;;=3^Pain in left ankle and joint of left foot
+ ;;^UTILITY(U,$J,358.3,30757,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,30757,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,30758,0)
+ ;;=M76.72^^179^1927^22
+ ;;^UTILITY(U,$J,358.3,30758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31127,1,3,0)
- ;;=3^CR(E)ST Syndrome
- ;;^UTILITY(U,$J,358.3,31127,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,31127,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,31128,0)
- ;;=M34.2^^190^1932^274
- ;;^UTILITY(U,$J,358.3,31128,1,0)
+ ;;^UTILITY(U,$J,358.3,30758,1,3,0)
+ ;;=3^Peroneal tendinitis, left leg
+ ;;^UTILITY(U,$J,358.3,30758,1,4,0)
+ ;;=4^M76.72
+ ;;^UTILITY(U,$J,358.3,30758,2)
+ ;;=^5013289
+ ;;^UTILITY(U,$J,358.3,30759,0)
+ ;;=M76.71^^179^1927^23
+ ;;^UTILITY(U,$J,358.3,30759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31128,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,31128,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,31128,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,31129,0)
- ;;=M34.81^^190^1932^276
- ;;^UTILITY(U,$J,358.3,31129,1,0)
+ ;;^UTILITY(U,$J,358.3,30759,1,3,0)
+ ;;=3^Peroneal tendinitis, right leg
+ ;;^UTILITY(U,$J,358.3,30759,1,4,0)
+ ;;=4^M76.71
+ ;;^UTILITY(U,$J,358.3,30759,2)
+ ;;=^5013288
+ ;;^UTILITY(U,$J,358.3,30760,0)
+ ;;=M19.072^^179^1927^26
+ ;;^UTILITY(U,$J,358.3,30760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31129,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,31129,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,31129,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,31130,0)
- ;;=M34.82^^190^1932^277
- ;;^UTILITY(U,$J,358.3,31130,1,0)
+ ;;^UTILITY(U,$J,358.3,30760,1,3,0)
+ ;;=3^Primary osteoarthritis, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,30760,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,30760,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,30761,0)
+ ;;=M76.822^^179^1927^24
+ ;;^UTILITY(U,$J,358.3,30761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31130,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,31130,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,31130,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,31131,0)
- ;;=M34.83^^190^1932^278
- ;;^UTILITY(U,$J,358.3,31131,1,0)
+ ;;^UTILITY(U,$J,358.3,30761,1,3,0)
+ ;;=3^Posterior tibial tendinitis, left leg
+ ;;^UTILITY(U,$J,358.3,30761,1,4,0)
+ ;;=4^M76.822
+ ;;^UTILITY(U,$J,358.3,30761,2)
+ ;;=^5013294
+ ;;^UTILITY(U,$J,358.3,30762,0)
+ ;;=M76.821^^179^1927^25
+ ;;^UTILITY(U,$J,358.3,30762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31131,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,31131,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,31131,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,31132,0)
- ;;=M34.89^^190^1932^275
- ;;^UTILITY(U,$J,358.3,31132,1,0)
+ ;;^UTILITY(U,$J,358.3,30762,1,3,0)
+ ;;=3^Posterior tibial tendinitis, right leg
+ ;;^UTILITY(U,$J,358.3,30762,1,4,0)
+ ;;=4^M76.821
+ ;;^UTILITY(U,$J,358.3,30762,2)
+ ;;=^5013293
+ ;;^UTILITY(U,$J,358.3,30763,0)
+ ;;=M19.071^^179^1927^27
+ ;;^UTILITY(U,$J,358.3,30763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31132,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,31132,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,31132,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,31133,0)
- ;;=M34.9^^190^1932^279
- ;;^UTILITY(U,$J,358.3,31133,1,0)
+ ;;^UTILITY(U,$J,358.3,30763,1,3,0)
+ ;;=3^Primary osteoarthritis, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,30763,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,30763,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,30764,0)
+ ;;=M66.361^^179^1927^28
+ ;;^UTILITY(U,$J,358.3,30764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31133,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,31133,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,31133,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,31134,0)
- ;;=R21.^^190^1932^258
- ;;^UTILITY(U,$J,358.3,31134,1,0)
+ ;;^UTILITY(U,$J,358.3,30764,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, right lower leg
+ ;;^UTILITY(U,$J,358.3,30764,1,4,0)
+ ;;=4^M66.361
+ ;;^UTILITY(U,$J,358.3,30764,2)
+ ;;=^5012887
+ ;;^UTILITY(U,$J,358.3,30765,0)
+ ;;=M66.362^^179^1927^29
+ ;;^UTILITY(U,$J,358.3,30765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31134,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,31134,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,31134,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,31135,0)
- ;;=R23.3^^190^1932^270
- ;;^UTILITY(U,$J,358.3,31135,1,0)
+ ;;^UTILITY(U,$J,358.3,30765,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, left lower leg
+ ;;^UTILITY(U,$J,358.3,30765,1,4,0)
+ ;;=4^M66.362
+ ;;^UTILITY(U,$J,358.3,30765,2)
+ ;;=^5012888
+ ;;^UTILITY(U,$J,358.3,30766,0)
+ ;;=S93.401A^^179^1927^31
+ ;;^UTILITY(U,$J,358.3,30766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31135,1,3,0)
- ;;=3^Spontaneous Ecchymoses
- ;;^UTILITY(U,$J,358.3,31135,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,31135,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,31136,0)
- ;;=L03.113^^190^1932^112
- ;;^UTILITY(U,$J,358.3,31136,1,0)
+ ;;^UTILITY(U,$J,358.3,30766,1,3,0)
+ ;;=3^Sprain of unspecified ligament of right ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,30766,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,30766,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,30767,0)
+ ;;=S93.402A^^179^1927^30
+ ;;^UTILITY(U,$J,358.3,30767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31136,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,31136,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,31136,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,31137,0)
- ;;=L03.114^^190^1932^105
- ;;^UTILITY(U,$J,358.3,31137,1,0)
+ ;;^UTILITY(U,$J,358.3,30767,1,3,0)
+ ;;=3^Sprain of unspecified ligament of left ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,30767,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,30767,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,30768,0)
+ ;;=M12.572^^179^1927^32
+ ;;^UTILITY(U,$J,358.3,30768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31137,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,31137,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,31137,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,31138,0)
- ;;=L03.115^^190^1932^109
- ;;^UTILITY(U,$J,358.3,31138,1,0)
+ ;;^UTILITY(U,$J,358.3,30768,1,3,0)
+ ;;=3^Traumatic arthropathy, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,30768,1,4,0)
+ ;;=4^M12.572
+ ;;^UTILITY(U,$J,358.3,30768,2)
+ ;;=^5010638
+ ;;^UTILITY(U,$J,358.3,30769,0)
+ ;;=M12.571^^179^1927^33
+ ;;^UTILITY(U,$J,358.3,30769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31138,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,31138,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,31138,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,31139,0)
- ;;=L03.116^^190^1932^102
- ;;^UTILITY(U,$J,358.3,31139,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31139,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,30769,1,3,0)
+ ;;=3^Traumatic arthropathy, right ankle and foot

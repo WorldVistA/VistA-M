@@ -1,142 +1,128 @@
-IBDEI05S ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05S ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2434,1,5,0)
- ;;=5^ACTINIC KERATOSIS
- ;;^UTILITY(U,$J,358.3,2435,0)
- ;;=719.40^^21^199^74
- ;;^UTILITY(U,$J,358.3,2435,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2435,1,4,0)
- ;;=4^719.40
- ;;^UTILITY(U,$J,358.3,2435,1,5,0)
- ;;=5^JOINT PAIN-UNSPEC
- ;;^UTILITY(U,$J,358.3,2436,0)
- ;;=380.4^^21^199^66
- ;;^UTILITY(U,$J,358.3,2436,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2436,1,4,0)
- ;;=4^380.4
- ;;^UTILITY(U,$J,358.3,2436,1,5,0)
- ;;=5^IMPACTED CERUMEN
- ;;^UTILITY(U,$J,358.3,2437,0)
- ;;=727.3^^21^199^20
- ;;^UTILITY(U,$J,358.3,2437,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2437,1,4,0)
- ;;=4^727.3
- ;;^UTILITY(U,$J,358.3,2437,1,5,0)
- ;;=5^BURSITIS NEC
- ;;^UTILITY(U,$J,358.3,2438,0)
- ;;=389.9^^21^199^59
- ;;^UTILITY(U,$J,358.3,2438,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2438,1,4,0)
- ;;=4^389.9
- ;;^UTILITY(U,$J,358.3,2438,1,5,0)
- ;;=5^HEARING LOSS NOS
- ;;^UTILITY(U,$J,358.3,2439,0)
- ;;=274.9^^21^199^57
- ;;^UTILITY(U,$J,358.3,2439,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2439,1,4,0)
- ;;=4^274.9
- ;;^UTILITY(U,$J,358.3,2439,1,5,0)
- ;;=5^GOUT NOS
- ;;^UTILITY(U,$J,358.3,2440,0)
- ;;=729.2^^21^199^79
- ;;^UTILITY(U,$J,358.3,2440,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2440,1,4,0)
- ;;=4^729.2
- ;;^UTILITY(U,$J,358.3,2440,1,5,0)
- ;;=5^NEURALGIA/NEURITIS/RADICULITIS
- ;;^UTILITY(U,$J,358.3,2440,2)
- ;;=^82605
- ;;^UTILITY(U,$J,358.3,2441,0)
- ;;=366.9^^21^199^22
- ;;^UTILITY(U,$J,358.3,2441,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2441,1,4,0)
- ;;=4^366.9
- ;;^UTILITY(U,$J,358.3,2441,1,5,0)
- ;;=5^CATARACT NOS
- ;;^UTILITY(U,$J,358.3,2442,0)
- ;;=278.00^^21^199^81
- ;;^UTILITY(U,$J,358.3,2442,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2442,1,4,0)
- ;;=4^278.00
- ;;^UTILITY(U,$J,358.3,2442,1,5,0)
- ;;=5^OBESITY, UNSP
- ;;^UTILITY(U,$J,358.3,2443,0)
- ;;=365.9^^21^199^56
- ;;^UTILITY(U,$J,358.3,2443,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2443,1,4,0)
- ;;=4^365.9
- ;;^UTILITY(U,$J,358.3,2443,1,5,0)
- ;;=5^GLAUCOMA NOS
- ;;^UTILITY(U,$J,358.3,2444,0)
- ;;=496.^^21^199^39
- ;;^UTILITY(U,$J,358.3,2444,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2444,1,4,0)
- ;;=4^496.
- ;;^UTILITY(U,$J,358.3,2444,1,5,0)
- ;;=5^COPD
- ;;^UTILITY(U,$J,358.3,2445,0)
- ;;=437.9^^21^199^23
- ;;^UTILITY(U,$J,358.3,2445,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2445,1,4,0)
- ;;=4^437.9
- ;;^UTILITY(U,$J,358.3,2445,1,5,0)
- ;;=5^CEREBROVASC DISEASE NOS
- ;;^UTILITY(U,$J,358.3,2446,0)
- ;;=780.4^^21^199^45
- ;;^UTILITY(U,$J,358.3,2446,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2446,1,4,0)
- ;;=4^780.4
- ;;^UTILITY(U,$J,358.3,2446,1,5,0)
- ;;=5^DIZZINESS AND GIDDINESS
- ;;^UTILITY(U,$J,358.3,2447,0)
- ;;=332.0^^21^199^84
- ;;^UTILITY(U,$J,358.3,2447,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2447,1,4,0)
- ;;=4^332.0
- ;;^UTILITY(U,$J,358.3,2447,1,5,0)
- ;;=5^PARKINSON'S DISEASE
- ;;^UTILITY(U,$J,358.3,2448,0)
- ;;=356.9^^21^199^87
- ;;^UTILITY(U,$J,358.3,2448,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2448,1,4,0)
- ;;=4^356.9
- ;;^UTILITY(U,$J,358.3,2448,1,5,0)
- ;;=5^PERIPHERAL NEUROPATHY
- ;;^UTILITY(U,$J,358.3,2449,0)
- ;;=786.2^^21^199^40
- ;;^UTILITY(U,$J,358.3,2449,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2449,1,4,0)
- ;;=4^786.2
- ;;^UTILITY(U,$J,358.3,2449,1,5,0)
- ;;=5^COUGH
- ;;^UTILITY(U,$J,358.3,2450,0)
- ;;=435.9^^21^199^97
- ;;^UTILITY(U,$J,358.3,2450,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2450,1,4,0)
- ;;=4^435.9
- ;;^UTILITY(U,$J,358.3,2450,1,5,0)
- ;;=5^TRANS CEREB ISCHEMIA NOS
- ;;^UTILITY(U,$J,358.3,2451,0)
- ;;=518.89^^21^199^91
- ;;^UTILITY(U,$J,358.3,2451,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2451,1,4,0)
- ;;=4^518.89
+ ;;^UTILITY(U,$J,358.3,2181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2181,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left wrist, init encntr
+ ;;^UTILITY(U,$J,358.3,2181,1,4,0)
+ ;;=4^S61.532A
+ ;;^UTILITY(U,$J,358.3,2181,2)
+ ;;=^5033041
+ ;;^UTILITY(U,$J,358.3,2182,0)
+ ;;=S86.891A^^4^62^138
+ ;;^UTILITY(U,$J,358.3,2182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2182,1,3,0)
+ ;;=3^Musc/Tend Right Lower Leg Level Inj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2182,1,4,0)
+ ;;=4^S86.891A
+ ;;^UTILITY(U,$J,358.3,2182,2)
+ ;;=^5137173
+ ;;^UTILITY(U,$J,358.3,2183,0)
+ ;;=S86.892A^^4^62^137
+ ;;^UTILITY(U,$J,358.3,2183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2183,1,3,0)
+ ;;=3^Musc/Tend Left Lower Leg Level Inj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2183,1,4,0)
+ ;;=4^S86.892A
+ ;;^UTILITY(U,$J,358.3,2183,2)
+ ;;=^5137174
+ ;;^UTILITY(U,$J,358.3,2184,0)
+ ;;=S43.51XA^^4^62^221
+ ;;^UTILITY(U,$J,358.3,2184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2184,1,3,0)
+ ;;=3^Sprain of right acromioclavicular joint, initial encounter
+ ;;^UTILITY(U,$J,358.3,2184,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,2184,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,2185,0)
+ ;;=S43.52XA^^4^62^202
+ ;;^UTILITY(U,$J,358.3,2185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2185,1,3,0)
+ ;;=3^Sprain of left acromioclavicular joint, initial encounter
+ ;;^UTILITY(U,$J,358.3,2185,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,2185,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,2186,0)
+ ;;=S93.401A^^4^62^240
+ ;;^UTILITY(U,$J,358.3,2186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2186,1,3,0)
+ ;;=3^Sprain of unspecified ligament of right ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,2186,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,2186,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,2187,0)
+ ;;=S93.402A^^4^62^239
+ ;;^UTILITY(U,$J,358.3,2187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2187,1,3,0)
+ ;;=3^Sprain of unspecified ligament of left ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,2187,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,2187,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,2188,0)
+ ;;=S53.401A^^4^62^222
+ ;;^UTILITY(U,$J,358.3,2188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2188,1,3,0)
+ ;;=3^Sprain of right elbow unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,2188,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,2188,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,2189,0)
+ ;;=S53.402A^^4^62^203
+ ;;^UTILITY(U,$J,358.3,2189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2189,1,3,0)
+ ;;=3^Sprain of left elbow unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,2189,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,2189,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,2190,0)
+ ;;=S63.610A^^4^62^225
+ ;;^UTILITY(U,$J,358.3,2190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2190,1,3,0)
+ ;;=3^Sprain of right index finger unspec, initial encou
+ ;;^UTILITY(U,$J,358.3,2190,1,4,0)
+ ;;=4^S63.610A
+ ;;^UTILITY(U,$J,358.3,2190,2)
+ ;;=^5035622
+ ;;^UTILITY(U,$J,358.3,2191,0)
+ ;;=S63.611A^^4^62^206
+ ;;^UTILITY(U,$J,358.3,2191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2191,1,3,0)
+ ;;=3^Sprain of left index finger unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,2191,1,4,0)
+ ;;=4^S63.611A
+ ;;^UTILITY(U,$J,358.3,2191,2)
+ ;;=^5035625
+ ;;^UTILITY(U,$J,358.3,2192,0)
+ ;;=S63.612A^^4^62^228
+ ;;^UTILITY(U,$J,358.3,2192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2192,1,3,0)
+ ;;=3^Sprain of right middle finger unspec, initial enco
+ ;;^UTILITY(U,$J,358.3,2192,1,4,0)
+ ;;=4^S63.612A
+ ;;^UTILITY(U,$J,358.3,2192,2)
+ ;;=^5035628
+ ;;^UTILITY(U,$J,358.3,2193,0)
+ ;;=S63.613A^^4^62^209
+ ;;^UTILITY(U,$J,358.3,2193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2193,1,3,0)
+ ;;=3^Sprain of left middle finger unspec, initial encou

@@ -1,5 +1,5 @@
-MAGVORDR ;WOIFO/RRB/BT/PMK - MAGV Order Lookup ; 31 Jul 2013 9:16 AM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVORDR ;WOIFO/RRB/BT/PMK/DAC - MAGV Order Lookup ; 16 Nov 2014 9:16 AM
+ ;;3.0;IMAGING;**118,138,156**;Mar 19, 2002;Build 10;Nov 16, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -83,7 +83,7 @@ RADLKUP(CASENUMB) ; Radiology patient/study lookup
  S SITE=$P($G(^RADPT(RADPT1,"DT",RADPT2,0)),"^",3)
  ;
  ; do not include cancelled exam
- S EXAMSTS=$P(^RADPT(RADPT1,"DT",RADPT2,"P",RADPT3,0),"^",3)
+ S EXAMSTS=$P($G(^RADPT(RADPT1,"DT",RADPT2,"P",RADPT3,0)),"^",3) ; P156 DAC - Fixed undefined error
  I EXAMSTS="" Q "-1~BAD CASE #"
  S EXAMSTS=$$GET1^DIQ(72,EXAMSTS,.01)
  I EXAMSTS="" Q "-1~BAD CASE #"

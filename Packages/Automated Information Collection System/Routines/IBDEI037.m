@@ -1,128 +1,144 @@
-IBDEI037 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI037 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1091,1,2,0)
- ;;=2^37229
- ;;^UTILITY(U,$J,358.3,1091,1,3,0)
- ;;=3^TIB/Per Revasc w/Ather
- ;;^UTILITY(U,$J,358.3,1092,0)
- ;;=37230^^10^106^48^^^^1
- ;;^UTILITY(U,$J,358.3,1092,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1092,1,2,0)
- ;;=2^37230
- ;;^UTILITY(U,$J,358.3,1092,1,3,0)
- ;;=3^TIB/Per Revasc w/Stent
- ;;^UTILITY(U,$J,358.3,1093,0)
- ;;=37231^^10^106^45^^^^1
- ;;^UTILITY(U,$J,358.3,1093,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1093,1,2,0)
- ;;=2^37231
- ;;^UTILITY(U,$J,358.3,1093,1,3,0)
- ;;=3^TIB/Per Revasc Stent & Ather
- ;;^UTILITY(U,$J,358.3,1094,0)
- ;;=37232^^10^106^52^^^^1
- ;;^UTILITY(U,$J,358.3,1094,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1094,1,2,0)
- ;;=2^37232
- ;;^UTILITY(U,$J,358.3,1094,1,3,0)
- ;;=3^TIB/Per Revasc,ea addl Vessel
- ;;^UTILITY(U,$J,358.3,1095,0)
- ;;=37233^^10^106^47^^^^1
- ;;^UTILITY(U,$J,358.3,1095,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1095,1,2,0)
- ;;=2^37233
- ;;^UTILITY(U,$J,358.3,1095,1,3,0)
- ;;=3^TIB/Per Revasc w/Ather,ea addl Vessel
- ;;^UTILITY(U,$J,358.3,1096,0)
- ;;=37234^^10^106^49^^^^1
- ;;^UTILITY(U,$J,358.3,1096,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1096,1,2,0)
- ;;=2^37234
- ;;^UTILITY(U,$J,358.3,1096,1,3,0)
- ;;=3^TIB/Per Revasc w/Stent,ea addl Vessel
- ;;^UTILITY(U,$J,358.3,1097,0)
- ;;=37235^^10^106^50^^^^1
- ;;^UTILITY(U,$J,358.3,1097,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1097,1,2,0)
- ;;=2^37235
- ;;^UTILITY(U,$J,358.3,1097,1,3,0)
- ;;=3^TIB/Per Revasc w/Stnt&Ather,addl Vessel
- ;;^UTILITY(U,$J,358.3,1098,0)
- ;;=36251^^10^106^38^^^^1
- ;;^UTILITY(U,$J,358.3,1098,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1098,1,2,0)
- ;;=2^36251
- ;;^UTILITY(U,$J,358.3,1098,1,3,0)
- ;;=3^Select Cath 1st Main Ren&Access Art
- ;;^UTILITY(U,$J,358.3,1099,0)
- ;;=36252^^10^106^37^^^^1
- ;;^UTILITY(U,$J,358.3,1099,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1099,1,2,0)
- ;;=2^36252
- ;;^UTILITY(U,$J,358.3,1099,1,3,0)
- ;;=3^Select Cath 1st Main Ren&Acc Art,Bilat
- ;;^UTILITY(U,$J,358.3,1100,0)
- ;;=36254^^10^106^44^^^^1
- ;;^UTILITY(U,$J,358.3,1100,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1100,1,2,0)
- ;;=2^36254
- ;;^UTILITY(U,$J,358.3,1100,1,3,0)
- ;;=3^Superselect Cath Ren Art&Access Art
- ;;^UTILITY(U,$J,358.3,1101,0)
- ;;=37191^^10^106^24^^^^1
- ;;^UTILITY(U,$J,358.3,1101,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1101,1,2,0)
- ;;=2^37191
- ;;^UTILITY(U,$J,358.3,1101,1,3,0)
- ;;=3^Insert Intravas Vena Cava Filter,Endovas
- ;;^UTILITY(U,$J,358.3,1102,0)
- ;;=37619^^10^106^27^^^^1
- ;;^UTILITY(U,$J,358.3,1102,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1102,1,2,0)
- ;;=2^37619
- ;;^UTILITY(U,$J,358.3,1102,1,3,0)
- ;;=3^Open Inferior Vena Cava Filter Placement
- ;;^UTILITY(U,$J,358.3,1103,0)
- ;;=75635^^10^106^12^^^^1
- ;;^UTILITY(U,$J,358.3,1103,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1103,1,2,0)
- ;;=2^75635
- ;;^UTILITY(U,$J,358.3,1103,1,3,0)
- ;;=3^CT Angio Abd Art w/Contrast
- ;;^UTILITY(U,$J,358.3,1104,0)
- ;;=75658^^10^106^4^^^^1
- ;;^UTILITY(U,$J,358.3,1104,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1104,1,2,0)
- ;;=2^75658
- ;;^UTILITY(U,$J,358.3,1104,1,3,0)
- ;;=3^Angiography,Brachial,Retrograd,Rad S&I
- ;;^UTILITY(U,$J,358.3,1105,0)
- ;;=76506^^10^106^15^^^^1
- ;;^UTILITY(U,$J,358.3,1105,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1105,1,2,0)
- ;;=2^76506
- ;;^UTILITY(U,$J,358.3,1105,1,3,0)
- ;;=3^Echoencephalography,Real Time w/Image Doc
- ;;^UTILITY(U,$J,358.3,1106,0)
- ;;=76000^^10^106^13^^^^1
- ;;^UTILITY(U,$J,358.3,1106,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1106,1,2,0)
- ;;=2^76000
- ;;^UTILITY(U,$J,358.3,1106,1,3,0)
- ;;=3^Cardiac Fluoro<1hr(No Cath Proc)
+ ;;^UTILITY(U,$J,358.3,955,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,955,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,956,0)
+ ;;=J00.^^3^35^7
+ ;;^UTILITY(U,$J,358.3,956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,956,1,3,0)
+ ;;=3^Acute nasopharyngitis [common cold]
+ ;;^UTILITY(U,$J,358.3,956,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,956,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,957,0)
+ ;;=J01.00^^3^35^6
+ ;;^UTILITY(U,$J,358.3,957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,957,1,3,0)
+ ;;=3^Acute maxillary sinusitis, unspecified
+ ;;^UTILITY(U,$J,358.3,957,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,957,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,958,0)
+ ;;=J01.10^^3^35^2
+ ;;^UTILITY(U,$J,358.3,958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,958,1,3,0)
+ ;;=3^Acute frontal sinusitis, unspecified
+ ;;^UTILITY(U,$J,358.3,958,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,958,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,959,0)
+ ;;=J01.90^^3^35^12
+ ;;^UTILITY(U,$J,358.3,959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,959,1,3,0)
+ ;;=3^Acute sinusitis, unspecified
+ ;;^UTILITY(U,$J,358.3,959,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,959,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,960,0)
+ ;;=J02.9^^3^35^8
+ ;;^UTILITY(U,$J,358.3,960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,960,1,3,0)
+ ;;=3^Acute pharyngitis, unspecified
+ ;;^UTILITY(U,$J,358.3,960,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,960,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,961,0)
+ ;;=J03.90^^3^35^17
+ ;;^UTILITY(U,$J,358.3,961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,961,1,3,0)
+ ;;=3^Acute tonsillitis, unspecified
+ ;;^UTILITY(U,$J,358.3,961,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,961,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,962,0)
+ ;;=J04.0^^3^35^4
+ ;;^UTILITY(U,$J,358.3,962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,962,1,3,0)
+ ;;=3^Acute laryngitis
+ ;;^UTILITY(U,$J,358.3,962,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,962,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,963,0)
+ ;;=J06.0^^3^35^5
+ ;;^UTILITY(U,$J,358.3,963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,963,1,3,0)
+ ;;=3^Acute laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,963,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,963,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,964,0)
+ ;;=J06.9^^3^35^18
+ ;;^UTILITY(U,$J,358.3,964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,964,1,3,0)
+ ;;=3^Acute upper respiratory infection, unspecified
+ ;;^UTILITY(U,$J,358.3,964,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,964,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,965,0)
+ ;;=J34.2^^3^35^57
+ ;;^UTILITY(U,$J,358.3,965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,965,1,3,0)
+ ;;=3^Deviated nasal septum
+ ;;^UTILITY(U,$J,358.3,965,1,4,0)
+ ;;=4^J34.2
+ ;;^UTILITY(U,$J,358.3,965,2)
+ ;;=^259087
+ ;;^UTILITY(U,$J,358.3,966,0)
+ ;;=J33.9^^3^35^96
+ ;;^UTILITY(U,$J,358.3,966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,966,1,3,0)
+ ;;=3^Nasal polyp, unspecified
+ ;;^UTILITY(U,$J,358.3,966,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,966,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,967,0)
+ ;;=J31.0^^3^35^45
+ ;;^UTILITY(U,$J,358.3,967,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,967,1,3,0)
+ ;;=3^Chronic rhinitis
+ ;;^UTILITY(U,$J,358.3,967,1,4,0)
+ ;;=4^J31.0
+ ;;^UTILITY(U,$J,358.3,967,2)
+ ;;=^24434
+ ;;^UTILITY(U,$J,358.3,968,0)
+ ;;=J32.0^^3^35^44
+ ;;^UTILITY(U,$J,358.3,968,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,968,1,3,0)
+ ;;=3^Chronic maxillary sinusitis
+ ;;^UTILITY(U,$J,358.3,968,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,968,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,969,0)
+ ;;=J32.1^^3^35^41
+ ;;^UTILITY(U,$J,358.3,969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,969,1,3,0)
+ ;;=3^Chronic frontal sinusitis

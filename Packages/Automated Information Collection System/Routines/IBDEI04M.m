@@ -1,142 +1,138 @@
-IBDEI04M ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI04M ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1838,1,4,0)
- ;;=4^715.92
- ;;^UTILITY(U,$J,358.3,1838,2)
- ;;=^272163
- ;;^UTILITY(U,$J,358.3,1839,0)
- ;;=717.1^^17^160^11
- ;;^UTILITY(U,$J,358.3,1839,1,0)
+ ;;^UTILITY(U,$J,358.3,1634,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,1635,0)
+ ;;=G20.^^3^46^52
+ ;;^UTILITY(U,$J,358.3,1635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1839,1,3,0)
- ;;=3^Derang Ant Med Meniscus
- ;;^UTILITY(U,$J,358.3,1839,1,4,0)
- ;;=4^717.1
- ;;^UTILITY(U,$J,358.3,1839,2)
- ;;=^272259
- ;;^UTILITY(U,$J,358.3,1840,0)
- ;;=717.2^^17^160^13
- ;;^UTILITY(U,$J,358.3,1840,1,0)
+ ;;^UTILITY(U,$J,358.3,1635,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,1635,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,1635,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,1636,0)
+ ;;=G25.0^^3^46^30
+ ;;^UTILITY(U,$J,358.3,1636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1840,1,3,0)
- ;;=3^Derang Post Med Meniscus
- ;;^UTILITY(U,$J,358.3,1840,1,4,0)
- ;;=4^717.2
- ;;^UTILITY(U,$J,358.3,1840,2)
- ;;=^272260
- ;;^UTILITY(U,$J,358.3,1841,0)
- ;;=717.3^^17^160^12
- ;;^UTILITY(U,$J,358.3,1841,1,0)
+ ;;^UTILITY(U,$J,358.3,1636,1,3,0)
+ ;;=3^Essential tremor
+ ;;^UTILITY(U,$J,358.3,1636,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,1636,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,1637,0)
+ ;;=G25.1^^3^46^26
+ ;;^UTILITY(U,$J,358.3,1637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1841,1,3,0)
- ;;=3^Derang Med Meniscus,Unspec
- ;;^UTILITY(U,$J,358.3,1841,1,4,0)
- ;;=4^717.3
- ;;^UTILITY(U,$J,358.3,1841,2)
- ;;=^272261
- ;;^UTILITY(U,$J,358.3,1842,0)
- ;;=719.95^^17^160^47
- ;;^UTILITY(U,$J,358.3,1842,1,0)
+ ;;^UTILITY(U,$J,358.3,1637,1,3,0)
+ ;;=3^Drug-induced tremor
+ ;;^UTILITY(U,$J,358.3,1637,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,1637,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,1638,0)
+ ;;=G25.2^^3^46^64
+ ;;^UTILITY(U,$J,358.3,1638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1842,1,3,0)
- ;;=3^Osteoarthros NOS-Pelvis
- ;;^UTILITY(U,$J,358.3,1842,1,4,0)
- ;;=4^719.95
- ;;^UTILITY(U,$J,358.3,1842,2)
- ;;=^272446
- ;;^UTILITY(U,$J,358.3,1843,0)
- ;;=716.95^^17^160^2
- ;;^UTILITY(U,$J,358.3,1843,1,0)
+ ;;^UTILITY(U,$J,358.3,1638,1,3,0)
+ ;;=3^Tremor NEC
+ ;;^UTILITY(U,$J,358.3,1638,1,4,0)
+ ;;=4^G25.2
+ ;;^UTILITY(U,$J,358.3,1638,2)
+ ;;=^5003793
+ ;;^UTILITY(U,$J,358.3,1639,0)
+ ;;=G25.81^^3^46^57
+ ;;^UTILITY(U,$J,358.3,1639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1843,1,3,0)
- ;;=3^Arthropathy NOS-Pelvis
- ;;^UTILITY(U,$J,358.3,1843,1,4,0)
- ;;=4^716.95
- ;;^UTILITY(U,$J,358.3,1843,2)
- ;;=^272252
- ;;^UTILITY(U,$J,358.3,1844,0)
- ;;=715.93^^17^160^43
- ;;^UTILITY(U,$J,358.3,1844,1,0)
+ ;;^UTILITY(U,$J,358.3,1639,1,3,0)
+ ;;=3^Restless legs syndrome
+ ;;^UTILITY(U,$J,358.3,1639,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,1639,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,1640,0)
+ ;;=G90.59^^3^46^19
+ ;;^UTILITY(U,$J,358.3,1640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1844,1,3,0)
- ;;=3^Osteoarthros NOS-Forearm
- ;;^UTILITY(U,$J,358.3,1844,1,4,0)
- ;;=4^715.93
- ;;^UTILITY(U,$J,358.3,1844,2)
- ;;=^272164
- ;;^UTILITY(U,$J,358.3,1845,0)
- ;;=716.99^^17^160^1
- ;;^UTILITY(U,$J,358.3,1845,1,0)
+ ;;^UTILITY(U,$J,358.3,1640,1,3,0)
+ ;;=3^Complex regional pain syndrome I of other specified site
+ ;;^UTILITY(U,$J,358.3,1640,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,1640,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,1641,0)
+ ;;=G35.^^3^46^43
+ ;;^UTILITY(U,$J,358.3,1641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1845,1,3,0)
- ;;=3^Arthropathy NOS,Multiple Sites
- ;;^UTILITY(U,$J,358.3,1845,1,4,0)
- ;;=4^716.99
- ;;^UTILITY(U,$J,358.3,1845,2)
- ;;=^272256
- ;;^UTILITY(U,$J,358.3,1846,0)
- ;;=718.82^^17^160^30
- ;;^UTILITY(U,$J,358.3,1846,1,0)
+ ;;^UTILITY(U,$J,358.3,1641,1,3,0)
+ ;;=3^Multiple sclerosis
+ ;;^UTILITY(U,$J,358.3,1641,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,1641,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,1642,0)
+ ;;=G82.20^^3^46^50
+ ;;^UTILITY(U,$J,358.3,1642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1846,1,3,0)
- ;;=3^Jt Derangement NEC-Upper Arm
- ;;^UTILITY(U,$J,358.3,1846,1,4,0)
- ;;=4^718.82
- ;;^UTILITY(U,$J,358.3,1846,2)
- ;;=^272341
- ;;^UTILITY(U,$J,358.3,1847,0)
- ;;=718.83^^17^160^25
- ;;^UTILITY(U,$J,358.3,1847,1,0)
+ ;;^UTILITY(U,$J,358.3,1642,1,3,0)
+ ;;=3^Paraplegia, unspecified
+ ;;^UTILITY(U,$J,358.3,1642,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,1642,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,1643,0)
+ ;;=G40.909^^3^46^29
+ ;;^UTILITY(U,$J,358.3,1643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1847,1,3,0)
- ;;=3^Jt Derangement NEC-Forearm
- ;;^UTILITY(U,$J,358.3,1847,1,4,0)
- ;;=4^718.83
- ;;^UTILITY(U,$J,358.3,1847,2)
- ;;=^272342
- ;;^UTILITY(U,$J,358.3,1848,0)
- ;;=718.84^^17^160^26
- ;;^UTILITY(U,$J,358.3,1848,1,0)
+ ;;^UTILITY(U,$J,358.3,1643,1,3,0)
+ ;;=3^Epilepsy, unsp, not intractable, without status epilepticus
+ ;;^UTILITY(U,$J,358.3,1643,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,1643,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,1644,0)
+ ;;=G40.901^^3^46^28
+ ;;^UTILITY(U,$J,358.3,1644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1848,1,3,0)
- ;;=3^Jt Derangement NEC-Hand
- ;;^UTILITY(U,$J,358.3,1848,1,4,0)
- ;;=4^718.84
- ;;^UTILITY(U,$J,358.3,1848,2)
- ;;=^272343
- ;;^UTILITY(U,$J,358.3,1849,0)
- ;;=718.85^^17^160^29
- ;;^UTILITY(U,$J,358.3,1849,1,0)
+ ;;^UTILITY(U,$J,358.3,1644,1,3,0)
+ ;;=3^Epilepsy, unsp, not intractable, with status epilepticus
+ ;;^UTILITY(U,$J,358.3,1644,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,1644,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,1645,0)
+ ;;=G43.809^^3^46^48
+ ;;^UTILITY(U,$J,358.3,1645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1849,1,3,0)
- ;;=3^Jt Derangement NEC-Pelvis
- ;;^UTILITY(U,$J,358.3,1849,1,4,0)
- ;;=4^718.85
- ;;^UTILITY(U,$J,358.3,1849,2)
- ;;=^272344
- ;;^UTILITY(U,$J,358.3,1850,0)
- ;;=718.87^^17^160^24
- ;;^UTILITY(U,$J,358.3,1850,1,0)
+ ;;^UTILITY(U,$J,358.3,1645,1,3,0)
+ ;;=3^Other migraine, not intractable, without status migrainosus
+ ;;^UTILITY(U,$J,358.3,1645,1,4,0)
+ ;;=4^G43.809
+ ;;^UTILITY(U,$J,358.3,1645,2)
+ ;;=^5003901
+ ;;^UTILITY(U,$J,358.3,1646,0)
+ ;;=G43.A0^^3^46^23
+ ;;^UTILITY(U,$J,358.3,1646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1850,1,3,0)
- ;;=3^Jt Derangement NEC-Foot/Ankle
- ;;^UTILITY(U,$J,358.3,1850,1,4,0)
- ;;=4^718.87
- ;;^UTILITY(U,$J,358.3,1850,2)
- ;;=^272346
- ;;^UTILITY(U,$J,358.3,1851,0)
- ;;=718.88^^17^160^28
- ;;^UTILITY(U,$J,358.3,1851,1,0)
+ ;;^UTILITY(U,$J,358.3,1646,1,3,0)
+ ;;=3^Cyclical vomiting, not intractable
+ ;;^UTILITY(U,$J,358.3,1646,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,1646,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,1647,0)
+ ;;=G43.B0^^3^46^46
+ ;;^UTILITY(U,$J,358.3,1647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1851,1,3,0)
- ;;=3^Jt Derangement NEC-Oth Spec Sites
- ;;^UTILITY(U,$J,358.3,1851,1,4,0)
- ;;=4^718.88
- ;;^UTILITY(U,$J,358.3,1851,2)
- ;;=^272347
- ;;^UTILITY(U,$J,358.3,1852,0)
- ;;=718.89^^17^160^27
- ;;^UTILITY(U,$J,358.3,1852,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1647,1,3,0)
+ ;;=3^Ophthalmoplegic migraine, not intractable
+ ;;^UTILITY(U,$J,358.3,1647,1,4,0)
+ ;;=4^G43.B0
+ ;;^UTILITY(U,$J,358.3,1647,2)
+ ;;=^5003914
+ ;;^UTILITY(U,$J,358.3,1648,0)
+ ;;=G43.C0^^3^46^54

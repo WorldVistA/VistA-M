@@ -1,10 +1,11 @@
 PSJUTL5 ;BIR/MLM-UTILITY TO HANDLE NATURE OF ORDER FOR OE/RR ; 3/22/10 1:53pm
- ;;5.0;INPATIENT MEDICATIONS ;**40,218,260**;16 DEC 97;Build 94
+ ;;5.0;INPATIENT MEDICATIONS;**40,218,260,217**;16 DEC 97;Build 25
  ;
 ENNOO(X) ; nature of order (for oe/rr)
  ; X - Action taken on order.
  N Y S Y="W" I 'PSJSYSU Q Y
  K Y N DA,DIR,ACT S ACT=X
+ K:$G(PSJNOO)=-1 PSJNOO  ;Prevents nature of order -1
  D FULL^VALM1
  I $G(ACT)]"" D @ACT
  E  S Y=-1 Q Y

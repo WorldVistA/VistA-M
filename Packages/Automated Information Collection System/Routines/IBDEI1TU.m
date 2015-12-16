@@ -1,124 +1,136 @@
-IBDEI1TU ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1TU ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32602,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32602,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,32602,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,32603,0)
- ;;=S56.413A^^190^1956^52
- ;;^UTILITY(U,$J,358.3,32603,1,0)
+ ;;^UTILITY(U,$J,358.3,32191,2)
+ ;;=^2149
+ ;;^UTILITY(U,$J,358.3,32192,0)
+ ;;=L73.2^^182^1981^159
+ ;;^UTILITY(U,$J,358.3,32192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32603,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32603,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,32603,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,32604,0)
- ;;=S56.414A^^190^1956^32
- ;;^UTILITY(U,$J,358.3,32604,1,0)
+ ;;^UTILITY(U,$J,358.3,32192,1,3,0)
+ ;;=3^Hidradenitis Suppurativa
+ ;;^UTILITY(U,$J,358.3,32192,1,4,0)
+ ;;=4^L73.2
+ ;;^UTILITY(U,$J,358.3,32192,2)
+ ;;=^278979
+ ;;^UTILITY(U,$J,358.3,32193,0)
+ ;;=L73.9^^182^1981^153
+ ;;^UTILITY(U,$J,358.3,32193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32604,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32604,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,32604,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,32605,0)
- ;;=S56.415A^^190^1956^54
- ;;^UTILITY(U,$J,358.3,32605,1,0)
+ ;;^UTILITY(U,$J,358.3,32193,1,3,0)
+ ;;=3^Follicular Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32193,1,4,0)
+ ;;=4^L73.9
+ ;;^UTILITY(U,$J,358.3,32193,2)
+ ;;=^5009286
+ ;;^UTILITY(U,$J,358.3,32194,0)
+ ;;=L82.0^^182^1981^161
+ ;;^UTILITY(U,$J,358.3,32194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32605,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32605,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,32605,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,32606,0)
- ;;=S56.416A^^190^1956^34
- ;;^UTILITY(U,$J,358.3,32606,1,0)
+ ;;^UTILITY(U,$J,358.3,32194,1,3,0)
+ ;;=3^Inflamed Seborrheic Keratosis
+ ;;^UTILITY(U,$J,358.3,32194,1,4,0)
+ ;;=4^L82.0
+ ;;^UTILITY(U,$J,358.3,32194,2)
+ ;;=^303311
+ ;;^UTILITY(U,$J,358.3,32195,0)
+ ;;=L82.1^^182^1981^265
+ ;;^UTILITY(U,$J,358.3,32195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32606,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32606,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,32606,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,32607,0)
- ;;=S66.912A^^190^1956^22
- ;;^UTILITY(U,$J,358.3,32607,1,0)
+ ;;^UTILITY(U,$J,358.3,32195,1,3,0)
+ ;;=3^Seborrheic Keratosis NEC
+ ;;^UTILITY(U,$J,358.3,32195,1,4,0)
+ ;;=4^L82.1
+ ;;^UTILITY(U,$J,358.3,32195,2)
+ ;;=^303312
+ ;;^UTILITY(U,$J,358.3,32196,0)
+ ;;=L84.^^182^1981^116
+ ;;^UTILITY(U,$J,358.3,32196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32607,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32607,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,32607,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,32608,0)
- ;;=S66.911A^^190^1956^42
- ;;^UTILITY(U,$J,358.3,32608,1,0)
+ ;;^UTILITY(U,$J,358.3,32196,1,3,0)
+ ;;=3^Corns and Callosities
+ ;;^UTILITY(U,$J,358.3,32196,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,32196,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,32197,0)
+ ;;=L85.0^^182^1981^8
+ ;;^UTILITY(U,$J,358.3,32197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32608,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,32608,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,32608,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,32609,0)
- ;;=S63.501A^^190^1956^18
- ;;^UTILITY(U,$J,358.3,32609,1,0)
+ ;;^UTILITY(U,$J,358.3,32197,1,3,0)
+ ;;=3^Acquired Ichthyosis
+ ;;^UTILITY(U,$J,358.3,32197,1,4,0)
+ ;;=4^L85.0
+ ;;^UTILITY(U,$J,358.3,32197,2)
+ ;;=^5009320
+ ;;^UTILITY(U,$J,358.3,32198,0)
+ ;;=L85.1^^182^1981^10
+ ;;^UTILITY(U,$J,358.3,32198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32609,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,32609,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,32609,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,32610,0)
- ;;=S63.502A^^190^1956^7
- ;;^UTILITY(U,$J,358.3,32610,1,0)
+ ;;^UTILITY(U,$J,358.3,32198,1,3,0)
+ ;;=3^Acquired Keratosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,32198,1,4,0)
+ ;;=4^L85.1
+ ;;^UTILITY(U,$J,358.3,32198,2)
+ ;;=^5009321
+ ;;^UTILITY(U,$J,358.3,32199,0)
+ ;;=L85.2^^182^1981^167
+ ;;^UTILITY(U,$J,358.3,32199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32610,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,32610,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,32610,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,32611,0)
- ;;=S83.8X1A^^190^1956^16
- ;;^UTILITY(U,$J,358.3,32611,1,0)
+ ;;^UTILITY(U,$J,358.3,32199,1,3,0)
+ ;;=3^Keratosis Punctata
+ ;;^UTILITY(U,$J,358.3,32199,1,4,0)
+ ;;=4^L85.2
+ ;;^UTILITY(U,$J,358.3,32199,2)
+ ;;=^5009322
+ ;;^UTILITY(U,$J,358.3,32200,0)
+ ;;=L85.3^^182^1981^290
+ ;;^UTILITY(U,$J,358.3,32200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32611,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,32611,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,32611,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,32612,0)
- ;;=S83.8X2A^^190^1956^5
- ;;^UTILITY(U,$J,358.3,32612,1,0)
+ ;;^UTILITY(U,$J,358.3,32200,1,3,0)
+ ;;=3^Xerosis Cutis
+ ;;^UTILITY(U,$J,358.3,32200,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,32200,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,32201,0)
+ ;;=L86.^^182^1981^165
+ ;;^UTILITY(U,$J,358.3,32201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32612,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,32612,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,32612,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,32613,0)
- ;;=S86.211A^^190^1956^47
- ;;^UTILITY(U,$J,358.3,32613,1,0)
+ ;;^UTILITY(U,$J,358.3,32201,1,3,0)
+ ;;=3^Keratoderma in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,32201,1,4,0)
+ ;;=4^L86.
+ ;;^UTILITY(U,$J,358.3,32201,2)
+ ;;=^5009326
+ ;;^UTILITY(U,$J,358.3,32202,0)
+ ;;=L87.0^^182^1981^166
+ ;;^UTILITY(U,$J,358.3,32202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32613,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,32613,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,32613,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,32614,0)
- ;;=S86.212A^^190^1956^27
- ;;^UTILITY(U,$J,358.3,32614,1,0)
+ ;;^UTILITY(U,$J,358.3,32202,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,32202,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,32202,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,32203,0)
+ ;;=L87.2^^182^1981^141
+ ;;^UTILITY(U,$J,358.3,32203,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32203,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,32203,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,32203,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,32204,0)
+ ;;=L89.300^^182^1981^243
+ ;;^UTILITY(U,$J,358.3,32204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32204,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,32204,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,32204,2)
+ ;;=^5009389

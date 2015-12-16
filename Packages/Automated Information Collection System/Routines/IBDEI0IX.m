@@ -1,134 +1,140 @@
-IBDEI0IX ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0IX ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9186,0)
- ;;=153.3^^55^613^28
- ;;^UTILITY(U,$J,358.3,9186,1,0)
+ ;;^UTILITY(U,$J,358.3,8873,1,5,0)
+ ;;=5^One Eye Severe/Oth Eye Total
+ ;;^UTILITY(U,$J,358.3,8873,2)
+ ;;=^268872
+ ;;^UTILITY(U,$J,358.3,8874,0)
+ ;;=369.13^^35^495^21
+ ;;^UTILITY(U,$J,358.3,8874,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9186,1,4,0)
- ;;=4^CA of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,9186,1,5,0)
- ;;=5^153.3
- ;;^UTILITY(U,$J,358.3,9186,2)
- ;;=Ca of Sigmoid Colon^267082
- ;;^UTILITY(U,$J,358.3,9187,0)
- ;;=153.1^^55^613^37
- ;;^UTILITY(U,$J,358.3,9187,1,0)
+ ;;^UTILITY(U,$J,358.3,8874,1,4,0)
+ ;;=4^369.13
+ ;;^UTILITY(U,$J,358.3,8874,1,5,0)
+ ;;=5^One Eye Severe/Oth Eye Near Total
+ ;;^UTILITY(U,$J,358.3,8874,2)
+ ;;=^268873
+ ;;^UTILITY(U,$J,358.3,8875,0)
+ ;;=369.14^^35^495^22
+ ;;^UTILITY(U,$J,358.3,8875,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9187,1,4,0)
- ;;=4^CA of Transverse Colon
- ;;^UTILITY(U,$J,358.3,9187,1,5,0)
- ;;=5^153.1
- ;;^UTILITY(U,$J,358.3,9187,2)
- ;;=CA of Transverse Colon^267080
- ;;^UTILITY(U,$J,358.3,9188,0)
- ;;=153.0^^55^613^11
- ;;^UTILITY(U,$J,358.3,9188,1,0)
+ ;;^UTILITY(U,$J,358.3,8875,1,4,0)
+ ;;=4^369.14
+ ;;^UTILITY(U,$J,358.3,8875,1,5,0)
+ ;;=5^One Eye Severe/Oth Eye Profound
+ ;;^UTILITY(U,$J,358.3,8875,2)
+ ;;=^268874
+ ;;^UTILITY(U,$J,358.3,8876,0)
+ ;;=369.15^^35^495^8
+ ;;^UTILITY(U,$J,358.3,8876,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9188,1,4,0)
- ;;=4^CA of Colon, Hepatic Flexure.
- ;;^UTILITY(U,$J,358.3,9188,1,5,0)
- ;;=5^153.0
- ;;^UTILITY(U,$J,358.3,9188,2)
- ;;=CA of Colon at Hepatic Flexure^267079
- ;;^UTILITY(U,$J,358.3,9189,0)
- ;;=153.7^^55^613^10
- ;;^UTILITY(U,$J,358.3,9189,1,0)
+ ;;^UTILITY(U,$J,358.3,8876,1,4,0)
+ ;;=4^369.15
+ ;;^UTILITY(U,$J,358.3,8876,1,5,0)
+ ;;=5^One Eye Moderate/Oth Eye Blind
+ ;;^UTILITY(U,$J,358.3,8876,2)
+ ;;=^268875
+ ;;^UTILITY(U,$J,358.3,8877,0)
+ ;;=369.16^^35^495^13
+ ;;^UTILITY(U,$J,358.3,8877,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9189,1,4,0)
- ;;=4^CA of Colon at Splenic Flexure
- ;;^UTILITY(U,$J,358.3,9189,1,5,0)
- ;;=5^153.7
- ;;^UTILITY(U,$J,358.3,9189,2)
- ;;=CA of Colon at Splenic Flexure^267086
- ;;^UTILITY(U,$J,358.3,9190,0)
- ;;=151.9^^55^613^29
- ;;^UTILITY(U,$J,358.3,9190,1,0)
+ ;;^UTILITY(U,$J,358.3,8877,1,4,0)
+ ;;=4^369.16
+ ;;^UTILITY(U,$J,358.3,8877,1,5,0)
+ ;;=5^One Eye Moderate/Oth Eye Total
+ ;;^UTILITY(U,$J,358.3,8877,2)
+ ;;=^268876
+ ;;^UTILITY(U,$J,358.3,8878,0)
+ ;;=369.17^^35^495^10
+ ;;^UTILITY(U,$J,358.3,8878,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9190,1,4,0)
- ;;=4^CA of Stomach
- ;;^UTILITY(U,$J,358.3,9190,1,5,0)
- ;;=5^151.9
- ;;^UTILITY(U,$J,358.3,9190,2)
- ;;=CA of Stomach^73532
- ;;^UTILITY(U,$J,358.3,9191,0)
- ;;=151.2^^55^613^4
- ;;^UTILITY(U,$J,358.3,9191,1,0)
+ ;;^UTILITY(U,$J,358.3,8878,1,4,0)
+ ;;=4^369.17
+ ;;^UTILITY(U,$J,358.3,8878,1,5,0)
+ ;;=5^One Eye Moderate/Oth Eye Near Total
+ ;;^UTILITY(U,$J,358.3,8878,2)
+ ;;=^268877
+ ;;^UTILITY(U,$J,358.3,8879,0)
+ ;;=369.18^^35^495^11
+ ;;^UTILITY(U,$J,358.3,8879,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9191,1,4,0)
- ;;=4^CA of Antrum of Stomach
- ;;^UTILITY(U,$J,358.3,9191,1,5,0)
- ;;=5^151.2
- ;;^UTILITY(U,$J,358.3,9191,2)
- ;;=CA of Antrum of Stomach^267065
- ;;^UTILITY(U,$J,358.3,9192,0)
- ;;=151.4^^55^613^30
- ;;^UTILITY(U,$J,358.3,9192,1,0)
+ ;;^UTILITY(U,$J,358.3,8879,1,4,0)
+ ;;=4^369.18
+ ;;^UTILITY(U,$J,358.3,8879,1,5,0)
+ ;;=5^One Eye Moderate/Oth Eye Profound
+ ;;^UTILITY(U,$J,358.3,8879,2)
+ ;;=^268878
+ ;;^UTILITY(U,$J,358.3,8880,0)
+ ;;=369.20^^35^495^4
+ ;;^UTILITY(U,$J,358.3,8880,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9192,1,4,0)
- ;;=4^CA of Stomach Body
- ;;^UTILITY(U,$J,358.3,9192,1,5,0)
- ;;=5^151.4
- ;;^UTILITY(U,$J,358.3,9192,2)
- ;;=CA of Stomach Body^267067
- ;;^UTILITY(U,$J,358.3,9193,0)
- ;;=151.0^^55^613^31
- ;;^UTILITY(U,$J,358.3,9193,1,0)
+ ;;^UTILITY(U,$J,358.3,8880,1,4,0)
+ ;;=4^369.20
+ ;;^UTILITY(U,$J,358.3,8880,1,5,0)
+ ;;=5^Low Vision,Both Eyes NOS
+ ;;^UTILITY(U,$J,358.3,8880,2)
+ ;;=^71924
+ ;;^UTILITY(U,$J,358.3,8881,0)
+ ;;=369.21^^35^495^20
+ ;;^UTILITY(U,$J,358.3,8881,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9193,1,4,0)
- ;;=4^CA of Stomach Cardia
- ;;^UTILITY(U,$J,358.3,9193,1,5,0)
- ;;=5^151.0
- ;;^UTILITY(U,$J,358.3,9193,2)
- ;;=CA of Stomach Cardia^267063
- ;;^UTILITY(U,$J,358.3,9194,0)
- ;;=151.3^^55^613^32
- ;;^UTILITY(U,$J,358.3,9194,1,0)
+ ;;^UTILITY(U,$J,358.3,8881,1,4,0)
+ ;;=4^369.21
+ ;;^UTILITY(U,$J,358.3,8881,1,5,0)
+ ;;=5^One Eye Severe/Oth Eye NOS
+ ;;^UTILITY(U,$J,358.3,8881,2)
+ ;;=^268881
+ ;;^UTILITY(U,$J,358.3,8882,0)
+ ;;=369.22^^35^495^25
+ ;;^UTILITY(U,$J,358.3,8882,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9194,1,4,0)
- ;;=4^CA of Stomach Fundus
- ;;^UTILITY(U,$J,358.3,9194,1,5,0)
- ;;=5^151.3
- ;;^UTILITY(U,$J,358.3,9194,2)
- ;;=CA of Fundus of Stomach^267066
- ;;^UTILITY(U,$J,358.3,9195,0)
- ;;=151.6^^55^613^33
- ;;^UTILITY(U,$J,358.3,9195,1,0)
+ ;;^UTILITY(U,$J,358.3,8882,1,4,0)
+ ;;=4^369.22
+ ;;^UTILITY(U,$J,358.3,8882,1,5,0)
+ ;;=5^Severe Impairment,Both Eyes
+ ;;^UTILITY(U,$J,358.3,8882,2)
+ ;;=^268882
+ ;;^UTILITY(U,$J,358.3,8883,0)
+ ;;=369.23^^35^495^9
+ ;;^UTILITY(U,$J,358.3,8883,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9195,1,4,0)
- ;;=4^CA of Stomach Great Curve
- ;;^UTILITY(U,$J,358.3,9195,1,5,0)
- ;;=5^151.6
- ;;^UTILITY(U,$J,358.3,9195,2)
- ;;=^267069
- ;;^UTILITY(U,$J,358.3,9196,0)
- ;;=151.5^^55^613^34
- ;;^UTILITY(U,$J,358.3,9196,1,0)
+ ;;^UTILITY(U,$J,358.3,8883,1,4,0)
+ ;;=4^369.23
+ ;;^UTILITY(U,$J,358.3,8883,1,5,0)
+ ;;=5^One Eye Moderate/Oth Eye NOS
+ ;;^UTILITY(U,$J,358.3,8883,2)
+ ;;=^268883
+ ;;^UTILITY(U,$J,358.3,8884,0)
+ ;;=369.24^^35^495^12
+ ;;^UTILITY(U,$J,358.3,8884,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9196,1,4,0)
- ;;=4^CA of Stomach Less Curv
- ;;^UTILITY(U,$J,358.3,9196,1,5,0)
- ;;=5^151.5
- ;;^UTILITY(U,$J,358.3,9196,2)
- ;;=CA of Lesser Curve of Stomach^267068
- ;;^UTILITY(U,$J,358.3,9197,0)
- ;;=151.1^^55^613^26
- ;;^UTILITY(U,$J,358.3,9197,1,0)
+ ;;^UTILITY(U,$J,358.3,8884,1,4,0)
+ ;;=4^369.24
+ ;;^UTILITY(U,$J,358.3,8884,1,5,0)
+ ;;=5^One Eye Moderate/Oth Eye Severe
+ ;;^UTILITY(U,$J,358.3,8884,2)
+ ;;=^268884
+ ;;^UTILITY(U,$J,358.3,8885,0)
+ ;;=369.25^^35^495^5
+ ;;^UTILITY(U,$J,358.3,8885,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9197,1,4,0)
- ;;=4^CA of Pylorus
- ;;^UTILITY(U,$J,358.3,9197,1,5,0)
- ;;=5^151.1
- ;;^UTILITY(U,$J,358.3,9197,2)
- ;;=Cancer of Pylorus^267064
- ;;^UTILITY(U,$J,358.3,9198,0)
- ;;=151.8^^55^613^35
- ;;^UTILITY(U,$J,358.3,9198,1,0)
+ ;;^UTILITY(U,$J,358.3,8885,1,4,0)
+ ;;=4^369.25
+ ;;^UTILITY(U,$J,358.3,8885,1,5,0)
+ ;;=5^Moderate Impairment,Both Eyes
+ ;;^UTILITY(U,$J,358.3,8885,2)
+ ;;=^268885
+ ;;^UTILITY(U,$J,358.3,8886,0)
+ ;;=369.3^^35^495^1
+ ;;^UTILITY(U,$J,358.3,8886,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9198,1,4,0)
- ;;=4^CA of Stomach,Other
- ;;^UTILITY(U,$J,358.3,9198,1,5,0)
- ;;=5^151.8
- ;;^UTILITY(U,$J,358.3,9198,2)
- ;;=CA, Stomach, Other^267070
+ ;;^UTILITY(U,$J,358.3,8886,1,4,0)
+ ;;=4^369.3
+ ;;^UTILITY(U,$J,358.3,8886,1,5,0)
+ ;;=5^Blindness NOS,Both Eyes
+ ;;^UTILITY(U,$J,358.3,8886,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,8887,0)
+ ;;=369.4^^35^495^3

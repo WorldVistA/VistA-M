@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;11/6/13  16:31
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149**;Dec 22, 1997 ;Build 27
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;6/17/15  12:40
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154**;Dec 22, 1997 ;Build 13
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -9,7 +9,8 @@ BEG ;entry point from option
  ;
 START ; start package specific extract
  ; 
- N ECXVAP ;143
+ N ECXVAP,RERUN,ECXLDT ;143,154
+ S RERUN=0,ECXLDT=+$P($G(ECX(728,1,ECNODE)),U,ECPIECE) I ECXLDT'<ECSD S RERUN=1 ;154 If re-running date range, set RERUN to 1
  S ECED=ECED+.3,ECD=ECSD1
  S PIEN=0
  I $G(ECSD)="" S ECSD=DT
@@ -18,6 +19,7 @@ START ; start package specific extract
  .F  S IDAT=$O(^PSB(53.79,"AADT",PIEN,IDAT)) Q:'IDAT!(IDAT>ECED)  S RIEN="" D
  ..F  S RIEN=$O(^PSB(53.79,"AADT",PIEN,IDAT,RIEN)) Q:'RIEN  D
  ...S ECXNOD=^PSB(53.79,RIEN,0) Q:'ECXNOD  S ECXDFN=$P($G(ECXNOD),U) D GET(ECSD,ECED)
+ I 'RERUN D CLEAN(0,$$FMADD^XLFDT(ECSD,-180)) ;154 If not a rerun, clean out items given global
  Q
  ;
 GET(ECSD,ECED) ;get extract data
@@ -39,6 +41,8 @@ GET(ECSD,ECED) ;get extract data
  ; Ordering Stop Code - based on Unit dose or IV
  I ECXORN["U" Q:$$CHKUD(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOUDO^ECXUTL5(ECXDFN,+ECXORN)
  I ECXORN["V" Q:$$CHKIV(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOIVPO^ECXUTL5(ECXDFN,+ECXORN)
+ S ECXASTA=$$GET1^DIQ(53.79,RIEN,.09,"I")
+ I "^G^S^C^"'[("^"_ECXASTA_"^") Q  ;process 'G'iven,'S'topped,'C'ompleted
  ;get patient demographics
  S ECXERR=0 D PAT(ECXDFN,IDAT,.ECXERR) Q:ECXERR
  S ECPRO=$$ORDPROV^ECXUTL(ECXDFN,ECXORN,"")
@@ -51,8 +55,6 @@ GET(ECSD,ECED) ;get extract data
  N ECXUSRTN
  S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",ECPRO,$P(ACTDT,"."))
  S:+ECXUSRTN'>0 ECXUSRTN="" S ECPRONPI=$P(ECXUSRTN,U)
- S ECXASTA=$$GET1^DIQ(53.79,RIEN,.09,"I")
- I "^G^S^C^"'[("^"_ECXASTA_"^") Q  ;process 'G'iven,'S'topped,'C'ompleted
  S ECXAMED=$$GET1^DIQ(53.79,RIEN,.08,"I")
  ;Component code data
  D CCODE(RIEN)
@@ -80,7 +82,7 @@ CMPT ; during component/sequence processing, retrieve rest of data record then f
  S ECXDIV=$$RADDIV^ECXDEPT($$GET1^DIQ(53.79,RIEN,.03,"I"))
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADM,ACTDT,ECXTS,ECXOBS,ECHEAD,,)
- D:ECXENC'="" FILE
+ D:ECXENC'="" FILE^ECXBCM1 ;154 Moved filing task for space considerations
  Q
  ;
 PAT(ECXDFN,ECXDATE,ECXERR)  ;get patient demographics, primary care, and inpatient data
@@ -162,6 +164,7 @@ CCODE(RIEN) ; get component information
  ..S CCIEN=$S(I=.5:CCIEN_";PSDRUG(",I=.6:CCIEN_";PS(52.6,",I=.7:CCIEN_";PS(52.7,",1:"")
  ..S CCDGVN=$P(DATA,U,3) ;148 Reset component dose given to original value
  ..S CCUNIT=$P(DATA,U,4) ;148 Reset component unit to original value
+ ..I $$MULTI I '$$FIRST Q  ;154 If it's a multi-dose container, only count if it's the 1st administration
  ..D CMPT
  Q
  ;
@@ -209,70 +212,69 @@ CHKUD(ECXDFN,ECSD,ECED) ; Check file 728.904 for matching Unit dose records
  ;I $$GET1^DIQ(55.06,UDORN_","_ECXDFN,7,"I")="R" Q 1
  Q 0 ;Checks show order not in UD 728.904
  ;
-FILE ;file the extract record
- ;node0
- ;Sequence Number,Year Month, Extract Number (EC23)^facility (ECXFAC)^
- ;dfn (ECXDFN)^ssn (ECXSSN)^name (ECXPNM)^
- ;in/out (ECXA)^Day (ECXADT)^
- ;date of birth (ECDOB)^Gender (ECXSEX)^State (ECXSTATE)^County (ECXCNTY)^
- ;zip code (ECXZIP)^country (ECXCNTRY)^ward (ECXW)^treating speciality (ECXTSC)^
- ;provider (ECPRO)^provider person class (ECPROPC)^provider npi (ECPRONPI)^
- ;primary care provider(ECPTPR)^pc provider person class (ECCLAS)^
- ;primary care provider NPI (ECPTNPI)^primary care team (ECPTTM)^ordering stop code (ECXOSC)^
- ;NODE(1)
- ;place order number (RIEN)^order reference number (ECXORN)^route (ECXORT)^
- ;^action time (ECXATM)^component code (CCIEN)^
- ;component dose ordered (CCDORD)^component dose given(CCDGVN)^
- ;component units (CCUNIT)^component type (CCTYPE)^Action Status (ECXASTA)^
- ;Administration Medication (ECXAMED)^Scheduled Administration Date (ECXSCADT)^
- ;NODE(2)
- ;Scheduled Administration Time (ECXSCATM)^
-  ;Order Schedule (ECXOS)^IV Unique ID (ECXIVID)^
- ;Infusion Rate (ECXIR)^Production Division Code (ECXDIV)^Drug IEN (ECXVAP)^NDC (ECVNDC)^ ;;143, changed Drug IEN var from DRG to ECXVAP
- ;Investigational (DEA Special Handling) (ECINV)^VA Drug Classification (ECVACL)^
- ;Master Patient Index (ECXMPI)^DOM, PRRTP and SAARTP Indicator (ECXDOM)^
- ;Observation Patient Indicator (ECXOBS)^Encounter Number (ECXENC)^Means Test (ECXMTST)^
- ;Eligibility (ECXELIG)^Enrollment Location (ECXENRL)^Enrollment Category (ECXCAT)^
- ;Enrollment Status (ECXSTAT)^Enrollment Priority (ECXPRIOR)_(ECXSBGRP)^
- ;User Enrollee (ECXUESTA)^
- ;Ethnicity(ECXETH)^Race 1(ECXRC1)^Veteran(ECXVET)^Period of Service(ECXPOS)^POW Status(ECXPST)^
- ;POW Location(ECXPLOC)^Radiation Status(ECXRST)^Agent Orange Status(ECXAST)^Agent Orange Location(ECXAOL)
- ;^Purple Heart Indicator(ECXPHI)^MST Status(ECXMST)^CNH/SH Status(ECXCNHU)^
- ;Head & Neck Cancer Indicator(ECXHNCI)^SHAD Status(ECXSHADI)
- ;NODE(3)
- ;Patient Type(ECXPTYPE)^
- ;CV Status Eligibility(ECXCVE)^CV Eligibility End Date(ECXCVEDT)^Encounter CV(ECXCVENC)^
- ;National Patient Record Flag(ECXNPRFI)^ERI(ECXERI)^SW Asia Conditions(ECXEST)^
- ;OEF/OIF(ECXOEF)^OEF/OIF Return Date(ECXOEFDT)^PATCAT(ECXPATCAT)
- ;Encounter SC (ECXESC)^IV Additives Cost ECXIVAC^IV Solutions Cost ECXIVSC^Drug cost ECXDRGC^Camp Lejeune Status (ECXCLST)^Encounter Camp Lejeune (ECXECL)
- ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
+FIRST() ;154 Section added to determine if this is the first administration of the medication since pharmacist verification
+ N ALIEN,ADATE,FIRST,VDATE,DONE,IENS,ON
+ S FIRST=0,VDATE="",DONE=0
+ S ON=+ECXORN ;get numeric portion of order multiple IEN
+ S ALIEN=0 F  S ALIEN=$O(^PS(55,ECXDFN,$S(ECXORN["U":5,1:"IV"),ON,$S(ECXORN["U":9,1:"A"),ALIEN)) Q:'+ALIEN!(DONE)  S IENS=ALIEN_","_ON_","_ECXDFN_"," D
+ .S ADATE=$$GET1^DIQ($S(ECXORN["U":55.09,1:55.04),IENS,$S(ECXORN["U":".01",1:".05"),"I")
+ .I ADATE>IDAT S DONE=1 Q  ;activity date is after administration date
+ .I ECXORN["U" I "^VP^VPR^"[("^"_$$GET1^DIQ(55.09,IENS,"2:1")_"^") S VDATE=ADATE
+ .I ECXORN["V" I $$GET1^DIQ(55.04,IENS,".04")="ORDER VERIFIED BY PHARMACIST" S VDATE=ADATE
+ I VDATE'="" D
+ .I '$D(^XTMP("ECXBCM",VDATE,ECXDFN,ECXORN))!($G(^XTMP("ECXBCM",VDATE,ECXDFN,ECXORN))=RIEN) S FIRST=1
+ .I '$D(^XTMP("ECXBCM",VDATE,ECXDFN,ECXORN)) S ^XTMP("ECXBCM",VDATE,ECXDFN,ECXORN)=RIEN
+ Q FIRST
  ;
- ;convert specialty to PTF Code for transmission
- N ECXDATA,ECXTSC
- S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
- S ECXTSC=$G(ECXDATA(7))
- N DA,DIK
- S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
- S ECODE(0)=EC7_U_EC23_U_ECXFAC_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U_ECXADT
- S ECODE(0)=ECODE(0)_U_ECXDOB_U_ECXSEX_U_ECXSTATE_U_ECXCNTY_U_ECXZIP_U_ECXCNTRY
- S ECODE(0)=ECODE(0)_U_ECXW_U_ECXTSC_U_2_ECPRO_U_ECPROPC_U_ECPRONPI_U_ECPTPR_U_ECCLAS
- S ECODE(0)=ECODE(0)_U_ECPTNPI_U_ECPTTM_U_ECXOSC_U
- S ECODE(1)=RIEN_U_ECXORN_U_ECXORT_U_ECXATM_U_CCIEN_U_CCDORD_U_CCDGVN
- S ECODE(1)=ECODE(1)_U_CCUNIT_U_CCTYPE_U_ECXASTA_U_ECXAMED_U_ECXSCADT_U
- S ECODE(2)=ECXSCATM_U_ECXOS_U_ECXIVID_U_ECXIR_U_ECXDIV_U_ECXVAP_U_ECVNDC_U_ECINV_U_ECVACL_U_ECXMPI_U_ECXDOM ;143 Changed DRUG IEN field from DRG to ECXVAP
- S ECODE(2)=ECODE(2)_U_$E(ECXOBS,1)_U_ECXENC_U_ECXMTST_U_ECXELIG_U_ECXENRL_U_ECXCAT_U_ECXSTAT_U_ECXPRIOR_ECXSBGRP
- S ECODE(2)=ECODE(2)_U_ECXUESTA_U_ECXETH_U_ECXRC1_U_ECXVET_U_ECXPOS_U_ECXPST_U_ECXPLOC
- S ECODE(2)=ECODE(2)_U_ECXRST_U_ECXAST_U_ECXAOL_U_ECXPHI_U_ECXMST_U_ECXCNHU_U_ECXHNCI_U_ECXSHADI_U
- S ECODE(3)=ECXPTYPE_U_ECXCVE_U_ECXCVEDT_U_ECXCVENC_U_ECXNPRFI_U_ECXERI_U_ECXEST_U_ECXOEF_U_ECXOEFDT
- S ECODE(3)=ECODE(3)_U_ECXPATCAT
- I ECXLOGIC>2013 S ECODE(3)=ECODE(3)_U_ECXESC_U_ECXIVAC_U_ECXIVSC_U_ECXDRGC_U_ECXCLST_U_ECXECL ;144
- I ECXLOGIC>2014 S ECODE(3)=ECODE(3)_U_ECXSVCI_U_ECXSVCL ;149
- ;
- N DA,DIK,X S X=""
- F X=0:1:3 S ^ECX(ECFILE,EC7,X)=ECODE(X)
- S ECRN=ECRN+1
- S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
+CLEAN(START,END) ;154 Section added to delete old log entries
+ N DATE,PAT,ON
+ S DATE=START F  S DATE=$O(^XTMP("ECXBCM",DATE)) Q:'+DATE!(DATE>END)  S PAT=0 F  S PAT=$O(^XTMP("ECXBCM",DATE,PAT)) Q:'+PAT  S ON=0 F  S ON=$O(^XTMP("ECXBCM",DATE,PAT,ON)) Q:'+ON  K ^XTMP("ECXBCM",DATE,PAT,ON)
+ S ^XTMP("ECXBCM",0)=$$FMADD^XLFDT($$DT^XLFDT,365)_"^"_$$DT^XLFDT_"^"_"Log of BCMA orders that have already been counted"
  Q
+ ;
+MULTI() ;154 Section added to determine if this is a multi-dose container
+ N COMP,TERM,OFF,UNIT,MULTI
+ S MULTI=1 ;Assume it is a multi-dose container
+ S UNIT=$$UP^XLFSTR($TR(CCUNIT," 0123456789","")) ;Convert to upper case and remove any numbers or spaces
+ F COMP="EQUAL","CONTAIN" F OFF=1:1 S TERM=$P($T(@COMP+OFF),";",2) Q:TERM="DONE"!('MULTI)  D
+ .I COMP="EQUAL" I UNIT=TERM S MULTI=0 Q  ;Not a multi-dose container
+ .I COMP="CONTAIN" I UNIT[TERM S MULTI=0 ;Not a multi-dose container
+ Q MULTI
+ ;
+EQUAL ;154, list of terms for equality check
+ ;AMP
+ ;AMPULE
+ ;BOTTLE
+ ;CAP
+ ;LOZENGE
+ ;PACKAGE
+ ;PACKET
+ ;PKG
+ ;SUPPOSITORY
+ ;SYRINGE
+ ;TAB
+ ;UNITDOSE
+ ;VIAL
+ ;EACH
+ ;VI
+ ;VL
+ ;SYR
+ ;SYG
+ ;AMPOULE
+ ;CARTRIDGE
+ ;CHEWTAB
+ ;LOZ
+ ;TUBEX
+ ;DONE
+CONTAIN ;154, list of terms for contains check
+ ;AMP,
+ ;CAP,
+ ;CAP/
+ ;SUPP
+ ;TAB,
+ ;SOLUTAB
+ ;SOFTGEL
+ ;DONE
  ;
 SETUP ;Set required input for ECXTRAC.
  S ECHEAD="BCM"

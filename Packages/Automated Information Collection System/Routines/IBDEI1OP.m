@@ -1,132 +1,134 @@
-IBDEI1OP ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OP ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30244,1,3,0)
- ;;=3^Melanoma in Situ of Left Eyelid
- ;;^UTILITY(U,$J,358.3,30244,1,4,0)
- ;;=4^D03.12
- ;;^UTILITY(U,$J,358.3,30244,2)
- ;;=^5001891
- ;;^UTILITY(U,$J,358.3,30245,0)
- ;;=D03.21^^189^1911^28
- ;;^UTILITY(U,$J,358.3,30245,1,0)
+ ;;^UTILITY(U,$J,358.3,29893,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,29893,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,29894,0)
+ ;;=Z71.3^^177^1906^3
+ ;;^UTILITY(U,$J,358.3,29894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30245,1,3,0)
- ;;=3^Melanoma in Situ of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,30245,1,4,0)
- ;;=4^D03.21
- ;;^UTILITY(U,$J,358.3,30245,2)
- ;;=^5001893
- ;;^UTILITY(U,$J,358.3,30246,0)
- ;;=D03.22^^189^1911^22
- ;;^UTILITY(U,$J,358.3,30246,1,0)
+ ;;^UTILITY(U,$J,358.3,29894,1,3,0)
+ ;;=3^Dietary Counseling/Surveillance
+ ;;^UTILITY(U,$J,358.3,29894,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,29894,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,29895,0)
+ ;;=Z00.00^^177^1906^5
+ ;;^UTILITY(U,$J,358.3,29895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30246,1,3,0)
- ;;=3^Melanoma in Situ of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,30246,1,4,0)
- ;;=4^D03.22
- ;;^UTILITY(U,$J,358.3,30246,2)
- ;;=^5001894
- ;;^UTILITY(U,$J,358.3,30247,0)
- ;;=D03.30^^189^1911^21
- ;;^UTILITY(U,$J,358.3,30247,1,0)
+ ;;^UTILITY(U,$J,358.3,29895,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,29895,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,29895,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,29896,0)
+ ;;=Z01.89^^177^1906^11
+ ;;^UTILITY(U,$J,358.3,29896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30247,1,3,0)
- ;;=3^Melanoma in Situ of Face,Unspec
- ;;^UTILITY(U,$J,358.3,30247,1,4,0)
- ;;=4^D03.30
- ;;^UTILITY(U,$J,358.3,30247,2)
- ;;=^5001895
- ;;^UTILITY(U,$J,358.3,30248,0)
- ;;=D03.39^^189^1911^20
- ;;^UTILITY(U,$J,358.3,30248,1,0)
+ ;;^UTILITY(U,$J,358.3,29896,1,3,0)
+ ;;=3^Special Exam NEC
+ ;;^UTILITY(U,$J,358.3,29896,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,29896,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,29897,0)
+ ;;=Z11.59^^177^1906^12
+ ;;^UTILITY(U,$J,358.3,29897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30248,1,3,0)
- ;;=3^Melanoma in Situ of Face NEC
- ;;^UTILITY(U,$J,358.3,30248,1,4,0)
- ;;=4^D03.39
- ;;^UTILITY(U,$J,358.3,30248,2)
- ;;=^5001896
- ;;^UTILITY(U,$J,358.3,30249,0)
- ;;=D03.4^^189^1911^32
- ;;^UTILITY(U,$J,358.3,30249,1,0)
+ ;;^UTILITY(U,$J,358.3,29897,1,3,0)
+ ;;=3^Viral Disease Screening NEC
+ ;;^UTILITY(U,$J,358.3,29897,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,29897,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,29898,0)
+ ;;=Z12.39^^177^1906^7
+ ;;^UTILITY(U,$J,358.3,29898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30249,1,3,0)
- ;;=3^Melanoma in Situ of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,30249,1,4,0)
- ;;=4^D03.4
- ;;^UTILITY(U,$J,358.3,30249,2)
- ;;=^5001897
- ;;^UTILITY(U,$J,358.3,30250,0)
- ;;=D03.51^^189^1911^18
- ;;^UTILITY(U,$J,358.3,30250,1,0)
+ ;;^UTILITY(U,$J,358.3,29898,1,3,0)
+ ;;=3^Malig Neop of Breast Screening NEC
+ ;;^UTILITY(U,$J,358.3,29898,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,29898,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,29899,0)
+ ;;=Z12.12^^177^1906^9
+ ;;^UTILITY(U,$J,358.3,29899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30250,1,3,0)
- ;;=3^Melanoma in Situ of Anal Skin
- ;;^UTILITY(U,$J,358.3,30250,1,4,0)
- ;;=4^D03.51
- ;;^UTILITY(U,$J,358.3,30250,2)
- ;;=^5001898
- ;;^UTILITY(U,$J,358.3,30251,0)
- ;;=D03.52^^189^1911^19
- ;;^UTILITY(U,$J,358.3,30251,1,0)
+ ;;^UTILITY(U,$J,358.3,29899,1,3,0)
+ ;;=3^Malig Neop of Rectum Screening
+ ;;^UTILITY(U,$J,358.3,29899,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,29899,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,29900,0)
+ ;;=Z12.5^^177^1906^8
+ ;;^UTILITY(U,$J,358.3,29900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30251,1,3,0)
- ;;=3^Melanoma in Situ of Breast
- ;;^UTILITY(U,$J,358.3,30251,1,4,0)
- ;;=4^D03.52
- ;;^UTILITY(U,$J,358.3,30251,2)
- ;;=^5001899
- ;;^UTILITY(U,$J,358.3,30252,0)
- ;;=D03.59^^189^1911^33
- ;;^UTILITY(U,$J,358.3,30252,1,0)
+ ;;^UTILITY(U,$J,358.3,29900,1,3,0)
+ ;;=3^Malig Neop of Prostate Screening
+ ;;^UTILITY(U,$J,358.3,29900,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,29900,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,29901,0)
+ ;;=Z13.5^^177^1906^4
+ ;;^UTILITY(U,$J,358.3,29901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30252,1,3,0)
- ;;=3^Melanoma in Situ of Trunk NEC
- ;;^UTILITY(U,$J,358.3,30252,1,4,0)
- ;;=4^D03.59
- ;;^UTILITY(U,$J,358.3,30252,2)
- ;;=^5001900
- ;;^UTILITY(U,$J,358.3,30253,0)
- ;;=D03.61^^189^1911^31
- ;;^UTILITY(U,$J,358.3,30253,1,0)
+ ;;^UTILITY(U,$J,358.3,29901,1,3,0)
+ ;;=3^Eye and Ear Disorder Screening
+ ;;^UTILITY(U,$J,358.3,29901,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,29901,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,29902,0)
+ ;;=Z13.1^^177^1906^2
+ ;;^UTILITY(U,$J,358.3,29902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30253,1,3,0)
- ;;=3^Melanoma in Situ of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,30253,1,4,0)
- ;;=4^D03.61
- ;;^UTILITY(U,$J,358.3,30253,2)
- ;;=^5001902
- ;;^UTILITY(U,$J,358.3,30254,0)
- ;;=D03.62^^189^1911^25
- ;;^UTILITY(U,$J,358.3,30254,1,0)
+ ;;^UTILITY(U,$J,358.3,29902,1,3,0)
+ ;;=3^Diabetes Mellitus Screening
+ ;;^UTILITY(U,$J,358.3,29902,1,4,0)
+ ;;=4^Z13.1
+ ;;^UTILITY(U,$J,358.3,29902,2)
+ ;;=^5062700
+ ;;^UTILITY(U,$J,358.3,29903,0)
+ ;;=Z13.220^^177^1906^6
+ ;;^UTILITY(U,$J,358.3,29903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30254,1,3,0)
- ;;=3^Melanoma in Situ of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,30254,1,4,0)
- ;;=4^D03.62
- ;;^UTILITY(U,$J,358.3,30254,2)
- ;;=^5001903
- ;;^UTILITY(U,$J,358.3,30255,0)
- ;;=D03.71^^189^1911^30
- ;;^UTILITY(U,$J,358.3,30255,1,0)
+ ;;^UTILITY(U,$J,358.3,29903,1,3,0)
+ ;;=3^Lipoid Disorder Screening
+ ;;^UTILITY(U,$J,358.3,29903,1,4,0)
+ ;;=4^Z13.220
+ ;;^UTILITY(U,$J,358.3,29903,2)
+ ;;=^5062702
+ ;;^UTILITY(U,$J,358.3,29904,0)
+ ;;=Z11.1^^177^1906^10
+ ;;^UTILITY(U,$J,358.3,29904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30255,1,3,0)
- ;;=3^Melanoma in Situ of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,30255,1,4,0)
- ;;=4^D03.71
- ;;^UTILITY(U,$J,358.3,30255,2)
- ;;=^5001905
- ;;^UTILITY(U,$J,358.3,30256,0)
- ;;=D03.72^^189^1911^24
- ;;^UTILITY(U,$J,358.3,30256,1,0)
+ ;;^UTILITY(U,$J,358.3,29904,1,3,0)
+ ;;=3^Respiratory Tuberculosis Screening
+ ;;^UTILITY(U,$J,358.3,29904,1,4,0)
+ ;;=4^Z11.1
+ ;;^UTILITY(U,$J,358.3,29904,2)
+ ;;=^5062670
+ ;;^UTILITY(U,$J,358.3,29905,0)
+ ;;=Z13.6^^177^1906^1
+ ;;^UTILITY(U,$J,358.3,29905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30256,1,3,0)
- ;;=3^Melanoma in Situ of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,30256,1,4,0)
- ;;=4^D03.72
- ;;^UTILITY(U,$J,358.3,30256,2)
- ;;=^5001906
- ;;^UTILITY(U,$J,358.3,30257,0)
- ;;=D03.8^^189^1911^27
+ ;;^UTILITY(U,$J,358.3,29905,1,3,0)
+ ;;=3^Cardiovascular Disorder Screening
+ ;;^UTILITY(U,$J,358.3,29905,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,29905,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,29906,0)
+ ;;=C34.91^^177^1907^10
+ ;;^UTILITY(U,$J,358.3,29906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29906,1,3,0)
+ ;;=3^Malig Neop of Right Bronchus/Lung,Unspec Part

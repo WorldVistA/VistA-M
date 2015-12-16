@@ -1,136 +1,134 @@
-IBDEI1X2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1X2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34041,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34041,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,34041,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,34042,0)
- ;;=C34.81^^192^1985^38
- ;;^UTILITY(U,$J,358.3,34042,1,0)
+ ;;^UTILITY(U,$J,358.3,33687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34042,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34042,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,34042,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,34043,0)
- ;;=C34.82^^192^1985^37
- ;;^UTILITY(U,$J,358.3,34043,1,0)
+ ;;^UTILITY(U,$J,358.3,33687,1,3,0)
+ ;;=3^Oligomenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,33687,1,4,0)
+ ;;=4^N91.4
+ ;;^UTILITY(U,$J,358.3,33687,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,33688,0)
+ ;;=N91.5^^182^2008^38
+ ;;^UTILITY(U,$J,358.3,33688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34043,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34043,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,34043,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,34044,0)
- ;;=C34.91^^192^1985^41
- ;;^UTILITY(U,$J,358.3,34044,1,0)
+ ;;^UTILITY(U,$J,358.3,33688,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,33688,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,33688,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,33689,0)
+ ;;=N92.0^^182^2008^20
+ ;;^UTILITY(U,$J,358.3,33689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34044,1,3,0)
- ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34044,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,34044,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,34045,0)
- ;;=C34.92^^192^1985^40
- ;;^UTILITY(U,$J,358.3,34045,1,0)
+ ;;^UTILITY(U,$J,358.3,33689,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,33689,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,33689,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,33690,0)
+ ;;=N92.6^^182^2008^28
+ ;;^UTILITY(U,$J,358.3,33690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34045,1,3,0)
- ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34045,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,34045,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,34046,0)
- ;;=C38.4^^192^1985^39
- ;;^UTILITY(U,$J,358.3,34046,1,0)
+ ;;^UTILITY(U,$J,358.3,33690,1,3,0)
+ ;;=3^Irregular Menstruation,Unspec
+ ;;^UTILITY(U,$J,358.3,33690,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,33690,2)
+ ;;=^5015913
+ ;;^UTILITY(U,$J,358.3,33691,0)
+ ;;=N92.5^^182^2008^27
+ ;;^UTILITY(U,$J,358.3,33691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34046,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,34046,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,34046,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,34047,0)
- ;;=C39.9^^192^1985^35
- ;;^UTILITY(U,$J,358.3,34047,1,0)
+ ;;^UTILITY(U,$J,358.3,33691,1,3,0)
+ ;;=3^Irregular Menstruation,Other Spec
+ ;;^UTILITY(U,$J,358.3,33691,1,4,0)
+ ;;=4^N92.5
+ ;;^UTILITY(U,$J,358.3,33691,2)
+ ;;=^5015912
+ ;;^UTILITY(U,$J,358.3,33692,0)
+ ;;=N92.3^^182^2008^41
+ ;;^UTILITY(U,$J,358.3,33692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34047,1,3,0)
- ;;=3^Malig Neop Lower Respiratory Tract
- ;;^UTILITY(U,$J,358.3,34047,1,4,0)
- ;;=4^C39.9
- ;;^UTILITY(U,$J,358.3,34047,2)
- ;;=^5000972
- ;;^UTILITY(U,$J,358.3,34048,0)
- ;;=B49.^^192^1985^46
- ;;^UTILITY(U,$J,358.3,34048,1,0)
+ ;;^UTILITY(U,$J,358.3,33692,1,3,0)
+ ;;=3^Ovulation Bleeding
+ ;;^UTILITY(U,$J,358.3,33692,1,4,0)
+ ;;=4^N92.3
+ ;;^UTILITY(U,$J,358.3,33692,2)
+ ;;=^270570
+ ;;^UTILITY(U,$J,358.3,33693,0)
+ ;;=N89.7^^182^2008^23
+ ;;^UTILITY(U,$J,358.3,33693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34048,1,3,0)
- ;;=3^Mycosis,Unspec
- ;;^UTILITY(U,$J,358.3,34048,1,4,0)
- ;;=4^B49.
- ;;^UTILITY(U,$J,358.3,34048,2)
- ;;=^5000690
- ;;^UTILITY(U,$J,358.3,34049,0)
- ;;=R76.11^^192^1985^77
- ;;^UTILITY(U,$J,358.3,34049,1,0)
+ ;;^UTILITY(U,$J,358.3,33693,1,3,0)
+ ;;=3^Hematocolpos
+ ;;^UTILITY(U,$J,358.3,33693,1,4,0)
+ ;;=4^N89.7
+ ;;^UTILITY(U,$J,358.3,33693,2)
+ ;;=^5015889
+ ;;^UTILITY(U,$J,358.3,33694,0)
+ ;;=N93.8^^182^2008^2
+ ;;^UTILITY(U,$J,358.3,33694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34049,1,3,0)
- ;;=3^Reaction to Skin Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,34049,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,34049,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,34050,0)
- ;;=E66.9^^192^1985^57
- ;;^UTILITY(U,$J,358.3,34050,1,0)
+ ;;^UTILITY(U,$J,358.3,33694,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
+ ;;^UTILITY(U,$J,358.3,33694,1,4,0)
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,33694,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,33695,0)
+ ;;=N93.9^^182^2008^3
+ ;;^UTILITY(U,$J,358.3,33695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34050,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,34050,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,34050,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,34051,0)
- ;;=I26.99^^192^1985^72
- ;;^UTILITY(U,$J,358.3,34051,1,0)
+ ;;^UTILITY(U,$J,358.3,33695,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,33695,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,33695,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,33696,0)
+ ;;=N92.4^^182^2008^19
+ ;;^UTILITY(U,$J,358.3,33696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34051,1,3,0)
- ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,34051,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,34051,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,34052,0)
- ;;=R09.1^^192^1985^61
- ;;^UTILITY(U,$J,358.3,34052,1,0)
+ ;;^UTILITY(U,$J,358.3,33696,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,33696,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,33696,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,33697,0)
+ ;;=N95.0^^182^2008^46
+ ;;^UTILITY(U,$J,358.3,33697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34052,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,34052,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,34052,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,34053,0)
- ;;=B59.^^192^1985^63
- ;;^UTILITY(U,$J,358.3,34053,1,0)
+ ;;^UTILITY(U,$J,358.3,33697,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,33697,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,33697,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,33698,0)
+ ;;=N95.1^^182^2008^33
+ ;;^UTILITY(U,$J,358.3,33698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34053,1,3,0)
- ;;=3^Pneumocystosis
- ;;^UTILITY(U,$J,358.3,34053,1,4,0)
- ;;=4^B59.
- ;;^UTILITY(U,$J,358.3,34053,2)
- ;;=^5000734
- ;;^UTILITY(U,$J,358.3,34054,0)
- ;;=J69.0^^192^1985^68
- ;;^UTILITY(U,$J,358.3,34054,1,0)
+ ;;^UTILITY(U,$J,358.3,33698,1,3,0)
+ ;;=3^Menopausal/Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,33698,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,33698,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,33699,0)
+ ;;=N97.0^^182^2008^21
+ ;;^UTILITY(U,$J,358.3,33699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34054,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
+ ;;^UTILITY(U,$J,358.3,33699,1,3,0)
+ ;;=3^Female Infertility Associated w/ Anovulation
+ ;;^UTILITY(U,$J,358.3,33699,1,4,0)
+ ;;=4^N97.0
+ ;;^UTILITY(U,$J,358.3,33699,2)
+ ;;=^5015931
+ ;;^UTILITY(U,$J,358.3,33700,0)
+ ;;=N97.9^^182^2008^22

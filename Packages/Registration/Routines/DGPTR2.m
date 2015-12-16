@@ -1,6 +1,10 @@
-DGPTR2 ;ALB/JDS/MJK/MTC/ADL/TJ - ALB/BOK  PTF TRANSMISSION ;6/6/05 11:48am
- ;;5.3;Registration;**183,338,423,510,636,729,850**;Aug 13, 1993;Build 171
+DGPTR2 ;ALB/JDS/MJK/MTC/ADL/TJ/BOK,HIOFO/FT - PTF TRANSMISSION ;4/20/15 9:59am
+ ;;5.3;Registration;**183,338,423,510,636,729,850,884**;Aug 13, 1993;Build 31
  ;;ADL;Update for CSV Project;;Mar 27,2003
+ ;
+ ; ^XMB(3.9) - #10113
+ ; ICDXCODE APIs - #5699
+ ;
 501 ; -- setup 501 transactions
  ; DG*636
  N DGPTMVDT
@@ -54,7 +58,7 @@ MOV S DGCDR=$P(DGM,U,16),DGM=$P(DGM,U,1,9)_U_$P(DGM,U,11,15),L=1 F Z=5:1:14 S:'$
  ;-- Head/Neck CA related care
  S Y=Y_$E(DGHNC_" ")
  K DGAUX,DGDRUG,DGSC,DGAO,DGIR,DGEC,DGMST,DGHNC
- D FILL^DGPTR2,SAVE
+ D FILL,SAVE
  Q
 535 ; -- do 535's
  D 535^DGPTR3
@@ -64,7 +68,7 @@ PROC ; -- setup 601 transactions
 601 S I=$O(^DGPT(J,"P",I)) G 701:I'>0 S (X,DGPROC)=^(I,0) G 601:'DGPROC
  G 601:DGPROC<T1!(DGPROC>T2) S DGPROCD=+^DGPT(J,"P",I,0),^UTILITY($J,"PROC",DGPROCD)=$S($D(^UTILITY($J,"PROC",DGPROCD)):^(DGPROCD),1:0)+1
  I ^UTILITY($J,"PROC",DGPROCD)>1 W !,"More than one procedure record on same date/time" S DGERR=1 Q
- S Y=$S('T1:"N",1:"C")_"60"_^(DGPROCD)_DGHEAD_$E(DGPROCD,4,7)_$E(DGPROCD,2,3)_$E($P(+X,".",2)_"0000",1,4)
+ S Y=$S('T1:"N",1:"C")_"601"_DGHEAD_$E(DGPROCD,4,7)_$E(DGPROCD,2,3)_$E($P(+X,".",2)_"0000",1,4)
  ;replace specialty pointer (ien) with ptf code (alpha-numeric)
  N DGARRX,DGARRY ;DG729
  S DGARRX=$$TSDATA^DGACT(42.4,$P(X,U,2),.DGARRY)
@@ -89,11 +93,33 @@ ENTER S Y=Y_$J($P(X,U,Z),L)
 ENTER0 S Y=Y_$S($P(X,U,Z)]"":$E("00000",$L($P(X,U,Z))+1,L)_$P(X,U,Z),1:$J($P(X,U,Z),L))
  Q
  ;
-SAVE D START^DGPTR1 S:'DGERR ^XMB(3.9,DGXMZ,2,DGCNT,0)=Y,DGCNT=DGCNT+1
- I DGERR'>0 S DGACNT=DGACNT+1,^TMP("AEDIT",$J,$E(Y,1,4),DGACNT)=Y
+SAVE ;save segment to MailMan message and ^TMP("AEDIT",$J), if data is valid
+ N DGY1,DGY2
+ S (DGY1,DGY2)=""
+ D START^DGPTR1 ;validate data in segment
+ I DGERR'>0 S DGACNT=DGACNT+1,^TMP("AEDIT",$J,$E(Y,1,4),DGACNT)=Y ;^TMP("AEDIT",$J) used by DGPTAE* for more data validation
+ ;AITC wants segment length of 384 characters.
+ ;Break the segment at 240.
+ I 'DGERR D
+ .D FILL384
+ .I $E(Y,2,4)=101 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .I $E(Y,2,4)=401 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .I $E(Y,2,4)=501 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .I $E(Y,2,4)=535 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .I $E(Y,2,4)=601 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .I $E(Y,2,4)=701 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .I $E(Y,2,4)=702 S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ .Q:DGY1=""!(DGY2="")
+ .S ^XMB(3.9,DGXMZ,2,DGCNT,0)=DGY1,DGCNT=DGCNT+1
+ .S ^XMB(3.9,DGXMZ,2,DGCNT,0)=DGY2,DGCNT=DGCNT+1
 Q Q
  ;
-FILL F K=$L(Y):1:124 S Y=Y_" "
+FILL ;pad with spaces to 125 characters (so DGPTR1 data checks work)
+ F K=$L(Y):1:124 S Y=Y_" "
+ Q
+FILL384 ;pad out with spaces to 384 characters for AITC transmission
+ F K=$L(Y):1:383 S Y=Y_" "
+ S $E(Y,383)="9" ;383rd character=9 to indicate ICD9 record. DGPTRI2 sets 383rd character=1 to indicate ICD10 record.
  Q
  ;
 CDR S Y=Y_$E($P(Z,".")_"0000",1,4)_$E($P(Z,".",2)_"00",1,2)

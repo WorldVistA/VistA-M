@@ -1,5 +1,5 @@
 MPIFAPI1 ;CMC/BP-APIS FOR MPI - CONTINUED ;DEC 21, 1998
- ;;1.0; MASTER PATIENT INDEX VISTA ;**37,41**;30 Apr 99
+ ;;1.0;MASTER PATIENT INDEX VISTA;**37,41,60**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;   ^DPT( - #2070 and #4079
@@ -41,7 +41,8 @@ UPDATE(DFN,ARR,MPISILNT,REMOVE) ;api to edit 'mpi','mpifhis' and 'mpicmor' nodes
  ..I DFN'=($O(^DPT("AICN",ICN2,""))) D 
  ...N DFN2 S DFN2=$O(^DPT("AICN",ICN2,""))
  ...D TWODFNS^MPIF002(DFN2,DFN,ICN2)
- ..I $P($$SITE^VASITE(),"^",3)'=200 S MPIRETN="-1^ICN "_ICN2_" is already in use for pt DFN "_DFN ;;**37
+ ..I $P($$SITE^VASITE(),"^",3)'=200 D
+ ...S MPIRETN="-1^ICN "_ICN2_" is already in use for pt DFN "_DFN ;;**37
  .Q:+MPIRETN=-1
  .K FDA S FDA(1,2,DFN_",",991.01)=@ARR@(991.01)
  .K MPIERR D FILE^DIE("E","FDA(1)","MPIERR") K FDA(1) I $D(MPIERR("DIERR")) S MPIRETN="-1^Unable to update pt's ICN (DFN="_DFN_") ICN to "_@ARR@(991.01)_" because "_MPIERR("DIERR",1,"TEXT",1)
@@ -51,6 +52,10 @@ UPDATE(DFN,ARR,MPISILNT,REMOVE) ;api to edit 'mpi','mpifhis' and 'mpicmor' nodes
  .I +MPIRETN'=0 Q
  .K FDA S FDA(1,2,DFN_",",991.04)="@"
  .K MPIERR D FILE^DIE("E","FDA(1)","MPIERR") K FDA(1) I $D(MPIERR("DIERR")) S MPIRETN="-1^Unable to delete pt's ("_DFN_" LOCALLY ASSIGNED ICN field because "_MPIERR("DIERR",1,"TEXT",1)
+ .;**60 (elz) MVI_793 add Full ICN field
+ .K FDA S FDA(1,2,DFN_",",991.1)=(@ARR@(991.01))_"V"_(@ARR@(991.02))
+ .K MPIERR D FILE^DIE("E","FDA(1)","MPIERR") K FDA(1) I $D(MPIERR("DIERR")) S MPIRETN="-1^Unable to update pt's Full ICN (DFN="_DFN_") ICN to "_(@ARR@(991.01))_"V"_(@ARR@(991.02))_" because "_MPIERR("DIERR",1,"TEXT",1)
+ .I +MPIRETN'=0 Q
  I MPIRETN=0 I $D(@ARR@(991.03)) D
  .I @ARR@(991.03)="@" K FDA S FDA(1,2,DFN_",",991.03)="@"
  .I @ARR@(991.03)'="@" I @ARR@(991.03)>0 I $$STA^XUAF4(@ARR@(991.03))'="" S FDA(1,2,DFN_",",991.03)="`"_@ARR@(991.03)

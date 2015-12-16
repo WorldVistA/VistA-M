@@ -1,5 +1,5 @@
 PSOHELP ;BHAM ISC/SAB-outpatient utility routine ; 10/17/07 7:41am
- ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276,282**;DEC 1997;Build 18
  ;External reference ^PS(51 supported by DBIA 2224
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference ^PS(56 supported by DBIA 2229
@@ -13,6 +13,7 @@ SIG ;checks PI for RXs
 SIGONE K INS1 Q:$L(X)<1  F Z0=1:1:$L(X," ") G:Z0="" EN S Z1=$P(X," ",Z0) D  G:'$D(X) EN
  .I $L(Z1)>32 W $C(7),!?5,"MAX OF 32 CHARACTERS ALLOWED BETWEEN SPACES.",! K X Q
  .D:$D(X)&($G(Z1)]"")  S INS1=$G(INS1)_" "_Z1
+ ..S Z1=$$UPPER^PSOSIG(Z1) ;*282 Provider Comments
  ..S Y=$O(^PS(51,"B",Z1,0)) Q:'Y!($P($G(^PS(51,+Y,0)),"^",4)>1)  S Z1=$P(^PS(51,Y,0),"^",2)
  ..I $G(^PS(51,+Y,9))]"" S Y=$P(X," ",Z0-1),Y=$E(Y,$L(Y)) S:Y>1 Z1=^(9)
 EN K Z1,Z0
@@ -23,7 +24,8 @@ SSIG ;other lang. mods
  K SINS1 Q:$L(X)<1  F Z0=1:1:$L(X," ") G:Z0="" EX S Z1=$P(X," ",Z0) D  G:'$D(X) EX
  .I $L(Z1)>32 W $C(7),!?5,"MAX OF 32 CHARACTERS ALLOWED BETWEEN SPACES.",! K X Q
  .D:$D(X)&($G(Z1)]"")  S SINS1=$G(SINS1)_" "_Z1
- ..S Y=$O(^PS(51,"B",Z1,0)) Q:'Y  S Z1=$P(^PS(51,Y,0),"^",2)
+ ..S Z1=$$UPPER^PSOSIG(Z1) ;*282 Provider Comments
+ ..S Y=$O(^PS(51,"B",Z1,0)) Q:'Y!($P($G(^PS(51,+Y,0)),"^",4)>1)  S Z1=$P(^PS(51,Y,0),"^",2)
  ..I $G(^PS(51,+Y,4))]"" S Z1=^PS(51,+Y,4) ;,Y=$P(X," ",Z0-1),Y=$E(Y,$L(Y)) S:Y>1 Z1=^(9)
 EX K Z1,Z0
  Q

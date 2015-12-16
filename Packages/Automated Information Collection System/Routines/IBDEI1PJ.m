@@ -1,124 +1,124 @@
-IBDEI1PJ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PJ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30621,1,4,0)
- ;;=4^I70.544
- ;;^UTILITY(U,$J,358.3,30621,2)
- ;;=^5007712
- ;;^UTILITY(U,$J,358.3,30622,0)
- ;;=I70.545^^189^1921^33
- ;;^UTILITY(U,$J,358.3,30622,1,0)
+ ;;^UTILITY(U,$J,358.3,30256,2)
+ ;;=^5016820
+ ;;^UTILITY(U,$J,358.3,30257,0)
+ ;;=O35.6XX4^^178^1916^84
+ ;;^UTILITY(U,$J,358.3,30257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30622,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,30622,1,4,0)
- ;;=4^I70.545
- ;;^UTILITY(U,$J,358.3,30622,2)
- ;;=^5007713
- ;;^UTILITY(U,$J,358.3,30623,0)
- ;;=I70.548^^189^1921^34
- ;;^UTILITY(U,$J,358.3,30623,1,0)
+ ;;^UTILITY(U,$J,358.3,30257,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 4
+ ;;^UTILITY(U,$J,358.3,30257,1,4,0)
+ ;;=4^O35.6XX4
+ ;;^UTILITY(U,$J,358.3,30257,2)
+ ;;=^5016821
+ ;;^UTILITY(U,$J,358.3,30258,0)
+ ;;=O35.6XX5^^178^1916^85
+ ;;^UTILITY(U,$J,358.3,30258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30623,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,30623,1,4,0)
- ;;=4^I70.548
- ;;^UTILITY(U,$J,358.3,30623,2)
- ;;=^5007714
- ;;^UTILITY(U,$J,358.3,30624,0)
- ;;=I70.549^^189^1921^35
- ;;^UTILITY(U,$J,358.3,30624,1,0)
+ ;;^UTILITY(U,$J,358.3,30258,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 5
+ ;;^UTILITY(U,$J,358.3,30258,1,4,0)
+ ;;=4^O35.6XX5
+ ;;^UTILITY(U,$J,358.3,30258,2)
+ ;;=^5016822
+ ;;^UTILITY(U,$J,358.3,30259,0)
+ ;;=O36.8120^^178^1916^1
+ ;;^UTILITY(U,$J,358.3,30259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30624,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,30624,1,4,0)
- ;;=4^I70.549
- ;;^UTILITY(U,$J,358.3,30624,2)
- ;;=^5007715
- ;;^UTILITY(U,$J,358.3,30625,0)
- ;;=I70.631^^189^1921^55
- ;;^UTILITY(U,$J,358.3,30625,1,0)
+ ;;^UTILITY(U,$J,358.3,30259,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, unsp
+ ;;^UTILITY(U,$J,358.3,30259,1,4,0)
+ ;;=4^O36.8120
+ ;;^UTILITY(U,$J,358.3,30259,2)
+ ;;=^5017089
+ ;;^UTILITY(U,$J,358.3,30260,0)
+ ;;=O36.8130^^178^1916^7
+ ;;^UTILITY(U,$J,358.3,30260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30625,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,30625,1,4,0)
- ;;=4^I70.631
- ;;^UTILITY(U,$J,358.3,30625,2)
- ;;=^5007740
- ;;^UTILITY(U,$J,358.3,30626,0)
- ;;=I70.632^^189^1921^51
- ;;^UTILITY(U,$J,358.3,30626,1,0)
+ ;;^UTILITY(U,$J,358.3,30260,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, unsp
+ ;;^UTILITY(U,$J,358.3,30260,1,4,0)
+ ;;=4^O36.8130
+ ;;^UTILITY(U,$J,358.3,30260,2)
+ ;;=^5017096
+ ;;^UTILITY(U,$J,358.3,30261,0)
+ ;;=O36.8121^^178^1916^2
+ ;;^UTILITY(U,$J,358.3,30261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30626,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,30626,1,4,0)
- ;;=4^I70.632
- ;;^UTILITY(U,$J,358.3,30626,2)
- ;;=^5007741
- ;;^UTILITY(U,$J,358.3,30627,0)
- ;;=I70.633^^189^1921^50
- ;;^UTILITY(U,$J,358.3,30627,1,0)
+ ;;^UTILITY(U,$J,358.3,30261,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30261,1,4,0)
+ ;;=4^O36.8121
+ ;;^UTILITY(U,$J,358.3,30261,2)
+ ;;=^5017090
+ ;;^UTILITY(U,$J,358.3,30262,0)
+ ;;=O36.8131^^178^1916^8
+ ;;^UTILITY(U,$J,358.3,30262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30627,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,30627,1,4,0)
- ;;=4^I70.633
- ;;^UTILITY(U,$J,358.3,30627,2)
- ;;=^5007742
- ;;^UTILITY(U,$J,358.3,30628,0)
- ;;=I70.634^^189^1921^53
- ;;^UTILITY(U,$J,358.3,30628,1,0)
+ ;;^UTILITY(U,$J,358.3,30262,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30262,1,4,0)
+ ;;=4^O36.8131
+ ;;^UTILITY(U,$J,358.3,30262,2)
+ ;;=^5017097
+ ;;^UTILITY(U,$J,358.3,30263,0)
+ ;;=O36.8122^^178^1916^3
+ ;;^UTILITY(U,$J,358.3,30263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30628,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,30628,1,4,0)
- ;;=4^I70.634
- ;;^UTILITY(U,$J,358.3,30628,2)
- ;;=^5007743
- ;;^UTILITY(U,$J,358.3,30629,0)
- ;;=I70.635^^189^1921^52
- ;;^UTILITY(U,$J,358.3,30629,1,0)
+ ;;^UTILITY(U,$J,358.3,30263,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,30263,1,4,0)
+ ;;=4^O36.8122
+ ;;^UTILITY(U,$J,358.3,30263,2)
+ ;;=^5017091
+ ;;^UTILITY(U,$J,358.3,30264,0)
+ ;;=O36.8132^^178^1916^9
+ ;;^UTILITY(U,$J,358.3,30264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30629,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,30629,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,30629,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,30630,0)
- ;;=I70.638^^189^1921^54
- ;;^UTILITY(U,$J,358.3,30630,1,0)
+ ;;^UTILITY(U,$J,358.3,30264,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,30264,1,4,0)
+ ;;=4^O36.8132
+ ;;^UTILITY(U,$J,358.3,30264,2)
+ ;;=^5017098
+ ;;^UTILITY(U,$J,358.3,30265,0)
+ ;;=O36.8123^^178^1916^4
+ ;;^UTILITY(U,$J,358.3,30265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30630,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,30630,1,4,0)
- ;;=4^I70.638
- ;;^UTILITY(U,$J,358.3,30630,2)
- ;;=^5007745
- ;;^UTILITY(U,$J,358.3,30631,0)
- ;;=I70.639^^189^1921^56
- ;;^UTILITY(U,$J,358.3,30631,1,0)
+ ;;^UTILITY(U,$J,358.3,30265,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,30265,1,4,0)
+ ;;=4^O36.8123
+ ;;^UTILITY(U,$J,358.3,30265,2)
+ ;;=^5017092
+ ;;^UTILITY(U,$J,358.3,30266,0)
+ ;;=O36.8133^^178^1916^10
+ ;;^UTILITY(U,$J,358.3,30266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30631,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,30631,1,4,0)
- ;;=4^I70.639
- ;;^UTILITY(U,$J,358.3,30631,2)
- ;;=^5007746
- ;;^UTILITY(U,$J,358.3,30632,0)
- ;;=I70.641^^189^1921^48
- ;;^UTILITY(U,$J,358.3,30632,1,0)
+ ;;^UTILITY(U,$J,358.3,30266,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,30266,1,4,0)
+ ;;=4^O36.8133
+ ;;^UTILITY(U,$J,358.3,30266,2)
+ ;;=^5017099
+ ;;^UTILITY(U,$J,358.3,30267,0)
+ ;;=O36.8124^^178^1916^5
+ ;;^UTILITY(U,$J,358.3,30267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30632,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,30632,1,4,0)
- ;;=4^I70.641
- ;;^UTILITY(U,$J,358.3,30632,2)
- ;;=^5007747
- ;;^UTILITY(U,$J,358.3,30633,0)
- ;;=I70.642^^189^1921^44
- ;;^UTILITY(U,$J,358.3,30633,1,0)
+ ;;^UTILITY(U,$J,358.3,30267,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,30267,1,4,0)
+ ;;=4^O36.8124
+ ;;^UTILITY(U,$J,358.3,30267,2)
+ ;;=^5017093
+ ;;^UTILITY(U,$J,358.3,30268,0)
+ ;;=O36.8134^^178^1916^11
+ ;;^UTILITY(U,$J,358.3,30268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30633,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,30268,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,30268,1,4,0)
+ ;;=4^O36.8134

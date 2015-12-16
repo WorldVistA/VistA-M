@@ -1,5 +1,5 @@
-ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;6/4/14  13:50
- ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149**;Dec 22, 1997;Build 27
+ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;7/16/15  11:46
+ ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154**;Dec 22, 1997;Build 13
 BEG ;entry point from option
  I '$O(^ECX(728.904,"A",0)) W !,"There are no unit dose orders to extract",!! R X:5 K X Q
  D SETUP I ECFILE="" Q
@@ -33,7 +33,7 @@ STUFF ;get data
  S ECXPRNPI=$$NPI^XUSNPI("Individual_ID",ECPROIEN,ECD)
  S:+ECXPRNPI'>0 ECXPRNPI="" S ECXPRNPI=$P(ECXPRNPI,U)
  S W=$P(DATA,U,6)
- S ECXDIV=$P($G(^DIC(42,+W,0)),U,11),ECXW=$P($G(^DIC(42,+W,44)),U)
+ S ECXDIV=$P($G(^DIC(42,+W,0)),U,11),ECXW=$S(ECXADM="":"",1:$P($G(^DIC(42,+W,44)),U)) ;154 Ward gets set to null if this is an order for an outpatient
  S ECXUDDT=$$ECXDATE^ECXUTL($P(DATA,U,3),ECXYM)
  S ECXUDTM=$E($P($P(DATA,U,3),".",2)_"000000",1,6)
  S ECXQTY=$P(DATA,U,5),ECXCOST=$P(DATA,U,8),ON=$P(DATA,U,10)

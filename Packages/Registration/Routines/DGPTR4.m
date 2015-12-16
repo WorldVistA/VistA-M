@@ -1,5 +1,8 @@
-DGPTR4 ;ALB/JDS/MJK/MTC/ADL/TJ - ALB/BOK  PTF TRANSMISSION ;11 JUL 05 @0800
- ;;5.3;Registration;**338,423,415,510,565,645,729,664,850**;Aug 13, 1993;Build 171
+DGPTR4 ;ALB/JDS/MJK/MTC/ADL/TJ/BOK,HIOFO/FT - PTF TRANSMISSION ;5/11/15 4:52pm
+ ;;5.3;Registration;**338,423,415,510,565,645,729,664,850,884**;Aug 13, 1993;Build 31
+ ;
+ ; ICDXCODE APIs - #5699
+ ;
 701 ; -- setup 701 transaction
  S Y=$S(T1:"C",1:"N")_"701"_DGHEAD,DGDDX=$P(+DG70,".")_"       ",Y=Y_$E(DGDDX,4,5)_$E(DGDDX,6,7)_$E(DGDDX,2,3)_$E($P(+DG70,".",2)_"0000",1,4)
  S X=DG70
@@ -54,16 +57,16 @@ J S L=3,Z=8 D ENTER0
  S Y=Y_$E($P(DG70,U,31)_" ")
  ;Project 112/SHAD
  S Y=Y_$E($P(DG70,U,32)_" ")
- D FILL
- I T1 F K=41:1:55,65:1:73 S Y=$E(Y,1,K-1)_" "_$E(Y,K+1,125)
- I T1 D CEN^DGPTR1 S:'DGERR ^XMB(3.9,DGXMZ,2,DGCNT,0)=Y,DGCNT=DGCNT+1 Q
+ D FILL^DGPTR2 ;pad to 125 characters
+ I T1 F K=41:1:55,65:1:73 S $E(Y,K)=" " ;send spaces if census
+ I T1 D CEN^DGPTR1 D:'DGERR SAVE70X Q
  I 'T1 D SAVE
 702 ;
  Q:DG702']""
  S Y="N702"_$E(Y,5,40)
  F K=1:1:12 S F=$P(DG702,U,K),F=$P(F,".",1)_$E($P(F,".",2)_"   ",1,3),F=F_$E("      ",1,7-$L(F)),Y=Y_F
- D FILL
- I 'DGERR S ^XMB(3.9,DGXMZ,2,DGCNT,0)=Y,DGCNT=DGCNT+1
+ D FILL^DGPTR2 ;pad to 125 characters
+ I 'DGERR D SAVE70X
  I DGERR'>0 S DGACNT=DGACNT+1,^TMP("AEDIT",$J,$E(Y,1,4),DGACNT)=Y
  S DG702=$P(DG702,U,6,9)
  Q
@@ -74,11 +77,16 @@ ENTER S Y=Y_$J($P(X,U,Z),L)
 ENTER0 S Y=Y_$S($P(X,U,Z)]"":$E("00000",$L($P(X,U,Z))+1,L)_$P(X,U,Z),1:$J($P(X,U,Z),L))
  Q
  ;
-SAVE D START^DGPTR1 S:'DGERR ^XMB(3.9,DGXMZ,2,DGCNT,0)=Y,DGCNT=DGCNT+1
- I DGERR'>0 S DGACNT=DGACNT+1,^TMP("AEDIT",$J,$E(Y,1,4),DGACNT)=Y
-Q Q
- ;
-FILL F K=$L(Y):1:124 S Y=Y_" "
+SAVE ;validate data and save to MailMan message & ^TMP("AEDIT",$J)
+ D SAVE^DGPTR2
+Q ;
+ Q
+SAVE70X ;pad with spaces, set 383rd character & save to MailMan message.
+ N DGY1,DGY2
+ D FILL384^DGPTR2
+ S DGY1=$E(Y,1,240),DGY2=$E(Y,241,384)
+ S ^XMB(3.9,DGXMZ,2,DGCNT,0)=DGY1,DGCNT=DGCNT+1
+ S ^XMB(3.9,DGXMZ,2,DGCNT,0)=DGY2,DGCNT=DGCNT+1
  Q
  ;
 CDR S Y=Y_$E($P(Z,".")_"0000",1,4)_$E($P(Z,".",2)_"00",1,2)
@@ -106,7 +114,7 @@ ETHNIC ;-- Ethnicity (use first active value)
  F  S I=+$O(DG06(I)) Q:'I  D  Q:NUM>1
  .S NODE=$G(DG06(I,0))
  .Q:('NODE)!('$D(^DIC(10.2,+NODE,0)))
- .Q:$$INACTIVE^DGUTL4(+NODE)
+ .Q:$$INACTIVE^DGUTL4(+NODE,2)
  .S X=$$PTR2CODE^DGUTL4(+NODE,2,4)
  .S ETHNIC=$S(X="":" ",1:X)
  .S X=$$PTR2CODE^DGUTL4(+$P(NODE,"^",2),3,4)

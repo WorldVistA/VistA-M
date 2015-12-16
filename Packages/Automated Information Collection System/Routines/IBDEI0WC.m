@@ -1,128 +1,142 @@
-IBDEI0WC ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0WC ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15972,1,5,0)
- ;;=5^Heart Failure, Chronic Diastolic
- ;;^UTILITY(U,$J,358.3,15972,2)
- ;;=Heart Failure, Chronic Diastolic^328498
- ;;^UTILITY(U,$J,358.3,15973,0)
- ;;=428.33^^92^930^47
- ;;^UTILITY(U,$J,358.3,15973,1,0)
+ ;;^UTILITY(U,$J,358.3,15717,0)
+ ;;=054.71^^81^947^35
+ ;;^UTILITY(U,$J,358.3,15717,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15973,1,4,0)
- ;;=4^428.33
- ;;^UTILITY(U,$J,358.3,15973,1,5,0)
- ;;=5^Heart Failure, Diastolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,15973,2)
- ;;=Heart Failure, Diastolic, Acute on Chronic^328499
- ;;^UTILITY(U,$J,358.3,15974,0)
- ;;=428.40^^92^930^46
- ;;^UTILITY(U,$J,358.3,15974,1,0)
+ ;;^UTILITY(U,$J,358.3,15717,1,4,0)
+ ;;=4^054.71
+ ;;^UTILITY(U,$J,358.3,15717,1,5,0)
+ ;;=5^Herpes Simplex, Mouth/Lip
+ ;;^UTILITY(U,$J,358.3,15717,2)
+ ;;=^266574
+ ;;^UTILITY(U,$J,358.3,15718,0)
+ ;;=054.10^^81^947^23
+ ;;^UTILITY(U,$J,358.3,15718,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15974,1,4,0)
- ;;=4^428.40
- ;;^UTILITY(U,$J,358.3,15974,1,5,0)
- ;;=5^Heart Failure, Diastolic& Systolic
- ;;^UTILITY(U,$J,358.3,15974,2)
- ;;=Heart Failure, Systolic and Diastolic^328596
- ;;^UTILITY(U,$J,358.3,15975,0)
- ;;=428.41^^92^930^48
- ;;^UTILITY(U,$J,358.3,15975,1,0)
+ ;;^UTILITY(U,$J,358.3,15718,1,4,0)
+ ;;=4^054.10
+ ;;^UTILITY(U,$J,358.3,15718,1,5,0)
+ ;;=5^Genital Herpes, Unsp
+ ;;^UTILITY(U,$J,358.3,15718,2)
+ ;;=^56853
+ ;;^UTILITY(U,$J,358.3,15719,0)
+ ;;=098.0^^81^947^75
+ ;;^UTILITY(U,$J,358.3,15719,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15975,1,4,0)
- ;;=4^428.41
- ;;^UTILITY(U,$J,358.3,15975,1,5,0)
- ;;=5^Heart Failure, Systolic & Diastolic, Acute
- ;;^UTILITY(U,$J,358.3,15975,2)
- ;;=Heart Failure, Systolic & Diastolic, Acute^328500
- ;;^UTILITY(U,$J,358.3,15976,0)
- ;;=428.42^^92^930^52
- ;;^UTILITY(U,$J,358.3,15976,1,0)
+ ;;^UTILITY(U,$J,358.3,15719,1,4,0)
+ ;;=4^098.0
+ ;;^UTILITY(U,$J,358.3,15719,1,5,0)
+ ;;=5^Urethritis,Gonococcal
+ ;;^UTILITY(U,$J,358.3,15719,2)
+ ;;=^52567
+ ;;^UTILITY(U,$J,358.3,15720,0)
+ ;;=054.13^^81^947^37
+ ;;^UTILITY(U,$J,358.3,15720,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15976,1,4,0)
- ;;=4^428.42
- ;;^UTILITY(U,$J,358.3,15976,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic,Chronic
- ;;^UTILITY(U,$J,358.3,15976,2)
- ;;=^328501
- ;;^UTILITY(U,$J,358.3,15977,0)
- ;;=428.43^^92^930^51
- ;;^UTILITY(U,$J,358.3,15977,1,0)
+ ;;^UTILITY(U,$J,358.3,15720,1,4,0)
+ ;;=4^054.13
+ ;;^UTILITY(U,$J,358.3,15720,1,5,0)
+ ;;=5^Herpetic Infect Of Penis
+ ;;^UTILITY(U,$J,358.3,15720,2)
+ ;;=^266560
+ ;;^UTILITY(U,$J,358.3,15721,0)
+ ;;=054.11^^81^947^38
+ ;;^UTILITY(U,$J,358.3,15721,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15977,1,4,0)
- ;;=4^428.43
- ;;^UTILITY(U,$J,358.3,15977,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic
- ;;^UTILITY(U,$J,358.3,15977,2)
- ;;=^328502
- ;;^UTILITY(U,$J,358.3,15978,0)
- ;;=396.3^^92^930^10
- ;;^UTILITY(U,$J,358.3,15978,1,0)
+ ;;^UTILITY(U,$J,358.3,15721,1,4,0)
+ ;;=4^054.11
+ ;;^UTILITY(U,$J,358.3,15721,1,5,0)
+ ;;=5^Herpetic Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,15721,2)
+ ;;=^57012
+ ;;^UTILITY(U,$J,358.3,15722,0)
+ ;;=053.9^^81^947^36
+ ;;^UTILITY(U,$J,358.3,15722,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15978,1,4,0)
- ;;=4^396.3
- ;;^UTILITY(U,$J,358.3,15978,1,5,0)
- ;;=5^Aortic and Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,15978,2)
- ;;=Aortic and Mitral Insufficiency^269583
- ;;^UTILITY(U,$J,358.3,15979,0)
- ;;=429.9^^92^930^28
- ;;^UTILITY(U,$J,358.3,15979,1,0)
+ ;;^UTILITY(U,$J,358.3,15722,1,4,0)
+ ;;=4^053.9
+ ;;^UTILITY(U,$J,358.3,15722,1,5,0)
+ ;;=5^Herpes Zoster NOS
+ ;;^UTILITY(U,$J,358.3,15722,2)
+ ;;=^56946
+ ;;^UTILITY(U,$J,358.3,15723,0)
+ ;;=487.1^^81^947^39
+ ;;^UTILITY(U,$J,358.3,15723,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15979,1,4,0)
- ;;=4^429.9
- ;;^UTILITY(U,$J,358.3,15979,1,5,0)
- ;;=5^Diastolic Dysfunction
- ;;^UTILITY(U,$J,358.3,15979,2)
- ;;=^54741
- ;;^UTILITY(U,$J,358.3,15980,0)
- ;;=453.79^^92^930^27
- ;;^UTILITY(U,$J,358.3,15980,1,0)
+ ;;^UTILITY(U,$J,358.3,15723,1,4,0)
+ ;;=4^487.1
+ ;;^UTILITY(U,$J,358.3,15723,1,5,0)
+ ;;=5^Influenza
+ ;;^UTILITY(U,$J,358.3,15723,2)
+ ;;=^63125
+ ;;^UTILITY(U,$J,358.3,15724,0)
+ ;;=487.0^^81^947^40
+ ;;^UTILITY(U,$J,358.3,15724,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15980,1,4,0)
- ;;=4^453.79
- ;;^UTILITY(U,$J,358.3,15980,1,5,0)
- ;;=5^Chr Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,15980,2)
- ;;=^338251
- ;;^UTILITY(U,$J,358.3,15981,0)
- ;;=453.89^^92^930^1
- ;;^UTILITY(U,$J,358.3,15981,1,0)
+ ;;^UTILITY(U,$J,358.3,15724,1,4,0)
+ ;;=4^487.0
+ ;;^UTILITY(U,$J,358.3,15724,1,5,0)
+ ;;=5^Influenza W/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,15724,2)
+ ;;=^269942
+ ;;^UTILITY(U,$J,358.3,15725,0)
+ ;;=386.30^^81^947^41
+ ;;^UTILITY(U,$J,358.3,15725,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15981,1,4,0)
- ;;=4^453.89
- ;;^UTILITY(U,$J,358.3,15981,1,5,0)
- ;;=5^AC Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,15981,2)
- ;;=^338259
- ;;^UTILITY(U,$J,358.3,15982,0)
- ;;=454.2^^92^930^85
- ;;^UTILITY(U,$J,358.3,15982,1,0)
+ ;;^UTILITY(U,$J,358.3,15725,1,4,0)
+ ;;=4^386.30
+ ;;^UTILITY(U,$J,358.3,15725,1,5,0)
+ ;;=5^Labyrinthitis NOS
+ ;;^UTILITY(U,$J,358.3,15725,2)
+ ;;=^67891
+ ;;^UTILITY(U,$J,358.3,15726,0)
+ ;;=088.81^^81^947^42
+ ;;^UTILITY(U,$J,358.3,15726,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15982,1,4,0)
- ;;=4^454.2
- ;;^UTILITY(U,$J,358.3,15982,1,5,0)
- ;;=5^Varicose Veins w/Ulcer&Inflam
- ;;^UTILITY(U,$J,358.3,15982,2)
- ;;=^269821
- ;;^UTILITY(U,$J,358.3,15983,0)
- ;;=397.1^^92^930^74
- ;;^UTILITY(U,$J,358.3,15983,1,0)
+ ;;^UTILITY(U,$J,358.3,15726,1,4,0)
+ ;;=4^088.81
+ ;;^UTILITY(U,$J,358.3,15726,1,5,0)
+ ;;=5^Lyme Disease
+ ;;^UTILITY(U,$J,358.3,15726,2)
+ ;;=^72315
+ ;;^UTILITY(U,$J,358.3,15727,0)
+ ;;=785.6^^81^947^43
+ ;;^UTILITY(U,$J,358.3,15727,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15983,1,4,0)
- ;;=4^397.1
- ;;^UTILITY(U,$J,358.3,15983,1,5,0)
- ;;=5^Rheumatic Disease Pulmonary Valve
- ;;^UTILITY(U,$J,358.3,15983,2)
- ;;=^269587
- ;;^UTILITY(U,$J,358.3,15984,0)
- ;;=397.0^^92^930^75
- ;;^UTILITY(U,$J,358.3,15984,1,0)
+ ;;^UTILITY(U,$J,358.3,15727,1,4,0)
+ ;;=4^785.6
+ ;;^UTILITY(U,$J,358.3,15727,1,5,0)
+ ;;=5^Lymphadenopathy
+ ;;^UTILITY(U,$J,358.3,15727,2)
+ ;;=^72368
+ ;;^UTILITY(U,$J,358.3,15728,0)
+ ;;=031.0^^81^947^44
+ ;;^UTILITY(U,$J,358.3,15728,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,15984,1,4,0)
- ;;=4^397.0
- ;;^UTILITY(U,$J,358.3,15984,1,5,0)
- ;;=5^Rheumatic Disease Tricuspid Valve
- ;;^UTILITY(U,$J,358.3,15984,2)
- ;;=^35528
+ ;;^UTILITY(U,$J,358.3,15728,1,4,0)
+ ;;=4^031.0
+ ;;^UTILITY(U,$J,358.3,15728,1,5,0)
+ ;;=5^Mycobacteria,Atyp,Pulmonary
+ ;;^UTILITY(U,$J,358.3,15728,2)
+ ;;=^101018
+ ;;^UTILITY(U,$J,358.3,15729,0)
+ ;;=730.00^^81^947^46
+ ;;^UTILITY(U,$J,358.3,15729,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,15729,1,4,0)
+ ;;=4^730.00
+ ;;^UTILITY(U,$J,358.3,15729,1,5,0)
+ ;;=5^Osteomyelitis,Acute Unsp
+ ;;^UTILITY(U,$J,358.3,15729,2)
+ ;;=^272612
+ ;;^UTILITY(U,$J,358.3,15730,0)
+ ;;=730.10^^81^947^47
+ ;;^UTILITY(U,$J,358.3,15730,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,15730,1,4,0)
+ ;;=4^730.10
+ ;;^UTILITY(U,$J,358.3,15730,1,5,0)
+ ;;=5^Osteomyelitis,Chron Unsp

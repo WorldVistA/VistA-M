@@ -1,132 +1,134 @@
-IBDEI1V5 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1V5 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33188,1,4,0)
- ;;=4^M24.871
- ;;^UTILITY(U,$J,358.3,33188,2)
- ;;=^5011468
- ;;^UTILITY(U,$J,358.3,33189,0)
- ;;=M24.875^^191^1966^48
- ;;^UTILITY(U,$J,358.3,33189,1,0)
+ ;;^UTILITY(U,$J,358.3,32793,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,32793,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,32794,0)
+ ;;=C79.31^^182^1992^108
+ ;;^UTILITY(U,$J,358.3,32794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33189,1,3,0)
- ;;=3^Derangement,Left Foot Joint NEC
- ;;^UTILITY(U,$J,358.3,33189,1,4,0)
- ;;=4^M24.875
- ;;^UTILITY(U,$J,358.3,33189,2)
- ;;=^5011472
- ;;^UTILITY(U,$J,358.3,33190,0)
- ;;=M24.874^^191^1966^50
- ;;^UTILITY(U,$J,358.3,33190,1,0)
+ ;;^UTILITY(U,$J,358.3,32794,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,32794,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,32794,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,32795,0)
+ ;;=C79.72^^182^1992^124
+ ;;^UTILITY(U,$J,358.3,32795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33190,1,3,0)
- ;;=3^Derangement,Right Foot Joint NEC
- ;;^UTILITY(U,$J,358.3,33190,1,4,0)
- ;;=4^M24.874
- ;;^UTILITY(U,$J,358.3,33190,2)
- ;;=^5011471
- ;;^UTILITY(U,$J,358.3,33191,0)
- ;;=M24.872^^191^1966^47
- ;;^UTILITY(U,$J,358.3,33191,1,0)
+ ;;^UTILITY(U,$J,358.3,32795,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,32795,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,32795,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,32796,0)
+ ;;=C78.02^^182^1992^128
+ ;;^UTILITY(U,$J,358.3,32796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33191,1,3,0)
- ;;=3^Derangement,Left Ankle Joint NEC
- ;;^UTILITY(U,$J,358.3,33191,1,4,0)
- ;;=4^M24.872
- ;;^UTILITY(U,$J,358.3,33191,2)
- ;;=^5011469
- ;;^UTILITY(U,$J,358.3,33192,0)
- ;;=L30.1^^191^1966^74
- ;;^UTILITY(U,$J,358.3,33192,1,0)
+ ;;^UTILITY(U,$J,358.3,32796,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,32796,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,32796,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,32797,0)
+ ;;=C78.7^^182^1992^132
+ ;;^UTILITY(U,$J,358.3,32797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33192,1,3,0)
- ;;=3^Dyshidrosis [pompholyx]
- ;;^UTILITY(U,$J,358.3,33192,1,4,0)
- ;;=4^L30.1
- ;;^UTILITY(U,$J,358.3,33192,2)
- ;;=^5009154
- ;;^UTILITY(U,$J,358.3,33193,0)
- ;;=L98.9^^191^1966^73
- ;;^UTILITY(U,$J,358.3,33193,1,0)
+ ;;^UTILITY(U,$J,358.3,32797,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,32797,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,32797,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,32798,0)
+ ;;=C79.71^^182^1992^145
+ ;;^UTILITY(U,$J,358.3,32798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33193,1,3,0)
- ;;=3^Disorder of skin and subcut tissue, unspec
- ;;^UTILITY(U,$J,358.3,33193,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,33193,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,33194,0)
- ;;=Q72.891^^191^1966^37
- ;;^UTILITY(U,$J,358.3,33194,1,0)
+ ;;^UTILITY(U,$J,358.3,32798,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,32798,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,32798,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,32799,0)
+ ;;=C78.01^^182^1992^148
+ ;;^UTILITY(U,$J,358.3,32799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33194,1,3,0)
- ;;=3^Defects,Reduction Right Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,33194,1,4,0)
- ;;=4^Q72.891
- ;;^UTILITY(U,$J,358.3,33194,2)
- ;;=^5018985
- ;;^UTILITY(U,$J,358.3,33195,0)
- ;;=Q72.892^^191^1966^36
- ;;^UTILITY(U,$J,358.3,33195,1,0)
+ ;;^UTILITY(U,$J,358.3,32799,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,32799,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,32799,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,32800,0)
+ ;;=C79.70^^182^1992^101
+ ;;^UTILITY(U,$J,358.3,32800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33195,1,3,0)
- ;;=3^Defects,Reduction Left Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,33195,1,4,0)
- ;;=4^Q72.892
- ;;^UTILITY(U,$J,358.3,33195,2)
- ;;=^5134172
- ;;^UTILITY(U,$J,358.3,33196,0)
- ;;=Q72.893^^191^1966^35
- ;;^UTILITY(U,$J,358.3,33196,1,0)
+ ;;^UTILITY(U,$J,358.3,32800,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,32800,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,32800,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,32801,0)
+ ;;=C78.00^^182^1992^133
+ ;;^UTILITY(U,$J,358.3,32801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33196,1,3,0)
- ;;=3^Defects,Reduction Bilateral Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,33196,1,4,0)
- ;;=4^Q72.893
- ;;^UTILITY(U,$J,358.3,33196,2)
- ;;=^5018986
- ;;^UTILITY(U,$J,358.3,33197,0)
- ;;=M21.962^^191^1966^43
- ;;^UTILITY(U,$J,358.3,33197,1,0)
+ ;;^UTILITY(U,$J,358.3,32801,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,32801,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,32801,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,32802,0)
+ ;;=D57.1^^182^1992^171
+ ;;^UTILITY(U,$J,358.3,32802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33197,1,3,0)
- ;;=3^Deformity,Left Lower Leg,Acquired
- ;;^UTILITY(U,$J,358.3,33197,1,4,0)
- ;;=4^M21.962
- ;;^UTILITY(U,$J,358.3,33197,2)
- ;;=^5011172
- ;;^UTILITY(U,$J,358.3,33198,0)
- ;;=M21.961^^191^1966^44
- ;;^UTILITY(U,$J,358.3,33198,1,0)
+ ;;^UTILITY(U,$J,358.3,32802,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,32802,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,32802,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,32803,0)
+ ;;=D75.1^^182^1992^169
+ ;;^UTILITY(U,$J,358.3,32803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33198,1,3,0)
- ;;=3^Deformity,Right Lower Leg,Acquired
- ;;^UTILITY(U,$J,358.3,33198,1,4,0)
- ;;=4^M21.961
- ;;^UTILITY(U,$J,358.3,33198,2)
- ;;=^5011171
- ;;^UTILITY(U,$J,358.3,33199,0)
- ;;=M21.072^^191^1966^45
- ;;^UTILITY(U,$J,358.3,33199,1,0)
+ ;;^UTILITY(U,$J,358.3,32803,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,32803,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,32803,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,32804,0)
+ ;;=C90.30^^182^1992^172
+ ;;^UTILITY(U,$J,358.3,32804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33199,1,3,0)
- ;;=3^Deformity,Valgus Left Ankle NEC
- ;;^UTILITY(U,$J,358.3,33199,1,4,0)
- ;;=4^M21.072
- ;;^UTILITY(U,$J,358.3,33199,2)
- ;;=^5011070
- ;;^UTILITY(U,$J,358.3,33200,0)
- ;;=M21.071^^191^1966^46
- ;;^UTILITY(U,$J,358.3,33200,1,0)
+ ;;^UTILITY(U,$J,358.3,32804,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,32804,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,32804,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,32805,0)
+ ;;=D56.3^^182^1992^173
+ ;;^UTILITY(U,$J,358.3,32805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33200,1,3,0)
- ;;=3^Deformity,Valgus Right Ankle NEC
- ;;^UTILITY(U,$J,358.3,33200,1,4,0)
- ;;=4^M21.071
- ;;^UTILITY(U,$J,358.3,33200,2)
- ;;=^5011069
- ;;^UTILITY(U,$J,358.3,33201,0)
- ;;=Q66.89^^191^1966^38
- ;;^UTILITY(U,$J,358.3,33201,1,0)
+ ;;^UTILITY(U,$J,358.3,32805,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,32805,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,32805,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,32806,0)
+ ;;=D56.9^^182^1992^174
+ ;;^UTILITY(U,$J,358.3,32806,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32806,1,3,0)
+ ;;=3^Thalassemia,Unspec

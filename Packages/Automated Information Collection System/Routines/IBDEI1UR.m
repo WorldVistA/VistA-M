@@ -1,124 +1,132 @@
-IBDEI1UR ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UR ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33013,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,33013,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,33014,0)
- ;;=I70.734^^191^1963^93
- ;;^UTILITY(U,$J,358.3,33014,1,0)
+ ;;^UTILITY(U,$J,358.3,32614,1,3,0)
+ ;;=3^Nonrhematic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,32614,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,32614,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,32615,0)
+ ;;=I35.0^^182^1991^10
+ ;;^UTILITY(U,$J,358.3,32615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33014,1,3,0)
- ;;=3^Athscl Type of Bypass,Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,33014,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,33014,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,33015,0)
- ;;=I70.345^^191^1963^94
- ;;^UTILITY(U,$J,358.3,33015,1,0)
+ ;;^UTILITY(U,$J,358.3,32615,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,32615,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,32615,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,32616,0)
+ ;;=I35.1^^182^1991^9
+ ;;^UTILITY(U,$J,358.3,32616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33015,1,3,0)
- ;;=3^Athscl Unspec Type Bypasss,Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,33015,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,33015,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,33016,0)
- ;;=I70.342^^191^1963^95
- ;;^UTILITY(U,$J,358.3,33016,1,0)
+ ;;^UTILITY(U,$J,358.3,32616,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,32616,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,32616,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,32617,0)
+ ;;=I35.2^^182^1991^11
+ ;;^UTILITY(U,$J,358.3,32617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33016,1,3,0)
- ;;=3^Athscl Unspec Type Bypasss,Left Leg w/ Calf Ulceration
- ;;^UTILITY(U,$J,358.3,33016,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,33016,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,33017,0)
- ;;=I70.335^^191^1963^96
- ;;^UTILITY(U,$J,358.3,33017,1,0)
+ ;;^UTILITY(U,$J,358.3,32617,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,32617,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,32617,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,32618,0)
+ ;;=I35.9^^182^1991^8
+ ;;^UTILITY(U,$J,358.3,32618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33017,1,3,0)
- ;;=3^Athscl Unspec Type Bypasss,Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,33017,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,33017,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,33018,0)
- ;;=I70.332^^191^1963^97
- ;;^UTILITY(U,$J,358.3,33018,1,0)
+ ;;^UTILITY(U,$J,358.3,32618,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32618,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,32618,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,32619,0)
+ ;;=I38.^^182^1991^4
+ ;;^UTILITY(U,$J,358.3,32619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33018,1,3,0)
- ;;=3^Athscl Unspec Type Bypasss,Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,33018,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,33018,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,33019,0)
- ;;=S91.251A^^191^1964^7
- ;;^UTILITY(U,$J,358.3,33019,1,0)
+ ;;^UTILITY(U,$J,358.3,32619,1,3,0)
+ ;;=3^Endocarditis,Valve Unspec
+ ;;^UTILITY(U,$J,358.3,32619,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,32619,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,32620,0)
+ ;;=I05.0^^182^1991^17
+ ;;^UTILITY(U,$J,358.3,32620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33019,1,3,0)
- ;;=3^Bite,Open Rt Grt Toe w/ Nail Damage,Init Enctr
- ;;^UTILITY(U,$J,358.3,33019,1,4,0)
- ;;=4^S91.251A
- ;;^UTILITY(U,$J,358.3,33019,2)
- ;;=^5044305
- ;;^UTILITY(U,$J,358.3,33020,0)
- ;;=S91.252A^^191^1964^3
- ;;^UTILITY(U,$J,358.3,33020,1,0)
+ ;;^UTILITY(U,$J,358.3,32620,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,32620,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,32620,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,32621,0)
+ ;;=I05.8^^182^1991^18
+ ;;^UTILITY(U,$J,358.3,32621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33020,1,3,0)
- ;;=3^Bite,Open Lft Grt Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,33020,1,4,0)
- ;;=4^S91.252A
- ;;^UTILITY(U,$J,358.3,33020,2)
- ;;=^5137508
- ;;^UTILITY(U,$J,358.3,33021,0)
- ;;=S91.254A^^191^1964^9
- ;;^UTILITY(U,$J,358.3,33021,1,0)
+ ;;^UTILITY(U,$J,358.3,32621,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,32621,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,32621,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,32622,0)
+ ;;=I05.9^^182^1991^19
+ ;;^UTILITY(U,$J,358.3,32622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33021,1,3,0)
- ;;=3^Bite,Open Rt Lsr Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,33021,1,4,0)
- ;;=4^S91.254A
- ;;^UTILITY(U,$J,358.3,33021,2)
- ;;=^5044308
- ;;^UTILITY(U,$J,358.3,33022,0)
- ;;=S91.255A^^191^1964^5
- ;;^UTILITY(U,$J,358.3,33022,1,0)
+ ;;^UTILITY(U,$J,358.3,32622,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,32622,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,32622,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,32623,0)
+ ;;=I07.1^^182^1991^20
+ ;;^UTILITY(U,$J,358.3,32623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33022,1,3,0)
- ;;=3^Bite,Open Lft Lsr Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,33022,1,4,0)
- ;;=4^S91.255A
- ;;^UTILITY(U,$J,358.3,33022,2)
- ;;=^5137514
- ;;^UTILITY(U,$J,358.3,33023,0)
- ;;=S91.151A^^191^1964^8
- ;;^UTILITY(U,$J,358.3,33023,1,0)
+ ;;^UTILITY(U,$J,358.3,32623,1,3,0)
+ ;;=3^Rheumatic Tricuspid Insufficiency
+ ;;^UTILITY(U,$J,358.3,32623,1,4,0)
+ ;;=4^I07.1
+ ;;^UTILITY(U,$J,358.3,32623,2)
+ ;;=^5007048
+ ;;^UTILITY(U,$J,358.3,32624,0)
+ ;;=I07.9^^182^1991^21
+ ;;^UTILITY(U,$J,358.3,32624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33023,1,3,0)
- ;;=3^Bite,Open Rt Grt Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,33023,1,4,0)
- ;;=4^S91.151A
- ;;^UTILITY(U,$J,358.3,33023,2)
- ;;=^5044243
- ;;^UTILITY(U,$J,358.3,33024,0)
- ;;=S91.152A^^191^1964^4
- ;;^UTILITY(U,$J,358.3,33024,1,0)
+ ;;^UTILITY(U,$J,358.3,32624,1,3,0)
+ ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,32624,1,4,0)
+ ;;=4^I07.9
+ ;;^UTILITY(U,$J,358.3,32624,2)
+ ;;=^5007051
+ ;;^UTILITY(U,$J,358.3,32625,0)
+ ;;=I08.0^^182^1991^15
+ ;;^UTILITY(U,$J,358.3,32625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33024,1,3,0)
- ;;=3^Bite,Open Lft Grt Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,33024,1,4,0)
- ;;=4^S91.152A
- ;;^UTILITY(U,$J,358.3,33024,2)
- ;;=^5044246
- ;;^UTILITY(U,$J,358.3,33025,0)
- ;;=S91.154A^^191^1964^10
- ;;^UTILITY(U,$J,358.3,33025,1,0)
+ ;;^UTILITY(U,$J,358.3,32625,1,3,0)
+ ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
+ ;;^UTILITY(U,$J,358.3,32625,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,32625,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,32626,0)
+ ;;=I09.89^^182^1991^16
+ ;;^UTILITY(U,$J,358.3,32626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33025,1,3,0)
- ;;=3^Bite,Open Rt Lsr Toe(s) w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32626,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,32626,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,32626,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,32627,0)
+ ;;=I47.1^^182^1991^23

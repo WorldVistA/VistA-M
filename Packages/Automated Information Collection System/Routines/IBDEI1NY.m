@@ -1,132 +1,128 @@
-IBDEI1NY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1NY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29895,2)
- ;;=^5012957
- ;;^UTILITY(U,$J,358.3,29896,0)
- ;;=M67.471^^189^1902^9
- ;;^UTILITY(U,$J,358.3,29896,1,0)
+ ;;^UTILITY(U,$J,358.3,29544,0)
+ ;;=G57.22^^176^1888^7
+ ;;^UTILITY(U,$J,358.3,29544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29896,1,3,0)
- ;;=3^Ganglion,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,29896,1,4,0)
- ;;=4^M67.471
- ;;^UTILITY(U,$J,358.3,29896,2)
- ;;=^5012975
- ;;^UTILITY(U,$J,358.3,29897,0)
- ;;=M67.461^^189^1902^13
- ;;^UTILITY(U,$J,358.3,29897,1,0)
+ ;;^UTILITY(U,$J,358.3,29544,1,3,0)
+ ;;=3^Lesion of femoral nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,29544,1,4,0)
+ ;;=4^G57.22
+ ;;^UTILITY(U,$J,358.3,29544,2)
+ ;;=^5004046
+ ;;^UTILITY(U,$J,358.3,29545,0)
+ ;;=G57.31^^176^1888^10
+ ;;^UTILITY(U,$J,358.3,29545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29897,1,3,0)
- ;;=3^Ganglion,Right Knee
- ;;^UTILITY(U,$J,358.3,29897,1,4,0)
- ;;=4^M67.461
- ;;^UTILITY(U,$J,358.3,29897,2)
- ;;=^5012972
- ;;^UTILITY(U,$J,358.3,29898,0)
- ;;=M67.451^^189^1902^12
- ;;^UTILITY(U,$J,358.3,29898,1,0)
+ ;;^UTILITY(U,$J,358.3,29545,1,3,0)
+ ;;=3^Lesion of lateral popliteal nerve, right lower limb
+ ;;^UTILITY(U,$J,358.3,29545,1,4,0)
+ ;;=4^G57.31
+ ;;^UTILITY(U,$J,358.3,29545,2)
+ ;;=^5004048
+ ;;^UTILITY(U,$J,358.3,29546,0)
+ ;;=G57.32^^176^1888^9
+ ;;^UTILITY(U,$J,358.3,29546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29898,1,3,0)
- ;;=3^Ganglion,Right Hip
- ;;^UTILITY(U,$J,358.3,29898,1,4,0)
- ;;=4^M67.451
- ;;^UTILITY(U,$J,358.3,29898,2)
- ;;=^5012969
- ;;^UTILITY(U,$J,358.3,29899,0)
- ;;=M67.441^^189^1902^11
- ;;^UTILITY(U,$J,358.3,29899,1,0)
+ ;;^UTILITY(U,$J,358.3,29546,1,3,0)
+ ;;=3^Lesion of lateral popliteal nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,29546,1,4,0)
+ ;;=4^G57.32
+ ;;^UTILITY(U,$J,358.3,29546,2)
+ ;;=^5004049
+ ;;^UTILITY(U,$J,358.3,29547,0)
+ ;;=G57.41^^176^1888^12
+ ;;^UTILITY(U,$J,358.3,29547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29899,1,3,0)
- ;;=3^Ganglion,Right Hand
- ;;^UTILITY(U,$J,358.3,29899,1,4,0)
- ;;=4^M67.441
- ;;^UTILITY(U,$J,358.3,29899,2)
- ;;=^5012966
- ;;^UTILITY(U,$J,358.3,29900,0)
- ;;=M67.431^^189^1902^15
- ;;^UTILITY(U,$J,358.3,29900,1,0)
+ ;;^UTILITY(U,$J,358.3,29547,1,3,0)
+ ;;=3^Lesion of medial popliteal nerve, right lower limb
+ ;;^UTILITY(U,$J,358.3,29547,1,4,0)
+ ;;=4^G57.41
+ ;;^UTILITY(U,$J,358.3,29547,2)
+ ;;=^5004051
+ ;;^UTILITY(U,$J,358.3,29548,0)
+ ;;=G57.42^^176^1888^11
+ ;;^UTILITY(U,$J,358.3,29548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29900,1,3,0)
- ;;=3^Ganglion,Right Wrist
- ;;^UTILITY(U,$J,358.3,29900,1,4,0)
- ;;=4^M67.431
- ;;^UTILITY(U,$J,358.3,29900,2)
- ;;=^5012963
- ;;^UTILITY(U,$J,358.3,29901,0)
- ;;=M67.49^^189^1902^8
- ;;^UTILITY(U,$J,358.3,29901,1,0)
+ ;;^UTILITY(U,$J,358.3,29548,1,3,0)
+ ;;=3^Lesion of medial popliteal nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,29548,1,4,0)
+ ;;=4^G57.42
+ ;;^UTILITY(U,$J,358.3,29548,2)
+ ;;=^5004052
+ ;;^UTILITY(U,$J,358.3,29549,0)
+ ;;=G57.51^^176^1888^32
+ ;;^UTILITY(U,$J,358.3,29549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29901,1,3,0)
- ;;=3^Ganglion,Mult Sites
- ;;^UTILITY(U,$J,358.3,29901,1,4,0)
- ;;=4^M67.49
- ;;^UTILITY(U,$J,358.3,29901,2)
- ;;=^5012979
- ;;^UTILITY(U,$J,358.3,29902,0)
- ;;=E09.52^^189^1903^17
- ;;^UTILITY(U,$J,358.3,29902,1,0)
+ ;;^UTILITY(U,$J,358.3,29549,1,3,0)
+ ;;=3^Tarsal tunnel syndrome, right lower limb
+ ;;^UTILITY(U,$J,358.3,29549,1,4,0)
+ ;;=4^G57.51
+ ;;^UTILITY(U,$J,358.3,29549,2)
+ ;;=^5004054
+ ;;^UTILITY(U,$J,358.3,29550,0)
+ ;;=G57.52^^176^1888^31
+ ;;^UTILITY(U,$J,358.3,29550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29902,1,3,0)
- ;;=3^Drug/Chem Diabetes w/ Diabetic Prph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29902,1,4,0)
- ;;=4^E09.52
- ;;^UTILITY(U,$J,358.3,29902,2)
- ;;=^5002571
- ;;^UTILITY(U,$J,358.3,29903,0)
- ;;=E08.52^^189^1903^16
- ;;^UTILITY(U,$J,358.3,29903,1,0)
+ ;;^UTILITY(U,$J,358.3,29550,1,3,0)
+ ;;=3^Tarsal tunnel syndrome, left lower limb
+ ;;^UTILITY(U,$J,358.3,29550,1,4,0)
+ ;;=4^G57.52
+ ;;^UTILITY(U,$J,358.3,29550,2)
+ ;;=^5004055
+ ;;^UTILITY(U,$J,358.3,29551,0)
+ ;;=G57.61^^176^1888^14
+ ;;^UTILITY(U,$J,358.3,29551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29903,1,3,0)
- ;;=3^Diabetes d/t Underlying Cond w/ Diabetic Prph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29903,1,4,0)
- ;;=4^E08.52
- ;;^UTILITY(U,$J,358.3,29903,2)
- ;;=^5002529
- ;;^UTILITY(U,$J,358.3,29904,0)
- ;;=I96.^^189^1903^18
- ;;^UTILITY(U,$J,358.3,29904,1,0)
+ ;;^UTILITY(U,$J,358.3,29551,1,3,0)
+ ;;=3^Lesion of plantar nerve, right lower limb
+ ;;^UTILITY(U,$J,358.3,29551,1,4,0)
+ ;;=4^G57.61
+ ;;^UTILITY(U,$J,358.3,29551,2)
+ ;;=^5004057
+ ;;^UTILITY(U,$J,358.3,29552,0)
+ ;;=G57.62^^176^1888^13
+ ;;^UTILITY(U,$J,358.3,29552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29904,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,29904,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,29904,2)
- ;;=^5008081
- ;;^UTILITY(U,$J,358.3,29905,0)
- ;;=I73.01^^189^1903^19
- ;;^UTILITY(U,$J,358.3,29905,1,0)
+ ;;^UTILITY(U,$J,358.3,29552,1,3,0)
+ ;;=3^Lesion of plantar nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,29552,1,4,0)
+ ;;=4^G57.62
+ ;;^UTILITY(U,$J,358.3,29552,2)
+ ;;=^5004058
+ ;;^UTILITY(U,$J,358.3,29553,0)
+ ;;=G57.81^^176^1888^26
+ ;;^UTILITY(U,$J,358.3,29553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29905,1,3,0)
- ;;=3^Raynaud's Syndrome w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29905,1,4,0)
- ;;=4^I73.01
- ;;^UTILITY(U,$J,358.3,29905,2)
- ;;=^5007797
- ;;^UTILITY(U,$J,358.3,29906,0)
- ;;=I70.763^^189^1903^4
- ;;^UTILITY(U,$J,358.3,29906,1,0)
+ ;;^UTILITY(U,$J,358.3,29553,1,3,0)
+ ;;=3^Mononeuropathies of right lower limb NEC
+ ;;^UTILITY(U,$J,358.3,29553,1,4,0)
+ ;;=4^G57.81
+ ;;^UTILITY(U,$J,358.3,29553,2)
+ ;;=^5133367
+ ;;^UTILITY(U,$J,358.3,29554,0)
+ ;;=G57.82^^176^1888^24
+ ;;^UTILITY(U,$J,358.3,29554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29906,1,3,0)
- ;;=3^Athscl of Bypass Graft,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29906,1,4,0)
- ;;=4^I70.763
- ;;^UTILITY(U,$J,358.3,29906,2)
- ;;=^5007778
- ;;^UTILITY(U,$J,358.3,29907,0)
- ;;=I70.762^^189^1903^5
- ;;^UTILITY(U,$J,358.3,29907,1,0)
+ ;;^UTILITY(U,$J,358.3,29554,1,3,0)
+ ;;=3^Mononeuropathies of left lower limb NEC
+ ;;^UTILITY(U,$J,358.3,29554,1,4,0)
+ ;;=4^G57.82
+ ;;^UTILITY(U,$J,358.3,29554,2)
+ ;;=^5133368
+ ;;^UTILITY(U,$J,358.3,29555,0)
+ ;;=G57.91^^176^1888^29
+ ;;^UTILITY(U,$J,358.3,29555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29907,1,3,0)
- ;;=3^Athscl of Bypass Graft,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29907,1,4,0)
- ;;=4^I70.762
- ;;^UTILITY(U,$J,358.3,29907,2)
- ;;=^5133608
- ;;^UTILITY(U,$J,358.3,29908,0)
- ;;=I70.761^^189^1903^6
- ;;^UTILITY(U,$J,358.3,29908,1,0)
+ ;;^UTILITY(U,$J,358.3,29555,1,3,0)
+ ;;=3^Mononeuropathy of right lower limb,Unspec
+ ;;^UTILITY(U,$J,358.3,29555,1,4,0)
+ ;;=4^G57.91
+ ;;^UTILITY(U,$J,358.3,29555,2)
+ ;;=^5133369
+ ;;^UTILITY(U,$J,358.3,29556,0)
+ ;;=G57.92^^176^1888^28
+ ;;^UTILITY(U,$J,358.3,29556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29908,1,3,0)
- ;;=3^Athscl of Bypass Graft,Right Leg w/ Gangrene

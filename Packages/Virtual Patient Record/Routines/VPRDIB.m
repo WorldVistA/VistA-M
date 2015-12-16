@@ -1,5 +1,5 @@
 VPRDIB ;SLC/MKB -- Integrated Billing (insurance) ;3/14/12  09:01
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01,2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,5**;Sep 01,2011;Build 21
  ;
  ; External References          DBIA#
  ; -------------------          -----
@@ -9,15 +9,19 @@ VPRDIB ;SLC/MKB -- Integrated Billing (insurance) ;3/14/12  09:01
  ; ------------ Get data from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's insurance data
- N X,I,VPRX,VPRITM,VPRCNT,VPRINS
+ ; [END,ID not currently used]
+ N X,I,VPRX,VPRITM,VPRCNT,VPRINS,VPRDT,VPRSTS
  S DFN=+$G(DFN) Q:DFN<1
- S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
+ S MAX=$G(MAX,9999),VPRDT=DT
+ ; $G(BEG),BEG>2000000 S VPRDT=BEG
+ S VPRSTS=$G(FILTER("status"),"RB")
+ I VPRSTS["A" S VPRDT="" ;no date if requesting inactive policies
  ;
  ; get one policy
  ;I $G(ID) D EN1(ID,.VPRITM),XML(.VPRITM) Q
  ;
  ; get all policies
- S X=$$INSUR^IBBAPI(DFN,,,.VPRX,"*") Q:X<1
+ S X=$$INSUR^IBBAPI(DFN,VPRDT,VPRSTS,.VPRX,"*") Q:X<1
  S (I,VPRCNT)=0 F  S I=$O(VPRX("IBBAPI","INSUR",I)) Q:I<1  D  Q:VPRCNT'<MAX
  . M VPRINS=VPRX("IBBAPI","INSUR",I) K VPRITM
  . I $G(ID),DFN'=+ID!(+VPRINS(1)'=$P(ID,";",2))!(+VPRINS(8)'=$P(ID,";",3)) Q

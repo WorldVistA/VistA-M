@@ -1,132 +1,132 @@
-IBDEI1XY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34454,2)
- ;;=^5023135
- ;;^UTILITY(U,$J,358.3,34455,0)
- ;;=S22.42XA^^192^1999^7
- ;;^UTILITY(U,$J,358.3,34455,1,0)
+ ;;^UTILITY(U,$J,358.3,34083,1,4,0)
+ ;;=4^M76.32
+ ;;^UTILITY(U,$J,358.3,34083,2)
+ ;;=^5013277
+ ;;^UTILITY(U,$J,358.3,34084,0)
+ ;;=M76.31^^183^2016^42
+ ;;^UTILITY(U,$J,358.3,34084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34455,1,3,0)
- ;;=3^Fx Mult Ribs Left Side,Init Enctr
- ;;^UTILITY(U,$J,358.3,34455,1,4,0)
- ;;=4^S22.42XA
- ;;^UTILITY(U,$J,358.3,34455,2)
- ;;=^5023129
- ;;^UTILITY(U,$J,358.3,34456,0)
- ;;=S22.41XA^^192^1999^8
- ;;^UTILITY(U,$J,358.3,34456,1,0)
+ ;;^UTILITY(U,$J,358.3,34084,1,3,0)
+ ;;=3^Iliotibial band syndrome, right leg
+ ;;^UTILITY(U,$J,358.3,34084,1,4,0)
+ ;;=4^M76.31
+ ;;^UTILITY(U,$J,358.3,34084,2)
+ ;;=^5013276
+ ;;^UTILITY(U,$J,358.3,34085,0)
+ ;;=M75.112^^183^2016^43
+ ;;^UTILITY(U,$J,358.3,34085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34456,1,3,0)
- ;;=3^Fx Mult Ribs Right Side,Init Enctr
- ;;^UTILITY(U,$J,358.3,34456,1,4,0)
- ;;=4^S22.41XA
- ;;^UTILITY(U,$J,358.3,34456,2)
- ;;=^5023123
- ;;^UTILITY(U,$J,358.3,34457,0)
- ;;=G70.00^^192^1999^15
- ;;^UTILITY(U,$J,358.3,34457,1,0)
+ ;;^UTILITY(U,$J,358.3,34085,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of l shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,34085,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,34085,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,34086,0)
+ ;;=M75.111^^183^2016^44
+ ;;^UTILITY(U,$J,358.3,34086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34457,1,3,0)
- ;;=3^Myasthenia Gracis w/o Exacerbation
- ;;^UTILITY(U,$J,358.3,34457,1,4,0)
- ;;=4^G70.00
- ;;^UTILITY(U,$J,358.3,34457,2)
- ;;=^329920
- ;;^UTILITY(U,$J,358.3,34458,0)
- ;;=G72.9^^192^1999^16
- ;;^UTILITY(U,$J,358.3,34458,1,0)
+ ;;^UTILITY(U,$J,358.3,34086,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of r shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,34086,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,34086,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,34087,0)
+ ;;=M77.12^^183^2016^45
+ ;;^UTILITY(U,$J,358.3,34087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34458,1,3,0)
- ;;=3^Myopathy,Unspec
- ;;^UTILITY(U,$J,358.3,34458,1,4,0)
- ;;=4^G72.9
- ;;^UTILITY(U,$J,358.3,34458,2)
- ;;=^5004101
- ;;^UTILITY(U,$J,358.3,34459,0)
- ;;=M54.89^^192^1999^4
- ;;^UTILITY(U,$J,358.3,34459,1,0)
+ ;;^UTILITY(U,$J,358.3,34087,1,3,0)
+ ;;=3^Lateral epicondylitis, left elbow
+ ;;^UTILITY(U,$J,358.3,34087,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,34087,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,34088,0)
+ ;;=M77.11^^183^2016^46
+ ;;^UTILITY(U,$J,358.3,34088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34459,1,3,0)
- ;;=3^Dorsalgia NEC
- ;;^UTILITY(U,$J,358.3,34459,1,4,0)
- ;;=4^M54.89
- ;;^UTILITY(U,$J,358.3,34459,2)
- ;;=^5012313
- ;;^UTILITY(U,$J,358.3,34460,0)
- ;;=M51.86^^192^1999^12
- ;;^UTILITY(U,$J,358.3,34460,1,0)
+ ;;^UTILITY(U,$J,358.3,34088,1,3,0)
+ ;;=3^Lateral epicondylitis, right elbow
+ ;;^UTILITY(U,$J,358.3,34088,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,34088,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,34089,0)
+ ;;=M77.02^^183^2016^47
+ ;;^UTILITY(U,$J,358.3,34089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34460,1,3,0)
- ;;=3^Intervertebral Disc Disorders,Lumbar Region NEC
- ;;^UTILITY(U,$J,358.3,34460,1,4,0)
- ;;=4^M51.86
- ;;^UTILITY(U,$J,358.3,34460,2)
- ;;=^5012261
- ;;^UTILITY(U,$J,358.3,34461,0)
- ;;=M51.87^^192^1999^13
- ;;^UTILITY(U,$J,358.3,34461,1,0)
+ ;;^UTILITY(U,$J,358.3,34089,1,3,0)
+ ;;=3^Medial epicondylitis, left elbow
+ ;;^UTILITY(U,$J,358.3,34089,1,4,0)
+ ;;=4^M77.02
+ ;;^UTILITY(U,$J,358.3,34089,2)
+ ;;=^5013302
+ ;;^UTILITY(U,$J,358.3,34090,0)
+ ;;=M77.01^^183^2016^48
+ ;;^UTILITY(U,$J,358.3,34090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34461,1,3,0)
- ;;=3^Intervertebral Disc Disorders,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,34461,1,4,0)
- ;;=4^M51.87
- ;;^UTILITY(U,$J,358.3,34461,2)
- ;;=^5012262
- ;;^UTILITY(U,$J,358.3,34462,0)
- ;;=M05.872^^192^1999^24
- ;;^UTILITY(U,$J,358.3,34462,1,0)
+ ;;^UTILITY(U,$J,358.3,34090,1,3,0)
+ ;;=3^Medial epicondylitis, right elbow
+ ;;^UTILITY(U,$J,358.3,34090,1,4,0)
+ ;;=4^M77.01
+ ;;^UTILITY(U,$J,358.3,34090,2)
+ ;;=^5013301
+ ;;^UTILITY(U,$J,358.3,34091,0)
+ ;;=M62.831^^183^2016^49
+ ;;^UTILITY(U,$J,358.3,34091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34462,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,34462,1,4,0)
- ;;=4^M05.872
- ;;^UTILITY(U,$J,358.3,34462,2)
- ;;=^5010043
- ;;^UTILITY(U,$J,358.3,34463,0)
- ;;=M05.822^^192^1999^25
- ;;^UTILITY(U,$J,358.3,34463,1,0)
+ ;;^UTILITY(U,$J,358.3,34091,1,3,0)
+ ;;=3^Muscle spasm of calf
+ ;;^UTILITY(U,$J,358.3,34091,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,34091,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,34092,0)
+ ;;=M79.2^^183^2016^50
+ ;;^UTILITY(U,$J,358.3,34092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34463,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Elbow
- ;;^UTILITY(U,$J,358.3,34463,1,4,0)
- ;;=4^M05.822
- ;;^UTILITY(U,$J,358.3,34463,2)
- ;;=^5010028
- ;;^UTILITY(U,$J,358.3,34464,0)
- ;;=M05.842^^192^1999^26
- ;;^UTILITY(U,$J,358.3,34464,1,0)
+ ;;^UTILITY(U,$J,358.3,34092,1,3,0)
+ ;;=3^Neuralgia and neuritis, unspecified
+ ;;^UTILITY(U,$J,358.3,34092,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,34092,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,34093,0)
+ ;;=M25.752^^183^2016^51
+ ;;^UTILITY(U,$J,358.3,34093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34464,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Hand
- ;;^UTILITY(U,$J,358.3,34464,1,4,0)
- ;;=4^M05.842
- ;;^UTILITY(U,$J,358.3,34464,2)
- ;;=^5010034
- ;;^UTILITY(U,$J,358.3,34465,0)
- ;;=M05.852^^192^1999^27
- ;;^UTILITY(U,$J,358.3,34465,1,0)
+ ;;^UTILITY(U,$J,358.3,34093,1,3,0)
+ ;;=3^Osteophyte, left hip
+ ;;^UTILITY(U,$J,358.3,34093,1,4,0)
+ ;;=4^M25.752
+ ;;^UTILITY(U,$J,358.3,34093,2)
+ ;;=^5011659
+ ;;^UTILITY(U,$J,358.3,34094,0)
+ ;;=M25.751^^183^2016^52
+ ;;^UTILITY(U,$J,358.3,34094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34465,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Hip
- ;;^UTILITY(U,$J,358.3,34465,1,4,0)
- ;;=4^M05.852
- ;;^UTILITY(U,$J,358.3,34465,2)
- ;;=^5010037
- ;;^UTILITY(U,$J,358.3,34466,0)
- ;;=M05.862^^192^1999^28
- ;;^UTILITY(U,$J,358.3,34466,1,0)
+ ;;^UTILITY(U,$J,358.3,34094,1,3,0)
+ ;;=3^Osteophyte, right hip
+ ;;^UTILITY(U,$J,358.3,34094,1,4,0)
+ ;;=4^M25.751
+ ;;^UTILITY(U,$J,358.3,34094,2)
+ ;;=^5011658
+ ;;^UTILITY(U,$J,358.3,34095,0)
+ ;;=M72.0^^183^2016^53
+ ;;^UTILITY(U,$J,358.3,34095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34466,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Knee
- ;;^UTILITY(U,$J,358.3,34466,1,4,0)
- ;;=4^M05.862
- ;;^UTILITY(U,$J,358.3,34466,2)
- ;;=^5010040
- ;;^UTILITY(U,$J,358.3,34467,0)
- ;;=M05.812^^192^1999^29
- ;;^UTILITY(U,$J,358.3,34467,1,0)
+ ;;^UTILITY(U,$J,358.3,34095,1,3,0)
+ ;;=3^Palmar fascial fibromatosis [Dupuytren]
+ ;;^UTILITY(U,$J,358.3,34095,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,34095,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,34096,0)
+ ;;=M76.52^^183^2016^54
+ ;;^UTILITY(U,$J,358.3,34096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34467,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Shldr

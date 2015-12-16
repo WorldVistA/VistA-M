@@ -1,148 +1,132 @@
-IBDEI02L ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02L ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,747,1,0)
+ ;;^UTILITY(U,$J,358.3,660,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,661,0)
+ ;;=Z85.831^^2^27^29
+ ;;^UTILITY(U,$J,358.3,661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,747,1,3,0)
- ;;=3^387.1
- ;;^UTILITY(U,$J,358.3,747,1,4,0)
- ;;=4^Otoscler-Oval Wnd, Obl
- ;;^UTILITY(U,$J,358.3,747,2)
- ;;=^269516
- ;;^UTILITY(U,$J,358.3,748,0)
- ;;=387.2^^8^85^45
- ;;^UTILITY(U,$J,358.3,748,1,0)
+ ;;^UTILITY(U,$J,358.3,661,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of soft tissue
+ ;;^UTILITY(U,$J,358.3,661,1,4,0)
+ ;;=4^Z85.831
+ ;;^UTILITY(U,$J,358.3,661,2)
+ ;;=^5063445
+ ;;^UTILITY(U,$J,358.3,662,0)
+ ;;=Z85.71^^2^27^1
+ ;;^UTILITY(U,$J,358.3,662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,748,1,3,0)
- ;;=3^387.2
- ;;^UTILITY(U,$J,358.3,748,1,4,0)
- ;;=4^Cochlear Sclerosis
- ;;^UTILITY(U,$J,358.3,748,2)
- ;;=^269517
- ;;^UTILITY(U,$J,358.3,749,0)
- ;;=387.8^^8^85^74
- ;;^UTILITY(U,$J,358.3,749,1,0)
+ ;;^UTILITY(U,$J,358.3,662,1,3,0)
+ ;;=3^Personal history of Hodgkin lymphoma
+ ;;^UTILITY(U,$J,358.3,662,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,662,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,663,0)
+ ;;=Z85.830^^2^27^30
+ ;;^UTILITY(U,$J,358.3,663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,749,1,3,0)
- ;;=3^387.8
- ;;^UTILITY(U,$J,358.3,749,1,4,0)
- ;;=4^Otosclerosis NEC
- ;;^UTILITY(U,$J,358.3,749,2)
- ;;=^87766
- ;;^UTILITY(U,$J,358.3,750,0)
- ;;=387.9^^8^85^75
- ;;^UTILITY(U,$J,358.3,750,1,0)
+ ;;^UTILITY(U,$J,358.3,663,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of bone
+ ;;^UTILITY(U,$J,358.3,663,1,4,0)
+ ;;=4^Z85.830
+ ;;^UTILITY(U,$J,358.3,663,2)
+ ;;=^5063444
+ ;;^UTILITY(U,$J,358.3,664,0)
+ ;;=Z85.820^^2^27^2
+ ;;^UTILITY(U,$J,358.3,664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,750,1,3,0)
- ;;=3^387.9
- ;;^UTILITY(U,$J,358.3,750,1,4,0)
- ;;=4^Otosclerosis NOS
- ;;^UTILITY(U,$J,358.3,750,2)
- ;;=^88333
- ;;^UTILITY(U,$J,358.3,751,0)
- ;;=380.11^^8^85^5
- ;;^UTILITY(U,$J,358.3,751,1,0)
+ ;;^UTILITY(U,$J,358.3,664,1,3,0)
+ ;;=3^Personal history of malignant melanoma of skin
+ ;;^UTILITY(U,$J,358.3,664,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,664,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,665,0)
+ ;;=Z85.828^^2^27^31
+ ;;^UTILITY(U,$J,358.3,665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,751,1,3,0)
- ;;=3^380.11
- ;;^UTILITY(U,$J,358.3,751,1,4,0)
- ;;=4^AC Infection of Pinna
- ;;^UTILITY(U,$J,358.3,751,2)
- ;;=^269341
- ;;^UTILITY(U,$J,358.3,752,0)
- ;;=380.21^^8^85^29
- ;;^UTILITY(U,$J,358.3,752,1,0)
+ ;;^UTILITY(U,$J,358.3,665,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of skin NEC
+ ;;^UTILITY(U,$J,358.3,665,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,665,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,666,0)
+ ;;=Z85.840^^2^27^32
+ ;;^UTILITY(U,$J,358.3,666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,752,1,3,0)
- ;;=3^380.21
- ;;^UTILITY(U,$J,358.3,752,1,4,0)
- ;;=4^Cholesteatoma of External Ear
- ;;^UTILITY(U,$J,358.3,752,2)
- ;;=^269350
- ;;^UTILITY(U,$J,358.3,753,0)
- ;;=380.22^^8^85^9
- ;;^UTILITY(U,$J,358.3,753,1,0)
+ ;;^UTILITY(U,$J,358.3,666,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of eye
+ ;;^UTILITY(U,$J,358.3,666,1,4,0)
+ ;;=4^Z85.840
+ ;;^UTILITY(U,$J,358.3,666,2)
+ ;;=^5063446
+ ;;^UTILITY(U,$J,358.3,667,0)
+ ;;=Z85.841^^2^27^33
+ ;;^UTILITY(U,$J,358.3,667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,753,1,3,0)
- ;;=3^380.22
- ;;^UTILITY(U,$J,358.3,753,1,4,0)
- ;;=4^AC Otitis Externa NEC
- ;;^UTILITY(U,$J,358.3,753,2)
- ;;=^269352
- ;;^UTILITY(U,$J,358.3,754,0)
- ;;=380.23^^8^85^39
- ;;^UTILITY(U,$J,358.3,754,1,0)
+ ;;^UTILITY(U,$J,358.3,667,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of brain
+ ;;^UTILITY(U,$J,358.3,667,1,4,0)
+ ;;=4^Z85.841
+ ;;^UTILITY(U,$J,358.3,667,2)
+ ;;=^5063447
+ ;;^UTILITY(U,$J,358.3,668,0)
+ ;;=Z85.848^^2^27^34
+ ;;^UTILITY(U,$J,358.3,668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,754,1,3,0)
- ;;=3^380.23
- ;;^UTILITY(U,$J,358.3,754,1,4,0)
- ;;=4^Chr Otitis Externa NEC
- ;;^UTILITY(U,$J,358.3,754,2)
- ;;=^269353
- ;;^UTILITY(U,$J,358.3,755,0)
- ;;=381.10^^8^85^41
- ;;^UTILITY(U,$J,358.3,755,1,0)
+ ;;^UTILITY(U,$J,358.3,668,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of prt nervous tissue
+ ;;^UTILITY(U,$J,358.3,668,1,4,0)
+ ;;=4^Z85.848
+ ;;^UTILITY(U,$J,358.3,668,2)
+ ;;=^5063448
+ ;;^UTILITY(U,$J,358.3,669,0)
+ ;;=Z85.850^^2^27^35
+ ;;^UTILITY(U,$J,358.3,669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,755,1,3,0)
- ;;=3^381.10
- ;;^UTILITY(U,$J,358.3,755,1,4,0)
- ;;=4^Chr Seroous Otitis Media
- ;;^UTILITY(U,$J,358.3,755,2)
- ;;=^269376
- ;;^UTILITY(U,$J,358.3,756,0)
- ;;=381.50^^8^85^50
- ;;^UTILITY(U,$J,358.3,756,1,0)
+ ;;^UTILITY(U,$J,358.3,669,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of thyroid
+ ;;^UTILITY(U,$J,358.3,669,1,4,0)
+ ;;=4^Z85.850
+ ;;^UTILITY(U,$J,358.3,669,2)
+ ;;=^5063449
+ ;;^UTILITY(U,$J,358.3,670,0)
+ ;;=Z85.858^^2^27^36
+ ;;^UTILITY(U,$J,358.3,670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,756,1,3,0)
- ;;=3^381.50
- ;;^UTILITY(U,$J,358.3,756,1,4,0)
- ;;=4^Eustachian Salping NOS
- ;;^UTILITY(U,$J,358.3,756,2)
- ;;=^269382
- ;;^UTILITY(U,$J,358.3,757,0)
- ;;=385.30^^8^85^27
- ;;^UTILITY(U,$J,358.3,757,1,0)
+ ;;^UTILITY(U,$J,358.3,670,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of endocrine glands
+ ;;^UTILITY(U,$J,358.3,670,1,4,0)
+ ;;=4^Z85.858
+ ;;^UTILITY(U,$J,358.3,670,2)
+ ;;=^5063450
+ ;;^UTILITY(U,$J,358.3,671,0)
+ ;;=N17.1^^3^28^2
+ ;;^UTILITY(U,$J,358.3,671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,757,1,3,0)
- ;;=3^385.30
- ;;^UTILITY(U,$J,358.3,757,1,4,0)
- ;;=4^Cholesteatoma Unspec
- ;;^UTILITY(U,$J,358.3,757,2)
- ;;=^23487
- ;;^UTILITY(U,$J,358.3,758,0)
- ;;=385.31^^8^85^28
- ;;^UTILITY(U,$J,358.3,758,1,0)
+ ;;^UTILITY(U,$J,358.3,671,1,3,0)
+ ;;=3^Acute kidney failure w/ acute cortical necrosis
+ ;;^UTILITY(U,$J,358.3,671,1,4,0)
+ ;;=4^N17.1
+ ;;^UTILITY(U,$J,358.3,671,2)
+ ;;=^5015599
+ ;;^UTILITY(U,$J,358.3,672,0)
+ ;;=N17.2^^3^28^3
+ ;;^UTILITY(U,$J,358.3,672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,758,1,3,0)
- ;;=3^385.31
- ;;^UTILITY(U,$J,358.3,758,1,4,0)
- ;;=4^Cholesteatoma of Attic
- ;;^UTILITY(U,$J,358.3,758,2)
- ;;=^269457
- ;;^UTILITY(U,$J,358.3,759,0)
- ;;=385.32^^8^85^30
- ;;^UTILITY(U,$J,358.3,759,1,0)
+ ;;^UTILITY(U,$J,358.3,672,1,3,0)
+ ;;=3^Acute kidney failure w/ medullary necrosis
+ ;;^UTILITY(U,$J,358.3,672,1,4,0)
+ ;;=4^N17.2
+ ;;^UTILITY(U,$J,358.3,672,2)
+ ;;=^5015600
+ ;;^UTILITY(U,$J,358.3,673,0)
+ ;;=N17.8^^3^28^1
+ ;;^UTILITY(U,$J,358.3,673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,759,1,3,0)
- ;;=3^385.32
- ;;^UTILITY(U,$J,358.3,759,1,4,0)
- ;;=4^Cholesteatoma of Middle Ear
- ;;^UTILITY(U,$J,358.3,759,2)
- ;;=^269459
- ;;^UTILITY(U,$J,358.3,760,0)
- ;;=385.33^^8^85^31
- ;;^UTILITY(U,$J,358.3,760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,760,1,3,0)
- ;;=3^385.33
- ;;^UTILITY(U,$J,358.3,760,1,4,0)
- ;;=4^Cholestma Middle Ear/Mastoid
- ;;^UTILITY(U,$J,358.3,760,2)
- ;;=^23491
- ;;^UTILITY(U,$J,358.3,761,0)
- ;;=385.83^^8^85^84
- ;;^UTILITY(U,$J,358.3,761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,761,1,3,0)
- ;;=3^385.83
+ ;;^UTILITY(U,$J,358.3,673,1,3,0)
+ ;;=3^Acute Kidney Failure NEC

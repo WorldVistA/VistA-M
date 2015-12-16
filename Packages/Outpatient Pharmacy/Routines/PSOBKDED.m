@@ -1,5 +1,5 @@
 PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;04/17/95
- ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282**;DEC 1997;Build 18
  ;Ref PS(50.607 IA 2221
  ;Ref PS(50.7 IA 2223
  ;Ref PS(51.2 IA 2226
@@ -143,7 +143,8 @@ DOS W " "_$S($E(DOSE,1)="."&($G(UNITN)'=""):"0",1:"")_DOSE W:$G(UNITN)'="" UNITN
  Q
  ;
 SCH D KX
- S DIR("?")="^D SCHLP^PSOORED4",DIR("A")="Schedule: ",DIR(0)="FA^1:20^I X[""""""""!(X?.E1C.E)!($A(X)=45)!($L(X,"" "")>3)!($L(X)>20)!($L(X)<1) K X"
+ ;*282 Allow multi-word schedules
+ S DIR("?")="^D SCHLP^PSOORED4",DIR("A")="Schedule: ",DIR(0)="FA^1:20^I X[""""""""!(X?.E1C.E)!($A(X)=45)!($L(X,"" "")>$S(X[""PRN"":4,1:3))!($L(X)>20)!($L(X)<1) K X"
  I '$D(PSOSCH),'$D(PSORXED("SCHEDULE",ENT)),$P(^PS(50.7,PSODRUG("OI"),0),"^",8)]"" S PSOSCH=$P(^PS(50.7,PSODRUG("OI"),0),"^",8)
  S DIR("B")=$S($D(PSOSCH)&('$D(PSORXED("SCHEDULE",ENT))):PSOSCH,$G(PSORXED("SCHEDULE",ENT))]"":PSORXED("SCHEDULE",ENT),1:"") K:DIR("B")="" DIR("B")
  I $G(PSORXED("SCHEDULE",ENT))']"",$G(PSOREEDT) K DIR("B")

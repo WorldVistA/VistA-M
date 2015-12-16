@@ -1,132 +1,138 @@
-IBDEI03H ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI03H ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1249,1,2,0)
- ;;=2^93318
- ;;^UTILITY(U,$J,358.3,1249,1,3,0)
- ;;=3^Echo Transesophageal Intraop
- ;;^UTILITY(U,$J,358.3,1250,0)
- ;;=93303^^10^114^19^^^^1
- ;;^UTILITY(U,$J,358.3,1250,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1250,1,2,0)
- ;;=2^93303
- ;;^UTILITY(U,$J,358.3,1250,1,3,0)
- ;;=3^Ecoh Transthoracic,Complete
- ;;^UTILITY(U,$J,358.3,1251,0)
- ;;=93304^^10^114^15^^^^1
- ;;^UTILITY(U,$J,358.3,1251,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1251,1,2,0)
- ;;=2^93304
- ;;^UTILITY(U,$J,358.3,1251,1,3,0)
- ;;=3^Echo Transthroacic F/U
- ;;^UTILITY(U,$J,358.3,1252,0)
- ;;=93308^^10^114^13^^^^1
- ;;^UTILITY(U,$J,358.3,1252,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1252,1,2,0)
- ;;=2^93308
- ;;^UTILITY(U,$J,358.3,1252,1,3,0)
- ;;=3^Echo Transthoracic,2D Image,Limited
- ;;^UTILITY(U,$J,358.3,1253,0)
- ;;=93000^^10^115^9
- ;;^UTILITY(U,$J,358.3,1253,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1253,1,2,0)
- ;;=2^93000
- ;;^UTILITY(U,$J,358.3,1253,1,3,0)
- ;;=3^EKG 12 Lead W/Report
- ;;^UTILITY(U,$J,358.3,1254,0)
- ;;=93005^^10^115^11
- ;;^UTILITY(U,$J,358.3,1254,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1254,1,2,0)
- ;;=2^93005
- ;;^UTILITY(U,$J,358.3,1254,1,3,0)
- ;;=3^EKG, Tracing Only No Report
- ;;^UTILITY(U,$J,358.3,1255,0)
- ;;=93278^^10^115^12
- ;;^UTILITY(U,$J,358.3,1255,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1255,1,2,0)
- ;;=2^93278
- ;;^UTILITY(U,$J,358.3,1255,1,3,0)
- ;;=3^EKG/Signal-Averaged
- ;;^UTILITY(U,$J,358.3,1256,0)
- ;;=93010^^10^115^10^^^^1
- ;;^UTILITY(U,$J,358.3,1256,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1256,1,2,0)
- ;;=2^93010
- ;;^UTILITY(U,$J,358.3,1256,1,3,0)
- ;;=3^EKG Read Only
- ;;^UTILITY(U,$J,358.3,1257,0)
- ;;=0295T^^10^115^14^^^^1
- ;;^UTILITY(U,$J,358.3,1257,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1257,1,2,0)
- ;;=2^0295T
- ;;^UTILITY(U,$J,358.3,1257,1,3,0)
- ;;=3^Ext ECG Complete->48hrs/21 days
- ;;^UTILITY(U,$J,358.3,1258,0)
- ;;=0296T^^10^115^15^^^^1
- ;;^UTILITY(U,$J,358.3,1258,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1258,1,2,0)
- ;;=2^0296T
- ;;^UTILITY(U,$J,358.3,1258,1,3,0)
- ;;=3^Ext ECG Recording->48hr/21 days
- ;;^UTILITY(U,$J,358.3,1259,0)
- ;;=0297T^^10^115^17^^^^1
- ;;^UTILITY(U,$J,358.3,1259,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1259,1,2,0)
- ;;=2^0297T
- ;;^UTILITY(U,$J,358.3,1259,1,3,0)
- ;;=3^Ext ECG Scan w/Rpt-48hrs/21 days
- ;;^UTILITY(U,$J,358.3,1260,0)
- ;;=0298T^^10^115^16^^^^1
- ;;^UTILITY(U,$J,358.3,1260,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1260,1,2,0)
- ;;=2^0298T
- ;;^UTILITY(U,$J,358.3,1260,1,3,0)
- ;;=3^Ext ECG Review & Interp->48hrs/21 days
- ;;^UTILITY(U,$J,358.3,1261,0)
- ;;=93224^^10^115^1^^^^1
- ;;^UTILITY(U,$J,358.3,1261,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1261,1,2,0)
- ;;=2^93224
- ;;^UTILITY(U,$J,358.3,1261,1,3,0)
- ;;=3^ECG MONITOR, UP TO 48 HR, ALL INCLUSIVE
- ;;^UTILITY(U,$J,358.3,1262,0)
- ;;=93225^^10^115^2^^^^1
- ;;^UTILITY(U,$J,358.3,1262,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1262,1,2,0)
- ;;=2^93225
- ;;^UTILITY(U,$J,358.3,1262,1,3,0)
- ;;=3^ECG MONITOR, UP TO 48 HR, RECORDING ONLY
- ;;^UTILITY(U,$J,358.3,1263,0)
- ;;=93226^^10^115^4^^^^1
- ;;^UTILITY(U,$J,358.3,1263,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1263,1,2,0)
- ;;=2^93226
- ;;^UTILITY(U,$J,358.3,1263,1,3,0)
- ;;=3^ECG MONITOR, UP TO 48 HR, SCAN w/RPT
- ;;^UTILITY(U,$J,358.3,1264,0)
- ;;=93227^^10^115^3^^^^1
- ;;^UTILITY(U,$J,358.3,1264,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1264,1,2,0)
- ;;=2^93227
- ;;^UTILITY(U,$J,358.3,1264,1,3,0)
- ;;=3^ECG MONITOR, UP TO 48 HR, REVIEW & INTERP
- ;;^UTILITY(U,$J,358.3,1265,0)
- ;;=93228^^10^115^20^^^^1
- ;;^UTILITY(U,$J,358.3,1265,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1091,1,3,0)
+ ;;=3^Chronic hepatitis, unspecified
+ ;;^UTILITY(U,$J,358.3,1091,1,4,0)
+ ;;=4^K73.9
+ ;;^UTILITY(U,$J,358.3,1091,2)
+ ;;=^5008815
+ ;;^UTILITY(U,$J,358.3,1092,0)
+ ;;=K73.0^^3^37^25
+ ;;^UTILITY(U,$J,358.3,1092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1092,1,3,0)
+ ;;=3^Chronic persistent hepatitis, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,1092,1,4,0)
+ ;;=4^K73.0
+ ;;^UTILITY(U,$J,358.3,1092,2)
+ ;;=^5008811
+ ;;^UTILITY(U,$J,358.3,1093,0)
+ ;;=K74.60^^3^37^30
+ ;;^UTILITY(U,$J,358.3,1093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1093,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,1093,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,1093,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,1094,0)
+ ;;=K74.0^^3^37^61
+ ;;^UTILITY(U,$J,358.3,1094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1094,1,3,0)
+ ;;=3^Hepatic fibrosis
+ ;;^UTILITY(U,$J,358.3,1094,1,4,0)
+ ;;=4^K74.0
+ ;;^UTILITY(U,$J,358.3,1094,2)
+ ;;=^5008816
+ ;;^UTILITY(U,$J,358.3,1095,0)
+ ;;=K76.0^^3^37^48
+ ;;^UTILITY(U,$J,358.3,1095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1095,1,3,0)
+ ;;=3^Fatty (change of) liver, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,1095,1,4,0)
+ ;;=4^K76.0
+ ;;^UTILITY(U,$J,358.3,1095,2)
+ ;;=^5008831
+ ;;^UTILITY(U,$J,358.3,1096,0)
+ ;;=K75.9^^3^37^64
+ ;;^UTILITY(U,$J,358.3,1096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1096,1,3,0)
+ ;;=3^Inflammatory liver disease, unspecified
+ ;;^UTILITY(U,$J,358.3,1096,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,1096,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,1097,0)
+ ;;=K71.6^^3^37^95
+ ;;^UTILITY(U,$J,358.3,1097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1097,1,3,0)
+ ;;=3^Toxic liver disease with hepatitis, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,1097,1,4,0)
+ ;;=4^K71.6
+ ;;^UTILITY(U,$J,358.3,1097,2)
+ ;;=^5008801
+ ;;^UTILITY(U,$J,358.3,1098,0)
+ ;;=K80.20^^3^37^16
+ ;;^UTILITY(U,$J,358.3,1098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1098,1,3,0)
+ ;;=3^Calculus of gallbladder w/o cholecystitis w/o obstruction
+ ;;^UTILITY(U,$J,358.3,1098,1,4,0)
+ ;;=4^K80.20
+ ;;^UTILITY(U,$J,358.3,1098,2)
+ ;;=^5008846
+ ;;^UTILITY(U,$J,358.3,1099,0)
+ ;;=K81.9^^3^37^20
+ ;;^UTILITY(U,$J,358.3,1099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1099,1,3,0)
+ ;;=3^Cholecystitis, unspecified
+ ;;^UTILITY(U,$J,358.3,1099,1,4,0)
+ ;;=4^K81.9
+ ;;^UTILITY(U,$J,358.3,1099,2)
+ ;;=^87388
+ ;;^UTILITY(U,$J,358.3,1100,0)
+ ;;=K85.9^^3^37^5
+ ;;^UTILITY(U,$J,358.3,1100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1100,1,3,0)
+ ;;=3^Acute pancreatitis, unspecified
+ ;;^UTILITY(U,$J,358.3,1100,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,1100,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,1101,0)
+ ;;=K86.1^^3^37^24
+ ;;^UTILITY(U,$J,358.3,1101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1101,1,3,0)
+ ;;=3^Chronic pancreatitis NEC
+ ;;^UTILITY(U,$J,358.3,1101,1,4,0)
+ ;;=4^K86.1
+ ;;^UTILITY(U,$J,358.3,1101,2)
+ ;;=^5008889
+ ;;^UTILITY(U,$J,358.3,1102,0)
+ ;;=K86.3^^3^37^86
+ ;;^UTILITY(U,$J,358.3,1102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1102,1,3,0)
+ ;;=3^Pseudocyst of pancreas
+ ;;^UTILITY(U,$J,358.3,1102,1,4,0)
+ ;;=4^K86.3
+ ;;^UTILITY(U,$J,358.3,1102,2)
+ ;;=^5008891
+ ;;^UTILITY(U,$J,358.3,1103,0)
+ ;;=K92.1^^3^37^74
+ ;;^UTILITY(U,$J,358.3,1103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1103,1,3,0)
+ ;;=3^Melena
+ ;;^UTILITY(U,$J,358.3,1103,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,1103,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,1104,0)
+ ;;=K92.2^^3^37^56
+ ;;^UTILITY(U,$J,358.3,1104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1104,1,3,0)
+ ;;=3^Gastrointestinal hemorrhage, unspecified

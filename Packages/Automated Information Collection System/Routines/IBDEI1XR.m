@@ -1,134 +1,132 @@
-IBDEI1XR ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XR ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34364,1,4,0)
- ;;=4^B90.9
- ;;^UTILITY(U,$J,358.3,34364,2)
- ;;=^5000827
- ;;^UTILITY(U,$J,358.3,34365,0)
- ;;=J41.0^^192^1997^84
- ;;^UTILITY(U,$J,358.3,34365,1,0)
+ ;;^UTILITY(U,$J,358.3,33995,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,33996,0)
+ ;;=I25.110^^183^2014^10
+ ;;^UTILITY(U,$J,358.3,33996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34365,1,3,0)
- ;;=3^Simple Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,34365,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,34365,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,34366,0)
- ;;=B44.2^^192^1997^85
- ;;^UTILITY(U,$J,358.3,34366,1,0)
+ ;;^UTILITY(U,$J,358.3,33996,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unstable ang pctrs
+ ;;^UTILITY(U,$J,358.3,33996,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,33996,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,33997,0)
+ ;;=I25.10^^183^2014^11
+ ;;^UTILITY(U,$J,358.3,33997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34366,1,3,0)
- ;;=3^Tonsillar Aspergillosis
- ;;^UTILITY(U,$J,358.3,34366,1,4,0)
- ;;=4^B44.2
- ;;^UTILITY(U,$J,358.3,34366,2)
- ;;=^5000665
- ;;^UTILITY(U,$J,358.3,34367,0)
- ;;=A15.0^^192^1997^86
- ;;^UTILITY(U,$J,358.3,34367,1,0)
+ ;;^UTILITY(U,$J,358.3,33997,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w/o ang pctrs
+ ;;^UTILITY(U,$J,358.3,33997,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,33997,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,33998,0)
+ ;;=I48.0^^183^2014^28
+ ;;^UTILITY(U,$J,358.3,33998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34367,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,34367,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,34367,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,34368,0)
- ;;=A15.6^^192^1997^87
- ;;^UTILITY(U,$J,358.3,34368,1,0)
+ ;;^UTILITY(U,$J,358.3,33998,1,3,0)
+ ;;=3^Paroxysmal atrial fibrillation
+ ;;^UTILITY(U,$J,358.3,33998,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,33998,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,33999,0)
+ ;;=I42.9^^183^2014^13
+ ;;^UTILITY(U,$J,358.3,33999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34368,1,3,0)
- ;;=3^Tuberculous Pleurisy
- ;;^UTILITY(U,$J,358.3,34368,1,4,0)
- ;;=4^A15.6
- ;;^UTILITY(U,$J,358.3,34368,2)
- ;;=^5000064
- ;;^UTILITY(U,$J,358.3,34369,0)
- ;;=H60.503^^192^1997^26
- ;;^UTILITY(U,$J,358.3,34369,1,0)
+ ;;^UTILITY(U,$J,358.3,33999,1,3,0)
+ ;;=3^Cardiomyopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,33999,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,33999,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,34000,0)
+ ;;=I50.42^^183^2014^14
+ ;;^UTILITY(U,$J,358.3,34000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34369,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,34369,1,4,0)
- ;;=4^H60.503
- ;;^UTILITY(U,$J,358.3,34369,2)
- ;;=^5006469
- ;;^UTILITY(U,$J,358.3,34370,0)
- ;;=H60.502^^192^1997^27
- ;;^UTILITY(U,$J,358.3,34370,1,0)
+ ;;^UTILITY(U,$J,358.3,34000,1,3,0)
+ ;;=3^Chronic combined systolic and diastolic hrt fail
+ ;;^UTILITY(U,$J,358.3,34000,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,34000,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,34001,0)
+ ;;=I50.32^^183^2014^15
+ ;;^UTILITY(U,$J,358.3,34001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34370,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,34370,1,4,0)
- ;;=4^H60.502
- ;;^UTILITY(U,$J,358.3,34370,2)
- ;;=^5006468
- ;;^UTILITY(U,$J,358.3,34371,0)
- ;;=H60.501^^192^1997^28
- ;;^UTILITY(U,$J,358.3,34371,1,0)
+ ;;^UTILITY(U,$J,358.3,34001,1,3,0)
+ ;;=3^Chronic diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,34001,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,34001,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,34002,0)
+ ;;=J44.1^^183^2014^16
+ ;;^UTILITY(U,$J,358.3,34002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34371,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,34371,1,4,0)
- ;;=4^H60.501
- ;;^UTILITY(U,$J,358.3,34371,2)
- ;;=^5006467
- ;;^UTILITY(U,$J,358.3,34372,0)
- ;;=J15.9^^192^1997^46
- ;;^UTILITY(U,$J,358.3,34372,1,0)
+ ;;^UTILITY(U,$J,358.3,34002,1,3,0)
+ ;;=3^Chronic obstructive pulmonary disease w (acute) exacerbation
+ ;;^UTILITY(U,$J,358.3,34002,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,34002,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,34003,0)
+ ;;=J44.9^^183^2014^17
+ ;;^UTILITY(U,$J,358.3,34003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34372,1,3,0)
- ;;=3^Bacterial Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,34372,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,34372,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,34373,0)
- ;;=B97.10^^192^1997^58
- ;;^UTILITY(U,$J,358.3,34373,1,0)
+ ;;^UTILITY(U,$J,358.3,34003,1,3,0)
+ ;;=3^Chronic obstructive pulmonary disease, unspecified
+ ;;^UTILITY(U,$J,358.3,34003,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,34003,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,34004,0)
+ ;;=I50.22^^183^2014^18
+ ;;^UTILITY(U,$J,358.3,34004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34373,1,3,0)
- ;;=3^Enterovirus as Cause of Diseases Classified Elsewhere,Unspec
- ;;^UTILITY(U,$J,358.3,34373,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,34373,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,34374,0)
- ;;=J30.0^^192^1997^88
- ;;^UTILITY(U,$J,358.3,34374,1,0)
+ ;;^UTILITY(U,$J,358.3,34004,1,3,0)
+ ;;=3^Chronic systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,34004,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,34004,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,34005,0)
+ ;;=Z98.61^^183^2014^20
+ ;;^UTILITY(U,$J,358.3,34005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34374,1,3,0)
- ;;=3^Vasomotor Rhinitis
- ;;^UTILITY(U,$J,358.3,34374,1,4,0)
- ;;=4^J30.0
- ;;^UTILITY(U,$J,358.3,34374,2)
- ;;=^5008201
- ;;^UTILITY(U,$J,358.3,34375,0)
- ;;=B34.9^^192^1997^89
- ;;^UTILITY(U,$J,358.3,34375,1,0)
+ ;;^UTILITY(U,$J,358.3,34005,1,3,0)
+ ;;=3^Coronary angioplasty status
+ ;;^UTILITY(U,$J,358.3,34005,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,34005,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,34006,0)
+ ;;=I42.0^^183^2014^22
+ ;;^UTILITY(U,$J,358.3,34006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34375,1,3,0)
- ;;=3^Viral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,34375,1,4,0)
- ;;=4^B34.9
- ;;^UTILITY(U,$J,358.3,34375,2)
- ;;=^5000603
- ;;^UTILITY(U,$J,358.3,34376,0)
- ;;=J12.9^^192^1997^90
- ;;^UTILITY(U,$J,358.3,34376,1,0)
+ ;;^UTILITY(U,$J,358.3,34006,1,3,0)
+ ;;=3^Dilated cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,34006,1,4,0)
+ ;;=4^I42.0
+ ;;^UTILITY(U,$J,358.3,34006,2)
+ ;;=^5007194
+ ;;^UTILITY(U,$J,358.3,34007,0)
+ ;;=J43.9^^183^2014^23
+ ;;^UTILITY(U,$J,358.3,34007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34376,1,3,0)
- ;;=3^Viral Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,34376,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,34376,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,34377,0)
- ;;=J84.114^^192^1998^1
- ;;^UTILITY(U,$J,358.3,34377,1,0)
+ ;;^UTILITY(U,$J,358.3,34007,1,3,0)
+ ;;=3^Emphysema, unspecified
+ ;;^UTILITY(U,$J,358.3,34007,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,34007,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,34008,0)
+ ;;=Z82.49^^183^2014^24
+ ;;^UTILITY(U,$J,358.3,34008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34377,1,3,0)
- ;;=3^AC Interstitial Pneumonitis
+ ;;^UTILITY(U,$J,358.3,34008,1,3,0)
+ ;;=3^Family hx of ischem heart dis and oth dis of the circ sys

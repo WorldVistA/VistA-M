@@ -1,126 +1,132 @@
-IBDEI1VB ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1VB ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33265,1,3,0)
- ;;=3^Nondisp fx of ltrl malleolus of lft fib, init
- ;;^UTILITY(U,$J,358.3,33265,1,4,0)
- ;;=4^S82.65XA
- ;;^UTILITY(U,$J,358.3,33265,2)
- ;;=^5042375
- ;;^UTILITY(U,$J,358.3,33266,0)
- ;;=S82.841A^^191^1968^19
- ;;^UTILITY(U,$J,358.3,33266,1,0)
+ ;;^UTILITY(U,$J,358.3,32870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33266,1,3,0)
- ;;=3^Disp bimalleolar fx of rt lwr leg, int
- ;;^UTILITY(U,$J,358.3,33266,1,4,0)
- ;;=4^S82.841A
- ;;^UTILITY(U,$J,358.3,33266,2)
- ;;=^5042479
- ;;^UTILITY(U,$J,358.3,33267,0)
- ;;=S82.842A^^191^1968^18
- ;;^UTILITY(U,$J,358.3,33267,1,0)
+ ;;^UTILITY(U,$J,358.3,32870,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,32870,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,32870,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,32871,0)
+ ;;=Z80.43^^182^1993^32
+ ;;^UTILITY(U,$J,358.3,32871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33267,1,3,0)
- ;;=3^Disp bimalleolar fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,33267,1,4,0)
- ;;=4^S82.842A
- ;;^UTILITY(U,$J,358.3,33267,2)
- ;;=^5042495
- ;;^UTILITY(U,$J,358.3,33268,0)
- ;;=S82.844A^^191^1968^243
- ;;^UTILITY(U,$J,358.3,33268,1,0)
+ ;;^UTILITY(U,$J,358.3,32871,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,32871,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,32871,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,32872,0)
+ ;;=Z80.6^^182^1993^26
+ ;;^UTILITY(U,$J,358.3,32872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33268,1,3,0)
- ;;=3^Nondisp bimalleolar fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,33268,1,4,0)
- ;;=4^S82.844A
- ;;^UTILITY(U,$J,358.3,33268,2)
- ;;=^5042527
- ;;^UTILITY(U,$J,358.3,33269,0)
- ;;=S82.845A^^191^1968^242
- ;;^UTILITY(U,$J,358.3,33269,1,0)
+ ;;^UTILITY(U,$J,358.3,32872,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,32872,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,32872,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,32873,0)
+ ;;=Z80.8^^182^1993^29
+ ;;^UTILITY(U,$J,358.3,32873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33269,1,3,0)
- ;;=3^Nondisp bimalleolar fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,33269,1,4,0)
- ;;=4^S82.845A
- ;;^UTILITY(U,$J,358.3,33269,2)
- ;;=^5042543
- ;;^UTILITY(U,$J,358.3,33270,0)
- ;;=S82.854A^^191^1968^379
- ;;^UTILITY(U,$J,358.3,33270,1,0)
+ ;;^UTILITY(U,$J,358.3,32873,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,32873,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,32873,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,32874,0)
+ ;;=Z81.8^^182^1993^34
+ ;;^UTILITY(U,$J,358.3,32874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33270,1,3,0)
- ;;=3^Nondisp trimall fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,33270,1,4,0)
- ;;=4^S82.854A
- ;;^UTILITY(U,$J,358.3,33270,2)
- ;;=^5042623
- ;;^UTILITY(U,$J,358.3,33271,0)
- ;;=S82.852A^^191^1968^153
- ;;^UTILITY(U,$J,358.3,33271,1,0)
+ ;;^UTILITY(U,$J,358.3,32874,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,32874,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,32874,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,32875,0)
+ ;;=Z82.3^^182^1993^40
+ ;;^UTILITY(U,$J,358.3,32875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33271,1,3,0)
- ;;=3^Disp trimall fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,33271,1,4,0)
- ;;=4^S82.852A
- ;;^UTILITY(U,$J,358.3,33271,2)
- ;;=^5042591
- ;;^UTILITY(U,$J,358.3,33272,0)
- ;;=S82.851A^^191^1968^154
- ;;^UTILITY(U,$J,358.3,33272,1,0)
+ ;;^UTILITY(U,$J,358.3,32875,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,32875,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,32875,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,32876,0)
+ ;;=Z82.49^^182^1993^25
+ ;;^UTILITY(U,$J,358.3,32876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33272,1,3,0)
- ;;=3^Disp trimall fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,33272,1,4,0)
- ;;=4^S82.851A
- ;;^UTILITY(U,$J,358.3,33272,2)
- ;;=^5042575
- ;;^UTILITY(U,$J,358.3,33273,0)
- ;;=S82.851A^^191^1968^155
- ;;^UTILITY(U,$J,358.3,33273,1,0)
+ ;;^UTILITY(U,$J,358.3,32876,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,32876,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,32876,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,32877,0)
+ ;;=Z82.5^^182^1993^17
+ ;;^UTILITY(U,$J,358.3,32877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33273,1,3,0)
- ;;=3^Disp trimall fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,33273,1,4,0)
- ;;=4^S82.851A
- ;;^UTILITY(U,$J,358.3,33273,2)
- ;;=^5042575
- ;;^UTILITY(U,$J,358.3,33274,0)
- ;;=S82.855A^^191^1968^378
- ;;^UTILITY(U,$J,358.3,33274,1,0)
+ ;;^UTILITY(U,$J,358.3,32877,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,32877,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,32877,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,32878,0)
+ ;;=Z82.61^^182^1993^16
+ ;;^UTILITY(U,$J,358.3,32878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33274,1,3,0)
- ;;=3^Nondisp trimall fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,33274,1,4,0)
- ;;=4^S82.855A
- ;;^UTILITY(U,$J,358.3,33274,2)
- ;;=^5042639
- ;;^UTILITY(U,$J,358.3,33275,0)
- ;;=S92.065A^^191^1968^365
- ;;^UTILITY(U,$J,358.3,33275,1,0)
+ ;;^UTILITY(U,$J,358.3,32878,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,32878,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,32878,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,32879,0)
+ ;;=Z82.69^^182^1993^35
+ ;;^UTILITY(U,$J,358.3,32879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33275,1,3,0)
- ;;=3^Nondisp intraarticular fx of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,33275,1,4,0)
- ;;=4^S92.065A
- ;;^UTILITY(U,$J,358.3,33275,2)
- ;;=^5044577
- ;;^UTILITY(U,$J,358.3,33276,0)
- ;;=S92.064A^^191^1968^366
- ;;^UTILITY(U,$J,358.3,33276,1,0)
+ ;;^UTILITY(U,$J,358.3,32879,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,32879,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,32879,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,32880,0)
+ ;;=Z83.3^^182^1993^23
+ ;;^UTILITY(U,$J,358.3,32880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33276,1,3,0)
- ;;=3^Nondisp intraarticular fx of rt calcaneus, init
- ;;^UTILITY(U,$J,358.3,33276,1,4,0)
- ;;=4^S92.064A
- ;;^UTILITY(U,$J,358.3,33276,2)
- ;;=^5044570
- ;;^UTILITY(U,$J,358.3,33277,0)
- ;;=S92.061A^^191^1968^138
- ;;^UTILITY(U,$J,358.3,33277,1,0)
+ ;;^UTILITY(U,$J,358.3,32880,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,32880,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,32880,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,32881,0)
+ ;;=Z83.2^^182^1993^19
+ ;;^UTILITY(U,$J,358.3,32881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33277,1,3,0)
- ;;=3^Disp intraarticular fx of right calcaneus, init
+ ;;^UTILITY(U,$J,358.3,32881,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,32881,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,32881,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,32882,0)
+ ;;=Z82.71^^182^1993^38
+ ;;^UTILITY(U,$J,358.3,32882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32882,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,32882,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,32882,2)
+ ;;=^321531

@@ -1,130 +1,136 @@
-IBDEI1WJ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WJ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33803,0)
- ;;=M96.0^^191^1976^16
- ;;^UTILITY(U,$J,358.3,33803,1,0)
+ ;;^UTILITY(U,$J,358.3,33444,1,4,0)
+ ;;=4^R22.31
+ ;;^UTILITY(U,$J,358.3,33444,2)
+ ;;=^5019288
+ ;;^UTILITY(U,$J,358.3,33445,0)
+ ;;=R22.32^^182^2004^101
+ ;;^UTILITY(U,$J,358.3,33445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33803,1,3,0)
- ;;=3^Pseudarthrosis after fusion or arthrodesis
- ;;^UTILITY(U,$J,358.3,33803,1,4,0)
- ;;=4^M96.0
- ;;^UTILITY(U,$J,358.3,33803,2)
- ;;=^5015373
- ;;^UTILITY(U,$J,358.3,33804,0)
- ;;=R20.2^^191^1976^1
- ;;^UTILITY(U,$J,358.3,33804,1,0)
+ ;;^UTILITY(U,$J,358.3,33445,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,33445,1,4,0)
+ ;;=4^R22.32
+ ;;^UTILITY(U,$J,358.3,33445,2)
+ ;;=^5019289
+ ;;^UTILITY(U,$J,358.3,33446,0)
+ ;;=R22.33^^182^2004^97
+ ;;^UTILITY(U,$J,358.3,33446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33804,1,3,0)
- ;;=3^Paresthesia of skin
- ;;^UTILITY(U,$J,358.3,33804,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,33804,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,33805,0)
- ;;=I87.003^^191^1976^14
- ;;^UTILITY(U,$J,358.3,33805,1,0)
+ ;;^UTILITY(U,$J,358.3,33446,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,33446,1,4,0)
+ ;;=4^R22.33
+ ;;^UTILITY(U,$J,358.3,33446,2)
+ ;;=^5019290
+ ;;^UTILITY(U,$J,358.3,33447,0)
+ ;;=R22.42^^182^2004^100
+ ;;^UTILITY(U,$J,358.3,33447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33805,1,3,0)
- ;;=3^Postthrom syndr w/o compl of bilat lwr extrem
- ;;^UTILITY(U,$J,358.3,33805,1,4,0)
- ;;=4^I87.003
- ;;^UTILITY(U,$J,358.3,33805,2)
- ;;=^5008029
- ;;^UTILITY(U,$J,358.3,33806,0)
- ;;=I87.001^^191^1976^13
- ;;^UTILITY(U,$J,358.3,33806,1,0)
+ ;;^UTILITY(U,$J,358.3,33447,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,33447,1,4,0)
+ ;;=4^R22.42
+ ;;^UTILITY(U,$J,358.3,33447,2)
+ ;;=^5134179
+ ;;^UTILITY(U,$J,358.3,33448,0)
+ ;;=R22.41^^182^2004^103
+ ;;^UTILITY(U,$J,358.3,33448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33806,1,3,0)
- ;;=3^Postrhomb syndr w/o compl of rt lwr extrem
- ;;^UTILITY(U,$J,358.3,33806,1,4,0)
- ;;=4^I87.001
- ;;^UTILITY(U,$J,358.3,33806,2)
- ;;=^5008027
- ;;^UTILITY(U,$J,358.3,33807,0)
- ;;=I73.9^^191^1976^3
- ;;^UTILITY(U,$J,358.3,33807,1,0)
+ ;;^UTILITY(U,$J,358.3,33448,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,33448,1,4,0)
+ ;;=4^R22.41
+ ;;^UTILITY(U,$J,358.3,33448,2)
+ ;;=^5134178
+ ;;^UTILITY(U,$J,358.3,33449,0)
+ ;;=R22.43^^182^2004^98
+ ;;^UTILITY(U,$J,358.3,33449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33807,1,3,0)
- ;;=3^Peripheral vascular disease, unspec
- ;;^UTILITY(U,$J,358.3,33807,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,33807,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,33808,0)
- ;;=I80.01^^191^1976^9
- ;;^UTILITY(U,$J,358.3,33808,1,0)
+ ;;^UTILITY(U,$J,358.3,33449,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
+ ;;^UTILITY(U,$J,358.3,33449,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,33449,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,33450,0)
+ ;;=R22.9^^182^2004^106
+ ;;^UTILITY(U,$J,358.3,33450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33808,1,3,0)
- ;;=3^Phlebitis & Thromboph,Right Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,33808,1,4,0)
- ;;=4^I80.01
- ;;^UTILITY(U,$J,358.3,33808,2)
- ;;=^5007821
- ;;^UTILITY(U,$J,358.3,33809,0)
- ;;=I80.02^^191^1976^7
- ;;^UTILITY(U,$J,358.3,33809,1,0)
+ ;;^UTILITY(U,$J,358.3,33450,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,33450,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,33450,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,33451,0)
+ ;;=R23.0^^182^2004^54
+ ;;^UTILITY(U,$J,358.3,33451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33809,1,3,0)
- ;;=3^Phlebitis & Thromboph,Left Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,33809,1,4,0)
- ;;=4^I80.02
- ;;^UTILITY(U,$J,358.3,33809,2)
- ;;=^5007822
- ;;^UTILITY(U,$J,358.3,33810,0)
- ;;=I80.03^^191^1976^5
- ;;^UTILITY(U,$J,358.3,33810,1,0)
+ ;;^UTILITY(U,$J,358.3,33451,1,3,0)
+ ;;=3^Cyanosis
+ ;;^UTILITY(U,$J,358.3,33451,1,4,0)
+ ;;=4^R23.0
+ ;;^UTILITY(U,$J,358.3,33451,2)
+ ;;=^5019293
+ ;;^UTILITY(U,$J,358.3,33452,0)
+ ;;=R23.1^^182^2004^122
+ ;;^UTILITY(U,$J,358.3,33452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33810,1,3,0)
- ;;=3^Phlebitis & Thromboph,Bilateral Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,33810,1,4,0)
- ;;=4^I80.03
- ;;^UTILITY(U,$J,358.3,33810,2)
- ;;=^5007823
- ;;^UTILITY(U,$J,358.3,33811,0)
- ;;=I80.11^^191^1976^8
- ;;^UTILITY(U,$J,358.3,33811,1,0)
+ ;;^UTILITY(U,$J,358.3,33452,1,3,0)
+ ;;=3^Pallor
+ ;;^UTILITY(U,$J,358.3,33452,1,4,0)
+ ;;=4^R23.1
+ ;;^UTILITY(U,$J,358.3,33452,2)
+ ;;=^5019294
+ ;;^UTILITY(U,$J,358.3,33453,0)
+ ;;=R23.2^^182^2004^71
+ ;;^UTILITY(U,$J,358.3,33453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33811,1,3,0)
- ;;=3^Phlebitis & Thromboph,Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,33811,1,4,0)
- ;;=4^I80.11
- ;;^UTILITY(U,$J,358.3,33811,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,33812,0)
- ;;=I80.12^^191^1976^6
- ;;^UTILITY(U,$J,358.3,33812,1,0)
+ ;;^UTILITY(U,$J,358.3,33453,1,3,0)
+ ;;=3^Flushing
+ ;;^UTILITY(U,$J,358.3,33453,1,4,0)
+ ;;=4^R23.2
+ ;;^UTILITY(U,$J,358.3,33453,2)
+ ;;=^47184
+ ;;^UTILITY(U,$J,358.3,33454,0)
+ ;;=R23.4^^182^2004^140
+ ;;^UTILITY(U,$J,358.3,33454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33812,1,3,0)
- ;;=3^Phlebitis & Thromboph,Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,33812,1,4,0)
- ;;=4^I80.12
- ;;^UTILITY(U,$J,358.3,33812,2)
- ;;=^5007826
- ;;^UTILITY(U,$J,358.3,33813,0)
- ;;=I80.13^^191^1976^4
- ;;^UTILITY(U,$J,358.3,33813,1,0)
+ ;;^UTILITY(U,$J,358.3,33454,1,3,0)
+ ;;=3^Skin Texture Changes
+ ;;^UTILITY(U,$J,358.3,33454,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,33454,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,33455,0)
+ ;;=R26.0^^182^2004^41
+ ;;^UTILITY(U,$J,358.3,33455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33813,1,3,0)
- ;;=3^Phlebitis & Thromboph,Bilateral Femora Vein
- ;;^UTILITY(U,$J,358.3,33813,1,4,0)
- ;;=4^I80.13
- ;;^UTILITY(U,$J,358.3,33813,2)
- ;;=^5007827
- ;;^UTILITY(U,$J,358.3,33814,0)
- ;;=L98.0^^191^1976^23
- ;;^UTILITY(U,$J,358.3,33814,1,0)
+ ;;^UTILITY(U,$J,358.3,33455,1,3,0)
+ ;;=3^Ataxic Gait
+ ;;^UTILITY(U,$J,358.3,33455,1,4,0)
+ ;;=4^R26.0
+ ;;^UTILITY(U,$J,358.3,33455,2)
+ ;;=^5019304
+ ;;^UTILITY(U,$J,358.3,33456,0)
+ ;;=R26.1^^182^2004^124
+ ;;^UTILITY(U,$J,358.3,33456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33814,1,3,0)
- ;;=3^Pyogenic granuloma
- ;;^UTILITY(U,$J,358.3,33814,1,4,0)
- ;;=4^L98.0
- ;;^UTILITY(U,$J,358.3,33814,2)
- ;;=^5009574
- ;;^UTILITY(U,$J,358.3,33815,0)
- ;;=L40.0^^191^1976^18
- ;;^UTILITY(U,$J,358.3,33815,1,0)
+ ;;^UTILITY(U,$J,358.3,33456,1,3,0)
+ ;;=3^Paralytic Gait
+ ;;^UTILITY(U,$J,358.3,33456,1,4,0)
+ ;;=4^R26.1
+ ;;^UTILITY(U,$J,358.3,33456,2)
+ ;;=^5019305
+ ;;^UTILITY(U,$J,358.3,33457,0)
+ ;;=R26.81^^182^2004^150
+ ;;^UTILITY(U,$J,358.3,33457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33815,1,3,0)
- ;;=3^Psoriasis vulgaris
+ ;;^UTILITY(U,$J,358.3,33457,1,3,0)
+ ;;=3^Unsteadiness on Feet
+ ;;^UTILITY(U,$J,358.3,33457,1,4,0)
+ ;;=4^R26.81

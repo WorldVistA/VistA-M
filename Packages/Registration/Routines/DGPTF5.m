@@ -1,5 +1,6 @@
-DGPTF5 ;ALB/MTC - PTF ENTRY/EDIT-4 ;07 JUN 91 
- ;;5.3;Registration;**669,701,744,868,850**;Aug 13, 1993;Build 171
+DGPTF5 ;ALB/MTC/PLT - PTF ENTRY/EDIT-4 ;07 JUN 91 
+ ;;5.3;Registration;**669,701,744,868,850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 Z I 'DGN S Z=$S(IOST="C-QUME"&($L(DGVI)'=2):Z,1:"["_Z_"]") W @DGVI,Z,@DGVO
  E  W "   "
@@ -43,7 +44,8 @@ ICDEN1 ;enter icd codes for DRG
  I DGDAT'<IMPDATE S TERM="10D"
  ;
  ; I Testing, set effective date to one stored in file 43
- I EFFDATE'<IMPDATE,+$P(DGTEMP,U,2)?7N S EFFDATE=+$P(DGTEMP,U,2)
+ ;piece 2 of dgtemp has no 7n value and code below removed
+ ;I EFFDATE'<IMPDATE,+$P(DGTEMP,U,2)?7N S EFFDATE=+$P(DGTEMP,U,2)
  ;
  I $G(PROMPT)'="" S DIC("A")=PROMPT
  D CONFIG^LEXSET(TERM,TERM,EFFDATE)

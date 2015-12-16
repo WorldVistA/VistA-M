@@ -1,128 +1,136 @@
-IBDEI1UU ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UU ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33050,1,4,0)
- ;;=4^T25.222A
- ;;^UTILITY(U,$J,358.3,33050,2)
- ;;=^5048562
- ;;^UTILITY(U,$J,358.3,33051,0)
- ;;=T25.211A^^191^1964^35
- ;;^UTILITY(U,$J,358.3,33051,1,0)
+ ;;^UTILITY(U,$J,358.3,32652,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,32652,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,32653,0)
+ ;;=D63.0^^182^1992^22
+ ;;^UTILITY(U,$J,358.3,32653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33051,1,3,0)
- ;;=3^Burn of rt ankl, sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33051,1,4,0)
- ;;=4^T25.211A
- ;;^UTILITY(U,$J,358.3,33051,2)
- ;;=^5048550
- ;;^UTILITY(U,$J,358.3,33052,0)
- ;;=T25.212A^^191^1964^19
- ;;^UTILITY(U,$J,358.3,33052,1,0)
+ ;;^UTILITY(U,$J,358.3,32653,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease
+ ;;^UTILITY(U,$J,358.3,32653,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,32653,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,32654,0)
+ ;;=D63.8^^182^1992^20
+ ;;^UTILITY(U,$J,358.3,32654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33052,1,3,0)
- ;;=3^Burn of lft ankl, sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33052,1,4,0)
- ;;=4^T25.212A
- ;;^UTILITY(U,$J,358.3,33052,2)
- ;;=^5048553
- ;;^UTILITY(U,$J,358.3,33053,0)
- ;;=T24.231A^^191^1964^43
- ;;^UTILITY(U,$J,358.3,33053,1,0)
+ ;;^UTILITY(U,$J,358.3,32654,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,32654,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,32654,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,32655,0)
+ ;;=C22.3^^182^1992^23
+ ;;^UTILITY(U,$J,358.3,32655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33053,1,3,0)
- ;;=3^Burn of rt lwr leg, sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33053,1,4,0)
- ;;=4^T24.231A
- ;;^UTILITY(U,$J,358.3,33053,2)
- ;;=^5048274
- ;;^UTILITY(U,$J,358.3,33054,0)
- ;;=T24.232A^^191^1964^27
- ;;^UTILITY(U,$J,358.3,33054,1,0)
+ ;;^UTILITY(U,$J,358.3,32655,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,32655,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,32655,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,32656,0)
+ ;;=D61.9^^182^1992^24
+ ;;^UTILITY(U,$J,358.3,32656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33054,1,3,0)
- ;;=3^Burn of lft lwr leg, sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33054,1,4,0)
- ;;=4^T24.232A
- ;;^UTILITY(U,$J,358.3,33054,2)
- ;;=^5048277
- ;;^UTILITY(U,$J,358.3,33055,0)
- ;;=T25.331A^^191^1964^47
- ;;^UTILITY(U,$J,358.3,33055,1,0)
+ ;;^UTILITY(U,$J,358.3,32656,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,32656,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,32656,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,32657,0)
+ ;;=D56.1^^182^1992^26
+ ;;^UTILITY(U,$J,358.3,32657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33055,1,3,0)
- ;;=3^Burn of rt toe(s) (nail), third degree, init enc
- ;;^UTILITY(U,$J,358.3,33055,1,4,0)
- ;;=4^T25.331A
- ;;^UTILITY(U,$J,358.3,33055,2)
- ;;=^5048604
- ;;^UTILITY(U,$J,358.3,33056,0)
- ;;=T25.332A^^191^1964^31
- ;;^UTILITY(U,$J,358.3,33056,1,0)
+ ;;^UTILITY(U,$J,358.3,32657,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,32657,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,32657,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,32658,0)
+ ;;=C83.79^^182^1992^27
+ ;;^UTILITY(U,$J,358.3,32658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33056,1,3,0)
- ;;=3^Burn of lft toe(s) (nail), third degree, init enc
- ;;^UTILITY(U,$J,358.3,33056,1,4,0)
- ;;=4^T25.332A
- ;;^UTILITY(U,$J,358.3,33056,2)
- ;;=^5048607
- ;;^UTILITY(U,$J,358.3,33057,0)
- ;;=T25.321A^^191^1964^40
- ;;^UTILITY(U,$J,358.3,33057,1,0)
+ ;;^UTILITY(U,$J,358.3,32658,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,32658,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,32658,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,32659,0)
+ ;;=C83.70^^182^1992^28
+ ;;^UTILITY(U,$J,358.3,32659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33057,1,3,0)
- ;;=3^Burn of rt ft, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33057,1,4,0)
- ;;=4^T25.321A
- ;;^UTILITY(U,$J,358.3,33057,2)
- ;;=^5048595
- ;;^UTILITY(U,$J,358.3,33058,0)
- ;;=T25.322A^^191^1964^24
- ;;^UTILITY(U,$J,358.3,33058,1,0)
+ ;;^UTILITY(U,$J,358.3,32659,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,32659,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,32659,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,32660,0)
+ ;;=D09.0^^182^1992^35
+ ;;^UTILITY(U,$J,358.3,32660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33058,1,3,0)
- ;;=3^Burn of lft ft, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33058,1,4,0)
- ;;=4^T25.322A
- ;;^UTILITY(U,$J,358.3,33058,2)
- ;;=^5048598
- ;;^UTILITY(U,$J,358.3,33059,0)
- ;;=T25.311A^^191^1964^36
- ;;^UTILITY(U,$J,358.3,33059,1,0)
+ ;;^UTILITY(U,$J,358.3,32660,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,32660,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,32660,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,32661,0)
+ ;;=D06.9^^182^1992^36
+ ;;^UTILITY(U,$J,358.3,32661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33059,1,3,0)
- ;;=3^Burn of rt ankl, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33059,1,4,0)
- ;;=4^T25.311A
- ;;^UTILITY(U,$J,358.3,33059,2)
- ;;=^5048586
- ;;^UTILITY(U,$J,358.3,33060,0)
- ;;=T25.312A^^191^1964^20
- ;;^UTILITY(U,$J,358.3,33060,1,0)
+ ;;^UTILITY(U,$J,358.3,32661,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,32661,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,32661,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,32662,0)
+ ;;=D06.0^^182^1992^38
+ ;;^UTILITY(U,$J,358.3,32662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33060,1,3,0)
- ;;=3^Burn of lft ankl, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33060,1,4,0)
- ;;=4^T25.312A
- ;;^UTILITY(U,$J,358.3,33060,2)
- ;;=^5048589
- ;;^UTILITY(U,$J,358.3,33061,0)
- ;;=T24.331A^^191^1964^44
- ;;^UTILITY(U,$J,358.3,33061,1,0)
+ ;;^UTILITY(U,$J,358.3,32662,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,32662,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,32662,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,32663,0)
+ ;;=D06.1^^182^1992^39
+ ;;^UTILITY(U,$J,358.3,32663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33061,1,3,0)
- ;;=3^Burn of rt lwr leg, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33061,1,4,0)
- ;;=4^T24.331A
- ;;^UTILITY(U,$J,358.3,33061,2)
- ;;=^5048316
- ;;^UTILITY(U,$J,358.3,33062,0)
- ;;=T24.332A^^191^1964^28
- ;;^UTILITY(U,$J,358.3,33062,1,0)
+ ;;^UTILITY(U,$J,358.3,32663,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,32663,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,32663,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,32664,0)
+ ;;=D06.7^^182^1992^37
+ ;;^UTILITY(U,$J,358.3,32664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33062,1,3,0)
- ;;=3^Burn of lft lwr leg, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33062,1,4,0)
- ;;=4^T24.332A
- ;;^UTILITY(U,$J,358.3,33062,2)
- ;;=^5048319
+ ;;^UTILITY(U,$J,358.3,32664,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,32664,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,32664,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,32665,0)
+ ;;=D04.9^^182^1992^40
+ ;;^UTILITY(U,$J,358.3,32665,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32665,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,32665,1,4,0)
+ ;;=4^D04.9

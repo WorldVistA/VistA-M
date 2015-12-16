@@ -1,5 +1,5 @@
-ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/16/13  14:23
- ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136,144**;Dec 22, 1997;Build 9
+ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/15/15  13:18
+ ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136,144,154**;Dec 22, 1997;Build 13
 BEG ;entry point from option
  I '$O(^ACK(509850.8,0)) W !,"You must be using the Quality Audiology & Speech Pathology",!,"Audit & Review (QUASAR) software to run this extract.",!! Q
  I '$D(^ACK(509850.8,1,"DSS")) W !,"Linkage has not been established between QUASAR and the DSS UNIT file (#724).",!! Q
@@ -27,7 +27,7 @@ QINST ;Get installed information for QUASAR
  S IENS=INTIEN_","_QVIEN,ECXQDT=$$GET1^DIQ(9.49,IENS,2,"I")
  Q
 UPDATE ;create record for each unique CPT code for clinic visit 
- N ARY,ECZNODE,CPT,LOC,MOD,STR,VOL,XX,ECTP,ECV
+ N ARY,ECZNODE,CPT,LOC,MOD,STR,VOL,XX,ECTP,ECV,ECUPCE,ECDSSE ;154
  N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104,ECXVNS,ECX4CHAR,ECXESC,ECXECL,ECXCLST ;144
  Q:'$D(^ACK(509850.6,ECDA,0))
  S ECZNODE=^ACK(509850.6,ECDA,0),EC2NODE=$G(^ACK(509850.6,ECDA,2))
@@ -36,7 +36,6 @@ UPDATE ;create record for each unique CPT code for clinic visit
  S ECXDFN=$P(ECZNODE,U,2)
  Q:'$$PATDEM^ECXUTL2(ECXDFN,ECD,"1;3;5")
  S OK=$$PAT^ECXUTL3(ECXDFN,ECDT,"1;5",.ECXPAT)
- S ECX4CHAR="" ;144 NULL passed 
  S ECXCLST="" ;144
  I 'OK S ECXERR=1 K ECXPAT Q
  ;OEF/OIF data
@@ -48,17 +47,24 @@ UPDATE ;create record for each unique CPT code for clinic visit
  S ECHL="",ECXDIV=$P($G(^ACK(509850.6,ECDA,5)),U),ECSTOP=$P(EC2NODE,U)
  S ECXPDIV=$$GETDIV^ECXDEPT(ECXDIV)  ; Get Production Division
  Q:ECSTOP=""
+ ;154 Following 3 lines of code moved here to set variables earlier
+ S ECDU=$S(ECSTOP["A":$P(ECLINK,U),ECSTOP["S":$P(ECLINK,U,2),1:"")
+ Q:'ECDU
+ S ECDSSU=$G(^ECD(ECDU,0)),ECCS=+$P(ECDSSU,U,4),(ECO,ECM)=+$P(ECDSSU,U,3),ECXDSSD=$E($P(ECDSSU,U,5),1,10),ECUPCE=$P(ECDSSU,U,14)
  S (ECHLS,ECHL2S)="000",ECAC=$P($G(ECZNODE),U,6)
- I ECAC D
- .S ECHL=+$P($G(^SC(ECAC,0)),U,7),ECHL2=+$P($G(^(0)),U,18) I ECHL D
- ..S ECHLS=$P($G(^DIC(40.7,+ECHL,0)),U,2),ECHL2S=$P($G(^DIC(40.7,+ECHL2,0)),U,2)
- ..S ECHLS=$$RJ^XLFSTR(ECHLS,3,0),ECHL2S=$$RJ^XLFSTR(ECHL2S,3,0)
+ I ECUPCE="A"!(ECUPCE="O"&(ECXA="O")) D  ;154
+ .I ECAC D  ;154
+ ..S ECHL=+$P($G(^SC(ECAC,0)),U,7),ECHL2=+$P($G(^(0)),U,18) I ECHL D  ;154
+ ...S ECHLS=$P($G(^DIC(40.7,+ECHL,0)),U,2),ECHL2S=$P($G(^DIC(40.7,+ECHL2,0)),U,2) ;154
+ ...S ECHLS=$$RJ^XLFSTR(ECHLS,3,0),ECHL2S=$$RJ^XLFSTR(ECHL2S,3,0) ;154
+ ...S ECX4CHAR=$$RJ^XLFSTR($$GET1^DIQ(728.44,+ECAC,7,"E"),4,0) ;154 Get 4char code
+ I ECUPCE=""!(ECUPCE="N")!(ECUPCE="O"&(ECXA="I")) D  ;154
+ .S ECHLS=$$RJ^XLFSTR($P($G(^DIC(40.7,+$P(ECDSSU,U,10),0)),U,2),3,0) ;154
+ .S ECHL2S=$$RJ^XLFSTR($P($G(^DIC(40.7,+$P(ECDSSU,U,13),0)),U,2),3,0) ;154
+ .S ECX4CHAR=$$RJ^XLFSTR($$GET1^DIQ(728.441,+$P(ECDSSU,U,15),.01,"E"),4,0) ;154
  S ECDSS=ECHLS_ECHL2S
  I ECXLOGIC>2003 D
  .I "^18^23^24^41^65^94^108^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
- S ECDU=$S(ECSTOP["A":$P(ECLINK,U),ECSTOP["S":$P(ECLINK,U,2),1:"")
- Q:'ECDU
- S ECDSSU=$G(^ECD(ECDU,0)),ECCS=+$P(ECDSSU,U,4),(ECO,ECM)=+$P(ECDSSU,U,3),ECXDSSD=$E($P(ECDSSU,U,5),1,10)
  Q:'$O(^ACK(509850.6,ECDA,3,0))
  ;Create local array of procedure codes and # of times each procedure
  ; was performed.
@@ -106,11 +112,13 @@ UPDATE ;create record for each unique CPT code for clinic visit
  ..S ECV=ECV+$G(LOC(ECXCPT)),LOC(ECXCPT)=ECV_U_ECXPRV1_U_ECP
  .S ECIEN=0 F  S ECIEN=$O(^ACK(509850.6,ECDA,1,ECIEN)) Q:'ECIEN  D
  ..S DIA=^ACK(509850.6,ECDA,1,ECIEN,0),P=$P(DIA,U,2),P=$S(P=1:"P",1:"S")
- ..S CNT=$G(STR(P))+1,STR(P,CNT)=$P($G(^ICD9(+DIA,0)),U),STR(P)=CNT
+ ..I +DIA S CNT=$G(STR(P))+1,STR(P,CNT)=$$CODEC^ICDEX(80,+DIA),STR(P)=CNT ;154
  .S ECDIA=$G(STR("P",1))
  .F I=1:1:4 Q:'$D(STR("P",I+1))  S @("ECXICD9"_I)=STR("P",I)
  .S:ECDIA="" ECDIA=$G(STR("S",1)),I=2
  .F J=I:1:4 Q:'$D(STR("S",J))  S @("ECXICD9"_J)=STR("S",J)
+ I +$$CODECS^ICDEX(ECDIA,80)=30 S ECXICD10P=ECDIA,ECDIA="" ;154
+ F I=1:1:4 I +$$CODECS^ICDEX(@("ECXICD9"_I),80)=30 S @("ECXICD10"_I)=@("ECXICD9"_I),@("ECXICD9"_I)="" ;154
  Q:('$D(LOC))!('$O(^ACK(509850.6,ECDA,1,0)))
  ;- Ord Div, Contract St/End Dates, Contract Type placeholders for FY2002
  S (ECXODIV,ECXCSDT,ECXCEDT,ECXCTYP)=""
@@ -161,7 +169,8 @@ UPDATE ;create record for each unique CPT code for clinic visit
  ; -Get national patient record flag Indicator if exist
  D NPRF^ECXUTL5
  ; -If no encounter number don't file record
- S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECDT,ECXTS,ECXOBS,ECHEAD,ECDSS,)
+ S ECDSSE=$S(ECHLS<101!(ECHLS>999):"ECQ",1:ECHLS)_ECHL2S ;154 If stop code is invalid set it to ECQ for encounter number creation
+ S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECDT,ECXTS,ECXOBS,ECHEAD,ECDSSE,) ;154 Send ECDSSE for encounter # creation
  Q:ECXENC=""
  ;Loop through array of unique procedures. Create record in ECODE.
  S CPT="" F  S CPT=$O(LOC(CPT)) Q:CPT=""  D

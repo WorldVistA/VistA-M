@@ -1,140 +1,118 @@
-IBDEI07H ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07H ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3326,2)
- ;;=^332751
- ;;^UTILITY(U,$J,358.3,3327,0)
- ;;=331.0^^28^263^1
- ;;^UTILITY(U,$J,358.3,3327,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3327,1,4,0)
- ;;=4^331.0
- ;;^UTILITY(U,$J,358.3,3327,1,5,0)
- ;;=5^ALZHEIMER'S DISEASE
- ;;^UTILITY(U,$J,358.3,3327,2)
- ;;=^5679
- ;;^UTILITY(U,$J,358.3,3328,0)
- ;;=331.82^^28^263^2
- ;;^UTILITY(U,$J,358.3,3328,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3328,1,4,0)
- ;;=4^331.82
- ;;^UTILITY(U,$J,358.3,3328,1,5,0)
- ;;=5^DEMENTIA W/ LEWY BODIES
- ;;^UTILITY(U,$J,358.3,3328,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,3329,0)
- ;;=331.19^^28^263^3
- ;;^UTILITY(U,$J,358.3,3329,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3329,1,4,0)
- ;;=4^331.19
- ;;^UTILITY(U,$J,358.3,3329,1,5,0)
- ;;=5^FRONTOTEMP DEMENTIA NEC
- ;;^UTILITY(U,$J,358.3,3329,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,3330,0)
- ;;=332.0^^28^263^4
- ;;^UTILITY(U,$J,358.3,3330,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3330,1,4,0)
- ;;=4^332.0
- ;;^UTILITY(U,$J,358.3,3330,1,5,0)
- ;;=5^PARKINSON'S DISEASE
- ;;^UTILITY(U,$J,358.3,3330,2)
- ;;=^304847
- ;;^UTILITY(U,$J,358.3,3331,0)
- ;;=294.0^^28^264^1
- ;;^UTILITY(U,$J,358.3,3331,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3331,1,4,0)
- ;;=4^294.0
- ;;^UTILITY(U,$J,358.3,3331,1,5,0)
- ;;=5^AMNESTIC DISORD OTH DIS
- ;;^UTILITY(U,$J,358.3,3331,2)
- ;;=^331842
- ;;^UTILITY(U,$J,358.3,3332,0)
- ;;=294.11^^28^264^2
- ;;^UTILITY(U,$J,358.3,3332,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3332,1,4,0)
- ;;=4^294.11
- ;;^UTILITY(U,$J,358.3,3332,1,5,0)
- ;;=5^DEMENTIA W/BEHAV DISTURB
- ;;^UTILITY(U,$J,358.3,3332,2)
- ;;=^321982
- ;;^UTILITY(U,$J,358.3,3333,0)
- ;;=294.10^^28^264^3
- ;;^UTILITY(U,$J,358.3,3333,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3333,1,4,0)
- ;;=4^294.10
- ;;^UTILITY(U,$J,358.3,3333,1,5,0)
- ;;=5^DEMENTIA W/O BEHAV DISTURB
- ;;^UTILITY(U,$J,358.3,3333,2)
- ;;=^321980
- ;;^UTILITY(U,$J,358.3,3334,0)
- ;;=293.0^^28^265^1
- ;;^UTILITY(U,$J,358.3,3334,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3334,1,4,0)
- ;;=4^293.0
- ;;^UTILITY(U,$J,358.3,3334,1,5,0)
- ;;=5^DELIRIUM D/T OTHER CONDITION
- ;;^UTILITY(U,$J,358.3,3334,2)
- ;;=^331835
- ;;^UTILITY(U,$J,358.3,3335,0)
- ;;=293.1^^28^265^2
- ;;^UTILITY(U,$J,358.3,3335,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3335,1,4,0)
- ;;=4^293.1
- ;;^UTILITY(U,$J,358.3,3335,1,5,0)
- ;;=5^SUBACUTE DELIRIUM
- ;;^UTILITY(U,$J,358.3,3335,2)
- ;;=^268037
- ;;^UTILITY(U,$J,358.3,3336,0)
- ;;=96020^^29^266^1^^^^1
- ;;^UTILITY(U,$J,358.3,3336,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3336,1,2,0)
- ;;=2^NEUROFUNCTIONAL TST DURING BRAIN MAPPING
- ;;^UTILITY(U,$J,358.3,3336,1,3,0)
- ;;=3^96020
- ;;^UTILITY(U,$J,358.3,3337,0)
- ;;=96116^^29^267^4^^^^1
- ;;^UTILITY(U,$J,358.3,3337,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3337,1,2,0)
- ;;=2^NEUROBEHAVIORAL STATUS EXAM BY PSYCH/PHYS
- ;;^UTILITY(U,$J,358.3,3337,1,3,0)
- ;;=3^96116
- ;;^UTILITY(U,$J,358.3,3338,0)
- ;;=96118^^29^267^7^^^^1
- ;;^UTILITY(U,$J,358.3,3338,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3338,1,2,0)
- ;;=2^NEUROPSYCH TST BY PSYCH/PHYS
- ;;^UTILITY(U,$J,358.3,3338,1,3,0)
- ;;=3^96118
- ;;^UTILITY(U,$J,358.3,3339,0)
- ;;=96119^^29^267^5^^^^1
- ;;^UTILITY(U,$J,358.3,3339,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3339,1,2,0)
- ;;=2^NEUROPSYCH TESTING BY TECH
- ;;^UTILITY(U,$J,358.3,3339,1,3,0)
- ;;=3^96119
- ;;^UTILITY(U,$J,358.3,3340,0)
- ;;=96120^^29^267^6^^^^1
- ;;^UTILITY(U,$J,358.3,3340,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3340,1,2,0)
- ;;=2^NEUROPSYCH TST ADMIN INT & RPT
- ;;^UTILITY(U,$J,358.3,3340,1,3,0)
- ;;=3^96120
- ;;^UTILITY(U,$J,358.3,3341,0)
- ;;=96125^^29^267^3^^^^1
- ;;^UTILITY(U,$J,358.3,3341,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3001,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,3001,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,3001,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,3002,0)
+ ;;=Z69.82^^8^85^1
+ ;;^UTILITY(U,$J,358.3,3002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3002,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,3002,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,3002,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,3003,0)
+ ;;=T74.01XA^^8^85^16
+ ;;^UTILITY(U,$J,358.3,3003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3003,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Initial Encnter
+ ;;^UTILITY(U,$J,358.3,3003,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,3003,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,3004,0)
+ ;;=T74.01XD^^8^85^17
+ ;;^UTILITY(U,$J,358.3,3004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3004,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,3004,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,3004,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,3005,0)
+ ;;=T76.01XA^^8^85^18
+ ;;^UTILITY(U,$J,358.3,3005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3005,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
+ ;;^UTILITY(U,$J,358.3,3005,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,3005,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,3006,0)
+ ;;=T76.01XD^^8^85^19
+ ;;^UTILITY(U,$J,358.3,3006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3006,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,3006,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,3006,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,3007,0)
+ ;;=Z91.412^^8^85^7
+ ;;^UTILITY(U,$J,358.3,3007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3007,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,3007,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,3007,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,3008,0)
+ ;;=T74.31XA^^8^85^20
+ ;;^UTILITY(U,$J,358.3,3008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3008,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
+ ;;^UTILITY(U,$J,358.3,3008,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,3008,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,3009,0)
+ ;;=T74.31XD^^8^85^21
+ ;;^UTILITY(U,$J,358.3,3009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3009,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,3009,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,3009,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,3010,0)
+ ;;=T76.31XA^^8^85^22
+ ;;^UTILITY(U,$J,358.3,3010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3010,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
+ ;;^UTILITY(U,$J,358.3,3010,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,3010,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,3011,0)
+ ;;=T76.31XD^^8^85^23
+ ;;^UTILITY(U,$J,358.3,3011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3011,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,3011,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,3011,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,3012,0)
+ ;;=Z91.411^^8^85^6
+ ;;^UTILITY(U,$J,358.3,3012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3012,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse

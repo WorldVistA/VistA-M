@@ -1,152 +1,134 @@
-IBDEI02E ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02E ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,645,1,5,0)
- ;;=5^V12.61
- ;;^UTILITY(U,$J,358.3,645,2)
- ;;=^332855
- ;;^UTILITY(U,$J,358.3,646,0)
- ;;=V12.69^^6^80^5
- ;;^UTILITY(U,$J,358.3,646,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,646,1,4,0)
- ;;=4^HX Resp Sys Dis NEC
- ;;^UTILITY(U,$J,358.3,646,1,5,0)
- ;;=5^V12.69
- ;;^UTILITY(U,$J,358.3,646,2)
- ;;=^332856
- ;;^UTILITY(U,$J,358.3,647,0)
- ;;=427.31^^6^81^3
- ;;^UTILITY(U,$J,358.3,647,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,647,1,4,0)
- ;;=4^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,647,1,5,0)
- ;;=5^427.31
- ;;^UTILITY(U,$J,358.3,647,2)
- ;;=^11378
- ;;^UTILITY(U,$J,358.3,648,0)
- ;;=427.32^^6^81^4
- ;;^UTILITY(U,$J,358.3,648,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,648,1,4,0)
- ;;=4^Atrial Flutter
- ;;^UTILITY(U,$J,358.3,648,1,5,0)
- ;;=5^427.32
- ;;^UTILITY(U,$J,358.3,648,2)
- ;;=^11387
- ;;^UTILITY(U,$J,358.3,649,0)
- ;;=427.5^^6^81^7
- ;;^UTILITY(U,$J,358.3,649,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,649,1,4,0)
- ;;=4^Cardiac Arrest
- ;;^UTILITY(U,$J,358.3,649,1,5,0)
- ;;=5^427.5
- ;;^UTILITY(U,$J,358.3,649,2)
- ;;=^54657
- ;;^UTILITY(U,$J,358.3,650,0)
- ;;=427.9^^6^81^8
- ;;^UTILITY(U,$J,358.3,650,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,650,1,4,0)
- ;;=4^Cardiac Dysrhythmia
- ;;^UTILITY(U,$J,358.3,650,1,5,0)
- ;;=5^427.9
- ;;^UTILITY(U,$J,358.3,650,2)
- ;;=^10166
- ;;^UTILITY(U,$J,358.3,651,0)
- ;;=428.0^^6^81^6
- ;;^UTILITY(U,$J,358.3,651,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,651,1,4,0)
- ;;=4^CHF
- ;;^UTILITY(U,$J,358.3,651,1,5,0)
- ;;=5^428.0
- ;;^UTILITY(U,$J,358.3,651,2)
- ;;=^54758
- ;;^UTILITY(U,$J,358.3,652,0)
- ;;=428.9^^6^81^10
- ;;^UTILITY(U,$J,358.3,652,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,652,1,4,0)
- ;;=4^Heart Failure NOS
- ;;^UTILITY(U,$J,358.3,652,1,5,0)
- ;;=5^428.9
- ;;^UTILITY(U,$J,358.3,652,2)
- ;;=^54754
- ;;^UTILITY(U,$J,358.3,653,0)
- ;;=410.91^^6^81^2
- ;;^UTILITY(U,$J,358.3,653,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,653,1,4,0)
- ;;=4^Acute MI,Initial NOS
- ;;^UTILITY(U,$J,358.3,653,1,5,0)
- ;;=5^410.91
- ;;^UTILITY(U,$J,358.3,653,2)
- ;;=^269674
- ;;^UTILITY(U,$J,358.3,654,0)
- ;;=425.4^^6^81^9
- ;;^UTILITY(U,$J,358.3,654,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,654,1,4,0)
- ;;=4^Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,654,1,5,0)
- ;;=5^425.4
- ;;^UTILITY(U,$J,358.3,654,2)
- ;;=^87808
- ;;^UTILITY(U,$J,358.3,655,0)
- ;;=433.10^^6^81^13
- ;;^UTILITY(U,$J,358.3,655,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,655,1,4,0)
- ;;=4^Occl Car Art w/o Inf
- ;;^UTILITY(U,$J,358.3,655,1,5,0)
- ;;=5^433.10
- ;;^UTILITY(U,$J,358.3,655,2)
- ;;=^295801
- ;;^UTILITY(U,$J,358.3,656,0)
- ;;=433.11^^6^81^12
- ;;^UTILITY(U,$J,358.3,656,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,656,1,4,0)
- ;;=4^Occl Car Art w/Inf
- ;;^UTILITY(U,$J,358.3,656,1,5,0)
- ;;=5^433.11
- ;;^UTILITY(U,$J,358.3,656,2)
- ;;=^295731
- ;;^UTILITY(U,$J,358.3,657,0)
- ;;=426.10^^6^81^1
- ;;^UTILITY(U,$J,358.3,657,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,657,1,4,0)
- ;;=4^AV Block,Unspec
- ;;^UTILITY(U,$J,358.3,657,1,5,0)
- ;;=5^426.10
- ;;^UTILITY(U,$J,358.3,657,2)
- ;;=^11396
- ;;^UTILITY(U,$J,358.3,658,0)
- ;;=426.53^^6^81^5
- ;;^UTILITY(U,$J,358.3,658,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,658,1,4,0)
- ;;=4^BBBB
- ;;^UTILITY(U,$J,358.3,658,1,5,0)
- ;;=5^426.53
- ;;^UTILITY(U,$J,358.3,658,2)
- ;;=^269725
- ;;^UTILITY(U,$J,358.3,659,0)
- ;;=410.71^^6^81^11
- ;;^UTILITY(U,$J,358.3,659,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,659,1,4,0)
- ;;=4^Non-ST Elev MI,Initial
- ;;^UTILITY(U,$J,358.3,659,1,5,0)
- ;;=5^410.71
- ;;^UTILITY(U,$J,358.3,659,2)
- ;;=^269667
- ;;^UTILITY(U,$J,358.3,660,0)
- ;;=576.1^^6^82^2
- ;;^UTILITY(U,$J,358.3,660,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,570,1,4,0)
+ ;;=4^C93.12
+ ;;^UTILITY(U,$J,358.3,570,2)
+ ;;=^5001824
+ ;;^UTILITY(U,$J,358.3,571,0)
+ ;;=C93.90^^2^24^45
+ ;;^UTILITY(U,$J,358.3,571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,571,1,3,0)
+ ;;=3^Monocytic leukemia, unsp, not having achieved remission
+ ;;^UTILITY(U,$J,358.3,571,1,4,0)
+ ;;=4^C93.90
+ ;;^UTILITY(U,$J,358.3,571,2)
+ ;;=^5001828
+ ;;^UTILITY(U,$J,358.3,572,0)
+ ;;=C93.91^^2^24^47
+ ;;^UTILITY(U,$J,358.3,572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,572,1,3,0)
+ ;;=3^Monocytic leukemia, unspecified in remission
+ ;;^UTILITY(U,$J,358.3,572,1,4,0)
+ ;;=4^C93.91
+ ;;^UTILITY(U,$J,358.3,572,2)
+ ;;=^5001829
+ ;;^UTILITY(U,$J,358.3,573,0)
+ ;;=C93.92^^2^24^46
+ ;;^UTILITY(U,$J,358.3,573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,573,1,3,0)
+ ;;=3^Monocytic leukemia, unspecified in relapse
+ ;;^UTILITY(U,$J,358.3,573,1,4,0)
+ ;;=4^C93.92
+ ;;^UTILITY(U,$J,358.3,573,2)
+ ;;=^5001830
+ ;;^UTILITY(U,$J,358.3,574,0)
+ ;;=C94.00^^2^24^3
+ ;;^UTILITY(U,$J,358.3,574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,574,1,3,0)
+ ;;=3^Acute erythroid leukemia, not having achieved remission
+ ;;^UTILITY(U,$J,358.3,574,1,4,0)
+ ;;=4^C94.00
+ ;;^UTILITY(U,$J,358.3,574,2)
+ ;;=^5001834
+ ;;^UTILITY(U,$J,358.3,575,0)
+ ;;=C94.01^^2^24^2
+ ;;^UTILITY(U,$J,358.3,575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,575,1,3,0)
+ ;;=3^Acute erythroid leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,575,1,4,0)
+ ;;=4^C94.01
+ ;;^UTILITY(U,$J,358.3,575,2)
+ ;;=^5001835
+ ;;^UTILITY(U,$J,358.3,576,0)
+ ;;=C94.02^^2^24^1
+ ;;^UTILITY(U,$J,358.3,576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,576,1,3,0)
+ ;;=3^Acute erythroid leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,576,1,4,0)
+ ;;=4^C94.02
+ ;;^UTILITY(U,$J,358.3,576,2)
+ ;;=^5001836
+ ;;^UTILITY(U,$J,358.3,577,0)
+ ;;=C94.20^^2^24^7
+ ;;^UTILITY(U,$J,358.3,577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,577,1,3,0)
+ ;;=3^Acute megakaryoblastic leukemia not achieve remission
+ ;;^UTILITY(U,$J,358.3,577,1,4,0)
+ ;;=4^C94.20
+ ;;^UTILITY(U,$J,358.3,577,2)
+ ;;=^5001837
+ ;;^UTILITY(U,$J,358.3,578,0)
+ ;;=C94.21^^2^24^9
+ ;;^UTILITY(U,$J,358.3,578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,578,1,3,0)
+ ;;=3^Acute megakaryoblastic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,578,1,4,0)
+ ;;=4^C94.21
+ ;;^UTILITY(U,$J,358.3,578,2)
+ ;;=^5001838
+ ;;^UTILITY(U,$J,358.3,579,0)
+ ;;=C94.22^^2^24^8
+ ;;^UTILITY(U,$J,358.3,579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,579,1,3,0)
+ ;;=3^Acute megakaryoblastic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,579,1,4,0)
+ ;;=4^C94.22
+ ;;^UTILITY(U,$J,358.3,579,2)
+ ;;=^5001839
+ ;;^UTILITY(U,$J,358.3,580,0)
+ ;;=C94.30^^2^24^42
+ ;;^UTILITY(U,$J,358.3,580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,580,1,3,0)
+ ;;=3^Mast cell leukemia not having achieved remission
+ ;;^UTILITY(U,$J,358.3,580,1,4,0)
+ ;;=4^C94.30
+ ;;^UTILITY(U,$J,358.3,580,2)
+ ;;=^5001840
+ ;;^UTILITY(U,$J,358.3,581,0)
+ ;;=C94.31^^2^24^44
+ ;;^UTILITY(U,$J,358.3,581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,581,1,3,0)
+ ;;=3^Mast cell leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,581,1,4,0)
+ ;;=4^C94.31
+ ;;^UTILITY(U,$J,358.3,581,2)
+ ;;=^5001841
+ ;;^UTILITY(U,$J,358.3,582,0)
+ ;;=C94.32^^2^24^43
+ ;;^UTILITY(U,$J,358.3,582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,582,1,3,0)
+ ;;=3^Mast cell leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,582,1,4,0)
+ ;;=4^C94.32
+ ;;^UTILITY(U,$J,358.3,582,2)
+ ;;=^5001842
+ ;;^UTILITY(U,$J,358.3,583,0)
+ ;;=C95.00^^2^24^4
+ ;;^UTILITY(U,$J,358.3,583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,583,1,3,0)
+ ;;=3^Acute leukemia of unsp cell type not achieve remission

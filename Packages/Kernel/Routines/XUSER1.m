@@ -1,8 +1,10 @@
-XUSER1 ;ISF/RWF - User file Utilities ;09/30/09  16:38
- ;;8.0;KERNEL;**169,210,222,514**;Jul 10, 1995;Build 8
+XUSER1 ;ISF/RWF - User file Utilities ;03/17/15  08:19
+ ;;8.0;KERNEL;**169,210,222,514,655**;Jul 10, 1995;Build 16
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 PAGE() ;Do a page break; Return 0 if ok to continue, 1 if to abort
+ ; ZEXCEPT: IOF,IOST
  N DIR
  S DIR(0)="E" D ^DIR:($E(IOST,1,2)["C-")
  Q:$D(DIRUT) 1 W @IOF S ($X,$Y)=0
@@ -18,6 +20,7 @@ GKEYS(IE,XUA) ;Get the keys held. IE=user
  ;
 SHLIST(ARRAY,LM,SP) ; Show a list, Array=list, LM=Left Margin, SP=spacing
  ;Set DN=0 to get FM22 to stop the print
+ ; ZEXCEPT: DN,IOM,IOSL
  N %,Y2,Y4,Y5,Y6,DIR
  I $Y+4>IOSL,$$PAGE S DN=0 Q
  S Y4=-1,%=0,Y2=IOM-LM\SP,Y5=0
@@ -41,6 +44,7 @@ GMG(IE,XUA) ;Get mail groups
  Q
 GPARAM(IE,PRAM,XUA) ;Get an entry from the Parameter tool
  ;IE is the user to get the list for. PARAM what parameter, XUA return array.
+ ; ZEXCEPT: %
  N XUENT,XUX,XUERR,XU1
  S XUENT=IE_";VA(200,"_$S($G(^VA(200,IE,5)):"^SRV.`"_+$G(^(5)),1:""),XUA=""
  D GETLST^XPAR(.XUX,XUENT,PRAM,"E",.XUERR)
@@ -74,6 +78,8 @@ DIVCHG ;Allow user to change Division [DUZ(2)] value
 NETNM(NM,IEN) ;Check NetName, Called from input transform for field 501.1 NPF.
  ;Return 1 to abort, 0 to allow
  N NPF,OV
+ I $L(NM)<9,DUZ(0)'["@",'$D(^XUSEC("XUMGR",DUZ)) Q 1 ;P655
+ I $L(NM)<9 D EN^DDIOL("WARNING: The entered text is less than 9 characters.","") ;P655
  S NPF(0)=$P($G(^VA(200,IEN,0)),U,1),OV=0
  I $E(NM,1,3)'="VHA" D EN^DDIOL("WARNING: Prefix not VHA.","") S OV=1
  S NPF(1)=$E($P(NPF(0),","),1,5)_$E($P(NPF(0),",",2),1)

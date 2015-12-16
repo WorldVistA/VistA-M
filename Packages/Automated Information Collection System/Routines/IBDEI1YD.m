@@ -1,136 +1,122 @@
-IBDEI1YD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34648,1,4,0)
- ;;=4^L30.8
- ;;^UTILITY(U,$J,358.3,34648,2)
- ;;=^5009158
- ;;^UTILITY(U,$J,358.3,34649,0)
- ;;=L40.0^^192^2006^16
- ;;^UTILITY(U,$J,358.3,34649,1,0)
+ ;;^UTILITY(U,$J,358.3,34269,0)
+ ;;=S06.384S^^183^2018^34
+ ;;^UTILITY(U,$J,358.3,34269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34649,1,3,0)
- ;;=3^Psoriasis Vulgaris
- ;;^UTILITY(U,$J,358.3,34649,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,34649,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,34650,0)
- ;;=L40.9^^192^2006^17
- ;;^UTILITY(U,$J,358.3,34650,1,0)
+ ;;^UTILITY(U,$J,358.3,34269,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,34269,1,4,0)
+ ;;=4^S06.384S
+ ;;^UTILITY(U,$J,358.3,34269,2)
+ ;;=^5021010
+ ;;^UTILITY(U,$J,358.3,34270,0)
+ ;;=S06.389S^^183^2018^35
+ ;;^UTILITY(U,$J,358.3,34270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34650,1,3,0)
- ;;=3^Psoriasis,Unspec
- ;;^UTILITY(U,$J,358.3,34650,1,4,0)
- ;;=4^L40.9
- ;;^UTILITY(U,$J,358.3,34650,2)
- ;;=^5009171
- ;;^UTILITY(U,$J,358.3,34651,0)
- ;;=L40.3^^192^2006^19
- ;;^UTILITY(U,$J,358.3,34651,1,0)
+ ;;^UTILITY(U,$J,358.3,34270,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34270,1,4,0)
+ ;;=4^S06.389S
+ ;;^UTILITY(U,$J,358.3,34270,2)
+ ;;=^5021025
+ ;;^UTILITY(U,$J,358.3,34271,0)
+ ;;=S06.380S^^183^2018^36
+ ;;^UTILITY(U,$J,358.3,34271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34651,1,3,0)
- ;;=3^Pustulosis Palmaris et Plantaris
- ;;^UTILITY(U,$J,358.3,34651,1,4,0)
- ;;=4^L40.3
- ;;^UTILITY(U,$J,358.3,34651,2)
- ;;=^5009163
- ;;^UTILITY(U,$J,358.3,34652,0)
- ;;=R21.^^192^2006^20
- ;;^UTILITY(U,$J,358.3,34652,1,0)
+ ;;^UTILITY(U,$J,358.3,34271,1,3,0)
+ ;;=3^Contus/lac/hem brnst w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34271,1,4,0)
+ ;;=4^S06.380S
+ ;;^UTILITY(U,$J,358.3,34271,2)
+ ;;=^5020998
+ ;;^UTILITY(U,$J,358.3,34272,0)
+ ;;=S06.375S^^183^2018^37
+ ;;^UTILITY(U,$J,358.3,34272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34652,1,3,0)
- ;;=3^Rash/Oth Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,34652,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,34652,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,34653,0)
- ;;=L25.9^^192^2006^6
- ;;^UTILITY(U,$J,358.3,34653,1,0)
+ ;;^UTILITY(U,$J,358.3,34272,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34272,1,4,0)
+ ;;=4^S06.375S
+ ;;^UTILITY(U,$J,358.3,34272,2)
+ ;;=^5020983
+ ;;^UTILITY(U,$J,358.3,34273,0)
+ ;;=S06.376S^^183^2018^38
+ ;;^UTILITY(U,$J,358.3,34273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34653,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,34653,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,34653,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,34654,0)
- ;;=M34.89^^192^2007^22
- ;;^UTILITY(U,$J,358.3,34654,1,0)
+ ;;^UTILITY(U,$J,358.3,34273,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,34273,1,4,0)
+ ;;=4^S06.376S
+ ;;^UTILITY(U,$J,358.3,34273,2)
+ ;;=^5020986
+ ;;^UTILITY(U,$J,358.3,34274,0)
+ ;;=S06.373S^^183^2018^39
+ ;;^UTILITY(U,$J,358.3,34274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34654,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,34654,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,34654,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,34655,0)
- ;;=M34.0^^192^2007^20
- ;;^UTILITY(U,$J,358.3,34655,1,0)
+ ;;^UTILITY(U,$J,358.3,34274,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34274,1,4,0)
+ ;;=4^S06.373S
+ ;;^UTILITY(U,$J,358.3,34274,2)
+ ;;=^5020977
+ ;;^UTILITY(U,$J,358.3,34275,0)
+ ;;=S06.371S^^183^2018^40
+ ;;^UTILITY(U,$J,358.3,34275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34655,1,3,0)
- ;;=3^Progressive Systemic Sclerosis
- ;;^UTILITY(U,$J,358.3,34655,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,34655,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,34656,0)
- ;;=F03.90^^192^2007^14
- ;;^UTILITY(U,$J,358.3,34656,1,0)
+ ;;^UTILITY(U,$J,358.3,34275,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34275,1,4,0)
+ ;;=4^S06.371S
+ ;;^UTILITY(U,$J,358.3,34275,2)
+ ;;=^5020971
+ ;;^UTILITY(U,$J,358.3,34276,0)
+ ;;=S06.372S^^183^2018^41
+ ;;^UTILITY(U,$J,358.3,34276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34656,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,34656,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,34656,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,34657,0)
- ;;=F06.8^^192^2007^17
- ;;^UTILITY(U,$J,358.3,34657,1,0)
+ ;;^UTILITY(U,$J,358.3,34276,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34276,1,4,0)
+ ;;=4^S06.372S
+ ;;^UTILITY(U,$J,358.3,34276,2)
+ ;;=^5020974
+ ;;^UTILITY(U,$J,358.3,34277,0)
+ ;;=S06.374S^^183^2018^42
+ ;;^UTILITY(U,$J,358.3,34277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34657,1,3,0)
- ;;=3^Mental Disorders d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,34657,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,34657,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,34658,0)
- ;;=F06.1^^192^2007^1
- ;;^UTILITY(U,$J,358.3,34658,1,0)
+ ;;^UTILITY(U,$J,358.3,34277,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,34277,1,4,0)
+ ;;=4^S06.374S
+ ;;^UTILITY(U,$J,358.3,34277,2)
+ ;;=^5020980
+ ;;^UTILITY(U,$J,358.3,34278,0)
+ ;;=S06.377S^^183^2018^44
+ ;;^UTILITY(U,$J,358.3,34278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34658,1,3,0)
- ;;=3^Catatonic Disorder d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,34658,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,34658,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,34659,0)
- ;;=G35.^^192^2007^18
- ;;^UTILITY(U,$J,358.3,34659,1,0)
+ ;;^UTILITY(U,$J,358.3,34278,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC w dth d/t brain inj bf consc,sqla
+ ;;^UTILITY(U,$J,358.3,34278,1,4,0)
+ ;;=4^S06.377S
+ ;;^UTILITY(U,$J,358.3,34278,2)
+ ;;=^5020989
+ ;;^UTILITY(U,$J,358.3,34279,0)
+ ;;=S06.378S^^183^2018^45
+ ;;^UTILITY(U,$J,358.3,34279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34659,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,34659,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,34659,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,34660,0)
- ;;=G60.9^^192^2007^15
- ;;^UTILITY(U,$J,358.3,34660,1,0)
+ ;;^UTILITY(U,$J,358.3,34279,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC w dth d/t oth cause bf consc,sqla
+ ;;^UTILITY(U,$J,358.3,34279,1,4,0)
+ ;;=4^S06.378S
+ ;;^UTILITY(U,$J,358.3,34279,2)
+ ;;=^5020992
+ ;;^UTILITY(U,$J,358.3,34280,0)
+ ;;=S06.379S^^183^2018^43
+ ;;^UTILITY(U,$J,358.3,34280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34660,1,3,0)
- ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,34660,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,34660,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,34661,0)
- ;;=G62.9^^192^2007^19
- ;;^UTILITY(U,$J,358.3,34661,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34661,1,3,0)
- ;;=3^Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,34661,1,4,0)
- ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,34280,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34280,1,4,0)
+ ;;=4^S06.379S

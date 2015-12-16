@@ -1,126 +1,132 @@
-IBDEI1TV ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1TV ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32614,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,32614,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,32614,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,32615,0)
- ;;=S86.311A^^190^1956^49
- ;;^UTILITY(U,$J,358.3,32615,1,0)
+ ;;^UTILITY(U,$J,358.3,32205,0)
+ ;;=L89.301^^182^1981^238
+ ;;^UTILITY(U,$J,358.3,32205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32615,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,32615,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,32615,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,32616,0)
- ;;=S86.312A^^190^1956^29
- ;;^UTILITY(U,$J,358.3,32616,1,0)
+ ;;^UTILITY(U,$J,358.3,32205,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,32205,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,32205,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,32206,0)
+ ;;=L89.302^^182^1981^239
+ ;;^UTILITY(U,$J,358.3,32206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32616,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,32616,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,32616,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,32617,0)
- ;;=S86.811A^^190^1956^48
- ;;^UTILITY(U,$J,358.3,32617,1,0)
+ ;;^UTILITY(U,$J,358.3,32206,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,32206,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,32206,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,32207,0)
+ ;;=L89.303^^182^1981^240
+ ;;^UTILITY(U,$J,358.3,32207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32617,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,32617,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,32617,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,32618,0)
- ;;=S86.812A^^190^1956^28
- ;;^UTILITY(U,$J,358.3,32618,1,0)
+ ;;^UTILITY(U,$J,358.3,32207,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,32207,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,32207,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,32208,0)
+ ;;=L89.304^^182^1981^241
+ ;;^UTILITY(U,$J,358.3,32208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32618,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,32618,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,32618,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,32619,0)
- ;;=S86.111A^^190^1956^50
- ;;^UTILITY(U,$J,358.3,32619,1,0)
+ ;;^UTILITY(U,$J,358.3,32208,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,32208,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,32208,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,32209,0)
+ ;;=L89.309^^182^1981^242
+ ;;^UTILITY(U,$J,358.3,32209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32619,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,32619,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,32619,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,32620,0)
- ;;=S86.112A^^190^1956^30
- ;;^UTILITY(U,$J,358.3,32620,1,0)
+ ;;^UTILITY(U,$J,358.3,32209,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,32209,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,32209,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,32210,0)
+ ;;=L89.90^^182^1981^248
+ ;;^UTILITY(U,$J,358.3,32210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32620,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,32620,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,32620,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,32621,0)
- ;;=S83.401A^^190^1956^15
- ;;^UTILITY(U,$J,358.3,32621,1,0)
+ ;;^UTILITY(U,$J,358.3,32210,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,32210,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,32210,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,32211,0)
+ ;;=L89.91^^182^1981^244
+ ;;^UTILITY(U,$J,358.3,32211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32621,1,3,0)
- ;;=3^Sprain of Right Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,32621,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,32621,2)
- ;;=^5043103
- ;;^UTILITY(U,$J,358.3,32622,0)
- ;;=S83.402A^^190^1956^4
- ;;^UTILITY(U,$J,358.3,32622,1,0)
+ ;;^UTILITY(U,$J,358.3,32211,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,32211,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,32211,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,32212,0)
+ ;;=L89.92^^182^1981^245
+ ;;^UTILITY(U,$J,358.3,32212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32622,1,3,0)
- ;;=3^Sprain of Left Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,32622,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,32622,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,32623,0)
- ;;=S93.402A^^190^1956^2
- ;;^UTILITY(U,$J,358.3,32623,1,0)
+ ;;^UTILITY(U,$J,358.3,32212,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,32212,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,32212,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,32213,0)
+ ;;=L89.93^^182^1981^246
+ ;;^UTILITY(U,$J,358.3,32213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32623,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,32623,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,32623,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,32624,0)
- ;;=S93.401A^^190^1956^13
- ;;^UTILITY(U,$J,358.3,32624,1,0)
+ ;;^UTILITY(U,$J,358.3,32213,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,32213,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,32213,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,32214,0)
+ ;;=L89.94^^182^1981^247
+ ;;^UTILITY(U,$J,358.3,32214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32624,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,32624,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,32624,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,32625,0)
- ;;=S56.511A^^190^1956^39
- ;;^UTILITY(U,$J,358.3,32625,1,0)
+ ;;^UTILITY(U,$J,358.3,32214,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,32214,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,32214,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,32215,0)
+ ;;=L89.95^^182^1981^249
+ ;;^UTILITY(U,$J,358.3,32215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32625,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,32625,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,32625,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,32626,0)
- ;;=S56.512A^^190^1956^19
- ;;^UTILITY(U,$J,358.3,32626,1,0)
+ ;;^UTILITY(U,$J,358.3,32215,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,32215,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,32215,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,32216,0)
+ ;;=L92.0^^182^1981^156
+ ;;^UTILITY(U,$J,358.3,32216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32626,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,32216,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,32216,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,32216,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,32217,0)
+ ;;=L95.1^^182^1981^143
+ ;;^UTILITY(U,$J,358.3,32217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32217,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,32217,1,4,0)
+ ;;=4^L95.1

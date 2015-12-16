@@ -1,11 +1,12 @@
-PSJSV ;BIR/CML3-SCHEDULE VALIDATION ;15 May 98 / 9:28 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,50,73,83**;16 DEC 97
+PSJSV ;BIR/CML3-SCHEDULE VALIDATION ; 3/23/11 7:57am
+ ;;5.0;INPATIENT MEDICATIONS;**3,50,73,83,194**;16 DEC 97;Build 42
  ;
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
  ;
 EN ;
  ;/S X=PSJX,(PSJAT,PSJM,PSJTS,PSJY,PSJAX)="" I $S(X["""":1,$A(X)=45:1,X'?.ANP:1,$L(X," ")>2:1,$L(X)>70:1,$L(X)<1:1,X["P RN":1,1:X["PR N") K PSJX,X Q
- S X=PSJX,(PSJAT,PSJM,PSJTS,PSJY,PSJAX)="" I $S(X["""":1,$A(X)=45:1,X'?.ANP:1,$L(X," ")>3:1,$L(X)>70:1,$L(X)<1:1,X["P RN":1,1:X["PR N") K PSJX,X Q
+ ;*194 Allow multi-word schedules.
+ S X=PSJX,(PSJAT,PSJM,PSJTS,PSJY,PSJAX)="" I $S(X["""":1,$A(X)=45:1,X'?.ANP:1,$L(X," ")>$S(X["PRN":4,1:3):1,$L(X)>70:1,$L(X)<1:1,X["P RN":1,1:X["PR N") K PSJX,X Q
  I X["PRN"!(X="ON CALL")!(X="ONCALL")!(X="ON-CALL") G DONE
  I X?1."?" D:'$D(PSJNE) ENSVH^PSJSV0 Q
  S X0=X,(XT,Y)="" I X,X'["X",(X?2.4N1"-".E!(X?2.4N)) D ENCHK S:$D(X) PSJAT=X G DONE
@@ -16,6 +17,8 @@ EN ;
  I $E(X,1,2)="AD" K X G DONE
  I $E(X,1,3)="BID"!($E(X,1,3)="TID")!($E(X,1,3)="QID") S PSJM=1440\$F("BTQ",$E(X)) G DONE
  S:$E(X)="Q" X=$E(X,2,99) S:'X X="1"_X S X1=+X,X=$P(X,+X,2),X2=0 S:X1<0 X1=-X1 S:$E(X)="X" X2=X1,X=$E(X,2,99) I 'X2,$E(X)="O" S X2=.5,X=$E(X,2,99)
+ ;*194 Allow Lab to use frequency when setting orders
+ I $G(PSJPP)="LR",PSJM'="" S XT=PSJM G DONE
  S XT=$S(X["'":1,(X["D"&(X'["AD"))!(X["AM")!(X["PM")!(X["HS"&(X'["THS")):1440,X["H"&(X'["TH"):60,X["AC"!(X["PC"):480,X["W":10080,X["M":40320,1:-1) I XT<0,PSJAT="" K X G DONE
  S X=PSJX I XT S:X2 XT=XT\X2 S:'X2 XT=XT*X1
  S PSJM=XT

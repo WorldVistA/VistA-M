@@ -1,136 +1,124 @@
-IBDEI1U1 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1U1 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32688,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,32688,1,4,0)
- ;;=4^R37.
- ;;^UTILITY(U,$J,358.3,32688,2)
- ;;=^5019339
- ;;^UTILITY(U,$J,358.3,32689,0)
- ;;=N60.01^^190^1959^57
- ;;^UTILITY(U,$J,358.3,32689,1,0)
+ ;;^UTILITY(U,$J,358.3,32276,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,32276,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,32276,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,32277,0)
+ ;;=L97.929^^182^1981^196
+ ;;^UTILITY(U,$J,358.3,32277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32689,1,3,0)
- ;;=3^Solitary Cyst of Right Breast
- ;;^UTILITY(U,$J,358.3,32689,1,4,0)
- ;;=4^N60.01
- ;;^UTILITY(U,$J,358.3,32689,2)
- ;;=^5015770
- ;;^UTILITY(U,$J,358.3,32690,0)
- ;;=N60.02^^190^1959^56
- ;;^UTILITY(U,$J,358.3,32690,1,0)
+ ;;^UTILITY(U,$J,358.3,32277,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,32277,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,32277,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,32278,0)
+ ;;=L98.2^^182^1981^149
+ ;;^UTILITY(U,$J,358.3,32278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32690,1,3,0)
- ;;=3^Solitary Cyst of Left Breast
- ;;^UTILITY(U,$J,358.3,32690,1,4,0)
- ;;=4^N60.02
- ;;^UTILITY(U,$J,358.3,32690,2)
- ;;=^5015771
- ;;^UTILITY(U,$J,358.3,32691,0)
- ;;=N60.09^^190^1959^58
- ;;^UTILITY(U,$J,358.3,32691,1,0)
+ ;;^UTILITY(U,$J,358.3,32278,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,32278,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,32278,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,32279,0)
+ ;;=L98.9^^182^1981^268
+ ;;^UTILITY(U,$J,358.3,32279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32691,1,3,0)
- ;;=3^Solitary Cyst of Unspec Breast
- ;;^UTILITY(U,$J,358.3,32691,1,4,0)
- ;;=4^N60.09
- ;;^UTILITY(U,$J,358.3,32691,2)
- ;;=^5015772
- ;;^UTILITY(U,$J,358.3,32692,0)
- ;;=N60.11^^190^1959^12
- ;;^UTILITY(U,$J,358.3,32692,1,0)
+ ;;^UTILITY(U,$J,358.3,32279,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32279,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,32279,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,32280,0)
+ ;;=I70.731^^182^1981^80
+ ;;^UTILITY(U,$J,358.3,32280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32692,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Right Breast
- ;;^UTILITY(U,$J,358.3,32692,1,4,0)
- ;;=4^N60.11
- ;;^UTILITY(U,$J,358.3,32692,2)
- ;;=^5015773
- ;;^UTILITY(U,$J,358.3,32693,0)
- ;;=N60.12^^190^1959^11
- ;;^UTILITY(U,$J,358.3,32693,1,0)
+ ;;^UTILITY(U,$J,358.3,32280,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,32280,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,32280,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,32281,0)
+ ;;=I70.732^^182^1981^81
+ ;;^UTILITY(U,$J,358.3,32281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32693,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Left Breast
- ;;^UTILITY(U,$J,358.3,32693,1,4,0)
- ;;=4^N60.12
- ;;^UTILITY(U,$J,358.3,32693,2)
- ;;=^5015774
- ;;^UTILITY(U,$J,358.3,32694,0)
- ;;=N60.19^^190^1959^13
- ;;^UTILITY(U,$J,358.3,32694,1,0)
+ ;;^UTILITY(U,$J,358.3,32281,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,32281,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,32281,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,32282,0)
+ ;;=I70.733^^182^1981^82
+ ;;^UTILITY(U,$J,358.3,32282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32694,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
- ;;^UTILITY(U,$J,358.3,32694,1,4,0)
- ;;=4^N60.19
- ;;^UTILITY(U,$J,358.3,32694,2)
- ;;=^5015775
- ;;^UTILITY(U,$J,358.3,32695,0)
- ;;=N64.4^^190^1959^32
- ;;^UTILITY(U,$J,358.3,32695,1,0)
+ ;;^UTILITY(U,$J,358.3,32282,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,32282,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,32282,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,32283,0)
+ ;;=I70.734^^182^1981^83
+ ;;^UTILITY(U,$J,358.3,32283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32695,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,32695,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,32695,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,32696,0)
- ;;=N63.^^190^1959^31
- ;;^UTILITY(U,$J,358.3,32696,1,0)
+ ;;^UTILITY(U,$J,358.3,32283,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,32283,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,32283,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,32284,0)
+ ;;=I70.735^^182^1981^84
+ ;;^UTILITY(U,$J,358.3,32284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32696,1,3,0)
- ;;=3^Lump in Breast,Unspec
- ;;^UTILITY(U,$J,358.3,32696,1,4,0)
- ;;=4^N63.
- ;;^UTILITY(U,$J,358.3,32696,2)
- ;;=^5015791
- ;;^UTILITY(U,$J,358.3,32697,0)
- ;;=N64.51^^190^1959^26
- ;;^UTILITY(U,$J,358.3,32697,1,0)
+ ;;^UTILITY(U,$J,358.3,32284,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,32284,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,32284,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,32285,0)
+ ;;=I70.741^^182^1981^79
+ ;;^UTILITY(U,$J,358.3,32285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32697,1,3,0)
- ;;=3^Induration of Breast
- ;;^UTILITY(U,$J,358.3,32697,1,4,0)
- ;;=4^N64.51
- ;;^UTILITY(U,$J,358.3,32697,2)
- ;;=^5015795
- ;;^UTILITY(U,$J,358.3,32698,0)
- ;;=N64.59^^190^1959^55
- ;;^UTILITY(U,$J,358.3,32698,1,0)
+ ;;^UTILITY(U,$J,358.3,32285,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,32285,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,32285,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,32286,0)
+ ;;=I70.742^^182^1981^76
+ ;;^UTILITY(U,$J,358.3,32286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32698,1,3,0)
- ;;=3^Signs and Symptoms in Breast,Other
- ;;^UTILITY(U,$J,358.3,32698,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,32698,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,32699,0)
- ;;=N64.52^^190^1959^35
- ;;^UTILITY(U,$J,358.3,32699,1,0)
+ ;;^UTILITY(U,$J,358.3,32286,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,32286,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,32286,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,32287,0)
+ ;;=I70.743^^182^1981^75
+ ;;^UTILITY(U,$J,358.3,32287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32699,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,32699,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,32699,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,32700,0)
- ;;=N64.53^^190^1959^52
- ;;^UTILITY(U,$J,358.3,32700,1,0)
+ ;;^UTILITY(U,$J,358.3,32287,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,32287,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,32287,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,32288,0)
+ ;;=I70.744^^182^1981^77
+ ;;^UTILITY(U,$J,358.3,32288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32700,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,32700,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,32700,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,32701,0)
- ;;=N75.1^^190^1959^5
- ;;^UTILITY(U,$J,358.3,32701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32701,1,3,0)
- ;;=3^Abscess of Bartholin's Gland

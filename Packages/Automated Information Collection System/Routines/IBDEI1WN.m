@@ -1,128 +1,138 @@
-IBDEI1WN ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WN ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33854,0)
- ;;=S93.131A^^191^1978^35
- ;;^UTILITY(U,$J,358.3,33854,1,0)
+ ;;^UTILITY(U,$J,358.3,33498,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,33499,0)
+ ;;=R63.4^^182^2004^27
+ ;;^UTILITY(U,$J,358.3,33499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33854,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,33854,1,4,0)
- ;;=4^S93.131A
- ;;^UTILITY(U,$J,358.3,33854,2)
- ;;=^5045678
- ;;^UTILITY(U,$J,358.3,33855,0)
- ;;=S93.132A^^191^1978^33
- ;;^UTILITY(U,$J,358.3,33855,1,0)
+ ;;^UTILITY(U,$J,358.3,33499,1,3,0)
+ ;;=3^Abnormal Weight Loss
+ ;;^UTILITY(U,$J,358.3,33499,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,33499,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,33500,0)
+ ;;=R63.5^^182^2004^26
+ ;;^UTILITY(U,$J,358.3,33500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33855,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,33855,1,4,0)
- ;;=4^S93.132A
- ;;^UTILITY(U,$J,358.3,33855,2)
- ;;=^5045681
- ;;^UTILITY(U,$J,358.3,33856,0)
- ;;=S93.134A^^191^1978^36
- ;;^UTILITY(U,$J,358.3,33856,1,0)
+ ;;^UTILITY(U,$J,358.3,33500,1,3,0)
+ ;;=3^Abnormal Weight Gain
+ ;;^UTILITY(U,$J,358.3,33500,1,4,0)
+ ;;=4^R63.5
+ ;;^UTILITY(U,$J,358.3,33500,2)
+ ;;=^5019543
+ ;;^UTILITY(U,$J,358.3,33501,0)
+ ;;=R64.^^182^2004^44
+ ;;^UTILITY(U,$J,358.3,33501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33856,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33856,1,4,0)
- ;;=4^S93.134A
- ;;^UTILITY(U,$J,358.3,33856,2)
- ;;=^5045687
- ;;^UTILITY(U,$J,358.3,33857,0)
- ;;=S93.135A^^191^1978^34
- ;;^UTILITY(U,$J,358.3,33857,1,0)
+ ;;^UTILITY(U,$J,358.3,33501,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,33501,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,33501,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,33502,0)
+ ;;=R68.3^^182^2004^48
+ ;;^UTILITY(U,$J,358.3,33502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33857,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33857,1,4,0)
- ;;=4^S93.135A
- ;;^UTILITY(U,$J,358.3,33857,2)
- ;;=^5045690
- ;;^UTILITY(U,$J,358.3,33858,0)
- ;;=S93.101A^^191^1978^39
- ;;^UTILITY(U,$J,358.3,33858,1,0)
+ ;;^UTILITY(U,$J,358.3,33502,1,3,0)
+ ;;=3^Clubbing of Fingers
+ ;;^UTILITY(U,$J,358.3,33502,1,4,0)
+ ;;=4^R68.3
+ ;;^UTILITY(U,$J,358.3,33502,2)
+ ;;=^5019553
+ ;;^UTILITY(U,$J,358.3,33503,0)
+ ;;=R73.01^^182^2004^84
+ ;;^UTILITY(U,$J,358.3,33503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33858,1,3,0)
- ;;=3^Subluxation rt toe(s), unspec, init
- ;;^UTILITY(U,$J,358.3,33858,1,4,0)
- ;;=4^S93.101A
- ;;^UTILITY(U,$J,358.3,33858,2)
- ;;=^5045624
- ;;^UTILITY(U,$J,358.3,33859,0)
- ;;=S93.102A^^191^1978^28
- ;;^UTILITY(U,$J,358.3,33859,1,0)
+ ;;^UTILITY(U,$J,358.3,33503,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,33503,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,33503,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,33504,0)
+ ;;=R73.02^^182^2004^85
+ ;;^UTILITY(U,$J,358.3,33504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33859,1,3,0)
- ;;=3^Subluxation lft toe(s), unspec, init
- ;;^UTILITY(U,$J,358.3,33859,1,4,0)
- ;;=4^S93.102A
- ;;^UTILITY(U,$J,358.3,33859,2)
- ;;=^5045627
- ;;^UTILITY(U,$J,358.3,33860,0)
- ;;=S93.401A^^191^1978^20
- ;;^UTILITY(U,$J,358.3,33860,1,0)
+ ;;^UTILITY(U,$J,358.3,33504,1,3,0)
+ ;;=3^Impaired Glucose Tolerance (oral)
+ ;;^UTILITY(U,$J,358.3,33504,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,33504,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,33505,0)
+ ;;=R73.09^^182^2004^13
+ ;;^UTILITY(U,$J,358.3,33505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33860,1,3,0)
- ;;=3^Sprain of unspec ligament rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,33860,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,33860,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,33861,0)
- ;;=S93.402A^^191^1978^19
- ;;^UTILITY(U,$J,358.3,33861,1,0)
+ ;;^UTILITY(U,$J,358.3,33505,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,33505,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,33505,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,33506,0)
+ ;;=R73.9^^182^2004^80
+ ;;^UTILITY(U,$J,358.3,33506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33861,1,3,0)
- ;;=3^Sprain of unspec ligament lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,33861,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,33861,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,33862,0)
- ;;=S86.012A^^191^1978^22
- ;;^UTILITY(U,$J,358.3,33862,1,0)
+ ;;^UTILITY(U,$J,358.3,33506,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33506,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,33506,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,33507,0)
+ ;;=R76.11^^182^2004^136
+ ;;^UTILITY(U,$J,358.3,33507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33862,1,3,0)
- ;;=3^Strain of lft Achilles tendon, init enc
- ;;^UTILITY(U,$J,358.3,33862,1,4,0)
- ;;=4^S86.012A
- ;;^UTILITY(U,$J,358.3,33862,2)
- ;;=^5043430
- ;;^UTILITY(U,$J,358.3,33863,0)
- ;;=S86.011A^^191^1978^23
- ;;^UTILITY(U,$J,358.3,33863,1,0)
+ ;;^UTILITY(U,$J,358.3,33507,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,33507,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,33507,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,33508,0)
+ ;;=R79.1^^182^2004^3
+ ;;^UTILITY(U,$J,358.3,33508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33863,1,3,0)
- ;;=3^Strain of rt Achilles tendon, init enc
- ;;^UTILITY(U,$J,358.3,33863,1,4,0)
- ;;=4^S86.011A
- ;;^UTILITY(U,$J,358.3,33863,2)
- ;;=^5043427
- ;;^UTILITY(U,$J,358.3,33864,0)
- ;;=M65.871^^191^1978^48
- ;;^UTILITY(U,$J,358.3,33864,1,0)
+ ;;^UTILITY(U,$J,358.3,33508,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,33508,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,33508,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,33509,0)
+ ;;=R82.5^^182^2004^65
+ ;;^UTILITY(U,$J,358.3,33509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33864,1,3,0)
- ;;=3^Synovitis & tenosynovitis rt ankl/ft, oth
- ;;^UTILITY(U,$J,358.3,33864,1,4,0)
- ;;=4^M65.871
- ;;^UTILITY(U,$J,358.3,33864,2)
- ;;=^5012812
- ;;^UTILITY(U,$J,358.3,33865,0)
- ;;=M65.872^^191^1978^47
- ;;^UTILITY(U,$J,358.3,33865,1,0)
+ ;;^UTILITY(U,$J,358.3,33509,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,33509,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,33509,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,33510,0)
+ ;;=R82.6^^182^2004^24
+ ;;^UTILITY(U,$J,358.3,33510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33865,1,3,0)
- ;;=3^Synovitis & tenosynovitis lft ankl/ft, oth
- ;;^UTILITY(U,$J,358.3,33865,1,4,0)
- ;;=4^M65.872
- ;;^UTILITY(U,$J,358.3,33865,2)
- ;;=^5012813
- ;;^UTILITY(U,$J,358.3,33866,0)
- ;;=M79.89^^191^1978^2
- ;;^UTILITY(U,$J,358.3,33866,1,0)
+ ;;^UTILITY(U,$J,358.3,33510,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,33510,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,33510,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,33511,0)
+ ;;=R82.7^^182^2004^25
+ ;;^UTILITY(U,$J,358.3,33511,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33511,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,33511,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,33511,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,33512,0)
+ ;;=R82.8^^182^2004^21

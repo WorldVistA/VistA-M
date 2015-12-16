@@ -1,132 +1,148 @@
-IBDEI02T ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02T ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,865,0)
- ;;=92587^^9^91^28^^^^1
- ;;^UTILITY(U,$J,358.3,865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,865,1,2,0)
- ;;=2^92587
- ;;^UTILITY(U,$J,358.3,865,1,3,0)
- ;;=3^Otoacoustic Emissions,Limited
- ;;^UTILITY(U,$J,358.3,866,0)
- ;;=92552^^9^91^29^^^^1
- ;;^UTILITY(U,$J,358.3,866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,866,1,2,0)
- ;;=2^92552
- ;;^UTILITY(U,$J,358.3,866,1,3,0)
- ;;=3^Pure Tone Audiometry, Air
- ;;^UTILITY(U,$J,358.3,867,0)
- ;;=92553^^9^91^30^^^^1
- ;;^UTILITY(U,$J,358.3,867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,867,1,2,0)
- ;;=2^92553
- ;;^UTILITY(U,$J,358.3,867,1,3,0)
- ;;=3^Pure Tone Audiometry, Air & Bone
- ;;^UTILITY(U,$J,358.3,868,0)
- ;;=92570^^9^91^1^^^^1
- ;;^UTILITY(U,$J,358.3,868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,868,1,2,0)
- ;;=2^92570
- ;;^UTILITY(U,$J,358.3,868,1,3,0)
- ;;=3^Acoustic Immittance Testing
- ;;^UTILITY(U,$J,358.3,869,0)
- ;;=92558^^9^91^16^^^^1
- ;;^UTILITY(U,$J,358.3,869,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,869,1,2,0)
- ;;=2^92558
- ;;^UTILITY(U,$J,358.3,869,1,3,0)
- ;;=3^Evoked Otoacoustic Emmissions,Scrn,Auto
- ;;^UTILITY(U,$J,358.3,870,0)
- ;;=92611^^9^91^26^^^^1
- ;;^UTILITY(U,$J,358.3,870,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,870,1,2,0)
- ;;=2^92611
- ;;^UTILITY(U,$J,358.3,870,1,3,0)
- ;;=3^Motion Fluoroscopic Eval Swallowing
- ;;^UTILITY(U,$J,358.3,871,0)
- ;;=92612^^9^91^22^^^^1
- ;;^UTILITY(U,$J,358.3,871,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,871,1,2,0)
- ;;=2^92612
- ;;^UTILITY(U,$J,358.3,871,1,3,0)
- ;;=3^Flexible Fiberoptic Eval Swallowing
- ;;^UTILITY(U,$J,358.3,872,0)
- ;;=92626^^9^91^14^^^^1
- ;;^UTILITY(U,$J,358.3,872,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,872,1,2,0)
- ;;=2^92626
- ;;^UTILITY(U,$J,358.3,872,1,3,0)
- ;;=3^Eval Aud Rehab Status,1st hr
- ;;^UTILITY(U,$J,358.3,873,0)
- ;;=92627^^9^91^15^^^^1
- ;;^UTILITY(U,$J,358.3,873,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,873,1,2,0)
- ;;=2^92627
- ;;^UTILITY(U,$J,358.3,873,1,3,0)
- ;;=3^Eval Aud Rehab Status,Ea Addl 15min
- ;;^UTILITY(U,$J,358.3,874,0)
- ;;=92613^^9^91^21^^^^1
- ;;^UTILITY(U,$J,358.3,874,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,874,1,2,0)
- ;;=2^92613
- ;;^UTILITY(U,$J,358.3,874,1,3,0)
- ;;=3^Flex Fib Eval Swallow,Interp/Rpt Only
- ;;^UTILITY(U,$J,358.3,875,0)
- ;;=92614^^9^91^23^^^^1
- ;;^UTILITY(U,$J,358.3,875,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,875,1,2,0)
- ;;=2^92614
- ;;^UTILITY(U,$J,358.3,875,1,3,0)
- ;;=3^Laryngoscopic Sensory Test,Video
- ;;^UTILITY(U,$J,358.3,876,0)
- ;;=92615^^9^91^24^^^^1
- ;;^UTILITY(U,$J,358.3,876,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,876,1,2,0)
- ;;=2^92615
- ;;^UTILITY(U,$J,358.3,876,1,3,0)
- ;;=3^Laryngoscopic Sensory Tst,Interp&Rpt Only
- ;;^UTILITY(U,$J,358.3,877,0)
- ;;=92560^^9^91^9^^^^1
- ;;^UTILITY(U,$J,358.3,877,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,877,1,2,0)
- ;;=2^92560
- ;;^UTILITY(U,$J,358.3,877,1,3,0)
- ;;=3^Bekesy Audiometry,Screening
- ;;^UTILITY(U,$J,358.3,878,0)
- ;;=92561^^9^91^8^^^^1
- ;;^UTILITY(U,$J,358.3,878,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,878,1,2,0)
- ;;=2^92561
- ;;^UTILITY(U,$J,358.3,878,1,3,0)
- ;;=3^Bekesy Audiometry,Diagnostic
- ;;^UTILITY(U,$J,358.3,879,0)
- ;;=92616^^9^91^20^^^^1
- ;;^UTILITY(U,$J,358.3,879,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,879,1,2,0)
- ;;=2^92616
- ;;^UTILITY(U,$J,358.3,879,1,3,0)
- ;;=3^Flex Fbroptic Eval Swal/Laryng Sens Tst-Video
- ;;^UTILITY(U,$J,358.3,880,0)
- ;;=92617^^9^91^19^^^^1
- ;;^UTILITY(U,$J,358.3,880,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,880,1,2,0)
- ;;=2^92617
- ;;^UTILITY(U,$J,358.3,880,1,3,0)
- ;;=3^Flex Fbroptic Eval Laryng Tst-Interp/Rpt
+ ;;^UTILITY(U,$J,358.3,770,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,770,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,771,0)
+ ;;=L53.9^^3^32^38
+ ;;^UTILITY(U,$J,358.3,771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,771,1,3,0)
+ ;;=3^Erythematous condition, unspecified
+ ;;^UTILITY(U,$J,358.3,771,1,4,0)
+ ;;=4^L53.9
+ ;;^UTILITY(U,$J,358.3,771,2)
+ ;;=^5009210
+ ;;^UTILITY(U,$J,358.3,772,0)
+ ;;=L40.0^^3^32^131
+ ;;^UTILITY(U,$J,358.3,772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,772,1,3,0)
+ ;;=3^Psoriasis vulgaris
+ ;;^UTILITY(U,$J,358.3,772,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,772,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,773,0)
+ ;;=L40.8^^3^32^130
+ ;;^UTILITY(U,$J,358.3,773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,773,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,773,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,773,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,774,0)
+ ;;=L40.1^^3^32^46
+ ;;^UTILITY(U,$J,358.3,774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,774,1,3,0)
+ ;;=3^Generalized pustular psoriasis
+ ;;^UTILITY(U,$J,358.3,774,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,774,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,775,0)
+ ;;=L40.2^^3^32^2
+ ;;^UTILITY(U,$J,358.3,775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,775,1,3,0)
+ ;;=3^Acrodermatitis continua
+ ;;^UTILITY(U,$J,358.3,775,1,4,0)
+ ;;=4^L40.2
+ ;;^UTILITY(U,$J,358.3,775,2)
+ ;;=^5009162
+ ;;^UTILITY(U,$J,358.3,776,0)
+ ;;=L40.3^^3^32^132
+ ;;^UTILITY(U,$J,358.3,776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,776,1,3,0)
+ ;;=3^Pustulosis palmaris et plantaris
+ ;;^UTILITY(U,$J,358.3,776,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,776,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,777,0)
+ ;;=L40.4^^3^32^48
+ ;;^UTILITY(U,$J,358.3,777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,777,1,3,0)
+ ;;=3^Guttate psoriasis
+ ;;^UTILITY(U,$J,358.3,777,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,777,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,778,0)
+ ;;=L29.0^^3^32^128
+ ;;^UTILITY(U,$J,358.3,778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,778,1,3,0)
+ ;;=3^Pruritus ani
+ ;;^UTILITY(U,$J,358.3,778,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,778,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,779,0)
+ ;;=L29.9^^3^32^129
+ ;;^UTILITY(U,$J,358.3,779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,779,1,3,0)
+ ;;=3^Pruritus, unspecified
+ ;;^UTILITY(U,$J,358.3,779,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,779,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,780,0)
+ ;;=L84.^^3^32^29
+ ;;^UTILITY(U,$J,358.3,780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,780,1,3,0)
+ ;;=3^Corns and callosities
+ ;;^UTILITY(U,$J,358.3,780,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,780,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,781,0)
+ ;;=L85.3^^3^32^152
+ ;;^UTILITY(U,$J,358.3,781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,781,1,3,0)
+ ;;=3^Xerosis cutis
+ ;;^UTILITY(U,$J,358.3,781,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,781,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,782,0)
+ ;;=L57.0^^3^32^3
+ ;;^UTILITY(U,$J,358.3,782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,782,1,3,0)
+ ;;=3^Actinic keratosis
+ ;;^UTILITY(U,$J,358.3,782,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,782,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,783,0)
+ ;;=L82.0^^3^32^50
+ ;;^UTILITY(U,$J,358.3,783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,783,1,3,0)
+ ;;=3^Inflamed seborrheic keratosis
+ ;;^UTILITY(U,$J,358.3,783,1,4,0)
+ ;;=4^L82.0
+ ;;^UTILITY(U,$J,358.3,783,2)
+ ;;=^303311
+ ;;^UTILITY(U,$J,358.3,784,0)
+ ;;=L82.1^^3^32^139
+ ;;^UTILITY(U,$J,358.3,784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,784,1,3,0)
+ ;;=3^Seborrheic Keratosis NEC
+ ;;^UTILITY(U,$J,358.3,784,1,4,0)
+ ;;=4^L82.1
+ ;;^UTILITY(U,$J,358.3,784,2)
+ ;;=^303312

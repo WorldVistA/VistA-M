@@ -1,5 +1,5 @@
-SDRPA04 ;BP-OIFO/ESW - SDRPA00 continuation PAIT - REPAIR  ; 11/2/04 11:47am  ; 5/31/07 5:29pm
- ;;5.3;Scheduling;**376,491**;Aug 13, 1993;Build 53
+SDRPA04 ;BP-OIFO/ESW - SDRPA00 continuation PAIT - REPAIR ;11/2/04 11:47am  ; 5/31/07 5:29pm
+ ;;5.3;Scheduling;**376,491,634**;Aug 13, 1993;Build 3
  ;SD/491 - not to error out while repairing with acks having received
  Q
 MSGT(CRUNID,SDPEN,SDFIN,SDTOT,SDSTOP) ;create completion messages
@@ -22,7 +22,7 @@ MSGT(CRUNID,SDPEN,SDFIN,SDTOT,SDSTOP) ;create completion messages
  N SDS,SDSTAT,SDIP,SDAR,SDAP,SDMT,SDMS,SD870
  ;SDS - STATION #
  ;SDSTAT - SD-PAIT STATUS
- ;SDAIP  - IP ADDRESS
+ ;SDIP   - IP ADDRESS
  ;SDAR   - COMMIT ACK RECEIVED
  ;SDAP   - COMMIT ACK PROCESSED
  ;SDMT   - MESSAGES (BATCHES) TO SEND
@@ -58,32 +58,34 @@ MSG ;send mail message
  S SDAMX(6)="                       ----------"
  S SDAMX(7)="Total appointments:   "_$J(SDTOT,10)_"   Number of batches: "_SDB
  S SDAMX(8)=""
- S SDAMX(9)="Fac Log Bch Appt #  Date finished  IP Address  Gen  Sent Com R Com P  Status"
- S SDAMX(10)="-----------------------------------------------------------------------"
- S SDAMX(11)=SDS_"|"_$J(CRUNID,3)_"|"_$J(SDB,3)_"|"_$J(SDTOT,7)_"|"_SDTRF_"|"_$J(SDIP,11)_"|"_$J(SDMT,4)_"|"_$J(SDMS,4)_"|"_$J(SDAR,4)_"|"_$J(SDAP,4)_"| "_SDSTAT
- S SDAMX(12)=""
+ S SDAMX(9)="Fac Log Bch Appt #  Date finished   IP Address  "
+ S SDAMX(10)="Gen  Sent Com R Com P  Status"
+ S SDAMX(11)="------------------------------------------------------------------------------"
+ S SDAMX(12)=SDS_"|"_$J(CRUNID,3)_"|"_$J(SDB,3)_"|"_$J(SDTOT,7)_"|"_SDTRF_"|"_$E(SDIP,1,39)_"|"
+ S SDAMX(13)=$J(SDMT,4)_"|"_$J(SDMS,4)_"|"_$J(SDAR,4)_"|"_$J(SDAP,4)_"| "_SDSTAT
+ S SDAMX(14)=""
  I $G(SDSTOP) S XMY("VHACIONHD@DOMAIN.EXT")="" D  D ^XMD Q
- .S SDAMX(13)="WARNING: TASK STOPPED BY USER, NEEDS TO BE RESTARTED."
- .S SDAMX(14)="Initiate a Remedy ticket TO FOLLOW UP."
+ .S SDAMX(15)="WARNING: TASK STOPPED BY USER, NEEDS TO BE RESTARTED."
+ .S SDAMX(16)="Initiate a Remedy ticket TO FOLLOW UP."
  I 'SFF I SDMT>0!(SDB=0) D  D ^XMD K ^TMP("SDDPT",$J) Q
  .I (SDMT-SDMS)=0 D  Q
- ..S SDAMX(13)="SUCCESS: Transmission completed."
+ ..S SDAMX(15)="SUCCESS: Transmission completed."
  .I (SDMT-SDMS)<SDB!(SDB=1&(SDMT-SDMS)'<SDB)&(SDSTAT'["Shutdown") D  Q
- ..S SDAMX(13)="WARNING: "_(SDMT-SDMS)_" out of "_SDB_" batches still have to be transmitted,"
- ..S SDAMX(14)="please verify with the HL7 System Monitor."
+ ..S SDAMX(15)="WARNING: "_(SDMT-SDMS)_" out of "_SDB_" batches still have to be transmitted,"
+ ..S SDAMX(16)="please verify with the HL7 System Monitor."
  .S XMY("VHACIONHD@DOMAIN.EXT")=""
  .I SDB>0 I (SDMT-SDMS)'<SDB D  Q
  ..S XMY("VHACIONHD@DOMAIN.EXT")=""
  ..I SDSTAT["Shutdown" D
- ...S SDAMX(13)="SD-PAIT Logical Link has to be started, initiate Remedy ticket for Scheduling PAIT."
- ..E  S SDAMX(13)="Initiate a Remedy ticket for Interface Engine - communication problem."
+ ...S SDAMX(15)="SD-PAIT Logical Link has to be started, initiate Remedy ticket for Scheduling PAIT."
+ ..E  S SDAMX(15)="Initiate a Remedy ticket for Interface Engine - communication problem."
  I SFF D  D ^XMD K ^TMP("SDDPT",$J) Q
- .S SDAMX(13)="WARNING!!!: Transmission of run#: "_CRUNID_" has been repaired, you may restart."
+ .S SDAMX(15)="WARNING!!!: Transmission of run#: "_CRUNID_" has been repaired, you may restart."
  .I SDB>0 I (SDMT-SDMS)'<SDB D
  ..S XMY("VHACIONHD@DOMAIN.EXT")=""
  ..I SDSTAT["Shutdown" D  Q
- ...S SDAMX(14)="SD-PAIT Logical Link has to be started, initiate Remedy ticket for Scheduling PAIT."
- ..S SDAMX(14)="Initiate a Remedy ticket for Interface Engine - communication problem."
+ ...S SDAMX(16)="SD-PAIT Logical Link has to be started, initiate Remedy ticket for Scheduling PAIT."
+ ..S SDAMX(16)="Initiate a Remedy ticket for Interface Engine - communication problem."
  Q
 CLEAN(CRUNID) ;housekeeping
  ;clean up batches previous to current one by checking for "AE",("S" or "R") xref and

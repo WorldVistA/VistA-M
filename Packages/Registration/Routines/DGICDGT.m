@@ -1,5 +1,10 @@
 DGICDGT ;BIR/SJA - ALB/AAS - ADT ICD DIAGNOSIS SEARCH ;02-Feb-2012
- ;;5.3;Registration;**850**;Aug 13, 1993;Build 171
+ ;;5.3;Registration;**850,884**;Aug 13, 1993;Build 31
+ ;
+ ;This routine does not conform to Standard & Conventions routine naming conventions
+ ;since package routine names of DG_I* (with the exceptions of Kernel, VA FileMan, and
+ ;routines created to support the INIT process) should not be used.  The SACC has granted
+ ;an exemption for this routine.
  ;
  ; CSI^ICDEX     ICR 5747
  ; SYS^ICDEX     ICR 5747
@@ -7,17 +12,21 @@ DGICDGT ;BIR/SJA - ALB/AAS - ADT ICD DIAGNOSIS SEARCH ;02-Feb-2012
  ;
  ;Reference to $$ICDDATA^ICDXCODE supported by DBIA #5699
  ;
-GETAPI(APP,TYPE,PTF,CHK) ;ICD-9/ICD-10 selection - called by input transform
+GETAPI(APP,TYPE,PTF,CHK,DGNODE) ;ICD-9/ICD-10 selection - called by input transform
  ; - INPUT: X    := the initial user input to be searched on (REQUIRED)
  ;          APP  := application name "DG PTF" ;drp removed file ref  in file 130.4;.01 (REQUIRED)
  ;          TYPE := type of call "DIAG or "PROC" ;drp removed file ref in file 130.4;.04 (REQUIRED)
  ;          PTF  := top level entry in file 130 (DA) used to get date to compute correct version (OPTIONAL but needs DA)
  ;          CHK  := additional screening logic
  ;                  Note: applications using this as an example will need to modify the code that uses this.
+ ;       DGNODE  := node variable needed to account for increased DX code storage across different
+ ;                  PTF global nodes, default=0 (OPTIONAL)
  ; - OUTPUT: X   := the internal value to be stored in the field.
  ;           Y   := the internal value to be stored in the field
  ;
  N DIC,DIE,DGPTDA,DGDT,IMPDATE,ENTRY,CODE,VERSION,DGX,LEXI,EFFDATE,IMPDATE,DGPTDAT,DGER,KEY,DUOUT,DTOUT
+ ;
+ S DGNODE=$G(DGNODE,0) ;default to 0 node if not passed
  ;
  I X="?BAD" S X="" D MSG("") Q
  I X="@" K X Q

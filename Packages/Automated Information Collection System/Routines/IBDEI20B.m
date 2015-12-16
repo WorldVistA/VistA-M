@@ -1,48 +1,124 @@
-IBDEI20B ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI20B ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.91,0,"GL")
- ;;=^IBE(358.91,
- ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
- ;;=
- ;;^DIC(358.91,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.91,"%D",1,0)
- ;;= 
- ;;^DIC(358.91,"%D",2,0)
- ;;=This file is nearly identical to file #357.91. It is used by the
- ;;^DIC(358.91,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.91,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.91,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.91,0,"DDA")
- ;;=N
- ;;^DD(358.91,0,"DT")
- ;;=2960123
- ;;^DD(358.91,0,"IX","B",358.91,.01)
- ;;=
- ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
- ;;=
- ;;^DD(358.91,0,"PT",358.22,.06)
- ;;=
- ;;^DD(358.91,0,"VRPK")
- ;;=IBD
- ;;^DD(358.91,.01,0)
- ;;=NAME^RFX^^0;1^K:$L(X)>30 X
- ;;^DD(358.91,.01,1,0)
- ;;=^.1
- ;;^DD(358.91,.01,1,1,0)
- ;;=358.91^B
- ;;^DD(358.91,.01,1,1,1)
- ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
- ;;^DD(358.91,.01,1,1,2)
- ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
- ;;^DD(358.91,.01,3)
- ;;=NAME MUST BE UNDER 31 CHARACTERS
- ;;^DD(358.91,.01,21,0)
- ;;=^^1^1^2930608^
- ;;^DD(358.91,.01,21,1,0)
- ;;=The name should describe the appearance of the marking area on the form.
+ ;;^UTILITY(U,$J,358.3,35104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35104,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,35104,1,4,0)
+ ;;=4^S52.355S
+ ;;^UTILITY(U,$J,358.3,35104,2)
+ ;;=^5030334
+ ;;^UTILITY(U,$J,358.3,35105,0)
+ ;;=S52.354S^^183^2026^78
+ ;;^UTILITY(U,$J,358.3,35105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35105,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,35105,1,4,0)
+ ;;=4^S52.354S
+ ;;^UTILITY(U,$J,358.3,35105,2)
+ ;;=^5030318
+ ;;^UTILITY(U,$J,358.3,35106,0)
+ ;;=S52.125S^^183^2026^85
+ ;;^UTILITY(U,$J,358.3,35106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35106,1,3,0)
+ ;;=3^Nondisp fx of head of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,35106,1,4,0)
+ ;;=4^S52.125S
+ ;;^UTILITY(U,$J,358.3,35106,2)
+ ;;=^5029126
+ ;;^UTILITY(U,$J,358.3,35107,0)
+ ;;=S52.124S^^183^2026^86
+ ;;^UTILITY(U,$J,358.3,35107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35107,1,3,0)
+ ;;=3^Nondisp fx of head of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,35107,1,4,0)
+ ;;=4^S52.124S
+ ;;^UTILITY(U,$J,358.3,35107,2)
+ ;;=^5029110
+ ;;^UTILITY(U,$J,358.3,35108,0)
+ ;;=S52.135S^^183^2026^95
+ ;;^UTILITY(U,$J,358.3,35108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35108,1,3,0)
+ ;;=3^Nondisp fx of neck of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,35108,1,4,0)
+ ;;=4^S52.135S
+ ;;^UTILITY(U,$J,358.3,35108,2)
+ ;;=^5029222
+ ;;^UTILITY(U,$J,358.3,35109,0)
+ ;;=S52.134S^^183^2026^96
+ ;;^UTILITY(U,$J,358.3,35109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35109,1,3,0)
+ ;;=3^Nondisp fx of neck of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,35109,1,4,0)
+ ;;=4^S52.134S
+ ;;^UTILITY(U,$J,358.3,35109,2)
+ ;;=^5029206
+ ;;^UTILITY(U,$J,358.3,35110,0)
+ ;;=S52.335S^^183^2026^97
+ ;;^UTILITY(U,$J,358.3,35110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35110,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,35110,1,4,0)
+ ;;=4^S52.335S
+ ;;^UTILITY(U,$J,358.3,35110,2)
+ ;;=^5030142
+ ;;^UTILITY(U,$J,358.3,35111,0)
+ ;;=S52.334S^^183^2026^99
+ ;;^UTILITY(U,$J,358.3,35111,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35111,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,35111,1,4,0)
+ ;;=4^S52.334S
+ ;;^UTILITY(U,$J,358.3,35111,2)
+ ;;=^5030126
+ ;;^UTILITY(U,$J,358.3,35112,0)
+ ;;=S52.365S^^183^2026^111
+ ;;^UTILITY(U,$J,358.3,35112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35112,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,35112,1,4,0)
+ ;;=4^S52.365S
+ ;;^UTILITY(U,$J,358.3,35112,2)
+ ;;=^5030430
+ ;;^UTILITY(U,$J,358.3,35113,0)
+ ;;=S52.364S^^183^2026^112
+ ;;^UTILITY(U,$J,358.3,35113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35113,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,35113,1,4,0)
+ ;;=4^S52.364S
+ ;;^UTILITY(U,$J,358.3,35113,2)
+ ;;=^5030414
+ ;;^UTILITY(U,$J,358.3,35114,0)
+ ;;=S52.345S^^183^2026^115
+ ;;^UTILITY(U,$J,358.3,35114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35114,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,35114,1,4,0)
+ ;;=4^S52.345S
+ ;;^UTILITY(U,$J,358.3,35114,2)
+ ;;=^5030238
+ ;;^UTILITY(U,$J,358.3,35115,0)
+ ;;=S52.344S^^183^2026^116
+ ;;^UTILITY(U,$J,358.3,35115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35115,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,35115,1,4,0)
+ ;;=4^S52.344S
+ ;;^UTILITY(U,$J,358.3,35115,2)
+ ;;=^5030222
+ ;;^UTILITY(U,$J,358.3,35116,0)
+ ;;=S52.325S^^183^2026^119

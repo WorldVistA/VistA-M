@@ -1,150 +1,134 @@
-IBDEI02B ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02B ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,602,0)
- ;;=353.9^^6^78^20
- ;;^UTILITY(U,$J,358.3,602,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,602,1,4,0)
- ;;=4^Nerve Root/Plexus DO
- ;;^UTILITY(U,$J,358.3,602,1,5,0)
- ;;=5^353.9
- ;;^UTILITY(U,$J,358.3,602,2)
- ;;=^268503
- ;;^UTILITY(U,$J,358.3,603,0)
- ;;=729.2^^6^78^21
- ;;^UTILITY(U,$J,358.3,603,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,603,1,4,0)
- ;;=4^Neuralgia/Neuritis/Rad
- ;;^UTILITY(U,$J,358.3,603,1,5,0)
- ;;=5^729.2
- ;;^UTILITY(U,$J,358.3,603,2)
- ;;=^82605
- ;;^UTILITY(U,$J,358.3,604,0)
- ;;=356.9^^6^78^24
- ;;^UTILITY(U,$J,358.3,604,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,604,1,4,0)
- ;;=4^Periph Neuropathy NOS
- ;;^UTILITY(U,$J,358.3,604,1,5,0)
- ;;=5^356.9
- ;;^UTILITY(U,$J,358.3,604,2)
- ;;=^123931
- ;;^UTILITY(U,$J,358.3,605,0)
- ;;=337.20^^6^78^25
- ;;^UTILITY(U,$J,358.3,605,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,605,1,4,0)
- ;;=4^Reflex Sympath Distrophy
- ;;^UTILITY(U,$J,358.3,605,1,5,0)
- ;;=5^337.20
- ;;^UTILITY(U,$J,358.3,605,2)
- ;;=^295799
- ;;^UTILITY(U,$J,358.3,606,0)
- ;;=337.1^^6^78^22
- ;;^UTILITY(U,$J,358.3,606,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,606,1,4,0)
- ;;=4^Neuropathy in Oth Dis
- ;;^UTILITY(U,$J,358.3,606,1,5,0)
- ;;=5^337.1
- ;;^UTILITY(U,$J,358.3,606,2)
- ;;=^268435
- ;;^UTILITY(U,$J,358.3,607,0)
- ;;=350.1^^6^78^27
- ;;^UTILITY(U,$J,358.3,607,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,607,1,4,0)
- ;;=4^Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,607,1,5,0)
- ;;=5^350.1
- ;;^UTILITY(U,$J,358.3,607,2)
- ;;=^121978
- ;;^UTILITY(U,$J,358.3,608,0)
- ;;=955.9^^6^78^10
- ;;^UTILITY(U,$J,358.3,608,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,608,1,4,0)
- ;;=4^Injured Nerve,Shldr/Arm
- ;;^UTILITY(U,$J,358.3,608,1,5,0)
- ;;=5^955.9
- ;;^UTILITY(U,$J,358.3,608,2)
- ;;=^275961
- ;;^UTILITY(U,$J,358.3,609,0)
- ;;=956.9^^6^78^7
- ;;^UTILITY(U,$J,358.3,609,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,609,1,4,0)
- ;;=4^Injured Nerve,Ankle/Foot
- ;;^UTILITY(U,$J,358.3,609,1,5,0)
- ;;=5^956.9
- ;;^UTILITY(U,$J,358.3,609,2)
- ;;=^275970
- ;;^UTILITY(U,$J,358.3,610,0)
- ;;=955.6^^6^78^8
- ;;^UTILITY(U,$J,358.3,610,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,610,1,4,0)
- ;;=4^Injured Nerve,Finger
- ;;^UTILITY(U,$J,358.3,610,1,5,0)
- ;;=5^955.6
- ;;^UTILITY(U,$J,358.3,610,2)
- ;;=^275958
- ;;^UTILITY(U,$J,358.3,611,0)
- ;;=956.9^^6^78^9
- ;;^UTILITY(U,$J,358.3,611,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,611,1,4,0)
- ;;=4^Injured Nerve,Leg NOS
- ;;^UTILITY(U,$J,358.3,611,1,5,0)
- ;;=5^956.9
- ;;^UTILITY(U,$J,358.3,611,2)
- ;;=^275970
- ;;^UTILITY(U,$J,358.3,612,0)
- ;;=956.5^^6^78^11
- ;;^UTILITY(U,$J,358.3,612,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,612,1,4,0)
- ;;=4^Injured Nerve,Toe
- ;;^UTILITY(U,$J,358.3,612,1,5,0)
- ;;=5^956.5
- ;;^UTILITY(U,$J,358.3,612,2)
- ;;=^275968
- ;;^UTILITY(U,$J,358.3,613,0)
- ;;=388.70^^6^78^23
- ;;^UTILITY(U,$J,358.3,613,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,613,1,4,0)
- ;;=4^Otalgia NOS
- ;;^UTILITY(U,$J,358.3,613,1,5,0)
- ;;=5^388.70
- ;;^UTILITY(U,$J,358.3,613,2)
- ;;=^37811
- ;;^UTILITY(U,$J,358.3,614,0)
- ;;=344.60^^6^78^4
- ;;^UTILITY(U,$J,358.3,614,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,614,1,4,0)
- ;;=4^Cauda Equina Synd NOS
- ;;^UTILITY(U,$J,358.3,614,1,5,0)
- ;;=5^344.60
- ;;^UTILITY(U,$J,358.3,614,2)
- ;;=^268459
- ;;^UTILITY(U,$J,358.3,615,0)
- ;;=336.0^^6^78^26
- ;;^UTILITY(U,$J,358.3,615,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,615,1,4,0)
- ;;=4^Syringomyelia
- ;;^UTILITY(U,$J,358.3,615,1,5,0)
- ;;=5^336.0
- ;;^UTILITY(U,$J,358.3,615,2)
- ;;=^116874
- ;;^UTILITY(U,$J,358.3,616,0)
- ;;=323.9^^6^78^19
- ;;^UTILITY(U,$J,358.3,616,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,616,1,4,0)
- ;;=4^Myelitis,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,531,1,4,0)
+ ;;=4^C44.520
+ ;;^UTILITY(U,$J,358.3,531,2)
+ ;;=^5001057
+ ;;^UTILITY(U,$J,358.3,532,0)
+ ;;=C44.521^^2^23^30
+ ;;^UTILITY(U,$J,358.3,532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,532,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of breast
+ ;;^UTILITY(U,$J,358.3,532,1,4,0)
+ ;;=4^C44.521
+ ;;^UTILITY(U,$J,358.3,532,2)
+ ;;=^5001058
+ ;;^UTILITY(U,$J,358.3,533,0)
+ ;;=C44.529^^2^23^34
+ ;;^UTILITY(U,$J,358.3,533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,533,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of other part of trunk
+ ;;^UTILITY(U,$J,358.3,533,1,4,0)
+ ;;=4^C44.529
+ ;;^UTILITY(U,$J,358.3,533,2)
+ ;;=^5001059
+ ;;^UTILITY(U,$J,358.3,534,0)
+ ;;=C46.9^^2^23^11
+ ;;^UTILITY(U,$J,358.3,534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,534,1,3,0)
+ ;;=3^Kaposi's sarcoma, unspecified
+ ;;^UTILITY(U,$J,358.3,534,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,534,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,535,0)
+ ;;=C71.9^^2^23^15
+ ;;^UTILITY(U,$J,358.3,535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,535,1,3,0)
+ ;;=3^Malignant neoplasm of brain, unspecified
+ ;;^UTILITY(U,$J,358.3,535,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,535,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,536,0)
+ ;;=C72.1^^2^23^16
+ ;;^UTILITY(U,$J,358.3,536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,536,1,3,0)
+ ;;=3^Malignant neoplasm of cauda equina
+ ;;^UTILITY(U,$J,358.3,536,1,4,0)
+ ;;=4^C72.1
+ ;;^UTILITY(U,$J,358.3,536,2)
+ ;;=^5001298
+ ;;^UTILITY(U,$J,358.3,537,0)
+ ;;=C72.0^^2^23^24
+ ;;^UTILITY(U,$J,358.3,537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,537,1,3,0)
+ ;;=3^Malignant neoplasm of spinal cord
+ ;;^UTILITY(U,$J,358.3,537,1,4,0)
+ ;;=4^C72.0
+ ;;^UTILITY(U,$J,358.3,537,2)
+ ;;=^267292
+ ;;^UTILITY(U,$J,358.3,538,0)
+ ;;=C74.01^^2^23^19
+ ;;^UTILITY(U,$J,358.3,538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,538,1,3,0)
+ ;;=3^Malignant neoplasm of cortex of right adrenal gland
+ ;;^UTILITY(U,$J,358.3,538,1,4,0)
+ ;;=4^C74.01
+ ;;^UTILITY(U,$J,358.3,538,2)
+ ;;=^5001312
+ ;;^UTILITY(U,$J,358.3,539,0)
+ ;;=C74.02^^2^23^18
+ ;;^UTILITY(U,$J,358.3,539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,539,1,3,0)
+ ;;=3^Malignant neoplasm of cortex of left adrenal gland
+ ;;^UTILITY(U,$J,358.3,539,1,4,0)
+ ;;=4^C74.02
+ ;;^UTILITY(U,$J,358.3,539,2)
+ ;;=^5001313
+ ;;^UTILITY(U,$J,358.3,540,0)
+ ;;=C74.11^^2^23^21
+ ;;^UTILITY(U,$J,358.3,540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,540,1,3,0)
+ ;;=3^Malignant neoplasm of medulla of right adrenal gland
+ ;;^UTILITY(U,$J,358.3,540,1,4,0)
+ ;;=4^C74.11
+ ;;^UTILITY(U,$J,358.3,540,2)
+ ;;=^5001315
+ ;;^UTILITY(U,$J,358.3,541,0)
+ ;;=C74.12^^2^23^20
+ ;;^UTILITY(U,$J,358.3,541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,541,1,3,0)
+ ;;=3^Malignant neoplasm of medulla of left adrenal gland
+ ;;^UTILITY(U,$J,358.3,541,1,4,0)
+ ;;=4^C74.12
+ ;;^UTILITY(U,$J,358.3,541,2)
+ ;;=^5001316
+ ;;^UTILITY(U,$J,358.3,542,0)
+ ;;=C74.91^^2^23^26
+ ;;^UTILITY(U,$J,358.3,542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,542,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of right adrenal gland
+ ;;^UTILITY(U,$J,358.3,542,1,4,0)
+ ;;=4^C74.91
+ ;;^UTILITY(U,$J,358.3,542,2)
+ ;;=^5001318
+ ;;^UTILITY(U,$J,358.3,543,0)
+ ;;=C74.92^^2^23^25
+ ;;^UTILITY(U,$J,358.3,543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,543,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of left adrenal gland
+ ;;^UTILITY(U,$J,358.3,543,1,4,0)
+ ;;=4^C74.92
+ ;;^UTILITY(U,$J,358.3,543,2)
+ ;;=^5001319
+ ;;^UTILITY(U,$J,358.3,544,0)
+ ;;=C92.40^^2^24^21
+ ;;^UTILITY(U,$J,358.3,544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,544,1,3,0)
+ ;;=3^Acute promyelocytic leukemia, not having achieved remission

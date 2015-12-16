@@ -1,140 +1,114 @@
-IBDEI0TE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0TE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14502,0)
- ;;=494.0^^89^894^9
- ;;^UTILITY(U,$J,358.3,14502,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14502,1,4,0)
- ;;=4^494.0
- ;;^UTILITY(U,$J,358.3,14502,1,5,0)
- ;;=5^Bronchiectasis, chronic
- ;;^UTILITY(U,$J,358.3,14502,2)
- ;;=^321990
- ;;^UTILITY(U,$J,358.3,14503,0)
- ;;=494.1^^89^894^8
- ;;^UTILITY(U,$J,358.3,14503,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14503,1,4,0)
- ;;=4^494.1
- ;;^UTILITY(U,$J,358.3,14503,1,5,0)
- ;;=5^Bronchiectasis with exacerb
- ;;^UTILITY(U,$J,358.3,14503,2)
- ;;=^321991
- ;;^UTILITY(U,$J,358.3,14504,0)
- ;;=496.^^89^894^12
- ;;^UTILITY(U,$J,358.3,14504,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14504,1,4,0)
- ;;=4^496.
- ;;^UTILITY(U,$J,358.3,14504,1,5,0)
- ;;=5^COPD, General
- ;;^UTILITY(U,$J,358.3,14504,2)
- ;;=COPD, General^24355
- ;;^UTILITY(U,$J,358.3,14505,0)
- ;;=491.20^^89^894^13
- ;;^UTILITY(U,$J,358.3,14505,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14505,1,4,0)
- ;;=4^491.20
- ;;^UTILITY(U,$J,358.3,14505,1,5,0)
- ;;=5^Chronic Asthmatic Bronchitis
- ;;^UTILITY(U,$J,358.3,14505,2)
- ;;=Chronic Asthmatic Bronchitis^269953
- ;;^UTILITY(U,$J,358.3,14506,0)
- ;;=491.9^^89^894^14
- ;;^UTILITY(U,$J,358.3,14506,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14506,1,4,0)
- ;;=4^491.9
- ;;^UTILITY(U,$J,358.3,14506,1,5,0)
- ;;=5^Chronic Bronchitis
- ;;^UTILITY(U,$J,358.3,14506,2)
- ;;=^24359
- ;;^UTILITY(U,$J,358.3,14507,0)
- ;;=786.2^^89^894^15
- ;;^UTILITY(U,$J,358.3,14507,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14507,1,4,0)
- ;;=4^786.2
- ;;^UTILITY(U,$J,358.3,14507,1,5,0)
- ;;=5^Cough
- ;;^UTILITY(U,$J,358.3,14507,2)
- ;;=Cough^28905
- ;;^UTILITY(U,$J,358.3,14508,0)
- ;;=786.09^^89^894^16
- ;;^UTILITY(U,$J,358.3,14508,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14508,1,4,0)
- ;;=4^786.09
- ;;^UTILITY(U,$J,358.3,14508,1,5,0)
- ;;=5^Dyspnea
- ;;^UTILITY(U,$J,358.3,14508,2)
- ;;=Dyspnea^87547
- ;;^UTILITY(U,$J,358.3,14509,0)
- ;;=492.8^^89^894^17
- ;;^UTILITY(U,$J,358.3,14509,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14509,1,4,0)
- ;;=4^492.8
- ;;^UTILITY(U,$J,358.3,14509,1,5,0)
- ;;=5^Emphysema
- ;;^UTILITY(U,$J,358.3,14509,2)
- ;;=Emphysema^87569
- ;;^UTILITY(U,$J,358.3,14510,0)
- ;;=487.1^^89^894^24
- ;;^UTILITY(U,$J,358.3,14510,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14510,1,4,0)
- ;;=4^487.1
- ;;^UTILITY(U,$J,358.3,14510,1,5,0)
- ;;=5^Influenza with other Resp Manifest
- ;;^UTILITY(U,$J,358.3,14510,2)
- ;;=^63125
- ;;^UTILITY(U,$J,358.3,14511,0)
- ;;=487.0^^89^894^23
- ;;^UTILITY(U,$J,358.3,14511,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14511,1,4,0)
- ;;=4^487.0
- ;;^UTILITY(U,$J,358.3,14511,1,5,0)
- ;;=5^Influenza w Pneumonia
- ;;^UTILITY(U,$J,358.3,14511,2)
- ;;=^269942
- ;;^UTILITY(U,$J,358.3,14512,0)
- ;;=515.^^89^894^25
- ;;^UTILITY(U,$J,358.3,14512,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14512,1,4,0)
- ;;=4^515.
- ;;^UTILITY(U,$J,358.3,14512,1,5,0)
- ;;=5^Interstitial Lung disease
- ;;^UTILITY(U,$J,358.3,14512,2)
- ;;=^101072
- ;;^UTILITY(U,$J,358.3,14513,0)
- ;;=786.52^^89^894^26
- ;;^UTILITY(U,$J,358.3,14513,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14513,1,4,0)
- ;;=4^786.52
- ;;^UTILITY(U,$J,358.3,14513,1,5,0)
- ;;=5^Painful resp, Pleurodynia
- ;;^UTILITY(U,$J,358.3,14513,2)
- ;;=^89126
- ;;^UTILITY(U,$J,358.3,14514,0)
- ;;=511.0^^89^894^29
- ;;^UTILITY(U,$J,358.3,14514,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14514,1,4,0)
- ;;=4^511.0
- ;;^UTILITY(U,$J,358.3,14514,1,5,0)
- ;;=5^Pleurisy
- ;;^UTILITY(U,$J,358.3,14514,2)
- ;;=Pleurisy^95432
- ;;^UTILITY(U,$J,358.3,14515,0)
- ;;=486.^^89^894^30
- ;;^UTILITY(U,$J,358.3,14515,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14515,1,4,0)
- ;;=4^486.
+ ;;^UTILITY(U,$J,358.3,14229,1,2,0)
+ ;;=2^Repair of Nail Bed
+ ;;^UTILITY(U,$J,358.3,14229,1,3,0)
+ ;;=3^11760
+ ;;^UTILITY(U,$J,358.3,14230,0)
+ ;;=11765^^75^874^11^^^^1
+ ;;^UTILITY(U,$J,358.3,14230,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14230,1,2,0)
+ ;;=2^Wedge Excision of Skin Nail Fold
+ ;;^UTILITY(U,$J,358.3,14230,1,3,0)
+ ;;=3^11765
+ ;;^UTILITY(U,$J,358.3,14231,0)
+ ;;=11055^^75^875^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14231,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14231,1,2,0)
+ ;;=2^Trim Skin Lesion, Single Lesion
+ ;;^UTILITY(U,$J,358.3,14231,1,3,0)
+ ;;=3^11055
+ ;;^UTILITY(U,$J,358.3,14232,0)
+ ;;=11056^^75^875^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14232,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14232,1,2,0)
+ ;;=2^Trim Skin Lesion,2-4 Lesions
+ ;;^UTILITY(U,$J,358.3,14232,1,3,0)
+ ;;=3^11056
+ ;;^UTILITY(U,$J,358.3,14233,0)
+ ;;=11057^^75^875^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14233,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14233,1,2,0)
+ ;;=2^Trim Skin Lesions, Over 4
+ ;;^UTILITY(U,$J,358.3,14233,1,3,0)
+ ;;=3^11057
+ ;;^UTILITY(U,$J,358.3,14234,0)
+ ;;=17000^^75^876^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14234,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14234,1,2,0)
+ ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesion; 1st lesion
+ ;;^UTILITY(U,$J,358.3,14234,1,3,0)
+ ;;=3^17000
+ ;;^UTILITY(U,$J,358.3,14235,0)
+ ;;=17003^^75^876^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14235,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14235,1,2,0)
+ ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesions; 2nd-14th lesion, each
+ ;;^UTILITY(U,$J,358.3,14235,1,3,0)
+ ;;=3^17003
+ ;;^UTILITY(U,$J,358.3,14236,0)
+ ;;=17004^^75^876^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14236,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14236,1,2,0)
+ ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesions; 15 or more lesions
+ ;;^UTILITY(U,$J,358.3,14236,1,3,0)
+ ;;=3^17004
+ ;;^UTILITY(U,$J,358.3,14237,0)
+ ;;=17110^^75^876^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14237,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14237,1,2,0)
+ ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; up to 14 lesions
+ ;;^UTILITY(U,$J,358.3,14237,1,3,0)
+ ;;=3^17110
+ ;;^UTILITY(U,$J,358.3,14238,0)
+ ;;=17111^^75^876^5^^^^1
+ ;;^UTILITY(U,$J,358.3,14238,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14238,1,2,0)
+ ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; 15 or more lesions
+ ;;^UTILITY(U,$J,358.3,14238,1,3,0)
+ ;;=3^17111
+ ;;^UTILITY(U,$J,358.3,14239,0)
+ ;;=17250^^75^876^6^^^^1
+ ;;^UTILITY(U,$J,358.3,14239,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14239,1,2,0)
+ ;;=2^Chemical cauterization of granulation tissue
+ ;;^UTILITY(U,$J,358.3,14239,1,3,0)
+ ;;=3^17250
+ ;;^UTILITY(U,$J,358.3,14240,0)
+ ;;=11400^^75^877^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14240,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14240,1,2,0)
+ ;;=2^Exc Benign Lesion-Trunk,Legs;0.5cm or less
+ ;;^UTILITY(U,$J,358.3,14240,1,3,0)
+ ;;=3^11400
+ ;;^UTILITY(U,$J,358.3,14241,0)
+ ;;=11401^^75^877^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14241,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14241,1,2,0)
+ ;;=2^Exc Benign Lesion-Trunk,Legs;0.6cm-1.0cm
+ ;;^UTILITY(U,$J,358.3,14241,1,3,0)
+ ;;=3^11401
+ ;;^UTILITY(U,$J,358.3,14242,0)
+ ;;=11402^^75^877^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14242,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14242,1,2,0)
+ ;;=2^Exc Benign Lesion-Trunk,Legs;1.1cm-2.0cm
+ ;;^UTILITY(U,$J,358.3,14242,1,3,0)
+ ;;=3^11402
+ ;;^UTILITY(U,$J,358.3,14243,0)
+ ;;=11403^^75^877^4^^^^1

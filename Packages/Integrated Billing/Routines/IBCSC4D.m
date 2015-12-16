@@ -1,5 +1,5 @@
 IBCSC4D ;ALB/ARH - ADD/ENTER DIAGNOSIS ;11/9/93
- ;;2.0;INTEGRATED BILLING;**55,62,91,106,124,51,210,403,400,461,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**55,62,91,106,124,51,210,403,400,461,516,522**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;add/edit diagnosis for a bill, IBIFN required
@@ -44,9 +44,10 @@ AD S DIR("??")="^D HELP^IBCSC4D"
  . W !!,*7,"The Diagnosis code is inactive for the date of service ("_IBDTTX_").",!
  Q Y
  ;
-ADD(DX,IFN) ;
+ADD(DX,IFN,DXPOA) ;
  I $$ICD9VER^IBACSV(DX)=1,$E($$ICD9^IBACSV(DX,$$BDATE^IBACSV(IFN)))="E",$$MAXECODE^IBCSC4F(IFN) W !!,*7,"Only 3 External Cause of Injury diagnoses are allowed per claim.",! Q 0
- S DIC="^IBA(362.3,",DIC(0)="AQL",DIC("DR")=".02////"_IFN,X=DX K DA,DO D FILE^DICN K DA,DO,DIC,X
+ S DIC("DR")=".02////"_IFN I $G(DXPOA)'="" S DIC("DR")=DIC("DR")_";.04///"_DXPOA
+ S DIC="^IBA(362.3,",DIC(0)="AQL",X=DX K DA,DO D FILE^DICN K DA,DO,DIC,X
  Q Y
  ;
 EDIT(IBDXIFN) ;

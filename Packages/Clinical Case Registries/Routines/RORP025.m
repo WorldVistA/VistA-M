@@ -1,0 +1,54 @@
+RORP025 ;ALB/TK - POST INSTALL PATCH 25 ;10/22/2014
+ ;;1.5;CLINICAL CASE REGISTRIES;**25**;;Build 19
+ ; This routine uses the following IAs:
+ ;
+ ; #10141   XPDUTL (supported)
+ ; #2053    UPDATE^DIE (supported)
+ ; #2054    CLEAN^DILF (supported)
+ ;*****************************************************************************
+ ;Update to ROR METADATA
+ ;*****************************************************************************
+POST ; Post install for patch ROR*1.5*25
+ N DA,RORFDA,RORDATA,RORERR,RORIENS,RORPARM,RORMSG,I,I1
+ S RORPARM("DEVELOPER")=1
+ D BMES^XPDUTL("POST INSTALL START")
+ F I=1:1 S RORDATA=$P($T(META45+I),";;",2) Q:RORDATA=""  D
+ . S RORIENS="?+"_(I+1)_",45,"
+ . S RORFDA(799.22,RORIENS,.01)=$P(RORDATA,U)
+ . S RORFDA(799.22,RORIENS,.02)=$P(RORDATA,U,2)
+ . S RORFDA(799.22,RORIENS,2)=$P(RORDATA,U,3)
+ . S RORFDA(799.22,RORIENS,4)=$P(RORDATA,U,4)
+ . S RORFDA(799.22,RORIENS,1)=$P(RORDATA,U,5)
+ . S RORFDA(799.22,RORIENS,6)=$P(RORDATA,U,6)
+ D UPDATE^DIE(,"RORFDA","","RORMSG")
+ I $G(RORMSG) D  Q
+ . D BMES^XPDUTL("Update to ROR METADATA <<FAILED>>")
+ . S I="RORMSG",I1=0 F  S I=$Q(@I) Q:I'["RORMSG"  S I1=I1+1,RORERR(I1)=@I
+ . D MES^XPDUTL(.RORERR)
+ E  D
+ . D BMES^XPDUTL("Update to ROR METADATA <SUCCESSFUL>")
+ D CLEAN^DILF
+ D BMES^XPDUTL("POST INSTALL COMPLETE")
+ Q
+ ;
+ ;******************************************************************************
+ ; Data to be added to ROR METADATA file (#799.2)
+ ; DATA NAME^CODE^REQUIRED^VALUE TYPE^LOADER API^FIELD NUMBER
+ ;******************************************************************************
+META45 ;
+ ;;SECONDARY DIAGNOSIS 10^133^1^Internal^1^79.241
+ ;;SECONDARY DIAGNOSIS 11^134^1^Internal^1^79.242
+ ;;SECONDARY DIAGNOSIS 12^135^1^Internal^1^79.243
+ ;;SECONDARY DIAGNOSIS 13^136^1^Internal^1^79.244
+ ;;SECONDARY DIAGNOSIS 14^137^1^Internal^1^79.245
+ ;;SECONDARY DIAGNOSIS 15^138^1^Internal^1^79.246
+ ;;SECONDARY DIAGNOSIS 16^139^1^Internal^1^79.247
+ ;;SECONDARY DIAGNOSIS 17^140^1^Internal^1^79.248
+ ;;SECONDARY DIAGNOSIS 18^141^1^Internal^1^79.249
+ ;;SECONDARY DIAGNOSIS 19^142^1^Internal^1^79.2491
+ ;;SECONDARY DIAGNOSIS 20^143^1^Internal^1^79.24911
+ ;;SECONDARY DIAGNOSIS 21^144^1^Internal^1^79.24912
+ ;;SECONDARY DIAGNOSIS 22^145^1^Internal^1^79.24913
+ ;;SECONDARY DIAGNOSIS 23^146^1^Internal^1^79.24914
+ ;;SECONDARY DIAGNOSIS 24^147^1^Internal^1^79.24915
+ ;

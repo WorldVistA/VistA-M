@@ -1,134 +1,130 @@
-IBDEI0OX ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0OX ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12215,1,3,0)
- ;;=3^G0151
- ;;^UTILITY(U,$J,358.3,12216,0)
- ;;=G0152^^67^741^2^^^^1
- ;;^UTILITY(U,$J,358.3,12216,1,0)
+ ;;^UTILITY(U,$J,358.3,11899,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12216,1,2,0)
- ;;=2^OT in home/hospice,ea 15min
- ;;^UTILITY(U,$J,358.3,12216,1,3,0)
- ;;=3^G0152
- ;;^UTILITY(U,$J,358.3,12217,0)
- ;;=G0157^^67^741^6^^^^1
- ;;^UTILITY(U,$J,358.3,12217,1,0)
+ ;;^UTILITY(U,$J,358.3,11899,1,2,0)
+ ;;=2^345.50
+ ;;^UTILITY(U,$J,358.3,11899,1,3,0)
+ ;;=3^Simple Partial Seizures
+ ;;^UTILITY(U,$J,358.3,11899,2)
+ ;;=Simple Partial Epilepsy^268470
+ ;;^UTILITY(U,$J,358.3,11900,0)
+ ;;=345.51^^58^697^12
+ ;;^UTILITY(U,$J,358.3,11900,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12217,1,2,0)
- ;;=2^PTA in home/hospice,ea 15min
- ;;^UTILITY(U,$J,358.3,12217,1,3,0)
- ;;=3^G0157
- ;;^UTILITY(U,$J,358.3,12218,0)
- ;;=G0158^^67^741^3^^^^1
- ;;^UTILITY(U,$J,358.3,12218,1,0)
+ ;;^UTILITY(U,$J,358.3,11900,1,2,0)
+ ;;=2^345.51
+ ;;^UTILITY(U,$J,358.3,11900,1,3,0)
+ ;;=3^Simple Partial Seizures, Intract
+ ;;^UTILITY(U,$J,358.3,11900,2)
+ ;;=Simple Epilepsy Partial, Intract^268467
+ ;;^UTILITY(U,$J,358.3,11901,0)
+ ;;=345.40^^58^697^2
+ ;;^UTILITY(U,$J,358.3,11901,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12218,1,2,0)
- ;;=2^OTA in home/hospice,ea 15min
- ;;^UTILITY(U,$J,358.3,12218,1,3,0)
- ;;=3^G0158
- ;;^UTILITY(U,$J,358.3,12219,0)
- ;;=G0159^^67^741^4^^^^1
- ;;^UTILITY(U,$J,358.3,12219,1,0)
+ ;;^UTILITY(U,$J,358.3,11901,1,2,0)
+ ;;=2^345.40
+ ;;^UTILITY(U,$J,358.3,11901,1,3,0)
+ ;;=3^Complex Partial Seizures
+ ;;^UTILITY(U,$J,358.3,11901,2)
+ ;;=Cmplx Partial Epilepsy^268467
+ ;;^UTILITY(U,$J,358.3,11902,0)
+ ;;=345.41^^58^697^3
+ ;;^UTILITY(U,$J,358.3,11902,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12219,1,2,0)
- ;;=2^PT Maint in home,ea 15min
- ;;^UTILITY(U,$J,358.3,12219,1,3,0)
- ;;=3^G0159
- ;;^UTILITY(U,$J,358.3,12220,0)
- ;;=G0160^^67^741^1^^^^1
- ;;^UTILITY(U,$J,358.3,12220,1,0)
+ ;;^UTILITY(U,$J,358.3,11902,1,2,0)
+ ;;=2^345.41
+ ;;^UTILITY(U,$J,358.3,11902,1,3,0)
+ ;;=3^Complex Partial Seizures, Intractible
+ ;;^UTILITY(U,$J,358.3,11902,2)
+ ;;=Complex Partial Seizures, Intractible^268469
+ ;;^UTILITY(U,$J,358.3,11903,0)
+ ;;=345.90^^58^697^6
+ ;;^UTILITY(U,$J,358.3,11903,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12220,1,2,0)
- ;;=2^OT Maint in home,ea 15min
- ;;^UTILITY(U,$J,358.3,12220,1,3,0)
- ;;=3^G0160
- ;;^UTILITY(U,$J,358.3,12221,0)
- ;;=97535^^67^742^2^^^^1
- ;;^UTILITY(U,$J,358.3,12221,1,0)
+ ;;^UTILITY(U,$J,358.3,11903,1,2,0)
+ ;;=2^345.90
+ ;;^UTILITY(U,$J,358.3,11903,1,3,0)
+ ;;=3^Epilepsy,Unspec
+ ;;^UTILITY(U,$J,358.3,11903,2)
+ ;;=Unspecified Epilepsy^268477
+ ;;^UTILITY(U,$J,358.3,11904,0)
+ ;;=345.91^^58^697^5
+ ;;^UTILITY(U,$J,358.3,11904,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12221,1,2,0)
- ;;=2^Self Care Mgmt Training
- ;;^UTILITY(U,$J,358.3,12221,1,3,0)
- ;;=3^97535
- ;;^UTILITY(U,$J,358.3,12222,0)
- ;;=T2024^^67^742^3^^^^1
- ;;^UTILITY(U,$J,358.3,12222,1,0)
+ ;;^UTILITY(U,$J,358.3,11904,1,2,0)
+ ;;=2^345.91
+ ;;^UTILITY(U,$J,358.3,11904,1,3,0)
+ ;;=3^Epilepsy w/ Intractable Epilepsy,Unspec
+ ;;^UTILITY(U,$J,358.3,11904,2)
+ ;;=Unspecified, Intract Epilepsy^268478
+ ;;^UTILITY(U,$J,358.3,11905,0)
+ ;;=780.02^^58^697^13
+ ;;^UTILITY(U,$J,358.3,11905,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12222,1,2,0)
- ;;=2^Serv Asmnt/Care Plan Waiver
- ;;^UTILITY(U,$J,358.3,12222,1,3,0)
- ;;=3^T2024
- ;;^UTILITY(U,$J,358.3,12223,0)
- ;;=97110^^67^742^5^^^^1
- ;;^UTILITY(U,$J,358.3,12223,1,0)
+ ;;^UTILITY(U,$J,358.3,11905,1,2,0)
+ ;;=2^780.02
+ ;;^UTILITY(U,$J,358.3,11905,1,3,0)
+ ;;=3^Trans Alt of Awareness
+ ;;^UTILITY(U,$J,358.3,11905,2)
+ ;;=Trans Alt of Awareness^293932
+ ;;^UTILITY(U,$J,358.3,11906,0)
+ ;;=780.09^^58^697^14
+ ;;^UTILITY(U,$J,358.3,11906,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12223,1,2,0)
- ;;=2^Therapeutic Exercises
- ;;^UTILITY(U,$J,358.3,12223,1,3,0)
- ;;=3^97110
- ;;^UTILITY(U,$J,358.3,12224,0)
- ;;=97116^^67^742^1^^^^1
- ;;^UTILITY(U,$J,358.3,12224,1,0)
+ ;;^UTILITY(U,$J,358.3,11906,1,2,0)
+ ;;=2^780.09
+ ;;^UTILITY(U,$J,358.3,11906,1,3,0)
+ ;;=3^Trans Alt of Conscious
+ ;;^UTILITY(U,$J,358.3,11906,2)
+ ;;=Trans Alt of Conscious^260077
+ ;;^UTILITY(U,$J,358.3,11907,0)
+ ;;=780.33^^58^697^10
+ ;;^UTILITY(U,$J,358.3,11907,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12224,1,2,0)
- ;;=2^Gait Training Therapy
- ;;^UTILITY(U,$J,358.3,12224,1,3,0)
- ;;=3^97116
- ;;^UTILITY(U,$J,358.3,12225,0)
- ;;=97530^^67^742^4^^^^1
- ;;^UTILITY(U,$J,358.3,12225,1,0)
+ ;;^UTILITY(U,$J,358.3,11907,1,2,0)
+ ;;=2^780.33
+ ;;^UTILITY(U,$J,358.3,11907,1,3,0)
+ ;;=3^Post Traumatic Seizures
+ ;;^UTILITY(U,$J,358.3,11907,2)
+ ;;=^339635
+ ;;^UTILITY(U,$J,358.3,11908,0)
+ ;;=780.31^^58^697^7
+ ;;^UTILITY(U,$J,358.3,11908,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12225,1,2,0)
- ;;=2^Therapeutic Activities
- ;;^UTILITY(U,$J,358.3,12225,1,3,0)
- ;;=3^97530
- ;;^UTILITY(U,$J,358.3,12226,0)
- ;;=97542^^67^742^6^^^^1
- ;;^UTILITY(U,$J,358.3,12226,1,0)
+ ;;^UTILITY(U,$J,358.3,11908,1,2,0)
+ ;;=2^780.31
+ ;;^UTILITY(U,$J,358.3,11908,1,3,0)
+ ;;=3^Febrile Convulsions NOS
+ ;;^UTILITY(U,$J,358.3,11908,2)
+ ;;=^334260
+ ;;^UTILITY(U,$J,358.3,11909,0)
+ ;;=780.32^^58^697^1
+ ;;^UTILITY(U,$J,358.3,11909,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12226,1,2,0)
- ;;=2^Wheelchair Mgmt Training
- ;;^UTILITY(U,$J,358.3,12226,1,3,0)
- ;;=3^97542
- ;;^UTILITY(U,$J,358.3,12227,0)
- ;;=G0153^^67^743^1^^^^1
- ;;^UTILITY(U,$J,358.3,12227,1,0)
+ ;;^UTILITY(U,$J,358.3,11909,1,2,0)
+ ;;=2^780.32
+ ;;^UTILITY(U,$J,358.3,11909,1,3,0)
+ ;;=3^Complex Febrile Convulsions
+ ;;^UTILITY(U,$J,358.3,11909,2)
+ ;;=^334162
+ ;;^UTILITY(U,$J,358.3,11910,0)
+ ;;=780.39^^58^697^4
+ ;;^UTILITY(U,$J,358.3,11910,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12227,1,2,0)
- ;;=2^Speech-Language Therapy,Ea 15min
- ;;^UTILITY(U,$J,358.3,12227,1,3,0)
- ;;=3^G0153
- ;;^UTILITY(U,$J,358.3,12228,0)
- ;;=V57.1^^68^744^3
- ;;^UTILITY(U,$J,358.3,12228,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12228,1,3,0)
- ;;=3^PHYSICAL THERAPY NEC
- ;;^UTILITY(U,$J,358.3,12228,1,4,0)
- ;;=4^V57.1
- ;;^UTILITY(U,$J,358.3,12228,2)
- ;;=^19764
- ;;^UTILITY(U,$J,358.3,12229,0)
- ;;=V57.21^^68^744^1
- ;;^UTILITY(U,$J,358.3,12229,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12229,1,3,0)
- ;;=3^OCCUPATIONAL THERAPY
- ;;^UTILITY(U,$J,358.3,12229,1,4,0)
- ;;=4^V57.21
- ;;^UTILITY(U,$J,358.3,12229,2)
- ;;=^19761
- ;;^UTILITY(U,$J,358.3,12230,0)
- ;;=V57.22^^68^744^6
- ;;^UTILITY(U,$J,358.3,12230,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12230,1,3,0)
- ;;=3^VOCATIONAL THERAPY
- ;;^UTILITY(U,$J,358.3,12230,1,4,0)
- ;;=4^V57.22
- ;;^UTILITY(U,$J,358.3,12230,2)
- ;;=^303457
- ;;^UTILITY(U,$J,358.3,12231,0)
- ;;=V57.81^^68^744^2
+ ;;^UTILITY(U,$J,358.3,11910,1,2,0)
+ ;;=2^780.39
+ ;;^UTILITY(U,$J,358.3,11910,1,3,0)
+ ;;=3^Covulsions NEC
+ ;;^UTILITY(U,$J,358.3,11910,2)
+ ;;=^28162
+ ;;^UTILITY(U,$J,358.3,11911,0)
+ ;;=346.20^^58^698^5
+ ;;^UTILITY(U,$J,358.3,11911,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,11911,1,2,0)
+ ;;=2^346.20
+ ;;^UTILITY(U,$J,358.3,11911,1,3,0)
+ ;;=3^Cluster Headache

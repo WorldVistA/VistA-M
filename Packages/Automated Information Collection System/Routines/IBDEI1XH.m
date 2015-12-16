@@ -1,134 +1,130 @@
-IBDEI1XH ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XH ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34235,0)
- ;;=H60.392^^192^1992^12
- ;;^UTILITY(U,$J,358.3,34235,1,0)
+ ;;^UTILITY(U,$J,358.3,33873,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,33873,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,33874,0)
+ ;;=Y36.820A^^182^2011^17
+ ;;^UTILITY(U,$J,358.3,33874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34235,1,3,0)
- ;;=3^Infective Left Otitis Externa
- ;;^UTILITY(U,$J,358.3,34235,1,4,0)
- ;;=4^H60.392
- ;;^UTILITY(U,$J,358.3,34235,2)
- ;;=^5006460
- ;;^UTILITY(U,$J,358.3,34236,0)
- ;;=H60.391^^192^1992^13
- ;;^UTILITY(U,$J,358.3,34236,1,0)
+ ;;^UTILITY(U,$J,358.3,33874,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33874,1,4,0)
+ ;;=4^Y36.820A
+ ;;^UTILITY(U,$J,358.3,33874,2)
+ ;;=^5061793
+ ;;^UTILITY(U,$J,358.3,33875,0)
+ ;;=Y36.820D^^182^2011^18
+ ;;^UTILITY(U,$J,358.3,33875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34236,1,3,0)
- ;;=3^Infective Right Otitis Externa
- ;;^UTILITY(U,$J,358.3,34236,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,34236,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,34237,0)
- ;;=H66.93^^192^1992^17
- ;;^UTILITY(U,$J,358.3,34237,1,0)
+ ;;^UTILITY(U,$J,358.3,33875,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33875,1,4,0)
+ ;;=4^Y36.820D
+ ;;^UTILITY(U,$J,358.3,33875,2)
+ ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,33876,0)
+ ;;=Y37.200A^^182^2011^87
+ ;;^UTILITY(U,$J,358.3,33876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34237,1,3,0)
- ;;=3^Otitis Media Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,34237,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,34237,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,34238,0)
- ;;=H66.92^^192^1992^18
- ;;^UTILITY(U,$J,358.3,34238,1,0)
+ ;;^UTILITY(U,$J,358.3,33876,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33876,1,4,0)
+ ;;=4^Y37.200A
+ ;;^UTILITY(U,$J,358.3,33876,2)
+ ;;=^5137997
+ ;;^UTILITY(U,$J,358.3,33877,0)
+ ;;=Y37.200D^^182^2011^88
+ ;;^UTILITY(U,$J,358.3,33877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34238,1,3,0)
- ;;=3^Otitis Media Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,34238,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,34238,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,34239,0)
- ;;=H66.91^^192^1992^19
- ;;^UTILITY(U,$J,358.3,34239,1,0)
+ ;;^UTILITY(U,$J,358.3,33877,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33877,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,33877,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,33878,0)
+ ;;=Z89.012^^183^2012^10
+ ;;^UTILITY(U,$J,358.3,33878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34239,1,3,0)
- ;;=3^Otitis Media Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,34239,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,34239,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,34240,0)
- ;;=H60.93^^192^1992^14
- ;;^UTILITY(U,$J,358.3,34240,1,0)
+ ;;^UTILITY(U,$J,358.3,33878,1,3,0)
+ ;;=3^Acquired absence of left thumb
+ ;;^UTILITY(U,$J,358.3,33878,1,4,0)
+ ;;=4^Z89.012
+ ;;^UTILITY(U,$J,358.3,33878,2)
+ ;;=^5063532
+ ;;^UTILITY(U,$J,358.3,33879,0)
+ ;;=Z89.011^^183^2012^25
+ ;;^UTILITY(U,$J,358.3,33879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34240,1,3,0)
- ;;=3^Otitis Externa Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,34240,1,4,0)
- ;;=4^H60.93
- ;;^UTILITY(U,$J,358.3,34240,2)
- ;;=^5006498
- ;;^UTILITY(U,$J,358.3,34241,0)
- ;;=H60.92^^192^1992^15
- ;;^UTILITY(U,$J,358.3,34241,1,0)
+ ;;^UTILITY(U,$J,358.3,33879,1,3,0)
+ ;;=3^Acquired absence of right thumb
+ ;;^UTILITY(U,$J,358.3,33879,1,4,0)
+ ;;=4^Z89.011
+ ;;^UTILITY(U,$J,358.3,33879,2)
+ ;;=^5063531
+ ;;^UTILITY(U,$J,358.3,33880,0)
+ ;;=Z89.021^^183^2012^16
+ ;;^UTILITY(U,$J,358.3,33880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34241,1,3,0)
- ;;=3^Otitis Externa Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,34241,1,4,0)
- ;;=4^H60.92
- ;;^UTILITY(U,$J,358.3,34241,2)
- ;;=^5133525
- ;;^UTILITY(U,$J,358.3,34242,0)
- ;;=H60.91^^192^1992^16
- ;;^UTILITY(U,$J,358.3,34242,1,0)
+ ;;^UTILITY(U,$J,358.3,33880,1,3,0)
+ ;;=3^Acquired absence of right finger(s)
+ ;;^UTILITY(U,$J,358.3,33880,1,4,0)
+ ;;=4^Z89.021
+ ;;^UTILITY(U,$J,358.3,33880,2)
+ ;;=^5063534
+ ;;^UTILITY(U,$J,358.3,33881,0)
+ ;;=Z89.022^^183^2012^2
+ ;;^UTILITY(U,$J,358.3,33881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34242,1,3,0)
- ;;=3^Otitis Externa Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,34242,1,4,0)
- ;;=4^H60.91
- ;;^UTILITY(U,$J,358.3,34242,2)
- ;;=^5133524
- ;;^UTILITY(U,$J,358.3,34243,0)
- ;;=J30.9^^192^1992^4
- ;;^UTILITY(U,$J,358.3,34243,1,0)
+ ;;^UTILITY(U,$J,358.3,33881,1,3,0)
+ ;;=3^Acquired absence of left finger(s)
+ ;;^UTILITY(U,$J,358.3,33881,1,4,0)
+ ;;=4^Z89.022
+ ;;^UTILITY(U,$J,358.3,33881,2)
+ ;;=^5063535
+ ;;^UTILITY(U,$J,358.3,33882,0)
+ ;;=Z89.112^^183^2012^5
+ ;;^UTILITY(U,$J,358.3,33882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34243,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,34243,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,34243,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,34244,0)
- ;;=J38.00^^192^1992^20
- ;;^UTILITY(U,$J,358.3,34244,1,0)
+ ;;^UTILITY(U,$J,358.3,33882,1,3,0)
+ ;;=3^Acquired absence of left hand
+ ;;^UTILITY(U,$J,358.3,33882,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,33882,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,33883,0)
+ ;;=Z89.111^^183^2012^19
+ ;;^UTILITY(U,$J,358.3,33883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34244,1,3,0)
- ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,34244,1,4,0)
- ;;=4^J38.00
- ;;^UTILITY(U,$J,358.3,34244,2)
- ;;=^5008219
- ;;^UTILITY(U,$J,358.3,34245,0)
- ;;=K92.2^^192^1993^2
- ;;^UTILITY(U,$J,358.3,34245,1,0)
+ ;;^UTILITY(U,$J,358.3,33883,1,3,0)
+ ;;=3^Acquired absence of right hand
+ ;;^UTILITY(U,$J,358.3,33883,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,33883,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,33884,0)
+ ;;=Z89.122^^183^2012^14
+ ;;^UTILITY(U,$J,358.3,33884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34245,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,34245,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,34245,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,34246,0)
- ;;=K27.9^^192^1993^3
- ;;^UTILITY(U,$J,358.3,34246,1,0)
+ ;;^UTILITY(U,$J,358.3,33884,1,3,0)
+ ;;=3^Acquired absence of left wrist
+ ;;^UTILITY(U,$J,358.3,33884,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,33884,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,33885,0)
+ ;;=Z89.121^^183^2012^29
+ ;;^UTILITY(U,$J,358.3,33885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34246,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
- ;;^UTILITY(U,$J,358.3,34246,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,34246,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,34247,0)
- ;;=K46.9^^192^1993^1
- ;;^UTILITY(U,$J,358.3,34247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34247,1,3,0)
- ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,34247,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,34247,2)
- ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,33885,1,3,0)
+ ;;=3^Acquired absence of right wrist
+ ;;^UTILITY(U,$J,358.3,33885,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,33885,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,33886,0)
+ ;;=Z89.211^^183^2012^28

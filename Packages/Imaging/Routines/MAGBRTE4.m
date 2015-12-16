@@ -1,5 +1,5 @@
-MAGBRTE4 ;WOIFO/EdM - Process Routing Rule Evaluation Queue ; 27 Jun 2012 5:45 PM
- ;;3.0;IMAGING;**11,30,51,85,54,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+MAGBRTE4 ;WOIFO/EdM,DAC - Process Routing Rule Evaluation Queue ; 10 Dec 2014 3:14 PM
+ ;;3.0;IMAGING;**11,30,51,85,54,39,156**;Mar 19, 2002;Build 10;Dec 10, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -78,8 +78,6 @@ EVAL ;
  . . . . Q
  . . . D LOG^MAGBRTE5("*** EVAL queue error: "_STATUS_" ***")
  . . . Q
- . . D:'CONS ADD^MAGBAPI(-1,"EVAL")
- . . D:CONS ADD^MAGBAPI(-1,"EVAL",PLACE)
  . . D DQUE^MAGQBUT2(QPTR)
  . . Q
  . H:'ANY 1
@@ -124,6 +122,7 @@ RULES() ; To be called from above
  . . Q
  . S:X'=" (" METMSG=METMSG_")"
  . S:METMSG="" METMSG="Rule #"_RULE
+ . I (STUDYUID="")!(ZTSK="")!(RULE="") Q  ; P156 DAC - Prevent deleted groups from causing hard crashes
  . S OK=$G(^XTMP("MAGEVALSTUDY",ZTSK,STUDYUID,RULE))
  . I OK="" S OK=1,C=0 F  S C=$O(RULE(RULE,"CONDITION",C)) Q:'C  D  Q:'OK
  . . S F=$G(RULE(RULE,"CONDITION",C,"KW")) Q:F=""

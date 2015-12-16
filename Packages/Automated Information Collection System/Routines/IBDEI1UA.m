@@ -1,124 +1,136 @@
-IBDEI1UA ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UA ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32803,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32803,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,32803,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,32804,0)
- ;;=V00.838A^^190^1962^89
- ;;^UTILITY(U,$J,358.3,32804,1,0)
+ ;;^UTILITY(U,$J,358.3,32393,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,32393,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,32393,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,32394,0)
+ ;;=E89.2^^182^1984^46
+ ;;^UTILITY(U,$J,358.3,32394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32804,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,32804,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,32804,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,32805,0)
- ;;=V00.838D^^190^1962^90
- ;;^UTILITY(U,$J,358.3,32805,1,0)
+ ;;^UTILITY(U,$J,358.3,32394,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,32394,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,32394,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,32395,0)
+ ;;=E89.6^^182^1984^45
+ ;;^UTILITY(U,$J,358.3,32395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32805,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32805,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,32805,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,32806,0)
- ;;=V00.891A^^190^1962^55
- ;;^UTILITY(U,$J,358.3,32806,1,0)
+ ;;^UTILITY(U,$J,358.3,32395,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,32395,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,32395,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,32396,0)
+ ;;=L68.0^^182^1984^24
+ ;;^UTILITY(U,$J,358.3,32396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32806,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,32806,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,32806,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,32807,0)
- ;;=V00.891D^^190^1962^56
- ;;^UTILITY(U,$J,358.3,32807,1,0)
+ ;;^UTILITY(U,$J,358.3,32396,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,32396,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,32396,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,32397,0)
+ ;;=M80.00XA^^182^1984^2
+ ;;^UTILITY(U,$J,358.3,32397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32807,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32807,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,32807,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,32808,0)
- ;;=V00.892A^^190^1962^95
- ;;^UTILITY(U,$J,358.3,32808,1,0)
+ ;;^UTILITY(U,$J,358.3,32397,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32397,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,32397,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,32398,0)
+ ;;=M81.0^^182^1984^3
+ ;;^UTILITY(U,$J,358.3,32398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32808,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,32808,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,32808,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,32809,0)
- ;;=V00.892D^^190^1962^96
- ;;^UTILITY(U,$J,358.3,32809,1,0)
+ ;;^UTILITY(U,$J,358.3,32398,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,32398,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,32398,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,32399,0)
+ ;;=M85.80^^182^1984^43
+ ;;^UTILITY(U,$J,358.3,32399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32809,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32809,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,32809,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,32810,0)
- ;;=V00.898A^^190^1962^93
- ;;^UTILITY(U,$J,358.3,32810,1,0)
+ ;;^UTILITY(U,$J,358.3,32399,1,3,0)
+ ;;=3^Osteopenia,Unspec
+ ;;^UTILITY(U,$J,358.3,32399,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,32399,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,32400,0)
+ ;;=N62.^^182^1984^23
+ ;;^UTILITY(U,$J,358.3,32400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32810,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,32810,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,32810,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,32811,0)
- ;;=V00.898D^^190^1962^94
- ;;^UTILITY(U,$J,358.3,32811,1,0)
+ ;;^UTILITY(U,$J,358.3,32400,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,32400,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,32400,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,32401,0)
+ ;;=E10.43^^182^1984^6
+ ;;^UTILITY(U,$J,358.3,32401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32811,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32811,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,32811,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,32812,0)
- ;;=W00.0XXA^^190^1962^75
- ;;^UTILITY(U,$J,358.3,32812,1,0)
+ ;;^UTILITY(U,$J,358.3,32401,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,32401,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,32401,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,32402,0)
+ ;;=E10.59^^182^1984^4
+ ;;^UTILITY(U,$J,358.3,32402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32812,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,32812,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,32812,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,32813,0)
- ;;=W00.0XXD^^190^1962^76
- ;;^UTILITY(U,$J,358.3,32813,1,0)
+ ;;^UTILITY(U,$J,358.3,32402,1,3,0)
+ ;;=3^DM Type 1 w/ Circulatory Complications
+ ;;^UTILITY(U,$J,358.3,32402,1,4,0)
+ ;;=4^E10.59
+ ;;^UTILITY(U,$J,358.3,32402,2)
+ ;;=^5002612
+ ;;^UTILITY(U,$J,358.3,32403,0)
+ ;;=E10.618^^182^1984^5
+ ;;^UTILITY(U,$J,358.3,32403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32813,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32813,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,32813,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,32814,0)
- ;;=W00.1XXA^^190^1962^59
- ;;^UTILITY(U,$J,358.3,32814,1,0)
+ ;;^UTILITY(U,$J,358.3,32403,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Arthropathy
+ ;;^UTILITY(U,$J,358.3,32403,1,4,0)
+ ;;=4^E10.618
+ ;;^UTILITY(U,$J,358.3,32403,2)
+ ;;=^5002614
+ ;;^UTILITY(U,$J,358.3,32404,0)
+ ;;=E10.621^^182^1984^7
+ ;;^UTILITY(U,$J,358.3,32404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32814,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,32814,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,32814,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,32815,0)
- ;;=W00.1XXD^^190^1962^60
- ;;^UTILITY(U,$J,358.3,32815,1,0)
+ ;;^UTILITY(U,$J,358.3,32404,1,3,0)
+ ;;=3^DM Type 1 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,32404,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,32404,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,32405,0)
+ ;;=E10.622^^182^1984^10
+ ;;^UTILITY(U,$J,358.3,32405,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32405,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,32405,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,32405,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,32406,0)
+ ;;=E10.65^^182^1984^8
+ ;;^UTILITY(U,$J,358.3,32406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32406,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycermia

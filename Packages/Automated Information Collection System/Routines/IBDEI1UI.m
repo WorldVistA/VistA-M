@@ -1,120 +1,132 @@
-IBDEI1UI ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UI ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32902,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,32902,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,32902,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,32903,0)
- ;;=Y36.300D^^190^1962^116
- ;;^UTILITY(U,$J,358.3,32903,1,0)
+ ;;^UTILITY(U,$J,358.3,32496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32903,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32903,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,32903,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,32904,0)
- ;;=Y36.410A^^190^1962^111
- ;;^UTILITY(U,$J,358.3,32904,1,0)
+ ;;^UTILITY(U,$J,358.3,32496,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,32496,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,32496,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,32497,0)
+ ;;=A54.02^^182^1988^45
+ ;;^UTILITY(U,$J,358.3,32497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32904,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,32904,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,32904,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,32905,0)
- ;;=Y36.410D^^190^1962^112
- ;;^UTILITY(U,$J,358.3,32905,1,0)
+ ;;^UTILITY(U,$J,358.3,32497,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32497,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,32497,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,32498,0)
+ ;;=A54.1^^182^1988^42
+ ;;^UTILITY(U,$J,358.3,32498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32905,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32905,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,32905,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,32906,0)
- ;;=Y36.6X0A^^190^1962^109
- ;;^UTILITY(U,$J,358.3,32906,1,0)
+ ;;^UTILITY(U,$J,358.3,32498,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,32498,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,32498,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,32499,0)
+ ;;=A54.01^^182^1988^41
+ ;;^UTILITY(U,$J,358.3,32499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32906,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,32906,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,32906,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,32907,0)
- ;;=Y36.6X0D^^190^1962^110
- ;;^UTILITY(U,$J,358.3,32907,1,0)
+ ;;^UTILITY(U,$J,358.3,32499,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,32499,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,32499,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,32500,0)
+ ;;=B37.49^^182^1988^11
+ ;;^UTILITY(U,$J,358.3,32500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32907,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32907,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,32907,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,32908,0)
- ;;=Y36.7X0A^^190^1962^117
- ;;^UTILITY(U,$J,358.3,32908,1,0)
+ ;;^UTILITY(U,$J,358.3,32500,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,32500,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,32500,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,32501,0)
+ ;;=B37.41^^182^1988^10
+ ;;^UTILITY(U,$J,358.3,32501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32908,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,32908,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,32908,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,32909,0)
- ;;=Y36.7X0D^^190^1962^118
- ;;^UTILITY(U,$J,358.3,32909,1,0)
+ ;;^UTILITY(U,$J,358.3,32501,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,32501,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,32501,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,32502,0)
+ ;;=B37.42^^182^1988^9
+ ;;^UTILITY(U,$J,358.3,32502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32909,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32909,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,32909,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,32910,0)
- ;;=Y36.810A^^190^1962^19
- ;;^UTILITY(U,$J,358.3,32910,1,0)
+ ;;^UTILITY(U,$J,358.3,32502,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,32502,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,32502,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,32503,0)
+ ;;=A59.03^^182^1988^92
+ ;;^UTILITY(U,$J,358.3,32503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32910,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,32910,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,32910,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,32911,0)
- ;;=Y36.810D^^190^1962^20
- ;;^UTILITY(U,$J,358.3,32911,1,0)
+ ;;^UTILITY(U,$J,358.3,32503,1,3,0)
+ ;;=3^Trichomonal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,32503,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,32503,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,32504,0)
+ ;;=E87.6^^182^1988^53
+ ;;^UTILITY(U,$J,358.3,32504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32911,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32911,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,32911,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,32912,0)
- ;;=Y36.820A^^190^1962^17
- ;;^UTILITY(U,$J,358.3,32912,1,0)
+ ;;^UTILITY(U,$J,358.3,32504,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,32504,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,32504,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,32505,0)
+ ;;=F52.0^^182^1988^52
+ ;;^UTILITY(U,$J,358.3,32505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32912,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,32912,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,32912,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,32913,0)
- ;;=Y36.820D^^190^1962^18
- ;;^UTILITY(U,$J,358.3,32913,1,0)
+ ;;^UTILITY(U,$J,358.3,32505,1,3,0)
+ ;;=3^Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,32505,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,32505,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,32506,0)
+ ;;=F52.22^^182^1988^89
+ ;;^UTILITY(U,$J,358.3,32506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32913,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32913,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,32913,2)
- ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,32506,1,3,0)
+ ;;=3^Sexual Arousal Disorder,Female
+ ;;^UTILITY(U,$J,358.3,32506,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,32506,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,32507,0)
+ ;;=F52.8^^182^1988^90
+ ;;^UTILITY(U,$J,358.3,32507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32507,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
+ ;;^UTILITY(U,$J,358.3,32507,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,32507,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,32508,0)
+ ;;=F52.21^^182^1988^30
+ ;;^UTILITY(U,$J,358.3,32508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32508,1,3,0)
+ ;;=3^Erectile Disorder,Male
+ ;;^UTILITY(U,$J,358.3,32508,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,32508,2)
+ ;;=^5003620

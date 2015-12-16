@@ -1,132 +1,134 @@
-IBDEI135 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI135 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19345,0)
- ;;=295.72^^106^1139^11
- ;;^UTILITY(U,$J,358.3,19345,1,0)
+ ;;^UTILITY(U,$J,358.3,19154,2)
+ ;;=^328505
+ ;;^UTILITY(U,$J,358.3,19155,0)
+ ;;=438.85^^105^1227^25
+ ;;^UTILITY(U,$J,358.3,19155,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19345,1,2,0)
- ;;=2^295.72
- ;;^UTILITY(U,$J,358.3,19345,1,5,0)
- ;;=5^Schizoaffective Disorder, Chr
- ;;^UTILITY(U,$J,358.3,19345,2)
- ;;=^268083
- ;;^UTILITY(U,$J,358.3,19346,0)
- ;;=295.74^^106^1139^12
- ;;^UTILITY(U,$J,358.3,19346,1,0)
+ ;;^UTILITY(U,$J,358.3,19155,1,4,0)
+ ;;=4^438.85
+ ;;^UTILITY(U,$J,358.3,19155,1,5,0)
+ ;;=5^CVA w/Vertigo
+ ;;^UTILITY(U,$J,358.3,19155,2)
+ ;;=^328508
+ ;;^UTILITY(U,$J,358.3,19156,0)
+ ;;=438.21^^105^1227^12
+ ;;^UTILITY(U,$J,358.3,19156,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19346,1,2,0)
- ;;=2^295.74
- ;;^UTILITY(U,$J,358.3,19346,1,5,0)
- ;;=5^Schizoaffective Disorder, w/Exacerb.
- ;;^UTILITY(U,$J,358.3,19346,2)
- ;;=^268085
- ;;^UTILITY(U,$J,358.3,19347,0)
- ;;=295.42^^106^1139^17
- ;;^UTILITY(U,$J,358.3,19347,1,0)
+ ;;^UTILITY(U,$J,358.3,19156,1,4,0)
+ ;;=4^438.21
+ ;;^UTILITY(U,$J,358.3,19156,1,5,0)
+ ;;=5^CVA w/Hemiplegia Dominant Side
+ ;;^UTILITY(U,$J,358.3,19156,2)
+ ;;=^317911
+ ;;^UTILITY(U,$J,358.3,19157,0)
+ ;;=438.22^^105^1227^13
+ ;;^UTILITY(U,$J,358.3,19157,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19347,1,2,0)
- ;;=2^295.42
- ;;^UTILITY(U,$J,358.3,19347,1,5,0)
- ;;=5^Schizophreniform Disorder, Chr
- ;;^UTILITY(U,$J,358.3,19347,2)
- ;;=^268068
- ;;^UTILITY(U,$J,358.3,19348,0)
- ;;=295.44^^106^1139^18
- ;;^UTILITY(U,$J,358.3,19348,1,0)
+ ;;^UTILITY(U,$J,358.3,19157,1,4,0)
+ ;;=4^438.22
+ ;;^UTILITY(U,$J,358.3,19157,1,5,0)
+ ;;=5^CVA w/Hemiplegia Nondominant Side
+ ;;^UTILITY(U,$J,358.3,19157,2)
+ ;;=^317912
+ ;;^UTILITY(U,$J,358.3,19158,0)
+ ;;=342.00^^105^1227^38
+ ;;^UTILITY(U,$J,358.3,19158,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19348,1,2,0)
- ;;=2^295.44
- ;;^UTILITY(U,$J,358.3,19348,1,5,0)
- ;;=5^Schizophreniform Disorderw/Exacerb.
- ;;^UTILITY(U,$J,358.3,19348,2)
- ;;=^268070
- ;;^UTILITY(U,$J,358.3,19349,0)
- ;;=295.02^^106^1139^21
- ;;^UTILITY(U,$J,358.3,19349,1,0)
+ ;;^UTILITY(U,$J,358.3,19158,1,4,0)
+ ;;=4^342.00
+ ;;^UTILITY(U,$J,358.3,19158,1,5,0)
+ ;;=5^Flaccid Hemiplegia & Hemiparesis,Unspec Side
+ ;;^UTILITY(U,$J,358.3,19158,2)
+ ;;=^303258
+ ;;^UTILITY(U,$J,358.3,19159,0)
+ ;;=342.01^^105^1227^36
+ ;;^UTILITY(U,$J,358.3,19159,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19349,1,2,0)
- ;;=2^295.02
- ;;^UTILITY(U,$J,358.3,19349,1,5,0)
- ;;=5^Simple Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,19349,2)
- ;;=Simple Schizophrenia, Chronic^268046
- ;;^UTILITY(U,$J,358.3,19350,0)
- ;;=295.04^^106^1139^20
- ;;^UTILITY(U,$J,358.3,19350,1,0)
+ ;;^UTILITY(U,$J,358.3,19159,1,4,0)
+ ;;=4^342.01
+ ;;^UTILITY(U,$J,358.3,19159,1,5,0)
+ ;;=5^Flaccid Hemiplegia & Hemiparesis Dom
+ ;;^UTILITY(U,$J,358.3,19159,2)
+ ;;=^303259
+ ;;^UTILITY(U,$J,358.3,19160,0)
+ ;;=342.02^^105^1227^37
+ ;;^UTILITY(U,$J,358.3,19160,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19350,1,2,0)
- ;;=2^295.04
- ;;^UTILITY(U,$J,358.3,19350,1,5,0)
- ;;=5^Simple Schizophrenia,  Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,19350,2)
- ;;=^268048
- ;;^UTILITY(U,$J,358.3,19351,0)
- ;;=295.92^^106^1139^14
- ;;^UTILITY(U,$J,358.3,19351,1,0)
+ ;;^UTILITY(U,$J,358.3,19160,1,4,0)
+ ;;=4^342.02
+ ;;^UTILITY(U,$J,358.3,19160,1,5,0)
+ ;;=5^Flaccid Hemiplegia & Hemiparesis Nondom
+ ;;^UTILITY(U,$J,358.3,19160,2)
+ ;;=^303260
+ ;;^UTILITY(U,$J,358.3,19161,0)
+ ;;=342.80^^105^1227^68
+ ;;^UTILITY(U,$J,358.3,19161,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19351,1,2,0)
- ;;=2^295.92
- ;;^UTILITY(U,$J,358.3,19351,1,5,0)
- ;;=5^Schizophrenia, NOS, Chronic
- ;;^UTILITY(U,$J,358.3,19351,2)
- ;;=Schizophrenia, NOS, Chronic^268093
- ;;^UTILITY(U,$J,358.3,19352,0)
- ;;=295.94^^106^1139^15
- ;;^UTILITY(U,$J,358.3,19352,1,0)
+ ;;^UTILITY(U,$J,358.3,19161,1,4,0)
+ ;;=4^342.80
+ ;;^UTILITY(U,$J,358.3,19161,1,5,0)
+ ;;=5^Hemiplegia & Hemiparesis NEC,Unspec Side
+ ;;^UTILITY(U,$J,358.3,19161,2)
+ ;;=^303264
+ ;;^UTILITY(U,$J,358.3,19162,0)
+ ;;=342.81^^105^1227^66
+ ;;^UTILITY(U,$J,358.3,19162,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19352,1,2,0)
- ;;=2^295.94
- ;;^UTILITY(U,$J,358.3,19352,1,5,0)
- ;;=5^Schizophrenia, NOS, Chronic w/Exacerbation
- ;;^UTILITY(U,$J,358.3,19352,2)
- ;;=^268095
- ;;^UTILITY(U,$J,358.3,19353,0)
- ;;=295.00^^106^1139^19
- ;;^UTILITY(U,$J,358.3,19353,1,0)
+ ;;^UTILITY(U,$J,358.3,19162,1,4,0)
+ ;;=4^342.81
+ ;;^UTILITY(U,$J,358.3,19162,1,5,0)
+ ;;=5^Hemiplegia & Hemiparesis NEC Dom Side
+ ;;^UTILITY(U,$J,358.3,19162,2)
+ ;;=^303265
+ ;;^UTILITY(U,$J,358.3,19163,0)
+ ;;=342.82^^105^1227^67
+ ;;^UTILITY(U,$J,358.3,19163,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19353,1,2,0)
- ;;=2^295.00
- ;;^UTILITY(U,$J,358.3,19353,1,5,0)
- ;;=5^Simple Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,19353,2)
- ;;=^265175
- ;;^UTILITY(U,$J,358.3,19354,0)
- ;;=295.10^^106^1139^1
- ;;^UTILITY(U,$J,358.3,19354,1,0)
+ ;;^UTILITY(U,$J,358.3,19163,1,4,0)
+ ;;=4^342.82
+ ;;^UTILITY(U,$J,358.3,19163,1,5,0)
+ ;;=5^Hemiplegia & Hemiparesis NEC Nondom Side
+ ;;^UTILITY(U,$J,358.3,19163,2)
+ ;;=^303266
+ ;;^UTILITY(U,$J,358.3,19164,0)
+ ;;=342.90^^105^1227^71
+ ;;^UTILITY(U,$J,358.3,19164,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19354,1,2,0)
- ;;=2^295.10
- ;;^UTILITY(U,$J,358.3,19354,1,5,0)
- ;;=5^Disorganized Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,19354,2)
- ;;=^108319
- ;;^UTILITY(U,$J,358.3,19355,0)
- ;;=295.30^^106^1139^7
- ;;^UTILITY(U,$J,358.3,19355,1,0)
+ ;;^UTILITY(U,$J,358.3,19164,1,4,0)
+ ;;=4^342.90
+ ;;^UTILITY(U,$J,358.3,19164,1,5,0)
+ ;;=5^Hemiplegia & Hemiparesis Uns,Uns Side
+ ;;^UTILITY(U,$J,358.3,19164,2)
+ ;;=^303267
+ ;;^UTILITY(U,$J,358.3,19165,0)
+ ;;=342.91^^105^1227^69
+ ;;^UTILITY(U,$J,358.3,19165,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19355,1,2,0)
- ;;=2^295.30
- ;;^UTILITY(U,$J,358.3,19355,1,5,0)
- ;;=5^Paranoid Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,19355,2)
- ;;=^108330
- ;;^UTILITY(U,$J,358.3,19356,0)
- ;;=295.40^^106^1139^16
- ;;^UTILITY(U,$J,358.3,19356,1,0)
+ ;;^UTILITY(U,$J,358.3,19165,1,4,0)
+ ;;=4^342.91
+ ;;^UTILITY(U,$J,358.3,19165,1,5,0)
+ ;;=5^Hemiplegia & Hemiparesis Uns Dom Side
+ ;;^UTILITY(U,$J,358.3,19165,2)
+ ;;=^303268
+ ;;^UTILITY(U,$J,358.3,19166,0)
+ ;;=342.92^^105^1227^70
+ ;;^UTILITY(U,$J,358.3,19166,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19356,1,2,0)
- ;;=2^295.40
- ;;^UTILITY(U,$J,358.3,19356,1,5,0)
- ;;=5^Schizophreniform Disorder NOS
- ;;^UTILITY(U,$J,358.3,19356,2)
- ;;=^331845
- ;;^UTILITY(U,$J,358.3,19357,0)
- ;;=295.50^^106^1139^4
- ;;^UTILITY(U,$J,358.3,19357,1,0)
+ ;;^UTILITY(U,$J,358.3,19166,1,4,0)
+ ;;=4^342.92
+ ;;^UTILITY(U,$J,358.3,19166,1,5,0)
+ ;;=5^Hemiplegia & Hemiparesis Uns Nondom Side
+ ;;^UTILITY(U,$J,358.3,19166,2)
+ ;;=^303269
+ ;;^UTILITY(U,$J,358.3,19167,0)
+ ;;=344.01^^105^1227^94
+ ;;^UTILITY(U,$J,358.3,19167,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19357,1,2,0)
- ;;=2^295.50
- ;;^UTILITY(U,$J,358.3,19357,1,5,0)
- ;;=5^Latent Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,19167,1,4,0)
+ ;;=4^344.01
+ ;;^UTILITY(U,$J,358.3,19167,1,5,0)
+ ;;=5^Quadriplegia C1-C4,Complete

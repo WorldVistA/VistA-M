@@ -1,6 +1,6 @@
-IBCSC4F ;ALB/ARH - GET PTF DIAGNOSIS ; 10-OCT-1998
- ;;2.0;INTEGRATED BILLING;**106,403,400**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCSC4F ;ALB/ARH - GET PTF DIAGNOSIS ;10-OCT-1998
+ ;;2.0;INTEGRATED BILLING;**106,403,400,522**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PTFDXDT(IBPTF,IBDT1,IBDT2,TF) ; collect PTF Transfer (501) and Discharge (701) movements and diagnosis within a date range
  ; if end date is before Discharge date delete Discharge Diagnosis
@@ -38,15 +38,15 @@ PTFDX(IBPTF) ; collect all PTF Transfer (501) and Discharge (701) movements and 
  ;
  ; Output:  TMP($J,"IBDX","D")=PTF # ^ ADMIT DATE ^ DISCHARGE DATE
  ;          TMP($J,"IBDX","D", DISCHARGE DATE) = DISCHARGE DATE ^ SPECIALTY ^ SC (1/0) ^ DRG ^ PROVIDER
- ;          TMP($J,"IBDX","D", DISCHARGE DATE, x) = DIAGNOSIS ^ SC? (1/0)
+ ;          TMP($J,"IBDX","D", DISCHARGE DATE, x) = DIAGNOSIS ^ SC? (1/0) ^ POA
  ;
  ;          TMP($J,"IBDX","M")=PTF # ^ ADMIT DATE ^ DISCHARGE DATE
  ;          TMP($J,"IBDX","M", MOVEMENT DATE) = MOVEMENT DATE ^ SPECIALTY ^ SC (1/0) ^ DRG ^ PROVIDER
- ;          TMP($J,"IBDX","M", MOVEMENT DATE, x) = DIAGNOSIS ^ SC? (1/0)
+ ;          TMP($J,"IBDX","M", MOVEMENT DATE, x) = DIAGNOSIS ^ SC? (1/0) ^ POA
  ; if patient not discharged then NOW is used as date subscript and first piece will be null, SC?=interpreted SC
  ;
  N IBSTAY,IBMI,IBM0,IBDT,IBMDT,IBMBS,IBMP,IBMDRG,IBMPRV,IBMSC,IBMDX,IBD0,IBDDT,IBDBS,IBDDRG,IBDPRV,IBDSC,IBDDX
- N IBCNT,IBI,IBTMP,DFN,DGVAR,DRG,DRGCAL,ICDCAL,PTF K ^TMP($J,"IBDX","M"),^TMP($J,"IBDX","D") Q:'$G(IBPTF)
+ N IBCNT,IBI,IBTMP,DFN,DGVAR,DRG,DRGCAL,ICDCAL,PTF,PTFCOD K ^TMP($J,"IBDX","M"),^TMP($J,"IBDX","D") Q:'$G(IBPTF)
  ;
  S IBSTAY=IBPTF_U_$P($G(^DGPT(IBPTF,0)),U,2)_U_$P($G(^DGPT(IBPTF,70)),U,1) Q:'$P(IBSTAY,U,2)
  ;
@@ -60,19 +60,21 @@ PTFDX(IBPTF) ; collect all PTF Transfer (501) and Discharge (701) movements and 
  . ;
  . S ^TMP($J,"IBDX","M",IBDT)=IBMDT_U_IBMBS_U_IBMSC_U_IBMDRG_U_IBMPRV
  . ;
- . S IBCNT=0 F IBI=5:1:9 S IBMDX=+$P(IBM0,U,IBI) I +IBMDX S IBCNT=IBCNT+1 D
- .. S ^TMP($J,"IBDX","M",IBDT,IBCNT)=IBMDX,IBTMP("DXSC",IBMDX,+IBMSC,IBCNT)=""
+ . D PTFCDS(IBPTF,501,IBMI,.PTFCOD) D  K PTFCOD ; get movements diagnosis
+ .. S IBCNT=0,IBI="" F  S IBI=$O(PTFCOD(IBI)) Q:IBI=""  S IBMDX=PTFCOD(IBI) I +IBMDX S IBCNT=IBCNT+1 D
+ ... S ^TMP($J,"IBDX","M",IBDT,IBCNT)=+IBMDX_U_U_$P(IBMDX,U,2),IBTMP("DXSC",+IBMDX,+IBMSC,IBCNT)=""
  ;
  ; collect PTF Discharge Diagnosis (701)
  S ^TMP($J,"IBDX","D")=IBSTAY
- S IBD0=$G(^DGPT(IBPTF,70)),IBDDRG=$$GET1^DIQ(45,IBPTF,9,""),IBDPRV=$P(IBD0,U,15)
+ S IBD0=$G(^DGPT(IBPTF,70)),IBDPRV=$P(IBD0,U,15),IBDDRG=$$PTFDDRG(IBPTF)
  S (IBDT,IBDDT)=$P(IBD0,U,1) I 'IBDT S IBDT=$$NOW^XLFDT
  S IBDBS=$P(IBD0,U,2),IBDSC=$P(IBD0,U,25),IBDSC=$S(IBDSC=1:1,1:"")
  ;
  S ^TMP($J,"IBDX","D",IBDT)=IBDDT_U_IBDBS_U_IBDSC_U_IBDDRG_U_IBDPRV
  ;
- S IBCNT=0 F IBI=10,16:1:24 S IBDDX=+$P(IBD0,U,IBI) I +IBDDX S IBCNT=IBCNT+1 D
- . S ^TMP($J,"IBDX","D",IBDT,IBCNT)=IBDDX
+ D PTFCDS(IBPTF,701,,.PTFCOD) D  K PTFCOD ; get discharge diagnosis
+ . S IBCNT=0,IBI="" F  S IBI=$O(PTFCOD(IBI)) Q:IBI=""  S IBDDX=PTFCOD(IBI) I +IBDDX S IBCNT=IBCNT+1 D
+ .. S ^TMP($J,"IBDX","D",IBDT,IBCNT)=+IBDDX_U_U_$P(IBDDX,U,2)
  ;
  ; Try to assign SC to PTF Diagnosis
  ;
@@ -101,6 +103,8 @@ PTFDX(IBPTF) ; collect all PTF Transfer (501) and Discharge (701) movements and 
  ;
 SETPOA(IBIFN) ; get POAs from file 19640.1 and put them into file 362.3
  N DIAG,DIEN,IBPTF,IEN362,ORDER,POASET
+ ; ICD-9 only, beginning with ICD-10 DSS will pass POA to PTF
+ I $$BDATE^IBACSV(IBIFN)'<$$CSVDATE^IBACSV(30) Q
  ; get PTF ien
  S IBPTF=$P($G(^DGCR(399,IBIFN,0)),U,8) Q:IBPTF=""
  ; loop through all entries in 19640.1 for this PTF
@@ -121,3 +125,24 @@ MAXECODE(IBIFN) ; returns 1 if there are already 3 Ecode diagnoses on the claim,
  S CNT=0,IBDX="",IBDATE=$$BDATE^IBACSV(IBIFN)
  F  S IBDX=$O(^IBA(362.3,"AIFN"_IBIFN,IBDX))  Q:'IBDX  I $E($$ICD9^IBACSV(IBDX,IBDATE))="E" S CNT=CNT+1
  Q CNT>2
+ ;
+ ;
+PTFDDRG(PTF) ; Returns PTF Discharge DRG (#45, 9) calculated field (clean up DG and ICD variables)
+ N IBI,DFN,DGDAT,DGPMAN,DGPMCA,DGPTDAT,DGPTTMP,DGTMP,DGVAR,DRG,DRGCAL,EFFDATE
+ N ICD10ORNIT,ICD10ORT,ICD10SDT,ICDCAL,ICDCDSY,ICDCSYS,ICDDATE,ICDDA,ICDIEN,ICDPOA,ICDRG,ICDTMP,ICDX,IMPDATE
+ ;
+ S IBI="" I +$G(PTF) S IBI=$$GET1^DIQ(45,PTF,9,"")
+ Q IBI
+ ;
+PTFCDS(PTF,TYPE,NODE,PTFARR) ; Get PTF Diagnosis (501, 701) and PTF ICD Procedures (401, 601) Codes   DBIA ICR #6130
+ ; returns codes for a single event: Discharge, one Movement, one Procedure or one Surgery
+ ; Input:   PTF #, TYPE: 701, 501, 401, 601,  NODE: subfile IEN requested (501, 401, 601)
+ ; Output:  PTFARR returned array of Diagnosis or Procedure codes found for event, pass by reference
+ ;          PTFARR(x) = Dx IEN ^ POA ^ ... for 701 and 501,  PTFARR(x) =  ICD Prc IEN ^ ... for 401 and 601
+ ; 
+ N DGPMAN,DGPMCA K PTFARR S PTFARR=0 Q:'$G(PTF)
+ S TYPE=$G(TYPE) I TYPE'=401,TYPE'=501,TYPE'=601,TYPE'=701 Q
+ S NODE=$G(NODE) I TYPE'=701,'NODE Q
+ ;
+ D PTFICD^DGPTFUT(TYPE,PTF,NODE,.PTFARR)
+ Q

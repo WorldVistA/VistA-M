@@ -1,5 +1,5 @@
-MAGROI01 ;WOIFO/FG,JSL - Release Of Information(ROI) RPCS ; 06/24/2013 11:37pm
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGROI01 ;WOIFO/FG,JSL - Release Of Information(ROI) RPCS ; 11/13/2014 11:37pm
+ ;;3.0;IMAGING;**138,157**;Mar 19, 2002;Build 16;Nov 13, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -58,8 +58,13 @@ GETDCLST(MAGRY,SITE) ; RPC [MAG GET DICOM QUEUE LIST]
  N MAGOUT,MAGERR,MAGPL,LIS,I,TEMP
  ;
  ; Get local associated sites
- S SITE=$G(SITE) S:SITE<1 SITE=$S($G(DUZ(2)):DUZ(2),1:+$$SITE^VASITE)
- S MAGPL=$$PLACE^MAGBAPI(SITE)            ; Get 2006.1 place for DUZ(2)
+ S SITE=$G(SITE)
+ I (SITE'="")!($$STA^XUAF4(SITE)="")!(SITE'=+SITE) D  ; P157 - Accept IEN or STATION NUMBER
+ . N IEN S IEN=$$IEN^XUAF4(SITE)  ; Check if is STATION NUMBER
+ . S:IEN SITE=IEN ; INSTITUTION IEN
+ . Q
+ S:SITE<1 SITE=$S($G(DUZ(2)):DUZ(2),1:+$$SITE^VASITE)
+ S MAGPL=$$PLACE^MAGBAPI(SITE) ; Get 2006.1 place for DUZ(2)
  D GETS^DIQ(2006.1,MAGPL,".04*","I","MAGOUT","MAGERR")
  I $D(MAGERR) S MAGRY(0)="0^0^Access Error: "_MAGERR("DIERR",1,"TEXT",1) Q 
  ; Build list of associated sites
@@ -72,7 +77,7 @@ GETDCLST(MAGRY,SITE) ; RPC [MAG GET DICOM QUEUE LIST]
  ;
  S FILE=2006.587
  K MAGOUT,MAGERR
- S SCREEN="I $P(^(0),U,6)=""VistA_Send_Image"""  ; Filter out WorkList queues
+ S SCREEN="I $$UP^XLFSTR($P(^(0),U,6))=""VISTA_SEND_IMAGE"""  ; Filter out WorkList queues
  S SCREEN=SCREEN_",(LIS[$P(^(0),U,7))"           ; Include only sites in LIS
  D LIST^DIC(FILE,"",".01;3;4;7I","","","","","",SCREEN,"","MAGOUT","MAGERR")
  I $D(MAGERR) S MAGRY(0)="0^0^Access Error: "_MAGERR("DIERR",1,"TEXT",1) Q

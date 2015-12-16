@@ -1,150 +1,134 @@
-IBDEI02A ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02A ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,587,1,4,0)
- ;;=4^Bone/Marrow-Sndary Malig
- ;;^UTILITY(U,$J,358.3,587,1,5,0)
- ;;=5^198.5
- ;;^UTILITY(U,$J,358.3,587,2)
- ;;=^267336
- ;;^UTILITY(U,$J,358.3,588,0)
- ;;=197.0^^6^77^13
- ;;^UTILITY(U,$J,358.3,588,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,588,1,4,0)
- ;;=4^Lung-Sndary Malig
- ;;^UTILITY(U,$J,358.3,588,1,5,0)
- ;;=5^197.0
- ;;^UTILITY(U,$J,358.3,588,2)
- ;;=^267322
- ;;^UTILITY(U,$J,358.3,589,0)
- ;;=198.3^^6^77^4
- ;;^UTILITY(U,$J,358.3,589,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,589,1,4,0)
- ;;=4^Brain/Spine-Sndary Malig
- ;;^UTILITY(U,$J,358.3,589,1,5,0)
- ;;=5^198.3
- ;;^UTILITY(U,$J,358.3,589,2)
- ;;=^267334
- ;;^UTILITY(U,$J,358.3,590,0)
- ;;=723.4^^6^78^2
- ;;^UTILITY(U,$J,358.3,590,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,590,1,4,0)
- ;;=4^Brachial Neuritis/Rad
- ;;^UTILITY(U,$J,358.3,590,1,5,0)
- ;;=5^723.4
- ;;^UTILITY(U,$J,358.3,590,2)
- ;;=^16600
- ;;^UTILITY(U,$J,358.3,591,0)
- ;;=354.0^^6^78^3
- ;;^UTILITY(U,$J,358.3,591,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,591,1,4,0)
- ;;=4^Carpal Tunnel Syndrome
- ;;^UTILITY(U,$J,358.3,591,1,5,0)
- ;;=5^354.0
- ;;^UTILITY(U,$J,358.3,591,2)
- ;;=^19944
- ;;^UTILITY(U,$J,358.3,592,0)
- ;;=352.9^^6^78^5
- ;;^UTILITY(U,$J,358.3,592,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,592,1,4,0)
- ;;=4^Cranial Neuralgia NOS
- ;;^UTILITY(U,$J,358.3,592,1,5,0)
- ;;=5^352.9
- ;;^UTILITY(U,$J,358.3,592,2)
- ;;=^123829
- ;;^UTILITY(U,$J,358.3,593,0)
- ;;=351.9^^6^78^6
- ;;^UTILITY(U,$J,358.3,593,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,593,1,4,0)
- ;;=4^Facial Nerve DO NOS
- ;;^UTILITY(U,$J,358.3,593,1,5,0)
- ;;=5^351.9
- ;;^UTILITY(U,$J,358.3,593,2)
- ;;=^109776
- ;;^UTILITY(U,$J,358.3,594,0)
- ;;=354.2^^6^78^28
- ;;^UTILITY(U,$J,358.3,594,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,594,1,4,0)
- ;;=4^Ulnar Nerve Lesion
- ;;^UTILITY(U,$J,358.3,594,1,5,0)
- ;;=5^354.2
- ;;^UTILITY(U,$J,358.3,594,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,595,0)
- ;;=354.1^^6^78^12
- ;;^UTILITY(U,$J,358.3,595,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,595,1,4,0)
- ;;=4^Median Nerve Lesion
- ;;^UTILITY(U,$J,358.3,595,1,5,0)
- ;;=5^354.1
- ;;^UTILITY(U,$J,358.3,595,2)
- ;;=^268505
- ;;^UTILITY(U,$J,358.3,596,0)
- ;;=355.1^^6^78^13
- ;;^UTILITY(U,$J,358.3,596,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,596,1,4,0)
- ;;=4^Meralgia Paresthetica
- ;;^UTILITY(U,$J,358.3,596,1,5,0)
- ;;=5^355.1
- ;;^UTILITY(U,$J,358.3,596,2)
- ;;=^265141
- ;;^UTILITY(U,$J,358.3,597,0)
- ;;=355.8^^6^78^15
- ;;^UTILITY(U,$J,358.3,597,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,597,1,4,0)
- ;;=4^Mononeuritis Leg NOS
- ;;^UTILITY(U,$J,358.3,597,1,5,0)
- ;;=5^355.8
- ;;^UTILITY(U,$J,358.3,597,2)
- ;;=^268511
- ;;^UTILITY(U,$J,358.3,598,0)
- ;;=355.9^^6^78^17
- ;;^UTILITY(U,$J,358.3,598,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,598,1,4,0)
- ;;=4^Mononeuritis NOS
- ;;^UTILITY(U,$J,358.3,598,1,5,0)
- ;;=5^355.9
- ;;^UTILITY(U,$J,358.3,598,2)
- ;;=^78915
- ;;^UTILITY(U,$J,358.3,599,0)
- ;;=354.5^^6^78^16
- ;;^UTILITY(U,$J,358.3,599,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,599,1,4,0)
- ;;=4^Mononeuritis Multiplex
- ;;^UTILITY(U,$J,358.3,599,1,5,0)
- ;;=5^354.5
- ;;^UTILITY(U,$J,358.3,599,2)
- ;;=^263541
- ;;^UTILITY(U,$J,358.3,600,0)
- ;;=354.9^^6^78^14
- ;;^UTILITY(U,$J,358.3,600,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,600,1,4,0)
- ;;=4^Mononeuritis Arm NOS
- ;;^UTILITY(U,$J,358.3,600,1,5,0)
- ;;=5^354.9
- ;;^UTILITY(U,$J,358.3,600,2)
- ;;=^268509
- ;;^UTILITY(U,$J,358.3,601,0)
- ;;=729.1^^6^78^18
- ;;^UTILITY(U,$J,358.3,601,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,601,1,4,0)
- ;;=4^Myalgia/Myositis NOS
- ;;^UTILITY(U,$J,358.3,601,1,5,0)
- ;;=5^729.1
- ;;^UTILITY(U,$J,358.3,601,2)
- ;;=^80160
+ ;;^UTILITY(U,$J,358.3,518,1,4,0)
+ ;;=4^C44.211
+ ;;^UTILITY(U,$J,358.3,518,2)
+ ;;=^5001031
+ ;;^UTILITY(U,$J,358.3,519,0)
+ ;;=C44.221^^2^23^37
+ ;;^UTILITY(U,$J,358.3,519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,519,1,3,0)
+ ;;=3^Squamous cell carcinoma skin/ unsp ear and extrn auric canal
+ ;;^UTILITY(U,$J,358.3,519,1,4,0)
+ ;;=4^C44.221
+ ;;^UTILITY(U,$J,358.3,519,2)
+ ;;=^5001034
+ ;;^UTILITY(U,$J,358.3,520,0)
+ ;;=C44.310^^2^23^8
+ ;;^UTILITY(U,$J,358.3,520,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,520,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of unspecified parts of face
+ ;;^UTILITY(U,$J,358.3,520,1,4,0)
+ ;;=4^C44.310
+ ;;^UTILITY(U,$J,358.3,520,2)
+ ;;=^5001043
+ ;;^UTILITY(U,$J,358.3,521,0)
+ ;;=C44.311^^2^23^4
+ ;;^UTILITY(U,$J,358.3,521,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,521,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of nose
+ ;;^UTILITY(U,$J,358.3,521,1,4,0)
+ ;;=4^C44.311
+ ;;^UTILITY(U,$J,358.3,521,2)
+ ;;=^5001044
+ ;;^UTILITY(U,$J,358.3,522,0)
+ ;;=C44.319^^2^23^5
+ ;;^UTILITY(U,$J,358.3,522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,522,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of other parts of face
+ ;;^UTILITY(U,$J,358.3,522,1,4,0)
+ ;;=4^C44.319
+ ;;^UTILITY(U,$J,358.3,522,2)
+ ;;=^5001045
+ ;;^UTILITY(U,$J,358.3,523,0)
+ ;;=C44.320^^2^23^36
+ ;;^UTILITY(U,$J,358.3,523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,523,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of unspecified parts of face
+ ;;^UTILITY(U,$J,358.3,523,1,4,0)
+ ;;=4^C44.320
+ ;;^UTILITY(U,$J,358.3,523,2)
+ ;;=^5001046
+ ;;^UTILITY(U,$J,358.3,524,0)
+ ;;=C44.321^^2^23^32
+ ;;^UTILITY(U,$J,358.3,524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,524,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of nose
+ ;;^UTILITY(U,$J,358.3,524,1,4,0)
+ ;;=4^C44.321
+ ;;^UTILITY(U,$J,358.3,524,2)
+ ;;=^5001047
+ ;;^UTILITY(U,$J,358.3,525,0)
+ ;;=C44.329^^2^23^33
+ ;;^UTILITY(U,$J,358.3,525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,525,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of other parts of face
+ ;;^UTILITY(U,$J,358.3,525,1,4,0)
+ ;;=4^C44.329
+ ;;^UTILITY(U,$J,358.3,525,2)
+ ;;=^5001048
+ ;;^UTILITY(U,$J,358.3,526,0)
+ ;;=C44.41^^2^23^7
+ ;;^UTILITY(U,$J,358.3,526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,526,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of scalp and neck
+ ;;^UTILITY(U,$J,358.3,526,1,4,0)
+ ;;=4^C44.41
+ ;;^UTILITY(U,$J,358.3,526,2)
+ ;;=^340476
+ ;;^UTILITY(U,$J,358.3,527,0)
+ ;;=C44.42^^2^23^35
+ ;;^UTILITY(U,$J,358.3,527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,527,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of scalp and neck
+ ;;^UTILITY(U,$J,358.3,527,1,4,0)
+ ;;=4^C44.42
+ ;;^UTILITY(U,$J,358.3,527,2)
+ ;;=^340477
+ ;;^UTILITY(U,$J,358.3,528,0)
+ ;;=C44.510^^2^23^1
+ ;;^UTILITY(U,$J,358.3,528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,528,1,3,0)
+ ;;=3^Basal cell carcinoma of anal skin
+ ;;^UTILITY(U,$J,358.3,528,1,4,0)
+ ;;=4^C44.510
+ ;;^UTILITY(U,$J,358.3,528,2)
+ ;;=^5001054
+ ;;^UTILITY(U,$J,358.3,529,0)
+ ;;=C44.511^^2^23^2
+ ;;^UTILITY(U,$J,358.3,529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,529,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of breast
+ ;;^UTILITY(U,$J,358.3,529,1,4,0)
+ ;;=4^C44.511
+ ;;^UTILITY(U,$J,358.3,529,2)
+ ;;=^5001055
+ ;;^UTILITY(U,$J,358.3,530,0)
+ ;;=C44.519^^2^23^6
+ ;;^UTILITY(U,$J,358.3,530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,530,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of other part of trunk
+ ;;^UTILITY(U,$J,358.3,530,1,4,0)
+ ;;=4^C44.519
+ ;;^UTILITY(U,$J,358.3,530,2)
+ ;;=^5001056
+ ;;^UTILITY(U,$J,358.3,531,0)
+ ;;=C44.520^^2^23^29
+ ;;^UTILITY(U,$J,358.3,531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,531,1,3,0)
+ ;;=3^Squamous cell carcinoma of anal skin

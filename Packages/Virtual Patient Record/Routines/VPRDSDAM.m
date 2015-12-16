@@ -1,5 +1,5 @@
 VPRDSDAM ;SLC/MKB -- Appointment extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -16,7 +16,8 @@ VPRDSDAM ;SLC/MKB -- Appointment extract ;8/2/11  15:29
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's [future] appointments
  N VPRX,VPRNUM,VPRDT,VPRCNT,VPRITM,VPRA,X
  S DFN=+$G(DFN) Q:DFN<1
- S BEG=$G(BEG,DT),END=$G(END,4141015),MAX=$G(MAX,9999)
+ I $G(BEG)<2000000 S BEG=DT
+ S END=$G(END,4141015),MAX=$G(MAX,9999)
  S VPRX(1)=BEG_";"_END,VPRX(4)=DFN,VPRX("FLDS")="1;2;3;10;13",VPRX("SORT")="P"
  ;
  ; get one appt
@@ -56,6 +57,7 @@ EN1(DATE,APPT) ; -- return an appointment in APPT("attribute")=value
  . S APPT("clinicStop")=$$AMIS^VPRDVSIT(+$P(X,U,13))
  . S SV=$$GET1^DIQ(44,+HLOC_",",9.5,"I")
  . I SV S APPT("service")=$$SERV(SV)
+ . I 'SV S APPT("service")=$$GET1^DIQ(44,+HLOC_",",9)
  . ;find default provider
  . S PRV=+$$GET1^DIQ(44,+HLOC_",",16,"I") I 'PRV D
  .. N VPRP,I,FIRST
@@ -86,6 +88,7 @@ DGS(IFN,ADM) ; -- return a scheduled admission in ADM("attribute")=value
  . S X=$$GET1^DIQ(44,HLOC_",",8,"I"),ADM("clinicStop")=$$AMIS^VPRDVSIT(X)
  . S SV=$$GET1^DIQ(44,HLOC_",",9.5,"I")
  . I SV S ADM("service")=$$SERV(SV)
+ . I 'SV S ADM("service")=$$GET1^DIQ(44,+HLOC_",",9)
  S ADM("facility")=$$FAC^VPRD(HLOC)
  S X=$P(X0,U,5) I X S ADM("provider")=X_U_$P($G(^VA(200,X,0)),U)
  S ADM("patientClass")="IMP",ADM("serviceCategory")="H^HOSPITALIZATION"

@@ -1,150 +1,136 @@
-IBDEI02F ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02F ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,660,1,4,0)
- ;;=4^Cholangitis
- ;;^UTILITY(U,$J,358.3,660,1,5,0)
- ;;=5^576.1
- ;;^UTILITY(U,$J,358.3,660,2)
- ;;=^23291
- ;;^UTILITY(U,$J,358.3,661,0)
- ;;=572.3^^6^82^8
- ;;^UTILITY(U,$J,358.3,661,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,661,1,4,0)
- ;;=4^Portal Hypertension
- ;;^UTILITY(U,$J,358.3,661,1,5,0)
- ;;=5^572.3
- ;;^UTILITY(U,$J,358.3,661,2)
- ;;=^60358
- ;;^UTILITY(U,$J,358.3,662,0)
- ;;=574.20^^6^82^3
- ;;^UTILITY(U,$J,358.3,662,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,662,1,4,0)
- ;;=4^Cholelithiasis NOS
- ;;^UTILITY(U,$J,358.3,662,1,5,0)
- ;;=5^574.20
- ;;^UTILITY(U,$J,358.3,662,2)
- ;;=^18282
- ;;^UTILITY(U,$J,358.3,663,0)
- ;;=576.9^^6^82^1
- ;;^UTILITY(U,$J,358.3,663,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,663,1,4,0)
- ;;=4^Biliary Tract NOS
- ;;^UTILITY(U,$J,358.3,663,1,5,0)
- ;;=5^576.9
- ;;^UTILITY(U,$J,358.3,663,2)
- ;;=^14271
- ;;^UTILITY(U,$J,358.3,664,0)
- ;;=577.1^^6^82^4
- ;;^UTILITY(U,$J,358.3,664,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,664,1,4,0)
- ;;=4^Chr Pancreatitis
- ;;^UTILITY(U,$J,358.3,664,1,5,0)
- ;;=5^577.1
- ;;^UTILITY(U,$J,358.3,664,2)
- ;;=^259100
- ;;^UTILITY(U,$J,358.3,665,0)
- ;;=577.2^^6^82^7
- ;;^UTILITY(U,$J,358.3,665,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,665,1,4,0)
- ;;=4^Pancreatic Pseudocyst
- ;;^UTILITY(U,$J,358.3,665,1,5,0)
- ;;=5^577.2
- ;;^UTILITY(U,$J,358.3,665,2)
- ;;=^30078
- ;;^UTILITY(U,$J,358.3,666,0)
- ;;=573.9^^6^82^6
- ;;^UTILITY(U,$J,358.3,666,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,666,1,4,0)
- ;;=4^Liver Disorder NOS
- ;;^UTILITY(U,$J,358.3,666,1,5,0)
- ;;=5^573.9
- ;;^UTILITY(U,$J,358.3,666,2)
- ;;=^123854
- ;;^UTILITY(U,$J,358.3,667,0)
- ;;=569.9^^6^82^5
- ;;^UTILITY(U,$J,358.3,667,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,667,1,4,0)
- ;;=4^Intestinal Disorder NOS
- ;;^UTILITY(U,$J,358.3,667,1,5,0)
- ;;=5^569.9
- ;;^UTILITY(U,$J,358.3,667,2)
- ;;=^123842
- ;;^UTILITY(U,$J,358.3,668,0)
- ;;=053.13^^6^83^1
- ;;^UTILITY(U,$J,358.3,668,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,668,1,4,0)
- ;;=4^Postherpetic Polyneuro
- ;;^UTILITY(U,$J,358.3,668,1,5,0)
- ;;=5^053.13
- ;;^UTILITY(U,$J,358.3,668,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,669,0)
- ;;=053.12^^6^83^2
- ;;^UTILITY(U,$J,358.3,669,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,669,1,4,0)
- ;;=4^Postherpetic Trigem Neural
- ;;^UTILITY(U,$J,358.3,669,1,5,0)
- ;;=5^053.12
- ;;^UTILITY(U,$J,358.3,669,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,670,0)
- ;;=99211^^7^84^1
- ;;^UTILITY(U,$J,358.3,670,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,670,1,1,0)
- ;;=1^Walk In
- ;;^UTILITY(U,$J,358.3,670,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,671,0)
- ;;=388.43^^8^85^55
- ;;^UTILITY(U,$J,358.3,671,1,0)
+ ;;^UTILITY(U,$J,358.3,583,1,4,0)
+ ;;=4^C95.00
+ ;;^UTILITY(U,$J,358.3,583,2)
+ ;;=^5001850
+ ;;^UTILITY(U,$J,358.3,584,0)
+ ;;=C95.01^^2^24^5
+ ;;^UTILITY(U,$J,358.3,584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,671,1,3,0)
- ;;=3^388.43
- ;;^UTILITY(U,$J,358.3,671,1,4,0)
- ;;=4^Impairm Auditory Discrim
- ;;^UTILITY(U,$J,358.3,671,2)
- ;;=^269533
- ;;^UTILITY(U,$J,358.3,672,0)
- ;;=780.4^^8^85^48
- ;;^UTILITY(U,$J,358.3,672,1,0)
+ ;;^UTILITY(U,$J,358.3,584,1,3,0)
+ ;;=3^Acute leukemia of unspecified cell type, in remission
+ ;;^UTILITY(U,$J,358.3,584,1,4,0)
+ ;;=4^C95.01
+ ;;^UTILITY(U,$J,358.3,584,2)
+ ;;=^5001851
+ ;;^UTILITY(U,$J,358.3,585,0)
+ ;;=C95.02^^2^24^6
+ ;;^UTILITY(U,$J,358.3,585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,672,1,3,0)
- ;;=3^780.4
- ;;^UTILITY(U,$J,358.3,672,1,4,0)
- ;;=4^Dizziness And Giddiness
- ;;^UTILITY(U,$J,358.3,672,2)
- ;;=^35946
- ;;^UTILITY(U,$J,358.3,673,0)
- ;;=381.9^^8^85^51
- ;;^UTILITY(U,$J,358.3,673,1,0)
+ ;;^UTILITY(U,$J,358.3,585,1,3,0)
+ ;;=3^Acute leukemia of unspecified cell type, in relapse
+ ;;^UTILITY(U,$J,358.3,585,1,4,0)
+ ;;=4^C95.02
+ ;;^UTILITY(U,$J,358.3,585,2)
+ ;;=^5001852
+ ;;^UTILITY(U,$J,358.3,586,0)
+ ;;=D45.^^2^24^55
+ ;;^UTILITY(U,$J,358.3,586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,673,1,3,0)
- ;;=3^381.9
- ;;^UTILITY(U,$J,358.3,673,1,4,0)
- ;;=4^Eustachian Tube Dis Nos
- ;;^UTILITY(U,$J,358.3,673,2)
- ;;=^269394
- ;;^UTILITY(U,$J,358.3,674,0)
- ;;=381.81^^8^85^49
- ;;^UTILITY(U,$J,358.3,674,1,0)
+ ;;^UTILITY(U,$J,358.3,586,1,3,0)
+ ;;=3^Polycythemia vera
+ ;;^UTILITY(U,$J,358.3,586,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,586,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,587,0)
+ ;;=C95.10^^2^24^25
+ ;;^UTILITY(U,$J,358.3,587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,674,1,3,0)
- ;;=3^381.81
- ;;^UTILITY(U,$J,358.3,674,1,4,0)
- ;;=4^Dysfunct Eustachian Tube
- ;;^UTILITY(U,$J,358.3,674,2)
- ;;=^259074
- ;;^UTILITY(U,$J,358.3,675,0)
- ;;=381.60^^8^85^66
+ ;;^UTILITY(U,$J,358.3,587,1,3,0)
+ ;;=3^Chronic leukemia of unsp cell type not achieve remission
+ ;;^UTILITY(U,$J,358.3,587,1,4,0)
+ ;;=4^C95.10
+ ;;^UTILITY(U,$J,358.3,587,2)
+ ;;=^5001853
+ ;;^UTILITY(U,$J,358.3,588,0)
+ ;;=C95.11^^2^24^26
+ ;;^UTILITY(U,$J,358.3,588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,588,1,3,0)
+ ;;=3^Chronic leukemia of unspecified cell type, in remission
+ ;;^UTILITY(U,$J,358.3,588,1,4,0)
+ ;;=4^C95.11
+ ;;^UTILITY(U,$J,358.3,588,2)
+ ;;=^5001854
+ ;;^UTILITY(U,$J,358.3,589,0)
+ ;;=C95.12^^2^24^27
+ ;;^UTILITY(U,$J,358.3,589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,589,1,3,0)
+ ;;=3^Chronic leukemia of unspecified cell type, in relapse
+ ;;^UTILITY(U,$J,358.3,589,1,4,0)
+ ;;=4^C95.12
+ ;;^UTILITY(U,$J,358.3,589,2)
+ ;;=^5001855
+ ;;^UTILITY(U,$J,358.3,590,0)
+ ;;=D46.9^^2^24^48
+ ;;^UTILITY(U,$J,358.3,590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,590,1,3,0)
+ ;;=3^Myelodysplastic syndrome, unspecified
+ ;;^UTILITY(U,$J,358.3,590,1,4,0)
+ ;;=4^D46.9
+ ;;^UTILITY(U,$J,358.3,590,2)
+ ;;=^334031
+ ;;^UTILITY(U,$J,358.3,591,0)
+ ;;=C95.90^^2^24^36
+ ;;^UTILITY(U,$J,358.3,591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,591,1,3,0)
+ ;;=3^Leukemia, unspecified not having achieved remission
+ ;;^UTILITY(U,$J,358.3,591,1,4,0)
+ ;;=4^C95.90
+ ;;^UTILITY(U,$J,358.3,591,2)
+ ;;=^5001856
+ ;;^UTILITY(U,$J,358.3,592,0)
+ ;;=C95.91^^2^24^38
+ ;;^UTILITY(U,$J,358.3,592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,592,1,3,0)
+ ;;=3^Leukemia, unspecified, in remission
+ ;;^UTILITY(U,$J,358.3,592,1,4,0)
+ ;;=4^C95.91
+ ;;^UTILITY(U,$J,358.3,592,2)
+ ;;=^5001857
+ ;;^UTILITY(U,$J,358.3,593,0)
+ ;;=C95.92^^2^24^37
+ ;;^UTILITY(U,$J,358.3,593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,593,1,3,0)
+ ;;=3^Leukemia, unspecified, in relapse
+ ;;^UTILITY(U,$J,358.3,593,1,4,0)
+ ;;=4^C95.92
+ ;;^UTILITY(U,$J,358.3,593,2)
+ ;;=^5001858
+ ;;^UTILITY(U,$J,358.3,594,0)
+ ;;=D72.9^^2^24^35
+ ;;^UTILITY(U,$J,358.3,594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,594,1,3,0)
+ ;;=3^Disorder of white blood cells, unspecified
+ ;;^UTILITY(U,$J,358.3,594,1,4,0)
+ ;;=4^D72.9
+ ;;^UTILITY(U,$J,358.3,594,2)
+ ;;=^5002381
+ ;;^UTILITY(U,$J,358.3,595,0)
+ ;;=D75.1^^2^24^56
+ ;;^UTILITY(U,$J,358.3,595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,595,1,3,0)
+ ;;=3^Secondary polycythemia
+ ;;^UTILITY(U,$J,358.3,595,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,595,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,596,0)
+ ;;=D75.9^^2^24^34
+ ;;^UTILITY(U,$J,358.3,596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,596,1,3,0)
+ ;;=3^Disease of blood and blood-forming organs, unspecified
+ ;;^UTILITY(U,$J,358.3,596,1,4,0)
+ ;;=4^D75.9

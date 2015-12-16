@@ -1,130 +1,130 @@
-IBDEI1O2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1O2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29946,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,29947,0)
- ;;=I70.361^^189^1904^18
- ;;^UTILITY(U,$J,358.3,29947,1,0)
+ ;;^UTILITY(U,$J,358.3,29594,1,4,0)
+ ;;=4^C72.1
+ ;;^UTILITY(U,$J,358.3,29594,2)
+ ;;=^5001298
+ ;;^UTILITY(U,$J,358.3,29595,0)
+ ;;=C72.21^^176^1891^21
+ ;;^UTILITY(U,$J,358.3,29595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29947,1,3,0)
- ;;=3^Athscl Bypass Graft of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29947,1,4,0)
- ;;=4^I70.361
- ;;^UTILITY(U,$J,358.3,29947,2)
- ;;=^5007641
- ;;^UTILITY(U,$J,358.3,29948,0)
- ;;=I70.362^^189^1904^17
- ;;^UTILITY(U,$J,358.3,29948,1,0)
+ ;;^UTILITY(U,$J,358.3,29595,1,3,0)
+ ;;=3^Malignant neoplasm of right olfactory nerve
+ ;;^UTILITY(U,$J,358.3,29595,1,4,0)
+ ;;=4^C72.21
+ ;;^UTILITY(U,$J,358.3,29595,2)
+ ;;=^5001300
+ ;;^UTILITY(U,$J,358.3,29596,0)
+ ;;=C72.22^^176^1891^14
+ ;;^UTILITY(U,$J,358.3,29596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29948,1,3,0)
- ;;=3^Athscl Bypass Graft of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29948,1,4,0)
- ;;=4^I70.362
- ;;^UTILITY(U,$J,358.3,29948,2)
- ;;=^5007642
- ;;^UTILITY(U,$J,358.3,29949,0)
- ;;=I70.363^^189^1904^16
- ;;^UTILITY(U,$J,358.3,29949,1,0)
+ ;;^UTILITY(U,$J,358.3,29596,1,3,0)
+ ;;=3^Malignant neoplasm of left olfactory nerve
+ ;;^UTILITY(U,$J,358.3,29596,1,4,0)
+ ;;=4^C72.22
+ ;;^UTILITY(U,$J,358.3,29596,2)
+ ;;=^5001301
+ ;;^UTILITY(U,$J,358.3,29597,0)
+ ;;=C72.31^^176^1891^22
+ ;;^UTILITY(U,$J,358.3,29597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29949,1,3,0)
- ;;=3^Athscl Bypass Graft of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29949,1,4,0)
- ;;=4^I70.363
- ;;^UTILITY(U,$J,358.3,29949,2)
- ;;=^5007643
- ;;^UTILITY(U,$J,358.3,29950,0)
- ;;=I70.661^^189^1904^21
- ;;^UTILITY(U,$J,358.3,29950,1,0)
+ ;;^UTILITY(U,$J,358.3,29597,1,3,0)
+ ;;=3^Malignant neoplasm of right optic nerve
+ ;;^UTILITY(U,$J,358.3,29597,1,4,0)
+ ;;=4^C72.31
+ ;;^UTILITY(U,$J,358.3,29597,2)
+ ;;=^5001303
+ ;;^UTILITY(U,$J,358.3,29598,0)
+ ;;=C72.32^^176^1891^15
+ ;;^UTILITY(U,$J,358.3,29598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29950,1,3,0)
- ;;=3^Athscl Nonbio Bypass of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29950,1,4,0)
- ;;=4^I70.661
- ;;^UTILITY(U,$J,358.3,29950,2)
- ;;=^5007755
- ;;^UTILITY(U,$J,358.3,29951,0)
- ;;=I70.662^^189^1904^20
- ;;^UTILITY(U,$J,358.3,29951,1,0)
+ ;;^UTILITY(U,$J,358.3,29598,1,3,0)
+ ;;=3^Malignant neoplasm of left optic nerve
+ ;;^UTILITY(U,$J,358.3,29598,1,4,0)
+ ;;=4^C72.32
+ ;;^UTILITY(U,$J,358.3,29598,2)
+ ;;=^5001304
+ ;;^UTILITY(U,$J,358.3,29599,0)
+ ;;=C72.41^^176^1891^20
+ ;;^UTILITY(U,$J,358.3,29599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29951,1,3,0)
- ;;=3^Athscl Nonbio Bypass of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29951,1,4,0)
- ;;=4^I70.662
- ;;^UTILITY(U,$J,358.3,29951,2)
- ;;=^5007756
- ;;^UTILITY(U,$J,358.3,29952,0)
- ;;=I70.663^^189^1904^19
- ;;^UTILITY(U,$J,358.3,29952,1,0)
+ ;;^UTILITY(U,$J,358.3,29599,1,3,0)
+ ;;=3^Malignant neoplasm of right acoustic nerve
+ ;;^UTILITY(U,$J,358.3,29599,1,4,0)
+ ;;=4^C72.41
+ ;;^UTILITY(U,$J,358.3,29599,2)
+ ;;=^5001306
+ ;;^UTILITY(U,$J,358.3,29600,0)
+ ;;=C72.42^^176^1891^13
+ ;;^UTILITY(U,$J,358.3,29600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29952,1,3,0)
- ;;=3^Athscl Nonbio Bypass of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29952,1,4,0)
- ;;=4^I70.663
- ;;^UTILITY(U,$J,358.3,29952,2)
- ;;=^5007757
- ;;^UTILITY(U,$J,358.3,29953,0)
- ;;=I70.761^^189^1904^24
- ;;^UTILITY(U,$J,358.3,29953,1,0)
+ ;;^UTILITY(U,$J,358.3,29600,1,3,0)
+ ;;=3^Malignant neoplasm of left acoustic nerve
+ ;;^UTILITY(U,$J,358.3,29600,1,4,0)
+ ;;=4^C72.42
+ ;;^UTILITY(U,$J,358.3,29600,2)
+ ;;=^5001307
+ ;;^UTILITY(U,$J,358.3,29601,0)
+ ;;=C72.59^^176^1891^17
+ ;;^UTILITY(U,$J,358.3,29601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29953,1,3,0)
- ;;=3^Athscl Oth Type Bypass of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29953,1,4,0)
- ;;=4^I70.761
- ;;^UTILITY(U,$J,358.3,29953,2)
- ;;=^5007777
- ;;^UTILITY(U,$J,358.3,29954,0)
- ;;=I70.762^^189^1904^23
- ;;^UTILITY(U,$J,358.3,29954,1,0)
+ ;;^UTILITY(U,$J,358.3,29601,1,3,0)
+ ;;=3^Malignant neoplasm of other cranial nerves
+ ;;^UTILITY(U,$J,358.3,29601,1,4,0)
+ ;;=4^C72.59
+ ;;^UTILITY(U,$J,358.3,29601,2)
+ ;;=^5001309
+ ;;^UTILITY(U,$J,358.3,29602,0)
+ ;;=C72.9^^176^1891^8
+ ;;^UTILITY(U,$J,358.3,29602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29954,1,3,0)
- ;;=3^Athscl Oth Type Bypass of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29954,1,4,0)
- ;;=4^I70.762
- ;;^UTILITY(U,$J,358.3,29954,2)
- ;;=^5133608
- ;;^UTILITY(U,$J,358.3,29955,0)
- ;;=I70.763^^189^1904^22
- ;;^UTILITY(U,$J,358.3,29955,1,0)
+ ;;^UTILITY(U,$J,358.3,29602,1,3,0)
+ ;;=3^Malignant neoplasm of central nervous system, unspecified
+ ;;^UTILITY(U,$J,358.3,29602,1,4,0)
+ ;;=4^C72.9
+ ;;^UTILITY(U,$J,358.3,29602,2)
+ ;;=^5001310
+ ;;^UTILITY(U,$J,358.3,29603,0)
+ ;;=C70.0^^176^1891^10
+ ;;^UTILITY(U,$J,358.3,29603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29955,1,3,0)
- ;;=3^Athscl Oth Type Bypass of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29955,1,4,0)
- ;;=4^I70.763
- ;;^UTILITY(U,$J,358.3,29955,2)
- ;;=^5007778
- ;;^UTILITY(U,$J,358.3,29956,0)
- ;;=I73.01^^189^1904^83
- ;;^UTILITY(U,$J,358.3,29956,1,0)
+ ;;^UTILITY(U,$J,358.3,29603,1,3,0)
+ ;;=3^Malignant neoplasm of cerebral meninges
+ ;;^UTILITY(U,$J,358.3,29603,1,4,0)
+ ;;=4^C70.0
+ ;;^UTILITY(U,$J,358.3,29603,2)
+ ;;=^267291
+ ;;^UTILITY(U,$J,358.3,29604,0)
+ ;;=C70.1^^176^1891^24
+ ;;^UTILITY(U,$J,358.3,29604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29956,1,3,0)
- ;;=3^Raynaud's Syndrome w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29956,1,4,0)
- ;;=4^I73.01
- ;;^UTILITY(U,$J,358.3,29956,2)
- ;;=^5007797
- ;;^UTILITY(U,$J,358.3,29957,0)
- ;;=I96.^^189^1904^59
- ;;^UTILITY(U,$J,358.3,29957,1,0)
+ ;;^UTILITY(U,$J,358.3,29604,1,3,0)
+ ;;=3^Malignant neoplasm of spinal meninges
+ ;;^UTILITY(U,$J,358.3,29604,1,4,0)
+ ;;=4^C70.1
+ ;;^UTILITY(U,$J,358.3,29604,2)
+ ;;=^267293
+ ;;^UTILITY(U,$J,358.3,29605,0)
+ ;;=L89.010^^177^1892^78
+ ;;^UTILITY(U,$J,358.3,29605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29957,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,29957,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,29957,2)
- ;;=^5008081
- ;;^UTILITY(U,$J,358.3,29958,0)
- ;;=K85.0^^189^1904^67
- ;;^UTILITY(U,$J,358.3,29958,1,0)
+ ;;^UTILITY(U,$J,358.3,29605,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,29605,1,4,0)
+ ;;=4^L89.010
+ ;;^UTILITY(U,$J,358.3,29605,2)
+ ;;=^5009337
+ ;;^UTILITY(U,$J,358.3,29606,0)
+ ;;=L89.011^^177^1892^73
+ ;;^UTILITY(U,$J,358.3,29606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29958,1,3,0)
- ;;=3^Idiopathic Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,29958,1,4,0)
- ;;=4^K85.0
- ;;^UTILITY(U,$J,358.3,29958,2)
- ;;=^5008882
- ;;^UTILITY(U,$J,358.3,29959,0)
- ;;=K85.1^^189^1904^26
- ;;^UTILITY(U,$J,358.3,29959,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29606,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,29606,1,4,0)
+ ;;=4^L89.011
+ ;;^UTILITY(U,$J,358.3,29606,2)
+ ;;=^5009338
+ ;;^UTILITY(U,$J,358.3,29607,0)
+ ;;=L89.012^^177^1892^74

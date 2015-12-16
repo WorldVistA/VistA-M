@@ -1,126 +1,130 @@
-IBDEI1OY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30355,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus,Left Knee NEC
- ;;^UTILITY(U,$J,358.3,30355,1,4,0)
- ;;=4^M23.322
- ;;^UTILITY(U,$J,358.3,30355,2)
- ;;=^5011242
- ;;^UTILITY(U,$J,358.3,30356,0)
- ;;=M23.321^^189^1914^7
- ;;^UTILITY(U,$J,358.3,30356,1,0)
+ ;;^UTILITY(U,$J,358.3,30005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30356,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus,Right Knee NEC
- ;;^UTILITY(U,$J,358.3,30356,1,4,0)
- ;;=4^M23.321
- ;;^UTILITY(U,$J,358.3,30356,2)
- ;;=^5011241
- ;;^UTILITY(U,$J,358.3,30357,0)
- ;;=M47.22^^189^1914^20
- ;;^UTILITY(U,$J,358.3,30357,1,0)
+ ;;^UTILITY(U,$J,358.3,30005,1,3,0)
+ ;;=3^Severe pre-eclampsia, second trimester
+ ;;^UTILITY(U,$J,358.3,30005,1,4,0)
+ ;;=4^O14.12
+ ;;^UTILITY(U,$J,358.3,30005,2)
+ ;;=^5016166
+ ;;^UTILITY(U,$J,358.3,30006,0)
+ ;;=O14.13^^178^1910^44
+ ;;^UTILITY(U,$J,358.3,30006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30357,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,30357,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,30357,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,30358,0)
- ;;=M47.23^^189^1914^21
- ;;^UTILITY(U,$J,358.3,30358,1,0)
+ ;;^UTILITY(U,$J,358.3,30006,1,3,0)
+ ;;=3^Severe pre-eclampsia, third trimester
+ ;;^UTILITY(U,$J,358.3,30006,1,4,0)
+ ;;=4^O14.13
+ ;;^UTILITY(U,$J,358.3,30006,2)
+ ;;=^5016167
+ ;;^UTILITY(U,$J,358.3,30007,0)
+ ;;=O14.22^^178^1910^7
+ ;;^UTILITY(U,$J,358.3,30007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30358,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervicothoracic Region NEC
- ;;^UTILITY(U,$J,358.3,30358,1,4,0)
- ;;=4^M47.23
- ;;^UTILITY(U,$J,358.3,30358,2)
- ;;=^5012062
- ;;^UTILITY(U,$J,358.3,30359,0)
- ;;=M47.26^^189^1914^22
- ;;^UTILITY(U,$J,358.3,30359,1,0)
+ ;;^UTILITY(U,$J,358.3,30007,1,3,0)
+ ;;=3^HELLP syndrome (HELLP), second trimester
+ ;;^UTILITY(U,$J,358.3,30007,1,4,0)
+ ;;=4^O14.22
+ ;;^UTILITY(U,$J,358.3,30007,2)
+ ;;=^5016169
+ ;;^UTILITY(U,$J,358.3,30008,0)
+ ;;=O14.23^^178^1910^8
+ ;;^UTILITY(U,$J,358.3,30008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30359,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbar Region NEC
- ;;^UTILITY(U,$J,358.3,30359,1,4,0)
- ;;=4^M47.26
- ;;^UTILITY(U,$J,358.3,30359,2)
- ;;=^5012065
- ;;^UTILITY(U,$J,358.3,30360,0)
- ;;=M47.27^^189^1914^23
- ;;^UTILITY(U,$J,358.3,30360,1,0)
+ ;;^UTILITY(U,$J,358.3,30008,1,3,0)
+ ;;=3^HELLP syndrome (HELLP), third trimester
+ ;;^UTILITY(U,$J,358.3,30008,1,4,0)
+ ;;=4^O14.23
+ ;;^UTILITY(U,$J,358.3,30008,2)
+ ;;=^5016170
+ ;;^UTILITY(U,$J,358.3,30009,0)
+ ;;=O15.02^^178^1910^1
+ ;;^UTILITY(U,$J,358.3,30009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30360,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,30360,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,30360,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,30361,0)
- ;;=M47.21^^189^1914^24
- ;;^UTILITY(U,$J,358.3,30361,1,0)
+ ;;^UTILITY(U,$J,358.3,30009,1,3,0)
+ ;;=3^Eclampsia in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30009,1,4,0)
+ ;;=4^O15.02
+ ;;^UTILITY(U,$J,358.3,30009,2)
+ ;;=^5016175
+ ;;^UTILITY(U,$J,358.3,30010,0)
+ ;;=O15.03^^178^1910^2
+ ;;^UTILITY(U,$J,358.3,30010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30361,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Occipito/Atlanto/Axial Region NEC
- ;;^UTILITY(U,$J,358.3,30361,1,4,0)
- ;;=4^M47.21
- ;;^UTILITY(U,$J,358.3,30361,2)
- ;;=^5012060
- ;;^UTILITY(U,$J,358.3,30362,0)
- ;;=M47.28^^189^1914^25
- ;;^UTILITY(U,$J,358.3,30362,1,0)
+ ;;^UTILITY(U,$J,358.3,30010,1,3,0)
+ ;;=3^Eclampsia in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30010,1,4,0)
+ ;;=4^O15.03
+ ;;^UTILITY(U,$J,358.3,30010,2)
+ ;;=^5016176
+ ;;^UTILITY(U,$J,358.3,30011,0)
+ ;;=O11.1^^178^1910^35
+ ;;^UTILITY(U,$J,358.3,30011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30362,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Sacral/Sacrococcygeal Region NEC
- ;;^UTILITY(U,$J,358.3,30362,1,4,0)
- ;;=4^M47.28
- ;;^UTILITY(U,$J,358.3,30362,2)
- ;;=^5012067
- ;;^UTILITY(U,$J,358.3,30363,0)
- ;;=M47.24^^189^1914^26
- ;;^UTILITY(U,$J,358.3,30363,1,0)
+ ;;^UTILITY(U,$J,358.3,30011,1,3,0)
+ ;;=3^Pre-existing hypertension w pre-eclampsia, first trimester
+ ;;^UTILITY(U,$J,358.3,30011,1,4,0)
+ ;;=4^O11.1
+ ;;^UTILITY(U,$J,358.3,30011,2)
+ ;;=^5016142
+ ;;^UTILITY(U,$J,358.3,30012,0)
+ ;;=O11.2^^178^1910^36
+ ;;^UTILITY(U,$J,358.3,30012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30363,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,30363,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,30363,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,30364,0)
- ;;=M47.25^^189^1914^27
- ;;^UTILITY(U,$J,358.3,30364,1,0)
+ ;;^UTILITY(U,$J,358.3,30012,1,3,0)
+ ;;=3^Pre-existing hypertension w pre-eclampsia, second trimester
+ ;;^UTILITY(U,$J,358.3,30012,1,4,0)
+ ;;=4^O11.2
+ ;;^UTILITY(U,$J,358.3,30012,2)
+ ;;=^5016143
+ ;;^UTILITY(U,$J,358.3,30013,0)
+ ;;=O11.3^^178^1910^37
+ ;;^UTILITY(U,$J,358.3,30013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30364,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Thoracolumbar Region NEC
- ;;^UTILITY(U,$J,358.3,30364,1,4,0)
- ;;=4^M47.25
- ;;^UTILITY(U,$J,358.3,30364,2)
- ;;=^5012064
- ;;^UTILITY(U,$J,358.3,30365,0)
- ;;=M47.892^^189^1914^36
- ;;^UTILITY(U,$J,358.3,30365,1,0)
+ ;;^UTILITY(U,$J,358.3,30013,1,3,0)
+ ;;=3^Pre-existing hypertension w pre-eclampsia, third trimester
+ ;;^UTILITY(U,$J,358.3,30013,1,4,0)
+ ;;=4^O11.3
+ ;;^UTILITY(U,$J,358.3,30013,2)
+ ;;=^5016144
+ ;;^UTILITY(U,$J,358.3,30014,0)
+ ;;=O21.0^^178^1911^3
+ ;;^UTILITY(U,$J,358.3,30014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30365,1,3,0)
- ;;=3^Spondylosis,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,30365,1,4,0)
- ;;=4^M47.892
- ;;^UTILITY(U,$J,358.3,30365,2)
- ;;=^5012078
- ;;^UTILITY(U,$J,358.3,30366,0)
- ;;=M47.893^^189^1914^37
- ;;^UTILITY(U,$J,358.3,30366,1,0)
+ ;;^UTILITY(U,$J,358.3,30014,1,3,0)
+ ;;=3^Mild hyperemesis gravidarum
+ ;;^UTILITY(U,$J,358.3,30014,1,4,0)
+ ;;=4^O21.0
+ ;;^UTILITY(U,$J,358.3,30014,2)
+ ;;=^5016185
+ ;;^UTILITY(U,$J,358.3,30015,0)
+ ;;=O21.1^^178^1911^1
+ ;;^UTILITY(U,$J,358.3,30015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30366,1,3,0)
- ;;=3^Spondylosis,Cervicothoracic Region NEC
- ;;^UTILITY(U,$J,358.3,30366,1,4,0)
- ;;=4^M47.893
- ;;^UTILITY(U,$J,358.3,30366,2)
- ;;=^5012079
- ;;^UTILITY(U,$J,358.3,30367,0)
- ;;=M47.896^^189^1914^38
- ;;^UTILITY(U,$J,358.3,30367,1,0)
+ ;;^UTILITY(U,$J,358.3,30015,1,3,0)
+ ;;=3^Hyperemesis gravidarum with metabolic disturbance
+ ;;^UTILITY(U,$J,358.3,30015,1,4,0)
+ ;;=4^O21.1
+ ;;^UTILITY(U,$J,358.3,30015,2)
+ ;;=^270869
+ ;;^UTILITY(U,$J,358.3,30016,0)
+ ;;=O21.2^^178^1911^2
+ ;;^UTILITY(U,$J,358.3,30016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30367,1,3,0)
- ;;=3^Spondylosis,Lumbar Region NEC
+ ;;^UTILITY(U,$J,358.3,30016,1,3,0)
+ ;;=3^Late vomiting of pregnancy
+ ;;^UTILITY(U,$J,358.3,30016,1,4,0)
+ ;;=4^O21.2
+ ;;^UTILITY(U,$J,358.3,30016,2)
+ ;;=^270873
+ ;;^UTILITY(U,$J,358.3,30017,0)
+ ;;=O48.0^^178^1912^1
+ ;;^UTILITY(U,$J,358.3,30017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30017,1,3,0)
+ ;;=3^Post-term pregnancy
+ ;;^UTILITY(U,$J,358.3,30017,1,4,0)
+ ;;=4^O48.0

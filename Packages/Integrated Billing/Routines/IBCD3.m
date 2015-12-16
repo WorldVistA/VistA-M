@@ -1,5 +1,5 @@
 IBCD3 ;ALB/ARH - AUTOMATED BILLER (ADD NEW BILL - CREATE BILL ENTRY) ;9/5/93
- ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384,516,522**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Called by IBCD2,IBACUS2
@@ -15,9 +15,9 @@ EN(IBQUERY) ;
  I $G(IB("PRV",.01))'="" D
  . S DIC("DR")="",I=.01
  . N IBV
- . F  S I=$O(IB("PRV",I)) Q:'I  D
+ . ; Only file if the provider has an NPI.  otherwise it's not billable and would have to be removed from the claim later
+ . I $$GETNPI^IBCEF73A($G(IB("PRV",.02)))]"" F  S I=$O(IB("PRV",I)) Q:'I  D
  .. I IB("PRV",I)="" Q
- .. I $$GETNPI^IBCEF73A($P(IB("PRV",I),"^",2))="" Q  ;Don't file provider if no NPI - IB*2*516
  .. S IBV(I)=IB("PRV",I),DIC("DR")=DIC("DR")_$S(DIC("DR")="":"",1:";")_I_"////^S X=IBV("_I_")"
  . S DIC="^DGCR(399,"_IBIFN_",""PRV"",",DIC(0)="L",DLAYGO=399,DA(1)=IBIFN,X=IB("PRV",.01)
  . K DO,DD D FILE^DICN K DO,DD,DLAYGO,DA,DIC
@@ -81,16 +81,16 @@ EN(IBQUERY) ;
  .. N IBXDEF S IBXDEF=0
  .. S (IBI,IBX)="" F  S IBX=$O(^TMP("IBDX",$J,IBX)) Q:'IBX  S IBY=0 F  S IBY=$O(^TMP("IBDX",$J,IBX,IBY)) Q:'IBY  D
  ... S IBZ=^TMP("IBDX",$J,IBX,IBY) Q:($$ICD9^IBACSV(+IBZ)="")  S IBI=IBI+1
- ... S DIC("DR")=".02////"_IBIFN_";.03////"_IBI,DIC="^IBA(362.3,",DIC(0)="L",X=+IBZ,DLAYGO=362.3 K DD,DO D FILE^DICN
- ... K DIE,DIC,DA,DLAYGO,DO,DD
+ ... S DIC("DR")=".02////"_IBIFN_";.03////"_IBI I $P(IBZ,U,3)'="" S DIC("DR")=DIC("DR")_";.04///"_$P(IBZ,U,3)
+ ... S DIC="^IBA(362.3,",DIC(0)="L",X=+IBZ,DLAYGO=362.3 K DD,DO D FILE^DICN K DIE,DIC,DA,DLAYGO,DO,DD
  ... I Y>0,'IBXDEF S IBXDEF=1,DR="215////"_+IBZ,DIE="^DGCR(399,",DA=IBIFN D ^DIE
  . ;
- . D IPRC^IBCD4(+IB(.08),IB(151),IB(152)) I $D(^TMP("IBIPRC",$J)) D  K ^TMP("IBIPRC",$J)
+ . D PTFPRDT^IBCSC4A(+IB(.08),IB(151),IB(152),9) I $D(^UTILITY($J,"IB")) D  K ^UTILITY($J,"IB")
  .. S ^DGCR(399,IBIFN,"CP",0)="^399.0304AVI^"
- .. S IBX=0 F  S IBX=$O(^TMP("IBIPRC",$J,IBX)) Q:'IBX  D
- ... S IBY=^TMP("IBIPRC",$J,IBX) F IBI=1:1 S IBZ=$P(IBY,U,IBI) Q:'IBZ  D
- .... S DIC="^DGCR(399,"_IBIFN_",""CP"",",DIC(0)="L",DA(1)=IBIFN,X=+IBZ_";ICD0(",DLAYGO=399.0304 K DD,DO D FILE^DICN
- .... I Y>0 S DIE=DIC,DA=+Y,DR="1////"_(IBX\1) D ^DIE K DIE,DIC,DA,DLAYGO,DO,DD
+ .. S IBX=0 F  S IBX=$O(^UTILITY($J,"IB",IBX)) Q:'IBX  S IBY=0 F  S IBY=$O(^UTILITY($J,"IB",IBX,IBY)) Q:'IBY  D
+ ... S IBZ=^UTILITY($J,"IB",IBX,IBY) Q:($$ICD0^IBACSV(+IBZ)="")  S IBI=$P(^UTILITY($J,"IB",IBX,1),U,2)
+ ... S DIC="^DGCR(399,"_IBIFN_",""CP"",",DIC(0)="L",DA(1)=IBIFN,X=+IBZ_";ICD0(",DLAYGO=399.0304 K DD,DO D FILE^DICN
+ ... I Y>0 S DIE=DIC,DA=+Y,DR="1////"_(IBI\1) D ^DIE K DIE,DIC,DA,DLAYGO,DO,DD
  ;
 END S IBX="1^Billing Record #"_$P(^DGCR(399,+IBIFN,0),"^",1)_" established for "_$P($G(^DPT(IBDFN,0)),U,1)
  ;

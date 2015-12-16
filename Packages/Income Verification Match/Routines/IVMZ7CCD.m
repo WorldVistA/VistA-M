@@ -1,5 +1,5 @@
-IVMZ7CCD ;BAJ - HL7 Z07 CONSISTENCY CHECKER -- CATASTROPHIC DISABILITY SUBROUTINE ; 11/9/05 9:30am
- ;;2.0;INCOME VERIFICATION MATCH;**105,132**;JUL 8,1996;Build 1
+IVMZ7CCD ;BAJ,TGH - HL7 Z07 CONSISTENCY CHECKER -- CATASTROPHIC DISABILITY SUBROUTINE ; 11/9/05 9:30am
+ ;;2.0;INCOME VERIFICATION MATCH;**105,132,158**;JUL 8,1996;Build 44
  ;
  ; Catastrophic Disability Consistency Checks
  ; This routine checks the various elements of catastrophic disability information
@@ -56,8 +56,8 @@ EN(DFN) ; entry point.  Patient DFN is sent from calling routine.
  ; loop through rules in INCONSISTENT DATA ELEMENTS file.
  ; execute only the rules where CHECK/DON'T CHECK and INCLUDE IN Z07 CHECKS fields are turned ON.
  ; 
- ; ***NOTE loop boundary (701-726) must be changed if rule numbers are added ***
- F RULE=701:1:726 I $D(^DGIN(38.6,RULE)) D
+ ; ***NOTE loop boundary (701-728) must be changed if rule numbers are added ***
+ F RULE=701:1:728 I $D(^DGIN(38.6,RULE)) D      ;IVM*2.0*158
  . S Y=^DGIN(38.6,RULE,0)
  . I $P(Y,"^",6) D @RULE
  I $D(FILERR) D FILE
@@ -130,8 +130,8 @@ CD(VCD) ; Is Patient Catastrophically disabled?  If not, we need to examine pati
  I ERR S FILERR(RULE)=""
  Q
  ;
-711 ;"'CD Status Reason' Not Present"
- I '($D(DGCDIS("DIAG"))!$D(DGCDIS("PROC"))!$D(DGCDIS("COND"))) S FILERR(RULE)=""
+711 ;"No CD Status Reason is Present"
+ I '($D(DGCDIS("DIAG"))!$D(DGCDIS("PROC"))!$D(DGCDIS("COND"))!$D(DGCDIS("DESCR"))) S FILERR(RULE)=""
  Q
  ;
 712 ;"'Date Of Catastophic Disability Decision' Not Valid"
@@ -214,7 +214,20 @@ CD(VCD) ; Is Patient Catastrophically disabled?  If not, we need to examine pati
  . I $G(DGCDIS("SCORE",ITEM))="" S ERR=1
  I ERR S FILERR(RULE)=""
  Q
+ ;
+727  ;"'CD Status Descriptor' Not Valid"  -  IVM*2.0*158
+ ; .401 CD STATUS DESCRIPTORS field (multiple):
+ N ITEM,ERR
+ S ITEM="",ERR=0
+ F  S ITEM=$O(DGCDIS("DESCR",ITEM)) Q:ITEM=""  D
+ . I $$TYPE^DGENA5(DGCDIS("DESCR",ITEM))'="DE" S ERR=1
+ I ERR S FILERR(RULE)=""
+ Q
  ; 
+728  ;"No 'CD Descriptors' Selected"  -  IVM*2.0*158
+ I '($D(DGCDIS("DIAG"))!$D(DGCDIS("PROC"))!$D(DGCDIS("COND"))!$D(DGCDIS("DESCR"))) S FILERR(RULE)=""
+ Q
+ ;
 FILE ;file the inconsistencies in a temp global
  M ^TMP($J,DFN)=FILERR
  Q

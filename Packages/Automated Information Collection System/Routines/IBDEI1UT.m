@@ -1,128 +1,128 @@
-IBDEI1UT ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UT ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33038,1,0)
+ ;;^UTILITY(U,$J,358.3,32640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33038,1,3,0)
- ;;=3^B Group Vitamin Deficiency NEC
- ;;^UTILITY(U,$J,358.3,33038,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,33038,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,33039,0)
- ;;=T25.131A^^191^1964^48
- ;;^UTILITY(U,$J,358.3,33039,1,0)
+ ;;^UTILITY(U,$J,358.3,32640,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,32640,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,32640,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,32641,0)
+ ;;=C92.A1^^182^1992^9
+ ;;^UTILITY(U,$J,358.3,32641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33039,1,3,0)
- ;;=3^Burn of rt toe(s)(nail), first degree, init enc
- ;;^UTILITY(U,$J,358.3,33039,1,4,0)
- ;;=4^T25.131A
- ;;^UTILITY(U,$J,358.3,33039,2)
- ;;=^5048532
- ;;^UTILITY(U,$J,358.3,33040,0)
- ;;=T25.132A^^191^1964^32
- ;;^UTILITY(U,$J,358.3,33040,1,0)
+ ;;^UTILITY(U,$J,358.3,32641,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,32641,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,32641,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,32642,0)
+ ;;=C92.A0^^182^1992^10
+ ;;^UTILITY(U,$J,358.3,32642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33040,1,3,0)
- ;;=3^Burn of lft toe(s)(nail), first degree, init enc
- ;;^UTILITY(U,$J,358.3,33040,1,4,0)
- ;;=4^T25.132A
- ;;^UTILITY(U,$J,358.3,33040,2)
- ;;=^5048535
- ;;^UTILITY(U,$J,358.3,33041,0)
- ;;=T25.121A^^191^1964^38
- ;;^UTILITY(U,$J,358.3,33041,1,0)
+ ;;^UTILITY(U,$J,358.3,32642,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,32642,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,32642,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,32643,0)
+ ;;=C92.51^^182^1992^11
+ ;;^UTILITY(U,$J,358.3,32643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33041,1,3,0)
- ;;=3^Burn of rt foot, first degree, init enc
- ;;^UTILITY(U,$J,358.3,33041,1,4,0)
- ;;=4^T25.121A
- ;;^UTILITY(U,$J,358.3,33041,2)
- ;;=^5048523
- ;;^UTILITY(U,$J,358.3,33042,0)
- ;;=T25.122A^^191^1964^22
- ;;^UTILITY(U,$J,358.3,33042,1,0)
+ ;;^UTILITY(U,$J,358.3,32643,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,32643,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,32643,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,32644,0)
+ ;;=C92.50^^182^1992^12
+ ;;^UTILITY(U,$J,358.3,32644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33042,1,3,0)
- ;;=3^Burn of lft ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,33042,1,4,0)
- ;;=4^T25.122A
- ;;^UTILITY(U,$J,358.3,33042,2)
- ;;=^5048526
- ;;^UTILITY(U,$J,358.3,33043,0)
- ;;=T25.111A^^191^1964^34
- ;;^UTILITY(U,$J,358.3,33043,1,0)
+ ;;^UTILITY(U,$J,358.3,32644,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,32644,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,32644,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,32645,0)
+ ;;=C94.40^^182^1992^15
+ ;;^UTILITY(U,$J,358.3,32645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33043,1,3,0)
- ;;=3^Burn of rt ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,33043,1,4,0)
- ;;=4^T25.111A
- ;;^UTILITY(U,$J,358.3,33043,2)
- ;;=^5048514
- ;;^UTILITY(U,$J,358.3,33044,0)
- ;;=T25.112A^^191^1964^18
- ;;^UTILITY(U,$J,358.3,33044,1,0)
+ ;;^UTILITY(U,$J,358.3,32645,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,32645,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,32645,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,32646,0)
+ ;;=C94.42^^182^1992^13
+ ;;^UTILITY(U,$J,358.3,32646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33044,1,3,0)
- ;;=3^Burn of lft ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,33044,1,4,0)
- ;;=4^T25.112A
- ;;^UTILITY(U,$J,358.3,33044,2)
- ;;=^5048517
- ;;^UTILITY(U,$J,358.3,33045,0)
- ;;=T24.131A^^191^1964^42
- ;;^UTILITY(U,$J,358.3,33045,1,0)
+ ;;^UTILITY(U,$J,358.3,32646,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,32646,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,32646,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,32647,0)
+ ;;=C94.41^^182^1992^14
+ ;;^UTILITY(U,$J,358.3,32647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33045,1,3,0)
- ;;=3^Burn of rt lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,33045,1,4,0)
- ;;=4^T24.131A
- ;;^UTILITY(U,$J,358.3,33045,2)
- ;;=^5048232
- ;;^UTILITY(U,$J,358.3,33046,0)
- ;;=T24.132A^^191^1964^26
- ;;^UTILITY(U,$J,358.3,33046,1,0)
+ ;;^UTILITY(U,$J,358.3,32647,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,32647,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,32647,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,32648,0)
+ ;;=D62.^^182^1992^16
+ ;;^UTILITY(U,$J,358.3,32648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33046,1,3,0)
- ;;=3^Burn of lft lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,33046,1,4,0)
- ;;=4^T24.132A
- ;;^UTILITY(U,$J,358.3,33046,2)
- ;;=^5048235
- ;;^UTILITY(U,$J,358.3,33047,0)
- ;;=T25.232A^^191^1964^30
- ;;^UTILITY(U,$J,358.3,33047,1,0)
+ ;;^UTILITY(U,$J,358.3,32648,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,32648,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,32648,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,32649,0)
+ ;;=C92.41^^182^1992^17
+ ;;^UTILITY(U,$J,358.3,32649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33047,1,3,0)
- ;;=3^Burn of lft toe(s) (nail), sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33047,1,4,0)
- ;;=4^T25.232A
- ;;^UTILITY(U,$J,358.3,33047,2)
- ;;=^5048571
- ;;^UTILITY(U,$J,358.3,33048,0)
- ;;=T25.231A^^191^1964^46
- ;;^UTILITY(U,$J,358.3,33048,1,0)
+ ;;^UTILITY(U,$J,358.3,32649,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,32649,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,32649,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,32650,0)
+ ;;=C92.40^^182^1992^18
+ ;;^UTILITY(U,$J,358.3,32650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33048,1,3,0)
- ;;=3^Burn of rt toe(s) (nail), sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33048,1,4,0)
- ;;=4^T25.231A
- ;;^UTILITY(U,$J,358.3,33048,2)
- ;;=^5048568
- ;;^UTILITY(U,$J,358.3,33049,0)
- ;;=T25.221A^^191^1964^39
- ;;^UTILITY(U,$J,358.3,33049,1,0)
+ ;;^UTILITY(U,$J,358.3,32650,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,32650,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,32650,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,32651,0)
+ ;;=D56.0^^182^1992^19
+ ;;^UTILITY(U,$J,358.3,32651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33049,1,3,0)
- ;;=3^Burn of rt ft, sec degree, init enc
- ;;^UTILITY(U,$J,358.3,33049,1,4,0)
- ;;=4^T25.221A
- ;;^UTILITY(U,$J,358.3,33049,2)
- ;;=^5048559
- ;;^UTILITY(U,$J,358.3,33050,0)
- ;;=T25.222A^^191^1964^23
- ;;^UTILITY(U,$J,358.3,33050,1,0)
+ ;;^UTILITY(U,$J,358.3,32651,1,3,0)
+ ;;=3^Alpha Thalassemia
+ ;;^UTILITY(U,$J,358.3,32651,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,32651,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,32652,0)
+ ;;=D63.1^^182^1992^21
+ ;;^UTILITY(U,$J,358.3,32652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33050,1,3,0)
- ;;=3^Burn of lft ft, sec degree, init enc
+ ;;^UTILITY(U,$J,358.3,32652,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease

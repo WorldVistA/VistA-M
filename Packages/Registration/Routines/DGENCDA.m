@@ -1,5 +1,7 @@
-DGENCDA ;ALB/CJM,Zoltan,JAN,BRM,TDM - Catastrophic Disability API - Retrieve Data;May 24, 1999;Nov 14, 2001 ; 9/19/05 11:35am
- ;;5.3;Registration;**121,147,232,387,451,653**;Aug 13,1993;Build 2
+DGENCDA ;ALB/CJM,Zoltan,JAN,BRM,TDM,DJS - Catastrophic Disability API - Retrieve Data;May 24, 1999;Nov 14, 2001 ; 9/19/05 11:35am
+ ;;5.3;Registration;**121,147,232,387,451,653,894**;Aug 13,1993;Build 48
+ ;
+ ; DG*5.3*894 - Enhance Catastrophic Disability to use Descriptors rather than Diagnoses/Procedures/Conditions.
  ;
 GET(DFN,DGCDIS) ;
  ;Description: Get catastrophic disability information for a patient
@@ -38,7 +40,6 @@ GET(DFN,DGCDIS) ;
  S DGCDIS("DTFACIRV")=$P($G(^DPT(DFN,.39)),"^",8)
  ; .3953 DATE VETERAN WAS NOTIFIED
  S DGCDIS("DTVETNOT")=$P($G(^DPT(DFN,.39)),"^",9)
- ; .396 CD STATUS DIAGNOSES field (multiple):
  S SIEN=0
  F ITEM=1:1 S SIEN=$O(^DPT(DFN,.396,SIEN)) Q:'SIEN  D
  . ; .01 CD STATUS DIAGNOSES sub-field.
@@ -62,6 +63,10 @@ GET(DFN,DGCDIS) ;
  . S DGCDIS("SCORE",ITEM)=$P($G(^DPT(DFN,.398,SIEN,0)),"^",2)
  . ; 2 PERMANENT INDICATOR sub-field.
  . S DGCDIS("PERM",ITEM)=$P($G(^DPT(DFN,.398,SIEN,0)),"^",3)
+ S SIEN=0
+ F ITEM=1:1 S SIEN=$O(^DPT(DFN,.401,SIEN)) Q:'SIEN  D     ;DG*5.3*894
+ . ; .401 CD DESCRIPTORS field (multiple):
+ . S DGCDIS("DESCR",ITEM)=$P($G(^DPT(DFN,.401,SIEN,0)),"^",1)
  Q 1
  ;
 DISABLED(DFN) ;

@@ -1,7 +1,8 @@
 TIURD3  ; SLC/JER - Reassign actions ;11/01/03
- ;;1.0;TEXT INTEGRATION UTILITIES;**61,124,113,112**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**61,124,113,112,295**;Jun 20, 1997;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified
 REASSIGO ; Reassign an original Document
- N TIU,TIUASK,TIUDPRM
+ N TIU,TIUASK,TIUDPRM,TIUREASS
  W !!,"Please choose the correct PATIENT and CARE EPISODE:",!
  ; --- Get a patient ---
  S DFN=+$$PATIENT^TIULA
@@ -87,6 +88,8 @@ REASSIGO ; Reassign an original Document
  . ; --- Call ^DIE to affect the Reassignment ---
  . S DA=TIUDA,DIE=8925 D ^DIE
  . ; --- Post-reassignment Steps ---
+ . ;*295 SET FLAG TO AVOID DEFER CODE
+ . S TIUREASS=1
  . ; 1. Package Reassign Action:
  . D PKGACT(TIUDA,.TIUD0,.TIUD12,.TIUD13,.TIUD14,.TIUOUT)
  . Q:+$G(TIUOUT)

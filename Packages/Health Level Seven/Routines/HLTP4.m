@@ -1,6 +1,6 @@
 HLTP4 ;SFIRMFO/RSD - Transaction Processor for TCP ;06/24/2008  10:47
- ;;1.6;HEALTH LEVEL SEVEN;**19,57,59,91,109,116,117,125,120,142**;Oct 13, 1995;Build 17
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**19,57,59,91,109,116,117,125,120,142,163**;Oct 13, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
 GENACK ;called from HLMA1
  ;Entry point to generate an acknowledgement message
  ;for TCP
@@ -51,8 +51,16 @@ GENACK ;called from HLMA1
  .. ;
  .. ; patch HL*1.6*120 start
  .. ; assume the format is <domain>:<port #>
- .. I DOMAIN[":" S HLP("PORT")=$P(DOMAIN,":",2)
- .. S DOMAIN=$P(DOMAIN,":")
+ .. ; patch HL*1.6*163 can no longer assume one format for <domain><port> with IPV6
+ .. ; check for IPV6 address with delimiter of "]:" and process accordingly
+ .. ;$$FORCEIP6^XLFIPV(IP) API (ICR #5844)
+ .. I DOMAIN["]" D 
+ ... S HLP("PORT")=$P(DOMAIN,"]:",2)
+ ... S DOMAIN=$E($P(DOMAIN,"]"),2,99)
+ ... S DOMAIN=$$FORCEIP6^XLFIPV(DOMAIN)
+ .. E  I DOMAIN[":" D
+ ... S HLP("PORT")=$P(DOMAIN,":",2)
+ ... S DOMAIN=$P(DOMAIN,":")
  .. S HLP("DNS-DOMAIN")=DOMAIN
  .. ;
  .. ; if first piece of domain is "HL7." or "MPI.", remove it

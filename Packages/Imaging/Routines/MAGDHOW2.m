@@ -1,5 +1,5 @@
-MAGDHOW2 ;WOIFO/PMK - Capture Consult/GMRC data ; 15 May 2013 11:35 AM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ; 16 Nov 2014 11:35 AM
+ ;;3.0;IMAGING;**138,156**;Mar 19, 2002;Build 10;Nov 16, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -21,7 +21,13 @@ MESSAGE(SERVICE) ; invoked from ^MAGDHOW1
  N CONSULT,ERROR,HL7IEN,HLMSTATE,I,MESSAGES,MSG,NEXT,OBXSEGNO
  N PRIORITY,SAVEORCSEG,SUCCESS,TIUDOC,X,Y
  ;
- D INIT(MSGTYPE,"O01") ; start building a new HL7 message
+ ; P156 DAC - Support for HL7 result messages
+ I MSGTYPE="ORM" D  ; order entry message
+ . D INIT(MSGTYPE,"O01") ; start building a new HL7 order entry message
+ . Q
+ E  D  ; result message
+ . D INIT(MSGTYPE,"R01") ; start building a new HL7 result message
+ . Q
  ;
  D PIDPV1^MAGDHOW2(.HLMSTATE,DFN)
  D ORC^MAGDHOW3(.HLMSTATE,GMRCIEN,.SAVEORCSEG)
@@ -34,7 +40,7 @@ MESSAGE(SERVICE) ; invoked from ^MAGDHOW1
  S PARMS("SUBSCRIPTION IEN")=HL7SUBLIST
  ; the HLO private queue name is the name of the subscription list
  S PARMS("QUEUE")=$$GET1^DIQ(779.4,HL7SUBLIST,.01) ; private queue
- S SUCCESS=$$SENDSUB^HLOAPI1(.HLMSTATE,.PARMS,.MESSAGES)
+ S SUCCESS=$$SENDSUB^HLOAPI1(.HLMSTATE,.PARMS,.MESSAGES) ; IA #4717
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -61,7 +67,7 @@ INIT(MSGTYPE,EVENT) ; start building a new HL7 message
  S PARMS("MESSAGE TYPE")=MSGTYPE
  S PARMS("PROCESSING MODE")="T"
  S PARMS("VERSION")=2.4
- S SUCCESS=$$NEWMSG^HLOAPI(.PARMS,.HLMSTATE,.ERROR)
+ S SUCCESS=$$NEWMSG^HLOAPI(.PARMS,.HLMSTATE,.ERROR) ; IA #4716
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -90,7 +96,7 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
  S NUL=$$MAKE^MAG7UM("HL7ARRAY","HL7SEG")
  S PID=HL7SEG(2)
  S PV1=HL7SEG(3)
- S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PID,.ERROR)
+ S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PID,.ERROR) ; IA #4716
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -102,7 +108,7 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
  . S VARIABLES("ERROR")=""
  . D ERROR^MAGDHOWA(SUBJECT,.MSG,.VARIABLES)
  . Q
- S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PV1,.ERROR)
+ S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PV1,.ERROR) ; IA #4716
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -121,7 +127,7 @@ OUTPUT ; output the messages to ^MAGDHL7
  S HLAIEN=HLMSTATE("BODY")
  ;
  ; build the MSH segment
- D BUILDHDR^HLOPBLD1(.HLMSTATE,"MSH",.HL7MSH)
+ D BUILDHDR^HLOPBLD1(.HLMSTATE,"MSH",.HL7MSH) ; IA 5886
  ;
  ; copy the two lines of the MSH segment to the HL7 array
  S HL7MSH=HL7MSH(1)_HL7MSH(2) ; MSH segment

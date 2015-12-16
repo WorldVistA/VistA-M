@@ -1,134 +1,140 @@
-IBDEI021 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI021 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,445,0)
- ;;=64402^^5^49^8^^^^1
- ;;^UTILITY(U,$J,358.3,445,1,0)
+ ;;^UTILITY(U,$J,358.3,401,1,3,0)
+ ;;=3^Malignant neoplasm of accessory sinus, unspecified
+ ;;^UTILITY(U,$J,358.3,401,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,401,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,402,0)
+ ;;=C32.9^^2^19^5
+ ;;^UTILITY(U,$J,358.3,402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,445,1,2,0)
- ;;=2^NERVE BLK FACIAL NERVE,INJ
- ;;^UTILITY(U,$J,358.3,445,1,4,0)
- ;;=4^64402
- ;;^UTILITY(U,$J,358.3,446,0)
- ;;=64447^^5^49^10^^^^1
- ;;^UTILITY(U,$J,358.3,446,1,0)
+ ;;^UTILITY(U,$J,358.3,402,1,3,0)
+ ;;=3^Malignant neoplasm of larynx, unspecified
+ ;;^UTILITY(U,$J,358.3,402,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,402,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,403,0)
+ ;;=C33.^^2^19^12
+ ;;^UTILITY(U,$J,358.3,403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,446,1,2,0)
- ;;=2^NERVE BLK FEMORAL NERVE,SNGL INJ
- ;;^UTILITY(U,$J,358.3,446,1,4,0)
- ;;=4^64447
- ;;^UTILITY(U,$J,358.3,447,0)
- ;;=64448^^5^49^9^^^^1
- ;;^UTILITY(U,$J,358.3,447,1,0)
+ ;;^UTILITY(U,$J,358.3,403,1,3,0)
+ ;;=3^Malignant neoplasm of trachea
+ ;;^UTILITY(U,$J,358.3,403,1,4,0)
+ ;;=4^C33.
+ ;;^UTILITY(U,$J,358.3,403,2)
+ ;;=^267135
+ ;;^UTILITY(U,$J,358.3,404,0)
+ ;;=C34.91^^2^19^14
+ ;;^UTILITY(U,$J,358.3,404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,447,1,2,0)
- ;;=2^NERVE BLK FEMORAL NERVE,CONT INFUSION
- ;;^UTILITY(U,$J,358.3,447,1,4,0)
- ;;=4^64448
- ;;^UTILITY(U,$J,358.3,448,0)
- ;;=64405^^5^49^11^^^^1
- ;;^UTILITY(U,$J,358.3,448,1,0)
+ ;;^UTILITY(U,$J,358.3,404,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
+ ;;^UTILITY(U,$J,358.3,404,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,404,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,405,0)
+ ;;=C34.92^^2^19^13
+ ;;^UTILITY(U,$J,358.3,405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,448,1,2,0)
- ;;=2^NERVE BLK GREATER OCCIPITAL NERVE,INJ
- ;;^UTILITY(U,$J,358.3,448,1,4,0)
- ;;=4^64405
- ;;^UTILITY(U,$J,358.3,449,0)
- ;;=64425^^5^49^12^^^^1
- ;;^UTILITY(U,$J,358.3,449,1,0)
+ ;;^UTILITY(U,$J,358.3,405,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
+ ;;^UTILITY(U,$J,358.3,405,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,405,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,406,0)
+ ;;=C38.4^^2^19^9
+ ;;^UTILITY(U,$J,358.3,406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,449,1,2,0)
- ;;=2^NERVE BLK ILIOINGUINAL/ILIOHYPOGASTRIC,INJ
- ;;^UTILITY(U,$J,358.3,449,1,4,0)
- ;;=4^64425
- ;;^UTILITY(U,$J,358.3,450,0)
- ;;=64450^^5^49^17^^^^1
- ;;^UTILITY(U,$J,358.3,450,1,0)
+ ;;^UTILITY(U,$J,358.3,406,1,3,0)
+ ;;=3^Malignant neoplasm of pleura
+ ;;^UTILITY(U,$J,358.3,406,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,406,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,407,0)
+ ;;=C45.0^^2^19^15
+ ;;^UTILITY(U,$J,358.3,407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,450,1,2,0)
- ;;=2^NERVE BLK PERIPH NERVE/BRANCH NEC
- ;;^UTILITY(U,$J,358.3,450,1,4,0)
- ;;=4^64450
- ;;^UTILITY(U,$J,358.3,451,0)
- ;;=64508^^5^49^5^^^^1
- ;;^UTILITY(U,$J,358.3,451,1,0)
+ ;;^UTILITY(U,$J,358.3,407,1,3,0)
+ ;;=3^Mesothelioma of pleura
+ ;;^UTILITY(U,$J,358.3,407,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,407,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,408,0)
+ ;;=C73.^^2^19^10
+ ;;^UTILITY(U,$J,358.3,408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,451,1,2,0)
- ;;=2^NERVE BLK CAROTID SINUS,INJ
- ;;^UTILITY(U,$J,358.3,451,1,4,0)
- ;;=4^64508
- ;;^UTILITY(U,$J,358.3,452,0)
- ;;=64530^^5^49^6^^^^1
- ;;^UTILITY(U,$J,358.3,452,1,0)
+ ;;^UTILITY(U,$J,358.3,408,1,3,0)
+ ;;=3^Malignant neoplasm of thyroid gland
+ ;;^UTILITY(U,$J,358.3,408,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,408,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,409,0)
+ ;;=C76.0^^2^19^4
+ ;;^UTILITY(U,$J,358.3,409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,452,1,2,0)
- ;;=2^NERVE BLK CELIAC PLEXUS,INJ
- ;;^UTILITY(U,$J,358.3,452,1,4,0)
- ;;=4^64530
- ;;^UTILITY(U,$J,358.3,453,0)
- ;;=64520^^5^49^15^^^^1
- ;;^UTILITY(U,$J,358.3,453,1,0)
+ ;;^UTILITY(U,$J,358.3,409,1,3,0)
+ ;;=3^Malignant neoplasm of head, face and neck
+ ;;^UTILITY(U,$J,358.3,409,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,409,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,410,0)
+ ;;=D57.40^^2^20^15
+ ;;^UTILITY(U,$J,358.3,410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,453,1,2,0)
- ;;=2^NERVE BLK LUMBAR/THORACIC,INJ
- ;;^UTILITY(U,$J,358.3,453,1,4,0)
- ;;=4^64520
- ;;^UTILITY(U,$J,358.3,454,0)
- ;;=64505^^5^49^22^^^^1
- ;;^UTILITY(U,$J,358.3,454,1,0)
+ ;;^UTILITY(U,$J,358.3,410,1,3,0)
+ ;;=3^Sickle-cell thalassemia without crisis
+ ;;^UTILITY(U,$J,358.3,410,1,4,0)
+ ;;=4^D57.40
+ ;;^UTILITY(U,$J,358.3,410,2)
+ ;;=^329908
+ ;;^UTILITY(U,$J,358.3,411,0)
+ ;;=D57.419^^2^20^14
+ ;;^UTILITY(U,$J,358.3,411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,454,1,2,0)
- ;;=2^NERVE BLK SPHEOPALATINE GANGLION
- ;;^UTILITY(U,$J,358.3,454,1,4,0)
- ;;=4^64505
- ;;^UTILITY(U,$J,358.3,455,0)
- ;;=64420^^5^49^13^^^^1
- ;;^UTILITY(U,$J,358.3,455,1,0)
+ ;;^UTILITY(U,$J,358.3,411,1,3,0)
+ ;;=3^Sickle-cell thalassemia with crisis, unspecified
+ ;;^UTILITY(U,$J,358.3,411,1,4,0)
+ ;;=4^D57.419
+ ;;^UTILITY(U,$J,358.3,411,2)
+ ;;=^5002316
+ ;;^UTILITY(U,$J,358.3,412,0)
+ ;;=D56.0^^2^20^1
+ ;;^UTILITY(U,$J,358.3,412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,455,1,2,0)
- ;;=2^NERVE BLK INTERCOSTAL NERVE,SNGL INJ
- ;;^UTILITY(U,$J,358.3,455,1,4,0)
- ;;=4^64420
- ;;^UTILITY(U,$J,358.3,456,0)
- ;;=64421^^5^49^14^^^^1
- ;;^UTILITY(U,$J,358.3,456,1,0)
+ ;;^UTILITY(U,$J,358.3,412,1,3,0)
+ ;;=3^Alpha thalassemia
+ ;;^UTILITY(U,$J,358.3,412,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,412,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,413,0)
+ ;;=D56.1^^2^20^2
+ ;;^UTILITY(U,$J,358.3,413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,456,1,2,0)
- ;;=2^NERVE BLK INTERCOSTAL,MULTI,REG BLK
- ;;^UTILITY(U,$J,358.3,456,1,4,0)
- ;;=4^64421
- ;;^UTILITY(U,$J,358.3,457,0)
- ;;=64435^^5^49^16^^^^1
- ;;^UTILITY(U,$J,358.3,457,1,0)
+ ;;^UTILITY(U,$J,358.3,413,1,3,0)
+ ;;=3^Beta thalassemia
+ ;;^UTILITY(U,$J,358.3,413,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,413,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,414,0)
+ ;;=D56.2^^2^20^3
+ ;;^UTILITY(U,$J,358.3,414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,457,1,2,0)
- ;;=2^NERVE BLK PARACERVICAL,INJ
- ;;^UTILITY(U,$J,358.3,457,1,4,0)
- ;;=4^64435
- ;;^UTILITY(U,$J,358.3,458,0)
- ;;=64410^^5^49^18^^^^1
- ;;^UTILITY(U,$J,358.3,458,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,458,1,2,0)
- ;;=2^NERVE BLK PHRENIC NERVE,INJ
- ;;^UTILITY(U,$J,358.3,458,1,4,0)
- ;;=4^64410
- ;;^UTILITY(U,$J,358.3,459,0)
- ;;=64430^^5^49^19^^^^1
- ;;^UTILITY(U,$J,358.3,459,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,459,1,2,0)
- ;;=2^NERVE BLK PUDENDAL NERVE,INJ
- ;;^UTILITY(U,$J,358.3,459,1,4,0)
- ;;=4^64430
- ;;^UTILITY(U,$J,358.3,460,0)
- ;;=64445^^5^49^21^^^^1
- ;;^UTILITY(U,$J,358.3,460,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,460,1,2,0)
- ;;=2^NERVE BLK SCIATIC NERVE,SNGL INJ
- ;;^UTILITY(U,$J,358.3,460,1,4,0)
- ;;=4^64445
- ;;^UTILITY(U,$J,358.3,461,0)
- ;;=64446^^5^49^20^^^^1
+ ;;^UTILITY(U,$J,358.3,414,1,3,0)
+ ;;=3^Delta-beta thalassemia
+ ;;^UTILITY(U,$J,358.3,414,1,4,0)
+ ;;=4^D56.2
+ ;;^UTILITY(U,$J,358.3,414,2)
+ ;;=^340496

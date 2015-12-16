@@ -1,128 +1,132 @@
-IBDEI1NU ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1NU ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29843,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,29843,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,29844,0)
- ;;=K57.40^^189^1899^6
- ;;^UTILITY(U,$J,358.3,29844,1,0)
+ ;;^UTILITY(U,$J,358.3,29492,1,4,0)
+ ;;=4^Q76.2
+ ;;^UTILITY(U,$J,358.3,29492,2)
+ ;;=^5019003
+ ;;^UTILITY(U,$J,358.3,29493,0)
+ ;;=M43.10^^176^1885^12
+ ;;^UTILITY(U,$J,358.3,29493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29844,1,3,0)
- ;;=3^Diverticulitis of Small/Large Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29844,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,29844,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,29845,0)
- ;;=K57.32^^189^1899^4
- ;;^UTILITY(U,$J,358.3,29845,1,0)
+ ;;^UTILITY(U,$J,358.3,29493,1,3,0)
+ ;;=3^Spondylolisthesis, site unspecified
+ ;;^UTILITY(U,$J,358.3,29493,1,4,0)
+ ;;=4^M43.10
+ ;;^UTILITY(U,$J,358.3,29493,2)
+ ;;=^5011921
+ ;;^UTILITY(U,$J,358.3,29494,0)
+ ;;=G06.1^^176^1885^8
+ ;;^UTILITY(U,$J,358.3,29494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29845,1,3,0)
- ;;=3^Diverticulitis of Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29845,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,29845,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,29846,0)
- ;;=K57.90^^189^1900^1
- ;;^UTILITY(U,$J,358.3,29846,1,0)
+ ;;^UTILITY(U,$J,358.3,29494,1,3,0)
+ ;;=3^Intraspinal abscess and granuloma
+ ;;^UTILITY(U,$J,358.3,29494,1,4,0)
+ ;;=4^G06.1
+ ;;^UTILITY(U,$J,358.3,29494,2)
+ ;;=^5003746
+ ;;^UTILITY(U,$J,358.3,29495,0)
+ ;;=G96.0^^176^1885^2
+ ;;^UTILITY(U,$J,358.3,29495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29846,1,3,0)
- ;;=3^Diverticulosis of Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29846,1,4,0)
- ;;=4^K57.90
- ;;^UTILITY(U,$J,358.3,29846,2)
- ;;=^5008735
- ;;^UTILITY(U,$J,358.3,29847,0)
- ;;=K57.50^^189^1900^3
- ;;^UTILITY(U,$J,358.3,29847,1,0)
+ ;;^UTILITY(U,$J,358.3,29495,1,3,0)
+ ;;=3^Cerebrospinal fluid leak
+ ;;^UTILITY(U,$J,358.3,29495,1,4,0)
+ ;;=4^G96.0
+ ;;^UTILITY(U,$J,358.3,29495,2)
+ ;;=^5004195
+ ;;^UTILITY(U,$J,358.3,29496,0)
+ ;;=G96.11^^176^1885^4
+ ;;^UTILITY(U,$J,358.3,29496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29847,1,3,0)
- ;;=3^Diverticulosis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29847,1,4,0)
- ;;=4^K57.50
- ;;^UTILITY(U,$J,358.3,29847,2)
- ;;=^5008729
- ;;^UTILITY(U,$J,358.3,29848,0)
- ;;=K57.30^^189^1900^2
- ;;^UTILITY(U,$J,358.3,29848,1,0)
+ ;;^UTILITY(U,$J,358.3,29496,1,3,0)
+ ;;=3^Dural tear
+ ;;^UTILITY(U,$J,358.3,29496,1,4,0)
+ ;;=4^G96.11
+ ;;^UTILITY(U,$J,358.3,29496,2)
+ ;;=^5004196
+ ;;^UTILITY(U,$J,358.3,29497,0)
+ ;;=M54.14^^176^1885^10
+ ;;^UTILITY(U,$J,358.3,29497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29848,1,3,0)
- ;;=3^Diverticulosis of Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29848,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,29848,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,29849,0)
- ;;=C02.9^^189^1901^33
- ;;^UTILITY(U,$J,358.3,29849,1,0)
+ ;;^UTILITY(U,$J,358.3,29497,1,3,0)
+ ;;=3^Radiculopathy, thoracic region
+ ;;^UTILITY(U,$J,358.3,29497,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,29497,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,29498,0)
+ ;;=M45.6^^176^1886^1
+ ;;^UTILITY(U,$J,358.3,29498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29849,1,3,0)
- ;;=3^Malig Neop of Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,29849,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,29849,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,29850,0)
- ;;=C06.9^^189^1901^30
- ;;^UTILITY(U,$J,358.3,29850,1,0)
+ ;;^UTILITY(U,$J,358.3,29498,1,3,0)
+ ;;=3^Ankylosing spondylitis lumbar region
+ ;;^UTILITY(U,$J,358.3,29498,1,4,0)
+ ;;=4^M45.6
+ ;;^UTILITY(U,$J,358.3,29498,2)
+ ;;=^5011966
+ ;;^UTILITY(U,$J,358.3,29499,0)
+ ;;=M45.7^^176^1886^2
+ ;;^UTILITY(U,$J,358.3,29499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29850,1,3,0)
- ;;=3^Malig Neop of Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,29850,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,29850,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,29851,0)
- ;;=C32.9^^189^1901^29
- ;;^UTILITY(U,$J,358.3,29851,1,0)
+ ;;^UTILITY(U,$J,358.3,29499,1,3,0)
+ ;;=3^Ankylosing spondylitis lumbosacral region
+ ;;^UTILITY(U,$J,358.3,29499,1,4,0)
+ ;;=4^M45.7
+ ;;^UTILITY(U,$J,358.3,29499,2)
+ ;;=^5011967
+ ;;^UTILITY(U,$J,358.3,29500,0)
+ ;;=M47.16^^176^1886^17
+ ;;^UTILITY(U,$J,358.3,29500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29851,1,3,0)
- ;;=3^Malig Neop of Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,29851,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,29851,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,29852,0)
- ;;=C44.40^^189^1901^31
- ;;^UTILITY(U,$J,358.3,29852,1,0)
+ ;;^UTILITY(U,$J,358.3,29500,1,3,0)
+ ;;=3^Spondylosis w/ myelopathy, lumbar region NEC
+ ;;^UTILITY(U,$J,358.3,29500,1,4,0)
+ ;;=4^M47.16
+ ;;^UTILITY(U,$J,358.3,29500,2)
+ ;;=^5012056
+ ;;^UTILITY(U,$J,358.3,29501,0)
+ ;;=M51.06^^176^1886^10
+ ;;^UTILITY(U,$J,358.3,29501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29852,1,3,0)
- ;;=3^Malig Neop of Skin of Scalp/Neck,Unspec
- ;;^UTILITY(U,$J,358.3,29852,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,29852,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,29853,0)
- ;;=C73.^^189^1901^32
- ;;^UTILITY(U,$J,358.3,29853,1,0)
+ ;;^UTILITY(U,$J,358.3,29501,1,3,0)
+ ;;=3^Intervertebral disc disorders with myelopathy, lumbar region
+ ;;^UTILITY(U,$J,358.3,29501,1,4,0)
+ ;;=4^M51.06
+ ;;^UTILITY(U,$J,358.3,29501,2)
+ ;;=^5012241
+ ;;^UTILITY(U,$J,358.3,29502,0)
+ ;;=M51.36^^176^1886^9
+ ;;^UTILITY(U,$J,358.3,29502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29853,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,29853,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,29853,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,29854,0)
- ;;=H60.311^^189^1901^15
- ;;^UTILITY(U,$J,358.3,29854,1,0)
+ ;;^UTILITY(U,$J,358.3,29502,1,3,0)
+ ;;=3^Intervertebral disc degeneration, lumbar region NEC
+ ;;^UTILITY(U,$J,358.3,29502,1,4,0)
+ ;;=4^M51.36
+ ;;^UTILITY(U,$J,358.3,29502,2)
+ ;;=^5012253
+ ;;^UTILITY(U,$J,358.3,29503,0)
+ ;;=M51.26^^176^1886^11
+ ;;^UTILITY(U,$J,358.3,29503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29854,1,3,0)
- ;;=3^Diffuse Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,29854,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,29854,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,29855,0)
- ;;=H60.312^^189^1901^14
- ;;^UTILITY(U,$J,358.3,29855,1,0)
+ ;;^UTILITY(U,$J,358.3,29503,1,3,0)
+ ;;=3^Intervertebral disc displacement, lumbar region NEC
+ ;;^UTILITY(U,$J,358.3,29503,1,4,0)
+ ;;=4^M51.26
+ ;;^UTILITY(U,$J,358.3,29503,2)
+ ;;=^5012249
+ ;;^UTILITY(U,$J,358.3,29504,0)
+ ;;=M54.16^^176^1886^13
+ ;;^UTILITY(U,$J,358.3,29504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29855,1,3,0)
- ;;=3^Diffuse Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,29855,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,29855,2)
- ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,29504,1,3,0)
+ ;;=3^Radiculopathy, lumbar region
+ ;;^UTILITY(U,$J,358.3,29504,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,29504,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,29505,0)
+ ;;=M43.27^^176^1886^8
+ ;;^UTILITY(U,$J,358.3,29505,1,0)
+ ;;=^358.31IA^4^2

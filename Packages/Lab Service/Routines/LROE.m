@@ -1,5 +1,5 @@
 LROE ;DALOI/CJS/FHS-LAB ORDER ENTRY AND ACCESSION ;8/11/97
- ;;5.2;LAB SERVICE;**100,121,201,221,263,286,360,423,432,438**;Sep 27, 1994;Build 18
+ ;;5.2;LAB SERVICE;**100,121,201,221,263,286,360,423,432,438,450**;Sep 27, 1994;Build 1
  K LRORIFN,LRNATURE,LREND,LRORDRR
  S LRLWC="WC"
  D ^LRPARAM
@@ -148,7 +148,7 @@ GOT(ORD,ODT) ;See if all tests have been canceled
  F  S ODT=$O(^LRO(69,"C",ORD,ODT)) Q:ODT<1  D
  . S SN=0 F  S SN=$O(^LRO(69,"C",ORD,ODT,SN)) Q:SN<1!(GOT)  D
  . . Q:'$D(^LRO(69,ODT,1,SN,0))
- . . S I=0 F  S I=$O(^LRO(69,ODT,1,SN,2,I)) Q:I<1  I $D(^(I,0)),'$P(^(0),"^",11) S GOT=1 Q
+ . . S I=0 F  S I=$O(^LRO(69,ODT,1,SN,2,I)) Q:I<1  I $D(^(I,0)),'$P(^(0),"^",11),$P(^(0),U,9)'="CA" S GOT=1 Q
  Q GOT
  ;
  ;

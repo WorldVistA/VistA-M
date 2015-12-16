@@ -1,138 +1,130 @@
-IBDEI1X3 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1X3 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34054,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,34054,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,34055,0)
- ;;=J15.9^^192^1985^64
- ;;^UTILITY(U,$J,358.3,34055,1,0)
+ ;;^UTILITY(U,$J,358.3,33700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34055,1,3,0)
- ;;=3^Pneumonia,Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,34055,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,34055,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,34056,0)
- ;;=J18.9^^192^1985^66
- ;;^UTILITY(U,$J,358.3,34056,1,0)
+ ;;^UTILITY(U,$J,358.3,33700,1,3,0)
+ ;;=3^Female Infertility,Unspec
+ ;;^UTILITY(U,$J,358.3,33700,1,4,0)
+ ;;=4^N97.9
+ ;;^UTILITY(U,$J,358.3,33700,2)
+ ;;=^5015935
+ ;;^UTILITY(U,$J,358.3,33701,0)
+ ;;=L29.1^^182^2008^50
+ ;;^UTILITY(U,$J,358.3,33701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34056,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,34056,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,34056,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,34057,0)
- ;;=J12.9^^192^1985^67
- ;;^UTILITY(U,$J,358.3,34057,1,0)
+ ;;^UTILITY(U,$J,358.3,33701,1,3,0)
+ ;;=3^Pruritus Scroti
+ ;;^UTILITY(U,$J,358.3,33701,1,4,0)
+ ;;=4^L29.1
+ ;;^UTILITY(U,$J,358.3,33701,2)
+ ;;=^5009150
+ ;;^UTILITY(U,$J,358.3,33702,0)
+ ;;=L29.2^^182^2008^51
+ ;;^UTILITY(U,$J,358.3,33702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34057,1,3,0)
- ;;=3^Pneumonia,Viral,Unspec
- ;;^UTILITY(U,$J,358.3,34057,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,34057,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,34058,0)
- ;;=J93.9^^192^1985^69
- ;;^UTILITY(U,$J,358.3,34058,1,0)
+ ;;^UTILITY(U,$J,358.3,33702,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,33702,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,33702,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,33703,0)
+ ;;=R92.8^^182^2008^4
+ ;;^UTILITY(U,$J,358.3,33703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34058,1,3,0)
- ;;=3^Pneumothorax,Unspec
- ;;^UTILITY(U,$J,358.3,34058,1,4,0)
- ;;=4^J93.9
- ;;^UTILITY(U,$J,358.3,34058,2)
- ;;=^5008315
- ;;^UTILITY(U,$J,358.3,34059,0)
- ;;=J84.10^^192^1985^74
- ;;^UTILITY(U,$J,358.3,34059,1,0)
+ ;;^UTILITY(U,$J,358.3,33703,1,3,0)
+ ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,33703,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,33703,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,33704,0)
+ ;;=R87.619^^182^2008^1
+ ;;^UTILITY(U,$J,358.3,33704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34059,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,34059,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,34059,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,34060,0)
- ;;=J84.89^^192^1985^30
- ;;^UTILITY(U,$J,358.3,34060,1,0)
+ ;;^UTILITY(U,$J,358.3,33704,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,33704,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,33704,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,33705,0)
+ ;;=Z79.890^^182^2008^25
+ ;;^UTILITY(U,$J,358.3,33705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34060,1,3,0)
- ;;=3^Interstitial Pulmonary Disease
- ;;^UTILITY(U,$J,358.3,34060,1,4,0)
- ;;=4^J84.89
- ;;^UTILITY(U,$J,358.3,34060,2)
- ;;=^5008303
- ;;^UTILITY(U,$J,358.3,34061,0)
- ;;=Z01.811^^192^1985^70
- ;;^UTILITY(U,$J,358.3,34061,1,0)
+ ;;^UTILITY(U,$J,358.3,33705,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,33705,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,33705,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,33706,0)
+ ;;=Z33.1^^182^2008^48
+ ;;^UTILITY(U,$J,358.3,33706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34061,1,3,0)
- ;;=3^Pre-Procedural Respiratory Exam
- ;;^UTILITY(U,$J,358.3,34061,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,34061,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,34062,0)
- ;;=J18.2^^192^1985^65
- ;;^UTILITY(U,$J,358.3,34062,1,0)
+ ;;^UTILITY(U,$J,358.3,33706,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,33706,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,33706,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,33707,0)
+ ;;=Z39.2^^182^2008^47
+ ;;^UTILITY(U,$J,358.3,33707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34062,1,3,0)
- ;;=3^Pneumonia,Hypostatic,Unspec Organism
- ;;^UTILITY(U,$J,358.3,34062,1,4,0)
- ;;=4^J18.2
- ;;^UTILITY(U,$J,358.3,34062,2)
- ;;=^5008184
- ;;^UTILITY(U,$J,358.3,34063,0)
- ;;=J81.0^^192^1985^23
- ;;^UTILITY(U,$J,358.3,34063,1,0)
+ ;;^UTILITY(U,$J,358.3,33707,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,33707,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,33707,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,33708,0)
+ ;;=Z30.09^^182^2008^10
+ ;;^UTILITY(U,$J,358.3,33708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34063,1,3,0)
- ;;=3^Edema,Pulmonary,Acute
- ;;^UTILITY(U,$J,358.3,34063,1,4,0)
- ;;=4^J81.0
- ;;^UTILITY(U,$J,358.3,34063,2)
- ;;=^5008295
- ;;^UTILITY(U,$J,358.3,34064,0)
- ;;=J84.112^^192^1985^73
- ;;^UTILITY(U,$J,358.3,34064,1,0)
+ ;;^UTILITY(U,$J,358.3,33708,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,33708,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,33708,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,33709,0)
+ ;;=Z30.9^^182^2008^9
+ ;;^UTILITY(U,$J,358.3,33709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34064,1,3,0)
- ;;=3^Pulmonary Fibrosis,Idiopathic
- ;;^UTILITY(U,$J,358.3,34064,1,4,0)
- ;;=4^J84.112
- ;;^UTILITY(U,$J,358.3,34064,2)
- ;;=^340534
- ;;^UTILITY(U,$J,358.3,34065,0)
- ;;=I27.0^^192^1985^75
- ;;^UTILITY(U,$J,358.3,34065,1,0)
+ ;;^UTILITY(U,$J,358.3,33709,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,33709,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,33709,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,33710,0)
+ ;;=S31.000A^^182^2009^6
+ ;;^UTILITY(U,$J,358.3,33710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34065,1,3,0)
- ;;=3^Pulmonary Hypertension,Primary
- ;;^UTILITY(U,$J,358.3,34065,1,4,0)
- ;;=4^I27.0
- ;;^UTILITY(U,$J,358.3,34065,2)
- ;;=^265310
- ;;^UTILITY(U,$J,358.3,34066,0)
- ;;=J98.8^^192^1985^79
- ;;^UTILITY(U,$J,358.3,34066,1,0)
+ ;;^UTILITY(U,$J,358.3,33710,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,33710,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,33710,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,33711,0)
+ ;;=S31.050A^^182^2009^5
+ ;;^UTILITY(U,$J,358.3,33711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34066,1,3,0)
- ;;=3^Respiratory Disorders
- ;;^UTILITY(U,$J,358.3,34066,1,4,0)
- ;;=4^J98.8
- ;;^UTILITY(U,$J,358.3,34066,2)
- ;;=^5008365
- ;;^UTILITY(U,$J,358.3,34067,0)
- ;;=R09.2^^192^1985^78
- ;;^UTILITY(U,$J,358.3,34067,1,0)
+ ;;^UTILITY(U,$J,358.3,33711,1,3,0)
+ ;;=3^Open Bite Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,33711,1,4,0)
+ ;;=4^S31.050A
+ ;;^UTILITY(U,$J,358.3,33711,2)
+ ;;=^5024017
+ ;;^UTILITY(U,$J,358.3,33712,0)
+ ;;=S31.030A^^182^2009^7
+ ;;^UTILITY(U,$J,358.3,33712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34067,1,3,0)
- ;;=3^Repiratory Arrest
- ;;^UTILITY(U,$J,358.3,34067,1,4,0)
- ;;=4^R09.2
- ;;^UTILITY(U,$J,358.3,34067,2)
- ;;=^276886
+ ;;^UTILITY(U,$J,358.3,33712,1,3,0)
+ ;;=3^Puncture Wnd w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,33712,1,4,0)
+ ;;=4^S31.030A

@@ -1,5 +1,5 @@
 RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21,25**;Feb 17, 2006;Build 19
  ;
  ; This routine uses the following IAs:
  ;
@@ -10,6 +10,7 @@ RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
  ; #2548         Multiple APIs in SDQ routine (supported)
  ; #10103        FMADD^XLFDT (supported)
  ; #5747         $$CODEC^ICDEX, $$CODEN^ICDEX, $$VSTP^ICDEX (controlled)
+ ; #6130         PTFICD^DGPTFUT
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -24,6 +25,7 @@ RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
  ;ROR*1.5*19   FEB 2012   J SCOTT       Support for ICD-10 Coding System.
  ;ROR*1.5*21   SEP 2013   T KOPP        Added ICN as report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*25   OCT 2014   T KOPP        Added PTF ICD-10 support for 25 diagnoses
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -39,58 +41,45 @@ RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
  ;       >0  Number of non-fatal errors
  ;
 INPAT(PTIEN) ;
- N DATE,ERRCNT,FLDLST,IEN,IEN45,IENS,NODE,RC,RORBUF,RORMSG,XREF
+ N DATE,ERRCNT,IEN,IEN45,IENS,NODE,RC,RORBUF,RORIBUF,RORMSG,XREF,FLD
  S (ERRCNT,RC)=0
  S XREF=$$ROOT^DILFD(45,,1),XREF=$NA(@XREF@("B",PTIEN))
  S IEN45=0
  F  S IEN45=$O(@XREF@(IEN45))  Q:IEN45'>0  D
- . ;Q:$$GET1^DIQ(45,IEN45_",",6,"I",,"RORMSG")<1  ; Skip open records
- . ;S IENS=IEN45_","
- . ;S FLDLST="45.01;45.02;45.03;45.04;45.05"
- . ;D GETS^DIQ(45,IENS,FLDLST,"I","RORBUF","RORMSG")
- . ;I $G(DIERR)  D  S ERRCNT=ERRCNT+1
- . ;. D DBS^RORERR("RORMSG",-99,,PTIEN,45,IENS)
- . ;D INP(PTIEN,$NA(RORBUF(IENS)),FLDLST,???)
  . ;--- Surgical procedures
  . S NODE=$$ROOT^DILFD(45.01,","_IEN45_",",1)
  . S IEN=0
  . F  S IEN=$O(@NODE@(IEN))  Q:IEN'>0  D
  . . S IENS=IEN_","_IEN45_","  K RORBUF
- . . S FLDLST="8;9;10;11;12"
  . . ;--- Load the data
- . . K RORMSG D GETS^DIQ(45.01,IENS,".01;"_FLDLST,"I","RORBUF","RORMSG")
- . . ;I $G(DIERR)  D  S ERRCNT=ERRCNT+1
+ . . K RORMSG D GETS^DIQ(45.01,IENS,".01;","I","RORBUF","RORMSG")
  . . I $G(RORMSG("DIERR"))  D  S ERRCNT=ERRCNT+1
  . . . D DBS^RORERR("RORMSG",-99,,PTIEN,45.01,IENS)
  . . S DATE=$G(RORBUF(45.01,IENS,.01,"I"))
  . . Q:(DATE<RORSDT)!(DATE'<ROREDT1)
  . . ;--- Generate the output
- . . D INP(PTIEN,$NA(RORBUF(45.01,IENS)),FLDLST,DATE)
+ . . K RORIBUF
+ . . D PTFICD^DGPTFUT(401,IEN45,IEN,.RORIBUF)
+ . . S FLD="" F  S FLD=$O(RORIBUF(FLD)) Q:FLD=""  I $G(RORIBUF(FLD)) D
+ . . . D PROCSET(PTIEN,"I",+RORIBUF(FLD),DATE)
  . ;--- Other procedures
  . S NODE=$$ROOT^DILFD(45.05,","_IEN45_",",1)
  . S IEN=0
  . F  S IEN=$O(@NODE@(IEN))  Q:IEN'>0  D
  . . S IENS=IEN_","_IEN45_","  K RORBUF
- . . S FLDLST="4;5;6;7;8"
  . . ;--- Load the data
- . . K RORMSG D GETS^DIQ(45.05,IENS,".01;"_FLDLST,"I","RORBUF","RORMSG")
- . . ;I $G(DIERR)  D  S ERRCNT=ERRCNT+1
+ . . K RORMSG D GETS^DIQ(45.05,IENS,".01","I","RORBUF","RORMSG")
  . . I $G(RORMSG("DIERR"))  D  S ERRCNT=ERRCNT+1
  . . . D DBS^RORERR("RORMSG",-99,,PTIEN,45.05,IENS)
  . . S DATE=$G(RORBUF(45.05,IENS,.01,"I"))
  . . Q:(DATE<RORSDT)!(DATE'<ROREDT1)
  . . ;--- Generate the output
- . . D INP(PTIEN,$NA(RORBUF(45.05,IENS)),FLDLST,DATE)
+ . . K RORIBUF
+ . . D PTFICD^DGPTFUT(601,IEN45,IEN,.RORIBUF)
+ . . S FLD="" F  S FLD=$O(RORIBUF(FLD)) Q:FLD=""  I $G(RORIBUF(FLD)) D
+ . . . D PROCSET(PTIEN,"I",+RORIBUF(FLD),DATE)
  ;---
  Q $S(RC<0:RC,1:ERRCNT)
- ;
- ;****
-INP(PTIEN,ROR8BUF,FLDLST,DATE) ;
- N I,ICDIEN,FLD
- F I=1:1  S FLD=$P(FLDLST,";",I)  Q:FLD=""  D
- . S ICDIEN=+$G(@ROR8BUF@(FLD,"I"))
- . D:ICDIEN>0 PROCSET(PTIEN,"I",ICDIEN,DATE)
- Q
  ;
  ;***** CALL-BACK PROCEDURE FOR THE OUTPATIENT SEARCH
  ;

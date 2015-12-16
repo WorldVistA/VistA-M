@@ -1,128 +1,128 @@
-IBDEI1QD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30988,1,3,0)
- ;;=3^Encounter for Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,30988,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,30988,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,30989,0)
- ;;=Z02.79^^190^1928^3
- ;;^UTILITY(U,$J,358.3,30989,1,0)
+ ;;^UTILITY(U,$J,358.3,30616,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, fetus 1
+ ;;^UTILITY(U,$J,358.3,30616,1,4,0)
+ ;;=4^O36.80X1
+ ;;^UTILITY(U,$J,358.3,30616,2)
+ ;;=^5017083
+ ;;^UTILITY(U,$J,358.3,30617,0)
+ ;;=O36.80X2^^178^1923^5
+ ;;^UTILITY(U,$J,358.3,30617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30989,1,3,0)
- ;;=3^Encounter for Issue of other Medical Certificate
- ;;^UTILITY(U,$J,358.3,30989,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,30989,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,30990,0)
- ;;=Z76.0^^190^1928^2
- ;;^UTILITY(U,$J,358.3,30990,1,0)
+ ;;^UTILITY(U,$J,358.3,30617,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, fetus 2
+ ;;^UTILITY(U,$J,358.3,30617,1,4,0)
+ ;;=4^O36.80X2
+ ;;^UTILITY(U,$J,358.3,30617,2)
+ ;;=^5017084
+ ;;^UTILITY(U,$J,358.3,30618,0)
+ ;;=O36.80X3^^178^1923^6
+ ;;^UTILITY(U,$J,358.3,30618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30990,1,3,0)
- ;;=3^Encounter for Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,30990,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,30990,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,30991,0)
- ;;=Z04.9^^190^1928^1
- ;;^UTILITY(U,$J,358.3,30991,1,0)
+ ;;^UTILITY(U,$J,358.3,30618,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, fetus 3
+ ;;^UTILITY(U,$J,358.3,30618,1,4,0)
+ ;;=4^O36.80X3
+ ;;^UTILITY(U,$J,358.3,30618,2)
+ ;;=^5017085
+ ;;^UTILITY(U,$J,358.3,30619,0)
+ ;;=O36.80X4^^178^1923^7
+ ;;^UTILITY(U,$J,358.3,30619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30991,1,3,0)
- ;;=3^Encounter for Exam & Observation for Unsp Reason
- ;;^UTILITY(U,$J,358.3,30991,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,30991,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,30992,0)
- ;;=I20.0^^190^1929^14
- ;;^UTILITY(U,$J,358.3,30992,1,0)
+ ;;^UTILITY(U,$J,358.3,30619,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, fetus 4
+ ;;^UTILITY(U,$J,358.3,30619,1,4,0)
+ ;;=4^O36.80X4
+ ;;^UTILITY(U,$J,358.3,30619,2)
+ ;;=^5017086
+ ;;^UTILITY(U,$J,358.3,30620,0)
+ ;;=O36.80X5^^178^1923^8
+ ;;^UTILITY(U,$J,358.3,30620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30992,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,30992,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,30992,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,30993,0)
- ;;=I25.110^^190^1929^7
- ;;^UTILITY(U,$J,358.3,30993,1,0)
+ ;;^UTILITY(U,$J,358.3,30620,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, fetus 5
+ ;;^UTILITY(U,$J,358.3,30620,1,4,0)
+ ;;=4^O36.80X5
+ ;;^UTILITY(U,$J,358.3,30620,2)
+ ;;=^5017087
+ ;;^UTILITY(U,$J,358.3,30621,0)
+ ;;=Z39.0^^178^1923^2
+ ;;^UTILITY(U,$J,358.3,30621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30993,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,30993,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,30993,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,30994,0)
- ;;=I25.700^^190^1929^12
- ;;^UTILITY(U,$J,358.3,30994,1,0)
+ ;;^UTILITY(U,$J,358.3,30621,1,3,0)
+ ;;=3^Care and exam of mother immediately after del
+ ;;^UTILITY(U,$J,358.3,30621,1,4,0)
+ ;;=4^Z39.0
+ ;;^UTILITY(U,$J,358.3,30621,2)
+ ;;=^5062904
+ ;;^UTILITY(U,$J,358.3,30622,0)
+ ;;=Z39.1^^178^1923^1
+ ;;^UTILITY(U,$J,358.3,30622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30994,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
- ;;^UTILITY(U,$J,358.3,30994,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,30994,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,30995,0)
- ;;=I25.2^^190^1929^13
- ;;^UTILITY(U,$J,358.3,30995,1,0)
+ ;;^UTILITY(U,$J,358.3,30622,1,3,0)
+ ;;=3^Care and exam of lactating mother
+ ;;^UTILITY(U,$J,358.3,30622,1,4,0)
+ ;;=4^Z39.1
+ ;;^UTILITY(U,$J,358.3,30622,2)
+ ;;=^5062905
+ ;;^UTILITY(U,$J,358.3,30623,0)
+ ;;=Z39.2^^178^1923^10
+ ;;^UTILITY(U,$J,358.3,30623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30995,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,30995,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,30995,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,30996,0)
- ;;=I20.8^^190^1929^2
- ;;^UTILITY(U,$J,358.3,30996,1,0)
+ ;;^UTILITY(U,$J,358.3,30623,1,3,0)
+ ;;=3^Routine postpartum follow-up
+ ;;^UTILITY(U,$J,358.3,30623,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,30623,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,30624,0)
+ ;;=A63.0^^178^1924^16
+ ;;^UTILITY(U,$J,358.3,30624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30996,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,30996,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,30996,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,30997,0)
- ;;=I20.1^^190^1929^1
- ;;^UTILITY(U,$J,358.3,30997,1,0)
+ ;;^UTILITY(U,$J,358.3,30624,1,3,0)
+ ;;=3^Anogenital (venereal) warts
+ ;;^UTILITY(U,$J,358.3,30624,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,30624,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,30625,0)
+ ;;=A56.02^^178^1924^28
+ ;;^UTILITY(U,$J,358.3,30625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30997,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,30997,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,30997,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,30998,0)
- ;;=I25.119^^190^1929^5
- ;;^UTILITY(U,$J,358.3,30998,1,0)
+ ;;^UTILITY(U,$J,358.3,30625,1,3,0)
+ ;;=3^Chlamydial vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,30625,1,4,0)
+ ;;=4^A56.02
+ ;;^UTILITY(U,$J,358.3,30625,2)
+ ;;=^5000340
+ ;;^UTILITY(U,$J,358.3,30626,0)
+ ;;=B37.3^^178^1924^22
+ ;;^UTILITY(U,$J,358.3,30626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30998,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/ Unsp Ang Pctrs
- ;;^UTILITY(U,$J,358.3,30998,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,30998,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,30999,0)
- ;;=I25.701^^190^1929^9
- ;;^UTILITY(U,$J,358.3,30999,1,0)
+ ;;^UTILITY(U,$J,358.3,30626,1,3,0)
+ ;;=3^Candidiasis of vulva and vagina
+ ;;^UTILITY(U,$J,358.3,30626,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,30626,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,30627,0)
+ ;;=A59.01^^178^1924^99
+ ;;^UTILITY(U,$J,358.3,30627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30999,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,30999,1,4,0)
- ;;=4^I25.701
- ;;^UTILITY(U,$J,358.3,30999,2)
- ;;=^5007118
- ;;^UTILITY(U,$J,358.3,31000,0)
- ;;=I25.708^^190^1929^10
- ;;^UTILITY(U,$J,358.3,31000,1,0)
+ ;;^UTILITY(U,$J,358.3,30627,1,3,0)
+ ;;=3^Trichomonal vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,30627,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,30627,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,30628,0)
+ ;;=D21.9^^178^1924^20
+ ;;^UTILITY(U,$J,358.3,30628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31000,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
- ;;^UTILITY(U,$J,358.3,31000,1,4,0)
- ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,30628,1,3,0)
+ ;;=3^Benign neoplasm of connective and other soft tissue, unsp
+ ;;^UTILITY(U,$J,358.3,30628,1,4,0)
+ ;;=4^D21.9

@@ -1,142 +1,132 @@
-IBDEI05G ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05G ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2266,0)
- ;;=783.3^^21^191^42
- ;;^UTILITY(U,$J,358.3,2266,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2266,1,4,0)
- ;;=4^783.3
- ;;^UTILITY(U,$J,358.3,2266,1,5,0)
- ;;=5^Feeding Problem of the Elderly
- ;;^UTILITY(U,$J,358.3,2266,2)
- ;;=   ^273364
- ;;^UTILITY(U,$J,358.3,2267,0)
- ;;=785.6^^21^191^48
- ;;^UTILITY(U,$J,358.3,2267,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2267,1,4,0)
- ;;=4^785.6
- ;;^UTILITY(U,$J,358.3,2267,1,5,0)
- ;;=5^Lymphadenopathy
- ;;^UTILITY(U,$J,358.3,2267,2)
- ;;=Lymphadenopathy^72368
- ;;^UTILITY(U,$J,358.3,2268,0)
- ;;=278.00^^21^191^49
- ;;^UTILITY(U,$J,358.3,2268,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2268,1,4,0)
- ;;=4^278.00
- ;;^UTILITY(U,$J,358.3,2268,1,5,0)
- ;;=5^Obesity
- ;;^UTILITY(U,$J,358.3,2268,2)
- ;;=Obesity^84823
- ;;^UTILITY(U,$J,358.3,2269,0)
- ;;=278.01^^21^191^51
- ;;^UTILITY(U,$J,358.3,2269,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2269,1,4,0)
- ;;=4^278.01
- ;;^UTILITY(U,$J,358.3,2269,1,5,0)
- ;;=5^Obesity, Morbid
- ;;^UTILITY(U,$J,358.3,2269,2)
- ;;=Obesity, Morbid^84844
- ;;^UTILITY(U,$J,358.3,2270,0)
- ;;=789.01^^21^191^17
- ;;^UTILITY(U,$J,358.3,2270,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2270,1,4,0)
- ;;=4^789.01
- ;;^UTILITY(U,$J,358.3,2270,1,5,0)
- ;;=5^Abdominal pain, RUQ
- ;;^UTILITY(U,$J,358.3,2270,2)
- ;;=^303318
- ;;^UTILITY(U,$J,358.3,2271,0)
- ;;=789.02^^21^191^13
- ;;^UTILITY(U,$J,358.3,2271,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2271,1,4,0)
- ;;=4^789.02
- ;;^UTILITY(U,$J,358.3,2271,1,5,0)
- ;;=5^Abdominal pain, LUQ
- ;;^UTILITY(U,$J,358.3,2271,2)
- ;;=^303319
- ;;^UTILITY(U,$J,358.3,2272,0)
- ;;=789.03^^21^191^16
- ;;^UTILITY(U,$J,358.3,2272,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2272,1,4,0)
- ;;=4^789.03
- ;;^UTILITY(U,$J,358.3,2272,1,5,0)
- ;;=5^Abdominal pain, RLQ
- ;;^UTILITY(U,$J,358.3,2272,2)
- ;;=^303320
- ;;^UTILITY(U,$J,358.3,2273,0)
- ;;=789.04^^21^191^12
- ;;^UTILITY(U,$J,358.3,2273,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2273,1,4,0)
- ;;=4^789.04
- ;;^UTILITY(U,$J,358.3,2273,1,5,0)
- ;;=5^Abdominal pain, LLQ
- ;;^UTILITY(U,$J,358.3,2273,2)
- ;;=^303321
- ;;^UTILITY(U,$J,358.3,2274,0)
- ;;=789.06^^21^191^10
- ;;^UTILITY(U,$J,358.3,2274,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2274,1,4,0)
- ;;=4^789.06
- ;;^UTILITY(U,$J,358.3,2274,1,5,0)
- ;;=5^Abdominal pain, Epigastric
- ;;^UTILITY(U,$J,358.3,2274,2)
- ;;=^303323
- ;;^UTILITY(U,$J,358.3,2275,0)
- ;;=789.05^^21^191^15
- ;;^UTILITY(U,$J,358.3,2275,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2275,1,4,0)
- ;;=4^789.05
- ;;^UTILITY(U,$J,358.3,2275,1,5,0)
- ;;=5^Abdominal pain, Periumbilical
- ;;^UTILITY(U,$J,358.3,2275,2)
- ;;=^303322
- ;;^UTILITY(U,$J,358.3,2276,0)
- ;;=789.40^^21^191^27
- ;;^UTILITY(U,$J,358.3,2276,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2276,1,4,0)
- ;;=4^789.40
- ;;^UTILITY(U,$J,358.3,2276,1,5,0)
- ;;=5^Abdominal rigidity, unsp site
- ;;^UTILITY(U,$J,358.3,2276,2)
- ;;=^273393
- ;;^UTILITY(U,$J,358.3,2277,0)
- ;;=789.1^^21^191^46
- ;;^UTILITY(U,$J,358.3,2277,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2277,1,4,0)
- ;;=4^789.1
- ;;^UTILITY(U,$J,358.3,2277,1,5,0)
- ;;=5^Hepatomegaly
- ;;^UTILITY(U,$J,358.3,2277,2)
- ;;=Hepatomegaly^56494
- ;;^UTILITY(U,$J,358.3,2278,0)
- ;;=789.30^^21^191^9
- ;;^UTILITY(U,$J,358.3,2278,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2278,1,4,0)
- ;;=4^789.30
- ;;^UTILITY(U,$J,358.3,2278,1,5,0)
- ;;=5^Abdominal Mass/Lump,Unspec Site
- ;;^UTILITY(U,$J,358.3,2278,2)
- ;;=Abdominal Mass/Lump^917
- ;;^UTILITY(U,$J,358.3,2279,0)
- ;;=789.2^^21^191^57
- ;;^UTILITY(U,$J,358.3,2279,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2279,1,4,0)
- ;;=4^789.2
- ;;^UTILITY(U,$J,358.3,2279,1,5,0)
- ;;=5^Splenomegaly
+ ;;^UTILITY(U,$J,358.3,2032,1,4,0)
+ ;;=4^S70.311A
+ ;;^UTILITY(U,$J,358.3,2032,2)
+ ;;=^5036903
+ ;;^UTILITY(U,$J,358.3,2033,0)
+ ;;=S70.312A^^4^62^11
+ ;;^UTILITY(U,$J,358.3,2033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2033,1,3,0)
+ ;;=3^Abrasion,Left thigh, initial encounter
+ ;;^UTILITY(U,$J,358.3,2033,1,4,0)
+ ;;=4^S70.312A
+ ;;^UTILITY(U,$J,358.3,2033,2)
+ ;;=^5036906
+ ;;^UTILITY(U,$J,358.3,2034,0)
+ ;;=S60.311A^^4^62^27
+ ;;^UTILITY(U,$J,358.3,2034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2034,1,3,0)
+ ;;=3^Abrasion,Right thumb, initial encounter
+ ;;^UTILITY(U,$J,358.3,2034,1,4,0)
+ ;;=4^S60.311A
+ ;;^UTILITY(U,$J,358.3,2034,2)
+ ;;=^5032285
+ ;;^UTILITY(U,$J,358.3,2035,0)
+ ;;=S60.312A^^4^62^12
+ ;;^UTILITY(U,$J,358.3,2035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2035,1,3,0)
+ ;;=3^Abrasion,Left thumb, initial encounter
+ ;;^UTILITY(U,$J,358.3,2035,1,4,0)
+ ;;=4^S60.312A
+ ;;^UTILITY(U,$J,358.3,2035,2)
+ ;;=^5032288
+ ;;^UTILITY(U,$J,358.3,2036,0)
+ ;;=S60.811A^^4^62^29
+ ;;^UTILITY(U,$J,358.3,2036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2036,1,3,0)
+ ;;=3^Abrasion,Right wrist, initial encounter
+ ;;^UTILITY(U,$J,358.3,2036,1,4,0)
+ ;;=4^S60.811A
+ ;;^UTILITY(U,$J,358.3,2036,2)
+ ;;=^5032582
+ ;;^UTILITY(U,$J,358.3,2037,0)
+ ;;=S60.812A^^4^62^14
+ ;;^UTILITY(U,$J,358.3,2037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2037,1,3,0)
+ ;;=3^Abrasion,Left wrist, initial encounter
+ ;;^UTILITY(U,$J,358.3,2037,1,4,0)
+ ;;=4^S60.812A
+ ;;^UTILITY(U,$J,358.3,2037,2)
+ ;;=^5032585
+ ;;^UTILITY(U,$J,358.3,2038,0)
+ ;;=T78.3XXA^^4^62^30
+ ;;^UTILITY(U,$J,358.3,2038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2038,1,3,0)
+ ;;=3^Angioneurotic edema, initial encounter
+ ;;^UTILITY(U,$J,358.3,2038,1,4,0)
+ ;;=4^T78.3XXA
+ ;;^UTILITY(U,$J,358.3,2038,2)
+ ;;=^5054281
+ ;;^UTILITY(U,$J,358.3,2039,0)
+ ;;=T63.441A^^4^62^246
+ ;;^UTILITY(U,$J,358.3,2039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2039,1,3,0)
+ ;;=3^Toxic effect of venom of bees, accidental, init
+ ;;^UTILITY(U,$J,358.3,2039,1,4,0)
+ ;;=4^T63.441A
+ ;;^UTILITY(U,$J,358.3,2039,2)
+ ;;=^5053522
+ ;;^UTILITY(U,$J,358.3,2040,0)
+ ;;=S91.051A^^4^62^147
+ ;;^UTILITY(U,$J,358.3,2040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2040,1,3,0)
+ ;;=3^Open bite, right ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,2040,1,4,0)
+ ;;=4^S91.051A
+ ;;^UTILITY(U,$J,358.3,2040,2)
+ ;;=^5044159
+ ;;^UTILITY(U,$J,358.3,2041,0)
+ ;;=S91.052A^^4^62^139
+ ;;^UTILITY(U,$J,358.3,2041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2041,1,3,0)
+ ;;=3^Open bite, left ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,2041,1,4,0)
+ ;;=4^S91.052A
+ ;;^UTILITY(U,$J,358.3,2041,2)
+ ;;=^5044162
+ ;;^UTILITY(U,$J,358.3,2042,0)
+ ;;=S41.151A^^4^62^154
+ ;;^UTILITY(U,$J,358.3,2042,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2042,1,3,0)
+ ;;=3^Open bite, right upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2042,1,4,0)
+ ;;=4^S41.151A
+ ;;^UTILITY(U,$J,358.3,2042,2)
+ ;;=^5026360
+ ;;^UTILITY(U,$J,358.3,2043,0)
+ ;;=S41.152A^^4^62^146
+ ;;^UTILITY(U,$J,358.3,2043,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2043,1,3,0)
+ ;;=3^Open bite, left upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2043,1,4,0)
+ ;;=4^S41.152A
+ ;;^UTILITY(U,$J,358.3,2043,2)
+ ;;=^5026363
+ ;;^UTILITY(U,$J,358.3,2044,0)
+ ;;=S51.851A^^4^62^149
+ ;;^UTILITY(U,$J,358.3,2044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2044,1,3,0)
+ ;;=3^Open bite, right forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2044,1,4,0)
+ ;;=4^S51.851A
+ ;;^UTILITY(U,$J,358.3,2044,2)
+ ;;=^5028689
+ ;;^UTILITY(U,$J,358.3,2045,0)
+ ;;=S51.852A^^4^62^141
+ ;;^UTILITY(U,$J,358.3,2045,1,0)
+ ;;=^358.31IA^4^2

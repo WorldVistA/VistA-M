@@ -1,5 +1,5 @@
-ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;5/17/13  11:51
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149**;Dec 22, 1997;Build 27
+ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;9/3/15  17:33
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154**;Dec 22, 1997;Build 13
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -29,7 +29,7 @@ GET ;gather extract data
  ;admission data
  S ELGA=$P($G(^DIC(8,+$P(EC,U,20),0)),U,9)
  I ELGA S ELGA=$$ELIG^ECXUTL3(ELGA,ECXSVC)
- S (ECDRG,ECDIA,ECXSADM,ECXADMS,ECXAOT)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
+ S (ECDRG,ECDIA,ECXSADM,ECXADMS,ECXAOT,ECXICD10P)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF ;154
  ;get encounter classification
  S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC,ECXSHAD,ECXESC,ECXECL)="",ECXVISIT=$P(EC,U,27) ;144
  I ECXVISIT'="" D
@@ -57,7 +57,6 @@ GET ;gather extract data
  S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",$E(ECXPRV,2,$L(ECXPRV)),ECD)
  S:+ECXUSRTN'>0 ECXUSRTN=""
  S ECPWNPI=$P(ECXUSRTN,U)
- S ECXICD10P="" ;136 ICD-10 null for now
  ;
  ;- Observation patient indicator (YES/NO)
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXSPC)
@@ -144,7 +143,8 @@ PTF ; get admitting DRG, diagnosis, source of admission from PTF
  S EC=1 I $D(^DGPT(ECPTF,"M",2,0)) S EC=2
  S EC1=+$P(^DGPT(ECPTF,"M",EC,0),U,5)
  S ECDRG=$P($G(^DGPT(ECPTF,"M",EC,"P")),U)
- S ECDIA=$P($G(^ICD9(EC1,0)),U)
+ S ECDIA=$S('EC1:"",1:$$CODEC^ICDEX(80,EC1)) ;154
+ I $$CSI^ICDEX(80,EC1)=30 S ECXICD10P=ECDIA,ECDIA="" ;154
  S ECX=+$P($G(^DGPT(ECPTF,101)),U),ECXSADM=$P($G(^DIC(45.1,ECX,0)),U,11)
  S ECXADMS=$$GET1^DIQ(45.1,ECX,.01)
  ;if source of admission = admit outpatient treatment ('1P')

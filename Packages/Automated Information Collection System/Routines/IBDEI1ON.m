@@ -1,132 +1,134 @@
-IBDEI1ON ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1ON ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30218,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,30218,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,30219,0)
- ;;=C44.602^^189^1910^15
- ;;^UTILITY(U,$J,358.3,30219,1,0)
+ ;;^UTILITY(U,$J,358.3,29867,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,29867,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,29867,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,29868,0)
+ ;;=S14.109S^^177^1904^3
+ ;;^UTILITY(U,$J,358.3,29868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30219,1,3,0)
- ;;=3^Malig Neop of Skin of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,30219,1,4,0)
- ;;=4^C44.602
- ;;^UTILITY(U,$J,358.3,30219,2)
- ;;=^5001064
- ;;^UTILITY(U,$J,358.3,30220,0)
- ;;=C44.609^^189^1910^9
- ;;^UTILITY(U,$J,358.3,30220,1,0)
+ ;;^UTILITY(U,$J,358.3,29868,1,3,0)
+ ;;=3^Cervical Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,29868,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,29868,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,29869,0)
+ ;;=S24.109S^^177^1904^10
+ ;;^UTILITY(U,$J,358.3,29869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30220,1,3,0)
- ;;=3^Malig Neop of Skin of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,30220,1,4,0)
- ;;=4^C44.609
- ;;^UTILITY(U,$J,358.3,30220,2)
- ;;=^5001065
- ;;^UTILITY(U,$J,358.3,30221,0)
- ;;=C44.702^^189^1910^14
- ;;^UTILITY(U,$J,358.3,30221,1,0)
+ ;;^UTILITY(U,$J,358.3,29869,1,3,0)
+ ;;=3^Thoracic Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,29869,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,29869,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,29870,0)
+ ;;=S34.109S^^177^1904^6
+ ;;^UTILITY(U,$J,358.3,29870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30221,1,3,0)
- ;;=3^Malig Neop of Skin of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,30221,1,4,0)
- ;;=4^C44.702
- ;;^UTILITY(U,$J,358.3,30221,2)
- ;;=^5001076
- ;;^UTILITY(U,$J,358.3,30222,0)
- ;;=C44.709^^189^1910^8
- ;;^UTILITY(U,$J,358.3,30222,1,0)
+ ;;^UTILITY(U,$J,358.3,29870,1,3,0)
+ ;;=3^Lumbar Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,29870,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,29870,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,29871,0)
+ ;;=S34.139S^^177^1904^9
+ ;;^UTILITY(U,$J,358.3,29871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30222,1,3,0)
- ;;=3^Malig Neop of Skin of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,30222,1,4,0)
- ;;=4^C44.709
- ;;^UTILITY(U,$J,358.3,30222,2)
- ;;=^5001077
- ;;^UTILITY(U,$J,358.3,30223,0)
- ;;=C44.80^^189^1910^2
- ;;^UTILITY(U,$J,358.3,30223,1,0)
+ ;;^UTILITY(U,$J,358.3,29871,1,3,0)
+ ;;=3^Sacral Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,29871,1,4,0)
+ ;;=4^S34.139S
+ ;;^UTILITY(U,$J,358.3,29871,2)
+ ;;=^5025249
+ ;;^UTILITY(U,$J,358.3,29872,0)
+ ;;=Z43.0^^177^1905^10
+ ;;^UTILITY(U,$J,358.3,29872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30223,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,30223,1,4,0)
- ;;=4^C44.80
- ;;^UTILITY(U,$J,358.3,30223,2)
- ;;=^5001087
- ;;^UTILITY(U,$J,358.3,30224,0)
- ;;=C44.90^^189^1910^18
- ;;^UTILITY(U,$J,358.3,30224,1,0)
+ ;;^UTILITY(U,$J,358.3,29872,1,3,0)
+ ;;=3^Attention to Tracheostomy
+ ;;^UTILITY(U,$J,358.3,29872,1,4,0)
+ ;;=4^Z43.0
+ ;;^UTILITY(U,$J,358.3,29872,2)
+ ;;=^5062958
+ ;;^UTILITY(U,$J,358.3,29873,0)
+ ;;=Z43.1^^177^1905^8
+ ;;^UTILITY(U,$J,358.3,29873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30224,1,3,0)
- ;;=3^Malig Neop of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,30224,1,4,0)
- ;;=4^C44.90
- ;;^UTILITY(U,$J,358.3,30224,2)
- ;;=^5001091
- ;;^UTILITY(U,$J,358.3,30225,0)
- ;;=C43.9^^189^1911^16
- ;;^UTILITY(U,$J,358.3,30225,1,0)
+ ;;^UTILITY(U,$J,358.3,29873,1,3,0)
+ ;;=3^Attention to Gastrostomy
+ ;;^UTILITY(U,$J,358.3,29873,1,4,0)
+ ;;=4^Z43.1
+ ;;^UTILITY(U,$J,358.3,29873,2)
+ ;;=^5062959
+ ;;^UTILITY(U,$J,358.3,29874,0)
+ ;;=Z43.2^^177^1905^9
+ ;;^UTILITY(U,$J,358.3,29874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30225,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,30225,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,30225,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,30226,0)
- ;;=C43.0^^189^1911^7
- ;;^UTILITY(U,$J,358.3,30226,1,0)
+ ;;^UTILITY(U,$J,358.3,29874,1,3,0)
+ ;;=3^Attention to Ileostomy
+ ;;^UTILITY(U,$J,358.3,29874,1,4,0)
+ ;;=4^Z43.2
+ ;;^UTILITY(U,$J,358.3,29874,2)
+ ;;=^5062960
+ ;;^UTILITY(U,$J,358.3,29875,0)
+ ;;=Z43.3^^177^1905^6
+ ;;^UTILITY(U,$J,358.3,29875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30226,1,3,0)
- ;;=3^Malig Melanoma of Lip
- ;;^UTILITY(U,$J,358.3,30226,1,4,0)
- ;;=4^C43.0
- ;;^UTILITY(U,$J,358.3,30226,2)
- ;;=^5000994
- ;;^UTILITY(U,$J,358.3,30227,0)
- ;;=C43.11^^189^1911^11
- ;;^UTILITY(U,$J,358.3,30227,1,0)
+ ;;^UTILITY(U,$J,358.3,29875,1,3,0)
+ ;;=3^Attention to Colostomy
+ ;;^UTILITY(U,$J,358.3,29875,1,4,0)
+ ;;=4^Z43.3
+ ;;^UTILITY(U,$J,358.3,29875,2)
+ ;;=^5062961
+ ;;^UTILITY(U,$J,358.3,29876,0)
+ ;;=Z43.4^^177^1905^4
+ ;;^UTILITY(U,$J,358.3,29876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30227,1,3,0)
- ;;=3^Malig Melanoma of Right Eyelid
- ;;^UTILITY(U,$J,358.3,30227,1,4,0)
- ;;=4^C43.11
- ;;^UTILITY(U,$J,358.3,30227,2)
- ;;=^5000996
- ;;^UTILITY(U,$J,358.3,30228,0)
- ;;=C43.12^^189^1911^4
- ;;^UTILITY(U,$J,358.3,30228,1,0)
+ ;;^UTILITY(U,$J,358.3,29876,1,3,0)
+ ;;=3^Attention to Artif Opening of Digestive Tract NEC
+ ;;^UTILITY(U,$J,358.3,29876,1,4,0)
+ ;;=4^Z43.4
+ ;;^UTILITY(U,$J,358.3,29876,2)
+ ;;=^5062962
+ ;;^UTILITY(U,$J,358.3,29877,0)
+ ;;=Z43.5^^177^1905^7
+ ;;^UTILITY(U,$J,358.3,29877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30228,1,3,0)
- ;;=3^Malig Melanoma of Left Eyelid
- ;;^UTILITY(U,$J,358.3,30228,1,4,0)
- ;;=4^C43.12
- ;;^UTILITY(U,$J,358.3,30228,2)
- ;;=^5000997
- ;;^UTILITY(U,$J,358.3,30229,0)
- ;;=C43.21^^189^1911^10
- ;;^UTILITY(U,$J,358.3,30229,1,0)
+ ;;^UTILITY(U,$J,358.3,29877,1,3,0)
+ ;;=3^Attention to Cystostomy
+ ;;^UTILITY(U,$J,358.3,29877,1,4,0)
+ ;;=4^Z43.5
+ ;;^UTILITY(U,$J,358.3,29877,2)
+ ;;=^5062963
+ ;;^UTILITY(U,$J,358.3,29878,0)
+ ;;=Z43.6^^177^1905^5
+ ;;^UTILITY(U,$J,358.3,29878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30229,1,3,0)
- ;;=3^Malig Melanoma of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,30229,1,4,0)
- ;;=4^C43.21
- ;;^UTILITY(U,$J,358.3,30229,2)
- ;;=^5000999
- ;;^UTILITY(U,$J,358.3,30230,0)
- ;;=C43.22^^189^1911^3
- ;;^UTILITY(U,$J,358.3,30230,1,0)
+ ;;^UTILITY(U,$J,358.3,29878,1,3,0)
+ ;;=3^Attention to Artif Opening of Urinary Tract NEC
+ ;;^UTILITY(U,$J,358.3,29878,1,4,0)
+ ;;=4^Z43.6
+ ;;^UTILITY(U,$J,358.3,29878,2)
+ ;;=^5062964
+ ;;^UTILITY(U,$J,358.3,29879,0)
+ ;;=Z48.00^^177^1905^12
+ ;;^UTILITY(U,$J,358.3,29879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30230,1,3,0)
- ;;=3^Malig Melanoma of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,30230,1,4,0)
- ;;=4^C43.22
- ;;^UTILITY(U,$J,358.3,30230,2)
- ;;=^5001000
- ;;^UTILITY(U,$J,358.3,30231,0)
- ;;=C43.31^^189^1911^8
- ;;^UTILITY(U,$J,358.3,30231,1,0)
+ ;;^UTILITY(U,$J,358.3,29879,1,3,0)
+ ;;=3^Change or Removal of Nonsurg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,29879,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,29879,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,29880,0)
+ ;;=Z48.01^^177^1905^13
+ ;;^UTILITY(U,$J,358.3,29880,1,0)
  ;;=^358.31IA^4^2

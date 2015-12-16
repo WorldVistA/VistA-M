@@ -1,126 +1,128 @@
-IBDEI1WX ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WX ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33976,1,4,0)
- ;;=4^S91.204A
- ;;^UTILITY(U,$J,358.3,33976,2)
- ;;=^5044267
- ;;^UTILITY(U,$J,358.3,33977,0)
- ;;=S91.205A^^191^1982^6
- ;;^UTILITY(U,$J,358.3,33977,1,0)
+ ;;^UTILITY(U,$J,358.3,33621,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,33622,0)
+ ;;=F14.221^^182^2006^16
+ ;;^UTILITY(U,$J,358.3,33622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33977,1,3,0)
- ;;=3^Open wound, lft lsr toe(s) w/ nail dmg, unspec, init
- ;;^UTILITY(U,$J,358.3,33977,1,4,0)
- ;;=4^S91.205A
- ;;^UTILITY(U,$J,358.3,33977,2)
- ;;=^5137430
- ;;^UTILITY(U,$J,358.3,33978,0)
- ;;=S91.134A^^191^1982^34
- ;;^UTILITY(U,$J,358.3,33978,1,0)
+ ;;^UTILITY(U,$J,358.3,33622,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,33622,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,33622,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,33623,0)
+ ;;=F14.220^^182^2006^18
+ ;;^UTILITY(U,$J,358.3,33623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33978,1,3,0)
- ;;=3^Punctr Wnd w/o FB, rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33978,1,4,0)
- ;;=4^S91.134A
- ;;^UTILITY(U,$J,358.3,33978,2)
- ;;=^5044222
- ;;^UTILITY(U,$J,358.3,33979,0)
- ;;=S91.135A^^191^1982^29
- ;;^UTILITY(U,$J,358.3,33979,1,0)
+ ;;^UTILITY(U,$J,358.3,33623,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33623,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,33623,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,33624,0)
+ ;;=F14.20^^182^2006^23
+ ;;^UTILITY(U,$J,358.3,33624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33979,1,3,0)
- ;;=3^Punctr Wnd w/o FB, lft lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33979,1,4,0)
- ;;=4^S91.135A
- ;;^UTILITY(U,$J,358.3,33979,2)
- ;;=^5044225
- ;;^UTILITY(U,$J,358.3,33980,0)
- ;;=S91.201A^^191^1982^10
- ;;^UTILITY(U,$J,358.3,33980,1,0)
+ ;;^UTILITY(U,$J,358.3,33624,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,33624,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,33624,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,33625,0)
+ ;;=F10.120^^182^2006^1
+ ;;^UTILITY(U,$J,358.3,33625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33980,1,3,0)
- ;;=3^Open wound, rt grt toe w/ nail dmg, unspec, init
- ;;^UTILITY(U,$J,358.3,33980,1,4,0)
- ;;=4^S91.201A
- ;;^UTILITY(U,$J,358.3,33980,2)
- ;;=^5044264
- ;;^UTILITY(U,$J,358.3,33981,0)
- ;;=S91.131A^^191^1982^32
- ;;^UTILITY(U,$J,358.3,33981,1,0)
+ ;;^UTILITY(U,$J,358.3,33625,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33625,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,33625,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,33626,0)
+ ;;=F10.10^^182^2006^2
+ ;;^UTILITY(U,$J,358.3,33626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33981,1,3,0)
- ;;=3^Punctr Wnd w/o FB, rt grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33981,1,4,0)
- ;;=4^S91.131A
- ;;^UTILITY(U,$J,358.3,33981,2)
- ;;=^5044213
- ;;^UTILITY(U,$J,358.3,33982,0)
- ;;=S91.132A^^191^1982^28
- ;;^UTILITY(U,$J,358.3,33982,1,0)
+ ;;^UTILITY(U,$J,358.3,33626,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33626,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,33626,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,33627,0)
+ ;;=F17.201^^182^2006^28
+ ;;^UTILITY(U,$J,358.3,33627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33982,1,3,0)
- ;;=3^Punctr Wnd w/o FB, lft grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33982,1,4,0)
- ;;=4^S91.132A
- ;;^UTILITY(U,$J,358.3,33982,2)
- ;;=^5044216
- ;;^UTILITY(U,$J,358.3,33983,0)
- ;;=S91.041A^^191^1982^19
- ;;^UTILITY(U,$J,358.3,33983,1,0)
+ ;;^UTILITY(U,$J,358.3,33627,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,33627,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,33627,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,33628,0)
+ ;;=F17.210^^182^2006^27
+ ;;^UTILITY(U,$J,358.3,33628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33983,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,33983,1,4,0)
- ;;=4^S91.041A
- ;;^UTILITY(U,$J,358.3,33983,2)
- ;;=^5044156
- ;;^UTILITY(U,$J,358.3,33984,0)
- ;;=S91.042A^^191^1982^14
- ;;^UTILITY(U,$J,358.3,33984,1,0)
+ ;;^UTILITY(U,$J,358.3,33628,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33628,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,33628,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,33629,0)
+ ;;=F17.291^^182^2006^29
+ ;;^UTILITY(U,$J,358.3,33629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33984,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,33984,1,4,0)
- ;;=4^S91.042A
- ;;^UTILITY(U,$J,358.3,33984,2)
- ;;=^5137412
- ;;^UTILITY(U,$J,358.3,33985,0)
- ;;=S81.841A^^191^1982^25
- ;;^UTILITY(U,$J,358.3,33985,1,0)
+ ;;^UTILITY(U,$J,358.3,33629,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,33629,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,33629,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,33630,0)
+ ;;=F17.290^^182^2006^30
+ ;;^UTILITY(U,$J,358.3,33630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33985,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,33985,1,4,0)
- ;;=4^S81.841A
- ;;^UTILITY(U,$J,358.3,33985,2)
- ;;=^5040092
- ;;^UTILITY(U,$J,358.3,33986,0)
- ;;=S91.341A^^191^1982^20
- ;;^UTILITY(U,$J,358.3,33986,1,0)
+ ;;^UTILITY(U,$J,358.3,33630,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33630,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,33630,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,33631,0)
+ ;;=F17.221^^182^2006^24
+ ;;^UTILITY(U,$J,358.3,33631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33986,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt ft, init enc
- ;;^UTILITY(U,$J,358.3,33986,1,4,0)
- ;;=4^S91.341A
- ;;^UTILITY(U,$J,358.3,33986,2)
- ;;=^5044341
- ;;^UTILITY(U,$J,358.3,33987,0)
- ;;=S81.842A^^191^1982^18
- ;;^UTILITY(U,$J,358.3,33987,1,0)
+ ;;^UTILITY(U,$J,358.3,33631,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,33631,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,33631,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,33632,0)
+ ;;=F17.220^^182^2006^25
+ ;;^UTILITY(U,$J,358.3,33632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33987,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,33987,1,4,0)
- ;;=4^S81.842A
- ;;^UTILITY(U,$J,358.3,33987,2)
- ;;=^5136697
- ;;^UTILITY(U,$J,358.3,33988,0)
- ;;=S91.144A^^191^1982^24
- ;;^UTILITY(U,$J,358.3,33988,1,0)
+ ;;^UTILITY(U,$J,358.3,33632,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33632,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,33632,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,33633,0)
+ ;;=F17.211^^182^2006^26
+ ;;^UTILITY(U,$J,358.3,33633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33988,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33988,1,4,0)
- ;;=4^S91.144A
+ ;;^UTILITY(U,$J,358.3,33633,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,33633,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,33633,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,33634,0)
+ ;;=F17.200^^182^2006^31

@@ -1,5 +1,6 @@
-XLFNAME ;CIOFO-SF/TKW,MKO-Utilities for person name fields ;10:12 AM  29 Jan 2003
- ;;8.0;KERNEL;**134,211,240**;Jul 10, 1995
+XLFNAME ;CIOFO-SF/TKW,MKO-Utilities for person name fields ;03/31/15  09:30
+ ;;8.0;KERNEL;**134,211,240,655**;Jul 10, 1995;Build 16
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 STDNAME(XUNAME,XUFLAG,XUAUD) ;Standardize name XUNAME
  ; XUNAME - In, name to be standardized. Out, standardized name
@@ -15,6 +16,7 @@ STDNAME(XUNAME,XUFLAG,XUAUD) ;Standardize name XUNAME
  N I,XUFAM,XUNM,XUOUT,XUMOV,XUREST,XUSP
  S XUOUT=$G(XUFLAG)["C"
  N:XUOUT XUFAMO,XURESTO
+ S XUNAME=$TR(XUNAME,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  K XUAUD S XUAUD=XUNAME
  ;
  F I="FAMILY","GIVEN","MIDDLE","SUFFIX" S XUNM(I)="" S:XUOUT XUOUT(I)=""
@@ -26,7 +28,7 @@ STDNAME(XUNAME,XUFLAG,XUAUD) ;Standardize name XUNAME
  ;
  S:XUNAME?1"EEE".E!(XUNAME?.E1" FEE")!(XUNAME?1A1"-".E) XUAUD("NOTE")=""
  ;
- ;If no comma, assume given name first
+ ;If no comma, assume given name first (also no "F")
  I XUNAME'[",",$G(XUFLAG)'["F" G GIVFRST
  ;
  ;Standardize Family

@@ -1,5 +1,7 @@
-DGENCDU ;ALB/CJM,Zoltan - Catastrophic Disability Utilities;May 24, 1999
- ;;5.3;Registration;**121,232**;Aug 13,1993
+DGENCDU ;ALB/CJM,Zoltan,TGH - Catastrophic Disability Utilities;May 24, 1999
+ ;;5.3;Registration;**121,232,894**;Aug 13,1993;Build 48
+ ;
+ ; DG*5.3*894 - Enhance Catastrophic Disability to use Descriptors rather than Diagnoses/Procedures/Conditions.
  ;
 EXT(SUB,VAL) ;
  ;Description: Given the subscript used in the Catastrophic Disability
@@ -45,7 +47,7 @@ SUB(FLD,FILE) ; Return subscript for this field (and file) number.
  F PC=1:1:$L(FLDLST,";") I $P(FLDLST,";",PC)=FLD,$P(FILELST,";",PC)=FILE S SUB=$P(SUBLST,";",PC+1) Q
  Q SUB
 SETVARS ; NOTE -- for easy future maintenance, just modify the following 3 variables.
- S SUBLST=";VCD;BY;DATE;FACDET;REVDTE;METDET;DIAG;PROC;EXT;COND;SCORE;PERM;"
- S FILELST="2;2;2;2;2;2;2.396;2.397;2.397;2.398;2.398;2.398"
- S FLDLST=".39;.391;.392;.393;.394;.395;.01;.01;1;.01;1;2"
+ S SUBLST=";VCD;BY;DATE;FACDET;REVDTE;METDET;DESCR;"
+ S FILELST="2;2;2;2;2;2;2.401"
+ S FLDLST=".39;.391;.392;.393;.394;.395;.01"
  Q

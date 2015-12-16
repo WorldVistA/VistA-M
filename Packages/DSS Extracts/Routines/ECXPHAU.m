@@ -1,12 +1,12 @@
 ECXPHAU ;ALB/JAM - Print Pharmacy Volume Edit Log (IVP,PRE,UDP) ; 11/2/06 8:54am
- ;;3.0;DSS EXTRACTS;**92**;Dec 22, 1997;Build 30
+ ;;3.0;DSS EXTRACTS;**92,154**;Dec 22, 1997;Build 13
 EN ;entry point from option
  ;Init variables and sort array
  N QFLG,SORT,ECXX,ECXNAM,ECSD,ECED
  ;
  S QFLG=0
  W !!,"This option prints a log of the changes made to the Pharmacy"
- W !,"Extracts: PRE, IVP or UDP",!
+ W !,"Extracts: PRE, IVP, UDP or BCM",!
  ;
  ;Get Extract
  D EXTRT Q:QFLG
@@ -18,7 +18,7 @@ EN ;entry point from option
  Q
 EXTRT ;Prompt for extract to report on
  N DIR,DIRUT
- S DIR(0)="SO^P:PRE;I:IVP;U:UDP"
+ S DIR(0)="SO^P:PRE;I:IVP;U:UDP;B:BCM" ;154
  S DIR("A")="Which extract log do you need?"
  D ^DIR I $D(DIRUT) S QFLG=1 Q
  S ECXX=Y,ECXNAM=Y(0)
@@ -33,7 +33,7 @@ GETSORT ;Prompt for sorting order for report
  Q
 PRINT ;Print report using fileman EN1^DIP for IVP
  N L,DIR,DIC,DIA,FLDS,DHD,BY,FR,TO,DIOBEG,ECXFIL,PG,ECXFLG
- S ECXFIL=$S(ECXX="P":"727.81",ECXX="I":"727.819",1:"727.809"),ECXFLG=0
+ S ECXFIL=$S(ECXX="P":"727.81",ECXX="I":"727.819",ECXX="B":"727.833",1:"727.809"),ECXFLG=0 ;154
  S L=0,DIC="^DIA("_ECXFIL_",",DIOBEG="I $E(IOST,1,2)=""C-"" W @IOF"
  S FLDS=".04;L23,.02;C25;L20,.01;C47;L14,D EXTNOI^ECXPHAU;C62;L9,"
  S FLDS=FLDS_"1.1;C74;L15,2;C90;L19,3;C110;L15"

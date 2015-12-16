@@ -1,134 +1,128 @@
-IBDEI1RF ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1RF ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31474,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,31474,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,31474,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,31475,0)
- ;;=D12.2^^190^1938^9
- ;;^UTILITY(U,$J,358.3,31475,1,0)
+ ;;^UTILITY(U,$J,358.3,31095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31475,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,31475,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,31475,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,31476,0)
- ;;=D12.5^^190^1938^13
- ;;^UTILITY(U,$J,358.3,31476,1,0)
+ ;;^UTILITY(U,$J,358.3,31095,1,3,0)
+ ;;=3^Acquired absence of right great toe
+ ;;^UTILITY(U,$J,358.3,31095,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,31095,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,31096,0)
+ ;;=Z89.111^^179^1941^14
+ ;;^UTILITY(U,$J,358.3,31096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31476,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,31476,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,31476,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,31477,0)
- ;;=D12.4^^190^1938^12
- ;;^UTILITY(U,$J,358.3,31477,1,0)
+ ;;^UTILITY(U,$J,358.3,31096,1,3,0)
+ ;;=3^Acquired absence of right hand
+ ;;^UTILITY(U,$J,358.3,31096,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,31096,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,31097,0)
+ ;;=Z89.621^^179^1941^15
+ ;;^UTILITY(U,$J,358.3,31097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31477,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,31477,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,31477,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,31478,0)
- ;;=D73.2^^190^1938^16
- ;;^UTILITY(U,$J,358.3,31478,1,0)
+ ;;^UTILITY(U,$J,358.3,31097,1,3,0)
+ ;;=3^Acquired absence of right hip joint
+ ;;^UTILITY(U,$J,358.3,31097,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,31097,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,31098,0)
+ ;;=Z89.611^^179^1941^16
+ ;;^UTILITY(U,$J,358.3,31098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31478,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,31478,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,31478,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,31479,0)
- ;;=I85.00^^190^1938^43
- ;;^UTILITY(U,$J,358.3,31479,1,0)
+ ;;^UTILITY(U,$J,358.3,31098,1,3,0)
+ ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,31098,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,31098,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,31099,0)
+ ;;=Z89.511^^179^1941^17
+ ;;^UTILITY(U,$J,358.3,31099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31479,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,31479,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,31479,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,31480,0)
- ;;=K20.9^^190^1938^44
- ;;^UTILITY(U,$J,358.3,31480,1,0)
+ ;;^UTILITY(U,$J,358.3,31099,1,3,0)
+ ;;=3^Acquired absence of right leg below knee
+ ;;^UTILITY(U,$J,358.3,31099,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,31099,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,31100,0)
+ ;;=Z89.211^^179^1941^18
+ ;;^UTILITY(U,$J,358.3,31100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31480,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,31480,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,31480,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,31481,0)
- ;;=K21.9^^190^1938^50
- ;;^UTILITY(U,$J,358.3,31481,1,0)
+ ;;^UTILITY(U,$J,358.3,31100,1,3,0)
+ ;;=3^Acquired absence of right upper limb below elbow
+ ;;^UTILITY(U,$J,358.3,31100,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,31100,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,31101,0)
+ ;;=Z48.02^^179^1942^2
+ ;;^UTILITY(U,$J,358.3,31101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31481,1,3,0)
- ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,31481,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,31481,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,31482,0)
- ;;=K25.7^^190^1938^45
- ;;^UTILITY(U,$J,358.3,31482,1,0)
+ ;;^UTILITY(U,$J,358.3,31101,1,3,0)
+ ;;=3^Removal of sutures
+ ;;^UTILITY(U,$J,358.3,31101,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,31101,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,31102,0)
+ ;;=Z48.01^^179^1942^1
+ ;;^UTILITY(U,$J,358.3,31102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31482,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,31482,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,31482,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,31483,0)
- ;;=K26.9^^190^1938^41
- ;;^UTILITY(U,$J,358.3,31483,1,0)
+ ;;^UTILITY(U,$J,358.3,31102,1,3,0)
+ ;;=3^Change or removal of surgical wound dressing
+ ;;^UTILITY(U,$J,358.3,31102,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,31102,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,31103,0)
+ ;;=S52.92XD^^179^1943^1
+ ;;^UTILITY(U,$J,358.3,31103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31483,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,31483,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,31483,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,31484,0)
- ;;=K27.9^^190^1938^66
- ;;^UTILITY(U,$J,358.3,31484,1,0)
+ ;;^UTILITY(U,$J,358.3,31103,1,3,0)
+ ;;=3^Fracture of left forearm, subs for clos fx w routn heal,Unspec
+ ;;^UTILITY(U,$J,358.3,31103,1,4,0)
+ ;;=4^S52.92XD
+ ;;^UTILITY(U,$J,358.3,31103,2)
+ ;;=^5031177
+ ;;^UTILITY(U,$J,358.3,31104,0)
+ ;;=S52.91XD^^179^1943^2
+ ;;^UTILITY(U,$J,358.3,31104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31484,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,31484,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,31484,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,31485,0)
- ;;=K29.70^^190^1938^46
- ;;^UTILITY(U,$J,358.3,31485,1,0)
+ ;;^UTILITY(U,$J,358.3,31104,1,3,0)
+ ;;=3^Fracture of right forearm, subs for clos fx w routn heal,Unspec
+ ;;^UTILITY(U,$J,358.3,31104,1,4,0)
+ ;;=4^S52.91XD
+ ;;^UTILITY(U,$J,358.3,31104,2)
+ ;;=^5031161
+ ;;^UTILITY(U,$J,358.3,31105,0)
+ ;;=Z47.1^^179^1944^1
+ ;;^UTILITY(U,$J,358.3,31105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31485,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,31485,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,31485,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,31486,0)
- ;;=K29.90^^190^1938^47
- ;;^UTILITY(U,$J,358.3,31486,1,0)
+ ;;^UTILITY(U,$J,358.3,31105,1,3,0)
+ ;;=3^Aftercare following joint replacement surgery
+ ;;^UTILITY(U,$J,358.3,31105,1,4,0)
+ ;;=4^Z47.1
+ ;;^UTILITY(U,$J,358.3,31105,2)
+ ;;=^5063025
+ ;;^UTILITY(U,$J,358.3,31106,0)
+ ;;=Z46.89^^179^1944^2
+ ;;^UTILITY(U,$J,358.3,31106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31486,1,3,0)
- ;;=3^Gastroduodenitis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,31486,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,31486,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,31487,0)
- ;;=K30.^^190^1938^42
- ;;^UTILITY(U,$J,358.3,31487,1,0)
+ ;;^UTILITY(U,$J,358.3,31106,1,3,0)
+ ;;=3^Fitting and adjustment of oth devices
+ ;;^UTILITY(U,$J,358.3,31106,1,4,0)
+ ;;=4^Z46.89
+ ;;^UTILITY(U,$J,358.3,31106,2)
+ ;;=^5063023
+ ;;^UTILITY(U,$J,358.3,31107,0)
+ ;;=Z09.^^179^1944^3
+ ;;^UTILITY(U,$J,358.3,31107,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31107,1,3,0)
+ ;;=3^F/U exam aft trtmt for cond oth than malig neoplm

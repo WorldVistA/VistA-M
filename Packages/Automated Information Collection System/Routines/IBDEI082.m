@@ -1,146 +1,124 @@
-IBDEI082 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI082 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3625,1,2,0)
- ;;=2^459.89
- ;;^UTILITY(U,$J,358.3,3625,1,5,0)
- ;;=5^Ecchymosis Multiple
- ;;^UTILITY(U,$J,358.3,3625,2)
- ;;=^87910
- ;;^UTILITY(U,$J,358.3,3626,0)
- ;;=686.8^^31^319^2
- ;;^UTILITY(U,$J,358.3,3626,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3626,1,2,0)
- ;;=2^686.8
- ;;^UTILITY(U,$J,358.3,3626,1,5,0)
- ;;=5^Ecthyma
- ;;^UTILITY(U,$J,358.3,3626,2)
- ;;=^88097
- ;;^UTILITY(U,$J,358.3,3627,0)
- ;;=039.0^^31^319^6
- ;;^UTILITY(U,$J,358.3,3627,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3627,1,2,0)
- ;;=2^039.0
- ;;^UTILITY(U,$J,358.3,3627,1,5,0)
- ;;=5^Erythrasma
- ;;^UTILITY(U,$J,358.3,3627,2)
- ;;=^29822
- ;;^UTILITY(U,$J,358.3,3628,0)
- ;;=035.^^31^319^5
- ;;^UTILITY(U,$J,358.3,3628,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3628,1,2,0)
- ;;=2^035.
- ;;^UTILITY(U,$J,358.3,3628,1,5,0)
- ;;=5^Erysipelas
- ;;^UTILITY(U,$J,358.3,3628,2)
- ;;=^42012
- ;;^UTILITY(U,$J,358.3,3629,0)
- ;;=057.9^^31^319^8
- ;;^UTILITY(U,$J,358.3,3629,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3629,1,2,0)
- ;;=2^057.9
- ;;^UTILITY(U,$J,358.3,3629,1,5,0)
- ;;=5^Exanthem(Viral)
- ;;^UTILITY(U,$J,358.3,3629,2)
- ;;=^266599
- ;;^UTILITY(U,$J,358.3,3630,0)
- ;;=686.9^^31^319^3
- ;;^UTILITY(U,$J,358.3,3630,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3630,1,2,0)
- ;;=2^686.9
- ;;^UTILITY(U,$J,358.3,3630,1,5,0)
- ;;=5^Ecthyma gangrenosum
- ;;^UTILITY(U,$J,358.3,3630,2)
- ;;=^123943
- ;;^UTILITY(U,$J,358.3,3631,0)
- ;;=757.39^^31^319^4
- ;;^UTILITY(U,$J,358.3,3631,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3631,1,2,0)
- ;;=2^757.39
- ;;^UTILITY(U,$J,358.3,3631,1,5,0)
- ;;=5^Epidermolysis bullosa acquisita
- ;;^UTILITY(U,$J,358.3,3631,2)
- ;;=^87938
- ;;^UTILITY(U,$J,358.3,3632,0)
- ;;=695.9^^31^319^7
- ;;^UTILITY(U,$J,358.3,3632,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3632,1,2,0)
- ;;=2^695.9
- ;;^UTILITY(U,$J,358.3,3632,1,5,0)
- ;;=5^Erythroderma, exfoliative
- ;;^UTILITY(U,$J,358.3,3632,2)
- ;;=^123902
- ;;^UTILITY(U,$J,358.3,3633,0)
- ;;=709.09^^31^320^3
- ;;^UTILITY(U,$J,358.3,3633,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3633,1,2,0)
- ;;=2^709.09
- ;;^UTILITY(U,$J,358.3,3633,1,5,0)
- ;;=5^Freckles
- ;;^UTILITY(U,$J,358.3,3633,2)
- ;;=Freckles^303313
- ;;^UTILITY(U,$J,358.3,3634,0)
- ;;=709.4^^31^320^2
- ;;^UTILITY(U,$J,358.3,3634,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3634,1,2,0)
- ;;=2^709.4
- ;;^UTILITY(U,$J,358.3,3634,1,5,0)
- ;;=5^Foreign Body Reaction/Granuloma
- ;;^UTILITY(U,$J,358.3,3634,2)
- ;;=Foreign Body Reaction/Granuloma^271943
- ;;^UTILITY(U,$J,358.3,3635,0)
- ;;=698.4^^31^320^1
- ;;^UTILITY(U,$J,358.3,3635,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3635,1,2,0)
- ;;=2^698.4
- ;;^UTILITY(U,$J,358.3,3635,1,5,0)
- ;;=5^Factitial Dermatitis
- ;;^UTILITY(U,$J,358.3,3635,2)
- ;;=^186786
- ;;^UTILITY(U,$J,358.3,3636,0)
- ;;=228.01^^31^321^1
- ;;^UTILITY(U,$J,358.3,3636,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3636,1,2,0)
- ;;=2^228.01
- ;;^UTILITY(U,$J,358.3,3636,1,5,0)
- ;;=5^Hemangioma Skin
- ;;^UTILITY(U,$J,358.3,3636,2)
- ;;=^267697
- ;;^UTILITY(U,$J,358.3,3637,0)
- ;;=705.83^^31^321^2
- ;;^UTILITY(U,$J,358.3,3637,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3637,1,2,0)
- ;;=2^705.83
- ;;^UTILITY(U,$J,358.3,3637,1,5,0)
- ;;=5^Hidradentitis Suppuritiva
- ;;^UTILITY(U,$J,358.3,3637,2)
- ;;=^184621
- ;;^UTILITY(U,$J,358.3,3638,0)
- ;;=704.1^^31^321^3
- ;;^UTILITY(U,$J,358.3,3638,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3638,1,2,0)
- ;;=2^704.1
- ;;^UTILITY(U,$J,358.3,3638,1,5,0)
- ;;=5^Hirsutism
- ;;^UTILITY(U,$J,358.3,3638,2)
- ;;=^57407
- ;;^UTILITY(U,$J,358.3,3639,0)
- ;;=780.8^^31^321^7
- ;;^UTILITY(U,$J,358.3,3639,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3639,1,2,0)
- ;;=2^780.8
+ ;;^UTILITY(U,$J,358.3,3274,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,3275,0)
+ ;;=F11.24^^8^116^8
+ ;;^UTILITY(U,$J,358.3,3275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3275,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,3275,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,3275,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,3276,0)
+ ;;=F11.29^^8^116^1
+ ;;^UTILITY(U,$J,358.3,3276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3276,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,3276,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,3276,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,3277,0)
+ ;;=F19.10^^8^117^3
+ ;;^UTILITY(U,$J,358.3,3277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3277,1,3,0)
+ ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,3277,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,3277,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,3278,0)
+ ;;=F19.14^^8^117^1
+ ;;^UTILITY(U,$J,358.3,3278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3278,1,3,0)
+ ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,3278,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,3278,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,3279,0)
+ ;;=F19.182^^8^117^2
+ ;;^UTILITY(U,$J,358.3,3279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3279,1,3,0)
+ ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,3279,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,3279,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,3280,0)
+ ;;=F19.20^^8^117^6
+ ;;^UTILITY(U,$J,358.3,3280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3280,1,3,0)
+ ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,3280,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,3280,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,3281,0)
+ ;;=F19.21^^8^117^5
+ ;;^UTILITY(U,$J,358.3,3281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3281,1,3,0)
+ ;;=3^Psychoactive Substance Dependence NEC,In Remission
+ ;;^UTILITY(U,$J,358.3,3281,1,4,0)
+ ;;=4^F19.21
+ ;;^UTILITY(U,$J,358.3,3281,2)
+ ;;=^5003432
+ ;;^UTILITY(U,$J,358.3,3282,0)
+ ;;=F19.24^^8^117^4
+ ;;^UTILITY(U,$J,358.3,3282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3282,1,3,0)
+ ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,3282,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,3282,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,3283,0)
+ ;;=F13.10^^8^118^1
+ ;;^UTILITY(U,$J,358.3,3283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3283,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,3283,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,3283,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,3284,0)
+ ;;=F13.14^^8^118^7
+ ;;^UTILITY(U,$J,358.3,3284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3284,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
+ ;;^UTILITY(U,$J,358.3,3284,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,3284,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,3285,0)
+ ;;=F13.182^^8^118^8
+ ;;^UTILITY(U,$J,358.3,3285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3285,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,3285,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,3285,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,3286,0)
+ ;;=F13.20^^8^118^2
+ ;;^UTILITY(U,$J,358.3,3286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3286,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,3286,1,4,0)
+ ;;=4^F13.20

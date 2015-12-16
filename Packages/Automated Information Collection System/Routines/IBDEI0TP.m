@@ -1,140 +1,118 @@
-IBDEI0TP ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0TP ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14653,1,5,0)
- ;;=5^Osteopenia
- ;;^UTILITY(U,$J,358.3,14653,2)
- ;;=Osteopenia^35593
- ;;^UTILITY(U,$J,358.3,14654,0)
- ;;=733.13^^89^896^9
- ;;^UTILITY(U,$J,358.3,14654,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14654,1,4,0)
- ;;=4^733.13
- ;;^UTILITY(U,$J,358.3,14654,1,5,0)
- ;;=5^Compression Fx of Spine
- ;;^UTILITY(U,$J,358.3,14654,2)
- ;;=Compression Fx of Spine^295754
- ;;^UTILITY(U,$J,358.3,14655,0)
- ;;=274.00^^89^896^30
- ;;^UTILITY(U,$J,358.3,14655,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14655,1,4,0)
- ;;=4^274.00
- ;;^UTILITY(U,$J,358.3,14655,1,5,0)
- ;;=5^Gouty Arthritis NOS
- ;;^UTILITY(U,$J,358.3,14655,2)
- ;;=^338313
- ;;^UTILITY(U,$J,358.3,14656,0)
- ;;=274.01^^89^896^33
- ;;^UTILITY(U,$J,358.3,14656,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14656,1,4,0)
- ;;=4^274.01
- ;;^UTILITY(U,$J,358.3,14656,1,5,0)
- ;;=5^Gouty Arthropathy, Acute
- ;;^UTILITY(U,$J,358.3,14656,2)
- ;;=^338226
- ;;^UTILITY(U,$J,358.3,14657,0)
- ;;=274.02^^89^896^31
- ;;^UTILITY(U,$J,358.3,14657,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14657,1,4,0)
- ;;=4^274.02
- ;;^UTILITY(U,$J,358.3,14657,1,5,0)
- ;;=5^Gouty Arthritis, Chr
- ;;^UTILITY(U,$J,358.3,14657,2)
- ;;=^338227
- ;;^UTILITY(U,$J,358.3,14658,0)
- ;;=274.03^^89^896^32
- ;;^UTILITY(U,$J,358.3,14658,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14658,1,4,0)
- ;;=4^274.03
- ;;^UTILITY(U,$J,358.3,14658,1,5,0)
- ;;=5^Gouty Arthritis, Chr w/ Tophi
- ;;^UTILITY(U,$J,358.3,14658,2)
- ;;=^338228
- ;;^UTILITY(U,$J,358.3,14659,0)
- ;;=729.90^^89^896^65
- ;;^UTILITY(U,$J,358.3,14659,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14659,1,4,0)
- ;;=4^729.90
- ;;^UTILITY(U,$J,358.3,14659,1,5,0)
- ;;=5^Soft Tissue Disorder
- ;;^UTILITY(U,$J,358.3,14659,2)
- ;;=^336762
- ;;^UTILITY(U,$J,358.3,14660,0)
- ;;=729.91^^89^896^57
- ;;^UTILITY(U,$J,358.3,14660,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14660,1,4,0)
- ;;=4^729.91
- ;;^UTILITY(U,$J,358.3,14660,1,5,0)
- ;;=5^Post-Traumatic Seroma
- ;;^UTILITY(U,$J,358.3,14660,2)
- ;;=^336654
- ;;^UTILITY(U,$J,358.3,14661,0)
- ;;=729.92^^89^896^38
- ;;^UTILITY(U,$J,358.3,14661,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14661,1,4,0)
- ;;=4^729.92
- ;;^UTILITY(U,$J,358.3,14661,1,5,0)
- ;;=5^Non-Traumatic Hematoma Soft Tissue
- ;;^UTILITY(U,$J,358.3,14661,2)
- ;;=^336655
- ;;^UTILITY(U,$J,358.3,14662,0)
- ;;=729.99^^89^896^66
- ;;^UTILITY(U,$J,358.3,14662,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14662,1,4,0)
- ;;=4^729.99
- ;;^UTILITY(U,$J,358.3,14662,1,5,0)
- ;;=5^Soft Tissue Disorder NEC
- ;;^UTILITY(U,$J,358.3,14662,2)
- ;;=^336656
- ;;^UTILITY(U,$J,358.3,14663,0)
- ;;=781.0^^89^897^108
- ;;^UTILITY(U,$J,358.3,14663,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14663,1,4,0)
- ;;=4^781.0
- ;;^UTILITY(U,$J,358.3,14663,1,5,0)
- ;;=5^Tremor
- ;;^UTILITY(U,$J,358.3,14663,2)
- ;;=^23827
- ;;^UTILITY(U,$J,358.3,14664,0)
- ;;=351.0^^89^897^1
- ;;^UTILITY(U,$J,358.3,14664,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14664,1,4,0)
- ;;=4^351.0
- ;;^UTILITY(U,$J,358.3,14664,1,5,0)
- ;;=5^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,14664,2)
- ;;=Bell's Palsy^13238
- ;;^UTILITY(U,$J,358.3,14665,0)
- ;;=386.11^^89^897^111
- ;;^UTILITY(U,$J,358.3,14665,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14665,1,4,0)
- ;;=4^386.11
- ;;^UTILITY(U,$J,358.3,14665,1,5,0)
- ;;=5^Vertigo, Benign Positional
- ;;^UTILITY(U,$J,358.3,14665,2)
- ;;=^269480
- ;;^UTILITY(U,$J,358.3,14666,0)
- ;;=784.0^^89^897^39
- ;;^UTILITY(U,$J,358.3,14666,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14666,1,4,0)
- ;;=4^784.0
- ;;^UTILITY(U,$J,358.3,14666,1,5,0)
- ;;=5^Headache
- ;;^UTILITY(U,$J,358.3,14666,2)
- ;;=^54133
- ;;^UTILITY(U,$J,358.3,14667,0)
- ;;=346.20^^89^897^44
+ ;;^UTILITY(U,$J,358.3,14382,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14382,1,2,0)
+ ;;=2^Excision of neuroma; hand or foot, except digital nerve
+ ;;^UTILITY(U,$J,358.3,14382,1,3,0)
+ ;;=3^64782
+ ;;^UTILITY(U,$J,358.3,14383,0)
+ ;;=64783^^75^886^12^^^^1
+ ;;^UTILITY(U,$J,358.3,14383,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14383,1,2,0)
+ ;;=2^Excision of neuroma; hand or foot, each additional nerve, except same digit
+ ;;^UTILITY(U,$J,358.3,14383,1,3,0)
+ ;;=3^64783
+ ;;^UTILITY(U,$J,358.3,14384,0)
+ ;;=29999^^75^887^19^^^^1
+ ;;^UTILITY(U,$J,358.3,14384,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14384,1,2,0)
+ ;;=2^Unlisted procedure, arthroscopy
+ ;;^UTILITY(U,$J,358.3,14384,1,3,0)
+ ;;=3^29999
+ ;;^UTILITY(U,$J,358.3,14385,0)
+ ;;=29893^^75^887^11^^^^1
+ ;;^UTILITY(U,$J,358.3,14385,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14385,1,2,0)
+ ;;=2^Endoscopic plantar fasciotomy
+ ;;^UTILITY(U,$J,358.3,14385,1,3,0)
+ ;;=3^29893
+ ;;^UTILITY(U,$J,358.3,14386,0)
+ ;;=29894^^75^887^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14386,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14386,1,2,0)
+ ;;=2^Arthroscopy, ankle, surgical; w/removalof loose body or foreign body
+ ;;^UTILITY(U,$J,358.3,14386,1,3,0)
+ ;;=3^29894
+ ;;^UTILITY(U,$J,358.3,14387,0)
+ ;;=29897^^75^887^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14387,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14387,1,2,0)
+ ;;=2^Arthroscopy, ankle, surgical; debridement, limited
+ ;;^UTILITY(U,$J,358.3,14387,1,3,0)
+ ;;=3^29897
+ ;;^UTILITY(U,$J,358.3,14388,0)
+ ;;=29898^^75^887^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14388,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14388,1,2,0)
+ ;;=2^Arthroscopy, ankle, surgical; debridement, extensive
+ ;;^UTILITY(U,$J,358.3,14388,1,3,0)
+ ;;=3^29898
+ ;;^UTILITY(U,$J,358.3,14389,0)
+ ;;=20220^^75^887^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14389,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14389,1,2,0)
+ ;;=2^Biopsy, bone, trocar, or needle; superficial
+ ;;^UTILITY(U,$J,358.3,14389,1,3,0)
+ ;;=3^20220
+ ;;^UTILITY(U,$J,358.3,14390,0)
+ ;;=20650^^75^887^14^^^^1
+ ;;^UTILITY(U,$J,358.3,14390,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14390,1,2,0)
+ ;;=2^Insertion of wire or pin with application of skeletal traction, including removal
+ ;;^UTILITY(U,$J,358.3,14390,1,3,0)
+ ;;=3^20650
+ ;;^UTILITY(U,$J,358.3,14391,0)
+ ;;=64726^^75^887^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14391,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14391,1,2,0)
+ ;;=2^Decompression; plantar digital nerve
+ ;;^UTILITY(U,$J,358.3,14391,1,3,0)
+ ;;=3^64726
+ ;;^UTILITY(U,$J,358.3,14392,0)
+ ;;=64999^^75^887^20^^^^1
+ ;;^UTILITY(U,$J,358.3,14392,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14392,1,2,0)
+ ;;=2^Unlisted procedure, nervous system
+ ;;^UTILITY(U,$J,358.3,14392,1,3,0)
+ ;;=3^64999
+ ;;^UTILITY(U,$J,358.3,14393,0)
+ ;;=93922^^75^887^18^^^^1
+ ;;^UTILITY(U,$J,358.3,14393,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14393,1,2,0)
+ ;;=2^Non-invasive physiologic studies of upper or lower extremity arteries, single level, bilateral
+ ;;^UTILITY(U,$J,358.3,14393,1,3,0)
+ ;;=3^93922
+ ;;^UTILITY(U,$J,358.3,14394,0)
+ ;;=29904^^75^887^6^^^^1
+ ;;^UTILITY(U,$J,358.3,14394,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14394,1,2,0)
+ ;;=2^Arthroscopy,subtalar jt,w/rem of foreign body
+ ;;^UTILITY(U,$J,358.3,14394,1,3,0)
+ ;;=3^29904
+ ;;^UTILITY(U,$J,358.3,14395,0)
+ ;;=29905^^75^887^5^^^^1
+ ;;^UTILITY(U,$J,358.3,14395,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14395,1,2,0)
+ ;;=2^Arthroscopy,subtalar jt,w/ Synovectomy
+ ;;^UTILITY(U,$J,358.3,14395,1,3,0)
+ ;;=3^29905
+ ;;^UTILITY(U,$J,358.3,14396,0)
+ ;;=29906^^75^887^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14396,1,0)
+ ;;=^358.31IA^3^2

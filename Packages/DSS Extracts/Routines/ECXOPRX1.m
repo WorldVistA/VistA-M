@@ -1,5 +1,5 @@
-ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/16/13  16:36
- ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149**;Dec 22, 1997;Build 27
+ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/21/15  14:16
+ ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154**;Dec 22, 1997;Build 13
  ;
 FILE ;file record
  ;node0
@@ -19,7 +19,7 @@ FILE ;file record
  ;enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^rx patient status ECRXPTST^non-va prescriber ECNONVAP^rx # ECRXNUM
  ;^emergency response indicator(FEMA) ECXERI^agent orange enc ECXAO^environ cont PGE ECXECE^head/neck ECXHNC^enc mst ECXMIL^environ contamin ECXEST^ion radiat ECXIR
  ;^OEF/OIF data ECXOEF^OEFOIF return date ECXOEFDT^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^provider npi ECPRVNPI
- ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Vietnam ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ^Combat Service Ind ECXSVCI ^Combat Service Loc ECXSVCL
+ ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Vietnam ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ^Combat Service Ind ECXSVCI ^Combat Service Loc ECXSVCL^Choice RX ECXCHOCE
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
@@ -50,6 +50,7 @@ FILE ;file record
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXPATCAT
  I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXVNS_U_ECXCLST_U_ECXECL ;144
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
+ I ECXLOGIC>2015 S ECODE2=ECODE2_U_ECXCHOCE ;154
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

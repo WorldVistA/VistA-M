@@ -1,5 +1,5 @@
 DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES; 10/10/06@11:17am; 10/10/06
- ;;1.0;Beneficiary Travel;**8,12,13,20,21,22**;September 25, 2001;Build 5
+ ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25**;September 25, 2001;Build 12
 DATE ;  get date for claim, either new or past date
  N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
@@ -47,10 +47,12 @@ SET ; call inhouse generic date routine
 STUFF ;  stuff departure with address data from patient file, dest from institution file
  S DGBTCMTY=$$GET1^DIQ(392,DGBTDT,56)
  S:'$L(DGBTCMTY) DGBTCMTY="M"
- I '$G(CHZFLG),DGBTCMTY="M" S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=VAPA(1)_"^"_VAPA(2)_"^"_VAPA(3)_"^"_VAPA(4)_"^"_$S(VAPA(5)]"":+VAPA(5),1:"")_"^"_$P(VAPA(11),U,1)
- I '$G(CHZFLG),DGBTCMTY="M" I '$D(^DGBT(392,DGBTDT,"T")) D
+ ;dbe patch DGBT*1*25 - removed restrictions below to allow departure and destination fields to get filed for existing claims
+ S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=VAPA(1)_"^"_VAPA(2)_"^"_VAPA(3)_"^"_VAPA(4)_"^"_$S(VAPA(5)]"":+VAPA(5),1:"")_"^"_$P(VAPA(11),U,1)
+ I '$D(^DGBT(392,DGBTDT,"T")) D
  . S X=$S($D(^DIC(4,DGBTDIVN,1)):^(1),1:"")
  . S ^DGBT(392,DGBTDT,"T")=($P(^DG(40.8,DGBTDIVI,0),U)_"^"_$P(X,U)_"^"_$P(X,U,2)_"^"_$P(X,U,3)_"^"_$P(^DIC(4,DGBTDIVN,0),U,2)_"^"_$P(X,U,4))
+ Q:$G(DGBTSP2M)  ;dbe patch DGBT*1*25 - added quit when called from routine dgbtee
 CHKFILES ; section removed, dependents picked up below in MEANS ; abr 10/94
 MEANS ;  find corres. means test entry, gets MT income, status, no. of dependents
  ;DGBTMTS= MT Status;  DGBTCSC= claim Service Connected indicator & %;  DGBTELG=Eligibility status
@@ -65,10 +67,10 @@ MEANS ;  find corres. means test entry, gets MT income, status, no. of dependent
  .I X<0 S X=0
  .S X2="0$",X3=8 D COMMA^%DTC
  S DGBTINC=X_U_$G(DGBTIFL) K X,X2
- S DGBTDEP=$$DEP^VAFMON(DFN,DGBTA) ; finds depedents Vet, Spouse, Children
+ S DGBTDEP=$$DEP^VAFMON(DFN,DGBTA) ; finds dependents Vet, Spouse, Children
  S DGBTDTY=" (Year: "_$$FMTE^XLFDT($E(DGBTDTI,1,3)_"0000")_")" ;Year to be displayed with Income
  S DGBTMTTH=$$MTTH^DGBTMTTH(DGBTDEP,DGBTDTI) ; Means test threshold
- S DGBTRXTH=+$$THRES^IBARXEU1(DGBTDTI,1,DGBTDEP) ; RX co-pay threshhold
+ S DGBTRXTH=+$$THRES^IBARXEU1(DGBTDTI,1,DGBTDEP) ; RX co-pay threshold
  S DGBTDYFL=$$DAYFLAG^DGBTUTL ; valid income test y/n
  ;
 PREV ; if past claim get SC%, elig.
@@ -83,7 +85,7 @@ CERT ;  get last BT certification,  get date, then get eligibility
  . S DGBTCA=$P(^DGBT(392.2,DGBTCD,0),"^",4),Y=9999999-$P(DGBTCD,".")
  . X ^DD("DD") ; date conversion, y=cert date (internal)
  . S DGBTCD=Y,X=DGBTCA,X2="0$",X3=8 K Y D COMMA^%DTC S DGBTCA=X K X,X2,X3
-APPTS ;  search patient file for appointments through claim date (DTI+1),  adddates to array DGBTCL 
+APPTS ;  search patient file for appointments through claim date (DTI+1),  add dates to array DGBTCL 
  N ERRCODE,DGARRAY,CLIEN,APTDT S DGARRAY("FLDS")="2;3;10;18"
  S DGARRAY(4)=DFN,I=$$SDAPI^SDAMA301(.DGARRAY)
  ; I<0 = Error, I<0 = # of Records retrieved

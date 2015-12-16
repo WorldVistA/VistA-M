@@ -1,5 +1,5 @@
 RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25**;Feb 17, 2006;Build 19
  ;
  ; This routine uses the following IAs:
  ;
@@ -11,6 +11,7 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ; #3545         Access to the "AAD" cross-reference and the field 80 (private)
  ; #92           ^DGPT(IEN,0)  (controlled)
  ; #5747         $$CODEN^ICDEX, $$CODEC^ICDEX, $$VSTD^ICDEX (controlled)
+ ; #6130         PTFICD^DGPTFUT
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -23,6 +24,7 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System.
  ;ROR*1.5*21   SEP 2013    T KOPP       Add Utilization date range to the report
  ;                                      Add ICN to report, if requested
+ ;ROR*1.5*25   OCT 2014    T KOPP       Added PTF ICD-10 support for 25 diagnoses
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -62,7 +64,7 @@ ICDSET(PATIEN,SOURCE,ICDIEN,DATE,ICD) ;
  ;       >0  Number of non-fatal errors
  ;
 INPAT(PATIEN) ;
- N ADMDT,DISDT,I,IEN,NODE,RC,RORBUF,RORMSG,TMP
+ N ADMDT,DISDT,I,IEN,NODE,RC,RORBUF,RORMSG,DIERR,TMP
  S NODE=$NA(^DGPT("AAD",+PATIEN))
  S RC=0
  ;--- Browse through the admissions
@@ -84,8 +86,8 @@ INPAT(PATIEN) ;
  . . . D ERROR^RORERR(-57,,,,RORBUF(0),"RPC^DGPTFAPI")
  . . S TMP=$P($G(RORBUF(1)),U,3)
  . . D:TMP'="" ICDSET(PATIEN,"I",,DISDT,TMP)   ; ICD1
- . . D:$G(RORBUF(2))'=""                       ; ICD2 - ICD10
- . . . F I=1:1:9  S TMP=$P(RORBUF(2),U,I)  D:TMP'=""
+ . . D:$G(RORBUF(2))'=""                       ; ICD2 - ICD24
+ . . . F I=1:1:24  S TMP=$P(RORBUF(2),U,I)  D:TMP'=""
  . . . . D ICDSET(PATIEN,"I",,DISDT,TMP)
  . . S TMP=+$$GET1^DIQ(45,IEN,80,"I",,"RORMSG")
  . . D:$G(DIERR) DBS^RORERR("RORMSG",-9,,,45,IEN)

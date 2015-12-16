@@ -1,130 +1,138 @@
-IBDEI12P ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI12P ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19130,2)
- ;;=^259059
- ;;^UTILITY(U,$J,358.3,19131,0)
- ;;=298.8^^106^1129^5
- ;;^UTILITY(U,$J,358.3,19131,1,0)
+ ;;^UTILITY(U,$J,358.3,18938,1,4,0)
+ ;;=4^382.9
+ ;;^UTILITY(U,$J,358.3,18938,1,5,0)
+ ;;=5^Otitis Med, Other Acute
+ ;;^UTILITY(U,$J,358.3,18938,2)
+ ;;=^123967
+ ;;^UTILITY(U,$J,358.3,18939,0)
+ ;;=382.01^^105^1225^30
+ ;;^UTILITY(U,$J,358.3,18939,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19131,1,2,0)
- ;;=2^298.8
- ;;^UTILITY(U,$J,358.3,19131,1,5,0)
- ;;=5^Psychosis, Reactive
- ;;^UTILITY(U,$J,358.3,19131,2)
- ;;=^87326
- ;;^UTILITY(U,$J,358.3,19132,0)
- ;;=297.9^^106^1129^2
- ;;^UTILITY(U,$J,358.3,19132,1,0)
+ ;;^UTILITY(U,$J,358.3,18939,1,4,0)
+ ;;=4^382.01
+ ;;^UTILITY(U,$J,358.3,18939,1,5,0)
+ ;;=5^Otitis Media W/Tympanic Membrane Rupture
+ ;;^UTILITY(U,$J,358.3,18939,2)
+ ;;=^269396
+ ;;^UTILITY(U,$J,358.3,18940,0)
+ ;;=381.10^^105^1225^29
+ ;;^UTILITY(U,$J,358.3,18940,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19132,1,2,0)
- ;;=2^297.9
- ;;^UTILITY(U,$J,358.3,19132,1,5,0)
- ;;=5^Paranoia
- ;;^UTILITY(U,$J,358.3,19132,2)
- ;;=^123970
- ;;^UTILITY(U,$J,358.3,19133,0)
- ;;=297.1^^106^1129^1
- ;;^UTILITY(U,$J,358.3,19133,1,0)
+ ;;^UTILITY(U,$J,358.3,18940,1,4,0)
+ ;;=4^381.10
+ ;;^UTILITY(U,$J,358.3,18940,1,5,0)
+ ;;=5^Otitis Med, Serous Chronic
+ ;;^UTILITY(U,$J,358.3,18940,2)
+ ;;=Otitis Med,serous chroinic^269376
+ ;;^UTILITY(U,$J,358.3,18941,0)
+ ;;=379.91^^105^1225^32
+ ;;^UTILITY(U,$J,358.3,18941,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19133,1,2,0)
- ;;=2^297.1
- ;;^UTILITY(U,$J,358.3,19133,1,5,0)
- ;;=5^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,19133,2)
- ;;=^331896
- ;;^UTILITY(U,$J,358.3,19134,0)
- ;;=301.7^^106^1130^1
- ;;^UTILITY(U,$J,358.3,19134,1,0)
+ ;;^UTILITY(U,$J,358.3,18941,1,4,0)
+ ;;=4^379.91
+ ;;^UTILITY(U,$J,358.3,18941,1,5,0)
+ ;;=5^Pain In Or Around Eye
+ ;;^UTILITY(U,$J,358.3,18941,2)
+ ;;=^89093
+ ;;^UTILITY(U,$J,358.3,18942,0)
+ ;;=462.^^105^1225^33
+ ;;^UTILITY(U,$J,358.3,18942,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19134,1,2,0)
- ;;=2^301.7
- ;;^UTILITY(U,$J,358.3,19134,1,5,0)
- ;;=5^Antisocial Personality Dis
- ;;^UTILITY(U,$J,358.3,19134,2)
- ;;=Antisocial Personality Dis^9066
- ;;^UTILITY(U,$J,358.3,19135,0)
- ;;=301.82^^106^1130^2
- ;;^UTILITY(U,$J,358.3,19135,1,0)
+ ;;^UTILITY(U,$J,358.3,18942,1,4,0)
+ ;;=4^462.
+ ;;^UTILITY(U,$J,358.3,18942,1,5,0)
+ ;;=5^Pharyngitis, Acute
+ ;;^UTILITY(U,$J,358.3,18942,2)
+ ;;=Pharyngitis, Acute^2653
+ ;;^UTILITY(U,$J,358.3,18943,0)
+ ;;=460.^^105^1225^21
+ ;;^UTILITY(U,$J,358.3,18943,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19135,1,2,0)
- ;;=2^301.82
- ;;^UTILITY(U,$J,358.3,19135,1,5,0)
- ;;=5^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,19135,2)
- ;;=Avoidant Personality Disorder^265347
- ;;^UTILITY(U,$J,358.3,19136,0)
- ;;=301.83^^106^1130^3
- ;;^UTILITY(U,$J,358.3,19136,1,0)
+ ;;^UTILITY(U,$J,358.3,18943,1,4,0)
+ ;;=4^460.
+ ;;^UTILITY(U,$J,358.3,18943,1,5,0)
+ ;;=5^Nasopharyngitis, Acute
+ ;;^UTILITY(U,$J,358.3,18943,2)
+ ;;=^26543
+ ;;^UTILITY(U,$J,358.3,18944,0)
+ ;;=477.9^^105^1225^3
+ ;;^UTILITY(U,$J,358.3,18944,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19136,1,2,0)
- ;;=2^301.83
- ;;^UTILITY(U,$J,358.3,19136,1,5,0)
- ;;=5^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,19136,2)
- ;;=Borderline Personality Disorder^16372
- ;;^UTILITY(U,$J,358.3,19137,0)
- ;;=301.6^^106^1130^6
- ;;^UTILITY(U,$J,358.3,19137,1,0)
+ ;;^UTILITY(U,$J,358.3,18944,1,4,0)
+ ;;=4^477.9
+ ;;^UTILITY(U,$J,358.3,18944,1,5,0)
+ ;;=5^Allergic Rhinitis
+ ;;^UTILITY(U,$J,358.3,18944,2)
+ ;;=^4955
+ ;;^UTILITY(U,$J,358.3,18945,0)
+ ;;=473.9^^105^1225^37
+ ;;^UTILITY(U,$J,358.3,18945,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19137,1,2,0)
- ;;=2^301.6
- ;;^UTILITY(U,$J,358.3,19137,1,5,0)
- ;;=5^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,19137,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,19138,0)
- ;;=301.50^^106^1130^8
- ;;^UTILITY(U,$J,358.3,19138,1,0)
+ ;;^UTILITY(U,$J,358.3,18945,1,4,0)
+ ;;=4^473.9
+ ;;^UTILITY(U,$J,358.3,18945,1,5,0)
+ ;;=5^Sinusitis, Chronic
+ ;;^UTILITY(U,$J,358.3,18945,2)
+ ;;=^123985
+ ;;^UTILITY(U,$J,358.3,18946,0)
+ ;;=461.1^^105^1225^38
+ ;;^UTILITY(U,$J,358.3,18946,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19138,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,19138,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,19138,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,19139,0)
- ;;=301.81^^106^1130^11
- ;;^UTILITY(U,$J,358.3,19139,1,0)
+ ;;^UTILITY(U,$J,358.3,18946,1,4,0)
+ ;;=4^461.1
+ ;;^UTILITY(U,$J,358.3,18946,1,5,0)
+ ;;=5^Sinusitis, Frontal Acute
+ ;;^UTILITY(U,$J,358.3,18946,2)
+ ;;=^269856
+ ;;^UTILITY(U,$J,358.3,18947,0)
+ ;;=473.1^^105^1225^39
+ ;;^UTILITY(U,$J,358.3,18947,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19139,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,19139,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,19139,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,19140,0)
- ;;=301.0^^106^1130^12
- ;;^UTILITY(U,$J,358.3,19140,1,0)
+ ;;^UTILITY(U,$J,358.3,18947,1,4,0)
+ ;;=4^473.1
+ ;;^UTILITY(U,$J,358.3,18947,1,5,0)
+ ;;=5^Sinusitis, Frontal Chronic
+ ;;^UTILITY(U,$J,358.3,18947,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,18948,0)
+ ;;=461.0^^105^1225^40
+ ;;^UTILITY(U,$J,358.3,18948,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19140,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,19140,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,19140,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,19141,0)
- ;;=301.9^^106^1130^16
- ;;^UTILITY(U,$J,358.3,19141,1,0)
+ ;;^UTILITY(U,$J,358.3,18948,1,4,0)
+ ;;=4^461.0
+ ;;^UTILITY(U,$J,358.3,18948,1,5,0)
+ ;;=5^Sinusitis, Maxillary Acute
+ ;;^UTILITY(U,$J,358.3,18948,2)
+ ;;=^269853
+ ;;^UTILITY(U,$J,358.3,18949,0)
+ ;;=473.0^^105^1225^41
+ ;;^UTILITY(U,$J,358.3,18949,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19141,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,19141,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,19141,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,19142,0)
- ;;=301.20^^106^1130^14
- ;;^UTILITY(U,$J,358.3,19142,1,0)
+ ;;^UTILITY(U,$J,358.3,18949,1,4,0)
+ ;;=4^473.0
+ ;;^UTILITY(U,$J,358.3,18949,1,5,0)
+ ;;=5^Sinusitis, Maxillary Chronic
+ ;;^UTILITY(U,$J,358.3,18949,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,18950,0)
+ ;;=388.31^^105^1225^43
+ ;;^UTILITY(U,$J,358.3,18950,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19142,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,19142,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,19142,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,19143,0)
- ;;=301.22^^106^1130^15
- ;;^UTILITY(U,$J,358.3,19143,1,0)
+ ;;^UTILITY(U,$J,358.3,18950,1,4,0)
+ ;;=4^388.31
+ ;;^UTILITY(U,$J,358.3,18950,1,5,0)
+ ;;=5^Tinnitus, Subjective
+ ;;^UTILITY(U,$J,358.3,18950,2)
+ ;;=^269527
+ ;;^UTILITY(U,$J,358.3,18951,0)
+ ;;=463.^^105^1225^44
+ ;;^UTILITY(U,$J,358.3,18951,1,0)
  ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18951,1,4,0)
+ ;;=4^463.
+ ;;^UTILITY(U,$J,358.3,18951,1,5,0)
+ ;;=5^Tonsillitis, Acute

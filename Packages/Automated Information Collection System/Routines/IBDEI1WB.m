@@ -1,126 +1,134 @@
-IBDEI1WB ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WB ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33702,2)
- ;;=^5044138
- ;;^UTILITY(U,$J,358.3,33703,0)
- ;;=S91.011A^^191^1972^28
- ;;^UTILITY(U,$J,358.3,33703,1,0)
+ ;;^UTILITY(U,$J,358.3,33338,0)
+ ;;=E88.01^^182^2002^4
+ ;;^UTILITY(U,$J,358.3,33338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33703,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt ankl, init
- ;;^UTILITY(U,$J,358.3,33703,1,4,0)
- ;;=4^S91.011A
- ;;^UTILITY(U,$J,358.3,33703,2)
- ;;=^5044135
- ;;^UTILITY(U,$J,358.3,33704,0)
- ;;=S91.311A^^191^1972^30
- ;;^UTILITY(U,$J,358.3,33704,1,0)
+ ;;^UTILITY(U,$J,358.3,33338,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,33338,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,33338,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,33339,0)
+ ;;=J09.X1^^182^2002^26
+ ;;^UTILITY(U,$J,358.3,33339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33704,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt ft, init
- ;;^UTILITY(U,$J,358.3,33704,1,4,0)
- ;;=4^S91.311A
- ;;^UTILITY(U,$J,358.3,33704,2)
- ;;=^5044320
- ;;^UTILITY(U,$J,358.3,33705,0)
- ;;=S91.312A^^191^1972^18
- ;;^UTILITY(U,$J,358.3,33705,1,0)
+ ;;^UTILITY(U,$J,358.3,33339,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,33339,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,33339,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,33340,0)
+ ;;=J09.X2^^182^2002^27
+ ;;^UTILITY(U,$J,358.3,33340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33705,1,3,0)
- ;;=3^Lacrtn w/o foreign body lft ft, init
- ;;^UTILITY(U,$J,358.3,33705,1,4,0)
- ;;=4^S91.312A
- ;;^UTILITY(U,$J,358.3,33705,2)
- ;;=^5044323
- ;;^UTILITY(U,$J,358.3,33706,0)
- ;;=S91.115A^^191^1972^23
- ;;^UTILITY(U,$J,358.3,33706,1,0)
+ ;;^UTILITY(U,$J,358.3,33340,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,33340,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,33340,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,33341,0)
+ ;;=J09.X3^^182^2002^28
+ ;;^UTILITY(U,$J,358.3,33341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33706,1,3,0)
- ;;=3^Lacrtn w/o foreign body lft lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33706,1,4,0)
- ;;=4^S91.115A
- ;;^UTILITY(U,$J,358.3,33706,2)
- ;;=^5044195
- ;;^UTILITY(U,$J,358.3,33707,0)
- ;;=S91.111A^^191^1972^33
- ;;^UTILITY(U,$J,358.3,33707,1,0)
+ ;;^UTILITY(U,$J,358.3,33341,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,33341,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,33341,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,33342,0)
+ ;;=J09.X9^^182^2002^29
+ ;;^UTILITY(U,$J,358.3,33342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33707,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33707,1,4,0)
- ;;=4^S91.111A
- ;;^UTILITY(U,$J,358.3,33707,2)
- ;;=^5044183
- ;;^UTILITY(U,$J,358.3,33708,0)
- ;;=S91.112A^^191^1972^21
- ;;^UTILITY(U,$J,358.3,33708,1,0)
+ ;;^UTILITY(U,$J,358.3,33342,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,33342,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,33342,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,33343,0)
+ ;;=J44.9^^182^2002^15
+ ;;^UTILITY(U,$J,358.3,33343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33708,1,3,0)
- ;;=3^Lacrtn w/o foreign body lft grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33708,1,4,0)
- ;;=4^S91.112A
- ;;^UTILITY(U,$J,358.3,33708,2)
- ;;=^5044186
- ;;^UTILITY(U,$J,358.3,33709,0)
- ;;=S91.114A^^191^1972^35
- ;;^UTILITY(U,$J,358.3,33709,1,0)
+ ;;^UTILITY(U,$J,358.3,33343,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,33343,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,33343,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,33344,0)
+ ;;=J44.1^^182^2002^14
+ ;;^UTILITY(U,$J,358.3,33344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33709,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,33709,1,4,0)
- ;;=4^S91.114A
- ;;^UTILITY(U,$J,358.3,33709,2)
- ;;=^5044192
- ;;^UTILITY(U,$J,358.3,33710,0)
- ;;=S91.214A^^191^1972^15
- ;;^UTILITY(U,$J,358.3,33710,1,0)
+ ;;^UTILITY(U,$J,358.3,33344,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,33344,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,33344,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,33345,0)
+ ;;=J42.^^182^2002^12
+ ;;^UTILITY(U,$J,358.3,33345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33710,1,3,0)
- ;;=3^Lacrtn w/o foregin body rt lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,33710,1,4,0)
- ;;=4^S91.214A
- ;;^UTILITY(U,$J,358.3,33710,2)
- ;;=^5044279
- ;;^UTILITY(U,$J,358.3,33711,0)
- ;;=S91.215A^^191^1972^24
- ;;^UTILITY(U,$J,358.3,33711,1,0)
+ ;;^UTILITY(U,$J,358.3,33345,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,33345,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,33345,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,33346,0)
+ ;;=J43.9^^182^2002^23
+ ;;^UTILITY(U,$J,358.3,33346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33711,1,3,0)
- ;;=3^Lacrtn w/o foreign body lft lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,33711,1,4,0)
- ;;=4^S91.215A
- ;;^UTILITY(U,$J,358.3,33711,2)
- ;;=^5044282
- ;;^UTILITY(U,$J,358.3,33712,0)
- ;;=S91.022A^^191^1972^5
- ;;^UTILITY(U,$J,358.3,33712,1,0)
+ ;;^UTILITY(U,$J,358.3,33346,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,33346,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,33346,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,33347,0)
+ ;;=J43.0^^182^2002^31
+ ;;^UTILITY(U,$J,358.3,33347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33712,1,3,0)
- ;;=3^Lacrtn w/ foreign body lft ankl, init
- ;;^UTILITY(U,$J,358.3,33712,1,4,0)
- ;;=4^S91.022A
- ;;^UTILITY(U,$J,358.3,33712,2)
- ;;=^5137406
- ;;^UTILITY(U,$J,358.3,33713,0)
- ;;=S91.021A^^191^1972^10
- ;;^UTILITY(U,$J,358.3,33713,1,0)
+ ;;^UTILITY(U,$J,358.3,33347,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,33347,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,33347,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,33348,0)
+ ;;=J43.1^^182^2002^22
+ ;;^UTILITY(U,$J,358.3,33348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33713,1,3,0)
- ;;=3^Lacrtn w/ foreign body rt ankl, init
- ;;^UTILITY(U,$J,358.3,33713,1,4,0)
- ;;=4^S91.021A
- ;;^UTILITY(U,$J,358.3,33713,2)
- ;;=^5044144
- ;;^UTILITY(U,$J,358.3,33714,0)
- ;;=S81.821A^^191^1972^14
- ;;^UTILITY(U,$J,358.3,33714,1,0)
+ ;;^UTILITY(U,$J,358.3,33348,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,33348,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,33348,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,33349,0)
+ ;;=J43.2^^182^2002^20
+ ;;^UTILITY(U,$J,358.3,33349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33714,1,3,0)
- ;;=3^Lacrtn w/ foreign body rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,33714,1,4,0)
- ;;=4^S81.821A
- ;;^UTILITY(U,$J,358.3,33714,2)
- ;;=^5040080
+ ;;^UTILITY(U,$J,358.3,33349,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,33349,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,33349,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,33350,0)
+ ;;=J43.8^^182^2002^21
+ ;;^UTILITY(U,$J,358.3,33350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33350,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,33350,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,33350,2)
+ ;;=^87569

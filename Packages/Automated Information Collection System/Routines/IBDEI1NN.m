@@ -1,128 +1,132 @@
-IBDEI1NN ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1NN ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29756,2)
- ;;=^336616
- ;;^UTILITY(U,$J,358.3,29757,0)
- ;;=Z12.39^^189^1893^31
- ;;^UTILITY(U,$J,358.3,29757,1,0)
+ ;;^UTILITY(U,$J,358.3,29405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29757,1,3,0)
- ;;=3^Screening for Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,29757,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,29757,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,29758,0)
- ;;=C50.021^^189^1894^12
- ;;^UTILITY(U,$J,358.3,29758,1,0)
+ ;;^UTILITY(U,$J,358.3,29405,1,3,0)
+ ;;=3^Cerebral cysts
+ ;;^UTILITY(U,$J,358.3,29405,1,4,0)
+ ;;=4^G93.0
+ ;;^UTILITY(U,$J,358.3,29405,2)
+ ;;=^268481
+ ;;^UTILITY(U,$J,358.3,29406,0)
+ ;;=G04.90^^176^1883^10
+ ;;^UTILITY(U,$J,358.3,29406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29758,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Right Breast
- ;;^UTILITY(U,$J,358.3,29758,1,4,0)
- ;;=4^C50.021
- ;;^UTILITY(U,$J,358.3,29758,2)
- ;;=^5001162
- ;;^UTILITY(U,$J,358.3,29759,0)
- ;;=C50.022^^189^1894^11
- ;;^UTILITY(U,$J,358.3,29759,1,0)
+ ;;^UTILITY(U,$J,358.3,29406,1,3,0)
+ ;;=3^Encephalitis and encephalomyelitis, unspecified
+ ;;^UTILITY(U,$J,358.3,29406,1,4,0)
+ ;;=4^G04.90
+ ;;^UTILITY(U,$J,358.3,29406,2)
+ ;;=^5003741
+ ;;^UTILITY(U,$J,358.3,29407,0)
+ ;;=G04.91^^176^1883^19
+ ;;^UTILITY(U,$J,358.3,29407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29759,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Left Breast
- ;;^UTILITY(U,$J,358.3,29759,1,4,0)
- ;;=4^C50.022
- ;;^UTILITY(U,$J,358.3,29759,2)
- ;;=^5001163
- ;;^UTILITY(U,$J,358.3,29760,0)
- ;;=C50.121^^189^1894^5
- ;;^UTILITY(U,$J,358.3,29760,1,0)
+ ;;^UTILITY(U,$J,358.3,29407,1,3,0)
+ ;;=3^Myelitis, unspecified
+ ;;^UTILITY(U,$J,358.3,29407,1,4,0)
+ ;;=4^G04.91
+ ;;^UTILITY(U,$J,358.3,29407,2)
+ ;;=^5003742
+ ;;^UTILITY(U,$J,358.3,29408,0)
+ ;;=G93.40^^176^1883^11
+ ;;^UTILITY(U,$J,358.3,29408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29760,1,3,0)
- ;;=3^Malig Neop of Central Portion of Right Breast
- ;;^UTILITY(U,$J,358.3,29760,1,4,0)
- ;;=4^C50.121
- ;;^UTILITY(U,$J,358.3,29760,2)
- ;;=^5001168
- ;;^UTILITY(U,$J,358.3,29761,0)
- ;;=C50.122^^189^1894^4
- ;;^UTILITY(U,$J,358.3,29761,1,0)
+ ;;^UTILITY(U,$J,358.3,29408,1,3,0)
+ ;;=3^Encephalopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,29408,1,4,0)
+ ;;=4^G93.40
+ ;;^UTILITY(U,$J,358.3,29408,2)
+ ;;=^329917
+ ;;^UTILITY(U,$J,358.3,29409,0)
+ ;;=G91.0^^176^1883^9
+ ;;^UTILITY(U,$J,358.3,29409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29761,1,3,0)
- ;;=3^Malig Neop of Central Portion of Left Breast
- ;;^UTILITY(U,$J,358.3,29761,1,4,0)
- ;;=4^C50.122
- ;;^UTILITY(U,$J,358.3,29761,2)
- ;;=^5001169
- ;;^UTILITY(U,$J,358.3,29762,0)
- ;;=C50.221^^189^1894^17
- ;;^UTILITY(U,$J,358.3,29762,1,0)
+ ;;^UTILITY(U,$J,358.3,29409,1,3,0)
+ ;;=3^Communicating hydrocephalus
+ ;;^UTILITY(U,$J,358.3,29409,1,4,0)
+ ;;=4^G91.0
+ ;;^UTILITY(U,$J,358.3,29409,2)
+ ;;=^26586
+ ;;^UTILITY(U,$J,358.3,29410,0)
+ ;;=G91.1^^176^1883^27
+ ;;^UTILITY(U,$J,358.3,29410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29762,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,29762,1,4,0)
- ;;=4^C50.221
- ;;^UTILITY(U,$J,358.3,29762,2)
- ;;=^5001174
- ;;^UTILITY(U,$J,358.3,29763,0)
- ;;=C50.222^^189^1894^16
- ;;^UTILITY(U,$J,358.3,29763,1,0)
+ ;;^UTILITY(U,$J,358.3,29410,1,3,0)
+ ;;=3^Obstructive hydrocephalus
+ ;;^UTILITY(U,$J,358.3,29410,1,4,0)
+ ;;=4^G91.1
+ ;;^UTILITY(U,$J,358.3,29410,2)
+ ;;=^84947
+ ;;^UTILITY(U,$J,358.3,29411,0)
+ ;;=I61.9^^176^1883^20
+ ;;^UTILITY(U,$J,358.3,29411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29763,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,29763,1,4,0)
- ;;=4^C50.222
- ;;^UTILITY(U,$J,358.3,29763,2)
- ;;=^5001175
- ;;^UTILITY(U,$J,358.3,29764,0)
- ;;=C50.321^^189^1894^8
- ;;^UTILITY(U,$J,358.3,29764,1,0)
+ ;;^UTILITY(U,$J,358.3,29411,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, unspecified
+ ;;^UTILITY(U,$J,358.3,29411,1,4,0)
+ ;;=4^I61.9
+ ;;^UTILITY(U,$J,358.3,29411,2)
+ ;;=^5007288
+ ;;^UTILITY(U,$J,358.3,29412,0)
+ ;;=I61.3^^176^1883^21
+ ;;^UTILITY(U,$J,358.3,29412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29764,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,29764,1,4,0)
- ;;=4^C50.321
- ;;^UTILITY(U,$J,358.3,29764,2)
- ;;=^5001178
- ;;^UTILITY(U,$J,358.3,29765,0)
- ;;=C50.322^^189^1894^7
- ;;^UTILITY(U,$J,358.3,29765,1,0)
+ ;;^UTILITY(U,$J,358.3,29412,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, brainstem
+ ;;^UTILITY(U,$J,358.3,29412,1,4,0)
+ ;;=4^I61.3
+ ;;^UTILITY(U,$J,358.3,29412,2)
+ ;;=^5007283
+ ;;^UTILITY(U,$J,358.3,29413,0)
+ ;;=I61.4^^176^1883^22
+ ;;^UTILITY(U,$J,358.3,29413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29765,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,29765,1,4,0)
- ;;=4^C50.322
- ;;^UTILITY(U,$J,358.3,29765,2)
- ;;=^5133334
- ;;^UTILITY(U,$J,358.3,29766,0)
- ;;=C50.421^^189^1894^19
- ;;^UTILITY(U,$J,358.3,29766,1,0)
+ ;;^UTILITY(U,$J,358.3,29413,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, cerebellum
+ ;;^UTILITY(U,$J,358.3,29413,1,4,0)
+ ;;=4^I61.4
+ ;;^UTILITY(U,$J,358.3,29413,2)
+ ;;=^5007284
+ ;;^UTILITY(U,$J,358.3,29414,0)
+ ;;=I61.5^^176^1883^23
+ ;;^UTILITY(U,$J,358.3,29414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29766,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,29766,1,4,0)
- ;;=4^C50.421
- ;;^UTILITY(U,$J,358.3,29766,2)
- ;;=^5001180
- ;;^UTILITY(U,$J,358.3,29767,0)
- ;;=C50.422^^189^1894^18
- ;;^UTILITY(U,$J,358.3,29767,1,0)
+ ;;^UTILITY(U,$J,358.3,29414,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, intraventricular
+ ;;^UTILITY(U,$J,358.3,29414,1,4,0)
+ ;;=4^I61.5
+ ;;^UTILITY(U,$J,358.3,29414,2)
+ ;;=^5007285
+ ;;^UTILITY(U,$J,358.3,29415,0)
+ ;;=I61.6^^176^1883^24
+ ;;^UTILITY(U,$J,358.3,29415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29767,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,29767,1,4,0)
- ;;=4^C50.422
- ;;^UTILITY(U,$J,358.3,29767,2)
- ;;=^5133336
- ;;^UTILITY(U,$J,358.3,29768,0)
- ;;=C50.521^^189^1894^10
- ;;^UTILITY(U,$J,358.3,29768,1,0)
+ ;;^UTILITY(U,$J,358.3,29415,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, multiple localized
+ ;;^UTILITY(U,$J,358.3,29415,1,4,0)
+ ;;=4^I61.6
+ ;;^UTILITY(U,$J,358.3,29415,2)
+ ;;=^5007286
+ ;;^UTILITY(U,$J,358.3,29416,0)
+ ;;=G44.1^^176^1883^69
+ ;;^UTILITY(U,$J,358.3,29416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29768,1,3,0)
- ;;=3^Malig Neop of Lower-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,29768,1,4,0)
- ;;=4^C50.521
- ;;^UTILITY(U,$J,358.3,29768,2)
- ;;=^5001182
- ;;^UTILITY(U,$J,358.3,29769,0)
- ;;=C50.522^^189^1894^9
+ ;;^UTILITY(U,$J,358.3,29416,1,3,0)
+ ;;=3^Vascular headache, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,29416,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,29416,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,29417,0)
+ ;;=R51.^^176^1883^12
+ ;;^UTILITY(U,$J,358.3,29417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29417,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,29417,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,29417,2)
+ ;;=^5019513

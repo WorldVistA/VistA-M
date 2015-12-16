@@ -1,5 +1,5 @@
 DGBTCD ;ALB/SCK/BLD - BENEFICIARY TRAVEL CLAIM DISPLAY; 12/15/92 4/14/93
- ;;1.0;Beneficiary Travel;**2,7,9,20,22**;September 25, 2001;Build 5
+ ;;1.0;Beneficiary Travel;**2,7,9,20,22,25**;September 25, 2001;Build 12
  Q
 SCREEN ;this will display the information screen at the end of a claim and 
  Q:'$D(^DGBT(392,DGBTDT,0))  S U="^" K DGBTVAR F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I),1:"")
@@ -36,7 +36,7 @@ ATT I DGBTACCT=4!(DGBTACCT=5) W !,"Attend/Payee: ",$S($D(DGBTVAR("A")):$P(DGBTVA
  I $G(DGBTACCT)=4!($G(DGBTACCT)=5) W !,"One Way/"
  I $G(DGBTACCT)'=4&($G(DGBTACCT)'=5) D
  . S DGX=$S($P($G(DGBTVAR(0)),U,7):"Carrier",$P($G(DGBTVAR(0)),U,14):"CoreFLS",1:"Carrier") W:DGX["FLS" !,"CoreFLS Carrier: " W:DGX["Carrier" !?5,"Carrier: "
- . W $E($S((DGX["FLS"&$P($G(DGBTVAR(0)),U,14)):$P(^DGBT(392.31,$P($G(DGBTVAR(0)),U,14),0),U),(DGX["Carrier"&$P(DGBTVAR(0),U,7)):$P(^PRC(440,$P(DGBTVAR(0),U,7),0),U),1:""),1,27) K DGX
+ . W $E($S((DGX["FLS"&$P($G(DGBTVAR(0)),U,14)):$P(^DGBT(392.31,$P($G(DGBTVAR(0)),U,14),0),U),(DGX["Carrier"&$P(DGBTVAR(0),U,7)):$$GET1^DIQ(392,DGBTDT_",",7)),1,27) K DGX
  I $D(^DG(43,1,"BT")) I $P(^DG(43,1,"BT"),U,2)=1 W ?46,"Ferry, Bridges, Etc.: " S X=$P(DGBTVAR("M"),U,5) N X3 D COMMA^%DTC W X
  I $G(DGBTACCT)=4!($G(DGBTACCT)=5) W !?2,"Round Trip: ",$S($P(DGBTVAR("M"),U)=1:"ONE WAY",$P(DGBTVAR("M"),U)=2:"ROUND TRIP",1:"")
  I $G(DGBTACCT)'=4&($G(DGBTACCT)'=5) W !,"Auth. Person: " I $P(DGBTVAR("A"),U) W $S($D(DGBTVAR("A"))&($D(^VA(200,$P(DGBTVAR("A"),U),0))):$P(^VA(200,$P(DGBTVAR("A"),U),0),U),1:"")
@@ -48,5 +48,5 @@ DED W ?48,"Applied Deductible: " D  N X3 D COMMA^%DTC W X
  W ! W:$G(DGBTACCT)=4!($G(DGBTACCT)=5) ?5,"One Way: ",$P($G(DGBTVAR("M")),U,2)_" MILES"
  W ?53,"Amount Payable " S X=$$GET1^DIQ(392,DGBTDT,10) N X3 D COMMA^%DTC W X
 REMARK W !!,"Remarks: ",$S($D(^DGBT(392,DGBTDT,"R")):$P(^DGBT(392,DGBTDT,"R"),U),1:"")
-QUIT K DGBTCNA,DGBTCSZ,DGBTFCTY,DGBTTCTY,DGBTCNA,DGBTDIV,VADAM,X,X2,I
+QUIT K DGBTCNA,DGBTCSZ,DGBTFCTY,DGBTTCTY,DGBTCNA,VADAM,X,X2,I ;DGBTDIV - dbe patch DGBT*1*25 - removed to preserve division for subsequent claims
  Q

@@ -1,5 +1,5 @@
-DGPTFJC ;ALB/ADL - CLOSED PTF ;7/28/05 1:08pm
- ;;5.3;Registration;**158,510,517,590,636,635,701,729,785,850**;Aug 13, 1993;Build 171
+DGPTFJC ;ALB/ADL,HIOFT/FT - CLOSED PTF ;12/12/14 2:15pm
+ ;;5.3;Registration;**158,510,517,590,636,635,701,729,785,850,884**;Aug 13, 1993;Build 31
  ;;ADL;;Update for CSV Project;;Mar 25, 2003
 101 W !,"Enter '^N' for Screen N, RETURN for <MAS>,'^' to Abort: <MAS>//"
  D READ G Q^DGPTF:X=U,^DGPTFM:X="",^DGPTFJ:X?1"^".E D H G 101
@@ -8,7 +8,7 @@ H D HELP^DGPTFJ W ! Q
  ;
 MAS W !!,"Enter '^N' for Screen N, RETURN for <",DGNUM,">,'^' to Abort: <",DGNUM,">//"
  D READ G Q^DGPTF:X=U,^DGPTFJ:X?1"^".E
- I X="" S (ST,ST1)=J+2 G @($S($D(DGZDIAG):"NDG",$D(DGZSER):"NSR",$D(DGZPRO):"NPR",$D(DGZSUR):"EN",+DGZPRF-1'=$P(DGZPRF,U,3):"NPS",1:"DONE")_"^DGPTFM")
+ I X="" S (ST,ST1)=J+1 G @($S($D(DGZDIAG):"NDG",$D(DGZSER):"NSR",$D(DGZPRO):"NPR",$D(DGZSUR):"EN",+DGZPRF-1'=$P(DGZPRF,U,3):"NPS",1:"DONE")_"^DGPTFM")
  D H G MAS
  ;
 401 S DGNUM=$S($D(S(DGZS0+1)):401_"-"_(DGZS0+1),1:"MAS")
@@ -33,6 +33,8 @@ READ ; -- read X
  ;
 EN ; DG*636 ; DG*5.3*850
  ; Called from Diagnosis fields in 501 movements
+ ; Variable DGN is passed globally as a node identifier
+ ;
  N EFFDATE,DGTEMP,IMPDATE,DGINAC
  D EFFDATE^DGPTIC10(DA(1))
  S K=$S($D(K):K,1:1),DGER=0 ;S DGPTDAT=$$GETDATE^ICDGTDRG(DA(1))
@@ -56,10 +58,14 @@ EN ; DG*636 ; DG*5.3*850
  I '$P(DGPTTMP,U,10) S DGINAC=$P(DGPTTMP,U,12) I DGINAC<EFFDATE D MSG("Can not use inactive codes.") S DGER=1 Q
  ;end DG*636
  ;===================================================================
- I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ ;
+ ;Allow sex-unique ICD codes to be assigned to the opposite sex
+ ;for 501 movements, output warning only (Ref: DG*5.3*884)
+ I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) D
+ . D:K<24 MSG($P(DGPTTMP,U,2)_" should only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1 Q
  ;
  ; -- can't enter a code already in the movement
- S %=$P(^DGPT(DA(1),"M",DA,0),U,DGI) I $D(^DGPT(DA(1),"M","AC",+Y,DA)),%'=+Y W !,"Cannot enter the same code twice." S DGER=1 Q
+ I $D(^DGPT(DA(1),"M","AC",+Y,DA)) W !,"Cannot enter the same code twice." S DGER=1 Q
  ;
  S %=U_$P(^DGPT(DA(1),"M",DA,0),U,5,15),$P(%,U,7)=U ;take movement date out of %
  D NOT(+Y,%)
@@ -71,8 +77,13 @@ EN1 ; called from 601 movement procedure codes and 401 Surgical operations
  S K=$S($D(K):K,1:1),DGER=0
  ;
  N EFFDATE,DGTEMP,IMPDATE,DGPTDAT
- S:$G(DGIT)=5 DGCR="AP6",DGSB="P"
- S:$G(DGIT)=8 DGCR="AO",DGSB="S"
+ ;
+ ;Next 2 lines commented out since they were used to prevent duplicate operation/procedure codes (401 & 601)
+ ;from being entered. If duplicate checking is ever implemented for operation/procedure data, a replacement
+ ;multi-field xref will need to be created. (Ref: DG*5.3*884)
+ ;S:$G(DGIT)=5 DGCR="AP6",DGSB="P"
+ ;S:$G(DGIT)=8 DGCR="AO",DGSB="S"
+ ;
  D EFFDATE^DGPTIC10(DA(1))
  ;S DGICD0=$$ICDDATA^ICDXCODE("PROC",+Y,EFFDATE)
  N DGPRDT S DGPRDT=$S(+$G(DGPROCD):+DGPROCD,1:+$G(DGPROCI))
@@ -84,9 +95,17 @@ EN1 ; called from 601 movement procedure codes and 401 Surgical operations
  . S DGICD0=$$ICDDATA^ICDXCODE("PROC",+Y,DGPRDT)
  ;
  I +DGICD0,0!('$P(DGICD0,U,10)) S DGER=1 Q
- I $P(DGICD0,U,11)]""&($P(DGICD0,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(DGICD0,U,2)_" can only be used with "_$S($P(DGICD0,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
- S %=$P(^DGPT(DA(1),$G(DGSB),DA,0),U,DGI)
- I $D(^DGPT(DA(1),$G(DGSB),$G(DGCR),Y,DA)),%'=Y S DGER=1 D MSG("Cannot enter the same code more than once within a "_$S(DGSB="S":"401",1:"601")_" transaction") Q
+ ;
+ ;Allow sex-unique ICD codes to be assigned to the opposite sex for
+ ;401 Surgeries and 601 Procedures, output warning only (Ref: DG*5.3*884)
+ I $P(DGICD0,U,11)]""&($P(DGICD0,U,11)'=$S($D(^DPT(+^DGPT(DA(1),0),0)):$P(^(0),U,2),1:"M")) D
+ . D:K<24 MSG($P(DGICD0,U,2)_" should only be used with "_$S($P(DGICD0,U,11)="F":"FEMALES",1:"MALES")) S K=K+1 Q
+ ;
+ ;Next 2 lines commented out since user may enter duplicate operation/procedure codes (401 & 601) as sometimes
+ ;they must code left and right when there aren't specific codes, they enter the code twice. (Ref: DG*5.3*884)
+ ;S %=$P(^DGPT(DA(1),$G(DGSB),DA,0),U,DGI)
+ ;I $D(^DGPT(DA(1),$G(DGSB),$G(DGCR),Y,DA)),%'=Y S DGER=1 D MSG("Cannot enter the same code more than once within a "_$S(DGSB="S":"401",1:"601")_" transaction") Q
+ ;
  Q
 EN2 ; Called from 701 movement procedure codes
  S K=$S($D(K):K,1:1),DGER=0
@@ -95,7 +114,11 @@ EN2 ; Called from 701 movement procedure codes
  S DGPTTMP=$$ICDDATA^ICDXCODE("PROC",+Y,EFFDATE)
  ; 
  I +DGPTTMP<0!('$P(DGPTTMP,U,10)) S DGER=1 Q
- I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ ;
+ ;Allow sex-unique ICD codes to be assigned to the opposite sex for
+ ;401P Procedures, output warning only (Ref: DG*5.3*884)
+ I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) D
+ . D:K<24 MSG($P(DGPTTMP,U,2)_" should only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1 Q
  ;
  S L=$P($S($D(^DGPT((DA),"401P")):^("401P"),1:0),U,1,5)
  S %=$P(L,U,DGI)
@@ -118,8 +141,10 @@ EN3 ;Called from 701 movement diagnosis fields (top level)
  ; - unacceptable as primary DX
  I DGI=1,$P(DGPTTMP,U,5) D MSG("Not acceptable as a primary Diagnosis.") S DGER=1 Q
  ;
+ ;Allow sex-unique ICD codes to be assigned to the opposite sex for
+ ;Primary and Secondary Dx's, output warning only (Ref: DG*5.3*884)
  I $P(DGPTTMP,U,11)]""&($P(DGPTTMP,U,11)'=$S($D(^DPT(+^DGPT(DA,0),0)):$P(^(0),U,2),1:"M")) D
- . D:K<24 MSG($P(DGPTTMP,U,2)_" can only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1,DGER=1 Q
+ . D:K<24 MSG($P(DGPTTMP,U,2)_" should only be used with "_$S($P(DGPTTMP,U,11)="F":"FEMALES",1:"MALES")) S K=K+1 Q
  ;
  ; -- build string of 701 dx codes
  S %=$S($D(^DGPT(DA,70)):^(70),1:""),%=U_$P(%,U,10)_U_$P(%,U,16,24)_U

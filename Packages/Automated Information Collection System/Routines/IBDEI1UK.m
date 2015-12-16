@@ -1,128 +1,136 @@
-IBDEI1UK ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UK ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32926,1,4,0)
- ;;=4^M00.872
- ;;^UTILITY(U,$J,358.3,32926,2)
- ;;=^5009689
- ;;^UTILITY(U,$J,358.3,32927,0)
- ;;=M00.871^^191^1963^27
- ;;^UTILITY(U,$J,358.3,32927,1,0)
+ ;;^UTILITY(U,$J,358.3,32521,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,32521,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,32522,0)
+ ;;=N20.0^^182^1988^7
+ ;;^UTILITY(U,$J,358.3,32522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32927,1,3,0)
- ;;=3^Arthritis d/t oth bacteria, rt ank & ft
- ;;^UTILITY(U,$J,358.3,32927,1,4,0)
- ;;=4^M00.871
- ;;^UTILITY(U,$J,358.3,32927,2)
- ;;=^5009688
- ;;^UTILITY(U,$J,358.3,32928,0)
- ;;=M00.172^^191^1963^28
- ;;^UTILITY(U,$J,358.3,32928,1,0)
+ ;;^UTILITY(U,$J,358.3,32522,1,3,0)
+ ;;=3^Calculus Kidney
+ ;;^UTILITY(U,$J,358.3,32522,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,32522,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,32523,0)
+ ;;=N29.^^182^1988^56
+ ;;^UTILITY(U,$J,358.3,32523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32928,1,3,0)
- ;;=3^Arthritis, Pneumococcal, lft ank & ft
- ;;^UTILITY(U,$J,358.3,32928,1,4,0)
- ;;=4^M00.172
- ;;^UTILITY(U,$J,358.3,32928,2)
- ;;=^5009641
- ;;^UTILITY(U,$J,358.3,32929,0)
- ;;=M00.171^^191^1963^29
- ;;^UTILITY(U,$J,358.3,32929,1,0)
+ ;;^UTILITY(U,$J,358.3,32523,1,3,0)
+ ;;=3^Kidney & Ureter Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,32523,1,4,0)
+ ;;=4^N29.
+ ;;^UTILITY(U,$J,358.3,32523,2)
+ ;;=^5015631
+ ;;^UTILITY(U,$J,358.3,32524,0)
+ ;;=N28.9^^182^1988^55
+ ;;^UTILITY(U,$J,358.3,32524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32929,1,3,0)
- ;;=3^Arthritis, Pneumococcal, rt ank & ft
- ;;^UTILITY(U,$J,358.3,32929,1,4,0)
- ;;=4^M00.171
- ;;^UTILITY(U,$J,358.3,32929,2)
- ;;=^5009640
- ;;^UTILITY(U,$J,358.3,32930,0)
- ;;=M00.072^^191^1963^41
- ;;^UTILITY(U,$J,358.3,32930,1,0)
+ ;;^UTILITY(U,$J,358.3,32524,1,3,0)
+ ;;=3^Kidney & Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32524,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,32524,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,32525,0)
+ ;;=N30.01^^182^1988^18
+ ;;^UTILITY(U,$J,358.3,32525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32930,1,3,0)
- ;;=3^Arthritis, Staph, lft ank & ft
- ;;^UTILITY(U,$J,358.3,32930,1,4,0)
- ;;=4^M00.072
- ;;^UTILITY(U,$J,358.3,32930,2)
- ;;=^5009617
- ;;^UTILITY(U,$J,358.3,32931,0)
- ;;=M00.071^^191^1963^42
- ;;^UTILITY(U,$J,358.3,32931,1,0)
+ ;;^UTILITY(U,$J,358.3,32525,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Acute
+ ;;^UTILITY(U,$J,358.3,32525,1,4,0)
+ ;;=4^N30.01
+ ;;^UTILITY(U,$J,358.3,32525,2)
+ ;;=^5015633
+ ;;^UTILITY(U,$J,358.3,32526,0)
+ ;;=N30.00^^182^1988^20
+ ;;^UTILITY(U,$J,358.3,32526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32931,1,3,0)
- ;;=3^Arthritis, Staph, rt ank & ft
- ;;^UTILITY(U,$J,358.3,32931,1,4,0)
- ;;=4^M00.071
- ;;^UTILITY(U,$J,358.3,32931,2)
- ;;=^5009616
- ;;^UTILITY(U,$J,358.3,32932,0)
- ;;=M06.072^^191^1963^36
- ;;^UTILITY(U,$J,358.3,32932,1,0)
+ ;;^UTILITY(U,$J,358.3,32526,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Acute
+ ;;^UTILITY(U,$J,358.3,32526,1,4,0)
+ ;;=4^N30.00
+ ;;^UTILITY(U,$J,358.3,32526,2)
+ ;;=^5015632
+ ;;^UTILITY(U,$J,358.3,32527,0)
+ ;;=N30.41^^182^1988^19
+ ;;^UTILITY(U,$J,358.3,32527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32932,1,3,0)
- ;;=3^Arthritis, Rheum w/o Rheum Factor, lft ank & ft
- ;;^UTILITY(U,$J,358.3,32932,1,4,0)
- ;;=4^M06.072
- ;;^UTILITY(U,$J,358.3,32932,2)
- ;;=^5010067
- ;;^UTILITY(U,$J,358.3,32933,0)
- ;;=M06.071^^191^1963^37
- ;;^UTILITY(U,$J,358.3,32933,1,0)
+ ;;^UTILITY(U,$J,358.3,32527,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,32527,1,4,0)
+ ;;=4^N30.41
+ ;;^UTILITY(U,$J,358.3,32527,2)
+ ;;=^5015640
+ ;;^UTILITY(U,$J,358.3,32528,0)
+ ;;=N30.40^^182^1988^21
+ ;;^UTILITY(U,$J,358.3,32528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32933,1,3,0)
- ;;=3^Arthritis, Rheum w/o Rheum Factor, rt ank & ft
- ;;^UTILITY(U,$J,358.3,32933,1,4,0)
- ;;=4^M06.071
- ;;^UTILITY(U,$J,358.3,32933,2)
- ;;=^5010066
- ;;^UTILITY(U,$J,358.3,32934,0)
- ;;=M05.772^^191^1963^30
- ;;^UTILITY(U,$J,358.3,32934,1,0)
+ ;;^UTILITY(U,$J,358.3,32528,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,32528,1,4,0)
+ ;;=4^N30.40
+ ;;^UTILITY(U,$J,358.3,32528,2)
+ ;;=^5015639
+ ;;^UTILITY(U,$J,358.3,32529,0)
+ ;;=N32.0^^182^1988^6
+ ;;^UTILITY(U,$J,358.3,32529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32934,1,3,0)
- ;;=3^Arthritis, Rheum w/ Rheum Fact, lft ank & ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,32934,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,32934,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,32935,0)
- ;;=M05.771^^191^1963^31
- ;;^UTILITY(U,$J,358.3,32935,1,0)
+ ;;^UTILITY(U,$J,358.3,32529,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,32529,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,32529,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,32530,0)
+ ;;=N31.9^^182^1988^69
+ ;;^UTILITY(U,$J,358.3,32530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32935,1,3,0)
- ;;=3^Arthritis, Rheum w/ Rheum Fact, rt ank & ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,32935,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,32935,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,32936,0)
- ;;=M06.872^^191^1963^38
- ;;^UTILITY(U,$J,358.3,32936,1,0)
+ ;;^UTILITY(U,$J,358.3,32530,1,3,0)
+ ;;=3^Neuromuscular Dysfunction of Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,32530,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,32530,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,32531,0)
+ ;;=N31.1^^182^1988^70
+ ;;^UTILITY(U,$J,358.3,32531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32936,1,3,0)
- ;;=3^Arthritis, Rheum, lft ank & ft, oth, spec
- ;;^UTILITY(U,$J,358.3,32936,1,4,0)
- ;;=4^M06.872
- ;;^UTILITY(U,$J,358.3,32936,2)
- ;;=^5010141
- ;;^UTILITY(U,$J,358.3,32937,0)
- ;;=M06.871^^191^1963^40
- ;;^UTILITY(U,$J,358.3,32937,1,0)
+ ;;^UTILITY(U,$J,358.3,32531,1,3,0)
+ ;;=3^Neuropathic Bladder,Reflex NEC
+ ;;^UTILITY(U,$J,358.3,32531,1,4,0)
+ ;;=4^N31.1
+ ;;^UTILITY(U,$J,358.3,32531,2)
+ ;;=^5015645
+ ;;^UTILITY(U,$J,358.3,32532,0)
+ ;;=N32.89^^182^1988^5
+ ;;^UTILITY(U,$J,358.3,32532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32937,1,3,0)
- ;;=3^Arthritis, Rheum, rt ank & ft, oth, spec
- ;;^UTILITY(U,$J,358.3,32937,1,4,0)
- ;;=4^M06.871
- ;;^UTILITY(U,$J,358.3,32937,2)
- ;;=^5010140
- ;;^UTILITY(U,$J,358.3,32938,0)
- ;;=M06.89^^191^1963^39
- ;;^UTILITY(U,$J,358.3,32938,1,0)
+ ;;^UTILITY(U,$J,358.3,32532,1,3,0)
+ ;;=3^Bladder Disorders,Other Spec
+ ;;^UTILITY(U,$J,358.3,32532,1,4,0)
+ ;;=4^N32.89
+ ;;^UTILITY(U,$J,358.3,32532,2)
+ ;;=^87989
+ ;;^UTILITY(U,$J,358.3,32533,0)
+ ;;=N33.^^182^1988^4
+ ;;^UTILITY(U,$J,358.3,32533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32938,1,3,0)
- ;;=3^Arthritis, Rheum, multpl sites, oth, spec
- ;;^UTILITY(U,$J,358.3,32938,1,4,0)
- ;;=4^M06.89
- ;;^UTILITY(U,$J,358.3,32938,2)
- ;;=^5010144
+ ;;^UTILITY(U,$J,358.3,32533,1,3,0)
+ ;;=3^Bladder Disorders,Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,32533,1,4,0)
+ ;;=4^N33.
+ ;;^UTILITY(U,$J,358.3,32533,2)
+ ;;=^5015654
+ ;;^UTILITY(U,$J,358.3,32534,0)
+ ;;=N34.2^^182^1988^95
+ ;;^UTILITY(U,$J,358.3,32534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32534,1,3,0)
+ ;;=3^Urethritis
+ ;;^UTILITY(U,$J,358.3,32534,1,4,0)
+ ;;=4^N34.2

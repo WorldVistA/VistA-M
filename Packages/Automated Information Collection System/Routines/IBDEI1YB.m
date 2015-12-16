@@ -1,132 +1,122 @@
-IBDEI1YB ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YB ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34622,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,34622,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,34622,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,34623,0)
- ;;=F17.220^^192^2005^5
- ;;^UTILITY(U,$J,358.3,34623,1,0)
+ ;;^UTILITY(U,$J,358.3,34245,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,34245,1,4,0)
+ ;;=4^S06.336S
+ ;;^UTILITY(U,$J,358.3,34245,2)
+ ;;=^5020866
+ ;;^UTILITY(U,$J,358.3,34246,0)
+ ;;=S06.333S^^183^2018^11
+ ;;^UTILITY(U,$J,358.3,34246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34623,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34623,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,34623,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,34624,0)
- ;;=F17.211^^192^2005^6
- ;;^UTILITY(U,$J,358.3,34624,1,0)
+ ;;^UTILITY(U,$J,358.3,34246,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34246,1,4,0)
+ ;;=4^S06.333S
+ ;;^UTILITY(U,$J,358.3,34246,2)
+ ;;=^5020857
+ ;;^UTILITY(U,$J,358.3,34247,0)
+ ;;=S06.331S^^183^2018^12
+ ;;^UTILITY(U,$J,358.3,34247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34624,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,34624,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,34624,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,34625,0)
- ;;=F17.210^^192^2005^7
- ;;^UTILITY(U,$J,358.3,34625,1,0)
+ ;;^UTILITY(U,$J,358.3,34247,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34247,1,4,0)
+ ;;=4^S06.331S
+ ;;^UTILITY(U,$J,358.3,34247,2)
+ ;;=^5020851
+ ;;^UTILITY(U,$J,358.3,34248,0)
+ ;;=S06.325S^^183^2018^13
+ ;;^UTILITY(U,$J,358.3,34248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34625,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34625,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,34625,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,34626,0)
- ;;=F17.291^^192^2005^8
- ;;^UTILITY(U,$J,358.3,34626,1,0)
+ ;;^UTILITY(U,$J,358.3,34248,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34248,1,4,0)
+ ;;=4^S06.325S
+ ;;^UTILITY(U,$J,358.3,34248,2)
+ ;;=^5020833
+ ;;^UTILITY(U,$J,358.3,34249,0)
+ ;;=S06.326S^^183^2018^14
+ ;;^UTILITY(U,$J,358.3,34249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34626,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,34626,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,34626,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,34627,0)
- ;;=F17.290^^192^2005^9
- ;;^UTILITY(U,$J,358.3,34627,1,0)
+ ;;^UTILITY(U,$J,358.3,34249,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,34249,1,4,0)
+ ;;=4^S06.326S
+ ;;^UTILITY(U,$J,358.3,34249,2)
+ ;;=^5020836
+ ;;^UTILITY(U,$J,358.3,34250,0)
+ ;;=S06.323S^^183^2018^15
+ ;;^UTILITY(U,$J,358.3,34250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34627,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34627,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,34627,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,34628,0)
- ;;=F17.201^^192^2005^10
- ;;^UTILITY(U,$J,358.3,34628,1,0)
+ ;;^UTILITY(U,$J,358.3,34250,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34250,1,4,0)
+ ;;=4^S06.323S
+ ;;^UTILITY(U,$J,358.3,34250,2)
+ ;;=^5020827
+ ;;^UTILITY(U,$J,358.3,34251,0)
+ ;;=S06.321S^^183^2018^16
+ ;;^UTILITY(U,$J,358.3,34251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34628,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,In Remission
- ;;^UTILITY(U,$J,358.3,34628,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,34628,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,34629,0)
- ;;=F17.200^^192^2005^11
- ;;^UTILITY(U,$J,358.3,34629,1,0)
+ ;;^UTILITY(U,$J,358.3,34251,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34251,1,4,0)
+ ;;=4^S06.321S
+ ;;^UTILITY(U,$J,358.3,34251,2)
+ ;;=^5020821
+ ;;^UTILITY(U,$J,358.3,34252,0)
+ ;;=S06.322S^^183^2018^17
+ ;;^UTILITY(U,$J,358.3,34252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34629,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34629,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,34629,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,34630,0)
- ;;=F19.20^^192^2005^15
- ;;^UTILITY(U,$J,358.3,34630,1,0)
+ ;;^UTILITY(U,$J,358.3,34252,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34252,1,4,0)
+ ;;=4^S06.322S
+ ;;^UTILITY(U,$J,358.3,34252,2)
+ ;;=^5020824
+ ;;^UTILITY(U,$J,358.3,34253,0)
+ ;;=S06.324S^^183^2018^18
+ ;;^UTILITY(U,$J,358.3,34253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34630,1,3,0)
- ;;=3^Psycoactive Substance Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34630,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,34630,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,34631,0)
- ;;=F43.11^^192^2005^12
- ;;^UTILITY(U,$J,358.3,34631,1,0)
+ ;;^UTILITY(U,$J,358.3,34253,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,34253,1,4,0)
+ ;;=4^S06.324S
+ ;;^UTILITY(U,$J,358.3,34253,2)
+ ;;=^5020830
+ ;;^UTILITY(U,$J,358.3,34254,0)
+ ;;=S06.329S^^183^2018^19
+ ;;^UTILITY(U,$J,358.3,34254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34631,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,34631,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,34631,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,34632,0)
- ;;=F43.12^^192^2005^13
- ;;^UTILITY(U,$J,358.3,34632,1,0)
+ ;;^UTILITY(U,$J,358.3,34254,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34254,1,4,0)
+ ;;=4^S06.329S
+ ;;^UTILITY(U,$J,358.3,34254,2)
+ ;;=^5020845
+ ;;^UTILITY(U,$J,358.3,34255,0)
+ ;;=S06.320S^^183^2018^20
+ ;;^UTILITY(U,$J,358.3,34255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34632,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,34632,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,34632,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,34633,0)
- ;;=F43.10^^192^2005^14
- ;;^UTILITY(U,$J,358.3,34633,1,0)
+ ;;^UTILITY(U,$J,358.3,34255,1,3,0)
+ ;;=3^Contus/lac left cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34255,1,4,0)
+ ;;=4^S06.320S
+ ;;^UTILITY(U,$J,358.3,34255,2)
+ ;;=^5020818
+ ;;^UTILITY(U,$J,358.3,34256,0)
+ ;;=S06.315S^^183^2018^21
+ ;;^UTILITY(U,$J,358.3,34256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34633,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,34633,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,34633,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,34634,0)
- ;;=L40.2^^192^2006^1
- ;;^UTILITY(U,$J,358.3,34634,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34634,1,3,0)
- ;;=3^Acrodermatitis Continua
- ;;^UTILITY(U,$J,358.3,34634,1,4,0)
- ;;=4^L40.2
- ;;^UTILITY(U,$J,358.3,34634,2)
- ;;=^5009162
- ;;^UTILITY(U,$J,358.3,34635,0)
- ;;=L03.91^^192^2006^2
+ ;;^UTILITY(U,$J,358.3,34256,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34256,1,4,0)
+ ;;=4^S06.315S
+ ;;^UTILITY(U,$J,358.3,34256,2)
+ ;;=^5020803
+ ;;^UTILITY(U,$J,358.3,34257,0)
+ ;;=S06.316S^^183^2018^22

@@ -1,132 +1,128 @@
-IBDEI1SH ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SH ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31963,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,31964,0)
- ;;=Z94.84^^190^1944^126
- ;;^UTILITY(U,$J,358.3,31964,1,0)
+ ;;^UTILITY(U,$J,358.3,31570,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,31571,0)
+ ;;=M19.041^^180^1962^24
+ ;;^UTILITY(U,$J,358.3,31571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31964,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,31964,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,31964,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,31965,0)
- ;;=Z96.21^^190^1944^10
- ;;^UTILITY(U,$J,358.3,31965,1,0)
+ ;;^UTILITY(U,$J,358.3,31571,1,3,0)
+ ;;=3^Primary osteoarthritis, right hand
+ ;;^UTILITY(U,$J,358.3,31571,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,31571,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,31572,0)
+ ;;=M19.011^^180^1962^25
+ ;;^UTILITY(U,$J,358.3,31572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31965,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,31965,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,31965,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,31966,0)
- ;;=Z96.41^^190^1944^112
- ;;^UTILITY(U,$J,358.3,31966,1,0)
+ ;;^UTILITY(U,$J,358.3,31572,1,3,0)
+ ;;=3^Primary osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,31572,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,31572,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,31573,0)
+ ;;=M76.12^^180^1962^26
+ ;;^UTILITY(U,$J,358.3,31573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31966,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,31966,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,31966,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,31967,0)
- ;;=Z96.641^^190^1944^118
- ;;^UTILITY(U,$J,358.3,31967,1,0)
+ ;;^UTILITY(U,$J,358.3,31573,1,3,0)
+ ;;=3^Psoas tendinitis, left hip
+ ;;^UTILITY(U,$J,358.3,31573,1,4,0)
+ ;;=4^M76.12
+ ;;^UTILITY(U,$J,358.3,31573,2)
+ ;;=^5013271
+ ;;^UTILITY(U,$J,358.3,31574,0)
+ ;;=M76.11^^180^1962^27
+ ;;^UTILITY(U,$J,358.3,31574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31967,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,31967,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,31967,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,31968,0)
- ;;=Z96.642^^190^1944^114
- ;;^UTILITY(U,$J,358.3,31968,1,0)
+ ;;^UTILITY(U,$J,358.3,31574,1,3,0)
+ ;;=3^Psoas tendinitis, right hip
+ ;;^UTILITY(U,$J,358.3,31574,1,4,0)
+ ;;=4^M76.11
+ ;;^UTILITY(U,$J,358.3,31574,2)
+ ;;=^5013270
+ ;;^UTILITY(U,$J,358.3,31575,0)
+ ;;=G82.50^^180^1962^28
+ ;;^UTILITY(U,$J,358.3,31575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31968,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,31968,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,31968,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,31969,0)
- ;;=Z96.643^^190^1944^107
- ;;^UTILITY(U,$J,358.3,31969,1,0)
+ ;;^UTILITY(U,$J,358.3,31575,1,3,0)
+ ;;=3^Quadriplegia, unspecified
+ ;;^UTILITY(U,$J,358.3,31575,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,31575,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,31576,0)
+ ;;=M65.4^^180^1962^29
+ ;;^UTILITY(U,$J,358.3,31576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31969,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,31969,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,31969,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,31970,0)
- ;;=Z96.651^^190^1944^119
- ;;^UTILITY(U,$J,358.3,31970,1,0)
+ ;;^UTILITY(U,$J,358.3,31576,1,3,0)
+ ;;=3^Radial styloid tenosynovitis [de Quervain]
+ ;;^UTILITY(U,$J,358.3,31576,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,31576,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,31577,0)
+ ;;=M54.10^^180^1962^30
+ ;;^UTILITY(U,$J,358.3,31577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31970,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,31970,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,31970,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,31971,0)
- ;;=Z96.652^^190^1944^115
- ;;^UTILITY(U,$J,358.3,31971,1,0)
+ ;;^UTILITY(U,$J,358.3,31577,1,3,0)
+ ;;=3^Radiculopathy, site unspecified
+ ;;^UTILITY(U,$J,358.3,31577,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,31577,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,31578,0)
+ ;;=M05.772^^180^1962^31
+ ;;^UTILITY(U,$J,358.3,31578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31971,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,31971,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,31971,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,31972,0)
- ;;=Z96.653^^190^1944^108
- ;;^UTILITY(U,$J,358.3,31972,1,0)
+ ;;^UTILITY(U,$J,358.3,31578,1,3,0)
+ ;;=3^Rheu arthritis w rheu factor of left ank/ft w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,31578,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,31578,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,31579,0)
+ ;;=M05.722^^180^1962^32
+ ;;^UTILITY(U,$J,358.3,31579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31972,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,31972,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,31972,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,31973,0)
- ;;=Z96.7^^190^1944^111
- ;;^UTILITY(U,$J,358.3,31973,1,0)
+ ;;^UTILITY(U,$J,358.3,31579,1,3,0)
+ ;;=3^Rheu arthritis w rheu factor of left elbow w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,31579,1,4,0)
+ ;;=4^M05.722
+ ;;^UTILITY(U,$J,358.3,31579,2)
+ ;;=^5010005
+ ;;^UTILITY(U,$J,358.3,31580,0)
+ ;;=M05.742^^180^1962^33
+ ;;^UTILITY(U,$J,358.3,31580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31973,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,31973,1,4,0)
- ;;=4^Z96.7
- ;;^UTILITY(U,$J,358.3,31973,2)
- ;;=^5063716
- ;;^UTILITY(U,$J,358.3,31974,0)
- ;;=Z97.11^^190^1944^117
- ;;^UTILITY(U,$J,358.3,31974,1,0)
+ ;;^UTILITY(U,$J,358.3,31580,1,3,0)
+ ;;=3^Rheu arthritis w rheu factor of left hand w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,31580,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,31580,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,31581,0)
+ ;;=M05.752^^180^1962^34
+ ;;^UTILITY(U,$J,358.3,31581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31974,1,3,0)
- ;;=3^Presence of Right Artificial Arm
- ;;^UTILITY(U,$J,358.3,31974,1,4,0)
- ;;=4^Z97.11
- ;;^UTILITY(U,$J,358.3,31974,2)
- ;;=^5063722
- ;;^UTILITY(U,$J,358.3,31975,0)
- ;;=Z97.12^^190^1944^113
- ;;^UTILITY(U,$J,358.3,31975,1,0)
+ ;;^UTILITY(U,$J,358.3,31581,1,3,0)
+ ;;=3^Rheu arthritis w rheu factor of left hip w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,31581,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,31581,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,31582,0)
+ ;;=M05.752^^180^1962^35
+ ;;^UTILITY(U,$J,358.3,31582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31975,1,3,0)
- ;;=3^Presence of Left Artificial Arm
- ;;^UTILITY(U,$J,358.3,31975,1,4,0)
- ;;=4^Z97.12
- ;;^UTILITY(U,$J,358.3,31975,2)
- ;;=^5063723
- ;;^UTILITY(U,$J,358.3,31976,0)
- ;;=Z97.13^^190^1944^120
- ;;^UTILITY(U,$J,358.3,31976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31976,1,3,0)
- ;;=3^Presence of Right Artificial Leg
+ ;;^UTILITY(U,$J,358.3,31582,1,3,0)
+ ;;=3^Rheu arthritis w rheu factor of left hip w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,31582,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,31582,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,31583,0)
+ ;;=M05.762^^180^1962^36

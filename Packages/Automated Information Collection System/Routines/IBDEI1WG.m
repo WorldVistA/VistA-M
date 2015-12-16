@@ -1,132 +1,132 @@
-IBDEI1WG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33765,0)
- ;;=D23.72^^191^1974^2
- ;;^UTILITY(U,$J,358.3,33765,1,0)
+ ;;^UTILITY(U,$J,358.3,33404,1,3,0)
+ ;;=3^Visual Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,33404,1,4,0)
+ ;;=4^H53.9
+ ;;^UTILITY(U,$J,358.3,33404,2)
+ ;;=^124001
+ ;;^UTILITY(U,$J,358.3,33405,0)
+ ;;=K08.101^^182^2004^49
+ ;;^UTILITY(U,$J,358.3,33405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33765,1,3,0)
- ;;=3^Neop,Benign Skin,Lft Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,33765,1,4,0)
- ;;=4^D23.72
- ;;^UTILITY(U,$J,358.3,33765,2)
- ;;=^5002075
- ;;^UTILITY(U,$J,358.3,33766,0)
- ;;=D49.2^^191^1974^6
- ;;^UTILITY(U,$J,358.3,33766,1,0)
+ ;;^UTILITY(U,$J,358.3,33405,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,33405,1,4,0)
+ ;;=4^K08.101
+ ;;^UTILITY(U,$J,358.3,33405,2)
+ ;;=^5008406
+ ;;^UTILITY(U,$J,358.3,33406,0)
+ ;;=K08.102^^182^2004^50
+ ;;^UTILITY(U,$J,358.3,33406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33766,1,3,0)
- ;;=3^Neoplasm of Bone/Soft Tissue/Skin,Unspec Behavior
- ;;^UTILITY(U,$J,358.3,33766,1,4,0)
- ;;=4^D49.2
- ;;^UTILITY(U,$J,358.3,33766,2)
- ;;=^5002272
- ;;^UTILITY(U,$J,358.3,33767,0)
- ;;=G60.0^^191^1974^7
- ;;^UTILITY(U,$J,358.3,33767,1,0)
+ ;;^UTILITY(U,$J,358.3,33406,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,33406,1,4,0)
+ ;;=4^K08.102
+ ;;^UTILITY(U,$J,358.3,33406,2)
+ ;;=^5008407
+ ;;^UTILITY(U,$J,358.3,33407,0)
+ ;;=K08.103^^182^2004^51
+ ;;^UTILITY(U,$J,358.3,33407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33767,1,3,0)
- ;;=3^Neuropathy,Hereditary Motor/Sensory
- ;;^UTILITY(U,$J,358.3,33767,1,4,0)
- ;;=4^G60.0
- ;;^UTILITY(U,$J,358.3,33767,2)
- ;;=^5004067
- ;;^UTILITY(U,$J,358.3,33768,0)
- ;;=G60.9^^191^1974^8
- ;;^UTILITY(U,$J,358.3,33768,1,0)
+ ;;^UTILITY(U,$J,358.3,33407,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,33407,1,4,0)
+ ;;=4^K08.103
+ ;;^UTILITY(U,$J,358.3,33407,2)
+ ;;=^5008408
+ ;;^UTILITY(U,$J,358.3,33408,0)
+ ;;=K08.104^^182^2004^52
+ ;;^UTILITY(U,$J,358.3,33408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33768,1,3,0)
- ;;=3^Neuropathy,Hereditary Motor/Sensory,Unspec
- ;;^UTILITY(U,$J,358.3,33768,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,33768,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,33769,0)
- ;;=L60.3^^191^1974^1
- ;;^UTILITY(U,$J,358.3,33769,1,0)
+ ;;^UTILITY(U,$J,358.3,33408,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,33408,1,4,0)
+ ;;=4^K08.104
+ ;;^UTILITY(U,$J,358.3,33408,2)
+ ;;=^5008409
+ ;;^UTILITY(U,$J,358.3,33409,0)
+ ;;=K08.109^^182^2004^53
+ ;;^UTILITY(U,$J,358.3,33409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33769,1,3,0)
- ;;=3^Nail Dystrophy
- ;;^UTILITY(U,$J,358.3,33769,1,4,0)
- ;;=4^L60.3
- ;;^UTILITY(U,$J,358.3,33769,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,33770,0)
- ;;=M19.071^^191^1975^29
- ;;^UTILITY(U,$J,358.3,33770,1,0)
+ ;;^UTILITY(U,$J,358.3,33409,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,33409,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,33409,2)
+ ;;=^5008410
+ ;;^UTILITY(U,$J,358.3,33410,0)
+ ;;=K08.401^^182^2004^127
+ ;;^UTILITY(U,$J,358.3,33410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33770,1,3,0)
- ;;=3^Primary osteoarthritis, right ankle and foot
- ;;^UTILITY(U,$J,358.3,33770,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,33770,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,33771,0)
- ;;=M19.072^^191^1975^28
- ;;^UTILITY(U,$J,358.3,33771,1,0)
+ ;;^UTILITY(U,$J,358.3,33410,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,33410,1,4,0)
+ ;;=4^K08.401
+ ;;^UTILITY(U,$J,358.3,33410,2)
+ ;;=^5008432
+ ;;^UTILITY(U,$J,358.3,33411,0)
+ ;;=K08.402^^182^2004^128
+ ;;^UTILITY(U,$J,358.3,33411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33771,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,33771,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,33771,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,33772,0)
- ;;=M15.9^^191^1975^27
- ;;^UTILITY(U,$J,358.3,33772,1,0)
+ ;;^UTILITY(U,$J,358.3,33411,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,33411,1,4,0)
+ ;;=4^K08.402
+ ;;^UTILITY(U,$J,358.3,33411,2)
+ ;;=^5008433
+ ;;^UTILITY(U,$J,358.3,33412,0)
+ ;;=K08.403^^182^2004^129
+ ;;^UTILITY(U,$J,358.3,33412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33772,1,3,0)
- ;;=3^Polyosteoarthritis, unspec
- ;;^UTILITY(U,$J,358.3,33772,1,4,0)
- ;;=4^M15.9
- ;;^UTILITY(U,$J,358.3,33772,2)
- ;;=^5010768
- ;;^UTILITY(U,$J,358.3,33773,0)
- ;;=M19.90^^191^1975^17
- ;;^UTILITY(U,$J,358.3,33773,1,0)
+ ;;^UTILITY(U,$J,358.3,33412,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,33412,1,4,0)
+ ;;=4^K08.403
+ ;;^UTILITY(U,$J,358.3,33412,2)
+ ;;=^5008434
+ ;;^UTILITY(U,$J,358.3,33413,0)
+ ;;=K08.404^^182^2004^130
+ ;;^UTILITY(U,$J,358.3,33413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33773,1,3,0)
- ;;=3^Osteoarthritis, unspec site, unspec
- ;;^UTILITY(U,$J,358.3,33773,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,33773,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,33774,0)
- ;;=M90.80^^191^1975^22
- ;;^UTILITY(U,$J,358.3,33774,1,0)
+ ;;^UTILITY(U,$J,358.3,33413,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,33413,1,4,0)
+ ;;=4^K08.404
+ ;;^UTILITY(U,$J,358.3,33413,2)
+ ;;=^5008435
+ ;;^UTILITY(U,$J,358.3,33414,0)
+ ;;=K08.409^^182^2004^131
+ ;;^UTILITY(U,$J,358.3,33414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33774,1,3,0)
- ;;=3^Osteopathy in diseases class elsewhere, unspec site
- ;;^UTILITY(U,$J,358.3,33774,1,4,0)
- ;;=4^M90.80
- ;;^UTILITY(U,$J,358.3,33774,2)
- ;;=^5015168
- ;;^UTILITY(U,$J,358.3,33775,0)
- ;;=M25.775^^191^1975^24
- ;;^UTILITY(U,$J,358.3,33775,1,0)
+ ;;^UTILITY(U,$J,358.3,33414,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,33414,1,4,0)
+ ;;=4^K08.409
+ ;;^UTILITY(U,$J,358.3,33414,2)
+ ;;=^5008436
+ ;;^UTILITY(U,$J,358.3,33415,0)
+ ;;=N39.42^^182^2004^87
+ ;;^UTILITY(U,$J,358.3,33415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33775,1,3,0)
- ;;=3^Osteophyte, left foot
- ;;^UTILITY(U,$J,358.3,33775,1,4,0)
- ;;=4^M25.775
- ;;^UTILITY(U,$J,358.3,33775,2)
- ;;=^5011668
- ;;^UTILITY(U,$J,358.3,33776,0)
- ;;=M25.774^^191^1975^26
- ;;^UTILITY(U,$J,358.3,33776,1,0)
+ ;;^UTILITY(U,$J,358.3,33415,1,3,0)
+ ;;=3^Incontinence w/o Sensory Awareness
+ ;;^UTILITY(U,$J,358.3,33415,1,4,0)
+ ;;=4^N39.42
+ ;;^UTILITY(U,$J,358.3,33415,2)
+ ;;=^5015681
+ ;;^UTILITY(U,$J,358.3,33416,0)
+ ;;=N39.43^^182^2004^137
+ ;;^UTILITY(U,$J,358.3,33416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33776,1,3,0)
- ;;=3^Osteophyte, right foot
- ;;^UTILITY(U,$J,358.3,33776,1,4,0)
- ;;=4^M25.774
- ;;^UTILITY(U,$J,358.3,33776,2)
- ;;=^5011667
- ;;^UTILITY(U,$J,358.3,33777,0)
- ;;=M25.772^^191^1975^23
- ;;^UTILITY(U,$J,358.3,33777,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33777,1,3,0)
- ;;=3^Osteophyte, left ankle
- ;;^UTILITY(U,$J,358.3,33777,1,4,0)
- ;;=4^M25.772
+ ;;^UTILITY(U,$J,358.3,33416,1,3,0)
+ ;;=3^Post-Void Dribbling
+ ;;^UTILITY(U,$J,358.3,33416,1,4,0)
+ ;;=4^N39.43
+ ;;^UTILITY(U,$J,358.3,33416,2)
+ ;;=^5015682
+ ;;^UTILITY(U,$J,358.3,33417,0)
+ ;;=N39.44^^182^2004^117

@@ -1,126 +1,134 @@
-IBDEI1UY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33100,1,3,0)
- ;;=3^Corrosion of rt toe(s), third degree, init enc
- ;;^UTILITY(U,$J,358.3,33100,1,4,0)
- ;;=4^T25.731A
- ;;^UTILITY(U,$J,358.3,33100,2)
- ;;=^5048736
- ;;^UTILITY(U,$J,358.3,33101,0)
- ;;=T25.732A^^191^1965^52
- ;;^UTILITY(U,$J,358.3,33101,1,0)
+ ;;^UTILITY(U,$J,358.3,32703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33101,1,3,0)
- ;;=3^Corrosion of lft toe(s), third degree, init enc
- ;;^UTILITY(U,$J,358.3,33101,1,4,0)
- ;;=4^T25.732A
- ;;^UTILITY(U,$J,358.3,33101,2)
- ;;=^5048739
- ;;^UTILITY(U,$J,358.3,33102,0)
- ;;=T25.721A^^191^1965^59
- ;;^UTILITY(U,$J,358.3,33102,1,0)
+ ;;^UTILITY(U,$J,358.3,32703,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,32703,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,32703,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,32704,0)
+ ;;=D89.2^^182^1992^85
+ ;;^UTILITY(U,$J,358.3,32704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33102,1,3,0)
- ;;=3^Corrosion of rt ft, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33102,1,4,0)
- ;;=4^T25.721A
- ;;^UTILITY(U,$J,358.3,33102,2)
- ;;=^5048727
- ;;^UTILITY(U,$J,358.3,33103,0)
- ;;=T25.722A^^191^1965^44
- ;;^UTILITY(U,$J,358.3,33103,1,0)
+ ;;^UTILITY(U,$J,358.3,32704,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,32704,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,32704,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,32705,0)
+ ;;=D05.12^^182^1992^86
+ ;;^UTILITY(U,$J,358.3,32705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33103,1,3,0)
- ;;=3^Corrosion of lft ft, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33103,1,4,0)
- ;;=4^T25.722A
- ;;^UTILITY(U,$J,358.3,33103,2)
- ;;=^5048730
- ;;^UTILITY(U,$J,358.3,33104,0)
- ;;=T25.711A^^191^1965^54
- ;;^UTILITY(U,$J,358.3,33104,1,0)
+ ;;^UTILITY(U,$J,358.3,32705,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,32705,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,32705,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,32706,0)
+ ;;=D05.11^^182^1992^87
+ ;;^UTILITY(U,$J,358.3,32706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33104,1,3,0)
- ;;=3^Corrosion of rt ank, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33104,1,4,0)
- ;;=4^T25.711A
- ;;^UTILITY(U,$J,358.3,33104,2)
- ;;=^5048718
- ;;^UTILITY(U,$J,358.3,33105,0)
- ;;=T25.712A^^191^1965^41
- ;;^UTILITY(U,$J,358.3,33105,1,0)
+ ;;^UTILITY(U,$J,358.3,32706,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,32706,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,32706,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,32707,0)
+ ;;=D05.10^^182^1992^88
+ ;;^UTILITY(U,$J,358.3,32707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33105,1,3,0)
- ;;=3^Corrosion of lft ankl, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33105,1,4,0)
- ;;=4^T25.712A
- ;;^UTILITY(U,$J,358.3,33105,2)
- ;;=^5048721
- ;;^UTILITY(U,$J,358.3,33106,0)
- ;;=T24.731A^^191^1965^63
- ;;^UTILITY(U,$J,358.3,33106,1,0)
+ ;;^UTILITY(U,$J,358.3,32707,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,32707,1,4,0)
+ ;;=4^D05.10
+ ;;^UTILITY(U,$J,358.3,32707,2)
+ ;;=^5001929
+ ;;^UTILITY(U,$J,358.3,32708,0)
+ ;;=D50.0^^182^1992^89
+ ;;^UTILITY(U,$J,358.3,32708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33106,1,3,0)
- ;;=3^Corrosion of rt lwr leg, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33106,1,4,0)
- ;;=4^T24.731A
- ;;^UTILITY(U,$J,358.3,33106,2)
- ;;=^5048472
- ;;^UTILITY(U,$J,358.3,33107,0)
- ;;=T24.732A^^191^1965^48
- ;;^UTILITY(U,$J,358.3,33107,1,0)
+ ;;^UTILITY(U,$J,358.3,32708,1,3,0)
+ ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,32708,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,32708,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,32709,0)
+ ;;=D50.9^^182^1992^90
+ ;;^UTILITY(U,$J,358.3,32709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33107,1,3,0)
- ;;=3^Corrosion of lft lwr leg, third degree, init enc
- ;;^UTILITY(U,$J,358.3,33107,1,4,0)
- ;;=4^T24.732A
- ;;^UTILITY(U,$J,358.3,33107,2)
- ;;=^5048475
- ;;^UTILITY(U,$J,358.3,33108,0)
- ;;=T32.10^^191^1965^38
- ;;^UTILITY(U,$J,358.3,33108,1,0)
+ ;;^UTILITY(U,$J,358.3,32709,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,32709,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,32709,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,32710,0)
+ ;;=C46.9^^182^1992^91
+ ;;^UTILITY(U,$J,358.3,32710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33108,1,3,0)
- ;;=3^Corrosion 10/19% of body srf w 0-9% 3rd degree corrosion
- ;;^UTILITY(U,$J,358.3,33108,1,4,0)
- ;;=4^T32.10
- ;;^UTILITY(U,$J,358.3,33108,2)
- ;;=^5048980
- ;;^UTILITY(U,$J,358.3,33109,0)
- ;;=L84.^^191^1965^37
- ;;^UTILITY(U,$J,358.3,33109,1,0)
+ ;;^UTILITY(U,$J,358.3,32710,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,32710,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,32710,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,32711,0)
+ ;;=C22.0^^182^1992^92
+ ;;^UTILITY(U,$J,358.3,32711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33109,1,3,0)
- ;;=3^Corns and callosities
- ;;^UTILITY(U,$J,358.3,33109,1,4,0)
- ;;=4^L84.
- ;;^UTILITY(U,$J,358.3,33109,2)
- ;;=^271920
- ;;^UTILITY(U,$J,358.3,33110,0)
- ;;=L72.8^^191^1965^70
- ;;^UTILITY(U,$J,358.3,33110,1,0)
+ ;;^UTILITY(U,$J,358.3,32711,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,32711,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,32711,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,32712,0)
+ ;;=D05.02^^182^1992^93
+ ;;^UTILITY(U,$J,358.3,32712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33110,1,3,0)
- ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue NEC
- ;;^UTILITY(U,$J,358.3,33110,1,4,0)
- ;;=4^L72.8
- ;;^UTILITY(U,$J,358.3,33110,2)
- ;;=^5009282
- ;;^UTILITY(U,$J,358.3,33111,0)
- ;;=L72.9^^191^1965^71
- ;;^UTILITY(U,$J,358.3,33111,1,0)
+ ;;^UTILITY(U,$J,358.3,32712,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,32712,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,32712,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,32713,0)
+ ;;=D05.01^^182^1992^94
+ ;;^UTILITY(U,$J,358.3,32713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33111,1,3,0)
- ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,33111,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,33111,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,33112,0)
- ;;=M79.A21^^191^1965^13
- ;;^UTILITY(U,$J,358.3,33112,1,0)
+ ;;^UTILITY(U,$J,358.3,32713,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,32713,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,32713,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,32714,0)
+ ;;=D05.00^^182^1992^95
+ ;;^UTILITY(U,$J,358.3,32714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33112,1,3,0)
- ;;=3^Compartment Syndrome,Right Lower Extremity,Nontraumatic
+ ;;^UTILITY(U,$J,358.3,32714,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,32714,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,32714,2)
+ ;;=^5001926
+ ;;^UTILITY(U,$J,358.3,32715,0)
+ ;;=R59.0^^182^1992^56
+ ;;^UTILITY(U,$J,358.3,32715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32715,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,32715,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,32715,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,32716,0)
+ ;;=C83.59^^182^1992^96

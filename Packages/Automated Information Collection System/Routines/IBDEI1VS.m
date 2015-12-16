@@ -1,122 +1,136 @@
-IBDEI1VS ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1VS ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33472,2)
- ;;=^5045428
- ;;^UTILITY(U,$J,358.3,33473,0)
- ;;=S92.504K^^191^1968^360
- ;;^UTILITY(U,$J,358.3,33473,1,0)
+ ;;^UTILITY(U,$J,358.3,33091,1,4,0)
+ ;;=4^R56.00
+ ;;^UTILITY(U,$J,358.3,33091,2)
+ ;;=^5019522
+ ;;^UTILITY(U,$J,358.3,33092,0)
+ ;;=R56.9^^182^1997^4
+ ;;^UTILITY(U,$J,358.3,33092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33473,1,3,0)
- ;;=3^Nondisp fx rt lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33473,1,4,0)
- ;;=4^S92.504K
- ;;^UTILITY(U,$J,358.3,33473,2)
- ;;=^5045421
- ;;^UTILITY(U,$J,358.3,33474,0)
- ;;=S92.502K^^191^1968^39
- ;;^UTILITY(U,$J,358.3,33474,1,0)
+ ;;^UTILITY(U,$J,358.3,33092,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,33092,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,33092,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,33093,0)
+ ;;=R25.0^^182^1997^1
+ ;;^UTILITY(U,$J,358.3,33093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33474,1,3,0)
- ;;=3^Disp fx lft lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33474,1,4,0)
- ;;=4^S92.502K
- ;;^UTILITY(U,$J,358.3,33474,2)
- ;;=^5045414
- ;;^UTILITY(U,$J,358.3,33475,0)
- ;;=S92.501K^^191^1968^133
- ;;^UTILITY(U,$J,358.3,33475,1,0)
+ ;;^UTILITY(U,$J,358.3,33093,1,3,0)
+ ;;=3^Abnormal Head Movements
+ ;;^UTILITY(U,$J,358.3,33093,1,4,0)
+ ;;=4^R25.0
+ ;;^UTILITY(U,$J,358.3,33093,2)
+ ;;=^5019299
+ ;;^UTILITY(U,$J,358.3,33094,0)
+ ;;=R25.1^^182^1997^7
+ ;;^UTILITY(U,$J,358.3,33094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33475,1,3,0)
- ;;=3^Disp fx rt lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33475,1,4,0)
- ;;=4^S92.501K
- ;;^UTILITY(U,$J,358.3,33475,2)
- ;;=^5045407
- ;;^UTILITY(U,$J,358.3,33476,0)
- ;;=S92.492K^^191^1968^197
- ;;^UTILITY(U,$J,358.3,33476,1,0)
+ ;;^UTILITY(U,$J,358.3,33094,1,3,0)
+ ;;=3^Tremor,Unspec
+ ;;^UTILITY(U,$J,358.3,33094,1,4,0)
+ ;;=4^R25.1
+ ;;^UTILITY(U,$J,358.3,33094,2)
+ ;;=^5019300
+ ;;^UTILITY(U,$J,358.3,33095,0)
+ ;;=R25.9^^182^1997^3
+ ;;^UTILITY(U,$J,358.3,33095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33476,1,3,0)
- ;;=3^Fx of lft grt toe, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,33476,1,4,0)
- ;;=4^S92.492K
- ;;^UTILITY(U,$J,358.3,33476,2)
- ;;=^5045393
- ;;^UTILITY(U,$J,358.3,33477,0)
- ;;=S92.491K^^191^1968^213
- ;;^UTILITY(U,$J,358.3,33477,1,0)
+ ;;^UTILITY(U,$J,358.3,33095,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Unspec
+ ;;^UTILITY(U,$J,358.3,33095,1,4,0)
+ ;;=4^R25.9
+ ;;^UTILITY(U,$J,358.3,33095,2)
+ ;;=^5019303
+ ;;^UTILITY(U,$J,358.3,33096,0)
+ ;;=R25.3^^182^1997^5
+ ;;^UTILITY(U,$J,358.3,33096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33477,1,3,0)
- ;;=3^Fx of rt grt toe, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,33477,1,4,0)
- ;;=4^S92.491K
- ;;^UTILITY(U,$J,358.3,33477,2)
- ;;=^5045386
- ;;^UTILITY(U,$J,358.3,33478,0)
- ;;=S92.425K^^191^1968^311
- ;;^UTILITY(U,$J,358.3,33478,1,0)
+ ;;^UTILITY(U,$J,358.3,33096,1,3,0)
+ ;;=3^Fasciculation
+ ;;^UTILITY(U,$J,358.3,33096,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,33096,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,33097,0)
+ ;;=R25.8^^182^1997^2
+ ;;^UTILITY(U,$J,358.3,33097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33478,1,3,0)
- ;;=3^Nondisp fx of dist phalanx lft 1st grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33478,1,4,0)
- ;;=4^S92.425K
- ;;^UTILITY(U,$J,358.3,33478,2)
- ;;=^5045372
- ;;^UTILITY(U,$J,358.3,33479,0)
- ;;=S92.424K^^191^1968^316
- ;;^UTILITY(U,$J,358.3,33479,1,0)
+ ;;^UTILITY(U,$J,358.3,33097,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Other
+ ;;^UTILITY(U,$J,358.3,33097,1,4,0)
+ ;;=4^R25.8
+ ;;^UTILITY(U,$J,358.3,33097,2)
+ ;;=^5019302
+ ;;^UTILITY(U,$J,358.3,33098,0)
+ ;;=M02.30^^182^1998^114
+ ;;^UTILITY(U,$J,358.3,33098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33479,1,3,0)
- ;;=3^Nondisp fx of dist phalanx rt 1st grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33479,1,4,0)
- ;;=4^S92.424K
- ;;^UTILITY(U,$J,358.3,33479,2)
- ;;=^5045365
- ;;^UTILITY(U,$J,358.3,33480,0)
- ;;=S92.422K^^191^1968^88
- ;;^UTILITY(U,$J,358.3,33480,1,0)
+ ;;^UTILITY(U,$J,358.3,33098,1,3,0)
+ ;;=3^Reiter's Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33098,1,4,0)
+ ;;=4^M02.30
+ ;;^UTILITY(U,$J,358.3,33098,2)
+ ;;=^5009790
+ ;;^UTILITY(U,$J,358.3,33099,0)
+ ;;=M10.9^^182^1998^32
+ ;;^UTILITY(U,$J,358.3,33099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33480,1,3,0)
- ;;=3^Disp fx of dist phalanx lft grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33480,1,4,0)
- ;;=4^S92.422K
- ;;^UTILITY(U,$J,358.3,33480,2)
- ;;=^5045351
- ;;^UTILITY(U,$J,358.3,33481,0)
- ;;=S92.421K^^191^1968^94
- ;;^UTILITY(U,$J,358.3,33481,1,0)
+ ;;^UTILITY(U,$J,358.3,33099,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,33099,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,33099,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,33100,0)
+ ;;=G90.59^^182^1998^26
+ ;;^UTILITY(U,$J,358.3,33100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33481,1,3,0)
- ;;=3^Disp fx of dist phalanx rt grt toe, subs 2/ nonunion
- ;;^UTILITY(U,$J,358.3,33481,1,4,0)
- ;;=4^S92.421K
- ;;^UTILITY(U,$J,358.3,33481,2)
- ;;=^5045344
- ;;^UTILITY(U,$J,358.3,33482,0)
- ;;=S92.415K^^191^1968^343
- ;;^UTILITY(U,$J,358.3,33482,1,0)
+ ;;^UTILITY(U,$J,358.3,33100,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I of Other Spec Site
+ ;;^UTILITY(U,$J,358.3,33100,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,33100,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,33101,0)
+ ;;=G56.01^^182^1998^11
+ ;;^UTILITY(U,$J,358.3,33101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33482,1,3,0)
- ;;=3^Nondisp fx of prox phalanx lft grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33482,1,4,0)
- ;;=4^S92.415K
- ;;^UTILITY(U,$J,358.3,33482,2)
- ;;=^5045330
- ;;^UTILITY(U,$J,358.3,33483,0)
- ;;=S92.414K^^191^1968^351
- ;;^UTILITY(U,$J,358.3,33483,1,0)
+ ;;^UTILITY(U,$J,358.3,33101,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,33101,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,33101,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,33102,0)
+ ;;=G56.02^^182^1998^10
+ ;;^UTILITY(U,$J,358.3,33102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33483,1,3,0)
- ;;=3^Nondisp fx of prox phalanx rt grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33483,1,4,0)
- ;;=4^S92.414K
- ;;^UTILITY(U,$J,358.3,33483,2)
- ;;=^5045323
- ;;^UTILITY(U,$J,358.3,33484,0)
- ;;=S92.412K^^191^1968^118
- ;;^UTILITY(U,$J,358.3,33484,1,0)
+ ;;^UTILITY(U,$J,358.3,33102,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,33102,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,33102,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,33103,0)
+ ;;=G56.21^^182^1998^48
+ ;;^UTILITY(U,$J,358.3,33103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33484,1,3,0)
- ;;=3^Disp fx of prox phalanx lft grt toe, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,33103,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,33103,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,33103,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,33104,0)
+ ;;=G56.22^^182^1998^47
+ ;;^UTILITY(U,$J,358.3,33104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33104,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,33104,1,4,0)
+ ;;=4^G56.22

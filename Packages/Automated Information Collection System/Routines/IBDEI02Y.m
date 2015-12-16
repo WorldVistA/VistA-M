@@ -1,134 +1,128 @@
-IBDEI02Y ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02Y ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,946,1,3,0)
- ;;=3^Temp Gradient Studies
- ;;^UTILITY(U,$J,358.3,947,0)
- ;;=33234^^10^103^43^^^^1
- ;;^UTILITY(U,$J,358.3,947,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,947,1,2,0)
- ;;=2^33234
- ;;^UTILITY(U,$J,358.3,947,1,3,0)
- ;;=3^Rem Transv Elec Atria/Vent(Sgl)
- ;;^UTILITY(U,$J,358.3,948,0)
- ;;=33235^^10^103^42^^^^1
- ;;^UTILITY(U,$J,358.3,948,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,948,1,2,0)
- ;;=2^33235
- ;;^UTILITY(U,$J,358.3,948,1,3,0)
- ;;=3^Rem Transv Elec Atria/Vent(Dual)
- ;;^UTILITY(U,$J,358.3,949,0)
- ;;=33240^^10^103^22^^^^1
- ;;^UTILITY(U,$J,358.3,949,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,949,1,2,0)
- ;;=2^33240
- ;;^UTILITY(U,$J,358.3,949,1,3,0)
- ;;=3^Insert Single/Dual Pulse Gen
- ;;^UTILITY(U,$J,358.3,950,0)
- ;;=33241^^10^103^60^^^^1
- ;;^UTILITY(U,$J,358.3,950,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,950,1,2,0)
- ;;=2^33241
- ;;^UTILITY(U,$J,358.3,950,1,3,0)
- ;;=3^Subq Remove Sgl/Dual Pulse Gen
- ;;^UTILITY(U,$J,358.3,951,0)
- ;;=33244^^10^103^64^^^^1
- ;;^UTILITY(U,$J,358.3,951,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,951,1,2,0)
- ;;=2^33244
- ;;^UTILITY(U,$J,358.3,951,1,3,0)
- ;;=3^Transv Remove Sgl/Dual Elec
- ;;^UTILITY(U,$J,358.3,952,0)
- ;;=33249^^10^103^16^^^^1
- ;;^UTILITY(U,$J,358.3,952,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,952,1,2,0)
- ;;=2^33249
- ;;^UTILITY(U,$J,358.3,952,1,3,0)
- ;;=3^Ins/Reposit Lead, Insert Pulse Gen
- ;;^UTILITY(U,$J,358.3,953,0)
- ;;=93285^^10^103^13^^^^1
- ;;^UTILITY(U,$J,358.3,953,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,953,1,2,0)
- ;;=2^93285
- ;;^UTILITY(U,$J,358.3,953,1,3,0)
- ;;=3^ILR Device Eval Progr
- ;;^UTILITY(U,$J,358.3,954,0)
- ;;=93291^^10^103^15^^^^1
- ;;^UTILITY(U,$J,358.3,954,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,954,1,2,0)
- ;;=2^93291
- ;;^UTILITY(U,$J,358.3,954,1,3,0)
- ;;=3^ILR Device Interrogate
- ;;^UTILITY(U,$J,358.3,955,0)
- ;;=93294^^10^103^31^^^^1
- ;;^UTILITY(U,$J,358.3,955,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,955,1,2,0)
- ;;=2^93294
- ;;^UTILITY(U,$J,358.3,955,1,3,0)
- ;;=3^PM Device Interrogate Remote
- ;;^UTILITY(U,$J,358.3,956,0)
- ;;=93280^^10^103^32^^^^1
- ;;^UTILITY(U,$J,358.3,956,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,956,1,2,0)
- ;;=2^93280
- ;;^UTILITY(U,$J,358.3,956,1,3,0)
- ;;=3^PM Device Progr Eval,Dual
- ;;^UTILITY(U,$J,358.3,957,0)
- ;;=93288^^10^103^30^^^^1
- ;;^UTILITY(U,$J,358.3,957,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,957,1,2,0)
- ;;=2^93288
- ;;^UTILITY(U,$J,358.3,957,1,3,0)
- ;;=3^PM Device Eval in Person
- ;;^UTILITY(U,$J,358.3,958,0)
- ;;=93279^^10^103^34^^^^1
- ;;^UTILITY(U,$J,358.3,958,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,958,1,2,0)
- ;;=2^93279
- ;;^UTILITY(U,$J,358.3,958,1,3,0)
- ;;=3^PM Device Progr Eval,Sngl
- ;;^UTILITY(U,$J,358.3,959,0)
- ;;=93282^^10^103^9^^^^1
- ;;^UTILITY(U,$J,358.3,959,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,959,1,2,0)
- ;;=2^93282
- ;;^UTILITY(U,$J,358.3,959,1,3,0)
- ;;=3^ICD Device Prog Eval,1 Sngl
- ;;^UTILITY(U,$J,358.3,960,0)
- ;;=93289^^10^103^7^^^^1
- ;;^UTILITY(U,$J,358.3,960,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,960,1,2,0)
- ;;=2^93289
- ;;^UTILITY(U,$J,358.3,960,1,3,0)
- ;;=3^ICD Device Interrogatate
- ;;^UTILITY(U,$J,358.3,961,0)
- ;;=93292^^10^103^66^^^^1
- ;;^UTILITY(U,$J,358.3,961,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,961,1,2,0)
- ;;=2^93292
- ;;^UTILITY(U,$J,358.3,961,1,3,0)
- ;;=3^WCD Device Interrogate
- ;;^UTILITY(U,$J,358.3,962,0)
- ;;=93295^^10^103^8^^^^1
- ;;^UTILITY(U,$J,358.3,962,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,962,1,2,0)
- ;;=2^93295
- ;;^UTILITY(U,$J,358.3,962,1,3,0)
- ;;=3^ICD Device Interrogate Remote
+ ;;^UTILITY(U,$J,358.3,836,1,4,0)
+ ;;=4^L97.413
+ ;;^UTILITY(U,$J,358.3,836,2)
+ ;;=^5009532
+ ;;^UTILITY(U,$J,358.3,837,0)
+ ;;=L97.414^^3^32^98
+ ;;^UTILITY(U,$J,358.3,837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,837,1,3,0)
+ ;;=3^Non-prs chr ulcer of right heel and midfoot w necros bone
+ ;;^UTILITY(U,$J,358.3,837,1,4,0)
+ ;;=4^L97.414
+ ;;^UTILITY(U,$J,358.3,837,2)
+ ;;=^5009533
+ ;;^UTILITY(U,$J,358.3,838,0)
+ ;;=L97.412^^3^32^99
+ ;;^UTILITY(U,$J,358.3,838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,838,1,3,0)
+ ;;=3^Non-prs chr ulcer of right heel and midft w fat layer expos
+ ;;^UTILITY(U,$J,358.3,838,1,4,0)
+ ;;=4^L97.412
+ ;;^UTILITY(U,$J,358.3,838,2)
+ ;;=^5009531
+ ;;^UTILITY(U,$J,358.3,839,0)
+ ;;=L97.419^^3^32^100
+ ;;^UTILITY(U,$J,358.3,839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,839,1,3,0)
+ ;;=3^Non-prs chr ulcer of right heel and midfoot w unsp severt
+ ;;^UTILITY(U,$J,358.3,839,1,4,0)
+ ;;=4^L97.419
+ ;;^UTILITY(U,$J,358.3,839,2)
+ ;;=^5009534
+ ;;^UTILITY(U,$J,358.3,840,0)
+ ;;=L97.421^^3^32^76
+ ;;^UTILITY(U,$J,358.3,840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,840,1,3,0)
+ ;;=3^Non-prs chr ulcer of left heel and midft lmt to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,840,1,4,0)
+ ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,840,2)
+ ;;=^5009535
+ ;;^UTILITY(U,$J,358.3,841,0)
+ ;;=L97.422^^3^32^77
+ ;;^UTILITY(U,$J,358.3,841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,841,1,3,0)
+ ;;=3^Non-prs chr ulcer of left heel and midfoot w fat layer expos
+ ;;^UTILITY(U,$J,358.3,841,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,841,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,842,0)
+ ;;=L97.423^^3^32^78
+ ;;^UTILITY(U,$J,358.3,842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,842,1,3,0)
+ ;;=3^Non-prs chr ulcer of left heel and midfoot w necros muscle
+ ;;^UTILITY(U,$J,358.3,842,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,842,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,843,0)
+ ;;=L97.424^^3^32^79
+ ;;^UTILITY(U,$J,358.3,843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,843,1,3,0)
+ ;;=3^Non-prs chr ulcer of left heel and midfoot w necros bone
+ ;;^UTILITY(U,$J,358.3,843,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,843,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,844,0)
+ ;;=L97.429^^3^32^80
+ ;;^UTILITY(U,$J,358.3,844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,844,1,3,0)
+ ;;=3^Non-prs chr ulcer of left heel and midfoot w unsp severt
+ ;;^UTILITY(U,$J,358.3,844,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,844,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,845,0)
+ ;;=L97.522^^3^32^107
+ ;;^UTILITY(U,$J,358.3,845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,845,1,3,0)
+ ;;=3^Non-prs chr ulcer oth prt left foot w fat layer exposed
+ ;;^UTILITY(U,$J,358.3,845,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,845,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,846,0)
+ ;;=L97.523^^3^32^108
+ ;;^UTILITY(U,$J,358.3,846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,846,1,3,0)
+ ;;=3^Non-prs chr ulcer oth prt left foot w necrosis of muscle
+ ;;^UTILITY(U,$J,358.3,846,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,846,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,847,0)
+ ;;=L97.524^^3^32^109
+ ;;^UTILITY(U,$J,358.3,847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,847,1,3,0)
+ ;;=3^Non-prs chr ulcer oth prt left foot w necrosis of bone
+ ;;^UTILITY(U,$J,358.3,847,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,847,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,848,0)
+ ;;=L97.529^^3^32^110
+ ;;^UTILITY(U,$J,358.3,848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,848,1,3,0)
+ ;;=3^Non-prs chr ulcer oth prt left foot w unsp severity
+ ;;^UTILITY(U,$J,358.3,848,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,848,2)
+ ;;=^5009554

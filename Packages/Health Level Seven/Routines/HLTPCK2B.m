@@ -1,6 +1,6 @@
 HLTPCK2B ;OIFO-O/RJH - Message Header Validation (Con't) ; 09/22/2009  14:41
- ;;1.6;HEALTH LEVEL SEVEN;**120,133,122,148**;Oct 13, 1995;Build 3
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**120,133,122,148,163**;Oct 13, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; splitted from HLTPCK2A
  ; to be called from HLTPCK2A
@@ -79,9 +79,17 @@ RF ;Validate Receiving Facility
  .. S HLDOMP1=$P(ARY("RAF"),HLCS,2)
  .. ;
  .. ; assume the format is <domain>:<port #>
- .. I HLDOMP1[":" S ARY("RAF-PORT")=$P(HLDOMP1,":",2)
- .. S HLDOMP1=$P(HLDOMP1,":")
- .. S ARY("RAF-DOMAIN")=HLDOMP1
+ .. ; patch HL*1.6*163 can no longer assume one format for <domain><port> with IPV6
+ .. ; check for IPV6 address with delimiter of "]:" and process accordingly
+ .. ; ;$$FORCEIP6^XLFIPV(IP) API (ICR #5844)
+ .. I HLDOMP1["]" D 
+ ... S ARY("RAF-PORT")=$P(HLDOMP1,"]:",2)
+ ... S HLDOMP1=$E($P(HLDOMP1,"]"),2,99)
+ ... S HLDOMP1=$$FORCEIP6^XLFIPV(HLDOMP1)
+ .. E  I HLDOMP1[":" D
+ ...S ARY("RAF-PORT")=$P(HLDOMP1,":",2)
+ ...S HLDOMP1=$P(HLDOMP1,":")
+ ..S ARY("RAF-DOMAIN")=HLDOMP1
  .. ;
  .. ; if first piece of domain is "HL7." or "MPI.", remove it
  .. I ($E(HLDOMP1,1,4)="HL7.")!($E(HLDOMP1,1,4)="MPI.") D
@@ -123,7 +131,7 @@ RF ;Validate Receiving Facility
  ; patch HL*1.6*120 end
  ;
 SF ;Validate Sending Facility
- I HLSFREQ D
+ I HLSFREQ D 
  .I ARY("SAF")="" S:ERR="" ERR="Missing required sending facility"
  .I HL771SF]"" D  Q
  ..;Check for facility data in 771
@@ -137,8 +145,16 @@ SF ;Validate Sending Facility
  . S HLDOMP=$P(ARY("SAF"),HLCS,2)
  . ;
  . ; assume the format is <domain>:<port #>
- . I HLDOMP[":" S ARY("SAF-PORT")=$P(HLDOMP,":",2)
- . S HLDOMP=$P(HLDOMP,":")
+ . ; patch HL*1.6*163 can no longer assume one format for <domain><port> with IPV6
+ . ; check for IPV6 address with delimiter of "]:" and process accordingly
+ . ; ;$$FORCEIP6^XLFIPV(IP) API (ICR #5844)
+ . I HLDOMP["]" D 
+ .. S ARY("SAF-PORT")=$P(HLDOMP,"]:",2)
+ .. S HLDOMP=$E($P(HLDOMP,"]"),2,99)
+ .. S HLDOMP=$$FORCEIP6^XLFIPV(HLDOMP)
+ . E  I HLDOMP[":" D 
+ .. S ARY("SAF-PORT")=$P(HLDOMP,":",2)
+ .. S HLDOMP=$P(HLDOMP,":")
  . S ARY("SAF-DOMAIN")=HLDOMP
  . ;
  . ; if first piece of domain is "HL7." or "MPI.", remove it

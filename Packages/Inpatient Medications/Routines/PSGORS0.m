@@ -1,5 +1,5 @@
-PSGORS0 ;BIR/CML3-SCHEDULE PROCESSOR FOR FINISH ;29 Jan 99 / 8:07 AM
- ;;5.0; INPATIENT MEDICATIONS ;**25,50,83,116,111**;16 DEC 97
+PSGORS0 ;BIR/CML3-SCHEDULE PROCESSOR FOR FINISH ; 3/23/11 7:53am
+ ;;5.0;INPATIENT MEDICATIONS;**25,50,83,116,111,194**;16 DEC 97;Build 42
  ;
  ; Reference to ^PS(51.1 is supported by DBIA 2177
  ; Reference to ^PS(55   is supported by DBIA 2191
@@ -17,7 +17,8 @@ EN5 ;
  ;
 EN ; validate
  ;/I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>2)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
- I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
+ ;*194 Allow multi-word schedules
+ I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
  I X?.E1L.E S X=$$ENLU^PSGMI(X) ; I '$D(PSGOES) W "  (",X,")"
  I X["Q0" K X Q
  ;

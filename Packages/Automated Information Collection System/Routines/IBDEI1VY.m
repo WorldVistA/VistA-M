@@ -1,126 +1,134 @@
-IBDEI1VY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1VY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33543,0)
- ;;=S82.852M^^191^1968^152
- ;;^UTILITY(U,$J,358.3,33543,1,0)
+ ;;^UTILITY(U,$J,358.3,33167,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,33168,0)
+ ;;=M48.57XD^^182^1998^23
+ ;;^UTILITY(U,$J,358.3,33168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33543,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33543,1,4,0)
- ;;=4^S82.852M
- ;;^UTILITY(U,$J,358.3,33543,2)
- ;;=^5042601
- ;;^UTILITY(U,$J,358.3,33544,0)
- ;;=S82.851K^^191^1968^156
- ;;^UTILITY(U,$J,358.3,33544,1,0)
+ ;;^UTILITY(U,$J,358.3,33168,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33168,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,33168,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,33169,0)
+ ;;=M50.30^^182^1998^12
+ ;;^UTILITY(U,$J,358.3,33169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33544,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33544,1,4,0)
- ;;=4^S82.851K
- ;;^UTILITY(U,$J,358.3,33544,2)
- ;;=^5042584
- ;;^UTILITY(U,$J,358.3,33545,0)
- ;;=S82.852K^^191^1968^150
- ;;^UTILITY(U,$J,358.3,33545,1,0)
+ ;;^UTILITY(U,$J,358.3,33169,1,3,0)
+ ;;=3^Cervical Disc Degeneration NEC
+ ;;^UTILITY(U,$J,358.3,33169,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,33169,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,33170,0)
+ ;;=M51.14^^182^1998^44
+ ;;^UTILITY(U,$J,358.3,33170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33545,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33545,1,4,0)
- ;;=4^S82.852K
- ;;^UTILITY(U,$J,358.3,33545,2)
- ;;=^5042600
- ;;^UTILITY(U,$J,358.3,33546,0)
- ;;=S92.114K^^191^1968^283
- ;;^UTILITY(U,$J,358.3,33546,1,0)
+ ;;^UTILITY(U,$J,358.3,33170,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,33170,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,33170,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,33171,0)
+ ;;=M51.17^^182^1998^43
+ ;;^UTILITY(U,$J,358.3,33171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33546,1,3,0)
- ;;=3^Nondisp fx neck rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33546,1,4,0)
- ;;=4^S92.114K
- ;;^UTILITY(U,$J,358.3,33546,2)
- ;;=^5044630
- ;;^UTILITY(U,$J,358.3,33547,0)
- ;;=S92.115K^^191^1968^282
- ;;^UTILITY(U,$J,358.3,33547,1,0)
+ ;;^UTILITY(U,$J,358.3,33171,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,33171,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,33171,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,33172,0)
+ ;;=M51.34^^182^1998^42
+ ;;^UTILITY(U,$J,358.3,33172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33547,1,3,0)
- ;;=3^Nondisp fx neck lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33547,1,4,0)
- ;;=4^S92.115K
- ;;^UTILITY(U,$J,358.3,33547,2)
- ;;=^5044637
- ;;^UTILITY(U,$J,358.3,33548,0)
- ;;=S92.112K^^191^1968^57
- ;;^UTILITY(U,$J,358.3,33548,1,0)
+ ;;^UTILITY(U,$J,358.3,33172,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,33172,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,33172,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,33173,0)
+ ;;=M51.37^^182^1998^41
+ ;;^UTILITY(U,$J,358.3,33173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33548,1,3,0)
- ;;=3^Disp fx neck lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33548,1,4,0)
- ;;=4^S92.112K
- ;;^UTILITY(U,$J,358.3,33548,2)
- ;;=^5044616
- ;;^UTILITY(U,$J,358.3,33549,0)
- ;;=S92.111K^^191^1968^58
- ;;^UTILITY(U,$J,358.3,33549,1,0)
+ ;;^UTILITY(U,$J,358.3,33173,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,33173,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,33173,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,33174,0)
+ ;;=M54.14^^182^1998^113
+ ;;^UTILITY(U,$J,358.3,33174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33549,1,3,0)
- ;;=3^Disp fx neck rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33549,1,4,0)
- ;;=4^S92.111K
- ;;^UTILITY(U,$J,358.3,33549,2)
- ;;=^5044609
- ;;^UTILITY(U,$J,358.3,33550,0)
- ;;=S92.142K^^191^1968^20
- ;;^UTILITY(U,$J,358.3,33550,1,0)
+ ;;^UTILITY(U,$J,358.3,33174,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,33174,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,33174,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,33175,0)
+ ;;=M54.17^^182^1998^112
+ ;;^UTILITY(U,$J,358.3,33175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33550,1,3,0)
- ;;=3^Disp dome fx lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33550,1,4,0)
- ;;=4^S92.142K
- ;;^UTILITY(U,$J,358.3,33550,2)
- ;;=^5044742
- ;;^UTILITY(U,$J,358.3,33551,0)
- ;;=S92.141K^^191^1968^23
- ;;^UTILITY(U,$J,358.3,33551,1,0)
+ ;;^UTILITY(U,$J,358.3,33175,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,33175,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,33175,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,33176,0)
+ ;;=M54.2^^182^1998^13
+ ;;^UTILITY(U,$J,358.3,33176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33551,1,3,0)
- ;;=3^Disp dome fx rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33551,1,4,0)
- ;;=4^S92.141K
- ;;^UTILITY(U,$J,358.3,33551,2)
- ;;=^5044735
- ;;^UTILITY(U,$J,358.3,33552,0)
- ;;=S92.135K^^191^1968^356
- ;;^UTILITY(U,$J,358.3,33552,1,0)
+ ;;^UTILITY(U,$J,358.3,33176,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,33176,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,33176,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,33177,0)
+ ;;=M54.31^^182^1998^136
+ ;;^UTILITY(U,$J,358.3,33177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33552,1,3,0)
- ;;=3^Nondisp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33552,1,4,0)
- ;;=4^S92.135K
- ;;^UTILITY(U,$J,358.3,33552,2)
- ;;=^5044721
- ;;^UTILITY(U,$J,358.3,33553,0)
- ;;=S92.134K^^191^1968^357
- ;;^UTILITY(U,$J,358.3,33553,1,0)
+ ;;^UTILITY(U,$J,358.3,33177,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,33177,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,33177,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,33178,0)
+ ;;=M54.32^^182^1998^135
+ ;;^UTILITY(U,$J,358.3,33178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33553,1,3,0)
- ;;=3^Nondisp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33553,1,4,0)
- ;;=4^S92.134K
- ;;^UTILITY(U,$J,358.3,33553,2)
- ;;=^5044714
- ;;^UTILITY(U,$J,358.3,33554,0)
- ;;=S92.132K^^191^1968^130
- ;;^UTILITY(U,$J,358.3,33554,1,0)
+ ;;^UTILITY(U,$J,358.3,33178,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,33178,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,33178,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,33179,0)
+ ;;=M54.5^^182^1998^49
+ ;;^UTILITY(U,$J,358.3,33179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33554,1,3,0)
- ;;=3^Disp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33554,1,4,0)
- ;;=4^S92.132K
- ;;^UTILITY(U,$J,358.3,33554,2)
- ;;=^5044700
- ;;^UTILITY(U,$J,358.3,33555,0)
- ;;=S92.131K^^191^1968^131
+ ;;^UTILITY(U,$J,358.3,33179,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,33179,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,33179,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,33180,0)
+ ;;=M60.9^^182^1998^53
+ ;;^UTILITY(U,$J,358.3,33180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33180,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,33180,1,4,0)
+ ;;=4^M60.9

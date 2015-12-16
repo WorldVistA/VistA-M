@@ -1,126 +1,144 @@
-IBDEI1BL ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1BL ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23683,2)
- ;;=^125435
- ;;^UTILITY(U,$J,358.3,23684,0)
- ;;=454.2^^141^1461^16
- ;;^UTILITY(U,$J,358.3,23684,1,0)
+ ;;^UTILITY(U,$J,358.3,23381,1,4,0)
+ ;;=4^432.1
+ ;;^UTILITY(U,$J,358.3,23381,1,5,0)
+ ;;=5^Subdural Hemorrhage
+ ;;^UTILITY(U,$J,358.3,23381,2)
+ ;;=^115061
+ ;;^UTILITY(U,$J,358.3,23382,0)
+ ;;=784.3^^125^1406^8
+ ;;^UTILITY(U,$J,358.3,23382,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23684,1,3,0)
- ;;=3^454.2
- ;;^UTILITY(U,$J,358.3,23684,1,5,0)
- ;;=5^Dermatitis, Stasis with ulcer/ulcerated
- ;;^UTILITY(U,$J,358.3,23684,2)
- ;;=^269821
- ;;^UTILITY(U,$J,358.3,23685,0)
- ;;=110.4^^141^1461^18
- ;;^UTILITY(U,$J,358.3,23685,1,0)
+ ;;^UTILITY(U,$J,358.3,23382,1,4,0)
+ ;;=4^784.3
+ ;;^UTILITY(U,$J,358.3,23382,1,5,0)
+ ;;=5^Aphasia
+ ;;^UTILITY(U,$J,358.3,23382,2)
+ ;;=^9453
+ ;;^UTILITY(U,$J,358.3,23383,0)
+ ;;=784.51^^125^1406^30
+ ;;^UTILITY(U,$J,358.3,23383,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23685,1,3,0)
- ;;=3^110.4
- ;;^UTILITY(U,$J,358.3,23685,1,5,0)
- ;;=5^Dermatophytosis of foot
- ;;^UTILITY(U,$J,358.3,23685,2)
- ;;=^33168
- ;;^UTILITY(U,$J,358.3,23686,0)
- ;;=250.00^^141^1461^7
- ;;^UTILITY(U,$J,358.3,23686,1,0)
+ ;;^UTILITY(U,$J,358.3,23383,1,4,0)
+ ;;=4^784.51
+ ;;^UTILITY(U,$J,358.3,23383,1,5,0)
+ ;;=5^Dysarthria
+ ;;^UTILITY(U,$J,358.3,23383,2)
+ ;;=^338286
+ ;;^UTILITY(U,$J,358.3,23384,0)
+ ;;=784.59^^125^1406^85
+ ;;^UTILITY(U,$J,358.3,23384,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23686,1,3,0)
- ;;=3^250.00
- ;;^UTILITY(U,$J,358.3,23686,1,5,0)
- ;;=5^DM II w/o complication 
- ;;^UTILITY(U,$J,358.3,23686,2)
- ;;=^33605
- ;;^UTILITY(U,$J,358.3,23687,0)
- ;;=250.01^^141^1461^3
- ;;^UTILITY(U,$J,358.3,23687,1,0)
+ ;;^UTILITY(U,$J,358.3,23384,1,4,0)
+ ;;=4^784.59
+ ;;^UTILITY(U,$J,358.3,23384,1,5,0)
+ ;;=5^Speech Disturbance NEC
+ ;;^UTILITY(U,$J,358.3,23384,2)
+ ;;=^338287
+ ;;^UTILITY(U,$J,358.3,23385,0)
+ ;;=V62.3^^125^1406^32
+ ;;^UTILITY(U,$J,358.3,23385,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23687,1,3,0)
- ;;=3^250.01
- ;;^UTILITY(U,$J,358.3,23687,1,5,0)
- ;;=5^DM I w/o complication 
- ;;^UTILITY(U,$J,358.3,23687,2)
- ;;=^33586
- ;;^UTILITY(U,$J,358.3,23688,0)
- ;;=838.00^^141^1461^23
- ;;^UTILITY(U,$J,358.3,23688,1,0)
+ ;;^UTILITY(U,$J,358.3,23385,1,4,0)
+ ;;=4^V62.3
+ ;;^UTILITY(U,$J,358.3,23385,1,5,0)
+ ;;=5^Educational Counseling
+ ;;^UTILITY(U,$J,358.3,23385,2)
+ ;;=^38578
+ ;;^UTILITY(U,$J,358.3,23386,0)
+ ;;=313.83^^125^1406^49
+ ;;^UTILITY(U,$J,358.3,23386,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23688,1,3,0)
- ;;=3^838.00
- ;;^UTILITY(U,$J,358.3,23688,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; foot, unspecified
- ;;^UTILITY(U,$J,358.3,23688,2)
- ;;=^274391
- ;;^UTILITY(U,$J,358.3,23689,0)
- ;;=838.01^^141^1461^24
- ;;^UTILITY(U,$J,358.3,23689,1,0)
+ ;;^UTILITY(U,$J,358.3,23386,1,4,0)
+ ;;=4^313.83
+ ;;^UTILITY(U,$J,358.3,23386,1,5,0)
+ ;;=5^Knowledge Deficit
+ ;;^UTILITY(U,$J,358.3,23386,2)
+ ;;=^268347
+ ;;^UTILITY(U,$J,358.3,23387,0)
+ ;;=V65.41^^125^1407^6
+ ;;^UTILITY(U,$J,358.3,23387,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23689,1,3,0)
- ;;=3^838.01
- ;;^UTILITY(U,$J,358.3,23689,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; tarsal(bone), joint unspecified 
- ;;^UTILITY(U,$J,358.3,23689,2)
- ;;=^274394
- ;;^UTILITY(U,$J,358.3,23690,0)
- ;;=838.02^^141^1461^25
- ;;^UTILITY(U,$J,358.3,23690,1,0)
+ ;;^UTILITY(U,$J,358.3,23387,1,4,0)
+ ;;=4^V65.41
+ ;;^UTILITY(U,$J,358.3,23387,1,5,0)
+ ;;=5^Exercise Counseling
+ ;;^UTILITY(U,$J,358.3,23387,2)
+ ;;=^303466
+ ;;^UTILITY(U,$J,358.3,23388,0)
+ ;;=V79.1^^125^1407^1
+ ;;^UTILITY(U,$J,358.3,23388,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23690,1,3,0)
- ;;=3^838.02
- ;;^UTILITY(U,$J,358.3,23690,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; midtarsal (joint)
- ;;^UTILITY(U,$J,358.3,23690,2)
- ;;=^274395
- ;;^UTILITY(U,$J,358.3,23691,0)
- ;;=838.03^^141^1461^26
- ;;^UTILITY(U,$J,358.3,23691,1,0)
+ ;;^UTILITY(U,$J,358.3,23388,1,4,0)
+ ;;=4^V79.1
+ ;;^UTILITY(U,$J,358.3,23388,1,5,0)
+ ;;=5^Alcohol Use Screen
+ ;;^UTILITY(U,$J,358.3,23388,2)
+ ;;=^295678
+ ;;^UTILITY(U,$J,358.3,23389,0)
+ ;;=V76.19^^125^1407^2
+ ;;^UTILITY(U,$J,358.3,23389,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23691,1,3,0)
- ;;=3^838.03
- ;;^UTILITY(U,$J,358.3,23691,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; tarsometatarsal (joint)
- ;;^UTILITY(U,$J,358.3,23691,2)
- ;;=^274396
- ;;^UTILITY(U,$J,358.3,23692,0)
- ;;=838.04^^141^1461^27
- ;;^UTILITY(U,$J,358.3,23692,1,0)
+ ;;^UTILITY(U,$J,358.3,23389,1,4,0)
+ ;;=4^V76.19
+ ;;^UTILITY(U,$J,358.3,23389,1,5,0)
+ ;;=5^Breast Exam
+ ;;^UTILITY(U,$J,358.3,23389,2)
+ ;;=^295652
+ ;;^UTILITY(U,$J,358.3,23390,0)
+ ;;=V79.0^^125^1407^3
+ ;;^UTILITY(U,$J,358.3,23390,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23692,1,3,0)
- ;;=3^838.04
- ;;^UTILITY(U,$J,358.3,23692,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; metatarsal(bone), joint unspecified
- ;;^UTILITY(U,$J,358.3,23692,2)
- ;;=^274397
- ;;^UTILITY(U,$J,358.3,23693,0)
- ;;=838.05^^141^1461^28
- ;;^UTILITY(U,$J,358.3,23693,1,0)
+ ;;^UTILITY(U,$J,358.3,23390,1,4,0)
+ ;;=4^V79.0
+ ;;^UTILITY(U,$J,358.3,23390,1,5,0)
+ ;;=5^Depression Screening
+ ;;^UTILITY(U,$J,358.3,23390,2)
+ ;;=^295677
+ ;;^UTILITY(U,$J,358.3,23391,0)
+ ;;=V80.2^^125^1407^4
+ ;;^UTILITY(U,$J,358.3,23391,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23693,1,3,0)
- ;;=3^838.05
- ;;^UTILITY(U,$J,358.3,23693,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; metatarsophalangeal(joint)
- ;;^UTILITY(U,$J,358.3,23693,2)
- ;;=^274398
- ;;^UTILITY(U,$J,358.3,23694,0)
- ;;=838.06^^141^1461^29
- ;;^UTILITY(U,$J,358.3,23694,1,0)
+ ;;^UTILITY(U,$J,358.3,23391,1,4,0)
+ ;;=4^V80.2
+ ;;^UTILITY(U,$J,358.3,23391,1,5,0)
+ ;;=5^Diabetic Eye Exam
+ ;;^UTILITY(U,$J,358.3,23391,2)
+ ;;=^295685
+ ;;^UTILITY(U,$J,358.3,23392,0)
+ ;;=V72.85^^125^1407^5
+ ;;^UTILITY(U,$J,358.3,23392,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23694,1,3,0)
- ;;=3^838.06
- ;;^UTILITY(U,$J,358.3,23694,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; interphalangeal(joint) foot
- ;;^UTILITY(U,$J,358.3,23694,2)
- ;;=^274399
- ;;^UTILITY(U,$J,358.3,23695,0)
- ;;=838.09^^141^1461^30
- ;;^UTILITY(U,$J,358.3,23695,1,0)
+ ;;^UTILITY(U,$J,358.3,23392,1,4,0)
+ ;;=4^V72.85
+ ;;^UTILITY(U,$J,358.3,23392,1,5,0)
+ ;;=5^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,23392,2)
+ ;;=^295831
+ ;;^UTILITY(U,$J,358.3,23393,0)
+ ;;=V70.0^^125^1407^7
+ ;;^UTILITY(U,$J,358.3,23393,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23695,1,3,0)
- ;;=3^838.09
- ;;^UTILITY(U,$J,358.3,23695,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; other, toe(s)
- ;;^UTILITY(U,$J,358.3,23695,2)
- ;;=^274400
+ ;;^UTILITY(U,$J,358.3,23393,1,4,0)
+ ;;=4^V70.0
+ ;;^UTILITY(U,$J,358.3,23393,1,5,0)
+ ;;=5^Health Check-Up
+ ;;^UTILITY(U,$J,358.3,23393,2)
+ ;;=^295590
+ ;;^UTILITY(U,$J,358.3,23394,0)
+ ;;=V73.89^^125^1407^8
+ ;;^UTILITY(U,$J,358.3,23394,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23394,1,4,0)
+ ;;=4^V73.89
+ ;;^UTILITY(U,$J,358.3,23394,1,5,0)
+ ;;=5^Hepatitis C Screening
+ ;;^UTILITY(U,$J,358.3,23394,2)
+ ;;=^295833
+ ;;^UTILITY(U,$J,358.3,23395,0)
+ ;;=V81.1^^125^1407^9
+ ;;^UTILITY(U,$J,358.3,23395,1,0)
+ ;;=^358.31IA^5^2

@@ -1,128 +1,126 @@
-IBDEI12G ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI12G ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19004,1,3,0)
- ;;=3^Neuropsych Tst/Hr of Psychologist/MD Time
- ;;^UTILITY(U,$J,358.3,19005,0)
- ;;=97150^^105^1114^7^^^^1
- ;;^UTILITY(U,$J,358.3,19005,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19005,1,2,0)
- ;;=2^97150
- ;;^UTILITY(U,$J,358.3,19005,1,3,0)
- ;;=3^Group Therapeutic Procedures
- ;;^UTILITY(U,$J,358.3,19006,0)
- ;;=97530^^105^1114^27^^^^1
- ;;^UTILITY(U,$J,358.3,19006,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19006,1,2,0)
- ;;=2^97530
- ;;^UTILITY(U,$J,358.3,19006,1,3,0)
- ;;=3^Therapeutic Activ,Dir Prov Contact,ea 15 min
- ;;^UTILITY(U,$J,358.3,19007,0)
- ;;=G0177^^105^1114^28^^^^1
- ;;^UTILITY(U,$J,358.3,19007,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19007,1,2,0)
- ;;=2^G0177
- ;;^UTILITY(U,$J,358.3,19007,1,3,0)
- ;;=3^Train/Ed for Disability > 44 Min
- ;;^UTILITY(U,$J,358.3,19008,0)
- ;;=H0038^^105^1114^20^^^^1
- ;;^UTILITY(U,$J,358.3,19008,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19008,1,2,0)
- ;;=2^H0038
- ;;^UTILITY(U,$J,358.3,19008,1,3,0)
- ;;=3^Self-Help/Peer Svc per 15 Min
- ;;^UTILITY(U,$J,358.3,19009,0)
- ;;=90899^^105^1114^9^^^^1
- ;;^UTILITY(U,$J,358.3,19009,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19009,1,2,0)
- ;;=2^90899
- ;;^UTILITY(U,$J,358.3,19009,1,3,0)
- ;;=3^NOS Psych Service
- ;;^UTILITY(U,$J,358.3,19010,0)
- ;;=96116^^105^1114^10^^^^1
- ;;^UTILITY(U,$J,358.3,19010,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19010,1,2,0)
- ;;=2^96116
- ;;^UTILITY(U,$J,358.3,19010,1,3,0)
- ;;=3^Neurobehavioral Status Exam
- ;;^UTILITY(U,$J,358.3,19011,0)
- ;;=97804^^105^1114^8^^^^1
- ;;^UTILITY(U,$J,358.3,19011,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19011,1,2,0)
- ;;=2^97804
- ;;^UTILITY(U,$J,358.3,19011,1,3,0)
- ;;=3^Medical Nutrition Tx,Grp,Ea 30Min
- ;;^UTILITY(U,$J,358.3,19012,0)
- ;;=98961^^105^1114^21^^^^1
- ;;^UTILITY(U,$J,358.3,19012,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19012,1,2,0)
- ;;=2^98961
- ;;^UTILITY(U,$J,358.3,19012,1,3,0)
- ;;=3^Self-Mgmt Ed/Train,2-4 Pts
- ;;^UTILITY(U,$J,358.3,19013,0)
- ;;=98962^^105^1114^22^^^^1
- ;;^UTILITY(U,$J,358.3,19013,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19013,1,2,0)
- ;;=2^98962
- ;;^UTILITY(U,$J,358.3,19013,1,3,0)
- ;;=3^Self-Mgmt Ed/Train,5-8 Pts
- ;;^UTILITY(U,$J,358.3,19014,0)
- ;;=99078^^105^1114^6^^^^1
- ;;^UTILITY(U,$J,358.3,19014,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19014,1,2,0)
- ;;=2^99078
- ;;^UTILITY(U,$J,358.3,19014,1,3,0)
- ;;=3^Group Health Education
- ;;^UTILITY(U,$J,358.3,19015,0)
- ;;=96127^^105^1114^2^^^^1
- ;;^UTILITY(U,$J,358.3,19015,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19015,1,2,0)
- ;;=2^96127
- ;;^UTILITY(U,$J,358.3,19015,1,3,0)
- ;;=3^Brf Emot/Behav Assmt w/ Score/Doc
- ;;^UTILITY(U,$J,358.3,19016,0)
- ;;=96101^^105^1114^17^^^^1
- ;;^UTILITY(U,$J,358.3,19016,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19016,1,2,0)
- ;;=2^96101
- ;;^UTILITY(U,$J,358.3,19016,1,3,0)
- ;;=3^Psych Test by Psych/Phys
- ;;^UTILITY(U,$J,358.3,19017,0)
- ;;=96150^^105^1115^1^^^^1
- ;;^UTILITY(U,$J,358.3,19017,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19017,1,2,0)
- ;;=2^96150
- ;;^UTILITY(U,$J,358.3,19017,1,3,0)
- ;;=3^Behavior Assess,Initial,ea 15min
- ;;^UTILITY(U,$J,358.3,19018,0)
- ;;=96151^^105^1115^2^^^^1
- ;;^UTILITY(U,$J,358.3,19018,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19018,1,2,0)
- ;;=2^96151
- ;;^UTILITY(U,$J,358.3,19018,1,3,0)
- ;;=3^Behavior Reassessment,ea 15min
- ;;^UTILITY(U,$J,358.3,19019,0)
- ;;=96152^^105^1115^3^^^^1
- ;;^UTILITY(U,$J,358.3,19019,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19019,1,2,0)
- ;;=2^96152
- ;;^UTILITY(U,$J,358.3,19019,1,3,0)
- ;;=3^Behavior Intervention,Ind,ea 15min
- ;;^UTILITY(U,$J,358.3,19020,0)
- ;;=96153^^105^1115^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18818,1,5,0)
+ ;;=5^Heart Failure, Diastolic
+ ;;^UTILITY(U,$J,358.3,18818,2)
+ ;;=Heart Failure, Diastolic^328595
+ ;;^UTILITY(U,$J,358.3,18819,0)
+ ;;=428.31^^105^1222^41
+ ;;^UTILITY(U,$J,358.3,18819,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18819,1,4,0)
+ ;;=4^428.31
+ ;;^UTILITY(U,$J,358.3,18819,1,5,0)
+ ;;=5^Heart Failure, Acute Diastolic
+ ;;^UTILITY(U,$J,358.3,18819,2)
+ ;;=Heart Failure, Acute Diastolic^328497
+ ;;^UTILITY(U,$J,358.3,18820,0)
+ ;;=428.32^^105^1222^43
+ ;;^UTILITY(U,$J,358.3,18820,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18820,1,4,0)
+ ;;=4^428.32
+ ;;^UTILITY(U,$J,358.3,18820,1,5,0)
+ ;;=5^Heart Failure, Chronic Diastolic
+ ;;^UTILITY(U,$J,358.3,18820,2)
+ ;;=Heart Failure, Chronic Diastolic^328498
+ ;;^UTILITY(U,$J,358.3,18821,0)
+ ;;=428.33^^105^1222^47
+ ;;^UTILITY(U,$J,358.3,18821,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18821,1,4,0)
+ ;;=4^428.33
+ ;;^UTILITY(U,$J,358.3,18821,1,5,0)
+ ;;=5^Heart Failure, Diastolic, Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,18821,2)
+ ;;=Heart Failure, Diastolic, Acute on Chronic^328499
+ ;;^UTILITY(U,$J,358.3,18822,0)
+ ;;=428.40^^105^1222^46
+ ;;^UTILITY(U,$J,358.3,18822,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18822,1,4,0)
+ ;;=4^428.40
+ ;;^UTILITY(U,$J,358.3,18822,1,5,0)
+ ;;=5^Heart Failure, Diastolic& Systolic
+ ;;^UTILITY(U,$J,358.3,18822,2)
+ ;;=Heart Failure, Systolic and Diastolic^328596
+ ;;^UTILITY(U,$J,358.3,18823,0)
+ ;;=428.41^^105^1222^48
+ ;;^UTILITY(U,$J,358.3,18823,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18823,1,4,0)
+ ;;=4^428.41
+ ;;^UTILITY(U,$J,358.3,18823,1,5,0)
+ ;;=5^Heart Failure, Systolic & Diastolic, Acute
+ ;;^UTILITY(U,$J,358.3,18823,2)
+ ;;=Heart Failure, Systolic & Diastolic, Acute^328500
+ ;;^UTILITY(U,$J,358.3,18824,0)
+ ;;=428.42^^105^1222^52
+ ;;^UTILITY(U,$J,358.3,18824,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18824,1,4,0)
+ ;;=4^428.42
+ ;;^UTILITY(U,$J,358.3,18824,1,5,0)
+ ;;=5^Heart Failure,Systolic&Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,18824,2)
+ ;;=^328501
+ ;;^UTILITY(U,$J,358.3,18825,0)
+ ;;=428.43^^105^1222^51
+ ;;^UTILITY(U,$J,358.3,18825,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18825,1,4,0)
+ ;;=4^428.43
+ ;;^UTILITY(U,$J,358.3,18825,1,5,0)
+ ;;=5^Heart Failure,Systolic&Diastolic
+ ;;^UTILITY(U,$J,358.3,18825,2)
+ ;;=^328502
+ ;;^UTILITY(U,$J,358.3,18826,0)
+ ;;=396.3^^105^1222^10
+ ;;^UTILITY(U,$J,358.3,18826,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18826,1,4,0)
+ ;;=4^396.3
+ ;;^UTILITY(U,$J,358.3,18826,1,5,0)
+ ;;=5^Aortic and Mitral Insufficiency
+ ;;^UTILITY(U,$J,358.3,18826,2)
+ ;;=Aortic and Mitral Insufficiency^269583
+ ;;^UTILITY(U,$J,358.3,18827,0)
+ ;;=429.9^^105^1222^28
+ ;;^UTILITY(U,$J,358.3,18827,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18827,1,4,0)
+ ;;=4^429.9
+ ;;^UTILITY(U,$J,358.3,18827,1,5,0)
+ ;;=5^Diastolic Dysfunction
+ ;;^UTILITY(U,$J,358.3,18827,2)
+ ;;=^54741
+ ;;^UTILITY(U,$J,358.3,18828,0)
+ ;;=453.79^^105^1222^27
+ ;;^UTILITY(U,$J,358.3,18828,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18828,1,4,0)
+ ;;=4^453.79
+ ;;^UTILITY(U,$J,358.3,18828,1,5,0)
+ ;;=5^Chr Venous Emblsm Oth Spec Veins
+ ;;^UTILITY(U,$J,358.3,18828,2)
+ ;;=^338251
+ ;;^UTILITY(U,$J,358.3,18829,0)
+ ;;=453.89^^105^1222^1
+ ;;^UTILITY(U,$J,358.3,18829,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18829,1,4,0)
+ ;;=4^453.89
+ ;;^UTILITY(U,$J,358.3,18829,1,5,0)
+ ;;=5^AC Venous Emblsm Oth Spec Veins
+ ;;^UTILITY(U,$J,358.3,18829,2)
+ ;;=^338259
+ ;;^UTILITY(U,$J,358.3,18830,0)
+ ;;=454.2^^105^1222^85
+ ;;^UTILITY(U,$J,358.3,18830,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,18830,1,4,0)
+ ;;=4^454.2
+ ;;^UTILITY(U,$J,358.3,18830,1,5,0)
+ ;;=5^Varicose Veins w/Ulcer&Inflam

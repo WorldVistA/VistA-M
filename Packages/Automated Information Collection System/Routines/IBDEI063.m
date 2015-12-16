@@ -1,146 +1,134 @@
-IBDEI063 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI063 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2605,1,1,0)
- ;;=1^V15.81
- ;;^UTILITY(U,$J,358.3,2605,1,2,0)
- ;;=2^HX OF PAST NONCOMPLIANCE
- ;;^UTILITY(U,$J,358.3,2605,2)
- ;;=^295290
- ;;^UTILITY(U,$J,358.3,2606,0)
- ;;=401.9^^22^206^9
- ;;^UTILITY(U,$J,358.3,2606,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2606,1,1,0)
- ;;=1^401.9
- ;;^UTILITY(U,$J,358.3,2606,1,2,0)
- ;;=2^HYPERTENSION NOS
- ;;^UTILITY(U,$J,358.3,2606,2)
- ;;=^186630
- ;;^UTILITY(U,$J,358.3,2607,0)
- ;;=V58.61^^22^206^10
- ;;^UTILITY(U,$J,358.3,2607,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2607,1,1,0)
- ;;=1^V58.61
- ;;^UTILITY(U,$J,358.3,2607,1,2,0)
- ;;=2^L/T (CURRENT) USE - ANTICOAG
- ;;^UTILITY(U,$J,358.3,2607,2)
- ;;=^303459
- ;;^UTILITY(U,$J,358.3,2608,0)
- ;;=V65.19^^22^206^14
- ;;^UTILITY(U,$J,358.3,2608,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2608,1,1,0)
- ;;=1^V65.19
- ;;^UTILITY(U,$J,358.3,2608,1,2,0)
- ;;=2^PERSON CONSULT FOR ANOTH
- ;;^UTILITY(U,$J,358.3,2608,2)
- ;;=^329985
- ;;^UTILITY(U,$J,358.3,2609,0)
- ;;=272.4^^22^206^8
- ;;^UTILITY(U,$J,358.3,2609,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2609,1,1,0)
- ;;=1^272.4
- ;;^UTILITY(U,$J,358.3,2609,1,2,0)
- ;;=2^HYPERLIPIDEMIA NOS
- ;;^UTILITY(U,$J,358.3,2609,2)
- ;;=^87281
- ;;^UTILITY(U,$J,358.3,2610,0)
- ;;=285.29^^22^206^1
- ;;^UTILITY(U,$J,358.3,2610,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2610,1,1,0)
- ;;=1^285.29
- ;;^UTILITY(U,$J,358.3,2610,1,2,0)
- ;;=2^ANEMIA IN CHRONIC ILLNESS
- ;;^UTILITY(U,$J,358.3,2610,2)
- ;;=^334228
- ;;^UTILITY(U,$J,358.3,2611,0)
- ;;=585.6^^22^206^4
- ;;^UTILITY(U,$J,358.3,2611,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2611,1,1,0)
- ;;=1^585.6
- ;;^UTILITY(U,$J,358.3,2611,1,2,0)
- ;;=2^ESRD
- ;;^UTILITY(U,$J,358.3,2611,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,2612,0)
- ;;=V58.69^^22^206^11
- ;;^UTILITY(U,$J,358.3,2612,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2612,1,1,0)
- ;;=1^V58.69
- ;;^UTILITY(U,$J,358.3,2612,1,2,0)
- ;;=2^L/T CURRENT USE OF OTHER MEDS
- ;;^UTILITY(U,$J,358.3,2612,2)
- ;;=^303460
- ;;^UTILITY(U,$J,358.3,2613,0)
- ;;=V58.83^^22^206^15
- ;;^UTILITY(U,$J,358.3,2613,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2613,1,1,0)
- ;;=1^V58.83
- ;;^UTILITY(U,$J,358.3,2613,1,2,0)
- ;;=2^THERAPEUTIC DRUG MONITORING
- ;;^UTILITY(U,$J,358.3,2613,2)
- ;;=^322076
- ;;^UTILITY(U,$J,358.3,2614,0)
- ;;=V58.61^^22^207^14
- ;;^UTILITY(U,$J,358.3,2614,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2614,1,1,0)
- ;;=1^V58.61
- ;;^UTILITY(U,$J,358.3,2614,1,2,0)
- ;;=2^L/T (CURRENT) USE - ANTICOAG
- ;;^UTILITY(U,$J,358.3,2614,2)
- ;;=^303459
- ;;^UTILITY(U,$J,358.3,2615,0)
- ;;=427.31^^22^207^1
- ;;^UTILITY(U,$J,358.3,2615,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2615,1,1,0)
- ;;=1^427.31
- ;;^UTILITY(U,$J,358.3,2615,1,2,0)
- ;;=2^ATRIAL FIBRILLATION
- ;;^UTILITY(U,$J,358.3,2615,2)
- ;;=^11378
- ;;^UTILITY(U,$J,358.3,2616,0)
- ;;=427.32^^22^207^2
- ;;^UTILITY(U,$J,358.3,2616,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2616,1,1,0)
- ;;=1^427.32
- ;;^UTILITY(U,$J,358.3,2616,1,2,0)
- ;;=2^ATRIAL FLUTTER
- ;;^UTILITY(U,$J,358.3,2616,2)
- ;;=^11387
- ;;^UTILITY(U,$J,358.3,2617,0)
- ;;=414.00^^22^207^3
- ;;^UTILITY(U,$J,358.3,2617,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2617,1,1,0)
- ;;=1^414.00
- ;;^UTILITY(U,$J,358.3,2617,1,2,0)
- ;;=2^CAD
- ;;^UTILITY(U,$J,358.3,2617,2)
- ;;=^28512
- ;;^UTILITY(U,$J,358.3,2618,0)
- ;;=425.4^^22^207^4
- ;;^UTILITY(U,$J,358.3,2618,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2618,1,1,0)
- ;;=1^425.4
- ;;^UTILITY(U,$J,358.3,2618,1,2,0)
- ;;=2^CARDIOMYOPATHY
- ;;^UTILITY(U,$J,358.3,2618,2)
- ;;=^87808
- ;;^UTILITY(U,$J,358.3,2619,0)
- ;;=V65.49^^22^207^5
- ;;^UTILITY(U,$J,358.3,2619,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,2619,1,1,0)
- ;;=1^V65.49
+ ;;^UTILITY(U,$J,358.3,2322,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,2322,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,2323,0)
+ ;;=R13.12^^5^67^2
+ ;;^UTILITY(U,$J,358.3,2323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2323,1,3,0)
+ ;;=3^Dysphagia, oropharyngeal phase
+ ;;^UTILITY(U,$J,358.3,2323,1,4,0)
+ ;;=4^R13.12
+ ;;^UTILITY(U,$J,358.3,2323,2)
+ ;;=^335277
+ ;;^UTILITY(U,$J,358.3,2324,0)
+ ;;=R13.13^^5^67^3
+ ;;^UTILITY(U,$J,358.3,2324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2324,1,3,0)
+ ;;=3^Dysphagia, pharyngeal phase
+ ;;^UTILITY(U,$J,358.3,2324,1,4,0)
+ ;;=4^R13.13
+ ;;^UTILITY(U,$J,358.3,2324,2)
+ ;;=^335278
+ ;;^UTILITY(U,$J,358.3,2325,0)
+ ;;=R13.14^^5^67^4
+ ;;^UTILITY(U,$J,358.3,2325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2325,1,3,0)
+ ;;=3^Dysphagia, pharyngoesophageal phase
+ ;;^UTILITY(U,$J,358.3,2325,1,4,0)
+ ;;=4^R13.14
+ ;;^UTILITY(U,$J,358.3,2325,2)
+ ;;=^335279
+ ;;^UTILITY(U,$J,358.3,2326,0)
+ ;;=S02.2XXA^^5^68^2
+ ;;^UTILITY(U,$J,358.3,2326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2326,1,3,0)
+ ;;=3^Fracture of nasal bones, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,2326,1,4,0)
+ ;;=4^S02.2XXA
+ ;;^UTILITY(U,$J,358.3,2326,2)
+ ;;=^5020306
+ ;;^UTILITY(U,$J,358.3,2327,0)
+ ;;=S02.609A^^5^68^1
+ ;;^UTILITY(U,$J,358.3,2327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2327,1,3,0)
+ ;;=3^Fracture of mandible, unsp, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,2327,1,4,0)
+ ;;=4^S02.609A
+ ;;^UTILITY(U,$J,358.3,2327,2)
+ ;;=^5020372
+ ;;^UTILITY(U,$J,358.3,2328,0)
+ ;;=S02.92XA^^5^68^5
+ ;;^UTILITY(U,$J,358.3,2328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2328,1,3,0)
+ ;;=3^Fracture of unsp facial bones, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2328,1,4,0)
+ ;;=4^S02.92XA
+ ;;^UTILITY(U,$J,358.3,2328,2)
+ ;;=^5020438
+ ;;^UTILITY(U,$J,358.3,2329,0)
+ ;;=S02.3XXA^^5^68^3
+ ;;^UTILITY(U,$J,358.3,2329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2329,1,3,0)
+ ;;=3^Fracture of orbital floor, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,2329,1,4,0)
+ ;;=4^S02.3XXA
+ ;;^UTILITY(U,$J,358.3,2329,2)
+ ;;=^5020312
+ ;;^UTILITY(U,$J,358.3,2330,0)
+ ;;=S02.92XB^^5^68^4
+ ;;^UTILITY(U,$J,358.3,2330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2330,1,3,0)
+ ;;=3^Fracture of unsp facial bones, init encntr for open fracture
+ ;;^UTILITY(U,$J,358.3,2330,1,4,0)
+ ;;=4^S02.92XB
+ ;;^UTILITY(U,$J,358.3,2330,2)
+ ;;=^5020439
+ ;;^UTILITY(U,$J,358.3,2331,0)
+ ;;=C00.2^^5^69^13
+ ;;^UTILITY(U,$J,358.3,2331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2331,1,3,0)
+ ;;=3^Malignant neoplasm of external lip, unspecified
+ ;;^UTILITY(U,$J,358.3,2331,1,4,0)
+ ;;=4^C00.2
+ ;;^UTILITY(U,$J,358.3,2331,2)
+ ;;=^5000884
+ ;;^UTILITY(U,$J,358.3,2332,0)
+ ;;=C02.9^^5^69^30
+ ;;^UTILITY(U,$J,358.3,2332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2332,1,3,0)
+ ;;=3^Malignant neoplasm of tongue, unspecified
+ ;;^UTILITY(U,$J,358.3,2332,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,2332,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,2333,0)
+ ;;=C07.^^5^69^24
+ ;;^UTILITY(U,$J,358.3,2333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2333,1,3,0)
+ ;;=3^Malignant neoplasm of parotid gland
+ ;;^UTILITY(U,$J,358.3,2333,1,4,0)
+ ;;=4^C07.
+ ;;^UTILITY(U,$J,358.3,2333,2)
+ ;;=^267005
+ ;;^UTILITY(U,$J,358.3,2334,0)
+ ;;=C08.0^^5^69^27
+ ;;^UTILITY(U,$J,358.3,2334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2334,1,3,0)
+ ;;=3^Malignant neoplasm of submandibular gland
+ ;;^UTILITY(U,$J,358.3,2334,1,4,0)
+ ;;=4^C08.0
+ ;;^UTILITY(U,$J,358.3,2334,2)
+ ;;=^267006
+ ;;^UTILITY(U,$J,358.3,2335,0)
+ ;;=C03.9^^5^69^16
+ ;;^UTILITY(U,$J,358.3,2335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2335,1,3,0)
+ ;;=3^Malignant neoplasm of gum, unspecified

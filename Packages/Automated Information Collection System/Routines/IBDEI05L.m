@@ -1,142 +1,130 @@
-IBDEI05L ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05L ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2335,1,5,0)
- ;;=5^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,2335,2)
- ;;=Epigastric Pain^303323
- ;;^UTILITY(U,$J,358.3,2336,0)
- ;;=788.0^^21^192^7
- ;;^UTILITY(U,$J,358.3,2336,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2336,1,4,0)
- ;;=4^788.0
- ;;^UTILITY(U,$J,358.3,2336,1,5,0)
- ;;=5^Kidney Pain
- ;;^UTILITY(U,$J,358.3,2336,2)
- ;;=^265306
- ;;^UTILITY(U,$J,358.3,2337,0)
- ;;=607.9^^21^192^13
- ;;^UTILITY(U,$J,358.3,2337,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2337,1,4,0)
- ;;=4^607.9
- ;;^UTILITY(U,$J,358.3,2337,1,5,0)
- ;;=5^Penile Pain
- ;;^UTILITY(U,$J,358.3,2337,2)
- ;;=^270442
- ;;^UTILITY(U,$J,358.3,2338,0)
- ;;=608.9^^21^192^14
- ;;^UTILITY(U,$J,358.3,2338,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2338,1,4,0)
- ;;=4^608.9
- ;;^UTILITY(U,$J,358.3,2338,1,5,0)
- ;;=5^Scrotal Pain
- ;;^UTILITY(U,$J,358.3,2338,2)
- ;;=^123856
- ;;^UTILITY(U,$J,358.3,2339,0)
- ;;=719.40^^21^192^6
- ;;^UTILITY(U,$J,358.3,2339,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2339,1,4,0)
- ;;=4^719.40
- ;;^UTILITY(U,$J,358.3,2339,1,5,0)
- ;;=5^Joint Pain
- ;;^UTILITY(U,$J,358.3,2339,2)
- ;;=^66375
- ;;^UTILITY(U,$J,358.3,2340,0)
- ;;=724.2^^21^192^8
- ;;^UTILITY(U,$J,358.3,2340,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2340,1,4,0)
- ;;=4^724.2
- ;;^UTILITY(U,$J,358.3,2340,1,5,0)
- ;;=5^Low Back Pain
- ;;^UTILITY(U,$J,358.3,2340,2)
- ;;=^71885
- ;;^UTILITY(U,$J,358.3,2341,0)
- ;;=997.1^^21^193^11
- ;;^UTILITY(U,$J,358.3,2341,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2341,1,4,0)
- ;;=4^997.1
- ;;^UTILITY(U,$J,358.3,2341,1,5,0)
- ;;=5^Complication of Cardiac System
- ;;^UTILITY(U,$J,358.3,2341,2)
- ;;=^276321
- ;;^UTILITY(U,$J,358.3,2342,0)
- ;;=996.61^^21^193^27
- ;;^UTILITY(U,$J,358.3,2342,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2342,1,4,0)
- ;;=4^996.61
- ;;^UTILITY(U,$J,358.3,2342,1,5,0)
- ;;=5^Reaction to Cardiac Graft/Implant
- ;;^UTILITY(U,$J,358.3,2342,2)
- ;;=^276284
- ;;^UTILITY(U,$J,358.3,2343,0)
- ;;=996.72^^21^193^1
- ;;^UTILITY(U,$J,358.3,2343,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2343,1,4,0)
- ;;=4^996.72
- ;;^UTILITY(U,$J,358.3,2343,1,5,0)
- ;;=5^Complication from Cardiac Graft/Implant
- ;;^UTILITY(U,$J,358.3,2343,2)
- ;;=^276295
- ;;^UTILITY(U,$J,358.3,2344,0)
- ;;=996.01^^21^193^17
- ;;^UTILITY(U,$J,358.3,2344,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2344,1,4,0)
- ;;=4^996.01
- ;;^UTILITY(U,$J,358.3,2344,1,5,0)
- ;;=5^Malfunction of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,2344,2)
- ;;=^276264
- ;;^UTILITY(U,$J,358.3,2345,0)
- ;;=997.49^^21^193^12
- ;;^UTILITY(U,$J,358.3,2345,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2345,1,4,0)
- ;;=4^997.49
- ;;^UTILITY(U,$J,358.3,2345,1,5,0)
- ;;=5^Complication of Digestive System
- ;;^UTILITY(U,$J,358.3,2345,2)
- ;;=^340579
- ;;^UTILITY(U,$J,358.3,2346,0)
- ;;=998.6^^21^193^23
- ;;^UTILITY(U,$J,358.3,2346,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2346,1,4,0)
- ;;=4^998.6
- ;;^UTILITY(U,$J,358.3,2346,1,5,0)
- ;;=5^Persistent Post-Op Fistula
- ;;^UTILITY(U,$J,358.3,2346,2)
- ;;=^276340
- ;;^UTILITY(U,$J,358.3,2347,0)
- ;;=996.30^^21^193^18
- ;;^UTILITY(U,$J,358.3,2347,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2347,1,4,0)
- ;;=4^996.30
- ;;^UTILITY(U,$J,358.3,2347,1,5,0)
- ;;=5^Malfunction of GU Device/Graft
- ;;^UTILITY(U,$J,358.3,2347,2)
- ;;=^276271
- ;;^UTILITY(U,$J,358.3,2348,0)
- ;;=996.65^^21^193^28
- ;;^UTILITY(U,$J,358.3,2348,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2348,1,4,0)
- ;;=4^996.65
- ;;^UTILITY(U,$J,358.3,2348,1,5,0)
- ;;=5^Reaction to GU Device
- ;;^UTILITY(U,$J,358.3,2348,2)
- ;;=^276288
- ;;^UTILITY(U,$J,358.3,2349,0)
- ;;=996.76^^21^193^3
- ;;^UTILITY(U,$J,358.3,2349,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,2094,1,4,0)
+ ;;=4^S42.401A
+ ;;^UTILITY(U,$J,358.3,2094,2)
+ ;;=^5027294
+ ;;^UTILITY(U,$J,358.3,2095,0)
+ ;;=S42.402A^^4^62^69
+ ;;^UTILITY(U,$J,358.3,2095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2095,1,3,0)
+ ;;=3^Fx of left lower end of humerus unspec, init for cl
+ ;;^UTILITY(U,$J,358.3,2095,1,4,0)
+ ;;=4^S42.402A
+ ;;^UTILITY(U,$J,358.3,2095,2)
+ ;;=^5134713
+ ;;^UTILITY(U,$J,358.3,2096,0)
+ ;;=S72.91XA^^4^62^77
+ ;;^UTILITY(U,$J,358.3,2096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2096,1,3,0)
+ ;;=3^Fx of right femur unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2096,1,4,0)
+ ;;=4^S72.91XA
+ ;;^UTILITY(U,$J,358.3,2096,2)
+ ;;=^5136471
+ ;;^UTILITY(U,$J,358.3,2097,0)
+ ;;=S72.92XA^^4^62^64
+ ;;^UTILITY(U,$J,358.3,2097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2097,1,3,0)
+ ;;=3^Fx of left femur unspec, init encntr for closed fx
+ ;;^UTILITY(U,$J,358.3,2097,1,4,0)
+ ;;=4^S72.92XA
+ ;;^UTILITY(U,$J,358.3,2097,2)
+ ;;=^5136472
+ ;;^UTILITY(U,$J,358.3,2098,0)
+ ;;=S82.401A^^4^62^78
+ ;;^UTILITY(U,$J,358.3,2098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2098,1,3,0)
+ ;;=3^Fx of right fibula shaft unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2098,1,4,0)
+ ;;=4^S82.401A
+ ;;^UTILITY(U,$J,358.3,2098,2)
+ ;;=^5041677
+ ;;^UTILITY(U,$J,358.3,2099,0)
+ ;;=S82.402A^^4^62^65
+ ;;^UTILITY(U,$J,358.3,2099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2099,1,3,0)
+ ;;=3^Fx of left fibula shaft unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2099,1,4,0)
+ ;;=4^S82.402A
+ ;;^UTILITY(U,$J,358.3,2099,2)
+ ;;=^5041693
+ ;;^UTILITY(U,$J,358.3,2100,0)
+ ;;=S62.600A^^4^62^101
+ ;;^UTILITY(U,$J,358.3,2100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2100,1,3,0)
+ ;;=3^Fx of unsp phalanx of right index finger, init
+ ;;^UTILITY(U,$J,358.3,2100,1,4,0)
+ ;;=4^S62.600A
+ ;;^UTILITY(U,$J,358.3,2100,2)
+ ;;=^5034382
+ ;;^UTILITY(U,$J,358.3,2101,0)
+ ;;=S62.601A^^4^62^96
+ ;;^UTILITY(U,$J,358.3,2101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2101,1,3,0)
+ ;;=3^Fx of unsp phalanx of left index finger, init
+ ;;^UTILITY(U,$J,358.3,2101,1,4,0)
+ ;;=4^S62.601A
+ ;;^UTILITY(U,$J,358.3,2101,2)
+ ;;=^5034389
+ ;;^UTILITY(U,$J,358.3,2102,0)
+ ;;=S62.602A^^4^62^103
+ ;;^UTILITY(U,$J,358.3,2102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2102,1,3,0)
+ ;;=3^Fx of unsp phalanx of right middle finger, init
+ ;;^UTILITY(U,$J,358.3,2102,1,4,0)
+ ;;=4^S62.602A
+ ;;^UTILITY(U,$J,358.3,2102,2)
+ ;;=^5034396
+ ;;^UTILITY(U,$J,358.3,2103,0)
+ ;;=S62.603A^^4^62^98
+ ;;^UTILITY(U,$J,358.3,2103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2103,1,3,0)
+ ;;=3^Fx of unsp phalanx of left middle finger, init
+ ;;^UTILITY(U,$J,358.3,2103,1,4,0)
+ ;;=4^S62.603A
+ ;;^UTILITY(U,$J,358.3,2103,2)
+ ;;=^5034403
+ ;;^UTILITY(U,$J,358.3,2104,0)
+ ;;=S62.604A^^4^62^104
+ ;;^UTILITY(U,$J,358.3,2104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2104,1,3,0)
+ ;;=3^Fx of unsp phalanx of right ring finger, init
+ ;;^UTILITY(U,$J,358.3,2104,1,4,0)
+ ;;=4^S62.604A
+ ;;^UTILITY(U,$J,358.3,2104,2)
+ ;;=^5034410
+ ;;^UTILITY(U,$J,358.3,2105,0)
+ ;;=S62.605A^^4^62^99
+ ;;^UTILITY(U,$J,358.3,2105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2105,1,3,0)
+ ;;=3^Fx of unsp phalanx of left ring finger, init
+ ;;^UTILITY(U,$J,358.3,2105,1,4,0)
+ ;;=4^S62.605A
+ ;;^UTILITY(U,$J,358.3,2105,2)
+ ;;=^5034417
+ ;;^UTILITY(U,$J,358.3,2106,0)
+ ;;=S62.606A^^4^62^102
+ ;;^UTILITY(U,$J,358.3,2106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2106,1,3,0)
+ ;;=3^Fx of unsp phalanx of right little finger, init
+ ;;^UTILITY(U,$J,358.3,2106,1,4,0)
+ ;;=4^S62.606A
+ ;;^UTILITY(U,$J,358.3,2106,2)
+ ;;=^5034424
+ ;;^UTILITY(U,$J,358.3,2107,0)
+ ;;=S62.607A^^4^62^97

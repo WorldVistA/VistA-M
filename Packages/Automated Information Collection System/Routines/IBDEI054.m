@@ -1,144 +1,130 @@
-IBDEI054 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI054 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2097,1,4,0)
- ;;=4^715.32
- ;;^UTILITY(U,$J,358.3,2097,1,5,0)
- ;;=5^Loc Osteoar NOS,Upper Arm
- ;;^UTILITY(U,$J,358.3,2097,2)
- ;;=^272151
- ;;^UTILITY(U,$J,358.3,2098,0)
- ;;=724.2^^21^185^21
- ;;^UTILITY(U,$J,358.3,2098,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2098,1,4,0)
- ;;=4^724.2
- ;;^UTILITY(U,$J,358.3,2098,1,5,0)
- ;;=5^Low Back Pain
- ;;^UTILITY(U,$J,358.3,2098,2)
- ;;=^71885
- ;;^UTILITY(U,$J,358.3,2099,0)
- ;;=721.90^^21^185^32
- ;;^UTILITY(U,$J,358.3,2099,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2099,1,4,0)
- ;;=4^721.90
- ;;^UTILITY(U,$J,358.3,2099,1,5,0)
- ;;=5^Osteoarthritis,Spine
- ;;^UTILITY(U,$J,358.3,2099,2)
- ;;=^272463
- ;;^UTILITY(U,$J,358.3,2100,0)
- ;;=715.98^^21^185^28
- ;;^UTILITY(U,$J,358.3,2100,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2100,1,4,0)
- ;;=4^715.98
- ;;^UTILITY(U,$J,358.3,2100,1,5,0)
- ;;=5^Osteoarthos NOS,Oth Site
- ;;^UTILITY(U,$J,358.3,2100,2)
- ;;=^272169
- ;;^UTILITY(U,$J,358.3,2101,0)
- ;;=715.97^^21^185^24
- ;;^UTILITY(U,$J,358.3,2101,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2101,1,4,0)
- ;;=4^715.97
- ;;^UTILITY(U,$J,358.3,2101,1,5,0)
- ;;=5^Osteoarthos NOS,Ankle
- ;;^UTILITY(U,$J,358.3,2101,2)
- ;;=^272168
- ;;^UTILITY(U,$J,358.3,2102,0)
- ;;=715.93^^21^185^25
- ;;^UTILITY(U,$J,358.3,2102,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2102,1,4,0)
- ;;=4^715.93
- ;;^UTILITY(U,$J,358.3,2102,1,5,0)
- ;;=5^Osteoarthos NOS,Forearm
- ;;^UTILITY(U,$J,358.3,2102,2)
- ;;=^272164
- ;;^UTILITY(U,$J,358.3,2103,0)
- ;;=715.94^^21^185^26
- ;;^UTILITY(U,$J,358.3,2103,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2103,1,4,0)
- ;;=4^715.94
- ;;^UTILITY(U,$J,358.3,2103,1,5,0)
- ;;=5^Osteoarthos NOS,Hand
- ;;^UTILITY(U,$J,358.3,2103,2)
- ;;=^272165
- ;;^UTILITY(U,$J,358.3,2104,0)
- ;;=715.96^^21^185^27
- ;;^UTILITY(U,$J,358.3,2104,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2104,1,4,0)
- ;;=4^715.96
- ;;^UTILITY(U,$J,358.3,2104,1,5,0)
- ;;=5^Osteoarthos NOS,Lower Leg
- ;;^UTILITY(U,$J,358.3,2104,2)
- ;;=^272167
- ;;^UTILITY(U,$J,358.3,2105,0)
- ;;=715.95^^21^185^29
- ;;^UTILITY(U,$J,358.3,2105,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2105,1,4,0)
- ;;=4^715.95
- ;;^UTILITY(U,$J,358.3,2105,1,5,0)
- ;;=5^Osteoarthos NOS,Pelvis
- ;;^UTILITY(U,$J,358.3,2105,2)
- ;;=^272166
- ;;^UTILITY(U,$J,358.3,2106,0)
- ;;=715.91^^21^185^30
- ;;^UTILITY(U,$J,358.3,2106,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2106,1,4,0)
- ;;=4^715.91
- ;;^UTILITY(U,$J,358.3,2106,1,5,0)
- ;;=5^Osteoarthos NOS,Shoulder
- ;;^UTILITY(U,$J,358.3,2106,2)
- ;;=^272162
- ;;^UTILITY(U,$J,358.3,2107,0)
- ;;=715.92^^21^185^31
- ;;^UTILITY(U,$J,358.3,2107,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2107,1,4,0)
- ;;=4^715.92
- ;;^UTILITY(U,$J,358.3,2107,1,5,0)
- ;;=5^Osteoarthos NOS,Upper Arm
- ;;^UTILITY(U,$J,358.3,2107,2)
- ;;=^272163
- ;;^UTILITY(U,$J,358.3,2108,0)
- ;;=733.10^^21^185^36
- ;;^UTILITY(U,$J,358.3,2108,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2108,1,4,0)
- ;;=4^733.10
- ;;^UTILITY(U,$J,358.3,2108,1,5,0)
- ;;=5^Pathologic Fracture
- ;;^UTILITY(U,$J,358.3,2108,2)
- ;;=^295810
- ;;^UTILITY(U,$J,358.3,2109,0)
- ;;=716.10^^21^185^46
- ;;^UTILITY(U,$J,358.3,2109,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2109,1,4,0)
- ;;=4^716.10
- ;;^UTILITY(U,$J,358.3,2109,1,5,0)
- ;;=5^Traumatic Arthritis
- ;;^UTILITY(U,$J,358.3,2109,2)
- ;;=^265063
- ;;^UTILITY(U,$J,358.3,2110,0)
- ;;=781.0^^21^186^16
- ;;^UTILITY(U,$J,358.3,2110,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2110,1,4,0)
- ;;=4^781.0
- ;;^UTILITY(U,$J,358.3,2110,1,5,0)
- ;;=5^Tremor
- ;;^UTILITY(U,$J,358.3,2110,2)
- ;;=^23827
- ;;^UTILITY(U,$J,358.3,2111,0)
- ;;=333.1^^21^186^17
- ;;^UTILITY(U,$J,358.3,2111,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,1870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1870,1,3,0)
+ ;;=3^Drug/chem induced diabetes mellitus with foot ulcer
+ ;;^UTILITY(U,$J,358.3,1870,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,1870,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,1871,0)
+ ;;=E09.628^^3^56^53
+ ;;^UTILITY(U,$J,358.3,1871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1871,1,3,0)
+ ;;=3^Drug/chem diabetes w oth skin complications
+ ;;^UTILITY(U,$J,358.3,1871,1,4,0)
+ ;;=4^E09.628
+ ;;^UTILITY(U,$J,358.3,1871,2)
+ ;;=^5002578
+ ;;^UTILITY(U,$J,358.3,1872,0)
+ ;;=E09.630^^3^56^54
+ ;;^UTILITY(U,$J,358.3,1872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1872,1,3,0)
+ ;;=3^Drug/chem diabetes w periodontal disease
+ ;;^UTILITY(U,$J,358.3,1872,1,4,0)
+ ;;=4^E09.630
+ ;;^UTILITY(U,$J,358.3,1872,2)
+ ;;=^5002579
+ ;;^UTILITY(U,$J,358.3,1873,0)
+ ;;=E09.638^^3^56^52
+ ;;^UTILITY(U,$J,358.3,1873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1873,1,3,0)
+ ;;=3^Drug/chem diabetes w oth oral complications
+ ;;^UTILITY(U,$J,358.3,1873,1,4,0)
+ ;;=4^E09.638
+ ;;^UTILITY(U,$J,358.3,1873,2)
+ ;;=^5002580
+ ;;^UTILITY(U,$J,358.3,1874,0)
+ ;;=E09.65^^3^56^59
+ ;;^UTILITY(U,$J,358.3,1874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1874,1,3,0)
+ ;;=3^Drug/chem induced diabetes mellitus w hyperglycemia
+ ;;^UTILITY(U,$J,358.3,1874,1,4,0)
+ ;;=4^E09.65
+ ;;^UTILITY(U,$J,358.3,1874,2)
+ ;;=^5002583
+ ;;^UTILITY(U,$J,358.3,1875,0)
+ ;;=E09.69^^3^56^49
+ ;;^UTILITY(U,$J,358.3,1875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1875,1,3,0)
+ ;;=3^Drug/chem diabetes w oth complication
+ ;;^UTILITY(U,$J,358.3,1875,1,4,0)
+ ;;=4^E09.69
+ ;;^UTILITY(U,$J,358.3,1875,2)
+ ;;=^5002584
+ ;;^UTILITY(U,$J,358.3,1876,0)
+ ;;=E09.649^^3^56^39
+ ;;^UTILITY(U,$J,358.3,1876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1876,1,3,0)
+ ;;=3^Drug/chem diabetes w hypoglycemia w/o coma
+ ;;^UTILITY(U,$J,358.3,1876,1,4,0)
+ ;;=4^E09.649
+ ;;^UTILITY(U,$J,358.3,1876,2)
+ ;;=^5002582
+ ;;^UTILITY(U,$J,358.3,1877,0)
+ ;;=E08.8^^3^56^30
+ ;;^UTILITY(U,$J,358.3,1877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1877,1,3,0)
+ ;;=3^Diabetes due to underlying condition w unsp complications
+ ;;^UTILITY(U,$J,358.3,1877,1,4,0)
+ ;;=4^E08.8
+ ;;^UTILITY(U,$J,358.3,1877,2)
+ ;;=^5002543
+ ;;^UTILITY(U,$J,358.3,1878,0)
+ ;;=E09.8^^3^56^55
+ ;;^UTILITY(U,$J,358.3,1878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1878,1,3,0)
+ ;;=3^Drug/chem diabetes w unsp complications
+ ;;^UTILITY(U,$J,358.3,1878,1,4,0)
+ ;;=4^E09.8
+ ;;^UTILITY(U,$J,358.3,1878,2)
+ ;;=^5002585
+ ;;^UTILITY(U,$J,358.3,1879,0)
+ ;;=E88.01^^3^57^13
+ ;;^UTILITY(U,$J,358.3,1879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1879,1,3,0)
+ ;;=3^Alpha-1-antitrypsin deficiency
+ ;;^UTILITY(U,$J,358.3,1879,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,1879,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,1880,0)
+ ;;=E71.310^^3^57^70
+ ;;^UTILITY(U,$J,358.3,1880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1880,1,3,0)
+ ;;=3^Long chain/very long chain acyl CoA dehydrogenase deficiency
+ ;;^UTILITY(U,$J,358.3,1880,1,4,0)
+ ;;=4^E71.310
+ ;;^UTILITY(U,$J,358.3,1880,2)
+ ;;=^5002870
+ ;;^UTILITY(U,$J,358.3,1881,0)
+ ;;=E71.311^^3^57^76
+ ;;^UTILITY(U,$J,358.3,1881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1881,1,3,0)
+ ;;=3^Medium chain acyl CoA dehydrogenase deficiency
+ ;;^UTILITY(U,$J,358.3,1881,1,4,0)
+ ;;=4^E71.311
+ ;;^UTILITY(U,$J,358.3,1881,2)
+ ;;=^5002871
+ ;;^UTILITY(U,$J,358.3,1882,0)
+ ;;=E71.312^^3^57^99
+ ;;^UTILITY(U,$J,358.3,1882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1882,1,3,0)
+ ;;=3^Short chain acyl CoA dehydrogenase deficiency
+ ;;^UTILITY(U,$J,358.3,1882,1,4,0)
+ ;;=4^E71.312

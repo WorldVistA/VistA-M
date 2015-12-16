@@ -1,130 +1,132 @@
-IBDEI1T6 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1T6 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32287,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,32288,0)
- ;;=M79.672^^190^1949^74
- ;;^UTILITY(U,$J,358.3,32288,1,0)
+ ;;^UTILITY(U,$J,358.3,31880,1,4,0)
+ ;;=4^R27.8
+ ;;^UTILITY(U,$J,358.3,31880,2)
+ ;;=^5019311
+ ;;^UTILITY(U,$J,358.3,31881,0)
+ ;;=M62.40^^181^1973^14
+ ;;^UTILITY(U,$J,358.3,31881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32288,1,3,0)
- ;;=3^Pain in Left Foot
- ;;^UTILITY(U,$J,358.3,32288,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,32288,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,32289,0)
- ;;=B02.0^^190^1950^41
- ;;^UTILITY(U,$J,358.3,32289,1,0)
+ ;;^UTILITY(U,$J,358.3,31881,1,3,0)
+ ;;=3^Contracture of muscle, unspecified site
+ ;;^UTILITY(U,$J,358.3,31881,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,31881,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,31882,0)
+ ;;=M62.838^^181^1973^25
+ ;;^UTILITY(U,$J,358.3,31882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32289,1,3,0)
- ;;=3^Zoster Encephalitis
- ;;^UTILITY(U,$J,358.3,32289,1,4,0)
- ;;=4^B02.0
- ;;^UTILITY(U,$J,358.3,32289,2)
- ;;=^5000488
- ;;^UTILITY(U,$J,358.3,32290,0)
- ;;=B02.29^^190^1950^34
- ;;^UTILITY(U,$J,358.3,32290,1,0)
+ ;;^UTILITY(U,$J,358.3,31882,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,31882,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,31882,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,31883,0)
+ ;;=R63.5^^181^1973^2
+ ;;^UTILITY(U,$J,358.3,31883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32290,1,3,0)
- ;;=3^Postherpetic Nervous System Involvement,Other
- ;;^UTILITY(U,$J,358.3,32290,1,4,0)
- ;;=4^B02.29
- ;;^UTILITY(U,$J,358.3,32290,2)
- ;;=^5000492
- ;;^UTILITY(U,$J,358.3,32291,0)
- ;;=F03.90^^190^1950^10
- ;;^UTILITY(U,$J,358.3,32291,1,0)
+ ;;^UTILITY(U,$J,358.3,31883,1,3,0)
+ ;;=3^Abnormal weight gain
+ ;;^UTILITY(U,$J,358.3,31883,1,4,0)
+ ;;=4^R63.5
+ ;;^UTILITY(U,$J,358.3,31883,2)
+ ;;=^5019543
+ ;;^UTILITY(U,$J,358.3,31884,0)
+ ;;=Z76.0^^181^1974^3
+ ;;^UTILITY(U,$J,358.3,31884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32291,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,32291,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,32291,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,32292,0)
- ;;=F03.91^^190^1950^9
- ;;^UTILITY(U,$J,358.3,32292,1,0)
+ ;;^UTILITY(U,$J,358.3,31884,1,3,0)
+ ;;=3^Issue of repeat prescription
+ ;;^UTILITY(U,$J,358.3,31884,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,31884,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,31885,0)
+ ;;=Z04.8^^181^1974^1
+ ;;^UTILITY(U,$J,358.3,31885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32292,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,32292,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,32292,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,32293,0)
- ;;=F01.50^^190^1950^12
- ;;^UTILITY(U,$J,358.3,32293,1,0)
+ ;;^UTILITY(U,$J,358.3,31885,1,3,0)
+ ;;=3^Examination and observation for oth reasons
+ ;;^UTILITY(U,$J,358.3,31885,1,4,0)
+ ;;=4^Z04.8
+ ;;^UTILITY(U,$J,358.3,31885,2)
+ ;;=^5062665
+ ;;^UTILITY(U,$J,358.3,31886,0)
+ ;;=Z51.81^^181^1974^5
+ ;;^UTILITY(U,$J,358.3,31886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32293,1,3,0)
- ;;=3^Dementia,Vascular w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,32293,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,32293,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,32294,0)
- ;;=F10.27^^190^1950^11
- ;;^UTILITY(U,$J,358.3,32294,1,0)
+ ;;^UTILITY(U,$J,358.3,31886,1,3,0)
+ ;;=3^Therapeutic drug level monitoring
+ ;;^UTILITY(U,$J,358.3,31886,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,31886,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,31887,0)
+ ;;=Z02.81^^181^1974^4
+ ;;^UTILITY(U,$J,358.3,31887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32294,1,3,0)
- ;;=3^Dementia,Alcohol Dependence w/ Alcohol-Induced
- ;;^UTILITY(U,$J,358.3,32294,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,32294,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,32295,0)
- ;;=F06.1^^190^1950^6
- ;;^UTILITY(U,$J,358.3,32295,1,0)
+ ;;^UTILITY(U,$J,358.3,31887,1,3,0)
+ ;;=3^Paternity testing
+ ;;^UTILITY(U,$J,358.3,31887,1,4,0)
+ ;;=4^Z02.81
+ ;;^UTILITY(U,$J,358.3,31887,2)
+ ;;=^5062642
+ ;;^UTILITY(U,$J,358.3,31888,0)
+ ;;=Z02.79^^181^1974^2
+ ;;^UTILITY(U,$J,358.3,31888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32295,1,3,0)
- ;;=3^Catatonic Disorder d/t Known Physiological Condition
- ;;^UTILITY(U,$J,358.3,32295,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,32295,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,32296,0)
- ;;=F06.8^^190^1950^19
- ;;^UTILITY(U,$J,358.3,32296,1,0)
+ ;;^UTILITY(U,$J,358.3,31888,1,3,0)
+ ;;=3^Issue of other medical certificate
+ ;;^UTILITY(U,$J,358.3,31888,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,31888,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,31889,0)
+ ;;=Y36.010S^^181^1975^1
+ ;;^UTILITY(U,$J,358.3,31889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32296,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition,Other
- ;;^UTILITY(U,$J,358.3,32296,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,32296,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,32297,0)
- ;;=F06.0^^190^1950^35
- ;;^UTILITY(U,$J,358.3,32297,1,0)
+ ;;^UTILITY(U,$J,358.3,31889,1,3,0)
+ ;;=3^War op involving explosion of depth-chg, milt, sequela
+ ;;^UTILITY(U,$J,358.3,31889,1,4,0)
+ ;;=4^Y36.010S
+ ;;^UTILITY(U,$J,358.3,31889,2)
+ ;;=^5061537
+ ;;^UTILITY(U,$J,358.3,31890,0)
+ ;;=Y36.050S^^181^1975^6
+ ;;^UTILITY(U,$J,358.3,31890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32297,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
- ;;^UTILITY(U,$J,358.3,32297,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,32297,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,32298,0)
- ;;=G44.209^^190^1950^37
- ;;^UTILITY(U,$J,358.3,32298,1,0)
+ ;;^UTILITY(U,$J,358.3,31890,1,3,0)
+ ;;=3^War op w acc deton onboard marine weapons, milt, sequela
+ ;;^UTILITY(U,$J,358.3,31890,1,4,0)
+ ;;=4^Y36.050S
+ ;;^UTILITY(U,$J,358.3,31890,2)
+ ;;=^5061561
+ ;;^UTILITY(U,$J,358.3,31891,0)
+ ;;=Y36.200S^^181^1975^5
+ ;;^UTILITY(U,$J,358.3,31891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32298,1,3,0)
- ;;=3^Tension-Type Headache,Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,32298,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,32298,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,32299,0)
- ;;=F09.^^190^1950^18
- ;;^UTILITY(U,$J,358.3,32299,1,0)
+ ;;^UTILITY(U,$J,358.3,31891,1,3,0)
+ ;;=3^War op involving unsp explosion and fragments, milt, sequela
+ ;;^UTILITY(U,$J,358.3,31891,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,31891,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,31892,0)
+ ;;=Y36.230S^^181^1975^7
+ ;;^UTILITY(U,$J,358.3,31892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32299,1,3,0)
- ;;=3^Menatl Disorder d/t Known Physiological Condition,Unspec
- ;;^UTILITY(U,$J,358.3,32299,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,32299,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,32300,0)
- ;;=F07.9^^190^1950^33
- ;;^UTILITY(U,$J,358.3,32300,1,0)
+ ;;^UTILITY(U,$J,358.3,31892,1,3,0)
+ ;;=3^War op w explosn of improv explosv device, milt, sequela
+ ;;^UTILITY(U,$J,358.3,31892,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,31892,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,31893,0)
+ ;;=Y36.250S^^181^1975^2
+ ;;^UTILITY(U,$J,358.3,31893,1,0)
  ;;=^358.31IA^4^2

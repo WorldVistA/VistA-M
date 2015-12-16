@@ -1,144 +1,128 @@
-IBDEI04O ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI04O ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1865,1,4,0)
- ;;=4^719.42
- ;;^UTILITY(U,$J,358.3,1865,2)
- ;;=^272399
- ;;^UTILITY(U,$J,358.3,1866,0)
- ;;=719.43^^17^162^3
- ;;^UTILITY(U,$J,358.3,1866,1,0)
+ ;;^UTILITY(U,$J,358.3,1661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1866,1,3,0)
- ;;=3^Joint Pain,Forearm
- ;;^UTILITY(U,$J,358.3,1866,1,4,0)
- ;;=4^719.43
- ;;^UTILITY(U,$J,358.3,1866,2)
- ;;=^272400
- ;;^UTILITY(U,$J,358.3,1867,0)
- ;;=719.44^^17^162^4
- ;;^UTILITY(U,$J,358.3,1867,1,0)
+ ;;^UTILITY(U,$J,358.3,1661,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, bilateral
+ ;;^UTILITY(U,$J,358.3,1661,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,1661,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,1662,0)
+ ;;=H81.11^^3^46^15
+ ;;^UTILITY(U,$J,358.3,1662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1867,1,3,0)
- ;;=3^Joint Pain,Hand
- ;;^UTILITY(U,$J,358.3,1867,1,4,0)
- ;;=4^719.44
- ;;^UTILITY(U,$J,358.3,1867,2)
- ;;=^272401
- ;;^UTILITY(U,$J,358.3,1868,0)
- ;;=719.45^^17^162^6
- ;;^UTILITY(U,$J,358.3,1868,1,0)
+ ;;^UTILITY(U,$J,358.3,1662,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, right ear
+ ;;^UTILITY(U,$J,358.3,1662,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,1662,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,1663,0)
+ ;;=H81.12^^3^46^14
+ ;;^UTILITY(U,$J,358.3,1663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1868,1,3,0)
- ;;=3^Joint Pain,Pelvis
- ;;^UTILITY(U,$J,358.3,1868,1,4,0)
- ;;=4^719.45
- ;;^UTILITY(U,$J,358.3,1868,2)
- ;;=^272402
- ;;^UTILITY(U,$J,358.3,1869,0)
- ;;=719.46^^17^162^5
- ;;^UTILITY(U,$J,358.3,1869,1,0)
+ ;;^UTILITY(U,$J,358.3,1663,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, left ear
+ ;;^UTILITY(U,$J,358.3,1663,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,1663,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,1664,0)
+ ;;=I63.50^^3^46^16
+ ;;^UTILITY(U,$J,358.3,1664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1869,1,3,0)
- ;;=3^Joint Pain,Knee
- ;;^UTILITY(U,$J,358.3,1869,1,4,0)
- ;;=4^719.46
- ;;^UTILITY(U,$J,358.3,1869,2)
- ;;=^272403
- ;;^UTILITY(U,$J,358.3,1870,0)
- ;;=719.47^^17^162^2
- ;;^UTILITY(U,$J,358.3,1870,1,0)
+ ;;^UTILITY(U,$J,358.3,1664,1,3,0)
+ ;;=3^Cereb infrc due to unsp occls or stenos of unsp cereb artery
+ ;;^UTILITY(U,$J,358.3,1664,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,1664,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,1665,0)
+ ;;=G45.9^^3^46^63
+ ;;^UTILITY(U,$J,358.3,1665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1870,1,3,0)
- ;;=3^Joint Pain,Foot/Ankle
- ;;^UTILITY(U,$J,358.3,1870,1,4,0)
- ;;=4^719.47
- ;;^UTILITY(U,$J,358.3,1870,2)
- ;;=^272404
- ;;^UTILITY(U,$J,358.3,1871,0)
- ;;=719.51^^17^162^18
- ;;^UTILITY(U,$J,358.3,1871,1,0)
+ ;;^UTILITY(U,$J,358.3,1665,1,3,0)
+ ;;=3^Transient cerebral ischemic attack, unspecified
+ ;;^UTILITY(U,$J,358.3,1665,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,1665,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,1666,0)
+ ;;=I67.9^^3^46^17
+ ;;^UTILITY(U,$J,358.3,1666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1871,1,3,0)
- ;;=3^Stiffness,Shoulder Joint
- ;;^UTILITY(U,$J,358.3,1871,1,4,0)
- ;;=4^719.51
- ;;^UTILITY(U,$J,358.3,1871,2)
- ;;=^272407
- ;;^UTILITY(U,$J,358.3,1872,0)
- ;;=719.52^^17^162^19
- ;;^UTILITY(U,$J,358.3,1872,1,0)
+ ;;^UTILITY(U,$J,358.3,1666,1,3,0)
+ ;;=3^Cerebrovascular disease, unspecified
+ ;;^UTILITY(U,$J,358.3,1666,1,4,0)
+ ;;=4^I67.9
+ ;;^UTILITY(U,$J,358.3,1666,2)
+ ;;=^5007389
+ ;;^UTILITY(U,$J,358.3,1667,0)
+ ;;=I69.91^^3^46^18
+ ;;^UTILITY(U,$J,358.3,1667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1872,1,3,0)
- ;;=3^Stiffness,Upper Arm Joint
- ;;^UTILITY(U,$J,358.3,1872,1,4,0)
- ;;=4^719.52
- ;;^UTILITY(U,$J,358.3,1872,2)
- ;;=^272408
- ;;^UTILITY(U,$J,358.3,1873,0)
- ;;=719.53^^17^162^13
- ;;^UTILITY(U,$J,358.3,1873,1,0)
+ ;;^UTILITY(U,$J,358.3,1667,1,3,0)
+ ;;=3^Cognitive deficits following unsp cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,1667,1,4,0)
+ ;;=4^I69.91
+ ;;^UTILITY(U,$J,358.3,1667,2)
+ ;;=^5007552
+ ;;^UTILITY(U,$J,358.3,1668,0)
+ ;;=I69.920^^3^46^9
+ ;;^UTILITY(U,$J,358.3,1668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1873,1,3,0)
- ;;=3^Stiffness,Forearm Joint
- ;;^UTILITY(U,$J,358.3,1873,1,4,0)
- ;;=4^719.53
- ;;^UTILITY(U,$J,358.3,1873,2)
- ;;=^272409
- ;;^UTILITY(U,$J,358.3,1874,0)
- ;;=719.54^^17^162^14
- ;;^UTILITY(U,$J,358.3,1874,1,0)
+ ;;^UTILITY(U,$J,358.3,1668,1,3,0)
+ ;;=3^Aphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,1668,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,1668,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,1669,0)
+ ;;=I69.921^^3^46^27
+ ;;^UTILITY(U,$J,358.3,1669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1874,1,3,0)
- ;;=3^Stiffness,Hand Joint
- ;;^UTILITY(U,$J,358.3,1874,1,4,0)
- ;;=4^719.54
- ;;^UTILITY(U,$J,358.3,1874,2)
- ;;=^272410
- ;;^UTILITY(U,$J,358.3,1875,0)
- ;;=719.55^^17^162^17
- ;;^UTILITY(U,$J,358.3,1875,1,0)
+ ;;^UTILITY(U,$J,358.3,1669,1,3,0)
+ ;;=3^Dysphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,1669,1,4,0)
+ ;;=4^I69.921
+ ;;^UTILITY(U,$J,358.3,1669,2)
+ ;;=^5007554
+ ;;^UTILITY(U,$J,358.3,1670,0)
+ ;;=I69.951^^3^46^33
+ ;;^UTILITY(U,$J,358.3,1670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1875,1,3,0)
- ;;=3^Stiffness,Pelvis Joint
- ;;^UTILITY(U,$J,358.3,1875,1,4,0)
- ;;=4^719.55
- ;;^UTILITY(U,$J,358.3,1875,2)
- ;;=^272411
- ;;^UTILITY(U,$J,358.3,1876,0)
- ;;=719.56^^17^162^15
- ;;^UTILITY(U,$J,358.3,1876,1,0)
+ ;;^UTILITY(U,$J,358.3,1670,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,1670,1,4,0)
+ ;;=4^I69.951
+ ;;^UTILITY(U,$J,358.3,1670,2)
+ ;;=^5007561
+ ;;^UTILITY(U,$J,358.3,1671,0)
+ ;;=I69.952^^3^46^34
+ ;;^UTILITY(U,$J,358.3,1671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1876,1,3,0)
- ;;=3^Stiffness,Knee Joint
- ;;^UTILITY(U,$J,358.3,1876,1,4,0)
- ;;=4^719.56
- ;;^UTILITY(U,$J,358.3,1876,2)
- ;;=^272412
- ;;^UTILITY(U,$J,358.3,1877,0)
- ;;=719.57^^17^162^12
- ;;^UTILITY(U,$J,358.3,1877,1,0)
+ ;;^UTILITY(U,$J,358.3,1671,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff left dominant side
+ ;;^UTILITY(U,$J,358.3,1671,1,4,0)
+ ;;=4^I69.952
+ ;;^UTILITY(U,$J,358.3,1671,2)
+ ;;=^5133586
+ ;;^UTILITY(U,$J,358.3,1672,0)
+ ;;=I69.953^^3^46^35
+ ;;^UTILITY(U,$J,358.3,1672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1877,1,3,0)
- ;;=3^Stiffness,Ankle/Foot Joint
- ;;^UTILITY(U,$J,358.3,1877,1,4,0)
- ;;=4^719.57
- ;;^UTILITY(U,$J,358.3,1877,2)
- ;;=^272413
- ;;^UTILITY(U,$J,358.3,1878,0)
- ;;=720.0^^17^162^1
- ;;^UTILITY(U,$J,358.3,1878,1,0)
+ ;;^UTILITY(U,$J,358.3,1672,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff right nondom side
+ ;;^UTILITY(U,$J,358.3,1672,1,4,0)
+ ;;=4^I69.953
+ ;;^UTILITY(U,$J,358.3,1672,2)
+ ;;=^5007562
+ ;;^UTILITY(U,$J,358.3,1673,0)
+ ;;=I69.954^^3^46^36
+ ;;^UTILITY(U,$J,358.3,1673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1878,1,3,0)
- ;;=3^Ankylosing Spondylitis
- ;;^UTILITY(U,$J,358.3,1878,1,4,0)
- ;;=4^720.0
- ;;^UTILITY(U,$J,358.3,1878,2)
- ;;=^113484
- ;;^UTILITY(U,$J,358.3,1879,0)
- ;;=720.2^^17^162^10
- ;;^UTILITY(U,$J,358.3,1879,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1879,1,3,0)
- ;;=3^Sacroilitis
+ ;;^UTILITY(U,$J,358.3,1673,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff left nondom side

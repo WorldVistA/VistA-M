@@ -1,5 +1,5 @@
-ECXPRO1 ;ALB/GTS - Prosthetics Extract for DSS (Continued) ;9/20/11  11:49
- ;;3.0;DSS EXTRACTS;**9,11,13,15,21,24,33,37,39,100,105,112,132**;Dec 22, 1997;Build 18
+ECXPRO1 ;ALB/GTS - Prosthetics Extract for DSS (Continued) ;3/27/15  09:57
+ ;;3.0;DSS EXTRACTS;**9,11,13,15,21,24,33,37,39,100,105,112,132,154**;Dec 22, 1997;Build 13
  ;
 NTEG(ECXDFN,ECXLNE,ECXPIEN,ECXN0,ECXNLB,ECINST,ECXFORM) ;** Check for required fields
  ;   Input
@@ -136,7 +136,7 @@ PROSINFO(ECXDA,ECXLB,ECX0,ECXFORM) ;*Get Prosthetics Information
  .S ECXCTAMT=$P(ECXLB,U,9),ECXLLC=$P(ECXLB,U,7),ECXLMC=$P(ECXLB,U,8)
  ;
  ;- If Stock Issue or Inventory Issue, Cost of Transaction=0
- I $P(ECXFORM,U,2)=11!($P(ECXFORM,U,2)=12) S ECXCTAMT=0
+ ;I $P(ECXFORM,U,2)=11!($P(ECXFORM,U,2)=12) S ECXCTAMT=0 ;154 Commented out line to allow costs to come through for inventory or stock issue
  S:ECXCTAMT="" ECXCTAMT=0 S:ECXCTAMT>999999 ECXCTAMT=999999
  S:ECXLLC="" ECXLLC=0 S:ECXLLC>999999 ECXLLC=999999
  S:ECXLMC="" ECXLMC=0 S:ECXLMC>999999 ECXLMC=999999

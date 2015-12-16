@@ -1,144 +1,126 @@
-IBDEI05X ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05X ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2517,2)
- ;;=^334077
- ;;^UTILITY(U,$J,358.3,2518,0)
- ;;=338.4^^21^199^34
- ;;^UTILITY(U,$J,358.3,2518,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2518,1,4,0)
- ;;=4^338.4
- ;;^UTILITY(U,$J,358.3,2518,1,5,0)
- ;;=5^CHRONIC PAIN SYNDROME
- ;;^UTILITY(U,$J,358.3,2518,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,2519,0)
- ;;=585.1^^21^199^29
- ;;^UTILITY(U,$J,358.3,2519,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2519,1,4,0)
- ;;=4^585.1
- ;;^UTILITY(U,$J,358.3,2519,1,5,0)
- ;;=5^CHRO KIDNEY DIS STAGE I
- ;;^UTILITY(U,$J,358.3,2519,2)
- ;;=^332807
- ;;^UTILITY(U,$J,358.3,2520,0)
- ;;=585.2^^21^199^30
- ;;^UTILITY(U,$J,358.3,2520,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2520,1,4,0)
- ;;=4^585.2
- ;;^UTILITY(U,$J,358.3,2520,1,5,0)
- ;;=5^CHRO KIDNEY DIS STAGE II
- ;;^UTILITY(U,$J,358.3,2520,2)
- ;;=^332808
- ;;^UTILITY(U,$J,358.3,2521,0)
- ;;=585.3^^21^199^27
- ;;^UTILITY(U,$J,358.3,2521,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2521,1,4,0)
- ;;=4^585.3
- ;;^UTILITY(U,$J,358.3,2521,1,5,0)
- ;;=5^CHR KIDNEY DIS STAGE III
- ;;^UTILITY(U,$J,358.3,2521,2)
- ;;=^332809
- ;;^UTILITY(U,$J,358.3,2522,0)
- ;;=585.4^^21^199^28
- ;;^UTILITY(U,$J,358.3,2522,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2522,1,4,0)
- ;;=4^585.4
- ;;^UTILITY(U,$J,358.3,2522,1,5,0)
- ;;=5^CHR KIDNEY DIS STAGE IV
- ;;^UTILITY(U,$J,358.3,2522,2)
- ;;=^332810
- ;;^UTILITY(U,$J,358.3,2523,0)
- ;;=585.5^^21^199^31
- ;;^UTILITY(U,$J,358.3,2523,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2523,1,4,0)
- ;;=4^585.5
- ;;^UTILITY(U,$J,358.3,2523,1,5,0)
- ;;=5^CHRON KIDNEY DIS STAGE V
- ;;^UTILITY(U,$J,358.3,2523,2)
- ;;=^332811
- ;;^UTILITY(U,$J,358.3,2524,0)
- ;;=585.6^^21^199^52
- ;;^UTILITY(U,$J,358.3,2524,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2524,1,4,0)
- ;;=4^585.6
- ;;^UTILITY(U,$J,358.3,2524,1,5,0)
- ;;=5^END STAGE RENAL DISEASE
- ;;^UTILITY(U,$J,358.3,2524,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,2525,0)
- ;;=585.9^^21^199^32
- ;;^UTILITY(U,$J,358.3,2525,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2525,1,4,0)
- ;;=4^585.9
- ;;^UTILITY(U,$J,358.3,2525,1,5,0)
- ;;=5^CHRONIC KIDNEY DIS NOS
- ;;^UTILITY(U,$J,358.3,2525,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,2526,0)
- ;;=599.70^^21^199^60
- ;;^UTILITY(U,$J,358.3,2526,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2526,1,4,0)
- ;;=4^599.70
- ;;^UTILITY(U,$J,358.3,2526,1,5,0)
- ;;=5^HEMATURIA NOS
- ;;^UTILITY(U,$J,358.3,2526,2)
- ;;=^336751
- ;;^UTILITY(U,$J,358.3,2527,0)
- ;;=784.59^^21^199^48
- ;;^UTILITY(U,$J,358.3,2527,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2527,1,4,0)
- ;;=4^784.59
- ;;^UTILITY(U,$J,358.3,2527,1,5,0)
- ;;=5^DYSPHASIA
- ;;^UTILITY(U,$J,358.3,2527,2)
- ;;=^338287
- ;;^UTILITY(U,$J,358.3,2528,0)
- ;;=787.60^^21^199^70
- ;;^UTILITY(U,$J,358.3,2528,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2528,1,4,0)
- ;;=4^787.60
- ;;^UTILITY(U,$J,358.3,2528,1,5,0)
- ;;=5^INCONTINENCE OF FECES
- ;;^UTILITY(U,$J,358.3,2528,2)
- ;;=^339670
- ;;^UTILITY(U,$J,358.3,2529,0)
- ;;=309.0^^21^200^3
- ;;^UTILITY(U,$J,358.3,2529,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2529,1,4,0)
- ;;=4^309.0
- ;;^UTILITY(U,$J,358.3,2529,1,5,0)
- ;;=5^ADJUSTMENT DIS W/ DEPRESSION
- ;;^UTILITY(U,$J,358.3,2530,0)
- ;;=309.24^^21^200^2
- ;;^UTILITY(U,$J,358.3,2530,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2530,1,4,0)
- ;;=4^309.24
- ;;^UTILITY(U,$J,358.3,2530,1,5,0)
- ;;=5^ADJUSTMENT DIS W/ ANXIETY
- ;;^UTILITY(U,$J,358.3,2531,0)
- ;;=309.28^^21^200^1
- ;;^UTILITY(U,$J,358.3,2531,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2531,1,4,0)
- ;;=4^309.28
- ;;^UTILITY(U,$J,358.3,2531,1,5,0)
- ;;=5^ADJUST DIS W/ANXIETY & DEPRESS
- ;;^UTILITY(U,$J,358.3,2532,0)
- ;;=309.9^^21^200^4
- ;;^UTILITY(U,$J,358.3,2532,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,2242,1,3,0)
+ ;;=3^Open wnd of left mid finger w/o damage to nail unspec, ini
+ ;;^UTILITY(U,$J,358.3,2242,1,4,0)
+ ;;=4^S61.203A
+ ;;^UTILITY(U,$J,358.3,2242,2)
+ ;;=^5032750
+ ;;^UTILITY(U,$J,358.3,2243,0)
+ ;;=S61.204A^^4^62^173
+ ;;^UTILITY(U,$J,358.3,2243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2243,1,3,0)
+ ;;=3^Open wnd of right rng fngr w/o damage to nail unspec, init
+ ;;^UTILITY(U,$J,358.3,2243,1,4,0)
+ ;;=4^S61.204A
+ ;;^UTILITY(U,$J,358.3,2243,2)
+ ;;=^5032753
+ ;;^UTILITY(U,$J,358.3,2244,0)
+ ;;=S61.205A^^4^62^163
+ ;;^UTILITY(U,$J,358.3,2244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2244,1,3,0)
+ ;;=3^Open wnd of left ring finger w/o damage to nail unspec,
+ ;;^UTILITY(U,$J,358.3,2244,1,4,0)
+ ;;=4^S61.205A
+ ;;^UTILITY(U,$J,358.3,2244,2)
+ ;;=^5032756
+ ;;^UTILITY(U,$J,358.3,2245,0)
+ ;;=S61.206A^^4^62^170
+ ;;^UTILITY(U,$J,358.3,2245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2245,1,3,0)
+ ;;=3^Open wnd of right little finger w/o damage to nail unspec,
+ ;;^UTILITY(U,$J,358.3,2245,1,4,0)
+ ;;=4^S61.206A
+ ;;^UTILITY(U,$J,358.3,2245,2)
+ ;;=^5032759
+ ;;^UTILITY(U,$J,358.3,2246,0)
+ ;;=S61.207A^^4^62^160
+ ;;^UTILITY(U,$J,358.3,2246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2246,1,3,0)
+ ;;=3^Open wnd of left little finger w/o damage to nail unspec,init enctr
+ ;;^UTILITY(U,$J,358.3,2246,1,4,0)
+ ;;=4^S61.207A
+ ;;^UTILITY(U,$J,358.3,2246,2)
+ ;;=^5032762
+ ;;^UTILITY(U,$J,358.3,2247,0)
+ ;;=S91.301A^^4^62^166
+ ;;^UTILITY(U,$J,358.3,2247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2247,1,3,0)
+ ;;=3^Open wnd of right foot unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,2247,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,2247,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,2248,0)
+ ;;=S91.302A^^4^62^156
+ ;;^UTILITY(U,$J,358.3,2248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2248,1,3,0)
+ ;;=3^Open wnd of left foot unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,2248,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,2248,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,2249,0)
+ ;;=S51.801A^^4^62^167
+ ;;^UTILITY(U,$J,358.3,2249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2249,1,3,0)
+ ;;=3^Open wnd of right forearm unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,2249,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,2249,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,2250,0)
+ ;;=S51.802A^^4^62^157
+ ;;^UTILITY(U,$J,358.3,2250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2250,1,3,0)
+ ;;=3^Open wnd of left forearm unspec, initial encount
+ ;;^UTILITY(U,$J,358.3,2250,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,2250,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,2251,0)
+ ;;=S61.401A^^4^62^168
+ ;;^UTILITY(U,$J,358.3,2251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2251,1,3,0)
+ ;;=3^Open wnd of right hand unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,2251,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,2251,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,2252,0)
+ ;;=S61.402A^^4^62^158
+ ;;^UTILITY(U,$J,358.3,2252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2252,1,3,0)
+ ;;=3^Open wnd of left hand unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,2252,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,2252,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,2253,0)
+ ;;=S81.801A^^4^62^171
+ ;;^UTILITY(U,$J,358.3,2253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2253,1,3,0)
+ ;;=3^Open wnd of right lower leg unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,2253,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,2253,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,2254,0)
+ ;;=S81.802A^^4^62^161
+ ;;^UTILITY(U,$J,358.3,2254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2254,1,3,0)
+ ;;=3^Open wnd of left lower leg unspec, initial encount

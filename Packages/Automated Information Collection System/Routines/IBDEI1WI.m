@@ -1,130 +1,138 @@
-IBDEI1WI ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WI ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33790,1,3,0)
- ;;=3^Chronic osteomyelitis, rt ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,33790,1,4,0)
- ;;=4^M86.671
- ;;^UTILITY(U,$J,358.3,33790,2)
- ;;=^5014641
- ;;^UTILITY(U,$J,358.3,33791,0)
- ;;=M86.672^^191^1975^9
- ;;^UTILITY(U,$J,358.3,33791,1,0)
+ ;;^UTILITY(U,$J,358.3,33431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33791,1,3,0)
- ;;=3^Chronic osteomyelitis, lft ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,33791,1,4,0)
- ;;=4^M86.672
- ;;^UTILITY(U,$J,358.3,33791,2)
- ;;=^5014642
- ;;^UTILITY(U,$J,358.3,33792,0)
- ;;=M86.8X7^^191^1975^21
- ;;^UTILITY(U,$J,358.3,33792,1,0)
+ ;;^UTILITY(U,$J,358.3,33431,1,3,0)
+ ;;=3^Full Incontinence of Feces
+ ;;^UTILITY(U,$J,358.3,33431,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,33431,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,33432,0)
+ ;;=R17.^^182^2004^93
+ ;;^UTILITY(U,$J,358.3,33432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33792,1,3,0)
- ;;=3^Osteomyelitis, ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,33792,1,4,0)
- ;;=4^M86.8X7
- ;;^UTILITY(U,$J,358.3,33792,2)
- ;;=^5014653
- ;;^UTILITY(U,$J,358.3,33793,0)
- ;;=M86.371^^191^1975^7
- ;;^UTILITY(U,$J,358.3,33793,1,0)
+ ;;^UTILITY(U,$J,358.3,33432,1,3,0)
+ ;;=3^Jaundice,Unspec
+ ;;^UTILITY(U,$J,358.3,33432,1,4,0)
+ ;;=4^R17.
+ ;;^UTILITY(U,$J,358.3,33432,2)
+ ;;=^5019251
+ ;;^UTILITY(U,$J,358.3,33433,0)
+ ;;=R19.30^^182^2004^2
+ ;;^UTILITY(U,$J,358.3,33433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33793,1,3,0)
- ;;=3^Chronic multifoc osteomyel, rt ankl & ft
- ;;^UTILITY(U,$J,358.3,33793,1,4,0)
- ;;=4^M86.371
- ;;^UTILITY(U,$J,358.3,33793,2)
- ;;=^5014578
- ;;^UTILITY(U,$J,358.3,33794,0)
- ;;=M86.372^^191^1975^8
- ;;^UTILITY(U,$J,358.3,33794,1,0)
+ ;;^UTILITY(U,$J,358.3,33433,1,3,0)
+ ;;=3^Abdominal Rigidity,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33433,1,4,0)
+ ;;=4^R19.30
+ ;;^UTILITY(U,$J,358.3,33433,2)
+ ;;=^5019266
+ ;;^UTILITY(U,$J,358.3,33434,0)
+ ;;=R19.4^^182^2004^43
+ ;;^UTILITY(U,$J,358.3,33434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33794,1,3,0)
- ;;=3^Chronic multifoc osteomyel, rt ankl & ft
- ;;^UTILITY(U,$J,358.3,33794,1,4,0)
- ;;=4^M86.372
- ;;^UTILITY(U,$J,358.3,33794,2)
- ;;=^5014579
- ;;^UTILITY(U,$J,358.3,33795,0)
- ;;=M92.71^^191^1975^11
- ;;^UTILITY(U,$J,358.3,33795,1,0)
+ ;;^UTILITY(U,$J,358.3,33434,1,3,0)
+ ;;=3^Bowel Habit Changes
+ ;;^UTILITY(U,$J,358.3,33434,1,4,0)
+ ;;=4^R19.4
+ ;;^UTILITY(U,$J,358.3,33434,2)
+ ;;=^5019273
+ ;;^UTILITY(U,$J,358.3,33435,0)
+ ;;=R19.8^^182^2004^56
+ ;;^UTILITY(U,$J,358.3,33435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33795,1,3,0)
- ;;=3^Juvenile osteochondrosis of metatarsus, rt ft
- ;;^UTILITY(U,$J,358.3,33795,1,4,0)
- ;;=4^M92.71
- ;;^UTILITY(U,$J,358.3,33795,2)
- ;;=^5015239
- ;;^UTILITY(U,$J,358.3,33796,0)
- ;;=M92.72^^191^1975^12
- ;;^UTILITY(U,$J,358.3,33796,1,0)
+ ;;^UTILITY(U,$J,358.3,33435,1,3,0)
+ ;;=3^Digestive System/Abdomen Symptoms NEC
+ ;;^UTILITY(U,$J,358.3,33435,1,4,0)
+ ;;=4^R19.8
+ ;;^UTILITY(U,$J,358.3,33435,2)
+ ;;=^5019277
+ ;;^UTILITY(U,$J,358.3,33436,0)
+ ;;=R20.0^^182^2004^33
+ ;;^UTILITY(U,$J,358.3,33436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33796,1,3,0)
- ;;=3^Juvenile osteochondrosis of metatarsus, lft ft
- ;;^UTILITY(U,$J,358.3,33796,1,4,0)
- ;;=4^M92.72
- ;;^UTILITY(U,$J,358.3,33796,2)
- ;;=^5015240
- ;;^UTILITY(U,$J,358.3,33797,0)
- ;;=M92.62^^191^1975^13
- ;;^UTILITY(U,$J,358.3,33797,1,0)
+ ;;^UTILITY(U,$J,358.3,33436,1,3,0)
+ ;;=3^Anesthesia of Skin
+ ;;^UTILITY(U,$J,358.3,33436,1,4,0)
+ ;;=4^R20.0
+ ;;^UTILITY(U,$J,358.3,33436,2)
+ ;;=^5019278
+ ;;^UTILITY(U,$J,358.3,33437,0)
+ ;;=R20.1^^182^2004^83
+ ;;^UTILITY(U,$J,358.3,33437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33797,1,3,0)
- ;;=3^Juvenile osteochondrosis of tarsus, lft ankl
- ;;^UTILITY(U,$J,358.3,33797,1,4,0)
- ;;=4^M92.62
- ;;^UTILITY(U,$J,358.3,33797,2)
- ;;=^5015237
- ;;^UTILITY(U,$J,358.3,33798,0)
- ;;=M92.61^^191^1975^14
- ;;^UTILITY(U,$J,358.3,33798,1,0)
+ ;;^UTILITY(U,$J,358.3,33437,1,3,0)
+ ;;=3^Hypoesthesia of Skin
+ ;;^UTILITY(U,$J,358.3,33437,1,4,0)
+ ;;=4^R20.1
+ ;;^UTILITY(U,$J,358.3,33437,2)
+ ;;=^5019279
+ ;;^UTILITY(U,$J,358.3,33438,0)
+ ;;=R20.2^^182^2004^125
+ ;;^UTILITY(U,$J,358.3,33438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33798,1,3,0)
- ;;=3^Juvenile osteochondrosis of tarsus, rt ankle
- ;;^UTILITY(U,$J,358.3,33798,1,4,0)
- ;;=4^M92.61
- ;;^UTILITY(U,$J,358.3,33798,2)
- ;;=^5015236
- ;;^UTILITY(U,$J,358.3,33799,0)
- ;;=Z47.89^^191^1975^16
- ;;^UTILITY(U,$J,358.3,33799,1,0)
+ ;;^UTILITY(U,$J,358.3,33438,1,3,0)
+ ;;=3^Paresthesia of Skin
+ ;;^UTILITY(U,$J,358.3,33438,1,4,0)
+ ;;=4^R20.2
+ ;;^UTILITY(U,$J,358.3,33438,2)
+ ;;=^5019280
+ ;;^UTILITY(U,$J,358.3,33439,0)
+ ;;=R20.3^^182^2004^79
+ ;;^UTILITY(U,$J,358.3,33439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33799,1,3,0)
- ;;=3^Orthopedic aftercare, oth
- ;;^UTILITY(U,$J,358.3,33799,1,4,0)
- ;;=4^Z47.89
- ;;^UTILITY(U,$J,358.3,33799,2)
- ;;=^5063032
- ;;^UTILITY(U,$J,358.3,33800,0)
- ;;=M19.072^^191^1975^18
- ;;^UTILITY(U,$J,358.3,33800,1,0)
+ ;;^UTILITY(U,$J,358.3,33439,1,3,0)
+ ;;=3^Hyperesthesia
+ ;;^UTILITY(U,$J,358.3,33439,1,4,0)
+ ;;=4^R20.3
+ ;;^UTILITY(U,$J,358.3,33439,2)
+ ;;=^60011
+ ;;^UTILITY(U,$J,358.3,33440,0)
+ ;;=R21.^^182^2004^139
+ ;;^UTILITY(U,$J,358.3,33440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33800,1,3,0)
- ;;=3^Osteoarthritis,Left Ankle/Foot,Primary
- ;;^UTILITY(U,$J,358.3,33800,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,33800,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,33801,0)
- ;;=M19.071^^191^1975^19
- ;;^UTILITY(U,$J,358.3,33801,1,0)
+ ;;^UTILITY(U,$J,358.3,33440,1,3,0)
+ ;;=3^Rash
+ ;;^UTILITY(U,$J,358.3,33440,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,33440,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,33441,0)
+ ;;=R22.0^^182^2004^99
+ ;;^UTILITY(U,$J,358.3,33441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33801,1,3,0)
- ;;=3^Osteoarthritis,Right Ankle/Foot,Primary
- ;;^UTILITY(U,$J,358.3,33801,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,33801,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,33802,0)
- ;;=M19.90^^191^1975^20
- ;;^UTILITY(U,$J,358.3,33802,1,0)
+ ;;^UTILITY(U,$J,358.3,33441,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Head
+ ;;^UTILITY(U,$J,358.3,33441,1,4,0)
+ ;;=4^R22.0
+ ;;^UTILITY(U,$J,358.3,33441,2)
+ ;;=^5019284
+ ;;^UTILITY(U,$J,358.3,33442,0)
+ ;;=R22.1^^182^2004^102
+ ;;^UTILITY(U,$J,358.3,33442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33802,1,3,0)
- ;;=3^Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,33802,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,33802,2)
- ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,33442,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Neck
+ ;;^UTILITY(U,$J,358.3,33442,1,4,0)
+ ;;=4^R22.1
+ ;;^UTILITY(U,$J,358.3,33442,2)
+ ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,33443,0)
+ ;;=R22.2^^182^2004^105
+ ;;^UTILITY(U,$J,358.3,33443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33443,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,33443,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,33443,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,33444,0)
+ ;;=R22.31^^182^2004^104
+ ;;^UTILITY(U,$J,358.3,33444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33444,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb

@@ -1,5 +1,5 @@
-PSJDDUT ;BIR/LDT-INPATIENT MEDICATIONS DD UTILITY ;21 AUG 97  7:55 AM
- ;;5.0; INPATIENT MEDICATIONS ;**40,44,50,83,116,111,113**;16 DEC 97;Build 63
+PSJDDUT ;BIR/LDT-INPATIENT MEDICATIONS DD UTILITY ; 3/23/11 7:55am
+ ;;5.0;INPATIENT MEDICATIONS;**40,44,50,83,116,111,113,194**;16 DEC 97;Build 42
  ;
  ; Reference to ^PS(51 is supported by DBIA# 2176.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
@@ -45,7 +45,8 @@ UNPD ;Called from Non-Verified Orders File (53.1), Units Per Dose field 13
 SCH ;Called from Non-Verified Orders File (53.1), Schedule field 26
  ;(Replaces EN^PSGS0)
  ;/I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>2)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
- I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
+ ;*194 Allow multi-word schedules
+ I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
  I X?.E1L.E S X=$$ENLU^PSGMI(X) I '$D(PSGOES) D EN^DDIOL("  ("_X_")","","?0")
  I X["Q0" K X Q
  ;

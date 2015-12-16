@@ -1,132 +1,130 @@
-IBDEI1O0 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1O0 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29920,2)
- ;;=^5007643
- ;;^UTILITY(U,$J,358.3,29921,0)
- ;;=R13.19^^189^1904^51
- ;;^UTILITY(U,$J,358.3,29921,1,0)
+ ;;^UTILITY(U,$J,358.3,29569,0)
+ ;;=G97.51^^176^1890^12
+ ;;^UTILITY(U,$J,358.3,29569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29921,1,3,0)
- ;;=3^Dysphagia NEC
- ;;^UTILITY(U,$J,358.3,29921,1,4,0)
- ;;=4^R13.19
- ;;^UTILITY(U,$J,358.3,29921,2)
- ;;=^335280
- ;;^UTILITY(U,$J,358.3,29922,0)
- ;;=R15.9^^189^1904^58
- ;;^UTILITY(U,$J,358.3,29922,1,0)
+ ;;^UTILITY(U,$J,358.3,29569,1,3,0)
+ ;;=3^Postproc hemor/hemtom of a nrv sys org fol a nrv sys proc
+ ;;^UTILITY(U,$J,358.3,29569,1,4,0)
+ ;;=4^G97.51
+ ;;^UTILITY(U,$J,358.3,29569,2)
+ ;;=^5004209
+ ;;^UTILITY(U,$J,358.3,29570,0)
+ ;;=G97.52^^176^1890^13
+ ;;^UTILITY(U,$J,358.3,29570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29922,1,3,0)
- ;;=3^Full Incontinence of Feces
- ;;^UTILITY(U,$J,358.3,29922,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,29922,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,29923,0)
- ;;=B25.2^^189^1904^36
- ;;^UTILITY(U,$J,358.3,29923,1,0)
+ ;;^UTILITY(U,$J,358.3,29570,1,3,0)
+ ;;=3^Postproc hemor/hemtom of a nrv sys org fol oth procedure
+ ;;^UTILITY(U,$J,358.3,29570,1,4,0)
+ ;;=4^G97.52
+ ;;^UTILITY(U,$J,358.3,29570,2)
+ ;;=^5004210
+ ;;^UTILITY(U,$J,358.3,29571,0)
+ ;;=G97.81^^176^1890^8
+ ;;^UTILITY(U,$J,358.3,29571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29923,1,3,0)
- ;;=3^Cytomegaloviral Pancreatitis
- ;;^UTILITY(U,$J,358.3,29923,1,4,0)
- ;;=4^B25.2
- ;;^UTILITY(U,$J,358.3,29923,2)
- ;;=^5000558
- ;;^UTILITY(U,$J,358.3,29924,0)
- ;;=D50.0^^189^1904^70
- ;;^UTILITY(U,$J,358.3,29924,1,0)
+ ;;^UTILITY(U,$J,358.3,29571,1,3,0)
+ ;;=3^Intraoperative complications of nervous system NEC
+ ;;^UTILITY(U,$J,358.3,29571,1,4,0)
+ ;;=4^G97.81
+ ;;^UTILITY(U,$J,358.3,29571,2)
+ ;;=^5004211
+ ;;^UTILITY(U,$J,358.3,29572,0)
+ ;;=G97.82^^176^1890^11
+ ;;^UTILITY(U,$J,358.3,29572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29924,1,3,0)
- ;;=3^Iron Deficiency Anemia d/t Blood Loss
- ;;^UTILITY(U,$J,358.3,29924,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,29924,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,29925,0)
- ;;=D50.9^^189^1904^71
- ;;^UTILITY(U,$J,358.3,29925,1,0)
+ ;;^UTILITY(U,$J,358.3,29572,1,3,0)
+ ;;=3^Postproc complications and disorders of nervous sys NEC
+ ;;^UTILITY(U,$J,358.3,29572,1,4,0)
+ ;;=4^G97.82
+ ;;^UTILITY(U,$J,358.3,29572,2)
+ ;;=^5004212
+ ;;^UTILITY(U,$J,358.3,29573,0)
+ ;;=G71.9^^176^1890^14
+ ;;^UTILITY(U,$J,358.3,29573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29925,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,29925,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,29925,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,29926,0)
- ;;=D62.^^189^1904^7
- ;;^UTILITY(U,$J,358.3,29926,1,0)
+ ;;^UTILITY(U,$J,358.3,29573,1,3,0)
+ ;;=3^Primary disorder of muscle, unspecified
+ ;;^UTILITY(U,$J,358.3,29573,1,4,0)
+ ;;=4^G71.9
+ ;;^UTILITY(U,$J,358.3,29573,2)
+ ;;=^5004094
+ ;;^UTILITY(U,$J,358.3,29574,0)
+ ;;=G83.5^^176^1890^9
+ ;;^UTILITY(U,$J,358.3,29574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29926,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,29926,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,29926,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,29927,0)
- ;;=D64.9^^189^1904^13
- ;;^UTILITY(U,$J,358.3,29927,1,0)
+ ;;^UTILITY(U,$J,358.3,29574,1,3,0)
+ ;;=3^Locked-in state
+ ;;^UTILITY(U,$J,358.3,29574,1,4,0)
+ ;;=4^G83.5
+ ;;^UTILITY(U,$J,358.3,29574,2)
+ ;;=^5004146
+ ;;^UTILITY(U,$J,358.3,29575,0)
+ ;;=G83.81^^176^1890^4
+ ;;^UTILITY(U,$J,358.3,29575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29927,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,29927,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,29927,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,29928,0)
- ;;=E08.52^^189^1904^44
- ;;^UTILITY(U,$J,358.3,29928,1,0)
+ ;;^UTILITY(U,$J,358.3,29575,1,3,0)
+ ;;=3^Brown-Sequard syndrome
+ ;;^UTILITY(U,$J,358.3,29575,1,4,0)
+ ;;=4^G83.81
+ ;;^UTILITY(U,$J,358.3,29575,2)
+ ;;=^5004147
+ ;;^UTILITY(U,$J,358.3,29576,0)
+ ;;=G83.82^^176^1890^3
+ ;;^UTILITY(U,$J,358.3,29576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29928,1,3,0)
- ;;=3^Diabetes d/t Underlying Cond w/ Diabetic Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29928,1,4,0)
- ;;=4^E08.52
- ;;^UTILITY(U,$J,358.3,29928,2)
- ;;=^5002529
- ;;^UTILITY(U,$J,358.3,29929,0)
- ;;=E09.52^^189^1904^43
- ;;^UTILITY(U,$J,358.3,29929,1,0)
+ ;;^UTILITY(U,$J,358.3,29576,1,3,0)
+ ;;=3^Anterior cord syndrome
+ ;;^UTILITY(U,$J,358.3,29576,1,4,0)
+ ;;=4^G83.82
+ ;;^UTILITY(U,$J,358.3,29576,2)
+ ;;=^5004148
+ ;;^UTILITY(U,$J,358.3,29577,0)
+ ;;=G83.83^^176^1890^10
+ ;;^UTILITY(U,$J,358.3,29577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29929,1,3,0)
- ;;=3^Diabetes d/t Drug/Chem w/ Diabetic Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29929,1,4,0)
- ;;=4^E09.52
- ;;^UTILITY(U,$J,358.3,29929,2)
- ;;=^5002571
- ;;^UTILITY(U,$J,358.3,29930,0)
- ;;=E10.52^^189^1904^39
- ;;^UTILITY(U,$J,358.3,29930,1,0)
+ ;;^UTILITY(U,$J,358.3,29577,1,3,0)
+ ;;=3^Posterior cord syndrome
+ ;;^UTILITY(U,$J,358.3,29577,1,4,0)
+ ;;=4^G83.83
+ ;;^UTILITY(U,$J,358.3,29577,2)
+ ;;=^5004149
+ ;;^UTILITY(U,$J,358.3,29578,0)
+ ;;=G83.84^^176^1890^15
+ ;;^UTILITY(U,$J,358.3,29578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29930,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29930,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,29930,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,29931,0)
- ;;=E10.9^^189^1904^40
- ;;^UTILITY(U,$J,358.3,29931,1,0)
+ ;;^UTILITY(U,$J,358.3,29578,1,3,0)
+ ;;=3^Todd's paralysis (postepileptic)
+ ;;^UTILITY(U,$J,358.3,29578,1,4,0)
+ ;;=4^G83.84
+ ;;^UTILITY(U,$J,358.3,29578,2)
+ ;;=^5004150
+ ;;^UTILITY(U,$J,358.3,29579,0)
+ ;;=D33.0^^176^1891^2
+ ;;^UTILITY(U,$J,358.3,29579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29931,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,29931,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,29931,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,29932,0)
- ;;=E11.52^^189^1904^41
- ;;^UTILITY(U,$J,358.3,29932,1,0)
+ ;;^UTILITY(U,$J,358.3,29579,1,3,0)
+ ;;=3^Benign neoplasm of brain, supratentorial
+ ;;^UTILITY(U,$J,358.3,29579,1,4,0)
+ ;;=4^D33.0
+ ;;^UTILITY(U,$J,358.3,29579,2)
+ ;;=^5002136
+ ;;^UTILITY(U,$J,358.3,29580,0)
+ ;;=D33.1^^176^1891^1
+ ;;^UTILITY(U,$J,358.3,29580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29932,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,29932,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,29932,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,29933,0)
- ;;=E11.9^^189^1904^42
- ;;^UTILITY(U,$J,358.3,29933,1,0)
+ ;;^UTILITY(U,$J,358.3,29580,1,3,0)
+ ;;=3^Benign neoplasm of brain, infratentorial
+ ;;^UTILITY(U,$J,358.3,29580,1,4,0)
+ ;;=4^D33.1
+ ;;^UTILITY(U,$J,358.3,29580,2)
+ ;;=^5002137
+ ;;^UTILITY(U,$J,358.3,29581,0)
+ ;;=C71.9^^176^1891^6
+ ;;^UTILITY(U,$J,358.3,29581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29933,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,29581,1,3,0)
+ ;;=3^Malignant neoplasm of brain, unspecified

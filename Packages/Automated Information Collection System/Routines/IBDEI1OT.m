@@ -1,124 +1,122 @@
-IBDEI1OT ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OT ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30294,2)
- ;;=^5033020
- ;;^UTILITY(U,$J,358.3,30295,0)
- ;;=S61.502A^^189^1913^30
- ;;^UTILITY(U,$J,358.3,30295,1,0)
+ ;;^UTILITY(U,$J,358.3,29945,1,3,0)
+ ;;=3^Prem separtn of placenta, unsp, third trimester
+ ;;^UTILITY(U,$J,358.3,29945,1,4,0)
+ ;;=4^O45.93
+ ;;^UTILITY(U,$J,358.3,29945,2)
+ ;;=^5017466
+ ;;^UTILITY(U,$J,358.3,29946,0)
+ ;;=O45.001^^178^1909^28
+ ;;^UTILITY(U,$J,358.3,29946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30295,1,3,0)
- ;;=3^Open Wound of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,30295,1,4,0)
- ;;=4^S61.502A
- ;;^UTILITY(U,$J,358.3,30295,2)
- ;;=^5033023
- ;;^UTILITY(U,$J,358.3,30296,0)
- ;;=S61.401A^^189^1913^43
- ;;^UTILITY(U,$J,358.3,30296,1,0)
+ ;;^UTILITY(U,$J,358.3,29946,1,3,0)
+ ;;=3^Prem separtn of placenta w coag defect, unsp, first tri
+ ;;^UTILITY(U,$J,358.3,29946,1,4,0)
+ ;;=4^O45.001
+ ;;^UTILITY(U,$J,358.3,29946,2)
+ ;;=^5017444
+ ;;^UTILITY(U,$J,358.3,29947,0)
+ ;;=O45.002^^178^1909^29
+ ;;^UTILITY(U,$J,358.3,29947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30296,1,3,0)
- ;;=3^Open Wound of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,30296,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,30296,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,30297,0)
- ;;=S61.402A^^189^1913^12
- ;;^UTILITY(U,$J,358.3,30297,1,0)
+ ;;^UTILITY(U,$J,358.3,29947,1,3,0)
+ ;;=3^Prem separtn of placenta w coag defect, unsp, second tri
+ ;;^UTILITY(U,$J,358.3,29947,1,4,0)
+ ;;=4^O45.002
+ ;;^UTILITY(U,$J,358.3,29947,2)
+ ;;=^5017445
+ ;;^UTILITY(U,$J,358.3,29948,0)
+ ;;=O45.003^^178^1909^30
+ ;;^UTILITY(U,$J,358.3,29948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30297,1,3,0)
- ;;=3^Open Wound of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,30297,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,30297,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,30298,0)
- ;;=S61.001A^^189^1913^60
- ;;^UTILITY(U,$J,358.3,30298,1,0)
+ ;;^UTILITY(U,$J,358.3,29948,1,3,0)
+ ;;=3^Prem separtn of placenta w coag defect, unsp, third tri
+ ;;^UTILITY(U,$J,358.3,29948,1,4,0)
+ ;;=4^O45.003
+ ;;^UTILITY(U,$J,358.3,29948,2)
+ ;;=^5017446
+ ;;^UTILITY(U,$J,358.3,29949,0)
+ ;;=O45.011^^178^1909^25
+ ;;^UTILITY(U,$J,358.3,29949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30298,1,3,0)
- ;;=3^Open Wound of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30298,1,4,0)
- ;;=4^S61.001A
- ;;^UTILITY(U,$J,358.3,30298,2)
- ;;=^5032684
- ;;^UTILITY(U,$J,358.3,30299,0)
- ;;=S61.002A^^189^1913^29
- ;;^UTILITY(U,$J,358.3,30299,1,0)
+ ;;^UTILITY(U,$J,358.3,29949,1,3,0)
+ ;;=3^Prem separtn of placenta w afibrinogenemia, first trimester
+ ;;^UTILITY(U,$J,358.3,29949,1,4,0)
+ ;;=4^O45.011
+ ;;^UTILITY(U,$J,358.3,29949,2)
+ ;;=^5017448
+ ;;^UTILITY(U,$J,358.3,29950,0)
+ ;;=O45.012^^178^1909^26
+ ;;^UTILITY(U,$J,358.3,29950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30299,1,3,0)
- ;;=3^Open Wound of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30299,1,4,0)
- ;;=4^S61.002A
- ;;^UTILITY(U,$J,358.3,30299,2)
- ;;=^5032687
- ;;^UTILITY(U,$J,358.3,30300,0)
- ;;=S61.101A^^189^1913^59
- ;;^UTILITY(U,$J,358.3,30300,1,0)
+ ;;^UTILITY(U,$J,358.3,29950,1,3,0)
+ ;;=3^Prem separtn of placenta w afibrinogenemia, second trimester
+ ;;^UTILITY(U,$J,358.3,29950,1,4,0)
+ ;;=4^O45.012
+ ;;^UTILITY(U,$J,358.3,29950,2)
+ ;;=^5017449
+ ;;^UTILITY(U,$J,358.3,29951,0)
+ ;;=O45.013^^178^1909^27
+ ;;^UTILITY(U,$J,358.3,29951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30300,1,3,0)
- ;;=3^Open Wound of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30300,1,4,0)
- ;;=4^S61.101A
- ;;^UTILITY(U,$J,358.3,30300,2)
- ;;=^5032723
- ;;^UTILITY(U,$J,358.3,30301,0)
- ;;=S61.102A^^189^1913^28
- ;;^UTILITY(U,$J,358.3,30301,1,0)
+ ;;^UTILITY(U,$J,358.3,29951,1,3,0)
+ ;;=3^Prem separtn of placenta w afibrinogenemia, third trimester
+ ;;^UTILITY(U,$J,358.3,29951,1,4,0)
+ ;;=4^O45.013
+ ;;^UTILITY(U,$J,358.3,29951,2)
+ ;;=^5017450
+ ;;^UTILITY(U,$J,358.3,29952,0)
+ ;;=O45.021^^178^1909^31
+ ;;^UTILITY(U,$J,358.3,29952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30301,1,3,0)
- ;;=3^Open Wound of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30301,1,4,0)
- ;;=4^S61.102A
- ;;^UTILITY(U,$J,358.3,30301,2)
- ;;=^5135687
- ;;^UTILITY(U,$J,358.3,30302,0)
- ;;=S61.200A^^189^1913^46
- ;;^UTILITY(U,$J,358.3,30302,1,0)
+ ;;^UTILITY(U,$J,358.3,29952,1,3,0)
+ ;;=3^Prem separtn of placenta w dissem intravasc coag, first tri
+ ;;^UTILITY(U,$J,358.3,29952,1,4,0)
+ ;;=4^O45.021
+ ;;^UTILITY(U,$J,358.3,29952,2)
+ ;;=^5017452
+ ;;^UTILITY(U,$J,358.3,29953,0)
+ ;;=O45.022^^178^1909^32
+ ;;^UTILITY(U,$J,358.3,29953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30302,1,3,0)
- ;;=3^Open Wound of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30302,1,4,0)
- ;;=4^S61.200A
- ;;^UTILITY(U,$J,358.3,30302,2)
- ;;=^5032741
- ;;^UTILITY(U,$J,358.3,30303,0)
- ;;=S61.201A^^189^1913^15
- ;;^UTILITY(U,$J,358.3,30303,1,0)
+ ;;^UTILITY(U,$J,358.3,29953,1,3,0)
+ ;;=3^Prem separtn of placenta w dissem intravasc coag, second tri
+ ;;^UTILITY(U,$J,358.3,29953,1,4,0)
+ ;;=4^O45.022
+ ;;^UTILITY(U,$J,358.3,29953,2)
+ ;;=^5017453
+ ;;^UTILITY(U,$J,358.3,29954,0)
+ ;;=O45.023^^178^1909^33
+ ;;^UTILITY(U,$J,358.3,29954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30303,1,3,0)
- ;;=3^Open Wound of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30303,1,4,0)
- ;;=4^S61.201A
- ;;^UTILITY(U,$J,358.3,30303,2)
- ;;=^5032744
- ;;^UTILITY(U,$J,358.3,30304,0)
- ;;=S61.202A^^189^1913^54
- ;;^UTILITY(U,$J,358.3,30304,1,0)
+ ;;^UTILITY(U,$J,358.3,29954,1,3,0)
+ ;;=3^Prem separtn of placenta w dissem intravasc coag, third tri
+ ;;^UTILITY(U,$J,358.3,29954,1,4,0)
+ ;;=4^O45.023
+ ;;^UTILITY(U,$J,358.3,29954,2)
+ ;;=^5017454
+ ;;^UTILITY(U,$J,358.3,29955,0)
+ ;;=O45.091^^178^1909^34
+ ;;^UTILITY(U,$J,358.3,29955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30304,1,3,0)
- ;;=3^Open Wound of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30304,1,4,0)
- ;;=4^S61.202A
- ;;^UTILITY(U,$J,358.3,30304,2)
- ;;=^5032747
- ;;^UTILITY(U,$J,358.3,30305,0)
- ;;=S61.203A^^189^1913^23
- ;;^UTILITY(U,$J,358.3,30305,1,0)
+ ;;^UTILITY(U,$J,358.3,29955,1,3,0)
+ ;;=3^Prem separtn of placenta w oth coag defect, first trimester
+ ;;^UTILITY(U,$J,358.3,29955,1,4,0)
+ ;;=4^O45.091
+ ;;^UTILITY(U,$J,358.3,29955,2)
+ ;;=^5017456
+ ;;^UTILITY(U,$J,358.3,29956,0)
+ ;;=O45.092^^178^1909^35
+ ;;^UTILITY(U,$J,358.3,29956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30305,1,3,0)
- ;;=3^Open Wound of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30305,1,4,0)
- ;;=4^S61.203A
- ;;^UTILITY(U,$J,358.3,30305,2)
- ;;=^5032750
- ;;^UTILITY(U,$J,358.3,30306,0)
- ;;=S61.204A^^189^1913^56
- ;;^UTILITY(U,$J,358.3,30306,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30306,1,3,0)
- ;;=3^Open Wound of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30306,1,4,0)
- ;;=4^S61.204A
+ ;;^UTILITY(U,$J,358.3,29956,1,3,0)
+ ;;=3^Prem separtn of placenta w oth coag defect, second trimester
+ ;;^UTILITY(U,$J,358.3,29956,1,4,0)
+ ;;=4^O45.092
+ ;;^UTILITY(U,$J,358.3,29956,2)
+ ;;=^5017457
+ ;;^UTILITY(U,$J,358.3,29957,0)
+ ;;=O45.093^^178^1909^36

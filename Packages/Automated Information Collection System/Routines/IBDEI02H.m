@@ -1,148 +1,132 @@
-IBDEI02H ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02H ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,689,2)
- ;;=^269343
- ;;^UTILITY(U,$J,358.3,690,0)
- ;;=388.30^^8^85^89
- ;;^UTILITY(U,$J,358.3,690,1,0)
+ ;;^UTILITY(U,$J,358.3,609,2)
+ ;;=^5002248
+ ;;^UTILITY(U,$J,358.3,610,0)
+ ;;=D46.A^^2^25^19
+ ;;^UTILITY(U,$J,358.3,610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,690,1,3,0)
- ;;=3^388.30
- ;;^UTILITY(U,$J,358.3,690,1,4,0)
- ;;=4^Tinnitus NOS
- ;;^UTILITY(U,$J,358.3,690,2)
- ;;=^119771
- ;;^UTILITY(U,$J,358.3,691,0)
- ;;=388.31^^8^85^86
- ;;^UTILITY(U,$J,358.3,691,1,0)
+ ;;^UTILITY(U,$J,358.3,610,1,3,0)
+ ;;=3^Refractory cytopenia with multilineage dysplasia
+ ;;^UTILITY(U,$J,358.3,610,1,4,0)
+ ;;=4^D46.A
+ ;;^UTILITY(U,$J,358.3,610,2)
+ ;;=^5002251
+ ;;^UTILITY(U,$J,358.3,611,0)
+ ;;=D46.B^^2^25^13
+ ;;^UTILITY(U,$J,358.3,611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,691,1,3,0)
- ;;=3^388.31
- ;;^UTILITY(U,$J,358.3,691,1,4,0)
- ;;=4^Subjective Tinnitus
- ;;^UTILITY(U,$J,358.3,691,2)
- ;;=^269527
- ;;^UTILITY(U,$J,358.3,692,0)
- ;;=388.32^^8^85^65
- ;;^UTILITY(U,$J,358.3,692,1,0)
+ ;;^UTILITY(U,$J,358.3,611,1,3,0)
+ ;;=3^Refract cytopenia w multilin dysplasia and ring sideroblasts
+ ;;^UTILITY(U,$J,358.3,611,1,4,0)
+ ;;=4^D46.B
+ ;;^UTILITY(U,$J,358.3,611,2)
+ ;;=^5002252
+ ;;^UTILITY(U,$J,358.3,612,0)
+ ;;=D46.22^^2^25^16
+ ;;^UTILITY(U,$J,358.3,612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,692,1,3,0)
- ;;=3^388.32
- ;;^UTILITY(U,$J,358.3,692,1,4,0)
- ;;=4^Objective Tinnitus
- ;;^UTILITY(U,$J,358.3,692,2)
- ;;=^269529
- ;;^UTILITY(U,$J,358.3,693,0)
- ;;=384.81^^8^85^21
- ;;^UTILITY(U,$J,358.3,693,1,0)
+ ;;^UTILITY(U,$J,358.3,612,1,3,0)
+ ;;=3^Refractory anemia with excess of blasts 2
+ ;;^UTILITY(U,$J,358.3,612,1,4,0)
+ ;;=4^D46.22
+ ;;^UTILITY(U,$J,358.3,612,2)
+ ;;=^5002249
+ ;;^UTILITY(U,$J,358.3,613,0)
+ ;;=D46.C^^2^25^3
+ ;;^UTILITY(U,$J,358.3,613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,693,1,3,0)
- ;;=3^384.81
- ;;^UTILITY(U,$J,358.3,693,1,4,0)
- ;;=4^Atrophic Flaccid Tympan
- ;;^UTILITY(U,$J,358.3,693,2)
- ;;=^269436
- ;;^UTILITY(U,$J,358.3,694,0)
- ;;=384.82^^8^85^22
- ;;^UTILITY(U,$J,358.3,694,1,0)
+ ;;^UTILITY(U,$J,358.3,613,1,3,0)
+ ;;=3^Myelodysplastic syndrome w isolated del(5q) chromsoml abnlt
+ ;;^UTILITY(U,$J,358.3,613,1,4,0)
+ ;;=4^D46.C
+ ;;^UTILITY(U,$J,358.3,613,2)
+ ;;=^5002253
+ ;;^UTILITY(U,$J,358.3,614,0)
+ ;;=D46.9^^2^25^4
+ ;;^UTILITY(U,$J,358.3,614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,694,1,3,0)
- ;;=3^384.82
- ;;^UTILITY(U,$J,358.3,694,1,4,0)
- ;;=4^Atrophic Nonflaccid Tymp
- ;;^UTILITY(U,$J,358.3,694,2)
- ;;=^269437
- ;;^UTILITY(U,$J,358.3,695,0)
- ;;=384.21^^8^85^26
- ;;^UTILITY(U,$J,358.3,695,1,0)
+ ;;^UTILITY(U,$J,358.3,614,1,3,0)
+ ;;=3^Myelodysplastic syndrome, unspecified
+ ;;^UTILITY(U,$J,358.3,614,1,4,0)
+ ;;=4^D46.9
+ ;;^UTILITY(U,$J,358.3,614,2)
+ ;;=^334031
+ ;;^UTILITY(U,$J,358.3,615,0)
+ ;;=D47.1^^2^25^1
+ ;;^UTILITY(U,$J,358.3,615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,695,1,3,0)
- ;;=3^384.21
- ;;^UTILITY(U,$J,358.3,695,1,4,0)
- ;;=4^Cent Perf Tympanic Memb
- ;;^UTILITY(U,$J,358.3,695,2)
- ;;=^269430
- ;;^UTILITY(U,$J,358.3,696,0)
- ;;=384.22^^8^85^23
- ;;^UTILITY(U,$J,358.3,696,1,0)
+ ;;^UTILITY(U,$J,358.3,615,1,3,0)
+ ;;=3^Chronic myeloproliferative disease
+ ;;^UTILITY(U,$J,358.3,615,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,615,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,616,0)
+ ;;=D47.Z1^^2^25^12
+ ;;^UTILITY(U,$J,358.3,616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,696,1,3,0)
- ;;=3^384.22
- ;;^UTILITY(U,$J,358.3,696,1,4,0)
- ;;=4^Attic Perf Tympanic Memb
- ;;^UTILITY(U,$J,358.3,696,2)
- ;;=^269431
- ;;^UTILITY(U,$J,358.3,697,0)
- ;;=384.23^^8^85^61
- ;;^UTILITY(U,$J,358.3,697,1,0)
+ ;;^UTILITY(U,$J,358.3,616,1,3,0)
+ ;;=3^Post-transplant lymphoproliferative disorder (PTLD)
+ ;;^UTILITY(U,$J,358.3,616,1,4,0)
+ ;;=4^D47.Z1
+ ;;^UTILITY(U,$J,358.3,616,2)
+ ;;=^5002261
+ ;;^UTILITY(U,$J,358.3,617,0)
+ ;;=D48.7^^2^25^8
+ ;;^UTILITY(U,$J,358.3,617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,697,1,3,0)
- ;;=3^384.23
- ;;^UTILITY(U,$J,358.3,697,1,4,0)
- ;;=4^Marginal Perf Tymp Nec
- ;;^UTILITY(U,$J,358.3,697,2)
- ;;=^269432
- ;;^UTILITY(U,$J,358.3,698,0)
- ;;=384.24^^8^85^63
- ;;^UTILITY(U,$J,358.3,698,1,0)
+ ;;^UTILITY(U,$J,358.3,617,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of other specified sites
+ ;;^UTILITY(U,$J,358.3,617,1,4,0)
+ ;;=4^D48.7
+ ;;^UTILITY(U,$J,358.3,617,2)
+ ;;=^267779
+ ;;^UTILITY(U,$J,358.3,618,0)
+ ;;=D48.9^^2^25^11
+ ;;^UTILITY(U,$J,358.3,618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,698,1,3,0)
- ;;=3^384.24
- ;;^UTILITY(U,$J,358.3,698,1,4,0)
- ;;=4^Mult Perf Tympanic Memb
- ;;^UTILITY(U,$J,358.3,698,2)
- ;;=^269433
- ;;^UTILITY(U,$J,358.3,699,0)
- ;;=384.25^^8^85^90
- ;;^UTILITY(U,$J,358.3,699,1,0)
+ ;;^UTILITY(U,$J,358.3,618,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior, unspecified
+ ;;^UTILITY(U,$J,358.3,618,1,4,0)
+ ;;=4^D48.9
+ ;;^UTILITY(U,$J,358.3,618,2)
+ ;;=^5002269
+ ;;^UTILITY(U,$J,358.3,619,0)
+ ;;=D49.0^^2^26^8
+ ;;^UTILITY(U,$J,358.3,619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,699,1,3,0)
- ;;=3^384.25
- ;;^UTILITY(U,$J,358.3,699,1,4,0)
- ;;=4^Total Perf Tympanic Memb
- ;;^UTILITY(U,$J,358.3,699,2)
- ;;=^269434
- ;;^UTILITY(U,$J,358.3,700,0)
- ;;=385.00^^8^85^93
- ;;^UTILITY(U,$J,358.3,700,1,0)
+ ;;^UTILITY(U,$J,358.3,619,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of digestive system
+ ;;^UTILITY(U,$J,358.3,619,1,4,0)
+ ;;=4^D49.0
+ ;;^UTILITY(U,$J,358.3,619,2)
+ ;;=^5002270
+ ;;^UTILITY(U,$J,358.3,620,0)
+ ;;=D49.1^^2^26^12
+ ;;^UTILITY(U,$J,358.3,620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,700,1,3,0)
- ;;=3^385.00
- ;;^UTILITY(U,$J,358.3,700,1,4,0)
- ;;=4^Tympanosclerosis NOS
- ;;^UTILITY(U,$J,358.3,700,2)
- ;;=^269439
- ;;^UTILITY(U,$J,358.3,701,0)
- ;;=385.01^^8^85^91
- ;;^UTILITY(U,$J,358.3,701,1,0)
+ ;;^UTILITY(U,$J,358.3,620,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of respiratory system
+ ;;^UTILITY(U,$J,358.3,620,1,4,0)
+ ;;=4^D49.1
+ ;;^UTILITY(U,$J,358.3,620,2)
+ ;;=^5002271
+ ;;^UTILITY(U,$J,358.3,621,0)
+ ;;=D49.2^^2^26^5
+ ;;^UTILITY(U,$J,358.3,621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,701,1,3,0)
- ;;=3^385.01
- ;;^UTILITY(U,$J,358.3,701,1,4,0)
- ;;=4^Tympanoscl-Tympanic Memb
- ;;^UTILITY(U,$J,358.3,701,2)
- ;;=^269440
- ;;^UTILITY(U,$J,358.3,702,0)
- ;;=385.02^^8^85^94
- ;;^UTILITY(U,$J,358.3,702,1,0)
+ ;;^UTILITY(U,$J,358.3,621,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of bone, soft tissue, and skin
+ ;;^UTILITY(U,$J,358.3,621,1,4,0)
+ ;;=4^D49.2
+ ;;^UTILITY(U,$J,358.3,621,2)
+ ;;=^5002272
+ ;;^UTILITY(U,$J,358.3,622,0)
+ ;;=D49.3^^2^26^7
+ ;;^UTILITY(U,$J,358.3,622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,702,1,3,0)
- ;;=3^385.02
- ;;^UTILITY(U,$J,358.3,702,1,4,0)
- ;;=4^Tympnoscler-Tymp/Ossicle
- ;;^UTILITY(U,$J,358.3,702,2)
- ;;=^269441
- ;;^UTILITY(U,$J,358.3,703,0)
- ;;=385.03^^8^85^92
- ;;^UTILITY(U,$J,358.3,703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,703,1,3,0)
- ;;=3^385.03
- ;;^UTILITY(U,$J,358.3,703,1,4,0)
- ;;=4^Tympanoscler-All Parts
- ;;^UTILITY(U,$J,358.3,703,2)
- ;;=^269442
- ;;^UTILITY(U,$J,358.3,704,0)
- ;;=385.09^^8^85^95
+ ;;^UTILITY(U,$J,358.3,622,1,3,0)
+ ;;=3^Neoplasm of unspecified behavior of breast

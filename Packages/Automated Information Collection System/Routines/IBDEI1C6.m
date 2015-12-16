@@ -1,120 +1,138 @@
-IBDEI1C6 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1C6 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23964,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23964,1,2,0)
- ;;=2^Diazepam up to 5mg
- ;;^UTILITY(U,$J,358.3,23964,1,3,0)
- ;;=3^J3360
- ;;^UTILITY(U,$J,358.3,23965,0)
- ;;=J1710^^142^1492^5^^^^1
- ;;^UTILITY(U,$J,358.3,23965,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23965,1,2,0)
- ;;=2^Hydrocortisone Sodium Phosphate Inj up to 50mg
- ;;^UTILITY(U,$J,358.3,23965,1,3,0)
- ;;=3^J1710
- ;;^UTILITY(U,$J,358.3,23966,0)
- ;;=J2550^^142^1492^7^^^^1
- ;;^UTILITY(U,$J,358.3,23966,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23966,1,2,0)
- ;;=2^Promethazinc HCL Inj up to 50mg
- ;;^UTILITY(U,$J,358.3,23966,1,3,0)
- ;;=3^J2550
- ;;^UTILITY(U,$J,358.3,23967,0)
- ;;=J3301^^142^1492^8^^^^1
- ;;^UTILITY(U,$J,358.3,23967,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23967,1,2,0)
- ;;=2^Triamcinolone Acetonide per 10mg
- ;;^UTILITY(U,$J,358.3,23967,1,3,0)
- ;;=3^J3301
- ;;^UTILITY(U,$J,358.3,23968,0)
- ;;=J3302^^142^1492^9^^^^1
- ;;^UTILITY(U,$J,358.3,23968,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23968,1,2,0)
- ;;=2^Triamcinolone Diacetate per 5mg
- ;;^UTILITY(U,$J,358.3,23968,1,3,0)
- ;;=3^J3302
- ;;^UTILITY(U,$J,358.3,23969,0)
- ;;=J3303^^142^1492^10^^^^1
- ;;^UTILITY(U,$J,358.3,23969,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23969,1,2,0)
- ;;=2^Triamcinolone Hexacetonide per 5mg
- ;;^UTILITY(U,$J,358.3,23969,1,3,0)
- ;;=3^J3303
- ;;^UTILITY(U,$J,358.3,23970,0)
- ;;=J3410^^142^1492^6^^^^1
- ;;^UTILITY(U,$J,358.3,23970,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23970,1,2,0)
- ;;=2^Hydroxyzine HCL up to 25mg
- ;;^UTILITY(U,$J,358.3,23970,1,3,0)
- ;;=3^J3410
- ;;^UTILITY(U,$J,358.3,23971,0)
- ;;=J1094^^142^1492^3^^^^1
- ;;^UTILITY(U,$J,358.3,23971,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23971,1,2,0)
- ;;=2^Dexamethasone, per mg
- ;;^UTILITY(U,$J,358.3,23971,1,3,0)
- ;;=3^J1094
- ;;^UTILITY(U,$J,358.3,23972,0)
- ;;=26535^^142^1493^1^^^^1
- ;;^UTILITY(U,$J,358.3,23972,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23972,1,2,0)
- ;;=2^Arthroplasty, interphalangeal joint; each joint
- ;;^UTILITY(U,$J,358.3,23972,1,3,0)
- ;;=3^26535
- ;;^UTILITY(U,$J,358.3,23973,0)
- ;;=26536^^142^1493^2^^^^1
- ;;^UTILITY(U,$J,358.3,23973,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23973,1,2,0)
- ;;=2^Arthroplasty, interphalangeal joint; with prosthetic implant, each jointangeal 
- ;;^UTILITY(U,$J,358.3,23973,1,3,0)
- ;;=3^26536
- ;;^UTILITY(U,$J,358.3,23974,0)
- ;;=27650^^142^1493^3^^^^1
- ;;^UTILITY(U,$J,358.3,23974,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23974,1,2,0)
- ;;=2^Repair, primary, open or percutaneous, ruptured Achilles tendon
- ;;^UTILITY(U,$J,358.3,23974,1,3,0)
- ;;=3^27650
- ;;^UTILITY(U,$J,358.3,23975,0)
- ;;=27686^^142^1493^5^^^^1
- ;;^UTILITY(U,$J,358.3,23975,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23975,1,2,0)
- ;;=2^Lengthening or shortening of tendon each, leg or ankle; multiple  tendon
- ;;^UTILITY(U,$J,358.3,23975,1,3,0)
- ;;=3^27686
- ;;^UTILITY(U,$J,358.3,23976,0)
- ;;=27685^^142^1493^4^^^^1
- ;;^UTILITY(U,$J,358.3,23976,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23976,1,2,0)
- ;;=2^Lengthening or shortening of tendon, leg or ankle; single tendon
- ;;^UTILITY(U,$J,358.3,23976,1,3,0)
- ;;=3^27685
- ;;^UTILITY(U,$J,358.3,23977,0)
- ;;=27695^^142^1493^7^^^^1
- ;;^UTILITY(U,$J,358.3,23977,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23977,1,2,0)
- ;;=2^Repair, primary, disrupted ligament, ankle; both collateral ligaments
- ;;^UTILITY(U,$J,358.3,23977,1,3,0)
- ;;=3^27695
- ;;^UTILITY(U,$J,358.3,23978,0)
- ;;=27698^^142^1493^8^^^^1
- ;;^UTILITY(U,$J,358.3,23978,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23978,1,2,0)
- ;;=2^Repair, secondary, disrupted ligament ankle, collateral
+ ;;^UTILITY(U,$J,358.3,23671,0)
+ ;;=305.73^^127^1431^18
+ ;;^UTILITY(U,$J,358.3,23671,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23671,1,2,0)
+ ;;=2^305.73
+ ;;^UTILITY(U,$J,358.3,23671,1,5,0)
+ ;;=5^Amphetamine Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,23671,2)
+ ;;=^268253
+ ;;^UTILITY(U,$J,358.3,23672,0)
+ ;;=304.50^^127^1431^62
+ ;;^UTILITY(U,$J,358.3,23672,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23672,1,2,0)
+ ;;=2^304.50
+ ;;^UTILITY(U,$J,358.3,23672,1,5,0)
+ ;;=5^Hallucinogen Dependence
+ ;;^UTILITY(U,$J,358.3,23672,2)
+ ;;=^53744
+ ;;^UTILITY(U,$J,358.3,23673,0)
+ ;;=304.53^^127^1431^59
+ ;;^UTILITY(U,$J,358.3,23673,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23673,1,2,0)
+ ;;=2^304.53
+ ;;^UTILITY(U,$J,358.3,23673,1,5,0)
+ ;;=5^Hallucinogen Dep-Remission
+ ;;^UTILITY(U,$J,358.3,23673,2)
+ ;;=^268210
+ ;;^UTILITY(U,$J,358.3,23674,0)
+ ;;=305.30^^127^1431^56
+ ;;^UTILITY(U,$J,358.3,23674,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23674,1,2,0)
+ ;;=2^305.30
+ ;;^UTILITY(U,$J,358.3,23674,1,5,0)
+ ;;=5^Hallucinogen Abuse
+ ;;^UTILITY(U,$J,358.3,23674,2)
+ ;;=^53741
+ ;;^UTILITY(U,$J,358.3,23675,0)
+ ;;=305.33^^127^1431^55
+ ;;^UTILITY(U,$J,358.3,23675,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23675,1,2,0)
+ ;;=2^305.33
+ ;;^UTILITY(U,$J,358.3,23675,1,5,0)
+ ;;=5^Hallucinog Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,23675,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,23676,0)
+ ;;=304.60^^127^1431^54
+ ;;^UTILITY(U,$J,358.3,23676,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23676,1,2,0)
+ ;;=2^304.60
+ ;;^UTILITY(U,$J,358.3,23676,1,5,0)
+ ;;=5^Drug Dependence, Other
+ ;;^UTILITY(U,$J,358.3,23676,2)
+ ;;=^88038
+ ;;^UTILITY(U,$J,358.3,23677,0)
+ ;;=304.63^^127^1431^51
+ ;;^UTILITY(U,$J,358.3,23677,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23677,1,2,0)
+ ;;=2^304.63
+ ;;^UTILITY(U,$J,358.3,23677,1,5,0)
+ ;;=5^Drug Depend Other-Remission
+ ;;^UTILITY(U,$J,358.3,23677,2)
+ ;;=^268213
+ ;;^UTILITY(U,$J,358.3,23678,0)
+ ;;=305.90^^127^1431^76
+ ;;^UTILITY(U,$J,358.3,23678,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23678,1,2,0)
+ ;;=2^305.90
+ ;;^UTILITY(U,$J,358.3,23678,1,5,0)
+ ;;=5^Other Drug Abuse
+ ;;^UTILITY(U,$J,358.3,23678,2)
+ ;;=^268258
+ ;;^UTILITY(U,$J,358.3,23679,0)
+ ;;=305.93^^127^1431^79
+ ;;^UTILITY(U,$J,358.3,23679,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23679,1,2,0)
+ ;;=2^305.93
+ ;;^UTILITY(U,$J,358.3,23679,1,5,0)
+ ;;=5^Other Drug Abuse-Remission
+ ;;^UTILITY(U,$J,358.3,23679,2)
+ ;;=^268261
+ ;;^UTILITY(U,$J,358.3,23680,0)
+ ;;=304.70^^127^1431^65
+ ;;^UTILITY(U,$J,358.3,23680,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23680,1,2,0)
+ ;;=2^304.70
+ ;;^UTILITY(U,$J,358.3,23680,1,5,0)
+ ;;=5^Opioid + Other Depend
+ ;;^UTILITY(U,$J,358.3,23680,2)
+ ;;=^268214
+ ;;^UTILITY(U,$J,358.3,23681,0)
+ ;;=304.73^^127^1431^64
+ ;;^UTILITY(U,$J,358.3,23681,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23681,1,2,0)
+ ;;=2^304.73
+ ;;^UTILITY(U,$J,358.3,23681,1,5,0)
+ ;;=5^Opioid + Other Dep-Remis
+ ;;^UTILITY(U,$J,358.3,23681,2)
+ ;;=^268217
+ ;;^UTILITY(U,$J,358.3,23682,0)
+ ;;=304.80^^127^1431^50
+ ;;^UTILITY(U,$J,358.3,23682,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23682,1,2,0)
+ ;;=2^304.80
+ ;;^UTILITY(U,$J,358.3,23682,1,5,0)
+ ;;=5^Combination Drug Dep
+ ;;^UTILITY(U,$J,358.3,23682,2)
+ ;;=^268218
+ ;;^UTILITY(U,$J,358.3,23683,0)
+ ;;=304.83^^127^1431^47
+ ;;^UTILITY(U,$J,358.3,23683,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23683,1,2,0)
+ ;;=2^304.83
+ ;;^UTILITY(U,$J,358.3,23683,1,5,0)
+ ;;=5^Comb Drug Dep-Remission
+ ;;^UTILITY(U,$J,358.3,23683,2)
+ ;;=^268221
+ ;;^UTILITY(U,$J,358.3,23684,0)
+ ;;=305.1^^127^1431^63
+ ;;^UTILITY(U,$J,358.3,23684,1,0)
+ ;;=^358.31IA^5^2

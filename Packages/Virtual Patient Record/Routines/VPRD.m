@@ -1,5 +1,5 @@
 VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -16,7 +16,7 @@ VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
  ; XUAF4                         2171
  ; XUSTAX                        4911
  ;
-GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in @VPR@(n) 
+GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in @VPR@(n)
  ; RPC = VPR GET PATIENT DATA
  N ICN,VPRI,VPRTOTL,VPRTEXT
  S VPR=$NA(^TMP("VPR",$J)) K @VPR
@@ -44,6 +44,7 @@ GET(VPR,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in 
  D ADD("</results>")
  ;
 GTQ ; end
+ K ^TMP("VPRD",$J)
  Q
  ;
 RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
@@ -52,12 +53,14 @@ RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
  I X["accession"    S Y="VPRDLRA",X="accessions"
  I X["allerg"       S Y="VPRDGMRA",X="reactions"
  I X["appointment"  S Y="VPRDSDAM",X="appointments"
- I X["clinicalProc" S Y="VPRDMC",X="clinicalProcedures"
+ I X["clinicalproc" S Y="VPRDMC",X="clinicalProcedures"
  I X["consult"      S Y="VPRDGMRC",X="consults"
  I X["demograph"    S Y="VPRDPT",X="demographics"
  I X["document"     S Y="VPRDTIU",X="documents"
  I X["factor"       S Y="VPRDPXHF",X="healthFactors"
  I X["flag"         S Y="VPRDGPF",X="flags"
+ I X["function"     S Y="VPRDRMIM",X="functionalMeasurements"
+ I X="fim"          S Y="VPRDRMIM",X="functionalMeasurements"
  I X["immunization" S Y="VPRDPXIM",X="immunizations"
  I X["skin"         S Y="VPRDPXSK",X="skinTests"
  I X?1"exam".E      S Y="VPRDPXAM",X="exams"
@@ -72,8 +75,9 @@ RTN(X) ; -- Return name of VPRDxxxx routine for clinical domain X
  I X["order"        S Y="VPRDOR",X="orders"
  I X["patient"      S Y="VPRDPT",X="demographics"
  I X["problem"      S Y="VPRDGMPL",X="problems"
- I X["procedure"    S Y="VPRDPROC",X="procedures"
+ I X?1"procedure".E S Y="VPRDPROC",X="procedures"
  I X["reaction"     S Y="VPRDGMRA",X="reactions"
+ I X["reminder"     S Y="VPRDPXRM",X="reminders"
  I X["surg"         S Y="VPRDSR",X="surgeries"
  I X["visit"        S Y="VPRDVSIT",X="visits"
  I X["vital"        S Y="VPRDGMV",X="vitals"
@@ -89,7 +93,7 @@ TAG(X) ; -- return plural name for group tags
  Q Y
  ;
 ALL() ; -- return string for all types of data
- Q "demographics;reactions;problems;vitals;labs;meds;immunizations;observation;visits;appointments;documents;procedures;consults;flags;factors;skinTests;exams;education;insurance"
+ Q "demographics;reactions;problems;vitals;labs;meds;immunizations;observations;visits;appointments;documents;procedures;consults;flags;factors;skinTests;exams;education;insurance;reminders"
  ;
 ERR(X,VAL) ; -- return error message
  N MSG  S MSG="Error"
@@ -138,14 +142,21 @@ FAC(X) ; -- return Institution file station# for location X
  I $L(Y),'Y S $P(Y,U)=FAC
  Q Y
  ;
-PROVSPC(NP) ; -- Return specialty info for provider NP from 200/8932.1 as
- ; X12 code ^ Provider Type ^ Classification ^ Area of Specialization
- N X,Y,I,CLS S NP=+$G(NP) ;protect I for calling routine
- S X=$$TAXIND^XUSTAX(NP) ;= X12 code ^ Person Class #8932.1 ien
- S Y="^^^" I $P(X,U,2) D
+PROVTAGS() ; -- Return attribute tags for provider info as built below
+ Q "officePhone^analogPager^fax^email^taxonomyCode^providerType^classification^specialization^service"
+ ;
+PROVSPC(NP) ; -- Return contact & specialty info for provider NP
+ ; save strings in ^TMP("VPRD",$J,NP) for efficiency
+ N X,Y,I,CLS,RES,X13,X15 S NP=+$G(NP) ;protect I for calling routine
+ S RES=$G(^TMP("VPRD",$J,NP)) I $L(RES) Q RES
+ S X13=$G(^VA(200,NP,.13)),X15=$G(^(.15))
+ S RES=$P(X13,U,2)_U_$P(X13,U,7)_U_$P(X13,U,6)_U_$P(X15,U)_U
+ S X=$$TAXIND^XUSTAX(NP) I $P(X,U,2) D  ;= X12 code ^ #8932.1 ien
  . S CLS=$G(^USC(8932.1,$P(X,U,2),0)) Q:CLS=""
- . S Y=$P(X,U)_U_$P(CLS,U,1,3)
- Q Y
+ . S RES=RES_$P(X,U)_U_$P(CLS,U,1,3) ;X12^type^class^specialization
+ S $P(RES,U,9)=$$GET1^DIQ(200,NP_",",29)
+ S ^TMP("VPRD",$J,NP)=RES
+ Q RES
  ;
 VUID(IEN,FILE) ; -- Return VUID for item
  Q $$GET1^DIQ(FILE,IEN_",",99.99)

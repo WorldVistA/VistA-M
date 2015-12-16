@@ -1,108 +1,140 @@
-IBDEI1C7 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1C7 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23978,1,3,0)
- ;;=3^27698
- ;;^UTILITY(U,$J,358.3,23979,0)
- ;;=28200^^142^1493^9^^^^1
- ;;^UTILITY(U,$J,358.3,23979,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23979,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; primary or secondary, without free graft, each tendon
- ;;^UTILITY(U,$J,358.3,23979,1,3,0)
- ;;=3^28200
- ;;^UTILITY(U,$J,358.3,23980,0)
- ;;=28202^^142^1493^10^^^^1
- ;;^UTILITY(U,$J,358.3,23980,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23980,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; secondarywith free graft, each tendon (includes obtaining graft), 
- ;;^UTILITY(U,$J,358.3,23980,1,3,0)
- ;;=3^28202
- ;;^UTILITY(U,$J,358.3,23981,0)
- ;;=28210^^142^1493^12^^^^1
- ;;^UTILITY(U,$J,358.3,23981,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23981,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; secondary with free graft, each tendon (includes obtaining graft) 
- ;;^UTILITY(U,$J,358.3,23981,1,3,0)
- ;;=3^28210
- ;;^UTILITY(U,$J,358.3,23982,0)
- ;;=28208^^142^1493^11^^^^1
- ;;^UTILITY(U,$J,358.3,23982,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23982,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; primary or secondary, each tendon
- ;;^UTILITY(U,$J,358.3,23982,1,3,0)
- ;;=3^28208
- ;;^UTILITY(U,$J,358.3,23983,0)
- ;;=28230^^142^1493^13^^^^1
- ;;^UTILITY(U,$J,358.3,23983,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23983,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; foot, single or multiple tendon(s)(separate procedure)
- ;;^UTILITY(U,$J,358.3,23983,1,3,0)
- ;;=3^28230
- ;;^UTILITY(U,$J,358.3,23984,0)
- ;;=28232^^142^1493^14^^^^1
- ;;^UTILITY(U,$J,358.3,23984,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23984,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; toe, single tendon (separate procedure) 
- ;;^UTILITY(U,$J,358.3,23984,1,3,0)
- ;;=3^28232
- ;;^UTILITY(U,$J,358.3,23985,0)
- ;;=28234^^142^1493^15^^^^1
- ;;^UTILITY(U,$J,358.3,23985,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23985,1,2,0)
- ;;=2^Tenotomy, open, extensor, foot or toe, each tendon
- ;;^UTILITY(U,$J,358.3,23985,1,3,0)
- ;;=3^28234
- ;;^UTILITY(U,$J,358.3,23986,0)
- ;;=28270^^142^1493^16^^^^1
- ;;^UTILITY(U,$J,358.3,23986,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23986,1,2,0)
- ;;=2^Capsulotomy; metatarsophalangeal joint, with or without tenorrhaphy, each joint (separate procedure) 
- ;;^UTILITY(U,$J,358.3,23986,1,3,0)
- ;;=3^28270
- ;;^UTILITY(U,$J,358.3,23987,0)
- ;;=28272^^142^1493^17^^^^1
- ;;^UTILITY(U,$J,358.3,23987,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23987,1,2,0)
- ;;=2^Capsulotomy; interphalangeal joint, each joint
- ;;^UTILITY(U,$J,358.3,23987,1,3,0)
- ;;=3^28272
- ;;^UTILITY(U,$J,358.3,23988,0)
- ;;=28285^^142^1493^18^^^^1
- ;;^UTILITY(U,$J,358.3,23988,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23988,1,2,0)
- ;;=2^Correction, hammertoe
- ;;^UTILITY(U,$J,358.3,23988,1,3,0)
- ;;=3^28285
- ;;^UTILITY(U,$J,358.3,23989,0)
- ;;=28288^^142^1493^19^^^^1
- ;;^UTILITY(U,$J,358.3,23989,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23989,1,2,0)
- ;;=2^Ostectomy, partial, exostectomy or condylectomy, metatarsal head, each metatarsal head
- ;;^UTILITY(U,$J,358.3,23989,1,3,0)
- ;;=3^28288
- ;;^UTILITY(U,$J,358.3,23990,0)
- ;;=28290^^142^1493^20^^^^1
- ;;^UTILITY(U,$J,358.3,23990,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23990,1,2,0)
- ;;=2^Correction, hallux valgus, with or without sesamoidectomy; simple exostectomy
- ;;^UTILITY(U,$J,358.3,23990,1,3,0)
- ;;=3^28290
- ;;^UTILITY(U,$J,358.3,23991,0)
- ;;=28292^^142^1493^21^^^^1
- ;;^UTILITY(U,$J,358.3,23991,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23991,1,2,0)
- ;;=2^Resection of Joint by Keller Type
+ ;;^UTILITY(U,$J,358.3,23684,1,2,0)
+ ;;=2^305.1
+ ;;^UTILITY(U,$J,358.3,23684,1,5,0)
+ ;;=5^Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,23684,2)
+ ;;=^119899
+ ;;^UTILITY(U,$J,358.3,23685,0)
+ ;;=291.81^^127^1431^14
+ ;;^UTILITY(U,$J,358.3,23685,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23685,1,2,0)
+ ;;=2^291.81
+ ;;^UTILITY(U,$J,358.3,23685,1,5,0)
+ ;;=5^Alcohol Withdrawal
+ ;;^UTILITY(U,$J,358.3,23685,2)
+ ;;=^123498
+ ;;^UTILITY(U,$J,358.3,23686,0)
+ ;;=291.0^^127^1431^13
+ ;;^UTILITY(U,$J,358.3,23686,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23686,1,2,0)
+ ;;=2^291.0
+ ;;^UTILITY(U,$J,358.3,23686,1,5,0)
+ ;;=5^Alcohol Withdraw Delir
+ ;;^UTILITY(U,$J,358.3,23686,2)
+ ;;=^4589
+ ;;^UTILITY(U,$J,358.3,23687,0)
+ ;;=303.00^^127^1431^5
+ ;;^UTILITY(U,$J,358.3,23687,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23687,1,2,0)
+ ;;=2^303.00
+ ;;^UTILITY(U,$J,358.3,23687,1,5,0)
+ ;;=5^Alc Intox NOS
+ ;;^UTILITY(U,$J,358.3,23687,2)
+ ;;=^268183
+ ;;^UTILITY(U,$J,358.3,23688,0)
+ ;;=303.01^^127^1431^6
+ ;;^UTILITY(U,$J,358.3,23688,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23688,1,2,0)
+ ;;=2^303.01
+ ;;^UTILITY(U,$J,358.3,23688,1,5,0)
+ ;;=5^Alc Intox, Continuous
+ ;;^UTILITY(U,$J,358.3,23688,2)
+ ;;=^268184
+ ;;^UTILITY(U,$J,358.3,23689,0)
+ ;;=303.02^^127^1431^7
+ ;;^UTILITY(U,$J,358.3,23689,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23689,1,2,0)
+ ;;=2^303.02
+ ;;^UTILITY(U,$J,358.3,23689,1,5,0)
+ ;;=5^Alc Intox, Episodic
+ ;;^UTILITY(U,$J,358.3,23689,2)
+ ;;=^268185
+ ;;^UTILITY(U,$J,358.3,23690,0)
+ ;;=303.03^^127^1431^8
+ ;;^UTILITY(U,$J,358.3,23690,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23690,1,2,0)
+ ;;=2^303.03
+ ;;^UTILITY(U,$J,358.3,23690,1,5,0)
+ ;;=5^Alc Intox, Remiss
+ ;;^UTILITY(U,$J,358.3,23690,2)
+ ;;=^268186
+ ;;^UTILITY(U,$J,358.3,23691,0)
+ ;;=303.91^^127^1431^3
+ ;;^UTILITY(U,$J,358.3,23691,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23691,1,2,0)
+ ;;=2^303.91
+ ;;^UTILITY(U,$J,358.3,23691,1,5,0)
+ ;;=5^Alc Dep, Continuous
+ ;;^UTILITY(U,$J,358.3,23691,2)
+ ;;=^268188
+ ;;^UTILITY(U,$J,358.3,23692,0)
+ ;;=303.92^^127^1431^4
+ ;;^UTILITY(U,$J,358.3,23692,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23692,1,2,0)
+ ;;=2^303.92
+ ;;^UTILITY(U,$J,358.3,23692,1,5,0)
+ ;;=5^Alc Dep, Episodic
+ ;;^UTILITY(U,$J,358.3,23692,2)
+ ;;=^268189
+ ;;^UTILITY(U,$J,358.3,23693,0)
+ ;;=304.01^^127^1431^73
+ ;;^UTILITY(U,$J,358.3,23693,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23693,1,2,0)
+ ;;=2^304.01
+ ;;^UTILITY(U,$J,358.3,23693,1,5,0)
+ ;;=5^Opioid Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,23693,2)
+ ;;=^268191
+ ;;^UTILITY(U,$J,358.3,23694,0)
+ ;;=304.02^^127^1431^75
+ ;;^UTILITY(U,$J,358.3,23694,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23694,1,2,0)
+ ;;=2^304.02
+ ;;^UTILITY(U,$J,358.3,23694,1,5,0)
+ ;;=5^Opioid Dependence, Episodic
+ ;;^UTILITY(U,$J,358.3,23694,2)
+ ;;=^268192
+ ;;^UTILITY(U,$J,358.3,23695,0)
+ ;;=304.11^^127^1431^28
+ ;;^UTILITY(U,$J,358.3,23695,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23695,1,2,0)
+ ;;=2^304.11
+ ;;^UTILITY(U,$J,358.3,23695,1,5,0)
+ ;;=5^Anxiolytic Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,23695,2)
+ ;;=^331932
+ ;;^UTILITY(U,$J,358.3,23696,0)
+ ;;=304.12^^127^1431^29
+ ;;^UTILITY(U,$J,358.3,23696,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23696,1,2,0)
+ ;;=2^304.12
+ ;;^UTILITY(U,$J,358.3,23696,1,5,0)
+ ;;=5^Anxiolytic Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,23696,2)
+ ;;=^331933
+ ;;^UTILITY(U,$J,358.3,23697,0)
+ ;;=304.21^^127^1431^44
+ ;;^UTILITY(U,$J,358.3,23697,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23697,1,2,0)
+ ;;=2^304.21
+ ;;^UTILITY(U,$J,358.3,23697,1,5,0)
+ ;;=5^Cocaine Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,23697,2)
+ ;;=^268198

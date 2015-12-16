@@ -1,130 +1,126 @@
-IBDEI1Q1 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1Q1 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30840,1,4,0)
- ;;=4^S61.052A
- ;;^UTILITY(U,$J,358.3,30840,2)
- ;;=^5032717
- ;;^UTILITY(U,$J,358.3,30841,0)
- ;;=S61.552A^^189^1925^31
- ;;^UTILITY(U,$J,358.3,30841,1,0)
+ ;;^UTILITY(U,$J,358.3,30469,1,4,0)
+ ;;=4^O41.1031
+ ;;^UTILITY(U,$J,358.3,30469,2)
+ ;;=^5017256
+ ;;^UTILITY(U,$J,358.3,30470,0)
+ ;;=O41.1032^^178^1917^35
+ ;;^UTILITY(U,$J,358.3,30470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30841,1,3,0)
- ;;=3^Open Bite of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,30841,1,4,0)
- ;;=4^S61.552A
- ;;^UTILITY(U,$J,358.3,30841,2)
- ;;=^5033053
- ;;^UTILITY(U,$J,358.3,30842,0)
- ;;=S01.25XA^^189^1925^34
- ;;^UTILITY(U,$J,358.3,30842,1,0)
+ ;;^UTILITY(U,$J,358.3,30470,1,3,0)
+ ;;=3^Infct of amniotic sac/membrns, third tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,30470,1,4,0)
+ ;;=4^O41.1032
+ ;;^UTILITY(U,$J,358.3,30470,2)
+ ;;=^5017257
+ ;;^UTILITY(U,$J,358.3,30471,0)
+ ;;=O41.1033^^178^1917^36
+ ;;^UTILITY(U,$J,358.3,30471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30842,1,3,0)
- ;;=3^Open Bite of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,30842,1,4,0)
- ;;=4^S01.25XA
- ;;^UTILITY(U,$J,358.3,30842,2)
- ;;=^5020105
- ;;^UTILITY(U,$J,358.3,30843,0)
- ;;=S01.85XA^^189^1925^1
- ;;^UTILITY(U,$J,358.3,30843,1,0)
+ ;;^UTILITY(U,$J,358.3,30471,1,3,0)
+ ;;=3^Infct of amniotic sac/membrns, third tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,30471,1,4,0)
+ ;;=4^O41.1033
+ ;;^UTILITY(U,$J,358.3,30471,2)
+ ;;=^5017258
+ ;;^UTILITY(U,$J,358.3,30472,0)
+ ;;=O41.1034^^178^1917^37
+ ;;^UTILITY(U,$J,358.3,30472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30843,1,3,0)
- ;;=3^Open Bite of Head,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,30843,1,4,0)
- ;;=4^S01.85XA
- ;;^UTILITY(U,$J,358.3,30843,2)
- ;;=^5020237
- ;;^UTILITY(U,$J,358.3,30844,0)
- ;;=S11.85XA^^189^1925^32
- ;;^UTILITY(U,$J,358.3,30844,1,0)
+ ;;^UTILITY(U,$J,358.3,30472,1,3,0)
+ ;;=3^Infct of amniotic sac/membrns, third tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,30472,1,4,0)
+ ;;=4^O41.1034
+ ;;^UTILITY(U,$J,358.3,30472,2)
+ ;;=^5017259
+ ;;^UTILITY(U,$J,358.3,30473,0)
+ ;;=O41.1035^^178^1917^38
+ ;;^UTILITY(U,$J,358.3,30473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30844,1,3,0)
- ;;=3^Open Bite of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,30844,1,4,0)
- ;;=4^S11.85XA
- ;;^UTILITY(U,$J,358.3,30844,2)
- ;;=^5021521
- ;;^UTILITY(U,$J,358.3,30845,0)
- ;;=S91.051A^^189^1925^37
- ;;^UTILITY(U,$J,358.3,30845,1,0)
+ ;;^UTILITY(U,$J,358.3,30473,1,3,0)
+ ;;=3^Infct of amniotic sac/membrns, third tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,30473,1,4,0)
+ ;;=4^O41.1035
+ ;;^UTILITY(U,$J,358.3,30473,2)
+ ;;=^5017260
+ ;;^UTILITY(U,$J,358.3,30474,0)
+ ;;=O41.1210^^178^1917^7
+ ;;^UTILITY(U,$J,358.3,30474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30845,1,3,0)
- ;;=3^Open Bite of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,30845,1,4,0)
- ;;=4^S91.051A
- ;;^UTILITY(U,$J,358.3,30845,2)
- ;;=^5044159
- ;;^UTILITY(U,$J,358.3,30846,0)
- ;;=S31.815A^^189^1925^38
- ;;^UTILITY(U,$J,358.3,30846,1,0)
+ ;;^UTILITY(U,$J,358.3,30474,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,30474,1,4,0)
+ ;;=4^O41.1210
+ ;;^UTILITY(U,$J,358.3,30474,2)
+ ;;=^5017267
+ ;;^UTILITY(U,$J,358.3,30475,0)
+ ;;=O41.1211^^178^1917^2
+ ;;^UTILITY(U,$J,358.3,30475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30846,1,3,0)
- ;;=3^Open Bite of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,30846,1,4,0)
- ;;=4^S31.815A
- ;;^UTILITY(U,$J,358.3,30846,2)
- ;;=^5024305
- ;;^UTILITY(U,$J,358.3,30847,0)
- ;;=S01.451A^^189^1925^39
- ;;^UTILITY(U,$J,358.3,30847,1,0)
+ ;;^UTILITY(U,$J,358.3,30475,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30475,1,4,0)
+ ;;=4^O41.1211
+ ;;^UTILITY(U,$J,358.3,30475,2)
+ ;;=^5017268
+ ;;^UTILITY(U,$J,358.3,30476,0)
+ ;;=O41.1212^^178^1917^3
+ ;;^UTILITY(U,$J,358.3,30476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30847,1,3,0)
- ;;=3^Open Bite of Right Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,30847,1,4,0)
- ;;=4^S01.451A
- ;;^UTILITY(U,$J,358.3,30847,2)
- ;;=^5020177
- ;;^UTILITY(U,$J,358.3,30848,0)
- ;;=S01.351A^^189^1925^40
- ;;^UTILITY(U,$J,358.3,30848,1,0)
+ ;;^UTILITY(U,$J,358.3,30476,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,30476,1,4,0)
+ ;;=4^O41.1212
+ ;;^UTILITY(U,$J,358.3,30476,2)
+ ;;=^5017269
+ ;;^UTILITY(U,$J,358.3,30477,0)
+ ;;=O41.1213^^178^1917^4
+ ;;^UTILITY(U,$J,358.3,30477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30848,1,3,0)
- ;;=3^Open Bite of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,30848,1,4,0)
- ;;=4^S01.351A
- ;;^UTILITY(U,$J,358.3,30848,2)
- ;;=^5020138
- ;;^UTILITY(U,$J,358.3,30849,0)
- ;;=S51.051A^^189^1925^41
- ;;^UTILITY(U,$J,358.3,30849,1,0)
+ ;;^UTILITY(U,$J,358.3,30477,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,30477,1,4,0)
+ ;;=4^O41.1213
+ ;;^UTILITY(U,$J,358.3,30477,2)
+ ;;=^5017270
+ ;;^UTILITY(U,$J,358.3,30478,0)
+ ;;=O41.1214^^178^1917^5
+ ;;^UTILITY(U,$J,358.3,30478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30849,1,3,0)
- ;;=3^Open Bite of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,30849,1,4,0)
- ;;=4^S51.051A
- ;;^UTILITY(U,$J,358.3,30849,2)
- ;;=^5028650
- ;;^UTILITY(U,$J,358.3,30850,0)
- ;;=S91.351A^^189^1925^42
- ;;^UTILITY(U,$J,358.3,30850,1,0)
+ ;;^UTILITY(U,$J,358.3,30478,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,30478,1,4,0)
+ ;;=4^O41.1214
+ ;;^UTILITY(U,$J,358.3,30478,2)
+ ;;=^5017271
+ ;;^UTILITY(U,$J,358.3,30479,0)
+ ;;=O41.1215^^178^1917^6
+ ;;^UTILITY(U,$J,358.3,30479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30850,1,3,0)
- ;;=3^Open Bite of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,30850,1,4,0)
- ;;=4^S91.351A
- ;;^UTILITY(U,$J,358.3,30850,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,30851,0)
- ;;=S91.251A^^189^1925^43
- ;;^UTILITY(U,$J,358.3,30851,1,0)
+ ;;^UTILITY(U,$J,358.3,30479,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30479,1,4,0)
+ ;;=4^O41.1215
+ ;;^UTILITY(U,$J,358.3,30479,2)
+ ;;=^5017272
+ ;;^UTILITY(U,$J,358.3,30480,0)
+ ;;=O41.1220^^178^1917^13
+ ;;^UTILITY(U,$J,358.3,30480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30851,1,3,0)
- ;;=3^Open Bite of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30851,1,4,0)
- ;;=4^S91.251A
- ;;^UTILITY(U,$J,358.3,30851,2)
- ;;=^5044305
- ;;^UTILITY(U,$J,358.3,30852,0)
- ;;=S61.451A^^189^1925^44
- ;;^UTILITY(U,$J,358.3,30852,1,0)
+ ;;^UTILITY(U,$J,358.3,30480,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,30480,1,4,0)
+ ;;=4^O41.1220
+ ;;^UTILITY(U,$J,358.3,30480,2)
+ ;;=^5017274
+ ;;^UTILITY(U,$J,358.3,30481,0)
+ ;;=O41.1221^^178^1917^8
+ ;;^UTILITY(U,$J,358.3,30481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30852,1,3,0)
- ;;=3^Open Bite of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,30852,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,30852,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,30853,0)
- ;;=S71.051A^^189^1925^45
+ ;;^UTILITY(U,$J,358.3,30481,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30481,1,4,0)
+ ;;=4^O41.1221

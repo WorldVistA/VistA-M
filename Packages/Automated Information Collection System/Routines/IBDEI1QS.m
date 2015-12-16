@@ -1,140 +1,122 @@
-IBDEI1QS ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QS ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31179,0)
- ;;=L29.0^^190^1932^251
- ;;^UTILITY(U,$J,358.3,31179,1,0)
+ ;;^UTILITY(U,$J,358.3,30807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31179,1,3,0)
- ;;=3^Pruritus Ani
- ;;^UTILITY(U,$J,358.3,31179,1,4,0)
- ;;=4^L29.0
- ;;^UTILITY(U,$J,358.3,31179,2)
- ;;=^100061
- ;;^UTILITY(U,$J,358.3,31180,0)
- ;;=L29.9^^190^1932^252
- ;;^UTILITY(U,$J,358.3,31180,1,0)
+ ;;^UTILITY(U,$J,358.3,30807,1,3,0)
+ ;;=3^Displaced comminuted fracture of shaft of right femur, init
+ ;;^UTILITY(U,$J,358.3,30807,1,4,0)
+ ;;=4^S72.351A
+ ;;^UTILITY(U,$J,358.3,30807,2)
+ ;;=^5038432
+ ;;^UTILITY(U,$J,358.3,30808,0)
+ ;;=M61.052^^179^1929^5
+ ;;^UTILITY(U,$J,358.3,30808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31180,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,31180,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,31180,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,31181,0)
- ;;=L30.0^^190^1932^233
- ;;^UTILITY(U,$J,358.3,31181,1,0)
+ ;;^UTILITY(U,$J,358.3,30808,1,3,0)
+ ;;=3^Myositis ossificans traumatica, left thigh
+ ;;^UTILITY(U,$J,358.3,30808,1,4,0)
+ ;;=4^M61.052
+ ;;^UTILITY(U,$J,358.3,30808,2)
+ ;;=^5012424
+ ;;^UTILITY(U,$J,358.3,30809,0)
+ ;;=S72.354A^^179^1929^7
+ ;;^UTILITY(U,$J,358.3,30809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31181,1,3,0)
- ;;=3^Nummular Dermatitis
- ;;^UTILITY(U,$J,358.3,31181,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,31181,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,31182,0)
- ;;=L30.1^^190^1932^140
- ;;^UTILITY(U,$J,358.3,31182,1,0)
+ ;;^UTILITY(U,$J,358.3,30809,1,3,0)
+ ;;=3^Nondisp comminuted fracture of shaft of right femur, init
+ ;;^UTILITY(U,$J,358.3,30809,1,4,0)
+ ;;=4^S72.354A
+ ;;^UTILITY(U,$J,358.3,30809,2)
+ ;;=^5038480
+ ;;^UTILITY(U,$J,358.3,30810,0)
+ ;;=M84.552A^^179^1929^9
+ ;;^UTILITY(U,$J,358.3,30810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31182,1,3,0)
- ;;=3^Dyshidrosis
- ;;^UTILITY(U,$J,358.3,31182,1,4,0)
- ;;=4^L30.1
- ;;^UTILITY(U,$J,358.3,31182,2)
- ;;=^5009154
- ;;^UTILITY(U,$J,358.3,31183,0)
- ;;=L30.2^^190^1932^132
- ;;^UTILITY(U,$J,358.3,31183,1,0)
+ ;;^UTILITY(U,$J,358.3,30810,1,3,0)
+ ;;=3^Path fracture in neoplastic disease, left femur, init
+ ;;^UTILITY(U,$J,358.3,30810,1,4,0)
+ ;;=4^M84.552A
+ ;;^UTILITY(U,$J,358.3,30810,2)
+ ;;=^5014124
+ ;;^UTILITY(U,$J,358.3,30811,0)
+ ;;=M84.551A^^179^1929^10
+ ;;^UTILITY(U,$J,358.3,30811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31183,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,31183,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,31183,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,31184,0)
- ;;=L30.4^^190^1932^144
- ;;^UTILITY(U,$J,358.3,31184,1,0)
+ ;;^UTILITY(U,$J,358.3,30811,1,3,0)
+ ;;=3^Path fracture in neoplastic disease, right femur, init
+ ;;^UTILITY(U,$J,358.3,30811,1,4,0)
+ ;;=4^M84.551A
+ ;;^UTILITY(U,$J,358.3,30811,2)
+ ;;=^5014118
+ ;;^UTILITY(U,$J,358.3,30812,0)
+ ;;=M84.652A^^179^1929^11
+ ;;^UTILITY(U,$J,358.3,30812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31184,1,3,0)
- ;;=3^Erythema Intertrigo
- ;;^UTILITY(U,$J,358.3,31184,1,4,0)
- ;;=4^L30.4
- ;;^UTILITY(U,$J,358.3,31184,2)
- ;;=^5009157
- ;;^UTILITY(U,$J,358.3,31185,0)
- ;;=L30.8^^190^1932^135
- ;;^UTILITY(U,$J,358.3,31185,1,0)
+ ;;^UTILITY(U,$J,358.3,30812,1,3,0)
+ ;;=3^Pathological fracture in oth disease, left femur, init
+ ;;^UTILITY(U,$J,358.3,30812,1,4,0)
+ ;;=4^M84.652A
+ ;;^UTILITY(U,$J,358.3,30812,2)
+ ;;=^5134003
+ ;;^UTILITY(U,$J,358.3,30813,0)
+ ;;=M61.051^^179^1929^6
+ ;;^UTILITY(U,$J,358.3,30813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31185,1,3,0)
- ;;=3^Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,31185,1,4,0)
- ;;=4^L30.8
- ;;^UTILITY(U,$J,358.3,31185,2)
- ;;=^5009158
- ;;^UTILITY(U,$J,358.3,31186,0)
- ;;=L30.9^^190^1932^136
- ;;^UTILITY(U,$J,358.3,31186,1,0)
+ ;;^UTILITY(U,$J,358.3,30813,1,3,0)
+ ;;=3^Myositis ossificans traumatica, right thigh
+ ;;^UTILITY(U,$J,358.3,30813,1,4,0)
+ ;;=4^M61.051
+ ;;^UTILITY(U,$J,358.3,30813,2)
+ ;;=^5012423
+ ;;^UTILITY(U,$J,358.3,30814,0)
+ ;;=S72.355A^^179^1929^8
+ ;;^UTILITY(U,$J,358.3,30814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31186,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,31186,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,31186,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,31187,0)
- ;;=L40.0^^190^1932^254
- ;;^UTILITY(U,$J,358.3,31187,1,0)
+ ;;^UTILITY(U,$J,358.3,30814,1,3,0)
+ ;;=3^Nondisp comminuted fracture of shaft of left femur, init
+ ;;^UTILITY(U,$J,358.3,30814,1,4,0)
+ ;;=4^S72.355A
+ ;;^UTILITY(U,$J,358.3,30814,2)
+ ;;=^5038496
+ ;;^UTILITY(U,$J,358.3,30815,0)
+ ;;=M84.651A^^179^1929^12
+ ;;^UTILITY(U,$J,358.3,30815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31187,1,3,0)
- ;;=3^Psoriasis Vulgaris
- ;;^UTILITY(U,$J,358.3,31187,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,31187,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,31188,0)
- ;;=L40.1^^190^1932^257
- ;;^UTILITY(U,$J,358.3,31188,1,0)
+ ;;^UTILITY(U,$J,358.3,30815,1,3,0)
+ ;;=3^Pathological fracture in oth disease, right femur, init
+ ;;^UTILITY(U,$J,358.3,30815,1,4,0)
+ ;;=4^M84.651A
+ ;;^UTILITY(U,$J,358.3,30815,2)
+ ;;=^5014262
+ ;;^UTILITY(U,$J,358.3,30816,0)
+ ;;=M84.452A^^179^1929^13
+ ;;^UTILITY(U,$J,358.3,30816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31188,1,3,0)
- ;;=3^Pustulosis Psoriasis,Generalized
- ;;^UTILITY(U,$J,358.3,31188,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,31188,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,31189,0)
- ;;=L40.2^^190^1932^11
- ;;^UTILITY(U,$J,358.3,31189,1,0)
+ ;;^UTILITY(U,$J,358.3,30816,1,3,0)
+ ;;=3^Pathological fracture, left femur, init encntr for fracture
+ ;;^UTILITY(U,$J,358.3,30816,1,4,0)
+ ;;=4^M84.452A
+ ;;^UTILITY(U,$J,358.3,30816,2)
+ ;;=^5013908
+ ;;^UTILITY(U,$J,358.3,30817,0)
+ ;;=M84.451A^^179^1929^14
+ ;;^UTILITY(U,$J,358.3,30817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31189,1,3,0)
- ;;=3^Acrodermatitis Continua
- ;;^UTILITY(U,$J,358.3,31189,1,4,0)
- ;;=4^L40.2
- ;;^UTILITY(U,$J,358.3,31189,2)
- ;;=^5009162
- ;;^UTILITY(U,$J,358.3,31190,0)
- ;;=L40.3^^190^1932^256
- ;;^UTILITY(U,$J,358.3,31190,1,0)
+ ;;^UTILITY(U,$J,358.3,30817,1,3,0)
+ ;;=3^Pathological fracture, right femur, init encntr for fracture
+ ;;^UTILITY(U,$J,358.3,30817,1,4,0)
+ ;;=4^M84.451A
+ ;;^UTILITY(U,$J,358.3,30817,2)
+ ;;=^5013902
+ ;;^UTILITY(U,$J,358.3,30818,0)
+ ;;=M84.352A^^179^1929^15
+ ;;^UTILITY(U,$J,358.3,30818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31190,1,3,0)
- ;;=3^Pustulosis Palmaris et Plantaris
- ;;^UTILITY(U,$J,358.3,31190,1,4,0)
- ;;=4^L40.3
- ;;^UTILITY(U,$J,358.3,31190,2)
- ;;=^5009163
- ;;^UTILITY(U,$J,358.3,31191,0)
- ;;=L40.4^^190^1932^157
- ;;^UTILITY(U,$J,358.3,31191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31191,1,3,0)
- ;;=3^Guttate Psoriasis
- ;;^UTILITY(U,$J,358.3,31191,1,4,0)
- ;;=4^L40.4
- ;;^UTILITY(U,$J,358.3,31191,2)
- ;;=^5009164
- ;;^UTILITY(U,$J,358.3,31192,0)
- ;;=L40.8^^190^1932^253
- ;;^UTILITY(U,$J,358.3,31192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31192,1,3,0)
- ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,30818,1,3,0)
+ ;;=3^Stress fracture, left femur, initial encounter for fracture
+ ;;^UTILITY(U,$J,358.3,30818,1,4,0)
+ ;;=4^M84.352A
+ ;;^UTILITY(U,$J,358.3,30818,2)
+ ;;=^5013686

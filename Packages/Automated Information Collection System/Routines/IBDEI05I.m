@@ -1,144 +1,126 @@
-IBDEI05I ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05I ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2293,1,5,0)
- ;;=5^Asphyxia
- ;;^UTILITY(U,$J,358.3,2293,2)
- ;;=^11005
- ;;^UTILITY(U,$J,358.3,2294,0)
- ;;=789.59^^21^191^33
- ;;^UTILITY(U,$J,358.3,2294,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2294,1,4,0)
- ;;=4^789.59
- ;;^UTILITY(U,$J,358.3,2294,1,5,0)
- ;;=5^Ascites
- ;;^UTILITY(U,$J,358.3,2294,2)
- ;;=^335282
- ;;^UTILITY(U,$J,358.3,2295,0)
- ;;=790.6^^21^191^29
- ;;^UTILITY(U,$J,358.3,2295,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2295,1,4,0)
- ;;=4^790.6
- ;;^UTILITY(U,$J,358.3,2295,1,5,0)
- ;;=5^Abnormal LFT's
- ;;^UTILITY(U,$J,358.3,2295,2)
- ;;=^87228
- ;;^UTILITY(U,$J,358.3,2296,0)
- ;;=780.60^^21^191^43
- ;;^UTILITY(U,$J,358.3,2296,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2296,1,4,0)
- ;;=4^780.60
- ;;^UTILITY(U,$J,358.3,2296,1,5,0)
- ;;=5^Fever
- ;;^UTILITY(U,$J,358.3,2296,2)
- ;;=^336764
- ;;^UTILITY(U,$J,358.3,2297,0)
- ;;=786.30^^21^191^44
- ;;^UTILITY(U,$J,358.3,2297,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2297,1,4,0)
- ;;=4^786.30
- ;;^UTILITY(U,$J,358.3,2297,1,5,0)
- ;;=5^Hemoptysis NOS
- ;;^UTILITY(U,$J,358.3,2297,2)
- ;;=^339669
- ;;^UTILITY(U,$J,358.3,2298,0)
- ;;=789.07^^21^191^11
- ;;^UTILITY(U,$J,358.3,2298,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2298,1,4,0)
- ;;=4^789.07
- ;;^UTILITY(U,$J,358.3,2298,1,5,0)
- ;;=5^Abdominal pain, Generalized
- ;;^UTILITY(U,$J,358.3,2298,2)
- ;;=^303324
- ;;^UTILITY(U,$J,358.3,2299,0)
- ;;=789.09^^21^191^14
- ;;^UTILITY(U,$J,358.3,2299,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2299,1,4,0)
- ;;=4^789.09
- ;;^UTILITY(U,$J,358.3,2299,1,5,0)
- ;;=5^Abdominal pain, Oth Spec Site
- ;;^UTILITY(U,$J,358.3,2299,2)
- ;;=^303325
- ;;^UTILITY(U,$J,358.3,2300,0)
- ;;=789.00^^21^191^18
- ;;^UTILITY(U,$J,358.3,2300,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2300,1,4,0)
- ;;=4^789.00
- ;;^UTILITY(U,$J,358.3,2300,1,5,0)
- ;;=5^Abdominal pain, Site Unspec
- ;;^UTILITY(U,$J,358.3,2300,2)
- ;;=^303317
- ;;^UTILITY(U,$J,358.3,2301,0)
- ;;=789.46^^21^191^19
- ;;^UTILITY(U,$J,358.3,2301,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2301,1,4,0)
- ;;=4^789.46
- ;;^UTILITY(U,$J,358.3,2301,1,5,0)
- ;;=5^Abdominal rigidity, Epigast
- ;;^UTILITY(U,$J,358.3,2301,2)
- ;;=^303339
- ;;^UTILITY(U,$J,358.3,2302,0)
- ;;=789.47^^21^191^20
- ;;^UTILITY(U,$J,358.3,2302,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2302,1,4,0)
- ;;=4^789.47
- ;;^UTILITY(U,$J,358.3,2302,1,5,0)
- ;;=5^Abdominal rigidity, Generalized
- ;;^UTILITY(U,$J,358.3,2302,2)
- ;;=^303340
- ;;^UTILITY(U,$J,358.3,2303,0)
- ;;=789.44^^21^191^21
- ;;^UTILITY(U,$J,358.3,2303,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2303,1,4,0)
- ;;=4^789.44
- ;;^UTILITY(U,$J,358.3,2303,1,5,0)
- ;;=5^Abdominal rigidity, LLQ
- ;;^UTILITY(U,$J,358.3,2303,2)
- ;;=^303337
- ;;^UTILITY(U,$J,358.3,2304,0)
- ;;=789.42^^21^191^22
- ;;^UTILITY(U,$J,358.3,2304,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2304,1,4,0)
- ;;=4^789.42
- ;;^UTILITY(U,$J,358.3,2304,1,5,0)
- ;;=5^Abdominal rigidity, LUQ
- ;;^UTILITY(U,$J,358.3,2304,2)
- ;;=^303335
- ;;^UTILITY(U,$J,358.3,2305,0)
- ;;=789.49^^21^191^23
- ;;^UTILITY(U,$J,358.3,2305,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2305,1,4,0)
- ;;=4^789.49
- ;;^UTILITY(U,$J,358.3,2305,1,5,0)
- ;;=5^Abdominal rigidity, Oth Spec Site
- ;;^UTILITY(U,$J,358.3,2305,2)
- ;;=^303341
- ;;^UTILITY(U,$J,358.3,2306,0)
- ;;=789.45^^21^191^24
- ;;^UTILITY(U,$J,358.3,2306,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2306,1,4,0)
- ;;=4^789.45
- ;;^UTILITY(U,$J,358.3,2306,1,5,0)
- ;;=5^Abdominal rigidity, Periumbil
- ;;^UTILITY(U,$J,358.3,2306,2)
- ;;=^303338
- ;;^UTILITY(U,$J,358.3,2307,0)
- ;;=789.43^^21^191^25
- ;;^UTILITY(U,$J,358.3,2307,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2307,1,4,0)
- ;;=4^789.43
+ ;;^UTILITY(U,$J,358.3,2057,1,4,0)
+ ;;=4^S91.152A
+ ;;^UTILITY(U,$J,358.3,2057,2)
+ ;;=^5044246
+ ;;^UTILITY(U,$J,358.3,2058,0)
+ ;;=S91.154A^^4^62^152
+ ;;^UTILITY(U,$J,358.3,2058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2058,1,3,0)
+ ;;=3^Open bite, right lesser toe(s) w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,2058,1,4,0)
+ ;;=4^S91.154A
+ ;;^UTILITY(U,$J,358.3,2058,2)
+ ;;=^5044252
+ ;;^UTILITY(U,$J,358.3,2059,0)
+ ;;=S91.155A^^4^62^144
+ ;;^UTILITY(U,$J,358.3,2059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2059,1,3,0)
+ ;;=3^Open bite, left lesser toe(s) w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,2059,1,4,0)
+ ;;=4^S91.155A
+ ;;^UTILITY(U,$J,358.3,2059,2)
+ ;;=^5044255
+ ;;^UTILITY(U,$J,358.3,2060,0)
+ ;;=S90.425A^^4^62^31
+ ;;^UTILITY(U,$J,358.3,2060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2060,1,3,0)
+ ;;=3^Blister (nonthermal), left lesser toe(s), initial encounter
+ ;;^UTILITY(U,$J,358.3,2060,1,4,0)
+ ;;=4^S90.425A
+ ;;^UTILITY(U,$J,358.3,2060,2)
+ ;;=^5043919
+ ;;^UTILITY(U,$J,358.3,2061,0)
+ ;;=T23.121A^^4^62^35
+ ;;^UTILITY(U,$J,358.3,2061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2061,1,3,0)
+ ;;=3^Burn first degree of single r finger except thumb, init
+ ;;^UTILITY(U,$J,358.3,2061,1,4,0)
+ ;;=4^T23.121A
+ ;;^UTILITY(U,$J,358.3,2061,2)
+ ;;=^5047671
+ ;;^UTILITY(U,$J,358.3,2062,0)
+ ;;=T23.122A^^4^62^34
+ ;;^UTILITY(U,$J,358.3,2062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2062,1,3,0)
+ ;;=3^Burn first degree of single l finger except thumb, init
+ ;;^UTILITY(U,$J,358.3,2062,1,4,0)
+ ;;=4^T23.122A
+ ;;^UTILITY(U,$J,358.3,2062,2)
+ ;;=^5047674
+ ;;^UTILITY(U,$J,358.3,2063,0)
+ ;;=T23.221A^^4^62^39
+ ;;^UTILITY(U,$J,358.3,2063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2063,1,3,0)
+ ;;=3^Burn second degree of single r finger except thumb, init
+ ;;^UTILITY(U,$J,358.3,2063,1,4,0)
+ ;;=4^T23.221A
+ ;;^UTILITY(U,$J,358.3,2063,2)
+ ;;=^5047749
+ ;;^UTILITY(U,$J,358.3,2064,0)
+ ;;=T23.222A^^4^62^38
+ ;;^UTILITY(U,$J,358.3,2064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2064,1,3,0)
+ ;;=3^Burn second degree of single l finger except thumb, init
+ ;;^UTILITY(U,$J,358.3,2064,1,4,0)
+ ;;=4^T23.222A
+ ;;^UTILITY(U,$J,358.3,2064,2)
+ ;;=^5047752
+ ;;^UTILITY(U,$J,358.3,2065,0)
+ ;;=T23.321A^^4^62^43
+ ;;^UTILITY(U,$J,358.3,2065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2065,1,3,0)
+ ;;=3^Burn third degree of single r finger except thumb, init
+ ;;^UTILITY(U,$J,358.3,2065,1,4,0)
+ ;;=4^T23.321A
+ ;;^UTILITY(U,$J,358.3,2065,2)
+ ;;=^5047827
+ ;;^UTILITY(U,$J,358.3,2066,0)
+ ;;=T23.322A^^4^62^42
+ ;;^UTILITY(U,$J,358.3,2066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2066,1,3,0)
+ ;;=3^Burn third degree of single l finger except thumb, init
+ ;;^UTILITY(U,$J,358.3,2066,1,4,0)
+ ;;=4^T23.322A
+ ;;^UTILITY(U,$J,358.3,2066,2)
+ ;;=^5047830
+ ;;^UTILITY(U,$J,358.3,2067,0)
+ ;;=T23.101A^^4^62^33
+ ;;^UTILITY(U,$J,358.3,2067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2067,1,3,0)
+ ;;=3^Burn first degree of right hand, unsp site, init encntr
+ ;;^UTILITY(U,$J,358.3,2067,1,4,0)
+ ;;=4^T23.101A
+ ;;^UTILITY(U,$J,358.3,2067,2)
+ ;;=^5047656
+ ;;^UTILITY(U,$J,358.3,2068,0)
+ ;;=T23.102A^^4^62^32
+ ;;^UTILITY(U,$J,358.3,2068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2068,1,3,0)
+ ;;=3^Burn first degree of left hand, unsp site, init encntr
+ ;;^UTILITY(U,$J,358.3,2068,1,4,0)
+ ;;=4^T23.102A
+ ;;^UTILITY(U,$J,358.3,2068,2)
+ ;;=^5047659
+ ;;^UTILITY(U,$J,358.3,2069,0)
+ ;;=T23.201A^^4^62^37
+ ;;^UTILITY(U,$J,358.3,2069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2069,1,3,0)
+ ;;=3^Burn second degree of right hand, unsp site, init encntr
+ ;;^UTILITY(U,$J,358.3,2069,1,4,0)
+ ;;=4^T23.201A

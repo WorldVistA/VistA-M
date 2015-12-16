@@ -1,5 +1,5 @@
-ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;4/16/13  16:47
- ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149**;Dec 22, 1997;Build 27
+ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;4/14/15  16:29
+ ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154**;Dec 22, 1997;Build 13
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D:+ECINST>0 ^ECXTRAC D ^ECXKILL
@@ -139,8 +139,9 @@ FILE ;file extract record
  ;PATCAT^EXCPATCAT^
  ;primary ICD-10 code (currently null)ECXICD10P^Secondary ICD-10 Code #1 (currently null)ECXICD101^
  ;Secondary ICD-10 Code #2 (currently null)ECXICD102^Secondary ICD-10 Code #3 (currently null)ECXICD103^
- ;Secondary ICD-10 Code #4 (currently null)ECXICD104^Encounter SC ECXEXC^Vietnam Status ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
- ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
+ ;Secondary ICD-10 Code #4 (currently null)ECXICD104^Encounter SC ECXEXC^Vietnam Status ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^
+ ;Combat Service Indicator (ECXSVCI)^Combat Service Location (ECXSVCL)^
+ ;Form Requested On (ECXFORM)
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
@@ -165,6 +166,7 @@ FILE ;file extract record
  I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXICD10P_U_ECXICD101_U_ECXICD102_U_ECXICD103_U_ECXICD104
  I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXVNS_U_ECXCLST_U_ECXECL ;144
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
+ I ECXLOGIC>2015 S ECODE2=ECODE2_U_$P(ECXFORM,U,2) ;154
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

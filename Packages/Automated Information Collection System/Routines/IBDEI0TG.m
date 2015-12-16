@@ -1,140 +1,112 @@
-IBDEI0TG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0TG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14529,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14529,1,4,0)
- ;;=4^793.11
- ;;^UTILITY(U,$J,358.3,14529,1,5,0)
- ;;=5^Abn Chest Xray, Lung, Solitary Nodule
- ;;^UTILITY(U,$J,358.3,14529,2)
- ;;=^340570
- ;;^UTILITY(U,$J,358.3,14530,0)
- ;;=793.19^^89^894^2
- ;;^UTILITY(U,$J,358.3,14530,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14530,1,4,0)
- ;;=4^793.19
- ;;^UTILITY(U,$J,358.3,14530,1,5,0)
- ;;=5^Abn Chest Xray,Oth Finding, Lung
- ;;^UTILITY(U,$J,358.3,14530,2)
- ;;=^340571
- ;;^UTILITY(U,$J,358.3,14531,0)
- ;;=795.51^^89^894^32
- ;;^UTILITY(U,$J,358.3,14531,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14531,1,4,0)
- ;;=4^795.51
- ;;^UTILITY(U,$J,358.3,14531,1,5,0)
- ;;=5^Pos PPD w/o Active TB
- ;;^UTILITY(U,$J,358.3,14531,2)
- ;;=^340572
- ;;^UTILITY(U,$J,358.3,14532,0)
- ;;=795.52^^89^894^31
- ;;^UTILITY(U,$J,358.3,14532,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14532,1,4,0)
- ;;=4^795.52
- ;;^UTILITY(U,$J,358.3,14532,1,5,0)
- ;;=5^Pos GMA Interferon w/o Active TB
- ;;^UTILITY(U,$J,358.3,14532,2)
- ;;=^340573
- ;;^UTILITY(U,$J,358.3,14533,0)
- ;;=V15.82^^89^894^21
- ;;^UTILITY(U,$J,358.3,14533,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14533,1,4,0)
- ;;=4^V15.82
- ;;^UTILITY(U,$J,358.3,14533,1,5,0)
- ;;=5^H/O Tobacco Abuse
- ;;^UTILITY(U,$J,358.3,14533,2)
- ;;=^303405
- ;;^UTILITY(U,$J,358.3,14534,0)
- ;;=511.89^^89^894^27
- ;;^UTILITY(U,$J,358.3,14534,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14534,1,4,0)
- ;;=4^511.89
- ;;^UTILITY(U,$J,358.3,14534,1,5,0)
- ;;=5^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,14534,2)
- ;;=^336604
- ;;^UTILITY(U,$J,358.3,14535,0)
- ;;=511.9^^89^894^28
- ;;^UTILITY(U,$J,358.3,14535,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14535,1,4,0)
- ;;=4^511.9
- ;;^UTILITY(U,$J,358.3,14535,1,5,0)
- ;;=5^Pleural Effusion NOS
- ;;^UTILITY(U,$J,358.3,14535,2)
- ;;=^123973
- ;;^UTILITY(U,$J,358.3,14536,0)
- ;;=376.01^^89^895^25
- ;;^UTILITY(U,$J,358.3,14536,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14536,1,4,0)
- ;;=4^376.01
- ;;^UTILITY(U,$J,358.3,14536,1,5,0)
- ;;=5^Orbital Cellulitis
- ;;^UTILITY(U,$J,358.3,14536,2)
- ;;=^259068
- ;;^UTILITY(U,$J,358.3,14537,0)
- ;;=388.70^^89^895^26
- ;;^UTILITY(U,$J,358.3,14537,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14537,1,4,0)
- ;;=4^388.70
- ;;^UTILITY(U,$J,358.3,14537,1,5,0)
- ;;=5^Otalgia, Unsp
- ;;^UTILITY(U,$J,358.3,14537,2)
- ;;=^37811
- ;;^UTILITY(U,$J,358.3,14538,0)
- ;;=380.10^^89^895^27
- ;;^UTILITY(U,$J,358.3,14538,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14538,1,4,0)
- ;;=4^380.10
- ;;^UTILITY(U,$J,358.3,14538,1,5,0)
- ;;=5^Otitis Externa,Infect
- ;;^UTILITY(U,$J,358.3,14538,2)
- ;;=^62807
- ;;^UTILITY(U,$J,358.3,14539,0)
- ;;=381.01^^89^895^31
- ;;^UTILITY(U,$J,358.3,14539,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14539,1,4,0)
- ;;=4^381.01
- ;;^UTILITY(U,$J,358.3,14539,1,5,0)
- ;;=5^Otitis Media, Serous Acute
- ;;^UTILITY(U,$J,358.3,14539,2)
- ;;=^269369
- ;;^UTILITY(U,$J,358.3,14540,0)
- ;;=382.9^^89^895^28
- ;;^UTILITY(U,$J,358.3,14540,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14540,1,4,0)
- ;;=4^382.9
- ;;^UTILITY(U,$J,358.3,14540,1,5,0)
- ;;=5^Otitis Med, Other Acute
- ;;^UTILITY(U,$J,358.3,14540,2)
- ;;=^123967
- ;;^UTILITY(U,$J,358.3,14541,0)
- ;;=382.01^^89^895^30
- ;;^UTILITY(U,$J,358.3,14541,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14541,1,4,0)
- ;;=4^382.01
- ;;^UTILITY(U,$J,358.3,14541,1,5,0)
- ;;=5^Otitis Media W/Tympanic Membrane Rupture
- ;;^UTILITY(U,$J,358.3,14541,2)
- ;;=^269396
- ;;^UTILITY(U,$J,358.3,14542,0)
- ;;=381.10^^89^895^29
- ;;^UTILITY(U,$J,358.3,14542,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14542,1,4,0)
- ;;=4^381.10
- ;;^UTILITY(U,$J,358.3,14542,1,5,0)
- ;;=5^Otitis Med, Serous Chronic
+ ;;^UTILITY(U,$J,358.3,14257,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14257,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; over 4.0cm
+ ;;^UTILITY(U,$J,358.3,14257,1,3,0)
+ ;;=3^11606
+ ;;^UTILITY(U,$J,358.3,14258,0)
+ ;;=11620^^75^878^7^^^^1
+ ;;^UTILITY(U,$J,358.3,14258,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14258,1,2,0)
+ ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.5cm or less
+ ;;^UTILITY(U,$J,358.3,14258,1,3,0)
+ ;;=3^11620
+ ;;^UTILITY(U,$J,358.3,14259,0)
+ ;;=11621^^75^878^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14259,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14259,1,2,0)
+ ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
+ ;;^UTILITY(U,$J,358.3,14259,1,3,0)
+ ;;=3^11621
+ ;;^UTILITY(U,$J,358.3,14260,0)
+ ;;=11622^^75^878^9^^^^1
+ ;;^UTILITY(U,$J,358.3,14260,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14260,1,2,0)
+ ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
+ ;;^UTILITY(U,$J,358.3,14260,1,3,0)
+ ;;=3^11622
+ ;;^UTILITY(U,$J,358.3,14261,0)
+ ;;=11623^^75^878^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14261,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14261,1,2,0)
+ ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 2.1cm to 3.0cm
+ ;;^UTILITY(U,$J,358.3,14261,1,3,0)
+ ;;=3^11623
+ ;;^UTILITY(U,$J,358.3,14262,0)
+ ;;=11624^^75^878^11^^^^1
+ ;;^UTILITY(U,$J,358.3,14262,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14262,1,2,0)
+ ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 3.1cm to 4.0cm
+ ;;^UTILITY(U,$J,358.3,14262,1,3,0)
+ ;;=3^11624
+ ;;^UTILITY(U,$J,358.3,14263,0)
+ ;;=11626^^75^878^12^^^^1
+ ;;^UTILITY(U,$J,358.3,14263,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14263,1,2,0)
+ ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, gentalia; over 4.0cm
+ ;;^UTILITY(U,$J,358.3,14263,1,3,0)
+ ;;=3^11626
+ ;;^UTILITY(U,$J,358.3,14264,0)
+ ;;=12001^^75^879^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14264,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14264,1,2,0)
+ ;;=2^Simple Repair of Wnd-Scalp,Neck,Axillae,Trunk;2.5cm or less
+ ;;^UTILITY(U,$J,358.3,14264,1,3,0)
+ ;;=3^12001
+ ;;^UTILITY(U,$J,358.3,14265,0)
+ ;;=12002^^75^879^9^^^^1
+ ;;^UTILITY(U,$J,358.3,14265,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14265,1,2,0)
+ ;;=2^Simple Repair of Wnd-Scalp,Neck,Axillae,Trunk;2.6cm-7.5cm
+ ;;^UTILITY(U,$J,358.3,14265,1,3,0)
+ ;;=3^12002
+ ;;^UTILITY(U,$J,358.3,14266,0)
+ ;;=12041^^75^879^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14266,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14266,1,2,0)
+ ;;=2^Layer Closure of Wnd-Neck,Hands,Feet,Ext Genitalia;2.5cm or less
+ ;;^UTILITY(U,$J,358.3,14266,1,3,0)
+ ;;=3^12041
+ ;;^UTILITY(U,$J,358.3,14267,0)
+ ;;=12042^^75^879^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14267,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14267,1,2,0)
+ ;;=2^Layer Closure of Wnd-Neck,Hands,Feet,Ext Genitalia;2.6cm-7.5cm
+ ;;^UTILITY(U,$J,358.3,14267,1,3,0)
+ ;;=3^12042
+ ;;^UTILITY(U,$J,358.3,14268,0)
+ ;;=12031^^75^879^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14268,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14268,1,2,0)
+ ;;=2^Layer Closure of Wnd-Scalp,Axillae,Trunk,Extrem;2.5cm or less
+ ;;^UTILITY(U,$J,358.3,14268,1,3,0)
+ ;;=3^12031
+ ;;^UTILITY(U,$J,358.3,14269,0)
+ ;;=12032^^75^879^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14269,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14269,1,2,0)
+ ;;=2^Layer Closure of Wnd-Scalp,Axillae,Trunk,Extrem;2.6cm-7.5cm
+ ;;^UTILITY(U,$J,358.3,14269,1,3,0)
+ ;;=3^12032
+ ;;^UTILITY(U,$J,358.3,14270,0)
+ ;;=12020^^75^879^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14270,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14270,1,2,0)
+ ;;=2^TX of Superficial Wound Dehiscence; simple closure

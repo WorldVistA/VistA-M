@@ -1,134 +1,144 @@
-IBDEI071 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI071 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3102,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3102,1,4,0)
- ;;=4^CA of Descending Colon
- ;;^UTILITY(U,$J,358.3,3102,1,5,0)
- ;;=5^153.2
- ;;^UTILITY(U,$J,358.3,3102,2)
- ;;=CA of Descending Colon^267081
- ;;^UTILITY(U,$J,358.3,3103,0)
- ;;=153.3^^26^250^28
- ;;^UTILITY(U,$J,358.3,3103,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3103,1,4,0)
- ;;=4^CA of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,3103,1,5,0)
- ;;=5^153.3
- ;;^UTILITY(U,$J,358.3,3103,2)
- ;;=Ca of Sigmoid Colon^267082
- ;;^UTILITY(U,$J,358.3,3104,0)
- ;;=153.1^^26^250^37
- ;;^UTILITY(U,$J,358.3,3104,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3104,1,4,0)
- ;;=4^CA of Transverse Colon
- ;;^UTILITY(U,$J,358.3,3104,1,5,0)
- ;;=5^153.1
- ;;^UTILITY(U,$J,358.3,3104,2)
- ;;=CA of Transverse Colon^267080
- ;;^UTILITY(U,$J,358.3,3105,0)
- ;;=153.0^^26^250^11
- ;;^UTILITY(U,$J,358.3,3105,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3105,1,4,0)
- ;;=4^CA of Colon, Hepatic Flexure.
- ;;^UTILITY(U,$J,358.3,3105,1,5,0)
- ;;=5^153.0
- ;;^UTILITY(U,$J,358.3,3105,2)
- ;;=CA of Colon at Hepatic Flexure^267079
- ;;^UTILITY(U,$J,358.3,3106,0)
- ;;=153.7^^26^250^10
- ;;^UTILITY(U,$J,358.3,3106,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3106,1,4,0)
- ;;=4^CA of Colon at Splenic Flexure
- ;;^UTILITY(U,$J,358.3,3106,1,5,0)
- ;;=5^153.7
- ;;^UTILITY(U,$J,358.3,3106,2)
- ;;=CA of Colon at Splenic Flexure^267086
- ;;^UTILITY(U,$J,358.3,3107,0)
- ;;=151.9^^26^250^29
- ;;^UTILITY(U,$J,358.3,3107,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3107,1,4,0)
- ;;=4^CA of Stomach
- ;;^UTILITY(U,$J,358.3,3107,1,5,0)
- ;;=5^151.9
- ;;^UTILITY(U,$J,358.3,3107,2)
- ;;=CA of Stomach^73532
- ;;^UTILITY(U,$J,358.3,3108,0)
- ;;=151.2^^26^250^4
- ;;^UTILITY(U,$J,358.3,3108,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3108,1,4,0)
- ;;=4^CA of Antrum of Stomach
- ;;^UTILITY(U,$J,358.3,3108,1,5,0)
- ;;=5^151.2
- ;;^UTILITY(U,$J,358.3,3108,2)
- ;;=CA of Antrum of Stomach^267065
- ;;^UTILITY(U,$J,358.3,3109,0)
- ;;=151.4^^26^250^30
- ;;^UTILITY(U,$J,358.3,3109,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3109,1,4,0)
- ;;=4^CA of Stomach Body
- ;;^UTILITY(U,$J,358.3,3109,1,5,0)
- ;;=5^151.4
- ;;^UTILITY(U,$J,358.3,3109,2)
- ;;=CA of Stomach Body^267067
- ;;^UTILITY(U,$J,358.3,3110,0)
- ;;=151.0^^26^250^31
- ;;^UTILITY(U,$J,358.3,3110,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3110,1,4,0)
- ;;=4^CA of Stomach Cardia
- ;;^UTILITY(U,$J,358.3,3110,1,5,0)
- ;;=5^151.0
- ;;^UTILITY(U,$J,358.3,3110,2)
- ;;=CA of Stomach Cardia^267063
- ;;^UTILITY(U,$J,358.3,3111,0)
- ;;=151.3^^26^250^32
- ;;^UTILITY(U,$J,358.3,3111,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3111,1,4,0)
- ;;=4^CA of Stomach Fundus
- ;;^UTILITY(U,$J,358.3,3111,1,5,0)
- ;;=5^151.3
- ;;^UTILITY(U,$J,358.3,3111,2)
- ;;=CA of Fundus of Stomach^267066
- ;;^UTILITY(U,$J,358.3,3112,0)
- ;;=151.6^^26^250^33
- ;;^UTILITY(U,$J,358.3,3112,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3112,1,4,0)
- ;;=4^CA of Stomach Great Curve
- ;;^UTILITY(U,$J,358.3,3112,1,5,0)
- ;;=5^151.6
- ;;^UTILITY(U,$J,358.3,3112,2)
- ;;=^267069
- ;;^UTILITY(U,$J,358.3,3113,0)
- ;;=151.5^^26^250^34
- ;;^UTILITY(U,$J,358.3,3113,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3113,1,4,0)
- ;;=4^CA of Stomach Less Curv
- ;;^UTILITY(U,$J,358.3,3113,1,5,0)
- ;;=5^151.5
- ;;^UTILITY(U,$J,358.3,3113,2)
- ;;=CA of Lesser Curve of Stomach^267068
- ;;^UTILITY(U,$J,358.3,3114,0)
- ;;=151.1^^26^250^26
- ;;^UTILITY(U,$J,358.3,3114,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3114,1,4,0)
- ;;=4^CA of Pylorus
- ;;^UTILITY(U,$J,358.3,3114,1,5,0)
- ;;=5^151.1
- ;;^UTILITY(U,$J,358.3,3114,2)
- ;;=Cancer of Pylorus^267064
- ;;^UTILITY(U,$J,358.3,3115,0)
- ;;=151.8^^26^250^35
+ ;;^UTILITY(U,$J,358.3,2779,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,2779,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,2780,0)
+ ;;=H66.93^^7^83^157
+ ;;^UTILITY(U,$J,358.3,2780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2780,1,3,0)
+ ;;=3^Otitis, media, bilateral
+ ;;^UTILITY(U,$J,358.3,2780,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,2780,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,2781,0)
+ ;;=B89.^^7^83^161
+ ;;^UTILITY(U,$J,358.3,2781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2781,1,3,0)
+ ;;=3^Parasitosis
+ ;;^UTILITY(U,$J,358.3,2781,1,4,0)
+ ;;=4^B89.
+ ;;^UTILITY(U,$J,358.3,2781,2)
+ ;;=^5000822
+ ;;^UTILITY(U,$J,358.3,2782,0)
+ ;;=N73.9^^7^83^162
+ ;;^UTILITY(U,$J,358.3,2782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2782,1,3,0)
+ ;;=3^Pelvic Inflammatory Disease
+ ;;^UTILITY(U,$J,358.3,2782,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,2782,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,2783,0)
+ ;;=K65.2^^7^83^163
+ ;;^UTILITY(U,$J,358.3,2783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2783,1,3,0)
+ ;;=3^Peritonitis, bacterial
+ ;;^UTILITY(U,$J,358.3,2783,1,4,0)
+ ;;=4^K65.2
+ ;;^UTILITY(U,$J,358.3,2783,2)
+ ;;=^332801
+ ;;^UTILITY(U,$J,358.3,2784,0)
+ ;;=J02.9^^7^83^165
+ ;;^UTILITY(U,$J,358.3,2784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2784,1,3,0)
+ ;;=3^Pharyngitis
+ ;;^UTILITY(U,$J,358.3,2784,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,2784,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,2785,0)
+ ;;=J18.9^^7^83^169
+ ;;^UTILITY(U,$J,358.3,2785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2785,1,3,0)
+ ;;=3^Pneumonia, NOS
+ ;;^UTILITY(U,$J,358.3,2785,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,2785,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,2786,0)
+ ;;=J13.^^7^83^170
+ ;;^UTILITY(U,$J,358.3,2786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2786,1,3,0)
+ ;;=3^Pneumonia, Streptococcus pneumoniae
+ ;;^UTILITY(U,$J,358.3,2786,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,2786,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,2787,0)
+ ;;=J15.7^^7^83^168
+ ;;^UTILITY(U,$J,358.3,2787,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2787,1,3,0)
+ ;;=3^Pneumonia, Mycoplasma
+ ;;^UTILITY(U,$J,358.3,2787,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,2787,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,2788,0)
+ ;;=J16.0^^7^83^167
+ ;;^UTILITY(U,$J,358.3,2788,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2788,1,3,0)
+ ;;=3^Pneumonia, Chlamydia/Chlamydophila
+ ;;^UTILITY(U,$J,358.3,2788,1,4,0)
+ ;;=4^J16.0
+ ;;^UTILITY(U,$J,358.3,2788,2)
+ ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,2789,0)
+ ;;=R76.11^^7^83^172
+ ;;^UTILITY(U,$J,358.3,2789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2789,1,3,0)
+ ;;=3^Positive PPD/Tuberculin skin test
+ ;;^UTILITY(U,$J,358.3,2789,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,2789,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,2790,0)
+ ;;=R76.12^^7^83^171
+ ;;^UTILITY(U,$J,358.3,2790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2790,1,3,0)
+ ;;=3^Positive IGRA test for tuberculosis
+ ;;^UTILITY(U,$J,358.3,2790,1,4,0)
+ ;;=4^R76.12
+ ;;^UTILITY(U,$J,358.3,2790,2)
+ ;;=^5019571
+ ;;^UTILITY(U,$J,358.3,2791,0)
+ ;;=R76.8^^7^83^173
+ ;;^UTILITY(U,$J,358.3,2791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2791,1,3,0)
+ ;;=3^Positive RPR
+ ;;^UTILITY(U,$J,358.3,2791,1,4,0)
+ ;;=4^R76.8
+ ;;^UTILITY(U,$J,358.3,2791,2)
+ ;;=^5019572
+ ;;^UTILITY(U,$J,358.3,2792,0)
+ ;;=N41.9^^7^83^174
+ ;;^UTILITY(U,$J,358.3,2792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2792,1,3,0)
+ ;;=3^Prostatitis
+ ;;^UTILITY(U,$J,358.3,2792,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,2792,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,2793,0)
+ ;;=T84.52XA^^7^83^176
+ ;;^UTILITY(U,$J,358.3,2793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2793,1,3,0)
+ ;;=3^Prosthetic Left Hip Joint Infection,Init Encntr

@@ -1,10 +1,12 @@
-DGPTC2 ;ALN/MJK - Census Record Processing;JAN 27,2005
- ;;5.3;Registration;**58,189,643,850**;Aug 13, 1993;Build 171
+DGPTC2 ;ALN/MJ/PLT - Census Record Processing ;4/14/15 4:14pm
+ ;;5.3;Registration;**58,189,643,850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SETP ; -- P node processing
  ;I DGCSUF="9AA"!(DGCSUF="BU") S I=999 G SETPQ
  G SETPQ:X<DGBEG!(X>DGEND) S ^DGPT(DGCI,"P",I,0)=X
  S:'$D(^DGPT(DGCI,"P",0)) ^(0)="^45.05D^^" S X=^(0),^(0)=$P(X,U,1,2)_"^"_I_"^"_($P(X,U,4)+1)
+ S:$D(^DGPT(PTF,"P",I,1)) ^DGPT(DGCI,"P",I,1)=^DGPT(PTF,"P",I,1)
 SETPQ Q
  ;
 SETS ; -- S node processing
@@ -12,6 +14,7 @@ SETS ; -- S node processing
  I $G(DGSFLAG) S I=999 G SETSQ
  G SETSQ:X<DGBEG!(X>DGEND) S ^DGPT(DGCI,"S",I,0)=X
  S:'$D(^DGPT(DGCI,"S",0)) ^(0)="^45.01D^^" S X=^(0),^(0)=$P(X,U,1,2)_"^"_I_"^"_($P(X,U,4)+1)
+ S:$D(^DGPT(PTF,"S",I,1)) ^DGPT(DGCI,"S",I,1)=^DGPT(PTF,"S",I,1)
 SETSQ K DGSFLAG Q
  ;
 SET535 ; -- 535 node processing
@@ -29,7 +32,9 @@ SETM ; -- M node processing
  G SETMQ:($P(X,U,10)<DGBEG)!($P(X,U,10)>DGEND) S ^DGPT(DGCI,"M",I,0)=X
  S:'$D(^DGPT(DGCI,"M",0)) ^(0)="^45.02AI^^" S X=^(0),^(0)=$P(X,U,1,2)_"^"_I_"^"_($P(X,U,4)+1)
  S:$D(^DGPT(PTF,"M",I,"P")) ^DGPT(DGCI,"M",I,"P")=^DGPT(PTF,"M",I,"P")
- S:$D(^DGPT(PTF,"M",I,82)) ^DGPT(DGCI,"M",I,82)=^DGPT(PTF,"M",I,82)
+ S:$D(^DGPT(PTF,"M",I,81)) ^DGPT(DGCI,"M",I,81)=^DGPT(PTF,"M",I,81)
+ ;set poa data after reindexthe new census reocrd
+ ;S:$D(^DGPT(PTF,"M",I,82)) ^DGPT(DGCI,"M",I,82)=^DGPT(PTF,"M",I,82)
 SETMQ K DGSFLAG Q
  ;
 BSEC ; -- set bed sec in 1 mvt ; input X := one node of "M" ; output := same
@@ -60,7 +65,9 @@ ONE ; -- find last mvt before census date
  ;;Code added by EDS-GRR 6/4/1998
  ;;
  M ^DGPT(DGCI,"M",M,300)=^DGPT(PTF,"M",M,300)
- M ^DGPT(DGCI,"M",M,82)=^DGPT(PTF,"M",M,82) ; move POA fields to Census
+ M ^DGPT(DGCI,"M",M,81)=^DGPT(PTF,"M",M,81)
+ ;poa data copied after reindex the new census entry
+ ;M ^DGPT(DGCI,"M",M,82)=^DGPT(PTF,"M",M,82) ; move POA fields to Census
  ;;
  ;;End of GAF enhancement
  ;;

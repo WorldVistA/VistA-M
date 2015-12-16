@@ -1,5 +1,5 @@
 VPRDPS ;SLC/MKB -- Pharmacy extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -66,6 +66,15 @@ NDF(DRUG,VPI,ORD) ; -- Set NDF data for dispense DRUG ien
  K ^TMP($J,"NDF",DRUG)
  Q
  ;
+VUID(ORDER) ; -- return VUID for VA Product in ORDER
+ N X,Y,DRUG S Y=""
+ S DRUG=$$VALUE^ORX8(+$G(ORDER),"DRUG")
+ I DRUG D
+ . D NDF^PSS50(DRUG,,,,,"NDF")
+ . S X=$G(^TMP($J,"NDF",DRUG,22)),Y=$$VUID^VPRD(+X,50.68)
+ . K ^TMP($J,"NDF")
+ Q Y
+ ;
  ; ------------ Return data to middle tier ------------
  ;
 XML(MED) ; -- Return patient meds as XML
@@ -90,7 +99,7 @@ XML(MED) ; -- Return patient meds as XML
  . S X=$G(MED(ATT)),Y="" Q:'$L(X)
  . I ATT="sig"!(ATT?1"ptIn"1.A) S Y="<"_ATT_" xml:space='preserve'>"_$$ESC^VPRD(X)_"</"_ATT_">" Q
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
- . I $L(X)>1 S NAMES="code^name"_$S(ATT["Provider":"^taxonomyCode^providerType^classification^specialization",1:"")_"^Z",Y="<"_ATT_" "_$$LOOP_"/>"
+ . I $L(X)>1 S NAMES="code^name"_$S(ATT["Provider":U_$$PROVTAGS^VPRD,1:"")_"^Z",Y="<"_ATT_" "_$$LOOP_"/>"
  D ADD("</med>")
  Q
  ;

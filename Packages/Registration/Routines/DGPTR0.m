@@ -1,6 +1,10 @@
-DGPTR0 ;MJK/JS/ADL/TJ - PTF TRANSMISSION ;9/26/05 6:44pm
- ;;5.3;Registration;**114,247,338,342,510,524,565,678,729,664,850**;Aug 13, 1993;Build 171
+DGPTR0 ;MJK/JS/ADL/TJ,HIOFO/FT - PTF TRANSMISSION ;4/21/15 11:28am
+ ;;5.3;Registration;**114,247,338,342,510,524,565,678,729,664,850,884**;Aug 13, 1993;Build 31
  ;;ADL;Update for CSV Project;;Mar 27, 2003
+ ;
+ ; ICDXCODE APIs - #5699
+ ; SDCO22 APIs - #1579
+ ;
  ; -- setup control data
  ; ssn
  S X=$P(DG10,U,9),Y=$S($E(X,10)="P":"P",1:" ")_$E(X_"         ",1,9)
@@ -59,7 +63,8 @@ DGPTR0 ;MJK/JS/ADL/TJ - PTF TRANSMISSION ;9/26/05 6:44pm
  ;Country Code
  S X=$$GET1^DIQ(779.004,$P(DG11,U,10)_",",.01),Z=1,L=3 D ENTER
  D FILL^DGPTR2,SAVE
- I T1 S Y=$E(Y,1,52)_" "_$E(Y,54,125)
+ ;I T1 S Y=$E(Y,1,52)_" "_$E(Y,54,125)
+ I T1 S $E(Y,53)=" " ;sets $E(Y,53)=" " if census, but why after it is saved?
  ;
 P401 ; -- setup 401P transaction
  G 401:'$D(^DGPT(J,"401P"))!(T1) S DG41=^("401P"),Y=$S(T1:"C",1:"N")_"401"_DGHEAD_"P"_"           "
@@ -78,7 +83,7 @@ SUR ;
  I ^UTILITY($J,"S",DGSUD)>$S(F:3,1:2) D  I Y'=1 S DGERR=1 Q
  .W !,"**There are more than ",$S(F:"three",1:"two")," surgeries on the same date**"
  .S DIR(0)="Y",DIR("B")="YES",DIR("A")="OK to continue?" D ^DIR K DIR
- S Y=$S(T1:"C",1:"N")_"40"_^(DGSUD)_DGHEAD_$E(DGSUD,4,5)_$E(DGSUD,6,7)_$E(DGSUD,2,3)_$E($P(+DGSUR,".",2)_"0000",1,4)_$S($D(^DIC(45.3,+$P(DGSUR,U,3),0)):$P(^(0),U,1),1:"  ")
+ S Y=$S(T1:"C",1:"N")_"401"_DGHEAD_$E(DGSUD,4,5)_$E(DGSUD,6,7)_$E(DGSUD,2,3)_$E($P(+DGSUR,".",2)_"0000",1,4)_$S($D(^DIC(45.3,+$P(DGSUR,U,3),0)):$P(^(0),U,1),1:"  ")
  S L=1,X=DGSUR F Z=4:1:7 D ENTER
  N EFFDATE,IMPDATE,DGPTDAT D EFFDATE^DGPTIC10(J)
  S L=1 F K=8:1:12 S:'$P(DGSUR,U,K) DGSUR=$P(DGSUR,U,1,K-1)_U_$P(DGSUR,U,K+1,99),K=K-1 S L=L+1 Q:L=5
@@ -98,8 +103,8 @@ ENTER S Y=Y_$J($P(X,U,Z),L)
  Q
 ENTER0 S Y=Y_$S($P(X,U,Z)]"":$E("000000",$L($P(X,U,Z))+1,L)_$P(X,U,Z),1:$J($P(X,U,Z),L))
  Q
-SAVE D START^DGPTR1 S:'DGERR ^XMB(3.9,DGXMZ,2,DGCNT,0)=Y,DGCNT=DGCNT+1
- I DGERR'>0 S DGACNT=DGACNT+1,^TMP("AEDIT",$J,$E(Y,1,4),DGACNT)=Y
+SAVE ;save segment to MailMan message and ^TMP("AEDIT",$J), if data is valid
+ D SAVE^DGPTR2
 Q Q
 DGNAM S X=DGNAM I X?.E.P F I=1:1:$L(X) S Z=$E(X,I) Q:Z=","  S:Z?.P&(Z]"") X=$E(X,1,I-1)_$E(X,I+1,$L(X)),I=I-1 Q:X'?.E.P
  I X?.E.L D UP^DGHELP

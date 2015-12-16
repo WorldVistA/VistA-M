@@ -1,144 +1,130 @@
-IBDEI05E ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05E ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2237,2)
- ;;=^17529
- ;;^UTILITY(U,$J,358.3,2238,0)
- ;;=202.00^^21^189^66
- ;;^UTILITY(U,$J,358.3,2238,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2238,1,4,0)
- ;;=4^202.00
- ;;^UTILITY(U,$J,358.3,2238,1,5,0)
- ;;=5^Lymphoma,Low-Grade,Site Unspec
- ;;^UTILITY(U,$J,358.3,2238,2)
- ;;=^72606
- ;;^UTILITY(U,$J,358.3,2239,0)
- ;;=200.10^^21^189^65
- ;;^UTILITY(U,$J,358.3,2239,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2239,1,4,0)
- ;;=4^200.10
- ;;^UTILITY(U,$J,358.3,2239,1,5,0)
- ;;=5^Lymphoma,Int or High Grade,Site Unspec
- ;;^UTILITY(U,$J,358.3,2239,2)
- ;;=^175886
- ;;^UTILITY(U,$J,358.3,2240,0)
- ;;=203.00^^21^189^77
- ;;^UTILITY(U,$J,358.3,2240,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2240,1,4,0)
- ;;=4^203.00
- ;;^UTILITY(U,$J,358.3,2240,1,5,0)
- ;;=5^Multiple Myeloma w/o Remission
- ;;^UTILITY(U,$J,358.3,2240,2)
- ;;=^267514
- ;;^UTILITY(U,$J,358.3,2241,0)
- ;;=203.01^^21^189^79
- ;;^UTILITY(U,$J,358.3,2241,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2241,1,4,0)
- ;;=4^203.01
- ;;^UTILITY(U,$J,358.3,2241,1,5,0)
- ;;=5^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,2241,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,2242,0)
- ;;=V10.21^^21^189^38
- ;;^UTILITY(U,$J,358.3,2242,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2242,1,4,0)
- ;;=4^V10.21
- ;;^UTILITY(U,$J,358.3,2242,1,5,0)
- ;;=5^H/O Laryngeal Cancer
- ;;^UTILITY(U,$J,358.3,2242,2)
- ;;=^295214
- ;;^UTILITY(U,$J,358.3,2243,0)
- ;;=180.9^^21^189^8
- ;;^UTILITY(U,$J,358.3,2243,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2243,1,4,0)
- ;;=4^180.9
- ;;^UTILITY(U,$J,358.3,2243,1,5,0)
- ;;=5^Ca Cervix
- ;;^UTILITY(U,$J,358.3,2243,2)
- ;;=^267214
- ;;^UTILITY(U,$J,358.3,2244,0)
- ;;=203.02^^21^189^78
- ;;^UTILITY(U,$J,358.3,2244,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2244,1,4,0)
- ;;=4^203.02
- ;;^UTILITY(U,$J,358.3,2244,1,5,0)
- ;;=5^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,2244,2)
- ;;=^336462
- ;;^UTILITY(U,$J,358.3,2245,0)
- ;;=V10.91^^21^189^44
- ;;^UTILITY(U,$J,358.3,2245,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2245,1,4,0)
- ;;=4^V10.91
- ;;^UTILITY(U,$J,358.3,2245,1,5,0)
- ;;=5^H/O Neuroendocrine CA Tumor
- ;;^UTILITY(U,$J,358.3,2245,2)
- ;;=^338494
- ;;^UTILITY(U,$J,358.3,2246,0)
- ;;=196.9^^21^189^62
- ;;^UTILITY(U,$J,358.3,2246,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2246,1,4,0)
- ;;=4^196.9
- ;;^UTILITY(U,$J,358.3,2246,1,5,0)
- ;;=5^Lymph Nodes
- ;;^UTILITY(U,$J,358.3,2246,2)
- ;;=^267313
- ;;^UTILITY(U,$J,358.3,2247,0)
- ;;=204.90^^21^189^63
- ;;^UTILITY(U,$J,358.3,2247,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2247,1,4,0)
- ;;=4^204.90
- ;;^UTILITY(U,$J,358.3,2247,1,5,0)
- ;;=5^Lymphoid Leukemia
- ;;^UTILITY(U,$J,358.3,2247,2)
- ;;=^336854
- ;;^UTILITY(U,$J,358.3,2248,0)
- ;;=V10.82^^21^189^42
- ;;^UTILITY(U,$J,358.3,2248,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2248,1,4,0)
- ;;=4^V10.82
- ;;^UTILITY(U,$J,358.3,2248,1,5,0)
- ;;=5^H/O Malig Melanoma
- ;;^UTILITY(U,$J,358.3,2248,2)
- ;;=^295240
- ;;^UTILITY(U,$J,358.3,2249,0)
- ;;=198.4^^21^189^76
- ;;^UTILITY(U,$J,358.3,2249,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2249,1,4,0)
- ;;=4^198.4
- ;;^UTILITY(U,$J,358.3,2249,1,5,0)
- ;;=5^Mets to Nervous System
- ;;^UTILITY(U,$J,358.3,2249,2)
- ;;=^267335
- ;;^UTILITY(U,$J,358.3,2250,0)
- ;;=202.80^^21^189^80
- ;;^UTILITY(U,$J,358.3,2250,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2250,1,4,0)
- ;;=4^202.80
- ;;^UTILITY(U,$J,358.3,2250,1,5,0)
- ;;=5^Non-Hodgkin's Lymphoma
- ;;^UTILITY(U,$J,358.3,2250,2)
- ;;=^87701
- ;;^UTILITY(U,$J,358.3,2251,0)
- ;;=V10.02^^21^189^53
- ;;^UTILITY(U,$J,358.3,2251,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2251,1,4,0)
- ;;=4^V10.02
- ;;^UTILITY(U,$J,358.3,2251,1,5,0)
- ;;=5^H/O of Malig Oral/Pharynx
+ ;;^UTILITY(U,$J,358.3,2007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2007,1,3,0)
+ ;;=3^Abrasion,Right ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,2007,1,4,0)
+ ;;=4^S90.511A
+ ;;^UTILITY(U,$J,358.3,2007,2)
+ ;;=^5043997
+ ;;^UTILITY(U,$J,358.3,2008,0)
+ ;;=S90.512A^^4^62^1
+ ;;^UTILITY(U,$J,358.3,2008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2008,1,3,0)
+ ;;=3^Abrasion,Left ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,2008,1,4,0)
+ ;;=4^S90.512A
+ ;;^UTILITY(U,$J,358.3,2008,2)
+ ;;=^5044000
+ ;;^UTILITY(U,$J,358.3,2009,0)
+ ;;=S40.811A^^4^62^28
+ ;;^UTILITY(U,$J,358.3,2009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2009,1,3,0)
+ ;;=3^Abrasion,Right upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2009,1,4,0)
+ ;;=4^S40.811A
+ ;;^UTILITY(U,$J,358.3,2009,2)
+ ;;=^5026225
+ ;;^UTILITY(U,$J,358.3,2010,0)
+ ;;=S40.812A^^4^62^13
+ ;;^UTILITY(U,$J,358.3,2010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2010,1,3,0)
+ ;;=3^Abrasion,Left upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,2010,1,4,0)
+ ;;=4^S40.812A
+ ;;^UTILITY(U,$J,358.3,2010,2)
+ ;;=^5026228
+ ;;^UTILITY(U,$J,358.3,2011,0)
+ ;;=S05.01XA^^4^62^46
+ ;;^UTILITY(U,$J,358.3,2011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2011,1,3,0)
+ ;;=3^Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init Enctr
+ ;;^UTILITY(U,$J,358.3,2011,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,2011,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,2012,0)
+ ;;=S05.02XA^^4^62^45
+ ;;^UTILITY(U,$J,358.3,2012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2012,1,3,0)
+ ;;=3^Conjuctiva/Corneal Abrasion w/o FB,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2012,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,2012,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,2013,0)
+ ;;=S50.311A^^4^62^17
+ ;;^UTILITY(U,$J,358.3,2013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2013,1,3,0)
+ ;;=3^Abrasion,Right elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,2013,1,4,0)
+ ;;=4^S50.311A
+ ;;^UTILITY(U,$J,358.3,2013,2)
+ ;;=^5028500
+ ;;^UTILITY(U,$J,358.3,2014,0)
+ ;;=S50.312A^^4^62^2
+ ;;^UTILITY(U,$J,358.3,2014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2014,1,3,0)
+ ;;=3^Abrasion,Left elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,2014,1,4,0)
+ ;;=4^S50.312A
+ ;;^UTILITY(U,$J,358.3,2014,2)
+ ;;=^5028503
+ ;;^UTILITY(U,$J,358.3,2015,0)
+ ;;=S00.81XA^^4^62^15
+ ;;^UTILITY(U,$J,358.3,2015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2015,1,3,0)
+ ;;=3^Abrasion,Other part of head, initial encounter
+ ;;^UTILITY(U,$J,358.3,2015,1,4,0)
+ ;;=4^S00.81XA
+ ;;^UTILITY(U,$J,358.3,2015,2)
+ ;;=^5019988
+ ;;^UTILITY(U,$J,358.3,2016,0)
+ ;;=S90.811A^^4^62^18
+ ;;^UTILITY(U,$J,358.3,2016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2016,1,3,0)
+ ;;=3^Abrasion,Right foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,2016,1,4,0)
+ ;;=4^S90.811A
+ ;;^UTILITY(U,$J,358.3,2016,2)
+ ;;=^5044051
+ ;;^UTILITY(U,$J,358.3,2017,0)
+ ;;=S90.812A^^4^62^3
+ ;;^UTILITY(U,$J,358.3,2017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2017,1,3,0)
+ ;;=3^Abrasion,Left foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,2017,1,4,0)
+ ;;=4^S90.812A
+ ;;^UTILITY(U,$J,358.3,2017,2)
+ ;;=^5044054
+ ;;^UTILITY(U,$J,358.3,2018,0)
+ ;;=S90.411A^^4^62^20
+ ;;^UTILITY(U,$J,358.3,2018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2018,1,3,0)
+ ;;=3^Abrasion,Right great toe, initial encounter
+ ;;^UTILITY(U,$J,358.3,2018,1,4,0)
+ ;;=4^S90.411A
+ ;;^UTILITY(U,$J,358.3,2018,2)
+ ;;=^5043889
+ ;;^UTILITY(U,$J,358.3,2019,0)
+ ;;=S90.412A^^4^62^5
+ ;;^UTILITY(U,$J,358.3,2019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2019,1,3,0)
+ ;;=3^Abrasion,Left great toe, initial encounter
+ ;;^UTILITY(U,$J,358.3,2019,1,4,0)
+ ;;=4^S90.412A

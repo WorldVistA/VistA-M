@@ -1,136 +1,130 @@
-IBDEI1R6 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1R6 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31355,1,4,0)
- ;;=4^H55.09
- ;;^UTILITY(U,$J,358.3,31355,2)
- ;;=^87599
- ;;^UTILITY(U,$J,358.3,31356,0)
- ;;=H60.01^^190^1933^2
- ;;^UTILITY(U,$J,358.3,31356,1,0)
+ ;;^UTILITY(U,$J,358.3,30982,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,30983,0)
+ ;;=M87.051^^179^1937^26
+ ;;^UTILITY(U,$J,358.3,30983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31356,1,3,0)
- ;;=3^Abscess External Ear,Right
- ;;^UTILITY(U,$J,358.3,31356,1,4,0)
- ;;=4^H60.01
- ;;^UTILITY(U,$J,358.3,31356,2)
- ;;=^5006436
- ;;^UTILITY(U,$J,358.3,31357,0)
- ;;=H60.02^^190^1933^1
- ;;^UTILITY(U,$J,358.3,31357,1,0)
+ ;;^UTILITY(U,$J,358.3,30983,1,3,0)
+ ;;=3^Idiopathic aseptic necrosis of right femur
+ ;;^UTILITY(U,$J,358.3,30983,1,4,0)
+ ;;=4^M87.051
+ ;;^UTILITY(U,$J,358.3,30983,2)
+ ;;=^5014680
+ ;;^UTILITY(U,$J,358.3,30984,0)
+ ;;=M76.32^^179^1937^27
+ ;;^UTILITY(U,$J,358.3,30984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31357,1,3,0)
- ;;=3^Abscess External Ear,Left
- ;;^UTILITY(U,$J,358.3,31357,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,31357,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,31358,0)
- ;;=H60.12^^190^1933^11
- ;;^UTILITY(U,$J,358.3,31358,1,0)
+ ;;^UTILITY(U,$J,358.3,30984,1,3,0)
+ ;;=3^Iliotibial band syndrome, left leg
+ ;;^UTILITY(U,$J,358.3,30984,1,4,0)
+ ;;=4^M76.32
+ ;;^UTILITY(U,$J,358.3,30984,2)
+ ;;=^5013277
+ ;;^UTILITY(U,$J,358.3,30985,0)
+ ;;=M76.31^^179^1937^28
+ ;;^UTILITY(U,$J,358.3,30985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31358,1,3,0)
- ;;=3^Cellulitis External Ear,Left
- ;;^UTILITY(U,$J,358.3,31358,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,31358,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,31359,0)
- ;;=H60.11^^190^1933^12
- ;;^UTILITY(U,$J,358.3,31359,1,0)
+ ;;^UTILITY(U,$J,358.3,30985,1,3,0)
+ ;;=3^Iliotibial band syndrome, right leg
+ ;;^UTILITY(U,$J,358.3,30985,1,4,0)
+ ;;=4^M76.31
+ ;;^UTILITY(U,$J,358.3,30985,2)
+ ;;=^5013276
+ ;;^UTILITY(U,$J,358.3,30986,0)
+ ;;=S72.145A^^179^1937^29
+ ;;^UTILITY(U,$J,358.3,30986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31359,1,3,0)
- ;;=3^Cellulitis External Ear,Right
- ;;^UTILITY(U,$J,358.3,31359,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,31359,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,31360,0)
- ;;=H61.21^^190^1933^25
- ;;^UTILITY(U,$J,358.3,31360,1,0)
+ ;;^UTILITY(U,$J,358.3,30986,1,3,0)
+ ;;=3^Nondisplaced intertrochanteric fracture of left femur, init
+ ;;^UTILITY(U,$J,358.3,30986,1,4,0)
+ ;;=4^S72.145A
+ ;;^UTILITY(U,$J,358.3,30986,2)
+ ;;=^5037979
+ ;;^UTILITY(U,$J,358.3,30987,0)
+ ;;=S72.144A^^179^1937^30
+ ;;^UTILITY(U,$J,358.3,30987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31360,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,31360,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,31360,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,31361,0)
- ;;=H61.22^^190^1933^24
- ;;^UTILITY(U,$J,358.3,31361,1,0)
+ ;;^UTILITY(U,$J,358.3,30987,1,3,0)
+ ;;=3^Nondisplaced intertrochanteric fracture of right femur, init
+ ;;^UTILITY(U,$J,358.3,30987,1,4,0)
+ ;;=4^S72.144A
+ ;;^UTILITY(U,$J,358.3,30987,2)
+ ;;=^5037963
+ ;;^UTILITY(U,$J,358.3,30988,0)
+ ;;=M16.12^^179^1937^31
+ ;;^UTILITY(U,$J,358.3,30988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31361,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,31361,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,31361,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,31362,0)
- ;;=H61.23^^190^1933^22
- ;;^UTILITY(U,$J,358.3,31362,1,0)
+ ;;^UTILITY(U,$J,358.3,30988,1,3,0)
+ ;;=3^Osteoarthritis, primary, left hip unilateral
+ ;;^UTILITY(U,$J,358.3,30988,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,30988,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,30989,0)
+ ;;=M16.11^^179^1937^32
+ ;;^UTILITY(U,$J,358.3,30989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31362,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral 
- ;;^UTILITY(U,$J,358.3,31362,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,31362,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,31363,0)
- ;;=H81.01^^190^1933^28
- ;;^UTILITY(U,$J,358.3,31363,1,0)
+ ;;^UTILITY(U,$J,358.3,30989,1,3,0)
+ ;;=3^Osteoarthritis, primary, right hip unilateral
+ ;;^UTILITY(U,$J,358.3,30989,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,30989,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,30990,0)
+ ;;=M16.0^^179^1937^33
+ ;;^UTILITY(U,$J,358.3,30990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31363,1,3,0)
- ;;=3^Meniere's Disease,Right Ear
- ;;^UTILITY(U,$J,358.3,31363,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,31363,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,31364,0)
- ;;=H81.02^^190^1933^27
- ;;^UTILITY(U,$J,358.3,31364,1,0)
+ ;;^UTILITY(U,$J,358.3,30990,1,3,0)
+ ;;=3^Osteoarthritis, primary bilateral hip
+ ;;^UTILITY(U,$J,358.3,30990,1,4,0)
+ ;;=4^M16.0
+ ;;^UTILITY(U,$J,358.3,30990,2)
+ ;;=^5010769
+ ;;^UTILITY(U,$J,358.3,30991,0)
+ ;;=M25.552^^179^1937^34
+ ;;^UTILITY(U,$J,358.3,30991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31364,1,3,0)
- ;;=3^Meniere's Disease,Left Ear
- ;;^UTILITY(U,$J,358.3,31364,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,31364,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,31365,0)
- ;;=H81.03^^190^1933^26
- ;;^UTILITY(U,$J,358.3,31365,1,0)
+ ;;^UTILITY(U,$J,358.3,30991,1,3,0)
+ ;;=3^Pain in left hip
+ ;;^UTILITY(U,$J,358.3,30991,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,30991,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,30992,0)
+ ;;=M25.551^^179^1937^35
+ ;;^UTILITY(U,$J,358.3,30992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31365,1,3,0)
- ;;=3^Meniere's Disease,Bilateral
- ;;^UTILITY(U,$J,358.3,31365,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,31365,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,31366,0)
- ;;=H81.12^^190^1933^9
- ;;^UTILITY(U,$J,358.3,31366,1,0)
+ ;;^UTILITY(U,$J,358.3,30992,1,3,0)
+ ;;=3^Pain in right hip
+ ;;^UTILITY(U,$J,358.3,30992,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,30992,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,30993,0)
+ ;;=S73.015A^^179^1937^36
+ ;;^UTILITY(U,$J,358.3,30993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31366,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,31366,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,31366,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,31367,0)
- ;;=H81.11^^190^1933^10
- ;;^UTILITY(U,$J,358.3,31367,1,0)
+ ;;^UTILITY(U,$J,358.3,30993,1,3,0)
+ ;;=3^Posterior dislocation of left hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,30993,1,4,0)
+ ;;=4^S73.015A
+ ;;^UTILITY(U,$J,358.3,30993,2)
+ ;;=^5039249
+ ;;^UTILITY(U,$J,358.3,30994,0)
+ ;;=S73.014A^^179^1937^37
+ ;;^UTILITY(U,$J,358.3,30994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31367,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,31367,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,31367,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,31368,0)
- ;;=H81.13^^190^1933^8
- ;;^UTILITY(U,$J,358.3,31368,1,0)
+ ;;^UTILITY(U,$J,358.3,30994,1,3,0)
+ ;;=3^Posterior dislocation of right hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,30994,1,4,0)
+ ;;=4^S73.014A
+ ;;^UTILITY(U,$J,358.3,30994,2)
+ ;;=^5039246
+ ;;^UTILITY(U,$J,358.3,30995,0)
+ ;;=M00.052^^179^1937^38
+ ;;^UTILITY(U,$J,358.3,30995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31368,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,31368,1,4,0)
- ;;=4^H81.13

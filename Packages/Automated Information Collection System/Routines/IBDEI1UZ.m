@@ -1,130 +1,134 @@
-IBDEI1UZ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1UZ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33112,1,4,0)
- ;;=4^M79.A21
- ;;^UTILITY(U,$J,358.3,33112,2)
- ;;=^5013362
- ;;^UTILITY(U,$J,358.3,33113,0)
- ;;=M79.A22^^191^1965^11
- ;;^UTILITY(U,$J,358.3,33113,1,0)
+ ;;^UTILITY(U,$J,358.3,32716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33113,1,3,0)
- ;;=3^Compartment Syndrome,Left Lower Extremity,Nontraumatic
- ;;^UTILITY(U,$J,358.3,33113,1,4,0)
- ;;=4^M79.A22
- ;;^UTILITY(U,$J,358.3,33113,2)
- ;;=^5133870
- ;;^UTILITY(U,$J,358.3,33114,0)
- ;;=M21.541^^191^1965^10
- ;;^UTILITY(U,$J,358.3,33114,1,0)
+ ;;^UTILITY(U,$J,358.3,32716,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,32716,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,32716,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,32717,0)
+ ;;=C83.50^^182^1992^97
+ ;;^UTILITY(U,$J,358.3,32717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33114,1,3,0)
- ;;=3^Clubfoot,Right Foot,Acquired
- ;;^UTILITY(U,$J,358.3,33114,1,4,0)
- ;;=4^M21.541
- ;;^UTILITY(U,$J,358.3,33114,2)
- ;;=^5011125
- ;;^UTILITY(U,$J,358.3,33115,0)
- ;;=M21.542^^191^1965^9
- ;;^UTILITY(U,$J,358.3,33115,1,0)
+ ;;^UTILITY(U,$J,358.3,32717,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,32717,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,32717,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,32718,0)
+ ;;=C43.9^^182^1992^99
+ ;;^UTILITY(U,$J,358.3,32718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33115,1,3,0)
- ;;=3^Clubfoot,Left Foot,Acquired
- ;;^UTILITY(U,$J,358.3,33115,1,4,0)
- ;;=4^M21.542
- ;;^UTILITY(U,$J,358.3,33115,2)
- ;;=^5011126
- ;;^UTILITY(U,$J,358.3,33116,0)
- ;;=S80.12XA^^191^1965^28
- ;;^UTILITY(U,$J,358.3,33116,1,0)
+ ;;^UTILITY(U,$J,358.3,32718,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,32718,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,32718,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,32719,0)
+ ;;=C31.9^^182^1992^100
+ ;;^UTILITY(U,$J,358.3,32719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33116,1,3,0)
- ;;=3^Contusion of lft lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,33116,1,4,0)
- ;;=4^S80.12XA
- ;;^UTILITY(U,$J,358.3,33116,2)
- ;;=^5039903
- ;;^UTILITY(U,$J,358.3,33117,0)
- ;;=S80.11XA^^191^1965^36
- ;;^UTILITY(U,$J,358.3,33117,1,0)
+ ;;^UTILITY(U,$J,358.3,32719,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,32719,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,32719,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,32720,0)
+ ;;=C24.1^^182^1992^102
+ ;;^UTILITY(U,$J,358.3,32720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33117,1,3,0)
- ;;=3^Contusion of rt lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,33117,1,4,0)
- ;;=4^S80.11XA
- ;;^UTILITY(U,$J,358.3,33117,2)
- ;;=^5039900
- ;;^UTILITY(U,$J,358.3,33118,0)
- ;;=S90.31XA^^191^1965^31
- ;;^UTILITY(U,$J,358.3,33118,1,0)
+ ;;^UTILITY(U,$J,358.3,32720,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,32720,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,32720,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,32721,0)
+ ;;=C21.0^^182^1992^103
+ ;;^UTILITY(U,$J,358.3,32721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33118,1,3,0)
- ;;=3^Contusion of rt ft, init enc
- ;;^UTILITY(U,$J,358.3,33118,1,4,0)
- ;;=4^S90.31XA
- ;;^UTILITY(U,$J,358.3,33118,2)
- ;;=^5043883
- ;;^UTILITY(U,$J,358.3,33119,0)
- ;;=S90.32XA^^191^1965^24
- ;;^UTILITY(U,$J,358.3,33119,1,0)
+ ;;^UTILITY(U,$J,358.3,32721,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,32721,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,32721,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,32722,0)
+ ;;=C67.9^^182^1992^105
+ ;;^UTILITY(U,$J,358.3,32722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33119,1,3,0)
- ;;=3^Contusion of lft ft, init enc
- ;;^UTILITY(U,$J,358.3,33119,1,4,0)
- ;;=4^S90.32XA
- ;;^UTILITY(U,$J,358.3,33119,2)
- ;;=^5043886
- ;;^UTILITY(U,$J,358.3,33120,0)
- ;;=S90.02XA^^191^1965^23
- ;;^UTILITY(U,$J,358.3,33120,1,0)
+ ;;^UTILITY(U,$J,358.3,32722,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,32722,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,32722,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,32723,0)
+ ;;=C71.9^^182^1992^109
+ ;;^UTILITY(U,$J,358.3,32723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33120,1,3,0)
- ;;=3^Contusion of lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,33120,1,4,0)
- ;;=4^S90.02XA
- ;;^UTILITY(U,$J,358.3,33120,2)
- ;;=^5043853
- ;;^UTILITY(U,$J,358.3,33121,0)
- ;;=S90.01XA^^191^1965^30
- ;;^UTILITY(U,$J,358.3,33121,1,0)
+ ;;^UTILITY(U,$J,358.3,32723,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,32723,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,32723,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,32724,0)
+ ;;=C18.9^^182^1992^111
+ ;;^UTILITY(U,$J,358.3,32724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33121,1,3,0)
- ;;=3^Contusion of rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,33121,1,4,0)
- ;;=4^S90.01XA
- ;;^UTILITY(U,$J,358.3,33121,2)
- ;;=^5043850
- ;;^UTILITY(U,$J,358.3,33122,0)
- ;;=S90.111A^^191^1965^33
- ;;^UTILITY(U,$J,358.3,33122,1,0)
+ ;;^UTILITY(U,$J,358.3,32724,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,32724,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,32724,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,32725,0)
+ ;;=C49.9^^182^1992^112
+ ;;^UTILITY(U,$J,358.3,32725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33122,1,3,0)
- ;;=3^Contusion of rt grt toe w/o damage to nail, init enc
- ;;^UTILITY(U,$J,358.3,33122,1,4,0)
- ;;=4^S90.111A
- ;;^UTILITY(U,$J,358.3,33122,2)
- ;;=^5043856
- ;;^UTILITY(U,$J,358.3,33123,0)
- ;;=S90.112A^^191^1965^26
- ;;^UTILITY(U,$J,358.3,33123,1,0)
+ ;;^UTILITY(U,$J,358.3,32725,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,32725,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,32725,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,32726,0)
+ ;;=C62.12^^182^1992^113
+ ;;^UTILITY(U,$J,358.3,32726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33123,1,3,0)
- ;;=3^Contusion of lft grt toe w/o damage to nail, init enc
- ;;^UTILITY(U,$J,358.3,33123,1,4,0)
- ;;=4^S90.112A
- ;;^UTILITY(U,$J,358.3,33123,2)
- ;;=^5043859
- ;;^UTILITY(U,$J,358.3,33124,0)
- ;;=S90.121A^^191^1965^35
- ;;^UTILITY(U,$J,358.3,33124,1,0)
+ ;;^UTILITY(U,$J,358.3,32726,1,3,0)
+ ;;=3^Malig Neop Descended Left Testis
+ ;;^UTILITY(U,$J,358.3,32726,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,32726,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,32727,0)
+ ;;=C62.11^^182^1992^114
+ ;;^UTILITY(U,$J,358.3,32727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33124,1,3,0)
- ;;=3^Contusion of rt lsr toe(s) w/o damage to nail, init enc
- ;;^UTILITY(U,$J,358.3,33124,1,4,0)
- ;;=4^S90.121A
- ;;^UTILITY(U,$J,358.3,33124,2)
- ;;=^5043865
- ;;^UTILITY(U,$J,358.3,33125,0)
- ;;=S90.122A^^191^1965^29
+ ;;^UTILITY(U,$J,358.3,32727,1,3,0)
+ ;;=3^Malig Neop Descended Right Testis
+ ;;^UTILITY(U,$J,358.3,32727,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,32727,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,32728,0)
+ ;;=C15.9^^182^1992^116
+ ;;^UTILITY(U,$J,358.3,32728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32728,1,3,0)
+ ;;=3^Malig Neop Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,32728,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,32728,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,32729,0)
+ ;;=C24.0^^182^1992^117

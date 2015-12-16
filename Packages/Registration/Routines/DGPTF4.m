@@ -1,20 +1,21 @@
-DGPTF4 ;ALB/JDS - PTF ENTRY/EDIT-4 ;2/19/04 9:33am
- ;;5.3;Registration;**114,115,397,510,517,478,683,775,850**;Aug 13, 1993;Build 171
+DGPTF4 ;ALB/JDS/PLT - PTF ENTRY/EDIT-4 ;2/19/04 9:33am
+ ;;5.3;Registration;**114,115,397,510,517,478,683,775,850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WR ;
  W @IOF,HEAD,?72 S Z="<701>" D Z^DGPTFM K X S $P(X,"-",81)="" W !,X
  Q
 EN S Y=+B(70) D D^DGPTUTL W ! S Z=5 D Z W $S($P(B(0),U,11)=1:"Date of Disch: ",1:"Census Date  : ") S Z=Y,Z1=20 D Z1 W "Disch Specialty: ",$S($D(^DIC(42.4,+$P(B(70),U,2),0)):$E($P(^(0),U,1),1,25),1:"")
- W !,"   Type of Disch: " S L=";"_$P(^DD(45,72,0),U,3),L1=";"_$P(B(70),U,3)_":" W $P($P(L,L1,2),";",1)
- W ?41 S L=";"_$P(^DD(45,72.1,0),U,3),L1=";"_$P(B(70),U,14)_":" W "Disch Status: ",$P($P(L,L1,2),";",1)
+ W !,"   Type of Disch: ",$$EXTERNAL^DILFD(45,72,,$P(B(70),U,3))
+ W ?41,"Disch Status: ",$$EXTERNAL^DILFD(45,72.1,,$P(B(70),U,14))
  W !,"   Place of Disp: ",$S($D(^DIC(45.6,+$P(B(70),U,6),0)):$E($P(^(0),U,1),1,21),1:"")
  W ?40 S Z=6 D Z W " Out Treat: ",$P("YES^^NO",U,+$P(B(70),U,4))
- W !?6,"Means Test: " S L=";"_$P(^DD(45,10,0),U,3),L1=";"_$P(B(0),U,10)_":" W $P($P(L,L1,2),";",1)
+ W !?6,"Means Test: ",$$EXTERNAL^DILFD(45,10,,$P(B(0),U,10))
  W ?42,"VA Auspices: ",$S($P(B(70),U,5)=1:"YES",$P(B(70),U,5)=2:"NO",1:"")
  W ! S Z=7 D Z W " Receiv facil: " S Z=$P(B(70),U,12)_$P(B(70),U,13),Z1=18 D Z1 W ?38 S Z="Other Fields" D Z
  S DGINC=$P(B(101),U,7)
  I DGINC>1000 S DGINC=$E(DGINC,1,$L(DGINC)-3)_","_$E(DGINC,$L(DGINC)-2,$L(DGINC))
- W !,"      C&P Status: " S L=";"_$P(^DD(45,78,0),U,3),L1=";"_$P(B(70),U,9)_":" W $E($P($P(L,L1,2),";",1),1,24),?47,"Income: $",DGINC
+ W !,"      C&P Status: ",$$EXTERNAL^DILFD(45,78,,$P(B(70),U,9)),?47,"Income: $",DGINC
  K DGINC
 AS ;
  N DGRSC
@@ -40,10 +41,11 @@ EN1 ;LOAD AND DISPLAY DIAGNOSES FOR PTF 701 SCREEN
  W:$P(B(70),U,11)&('$P(B(70),U,10)) !,"  Principal Diag: ",ICDLABEL,!?7,$S(DGPTTMP&$P(DGPTTMP,U,10):$P(DGPTTMP,U,4)_" ("_$P(DGPTTMP,U,2)_")",1:"")
  N DGPTPOA S DGPTPOA=$G(^DGPT(PTF,82))
  ;
- I $P(DGPTTMP,U,20)=30 W:$P($G(DGPTPOA),U,1)'="" " (POA="_$P(DGPTPOA,U,1)_")" W:$P($G(DGPTPOA),U,1)="" " (POA=' ')"
+ I $P(DGPTTMP,U,20)=30 W " (POA=",$S($P(DGPTPOA,U)]"":$P(DGPTPOA,U),1:"''"),")"
  W !?5,"Secondary Diag: ",ICDLABEL
  S K=B(70) F I=16:1:24 S DGPOA=$P(DGPTPOA,"^",(I-14)) D DSP
- S K=B(71) F I=1:1:4 S DGPOA=$P(DGPTPOA,"^",(I+10)) D DSP
+ S K=B(71) F I=1:1:15 S DGPOA=$P(DGPTPOA,"^",(I+10)) D DSP
+ D:$Y>(IOSL-10) PGBR,WR
  S DGPTF=PTF D:'DGST CHK701^DGPTSCAN,UP701^DGPTSPQ
  ; display contents of 300th node
  S DG300=$S($D(^DGPT(PTF,300)):^(300),1:"") D:DG300]"" PRN2^DGPTFM8 K DG300
@@ -95,15 +97,20 @@ DSP ;
  N J2
  D WRITECOD^DGPTIC10("DIAG",+$P(K,U,I),EFFDATE,2,1,7)
  S J2=$$ICDDATA^ICDXCODE("DIAG",+$P(K,U,I),EFFDATE)
- I $P(J2,U,20)=30,$G(DGPOA)'="" W:$X>73 !,"           " W " (POA="_DGPOA_")" W:$G(DGPOA)="" " (POA='')"
+ I $P(J2,U,20)=30 W:$X>73 !,"           " W " (POA=",$S(DGPOA]"":DGPOA,1:"''"),")"
  W $S(+J2<1!('$P(J2,U,10)):"*",1:"")
+ I $Y>(IOSL-3) D PGBR,WR
  Q
 POA(TEXT) ; -- Returns POA Text
  N POA
  Q:TEXT="" ""
- S POA("Y")="PRESENT AT ADMISSION"
- S POA("N")="NOT PRESENT AT ADMISSION"
- S POA("U")="INSUFFICIENT DOCUM TO PRESENT AT ADMISSION"
- S POA("W")="UNABLE TO DETERM IF PRESENT AT ADMISSION"
+ S POA("Y")="PRESENT ON ADMISSION"
+ S POA("N")="NOT PRESENT ON ADMISSION"
+ S POA("U")="INSUFFICIENT DOCUM TO PRESENT ON ADMISSION"
+ S POA("W")="UNABLE TO DETERM IF PRESENT ON ADMISSION"
  Q $G(POA(TEXT))
-POA1 ;Y:PRESENT AT ADMISSION;N:NOT PRESENT AT ADMISSION;U:INSUFFICIENT DOCUM TO PRESENT AT ADMISSION;W:UNABLE TO DETERM IF PRESENT AT ADMISSION
+POA1 ;Y:PRESENT ON ADMISSION;N:NOT PRESENT ON ADMISSION;U:INSUFFICIENT DOCUM TO PRESENT ON ADMISSION;W:UNABLE TO DETERM IF PRESENT ON ADMISSION
+ ;
+ ;
+ ;page break
+PGBR N DIR,X,Y S DIR(0)="E",DIR("A")="Enter RETURN to continue" D ^DIR QUIT

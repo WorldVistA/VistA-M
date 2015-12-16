@@ -1,12 +1,17 @@
-DGPT70DX ;ALB/MTC/ADL -  DXLS Edit Checks for 701 ;13 NOV 92
- ;;5.3;Registration;**510,850**;Aug 13, 1993;Build 171
+DGPT70DX ;ALB/MTC/ADL,HIOFO/FT -  DXLS Edit Checks for 701 ;3/3/15 12:46pm
+ ;;5.3;Registration;**510,850,884**;Aug 13, 1993;Build 31
  ;;ADL;Update for CSV Project;;Mar 24, 2003
  ;
+ ; ICDEX APIs - #5747
+ ; ICDXCODE APIs - #5699
  ;
-EN ;-- check dxls 
- S DGPTDDXE=$P(DGPTDDXE," ",1)
+EN ;-- check dxls for entire stay
+ S DGPTDDXE=$P(DGPTDDXE," ",1) ;DGPTDDXE = dxls for entire stay
  S DGPTERC=0
-NOE ;
+NOE ;quit if code starts with E
+ ;E = Supplementary Classification of Factors Influencing Health Status
+ ;    and Contact with Health Services.
+ ;V = Supplementary Classification of External Causes of Inquiry and Poisoning
  N SYS,EFFDATE,IMPDATE,DGPTDAT
  D EFFDATE^DGPTIC10($G(PTF))
  S SYS=$$SYS^ICDEX("DIAG",EFFDATE)
@@ -22,21 +27,21 @@ SET ;
  S J=+$$CODEN^ICDEX(DGPTDIA1,80) I J<1 S DGPTERC=715 Q
  S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",J,EFFDATE)
  I DGPTTMP=-1!('$P(DGPTTMP,U,10)) S DGPTERC=715 Q
- I ($P(DGPTTMP,U,10)=0)&($E(DGPTDDS,1,7)>$P(DGPTTMP,U,12)) S DGPTERC=715 W !,"SET^DGPT70DX" Q
+ I ($P(DGPTTMP,U,10)=0)&($E(DGPTDDS,1,7)>$P(DGPTTMP,U,12)) S DGPTERC=715 Q
  Q
-GENDR ;
+GENDR ;patient's gender
  N EFFDATE,IMPDATE,DGPTDAT
  D EFFDATE^DGPTIC10($G(PTF))
  S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",J,EFFDATE)
  G:$P(DGPTTMP,U,11)']"" DDXE
- I $P(DGPTTMP,U,11)'=DGPTGEN S DGPTERC=751 G EXIT
+ ;I $P(DGPTTMP,U,11)'=DGPTGEN S DGPTERC=751 G EXIT
 DDXE ;
  S ICDDX(1)=J
  S DGPTDDXE=$P(DGPTDIA1," ",1)
 EXIT ;
  K J,J1,DGPTDIA1
  Q
-DIAGV ;
+DIAGV ;Supplementary Classification of External Causes of Inquiry and Poisoning
  S DGPTDIA1=$E(DGPTDDXE,1,3)_"."_$E(DGPTDDXE,4,$L(DGPTDDXE))_" "
  I +$$CODEN^ICDEX(DGPTDIA1,80)<1 S DGPTERC=715
  Q

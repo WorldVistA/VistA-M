@@ -1,132 +1,134 @@
-IBDEI1SB ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SB ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31885,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,31886,0)
- ;;=Z91.120^^190^1944^49
- ;;^UTILITY(U,$J,358.3,31886,1,0)
+ ;;^UTILITY(U,$J,358.3,31493,1,4,0)
+ ;;=4^Z47.1
+ ;;^UTILITY(U,$J,358.3,31493,2)
+ ;;=^5063025
+ ;;^UTILITY(U,$J,358.3,31494,0)
+ ;;=M81.0^^180^1959^6
+ ;;^UTILITY(U,$J,358.3,31494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31886,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,31886,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,31886,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,31887,0)
- ;;=Z91.11^^190^1944^54
- ;;^UTILITY(U,$J,358.3,31887,1,0)
+ ;;^UTILITY(U,$J,358.3,31494,1,3,0)
+ ;;=3^Age-related osteoporosis w/o current pathological fracture
+ ;;^UTILITY(U,$J,358.3,31494,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,31494,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,31495,0)
+ ;;=R20.0^^180^1959^7
+ ;;^UTILITY(U,$J,358.3,31495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31887,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,31887,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,31887,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,31888,0)
- ;;=Z87.891^^190^1944^90
- ;;^UTILITY(U,$J,358.3,31888,1,0)
+ ;;^UTILITY(U,$J,358.3,31495,1,3,0)
+ ;;=3^Anesthesia of skin
+ ;;^UTILITY(U,$J,358.3,31495,1,4,0)
+ ;;=4^R20.0
+ ;;^UTILITY(U,$J,358.3,31495,2)
+ ;;=^5019278
+ ;;^UTILITY(U,$J,358.3,31496,0)
+ ;;=R63.0^^180^1959^8
+ ;;^UTILITY(U,$J,358.3,31496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31888,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,31888,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,31888,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,31889,0)
- ;;=Z77.090^^190^1944^7
- ;;^UTILITY(U,$J,358.3,31889,1,0)
+ ;;^UTILITY(U,$J,358.3,31496,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,31496,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,31496,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,31497,0)
+ ;;=R43.0^^180^1959^9
+ ;;^UTILITY(U,$J,358.3,31497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31889,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,31889,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,31889,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,31890,0)
- ;;=Z57.8^^190^1944^57
- ;;^UTILITY(U,$J,358.3,31890,1,0)
+ ;;^UTILITY(U,$J,358.3,31497,1,3,0)
+ ;;=3^Anosmia
+ ;;^UTILITY(U,$J,358.3,31497,1,4,0)
+ ;;=4^R43.0
+ ;;^UTILITY(U,$J,358.3,31497,2)
+ ;;=^7949
+ ;;^UTILITY(U,$J,358.3,31498,0)
+ ;;=M12.9^^180^1959^10
+ ;;^UTILITY(U,$J,358.3,31498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31890,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,31890,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,31890,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,31891,0)
- ;;=Z77.21^^190^1944^42
- ;;^UTILITY(U,$J,358.3,31891,1,0)
+ ;;^UTILITY(U,$J,358.3,31498,1,3,0)
+ ;;=3^Arthropathy, unspecified
+ ;;^UTILITY(U,$J,358.3,31498,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,31498,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,31499,0)
+ ;;=M75.22^^180^1959^11
+ ;;^UTILITY(U,$J,358.3,31499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31891,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,31891,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,31891,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,31892,0)
- ;;=Z91.81^^190^1944^46
- ;;^UTILITY(U,$J,358.3,31892,1,0)
+ ;;^UTILITY(U,$J,358.3,31499,1,3,0)
+ ;;=3^Bicipital tendinitis, left shoulder
+ ;;^UTILITY(U,$J,358.3,31499,1,4,0)
+ ;;=4^M75.22
+ ;;^UTILITY(U,$J,358.3,31499,2)
+ ;;=^5013252
+ ;;^UTILITY(U,$J,358.3,31500,0)
+ ;;=M75.21^^180^1959^12
+ ;;^UTILITY(U,$J,358.3,31500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31892,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,31892,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,31892,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,31893,0)
- ;;=Z91.89^^190^1944^104
- ;;^UTILITY(U,$J,358.3,31893,1,0)
+ ;;^UTILITY(U,$J,358.3,31500,1,3,0)
+ ;;=3^Bicipital tendinitis, right shoulder
+ ;;^UTILITY(U,$J,358.3,31500,1,4,0)
+ ;;=4^M75.21
+ ;;^UTILITY(U,$J,358.3,31500,2)
+ ;;=^5013251
+ ;;^UTILITY(U,$J,358.3,31501,0)
+ ;;=T20.00XS^^180^1959^13
+ ;;^UTILITY(U,$J,358.3,31501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31893,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,31893,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,31893,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,31894,0)
- ;;=Z92.89^^190^1944^93
- ;;^UTILITY(U,$J,358.3,31894,1,0)
+ ;;^UTILITY(U,$J,358.3,31501,1,3,0)
+ ;;=3^Burn unsp degree of head, face, and neck, unsp site, sequela
+ ;;^UTILITY(U,$J,358.3,31501,1,4,0)
+ ;;=4^T20.00XS
+ ;;^UTILITY(U,$J,358.3,31501,2)
+ ;;=^5046644
+ ;;^UTILITY(U,$J,358.3,31502,0)
+ ;;=M75.52^^180^1959^14
+ ;;^UTILITY(U,$J,358.3,31502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31894,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,31894,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,31894,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,31895,0)
- ;;=Z77.110^^190^1944^6
- ;;^UTILITY(U,$J,358.3,31895,1,0)
+ ;;^UTILITY(U,$J,358.3,31502,1,3,0)
+ ;;=3^Bursitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,31502,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,31502,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,31503,0)
+ ;;=M75.51^^180^1959^15
+ ;;^UTILITY(U,$J,358.3,31503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31895,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,31895,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,31895,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,31896,0)
- ;;=Z77.112^^190^1944^125
- ;;^UTILITY(U,$J,358.3,31896,1,0)
+ ;;^UTILITY(U,$J,358.3,31503,1,3,0)
+ ;;=3^Bursitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,31503,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,31503,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,31504,0)
+ ;;=M75.32^^180^1959^16
+ ;;^UTILITY(U,$J,358.3,31504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31896,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,31896,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,31896,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,31897,0)
- ;;=Z77.111^^190^1944^130
- ;;^UTILITY(U,$J,358.3,31897,1,0)
+ ;;^UTILITY(U,$J,358.3,31504,1,3,0)
+ ;;=3^Calcific tendinitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,31504,1,4,0)
+ ;;=4^M75.32
+ ;;^UTILITY(U,$J,358.3,31504,2)
+ ;;=^5013255
+ ;;^UTILITY(U,$J,358.3,31505,0)
+ ;;=M75.31^^180^1959^17
+ ;;^UTILITY(U,$J,358.3,31505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31897,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,31897,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,31897,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,31898,0)
- ;;=Z77.128^^190^1944^105
- ;;^UTILITY(U,$J,358.3,31898,1,0)
+ ;;^UTILITY(U,$J,358.3,31505,1,3,0)
+ ;;=3^Calcific tendinitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,31505,1,4,0)
+ ;;=4^M75.31
+ ;;^UTILITY(U,$J,358.3,31505,2)
+ ;;=^5013254
+ ;;^UTILITY(U,$J,358.3,31506,0)
+ ;;=M22.42^^180^1959^18
+ ;;^UTILITY(U,$J,358.3,31506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31898,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,31506,1,3,0)
+ ;;=3^Chondromalacia patellae, left knee

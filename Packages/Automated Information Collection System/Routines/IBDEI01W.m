@@ -1,148 +1,140 @@
-IBDEI01W ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01W ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,372,1,2,0)
- ;;=2^V65.44
- ;;^UTILITY(U,$J,358.3,372,1,5,0)
- ;;=5^HIV Counseling
- ;;^UTILITY(U,$J,358.3,372,2)
- ;;=^303469
- ;;^UTILITY(U,$J,358.3,373,0)
- ;;=V65.49^^3^37^5
- ;;^UTILITY(U,$J,358.3,373,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,373,1,2,0)
- ;;=2^V65.49
- ;;^UTILITY(U,$J,358.3,373,1,5,0)
- ;;=5^Oth Specified Counseling
- ;;^UTILITY(U,$J,358.3,373,2)
- ;;=^303471
- ;;^UTILITY(U,$J,358.3,374,0)
- ;;=V68.1^^3^37^4
- ;;^UTILITY(U,$J,358.3,374,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,374,1,2,0)
- ;;=2^V68.1
- ;;^UTILITY(U,$J,358.3,374,1,5,0)
- ;;=5^Issue Repeat Prescription
- ;;^UTILITY(U,$J,358.3,374,2)
- ;;=^295585
- ;;^UTILITY(U,$J,358.3,375,0)
- ;;=V70.2^^3^37^6
- ;;^UTILITY(U,$J,358.3,375,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,375,1,2,0)
- ;;=2^V70.2
- ;;^UTILITY(U,$J,358.3,375,1,5,0)
- ;;=5^Psychiatric Examination
- ;;^UTILITY(U,$J,358.3,375,2)
- ;;=^295592
- ;;^UTILITY(U,$J,358.3,376,0)
- ;;=296.20^^3^38^14
- ;;^UTILITY(U,$J,358.3,376,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,376,1,2,0)
- ;;=2^296.20
- ;;^UTILITY(U,$J,358.3,376,1,5,0)
- ;;=5^MDD, Single, NOS
- ;;^UTILITY(U,$J,358.3,376,2)
- ;;=^73311
- ;;^UTILITY(U,$J,358.3,377,0)
- ;;=296.21^^3^38^12
- ;;^UTILITY(U,$J,358.3,377,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,377,1,2,0)
- ;;=2^296.21
- ;;^UTILITY(U,$J,358.3,377,1,5,0)
- ;;=5^MDD, Single, Mild
- ;;^UTILITY(U,$J,358.3,377,2)
- ;;=^268110
- ;;^UTILITY(U,$J,358.3,378,0)
- ;;=296.22^^3^38^13
- ;;^UTILITY(U,$J,358.3,378,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,378,1,2,0)
- ;;=2^296.22
- ;;^UTILITY(U,$J,358.3,378,1,5,0)
- ;;=5^MDD, Single, Moderate
- ;;^UTILITY(U,$J,358.3,378,2)
- ;;=^268111
- ;;^UTILITY(U,$J,358.3,379,0)
- ;;=296.23^^3^38^5
- ;;^UTILITY(U,$J,358.3,379,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,379,1,2,0)
- ;;=2^296.23
- ;;^UTILITY(U,$J,358.3,379,1,5,0)
- ;;=5^MDD Sing, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,379,2)
- ;;=^268112
- ;;^UTILITY(U,$J,358.3,380,0)
- ;;=296.24^^3^38^4
- ;;^UTILITY(U,$J,358.3,380,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,380,1,2,0)
- ;;=2^296.24
- ;;^UTILITY(U,$J,358.3,380,1,5,0)
- ;;=5^MDD Sing, Sev w/Psychosis
- ;;^UTILITY(U,$J,358.3,380,2)
- ;;=^268113
- ;;^UTILITY(U,$J,358.3,381,0)
- ;;=296.25^^3^38^15
- ;;^UTILITY(U,$J,358.3,381,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,381,1,2,0)
- ;;=2^296.25
- ;;^UTILITY(U,$J,358.3,381,1,5,0)
- ;;=5^MDD, Single, Part Remiss
- ;;^UTILITY(U,$J,358.3,381,2)
- ;;=^268114
- ;;^UTILITY(U,$J,358.3,382,0)
- ;;=296.30^^3^38^9
- ;;^UTILITY(U,$J,358.3,382,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,382,1,2,0)
- ;;=2^296.30
- ;;^UTILITY(U,$J,358.3,382,1,5,0)
- ;;=5^MDD, Recur, NOS
- ;;^UTILITY(U,$J,358.3,382,2)
- ;;=^268116
- ;;^UTILITY(U,$J,358.3,383,0)
- ;;=296.31^^3^38^7
- ;;^UTILITY(U,$J,358.3,383,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,383,1,2,0)
- ;;=2^296.31
- ;;^UTILITY(U,$J,358.3,383,1,5,0)
- ;;=5^MDD, Recur, Mild
- ;;^UTILITY(U,$J,358.3,383,2)
- ;;=^268117
- ;;^UTILITY(U,$J,358.3,384,0)
- ;;=296.32^^3^38^8
- ;;^UTILITY(U,$J,358.3,384,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,384,1,2,0)
- ;;=2^296.32
- ;;^UTILITY(U,$J,358.3,384,1,5,0)
- ;;=5^MDD, Recur, Moderate
- ;;^UTILITY(U,$J,358.3,384,2)
- ;;=^268118
- ;;^UTILITY(U,$J,358.3,385,0)
- ;;=296.33^^3^38^3
- ;;^UTILITY(U,$J,358.3,385,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,385,1,2,0)
- ;;=2^296.33
- ;;^UTILITY(U,$J,358.3,385,1,5,0)
- ;;=5^MDD Recur, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,385,2)
- ;;=^268119
- ;;^UTILITY(U,$J,358.3,386,0)
- ;;=296.34^^3^38^2
- ;;^UTILITY(U,$J,358.3,386,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,386,1,2,0)
- ;;=2^296.34
- ;;^UTILITY(U,$J,358.3,386,1,5,0)
- ;;=5^MDD Recur, Sev w/Psychosis
+ ;;^UTILITY(U,$J,358.3,333,1,3,0)
+ ;;=3^Hereditary deficiency of other clotting factors
+ ;;^UTILITY(U,$J,358.3,333,1,4,0)
+ ;;=4^D68.2
+ ;;^UTILITY(U,$J,358.3,333,2)
+ ;;=^5002356
+ ;;^UTILITY(U,$J,358.3,334,0)
+ ;;=D68.0^^2^15^26
+ ;;^UTILITY(U,$J,358.3,334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,334,1,3,0)
+ ;;=3^Von Willebrand's disease
+ ;;^UTILITY(U,$J,358.3,334,1,4,0)
+ ;;=4^D68.0
+ ;;^UTILITY(U,$J,358.3,334,2)
+ ;;=^127267
+ ;;^UTILITY(U,$J,358.3,335,0)
+ ;;=D68.311^^2^15^2
+ ;;^UTILITY(U,$J,358.3,335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,335,1,3,0)
+ ;;=3^Acquired hemophilia
+ ;;^UTILITY(U,$J,358.3,335,1,4,0)
+ ;;=4^D68.311
+ ;;^UTILITY(U,$J,358.3,335,2)
+ ;;=^340502
+ ;;^UTILITY(U,$J,358.3,336,0)
+ ;;=D68.312^^2^15^4
+ ;;^UTILITY(U,$J,358.3,336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,336,1,3,0)
+ ;;=3^Antiphospholipid antibody with hemorrhagic disorder
+ ;;^UTILITY(U,$J,358.3,336,1,4,0)
+ ;;=4^D68.312
+ ;;^UTILITY(U,$J,358.3,336,2)
+ ;;=^340503
+ ;;^UTILITY(U,$J,358.3,337,0)
+ ;;=D68.318^^2^15^13
+ ;;^UTILITY(U,$J,358.3,337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,337,1,3,0)
+ ;;=3^Hemorrhagic disord d/t intrns circ anticoag,antib,inhib NEC
+ ;;^UTILITY(U,$J,358.3,337,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,337,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,338,0)
+ ;;=D65.^^2^15^7
+ ;;^UTILITY(U,$J,358.3,338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,338,1,3,0)
+ ;;=3^Disseminated intravascular coagulation
+ ;;^UTILITY(U,$J,358.3,338,1,4,0)
+ ;;=4^D65.
+ ;;^UTILITY(U,$J,358.3,338,2)
+ ;;=^5002352
+ ;;^UTILITY(U,$J,358.3,339,0)
+ ;;=D68.32^^2^15^12
+ ;;^UTILITY(U,$J,358.3,339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,339,1,3,0)
+ ;;=3^Hemorrhagic disord d/t extrinsic circulating anticoagulants
+ ;;^UTILITY(U,$J,358.3,339,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,339,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,340,0)
+ ;;=D68.4^^2^15^1
+ ;;^UTILITY(U,$J,358.3,340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,340,1,3,0)
+ ;;=3^Acquired coagulation factor deficiency
+ ;;^UTILITY(U,$J,358.3,340,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,340,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,341,0)
+ ;;=D68.8^^2^15^5
+ ;;^UTILITY(U,$J,358.3,341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,341,1,3,0)
+ ;;=3^Coagulation Defects NEC
+ ;;^UTILITY(U,$J,358.3,341,1,4,0)
+ ;;=4^D68.8
+ ;;^UTILITY(U,$J,358.3,341,2)
+ ;;=^5002363
+ ;;^UTILITY(U,$J,358.3,342,0)
+ ;;=D68.9^^2^15^6
+ ;;^UTILITY(U,$J,358.3,342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,342,1,3,0)
+ ;;=3^Coagulation Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,342,1,4,0)
+ ;;=4^D68.9
+ ;;^UTILITY(U,$J,358.3,342,2)
+ ;;=^5002364
+ ;;^UTILITY(U,$J,358.3,343,0)
+ ;;=D69.1^^2^15^22
+ ;;^UTILITY(U,$J,358.3,343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,343,1,3,0)
+ ;;=3^Qualitative platelet defects
+ ;;^UTILITY(U,$J,358.3,343,1,4,0)
+ ;;=4^D69.1
+ ;;^UTILITY(U,$J,358.3,343,2)
+ ;;=^101922
+ ;;^UTILITY(U,$J,358.3,344,0)
+ ;;=D47.3^^2^15^8
+ ;;^UTILITY(U,$J,358.3,344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,344,1,3,0)
+ ;;=3^Essential (hemorrhagic) thrombocythemia
+ ;;^UTILITY(U,$J,358.3,344,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,344,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,345,0)
+ ;;=D69.0^^2^15^3
+ ;;^UTILITY(U,$J,358.3,345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,345,1,3,0)
+ ;;=3^Allergic purpura
+ ;;^UTILITY(U,$J,358.3,345,1,4,0)
+ ;;=4^D69.0
+ ;;^UTILITY(U,$J,358.3,345,2)
+ ;;=^5002365
+ ;;^UTILITY(U,$J,358.3,346,0)
+ ;;=D69.2^^2^15^19
+ ;;^UTILITY(U,$J,358.3,346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,346,1,3,0)
+ ;;=3^Nonthrombocytopenic purpura NEC
+ ;;^UTILITY(U,$J,358.3,346,1,4,0)
+ ;;=4^D69.2
+ ;;^UTILITY(U,$J,358.3,346,2)
+ ;;=^5002366

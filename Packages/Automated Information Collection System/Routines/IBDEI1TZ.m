@@ -1,128 +1,120 @@
-IBDEI1TZ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1TZ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32663,1,0)
+ ;;^UTILITY(U,$J,358.3,32253,0)
+ ;;=L97.421^^182^1981^187
+ ;;^UTILITY(U,$J,358.3,32253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32663,1,3,0)
- ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32663,1,4,0)
- ;;=4^F10.120
- ;;^UTILITY(U,$J,358.3,32663,2)
- ;;=^5003069
- ;;^UTILITY(U,$J,358.3,32664,0)
- ;;=F10.10^^190^1957^2
- ;;^UTILITY(U,$J,358.3,32664,1,0)
+ ;;^UTILITY(U,$J,358.3,32253,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,32253,1,4,0)
+ ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,32253,2)
+ ;;=^5009535
+ ;;^UTILITY(U,$J,358.3,32254,0)
+ ;;=L97.422^^182^1981^188
+ ;;^UTILITY(U,$J,358.3,32254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32664,1,3,0)
- ;;=3^Alcohol Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32664,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,32664,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,32665,0)
- ;;=F17.201^^190^1957^28
- ;;^UTILITY(U,$J,358.3,32665,1,0)
+ ;;^UTILITY(U,$J,358.3,32254,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,32254,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,32254,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,32255,0)
+ ;;=L97.423^^182^1981^189
+ ;;^UTILITY(U,$J,358.3,32255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32665,1,3,0)
- ;;=3^Nicotine Dependence In Remission,Unspec
- ;;^UTILITY(U,$J,358.3,32665,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,32665,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,32666,0)
- ;;=F17.210^^190^1957^27
- ;;^UTILITY(U,$J,358.3,32666,1,0)
+ ;;^UTILITY(U,$J,358.3,32255,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,32255,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,32255,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,32256,0)
+ ;;=L97.424^^182^1981^190
+ ;;^UTILITY(U,$J,358.3,32256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32666,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32666,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,32666,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,32667,0)
- ;;=F17.291^^190^1957^29
- ;;^UTILITY(U,$J,358.3,32667,1,0)
+ ;;^UTILITY(U,$J,358.3,32256,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,32256,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,32256,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,32257,0)
+ ;;=L97.429^^182^1981^191
+ ;;^UTILITY(U,$J,358.3,32257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32667,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,32667,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,32667,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,32668,0)
- ;;=F17.290^^190^1957^30
- ;;^UTILITY(U,$J,358.3,32668,1,0)
+ ;;^UTILITY(U,$J,358.3,32257,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,32257,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,32257,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,32258,0)
+ ;;=L97.511^^182^1981^212
+ ;;^UTILITY(U,$J,358.3,32258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32668,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32668,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,32668,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,32669,0)
- ;;=F17.221^^190^1957^24
- ;;^UTILITY(U,$J,358.3,32669,1,0)
+ ;;^UTILITY(U,$J,358.3,32258,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,32258,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,32258,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,32259,0)
+ ;;=L97.512^^182^1981^213
+ ;;^UTILITY(U,$J,358.3,32259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32669,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,32669,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,32669,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,32670,0)
- ;;=F17.220^^190^1957^25
- ;;^UTILITY(U,$J,358.3,32670,1,0)
+ ;;^UTILITY(U,$J,358.3,32259,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,32259,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,32259,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,32260,0)
+ ;;=L97.513^^182^1981^214
+ ;;^UTILITY(U,$J,358.3,32260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32670,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32670,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,32670,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,32671,0)
- ;;=F17.211^^190^1957^26
- ;;^UTILITY(U,$J,358.3,32671,1,0)
+ ;;^UTILITY(U,$J,358.3,32260,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,32260,1,4,0)
+ ;;=4^L97.513
+ ;;^UTILITY(U,$J,358.3,32260,2)
+ ;;=^5009547
+ ;;^UTILITY(U,$J,358.3,32261,0)
+ ;;=L97.514^^182^1981^215
+ ;;^UTILITY(U,$J,358.3,32261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32671,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,32671,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,32671,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,32672,0)
- ;;=F17.200^^190^1957^31
- ;;^UTILITY(U,$J,358.3,32672,1,0)
+ ;;^UTILITY(U,$J,358.3,32261,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,32261,1,4,0)
+ ;;=4^L97.514
+ ;;^UTILITY(U,$J,358.3,32261,2)
+ ;;=^5009548
+ ;;^UTILITY(U,$J,358.3,32262,0)
+ ;;=L97.519^^182^1981^216
+ ;;^UTILITY(U,$J,358.3,32262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32672,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32672,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,32672,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,32673,0)
- ;;=F11.120^^190^1957^32
- ;;^UTILITY(U,$J,358.3,32673,1,0)
+ ;;^UTILITY(U,$J,358.3,32262,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,32262,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,32262,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,32263,0)
+ ;;=L97.521^^182^1981^182
+ ;;^UTILITY(U,$J,358.3,32263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32673,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32673,1,4,0)
- ;;=4^F11.120
- ;;^UTILITY(U,$J,358.3,32673,2)
- ;;=^5003115
- ;;^UTILITY(U,$J,358.3,32674,0)
- ;;=F11.10^^190^1957^34
- ;;^UTILITY(U,$J,358.3,32674,1,0)
+ ;;^UTILITY(U,$J,358.3,32263,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,32263,1,4,0)
+ ;;=4^L97.521
+ ;;^UTILITY(U,$J,358.3,32263,2)
+ ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,32264,0)
+ ;;=L97.522^^182^1981^183
+ ;;^UTILITY(U,$J,358.3,32264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32674,1,3,0)
- ;;=3^Opioid Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32674,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,32674,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,32675,0)
- ;;=F11.129^^190^1957^33
- ;;^UTILITY(U,$J,358.3,32675,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32675,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,32264,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed

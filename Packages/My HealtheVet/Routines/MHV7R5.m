@@ -1,5 +1,5 @@
 MHV7R5 ;WAS/DLF/MJK/KUM - HL7 RECEIVER FOR ADMIN QUERIES ; 6/7/10 10:34am
- ;;1.0;My HealtheVet;**6,10**;Aug 23, 2005;Build 50
+ ;;1.0;My HealtheVet;**6,10,11**;Aug 23, 2005;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;  Integration Agreements:
@@ -155,12 +155,37 @@ VALIDMSG(MSGROOT,QRY,XMT,ERR)   ;Validate message
  .S QRY("IEN")=$G(QPD(3,1,2))          ;ien
  .S QRY("LNAME")=$$UP^XLFSTR($G(QPD(3,1,3)))        ;Last Name
  .S QRY("FNAME")=$$UP^XLFSTR($G(QPD(3,1,4)))        ;First Name
+ .S QRY("PICN")=$$UP^XLFSTR($G(QPD(3,1,2)))         ;Patient ICN
+ .S QRY("DSSI")=$$UP^XLFSTR($G(QPD(3,1,3)))         ;DSS Unit IEN
+ .S QRY("PRDT")=DT                                  ;Procedure Date and Time
+ .S QRY("DSRCH")=$$UP^XLFSTR($G(QPD(3,1,3)))        ;Diagnoses Search String
+ .S QRY("FROMDT")=$$UP^XLFSTR($G(QPD(3,1,5)))       ;From Date
+ .S QRY("TODT")=$$UP^XLFSTR($G(QPD(3,1,6)))         ;To Date
+ ;
  ;Added for MHV*1.0*10 - Validations for SMClinicsByStopCode query Input parameters
  I (REQTYPE="SMClinicsByStopCode")&($D(QPD))  D
  . I $G(QRY("FNAME"))="" S ERR="QPD^1^6^101^AE^Clinic Secondary(Credit) Stop Code cannot be null" Q
  . I ((+$G(QRY("FNAME"))<1)&(+$G(QRY("FNAME"))>999)) S ERR="QPD^1^6^102^AE^Clinic Secondary(Credit) Stop Code "_$G(QRY("FNAME"))_" should be a numeric value in the range 1 to 999." Q
  . S MHVCSIE=$$SCIEN^MHVXCLN($G(QRY("FNAME")))
  . I $G(MHVCSIE)="" S ERR="QPD^1^6^102^AE^Clinic Secondary(Credit) Stop Code "_$G(QRY("FNAME"))_" Unknown."
+ ;
+ ;Added for MHV*1.0*11 - Validations for SMPCMMPatientsForClinic query Input parameters
+ I (REQTYPE="SMPCMMPatientsForClinic")&($D(QPD))  D
+ . I $G(QRY("IEN"))="" S ERR="QPD^1^6^101^AE^Clinic IEN cannot be null" Q
+ ;
+ ;Added for MHV*1.0*11 - Validations for SMPATEligClassification query Input parameters
+ I (REQTYPE="SMPatientEClass")&($D(QPD))  D
+ . I $G(QRY("PICN"))="" S ERR="QPD^1^6^101^AE^Patient ICN cannot be null" Q
+ . I $G(QRY("DSSI"))="" S ERR="QPD^1^6^102^AE^DSS Unit IEN cannot be null" Q
+ . I $G(QRY("PRDT"))="" S ERR="QPD^1^6^103^AE^Procedure Date and Time cannot be null" Q
+ ;
+ ;Added for MHV*1.0*11 - Validations for SMPatientProblems input parameters
+ I (REQTYPE="SMPatientProblems")&($D(QPD))  D
+ . I $G(QRY("PICN"))="" S ERR="QPD^1^6^101^AE^Patient ICN cannot be null" Q
+ ;
+ ;Added for MHV*1.0*11 - Validations for SMDiagnoses input parameters
+ I (REQTYPE="SMDiagnoses")&($D(QPD))  D
+ . I $G(QRY("DSRCH"))="" S ERR="QPD^1^6^101^AE^Diagnoses Search String cannot be null" Q
  I ERR Q 0
  ;
  S FROMDT=$G(QPD(3,1,5))        ;From Date

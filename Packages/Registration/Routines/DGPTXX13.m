@@ -1,0 +1,91 @@
+DGPTXX13 ; COMPILED XREF FOR FILE #45.02 ; 09/16/15
+ ; 
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,7)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD17")
+CR18 S DIXR=1231
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,8)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD18")
+CR19 S DIXR=1232
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,9)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD19")
+CR20 S DIXR=1233
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,10)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD20")
+CR21 S DIXR=1234
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,11)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD21")
+CR22 S DIXR=1235
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,12)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD22")
+CR23 S DIXR=1236
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,13)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD23")
+CR24 S DIXR=1237
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,14)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD24")
+CR25 S DIXR=1238
+ K X
+ S DIKZ(0)=$G(^DGPT(DA(1),"M",DA,0))
+ S X(1)=$P(DIKZ(0),U,10)
+ S DIKZ(81)=$G(^DGPT(DA(1),"M",DA,81))
+ S X(2)=$P(DIKZ(81),U,15)
+ S X=$G(X(1))
+ I $G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD25")
+CR26 K X
+ G:'$D(DIKLM) A^DGPTXX12 Q:$D(DISET)
+END G ^DGPTXX14

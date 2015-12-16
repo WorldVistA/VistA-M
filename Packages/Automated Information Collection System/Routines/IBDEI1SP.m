@@ -1,134 +1,124 @@
-IBDEI1SP ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SP ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32068,1,0)
+ ;;^UTILITY(U,$J,358.3,31668,1,4,0)
+ ;;=4^M05.541
+ ;;^UTILITY(U,$J,358.3,31668,2)
+ ;;=^5009964
+ ;;^UTILITY(U,$J,358.3,31669,0)
+ ;;=M05.551^^180^1962^122
+ ;;^UTILITY(U,$J,358.3,31669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32068,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,32068,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,32068,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,32069,0)
- ;;=Z21.^^190^1945^25
- ;;^UTILITY(U,$J,358.3,32069,1,0)
+ ;;^UTILITY(U,$J,358.3,31669,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hip
+ ;;^UTILITY(U,$J,358.3,31669,1,4,0)
+ ;;=4^M05.551
+ ;;^UTILITY(U,$J,358.3,31669,2)
+ ;;=^5009967
+ ;;^UTILITY(U,$J,358.3,31670,0)
+ ;;=M05.561^^180^1962^123
+ ;;^UTILITY(U,$J,358.3,31670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32069,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,32069,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,32069,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,32070,0)
- ;;=K70.0^^190^1946^3
- ;;^UTILITY(U,$J,358.3,32070,1,0)
+ ;;^UTILITY(U,$J,358.3,31670,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right knee
+ ;;^UTILITY(U,$J,358.3,31670,1,4,0)
+ ;;=4^M05.561
+ ;;^UTILITY(U,$J,358.3,31670,2)
+ ;;=^5009970
+ ;;^UTILITY(U,$J,358.3,31671,0)
+ ;;=M05.511^^180^1962^124
+ ;;^UTILITY(U,$J,358.3,31671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32070,1,3,0)
- ;;=3^Alcoholic Fatty Liver
- ;;^UTILITY(U,$J,358.3,32070,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,32070,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,32071,0)
- ;;=K70.11^^190^1946^7
- ;;^UTILITY(U,$J,358.3,32071,1,0)
+ ;;^UTILITY(U,$J,358.3,31671,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right shoulder
+ ;;^UTILITY(U,$J,358.3,31671,1,4,0)
+ ;;=4^M05.511
+ ;;^UTILITY(U,$J,358.3,31671,2)
+ ;;=^5009955
+ ;;^UTILITY(U,$J,358.3,31672,0)
+ ;;=M05.531^^180^1962^125
+ ;;^UTILITY(U,$J,358.3,31672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32071,1,3,0)
- ;;=3^Alcoholic Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,32071,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,32071,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,32072,0)
- ;;=K70.10^^190^1946^8
- ;;^UTILITY(U,$J,358.3,32072,1,0)
+ ;;^UTILITY(U,$J,358.3,31672,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right wrist
+ ;;^UTILITY(U,$J,358.3,31672,1,4,0)
+ ;;=4^M05.531
+ ;;^UTILITY(U,$J,358.3,31672,2)
+ ;;=^5009961
+ ;;^UTILITY(U,$J,358.3,31673,0)
+ ;;=M67.02^^180^1962^128
+ ;;^UTILITY(U,$J,358.3,31673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32072,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,32072,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,32072,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,32073,0)
- ;;=K70.2^^190^1946^4
- ;;^UTILITY(U,$J,358.3,32073,1,0)
+ ;;^UTILITY(U,$J,358.3,31673,1,3,0)
+ ;;=3^Short Achilles tendon (acquired), left ankle
+ ;;^UTILITY(U,$J,358.3,31673,1,4,0)
+ ;;=4^M67.02
+ ;;^UTILITY(U,$J,358.3,31673,2)
+ ;;=^5012907
+ ;;^UTILITY(U,$J,358.3,31674,0)
+ ;;=M67.01^^180^1962^129
+ ;;^UTILITY(U,$J,358.3,31674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32073,1,3,0)
- ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,32073,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,32073,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,32074,0)
- ;;=K70.30^^190^1946^2
- ;;^UTILITY(U,$J,358.3,32074,1,0)
+ ;;^UTILITY(U,$J,358.3,31674,1,3,0)
+ ;;=3^Short Achilles tendon (acquired), right ankle
+ ;;^UTILITY(U,$J,358.3,31674,1,4,0)
+ ;;=4^M67.01
+ ;;^UTILITY(U,$J,358.3,31674,2)
+ ;;=^5012906
+ ;;^UTILITY(U,$J,358.3,31675,0)
+ ;;=G47.9^^180^1962^130
+ ;;^UTILITY(U,$J,358.3,31675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32074,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,32074,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,32074,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,32075,0)
- ;;=K70.31^^190^1946^1
- ;;^UTILITY(U,$J,358.3,32075,1,0)
+ ;;^UTILITY(U,$J,358.3,31675,1,3,0)
+ ;;=3^Sleep disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,31675,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,31675,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,31676,0)
+ ;;=M66.232^^180^1962^131
+ ;;^UTILITY(U,$J,358.3,31676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32075,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,32075,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,32075,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,32076,0)
- ;;=K70.9^^190^1946^9
- ;;^UTILITY(U,$J,358.3,32076,1,0)
+ ;;^UTILITY(U,$J,358.3,31676,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, left forearm
+ ;;^UTILITY(U,$J,358.3,31676,1,4,0)
+ ;;=4^M66.232
+ ;;^UTILITY(U,$J,358.3,31676,2)
+ ;;=^5012855
+ ;;^UTILITY(U,$J,358.3,31677,0)
+ ;;=M66.242^^180^1962^132
+ ;;^UTILITY(U,$J,358.3,31677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32076,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32076,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,32076,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,32077,0)
- ;;=K70.40^^190^1946^6
- ;;^UTILITY(U,$J,358.3,32077,1,0)
+ ;;^UTILITY(U,$J,358.3,31677,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, left hand
+ ;;^UTILITY(U,$J,358.3,31677,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,31677,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,31678,0)
+ ;;=M66.231^^180^1962^133
+ ;;^UTILITY(U,$J,358.3,31678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32077,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/o Coma
- ;;^UTILITY(U,$J,358.3,32077,1,4,0)
- ;;=4^K70.40
- ;;^UTILITY(U,$J,358.3,32077,2)
- ;;=^5008790
- ;;^UTILITY(U,$J,358.3,32078,0)
- ;;=K70.41^^190^1946^5
- ;;^UTILITY(U,$J,358.3,32078,1,0)
+ ;;^UTILITY(U,$J,358.3,31678,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, right forearm
+ ;;^UTILITY(U,$J,358.3,31678,1,4,0)
+ ;;=4^M66.231
+ ;;^UTILITY(U,$J,358.3,31678,2)
+ ;;=^5012854
+ ;;^UTILITY(U,$J,358.3,31679,0)
+ ;;=M66.241^^180^1962^134
+ ;;^UTILITY(U,$J,358.3,31679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32078,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/ Coma
- ;;^UTILITY(U,$J,358.3,32078,1,4,0)
- ;;=4^K70.41
- ;;^UTILITY(U,$J,358.3,32078,2)
- ;;=^5008791
- ;;^UTILITY(U,$J,358.3,32079,0)
- ;;=K73.0^^190^1946^15
- ;;^UTILITY(U,$J,358.3,32079,1,0)
+ ;;^UTILITY(U,$J,358.3,31679,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, right hand
+ ;;^UTILITY(U,$J,358.3,31679,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,31679,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,31680,0)
+ ;;=M66.331^^180^1962^135
+ ;;^UTILITY(U,$J,358.3,31680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32079,1,3,0)
- ;;=3^Hepatitis, Chronic Persistent NEC
- ;;^UTILITY(U,$J,358.3,32079,1,4,0)
- ;;=4^K73.0
- ;;^UTILITY(U,$J,358.3,32079,2)
- ;;=^5008811
- ;;^UTILITY(U,$J,358.3,32080,0)
- ;;=K74.0^^190^1946^14
- ;;^UTILITY(U,$J,358.3,32080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32080,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,32080,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,32080,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,32081,0)
- ;;=K74.69^^190^1946^10
+ ;;^UTILITY(U,$J,358.3,31680,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, right forearm

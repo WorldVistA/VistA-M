@@ -1,128 +1,138 @@
-IBDEI10B ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI10B ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17948,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,17949,0)
- ;;=301.50^^98^1023^8
- ;;^UTILITY(U,$J,358.3,17949,1,0)
+ ;;^UTILITY(U,$J,358.3,17733,2)
+ ;;=^331840
+ ;;^UTILITY(U,$J,358.3,17734,0)
+ ;;=310.89^^94^1128^6
+ ;;^UTILITY(U,$J,358.3,17734,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17949,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,17949,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,17949,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,17950,0)
- ;;=301.81^^98^1023^11
- ;;^UTILITY(U,$J,358.3,17950,1,0)
+ ;;^UTILITY(U,$J,358.3,17734,1,2,0)
+ ;;=2^310.89
+ ;;^UTILITY(U,$J,358.3,17734,1,5,0)
+ ;;=5^Oth Non Psychotic Mental Disord NEC
+ ;;^UTILITY(U,$J,358.3,17734,2)
+ ;;=^268320
+ ;;^UTILITY(U,$J,358.3,17735,0)
+ ;;=293.82^^94^1128^5
+ ;;^UTILITY(U,$J,358.3,17735,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17950,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,17950,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,17950,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,17951,0)
- ;;=301.0^^98^1023^12
- ;;^UTILITY(U,$J,358.3,17951,1,0)
+ ;;^UTILITY(U,$J,358.3,17735,1,2,0)
+ ;;=2^293.82
+ ;;^UTILITY(U,$J,358.3,17735,1,5,0)
+ ;;=5^Hallucinosis
+ ;;^UTILITY(U,$J,358.3,17735,2)
+ ;;=^331837
+ ;;^UTILITY(U,$J,358.3,17736,0)
+ ;;=290.20^^94^1129^16
+ ;;^UTILITY(U,$J,358.3,17736,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17951,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,17951,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,17951,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,17952,0)
- ;;=301.9^^98^1023^16
- ;;^UTILITY(U,$J,358.3,17952,1,0)
+ ;;^UTILITY(U,$J,358.3,17736,1,2,0)
+ ;;=2^290.20
+ ;;^UTILITY(U,$J,358.3,17736,1,5,0)
+ ;;=5^Senile Dementia w/ Delusion
+ ;;^UTILITY(U,$J,358.3,17736,2)
+ ;;=^303486
+ ;;^UTILITY(U,$J,358.3,17737,0)
+ ;;=290.40^^94^1129^18
+ ;;^UTILITY(U,$J,358.3,17737,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17952,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,17952,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,17952,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,17953,0)
- ;;=301.20^^98^1023^14
- ;;^UTILITY(U,$J,358.3,17953,1,0)
+ ;;^UTILITY(U,$J,358.3,17737,1,2,0)
+ ;;=2^290.40
+ ;;^UTILITY(U,$J,358.3,17737,1,5,0)
+ ;;=5^Vascular Dementia
+ ;;^UTILITY(U,$J,358.3,17737,2)
+ ;;=^303487
+ ;;^UTILITY(U,$J,358.3,17738,0)
+ ;;=291.2^^94^1129^1
+ ;;^UTILITY(U,$J,358.3,17738,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17953,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,17953,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,17953,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,17954,0)
- ;;=301.22^^98^1023^15
- ;;^UTILITY(U,$J,358.3,17954,1,0)
+ ;;^UTILITY(U,$J,358.3,17738,1,2,0)
+ ;;=2^291.2
+ ;;^UTILITY(U,$J,358.3,17738,1,5,0)
+ ;;=5^Alcoholic Dementia
+ ;;^UTILITY(U,$J,358.3,17738,2)
+ ;;=Alcoholic Dementia^268015
+ ;;^UTILITY(U,$J,358.3,17739,0)
+ ;;=290.0^^94^1129^17
+ ;;^UTILITY(U,$J,358.3,17739,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17954,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,17954,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,17954,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,17955,0)
- ;;=301.4^^98^1023^4
- ;;^UTILITY(U,$J,358.3,17955,1,0)
+ ;;^UTILITY(U,$J,358.3,17739,1,2,0)
+ ;;=2^290.0
+ ;;^UTILITY(U,$J,358.3,17739,1,5,0)
+ ;;=5^Senile Dementia, Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17739,2)
+ ;;=^31700
+ ;;^UTILITY(U,$J,358.3,17740,0)
+ ;;=290.3^^94^1129^15
+ ;;^UTILITY(U,$J,358.3,17740,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17955,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,17955,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,17955,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,17956,0)
- ;;=301.84^^98^1023^13
- ;;^UTILITY(U,$J,358.3,17956,1,0)
+ ;;^UTILITY(U,$J,358.3,17740,1,2,0)
+ ;;=2^290.3
+ ;;^UTILITY(U,$J,358.3,17740,1,5,0)
+ ;;=5^Senile Dementia w/ Delirium
+ ;;^UTILITY(U,$J,358.3,17740,2)
+ ;;=^268009
+ ;;^UTILITY(U,$J,358.3,17741,0)
+ ;;=294.8^^94^1129^13
+ ;;^UTILITY(U,$J,358.3,17741,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17956,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,17956,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,17956,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,17957,0)
- ;;=301.11^^98^1023^9
- ;;^UTILITY(U,$J,358.3,17957,1,0)
+ ;;^UTILITY(U,$J,358.3,17741,1,2,0)
+ ;;=2^294.8
+ ;;^UTILITY(U,$J,358.3,17741,1,5,0)
+ ;;=5^Mental D/O d/t Oth Spec Condition
+ ;;^UTILITY(U,$J,358.3,17741,2)
+ ;;=^331843
+ ;;^UTILITY(U,$J,358.3,17742,0)
+ ;;=294.11^^94^1129^7
+ ;;^UTILITY(U,$J,358.3,17742,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17957,1,2,0)
- ;;=2^301.11
- ;;^UTILITY(U,$J,358.3,17957,1,5,0)
- ;;=5^Hypomanic Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,17957,2)
- ;;=^268171
- ;;^UTILITY(U,$J,358.3,17958,0)
- ;;=301.12^^98^1023^7
- ;;^UTILITY(U,$J,358.3,17958,1,0)
+ ;;^UTILITY(U,$J,358.3,17742,1,2,0)
+ ;;=2^294.11
+ ;;^UTILITY(U,$J,358.3,17742,1,5,0)
+ ;;=5^Dementia d/t HIV w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,17742,2)
+ ;;=^321982^042.
+ ;;^UTILITY(U,$J,358.3,17743,0)
+ ;;=294.20^^94^1129^5
+ ;;^UTILITY(U,$J,358.3,17743,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17958,1,2,0)
- ;;=2^301.12
- ;;^UTILITY(U,$J,358.3,17958,1,5,0)
- ;;=5^Depressive Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,17958,2)
- ;;=^268173
- ;;^UTILITY(U,$J,358.3,17959,0)
- ;;=301.13^^98^1023^5
- ;;^UTILITY(U,$J,358.3,17959,1,0)
+ ;;^UTILITY(U,$J,358.3,17743,1,2,0)
+ ;;=2^294.20
+ ;;^UTILITY(U,$J,358.3,17743,1,5,0)
+ ;;=5^Dementia NOS w/o Behv Dstrb
+ ;;^UTILITY(U,$J,358.3,17743,2)
+ ;;=^340607
+ ;;^UTILITY(U,$J,358.3,17744,0)
+ ;;=294.21^^94^1129^4
+ ;;^UTILITY(U,$J,358.3,17744,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17959,1,2,0)
- ;;=2^301.13
- ;;^UTILITY(U,$J,358.3,17959,1,5,0)
- ;;=5^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,17959,2)
- ;;=^30028
- ;;^UTILITY(U,$J,358.3,17960,0)
- ;;=301.21^^98^1023^10
- ;;^UTILITY(U,$J,358.3,17960,1,0)
+ ;;^UTILITY(U,$J,358.3,17744,1,2,0)
+ ;;=2^294.21
+ ;;^UTILITY(U,$J,358.3,17744,1,5,0)
+ ;;=5^Dementia NOS w/ Behav Distrb
+ ;;^UTILITY(U,$J,358.3,17744,2)
+ ;;=^340505
+ ;;^UTILITY(U,$J,358.3,17745,0)
+ ;;=331.83^^94^1129^14
+ ;;^UTILITY(U,$J,358.3,17745,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17960,1,2,0)
- ;;=2^301.21
- ;;^UTILITY(U,$J,358.3,17960,1,5,0)
- ;;=5^Introverted Personality
- ;;^UTILITY(U,$J,358.3,17960,2)
- ;;=^268174
- ;;^UTILITY(U,$J,358.3,17961,0)
- ;;=302.2^^98^1024^7
+ ;;^UTILITY(U,$J,358.3,17745,1,2,0)
+ ;;=2^331.83
+ ;;^UTILITY(U,$J,358.3,17745,1,5,0)
+ ;;=5^Mild Cognitive Impairment
+ ;;^UTILITY(U,$J,358.3,17745,2)
+ ;;=^334065
+ ;;^UTILITY(U,$J,358.3,17746,0)
+ ;;=294.8^^94^1129^6
+ ;;^UTILITY(U,$J,358.3,17746,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,17746,1,2,0)
+ ;;=2^294.8
+ ;;^UTILITY(U,$J,358.3,17746,1,5,0)
+ ;;=5^Dementia d/t Brain Tumor
+ ;;^UTILITY(U,$J,358.3,17746,2)
+ ;;=^331843
+ ;;^UTILITY(U,$J,358.3,17747,0)
+ ;;=294.10^^94^1129^8

@@ -1,54 +1,124 @@
-IBDEI20J ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.99)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI20J ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.99,0,"GL")
- ;;=^IBE(358.99,
- ;;^DIC("B","IMP/EXP AICS DATA ELEMENTS",358.99)
- ;;=
- ;;^DIC(358.99,"%D",0)
- ;;=^^1^1^2950914^^
- ;;^DIC(358.99,"%D",1,0)
- ;;=Used as a workspace for the import/export utility.
- ;;^DD(358.99,0)
- ;;=FIELD^^10.04^15
- ;;^DD(358.99,0,"DDA")
- ;;=N
- ;;^DD(358.99,0,"DT")
- ;;=2950928
- ;;^DD(358.99,0,"IX","B",358.99,.01)
- ;;=
- ;;^DD(358.99,0,"NM","IMP/EXP AICS DATA ELEMENTS")
- ;;=
- ;;^DD(358.99,0,"PT",357.6,13)
- ;;=
- ;;^DD(358.99,0,"PT",357.613,.01)
- ;;=
- ;;^DD(358.99,0,"PT",358.6,16.2)
- ;;=
- ;;^DD(358.99,0,"PT",358.6,16.6)
- ;;=
- ;;^DD(358.99,0,"PT",358.613,.01)
- ;;=
- ;;^DD(358.99,0,"VRPK")
- ;;=IBD
- ;;^DD(358.99,.01,0)
- ;;=DHCP DATA TYPE^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.99,.01,1,0)
- ;;=^.1
- ;;^DD(358.99,.01,1,1,0)
- ;;=358.99^B
- ;;^DD(358.99,.01,1,1,1)
- ;;=S ^IBE(358.99,"B",$E(X,1,30),DA)=""
- ;;^DD(358.99,.01,1,1,2)
- ;;=K ^IBE(358.99,"B",$E(X,1,30),DA)
- ;;^DD(358.99,.01,3)
- ;;=Answer must be 3-30 characters in length.
- ;;^DD(358.99,.01,21,0)
- ;;=^^2^2^2950418^
- ;;^DD(358.99,.01,21,1,0)
- ;;=A type of data that is recognized as such within the framework of scanning
- ;;^DD(358.99,.01,21,2,0)
- ;;=DHCP forms and which requires its own Paper Keyboard description.
- ;;^DD(358.99,.01,"DT")
- ;;=2950418
+ ;;^UTILITY(U,$J,358.3,35199,1,4,0)
+ ;;=4^S52.611S
+ ;;^UTILITY(U,$J,358.3,35199,2)
+ ;;=^5031050
+ ;;^UTILITY(U,$J,358.3,35200,0)
+ ;;=S52.232S^^183^2026^35
+ ;;^UTILITY(U,$J,358.3,35200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35200,1,3,0)
+ ;;=3^Disp fx of oblique shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,35200,1,4,0)
+ ;;=4^S52.232S
+ ;;^UTILITY(U,$J,358.3,35200,2)
+ ;;=^5029442
+ ;;^UTILITY(U,$J,358.3,35201,0)
+ ;;=S52.231S^^183^2026^37
+ ;;^UTILITY(U,$J,358.3,35201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35201,1,3,0)
+ ;;=3^Disp fx of oblique shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,35201,1,4,0)
+ ;;=4^S52.231S
+ ;;^UTILITY(U,$J,358.3,35201,2)
+ ;;=^5029426
+ ;;^UTILITY(U,$J,358.3,35202,0)
+ ;;=S52.262S^^183^2026^49
+ ;;^UTILITY(U,$J,358.3,35202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35202,1,3,0)
+ ;;=3^Disp fx of segmental shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,35202,1,4,0)
+ ;;=4^S52.262S
+ ;;^UTILITY(U,$J,358.3,35202,2)
+ ;;=^5029730
+ ;;^UTILITY(U,$J,358.3,35203,0)
+ ;;=S52.261S^^183^2026^50
+ ;;^UTILITY(U,$J,358.3,35203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35203,1,3,0)
+ ;;=3^Disp fx of segmental shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,35203,1,4,0)
+ ;;=4^S52.261S
+ ;;^UTILITY(U,$J,358.3,35203,2)
+ ;;=^5029714
+ ;;^UTILITY(U,$J,358.3,35204,0)
+ ;;=S52.242S^^183^2026^53
+ ;;^UTILITY(U,$J,358.3,35204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35204,1,3,0)
+ ;;=3^Disp fx of spiral shaft of ulna, left arm, sequela    
+ ;;^UTILITY(U,$J,358.3,35204,1,4,0)
+ ;;=4^S52.242S
+ ;;^UTILITY(U,$J,358.3,35204,2)
+ ;;=^5029538
+ ;;^UTILITY(U,$J,358.3,35205,0)
+ ;;=S52.241S^^183^2026^54
+ ;;^UTILITY(U,$J,358.3,35205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35205,1,3,0)
+ ;;=3^Disp fx of spiral shaft of ulna, right arm, sequela   
+ ;;^UTILITY(U,$J,358.3,35205,1,4,0)
+ ;;=4^S52.241S
+ ;;^UTILITY(U,$J,358.3,35205,2)
+ ;;=^5029522
+ ;;^UTILITY(U,$J,358.3,35206,0)
+ ;;=S52.222S^^183^2026^56
+ ;;^UTILITY(U,$J,358.3,35206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35206,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,35206,1,4,0)
+ ;;=4^S52.222S
+ ;;^UTILITY(U,$J,358.3,35206,2)
+ ;;=^5029346
+ ;;^UTILITY(U,$J,358.3,35207,0)
+ ;;=S52.221S^^183^2026^58
+ ;;^UTILITY(U,$J,358.3,35207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35207,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right ulna, sequela    
+ ;;^UTILITY(U,$J,358.3,35207,1,4,0)
+ ;;=4^S52.221S
+ ;;^UTILITY(U,$J,358.3,35207,2)
+ ;;=^5029330
+ ;;^UTILITY(U,$J,358.3,35208,0)
+ ;;=S52.212S^^183^2026^68
+ ;;^UTILITY(U,$J,358.3,35208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35208,1,3,0)
+ ;;=3^Greenstick fracture of shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,35208,1,4,0)
+ ;;=4^S52.212S
+ ;;^UTILITY(U,$J,358.3,35208,2)
+ ;;=^5029308
+ ;;^UTILITY(U,$J,358.3,35209,0)
+ ;;=S52.211S^^183^2026^70
+ ;;^UTILITY(U,$J,358.3,35209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35209,1,3,0)
+ ;;=3^Greenstick fracture of shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,35209,1,4,0)
+ ;;=4^S52.211S
+ ;;^UTILITY(U,$J,358.3,35209,2)
+ ;;=^5029302
+ ;;^UTILITY(U,$J,358.3,35210,0)
+ ;;=S52.272S^^183^2026^71
+ ;;^UTILITY(U,$J,358.3,35210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35210,1,3,0)
+ ;;=3^Monteggia's fracture of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,35210,1,4,0)
+ ;;=4^S52.272S
+ ;;^UTILITY(U,$J,358.3,35210,2)
+ ;;=^5029826
+ ;;^UTILITY(U,$J,358.3,35211,0)
+ ;;=S52.271S^^183^2026^72
+ ;;^UTILITY(U,$J,358.3,35211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35211,1,3,0)
+ ;;=3^Monteggia's fracture of right ulna, sequela

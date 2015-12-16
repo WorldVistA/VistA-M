@@ -1,6 +1,6 @@
 PSBPRN ;BIRMINGHAM/EFC-BCMA PRN FUNCTIONS ;12/14/12 12:22pm
- ;;3.0;BAR CODE MED ADMIN;**5,3,13,61,68,70,80**;Mar 2004;Build 6
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**5,3,13,61,68,70,80,86**;Mar 2004;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference/IA
  ;DEM^VADPT/10061
@@ -72,7 +72,7 @@ GETPRNS(RESULTS,DFN,PSBORD,PSBSIOPI) ; Get the PRN's for a pt needing effectiven
  ; Returns all administrations of a PRN order that have NOT had
  ; the PRN Effectiveness documented BASED ON THE TRANSFER DATE AND SITE PARAM
  ;
- N PSBADMDT,PSBHOUR,PSBPRNDT,PSBIEN,PSBSTOP,PSBIMHR,PSBIMPRNDT,PSBCODY,PSBCOPRNDT           ;*70
+ N PSBADMDT,PSBHOUR,PSBPRNDT,PSBIEN,PSBSTOP,PSBIMHR,PSBIMPRNDT,PSBCODY,PSBCOPRNDT,PSBSTRT,PSBIMMAX   ;Add PSBSTRT to list of newed variables, PSB*3*86
  K ^TMP("PSB",$J),RESULTS
  S PSBSIOPI=+$G(PSBSIOPI)   ;*68 init to 0 if not present or 1 if sent
  ;
@@ -94,12 +94,14 @@ GETPRNS(RESULTS,DFN,PSBORD,PSBSIOPI) ; Get the PRN's for a pt needing effectiven
  ; CO date, for non-admitted patient, will be a whole day, no time.
  ;
  D NOW^%DTC S PSBSTRT=%
+ S PSBIMMAX=$$GET^XPAR("ALL","PSB MED HIST DAYS BACK"),PSBIMMAX=$S(PSBIMMAX<35:35,1:PSBIMMAX) ;Set PSBIMMIX to Med Hist Days Back parameter or 35 days, whichever is longer 
+ S PSBIMMAX=$$FMADD^XLFDT(PSBSTRT,-PSBIMMAX) ;Limit days for PRN Effectiveness, PSB*3*86 
  ;create IM & CO past date limit to include these order types     *70
  S PSBIMPRNDT=$$FMADD^XLFDT(PSBSTRT,"",-PSBIMHR)
  S PSBCOPRNDT=$$FMADD^XLFDT($P(PSBSTRT,"."),-PSBCODY)
  S PSBPRNDT=$S(PSBCOPRNDT<PSBIMPRNDT:PSBCOPRNDT,1:PSBIMPRNDT)
  ;use older of PSBPRNDT & PSBADMDT(admission) for loop quit value
- I PSBADMDT,PSBADMDT<PSBPRNDT S (PSBPRNDT,PSBIMPRNDT,PSBCOPRNDT)=PSBADMDT
+ I PSBADMDT,PSBADMDT<PSBPRNDT S (PSBPRNDT,PSBIMPRNDT,PSBCOPRNDT)=$S(PSBIMMAX<PSBADMDT:PSBADMDT,1:PSBIMMAX) ;Use max days back parameter PSBIMMAX, PSB*3*86
  I PSBADMDT,PSBPRNDT<PSBIMPRNDT S PSBIMPRNDT=PSBADMDT ;Preserve admission date for inpatient medications, PSB*3*80
  ;end dates                                                       *70
  ;

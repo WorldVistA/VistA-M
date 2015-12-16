@@ -1,148 +1,134 @@
-IBDEI02D ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02D ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,631,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,631,1,4,0)
- ;;=4^Amyloidosis
- ;;^UTILITY(U,$J,358.3,631,1,5,0)
- ;;=5^277.39
- ;;^UTILITY(U,$J,358.3,631,2)
- ;;=^334034
- ;;^UTILITY(U,$J,358.3,632,0)
- ;;=745.5^^6^79^16
- ;;^UTILITY(U,$J,358.3,632,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,632,1,4,0)
- ;;=4^Patent Foramen Ovale
- ;;^UTILITY(U,$J,358.3,632,1,5,0)
- ;;=5^745.5
- ;;^UTILITY(U,$J,358.3,632,2)
- ;;=^87222
- ;;^UTILITY(U,$J,358.3,633,0)
- ;;=276.52^^6^79^12
- ;;^UTILITY(U,$J,358.3,633,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,633,1,4,0)
- ;;=4^Hypovolemia
- ;;^UTILITY(U,$J,358.3,633,1,5,0)
- ;;=5^276.52
- ;;^UTILITY(U,$J,358.3,633,2)
- ;;=^332744
- ;;^UTILITY(U,$J,358.3,634,0)
- ;;=785.51^^6^79^6
- ;;^UTILITY(U,$J,358.3,634,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,634,1,4,0)
- ;;=4^Cardiogenic Shock
- ;;^UTILITY(U,$J,358.3,634,1,5,0)
- ;;=5^785.51
- ;;^UTILITY(U,$J,358.3,634,2)
- ;;=^110169
- ;;^UTILITY(U,$J,358.3,635,0)
- ;;=995.22^^6^79^1
- ;;^UTILITY(U,$J,358.3,635,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,635,1,4,0)
- ;;=4^Adv Eff Anesthesia
- ;;^UTILITY(U,$J,358.3,635,1,5,0)
- ;;=5^995.22
- ;;^UTILITY(U,$J,358.3,635,2)
- ;;=^334178
- ;;^UTILITY(U,$J,358.3,636,0)
- ;;=995.27^^6^79^8
- ;;^UTILITY(U,$J,358.3,636,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,636,1,4,0)
- ;;=4^Drug Allergy/Hypersen NOS
- ;;^UTILITY(U,$J,358.3,636,1,5,0)
- ;;=5^995.27
- ;;^UTILITY(U,$J,358.3,636,2)
- ;;=^334180
- ;;^UTILITY(U,$J,358.3,637,0)
- ;;=996.2^^6^79^14
- ;;^UTILITY(U,$J,358.3,637,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,637,1,4,0)
- ;;=4^Mech Compl Spinal Stimulator
- ;;^UTILITY(U,$J,358.3,637,1,5,0)
- ;;=5^996.2
- ;;^UTILITY(U,$J,358.3,637,2)
- ;;=^276269
- ;;^UTILITY(U,$J,358.3,638,0)
- ;;=518.51^^6^80^8
- ;;^UTILITY(U,$J,358.3,638,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,638,1,4,0)
- ;;=4^Resp Distress Following Surg
- ;;^UTILITY(U,$J,358.3,638,1,5,0)
- ;;=5^518.51
- ;;^UTILITY(U,$J,358.3,638,2)
- ;;=^340548
- ;;^UTILITY(U,$J,358.3,639,0)
- ;;=799.1^^6^80^9
- ;;^UTILITY(U,$J,358.3,639,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,639,1,4,0)
- ;;=4^Respiratory Arrest
- ;;^UTILITY(U,$J,358.3,639,1,5,0)
- ;;=5^799.1
- ;;^UTILITY(U,$J,358.3,639,2)
- ;;=^276886
- ;;^UTILITY(U,$J,358.3,640,0)
- ;;=518.81^^6^80^2
- ;;^UTILITY(U,$J,358.3,640,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,640,1,4,0)
- ;;=4^AC Respiratory Failure
- ;;^UTILITY(U,$J,358.3,640,1,5,0)
- ;;=5^518.81
- ;;^UTILITY(U,$J,358.3,640,2)
- ;;=^328757
- ;;^UTILITY(U,$J,358.3,641,0)
- ;;=518.83^^6^80^4
- ;;^UTILITY(U,$J,358.3,641,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,641,1,4,0)
- ;;=4^Chr Respiratory Failure
- ;;^UTILITY(U,$J,358.3,641,1,5,0)
- ;;=5^518.83
- ;;^UTILITY(U,$J,358.3,641,2)
- ;;=^321182
- ;;^UTILITY(U,$J,358.3,642,0)
- ;;=518.84^^6^80^1
- ;;^UTILITY(U,$J,358.3,642,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,642,1,4,0)
- ;;=4^AC & Chr Resp Failure
- ;;^UTILITY(U,$J,358.3,642,1,5,0)
- ;;=5^518.84
- ;;^UTILITY(U,$J,358.3,642,2)
- ;;=^321183
- ;;^UTILITY(U,$J,358.3,643,0)
- ;;=790.91^^6^80^3
- ;;^UTILITY(U,$J,358.3,643,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,643,1,4,0)
- ;;=4^Abn Arterial Blood Gases
- ;;^UTILITY(U,$J,358.3,643,1,5,0)
- ;;=5^790.91
- ;;^UTILITY(U,$J,358.3,643,2)
- ;;=^295770
- ;;^UTILITY(U,$J,358.3,644,0)
- ;;=V12.60^^6^80^6
- ;;^UTILITY(U,$J,358.3,644,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,644,1,4,0)
- ;;=4^HX Resp Sys Dis NOS
- ;;^UTILITY(U,$J,358.3,644,1,5,0)
- ;;=5^V12.60
- ;;^UTILITY(U,$J,358.3,644,2)
- ;;=^332854
- ;;^UTILITY(U,$J,358.3,645,0)
- ;;=V12.61^^6^80^7
- ;;^UTILITY(U,$J,358.3,645,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,645,1,4,0)
- ;;=4^Pers HX Recur Pneumonia
+ ;;^UTILITY(U,$J,358.3,557,1,4,0)
+ ;;=4^C92.21
+ ;;^UTILITY(U,$J,358.3,557,2)
+ ;;=^5001796
+ ;;^UTILITY(U,$J,358.3,558,0)
+ ;;=C92.22^^2^24^24
+ ;;^UTILITY(U,$J,358.3,558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,558,1,3,0)
+ ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in relapse
+ ;;^UTILITY(U,$J,358.3,558,1,4,0)
+ ;;=4^C92.22
+ ;;^UTILITY(U,$J,358.3,558,2)
+ ;;=^5001797
+ ;;^UTILITY(U,$J,358.3,559,0)
+ ;;=C92.30^^2^24^54
+ ;;^UTILITY(U,$J,358.3,559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,559,1,3,0)
+ ;;=3^Myeloid sarcoma, not having achieved remission
+ ;;^UTILITY(U,$J,358.3,559,1,4,0)
+ ;;=4^C92.30
+ ;;^UTILITY(U,$J,358.3,559,2)
+ ;;=^5001798
+ ;;^UTILITY(U,$J,358.3,560,0)
+ ;;=C92.31^^2^24^53
+ ;;^UTILITY(U,$J,358.3,560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,560,1,3,0)
+ ;;=3^Myeloid sarcoma, in remission
+ ;;^UTILITY(U,$J,358.3,560,1,4,0)
+ ;;=4^C92.31
+ ;;^UTILITY(U,$J,358.3,560,2)
+ ;;=^5001799
+ ;;^UTILITY(U,$J,358.3,561,0)
+ ;;=C92.32^^2^24^52
+ ;;^UTILITY(U,$J,358.3,561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,561,1,3,0)
+ ;;=3^Myeloid sarcoma, in relapse
+ ;;^UTILITY(U,$J,358.3,561,1,4,0)
+ ;;=4^C92.32
+ ;;^UTILITY(U,$J,358.3,561,2)
+ ;;=^5001800
+ ;;^UTILITY(U,$J,358.3,562,0)
+ ;;=C92.90^^2^24^51
+ ;;^UTILITY(U,$J,358.3,562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,562,1,3,0)
+ ;;=3^Myeloid leukemia, unspecified, not having achieved remission
+ ;;^UTILITY(U,$J,358.3,562,1,4,0)
+ ;;=4^C92.90
+ ;;^UTILITY(U,$J,358.3,562,2)
+ ;;=^5001810
+ ;;^UTILITY(U,$J,358.3,563,0)
+ ;;=C92.91^^2^24^50
+ ;;^UTILITY(U,$J,358.3,563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,563,1,3,0)
+ ;;=3^Myeloid leukemia, unspecified in remission
+ ;;^UTILITY(U,$J,358.3,563,1,4,0)
+ ;;=4^C92.91
+ ;;^UTILITY(U,$J,358.3,563,2)
+ ;;=^5001811
+ ;;^UTILITY(U,$J,358.3,564,0)
+ ;;=C92.92^^2^24^49
+ ;;^UTILITY(U,$J,358.3,564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,564,1,3,0)
+ ;;=3^Myeloid leukemia, unspecified in relapse
+ ;;^UTILITY(U,$J,358.3,564,1,4,0)
+ ;;=4^C92.92
+ ;;^UTILITY(U,$J,358.3,564,2)
+ ;;=^5001812
+ ;;^UTILITY(U,$J,358.3,565,0)
+ ;;=C93.00^^2^24^12
+ ;;^UTILITY(U,$J,358.3,565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,565,1,3,0)
+ ;;=3^Acute monoblastic/monocytic leukemia, not achieve remission
+ ;;^UTILITY(U,$J,358.3,565,1,4,0)
+ ;;=4^C93.00
+ ;;^UTILITY(U,$J,358.3,565,2)
+ ;;=^5001819
+ ;;^UTILITY(U,$J,358.3,566,0)
+ ;;=C93.01^^2^24^10
+ ;;^UTILITY(U,$J,358.3,566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,566,1,3,0)
+ ;;=3^Acute monoblastic/monocytic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,566,1,4,0)
+ ;;=4^C93.01
+ ;;^UTILITY(U,$J,358.3,566,2)
+ ;;=^5001820
+ ;;^UTILITY(U,$J,358.3,567,0)
+ ;;=C93.02^^2^24^11
+ ;;^UTILITY(U,$J,358.3,567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,567,1,3,0)
+ ;;=3^Acute monoblastic/monocytic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,567,1,4,0)
+ ;;=4^C93.02
+ ;;^UTILITY(U,$J,358.3,567,2)
+ ;;=^5001821
+ ;;^UTILITY(U,$J,358.3,568,0)
+ ;;=C93.10^^2^24^31
+ ;;^UTILITY(U,$J,358.3,568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,568,1,3,0)
+ ;;=3^Chronic myelomonocytic leukemia not achieve remission
+ ;;^UTILITY(U,$J,358.3,568,1,4,0)
+ ;;=4^C93.10
+ ;;^UTILITY(U,$J,358.3,568,2)
+ ;;=^5001822
+ ;;^UTILITY(U,$J,358.3,569,0)
+ ;;=C93.11^^2^24^33
+ ;;^UTILITY(U,$J,358.3,569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,569,1,3,0)
+ ;;=3^Chronic myelomonocytic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,569,1,4,0)
+ ;;=4^C93.11
+ ;;^UTILITY(U,$J,358.3,569,2)
+ ;;=^5001823
+ ;;^UTILITY(U,$J,358.3,570,0)
+ ;;=C93.12^^2^24^32
+ ;;^UTILITY(U,$J,358.3,570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,570,1,3,0)
+ ;;=3^Chronic myelomonocytic leukemia, in relapse

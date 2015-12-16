@@ -1,146 +1,130 @@
-IBDEI02J ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02J ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,718,1,4,0)
- ;;=4^AC Perichrondritis of Pinna
- ;;^UTILITY(U,$J,358.3,718,2)
- ;;=^269339
- ;;^UTILITY(U,$J,358.3,719,0)
- ;;=380.02^^8^85^40
- ;;^UTILITY(U,$J,358.3,719,1,0)
+ ;;^UTILITY(U,$J,358.3,635,2)
+ ;;=^5063438
+ ;;^UTILITY(U,$J,358.3,636,0)
+ ;;=Z85.818^^2^27^4
+ ;;^UTILITY(U,$J,358.3,636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,719,1,3,0)
- ;;=3^380.02
- ;;^UTILITY(U,$J,358.3,719,1,4,0)
- ;;=4^Chr Perichondritis of Pinna
- ;;^UTILITY(U,$J,358.3,719,2)
- ;;=^269340
- ;;^UTILITY(U,$J,358.3,720,0)
- ;;=380.03^^8^85^44
- ;;^UTILITY(U,$J,358.3,720,1,0)
+ ;;^UTILITY(U,$J,358.3,636,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of site of lip, oral cav, & pharynx
+ ;;^UTILITY(U,$J,358.3,636,1,4,0)
+ ;;=4^Z85.818
+ ;;^UTILITY(U,$J,358.3,636,2)
+ ;;=^5063439
+ ;;^UTILITY(U,$J,358.3,637,0)
+ ;;=Z85.01^^2^27^5
+ ;;^UTILITY(U,$J,358.3,637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,720,1,3,0)
- ;;=3^380.03
- ;;^UTILITY(U,$J,358.3,720,1,4,0)
- ;;=4^Chrondritis of Pinna
- ;;^UTILITY(U,$J,358.3,720,2)
- ;;=^331450
- ;;^UTILITY(U,$J,358.3,721,0)
- ;;=381.01^^8^85^12
- ;;^UTILITY(U,$J,358.3,721,1,0)
+ ;;^UTILITY(U,$J,358.3,637,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of esophagus
+ ;;^UTILITY(U,$J,358.3,637,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,637,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,638,0)
+ ;;=Z85.028^^2^27^6
+ ;;^UTILITY(U,$J,358.3,638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,721,1,3,0)
- ;;=3^381.01
- ;;^UTILITY(U,$J,358.3,721,1,4,0)
- ;;=4^AC Serous Otitis Media
- ;;^UTILITY(U,$J,358.3,721,2)
- ;;=^269369
- ;;^UTILITY(U,$J,358.3,722,0)
- ;;=381.02^^8^85^8
- ;;^UTILITY(U,$J,358.3,722,1,0)
+ ;;^UTILITY(U,$J,358.3,638,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of stomach NEC
+ ;;^UTILITY(U,$J,358.3,638,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,638,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,639,0)
+ ;;=Z85.038^^2^27^7
+ ;;^UTILITY(U,$J,358.3,639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,722,1,3,0)
- ;;=3^381.02
- ;;^UTILITY(U,$J,358.3,722,1,4,0)
- ;;=4^AC Mucoid Otitis Media
- ;;^UTILITY(U,$J,358.3,722,2)
- ;;=^269370
- ;;^UTILITY(U,$J,358.3,723,0)
- ;;=381.04^^8^85^3
- ;;^UTILITY(U,$J,358.3,723,1,0)
+ ;;^UTILITY(U,$J,358.3,639,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of large intestine
+ ;;^UTILITY(U,$J,358.3,639,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,639,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,640,0)
+ ;;=Z85.048^^2^27^8
+ ;;^UTILITY(U,$J,358.3,640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,723,1,3,0)
- ;;=3^381.04
- ;;^UTILITY(U,$J,358.3,723,1,4,0)
- ;;=4^AC Allergic Serous OM
- ;;^UTILITY(U,$J,358.3,723,2)
- ;;=^269372
- ;;^UTILITY(U,$J,358.3,724,0)
- ;;=381.05^^8^85^1
- ;;^UTILITY(U,$J,358.3,724,1,0)
+ ;;^UTILITY(U,$J,358.3,640,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of rectum, rectosig junct, and anus
+ ;;^UTILITY(U,$J,358.3,640,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,640,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,641,0)
+ ;;=Z85.05^^2^27^9
+ ;;^UTILITY(U,$J,358.3,641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,724,1,3,0)
- ;;=3^381.05
- ;;^UTILITY(U,$J,358.3,724,1,4,0)
- ;;=4^AC Allergic Mucoid OM
- ;;^UTILITY(U,$J,358.3,724,2)
- ;;=^269373
- ;;^UTILITY(U,$J,358.3,725,0)
- ;;=381.06^^8^85^2
- ;;^UTILITY(U,$J,358.3,725,1,0)
+ ;;^UTILITY(U,$J,358.3,641,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of liver
+ ;;^UTILITY(U,$J,358.3,641,1,4,0)
+ ;;=4^Z85.05
+ ;;^UTILITY(U,$J,358.3,641,2)
+ ;;=^5063402
+ ;;^UTILITY(U,$J,358.3,642,0)
+ ;;=Z85.068^^2^27^10
+ ;;^UTILITY(U,$J,358.3,642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,725,1,3,0)
- ;;=3^381.06
- ;;^UTILITY(U,$J,358.3,725,1,4,0)
- ;;=4^AC Allergic Sanguinous OM
- ;;^UTILITY(U,$J,358.3,725,2)
- ;;=^269374
- ;;^UTILITY(U,$J,358.3,726,0)
- ;;=381.20^^8^85^37
- ;;^UTILITY(U,$J,358.3,726,1,0)
+ ;;^UTILITY(U,$J,358.3,642,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of small intestine
+ ;;^UTILITY(U,$J,358.3,642,1,4,0)
+ ;;=4^Z85.068
+ ;;^UTILITY(U,$J,358.3,642,2)
+ ;;=^5063404
+ ;;^UTILITY(U,$J,358.3,643,0)
+ ;;=Z85.07^^2^27^11
+ ;;^UTILITY(U,$J,358.3,643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,726,1,3,0)
- ;;=3^381.20
- ;;^UTILITY(U,$J,358.3,726,1,4,0)
- ;;=4^Chr Mucoid OM, Simple/Unspec
- ;;^UTILITY(U,$J,358.3,726,2)
- ;;=^269379
- ;;^UTILITY(U,$J,358.3,727,0)
- ;;=381.29^^8^85^36
- ;;^UTILITY(U,$J,358.3,727,1,0)
+ ;;^UTILITY(U,$J,358.3,643,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of pancreas
+ ;;^UTILITY(U,$J,358.3,643,1,4,0)
+ ;;=4^Z85.07
+ ;;^UTILITY(U,$J,358.3,643,2)
+ ;;=^5063405
+ ;;^UTILITY(U,$J,358.3,644,0)
+ ;;=Z85.09^^2^27^12
+ ;;^UTILITY(U,$J,358.3,644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,727,1,3,0)
- ;;=3^381.29
- ;;^UTILITY(U,$J,358.3,727,1,4,0)
- ;;=4^Chr Mucoid OM, Other
- ;;^UTILITY(U,$J,358.3,727,2)
- ;;=^269380
- ;;^UTILITY(U,$J,358.3,728,0)
- ;;=381.3^^8^85^38
- ;;^UTILITY(U,$J,358.3,728,1,0)
+ ;;^UTILITY(U,$J,358.3,644,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of digestive organs
+ ;;^UTILITY(U,$J,358.3,644,1,4,0)
+ ;;=4^Z85.09
+ ;;^UTILITY(U,$J,358.3,644,2)
+ ;;=^5063406
+ ;;^UTILITY(U,$J,358.3,645,0)
+ ;;=Z85.118^^2^27^13
+ ;;^UTILITY(U,$J,358.3,645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,728,1,3,0)
- ;;=3^381.3
- ;;^UTILITY(U,$J,358.3,728,1,4,0)
- ;;=4^Chr Oth/Unspec Nonsupp OM
- ;;^UTILITY(U,$J,358.3,728,2)
- ;;=^269381
- ;;^UTILITY(U,$J,358.3,729,0)
- ;;=381.4^^8^85^64
- ;;^UTILITY(U,$J,358.3,729,1,0)
+ ;;^UTILITY(U,$J,358.3,645,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of bronchus and lung
+ ;;^UTILITY(U,$J,358.3,645,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,645,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,646,0)
+ ;;=Z85.12^^2^27^14
+ ;;^UTILITY(U,$J,358.3,646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,729,1,3,0)
- ;;=3^381.4
- ;;^UTILITY(U,$J,358.3,729,1,4,0)
- ;;=4^Nonsupp OM,NOS Ac or Chr
- ;;^UTILITY(U,$J,358.3,729,2)
- ;;=^88278
- ;;^UTILITY(U,$J,358.3,730,0)
- ;;=382.00^^8^85^15
- ;;^UTILITY(U,$J,358.3,730,1,0)
+ ;;^UTILITY(U,$J,358.3,646,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of trachea
+ ;;^UTILITY(U,$J,358.3,646,1,4,0)
+ ;;=4^Z85.12
+ ;;^UTILITY(U,$J,358.3,646,2)
+ ;;=^5063409
+ ;;^UTILITY(U,$J,358.3,647,0)
+ ;;=Z85.21^^2^27^15
+ ;;^UTILITY(U,$J,358.3,647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,730,1,3,0)
- ;;=3^382.00
- ;;^UTILITY(U,$J,358.3,730,1,4,0)
- ;;=4^AC Supp OM w/o Spont Rupture
- ;;^UTILITY(U,$J,358.3,730,2)
- ;;=^269395
- ;;^UTILITY(U,$J,358.3,731,0)
- ;;=382.01^^8^85^14
- ;;^UTILITY(U,$J,358.3,731,1,0)
+ ;;^UTILITY(U,$J,358.3,647,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of larynx
+ ;;^UTILITY(U,$J,358.3,647,1,4,0)
+ ;;=4^Z85.21
+ ;;^UTILITY(U,$J,358.3,647,2)
+ ;;=^5063411
+ ;;^UTILITY(U,$J,358.3,648,0)
+ ;;=Z85.22^^2^27^16
+ ;;^UTILITY(U,$J,358.3,648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,731,1,3,0)
- ;;=3^382.01
- ;;^UTILITY(U,$J,358.3,731,1,4,0)
- ;;=4^AC Supp OM w/Spont Rupt Drum
- ;;^UTILITY(U,$J,358.3,731,2)
- ;;=^269396
- ;;^UTILITY(U,$J,358.3,732,0)
- ;;=382.02^^8^85^13
- ;;^UTILITY(U,$J,358.3,732,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,732,1,3,0)
- ;;=3^382.02
- ;;^UTILITY(U,$J,358.3,732,1,4,0)
- ;;=4^AC Supp OM in Oth Diseases

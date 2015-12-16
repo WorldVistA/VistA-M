@@ -1,130 +1,134 @@
-IBDEI1V9 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1V9 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33240,1,0)
+ ;;^UTILITY(U,$J,358.3,32844,1,3,0)
+ ;;=3^Personal Hx of Latex Allergy
+ ;;^UTILITY(U,$J,358.3,32844,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,32844,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,32845,0)
+ ;;=Z98.89^^182^1993^106
+ ;;^UTILITY(U,$J,358.3,32845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33240,1,3,0)
- ;;=3^Path fx in neoplst disease, rt ankl, init
- ;;^UTILITY(U,$J,358.3,33240,1,4,0)
- ;;=4^M84.571A
- ;;^UTILITY(U,$J,358.3,33240,2)
- ;;=^5014172
- ;;^UTILITY(U,$J,358.3,33241,0)
- ;;=M84.572A^^191^1968^387
- ;;^UTILITY(U,$J,358.3,33241,1,0)
+ ;;^UTILITY(U,$J,358.3,32845,1,3,0)
+ ;;=3^Postprocedural States
+ ;;^UTILITY(U,$J,358.3,32845,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,32845,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,32846,0)
+ ;;=Z92.3^^182^1993^64
+ ;;^UTILITY(U,$J,358.3,32846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33241,1,3,0)
- ;;=3^Path fx in neoplst disease, lft ankl, init
- ;;^UTILITY(U,$J,358.3,33241,1,4,0)
- ;;=4^M84.572A
- ;;^UTILITY(U,$J,358.3,33241,2)
- ;;=^5014178
- ;;^UTILITY(U,$J,358.3,33242,0)
- ;;=M80.871A^^191^1968^408
- ;;^UTILITY(U,$J,358.3,33242,1,0)
+ ;;^UTILITY(U,$J,358.3,32846,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,32846,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,32846,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,32847,0)
+ ;;=Z87.820^^182^1993^100
+ ;;^UTILITY(U,$J,358.3,32847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33242,1,3,0)
- ;;=3^Path fx rt ank/ft, oth, init
- ;;^UTILITY(U,$J,358.3,33242,1,4,0)
- ;;=4^M80.871A
- ;;^UTILITY(U,$J,358.3,33242,2)
- ;;=^5013543
- ;;^UTILITY(U,$J,358.3,33243,0)
- ;;=M80.872A^^191^1968^391
- ;;^UTILITY(U,$J,358.3,33243,1,0)
+ ;;^UTILITY(U,$J,358.3,32847,1,3,0)
+ ;;=3^Personal Hx of Traumatic Brain Injury
+ ;;^UTILITY(U,$J,358.3,32847,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,32847,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,32848,0)
+ ;;=Z91.120^^182^1993^49
+ ;;^UTILITY(U,$J,358.3,32848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33243,1,3,0)
- ;;=3^Path fx lft ank/ft, oth init
- ;;^UTILITY(U,$J,358.3,33243,1,4,0)
- ;;=4^M80.872A
- ;;^UTILITY(U,$J,358.3,33243,2)
- ;;=^5133943
- ;;^UTILITY(U,$J,358.3,33244,0)
- ;;=M84.671A^^191^1968^410
- ;;^UTILITY(U,$J,358.3,33244,1,0)
+ ;;^UTILITY(U,$J,358.3,32848,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,32848,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,32848,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,32849,0)
+ ;;=Z91.11^^182^1993^54
+ ;;^UTILITY(U,$J,358.3,32849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33244,1,3,0)
- ;;=3^Path fx rt ankl, oth disease, init
- ;;^UTILITY(U,$J,358.3,33244,1,4,0)
- ;;=4^M84.671A
- ;;^UTILITY(U,$J,358.3,33244,2)
- ;;=^5014292
- ;;^UTILITY(U,$J,358.3,33245,0)
- ;;=M84.672A^^191^1968^393
- ;;^UTILITY(U,$J,358.3,33245,1,0)
+ ;;^UTILITY(U,$J,358.3,32849,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,32849,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,32849,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,32850,0)
+ ;;=Z87.891^^182^1993^90
+ ;;^UTILITY(U,$J,358.3,32850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33245,1,3,0)
- ;;=3^Path fx lft ankl, oth disease, init
- ;;^UTILITY(U,$J,358.3,33245,1,4,0)
- ;;=4^M84.672A
- ;;^UTILITY(U,$J,358.3,33245,2)
- ;;=^5134027
- ;;^UTILITY(U,$J,358.3,33246,0)
- ;;=M84.474A^^191^1968^413
- ;;^UTILITY(U,$J,358.3,33246,1,0)
+ ;;^UTILITY(U,$J,358.3,32850,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,32850,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,32850,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,32851,0)
+ ;;=Z77.090^^182^1993^7
+ ;;^UTILITY(U,$J,358.3,32851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33246,1,3,0)
- ;;=3^Path fx rt ft, init enc
- ;;^UTILITY(U,$J,358.3,33246,1,4,0)
- ;;=4^M84.474A
- ;;^UTILITY(U,$J,358.3,33246,2)
- ;;=^5013980
- ;;^UTILITY(U,$J,358.3,33247,0)
- ;;=M84.475A^^191^1968^397
- ;;^UTILITY(U,$J,358.3,33247,1,0)
+ ;;^UTILITY(U,$J,358.3,32851,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,32851,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,32851,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,32852,0)
+ ;;=Z57.8^^182^1993^57
+ ;;^UTILITY(U,$J,358.3,32852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33247,1,3,0)
- ;;=3^Path fx lft ft, init enc
- ;;^UTILITY(U,$J,358.3,33247,1,4,0)
- ;;=4^M84.475A
- ;;^UTILITY(U,$J,358.3,33247,2)
- ;;=^5013986
- ;;^UTILITY(U,$J,358.3,33248,0)
- ;;=M84.674A^^191^1968^414
- ;;^UTILITY(U,$J,358.3,33248,1,0)
+ ;;^UTILITY(U,$J,358.3,32852,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,32852,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,32852,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,32853,0)
+ ;;=Z77.21^^182^1993^42
+ ;;^UTILITY(U,$J,358.3,32853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33248,1,3,0)
- ;;=3^Path fx rt ft, oth disease, init
- ;;^UTILITY(U,$J,358.3,33248,1,4,0)
- ;;=4^M84.674A
- ;;^UTILITY(U,$J,358.3,33248,2)
- ;;=^5014298
- ;;^UTILITY(U,$J,358.3,33249,0)
- ;;=M84.675A^^191^1968^398
- ;;^UTILITY(U,$J,358.3,33249,1,0)
+ ;;^UTILITY(U,$J,358.3,32853,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,32853,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,32853,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,32854,0)
+ ;;=Z91.81^^182^1993^46
+ ;;^UTILITY(U,$J,358.3,32854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33249,1,3,0)
- ;;=3^Path fx lft ft, oth disease, init
- ;;^UTILITY(U,$J,358.3,33249,1,4,0)
- ;;=4^M84.675A
- ;;^UTILITY(U,$J,358.3,33249,2)
- ;;=^5134039
- ;;^UTILITY(U,$J,358.3,33250,0)
- ;;=M84.574A^^191^1968^390
- ;;^UTILITY(U,$J,358.3,33250,1,0)
+ ;;^UTILITY(U,$J,358.3,32854,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,32854,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,32854,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,32855,0)
+ ;;=Z91.89^^182^1993^104
+ ;;^UTILITY(U,$J,358.3,32855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33250,1,3,0)
- ;;=3^Path fx in neoplst disease, rt foot, init
- ;;^UTILITY(U,$J,358.3,33250,1,4,0)
- ;;=4^M84.574A
- ;;^UTILITY(U,$J,358.3,33250,2)
- ;;=^5014190
- ;;^UTILITY(U,$J,358.3,33251,0)
- ;;=M84.575A^^191^1968^388
- ;;^UTILITY(U,$J,358.3,33251,1,0)
+ ;;^UTILITY(U,$J,358.3,32855,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,32855,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,32855,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,32856,0)
+ ;;=Z92.89^^182^1993^93
+ ;;^UTILITY(U,$J,358.3,32856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33251,1,3,0)
- ;;=3^Path fx in neoplst disease, lft ft, init
- ;;^UTILITY(U,$J,358.3,33251,1,4,0)
- ;;=4^M84.575A
- ;;^UTILITY(U,$J,358.3,33251,2)
- ;;=^5014196
- ;;^UTILITY(U,$J,358.3,33252,0)
- ;;=M84.477A^^191^1968^417
- ;;^UTILITY(U,$J,358.3,33252,1,0)
+ ;;^UTILITY(U,$J,358.3,32856,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,32856,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,32856,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,32857,0)
+ ;;=Z77.110^^182^1993^6
+ ;;^UTILITY(U,$J,358.3,32857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33252,1,3,0)
- ;;=3^Path fx rt toe(s), init
- ;;^UTILITY(U,$J,358.3,33252,1,4,0)
- ;;=4^M84.477A

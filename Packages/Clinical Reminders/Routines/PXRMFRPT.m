@@ -1,5 +1,5 @@
-PXRMFRPT ;SLC/PKR - Finding usage report. ;06/11/2013
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26**;Feb 04, 2005;Build 404
+PXRMFRPT ;SLC/PKR - Finding usage report. ;10/7/2014
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,53**;Feb 04, 2005;Build 225
  ;==============================
 BLDLIST(FILENUM,GBL,FIEN,SUB) ;
  I FILENUM'=811.9 D DEFLIST(FILENUM,GBL,FIEN,SUB)
@@ -32,6 +32,12 @@ DEFLIST(FILENUM,GBL,FIEN,SUB) ;Search reminder definitions for any that are
  .... S ^TMP($J,SUB,FILENUM,FNDIEN,"DEF",IEN,FI)=""
  Q
  ;
+DFIND(TLIST) ;
+ S IND=0
+ F  S IND=+$O(^DD(801.41,15,"V",IND)) Q:IND=0  D
+ . S TEMP=^DD(801.41,15,"V",IND,0)
+ . S TLIST($P(TEMP,U,2))=$P(TEMP,U,1)
+ Q
  ;==============================
 DIALDSAR(OUTPUT) ;
  ;This is used for individual dialog element checks, may be better in a
@@ -85,22 +91,13 @@ FINDDIAL(RESULT,GBL,FIEN) ;
  Q
  ;
  ;==============================
-FSEL(FNUM,GBL,GNAME,LIST) ;Build a list of reminder findings and let the user
+FSEL(FNUM,GBL,GNAME,SOURCE,LIST) ;Build a list of reminder findings and let the user
  ;select from the list.
  N ALIST,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILENUM,FLIST,IND,INUM
  N STAR,TEMP,TLIST,X,Y
  S (IND,INUM)=0
- ;Create a temporary list ordered by file name.
- S TLIST("REMINDER DEFINITION")=811.9
- ;DBIA #2991, #5149 for access to ^DD.
- F  S IND=+$O(^DD(811.902,.01,"V",IND)) Q:IND=0  D
- . S TEMP=^DD(811.902,.01,"V",IND,0)
- . S TLIST($P(TEMP,U,2))=$P(TEMP,U,1)
- ;Scan dialogs for additional findings.
- S IND=0
- F  S IND=+$O(^DD(801.41,15,"V",IND)) Q:IND=0  D
- . S TEMP=^DD(801.41,15,"V",IND,0)
- . S TLIST($P(TEMP,U,2))=$P(TEMP,U,1)
+ I $D(SOURCE("DEFINITION")) D RFIND(.TLIST)
+ I $D(SOURCE("DIALOG")) D DFIND(.TLIST)
  S IND="",INUM=0
  F  S IND=$O(TLIST(IND)) Q:IND=""  D
  . S INUM=INUM+1
@@ -198,15 +195,16 @@ OIGLIST(FNUM,GBL,FIEN,SUB) ;Search reminder orderable item groups for
  ;==============================
 REPD ;Main report driver.
  N DONE,FI,FIEN,FIENS,FILES,FILENUM,FNUM,GBL,GNAME,IEN,IND,ITEMLIST
- N LI,LIST,NL,NUM,REP,STATUS,TYPE
+ N LI,LIST,NL,NUM,REP,SOURCE,STATUS,TYPE
  S DONE=0
+ S SOURCE("DEFINITION")="",SOURCE("DIALOG")=""
  W !,"Clinical Reminders Usage Report"
  F  Q:DONE  D
  . K ^TMP($J,"DIALOG MESSAGE"),^TMP($J,"DLG FIND")
  . K ^TMP($J,"FDATA"),^TMP("PXRMXMZ",$J)
  . K FNUM,GBL,GNAME,ITEMLIST,LIST
  .;Get a list of findings for the report.
- . D FSEL(.FNUM,.GBL,.GNAME,.LIST)
+ . D FSEL(.FNUM,.GBL,.GNAME,.SOURCE,.LIST)
  . S NUM=$L(LIST,",")-1
  . I NUM=0 S DONE=1 Q
  . D ISEL(.FNUM,.GBL,.GNAME,.LIST,.ITEMLIST)
@@ -320,6 +318,16 @@ REPORT ;Generate the report.
  K ^TMP("PXRMXMZ",$J)
  Q
  ;
+RFIND(TLIST) ;
+ N IND
+ S IND=0
+ ;Create a temporary list ordered by file name.
+ S TLIST("REMINDER DEFINITION")=811.9
+ ;DBIA #2991, #5149 for access to ^DD.
+ F  S IND=+$O(^DD(811.902,.01,"V",IND)) Q:IND=0  D
+ . S TEMP=^DD(811.902,.01,"V",IND,0)
+ . S TLIST($P(TEMP,U,2))=$P(TEMP,U,1)
+ Q
  ;==============================
 RSETLIST(FILENUM,GBL,FIEN,SUB) ;Search list rules for any that are using
  ;GBL as a finding. If FIEN is not null then search for only those

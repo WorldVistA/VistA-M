@@ -1,5 +1,5 @@
 ECXSCRP ;ALB/JAM - Restricted Stop Code Nonconforming Clinic Report; 07/24/03 ;2/11/14  16:56
- ;;3.0;DSS EXTRACTS;**57,58,120,126,144,149**;Dec 22, 1997;Build 27
+ ;;3.0;DSS EXTRACTS;**57,58,120,126,144,149,154**;Dec 22, 1997;Build 13
  ;
 EN ;foreground entry point
  N ZTRTN,ZTDESC,ZTIO,ZTQUEUED,DIR,DIRUT,X,Y,ECX,ECXSD,PSC,SSC,ECXPCF,ECXPORT,CNT ;144
@@ -20,7 +20,7 @@ EN ;foreground entry point
  S ECX=0 F  S ECX=$O(^ECX(728.44,ECX)) Q:'ECX  D FIX^ECXSCLD(ECX)
  S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
  .K ^TMP($J,"ECXPORT") ;144
- .S ^TMP($J,"ECXPORT",0)="IEN^CLINIC NAME^STOP CODE^CREDIT STOP CODE^DSS STOP CODE^DSS CREDIT STOP CODE^CHAR4 CODE^REASON FOR NON-CONFORMANCE" ;144,149
+ .S ^TMP($J,"ECXPORT",0)="IEN^CLINIC NAME^STOP CODE^CREDIT STOP CODE^CHAR4 CODE^REASON FOR NON-CONFORMANCE" ;144,149;154
  .S CNT=1 ;144
  .D PROCESS ;144
  .D EXPDISP^ECXUTL1 ;144
@@ -30,7 +30,7 @@ EN ;foreground entry point
  ;S %ZIS("A")="Select Device: ",%ZIS="QM" D ^%ZIS I POP G END
  S %ZIS="",%ZIS("B")="0;132;99999" D ^%ZIS I POP G END
  I $D(IO("Q")) K IO("Q") D  G END
- .S ZTDESC="Restricted Stop Code/DSS Identifier Report",ZTSAVE("ECXPCF")=""
+ .S ZTDESC="Restricted Stop Code Report",ZTSAVE("ECXPCF")="" ;154
  .S ZTRTN="PROCESS^ECXSCRP",ZTIO=ION D ^%ZTLOAD,HOME^%ZIS K ZTSK
  U IO
  D PROCESS
@@ -59,9 +59,9 @@ PROCESS ;background entry point
  ..D SCCHK(PSC,"P") I $D(STR) D PRN
  .I SSC'="" D SCCHK(SSC,"S") I $D(STR) D PRN
  .D  I ECXOUT Q 
- ..I DPC="" S STR="No DSS primary code" D PRN Q
- ..I DPC'=PSC D SCCHK(DPC,"P") I $D(STR) D PRN
- .I DSC'="",DSC'=SSC D SCCHK(DSC,"S") I $D(STR) D PRN
+ ..;I DPC="" S STR="No DSS primary code" D PRN Q ;154
+ ..;I DPC'=PSC D SCCHK(DPC,"P") I $D(STR) D PRN
+ .;I DSC'="",DSC'=SSC D SCCHK(DSC,"S") I $D(STR) D PRN
  .D  I ECXOUT Q  ;144 cvw
  ..I ($P(ECX,U,8)'="")&(NCODE="") S NCODE=$P(ECX,U,8),STR="CHAR4 Code invalid" D PRN Q  ;144,149 cvw
  ..I $$GET1^DIQ(728.441,$P(ECX,U,8),3)'="" S STR="CHAR4 Code inactive" D PRN Q  ;144,149 cvw 
@@ -69,9 +69,9 @@ PROCESS ;background entry point
  Q
 PRN ;print line
  Q:CLNF  I HTYP'="C" S STR="Not a Clinic" S CLNF=1
- I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=IEN_"^"_NAM_"^"_PSC_"^"_SSC_"^"_DPC_"^"_DSC_"^"_NCODE_"^"_STR,CNT=CNT+1 Q  ;144
+ I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=IEN_"^"_NAM_"^"_PSC_"^"_SSC_"^"_NCODE_"^"_STR,CNT=CNT+1 Q  ;154
  I ($Y+3)>IOSL D PAGE,HDR I ECXOUT Q
- W !,IEN,?8,$E(NAM,1,24),?33,PSC,?40,SSC,?51,DPC,?61,DSC,?74,NCODE,?85,STR ;CVW 149
+ W !,IEN,?14,$E(NAM,1,24),?48,PSC,?58,SSC,?75,NCODE,?91,STR ;CVW 149
  S ECXF=1
  Q
  ;
@@ -119,14 +119,14 @@ SCIEN(SCIEN) ;Get stop code IEN
 HDR ;header for data from file #728.44
  W @IOF
  W ECXRDT,?73,"Page: ",ECXPG,!
- W !,?18,"DSS IDENTIFIER NON-CONFORMING CLINICS REPORT",!,?32
+ W !,?18,"STOP CODE NON-CONFORMING CLINICS REPORT",!,?32
  W $S(ECXPCF="A":"Active",ECXPCF="I":"Inactive",1:"All")_" Clinics",!
  W !,"CLINICS AND STOP CODES File (#728.44) - (Use 'Enter/Edit DSS "
  W "Stop Codes for",!,?25,"Clinics' [ECXSCEDIT] menu option to "
  W "make corrections)",!! ;CVW 149
- W "IEN #",?8,$S(ECXPCF="B":"(*currently inactive)",1:"CLINIC NAME")
- W ?33,"STOP",?40,"CREDIT",?51,"DSS STOP",?61,"DSS CREDIT",?74,"CHAR4",?85,"REASON FOR NON-"
- W !,?33,"CODE",?40,"STOP CODE",?51,"CODE",?61,"STOP CODE",?74,"CODE",?85,"CONFORMANCE"
+ W "IEN #",?14,$S(ECXPCF="B":"(*currently inactive)",1:"CLINIC NAME")
+ W ?48,"STOP",?58,"CREDIT",?75,"CHAR4",?91,"REASON FOR NON-"
+ W !,?48,"CODE",?58,"STOP CODE",?75,"CODE",?91,"CONFORMANCE"
  W !,$E(LNS,1,132)
  S ECXPG=ECXPG+1
  Q

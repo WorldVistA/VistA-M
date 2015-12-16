@@ -1,5 +1,5 @@
 RORXU010 ;HCOIFO/VC - REPORT MODIFICATON UTILITY ;4/16/09 2:54pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,19,25**;Feb 17, 2006;Build 19
  ;
  ;Routine builds the ^TMP($J,"RORFLTR" global array that includes
  ;ICD information from inpatient, outpatient and problem
@@ -39,6 +39,7 @@ RORXU010 ;HCOIFO/VC - REPORT MODIFICATON UTILITY ;4/16/09 2:54pm
  ;#1905     SELECTED^VSIT (controlled)
  ;#2977     GETFLDS^GMPLEDT3 (controlled)
  ;#3545     ^DGPT("AAD" (private)
+ ;#6130     PTFICD^DGPTFUT
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -56,6 +57,7 @@ RORXU010 ;HCOIFO/VC - REPORT MODIFICATON UTILITY ;4/16/09 2:54pm
  ;                                   external to internal values.
  ;ROR*1.5*19  FEB 2012   J SCOTT     Removed obsolete REG parameter from
  ;                                   ICD entry point.
+ ;ROR*1.5*25  OCT 2014   T KOPP      Added PTF ICD-10 support for 25 diagnoses
  ; 
  ;******************************************************************************
  ;******************************************************************************
@@ -68,7 +70,7 @@ ICD(PIEN) ;Determine if patient is retained for report based on ICD information.
  S PATIEN=PIEN
  ;
  ;Gather INPATIENT ICD information from Registration package file #45 (PTF).
- N DATE,DGPTREF,ICD1,ICD2,FLDLOC
+ N DATE,DGPTREF,ICD1,ICD2,FLDLOC,RORIBUF,FLD
  ;
  ;Browse through each inpatient date.
  S DATE=0
@@ -77,19 +79,9 @@ ICD(PIEN) ;Determine if patient is retained for report based on ICD information.
  .S DGPTREF=0
  .F  S DGPTREF=$O(^DGPT("AAD",PATIEN,DATE,DGPTREF)) Q:DGPTREF=""  D
  ..;Extract ICD diagnosis codes.
- ..S ICD1=$G(^DGPT(DGPTREF,70))
- ..S ICD2=$G(^DGPT(DGPTREF,71))
- ..I ICD1'="" D
- ...F FLDLOC=10 D
- ....S RORICDIEN=$P(ICD1,U,FLDLOC)
- ....I RORICDIEN'="" S ^TMP($J,"RORFLTR",PATIEN,80,RORICDIEN)=1
- ...F FLDLOC=16:1:25 D
- .... S RORICDIEN=$P(ICD1,U,FLDLOC)
- .... I RORICDIEN'="" S ^TMP($J,"RORFLTR",PATIEN,80,RORICDIEN)=1
- ..I ICD2'="" D
- ...F FLDLOC=1:1:4 D
- ....S RORICDIEN=$P(ICD2,U,FLDLOC)
- ....I RORICDIEN'="" S ^TMP($J,"RORFLTR",PATIEN,80,RORICDIEN)=1
+ ..D PTFICD^DGPTFUT(701,DGPTREF,"",.RORIBUF)
+ ..S FLD="" F  S FLD=$O(RORIBUF(FLD)) Q:FLD=""  I $G(RORIBUF(FLD)) D
+ ... S ^TMP($J,"RORFLTR",PATIEN,80,+RORIBUF(FLD))=1
  ;
  ;Gather OUTPATIENT ICD information from Patient Care Encounter package.
  N VSIEN,TMP,RORVPLST,VPOVREF
@@ -134,7 +126,7 @@ COMPARE ;Determine if patient should be retained or not.
  ;with ICD data in RORTSK local array that was established from
  ;the calling routine.
  ;
- N A,B,STOP,X,Y
+ N A,B,STOP,X,Y,RC
  S A="PARAMS",B="ICDFILT",RC=0
  S X="",STOP="GO"
  F  S X=$O(RORTSK(A,B,"G",X)) Q:X=""  Q:STOP="STOP"  D

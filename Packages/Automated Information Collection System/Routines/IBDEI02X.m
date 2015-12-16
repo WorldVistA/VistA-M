@@ -1,138 +1,130 @@
-IBDEI02X ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02X ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,930,0)
- ;;=99368^^9^102^2^^^^1
- ;;^UTILITY(U,$J,358.3,930,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,930,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,930,1,3,0)
- ;;=3^Team Conf w/o Pt by HC Pro,30 Min
- ;;^UTILITY(U,$J,358.3,931,0)
- ;;=33206^^10^103^36^^^^1
- ;;^UTILITY(U,$J,358.3,931,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,931,1,2,0)
- ;;=2^33206
- ;;^UTILITY(U,$J,358.3,931,1,3,0)
- ;;=3^Pace Implant, Atrial
- ;;^UTILITY(U,$J,358.3,932,0)
- ;;=33207^^10^103^38^^^^1
- ;;^UTILITY(U,$J,358.3,932,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,932,1,2,0)
- ;;=2^33207
- ;;^UTILITY(U,$J,358.3,932,1,3,0)
- ;;=3^Pace Implant, Vvi
- ;;^UTILITY(U,$J,358.3,933,0)
- ;;=33208^^10^103^37^^^^1
- ;;^UTILITY(U,$J,358.3,933,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,933,1,2,0)
- ;;=2^33208
- ;;^UTILITY(U,$J,358.3,933,1,3,0)
- ;;=3^Pace Implant, Ddd
- ;;^UTILITY(U,$J,358.3,934,0)
- ;;=33210^^10^103^63^^^^1
- ;;^UTILITY(U,$J,358.3,934,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,934,1,2,0)
- ;;=2^33210
- ;;^UTILITY(U,$J,358.3,934,1,3,0)
- ;;=3^Temp Pacer (Single)
- ;;^UTILITY(U,$J,358.3,935,0)
- ;;=33211^^10^103^62^^^^1
- ;;^UTILITY(U,$J,358.3,935,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,935,1,2,0)
- ;;=2^33211
- ;;^UTILITY(U,$J,358.3,935,1,3,0)
- ;;=3^Temp Pacer (Dual)
- ;;^UTILITY(U,$J,358.3,936,0)
- ;;=33212^^10^103^21^^^^1
- ;;^UTILITY(U,$J,358.3,936,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,936,1,2,0)
- ;;=2^33212
- ;;^UTILITY(U,$J,358.3,936,1,3,0)
- ;;=3^Insert Pacer, Pulse Gen (Sgl)
- ;;^UTILITY(U,$J,358.3,937,0)
- ;;=33213^^10^103^20^^^^1
- ;;^UTILITY(U,$J,358.3,937,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,937,1,2,0)
- ;;=2^33213
- ;;^UTILITY(U,$J,358.3,937,1,3,0)
- ;;=3^Insert Pacer, Pulse Gen (Dual)
- ;;^UTILITY(U,$J,358.3,938,0)
- ;;=33216^^10^103^23^^^^1
- ;;^UTILITY(U,$J,358.3,938,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,938,1,2,0)
- ;;=2^33216
- ;;^UTILITY(U,$J,358.3,938,1,3,0)
- ;;=3^Insert/Reposit Transv Elec (Sgl)
- ;;^UTILITY(U,$J,358.3,939,0)
- ;;=33217^^10^103^24^^^^1
- ;;^UTILITY(U,$J,358.3,939,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,939,1,2,0)
- ;;=2^33217
- ;;^UTILITY(U,$J,358.3,939,1,3,0)
- ;;=3^Insert/Reposit Transv Elec(Dual)
- ;;^UTILITY(U,$J,358.3,940,0)
- ;;=33218^^10^103^56^^^^1
- ;;^UTILITY(U,$J,358.3,940,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,940,1,2,0)
- ;;=2^33218
- ;;^UTILITY(U,$J,358.3,940,1,3,0)
- ;;=3^Repair Transv Elec (Single)
- ;;^UTILITY(U,$J,358.3,941,0)
- ;;=33220^^10^103^55^^^^1
- ;;^UTILITY(U,$J,358.3,941,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,941,1,2,0)
- ;;=2^33220
- ;;^UTILITY(U,$J,358.3,941,1,3,0)
- ;;=3^Repair Transv Elec (Dual)
- ;;^UTILITY(U,$J,358.3,942,0)
- ;;=33222^^10^103^58^^^^1
- ;;^UTILITY(U,$J,358.3,942,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,942,1,2,0)
- ;;=2^33222
- ;;^UTILITY(U,$J,358.3,942,1,3,0)
- ;;=3^Revis Or Reloc Skin Pckt
- ;;^UTILITY(U,$J,358.3,943,0)
- ;;=33233^^10^103^51^^^^1
- ;;^UTILITY(U,$J,358.3,943,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,943,1,2,0)
- ;;=2^33233
- ;;^UTILITY(U,$J,358.3,943,1,3,0)
- ;;=3^Remove Pace Pulse Gen
- ;;^UTILITY(U,$J,358.3,944,0)
- ;;=92960^^10^103^5^^^^1
- ;;^UTILITY(U,$J,358.3,944,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,944,1,2,0)
- ;;=2^92960
- ;;^UTILITY(U,$J,358.3,944,1,3,0)
- ;;=3^Cardioversion
- ;;^UTILITY(U,$J,358.3,945,0)
- ;;=93650^^10^103^2^^^^1
- ;;^UTILITY(U,$J,358.3,945,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,945,1,2,0)
- ;;=2^93650
- ;;^UTILITY(U,$J,358.3,945,1,3,0)
- ;;=3^Abalation, Av Node
- ;;^UTILITY(U,$J,358.3,946,0)
- ;;=93740^^10^103^61^^^^1
- ;;^UTILITY(U,$J,358.3,946,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,946,1,2,0)
- ;;=2^93740
+ ;;^UTILITY(U,$J,358.3,824,0)
+ ;;=L97.224^^3^32^74
+ ;;^UTILITY(U,$J,358.3,824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,824,1,3,0)
+ ;;=3^Non-prs chr ulcer of left calf w necrosis of bone
+ ;;^UTILITY(U,$J,358.3,824,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,824,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,825,0)
+ ;;=L97.324^^3^32^68
+ ;;^UTILITY(U,$J,358.3,825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,825,1,3,0)
+ ;;=3^Non-prs chr ulcer of left ankle w necrosis of bone
+ ;;^UTILITY(U,$J,358.3,825,1,4,0)
+ ;;=4^L97.324
+ ;;^UTILITY(U,$J,358.3,825,2)
+ ;;=^5009523
+ ;;^UTILITY(U,$J,358.3,826,0)
+ ;;=L97.329^^3^32^70
+ ;;^UTILITY(U,$J,358.3,826,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,826,1,3,0)
+ ;;=3^Non-prs chr ulcer of left ankle with unsp severity
+ ;;^UTILITY(U,$J,358.3,826,1,4,0)
+ ;;=4^L97.329
+ ;;^UTILITY(U,$J,358.3,826,2)
+ ;;=^5009524
+ ;;^UTILITY(U,$J,358.3,827,0)
+ ;;=L97.323^^3^32^69
+ ;;^UTILITY(U,$J,358.3,827,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,827,1,3,0)
+ ;;=3^Non-prs chr ulcer of left ankle w necrosis of muscle
+ ;;^UTILITY(U,$J,358.3,827,1,4,0)
+ ;;=4^L97.323
+ ;;^UTILITY(U,$J,358.3,827,2)
+ ;;=^5009522
+ ;;^UTILITY(U,$J,358.3,828,0)
+ ;;=L97.322^^3^32^67
+ ;;^UTILITY(U,$J,358.3,828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,828,1,3,0)
+ ;;=3^Non-prs chr ulcer of left ankle w fat layer exposed
+ ;;^UTILITY(U,$J,358.3,828,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,828,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,829,0)
+ ;;=L97.319^^3^32^90
+ ;;^UTILITY(U,$J,358.3,829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,829,1,3,0)
+ ;;=3^Non-prs chr ulcer of right ankle with unsp severity
+ ;;^UTILITY(U,$J,358.3,829,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,829,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,830,0)
+ ;;=L97.321^^3^32^66
+ ;;^UTILITY(U,$J,358.3,830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,830,1,3,0)
+ ;;=3^Non-prs chr ulcer of left ankle limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,830,1,4,0)
+ ;;=4^L97.321
+ ;;^UTILITY(U,$J,358.3,830,2)
+ ;;=^5009520
+ ;;^UTILITY(U,$J,358.3,831,0)
+ ;;=L97.314^^3^32^88
+ ;;^UTILITY(U,$J,358.3,831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,831,1,3,0)
+ ;;=3^Non-prs chr ulcer of right ankle w necrosis of bone
+ ;;^UTILITY(U,$J,358.3,831,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,831,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,832,0)
+ ;;=L97.313^^3^32^89
+ ;;^UTILITY(U,$J,358.3,832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,832,1,3,0)
+ ;;=3^Non-prs chr ulcer of right ankle w necrosis of muscle
+ ;;^UTILITY(U,$J,358.3,832,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,832,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,833,0)
+ ;;=L97.311^^3^32^86
+ ;;^UTILITY(U,$J,358.3,833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,833,1,3,0)
+ ;;=3^Non-prs chr ulcer of right ankle limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,833,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,833,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,834,0)
+ ;;=L97.312^^3^32^87
+ ;;^UTILITY(U,$J,358.3,834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,834,1,3,0)
+ ;;=3^Non-prs chr ulcer of right ankle w fat layer exposed
+ ;;^UTILITY(U,$J,358.3,834,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,834,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,835,0)
+ ;;=L97.411^^3^32^96
+ ;;^UTILITY(U,$J,358.3,835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,835,1,3,0)
+ ;;=3^Non-prs chr ulcer of right heel and midft lmt to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,835,1,4,0)
+ ;;=4^L97.411
+ ;;^UTILITY(U,$J,358.3,835,2)
+ ;;=^5009530
+ ;;^UTILITY(U,$J,358.3,836,0)
+ ;;=L97.413^^3^32^97
+ ;;^UTILITY(U,$J,358.3,836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,836,1,3,0)
+ ;;=3^Non-prs chr ulcer of right heel and midfoot w necros muscle

@@ -1,130 +1,122 @@
-IBDEI1OV ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OV ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30318,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,30318,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,30319,0)
- ;;=S71.101A^^189^1913^58
- ;;^UTILITY(U,$J,358.3,30319,1,0)
+ ;;^UTILITY(U,$J,358.3,29968,2)
+ ;;=^5017480
+ ;;^UTILITY(U,$J,358.3,29969,0)
+ ;;=O46.093^^178^1909^12
+ ;;^UTILITY(U,$J,358.3,29969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30319,1,3,0)
- ;;=3^Open Wound of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,30319,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,30319,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,30320,0)
- ;;=S71.002A^^189^1913^13
- ;;^UTILITY(U,$J,358.3,30320,1,0)
+ ;;^UTILITY(U,$J,358.3,29969,1,3,0)
+ ;;=3^Antepartum hemorrhage w oth coag defect, third trimester
+ ;;^UTILITY(U,$J,358.3,29969,1,4,0)
+ ;;=4^O46.093
+ ;;^UTILITY(U,$J,358.3,29969,2)
+ ;;=^5017481
+ ;;^UTILITY(U,$J,358.3,29970,0)
+ ;;=O10.011^^178^1910^25
+ ;;^UTILITY(U,$J,358.3,29970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30320,1,3,0)
- ;;=3^Open Wound of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,30320,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,30320,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,30321,0)
- ;;=S71.001A^^189^1913^44
- ;;^UTILITY(U,$J,358.3,30321,1,0)
+ ;;^UTILITY(U,$J,358.3,29970,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29970,1,4,0)
+ ;;=4^O10.011
+ ;;^UTILITY(U,$J,358.3,29970,2)
+ ;;=^5016108
+ ;;^UTILITY(U,$J,358.3,29971,0)
+ ;;=O10.012^^178^1910^26
+ ;;^UTILITY(U,$J,358.3,29971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30321,1,3,0)
- ;;=3^Open Wound of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,30321,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,30321,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,30322,0)
- ;;=S91.002A^^189^1913^5
- ;;^UTILITY(U,$J,358.3,30322,1,0)
+ ;;^UTILITY(U,$J,358.3,29971,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29971,1,4,0)
+ ;;=4^O10.012
+ ;;^UTILITY(U,$J,358.3,29971,2)
+ ;;=^5016109
+ ;;^UTILITY(U,$J,358.3,29972,0)
+ ;;=O10.013^^178^1910^27
+ ;;^UTILITY(U,$J,358.3,29972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30322,1,3,0)
- ;;=3^Open Wound of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,30322,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,30322,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,30323,0)
- ;;=S91.001A^^189^1913^36
- ;;^UTILITY(U,$J,358.3,30323,1,0)
+ ;;^UTILITY(U,$J,358.3,29972,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29972,1,4,0)
+ ;;=4^O10.013
+ ;;^UTILITY(U,$J,358.3,29972,2)
+ ;;=^5016110
+ ;;^UTILITY(U,$J,358.3,29973,0)
+ ;;=O10.03^^178^1910^30
+ ;;^UTILITY(U,$J,358.3,29973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30323,1,3,0)
- ;;=3^Open Wound of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,30323,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,30323,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,30324,0)
- ;;=S81.802A^^189^1913^21
- ;;^UTILITY(U,$J,358.3,30324,1,0)
+ ;;^UTILITY(U,$J,358.3,29973,1,3,0)
+ ;;=3^Pre-existing essential htn comp the puerperium
+ ;;^UTILITY(U,$J,358.3,29973,1,4,0)
+ ;;=4^O10.03
+ ;;^UTILITY(U,$J,358.3,29973,2)
+ ;;=^5016113
+ ;;^UTILITY(U,$J,358.3,29974,0)
+ ;;=O10.411^^178^1910^39
+ ;;^UTILITY(U,$J,358.3,29974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30324,1,3,0)
- ;;=3^Open Wound of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,30324,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,30324,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,30325,0)
- ;;=S81.801A^^189^1913^52
- ;;^UTILITY(U,$J,358.3,30325,1,0)
+ ;;^UTILITY(U,$J,358.3,29974,1,3,0)
+ ;;=3^Pre-existing secondary htn comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29974,1,4,0)
+ ;;=4^O10.411
+ ;;^UTILITY(U,$J,358.3,29974,2)
+ ;;=^5016132
+ ;;^UTILITY(U,$J,358.3,29975,0)
+ ;;=O10.412^^178^1910^40
+ ;;^UTILITY(U,$J,358.3,29975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30325,1,3,0)
- ;;=3^Open Wound of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,30325,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,30325,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,30326,0)
- ;;=S81.002A^^189^1913^16
- ;;^UTILITY(U,$J,358.3,30326,1,0)
+ ;;^UTILITY(U,$J,358.3,29975,1,3,0)
+ ;;=3^Pre-existing secondary htn comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29975,1,4,0)
+ ;;=4^O10.412
+ ;;^UTILITY(U,$J,358.3,29975,2)
+ ;;=^5016133
+ ;;^UTILITY(U,$J,358.3,29976,0)
+ ;;=O10.413^^178^1910^41
+ ;;^UTILITY(U,$J,358.3,29976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30326,1,3,0)
- ;;=3^Open Wound of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,30326,1,4,0)
- ;;=4^S81.002A
- ;;^UTILITY(U,$J,358.3,30326,2)
- ;;=^5040029
- ;;^UTILITY(U,$J,358.3,30327,0)
- ;;=S81.001A^^189^1913^47
- ;;^UTILITY(U,$J,358.3,30327,1,0)
+ ;;^UTILITY(U,$J,358.3,29976,1,3,0)
+ ;;=3^Pre-existing secondary htn comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29976,1,4,0)
+ ;;=4^O10.413
+ ;;^UTILITY(U,$J,358.3,29976,2)
+ ;;=^5016134
+ ;;^UTILITY(U,$J,358.3,29977,0)
+ ;;=O10.43^^178^1910^42
+ ;;^UTILITY(U,$J,358.3,29977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30327,1,3,0)
- ;;=3^Open Wound of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,30327,1,4,0)
- ;;=4^S81.001A
- ;;^UTILITY(U,$J,358.3,30327,2)
- ;;=^5040026
- ;;^UTILITY(U,$J,358.3,30328,0)
- ;;=S91.301A^^189^1913^40
- ;;^UTILITY(U,$J,358.3,30328,1,0)
+ ;;^UTILITY(U,$J,358.3,29977,1,3,0)
+ ;;=3^Pre-existing secondary htn comp the puerperium
+ ;;^UTILITY(U,$J,358.3,29977,1,4,0)
+ ;;=4^O10.43
+ ;;^UTILITY(U,$J,358.3,29977,2)
+ ;;=^5016137
+ ;;^UTILITY(U,$J,358.3,29978,0)
+ ;;=O10.111^^178^1910^24
+ ;;^UTILITY(U,$J,358.3,29978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30328,1,3,0)
- ;;=3^Open Wound of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,30328,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,30328,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,30329,0)
- ;;=S91.302A^^189^1913^9
- ;;^UTILITY(U,$J,358.3,30329,1,0)
+ ;;^UTILITY(U,$J,358.3,29978,1,3,0)
+ ;;=3^Pre-exist hyp heart disease comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29978,1,4,0)
+ ;;=4^O10.111
+ ;;^UTILITY(U,$J,358.3,29978,2)
+ ;;=^5016114
+ ;;^UTILITY(U,$J,358.3,29979,0)
+ ;;=O10.012^^178^1910^28
+ ;;^UTILITY(U,$J,358.3,29979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30329,1,3,0)
- ;;=3^Open Wound of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,30329,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,30329,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,30330,0)
- ;;=S91.101A^^189^1913^42
- ;;^UTILITY(U,$J,358.3,30330,1,0)
+ ;;^UTILITY(U,$J,358.3,29979,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29979,1,4,0)
+ ;;=4^O10.012
+ ;;^UTILITY(U,$J,358.3,29979,2)
+ ;;=^5016109
+ ;;^UTILITY(U,$J,358.3,29980,0)
+ ;;=O10.013^^178^1910^29
+ ;;^UTILITY(U,$J,358.3,29980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30330,1,3,0)
- ;;=3^Open Wound of Right Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30330,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,30330,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,30331,0)
- ;;=S91.102A^^189^1913^11
+ ;;^UTILITY(U,$J,358.3,29980,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, third trimester

@@ -1,6 +1,6 @@
 PRCH410 ;WISC/KMB/DXH/DGL - CREATE 2237 FROM PURCHASE CARD ORDER ; 4/4/00 7:56am
- ;;5.1;IFCAP;**123,171,181**;Oct 20, 2000;Build 6
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;5.1;IFCAP;**123,171,181,186**;Oct 20, 2000;Build 10
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; prcsip is package-wide variable for inv pt that may or may not be
  ; passed to this routine
@@ -12,6 +12,15 @@ PRCH410 ;WISC/KMB/DXH/DGL - CREATE 2237 FROM PURCHASE CARD ORDER ; 4/4/00 7:56am
  ;            query and creating 2 410 entries due to missing 410 
  ;            pointer in file 442 that was not set due to Sort
  ;            Group query failure. 
+ ;
+ ;PRC*5.1*186 RGB 7/1/2014 Fix for 3 Remedy tickets:
+ ;            INC752542 Fix duplicate entries in file 443 by changing 
+ ;                      the direct field 1.5 and x-ref 'AC' set to 
+ ;                      Fileman update of status field.
+ ;            INC952389 Modify logic to insure when All/Delivery switch
+ ;                      is set that the DO affects the Running Balance 
+ ;                      report when auto obligated. Also, modified the
+ ;                      EDI check in same area for logic clarity.
  ;
 START ;
  N VV,ST,Y,Z,Z0,Z1,Z2,I,J,CCEN,ESTS,NET,SERV,EMER,COUNT,COUNT1,L,PDUZ,FY,QTR,CP,LOC,ADATE,TDATE,SDATE,LL,PC,PCREF,XDA
@@ -100,8 +109,12 @@ ESIG ;put ESIG on record, update due-ins
  S BAL=$P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),4,PRC("FY"),0)),"^",PRC("QTR")+1)
  W !,"Cost of this request: $",$J(X,0,2),!,"Current Control Point Balance: $",$J(BAL,0,2),!
  S PRCSN=$G(^PRCS(410,DA,0))
- I $P(PRCSN,U,4)>1 S X=$P(PRCSN,U,1),DIC="^PRC(443,",DIC(0)="L",DLAYGO=443 D ^DIC K DIC,DLAYGO,X
- I $P(PRCSN,U,4)>1 S X=$O(^PRCD(442.3,"C",60,0)) S $P(^PRC(443,DA,0),U,7)=X,^PRC(443,"AC",X,DA)="",$P(^PRC(443,DA,0),U,11)=$P(PRCSN,U,6)
+ ;PRC*5.1*186
+ I $P(PRCSN,U,4)>1 D
+ . S X=$P(PRCSN,U,1),DIC="^PRC(443,",DIC(0)="L",DLAYGO=443 D ^DIC K DIC,DLAYGO,X
+ . S X=$O(^PRCD(442.3,"C",60,0)),PRCHSTS=X
+ . S DIE="^PRC(443,",DR="1.5////^S X=PRCHSTS" D ^DIE K DR,DIE,PRCHSTS,X
+ . S $P(^PRC(443,DA,0),U,11)=$P(PRCSN,U,6)
  I '$G(PRCHPHAM),$G(PRCHPC)'=1 D EN2^PRCPWI
  S PRCSINV=$P(^PRCS(410,DA,0),U,6)
  S DIE="^PRC(443,",DR="9///^S X=1;10///^S X=4;11////^S X=PRCSINV;13///^S X=""E"";3.7///^S X=5730;3.5///^S X=1;2////^S X=DUZ"
@@ -119,8 +132,8 @@ SWCHK ;CHECK EDI AND ALL/DEL FLAGS FOR DELIVERY ORDERS    ;PRC*171 D.O. auto obl
  S PRCVEND=$P($G(^PRC(442,PODA,1)),U) S:PRCVEND'="" PRCEDICK=$P($G(^PRC(440,PRCVEND,3)),U,2)
  S PRCHFUND=$P(^PRC(442,PODA,0),U,3) Q:PRCHFUND=""  S PRCHFUND=+$P(PRCHFUND," ")
  I $P($G(^PRC(442,PODA,23)),U,11)="D"!$D(PRCHDELV) D
- . I $P($G(^PRC(420,PRC("SITE"),3)),U,2)="",$P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U,2)="" S PRCHOBL=0
+ . I $P($G(^PRC(420,PRC("SITE"),3)),U,2)'=""!($P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U,2)'="") S PRCHOBL=1    ;PRC*5.1*186
  . I $P(^PRC(442,PODA,0),U,2)=26 S PRCHOBL=1
  I '$G(PRCHOBL) D
- . I ($P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U)="Y")!($P($G(^PRC(420,PRC("SITE"),3)),U)="Y"),PRCEDICK="Y" S PRCHOBL=1
+ . I ($P($G(^PRC(420,PRC("SITE"),1,PRCHFUND,6)),U)="Y")!($P($G(^PRC(420,PRC("SITE"),3)),U)="Y") S:PRCEDICK="Y" PRCHOBL=1   ;PRC*5.1*186
  Q

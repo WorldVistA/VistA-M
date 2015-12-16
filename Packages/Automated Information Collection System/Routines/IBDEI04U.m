@@ -1,136 +1,128 @@
-IBDEI04U ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI04U ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1949,1,3,0)
- ;;=3^Neck Sprain/Strain
- ;;^UTILITY(U,$J,358.3,1949,1,4,0)
- ;;=4^847.0
- ;;^UTILITY(U,$J,358.3,1949,2)
- ;;=^81735
- ;;^UTILITY(U,$J,358.3,1950,0)
- ;;=847.1^^17^168^5
- ;;^UTILITY(U,$J,358.3,1950,1,0)
+ ;;^UTILITY(U,$J,358.3,1742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1950,1,3,0)
- ;;=3^Thoracic Sprain/Strain
- ;;^UTILITY(U,$J,358.3,1950,1,4,0)
- ;;=4^847.1
- ;;^UTILITY(U,$J,358.3,1950,2)
- ;;=^274526
- ;;^UTILITY(U,$J,358.3,1951,0)
- ;;=847.2^^17^168^2
- ;;^UTILITY(U,$J,358.3,1951,1,0)
+ ;;^UTILITY(U,$J,358.3,1742,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of small intestine
+ ;;^UTILITY(U,$J,358.3,1742,1,4,0)
+ ;;=4^Z85.068
+ ;;^UTILITY(U,$J,358.3,1742,2)
+ ;;=^5063404
+ ;;^UTILITY(U,$J,358.3,1743,0)
+ ;;=Z85.07^^3^51^10
+ ;;^UTILITY(U,$J,358.3,1743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1951,1,3,0)
- ;;=3^Lumbar Sprain/Strain
- ;;^UTILITY(U,$J,358.3,1951,1,4,0)
- ;;=4^847.2
- ;;^UTILITY(U,$J,358.3,1951,2)
- ;;=^274527
- ;;^UTILITY(U,$J,358.3,1952,0)
- ;;=847.3^^17^168^4
- ;;^UTILITY(U,$J,358.3,1952,1,0)
+ ;;^UTILITY(U,$J,358.3,1743,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of pancreas
+ ;;^UTILITY(U,$J,358.3,1743,1,4,0)
+ ;;=4^Z85.07
+ ;;^UTILITY(U,$J,358.3,1743,2)
+ ;;=^5063405
+ ;;^UTILITY(U,$J,358.3,1744,0)
+ ;;=Z85.09^^3^51^11
+ ;;^UTILITY(U,$J,358.3,1744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1952,1,3,0)
- ;;=3^Sacrum Sprain/Strain
- ;;^UTILITY(U,$J,358.3,1952,1,4,0)
- ;;=4^847.3
- ;;^UTILITY(U,$J,358.3,1952,2)
- ;;=^274528
- ;;^UTILITY(U,$J,358.3,1953,0)
- ;;=847.4^^17^168^1
- ;;^UTILITY(U,$J,358.3,1953,1,0)
+ ;;^UTILITY(U,$J,358.3,1744,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of digestive organs
+ ;;^UTILITY(U,$J,358.3,1744,1,4,0)
+ ;;=4^Z85.09
+ ;;^UTILITY(U,$J,358.3,1744,2)
+ ;;=^5063406
+ ;;^UTILITY(U,$J,358.3,1745,0)
+ ;;=Z85.12^^3^51^12
+ ;;^UTILITY(U,$J,358.3,1745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1953,1,3,0)
- ;;=3^Coccyx Sprain/Strain
- ;;^UTILITY(U,$J,358.3,1953,1,4,0)
- ;;=4^847.4
- ;;^UTILITY(U,$J,358.3,1953,2)
- ;;=^274529
- ;;^UTILITY(U,$J,358.3,1954,0)
- ;;=97014^^18^169^2^^^^1
- ;;^UTILITY(U,$J,358.3,1954,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1954,1,2,0)
- ;;=2^Electric Stimulation Therapy,Unattended
- ;;^UTILITY(U,$J,358.3,1954,1,3,0)
- ;;=3^97014
- ;;^UTILITY(U,$J,358.3,1955,0)
- ;;=97032^^18^169^3^^^^1
- ;;^UTILITY(U,$J,358.3,1955,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1955,1,2,0)
- ;;=2^Electrical Stimulation,1+ Areas,Ea 15min
- ;;^UTILITY(U,$J,358.3,1955,1,3,0)
- ;;=3^97032
- ;;^UTILITY(U,$J,358.3,1956,0)
- ;;=97010^^18^169^4^^^^1
- ;;^UTILITY(U,$J,358.3,1956,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1956,1,2,0)
- ;;=2^Hot Or Cold Packs Therapy
- ;;^UTILITY(U,$J,358.3,1956,1,3,0)
- ;;=3^97010
- ;;^UTILITY(U,$J,358.3,1957,0)
- ;;=97036^^18^169^5^^^^1
- ;;^UTILITY(U,$J,358.3,1957,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1957,1,2,0)
- ;;=2^Hubbard Tank,Ea 15min
- ;;^UTILITY(U,$J,358.3,1957,1,3,0)
- ;;=3^97036
- ;;^UTILITY(U,$J,358.3,1958,0)
- ;;=97124^^18^169^7^^^^1
- ;;^UTILITY(U,$J,358.3,1958,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1958,1,2,0)
- ;;=2^Massage Therapy
- ;;^UTILITY(U,$J,358.3,1958,1,3,0)
- ;;=3^97124
- ;;^UTILITY(U,$J,358.3,1959,0)
- ;;=64550^^18^169^1^^^^1
- ;;^UTILITY(U,$J,358.3,1959,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1959,1,2,0)
- ;;=2^Apply Neurostimulator
- ;;^UTILITY(U,$J,358.3,1959,1,3,0)
- ;;=3^64550
- ;;^UTILITY(U,$J,358.3,1960,0)
- ;;=97012^^18^169^8^^^^1
- ;;^UTILITY(U,$J,358.3,1960,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1960,1,2,0)
- ;;=2^Mechanical Traction Therapy 
- ;;^UTILITY(U,$J,358.3,1960,1,3,0)
- ;;=3^97012
- ;;^UTILITY(U,$J,358.3,1961,0)
- ;;=97035^^18^169^11^^^^1
- ;;^UTILITY(U,$J,358.3,1961,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1961,1,2,0)
- ;;=2^Ultrasound Therapy,Ea 15min
- ;;^UTILITY(U,$J,358.3,1961,1,3,0)
- ;;=3^97035
- ;;^UTILITY(U,$J,358.3,1962,0)
- ;;=97028^^18^169^12^^^^1
- ;;^UTILITY(U,$J,358.3,1962,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1962,1,2,0)
- ;;=2^Ultraviolet Therapy
- ;;^UTILITY(U,$J,358.3,1962,1,3,0)
- ;;=3^97028
- ;;^UTILITY(U,$J,358.3,1963,0)
- ;;=97110^^18^169^10^^^^1
- ;;^UTILITY(U,$J,358.3,1963,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1963,1,2,0)
- ;;=2^Therapeutic Exercises,Ea 15min
- ;;^UTILITY(U,$J,358.3,1963,1,3,0)
- ;;=3^97110
- ;;^UTILITY(U,$J,358.3,1964,0)
- ;;=97112^^18^169^9^^^^1
- ;;^UTILITY(U,$J,358.3,1964,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1964,1,2,0)
- ;;=2^Neuromuscular Re-Education
+ ;;^UTILITY(U,$J,358.3,1745,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of trachea
+ ;;^UTILITY(U,$J,358.3,1745,1,4,0)
+ ;;=4^Z85.12
+ ;;^UTILITY(U,$J,358.3,1745,2)
+ ;;=^5063409
+ ;;^UTILITY(U,$J,358.3,1746,0)
+ ;;=Z85.22^^3^51^13
+ ;;^UTILITY(U,$J,358.3,1746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1746,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of nasl cav,med ear,acces sinus
+ ;;^UTILITY(U,$J,358.3,1746,1,4,0)
+ ;;=4^Z85.22
+ ;;^UTILITY(U,$J,358.3,1746,2)
+ ;;=^5063412
+ ;;^UTILITY(U,$J,358.3,1747,0)
+ ;;=Z85.41^^3^51^14
+ ;;^UTILITY(U,$J,358.3,1747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1747,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of cervix uteri
+ ;;^UTILITY(U,$J,358.3,1747,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,1747,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,1748,0)
+ ;;=Z85.42^^3^51^15
+ ;;^UTILITY(U,$J,358.3,1748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1748,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of oth prt uterus
+ ;;^UTILITY(U,$J,358.3,1748,1,4,0)
+ ;;=4^Z85.42
+ ;;^UTILITY(U,$J,358.3,1748,2)
+ ;;=^5063419
+ ;;^UTILITY(U,$J,358.3,1749,0)
+ ;;=Z85.48^^3^51^16
+ ;;^UTILITY(U,$J,358.3,1749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1749,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of epididymis
+ ;;^UTILITY(U,$J,358.3,1749,1,4,0)
+ ;;=4^Z85.48
+ ;;^UTILITY(U,$J,358.3,1749,2)
+ ;;=^5063425
+ ;;^UTILITY(U,$J,358.3,1750,0)
+ ;;=Z85.54^^3^51^17
+ ;;^UTILITY(U,$J,358.3,1750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1750,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of ureter
+ ;;^UTILITY(U,$J,358.3,1750,1,4,0)
+ ;;=4^Z85.54
+ ;;^UTILITY(U,$J,358.3,1750,2)
+ ;;=^5063432
+ ;;^UTILITY(U,$J,358.3,1751,0)
+ ;;=Z85.59^^3^51^18
+ ;;^UTILITY(U,$J,358.3,1751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1751,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of urinary tract organ
+ ;;^UTILITY(U,$J,358.3,1751,1,4,0)
+ ;;=4^Z85.59
+ ;;^UTILITY(U,$J,358.3,1751,2)
+ ;;=^5063433
+ ;;^UTILITY(U,$J,358.3,1752,0)
+ ;;=Z85.6^^3^51^6
+ ;;^UTILITY(U,$J,358.3,1752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1752,1,3,0)
+ ;;=3^Personal history of leukemia
+ ;;^UTILITY(U,$J,358.3,1752,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,1752,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,1753,0)
+ ;;=Z85.79^^3^51^19
+ ;;^UTILITY(U,$J,358.3,1753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1753,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of lymphoid,hematpoetc & rel tiss
+ ;;^UTILITY(U,$J,358.3,1753,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,1753,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,1754,0)
+ ;;=Z85.71^^3^51^2
+ ;;^UTILITY(U,$J,358.3,1754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1754,1,3,0)
+ ;;=3^Personal history of Hodgkin lymphoma

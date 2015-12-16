@@ -1,5 +1,5 @@
 DGBTSP ;ALB/BLD-BENEFICIARY TRAVEL SPECIAL MODE OF TRANSPORTATION; 12/18/2011@1000; 12/23/2012
- ;;1.0;Beneficiary Travel;**20,22**;December 27, 2011;Build 5
+ ;;1.0;Beneficiary Travel;**20,22,25**;December 27, 2011;Build 12
  ;
  ;MUST ENTER AT EN^DGBTSP
  Q
@@ -8,7 +8,7 @@ DGBTSP ;ALB/BLD-BENEFICIARY TRAVEL SPECIAL MODE OF TRANSPORTATION; 12/18/2011@10
 EN(DGBTSP) ;main entry point from DGBTE
  ;
  ;TRNSMDE = mode of transportation
- ;REMARKS = will only have data if OTHER is chosed from mode of transportation list
+ ;REMARKS = will only have data if OTHER is chosen from mode of transportation list
  ;
  N TRNSMDE,DGBTINTO,PREAUTH,DGBTACTYPE,MODEOFTRANS,OTHERTRANRMKS,AUTHORIZED,VENDOR,INVOICE,INVDT,OWTRP,TOTALMILES,TOTINVOICE,DGBTFDA
  N BASERATE,MILEAGEFEE,NOSHOW,WAITTIME,EXTRACREW,SPEQUIP,REMARKS,DGBTINTO,ERRMSG,OTHERTRANSRMKS,ACTTYPE,ERRMSG
@@ -17,7 +17,7 @@ EN(DGBTSP) ;main entry point from DGBTE
  S DGBTSP=1,DGBTCMTY="M",SPCOMPLETE=0
  ;type of claim - Mileage or Special Mode Claim
  S DGBTACTYPE=$$GET1^DIQ(392,DGBTDT,56,"I")
- S DIR("A")="Is this a Mileage or Special Mode Claim?",DIR("?")="Enter 'M' for Mileage Claim or RETURN to continue procesing Mileage claim or 'S' for Special Mode Claim"
+ S DIR("A")="Is this a Mileage or Special Mode Claim?",DIR("?")="Enter 'M' for Mileage Claim or RETURN to continue processing Mileage claim or 'S' for Special Mode Claim"
  S DIR(0)="S^M:MILEAGE;S:SPECIAL MODE^^W $S(X=""M"":""MILEAGE"",X=""S"":""SPECIAL MODE"",1:"""") K:X="" X"
  S DIR("B")=$S($G(DGBTSP("CLAIM TYPE"))'="":DGBTSP("CLAIM TYPE"),$G(DGBTACTYPE)'="":DGBTACTYPE,1:"M")
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I ($D(DTOUT))!($D(DUOUT)) K DGBTSP S DGBTSP=$S($D(^DGBT(392,DGBTDTI,"SP")):1,1:0),SPCOMPLETE=$S($G(CHZFLG)=1:1,1:0),DGBTTOUT=-1 Q
@@ -44,12 +44,12 @@ RESTART(DGBTCMTY)  ;
  N SPACCT,SPACTIEN
  S SPACCT="826 SPECIAL MODE - NON-EMERGEN"
  S (ACCT,SPACTIEN,DGBTQ)=0
- F  S ACCT=$O(^DGBT(392.3,"B",ACCT)) D  Q:DGBTQ!('ACCT)
+ F  S ACCT=$O(^DGBT(392.3,"B",ACCT)) D  Q:DGBTQ!($G(ACCT)="")  ;dbe patch DGBT*1*25 - properly loop through account file
  .I ACCT'["SPECIAL MODE - NON-EMERGEN" Q
  .S SPACTIEN=$O(^DGBT(392.3,"B",ACCT,""))
  .I $$GET1^DIQ(392.3,SPACTIEN,4,"I")'<DT!($$GET1^DIQ(392.3,SPACTIEN,4)=""),$$GET1^DIQ(392.3,SPACTIEN,5,"I")=3 S DGBTQ=1
- .E  S ACCT=""
- I 'ACCT D  Q
+ .;E  S ACCT=""  ;dbe patch DGBT*1*25
+ I $G(ACCT)="" D  Q  ;dbe patch DGBT*1*25
  .D ACTFILE^DGBTSP
  .I 'CHZFLG S DGBTTOUT=-1,DGBTOLD=0,SPCOMPLETE=0
  .E  S DUOUT=1,SPCOMPLETE=0
@@ -84,8 +84,8 @@ SPRMKS(DGBTSP) ;will allow user to enter other remarks about special mode transp
  Q
  ;
 PREAUTH(DGBTSP) ;this will ask if trip was pre-authorized. If answer is no then ask end user if claim is approved or denied.
- ;if end userindicates theat authorizstion has been denied, then the System denies the Claim and issues an Appeal Rights
- ;document and prompts the the end user for the Vendor. The end user is only allowed to select a Vendor from the list
+ ;if end user indicates that authorization has been denied, then the System denies the Claim and issues an Appeal Rights
+ ;document and prompts the end user for the Vendor. The end user is only allowed to select a Vendor from the list
  ;of vendors already in the FMS system.
  ;
  W !
@@ -133,7 +133,7 @@ VENDOR(DGBTSP) ;allows the user to select from a vendor already in the FMS syste
  ;
  Q
  ;
-ADDINFO(DGBTSP) ;this will ask additional quesitons of the end user about the invoice presented by the patient.
+ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the invoice presented by the patient.
  ;
  Q:$G(DFN)=""!($G(DGBTSP)=0)
  N I
@@ -270,8 +270,8 @@ ADDINFO(DGBTSP) ;this will ask additional quesitons of the end user about the in
  W !
  S TOTALMILES=$$GET1^DIQ(392,DGBTDT,68,"E")
  S DIR("A")="TOTAL MILES: "
- S DIR("?")="Type a Number between 0 and 10000, 0 Decimal Digits"
- S DIR(0)="NA^1:99999:1"
+ S DIR("?")="Type a Number between 1 and 10000, 0 Decimal Digits" ;dbe patch DGBT*1*25
+ S DIR(0)="NA^1:10000:0" ;dbe patch DGBT*1*25 - reduced mileage maximum to 10,000 from 99,999
  S TOTALMILES=$S($G(TOTALMILES)'="":TOTALMILES,$G(DGBTSP("TOTAL MILES")):$G(DGBTSP("TOTAL MILES")),1:"")
  I TOTALMILES'="" S DIR("B")=$S($G(TOTALMILES)'="":TOTALMILES,1:$G(DGBTSP("TOTAL MILES")))
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I ($D(DTOUT))!($D(DUOUT)) K DGBTSP S DGBTSP=0,SPCOMPLETE=0 Q

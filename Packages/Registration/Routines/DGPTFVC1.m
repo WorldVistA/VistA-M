@@ -1,6 +1,12 @@
-DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ;12/14/04 10:34am
- ;;5.3;Registration;**52,58,79,114,164,400,342,466,415,493,512,510,544,629,817,850**;Aug 13, 1993;Build 171
+DGPTFVC1 ;ALB/AS/ADL,HIOFO/FT - Expanded PTF Close-Out Edits ;10/21/14 2:33pm
+ ;;5.3;Registration;**52,58,79,114,164,400,342,466,415,493,512,510,544,629,817,850,884**;Aug 13, 1993;Build 31
  ;;ADL;Updated for CSV Project;;Mar 26, 2003
+ ;
+ ; XLFDT APIs - #10103
+ ; ICDEX APIs - #5747
+ ; ICDXCODE APIs - #5699
+ ; VADPT APIs - #10061
+ ;
  ;Called from Q+2^DGPTFTR. Variable must be passed in: PTF
  ;Variable returned: DGERR.   DGERR <-- 1 if record fails to pass a check; DGERR <-- "" if record passes all checks
  ;
@@ -17,8 +23,8 @@ DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ;12/14/04 10:34am
  N SYS,EFFDATE,IMPDATE,DGPTDAT
  D EFFDATE^DGPTIC10($G(PTF))
  S SYS=$$SYS^ICDEX("DIAG",EFFDATE)
- I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0,SYS=1 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"344.1",1:"344.0"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE=^(DGX,0),DGSCI="" D SCI
- I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0,SYS=30 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"G82.2",1:"G82.5"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE=^(DGX,0),DGSCI="" D SCI
+ I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0,SYS=1 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"344.1",1:"344.0"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE(0)=^(DGX,0),DGNODE=$$STR501^DGPTFUT(PTF,DGX),DGSCI="" D SCI
+ I $D(^DPT(DFN,57)),$P(^(57),"^",4)>0,SYS=30 S S0=$P(^(57),"^",4),DGDX=$S(S0=1!(S0=3):"G82.2",1:"G82.5"),DGSCI="" F DGX=0:0 S DGX=$O(^DGPT(PTF,"M",DGX)) Q:DGX'>0  S DGNODE(0)=^(DGX,0),DGNODE=$$STR501^DGPTFUT(PTF,DGX),DGSCI="" D SCI
  ;
  S DGDP="",DGDISPO=$P(DGV(701),"^",6),DGRECSUF=$P(DGV(701),"^",13)
  I DGRTY=1 D
@@ -47,9 +53,9 @@ DGPTFVC1 ;ALB/AS/ADL - Expanded PTF Close-Out Edits ;12/14/04 10:34am
 SCI ;
  N EFFDATE,IMPDATE
  D EFFDATE^DGPTIC10(PTF)
- F X=5:1:15 I X#10,$P(DGNODE,"^",X) S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DGNODE,"^",X),EFFDATE) D
+ F X=1:1:25 I $P(DGNODE,"^",X) S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DGNODE,"^",X),EFFDATE) D
  . I +DGPTTMP>0&($P(DGPTTMP,U,10)) S:$E($P(DGPTTMP,"^",2),1,5)=DGDX DGSCI=10 Q:DGSCI
- I 'DGSCI S DGERR=1,%=$P(DGNODE,"^",10),X=$TR($$FMTE^XLFDT(%,"5DF")," ","0") W !,"501 ",X," SCI of ",S0,?23," requires an ICD Diagnosis code beginning with",!?12," or equal to ",DGDX
+ I 'DGSCI S DGERR=1,%=$P(DGNODE(0),"^",10),X=$TR($$FMTE^XLFDT(%,"5DF")," ","0") W !,"501 ",X," SCI of ",S0,?23," requires an ICD Diagnosis code beginning with",!?12," or equal to ",DGDX
  Q
  ;
 MT S DGVMT=$P(DGV(101),"^",10),DGX=999 G DGX:DGVMT']"" I +$P(DGV(101),"^",2)<2860700!(DGSUFFIX="BU") S DGX="X" G DGX

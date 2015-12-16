@@ -1,5 +1,7 @@
-DGPTFM4 ;ALB/MTC/ADL - PTF ENTRY/EDIT-2 ;12/18/07 11:37am
- ;;5.3;Registration;**114,195,397,510,565,775,664,759,850**;Aug 13, 1993;Build 171
+DGPTFM4 ;ALB/MTC/ADL/PLT - PTF ENTRY/EDIT-2 ;12/18/07 11:37am
+ ;;5.3;Registration;**114,195,397,510,565,775,664,759,850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;;ADL;Update for CSV Project;;Mar 26, 2003
  ;
  S DGZM0=DGZM0+1
@@ -30,12 +32,17 @@ M S L=+$P(M1,U,10),Y=L D D^DGPTUTL W !! S Z=1 D Z W "Date of Move: " S Z=Y,Z1=20
  N EFFDATE,IMPDATE
  D EFFDATE^DGPTIC10(PTF)
  W !! S Z=2 D Z W "          DX: ",$$GETLABEL^DGPTIC10(EFFDATE,"D")
- F I=1:1:11 S L=$P(M1,U,I+4) I L'=""&(I'=6) D
- . S DGMPOA=$P(M82,U,$S(I<6:I,1:I-1))
+ ;F I=1:1:11 S L=$P(M1,U,I+4) I L'=""&(I'=6) D
+ D PTFICD^DGPTFUT(501,PTF,+M(DGZM0),.DGX501)
+ S I=0 F  S I=$O(DGX501(I)) QUIT:'I  S L=DGX501(I) D
+ . S DGMPOA=$P(L,U,2)
  . S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+L,EFFDATE)
  . D WRITECOD^DGPTIC10("DIAG",+L,EFFDATE,2,1,15)
- . I $P(DGPTTMP,U,20)=30,$G(DGMPOA)'="" W:$X>73 !,"            " W " (POA="_$G(DGMPOA)_")" W:$G(DGMPOA)="" " (POA='')"
+ . I $P(DGPTTMP,U,20)=30 W:$X>73 !,"            " W " (POA=",$S(DGMPOA]"":DGMPOA,1:"''"),")"
  . W $S(+DGPTTMP<1!('$P(DGPTTMP,U,10)):"*",1:"")
+ . I $Y>(IOSL-4) D PGBR W @IOF,HEAD,?72 S Z="<501-"_DGZM0_">" D Z^DGPTFM W !
+ . QUIT
+ K DGX501
  D PRN2^DGPTFM8:DG300]""
  ;
  I $P(M1,U,20) S DRG=$P(M1,U,20) W:DRG=998!(DRG=999)!((DRG=468!(DRG=469)!(DRG=470))&(+$P($G(M1),U,10)<3071001)) *7 W !!?14,"TRANSFER DRG: ",DRG D
@@ -46,30 +53,37 @@ JUMP K DG300 F I=$Y:1:21 W !
 X S DGNUM=$S($D(M(DGZM0+1)):501_"-"_(DGZM0+1),1:"MAS") G 501^DGPTFJC:DGST
  W "Enter <RET> to continue, 1-2 to edit,",!,"'M' ",$S(DGPTFE:" to add a patient movement",1:"to edit Treat. Specialty"),", '^N' for screen N, or '^' to abort:<",DGNUM,">// " R X:DTIME
  K DGNUM G Q:X="^",NEXM:X="",^DGPTFJ:X?1"^".E,M^DGPTFM1:X="M"!(X="m")
-X1 I X[1!(X[2) S DR="[DG501"_$E("F",DGPTFE),DR=DR_"]" D
- . S DGJUMP=X,DIE="^DGPT(",(DA,DGPTF)=PTF,DGMOV=+M(DGZM0) D ^DIE ;K M,DR,DIE D CHK501^DGPTSCAN K DGPTF,DGMOV
- . K DR,DA,DIE,DIC S DR="" X:(+M(DGZM0)=1) "S J=^DGPT(PTF,""M"",1,0) F I=11:1:15 I $P(J,U,I) S DR=DR_I_"";""" I DR'="" D
- .. S DGJUMP=X,DIE="^DGPT("_DGPTF_",""M"",",(DA(1),DGPTF)=PTF,(DA,DGMOV)=+M(DGZM0) D
- .. D ^DIE ;K M,DR,DIE D CHK501^DGPTSCAN K DGPTF,DGMOV
- . K M,DR,DIE D CHK501^DGPTSCAN K DGPTF,DGMOV
+X1 I X'=1,X'=2,X'="1-2" G PR
+ S DGCODSYS=$$CODESYS^DGPTIC10(PTF)
+ S DR=$S(DGPTFE:"[DG501F-10D]",1:"[DG501-10D]") I DGCODSYS="ICD9" S DR=$S(DGPTFE:"[DG501F]",1:"[DG501]")
+ S DGJUMP=X,DIE="^DGPT(",(DA,DGPTF)=PTF,DGMOV=+M(DGZM0) D ^DIE
+ I DR'["-10D" K DR,DA,DIE,DIC S DR="" X:(+M(DGZM0)=1) "S J=^DGPT(PTF,""M"",1,0) F I=11:1:15 I $P(J,U,I) S DR=DR_I_"";""" I DR'="" D
+ . S DGJUMP=X,DIE="^DGPT("_DGPTF_",""M"",",(DA(1),DGPTF)=PTF,(DA,DGMOV)=+M(DGZM0)
+ . D ^DIE
+ . QUIT
+ K M,DR,DIE D CHK501^DGPTSCAN K DGPTF,DGMOV
  ; Determine if NTR HISTORY (#28.11) filer is called if question for
  ;  'Treated for Head/Neck CA Condition:' is answered YES.
  ; Only a NTR screening status of 3=PENDING DIAGNOSIS gets Filed.
  I $P($G(M3),U,30)="Y",$P($G(DGNTARR("STAT")),U)=3 D
- .S DGNTARR=$$FILEHNC^DGNTAPI1(DFN)
+ . S DGNTARR=$$FILEHNC^DGNTAPI1(DFN)
+ . QUIT
  K DGNTARR
  ;- update MT indicator after edit movement
  N DGPMCA,DGPMAN D PM^DGPTUTL
  I '$G(DGADM) S DGADM=+^DGPT(PTF,0)
  D MT^DGPTUTL
  G EN
+ ;
 PR W !,"Enter '^' to stop the display and edit of data",!,"'^N' to jump to screen #N (appears in upper right of screen '<N>'",!,"<RET> to continue on to the next screen or 1-2 to edit:"
  W !?10,"1-",$S(DGPTFE:"Date of movement, Losing Specialty, ",1:""),"Leave and Pass days",!?10,"2-ICD DIAGNOSIS CODES"
  W !,"You may also enter 1-2",!
  R !!,"Enter <RET>: ",X:DTIME G WR
  Q
 NEXM S DGZM0=DGZM0+1 G ^DGPTFM:'$D(M(DGZM0)),EN
-ADD S DGZM0=$S($D(DGZM0):DGZM0+1,1:0) S L=$S($D(^DGPT(PTF,"M",0)):^(0),1:"^45.02DA^^"),L1=$P(L,U,3) F I=1:1 Q:'$D(^DGPT(PTF,"M",L1+I))
+ ;
+ADD ;add movement record of fee basis patent
+ S DGZM0=$S($D(DGZM0):DGZM0+1,1:0) S L=$S($D(^DGPT(PTF,"M",0)):^(0),1:"^45.02DA^^"),L1=$P(L,U,3) F I=1:1 Q:'$D(^DGPT(PTF,"M",L1+I))
  S DA(1)=PTF,DIC="^DGPT("_DA(1)_",""M"",",X=L1+I,DIC(0)="LMZQE" D ^DIC K DIC,DIE G ^DGPTFM:Y'>0
  S M(DGZM0)=L1+I S X="1-2" G X1
  Q
@@ -94,3 +108,6 @@ ASKPRO W !!,"Delete procedure record <",$P(DGPNUM,",",2,99),"> : " R DGPROC:DTIM
  K DIK,DA,DGPROC,DGPNUM G ^DGPTFM
 NOPROC W !!,*7,"No procedures to delete",! H 3 G ^DGPTFM
  Q
+ ;
+PGBR N DIR,X,Y S DIR(0)="E",DIR("A")="Enter RETURN to continue" D ^DIR QUIT
+ ;

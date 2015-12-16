@@ -1,136 +1,128 @@
-IBDEI1XE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34196,0)
- ;;=I42.0^^192^1990^53
- ;;^UTILITY(U,$J,358.3,34196,1,0)
+ ;;^UTILITY(U,$J,358.3,33836,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,33836,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,33837,0)
+ ;;=W18.42XD^^182^2011^106
+ ;;^UTILITY(U,$J,358.3,33837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34196,1,3,0)
- ;;=3^Dilated Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,34196,1,4,0)
- ;;=4^I42.0
- ;;^UTILITY(U,$J,358.3,34196,2)
- ;;=^5007194
- ;;^UTILITY(U,$J,358.3,34197,0)
- ;;=I10.^^192^1990^54
- ;;^UTILITY(U,$J,358.3,34197,1,0)
+ ;;^UTILITY(U,$J,358.3,33837,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33837,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,33837,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,33838,0)
+ ;;=W18.43XA^^182^2011^99
+ ;;^UTILITY(U,$J,358.3,33838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34197,1,3,0)
- ;;=3^Essential Hypertension
- ;;^UTILITY(U,$J,358.3,34197,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,34197,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,34198,0)
- ;;=I50.9^^192^1990^55
- ;;^UTILITY(U,$J,358.3,34198,1,0)
+ ;;^UTILITY(U,$J,358.3,33838,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33838,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,33838,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,33839,0)
+ ;;=W18.43XD^^182^2011^100
+ ;;^UTILITY(U,$J,358.3,33839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34198,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,34198,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,34198,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,34199,0)
- ;;=I35.1^^192^1990^60
- ;;^UTILITY(U,$J,358.3,34199,1,0)
+ ;;^UTILITY(U,$J,358.3,33839,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33839,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,33839,2)
+ ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,33840,0)
+ ;;=W18.49XA^^182^2011^107
+ ;;^UTILITY(U,$J,358.3,33840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34199,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,34199,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,34199,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,34200,0)
- ;;=I35.0^^192^1990^61
- ;;^UTILITY(U,$J,358.3,34200,1,0)
+ ;;^UTILITY(U,$J,358.3,33840,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33840,1,4,0)
+ ;;=4^W18.49XA
+ ;;^UTILITY(U,$J,358.3,33840,2)
+ ;;=^5059830
+ ;;^UTILITY(U,$J,358.3,33841,0)
+ ;;=W18.49XD^^182^2011^108
+ ;;^UTILITY(U,$J,358.3,33841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34200,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,34200,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,34200,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,34201,0)
- ;;=I35.2^^192^1990^62
- ;;^UTILITY(U,$J,358.3,34201,1,0)
+ ;;^UTILITY(U,$J,358.3,33841,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33841,1,4,0)
+ ;;=4^W18.49XD
+ ;;^UTILITY(U,$J,358.3,33841,2)
+ ;;=^5059831
+ ;;^UTILITY(U,$J,358.3,33842,0)
+ ;;=W19.XXXA^^182^2011^85
+ ;;^UTILITY(U,$J,358.3,33842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34201,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,34201,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,34201,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,34202,0)
- ;;=I35.9^^192^1990^58
- ;;^UTILITY(U,$J,358.3,34202,1,0)
+ ;;^UTILITY(U,$J,358.3,33842,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33842,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,33842,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,33843,0)
+ ;;=W19.XXXD^^182^2011^86
+ ;;^UTILITY(U,$J,358.3,33843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34202,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,34202,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,34202,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,34203,0)
- ;;=I21.4^^192^1990^57
- ;;^UTILITY(U,$J,358.3,34203,1,0)
+ ;;^UTILITY(U,$J,358.3,33843,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33843,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,33843,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,33844,0)
+ ;;=W54.0XXA^^182^2011^11
+ ;;^UTILITY(U,$J,358.3,33844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34203,1,3,0)
- ;;=3^NSTEMI Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,34203,1,4,0)
- ;;=4^I21.4
- ;;^UTILITY(U,$J,358.3,34203,2)
- ;;=^5007088
- ;;^UTILITY(U,$J,358.3,34204,0)
- ;;=I42.8^^192^1990^46
- ;;^UTILITY(U,$J,358.3,34204,1,0)
+ ;;^UTILITY(U,$J,358.3,33844,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33844,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,33844,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,33845,0)
+ ;;=W54.0XXD^^182^2011^12
+ ;;^UTILITY(U,$J,358.3,33845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34204,1,3,0)
- ;;=3^Cardiomypathies NEC
- ;;^UTILITY(U,$J,358.3,34204,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,34204,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,34205,0)
- ;;=I20.8^^192^1990^7
- ;;^UTILITY(U,$J,358.3,34205,1,0)
+ ;;^UTILITY(U,$J,358.3,33845,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33845,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,33845,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,33846,0)
+ ;;=W55.01XA^^182^2011^9
+ ;;^UTILITY(U,$J,358.3,33846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34205,1,3,0)
- ;;=3^Angina Pectoris NEC
- ;;^UTILITY(U,$J,358.3,34205,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,34205,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,34206,0)
- ;;=I42.2^^192^1990^56
- ;;^UTILITY(U,$J,358.3,34206,1,0)
+ ;;^UTILITY(U,$J,358.3,33846,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33846,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,33846,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,33847,0)
+ ;;=W55.01XD^^182^2011^10
+ ;;^UTILITY(U,$J,358.3,33847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34206,1,3,0)
- ;;=3^Hypertrophic Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,34206,1,4,0)
- ;;=4^I42.2
- ;;^UTILITY(U,$J,358.3,34206,2)
- ;;=^340521
- ;;^UTILITY(U,$J,358.3,34207,0)
- ;;=I35.8^^192^1990^59
- ;;^UTILITY(U,$J,358.3,34207,1,0)
+ ;;^UTILITY(U,$J,358.3,33847,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33847,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,33847,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,33848,0)
+ ;;=W55.03XA^^182^2011^97
+ ;;^UTILITY(U,$J,358.3,33848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34207,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders NEC
- ;;^UTILITY(U,$J,358.3,34207,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,34207,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,34208,0)
- ;;=I42.5^^192^1990^65
- ;;^UTILITY(U,$J,358.3,34208,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34208,1,3,0)
- ;;=3^Restrictive Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,34208,1,4,0)
- ;;=4^I42.5
- ;;^UTILITY(U,$J,358.3,34208,2)
- ;;=^5007196
- ;;^UTILITY(U,$J,358.3,34209,0)
- ;;=I05.8^^192^1990^69
+ ;;^UTILITY(U,$J,358.3,33848,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33848,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,33848,2)
+ ;;=^5060268

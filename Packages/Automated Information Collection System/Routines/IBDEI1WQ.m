@@ -1,128 +1,126 @@
-IBDEI1WQ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WQ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33891,1,3,0)
- ;;=3^Tendinitis,Achilles,Left Leg
- ;;^UTILITY(U,$J,358.3,33891,1,4,0)
- ;;=4^M76.62
- ;;^UTILITY(U,$J,358.3,33891,2)
- ;;=^5013286
- ;;^UTILITY(U,$J,358.3,33892,0)
- ;;=M76.61^^191^1979^5
- ;;^UTILITY(U,$J,358.3,33892,1,0)
+ ;;^UTILITY(U,$J,358.3,33537,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,33537,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,33538,0)
+ ;;=R97.8^^182^2004^20
+ ;;^UTILITY(U,$J,358.3,33538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33892,1,3,0)
- ;;=3^Tendinitis,Achilles,Right Leg
- ;;^UTILITY(U,$J,358.3,33892,1,4,0)
- ;;=4^M76.61
- ;;^UTILITY(U,$J,358.3,33892,2)
- ;;=^5013285
- ;;^UTILITY(U,$J,358.3,33893,0)
- ;;=A52.11^^191^1979^1
- ;;^UTILITY(U,$J,358.3,33893,1,0)
+ ;;^UTILITY(U,$J,358.3,33538,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,33538,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,33538,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,33539,0)
+ ;;=S43.51XA^^182^2005^12
+ ;;^UTILITY(U,$J,358.3,33539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33893,1,3,0)
- ;;=3^Tabes Dorsalis
- ;;^UTILITY(U,$J,358.3,33893,1,4,0)
- ;;=4^A52.11
- ;;^UTILITY(U,$J,358.3,33893,2)
- ;;=^117008
- ;;^UTILITY(U,$J,358.3,33894,0)
- ;;=B35.1^^191^1979^8
- ;;^UTILITY(U,$J,358.3,33894,1,0)
+ ;;^UTILITY(U,$J,358.3,33539,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,33539,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,33539,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,33540,0)
+ ;;=S43.52XA^^182^2005^1
+ ;;^UTILITY(U,$J,358.3,33540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33894,1,3,0)
- ;;=3^Tinea Unguium
- ;;^UTILITY(U,$J,358.3,33894,1,4,0)
- ;;=4^B35.1
- ;;^UTILITY(U,$J,358.3,33894,2)
- ;;=^119748
- ;;^UTILITY(U,$J,358.3,33895,0)
- ;;=L97.212^^191^1980^27
- ;;^UTILITY(U,$J,358.3,33895,1,0)
+ ;;^UTILITY(U,$J,358.3,33540,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,33540,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,33540,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,33541,0)
+ ;;=S43.421A^^182^2005^17
+ ;;^UTILITY(U,$J,358.3,33541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33895,1,3,0)
- ;;=3^Non-pressure chron ulcer rt calf w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,33895,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,33895,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,33896,0)
- ;;=L97.213^^191^1980^28
- ;;^UTILITY(U,$J,358.3,33896,1,0)
+ ;;^UTILITY(U,$J,358.3,33541,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,33541,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,33541,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,33542,0)
+ ;;=S43.422A^^182^2005^6
+ ;;^UTILITY(U,$J,358.3,33542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33896,1,3,0)
- ;;=3^Non-pressure chron ulcer rt calf w/ necrosis of muscle
- ;;^UTILITY(U,$J,358.3,33896,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,33896,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,33897,0)
- ;;=L97.211^^191^1980^26
- ;;^UTILITY(U,$J,358.3,33897,1,0)
+ ;;^UTILITY(U,$J,358.3,33542,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,33542,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,33542,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,33543,0)
+ ;;=S53.401A^^182^2005^14
+ ;;^UTILITY(U,$J,358.3,33543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33897,1,3,0)
- ;;=3^Non-pressure chron ulcer rt calf limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,33897,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,33897,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,33898,0)
- ;;=L97.214^^191^1980^29
- ;;^UTILITY(U,$J,358.3,33898,1,0)
+ ;;^UTILITY(U,$J,358.3,33543,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,33543,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,33543,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,33544,0)
+ ;;=S53.402A^^182^2005^3
+ ;;^UTILITY(U,$J,358.3,33544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33898,1,3,0)
- ;;=3^Non-pressure chron ulcer rt calf w/ necrosis of bone
- ;;^UTILITY(U,$J,358.3,33898,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,33898,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,33899,0)
- ;;=L97.219^^191^1980^30
- ;;^UTILITY(U,$J,358.3,33899,1,0)
+ ;;^UTILITY(U,$J,358.3,33544,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,33544,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,33544,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,33545,0)
+ ;;=S56.011A^^182^2005^55
+ ;;^UTILITY(U,$J,358.3,33545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33899,1,3,0)
- ;;=3^Non-pressure chron ulcer rt calf w/ unsp severity
- ;;^UTILITY(U,$J,358.3,33899,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,33899,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,33900,0)
- ;;=L97.229^^191^1980^10
- ;;^UTILITY(U,$J,358.3,33900,1,0)
+ ;;^UTILITY(U,$J,358.3,33545,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,33545,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,33545,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,33546,0)
+ ;;=S56.012A^^182^2005^36
+ ;;^UTILITY(U,$J,358.3,33546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33900,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf w/ unsp severity
- ;;^UTILITY(U,$J,358.3,33900,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,33900,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,33901,0)
- ;;=L97.224^^191^1980^8
- ;;^UTILITY(U,$J,358.3,33901,1,0)
+ ;;^UTILITY(U,$J,358.3,33546,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,33546,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,33546,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,33547,0)
+ ;;=S56.111A^^182^2005^43
+ ;;^UTILITY(U,$J,358.3,33547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33901,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf w/ necrosis of bone
- ;;^UTILITY(U,$J,358.3,33901,1,4,0)
- ;;=4^L97.224
- ;;^UTILITY(U,$J,358.3,33901,2)
- ;;=^5009508
- ;;^UTILITY(U,$J,358.3,33902,0)
- ;;=L97.221^^191^1980^6
- ;;^UTILITY(U,$J,358.3,33902,1,0)
+ ;;^UTILITY(U,$J,358.3,33547,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,33547,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,33547,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,33548,0)
+ ;;=S56.112A^^182^2005^23
+ ;;^UTILITY(U,$J,358.3,33548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33902,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,33902,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,33902,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,33903,0)
- ;;=L97.222^^191^1980^7
- ;;^UTILITY(U,$J,358.3,33903,1,0)
+ ;;^UTILITY(U,$J,358.3,33548,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,33548,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,33548,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,33549,0)
+ ;;=S56.113A^^182^2005^51
+ ;;^UTILITY(U,$J,358.3,33549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33903,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,33903,1,4,0)
- ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,33549,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,33549,1,4,0)
+ ;;=4^S56.113A

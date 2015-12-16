@@ -1,5 +1,5 @@
-DGENA5 ;ISA/Zoltan,ALB/CKN - Enrollment API - CD Processing ;8/15/08 11:10am
- ;;5.3;Registration;**232,688,850**;Aug 13, 1993;Build 171
+DGENA5 ;ISA/Zoltan,ALB/CKN,TEJ - Enrollment API - CD Processing ;8/15/08 11:10am
+ ;;5.3;Registration;**232,688,850,894**;Aug 13, 1993;Build 48
  ;Phase II API's Related to Catastrophic Disability.
  ;
  ; The following variable names are used consistently in this routine:
@@ -138,6 +138,11 @@ HL7TORSN(HL7VAL,D2) ; Return REASON IEN for a HL7 Transmission Value.
  E  S HL7VAL=$P(HL7VAL,D2)
  Q:HL7VAL="" 0
  Q +$O(^DGEN(27.17,"C",HL7VAL,""))
+ ; * check the new DESCRIPTOR seq  -  DG*5.3*894
+HL7TODSC(HL7VAL,D2) ; Return DESCRIPTOR IEN for a HL7 Transmission Value.
+ ; This function returns the IEN or 0 if there is none.
+ Q:HL7VAL="" 0
+ Q +$O(^DGEN(27.17,"C",HL7VAL,""))
 RSNTOHL7(REASON,D2) ; Return HL7 Segment Value for this Reason.
  Q:REASON="" 0
  S D2=$S(11[$D(D2):D2,11[$D(HLECH):$E(HLECH),1:"~")
@@ -161,6 +166,18 @@ RSNTOHL7(REASON,D2) ; Return HL7 Segment Value for this Reason.
  ;        result, if someone has tampered with the CATASTROPHIC
  ;        DISABILITY REASONS file (#27.17).  
  Q HL7VAL
+ ; * check the new DESCRIPTOR seq  -  DG*5.3*894
+DSCR2HL7(DGDFN,D2) ; Return HL7 Sequence Value for all Descriptors.
+ S DG2=DGDFN
+ S DGHLENCD="~|\&"
+ K DGTMP,DSCRTOHL7
+ M DGTMP=^DPT(DG2,.401)
+ I $D(DGTMP) S (I1,I2)=0 F  S I1=$O(DGTMP(I1)),I2=I2+1 Q:+I1=0  S DG2717=+DGTMP(I1,0),$P(DSCRTOHL7,$E(DGHLENCD,2),I2)=$$TOHL7()
+ Q $G(DSCRTOHL7,0)
+TOHL7() ;
+ I $P(^DGEN(27.17,DG2717,0),U,2)="DE" Q $P(^DGEN(27.17,DG2717,0),U,4)
+ Q -1
+ ;
 HLTOLIMB(HLVAL,D2) ; Convert HL7 transmission value to Limb code.
  ; HLVAL = HL7 text of "Affected Extremity" code.
  ; D2    = Secondary delimiter (for future expansion.)

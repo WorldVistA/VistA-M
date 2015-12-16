@@ -1,144 +1,132 @@
-IBDEI04L ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI04L ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1824,1,4,0)
- ;;=4^715.36
- ;;^UTILITY(U,$J,358.3,1824,2)
- ;;=^272155
- ;;^UTILITY(U,$J,358.3,1825,0)
- ;;=715.37^^17^160^35
- ;;^UTILITY(U,$J,358.3,1825,1,0)
+ ;;^UTILITY(U,$J,358.3,1622,0)
+ ;;=S33.5XXA^^3^45^104
+ ;;^UTILITY(U,$J,358.3,1622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1825,1,3,0)
- ;;=3^OA,localized,ankle/foot
- ;;^UTILITY(U,$J,358.3,1825,1,4,0)
- ;;=4^715.37
- ;;^UTILITY(U,$J,358.3,1825,2)
- ;;=^272156
- ;;^UTILITY(U,$J,358.3,1826,0)
- ;;=715.95^^17^160^45
- ;;^UTILITY(U,$J,358.3,1826,1,0)
+ ;;^UTILITY(U,$J,358.3,1622,1,3,0)
+ ;;=3^Sprain of ligaments of lumbar spine, initial encounter
+ ;;^UTILITY(U,$J,358.3,1622,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,1622,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,1623,0)
+ ;;=T14.90^^3^45^41
+ ;;^UTILITY(U,$J,358.3,1623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1826,1,3,0)
- ;;=3^Osteoarthros NOS-Hip
- ;;^UTILITY(U,$J,358.3,1826,1,4,0)
- ;;=4^715.95
- ;;^UTILITY(U,$J,358.3,1826,2)
- ;;=^272166
- ;;^UTILITY(U,$J,358.3,1827,0)
- ;;=716.96^^17^160^5
- ;;^UTILITY(U,$J,358.3,1827,1,0)
+ ;;^UTILITY(U,$J,358.3,1623,1,3,0)
+ ;;=3^Injury, unspecified
+ ;;^UTILITY(U,$J,358.3,1623,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,1623,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,1624,0)
+ ;;=Z96.60^^3^45^73
+ ;;^UTILITY(U,$J,358.3,1624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1827,1,3,0)
- ;;=3^Arthropathy,Knee
- ;;^UTILITY(U,$J,358.3,1827,1,4,0)
- ;;=4^716.96
- ;;^UTILITY(U,$J,358.3,1827,2)
- ;;=^272253
- ;;^UTILITY(U,$J,358.3,1828,0)
- ;;=716.97^^17^160^4
- ;;^UTILITY(U,$J,358.3,1828,1,0)
+ ;;^UTILITY(U,$J,358.3,1624,1,3,0)
+ ;;=3^Presence of unspecified orthopedic joint implant
+ ;;^UTILITY(U,$J,358.3,1624,1,4,0)
+ ;;=4^Z96.60
+ ;;^UTILITY(U,$J,358.3,1624,2)
+ ;;=^5063691
+ ;;^UTILITY(U,$J,358.3,1625,0)
+ ;;=Z89.511^^3^45^4
+ ;;^UTILITY(U,$J,358.3,1625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1828,1,3,0)
- ;;=3^Arthropathy,Foot/Ankle
- ;;^UTILITY(U,$J,358.3,1828,1,4,0)
- ;;=4^716.97
- ;;^UTILITY(U,$J,358.3,1828,2)
- ;;=^272254
- ;;^UTILITY(U,$J,358.3,1829,0)
- ;;=719.01^^17^160^22
- ;;^UTILITY(U,$J,358.3,1829,1,0)
+ ;;^UTILITY(U,$J,358.3,1625,1,3,0)
+ ;;=3^Acquired absence of right leg below knee
+ ;;^UTILITY(U,$J,358.3,1625,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,1625,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,1626,0)
+ ;;=Z89.512^^3^45^2
+ ;;^UTILITY(U,$J,358.3,1626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1829,1,3,0)
- ;;=3^Joint Effusion,Shoulder
- ;;^UTILITY(U,$J,358.3,1829,1,4,0)
- ;;=4^719.01
- ;;^UTILITY(U,$J,358.3,1829,2)
- ;;=^272359
- ;;^UTILITY(U,$J,358.3,1830,0)
- ;;=719.02^^17^160^23
- ;;^UTILITY(U,$J,358.3,1830,1,0)
+ ;;^UTILITY(U,$J,358.3,1626,1,3,0)
+ ;;=3^Acquired absence of left leg below knee
+ ;;^UTILITY(U,$J,358.3,1626,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,1626,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,1627,0)
+ ;;=Z89.611^^3^45^3
+ ;;^UTILITY(U,$J,358.3,1627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1830,1,3,0)
- ;;=3^Joint Effusion,Upper Arm
- ;;^UTILITY(U,$J,358.3,1830,1,4,0)
- ;;=4^719.02
- ;;^UTILITY(U,$J,358.3,1830,2)
- ;;=^272361
- ;;^UTILITY(U,$J,358.3,1831,0)
- ;;=719.03^^17^160^17
- ;;^UTILITY(U,$J,358.3,1831,1,0)
+ ;;^UTILITY(U,$J,358.3,1627,1,3,0)
+ ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,1627,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,1627,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,1628,0)
+ ;;=Z89.612^^3^45^1
+ ;;^UTILITY(U,$J,358.3,1628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1831,1,3,0)
- ;;=3^Joint Effusion,Forearm
- ;;^UTILITY(U,$J,358.3,1831,1,4,0)
- ;;=4^719.03
- ;;^UTILITY(U,$J,358.3,1831,2)
- ;;=^272362
- ;;^UTILITY(U,$J,358.3,1832,0)
- ;;=719.04^^17^160^18
- ;;^UTILITY(U,$J,358.3,1832,1,0)
+ ;;^UTILITY(U,$J,358.3,1628,1,3,0)
+ ;;=3^Acquired absence of left leg above knee
+ ;;^UTILITY(U,$J,358.3,1628,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,1628,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,1629,0)
+ ;;=S83.200A^^3^45^12
+ ;;^UTILITY(U,$J,358.3,1629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1832,1,3,0)
- ;;=3^Joint Effusion,Hand
- ;;^UTILITY(U,$J,358.3,1832,1,4,0)
- ;;=4^719.04
- ;;^UTILITY(U,$J,358.3,1832,2)
- ;;=^272363
- ;;^UTILITY(U,$J,358.3,1833,0)
- ;;=719.05^^17^160^19
- ;;^UTILITY(U,$J,358.3,1833,1,0)
+ ;;^UTILITY(U,$J,358.3,1629,1,3,0)
+ ;;=3^Bucket-hndl tear of unsp mensc, current injury, r knee, init
+ ;;^UTILITY(U,$J,358.3,1629,1,4,0)
+ ;;=4^S83.200A
+ ;;^UTILITY(U,$J,358.3,1629,2)
+ ;;=^5043025
+ ;;^UTILITY(U,$J,358.3,1630,0)
+ ;;=E11.40^^3^46^24
+ ;;^UTILITY(U,$J,358.3,1630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1833,1,3,0)
- ;;=3^Joint Effusion,Hip
- ;;^UTILITY(U,$J,358.3,1833,1,4,0)
- ;;=4^719.05
- ;;^UTILITY(U,$J,358.3,1833,2)
- ;;=^272364
- ;;^UTILITY(U,$J,358.3,1834,0)
- ;;=719.06^^17^160^20
- ;;^UTILITY(U,$J,358.3,1834,1,0)
+ ;;^UTILITY(U,$J,358.3,1630,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,1630,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,1630,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,1631,0)
+ ;;=F01.50^^3^46^66
+ ;;^UTILITY(U,$J,358.3,1631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1834,1,3,0)
- ;;=3^Joint Effusion,Knee
- ;;^UTILITY(U,$J,358.3,1834,1,4,0)
- ;;=4^719.06
- ;;^UTILITY(U,$J,358.3,1834,2)
- ;;=^272365
- ;;^UTILITY(U,$J,358.3,1835,0)
- ;;=719.07^^17^160^16
- ;;^UTILITY(U,$J,358.3,1835,1,0)
+ ;;^UTILITY(U,$J,358.3,1631,1,3,0)
+ ;;=3^Vascular dementia without behavioral disturbance
+ ;;^UTILITY(U,$J,358.3,1631,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,1631,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,1632,0)
+ ;;=F10.27^^3^46^6
+ ;;^UTILITY(U,$J,358.3,1632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1835,1,3,0)
- ;;=3^Joint Effusion,Ankle
- ;;^UTILITY(U,$J,358.3,1835,1,4,0)
- ;;=4^719.07
- ;;^UTILITY(U,$J,358.3,1835,2)
- ;;=^272366
- ;;^UTILITY(U,$J,358.3,1836,0)
- ;;=719.08^^17^160^21
- ;;^UTILITY(U,$J,358.3,1836,1,0)
+ ;;^UTILITY(U,$J,358.3,1632,1,3,0)
+ ;;=3^Alcohol dependence with alcohol-induced persisting dementia
+ ;;^UTILITY(U,$J,358.3,1632,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,1632,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,1633,0)
+ ;;=G44.209^^3^46^62
+ ;;^UTILITY(U,$J,358.3,1633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1836,1,3,0)
- ;;=3^Joint Effusion,Oth Spec Sites
- ;;^UTILITY(U,$J,358.3,1836,1,4,0)
- ;;=4^719.08
- ;;^UTILITY(U,$J,358.3,1836,2)
- ;;=^272367
- ;;^UTILITY(U,$J,358.3,1837,0)
- ;;=715.38^^17^160^34
- ;;^UTILITY(U,$J,358.3,1837,1,0)
+ ;;^UTILITY(U,$J,358.3,1633,1,3,0)
+ ;;=3^Tension-type headache, unspecified, not intractable
+ ;;^UTILITY(U,$J,358.3,1633,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,1633,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,1634,0)
+ ;;=G30.9^^3^46^7
+ ;;^UTILITY(U,$J,358.3,1634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1837,1,3,0)
- ;;=3^OA,localized,Oth Spec Sites
- ;;^UTILITY(U,$J,358.3,1837,1,4,0)
- ;;=4^715.38
- ;;^UTILITY(U,$J,358.3,1837,2)
- ;;=^272157
- ;;^UTILITY(U,$J,358.3,1838,0)
- ;;=715.92^^17^160^49
- ;;^UTILITY(U,$J,358.3,1838,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1838,1,3,0)
- ;;=3^Osteoarthros NOS-Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,1634,1,3,0)
+ ;;=3^Alzheimer's disease, unspecified
+ ;;^UTILITY(U,$J,358.3,1634,1,4,0)
+ ;;=4^G30.9

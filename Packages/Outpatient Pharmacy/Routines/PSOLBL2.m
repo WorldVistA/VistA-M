@@ -1,5 +1,5 @@
 PSOLBL2 ;BIR/SAB-LABEL OUTPUT CONT. ;11/18/92 19:15
- ;;7.0;OUTPATIENT PHARMACY;**16,19,30,71,92,117,135,326,367,383**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**16,19,30,71,92,117,135,326,367,383,282**;DEC 1997;Build 18
  ;External reference to ^PS(51 supported by DBIA 2224
  ;External reference to ^PS(54 supported by DBIA 2227
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -11,7 +11,8 @@ PSOLBL2 ;BIR/SAB-LABEL OUTPUT CONT. ;11/18/92 19:15
 QUIT K SIG,E,F,S Q
 SIG K OT S SGY="" F P=1:1:$L(SIG," ") S X=$P(SIG," ",P) D:X]""
  .I $D(^PS(51,"A",X)) D
- ..I $P($G(^PS(55,DFN,"LAN")),"^") S OT=$O(^PS(51,"B",X,0)) I OT,$P($G(^PS(51,OT,4)),"^")]"" S X=$P(^PS(51,OT,4),"^") K OT Q
+ ..;PSO*7*282 Intended use
+ ..I $P($G(^PS(55,DFN,"LAN")),"^") S OT=$O(^PS(51,"B",X,0)) I OT,$P($G(^PS(51,OT,0)),"^",4)<2,$P($G(^PS(51,OT,4)),"^")]"" S X=$P(^PS(51,OT,4),"^") K OT Q
  ..S %=^PS(51,"A",X),X=$P(%,"^") I $P(%,"^",2)]"" S Y=$P(SIG," ",P-1),Y=$E(Y,$L(Y)) S:Y>1 X=$P(%,"^",2)
  .S SGY=SGY_X_" "
  S X="",SGC=1 F J=1:1 S Z=$P(SGY," ",J) S:Z="" SGY(SGC)=X Q:Z=""  S:$L(X)+$L(Z)'<$S($P(PSOPAR,"^",28):46,1:34) SGY(SGC)=X,SGC=SGC+1,X="" S X=X_Z_" "

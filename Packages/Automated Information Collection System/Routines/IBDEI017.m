@@ -1,144 +1,136 @@
-IBDEI017 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI017 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
  ;;^UTILITY(U,$J,358.3)
  ;;=^IBE(358.3,
  ;;^UTILITY(U,$J,358.3,0)
- ;;=IMP/EXP SELECTION^358.3I^34806^34806
+ ;;=IMP/EXP SELECTION^358.3I^35717^35717
  ;;^UTILITY(U,$J,358.3,1,0)
- ;;=H0001^^1^1^1^^^^1
+ ;;=S04.61XA^^1^1^4
  ;;^UTILITY(U,$J,358.3,1,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1,1,2,0)
- ;;=2^H0001
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1,1,3,0)
- ;;=3^Addictions Assessment
+ ;;=3^Injury of acoustic nerve, right side, initial encounter
+ ;;^UTILITY(U,$J,358.3,1,1,4,0)
+ ;;=4^S04.61XA
+ ;;^UTILITY(U,$J,358.3,1,2)
+ ;;=^5020540
  ;;^UTILITY(U,$J,358.3,2,0)
- ;;=H0002^^1^1^11^^^^1
+ ;;=S04.61XD^^1^1^5
  ;;^UTILITY(U,$J,358.3,2,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2,1,2,0)
- ;;=2^H0002
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2,1,3,0)
- ;;=3^Screen for Addictions Admit
+ ;;=3^Injury of acoustic nerve, right side, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,2,1,4,0)
+ ;;=4^S04.61XD
+ ;;^UTILITY(U,$J,358.3,2,2)
+ ;;=^5020541
  ;;^UTILITY(U,$J,358.3,3,0)
- ;;=H0004^^1^1^7
+ ;;=S04.61XS^^1^1^6
  ;;^UTILITY(U,$J,358.3,3,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3,1,2,0)
- ;;=2^H0004
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,3,1,3,0)
- ;;=3^Individual Counseling per 15 min
+ ;;=3^Injury of acoustic nerve, right side, sequela
+ ;;^UTILITY(U,$J,358.3,3,1,4,0)
+ ;;=4^S04.61XS
+ ;;^UTILITY(U,$J,358.3,3,2)
+ ;;=^5020542
  ;;^UTILITY(U,$J,358.3,4,0)
- ;;=H0005^^1^1^3^^^^1
+ ;;=S04.62XA^^1^1^1
  ;;^UTILITY(U,$J,358.3,4,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4,1,2,0)
- ;;=2^H0005
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4,1,3,0)
- ;;=3^Addictions Group
+ ;;=3^Injury of acoustic nerve, left side, initial encounter
+ ;;^UTILITY(U,$J,358.3,4,1,4,0)
+ ;;=4^S04.62XA
+ ;;^UTILITY(U,$J,358.3,4,2)
+ ;;=^5020543
  ;;^UTILITY(U,$J,358.3,5,0)
- ;;=H0020^^1^1^8^^^^1
+ ;;=S04.62XD^^1^1^3
  ;;^UTILITY(U,$J,358.3,5,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5,1,2,0)
- ;;=2^H0020
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,5,1,3,0)
- ;;=3^Methadone Administration
+ ;;=3^Injury of acoustic nerve, left side, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,5,1,4,0)
+ ;;=4^S04.62XD
+ ;;^UTILITY(U,$J,358.3,5,2)
+ ;;=^5020544
  ;;^UTILITY(U,$J,358.3,6,0)
- ;;=H0030^^1^1^4^^^^1
+ ;;=S04.62XS^^1^1^2
  ;;^UTILITY(U,$J,358.3,6,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6,1,2,0)
- ;;=2^H0030
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,6,1,3,0)
- ;;=3^Addictions Phone Services
+ ;;=3^Injury of acoustic nerve, left side, sequela
+ ;;^UTILITY(U,$J,358.3,6,1,4,0)
+ ;;=4^S04.62XS
+ ;;^UTILITY(U,$J,358.3,6,2)
+ ;;=^5020545
  ;;^UTILITY(U,$J,358.3,7,0)
- ;;=H0025^^1^1^2^^^^1
+ ;;=S04.9XXA^^1^1^7
  ;;^UTILITY(U,$J,358.3,7,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7,1,2,0)
- ;;=2^H0025
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,7,1,3,0)
- ;;=3^Addictions Education Service
+ ;;=3^Injury of unspecified cranial nerve, initial encounter
+ ;;^UTILITY(U,$J,358.3,7,1,4,0)
+ ;;=4^S04.9XXA
+ ;;^UTILITY(U,$J,358.3,7,2)
+ ;;=^5020573
  ;;^UTILITY(U,$J,358.3,8,0)
- ;;=H0046^^1^1^9^^^^1
+ ;;=S04.9XXD^^1^1^9
  ;;^UTILITY(U,$J,358.3,8,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8,1,2,0)
- ;;=2^H0046
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8,1,3,0)
- ;;=3^PTSD Group
+ ;;=3^Injury of unspecified cranial nerve, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,8,1,4,0)
+ ;;=4^S04.9XXD
+ ;;^UTILITY(U,$J,358.3,8,2)
+ ;;=^5020574
  ;;^UTILITY(U,$J,358.3,9,0)
- ;;=H0003^^1^1^6^^^^1
+ ;;=S04.9XXS^^1^1^8
  ;;^UTILITY(U,$J,358.3,9,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9,1,2,0)
- ;;=2^H0003
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,9,1,3,0)
- ;;=3^Alcohol/Drug Scrn;lab analysis
+ ;;=3^Injury of unspecified cranial nerve, sequela
+ ;;^UTILITY(U,$J,358.3,9,1,4,0)
+ ;;=4^S04.9XXS
+ ;;^UTILITY(U,$J,358.3,9,2)
+ ;;=^5020575
  ;;^UTILITY(U,$J,358.3,10,0)
- ;;=H0006^^1^1^5^^^^1
+ ;;=H93.213^^1^2^5
  ;;^UTILITY(U,$J,358.3,10,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10,1,2,0)
- ;;=2^H0006
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10,1,3,0)
- ;;=3^Alcohol/Drug Case Management
+ ;;=3^Auditory recruitment, bilateral
+ ;;^UTILITY(U,$J,358.3,10,1,4,0)
+ ;;=4^H93.213
+ ;;^UTILITY(U,$J,358.3,10,2)
+ ;;=^5006970
  ;;^UTILITY(U,$J,358.3,11,0)
- ;;=H2027^^1^1^10^^^^1
+ ;;=H93.212^^1^2^6
  ;;^UTILITY(U,$J,358.3,11,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11,1,2,0)
- ;;=2^H2027
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11,1,3,0)
- ;;=3^Psychoeducational Svc,per 15min
+ ;;=3^Auditory recruitment, left ear
+ ;;^UTILITY(U,$J,358.3,11,1,4,0)
+ ;;=4^H93.212
+ ;;^UTILITY(U,$J,358.3,11,2)
+ ;;=^5006969
  ;;^UTILITY(U,$J,358.3,12,0)
- ;;=90791^^1^2^1^^^^1
+ ;;=H93.211^^1^2^7
  ;;^UTILITY(U,$J,358.3,12,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12,1,2,0)
- ;;=2^90791
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12,1,3,0)
- ;;=3^Psych Diagnostic Eval
+ ;;=3^Auditory recruitment, right ear
+ ;;^UTILITY(U,$J,358.3,12,1,4,0)
+ ;;=4^H93.211
+ ;;^UTILITY(U,$J,358.3,12,2)
+ ;;=^5006968
  ;;^UTILITY(U,$J,358.3,13,0)
- ;;=90792^^1^2^2^^^^1
+ ;;=H93.25^^1^2^8
  ;;^UTILITY(U,$J,358.3,13,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13,1,2,0)
- ;;=2^90792
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13,1,3,0)
- ;;=3^Psych Diag Eval w/ Med Svcs
- ;;^UTILITY(U,$J,358.3,14,0)
- ;;=90853^^1^3^13^^^^1
- ;;^UTILITY(U,$J,358.3,14,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14,1,2,0)
- ;;=2^90853
- ;;^UTILITY(U,$J,358.3,14,1,3,0)
- ;;=3^Group Psychotherapy
- ;;^UTILITY(U,$J,358.3,15,0)
- ;;=90846^^1^3^14^^^^1
- ;;^UTILITY(U,$J,358.3,15,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,15,1,2,0)
- ;;=2^90846
- ;;^UTILITY(U,$J,358.3,15,1,3,0)
- ;;=3^Family Psychotherapy w/o pt.
- ;;^UTILITY(U,$J,358.3,16,0)
- ;;=90847^^1^3^15^^^^1
- ;;^UTILITY(U,$J,358.3,16,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,16,1,3,0)
- ;;=3^Family Psychotherpy w/pt.
- ;;^UTILITY(U,$J,358.3,17,0)
- ;;=90875^^1^3^16^^^^1
- ;;^UTILITY(U,$J,358.3,17,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17,1,2,0)
- ;;=2^90875
- ;;^UTILITY(U,$J,358.3,17,1,3,0)
- ;;=3^Psych Thpy w/ Biofeedback 20-30min
+ ;;=3^Central auditory processing disorder
+ ;;^UTILITY(U,$J,358.3,13,1,4,0)
+ ;;=4^H93.25

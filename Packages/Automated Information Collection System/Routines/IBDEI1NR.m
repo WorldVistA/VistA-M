@@ -1,132 +1,120 @@
-IBDEI1NR ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1NR ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29806,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,29806,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,29807,0)
- ;;=K70.31^^189^1896^1
- ;;^UTILITY(U,$J,358.3,29807,1,0)
+ ;;^UTILITY(U,$J,358.3,29455,1,3,0)
+ ;;=3^Traum cereb edema w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,29455,1,4,0)
+ ;;=4^S06.1X6A
+ ;;^UTILITY(U,$J,358.3,29455,2)
+ ;;=^5020714
+ ;;^UTILITY(U,$J,358.3,29456,0)
+ ;;=S06.1X6D^^176^1883^42
+ ;;^UTILITY(U,$J,358.3,29456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29807,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,29807,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,29807,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,29808,0)
- ;;=K74.60^^189^1896^5
- ;;^UTILITY(U,$J,358.3,29808,1,0)
+ ;;^UTILITY(U,$J,358.3,29456,1,3,0)
+ ;;=3^Traum cereb edema w LOC >24 hr w/o ret consc w surv, subs
+ ;;^UTILITY(U,$J,358.3,29456,1,4,0)
+ ;;=4^S06.1X6D
+ ;;^UTILITY(U,$J,358.3,29456,2)
+ ;;=^5020715
+ ;;^UTILITY(U,$J,358.3,29457,0)
+ ;;=S06.1X6S^^176^1883^43
+ ;;^UTILITY(U,$J,358.3,29457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29808,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,29808,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,29808,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,29809,0)
- ;;=K74.69^^189^1896^4
- ;;^UTILITY(U,$J,358.3,29809,1,0)
+ ;;^UTILITY(U,$J,358.3,29457,1,3,0)
+ ;;=3^Traum cereb edema w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,29457,1,4,0)
+ ;;=4^S06.1X6S
+ ;;^UTILITY(U,$J,358.3,29457,2)
+ ;;=^5020716
+ ;;^UTILITY(U,$J,358.3,29458,0)
+ ;;=S06.1X7A^^176^1883^59
+ ;;^UTILITY(U,$J,358.3,29458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29809,1,3,0)
- ;;=3^Cirrhosis of Liver NEC
- ;;^UTILITY(U,$J,358.3,29809,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,29809,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,29810,0)
- ;;=K70.2^^189^1896^3
- ;;^UTILITY(U,$J,358.3,29810,1,0)
+ ;;^UTILITY(U,$J,358.3,29458,1,3,0)
+ ;;=3^Traum cereb edema w LOC w death d/t brain inj bf consc, init
+ ;;^UTILITY(U,$J,358.3,29458,1,4,0)
+ ;;=4^S06.1X7A
+ ;;^UTILITY(U,$J,358.3,29458,2)
+ ;;=^5020717
+ ;;^UTILITY(U,$J,358.3,29459,0)
+ ;;=S06.1X7D^^176^1883^60
+ ;;^UTILITY(U,$J,358.3,29459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29810,1,3,0)
- ;;=3^Alcoholic Fibrosis/Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,29810,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,29810,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,29811,0)
- ;;=K74.0^^189^1896^6
- ;;^UTILITY(U,$J,358.3,29811,1,0)
+ ;;^UTILITY(U,$J,358.3,29459,1,3,0)
+ ;;=3^Traum cereb edema w LOC w death d/t brain inj bf consc, subs
+ ;;^UTILITY(U,$J,358.3,29459,1,4,0)
+ ;;=4^S06.1X7D
+ ;;^UTILITY(U,$J,358.3,29459,2)
+ ;;=^5020718
+ ;;^UTILITY(U,$J,358.3,29460,0)
+ ;;=S06.1X7S^^176^1883^61
+ ;;^UTILITY(U,$J,358.3,29460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29811,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,29811,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,29811,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,29812,0)
- ;;=K52.2^^189^1897^1
- ;;^UTILITY(U,$J,358.3,29812,1,0)
+ ;;^UTILITY(U,$J,358.3,29460,1,3,0)
+ ;;=3^Traum cereb edema w LOC w death d/t brain inj bf consc, sqla
+ ;;^UTILITY(U,$J,358.3,29460,1,4,0)
+ ;;=4^S06.1X7S
+ ;;^UTILITY(U,$J,358.3,29460,2)
+ ;;=^5020719
+ ;;^UTILITY(U,$J,358.3,29461,0)
+ ;;=S06.1X8A^^176^1883^62
+ ;;^UTILITY(U,$J,358.3,29461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29812,1,3,0)
- ;;=3^Allergic/Dietetic Gastroenteritis/Colitis
- ;;^UTILITY(U,$J,358.3,29812,1,4,0)
- ;;=4^K52.2
- ;;^UTILITY(U,$J,358.3,29812,2)
- ;;=^5008701
- ;;^UTILITY(U,$J,358.3,29813,0)
- ;;=K52.89^^189^1897^2
- ;;^UTILITY(U,$J,358.3,29813,1,0)
+ ;;^UTILITY(U,$J,358.3,29461,1,3,0)
+ ;;=3^Traum cereb edema w LOC w death d/t oth cause bf consc, init
+ ;;^UTILITY(U,$J,358.3,29461,1,4,0)
+ ;;=4^S06.1X8A
+ ;;^UTILITY(U,$J,358.3,29461,2)
+ ;;=^5020720
+ ;;^UTILITY(U,$J,358.3,29462,0)
+ ;;=S06.1X8D^^176^1883^63
+ ;;^UTILITY(U,$J,358.3,29462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29813,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis NEC
- ;;^UTILITY(U,$J,358.3,29813,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,29813,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,29814,0)
- ;;=K51.90^^189^1897^9
- ;;^UTILITY(U,$J,358.3,29814,1,0)
+ ;;^UTILITY(U,$J,358.3,29462,1,3,0)
+ ;;=3^Traum cereb edema w LOC w death d/t oth cause bf consc, subs
+ ;;^UTILITY(U,$J,358.3,29462,1,4,0)
+ ;;=4^S06.1X8D
+ ;;^UTILITY(U,$J,358.3,29462,2)
+ ;;=^5020721
+ ;;^UTILITY(U,$J,358.3,29463,0)
+ ;;=S06.1X8S^^176^1883^64
+ ;;^UTILITY(U,$J,358.3,29463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29814,1,3,0)
- ;;=3^Ulcerative Colitis w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,29814,1,4,0)
- ;;=4^K51.90
- ;;^UTILITY(U,$J,358.3,29814,2)
- ;;=^5008694
- ;;^UTILITY(U,$J,358.3,29815,0)
- ;;=K51.919^^189^1897^8
- ;;^UTILITY(U,$J,358.3,29815,1,0)
+ ;;^UTILITY(U,$J,358.3,29463,1,3,0)
+ ;;=3^Traum cereb edema w LOC w death d/t oth cause bf consc, sqla
+ ;;^UTILITY(U,$J,358.3,29463,1,4,0)
+ ;;=4^S06.1X8S
+ ;;^UTILITY(U,$J,358.3,29463,2)
+ ;;=^5020722
+ ;;^UTILITY(U,$J,358.3,29464,0)
+ ;;=S06.1X9A^^176^1883^56
+ ;;^UTILITY(U,$J,358.3,29464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29815,1,3,0)
- ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,29815,1,4,0)
- ;;=4^K51.919
- ;;^UTILITY(U,$J,358.3,29815,2)
- ;;=^5008700
- ;;^UTILITY(U,$J,358.3,29816,0)
- ;;=K51.912^^189^1897^5
- ;;^UTILITY(U,$J,358.3,29816,1,0)
+ ;;^UTILITY(U,$J,358.3,29464,1,3,0)
+ ;;=3^Traum cereb edema w LOC of unsp duration, init
+ ;;^UTILITY(U,$J,358.3,29464,1,4,0)
+ ;;=4^S06.1X9A
+ ;;^UTILITY(U,$J,358.3,29464,2)
+ ;;=^5020723
+ ;;^UTILITY(U,$J,358.3,29465,0)
+ ;;=S06.1X9D^^176^1883^57
+ ;;^UTILITY(U,$J,358.3,29465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29816,1,3,0)
- ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,29816,1,4,0)
- ;;=4^K51.912
- ;;^UTILITY(U,$J,358.3,29816,2)
- ;;=^5008696
- ;;^UTILITY(U,$J,358.3,29817,0)
- ;;=K51.913^^189^1897^4
- ;;^UTILITY(U,$J,358.3,29817,1,0)
+ ;;^UTILITY(U,$J,358.3,29465,1,3,0)
+ ;;=3^Traum cereb edema w LOC of unsp duration, subs
+ ;;^UTILITY(U,$J,358.3,29465,1,4,0)
+ ;;=4^S06.1X9D
+ ;;^UTILITY(U,$J,358.3,29465,2)
+ ;;=^5020724
+ ;;^UTILITY(U,$J,358.3,29466,0)
+ ;;=S06.1X9S^^176^1883^58
+ ;;^UTILITY(U,$J,358.3,29466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29817,1,3,0)
- ;;=3^Ulcerative Colitis w/ Fistula,Unspec
- ;;^UTILITY(U,$J,358.3,29817,1,4,0)
- ;;=4^K51.913
- ;;^UTILITY(U,$J,358.3,29817,2)
- ;;=^5008697
- ;;^UTILITY(U,$J,358.3,29818,0)
- ;;=K51.914^^189^1897^3
- ;;^UTILITY(U,$J,358.3,29818,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29818,1,3,0)
- ;;=3^Ulcerative Colitis w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,29818,1,4,0)
- ;;=4^K51.914
- ;;^UTILITY(U,$J,358.3,29818,2)
- ;;=^5008698
- ;;^UTILITY(U,$J,358.3,29819,0)
- ;;=K51.918^^189^1897^6
- ;;^UTILITY(U,$J,358.3,29819,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29466,1,3,0)
+ ;;=3^Traum cereb edema w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,29466,1,4,0)
+ ;;=4^S06.1X9S
+ ;;^UTILITY(U,$J,358.3,29466,2)
+ ;;=^5020725

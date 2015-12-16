@@ -1,132 +1,134 @@
-IBDEI068 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI068 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2683,1,4,0)
- ;;=4^10180
- ;;^UTILITY(U,$J,358.3,2684,0)
- ;;=20600^^25^215^4^^^^1
- ;;^UTILITY(U,$J,358.3,2684,1,0)
+ ;;^UTILITY(U,$J,358.3,2390,1,3,0)
+ ;;=3^Infective otitis externa, right ear NEC
+ ;;^UTILITY(U,$J,358.3,2390,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,2390,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,2391,0)
+ ;;=H60.392^^5^71^30
+ ;;^UTILITY(U,$J,358.3,2391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2684,1,2,0)
- ;;=2^Aspir/inject bursa/small joint
- ;;^UTILITY(U,$J,358.3,2684,1,4,0)
- ;;=4^20600
- ;;^UTILITY(U,$J,358.3,2685,0)
- ;;=20605^^25^215^2^^^^1
- ;;^UTILITY(U,$J,358.3,2685,1,0)
+ ;;^UTILITY(U,$J,358.3,2391,1,3,0)
+ ;;=3^Infective otitis externa, left ear NEC
+ ;;^UTILITY(U,$J,358.3,2391,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,2391,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,2392,0)
+ ;;=H60.393^^5^71^29
+ ;;^UTILITY(U,$J,358.3,2392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2685,1,2,0)
- ;;=2^Aspir/inject bursa/intmed joint
- ;;^UTILITY(U,$J,358.3,2685,1,4,0)
- ;;=4^20605
- ;;^UTILITY(U,$J,358.3,2686,0)
- ;;=20610^^25^215^3^^^^1
- ;;^UTILITY(U,$J,358.3,2686,1,0)
+ ;;^UTILITY(U,$J,358.3,2392,1,3,0)
+ ;;=3^Infective otitis externa, bilateral NEC
+ ;;^UTILITY(U,$J,358.3,2392,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,2392,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,2393,0)
+ ;;=H62.41^^5^71^43
+ ;;^UTILITY(U,$J,358.3,2393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2686,1,2,0)
- ;;=2^Aspir/inject bursa/large joint
- ;;^UTILITY(U,$J,358.3,2686,1,4,0)
- ;;=4^20610
- ;;^UTILITY(U,$J,358.3,2687,0)
- ;;=10080^^25^215^9^^^^1
- ;;^UTILITY(U,$J,358.3,2687,1,0)
+ ;;^UTILITY(U,$J,358.3,2393,1,3,0)
+ ;;=3^Otitis externa in oth diseases classd elswhr, right ear
+ ;;^UTILITY(U,$J,358.3,2393,1,4,0)
+ ;;=4^H62.41
+ ;;^UTILITY(U,$J,358.3,2393,2)
+ ;;=^5006562
+ ;;^UTILITY(U,$J,358.3,2394,0)
+ ;;=H62.42^^5^71^44
+ ;;^UTILITY(U,$J,358.3,2394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2687,1,2,0)
- ;;=2^Drain pilonidal cyst, simple
- ;;^UTILITY(U,$J,358.3,2687,1,4,0)
- ;;=4^10080
- ;;^UTILITY(U,$J,358.3,2688,0)
- ;;=10081^^25^215^10^^^^1
- ;;^UTILITY(U,$J,358.3,2688,1,0)
+ ;;^UTILITY(U,$J,358.3,2394,1,3,0)
+ ;;=3^Otitis externa in oth diseases classd elswhr, left ear
+ ;;^UTILITY(U,$J,358.3,2394,1,4,0)
+ ;;=4^H62.42
+ ;;^UTILITY(U,$J,358.3,2394,2)
+ ;;=^5006563
+ ;;^UTILITY(U,$J,358.3,2395,0)
+ ;;=H62.43^^5^71^45
+ ;;^UTILITY(U,$J,358.3,2395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2688,1,2,0)
- ;;=2^Drain pilonidal cyst,complex
- ;;^UTILITY(U,$J,358.3,2688,1,4,0)
- ;;=4^10081
- ;;^UTILITY(U,$J,358.3,2689,0)
- ;;=10021^^25^215^13^^^^1
- ;;^UTILITY(U,$J,358.3,2689,1,0)
+ ;;^UTILITY(U,$J,358.3,2395,1,3,0)
+ ;;=3^Otitis externa in oth diseases classd elswhr, bilateral
+ ;;^UTILITY(U,$J,358.3,2395,1,4,0)
+ ;;=4^H62.43
+ ;;^UTILITY(U,$J,358.3,2395,2)
+ ;;=^5006564
+ ;;^UTILITY(U,$J,358.3,2396,0)
+ ;;=B36.9^^5^71^55
+ ;;^UTILITY(U,$J,358.3,2396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2689,1,2,0)
- ;;=2^FNA w/o Image
- ;;^UTILITY(U,$J,358.3,2689,1,4,0)
- ;;=4^10021
- ;;^UTILITY(U,$J,358.3,2690,0)
- ;;=10022^^25^215^12^^^^1
- ;;^UTILITY(U,$J,358.3,2690,1,0)
+ ;;^UTILITY(U,$J,358.3,2396,1,3,0)
+ ;;=3^Superficial mycosis, unspecified
+ ;;^UTILITY(U,$J,358.3,2396,1,4,0)
+ ;;=4^B36.9
+ ;;^UTILITY(U,$J,358.3,2396,2)
+ ;;=^5000611
+ ;;^UTILITY(U,$J,358.3,2397,0)
+ ;;=H60.21^^5^71^36
+ ;;^UTILITY(U,$J,358.3,2397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2690,1,2,0)
- ;;=2^FNA w/Image
- ;;^UTILITY(U,$J,358.3,2690,1,4,0)
- ;;=4^10022
- ;;^UTILITY(U,$J,358.3,2691,0)
- ;;=19020^^25^215^19^^^^1
- ;;^UTILITY(U,$J,358.3,2691,1,0)
+ ;;^UTILITY(U,$J,358.3,2397,1,3,0)
+ ;;=3^Malignant otitis externa, right ear
+ ;;^UTILITY(U,$J,358.3,2397,1,4,0)
+ ;;=4^H60.21
+ ;;^UTILITY(U,$J,358.3,2397,2)
+ ;;=^5006444
+ ;;^UTILITY(U,$J,358.3,2398,0)
+ ;;=H60.22^^5^71^35
+ ;;^UTILITY(U,$J,358.3,2398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2691,1,2,0)
- ;;=2^Mastotomy w/Explor/Drainage of Abscess Deep
- ;;^UTILITY(U,$J,358.3,2691,1,4,0)
- ;;=4^19020
- ;;^UTILITY(U,$J,358.3,2692,0)
- ;;=10030^^25^215^18^^^^1
- ;;^UTILITY(U,$J,358.3,2692,1,0)
+ ;;^UTILITY(U,$J,358.3,2398,1,3,0)
+ ;;=3^Malignant otitis externa, left ear
+ ;;^UTILITY(U,$J,358.3,2398,1,4,0)
+ ;;=4^H60.22
+ ;;^UTILITY(U,$J,358.3,2398,2)
+ ;;=^5006445
+ ;;^UTILITY(U,$J,358.3,2399,0)
+ ;;=H60.23^^5^71^34
+ ;;^UTILITY(U,$J,358.3,2399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2692,1,2,0)
- ;;=2^Image Guided Collect Cath Absc/Cyst
- ;;^UTILITY(U,$J,358.3,2692,1,4,0)
- ;;=4^10030
- ;;^UTILITY(U,$J,358.3,2693,0)
- ;;=17000^^25^216^7
- ;;^UTILITY(U,$J,358.3,2693,1,0)
+ ;;^UTILITY(U,$J,358.3,2399,1,3,0)
+ ;;=3^Malignant otitis externa, bilateral
+ ;;^UTILITY(U,$J,358.3,2399,1,4,0)
+ ;;=4^H60.23
+ ;;^UTILITY(U,$J,358.3,2399,2)
+ ;;=^5006446
+ ;;^UTILITY(U,$J,358.3,2400,0)
+ ;;=H60.511^^5^71^2
+ ;;^UTILITY(U,$J,358.3,2400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2693,1,2,0)
- ;;=2^Destroy Skin Lesion, first 
- ;;^UTILITY(U,$J,358.3,2693,1,4,0)
- ;;=4^17000
- ;;^UTILITY(U,$J,358.3,2694,0)
- ;;=11200^^25^216^1
- ;;^UTILITY(U,$J,358.3,2694,1,0)
+ ;;^UTILITY(U,$J,358.3,2400,1,3,0)
+ ;;=3^Acute actinic otitis externa, right ear
+ ;;^UTILITY(U,$J,358.3,2400,1,4,0)
+ ;;=4^H60.511
+ ;;^UTILITY(U,$J,358.3,2400,2)
+ ;;=^5006470
+ ;;^UTILITY(U,$J,358.3,2401,0)
+ ;;=H60.512^^5^71^1
+ ;;^UTILITY(U,$J,358.3,2401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2694,1,2,0)
- ;;=2^Destroy 1-15 Skin Tags, any method
- ;;^UTILITY(U,$J,358.3,2694,1,4,0)
- ;;=4^11200
- ;;^UTILITY(U,$J,358.3,2695,0)
- ;;=17003^^25^216^8^^^^1
- ;;^UTILITY(U,$J,358.3,2695,1,0)
+ ;;^UTILITY(U,$J,358.3,2401,1,3,0)
+ ;;=3^Acute actinic otitis externa, left ear
+ ;;^UTILITY(U,$J,358.3,2401,1,4,0)
+ ;;=4^H60.512
+ ;;^UTILITY(U,$J,358.3,2401,2)
+ ;;=^5006471
+ ;;^UTILITY(U,$J,358.3,2402,0)
+ ;;=H61.23^^5^71^26
+ ;;^UTILITY(U,$J,358.3,2402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2695,1,2,0)
- ;;=2^Each Addl Lesion 2-14 (use with 17000)
- ;;^UTILITY(U,$J,358.3,2695,1,4,0)
- ;;=4^17003
- ;;^UTILITY(U,$J,358.3,2696,0)
- ;;=17004^^25^216^9^^^^1
- ;;^UTILITY(U,$J,358.3,2696,1,0)
+ ;;^UTILITY(U,$J,358.3,2402,1,3,0)
+ ;;=3^Impacted cerumen, bilateral
+ ;;^UTILITY(U,$J,358.3,2402,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,2402,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,2403,0)
+ ;;=H61.21^^5^71^28
+ ;;^UTILITY(U,$J,358.3,2403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2696,1,2,0)
- ;;=2^Destroy 15+ Skin Lesions
- ;;^UTILITY(U,$J,358.3,2696,1,4,0)
- ;;=4^17004
- ;;^UTILITY(U,$J,358.3,2697,0)
- ;;=11770^^25^216^4^^^^1
- ;;^UTILITY(U,$J,358.3,2697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2697,1,2,0)
- ;;=2^Excise Pilonidal Cyst,Sinus,Simple
- ;;^UTILITY(U,$J,358.3,2697,1,4,0)
- ;;=4^11770
- ;;^UTILITY(U,$J,358.3,2698,0)
- ;;=11771^^25^216^5^^^^1
- ;;^UTILITY(U,$J,358.3,2698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2698,1,2,0)
- ;;=2^Excise Pilonidal Cyst,Sinus,Extensive
- ;;^UTILITY(U,$J,358.3,2698,1,4,0)
- ;;=4^11771
- ;;^UTILITY(U,$J,358.3,2699,0)
- ;;=11772^^25^216^6^^^^1
- ;;^UTILITY(U,$J,358.3,2699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2699,1,2,0)
- ;;=2^Excise Pilonidal Cyst,Sinus,Complicated

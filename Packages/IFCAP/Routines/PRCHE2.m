@@ -1,6 +1,11 @@
 PRCHE2 ;WISC/DJM,ID/RSD,SF-ISC/TKW-REMOVE 2237 FROM PO/PUT IN FILE 443 ;08/11/93  3:18 PM
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**186**;Oct 20, 2000;Build 10
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*186 Fix duplicate entries in file 443 by changing 
+ ;            the direct field 1.5 and x-ref 'AC' set to 
+ ;            Fileman update of status field.
+ ; 
  D ST^PRCHE Q:'$D(PRC("SITE"))
  ;
 EN W !!,"Enter the Order number where the 2237 information resides."
@@ -32,7 +37,10 @@ PRCS D WAIT^DICD S X=$P(^PRCS(410,PRCHY,4),U,5),$P(^(4),U,5)="",$P(^(10),U,3)=""
 PRCS2 S DIK="^PRC(442,PRCHPO,2,",PRCHI=0 F PRCHLC=0:1 S PRCHI=$O(PRCHI(PRCHI)) Q:'PRCHI  S DA=+PRCHI(PRCHI),DA(1)=PRCHPO I DA,$D(^PRC(442,PRCHPO,2,DA)) D ^DIK
  S $P(^PRC(442,PRCHPO,0),U,15)=0 K ^(9)
  S Y=^PRC(442,PRCHPO,13,PRCHY,0),^PRC(443,PRCHY,0)=Y,$P(^PRC(443,0),U,3,4)=PRCHY_"^"_($P(^PRC(443,0),U,4)+1)
- S ^PRC(443,"B",PRCHY,PRCHY)="",^PRC(443,"C",$P($P(^PRCS(410,PRCHY,0),U,1),"-",4,5),PRCHY)="" S:$P(Y,U,7) ^PRC(443,"AC",$P(Y,U,7),PRCHY)=""
+ ;PRC*5.1*186
+ S PRCHHDA=DA
+ S DIK="^PRC(443,",DA=PRCHY D IX^DIK K DIK
+ S DA=PRCHHDA K PRCHHDA
  K ^PRC(442,PRCHPO,13,PRCHY) S $P(^(0),3,4)="0^"_($P(^(0),U,4)-1) I PRCHY=PRCHP S $P(^PRC(442,PRCHPO,0),U,12)="" K ^(13)
  I $O(^PRC(442,PRCHPO,4,0))!($O(^PRC(442,PRCHPO,19,0))) W !!,"You may need to edit P.O. Comments!",! S DIE="^PRC(442,",DA=PRCHPO,DR="20;5.7" D ^DIE
  ;

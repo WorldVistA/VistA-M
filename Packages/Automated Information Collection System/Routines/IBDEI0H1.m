@@ -1,132 +1,144 @@
-IBDEI0H1 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0H1 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8239,2)
- ;;=Central Retinal Artery Occulusion^21255
- ;;^UTILITY(U,$J,358.3,8240,0)
- ;;=362.35^^52^580^11
- ;;^UTILITY(U,$J,358.3,8240,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8240,1,3,0)
- ;;=3^Central Retinal Vein Occlusion
- ;;^UTILITY(U,$J,358.3,8240,1,4,0)
- ;;=4^362.35
- ;;^UTILITY(U,$J,358.3,8240,2)
- ;;=Central Retinal Vein Occlusion^268624
- ;;^UTILITY(U,$J,358.3,8241,0)
- ;;=362.41^^52^580^12
- ;;^UTILITY(U,$J,358.3,8241,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8241,1,3,0)
- ;;=3^Central Serous Retinopathy (Csr)
- ;;^UTILITY(U,$J,358.3,8241,1,4,0)
- ;;=4^362.41
- ;;^UTILITY(U,$J,358.3,8241,2)
- ;;=Central Serous Retinopathy^265870
- ;;^UTILITY(U,$J,358.3,8242,0)
- ;;=224.6^^52^580^18
- ;;^UTILITY(U,$J,358.3,8242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8242,1,3,0)
- ;;=3^Choroidal Nevus
- ;;^UTILITY(U,$J,358.3,8242,1,4,0)
- ;;=4^224.6
- ;;^UTILITY(U,$J,358.3,8242,2)
- ;;=Choroidal Nevus^267676
- ;;^UTILITY(U,$J,358.3,8243,0)
- ;;=362.53^^52^580^26
- ;;^UTILITY(U,$J,358.3,8243,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8243,1,3,0)
- ;;=3^Cystoid Macular Degeneration/Edema (Cme)
- ;;^UTILITY(U,$J,358.3,8243,1,4,0)
- ;;=4^362.53
- ;;^UTILITY(U,$J,358.3,8243,2)
- ;;=Cystoid Macular Degeneration/Edema^268638
- ;;^UTILITY(U,$J,358.3,8244,0)
- ;;=361.32^^52^580^46
- ;;^UTILITY(U,$J,358.3,8244,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8244,1,3,0)
- ;;=3^Horseshoe Tear
- ;;^UTILITY(U,$J,358.3,8244,1,4,0)
- ;;=4^361.32
- ;;^UTILITY(U,$J,358.3,8244,2)
- ;;=^268606
- ;;^UTILITY(U,$J,358.3,8245,0)
- ;;=362.63^^52^580^49
- ;;^UTILITY(U,$J,358.3,8245,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8245,1,3,0)
- ;;=3^Lattice Degeneration
- ;;^UTILITY(U,$J,358.3,8245,1,4,0)
- ;;=4^362.63
- ;;^UTILITY(U,$J,358.3,8245,2)
- ;;=^268644
- ;;^UTILITY(U,$J,358.3,8246,0)
- ;;=362.54^^52^580^54
- ;;^UTILITY(U,$J,358.3,8246,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8246,1,3,0)
- ;;=3^Macular Hole
- ;;^UTILITY(U,$J,358.3,8246,1,4,0)
- ;;=4^362.54
- ;;^UTILITY(U,$J,358.3,8246,2)
- ;;=^268639
- ;;^UTILITY(U,$J,358.3,8247,0)
- ;;=362.56^^52^580^55
- ;;^UTILITY(U,$J,358.3,8247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8247,1,3,0)
- ;;=3^Macular Pucker/Epiretinal Membrane (Erm)
- ;;^UTILITY(U,$J,358.3,8247,1,4,0)
- ;;=4^362.56
- ;;^UTILITY(U,$J,358.3,8247,2)
- ;;=Macular Puckering^268641
- ;;^UTILITY(U,$J,358.3,8248,0)
- ;;=361.10^^52^580^92
- ;;^UTILITY(U,$J,358.3,8248,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8248,1,3,0)
- ;;=3^Retinoschisis
- ;;^UTILITY(U,$J,358.3,8248,1,4,0)
- ;;=4^361.10
- ;;^UTILITY(U,$J,358.3,8248,2)
- ;;=^265856
- ;;^UTILITY(U,$J,358.3,8249,0)
- ;;=362.16^^52^580^90
- ;;^UTILITY(U,$J,358.3,8249,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8249,1,3,0)
- ;;=3^Retinal/Subretinal Neovascularization
- ;;^UTILITY(U,$J,358.3,8249,1,4,0)
- ;;=4^362.16
- ;;^UTILITY(U,$J,358.3,8249,2)
- ;;=Subretinal Neovascularization^105601
- ;;^UTILITY(U,$J,358.3,8250,0)
- ;;=362.11^^52^580^47
- ;;^UTILITY(U,$J,358.3,8250,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8250,1,3,0)
- ;;=3^Hypertensive Retinopathy
- ;;^UTILITY(U,$J,358.3,8250,1,4,0)
- ;;=4^362.11
- ;;^UTILITY(U,$J,358.3,8250,2)
- ;;=Hypertensive Retinopathy^265209
- ;;^UTILITY(U,$J,358.3,8251,0)
- ;;=363.30^^52^580^13
- ;;^UTILITY(U,$J,358.3,8251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8251,1,3,0)
- ;;=3^Chorioretinal Scar
- ;;^UTILITY(U,$J,358.3,8251,1,4,0)
- ;;=4^363.30
- ;;^UTILITY(U,$J,358.3,8251,2)
- ;;=Chorioretinal Scar^23910
- ;;^UTILITY(U,$J,358.3,8252,0)
- ;;=361.31^^52^580^69
- ;;^UTILITY(U,$J,358.3,8252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8252,1,3,0)
- ;;=3^Peripheral Retinal Hole
+ ;;^UTILITY(U,$J,358.3,7923,1,5,0)
+ ;;=5^Obsessive-Compulsive
+ ;;^UTILITY(U,$J,358.3,7923,2)
+ ;;=^1
+ ;;^UTILITY(U,$J,358.3,7924,0)
+ ;;=304.00^^35^478^29
+ ;;^UTILITY(U,$J,358.3,7924,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7924,1,4,0)
+ ;;=4^304.00
+ ;;^UTILITY(U,$J,358.3,7924,1,5,0)
+ ;;=5^Opioid Dependence 
+ ;;^UTILITY(U,$J,358.3,7924,2)
+ ;;=^81364
+ ;;^UTILITY(U,$J,358.3,7925,0)
+ ;;=301.9^^35^478^31
+ ;;^UTILITY(U,$J,358.3,7925,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7925,1,4,0)
+ ;;=4^301.9
+ ;;^UTILITY(U,$J,358.3,7925,1,5,0)
+ ;;=5^Personality Disorder 
+ ;;^UTILITY(U,$J,358.3,7925,2)
+ ;;=^92451
+ ;;^UTILITY(U,$J,358.3,7926,0)
+ ;;=298.9^^35^478^32
+ ;;^UTILITY(U,$J,358.3,7926,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7926,1,4,0)
+ ;;=4^298.9
+ ;;^UTILITY(U,$J,358.3,7926,1,5,0)
+ ;;=5^Psychosis
+ ;;^UTILITY(U,$J,358.3,7926,2)
+ ;;=^1
+ ;;^UTILITY(U,$J,358.3,7927,0)
+ ;;=309.81^^35^478^30
+ ;;^UTILITY(U,$J,358.3,7927,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7927,1,4,0)
+ ;;=4^309.81
+ ;;^UTILITY(U,$J,358.3,7927,1,5,0)
+ ;;=5^PTSD (chronic)
+ ;;^UTILITY(U,$J,358.3,7927,2)
+ ;;=^114716
+ ;;^UTILITY(U,$J,358.3,7928,0)
+ ;;=295.90^^35^478^33
+ ;;^UTILITY(U,$J,358.3,7928,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7928,1,4,0)
+ ;;=4^295.90
+ ;;^UTILITY(U,$J,358.3,7928,1,5,0)
+ ;;=5^Schizophrenia 
+ ;;^UTILITY(U,$J,358.3,7928,2)
+ ;;=^108287
+ ;;^UTILITY(U,$J,358.3,7929,0)
+ ;;=300.81^^35^478^34
+ ;;^UTILITY(U,$J,358.3,7929,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7929,1,4,0)
+ ;;=4^300.81
+ ;;^UTILITY(U,$J,358.3,7929,1,5,0)
+ ;;=5^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,7929,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,7930,0)
+ ;;=306.9^^35^478^35
+ ;;^UTILITY(U,$J,358.3,7930,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7930,1,4,0)
+ ;;=4^306.9
+ ;;^UTILITY(U,$J,358.3,7930,1,5,0)
+ ;;=5^Somatization Reaction
+ ;;^UTILITY(U,$J,358.3,7930,2)
+ ;;=^123979
+ ;;^UTILITY(U,$J,358.3,7931,0)
+ ;;=305.1^^35^478^37
+ ;;^UTILITY(U,$J,358.3,7931,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7931,1,4,0)
+ ;;=4^305.1
+ ;;^UTILITY(U,$J,358.3,7931,1,5,0)
+ ;;=5^Tobacco Dependence
+ ;;^UTILITY(U,$J,358.3,7931,2)
+ ;;=^119899
+ ;;^UTILITY(U,$J,358.3,7932,0)
+ ;;=V61.01^^35^478^21
+ ;;^UTILITY(U,$J,358.3,7932,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7932,1,4,0)
+ ;;=4^V61.01
+ ;;^UTILITY(U,$J,358.3,7932,1,5,0)
+ ;;=5^Family Dsrpt-Military Deployment
+ ;;^UTILITY(U,$J,358.3,7932,2)
+ ;;=^336799
+ ;;^UTILITY(U,$J,358.3,7933,0)
+ ;;=V61.02^^35^478^22
+ ;;^UTILITY(U,$J,358.3,7933,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7933,1,4,0)
+ ;;=4^V61.02
+ ;;^UTILITY(U,$J,358.3,7933,1,5,0)
+ ;;=5^Family Dsrpt-Return from Military Deployment
+ ;;^UTILITY(U,$J,358.3,7933,2)
+ ;;=^336800
+ ;;^UTILITY(U,$J,358.3,7934,0)
+ ;;=V62.84^^35^478^36
+ ;;^UTILITY(U,$J,358.3,7934,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7934,1,4,0)
+ ;;=4^V62.84
+ ;;^UTILITY(U,$J,358.3,7934,1,5,0)
+ ;;=5^Suicidal Ideation
+ ;;^UTILITY(U,$J,358.3,7934,2)
+ ;;=^332876
+ ;;^UTILITY(U,$J,358.3,7935,0)
+ ;;=V62.85^^35^478^23
+ ;;^UTILITY(U,$J,358.3,7935,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7935,1,4,0)
+ ;;=4^V62.85
+ ;;^UTILITY(U,$J,358.3,7935,1,5,0)
+ ;;=5^Homicidal Ideation
+ ;;^UTILITY(U,$J,358.3,7935,2)
+ ;;=^339690
+ ;;^UTILITY(U,$J,358.3,7936,0)
+ ;;=296.80^^35^478^5
+ ;;^UTILITY(U,$J,358.3,7936,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7936,1,4,0)
+ ;;=4^296.80
+ ;;^UTILITY(U,$J,358.3,7936,1,5,0)
+ ;;=5^Bipolar Disorder NOS
+ ;;^UTILITY(U,$J,358.3,7936,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,7937,0)
+ ;;=296.50^^35^478^6
+ ;;^UTILITY(U,$J,358.3,7937,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7937,1,4,0)
+ ;;=4^296.50

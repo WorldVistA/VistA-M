@@ -1,134 +1,134 @@
-IBDEI06E ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI06E ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2777,1,0)
+ ;;^UTILITY(U,$J,358.3,2469,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,2469,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,2470,0)
+ ;;=K22.70^^6^74^5
+ ;;^UTILITY(U,$J,358.3,2470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2777,1,2,0)
- ;;=2^Capillary Blood Draw
- ;;^UTILITY(U,$J,358.3,2777,1,4,0)
- ;;=4^36416
- ;;^UTILITY(U,$J,358.3,2778,0)
- ;;=51702^^25^230^6^^^^1
- ;;^UTILITY(U,$J,358.3,2778,1,0)
+ ;;^UTILITY(U,$J,358.3,2470,1,3,0)
+ ;;=3^Barrett's esophagus w/o dysplasia
+ ;;^UTILITY(U,$J,358.3,2470,1,4,0)
+ ;;=4^K22.70
+ ;;^UTILITY(U,$J,358.3,2470,2)
+ ;;=^5008511
+ ;;^UTILITY(U,$J,358.3,2471,0)
+ ;;=K22.710^^6^74^4
+ ;;^UTILITY(U,$J,358.3,2471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2778,1,2,0)
- ;;=2^Insert Temp Indwelling Bladder Cath
- ;;^UTILITY(U,$J,358.3,2778,1,4,0)
- ;;=4^51702
- ;;^UTILITY(U,$J,358.3,2779,0)
- ;;=93005^^25^230^4^^^^1
- ;;^UTILITY(U,$J,358.3,2779,1,0)
+ ;;^UTILITY(U,$J,358.3,2471,1,3,0)
+ ;;=3^Barrett's esophagus w/ low grade dysplasia
+ ;;^UTILITY(U,$J,358.3,2471,1,4,0)
+ ;;=4^K22.710
+ ;;^UTILITY(U,$J,358.3,2471,2)
+ ;;=^5008512
+ ;;^UTILITY(U,$J,358.3,2472,0)
+ ;;=K22.711^^6^74^3
+ ;;^UTILITY(U,$J,358.3,2472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2779,1,2,0)
- ;;=2^EKG,Tracing Only
- ;;^UTILITY(U,$J,358.3,2779,1,4,0)
- ;;=4^93005
- ;;^UTILITY(U,$J,358.3,2780,0)
- ;;=97535^^25^230^11^^^^1
- ;;^UTILITY(U,$J,358.3,2780,1,0)
+ ;;^UTILITY(U,$J,358.3,2472,1,3,0)
+ ;;=3^Barrett's esophagus w/ high grade dysplasia
+ ;;^UTILITY(U,$J,358.3,2472,1,4,0)
+ ;;=4^K22.711
+ ;;^UTILITY(U,$J,358.3,2472,2)
+ ;;=^5008513
+ ;;^UTILITY(U,$J,358.3,2473,0)
+ ;;=K22.719^^6^74^2
+ ;;^UTILITY(U,$J,358.3,2473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2780,1,2,0)
- ;;=2^Self Care Mngment Training
- ;;^UTILITY(U,$J,358.3,2780,1,4,0)
- ;;=4^97535
- ;;^UTILITY(U,$J,358.3,2781,0)
- ;;=98960^^25^230^12^^^^1
- ;;^UTILITY(U,$J,358.3,2781,1,0)
+ ;;^UTILITY(U,$J,358.3,2473,1,3,0)
+ ;;=3^Barrett's esophagus w/ dysplasia, unspecified
+ ;;^UTILITY(U,$J,358.3,2473,1,4,0)
+ ;;=4^K22.719
+ ;;^UTILITY(U,$J,358.3,2473,2)
+ ;;=^5008514
+ ;;^UTILITY(U,$J,358.3,2474,0)
+ ;;=K44.9^^6^74^7
+ ;;^UTILITY(U,$J,358.3,2474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2781,1,2,0)
- ;;=2^Self-Mgmt Ed/Train 1 Pt,Ea 30min
- ;;^UTILITY(U,$J,358.3,2781,1,4,0)
- ;;=4^98960
- ;;^UTILITY(U,$J,358.3,2782,0)
- ;;=36593^^25^230^2^^^^1
- ;;^UTILITY(U,$J,358.3,2782,1,0)
+ ;;^UTILITY(U,$J,358.3,2474,1,3,0)
+ ;;=3^Diaphragmatic hernia w/o obstruction or gangrene
+ ;;^UTILITY(U,$J,358.3,2474,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,2474,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,2475,0)
+ ;;=Q39.4^^6^74^13
+ ;;^UTILITY(U,$J,358.3,2475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2782,1,2,0)
- ;;=2^Declot Vascular Device
- ;;^UTILITY(U,$J,358.3,2782,1,4,0)
- ;;=4^36593
- ;;^UTILITY(U,$J,358.3,2783,0)
- ;;=96523^^25^230^8^^^^1
- ;;^UTILITY(U,$J,358.3,2783,1,0)
+ ;;^UTILITY(U,$J,358.3,2475,1,3,0)
+ ;;=3^Esophageal web
+ ;;^UTILITY(U,$J,358.3,2475,1,4,0)
+ ;;=4^Q39.4
+ ;;^UTILITY(U,$J,358.3,2475,2)
+ ;;=^5018659
+ ;;^UTILITY(U,$J,358.3,2476,0)
+ ;;=T18.108A^^6^74^16
+ ;;^UTILITY(U,$J,358.3,2476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2783,1,2,0)
- ;;=2^Irrig Drug Delivery Device
- ;;^UTILITY(U,$J,358.3,2783,1,4,0)
- ;;=4^96523
- ;;^UTILITY(U,$J,358.3,2784,0)
- ;;=36569^^25^230^5^^^^1
- ;;^UTILITY(U,$J,358.3,2784,1,0)
+ ;;^UTILITY(U,$J,358.3,2476,1,3,0)
+ ;;=3^Foreign body in esophagus causing oth injury, init
+ ;;^UTILITY(U,$J,358.3,2476,1,4,0)
+ ;;=4^T18.108A
+ ;;^UTILITY(U,$J,358.3,2476,2)
+ ;;=^5046582
+ ;;^UTILITY(U,$J,358.3,2477,0)
+ ;;=T18.118A^^6^74^18
+ ;;^UTILITY(U,$J,358.3,2477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2784,1,2,0)
- ;;=2^Insert PICC Line
- ;;^UTILITY(U,$J,358.3,2784,1,4,0)
- ;;=4^36569
- ;;^UTILITY(U,$J,358.3,2785,0)
- ;;=36000^^25^230^7^^^^1
- ;;^UTILITY(U,$J,358.3,2785,1,0)
+ ;;^UTILITY(U,$J,358.3,2477,1,3,0)
+ ;;=3^Gastric contents in esophagus causing oth injury, init
+ ;;^UTILITY(U,$J,358.3,2477,1,4,0)
+ ;;=4^T18.118A
+ ;;^UTILITY(U,$J,358.3,2477,2)
+ ;;=^5046588
+ ;;^UTILITY(U,$J,358.3,2478,0)
+ ;;=T18.128A^^6^74^15
+ ;;^UTILITY(U,$J,358.3,2478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2785,1,2,0)
- ;;=2^Intro Needle or Intracath,Vein
- ;;^UTILITY(U,$J,358.3,2785,1,4,0)
- ;;=4^36000
- ;;^UTILITY(U,$J,358.3,2786,0)
- ;;=99195^^25^230^9^^^^1
- ;;^UTILITY(U,$J,358.3,2786,1,0)
+ ;;^UTILITY(U,$J,358.3,2478,1,3,0)
+ ;;=3^Food in esophagus causing other injury, initial encounter
+ ;;^UTILITY(U,$J,358.3,2478,1,4,0)
+ ;;=4^T18.128A
+ ;;^UTILITY(U,$J,358.3,2478,2)
+ ;;=^5046594
+ ;;^UTILITY(U,$J,358.3,2479,0)
+ ;;=T18.198A^^6^74^17
+ ;;^UTILITY(U,$J,358.3,2479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2786,1,2,0)
- ;;=2^Phlebotomy
- ;;^UTILITY(U,$J,358.3,2786,1,4,0)
- ;;=4^99195
- ;;^UTILITY(U,$J,358.3,2787,0)
- ;;=4066F^^25^230^3^^^^1
- ;;^UTILITY(U,$J,358.3,2787,1,0)
+ ;;^UTILITY(U,$J,358.3,2479,1,3,0)
+ ;;=3^Foreign object in esophagus causing oth injury, init
+ ;;^UTILITY(U,$J,358.3,2479,1,4,0)
+ ;;=4^T18.198A
+ ;;^UTILITY(U,$J,358.3,2479,2)
+ ;;=^5046600
+ ;;^UTILITY(U,$J,358.3,2480,0)
+ ;;=A63.0^^6^75^7
+ ;;^UTILITY(U,$J,358.3,2480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2787,1,2,0)
- ;;=2^ECT Provided
- ;;^UTILITY(U,$J,358.3,2787,1,4,0)
- ;;=4^4066F
- ;;^UTILITY(U,$J,358.3,2788,0)
- ;;=P9047^^25^231^3^^^^1
- ;;^UTILITY(U,$J,358.3,2788,1,0)
+ ;;^UTILITY(U,$J,358.3,2480,1,3,0)
+ ;;=3^Anogenital (venereal) warts
+ ;;^UTILITY(U,$J,358.3,2480,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,2480,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,2481,0)
+ ;;=C18.9^^6^75^42
+ ;;^UTILITY(U,$J,358.3,2481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2788,1,2,0)
- ;;=2^Inf Albumin(Human),25%,50ml
- ;;^UTILITY(U,$J,358.3,2788,1,4,0)
- ;;=4^P9047
- ;;^UTILITY(U,$J,358.3,2789,0)
- ;;=P9010^^25^231^6^^^^1
- ;;^UTILITY(U,$J,358.3,2789,1,0)
+ ;;^UTILITY(U,$J,358.3,2481,1,3,0)
+ ;;=3^Malignant neoplasm of colon, unspecified
+ ;;^UTILITY(U,$J,358.3,2481,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,2481,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,2482,0)
+ ;;=D12.5^^6^75^16
+ ;;^UTILITY(U,$J,358.3,2482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2789,1,2,0)
- ;;=2^Whole Blood for Transfusion,per unit
- ;;^UTILITY(U,$J,358.3,2789,1,4,0)
- ;;=4^P9010
- ;;^UTILITY(U,$J,358.3,2790,0)
- ;;=P9017^^25^231^2^^^^1
- ;;^UTILITY(U,$J,358.3,2790,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2790,1,2,0)
- ;;=2^Frh Frz Plasma 1 Donor w/in 8hr,per unit
- ;;^UTILITY(U,$J,358.3,2790,1,4,0)
- ;;=4^P9017
- ;;^UTILITY(U,$J,358.3,2791,0)
- ;;=P9020^^25^231^4^^^^1
- ;;^UTILITY(U,$J,358.3,2791,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2791,1,2,0)
- ;;=2^Platelet,Rich Plasma,per unit
- ;;^UTILITY(U,$J,358.3,2791,1,4,0)
- ;;=4^P9020
- ;;^UTILITY(U,$J,358.3,2792,0)
- ;;=P9021^^25^231^5^^^^1
- ;;^UTILITY(U,$J,358.3,2792,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2792,1,2,0)
- ;;=2^Red Blood Cells,per unit
- ;;^UTILITY(U,$J,358.3,2792,1,4,0)
- ;;=4^P9021
- ;;^UTILITY(U,$J,358.3,2793,0)
- ;;=36430^^25^231^1^^^^1
- ;;^UTILITY(U,$J,358.3,2793,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2482,1,3,0)
+ ;;=3^Benign neoplasm of sigmoid colon

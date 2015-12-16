@@ -1,130 +1,136 @@
-IBDEI1S5 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1S5 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31809,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,31810,0)
- ;;=C88.8^^190^1943^98
- ;;^UTILITY(U,$J,358.3,31810,1,0)
+ ;;^UTILITY(U,$J,358.3,31419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31810,1,3,0)
- ;;=3^Malig Immunoproliferative Diseases,Other
- ;;^UTILITY(U,$J,358.3,31810,1,4,0)
- ;;=4^C88.8
- ;;^UTILITY(U,$J,358.3,31810,2)
- ;;=^5001750
- ;;^UTILITY(U,$J,358.3,31811,0)
- ;;=D70.8^^190^1943^163
- ;;^UTILITY(U,$J,358.3,31811,1,0)
+ ;;^UTILITY(U,$J,358.3,31419,1,3,0)
+ ;;=3^Pain in left hip
+ ;;^UTILITY(U,$J,358.3,31419,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,31419,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,31420,0)
+ ;;=M25.562^^180^1956^35
+ ;;^UTILITY(U,$J,358.3,31420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31811,1,3,0)
- ;;=3^Neutropenia,Other
- ;;^UTILITY(U,$J,358.3,31811,1,4,0)
- ;;=4^D70.8
- ;;^UTILITY(U,$J,358.3,31811,2)
- ;;=^334042
- ;;^UTILITY(U,$J,358.3,31812,0)
- ;;=D59.4^^190^1943^164
- ;;^UTILITY(U,$J,358.3,31812,1,0)
+ ;;^UTILITY(U,$J,358.3,31420,1,3,0)
+ ;;=3^Pain in left knee
+ ;;^UTILITY(U,$J,358.3,31420,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,31420,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,31421,0)
+ ;;=M25.512^^180^1956^36
+ ;;^UTILITY(U,$J,358.3,31421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31812,1,3,0)
- ;;=3^Nonautoimmune Hemolytic Anemias,Other
- ;;^UTILITY(U,$J,358.3,31812,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,31812,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,31813,0)
- ;;=D69.59^^190^1943^170
- ;;^UTILITY(U,$J,358.3,31813,1,0)
+ ;;^UTILITY(U,$J,358.3,31421,1,3,0)
+ ;;=3^Pain in left shoulder
+ ;;^UTILITY(U,$J,358.3,31421,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,31421,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,31422,0)
+ ;;=M25.532^^180^1956^37
+ ;;^UTILITY(U,$J,358.3,31422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31813,1,3,0)
- ;;=3^Secondary Thrombocytopenia,Other
- ;;^UTILITY(U,$J,358.3,31813,1,4,0)
- ;;=4^D69.59
- ;;^UTILITY(U,$J,358.3,31813,2)
- ;;=^5002369
- ;;^UTILITY(U,$J,358.3,31814,0)
- ;;=C22.7^^190^1943^41
- ;;^UTILITY(U,$J,358.3,31814,1,0)
+ ;;^UTILITY(U,$J,358.3,31422,1,3,0)
+ ;;=3^Pain in left wrist
+ ;;^UTILITY(U,$J,358.3,31422,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,31422,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,31423,0)
+ ;;=M25.571^^180^1956^38
+ ;;^UTILITY(U,$J,358.3,31423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31814,1,3,0)
- ;;=3^Carcinomas of Liver,Other Spec
- ;;^UTILITY(U,$J,358.3,31814,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,31814,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,31815,0)
- ;;=D75.89^^190^1943^51
- ;;^UTILITY(U,$J,358.3,31815,1,0)
+ ;;^UTILITY(U,$J,358.3,31423,1,3,0)
+ ;;=3^Pain in right ankle and joints of right foot
+ ;;^UTILITY(U,$J,358.3,31423,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,31423,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,31424,0)
+ ;;=M25.521^^180^1956^39
+ ;;^UTILITY(U,$J,358.3,31424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31815,1,3,0)
- ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec
- ;;^UTILITY(U,$J,358.3,31815,1,4,0)
- ;;=4^D75.89
- ;;^UTILITY(U,$J,358.3,31815,2)
- ;;=^5002392
- ;;^UTILITY(U,$J,358.3,31816,0)
- ;;=D47.Z9^^190^1943^162
- ;;^UTILITY(U,$J,358.3,31816,1,0)
+ ;;^UTILITY(U,$J,358.3,31424,1,3,0)
+ ;;=3^Pain in right elbow
+ ;;^UTILITY(U,$J,358.3,31424,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,31424,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,31425,0)
+ ;;=M79.641^^180^1956^40
+ ;;^UTILITY(U,$J,358.3,31425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31816,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
- ;;^UTILITY(U,$J,358.3,31816,1,4,0)
- ;;=4^D47.Z9
- ;;^UTILITY(U,$J,358.3,31816,2)
- ;;=^5002262
- ;;^UTILITY(U,$J,358.3,31817,0)
- ;;=D05.82^^190^1943^30
- ;;^UTILITY(U,$J,358.3,31817,1,0)
+ ;;^UTILITY(U,$J,358.3,31425,1,3,0)
+ ;;=3^Pain in right hand
+ ;;^UTILITY(U,$J,358.3,31425,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,31425,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,31426,0)
+ ;;=M25.551^^180^1956^41
+ ;;^UTILITY(U,$J,358.3,31426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31817,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
- ;;^UTILITY(U,$J,358.3,31817,1,4,0)
- ;;=4^D05.82
- ;;^UTILITY(U,$J,358.3,31817,2)
- ;;=^5001934
- ;;^UTILITY(U,$J,358.3,31818,0)
- ;;=D05.81^^190^1943^32
- ;;^UTILITY(U,$J,358.3,31818,1,0)
+ ;;^UTILITY(U,$J,358.3,31426,1,3,0)
+ ;;=3^Pain in right hip
+ ;;^UTILITY(U,$J,358.3,31426,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,31426,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,31427,0)
+ ;;=M25.561^^180^1956^42
+ ;;^UTILITY(U,$J,358.3,31427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31818,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,31818,1,4,0)
- ;;=4^D05.81
- ;;^UTILITY(U,$J,358.3,31818,2)
- ;;=^5001933
- ;;^UTILITY(U,$J,358.3,31819,0)
- ;;=D05.80^^190^1943^34
- ;;^UTILITY(U,$J,358.3,31819,1,0)
+ ;;^UTILITY(U,$J,358.3,31427,1,3,0)
+ ;;=3^Pain in right knee
+ ;;^UTILITY(U,$J,358.3,31427,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,31427,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,31428,0)
+ ;;=M25.511^^180^1956^43
+ ;;^UTILITY(U,$J,358.3,31428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31819,1,3,0)
- ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,31819,1,4,0)
- ;;=4^D05.80
- ;;^UTILITY(U,$J,358.3,31819,2)
- ;;=^5001932
- ;;^UTILITY(U,$J,358.3,31820,0)
- ;;=D56.8^^190^1943^175
- ;;^UTILITY(U,$J,358.3,31820,1,0)
+ ;;^UTILITY(U,$J,358.3,31428,1,3,0)
+ ;;=3^Pain in right shoulder
+ ;;^UTILITY(U,$J,358.3,31428,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,31428,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,31429,0)
+ ;;=M25.531^^180^1956^44
+ ;;^UTILITY(U,$J,358.3,31429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31820,1,3,0)
- ;;=3^Thalassemias,Other
- ;;^UTILITY(U,$J,358.3,31820,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,31820,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,31821,0)
- ;;=C82.89^^190^1943^71
- ;;^UTILITY(U,$J,358.3,31821,1,0)
+ ;;^UTILITY(U,$J,358.3,31429,1,3,0)
+ ;;=3^Pain in right wrist
+ ;;^UTILITY(U,$J,358.3,31429,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,31429,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,31430,0)
+ ;;=Z87.81^^180^1956^45
+ ;;^UTILITY(U,$J,358.3,31430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31821,1,3,0)
- ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
- ;;^UTILITY(U,$J,358.3,31821,1,4,0)
- ;;=4^C82.89
- ;;^UTILITY(U,$J,358.3,31821,2)
- ;;=^5001540
- ;;^UTILITY(U,$J,358.3,31822,0)
- ;;=D51.8^^190^1943^182
- ;;^UTILITY(U,$J,358.3,31822,1,0)
+ ;;^UTILITY(U,$J,358.3,31430,1,3,0)
+ ;;=3^Personal history of (healed) traumatic fracture
+ ;;^UTILITY(U,$J,358.3,31430,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,31430,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,31431,0)
+ ;;=S43.422A^^180^1956^46
+ ;;^UTILITY(U,$J,358.3,31431,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31431,1,3,0)
+ ;;=3^Sprain of left rotator cuff capsule, initial encounter
+ ;;^UTILITY(U,$J,358.3,31431,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,31431,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,31432,0)
+ ;;=S43.421A^^180^1956^47
+ ;;^UTILITY(U,$J,358.3,31432,1,0)
  ;;=^358.31IA^4^2

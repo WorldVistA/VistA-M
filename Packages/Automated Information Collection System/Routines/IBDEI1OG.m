@@ -1,130 +1,138 @@
-IBDEI1OG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30134,0)
- ;;=K64.4^^189^1907^5
- ;;^UTILITY(U,$J,358.3,30134,1,0)
+ ;;^UTILITY(U,$J,358.3,29774,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,29774,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,29774,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,29775,0)
+ ;;=I48.91^^177^1895^3
+ ;;^UTILITY(U,$J,358.3,29775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30134,1,3,0)
- ;;=3^Hemorrhoids,External
- ;;^UTILITY(U,$J,358.3,30134,1,4,0)
- ;;=4^K64.4
- ;;^UTILITY(U,$J,358.3,30134,2)
- ;;=^269834
- ;;^UTILITY(U,$J,358.3,30135,0)
- ;;=K64.5^^189^1907^8
- ;;^UTILITY(U,$J,358.3,30135,1,0)
+ ;;^UTILITY(U,$J,358.3,29775,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,29775,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,29775,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,29776,0)
+ ;;=I49.9^^177^1895^4
+ ;;^UTILITY(U,$J,358.3,29776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30135,1,3,0)
- ;;=3^Perianal venous thrombosis
- ;;^UTILITY(U,$J,358.3,30135,1,4,0)
- ;;=4^K64.5
- ;;^UTILITY(U,$J,358.3,30135,2)
- ;;=^5008773
- ;;^UTILITY(U,$J,358.3,30136,0)
- ;;=K61.0^^189^1908^1
- ;;^UTILITY(U,$J,358.3,30136,1,0)
+ ;;^UTILITY(U,$J,358.3,29776,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,29776,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,29776,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,29777,0)
+ ;;=I50.9^^177^1895^7
+ ;;^UTILITY(U,$J,358.3,29777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30136,1,3,0)
- ;;=3^Anal Abscess
- ;;^UTILITY(U,$J,358.3,30136,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,30136,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,30137,0)
- ;;=K61.1^^189^1908^5
- ;;^UTILITY(U,$J,358.3,30137,1,0)
+ ;;^UTILITY(U,$J,358.3,29777,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,29777,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,29777,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,29778,0)
+ ;;=I73.9^^177^1895^14
+ ;;^UTILITY(U,$J,358.3,29778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30137,1,3,0)
- ;;=3^Rectal Abscess
- ;;^UTILITY(U,$J,358.3,30137,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,30137,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,30138,0)
- ;;=K61.3^^189^1908^4
- ;;^UTILITY(U,$J,358.3,30138,1,0)
+ ;;^UTILITY(U,$J,358.3,29778,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,29778,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,29778,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,29779,0)
+ ;;=I87.2^^177^1895^18
+ ;;^UTILITY(U,$J,358.3,29779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30138,1,3,0)
- ;;=3^Ischiorectal Abscess
- ;;^UTILITY(U,$J,358.3,30138,1,4,0)
- ;;=4^K61.3
- ;;^UTILITY(U,$J,358.3,30138,2)
- ;;=^5008751
- ;;^UTILITY(U,$J,358.3,30139,0)
- ;;=K61.4^^189^1908^3
- ;;^UTILITY(U,$J,358.3,30139,1,0)
+ ;;^UTILITY(U,$J,358.3,29779,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,29779,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,29779,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,29780,0)
+ ;;=R03.0^^177^1895^6
+ ;;^UTILITY(U,$J,358.3,29780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30139,1,3,0)
- ;;=3^Intrasphincteric Abscess
- ;;^UTILITY(U,$J,358.3,30139,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,30139,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,30140,0)
- ;;=K61.2^^189^1908^2
- ;;^UTILITY(U,$J,358.3,30140,1,0)
+ ;;^UTILITY(U,$J,358.3,29780,1,3,0)
+ ;;=3^Elevated B/P Reading w/o HTN Dx
+ ;;^UTILITY(U,$J,358.3,29780,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,29780,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,29781,0)
+ ;;=Z71.89^^177^1896^1
+ ;;^UTILITY(U,$J,358.3,29781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30140,1,3,0)
- ;;=3^Anorectal Abscess
- ;;^UTILITY(U,$J,358.3,30140,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,30140,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,30141,0)
- ;;=S09.12XA^^189^1909^2
- ;;^UTILITY(U,$J,358.3,30141,1,0)
+ ;;^UTILITY(U,$J,358.3,29781,1,3,0)
+ ;;=3^Counseling,Specified
+ ;;^UTILITY(U,$J,358.3,29781,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,29781,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,29782,0)
+ ;;=Z71.7^^177^1896^2
+ ;;^UTILITY(U,$J,358.3,29782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30141,1,3,0)
- ;;=3^Laceration of Muscle/Tendon of Head,Init Encntr
- ;;^UTILITY(U,$J,358.3,30141,1,4,0)
- ;;=4^S09.12XA
- ;;^UTILITY(U,$J,358.3,30141,2)
- ;;=^5021287
- ;;^UTILITY(U,$J,358.3,30142,0)
- ;;=S16.2XXA^^189^1909^1
- ;;^UTILITY(U,$J,358.3,30142,1,0)
+ ;;^UTILITY(U,$J,358.3,29782,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,29782,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,29782,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,29783,0)
+ ;;=Z76.89^^177^1896^3
+ ;;^UTILITY(U,$J,358.3,29783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30142,1,3,0)
- ;;=3^Laceration of Muscle/Fascia/Tendon at Neck Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,30142,1,4,0)
- ;;=4^S16.2XXA
- ;;^UTILITY(U,$J,358.3,30142,2)
- ;;=^5022361
- ;;^UTILITY(U,$J,358.3,30143,0)
- ;;=S31.114A^^189^1909^5
- ;;^UTILITY(U,$J,358.3,30143,1,0)
+ ;;^UTILITY(U,$J,358.3,29783,1,3,0)
+ ;;=3^Persons Encountering Health Services for Oth Circumstances
+ ;;^UTILITY(U,$J,358.3,29783,1,4,0)
+ ;;=4^Z76.89
+ ;;^UTILITY(U,$J,358.3,29783,2)
+ ;;=^5063304
+ ;;^UTILITY(U,$J,358.3,29784,0)
+ ;;=E03.9^^177^1897^7
+ ;;^UTILITY(U,$J,358.3,29784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30143,1,3,0)
- ;;=3^Laceration w/o FB of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30143,1,4,0)
- ;;=4^S31.114A
- ;;^UTILITY(U,$J,358.3,30143,2)
- ;;=^5134427
- ;;^UTILITY(U,$J,358.3,30144,0)
- ;;=S31.111A^^189^1909^6
- ;;^UTILITY(U,$J,358.3,30144,1,0)
+ ;;^UTILITY(U,$J,358.3,29784,1,3,0)
+ ;;=3^Hypothroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,29784,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,29784,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,29785,0)
+ ;;=E11.9^^177^1897^4
+ ;;^UTILITY(U,$J,358.3,29785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30144,1,3,0)
- ;;=3^Laceration w/o FB of LUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30144,1,4,0)
- ;;=4^S31.111A
- ;;^UTILITY(U,$J,358.3,30144,2)
- ;;=^5024044
- ;;^UTILITY(U,$J,358.3,30145,0)
- ;;=S31.113A^^189^1909^37
- ;;^UTILITY(U,$J,358.3,30145,1,0)
+ ;;^UTILITY(U,$J,358.3,29785,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,29785,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,29785,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,29786,0)
+ ;;=E10.9^^177^1897^2
+ ;;^UTILITY(U,$J,358.3,29786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30145,1,3,0)
- ;;=3^Laceration w/o FB of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30145,1,4,0)
- ;;=4^S31.113A
- ;;^UTILITY(U,$J,358.3,30145,2)
- ;;=^5024050
- ;;^UTILITY(U,$J,358.3,30146,0)
- ;;=S31.110A^^189^1909^38
- ;;^UTILITY(U,$J,358.3,30146,1,0)
+ ;;^UTILITY(U,$J,358.3,29786,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,29786,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,29786,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,29787,0)
+ ;;=E11.65^^177^1897^3
+ ;;^UTILITY(U,$J,358.3,29787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30146,1,3,0)
- ;;=3^Laceration w/o FB of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,29787,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,29787,1,4,0)
+ ;;=4^E11.65

@@ -1,122 +1,128 @@
-IBDEI1QY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31258,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,31259,0)
- ;;=L97.114^^190^1932^230
- ;;^UTILITY(U,$J,358.3,31259,1,0)
+ ;;^UTILITY(U,$J,358.3,30883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31259,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,31259,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,31259,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,31260,0)
- ;;=L97.119^^190^1932^231
- ;;^UTILITY(U,$J,358.3,31260,1,0)
+ ;;^UTILITY(U,$J,358.3,30883,1,3,0)
+ ;;=3^Trigger finger, right ring finger
+ ;;^UTILITY(U,$J,358.3,30883,1,4,0)
+ ;;=4^M65.341
+ ;;^UTILITY(U,$J,358.3,30883,2)
+ ;;=^5012786
+ ;;^UTILITY(U,$J,358.3,30884,0)
+ ;;=M65.312^^179^1932^30
+ ;;^UTILITY(U,$J,358.3,30884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31260,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,31260,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,31260,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,31261,0)
- ;;=L97.121^^190^1932^197
- ;;^UTILITY(U,$J,358.3,31261,1,0)
+ ;;^UTILITY(U,$J,358.3,30884,1,3,0)
+ ;;=3^Trigger thumb, left thumb
+ ;;^UTILITY(U,$J,358.3,30884,1,4,0)
+ ;;=4^M65.312
+ ;;^UTILITY(U,$J,358.3,30884,2)
+ ;;=^5012778
+ ;;^UTILITY(U,$J,358.3,30885,0)
+ ;;=M65.311^^179^1932^31
+ ;;^UTILITY(U,$J,358.3,30885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31261,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,31261,1,4,0)
- ;;=4^L97.121
- ;;^UTILITY(U,$J,358.3,31261,2)
- ;;=^5009490
- ;;^UTILITY(U,$J,358.3,31262,0)
- ;;=L97.122^^190^1932^198
- ;;^UTILITY(U,$J,358.3,31262,1,0)
+ ;;^UTILITY(U,$J,358.3,30885,1,3,0)
+ ;;=3^Trigger thumb, right thumb
+ ;;^UTILITY(U,$J,358.3,30885,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,30885,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,30886,0)
+ ;;=S40.022A^^179^1933^1
+ ;;^UTILITY(U,$J,358.3,30886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31262,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,31262,1,4,0)
- ;;=4^L97.122
- ;;^UTILITY(U,$J,358.3,31262,2)
- ;;=^5009491
- ;;^UTILITY(U,$J,358.3,31263,0)
- ;;=L97.123^^190^1932^199
- ;;^UTILITY(U,$J,358.3,31263,1,0)
+ ;;^UTILITY(U,$J,358.3,30886,1,3,0)
+ ;;=3^Contusion of left upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,30886,1,4,0)
+ ;;=4^S40.022A
+ ;;^UTILITY(U,$J,358.3,30886,2)
+ ;;=^5026165
+ ;;^UTILITY(U,$J,358.3,30887,0)
+ ;;=S40.021A^^179^1933^2
+ ;;^UTILITY(U,$J,358.3,30887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31263,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,31263,1,4,0)
- ;;=4^L97.123
- ;;^UTILITY(U,$J,358.3,31263,2)
- ;;=^5009492
- ;;^UTILITY(U,$J,358.3,31264,0)
- ;;=L97.124^^190^1932^200
- ;;^UTILITY(U,$J,358.3,31264,1,0)
+ ;;^UTILITY(U,$J,358.3,30887,1,3,0)
+ ;;=3^Contusion of right upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,30887,1,4,0)
+ ;;=4^S40.021A
+ ;;^UTILITY(U,$J,358.3,30887,2)
+ ;;=^5026162
+ ;;^UTILITY(U,$J,358.3,30888,0)
+ ;;=M84.422A^^179^1933^5
+ ;;^UTILITY(U,$J,358.3,30888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31264,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,31264,1,4,0)
- ;;=4^L97.124
- ;;^UTILITY(U,$J,358.3,31264,2)
- ;;=^5009493
- ;;^UTILITY(U,$J,358.3,31265,0)
- ;;=L97.129^^190^1932^201
- ;;^UTILITY(U,$J,358.3,31265,1,0)
+ ;;^UTILITY(U,$J,358.3,30888,1,3,0)
+ ;;=3^Pathological fracture, left humerus, init for fx
+ ;;^UTILITY(U,$J,358.3,30888,1,4,0)
+ ;;=4^M84.422A
+ ;;^UTILITY(U,$J,358.3,30888,2)
+ ;;=^5013824
+ ;;^UTILITY(U,$J,358.3,30889,0)
+ ;;=M84.421A^^179^1933^6
+ ;;^UTILITY(U,$J,358.3,30889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31265,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,31265,1,4,0)
- ;;=4^L97.129
- ;;^UTILITY(U,$J,358.3,31265,2)
- ;;=^5009494
- ;;^UTILITY(U,$J,358.3,31266,0)
- ;;=L97.211^^190^1932^207
- ;;^UTILITY(U,$J,358.3,31266,1,0)
+ ;;^UTILITY(U,$J,358.3,30889,1,3,0)
+ ;;=3^Pathological fracture, right humerus, init for fx
+ ;;^UTILITY(U,$J,358.3,30889,1,4,0)
+ ;;=4^M84.421A
+ ;;^UTILITY(U,$J,358.3,30889,2)
+ ;;=^5013818
+ ;;^UTILITY(U,$J,358.3,30890,0)
+ ;;=S42.202A^^179^1933^3
+ ;;^UTILITY(U,$J,358.3,30890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31266,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,31266,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,31266,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,31267,0)
- ;;=L97.212^^190^1932^208
- ;;^UTILITY(U,$J,358.3,31267,1,0)
+ ;;^UTILITY(U,$J,358.3,30890,1,3,0)
+ ;;=3^Fracture of upper end of left humerus, init for clos fx,Unspec
+ ;;^UTILITY(U,$J,358.3,30890,1,4,0)
+ ;;=4^S42.202A
+ ;;^UTILITY(U,$J,358.3,30890,2)
+ ;;=^5026768
+ ;;^UTILITY(U,$J,358.3,30891,0)
+ ;;=S42.201A^^179^1933^4
+ ;;^UTILITY(U,$J,358.3,30891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31267,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,31267,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,31267,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,31268,0)
- ;;=L97.213^^190^1932^209
- ;;^UTILITY(U,$J,358.3,31268,1,0)
+ ;;^UTILITY(U,$J,358.3,30891,1,3,0)
+ ;;=3^Fracture of upper end of right humerus, init,Unspec
+ ;;^UTILITY(U,$J,358.3,30891,1,4,0)
+ ;;=4^S42.201A
+ ;;^UTILITY(U,$J,358.3,30891,2)
+ ;;=^5026761
+ ;;^UTILITY(U,$J,358.3,30892,0)
+ ;;=M00.862^^179^1934^1
+ ;;^UTILITY(U,$J,358.3,30892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31268,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,31268,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,31268,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,31269,0)
- ;;=L97.214^^190^1932^210
- ;;^UTILITY(U,$J,358.3,31269,1,0)
+ ;;^UTILITY(U,$J,358.3,30892,1,3,0)
+ ;;=3^Arthritis due to other bacteria, left knee
+ ;;^UTILITY(U,$J,358.3,30892,1,4,0)
+ ;;=4^M00.862
+ ;;^UTILITY(U,$J,358.3,30892,2)
+ ;;=^5009686
+ ;;^UTILITY(U,$J,358.3,30893,0)
+ ;;=M00.861^^179^1934^2
+ ;;^UTILITY(U,$J,358.3,30893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31269,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,31269,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,31269,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,31270,0)
- ;;=L97.219^^190^1932^211
- ;;^UTILITY(U,$J,358.3,31270,1,0)
+ ;;^UTILITY(U,$J,358.3,30893,1,3,0)
+ ;;=3^Arthritis due to other bacteria, right knee
+ ;;^UTILITY(U,$J,358.3,30893,1,4,0)
+ ;;=4^M00.861
+ ;;^UTILITY(U,$J,358.3,30893,2)
+ ;;=^5009685
+ ;;^UTILITY(U,$J,358.3,30894,0)
+ ;;=M22.42^^179^1934^5
+ ;;^UTILITY(U,$J,358.3,30894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31270,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,30894,1,3,0)
+ ;;=3^Chondromalacia patellae, left knee
+ ;;^UTILITY(U,$J,358.3,30894,1,4,0)
+ ;;=4^M22.42
+ ;;^UTILITY(U,$J,358.3,30894,2)
+ ;;=^5011187
+ ;;^UTILITY(U,$J,358.3,30895,0)
+ ;;=M22.41^^179^1934^6
+ ;;^UTILITY(U,$J,358.3,30895,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30895,1,3,0)
+ ;;=3^Chondromalacia patellae, right knee

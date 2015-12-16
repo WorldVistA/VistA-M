@@ -1,5 +1,5 @@
-PSGOE92 ;BIR/CML3-ACTIVE ORDER EDIT (CONT.) ; 2/18/10 4:15pm
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276**;16 DEC 97;Build 3
+PSGOE92 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ; 2/18/10 4:15pm
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316**;16 DEC 97;Build 8
  ;
  ;Reference to ^DD(53.1 is supported by DBIA #2256.
  ;Reference to ^PS(55 is supported by DBIA #2191.
@@ -62,10 +62,10 @@ A6 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  S (PSJDDTMP,PSJDD55,PSJDTMP1,PSJDD551)=""
  F PSJDDTMP=0:0 S PSJDDTMP=$O(^PS(53.45,PSJSYSP,2,PSJDDTMP)) Q:'PSJDDTMP  D
  . S PSJDDTMP(PSJDDTMP)=$G(^PS(53.45,PSJSYSP,2,PSJDDTMP,0))
- . S PSJDTMP1=PSJDTMP1_"Disp Drug: "_"("_$P($G(PSJDDTMP(PSJDDTMP)),"^",1)_") "_$P($G(^PSDRUG($P($G(PSJDDTMP(PSJDDTMP)),"^",1),0)),"^")_" Units: "_$P($G(PSJDDTMP(PSJDDTMP)),"^",2)_" "
+ . S PSJDTMP1="Disp Drug: "_"("_$P($G(PSJDDTMP(PSJDDTMP)),"^",1)_") "_$P($G(^PSDRUG($P($G(PSJDDTMP(PSJDDTMP)),"^",1),0)),"^")_" Units: "_$P($G(PSJDDTMP(PSJDDTMP)),"^",2)_" "
  F PSJDD55=0:0 S PSJDD55=$O(^PS(55,DFN,5,+ON,1,PSJDD55)) Q:'PSJDD55  D
  . S PSJDD55(PSJDD55)=$G(^PS(55,DFN,5,+ON,1,PSJDD55,0))
- . S PSJDD551=PSJDD551_"Disp Drug: "_"("_$P($G(PSJDD55(PSJDD55)),"^",1)_") "_$P($G(^PSDRUG($P($G(PSJDD55(PSJDD55)),"^",1),0)),"^")_" Units: "_$P($G(PSJDD55(PSJDD55)),"^",2)_" "
+ . S PSJDD551="Disp Drug: "_"("_$P($G(PSJDD55(PSJDD55)),"^",1)_") "_$P($G(^PSDRUG($P($G(PSJDD55(PSJDD55)),"^",1),0)),"^")_" Units: "_$P($G(PSJDD55(PSJDD55)),"^",2)_" "
  ; If the two temporary strings PSJDTMP1 and PSJDD551 do not match each other exactly
  ; then an edit has been made to the Dispense Drug Field.  Make a new entry in
  ; the Activity Log for this order.

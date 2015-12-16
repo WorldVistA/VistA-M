@@ -1,5 +1,5 @@
 PSOSIGNO ;BHAM ISC/RTR-Check new Sig for Route and Schedule ; 10/10/96
- ;;7.0;OUTPATIENT PHARMACY;;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**282**;DEC 1997;Build 18
  ;
  ;Pass in IEN from Pending File, and New Sig
  ;Returned   PSOSIGFL=0  no new order (common Routes and Schedules)
@@ -27,7 +27,8 @@ EN(PSPENIEN,PSPENSIG) ;
  F ZZZZ=0:0 S ZZZZ=$O(^PS(52.41,PSPENIEN,1,ZZZZ)) Q:'ZZZZ  I $P($G(^PS(52.41,PSPENIEN,1,ZZZZ,1)),"^")'="" S PSOSCH($P(^(1),"^"))=""
  F GGG=1:1:$L(PSPENSIG," ") S XXX=$P(PSPENSIG," ",GGG) D:XXX]""
  .I $D(^PS(51,"A",XXX)) D
- ..S XXXX=$O(^PS(51,"B",XXX,0)) D:XXXX
+ ..;PSO*7*282 intended use
+ ..S XXXX=$O(^PS(51,"B",XXX,0)) D:XXXX&($P($G(^PS(51,XXXX,0)),"^",4)>1)
  ...I $P($G(^PS(51,XXXX,0)),"^",5),$P($G(^PS(51.2,+$P(^(0),"^",5),0)),"^")'="" S PSONEWMD($P(^PS(51,XXXX,0),"^",5))=$P(^PS(51.2,$P(^(0),"^",5),0),"^")
  ...I $P($G(^PS(51,XXXX,0)),"^",6)'="" S PSONEWSD($P(^(0),"^",6))=""
 NEW ;Check for new order
@@ -54,7 +55,8 @@ EN1(PSRENIEN,PSRENSIG) ;
  F ZZZZ=0:0 S ZZZZ=$O(^PSRX(PSRENIEN,"SCH",ZZZZ)) Q:'ZZZZ  I $P(^(ZZZZ,0),"^")'="" S PSOSCH($P(^(0),"^"))=""
  F GGG=1:1:$L(PSRENSIG," ") S XXX=$P(PSRENSIG," ",GGG) D:XXX]""
  .I $D(^PS(51,"A",XXX)) D
- ..S XXXX=$O(^PS(51,"B",XXX,0)) D:XXXX
+ ..;PSO*7*282 intended use
+ ..S XXXX=$O(^PS(51,"B",XXX,0)) D:XXXX&($P($G(^PS(51,XXXX,0)),"^",4)>1)
  ...I $P($G(^PS(51,XXXX,0)),"^",5),$P($G(^PS(51.2,+$P(^(0),"^",5),0)),"^")'="" S PSONEWMD($P(^PS(51,XXXX,0),"^",5))=$P(^PS(51.2,$P(^(0),"^",5),0),"^")
  ...I $P($G(^PS(51,XXXX,0)),"^",6)'="" S PSONEWSD($P(^(0),"^",6))=""
 NEWOR ;Check for new order
@@ -68,7 +70,8 @@ POP(PSOPOPRX) ;Pass in Internal Rx number, will populate Med Route and
  S BACKSIG=$P(^PSRX(PSOPOPRX,"SIG"),"^")
  F BBB=1:1:$L(BACKSIG," ") S LLL=$P(BACKSIG," ",BBB) D:LLL]""
  .I $D(^PS(51,"A",LLL)) D
- ..S LLLL=$O(^PS(51,"B",LLL,0)) D:LLLL
+ ..;PSO*7*282 intended use
+ ..S LLLL=$O(^PS(51,"B",LLL,0)) D:LLLL&($P($G(^PS(51,LLLL,0)),"^",4)>1)
  ...I $P($G(^PS(51,LLLL,0)),"^",5),$P($G(^PS(51.2,+$P(^(0),"^",5),0)),"^")'="" S POPMD($P(^PS(51,LLLL,0),"^",5))=""
  ...I $P($G(^PS(51,LLLL,0)),"^",6)'="" S POPSC($P(^(0),"^",6))=""
  K ^PSRX(PSOPOPRX,"MEDR"),^PSRX(PSOPOPRX,"SCH")

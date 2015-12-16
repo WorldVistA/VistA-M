@@ -1,5 +1,5 @@
 FBNHPC ;AISC/GRR-POST COMMITMENTS TO 1358 ;1DEC00
- ;;3.5;FEE BASIS;**25,153**;JAN 30, 1995;Build 14
+ ;;3.5;FEE BASIS;**25,153,162**;JAN 30, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;FB*3.5*153 Save requested site internal to insure obligation found in file
@@ -8,11 +8,13 @@ FBNHPC ;AISC/GRR-POST COMMITMENTS TO 1358 ;1DEC00
  ;           as well as carry over activity and Insufficient Authorization 
  ;           Rate data on file
  ;
+ ;FB*3.5*162 Modify task process to include PRC("site")
+ ;
  S PRCS("TYPE")="FB",(FBNHCC,FBTOT)=0,PRCS("A")="Select Obligation Number: " K PRCS("X") D EN1^PRCS58 G:Y<0 Q S FBOBN=$P(Y,"^",2),FBSTA=PRC("SST")   ;FB*3.5*153
  ;entry point for estimate report FBNHCC=1,(FBSEQ,FBOBN)=""
 EN1 I FBNHCC D STA^PRCSUT Q:'$D(PRC("SITE"))  S FBSTA=PRC("SST")     ;FB*3.5*153
  S FBTOT=0,%DT=$S(FBNHCC:"AEPMX",1:"AEPMX"),%DT("A")=$S(FBNHCC:"Calculate ",1:"Post ")_"Commitments for which Month/Year: " D ^%DT G:X="^"!(X="") Q S FBPAYDT=$E(+Y,1,5)_"00",FBMM=$E(+Y,4,5),FBYY=$E(+Y,2,3),X=+Y D DAYS^FBAAUTL1 S FBDAYS=X
- S VAR="FBOBN^FBPAYDT^FBMM^FBYY^FBDAYS^FBNHCC",VAL=FBOBN_"^"_FBPAYDT_"^"_FBMM_"^"_FBYY_"^"_FBDAYS_"^"_FBNHCC,PGM="START^FBNHPC" D ZIS^FBAAUTL G:FBPOP END
+ S VAR="FBOBN^FBPAYDT^FBMM^FBYY^FBDAYS^FBNHCC^FBSTA^PRC(""SITE"")",VAL=FBOBN_"^"_FBPAYDT_"^"_FBMM_"^"_FBYY_"^"_FBDAYS_"^"_FBNHCC,PGM="START^FBNHPC" D ZIS^FBAAUTL G:FBPOP END   ;FB*3.5*162
  ;
 START K ^TMP($J,"FBNHPC") S (FBPAYEDT,FBENDDT)=$E(FBPAYDT,1,5)_FBDAYS,Q="",$P(Q,"=",80)="=",(FBTOT,FBTOTAL,FBOUT)=0 U IO W:$E(IOST,1,2)["C-" @IOF D HED^FBNHPC1
  N FBCNT S FBCNT=0

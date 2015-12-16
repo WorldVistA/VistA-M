@@ -1,7 +1,9 @@
-XUPSQRY ;EDS/GRR - Query New Person file ;4/9/04  10:40
- ;;8.0;KERNEL;**325**; Jul 10, 1995
+XUPSQRY ;EDS/GRR - Query New Person file ;03/17/15  08:30
+ ;;8.0;KERNEL;**325,655**; Jul 10, 1995;Build 16
+ ;Per VA Directive 6402, this routine should not be modified.
  ;;Input Parameter:
- ;;   XUPSVPID - VPID of the user (Required for lookup by VPID)
+ ;;   XUPSECID - SecID of the user, internal format with "^"
+ ;;              replaced with "%" (Required for lookup by SecID)
  ;;   XUPSLNAM - Part or all of the last name to use for basis
  ;;              of query (Required for lookup by name)
  ;;   XUPSFNAM - Part or all of the first name to use for basis
@@ -20,7 +22,7 @@ XUPSQRY ;EDS/GRR - Query New Person file ;4/9/04  10:40
  ;;Output:
  ;;   RESULT - Name of global array were output data is stored
  ;;            ^TMP($J,"XUPSQRY",1) - 1 if found, 0 if not found
- ;;            ^TMP($J,"XUPSQRY",n,0) - VPID^IEN^Last Name~First Name~
+ ;;            ^TMP($J,"XUPSQRY",n,0) - SecID^IEN^Last Name~First Name~
  ;;                                      Middle Name^SSN^DOB^SEX^
  ;;            ^TMP($J,"XUPSQRY",n,1) - Provider Type^
  ;;            ^TMP($J,"XUPSQRY",n,2) - Provider Classification^
@@ -28,13 +30,13 @@ XUPSQRY ;EDS/GRR - Query New Person file ;4/9/04  10:40
  ;;            ^TMP($J,"XUPSQRY",n,4) - VA CODE^X12 CODE^Specialty Code^
  ;;                                      end-of-record character "|"
  ;;
-EN1(RESULT,XUPSVPID,XUPSLNAM,XUPSFNAM,XUPSSSN,XUPSPROV,XUPSSTN,XUPSMNM,XUPSDATE) ;
+EN1(RESULT,XUPSECID,XUPSLNAM,XUPSFNAM,XUPSSSN,XUPSPROV,XUPSSTN,XUPSMNM,XUPSDATE) ;
  N %,XUPSNDAT
  K ^TMP($J,"XUPSQRY")
  K RESULT
- S RESULT=$NA(^TMP($J,"XUPSQRY")) ;set variable to name of global array where output data will be stored 
+ S RESULT=$NA(^TMP($J,"XUPSQRY")) ;set variable to name of global array where output data will be stored
  S ^TMP($J,"XUPSQRY",1)=0 ;initialize to not found
- I $G(XUPSLNAM)="",($G(XUPSVPID)="") Q  ;last name parameter empty, and is required
+ I $G(XUPSLNAM)="",($G(XUPSECID)="") Q  ;last name parameter empty, and is required
  S XUPSFNAM=$G(XUPSFNAM)  ;Set to null if missing
  S XUPSSSN=$G(XUPSSSN)  ;Set to null if missing
  S XUPSPROV=$G(XUPSPROV)  ;Set to null if missing
@@ -46,9 +48,9 @@ EN1(RESULT,XUPSVPID,XUPSLNAM,XUPSFNAM,XUPSSSN,XUPSPROV,XUPSSTN,XUPSMNM,XUPSDATE)
  S:$G(XUPSMNM)="" XUPSMNM=50 ;set to default
  S XUPSCNT=0 ;Initialize variable
  ;
- ;Lookup by VPID
- I $G(XUPSVPID)'="" D  Q
- .S XUPSIEN=$$IEN^XUPS(XUPSVPID)
+ ;Lookup by SecID
+ I $G(XUPSECID)'="" D  Q
+ .S XUPSIEN=$$SECMATCH^XUESSO2(XUPSECID)
  .I +XUPSIEN>0 D
  ..D FILTER
  ..Q:XUPSPASS=0
@@ -66,6 +68,7 @@ EN1(RESULT,XUPSVPID,XUPSLNAM,XUPSFNAM,XUPSSSN,XUPSPROV,XUPSSTN,XUPSMNM,XUPSDATE)
  .D FOUND(XUPSCNT,XUPSIEN,XUPSDATE) ;set array with person data
  Q
 FILTER ;
+ ; ZEXCEPT: XUPSDATE,XUPSFNAM,XUPSIEN,XUPSPASS,XUPSPROV,XUPSSSN,XUPSSTN ;global variables within this routine
  S XUPSPASS=1 ;initialize found flag to found
  I '$$ACTIVE^XUSER(XUPSIEN),($O(^VA(200,XUPSIEN,8910,0))>0) S XUPSPASS=0 Q  ;skip visitors
  I XUPSFNAM]"" S XUPSPASS=$$NMATCH^XUPSUTL1(XUPSIEN,XUPSFNAM) ;check if matches name filter
@@ -76,18 +79,19 @@ FILTER ;
  I XUPSPROV]"",($$GET^XUA4A72(XUPSIEN,XUPSDATE)<0) S XUPSPASS=0 Q  ;check if active person class
  Q
 FOUND(XUPSCNT,XUPSIEN,XUPSDATE) ;format output array
- N XUPSNAME,XUPSSSN,XUPSVPID,XUPSSEX,XUPSDOB,I,Y
+ ; ZEXCEPT: XUPSPC,XUPSX12 ;global variables within this routine
+ N XUPSNAME,XUPSSSN,XUPSECID,XUPSSEX,XUPSDOB,I,Y
  S Y=$P(^VA(200,XUPSIEN,0),"^",1) ;get full name
  S XUPSNAME=$$HLNAME^HLFNC(Y,"~|\/") ;format name into last name~first name~middle name
  I $L(XUPSNAME,"~")<3 S $P(XUPSNAME,"~",3)="" ;make sure formatted name has all 3 pieces
  S Y=$G(^VA(200,XUPSIEN,1)) ;get ssn,dob,sex
  S XUPSSSN=$P(Y,"^",9) ;ssn
- S XUPSVPID=$P($G(^VA(200,XUPSIEN,"VPID")),"^",1)
+ S XUPSECID=$P(Y,"^",1) ;secid
  S XUPSSEX=$P(Y,"^",2) ;sex
  S XUPSDOB=$P(Y,"^",3) ;dob fileman format
  I XUPSDOB]"" S XUPSDOB=$$HLDATE^HLFNC(XUPSDOB,"DT") ;format dob to correct hl7 format yyyymmdd
  S ^TMP($J,"XUPSQRY",1)=1 ;set to indicate match found
- S ^TMP($J,"XUPSQRY",XUPSCNT,0)=XUPSVPID_"^"_XUPSIEN_"^"_XUPSNAME_"^"_XUPSSSN_"^"_XUPSDOB_"^"_XUPSSEX_"^"
+ S ^TMP($J,"XUPSQRY",XUPSCNT,0)=XUPSECID_"^"_XUPSIEN_"^"_XUPSNAME_"^"_XUPSSSN_"^"_XUPSDOB_"^"_XUPSSEX_"^"
  S XUPSPC=$$GET^XUA4A72(XUPSIEN,XUPSDATE) ;get active person class data
  S:XUPSPC<0 XUPSPC="" ;no active person class
  F I=1:1:3 S ^TMP($J,"XUPSQRY",XUPSCNT,I)=$P(XUPSPC,"^",(1+I))_"^" ;put provider type, provider class, and are of specialization in output array

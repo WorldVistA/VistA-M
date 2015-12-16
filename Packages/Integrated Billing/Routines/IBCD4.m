@@ -1,15 +1,15 @@
 IBCD4 ;ALB/ARH - AUTOMATED BILLER (ADD NEW BILL - GATHER DX AND PROCEDURES)  ;9/5/93
- ;;2.0;INTEGRATED BILLING;**14,80,106,160,309,276,347**;21-MAR-94;Build 24
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**14,80,106,160,309,276,347,522**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 IDX(PTF,DT1,DT2) ; find 501 movement Diagnosis and 701 Discharge Diagnosisfor a PTF record within bill range
  ; check for billable bedsection and SC treatement and duplicates
  ; results: IBT = number of billable movements within date range
  ;          IBMSG(X)=" error message " if any errors found
- ;         ^TMP("IBDX",$J)= PTF IFN
- ;         ^TMP("IBDX",$J,DX)=""
- ;         ^TMP("IBDX",$J,-MOVE DATE, x) = Dx
+ ;         ^TMP("IBDX",$J) = PTF IFN
+ ;         ^TMP("IBDX",$J,"DX",DX) = MOVE DATE/TIME ^ MOVE IEN ^ POA
+ ;         ^TMP("IBDX",$J,-MOVE DATE/TIME, MOVE IEN) = Dx ^ ^ POA
  N IBMVT,IBN,IBDT,IBCNT,IBBS,IBSC,IBMV,IBDX,IBI,IBX K IBMSG,IBT,^TMP("IBDX",$J)
  ;
  D PTFDXDT^IBCSC4F(PTF,DT1,DT2) S IBMVT="M" I +$P($G(^TMP($J,"IBDX","D")),U,3) S IBMVT="D"
@@ -26,29 +26,16 @@ IDX(PTF,DT1,DT2) ; find 501 movement Diagnosis and 701 Discharge Diagnosisfor a 
  . ;
  . S IBI="" F  S IBI=$O(^TMP($J,"IBDX",IBN,IBDT,IBI)) Q:'IBI  D
  .. S IBDX=$G(^TMP($J,"IBDX",IBN,IBDT,IBI)) Q:'IBDX
- .. I '$P(IBDX,U,2),IBDT>+$G(^TMP("IBDX",$J,"DX",+IBDX)) S ^TMP("IBDX",$J,"DX",+IBDX)=IBDT_U_IBI
+ .. I '$P(IBDX,U,2),IBDT>+$G(^TMP("IBDX",$J,"DX",+IBDX)) S ^TMP("IBDX",$J,"DX",+IBDX)=IBDT_U_IBI_U_$P(IBDX,U,3)
  ;
  S IBDX="" F  S IBDX=$O(^TMP("IBDX",$J,"DX",IBDX)) Q:'IBDX  D
- . S IBX=^TMP("IBDX",$J,"DX",IBDX) I +IBX S ^TMP("IBDX",$J,-IBX,+$P(IBX,U,2))=IBDX
+ . S IBX=^TMP("IBDX",$J,"DX",IBDX) I +IBX S ^TMP("IBDX",$J,-IBX,+$P(IBX,U,2))=IBDX_U_U_$P(IBX,U,3)
  K ^TMP($J,"IBDX")
  ;
  I +IBSC S IBMSG(IBCNT)="PTF record indicates "_+IBSC_" of "_IBT_" movements are for Service Connected Care.",IBCNT=IBCNT+1
  I +IBBS S IBMSG(IBCNT)="PTF record indicates "_+IBBS_" of "_IBT_" movements are for a non-billable bedsection.",IBCNT=IBCNT+1
  S IBT=IBT-IBSC-IBBS I 'IBT S IBMSG(IBCNT)="0 movements are billable."
 IDXE Q
- ;
-IPRC(PTF,DT1,DT2) ;find 401 and 601 procedures for a PTF record
- ;results: ^TMP("IBIPRC",$J,PROC DATE)=PROC1^ ... ^PROC5
- ;where PROC DATE = (45.01,45.01,.01) and (45,45.05,.01) and PROC = (45,45.01,8-12) and (45,45.05,4-8)
- N IBX,IBY,IBZ,IBI K ^TMP("IBIPRC",$J) I '$D(^DGPT(+$G(PTF),0)) G IPRCE
- S DT1=$S(+$G(DT1):+DT1,1:0),DT2=$S(+$G(DT2):+DT2,1:9999999),^TMP("IBIPRC",$J)=+PTF
- S IBX=0 F  S IBX=$O(^DGPT(+PTF,"S",IBX)) Q:'IBX  S IBY=$G(^DGPT(+PTF,"S",IBX,0)) I +IBY'<DT1,+IBY'>DT2 D
- . S IBZ="" F IBI=8:1:12 I +$P(IBY,U,IBI) S IBZ=IBZ_+$P(IBY,U,IBI)_U
- . I +IBZ S ^TMP("IBIPRC",$J,+IBY)=$G(^TMP("IBIPRC",$J,+IBY))_IBZ
- S IBX=0 F  S IBX=$O(^DGPT(+PTF,"P",IBX)) Q:'IBX  S IBY=$G(^DGPT(+PTF,"P",IBX,0)) I +IBY'<DT1,+IBY'>DT2 D
- . S IBZ="" F IBI=5:1:9 I +$P(IBY,U,IBI) S IBZ=IBZ_+$P(IBY,U,IBI)_U
- . I +IBZ S ^TMP("IBIPRC",$J,+IBY)=$G(^TMP("IBIPRC",$J,+IBY))_IBZ
-IPRCE Q
  ;
 RXRF(PIFN,RIFN,IBDT) ; returns data on fill on date for rx (RX # ^ DRUG ^ DAYS SUPPLY ^ FILL DATE ^ QTY ^ NDC #)
  N X,Y,PLN,RLN,IBFILL,PDFN,LIST,NODE

@@ -1,126 +1,136 @@
-IBDEI1W9 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1W9 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33678,0)
- ;;=M20.42^^191^1970^7
- ;;^UTILITY(U,$J,358.3,33678,1,0)
+ ;;^UTILITY(U,$J,358.3,33311,1,3,0)
+ ;;=3^Alcohol Use Screen
+ ;;^UTILITY(U,$J,358.3,33311,1,4,0)
+ ;;=4^Z13.89
+ ;;^UTILITY(U,$J,358.3,33311,2)
+ ;;=^5062720
+ ;;^UTILITY(U,$J,358.3,33312,0)
+ ;;=Z12.39^^182^2001^3
+ ;;^UTILITY(U,$J,358.3,33312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33678,1,3,0)
- ;;=3^Hammer toe(s) (acquired), left foot, oth
- ;;^UTILITY(U,$J,358.3,33678,1,4,0)
- ;;=4^M20.42
- ;;^UTILITY(U,$J,358.3,33678,2)
- ;;=^5011052
- ;;^UTILITY(U,$J,358.3,33679,0)
- ;;=M20.41^^191^1970^8
- ;;^UTILITY(U,$J,358.3,33679,1,0)
+ ;;^UTILITY(U,$J,358.3,33312,1,3,0)
+ ;;=3^Breast Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,33312,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,33312,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,33313,0)
+ ;;=Z12.4^^182^2001^5
+ ;;^UTILITY(U,$J,358.3,33313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33679,1,3,0)
- ;;=3^Hammer toe(s) (acquired), right foot, oth
- ;;^UTILITY(U,$J,358.3,33679,1,4,0)
- ;;=4^M20.41
- ;;^UTILITY(U,$J,358.3,33679,2)
- ;;=^5011051
- ;;^UTILITY(U,$J,358.3,33680,0)
- ;;=T84.7XXA^^191^1971^13
- ;;^UTILITY(U,$J,358.3,33680,1,0)
+ ;;^UTILITY(U,$J,358.3,33313,1,3,0)
+ ;;=3^Cervix Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,33313,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,33313,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,33314,0)
+ ;;=Z13.5^^182^2001^7
+ ;;^UTILITY(U,$J,358.3,33314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33680,1,3,0)
- ;;=3^Infect/inflm react d/t int orth pros dev/graft, init
- ;;^UTILITY(U,$J,358.3,33680,1,4,0)
- ;;=4^T84.7XXA
- ;;^UTILITY(U,$J,358.3,33680,2)
- ;;=^5055451
- ;;^UTILITY(U,$J,358.3,33681,0)
- ;;=T84.69XA^^191^1971^8
- ;;^UTILITY(U,$J,358.3,33681,1,0)
+ ;;^UTILITY(U,$J,358.3,33314,1,3,0)
+ ;;=3^Eye and Ear Disorder Screen
+ ;;^UTILITY(U,$J,358.3,33314,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,33314,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,33315,0)
+ ;;=Z01.89^^182^2001^6
+ ;;^UTILITY(U,$J,358.3,33315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33681,1,3,0)
- ;;=3^Infect/inflm react d/t int fix of oth site, init
- ;;^UTILITY(U,$J,358.3,33681,1,4,0)
- ;;=4^T84.69XA
- ;;^UTILITY(U,$J,358.3,33681,2)
- ;;=^5055448
- ;;^UTILITY(U,$J,358.3,33682,0)
- ;;=T84.63XA^^191^1971^9
- ;;^UTILITY(U,$J,358.3,33682,1,0)
+ ;;^UTILITY(U,$J,358.3,33315,1,3,0)
+ ;;=3^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,33315,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,33315,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,33316,0)
+ ;;=Z11.59^^182^2001^13
+ ;;^UTILITY(U,$J,358.3,33316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33682,1,3,0)
- ;;=3^Infect/inflm react d/t int fix of spine, init
- ;;^UTILITY(U,$J,358.3,33682,1,4,0)
- ;;=4^T84.63XA
- ;;^UTILITY(U,$J,358.3,33682,2)
- ;;=^5055445
- ;;^UTILITY(U,$J,358.3,33683,0)
- ;;=T84.625A^^191^1971^3
- ;;^UTILITY(U,$J,358.3,33683,1,0)
+ ;;^UTILITY(U,$J,358.3,33316,1,3,0)
+ ;;=3^Viral Diseases Screen
+ ;;^UTILITY(U,$J,358.3,33316,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,33316,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,33317,0)
+ ;;=Z13.6^^182^2001^4
+ ;;^UTILITY(U,$J,358.3,33317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33683,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft fib, init
- ;;^UTILITY(U,$J,358.3,33683,1,4,0)
- ;;=4^T84.625A
- ;;^UTILITY(U,$J,358.3,33683,2)
- ;;=^5055439
- ;;^UTILITY(U,$J,358.3,33684,0)
- ;;=T84.624A^^191^1971^10
- ;;^UTILITY(U,$J,358.3,33684,1,0)
+ ;;^UTILITY(U,$J,358.3,33317,1,3,0)
+ ;;=3^Cardiovascular Disorder Screen
+ ;;^UTILITY(U,$J,358.3,33317,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,33317,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,33318,0)
+ ;;=Z12.12^^182^2001^12
+ ;;^UTILITY(U,$J,358.3,33318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33684,1,3,0)
- ;;=3^Infect/inflm react d/t int fix rt fib, init
- ;;^UTILITY(U,$J,358.3,33684,1,4,0)
- ;;=4^T84.624A
- ;;^UTILITY(U,$J,358.3,33684,2)
- ;;=^5055436
- ;;^UTILITY(U,$J,358.3,33685,0)
- ;;=T84.612A^^191^1971^12
- ;;^UTILITY(U,$J,358.3,33685,1,0)
+ ;;^UTILITY(U,$J,358.3,33318,1,3,0)
+ ;;=3^Rectum Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,33318,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,33318,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,33319,0)
+ ;;=Z71.89^^182^2001^10
+ ;;^UTILITY(U,$J,358.3,33319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33685,1,3,0)
- ;;=3^Infect/inflm react d/t int fix rt radius, init
- ;;^UTILITY(U,$J,358.3,33685,1,4,0)
- ;;=4^T84.612A
- ;;^UTILITY(U,$J,358.3,33685,2)
- ;;=^5055409
- ;;^UTILITY(U,$J,358.3,33686,0)
- ;;=T84.611A^^191^1971^4
- ;;^UTILITY(U,$J,358.3,33686,1,0)
+ ;;^UTILITY(U,$J,358.3,33319,1,3,0)
+ ;;=3^Other Specified Counseling
+ ;;^UTILITY(U,$J,358.3,33319,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,33319,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,33320,0)
+ ;;=Z12.5^^182^2001^11
+ ;;^UTILITY(U,$J,358.3,33320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33686,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft humerus, init
- ;;^UTILITY(U,$J,358.3,33686,1,4,0)
- ;;=4^T84.611A
- ;;^UTILITY(U,$J,358.3,33686,2)
- ;;=^5055406
- ;;^UTILITY(U,$J,358.3,33687,0)
- ;;=T84.610A^^191^1971^11
- ;;^UTILITY(U,$J,358.3,33687,1,0)
+ ;;^UTILITY(U,$J,358.3,33320,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,33320,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,33320,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,33321,0)
+ ;;=Z00.00^^182^2001^8
+ ;;^UTILITY(U,$J,358.3,33321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33687,1,3,0)
- ;;=3^Infect/inflm react d/t int fix rt humerus, init
- ;;^UTILITY(U,$J,358.3,33687,1,4,0)
- ;;=4^T84.610A
- ;;^UTILITY(U,$J,358.3,33687,2)
- ;;=^5055403
- ;;^UTILITY(U,$J,358.3,33688,0)
- ;;=T84.623A^^191^1971^6
- ;;^UTILITY(U,$J,358.3,33688,1,0)
+ ;;^UTILITY(U,$J,358.3,33321,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,33321,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,33321,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,33322,0)
+ ;;=Z02.79^^182^2001^9
+ ;;^UTILITY(U,$J,358.3,33322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33688,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft tib, init
- ;;^UTILITY(U,$J,358.3,33688,1,4,0)
- ;;=4^T84.623A
- ;;^UTILITY(U,$J,358.3,33688,2)
- ;;=^5055433
- ;;^UTILITY(U,$J,358.3,33689,0)
- ;;=T84.615A^^191^1971^7
- ;;^UTILITY(U,$J,358.3,33689,1,0)
+ ;;^UTILITY(U,$J,358.3,33322,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,33322,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,33322,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,33323,0)
+ ;;=D86.0^^182^2002^45
+ ;;^UTILITY(U,$J,358.3,33323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33689,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft ulna, init
- ;;^UTILITY(U,$J,358.3,33689,1,4,0)
- ;;=4^T84.615A
- ;;^UTILITY(U,$J,358.3,33689,2)
- ;;=^5055418
- ;;^UTILITY(U,$J,358.3,33690,0)
- ;;=T84.614A^^191^1971^2
+ ;;^UTILITY(U,$J,358.3,33323,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,33323,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,33323,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,33324,0)
+ ;;=D86.1^^182^2002^47
+ ;;^UTILITY(U,$J,358.3,33324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33324,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes

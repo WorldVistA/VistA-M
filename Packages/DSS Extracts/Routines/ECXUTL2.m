@@ -1,5 +1,5 @@
-ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;4/23/14  12:02
- ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149**;Dec 22, 1997;Build 27
+ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;2/6/15  12:02
+ ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154**;Dec 22, 1997;Build 13
  ;
 ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER) ;variables specific to extract from file #727.1
  ;   input 
@@ -30,9 +30,8 @@ ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER) ;variables specifi
  S DIC="^ECX(727.1,",DA=ECXIEN,DR=".01;1;4;7;9;11;13",DIQ="ECXARR"
  D EN^DIQ1
  S ECXPACK=ECXARR(727.1,ECXIEN,7)
- ;if this is an inactive extract type, skip it
- ;I ECXPACK["Inactive" D  Q
- I ECXARR(727.1,ECXIEN,13)="YES" D  Q
+ ;if this is an inactive extract type, skip it unless building for audit 
+ I ECXARR(727.1,ECXIEN,13)="YES" I '+$G(ECXAUDIT) D  Q  ;154, allow extract to run if for audit purposes (ECXAUDIT=1 if coming from audit report)
  .D MES^XPDUTL(" ")
  .D MES^XPDUTL(" The "_ECHEAD_" Extract is no longer active/valid.")
  .D MES^XPDUTL(" ")

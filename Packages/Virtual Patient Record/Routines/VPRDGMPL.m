@@ -1,5 +1,5 @@
 VPRDGMPL ;SLC/MKB -- Problem extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -42,16 +42,17 @@ EN1(ID,PROB) ; -- return a problem in PROB("attribute")=value
  S ID=+$G(ID) Q:ID<1  ;invalid ien
  D DETAIL^GMPLUTL2(ID,.VPRL) Q:'$D(VPRL)  ;doesn't exist
  S PROB("id")=ID,PROB("name")=$G(VPRL("NARRATIVE"))
- S X=$G(VPRL("MODIFIED")) S:$L(X) PROB("updated")=$$DATE(X)
- S PROB("icd")=$G(VPRL("DIAGNOSIS"))
- F I="SCTC","SCTD","SCTT" S X=$G(VPRL(I)) S:$L(X) PROB($$LOW^XLFSTR(I))=X
+ S PROB("icd")=$G(VPRL("DIAGNOSIS")),PROB("codingSystem")=$G(VPRL("CSYS"),"ICD")
+ F I="SCTC","SCTD","SCTT","ICDD" S X=$G(VPRL(I)) S:$L(X) PROB($$LOW^XLFSTR(I))=X
  S X=$G(VPRL("STATUS")) S:$L(X) PROB("status")=$E(X)_U_X
  S X=$G(VPRL("HISTORY"))  S:$L(X) PROB("history")=$E(X)_U_X
  S X=$G(VPRL("PRIORITY")) S:$L(X) PROB("acuity")=$E(X)_U_X
- S X=$G(VPRL("ONSET")) S:$L(X) PROB("onset")=$$DATE(X)
+ ; get internal form of dates via FM instead of DETAIL
+ S X=$$GET1^DIQ(9000011,ID_",",.03,"I") S:X PROB("updated")=X
+ S X=$$GET1^DIQ(9000011,ID_",",.08,"I") S:X PROB("entered")=X
+ S X=$$GET1^DIQ(9000011,ID_",",.13,"I") S:X PROB("onset")=X
  S X=$$GET1^DIQ(9000011,ID_",",1.07,"I") S:X PROB("resolved")=X
- S X=$P($G(VPRL("ENTERED")),U)  S:$L(X) PROB("entered")=$$DATE(X)
- S X=$$GET1^DIQ(9000011,ID_",",1.02,"I")
+ S X=$E($G(VPRL("CONDITION")))
  S:X="P" PROB("unverified")=0,PROB("removed")=0
  S:X="T" PROB("unverified")=1,PROB("removed")=0
  S:X="H" PROB("unverified")=0,PROB("removed")=1
@@ -61,9 +62,9 @@ EN1(ID,PROB) ; -- return a problem in PROB("attribute")=value
  .. S X=$G(VPRL("EXPOSURE",I))
  .. S PROB("exposure",I)=$$EXP(X)
  S X=$G(VPRL("PROVIDER")) S:$L(X) PROB("provider")=$$GET1^DIQ(9000011,ID_",",1.05,"I")_U_X
- S X=$$GET1^DIQ(9000011,ID_",",1.06) S:$L(X) PROB("service")=X
+ S X=$G(VPRL("SERVICE")) S:$L(X) PROB("service")=X
  S X=$G(VPRL("CLINIC")) S:$L(X) PROB("location")=X
- S X=+$$GET1^DIQ(9000011,ID_",",.06,"I")
+ S X=+$G(VPRL("FACILITY"))
  S:X PROB("facility")=$$STA^XUAF4(X)_U_$P($$NS^XUAF4(X),U)
  I 'X S PROB("facility")=$$FAC^VPRD ;local stn#^name
 CMT ; comments
@@ -84,6 +85,9 @@ WV(PROB,UPD) ; -- return a pregnancy log entry in PROB("attribute")=value
  ; continue if pregnant, or update requested
  S PROB("id")="790.05",PROB("entered")=+X0
  S PROB("name")="Pregnancy",PROB("icd")="V22.2"
+ S PROB("icdd")="PREGNANT STATE, INCIDENTAL"
+ S PROB("codingSystem")="ICD"
+ S PROB("sctc")="77386006",PROB("sctt")="Patient currently pregnant (finding)"
  ; PROB("problemType")=64572001            ;HITSP/Condition
  S PROB("status")=$S(Y:"A^ACTIVE",1:"I^INACTIVE")
  S PROB("resolved")=$P(X0,U,4)             ;due date

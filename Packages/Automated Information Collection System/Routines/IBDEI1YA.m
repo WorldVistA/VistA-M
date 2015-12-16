@@ -1,138 +1,128 @@
-IBDEI1YA ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YA ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34609,0)
- ;;=C45.0^^192^2004^2
- ;;^UTILITY(U,$J,358.3,34609,1,0)
+ ;;^UTILITY(U,$J,358.3,34233,0)
+ ;;=Z47.81^^183^2017^13
+ ;;^UTILITY(U,$J,358.3,34233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34609,1,3,0)
- ;;=3^Pleura Mesothelioma
- ;;^UTILITY(U,$J,358.3,34609,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,34609,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,34610,0)
- ;;=J94.8^^192^2004^4
- ;;^UTILITY(U,$J,358.3,34610,1,0)
+ ;;^UTILITY(U,$J,358.3,34233,1,3,0)
+ ;;=3^Ortho aftercare following surgical amp
+ ;;^UTILITY(U,$J,358.3,34233,1,4,0)
+ ;;=4^Z47.81
+ ;;^UTILITY(U,$J,358.3,34233,2)
+ ;;=^5063030
+ ;;^UTILITY(U,$J,358.3,34234,0)
+ ;;=Z47.82^^183^2017^12
+ ;;^UTILITY(U,$J,358.3,34234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34610,1,3,0)
- ;;=3^Pleural Conditions NEC
- ;;^UTILITY(U,$J,358.3,34610,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,34610,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,34611,0)
- ;;=J94.9^^192^2004^3
- ;;^UTILITY(U,$J,358.3,34611,1,0)
+ ;;^UTILITY(U,$J,358.3,34234,1,3,0)
+ ;;=3^Ortho aftercare following scoliosis surgery
+ ;;^UTILITY(U,$J,358.3,34234,1,4,0)
+ ;;=4^Z47.82
+ ;;^UTILITY(U,$J,358.3,34234,2)
+ ;;=^5063031
+ ;;^UTILITY(U,$J,358.3,34235,0)
+ ;;=Z47.89^^183^2017^11
+ ;;^UTILITY(U,$J,358.3,34235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34611,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,34611,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,34611,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,34612,0)
- ;;=J91.8^^192^2004^6
- ;;^UTILITY(U,$J,358.3,34612,1,0)
+ ;;^UTILITY(U,$J,358.3,34235,1,3,0)
+ ;;=3^Ortho Aftercare NEC
+ ;;^UTILITY(U,$J,358.3,34235,1,4,0)
+ ;;=4^Z47.89
+ ;;^UTILITY(U,$J,358.3,34235,2)
+ ;;=^5063032
+ ;;^UTILITY(U,$J,358.3,34236,0)
+ ;;=S06.0X5S^^183^2018^1
+ ;;^UTILITY(U,$J,358.3,34236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34612,1,3,0)
- ;;=3^Pleural Effusion in Conditions Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,34612,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,34612,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,34613,0)
- ;;=J90.^^192^2004^5
- ;;^UTILITY(U,$J,358.3,34613,1,0)
+ ;;^UTILITY(U,$J,358.3,34236,1,3,0)
+ ;;=3^Concussion w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34236,1,4,0)
+ ;;=4^S06.0X5S
+ ;;^UTILITY(U,$J,358.3,34236,2)
+ ;;=^5020683
+ ;;^UTILITY(U,$J,358.3,34237,0)
+ ;;=S06.0X6S^^183^2018^2
+ ;;^UTILITY(U,$J,358.3,34237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34613,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,34613,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,34613,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,34614,0)
- ;;=J92.0^^192^2004^7
- ;;^UTILITY(U,$J,358.3,34614,1,0)
+ ;;^UTILITY(U,$J,358.3,34237,1,3,0)
+ ;;=3^Concussion w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,34237,1,4,0)
+ ;;=4^S06.0X6S
+ ;;^UTILITY(U,$J,358.3,34237,2)
+ ;;=^5020686
+ ;;^UTILITY(U,$J,358.3,34238,0)
+ ;;=S06.0X3S^^183^2018^3
+ ;;^UTILITY(U,$J,358.3,34238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34614,1,3,0)
- ;;=3^Pleural Plaque w/ Presence of Asbestos
- ;;^UTILITY(U,$J,358.3,34614,1,4,0)
- ;;=4^J92.0
- ;;^UTILITY(U,$J,358.3,34614,2)
- ;;=^5008312
- ;;^UTILITY(U,$J,358.3,34615,0)
- ;;=J92.9^^192^2004^8
- ;;^UTILITY(U,$J,358.3,34615,1,0)
+ ;;^UTILITY(U,$J,358.3,34238,1,3,0)
+ ;;=3^Concussion w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34238,1,4,0)
+ ;;=4^S06.0X3S
+ ;;^UTILITY(U,$J,358.3,34238,2)
+ ;;=^5020677
+ ;;^UTILITY(U,$J,358.3,34239,0)
+ ;;=S06.0X1S^^183^2018^4
+ ;;^UTILITY(U,$J,358.3,34239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34615,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,34615,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,34615,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,34616,0)
- ;;=R09.1^^192^2004^9
- ;;^UTILITY(U,$J,358.3,34616,1,0)
+ ;;^UTILITY(U,$J,358.3,34239,1,3,0)
+ ;;=3^Concussion w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34239,1,4,0)
+ ;;=4^S06.0X1S
+ ;;^UTILITY(U,$J,358.3,34239,2)
+ ;;=^5020671
+ ;;^UTILITY(U,$J,358.3,34240,0)
+ ;;=S06.0X2S^^183^2018^5
+ ;;^UTILITY(U,$J,358.3,34240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34616,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,34616,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,34616,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,34617,0)
- ;;=J86.0^^192^2004^10
- ;;^UTILITY(U,$J,358.3,34617,1,0)
+ ;;^UTILITY(U,$J,358.3,34240,1,3,0)
+ ;;=3^Concussion w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34240,1,4,0)
+ ;;=4^S06.0X2S
+ ;;^UTILITY(U,$J,358.3,34240,2)
+ ;;=^5020674
+ ;;^UTILITY(U,$J,358.3,34241,0)
+ ;;=S06.0X4S^^183^2018^6
+ ;;^UTILITY(U,$J,358.3,34241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34617,1,3,0)
- ;;=3^Pyothorax w/ Fistula
- ;;^UTILITY(U,$J,358.3,34617,1,4,0)
- ;;=4^J86.0
- ;;^UTILITY(U,$J,358.3,34617,2)
- ;;=^5008308
- ;;^UTILITY(U,$J,358.3,34618,0)
- ;;=J86.9^^192^2004^11
- ;;^UTILITY(U,$J,358.3,34618,1,0)
+ ;;^UTILITY(U,$J,358.3,34241,1,3,0)
+ ;;=3^Concussion w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,34241,1,4,0)
+ ;;=4^S06.0X4S
+ ;;^UTILITY(U,$J,358.3,34241,2)
+ ;;=^5020680
+ ;;^UTILITY(U,$J,358.3,34242,0)
+ ;;=S06.0X9S^^183^2018^7
+ ;;^UTILITY(U,$J,358.3,34242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34618,1,3,0)
- ;;=3^Pyothorax w/o Fistula
- ;;^UTILITY(U,$J,358.3,34618,1,4,0)
- ;;=4^J86.9
- ;;^UTILITY(U,$J,358.3,34618,2)
- ;;=^5008309
- ;;^UTILITY(U,$J,358.3,34619,0)
- ;;=F41.9^^192^2005^2
- ;;^UTILITY(U,$J,358.3,34619,1,0)
+ ;;^UTILITY(U,$J,358.3,34242,1,3,0)
+ ;;=3^Concussion w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34242,1,4,0)
+ ;;=4^S06.0X9S
+ ;;^UTILITY(U,$J,358.3,34242,2)
+ ;;=^5020695
+ ;;^UTILITY(U,$J,358.3,34243,0)
+ ;;=S06.0X0S^^183^2018^8
+ ;;^UTILITY(U,$J,358.3,34243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34619,1,3,0)
- ;;=3^Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,34619,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,34619,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,34620,0)
- ;;=F10.20^^192^2005^1
- ;;^UTILITY(U,$J,358.3,34620,1,0)
+ ;;^UTILITY(U,$J,358.3,34243,1,3,0)
+ ;;=3^Concussion w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34243,1,4,0)
+ ;;=4^S06.0X0S
+ ;;^UTILITY(U,$J,358.3,34243,2)
+ ;;=^5020668
+ ;;^UTILITY(U,$J,358.3,34244,0)
+ ;;=S06.335S^^183^2018^9
+ ;;^UTILITY(U,$J,358.3,34244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34620,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34620,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,34620,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,34621,0)
- ;;=F32.9^^192^2005^3
- ;;^UTILITY(U,$J,358.3,34621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34621,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episoide,Unspec
- ;;^UTILITY(U,$J,358.3,34621,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,34621,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,34622,0)
- ;;=F17.221^^192^2005^4
- ;;^UTILITY(U,$J,358.3,34622,1,0)
+ ;;^UTILITY(U,$J,358.3,34244,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34244,1,4,0)
+ ;;=4^S06.335S
+ ;;^UTILITY(U,$J,358.3,34244,2)
+ ;;=^5020863
+ ;;^UTILITY(U,$J,358.3,34245,0)
+ ;;=S06.336S^^183^2018^10
+ ;;^UTILITY(U,$J,358.3,34245,1,0)
  ;;=^358.31IA^4^2

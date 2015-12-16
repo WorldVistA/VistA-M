@@ -1,134 +1,128 @@
-IBDEI1SL ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SL ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32016,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,32016,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,32017,0)
- ;;=J20.0^^190^1945^11
- ;;^UTILITY(U,$J,358.3,32017,1,0)
+ ;;^UTILITY(U,$J,358.3,31619,1,4,0)
+ ;;=4^M06.221
+ ;;^UTILITY(U,$J,358.3,31619,2)
+ ;;=^5010076
+ ;;^UTILITY(U,$J,358.3,31620,0)
+ ;;=M06.241^^180^1962^73
+ ;;^UTILITY(U,$J,358.3,31620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32017,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,32017,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,32017,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,32018,0)
- ;;=J20.2^^190^1945^6
- ;;^UTILITY(U,$J,358.3,32018,1,0)
+ ;;^UTILITY(U,$J,358.3,31620,1,3,0)
+ ;;=3^Rheumatoid bursitis, right hand
+ ;;^UTILITY(U,$J,358.3,31620,1,4,0)
+ ;;=4^M06.241
+ ;;^UTILITY(U,$J,358.3,31620,2)
+ ;;=^5010082
+ ;;^UTILITY(U,$J,358.3,31621,0)
+ ;;=M06.251^^180^1962^74
+ ;;^UTILITY(U,$J,358.3,31621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32018,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,32018,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,32018,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,32019,0)
- ;;=J20.4^^190^1945^13
- ;;^UTILITY(U,$J,358.3,32019,1,0)
+ ;;^UTILITY(U,$J,358.3,31621,1,3,0)
+ ;;=3^Rheumatoid bursitis, right hip
+ ;;^UTILITY(U,$J,358.3,31621,1,4,0)
+ ;;=4^M06.251
+ ;;^UTILITY(U,$J,358.3,31621,2)
+ ;;=^5010085
+ ;;^UTILITY(U,$J,358.3,31622,0)
+ ;;=M06.261^^180^1962^75
+ ;;^UTILITY(U,$J,358.3,31622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32019,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,32019,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,32019,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,32020,0)
- ;;=J20.3^^190^1945^8
- ;;^UTILITY(U,$J,358.3,32020,1,0)
+ ;;^UTILITY(U,$J,358.3,31622,1,3,0)
+ ;;=3^Rheumatoid bursitis, right knee
+ ;;^UTILITY(U,$J,358.3,31622,1,4,0)
+ ;;=4^M06.261
+ ;;^UTILITY(U,$J,358.3,31622,2)
+ ;;=^5010088
+ ;;^UTILITY(U,$J,358.3,31623,0)
+ ;;=M06.211^^180^1962^76
+ ;;^UTILITY(U,$J,358.3,31623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32020,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,32020,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,32020,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,32021,0)
- ;;=J20.9^^190^1945^7
- ;;^UTILITY(U,$J,358.3,32021,1,0)
+ ;;^UTILITY(U,$J,358.3,31623,1,3,0)
+ ;;=3^Rheumatoid bursitis, right shoulder
+ ;;^UTILITY(U,$J,358.3,31623,1,4,0)
+ ;;=4^M06.211
+ ;;^UTILITY(U,$J,358.3,31623,2)
+ ;;=^5010073
+ ;;^UTILITY(U,$J,358.3,31624,0)
+ ;;=M06.231^^180^1962^77
+ ;;^UTILITY(U,$J,358.3,31624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32021,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,32021,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,32021,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,32022,0)
- ;;=J20.8^^190^1945^12
- ;;^UTILITY(U,$J,358.3,32022,1,0)
+ ;;^UTILITY(U,$J,358.3,31624,1,3,0)
+ ;;=3^Rheumatoid bursitis, right wrist
+ ;;^UTILITY(U,$J,358.3,31624,1,4,0)
+ ;;=4^M06.231
+ ;;^UTILITY(U,$J,358.3,31624,2)
+ ;;=^5010079
+ ;;^UTILITY(U,$J,358.3,31625,0)
+ ;;=M06.28^^180^1962^78
+ ;;^UTILITY(U,$J,358.3,31625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32022,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,32022,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,32022,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,32023,0)
- ;;=J20.5^^190^1945^14
- ;;^UTILITY(U,$J,358.3,32023,1,0)
+ ;;^UTILITY(U,$J,358.3,31625,1,3,0)
+ ;;=3^Rheumatoid bursitis, vertebrae
+ ;;^UTILITY(U,$J,358.3,31625,1,4,0)
+ ;;=4^M06.28
+ ;;^UTILITY(U,$J,358.3,31625,2)
+ ;;=^5010094
+ ;;^UTILITY(U,$J,358.3,31626,0)
+ ;;=M05.472^^180^1962^79
+ ;;^UTILITY(U,$J,358.3,31626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32023,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,32023,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,32023,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,32024,0)
- ;;=J20.7^^190^1945^9
- ;;^UTILITY(U,$J,358.3,32024,1,0)
+ ;;^UTILITY(U,$J,358.3,31626,1,3,0)
+ ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left ank/ft
+ ;;^UTILITY(U,$J,358.3,31626,1,4,0)
+ ;;=4^M05.472
+ ;;^UTILITY(U,$J,358.3,31626,2)
+ ;;=^5009951
+ ;;^UTILITY(U,$J,358.3,31627,0)
+ ;;=M05.422^^180^1962^80
+ ;;^UTILITY(U,$J,358.3,31627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32024,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,32024,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,32024,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,32025,0)
- ;;=J20.6^^190^1945^15
- ;;^UTILITY(U,$J,358.3,32025,1,0)
+ ;;^UTILITY(U,$J,358.3,31627,1,3,0)
+ ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left elbow
+ ;;^UTILITY(U,$J,358.3,31627,1,4,0)
+ ;;=4^M05.422
+ ;;^UTILITY(U,$J,358.3,31627,2)
+ ;;=^5009936
+ ;;^UTILITY(U,$J,358.3,31628,0)
+ ;;=M05.442^^180^1962^81
+ ;;^UTILITY(U,$J,358.3,31628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32025,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,32025,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,32025,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,32026,0)
- ;;=J18.9^^190^1945^62
- ;;^UTILITY(U,$J,358.3,32026,1,0)
+ ;;^UTILITY(U,$J,358.3,31628,1,3,0)
+ ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left hand
+ ;;^UTILITY(U,$J,358.3,31628,1,4,0)
+ ;;=4^M05.442
+ ;;^UTILITY(U,$J,358.3,31628,2)
+ ;;=^5009942
+ ;;^UTILITY(U,$J,358.3,31629,0)
+ ;;=M05.452^^180^1962^82
+ ;;^UTILITY(U,$J,358.3,31629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32026,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,32026,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,32026,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,32027,0)
- ;;=J18.8^^190^1945^63
- ;;^UTILITY(U,$J,358.3,32027,1,0)
+ ;;^UTILITY(U,$J,358.3,31629,1,3,0)
+ ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left hip
+ ;;^UTILITY(U,$J,358.3,31629,1,4,0)
+ ;;=4^M05.452
+ ;;^UTILITY(U,$J,358.3,31629,2)
+ ;;=^5009945
+ ;;^UTILITY(U,$J,358.3,31630,0)
+ ;;=M05.462^^180^1962^83
+ ;;^UTILITY(U,$J,358.3,31630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32027,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,32027,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,32027,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,32028,0)
- ;;=J11.00^^190^1945^23
- ;;^UTILITY(U,$J,358.3,32028,1,0)
+ ;;^UTILITY(U,$J,358.3,31630,1,3,0)
+ ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left knee
+ ;;^UTILITY(U,$J,358.3,31630,1,4,0)
+ ;;=4^M05.462
+ ;;^UTILITY(U,$J,358.3,31630,2)
+ ;;=^5009948
+ ;;^UTILITY(U,$J,358.3,31631,0)
+ ;;=M05.412^^180^1962^84
+ ;;^UTILITY(U,$J,358.3,31631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32028,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,32028,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,32028,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,32029,0)
- ;;=J12.9^^190^1945^64
- ;;^UTILITY(U,$J,358.3,32029,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32029,1,3,0)
- ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,31631,1,3,0)
+ ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left shoulder
+ ;;^UTILITY(U,$J,358.3,31631,1,4,0)
+ ;;=4^M05.412
+ ;;^UTILITY(U,$J,358.3,31631,2)
+ ;;=^5009933

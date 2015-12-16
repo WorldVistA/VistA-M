@@ -1,5 +1,5 @@
 ORCSEND3 ;SLC/MKB,AGP-Release cont ;02/24/10  05:53
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,282,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,282,280,409**;Dec 17, 1997;Build 1
  ;
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
@@ -12,7 +12,7 @@ CHILD(STRT) ; Create child order, send to package
  S ORCHLD=+$G(ORCHLD)+1,^OR(100,ORPARENT,2,ORIFN,0)=ORIFN,ORLAST=ORIFN
  S A=$G(^OR(100,ORPARENT,0)),ORAPPT=$P(A,U,18),ORPTS=$P(A,"^",13)
  S $P(^OR(100,ORIFN,0),U,18)=ORAPPT,$P(^(3),U,9)=ORPARENT
- I PKG="LR" I $P(^OR(100,ORIFN,0),U,13)="" S $P(^(0),"^",13)=ORPTS
+ I $P(^OR(100,ORIFN,0),U,13)="" S $P(^(0),"^",13)=ORPTS ; 409 - Preserve Treating Specialty
  N X0 S X0=$G(^OR(100,ORPARENT,8,1,0))
  I $P(X0,U,4)'=2 D SIGN^ORCSAVE2(ORIFN,+$P(X0,U,5),ORNOW,$P(X0,U,4),1)
  D COPY^OROCAPI1(ORPARENT,ORIFN)

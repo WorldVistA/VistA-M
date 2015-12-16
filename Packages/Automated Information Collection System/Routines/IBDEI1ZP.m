@@ -1,146 +1,122 @@
-IBDEI1ZP ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQR(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZP ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.5)
- ;;=^IBE(358.5,
- ;;^UTILITY(U,$J,358.5,0)
- ;;=IMP/EXP DATA FIELD^358.5I^262^262
- ;;^UTILITY(U,$J,358.5,1,0)
- ;;=Patient name^2^3
- ;;^UTILITY(U,$J,358.5,1,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,1,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,2,0)
- ;;=SSN^2^4
- ;;^UTILITY(U,$J,358.5,2,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,2,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,3,0)
- ;;=Age^2^5
- ;;^UTILITY(U,$J,358.5,3,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,3,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,3,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,4,0)
- ;;=HEADER^3
- ;;^UTILITY(U,$J,358.5,4,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,4,2,1,0)
- ;;=NATIONAL ADDICTION^^^0^0
- ;;^UTILITY(U,$J,358.5,5,0)
- ;;=HEADER^8
- ;;^UTILITY(U,$J,358.5,5,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,5,2,1,0)
- ;;=NATIONAL ANESTHESIA^^^0^0
- ;;^UTILITY(U,$J,358.5,6,0)
- ;;=Patient name^9^3
- ;;^UTILITY(U,$J,358.5,6,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,6,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,7,0)
- ;;=SSN^9^4
- ;;^UTILITY(U,$J,358.5,7,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,7,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,8,0)
- ;;=Age^9^5
- ;;^UTILITY(U,$J,358.5,8,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,8,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,8,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,9,0)
- ;;=HEADER^13
- ;;^UTILITY(U,$J,358.5,9,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,9,2,1,0)
- ;;=NATIONAL AUDIOLOGY^^^0^0
- ;;^UTILITY(U,$J,358.5,10,0)
- ;;=Patient name^14^3
- ;;^UTILITY(U,$J,358.5,10,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,10,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,11,0)
- ;;=SSN^14^4
- ;;^UTILITY(U,$J,358.5,11,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,11,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,12,0)
- ;;=Age^14^5
- ;;^UTILITY(U,$J,358.5,12,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,12,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,12,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,13,0)
- ;;=HEADER^17
- ;;^UTILITY(U,$J,358.5,13,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,13,2,1,0)
- ;;=NATIONAL CARDIOLOGY^^^0^0
- ;;^UTILITY(U,$J,358.5,14,0)
- ;;=Patient name^18^3
- ;;^UTILITY(U,$J,358.5,14,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,14,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,15,0)
- ;;=SSN^18^4
- ;;^UTILITY(U,$J,358.5,15,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,15,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,16,0)
- ;;=Age^18^5
- ;;^UTILITY(U,$J,358.5,16,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,16,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,16,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,17,0)
- ;;=HEADER^22
- ;;^UTILITY(U,$J,358.5,17,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,17,2,1,0)
- ;;=NATIONAL CAREGIVER ASSESSMENT^^^0^0
- ;;^UTILITY(U,$J,358.5,18,0)
- ;;=Patient name^23^3
- ;;^UTILITY(U,$J,358.5,18,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,18,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,19,0)
- ;;=SSN^23^4
- ;;^UTILITY(U,$J,358.5,19,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,19,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,20,0)
- ;;=Age^23^5
- ;;^UTILITY(U,$J,358.5,20,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,20,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,20,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,21,0)
- ;;=HEADER^28
- ;;^UTILITY(U,$J,358.5,21,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,21,2,1,0)
- ;;=NATIONAL CHIROPRACTIC^^^0^0
- ;;^UTILITY(U,$J,358.5,22,0)
- ;;=Patient name^29^3
+ ;;^UTILITY(U,$J,358.3,34842,0)
+ ;;=S42.481S^^183^2023^128
+ ;;^UTILITY(U,$J,358.3,34842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34842,1,3,0)
+ ;;=3^Torus fracture of lower end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,34842,1,4,0)
+ ;;=4^S42.481S
+ ;;^UTILITY(U,$J,358.3,34842,2)
+ ;;=^5027621
+ ;;^UTILITY(U,$J,358.3,34843,0)
+ ;;=S42.272S^^183^2023^129
+ ;;^UTILITY(U,$J,358.3,34843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34843,1,3,0)
+ ;;=3^Torus fracture of upper end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,34843,1,4,0)
+ ;;=4^S42.272S
+ ;;^UTILITY(U,$J,358.3,34843,2)
+ ;;=^5026982
+ ;;^UTILITY(U,$J,358.3,34844,0)
+ ;;=S42.271S^^183^2023^130
+ ;;^UTILITY(U,$J,358.3,34844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34844,1,3,0)
+ ;;=3^Torus fracture of upper end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,34844,1,4,0)
+ ;;=4^S42.271S
+ ;;^UTILITY(U,$J,358.3,34844,2)
+ ;;=^5026976
+ ;;^UTILITY(U,$J,358.3,34845,0)
+ ;;=S42.122S^^183^2023^8
+ ;;^UTILITY(U,$J,358.3,34845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34845,1,3,0)
+ ;;=3^Disp fx of acromial process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34845,1,4,0)
+ ;;=4^S42.122S
+ ;;^UTILITY(U,$J,358.3,34845,2)
+ ;;=^5026599
+ ;;^UTILITY(U,$J,358.3,34846,0)
+ ;;=S42.121S^^183^2023^9
+ ;;^UTILITY(U,$J,358.3,34846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34846,1,3,0)
+ ;;=3^Disp fx of acromial process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34846,1,4,0)
+ ;;=4^S42.121S
+ ;;^UTILITY(U,$J,358.3,34846,2)
+ ;;=^5026592
+ ;;^UTILITY(U,$J,358.3,34847,0)
+ ;;=S42.112S^^183^2023^12
+ ;;^UTILITY(U,$J,358.3,34847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34847,1,3,0)
+ ;;=3^Disp fx of body of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34847,1,4,0)
+ ;;=4^S42.112S
+ ;;^UTILITY(U,$J,358.3,34847,2)
+ ;;=^5026557
+ ;;^UTILITY(U,$J,358.3,34848,0)
+ ;;=S42.111S^^183^2023^13
+ ;;^UTILITY(U,$J,358.3,34848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34848,1,3,0)
+ ;;=3^Disp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34848,1,4,0)
+ ;;=4^S42.111S
+ ;;^UTILITY(U,$J,358.3,34848,2)
+ ;;=^5026550
+ ;;^UTILITY(U,$J,358.3,34849,0)
+ ;;=S42.132S^^183^2023^18
+ ;;^UTILITY(U,$J,358.3,34849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34849,1,3,0)
+ ;;=3^Disp fx of coracoid process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34849,1,4,0)
+ ;;=4^S42.132S
+ ;;^UTILITY(U,$J,358.3,34849,2)
+ ;;=^5026641
+ ;;^UTILITY(U,$J,358.3,34850,0)
+ ;;=S42.131S^^183^2023^19
+ ;;^UTILITY(U,$J,358.3,34850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34850,1,3,0)
+ ;;=3^Disp fx of coracoid process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34850,1,4,0)
+ ;;=4^S42.131S
+ ;;^UTILITY(U,$J,358.3,34850,2)
+ ;;=^5026634
+ ;;^UTILITY(U,$J,358.3,34851,0)
+ ;;=S42.142S^^183^2023^21
+ ;;^UTILITY(U,$J,358.3,34851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34851,1,3,0)
+ ;;=3^Disp fx of glenoid cavity of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34851,1,4,0)
+ ;;=4^S42.142S
+ ;;^UTILITY(U,$J,358.3,34851,2)
+ ;;=^5026683
+ ;;^UTILITY(U,$J,358.3,34852,0)
+ ;;=S42.141S^^183^2023^20
+ ;;^UTILITY(U,$J,358.3,34852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34852,1,3,0)
+ ;;=3^Disp fx of glenoid cav of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34852,1,4,0)
+ ;;=4^S42.141S
+ ;;^UTILITY(U,$J,358.3,34852,2)
+ ;;=^5026676
+ ;;^UTILITY(U,$J,358.3,34853,0)
+ ;;=S42.151S^^183^2023^36
+ ;;^UTILITY(U,$J,358.3,34853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34853,1,3,0)
+ ;;=3^Disp fx of neck of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,34853,1,4,0)
+ ;;=4^S42.151S

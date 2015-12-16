@@ -1,5 +1,5 @@
-MAGDRPC4 ;WOIFO/EdM - Imaging RPCs ; 19 Jul 2013 9:26 AM
- ;;3.0;IMAGING;**11,30,51,50,54,49,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDRPC4 ;WOIFO/EdM - Imaging RPCs ; 18 Nov 2014 9:26 AM
+ ;;3.0;IMAGING;**11,30,51,50,54,49,138,156**;Mar 19, 2002;Build 10;Nov 18, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -200,7 +200,7 @@ NEXTIMG(OUT,FROMS,SENT,CHECK) ; RPC = MAG DICOM GET NEXT QUEUE ENTRY
  . . . D FILEFIND^MAGDFB(+OUT(7),TYPE,1,0,.F1,.F2)
  . . . S OUT(9)=F1
  . . . S OUT(10)=F2
- . . . S OUT(11)=$P($G(^MAG(2005,+OUT(5),0)),"^",7) ; get DFN
+ . . . S OUT(11)=$P($G(^MAG(2005,+OUT(7),0)),"^",7) ; P156 DAC - get DFN from image (not group)
  . . . ; get path for *.TXT, always the same as the FULL file
  . . . D FILEFIND^MAGDFB(+OUT(7),"FULL",JBTOHD,0,.F1,.F3)
  . . . S OUT(12)=F3

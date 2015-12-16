@@ -1,134 +1,124 @@
-IBDEI1S7 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1S7 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31835,0)
- ;;=C78.7^^190^1943^132
- ;;^UTILITY(U,$J,358.3,31835,1,0)
+ ;;^UTILITY(U,$J,358.3,31444,1,3,0)
+ ;;=3^Stiffness of right elbow, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31444,1,4,0)
+ ;;=4^M25.621
+ ;;^UTILITY(U,$J,358.3,31444,2)
+ ;;=^5011624
+ ;;^UTILITY(U,$J,358.3,31445,0)
+ ;;=M25.674^^180^1956^60
+ ;;^UTILITY(U,$J,358.3,31445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31835,1,3,0)
- ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
- ;;^UTILITY(U,$J,358.3,31835,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,31835,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,31836,0)
- ;;=C79.71^^190^1943^145
- ;;^UTILITY(U,$J,358.3,31836,1,0)
+ ;;^UTILITY(U,$J,358.3,31445,1,3,0)
+ ;;=3^Stiffness of right foot, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31445,1,4,0)
+ ;;=4^M25.674
+ ;;^UTILITY(U,$J,358.3,31445,2)
+ ;;=^5011642
+ ;;^UTILITY(U,$J,358.3,31446,0)
+ ;;=M25.641^^180^1956^61
+ ;;^UTILITY(U,$J,358.3,31446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31836,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,31836,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,31836,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,31837,0)
- ;;=C78.01^^190^1943^148
- ;;^UTILITY(U,$J,358.3,31837,1,0)
+ ;;^UTILITY(U,$J,358.3,31446,1,3,0)
+ ;;=3^Stiffness of right hand, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31446,1,4,0)
+ ;;=4^M25.641
+ ;;^UTILITY(U,$J,358.3,31446,2)
+ ;;=^5011630
+ ;;^UTILITY(U,$J,358.3,31447,0)
+ ;;=M25.651^^180^1956^62
+ ;;^UTILITY(U,$J,358.3,31447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31837,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,31837,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,31837,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,31838,0)
- ;;=C79.70^^190^1943^101
- ;;^UTILITY(U,$J,358.3,31838,1,0)
+ ;;^UTILITY(U,$J,358.3,31447,1,3,0)
+ ;;=3^Stiffness of right hip, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31447,1,4,0)
+ ;;=4^M25.651
+ ;;^UTILITY(U,$J,358.3,31447,2)
+ ;;=^5011633
+ ;;^UTILITY(U,$J,358.3,31448,0)
+ ;;=M25.661^^180^1956^63
+ ;;^UTILITY(U,$J,358.3,31448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31838,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,31838,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,31838,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,31839,0)
- ;;=C78.00^^190^1943^133
- ;;^UTILITY(U,$J,358.3,31839,1,0)
+ ;;^UTILITY(U,$J,358.3,31448,1,3,0)
+ ;;=3^Stiffness of right knee, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31448,1,4,0)
+ ;;=4^M25.661
+ ;;^UTILITY(U,$J,358.3,31448,2)
+ ;;=^5011636
+ ;;^UTILITY(U,$J,358.3,31449,0)
+ ;;=M25.611^^180^1956^64
+ ;;^UTILITY(U,$J,358.3,31449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31839,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,31839,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,31839,2)
- ;;=^5001334
- ;;^UTILITY(U,$J,358.3,31840,0)
- ;;=D57.1^^190^1943^171
- ;;^UTILITY(U,$J,358.3,31840,1,0)
+ ;;^UTILITY(U,$J,358.3,31449,1,3,0)
+ ;;=3^Stiffness of right shoulder, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31449,1,4,0)
+ ;;=4^M25.611
+ ;;^UTILITY(U,$J,358.3,31449,2)
+ ;;=^5011621
+ ;;^UTILITY(U,$J,358.3,31450,0)
+ ;;=M25.631^^180^1956^65
+ ;;^UTILITY(U,$J,358.3,31450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31840,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,31840,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,31840,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,31841,0)
- ;;=D75.1^^190^1943^169
- ;;^UTILITY(U,$J,358.3,31841,1,0)
+ ;;^UTILITY(U,$J,358.3,31450,1,3,0)
+ ;;=3^Stiffness of right wrist, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,31450,1,4,0)
+ ;;=4^M25.631
+ ;;^UTILITY(U,$J,358.3,31450,2)
+ ;;=^5011627
+ ;;^UTILITY(U,$J,358.3,31451,0)
+ ;;=S96.912A^^180^1956^66
+ ;;^UTILITY(U,$J,358.3,31451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31841,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,31841,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,31841,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,31842,0)
- ;;=C90.30^^190^1943^172
- ;;^UTILITY(U,$J,358.3,31842,1,0)
+ ;;^UTILITY(U,$J,358.3,31451,1,3,0)
+ ;;=3^Strain of unsp msl/tnd at ank/ft level, left foot, init
+ ;;^UTILITY(U,$J,358.3,31451,1,4,0)
+ ;;=4^S96.912A
+ ;;^UTILITY(U,$J,358.3,31451,2)
+ ;;=^5137751
+ ;;^UTILITY(U,$J,358.3,31452,0)
+ ;;=S96.911A^^180^1956^67
+ ;;^UTILITY(U,$J,358.3,31452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31842,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,31842,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,31842,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,31843,0)
- ;;=D56.3^^190^1943^173
- ;;^UTILITY(U,$J,358.3,31843,1,0)
+ ;;^UTILITY(U,$J,358.3,31452,1,3,0)
+ ;;=3^Strain of unsp msl/tnd at ank/ft level, right foot, init
+ ;;^UTILITY(U,$J,358.3,31452,1,4,0)
+ ;;=4^S96.911A
+ ;;^UTILITY(U,$J,358.3,31452,2)
+ ;;=^5137750
+ ;;^UTILITY(U,$J,358.3,31453,0)
+ ;;=S56.912A^^180^1956^68
+ ;;^UTILITY(U,$J,358.3,31453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31843,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,31843,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,31843,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,31844,0)
- ;;=D56.9^^190^1943^174
- ;;^UTILITY(U,$J,358.3,31844,1,0)
+ ;;^UTILITY(U,$J,358.3,31453,1,3,0)
+ ;;=3^Strain of unsp musc/fasc/tend at forarm lv, left arm, init
+ ;;^UTILITY(U,$J,358.3,31453,1,4,0)
+ ;;=4^S56.912A
+ ;;^UTILITY(U,$J,358.3,31453,2)
+ ;;=^5135514
+ ;;^UTILITY(U,$J,358.3,31454,0)
+ ;;=S56.911A^^180^1956^69
+ ;;^UTILITY(U,$J,358.3,31454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31844,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,31844,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,31844,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,31845,0)
- ;;=M31.1^^190^1943^176
- ;;^UTILITY(U,$J,358.3,31845,1,0)
+ ;;^UTILITY(U,$J,358.3,31454,1,3,0)
+ ;;=3^Strain of unsp musc/fasc/tend at forarm lv, right arm, init
+ ;;^UTILITY(U,$J,358.3,31454,1,4,0)
+ ;;=4^S56.911A
+ ;;^UTILITY(U,$J,358.3,31454,2)
+ ;;=^5135513
+ ;;^UTILITY(U,$J,358.3,31455,0)
+ ;;=S22.9XXS^^180^1957^1
+ ;;^UTILITY(U,$J,358.3,31455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31845,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,31845,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,31845,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,31846,0)
- ;;=D51.2^^190^1943^177
- ;;^UTILITY(U,$J,358.3,31846,1,0)
+ ;;^UTILITY(U,$J,358.3,31455,1,3,0)
+ ;;=3^Fracture of bony thorax, part unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,31455,1,4,0)
+ ;;=4^S22.9XXS
+ ;;^UTILITY(U,$J,358.3,31455,2)
+ ;;=^5023158
+ ;;^UTILITY(U,$J,358.3,31456,0)
+ ;;=S42.92XS^^180^1957^6
+ ;;^UTILITY(U,$J,358.3,31456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31846,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,31846,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,31846,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,31847,0)
- ;;=D05.92^^190^1943^31
- ;;^UTILITY(U,$J,358.3,31847,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31847,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,31847,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,31847,2)
- ;;=^5001937

@@ -1,5 +1,5 @@
 VAFCPDAT ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ;10/24/02  13:13
- ;;5.3;Registration;**333,414,474,505,707,712,837,863,876**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902**;Aug 13, 1993;Build 2
  ;Registration has IA #3299 for MPI/PD to call START^VAFCPDAT
  ;
  ;variable DFN is not NEWed or KILLed in this routine as that variable is passed in
@@ -26,7 +26,7 @@ START ;Entry point without device call, used for RPC calls
  S NAME=$G(DNODE(2,DFN,.01,"E")),SSN=$G(DNODE(2,DFN,.09,"E"))
  S DOB=$$FMTE^XLFDT($G(DNODE(2,DFN,.03,"I")))
  S MBI=$G(DNODE(2,DFN,994,"I")),MBI=$S(MBI="Y":"YES",MBI="N":"NO",1:"NULL")  ;**707
- S SEX=$G(DNODE(2,DFN,.02,"E")),SIGEN=$G(DNODE(2,DFN,.024,"I")),DOD=$G(DNODE(2,DFN,.351,"E"))  ;**876 - MVI_3432 (cml)
+ S SEX=$G(DNODE(2,DFN,.02,"E")),SIGEN=$G(DNODE(2,DFN,.024,"E")),DOD=$G(DNODE(2,DFN,.351,"E"))  ;**876 - MVI_3432 (cml)
  S CLAIM=$G(DNODE(2,DFN,.313,"E")) S:CLAIM="" CLAIM="None"
  S BAI=$G(DNODE(2,DFN,.121,"E"))  ;**712
  S STR1=$G(DNODE(2,DFN,.111,"E")),STR2=$G(DNODE(2,DFN,.112,"E")),STR3=$G(DNODE(2,DFN,.113,"E"))
@@ -65,7 +65,6 @@ START ;Entry point without device call, used for RPC calls
  I SSNVER="",PREAS]"" W !?9,"Pseudo SSN Reason: ",PREAS
  I SSNVER]"",PREAS]"" W !?9,"Pseudo SSN Reason      : ",PREAS
  W !,"Sex    : ",SEX
- I SIGEN]"" W ?22,"Self Identified Gender: ",SIGEN  ;**876 - MVI_3432 (cml)
  W !,"Claim #: ",CLAIM
  W !,"Date of Birth: ",DOB
  I DOD]"" W !,"Date of Death: ",DOD
@@ -83,6 +82,7 @@ START ;Entry point without device call, used for RPC calls
  ..I PROVINCE]"" W !?9,CTY_", "_PROVINCE_" ("_CNAME_")  "_POSTCODE
  ..I PROVINCE="" W !?9,CTY_", "_"("_CNAME_")  "_POSTCODE
  I PHN'="" W !,"Phone #: ",PHN
+ I SIGEN]"" W !,"Self-Identified Gender Identity: ",SIGEN  ;**876 - MVI_3432 (cml)  **902 - MVI_4730 (cml)
  I $G(IOSL)<30&($E(IOST,1,2)="C-") D
  .I $Y>23 D
  ..S DIR(0)="E" D  D ^DIR K DIR I 'Y S QFLG=1

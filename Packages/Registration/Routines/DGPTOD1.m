@@ -1,12 +1,14 @@
-DGPTOD1 ;ALB/AS/BOK - PTF DRG REPORTS, BUILD UTILITY ; 9/5/01 2:23pm
- ;;5.3;Registration;**158,238,375,744**;Aug 13, 1993;Build 5
+DGPTOD1 ;ALB/AS/BOK,WOIFO/PMK - PTF DRG REPORTS, BUILD UTILITY ;4/29/2015 1:03pm
+ ;;5.3;Registration;**158,238,375,744,884**;Aug 13, 1993;Build 31
  K ^UTILITY($J),A
  S DGFY=$$FY^DGPTOD0(DGED),DGFY2K=$$DGY2K^DGPTOD0(DGFY)
  S DGFYQ=$$FMTE^XLFDT(DGFY2K)_$$QTR(DGED)
  ;S DGWWCST=$P(DGCST,"^",2),DG1DAWW=$P(DGCST,"^",3)/DGWWCST,DG1DAWW=$J(DG1DAWW,0,5),DGHIWW=$P(DGCST,"^",5)/DGWWCST,DGHIWW=$J(DGHIWW,0,5)
  S (DGWWCST,DG1DAWW,DGHIWW)=0
  D DT^DICRW S DGTPT=0
- F DGDRGDT=DGSD:0 S DGDRGDT=$O(^DGPT(DGCR,DGDRGDT)) Q:DGDRGDT'>0!(DGDRGDT>DGED)  F DGPTF=0:0 S DGPTF=$O(^DGPT(DGCR,DGDRGDT,DGPTF)) Q:DGPTF'>0  I $D(^DGPT(DGPTF,0)),'$P(^(0),U,4),$P(^(0),U,11)=1 S DGTPT=DGTPT+1,DGTLOS=0,DFN=+^(0) D ^DGPTOD2
+ F DGDRGDT=DGSD:0 S DGDRGDT=$O(^DGPT(DGCR,DGDRGDT)) Q:DGDRGDT'>0!(DGDRGDT>DGED)  F DGPTF=0:0 S DGPTF=$O(^DGPT(DGCR,DGDRGDT,DGPTF)) Q:DGPTF'>0  D
+ . I $D(^DGPT(DGPTF,0)),'$P(^(0),U,4),$P(^(0),U,11)=1 S DGTPT=DGTPT+1,DGTLOS=0,DFN=+^(0) N DGCST D ^DGPTOD2
+ . Q
  S H3="               National              "
  ;S DGFT(1)="The dollar figures shown are based on the formulas used in the FY 19"_$S($E(DGFY2K,1,3)>288:"89",1:"88")_" Target Allowance, as explained in the corresponding"
  ;S DGFT(2)="user documentation.  They are provided as a management tool for monitoring purposes and should not be used to predict"

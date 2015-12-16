@@ -1,140 +1,134 @@
-IBDEI03R ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI03R ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1398,0)
- ;;=426.2^^11^122^16
- ;;^UTILITY(U,$J,358.3,1398,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1398,1,4,0)
- ;;=4^426.2
- ;;^UTILITY(U,$J,358.3,1398,1,5,0)
- ;;=5^Left Hemiblock
- ;;^UTILITY(U,$J,358.3,1398,2)
- ;;=^269721
- ;;^UTILITY(U,$J,358.3,1399,0)
- ;;=426.3^^11^122^20
- ;;^UTILITY(U,$J,358.3,1399,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1399,1,4,0)
- ;;=4^426.3
- ;;^UTILITY(U,$J,358.3,1399,1,5,0)
- ;;=5^Oth Left Bundle Branch Block
- ;;^UTILITY(U,$J,358.3,1399,2)
- ;;=^269722
- ;;^UTILITY(U,$J,358.3,1400,0)
- ;;=426.4^^11^122^30
- ;;^UTILITY(U,$J,358.3,1400,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1400,1,4,0)
- ;;=4^426.4
- ;;^UTILITY(U,$J,358.3,1400,1,5,0)
- ;;=5^Right Bundle Branch Block
- ;;^UTILITY(U,$J,358.3,1400,2)
- ;;=^186730
- ;;^UTILITY(U,$J,358.3,1401,0)
- ;;=426.51^^11^122^27
- ;;^UTILITY(U,$J,358.3,1401,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1401,1,4,0)
- ;;=4^426.51
- ;;^UTILITY(U,$J,358.3,1401,1,5,0)
- ;;=5^R Bundle Branch Block & L Post Fasc Blk
- ;;^UTILITY(U,$J,358.3,1401,2)
- ;;=^269723
- ;;^UTILITY(U,$J,358.3,1402,0)
- ;;=426.52^^11^122^26
- ;;^UTILITY(U,$J,358.3,1402,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1402,1,4,0)
- ;;=4^426.52
- ;;^UTILITY(U,$J,358.3,1402,1,5,0)
- ;;=5^R Bundle Branch Block & L Ant Fasc Blk
- ;;^UTILITY(U,$J,358.3,1402,2)
- ;;=^269724
- ;;^UTILITY(U,$J,358.3,1403,0)
- ;;=426.53^^11^122^19
- ;;^UTILITY(U,$J,358.3,1403,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1403,1,4,0)
- ;;=4^426.53
- ;;^UTILITY(U,$J,358.3,1403,1,5,0)
- ;;=5^Oth Bilateral Bundle Branch Blk
- ;;^UTILITY(U,$J,358.3,1403,2)
- ;;=^269725
- ;;^UTILITY(U,$J,358.3,1404,0)
- ;;=426.54^^11^122^34
- ;;^UTILITY(U,$J,358.3,1404,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1404,1,4,0)
- ;;=4^426.54
- ;;^UTILITY(U,$J,358.3,1404,1,5,0)
- ;;=5^Trifascicular Block
- ;;^UTILITY(U,$J,358.3,1404,2)
- ;;=^269726
- ;;^UTILITY(U,$J,358.3,1405,0)
- ;;=426.6^^11^122^21
- ;;^UTILITY(U,$J,358.3,1405,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1405,1,4,0)
- ;;=4^426.6
- ;;^UTILITY(U,$J,358.3,1405,1,5,0)
- ;;=5^Other Heart Block
- ;;^UTILITY(U,$J,358.3,1405,2)
- ;;=^87623
- ;;^UTILITY(U,$J,358.3,1406,0)
- ;;=426.7^^11^122^6
- ;;^UTILITY(U,$J,358.3,1406,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1406,1,4,0)
- ;;=4^426.7
- ;;^UTILITY(U,$J,358.3,1406,1,5,0)
- ;;=5^Anomalous AV Excitatio
- ;;^UTILITY(U,$J,358.3,1406,2)
- ;;=^7902
- ;;^UTILITY(U,$J,358.3,1407,0)
- ;;=426.9^^11^122^15
- ;;^UTILITY(U,$J,358.3,1407,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1407,1,4,0)
- ;;=4^426.9
- ;;^UTILITY(U,$J,358.3,1407,1,5,0)
- ;;=5^Heart Block NOS
- ;;^UTILITY(U,$J,358.3,1407,2)
- ;;=^27347
- ;;^UTILITY(U,$J,358.3,1408,0)
- ;;=427.0^^11^122^22
- ;;^UTILITY(U,$J,358.3,1408,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1408,1,4,0)
- ;;=4^427.0
- ;;^UTILITY(U,$J,358.3,1408,1,5,0)
- ;;=5^Paroxysmal Supraventricular Tachycardia
- ;;^UTILITY(U,$J,358.3,1408,2)
- ;;=Paroxysmal Supraventricular Tachycardia^90479
- ;;^UTILITY(U,$J,358.3,1409,0)
- ;;=427.1^^11^122^37
- ;;^UTILITY(U,$J,358.3,1409,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1409,1,4,0)
- ;;=4^427.1
- ;;^UTILITY(U,$J,358.3,1409,1,5,0)
- ;;=5^Ventricular Tachycardia
- ;;^UTILITY(U,$J,358.3,1409,2)
- ;;=^90483
- ;;^UTILITY(U,$J,358.3,1410,0)
- ;;=427.2^^11^122^23
- ;;^UTILITY(U,$J,358.3,1410,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1410,1,4,0)
- ;;=4^427.2
- ;;^UTILITY(U,$J,358.3,1410,1,5,0)
- ;;=5^Paroxysmal Tachycardia
- ;;^UTILITY(U,$J,358.3,1410,2)
- ;;=^117073
- ;;^UTILITY(U,$J,358.3,1411,0)
- ;;=427.31^^11^122^7
- ;;^UTILITY(U,$J,358.3,1411,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1411,1,4,0)
- ;;=4^427.31
+ ;;^UTILITY(U,$J,358.3,1226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1226,1,3,0)
+ ;;=3^Malignant neoplasm of extrahepatic bile duct
+ ;;^UTILITY(U,$J,358.3,1226,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,1226,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,1227,0)
+ ;;=C24.1^^3^39^50
+ ;;^UTILITY(U,$J,358.3,1227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1227,1,3,0)
+ ;;=3^Malignant neoplasm of ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,1227,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,1227,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,1228,0)
+ ;;=C25.9^^3^39^70
+ ;;^UTILITY(U,$J,358.3,1228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1228,1,3,0)
+ ;;=3^Malignant neoplasm of pancreas, unspecified
+ ;;^UTILITY(U,$J,358.3,1228,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,1228,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,1229,0)
+ ;;=C31.9^^3^39^49
+ ;;^UTILITY(U,$J,358.3,1229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1229,1,3,0)
+ ;;=3^Malignant neoplasm of accessory sinus, unspecified
+ ;;^UTILITY(U,$J,358.3,1229,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,1229,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,1230,0)
+ ;;=C32.9^^3^39^62
+ ;;^UTILITY(U,$J,358.3,1230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1230,1,3,0)
+ ;;=3^Malignant neoplasm of larynx, unspecified
+ ;;^UTILITY(U,$J,358.3,1230,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,1230,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,1231,0)
+ ;;=C34.91^^3^39^82
+ ;;^UTILITY(U,$J,358.3,1231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1231,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
+ ;;^UTILITY(U,$J,358.3,1231,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,1231,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,1232,0)
+ ;;=C34.92^^3^39^81
+ ;;^UTILITY(U,$J,358.3,1232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1232,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
+ ;;^UTILITY(U,$J,358.3,1232,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,1232,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,1233,0)
+ ;;=C38.4^^3^39^71
+ ;;^UTILITY(U,$J,358.3,1233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1233,1,3,0)
+ ;;=3^Malignant neoplasm of pleura
+ ;;^UTILITY(U,$J,358.3,1233,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,1233,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,1234,0)
+ ;;=C45.0^^3^39^86
+ ;;^UTILITY(U,$J,358.3,1234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1234,1,3,0)
+ ;;=3^Mesothelioma of pleura
+ ;;^UTILITY(U,$J,358.3,1234,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,1234,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,1235,0)
+ ;;=C49.9^^3^39^55
+ ;;^UTILITY(U,$J,358.3,1235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1235,1,3,0)
+ ;;=3^Malignant neoplasm of connective and soft tissue, unsp
+ ;;^UTILITY(U,$J,358.3,1235,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,1235,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,1236,0)
+ ;;=C43.9^^3^39^48
+ ;;^UTILITY(U,$J,358.3,1236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1236,1,3,0)
+ ;;=3^Malignant melanoma of skin, unspecified
+ ;;^UTILITY(U,$J,358.3,1236,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,1236,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,1237,0)
+ ;;=D03.9^^3^39^85
+ ;;^UTILITY(U,$J,358.3,1237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1237,1,3,0)
+ ;;=3^Melanoma in situ, unspecified
+ ;;^UTILITY(U,$J,358.3,1237,1,4,0)
+ ;;=4^D03.9
+ ;;^UTILITY(U,$J,358.3,1237,2)
+ ;;=^5001908
+ ;;^UTILITY(U,$J,358.3,1238,0)
+ ;;=C50.911^^3^39^84
+ ;;^UTILITY(U,$J,358.3,1238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1238,1,3,0)
+ ;;=3^Malignant neoplasm of unsp site of right female breast
+ ;;^UTILITY(U,$J,358.3,1238,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,1238,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,1239,0)
+ ;;=C50.912^^3^39^83

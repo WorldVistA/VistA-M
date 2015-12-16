@@ -1,126 +1,126 @@
-IBDEI1OS ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OS ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30282,1,4,0)
- ;;=4^S11.80XA
- ;;^UTILITY(U,$J,358.3,30282,2)
- ;;=^5021506
- ;;^UTILITY(U,$J,358.3,30283,0)
- ;;=S11.90XA^^189^1913^32
- ;;^UTILITY(U,$J,358.3,30283,1,0)
+ ;;^UTILITY(U,$J,358.3,29933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30283,1,3,0)
- ;;=3^Open Wound of Neck,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,30283,1,4,0)
- ;;=4^S11.90XA
- ;;^UTILITY(U,$J,358.3,30283,2)
- ;;=^5021527
- ;;^UTILITY(U,$J,358.3,30284,0)
- ;;=S31.819A^^189^1913^37
- ;;^UTILITY(U,$J,358.3,30284,1,0)
+ ;;^UTILITY(U,$J,358.3,29933,1,3,0)
+ ;;=3^Threatened abortion
+ ;;^UTILITY(U,$J,358.3,29933,1,4,0)
+ ;;=4^O20.0
+ ;;^UTILITY(U,$J,358.3,29933,2)
+ ;;=^1287
+ ;;^UTILITY(U,$J,358.3,29934,0)
+ ;;=O44.01^^178^1909^20
+ ;;^UTILITY(U,$J,358.3,29934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30284,1,3,0)
- ;;=3^Open Wound of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,30284,1,4,0)
- ;;=4^S31.819A
- ;;^UTILITY(U,$J,358.3,30284,2)
- ;;=^5024308
- ;;^UTILITY(U,$J,358.3,30285,0)
- ;;=S31.829A^^189^1913^6
- ;;^UTILITY(U,$J,358.3,30285,1,0)
+ ;;^UTILITY(U,$J,358.3,29934,1,3,0)
+ ;;=3^Placenta previa specified as w/o hemorrhage, first trimester
+ ;;^UTILITY(U,$J,358.3,29934,1,4,0)
+ ;;=4^O44.01
+ ;;^UTILITY(U,$J,358.3,29934,2)
+ ;;=^5017437
+ ;;^UTILITY(U,$J,358.3,29935,0)
+ ;;=O44.02^^178^1909^19
+ ;;^UTILITY(U,$J,358.3,29935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30285,1,3,0)
- ;;=3^Open Wound of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,30285,1,4,0)
- ;;=4^S31.829A
- ;;^UTILITY(U,$J,358.3,30285,2)
- ;;=^5024320
- ;;^UTILITY(U,$J,358.3,30286,0)
- ;;=S31.100A^^189^1913^35
- ;;^UTILITY(U,$J,358.3,30286,1,0)
+ ;;^UTILITY(U,$J,358.3,29935,1,3,0)
+ ;;=3^Placenta previa specified as w/o hemor, second trimester
+ ;;^UTILITY(U,$J,358.3,29935,1,4,0)
+ ;;=4^O44.02
+ ;;^UTILITY(U,$J,358.3,29935,2)
+ ;;=^5017438
+ ;;^UTILITY(U,$J,358.3,29936,0)
+ ;;=O44.03^^178^1909^21
+ ;;^UTILITY(U,$J,358.3,29936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30286,1,3,0)
- ;;=3^Open Wound of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30286,1,4,0)
- ;;=4^S31.100A
- ;;^UTILITY(U,$J,358.3,30286,2)
- ;;=^5024023
- ;;^UTILITY(U,$J,358.3,30287,0)
- ;;=S31.101A^^189^1913^4
- ;;^UTILITY(U,$J,358.3,30287,1,0)
+ ;;^UTILITY(U,$J,358.3,29936,1,3,0)
+ ;;=3^Placenta previa specified as w/o hemorrhage, third trimester
+ ;;^UTILITY(U,$J,358.3,29936,1,4,0)
+ ;;=4^O44.03
+ ;;^UTILITY(U,$J,358.3,29936,2)
+ ;;=^5017439
+ ;;^UTILITY(U,$J,358.3,29937,0)
+ ;;=O44.11^^178^1909^22
+ ;;^UTILITY(U,$J,358.3,29937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30287,1,3,0)
- ;;=3^Open Wound of LUQ Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30287,1,4,0)
- ;;=4^S31.101A
- ;;^UTILITY(U,$J,358.3,30287,2)
- ;;=^5024026
- ;;^UTILITY(U,$J,358.3,30288,0)
- ;;=S31.103A^^189^1913^34
- ;;^UTILITY(U,$J,358.3,30288,1,0)
+ ;;^UTILITY(U,$J,358.3,29937,1,3,0)
+ ;;=3^Placenta previa with hemorrhage, first trimester
+ ;;^UTILITY(U,$J,358.3,29937,1,4,0)
+ ;;=4^O44.11
+ ;;^UTILITY(U,$J,358.3,29937,2)
+ ;;=^5017441
+ ;;^UTILITY(U,$J,358.3,29938,0)
+ ;;=O44.12^^178^1909^23
+ ;;^UTILITY(U,$J,358.3,29938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30288,1,3,0)
- ;;=3^Open Wound of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30288,1,4,0)
- ;;=4^S31.103A
- ;;^UTILITY(U,$J,358.3,30288,2)
- ;;=^5024032
- ;;^UTILITY(U,$J,358.3,30289,0)
- ;;=S31.104A^^189^1913^3
- ;;^UTILITY(U,$J,358.3,30289,1,0)
+ ;;^UTILITY(U,$J,358.3,29938,1,3,0)
+ ;;=3^Placenta previa with hemorrhage, second trimester
+ ;;^UTILITY(U,$J,358.3,29938,1,4,0)
+ ;;=4^O44.12
+ ;;^UTILITY(U,$J,358.3,29938,2)
+ ;;=^5017442
+ ;;^UTILITY(U,$J,358.3,29939,0)
+ ;;=O44.13^^178^1909^24
+ ;;^UTILITY(U,$J,358.3,29939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30289,1,3,0)
- ;;=3^Open Wound of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30289,1,4,0)
- ;;=4^S31.104A
- ;;^UTILITY(U,$J,358.3,30289,2)
- ;;=^5134415
- ;;^UTILITY(U,$J,358.3,30290,0)
- ;;=S41.001A^^189^1913^57
- ;;^UTILITY(U,$J,358.3,30290,1,0)
+ ;;^UTILITY(U,$J,358.3,29939,1,3,0)
+ ;;=3^Placenta previa with hemorrhage, third trimester
+ ;;^UTILITY(U,$J,358.3,29939,1,4,0)
+ ;;=4^O44.13
+ ;;^UTILITY(U,$J,358.3,29939,2)
+ ;;=^5017443
+ ;;^UTILITY(U,$J,358.3,29940,0)
+ ;;=O45.8X1^^178^1909^37
+ ;;^UTILITY(U,$J,358.3,29940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30290,1,3,0)
- ;;=3^Open Wound of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,30290,1,4,0)
- ;;=4^S41.001A
- ;;^UTILITY(U,$J,358.3,30290,2)
- ;;=^5026291
- ;;^UTILITY(U,$J,358.3,30291,0)
- ;;=S41.002A^^189^1913^26
- ;;^UTILITY(U,$J,358.3,30291,1,0)
+ ;;^UTILITY(U,$J,358.3,29940,1,3,0)
+ ;;=3^Prem separtn of placenta, first trimester NEC
+ ;;^UTILITY(U,$J,358.3,29940,1,4,0)
+ ;;=4^O45.8X1
+ ;;^UTILITY(U,$J,358.3,29940,2)
+ ;;=^5017459
+ ;;^UTILITY(U,$J,358.3,29941,0)
+ ;;=O45.8X2^^178^1909^38
+ ;;^UTILITY(U,$J,358.3,29941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30291,1,3,0)
- ;;=3^Open Wound of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,30291,1,4,0)
- ;;=4^S41.002A
- ;;^UTILITY(U,$J,358.3,30291,2)
- ;;=^5026294
- ;;^UTILITY(U,$J,358.3,30292,0)
- ;;=S51.001A^^189^1913^39
- ;;^UTILITY(U,$J,358.3,30292,1,0)
+ ;;^UTILITY(U,$J,358.3,29941,1,3,0)
+ ;;=3^Prem separtn of placenta, second trimester NEC
+ ;;^UTILITY(U,$J,358.3,29941,1,4,0)
+ ;;=4^O45.8X2
+ ;;^UTILITY(U,$J,358.3,29941,2)
+ ;;=^5017460
+ ;;^UTILITY(U,$J,358.3,29942,0)
+ ;;=O45.8X3^^178^1909^39
+ ;;^UTILITY(U,$J,358.3,29942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30292,1,3,0)
- ;;=3^Open Wound of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,30292,1,4,0)
- ;;=4^S51.001A
- ;;^UTILITY(U,$J,358.3,30292,2)
- ;;=^5028620
- ;;^UTILITY(U,$J,358.3,30293,0)
- ;;=S51.002A^^189^1913^8
- ;;^UTILITY(U,$J,358.3,30293,1,0)
+ ;;^UTILITY(U,$J,358.3,29942,1,3,0)
+ ;;=3^Prem separtn of placenta, third trimester NEC
+ ;;^UTILITY(U,$J,358.3,29942,1,4,0)
+ ;;=4^O45.8X3
+ ;;^UTILITY(U,$J,358.3,29942,2)
+ ;;=^5017461
+ ;;^UTILITY(U,$J,358.3,29943,0)
+ ;;=O45.91^^178^1909^40
+ ;;^UTILITY(U,$J,358.3,29943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30293,1,3,0)
- ;;=3^Open Wound of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,30293,1,4,0)
- ;;=4^S51.002A
- ;;^UTILITY(U,$J,358.3,30293,2)
- ;;=^5028623
- ;;^UTILITY(U,$J,358.3,30294,0)
- ;;=S61.501A^^189^1913^61
- ;;^UTILITY(U,$J,358.3,30294,1,0)
+ ;;^UTILITY(U,$J,358.3,29943,1,3,0)
+ ;;=3^Prem separtn of placenta, unsp, first trimester
+ ;;^UTILITY(U,$J,358.3,29943,1,4,0)
+ ;;=4^O45.91
+ ;;^UTILITY(U,$J,358.3,29943,2)
+ ;;=^5017464
+ ;;^UTILITY(U,$J,358.3,29944,0)
+ ;;=O45.92^^178^1909^41
+ ;;^UTILITY(U,$J,358.3,29944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30294,1,3,0)
- ;;=3^Open Wound of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,30294,1,4,0)
- ;;=4^S61.501A
+ ;;^UTILITY(U,$J,358.3,29944,1,3,0)
+ ;;=3^Prem separtn of placenta, unsp, second trimester
+ ;;^UTILITY(U,$J,358.3,29944,1,4,0)
+ ;;=4^O45.92
+ ;;^UTILITY(U,$J,358.3,29944,2)
+ ;;=^5017465
+ ;;^UTILITY(U,$J,358.3,29945,0)
+ ;;=O45.93^^178^1909^42
+ ;;^UTILITY(U,$J,358.3,29945,1,0)
+ ;;=^358.31IA^4^2

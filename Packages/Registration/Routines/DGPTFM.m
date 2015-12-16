@@ -1,7 +1,8 @@
-DGPTFM ;ALB/MTC - PTF OP-PRO-DIAG ;7/22/05 9:18am
- ;;5.3;Registration;**510,517,590,594,606,635,683,696,664,850**;Aug 13, 1993;Build 171
+DGPTFM ;ALB/MTC/PLT - PTF OP-PRO-DIAG ;07/01/2015  8:03 AM
+ ;;5.3;Registration;**510,517,590,594,606,635,683,696,664,850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
- K M,S,M1,M2,M3,S1,S2,PS2,SDCLY,^TMP("PTF",$J)
+ K X1,M,S,P,M1,M2,M3,S1,S2,PS2,P1,P2,P1P,P2P,SDCLY,^TMP("PTF",$J)
  N EFFDATE,IMPDATE,DGMOVCNT,DGSURCNT,DGPROCNT,DGMMORE,DGPMORE
  D EFFDATE^DGPTIC10(PTF)
  S DGMOVCNT=0,DGSURCNT=0,DGPROCNT=0
@@ -12,11 +13,12 @@ DGPTFM ;ALB/MTC - PTF OP-PRO-DIAG ;7/22/05 9:18am
  S DGMMORE=$G(DGSURCNT)+$G(DGPROCNT)+$G(DGPRCNT)
  S DGPMORE=$G(DGPROCNT)+$G(DGPRCNT)
  ;
-GET ;
+GET ;set m,m3 local array of movement records
  S I=0 F I1=1:1 S I=$O(^DGPT(PTF,"M",I)) Q:'I  D
- . S (M3(I1),M(I1))=^(I,0),M(I1,82)=$G(^DGPT(PTF,"M",I,82))
- .I $D(^DGPT(PTF,"M",I,"P")) S $P(M(I1),U,20)=^("P")
- ;
+ . S M(I1)=^(I,0),M3(+M(I1))=M(I1) ;,M(I1,82)=$G(^DGPT(PTF,"M",I,82))
+ . I $D(^DGPT(PTF,"M",I,"P")) S $P(M(I1),U,20)=^("P")
+ . QUIT
+ ;sort m array in chronological order for display, not m3
  K MT D ORDER^DGPTF K MT
  D GETVAR^DGPTFM6,CL^SDCO21(DFN,$P(^DGPT(PTF,0),U,2),"",.SDCLY),MOB^DGPTFM2
  S DGPC=I1-1
@@ -32,28 +34,35 @@ WD ;
  N DGMPOA
  D EFFDATE^DGPTIC10(PTF)
  W !?2,"Movement Diagnosis: ",$$GETLABEL^DGPTIC10(DGPTDAT,"D")
- F J1=1:1:11 I J1'=6 S L=$P(M(J),U,J1+4),L1=0,L3=1 I +L D
- . S DGMPOA=$P(M(J,82),U,$S(J1<6:J1,1:J1-1))
+ ;F J1=1:1:11 I J1'=6 S L=$P(M(J),U,J1+4),L1=0,L3=1 I +L D
+ D PTFICD^DGPTFUT(501,PTF,+M(J),.DGX501)
+ S J1=0 F  S J1=$O(DGX501(J1)) QUIT:'J1  S L=DGX501(J1),L1=0,L3=1 I +L D
+ . S DGMPOA=$P(L,U,2)
  . D:+L WD1
- Q
+ . QUIT
+ K DGX501
+ QUIT
 WD1 ;
  S N=$$ICDDATA^ICDXCODE("DIAG",+L,EFFDATE),M2=M2+1
  W !,?L1,$J(M2,3)," "
  D WRITECOD^DGPTIC10("DIAG",+L,EFFDATE,1,0,0)
- I $P(N,U,20)=30,$G(DGMPOA)'="" W:$X>73 !,"            " W " (POA="_DGMPOA_")" W:$G(DGMPOA)="" " (POA='')"
+ I $P(N,U,20)=30 W:$X>73 !,"            " W " (POA=",$S(DGMPOA]"":DGMPOA,1:"''"),")"
  W $S(+N<1!('$P(N,U,10)):"*",1:"")
- ;
- K ^UTILITY($J,"M2",M2) S ^UTILITY($J,"M2",M2)=+M(J+L1)_U_J1 Q
+ K ^UTILITY($J,"M2",M2) S ^UTILITY($J,"M2",M2)=+M(J+L1)_U_J1_U_(+L)_U_DGMPOA
+ I $Y>(IOSL-4) D PGBR W @IOF,HEAD,?70 S Z="<MAS>" D Z W !
+ QUIT
 WD2 ;
  N Z3
- W !?L5,"Move #",+L6 S Z=M(L6),Z3=M3(L6) W:+Z=1 " D/C" S Y=$P(Z,U,10)\1 D D^DGPTUTL W " ",Y," "
+ W !?L5,"Move #",+L6 S Z=M(L6),Z3=M3(+Z) W:+Z=1 " D/C" S Y=$P(Z,U,10)\1 D D^DGPTUTL W " ",Y," "
  W " <",$S($P(Z3,U,18)=1:"",1:"N"),"SC"_$S($P(Z3,U,26)="Y":",AO",1:"")_$S($P(Z3,U,27)="Y":",IR",1:"")_$S($P(Z3,U,28)="Y":",SWAC",1:"")_$S($P(Z3,U,32)="Y":",SHAD",1:"")_">"
  I $D(^DIC(42.4,+$P(Z,U,2),0)) D
  . I $P(^DIC(42.4,+$P(Z,U,2),0),U,2)'="" W $E($P(^DIC(42.4,+$P(Z,U,2),0),U,2),1,10)
- . E  W $E($P(^(0),U,1),1,10)
- Q
+ . E  W $E($P(^(0),U,1),1,10) ;^(0) references global in line above
+ . QUIT
+ QUIT
  ;
-NDG D WR S I=0 K M,M1,M2 S M2=0 F I1=1:1 S I=$O(^DGPT(PTF,"M",I)) Q:I'>0  S M(I1)=^(I,0),M(I1,82)=$G(^DGPT(PTF,"M",I,82))
+NDG D WR S I=0 K M,M1,M2 S M2=0 F I1=1:1 S I=$O(^DGPT(PTF,"M",I)) Q:I'>0  S M(I1)=^(I,0) ;,M(I1,82)=$G(^DGPT(PTF,"M",I,82))
+ ;sort m array in chronological order for display
  S PM=I1-1 D ORDER^DGPTF K MT G DIAG:$D(ST) G GET S ST=1
  ;
 SER ;
@@ -69,13 +78,17 @@ SERV ;
  K DGZSER
  G PRC^DGPTFM0
 SD ;
- F J1=1:1:5 S L=$P(S(J),U,J1+7),L1=0,L3=1 D:+L SD1
- Q
+ ;F J1=1:1:5 S L=$P(S(J),U,J1+7),L1=0,L3=1 D:+L SD1
+ D PTFICD^DGPTFUT(401,PTF,S(J,1),.DGX401)
+ S J1=0 F  S J1=$O(DGX401(J1)) QUIT:'J1  S L=DGX401(J1),L1=0,L3=1 D:+L SD1
+ K DGX401
+ QUIT
 SD1 ;
  S N=$$ICDDATA^ICDXCODE("PROC",+L,EFFDATE)
  S S2=S2+1
  W !,?L1,$J(S2,3)," " D WRITECOD^DGPTIC10("PROC",+L,EFFDATE,1,0,0)  W $S(+N<1!('$P(N,U,10)):"*",1:"")
- K S2(S2) S S2(S2)=J+L1_U_J1
+ K S2(S2) S S2(S2)=J+L1_U_J1_U_(+L)
+ I $Y>(IOSL-4) D PGBR W @IOF,HEAD,?70 S Z="<MAS>" D Z W !
  Q
  ;
 SD2 ;
@@ -86,26 +99,26 @@ NSR K S,S1,S2 S I=0 F I1=1:1 S I=$O(^DGPT(PTF,"S",I)) Q:I'>0  S S(I1)=^(I,0),S(I
  ;
 WR W @IOF,HEAD,?70 S Z="<MAS>" D Z
  Q
-PRO ;
+PRO ;load 401p code before 2871000
  K DGZSER,DGZDIAG,DGZSUR
  S DGZPRO=1
  G:$G(DGPRCNT) PRO1:$Y>14
- K P1,P2 S ST=1,P2=0
+ K P1P,P2P S ST=1,P2P=0
  G NPR:'$D(PROC)
  ;
 PROC ; Display procedures in field 45.01 - 45.05
  ;
- D:$Y>14 WR
+ G PRO1:$Y>14 ;D:$Y>14 WR
  S PROC=$S($D(^DGPT(PTF,"401P")):^("401P"),1:"")
  F PR=1:1:5 S DGPROC=$G(DGPROC)_$P(PROC,"^",PR)
  K PR
  W:DGPROC]"" !,"Procedures: ",$$GETLABEL^DGPTIC10(DGPTDAT,"P")
- F J1=1:1:5 S L=$P(PROC,"^",J1) I L'="" S P2=P2+1 D
+ F J1=1:1:5 S L=$P(PROC,"^",J1) I L'="" S P2P=P2P+1 D
  . S N=$$ICDDATA^ICDXCODE("PROC",+L,EFFDATE)
  . S L2=$S(N:$P(N,U,2,99),1:"")
- . W !,$J(P2,3)," " D WRITECOD^DGPTIC10("PROC",+L,EFFDATE,1,0,0)
+ . W !,$J(P2P,3)," " D WRITECOD^DGPTIC10("PROC",+L,EFFDATE,1,0,0)
  . W $S(+N<1!('$P(N,U,10)):"*",1:"")
- . K P2(P2) S P2(P2)=J1 W:$X>45 !
+ . K P2P(P2P) S P2P(P2P)=J1 W:$X>45 !
  K DGZSER,DGZPRO,DGZDIAG,DGZSUR
  ;
 ENC ;G PRO1:$Y>7,PRO1:'$P(DGZPRF,U,3)
@@ -121,17 +134,17 @@ PF S PS2=0,J=+DGZPRF,Y=+DGZPRF(J),DGSTRT=$S(+$P(DGZPRF,U,4):$P(DGZPRF,U,4),1:4),
  S (L1,PGBRK)=0
  F K=$P(DGZPRF,U,2):1 Q:'$D(DGZPRF(J,K))  I '$G(DGZPRF(J,K,9)) S PS2=PS2+1 W !,?2,PS2," " D CPT^DGPTUTL1 D  Q:$Y+$G(DGZPRF(J,K+1,1))>16!($G(PGBRK))
  .; Add 801 logic
- . W !,?4 S $P(DS,"-",21)="" W DS," Related Diagnosis",$$GETLABEL^DGPTIC10(+DGZPRF($G(J)),"D")," ",DS
+ . W !,?4 S $P(DS,"-",21)="" W DS," Related Diagnosis",$$GETLABEL^DGPTIC10(+DGZPRF(J),"D")," ",DS
  . F L1=DGSTRT:1:11 S DGLOC=$S(L1<8:L1,1:L1+7),CD=$P(DGZPRF(J,K),U,DGLOC) I CD D  I $Y+$G(CKSCI)>16 S PGBRK=1 Q
- . . S N=$$ICDDATA^ICDXCODE("DIAG",CD,EFFDATE) ;,N=$S(N:$P(N,U,2,99),1:"")
- . . D WRITECOD^DGPTIC10("DIAG",CD,EFFDATE,2,1,8)
+ . . S N=$$ICDDATA^ICDXCODE("DIAG",CD,+DGZPRF(J)) ;,N=$S(N:$P(N,U,2,99),1:"")
+ . . D WRITECOD^DGPTIC10("DIAG",CD,+DGZPRF(J),2,1,8)
  . . W $S(+N<1!('$P(N,U,10)):"*",1:"")
  . . D CKSCI($P(DGZPRF(J,K),U,DGLOC))
  . S PS2(PS2)=J_U_K,CD=1,DGLOC=0,DGSTRT=4
  I L1'=11,$S(L1<8:$P($G(DGZPRF(J,K)),U,L1+1,7),1:"")_$P($G(DGZPRF(J,K)),U,$S(L1<8:15,1:L1+8),18)?."^" S L1=11
  I L1=11 S $P(DGZPRF,U,1,2)=$S($D(DGZPRF(J,K+1)):J_U_(K+1),1:J+1_U_1),$P(DGZPRF,U,4)="",PGBRK=0
  E  S $P(DGZPRF,U,1,2)=J_U_K,$P(DGZPRF,U,4)=L1+1
- K I,K,L,L1,CD,N G PRO1
+ K I,K,L,L1,CD,N,DS G PRO1
  ;
 CKSCI(IEN)      ;print SCI for each Diagnosis code
  N DGINFO Q:'$D(XREF(IEN))
@@ -178,3 +191,6 @@ Z ;
  W @DGVI,Z,@DGVO Q  ; Writes reverse video
 EN D WR G EN^DGPTFM0
  Q
+ ;
+PGBR N DIR,X,Y S DIR(0)="E",DIR("A")="Enter RETURN to continue" D ^DIR QUIT
+ ;

@@ -1,128 +1,132 @@
-IBDEI0KK ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0KK ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10041,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10041,1,2,0)
- ;;=2^45315
- ;;^UTILITY(U,$J,358.3,10041,1,3,0)
- ;;=3^Rigid Proctosig w/Tumor Rem-Ht FRCP/Snar
- ;;^UTILITY(U,$J,358.3,10042,0)
- ;;=45317^^59^653^23^^^^1
- ;;^UTILITY(U,$J,358.3,10042,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10042,1,2,0)
- ;;=2^45317
- ;;^UTILITY(U,$J,358.3,10042,1,3,0)
- ;;=3^Rigid Proctosig w/Control of Bleed
- ;;^UTILITY(U,$J,358.3,10043,0)
- ;;=45320^^59^653^21^^^^1
- ;;^UTILITY(U,$J,358.3,10043,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10043,1,2,0)
- ;;=2^45320
- ;;^UTILITY(U,$J,358.3,10043,1,3,0)
- ;;=3^Rigid Proctosig w/Ablation Tumor
- ;;^UTILITY(U,$J,358.3,10044,0)
- ;;=45321^^59^653^24^^^^1
- ;;^UTILITY(U,$J,358.3,10044,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10044,1,2,0)
- ;;=2^45321
- ;;^UTILITY(U,$J,358.3,10044,1,3,0)
- ;;=3^Rigid Proctosig w/Decomp Volvulus
- ;;^UTILITY(U,$J,358.3,10045,0)
- ;;=45327^^59^653^27^^^^1
- ;;^UTILITY(U,$J,358.3,10045,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10045,1,2,0)
- ;;=2^45327
- ;;^UTILITY(U,$J,358.3,10045,1,3,0)
- ;;=3^Rigid Proctosig w/Stent Placement
- ;;^UTILITY(U,$J,358.3,10046,0)
- ;;=45335^^59^653^18^^^^1
- ;;^UTILITY(U,$J,358.3,10046,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10046,1,2,0)
- ;;=2^45335
- ;;^UTILITY(U,$J,358.3,10046,1,3,0)
- ;;=3^Flex Sig w/Submucosal Inj
- ;;^UTILITY(U,$J,358.3,10047,0)
- ;;=45337^^59^653^16^^^^1
- ;;^UTILITY(U,$J,358.3,10047,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10047,1,2,0)
- ;;=2^45337
- ;;^UTILITY(U,$J,358.3,10047,1,3,0)
- ;;=3^Flex Sig w/Decompression Volvulus
- ;;^UTILITY(U,$J,358.3,10048,0)
- ;;=46604^^59^653^1^^^^1
- ;;^UTILITY(U,$J,358.3,10048,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10048,1,2,0)
- ;;=2^46604
- ;;^UTILITY(U,$J,358.3,10048,1,3,0)
- ;;=3^Anoscopy & Dilation (Balloon,Guidewire)
- ;;^UTILITY(U,$J,358.3,10049,0)
- ;;=0228T^^59^653^20^^^^1
- ;;^UTILITY(U,$J,358.3,10049,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10049,1,2,0)
- ;;=2^0228T
- ;;^UTILITY(U,$J,358.3,10049,1,3,0)
- ;;=3^Inj Trfml Eprl w/US Cer/Thor
- ;;^UTILITY(U,$J,358.3,10050,0)
- ;;=46615^^59^653^4^^^^1
- ;;^UTILITY(U,$J,358.3,10050,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10050,1,2,0)
- ;;=2^46615
- ;;^UTILITY(U,$J,358.3,10050,1,3,0)
- ;;=3^Anoscopy w/Ablation of Tumor
- ;;^UTILITY(U,$J,358.3,10051,0)
- ;;=46608^^59^653^9^^^^1
- ;;^UTILITY(U,$J,358.3,10051,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10051,1,2,0)
- ;;=2^46608
- ;;^UTILITY(U,$J,358.3,10051,1,3,0)
- ;;=3^Anoscopy w/Removal FB
- ;;^UTILITY(U,$J,358.3,10052,0)
- ;;=46610^^59^653^7^^^^1
- ;;^UTILITY(U,$J,358.3,10052,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10052,1,2,0)
- ;;=2^46610
- ;;^UTILITY(U,$J,358.3,10052,1,3,0)
- ;;=3^Anoscopy w/Rem of Tumor,Biopsy Forceps
- ;;^UTILITY(U,$J,358.3,10053,0)
- ;;=46611^^59^653^8^^^^1
- ;;^UTILITY(U,$J,358.3,10053,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10053,1,2,0)
- ;;=2^46611
- ;;^UTILITY(U,$J,358.3,10053,1,3,0)
- ;;=3^Anoscopy w/Rem of Tumor,Snare
- ;;^UTILITY(U,$J,358.3,10054,0)
- ;;=46612^^59^653^10^^^^1
- ;;^UTILITY(U,$J,358.3,10054,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10054,1,2,0)
- ;;=2^46612
- ;;^UTILITY(U,$J,358.3,10054,1,3,0)
- ;;=3^Anoscopy w/Removal of Mult Tumors
- ;;^UTILITY(U,$J,358.3,10055,0)
- ;;=46614^^59^653^6^^^^1
- ;;^UTILITY(U,$J,358.3,10055,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10055,1,2,0)
- ;;=2^46614
- ;;^UTILITY(U,$J,358.3,10055,1,3,0)
- ;;=3^Anoscopy w/Control of Bleeding
- ;;^UTILITY(U,$J,358.3,10056,0)
- ;;=46607^^59^653^2^^^^1
- ;;^UTILITY(U,$J,358.3,10056,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10056,1,2,0)
- ;;=2^46607
+ ;;^UTILITY(U,$J,358.3,9739,1,3,0)
+ ;;=3^Entropion, Unspec
+ ;;^UTILITY(U,$J,358.3,9739,1,4,0)
+ ;;=4^374.00
+ ;;^UTILITY(U,$J,358.3,9739,2)
+ ;;=Entropion, Unspec^41016
+ ;;^UTILITY(U,$J,358.3,9740,0)
+ ;;=374.04^^44^557^18
+ ;;^UTILITY(U,$J,358.3,9740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9740,1,3,0)
+ ;;=3^Entropion, Cicatricial
+ ;;^UTILITY(U,$J,358.3,9740,1,4,0)
+ ;;=4^374.04
+ ;;^UTILITY(U,$J,358.3,9740,2)
+ ;;=Entropion, Cicatricial^269080
+ ;;^UTILITY(U,$J,358.3,9741,0)
+ ;;=374.02^^44^557^19
+ ;;^UTILITY(U,$J,358.3,9741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9741,1,3,0)
+ ;;=3^Entropion, Mechanical
+ ;;^UTILITY(U,$J,358.3,9741,1,4,0)
+ ;;=4^374.02
+ ;;^UTILITY(U,$J,358.3,9741,2)
+ ;;=Entropion, Mechanical^269076
+ ;;^UTILITY(U,$J,358.3,9742,0)
+ ;;=374.03^^44^557^21
+ ;;^UTILITY(U,$J,358.3,9742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9742,1,3,0)
+ ;;=3^Entropion, Spastic
+ ;;^UTILITY(U,$J,358.3,9742,1,4,0)
+ ;;=4^374.03
+ ;;^UTILITY(U,$J,358.3,9742,2)
+ ;;=Spastic Entropion^269078
+ ;;^UTILITY(U,$J,358.3,9743,0)
+ ;;=870.0^^44^557^58
+ ;;^UTILITY(U,$J,358.3,9743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9743,1,3,0)
+ ;;=3^Eyelid/Periocular Skin Laceration
+ ;;^UTILITY(U,$J,358.3,9743,1,4,0)
+ ;;=4^870.0
+ ;;^UTILITY(U,$J,358.3,9743,2)
+ ;;=Laceration, Eyelid^274879
+ ;;^UTILITY(U,$J,358.3,9744,0)
+ ;;=374.20^^44^557^72
+ ;;^UTILITY(U,$J,358.3,9744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9744,1,3,0)
+ ;;=3^Lagophthalmos
+ ;;^UTILITY(U,$J,358.3,9744,1,4,0)
+ ;;=4^374.20
+ ;;^UTILITY(U,$J,358.3,9744,2)
+ ;;=Lagophthalmos^265452
+ ;;^UTILITY(U,$J,358.3,9745,0)
+ ;;=378.9^^44^557^98
+ ;;^UTILITY(U,$J,358.3,9745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9745,1,3,0)
+ ;;=3^Strabismus
+ ;;^UTILITY(U,$J,358.3,9745,1,4,0)
+ ;;=4^378.9
+ ;;^UTILITY(U,$J,358.3,9745,2)
+ ;;=Strabismus^123833
+ ;;^UTILITY(U,$J,358.3,9746,0)
+ ;;=242.90^^44^557^99
+ ;;^UTILITY(U,$J,358.3,9746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9746,1,3,0)
+ ;;=3^Thyrotoxicosis w/o Crisis Thyroid Eye Dis
+ ;;^UTILITY(U,$J,358.3,9746,1,4,0)
+ ;;=4^242.90
+ ;;^UTILITY(U,$J,358.3,9746,2)
+ ;;=Thyroid Eye Disease^267811^376.21
+ ;;^UTILITY(U,$J,358.3,9747,0)
+ ;;=374.05^^44^557^100
+ ;;^UTILITY(U,$J,358.3,9747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9747,1,3,0)
+ ;;=3^Trichiasis w/o Entropion
+ ;;^UTILITY(U,$J,358.3,9747,1,4,0)
+ ;;=4^374.05
+ ;;^UTILITY(U,$J,358.3,9747,2)
+ ;;=Trichiasis^269082
+ ;;^UTILITY(U,$J,358.3,9748,0)
+ ;;=375.21^^44^557^69
+ ;;^UTILITY(U,$J,358.3,9748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9748,1,3,0)
+ ;;=3^Lacrimal,Epiphora,Excess
+ ;;^UTILITY(U,$J,358.3,9748,1,4,0)
+ ;;=4^375.21
+ ;;^UTILITY(U,$J,358.3,9748,2)
+ ;;=Epiphora, excess lacrimation^269137
+ ;;^UTILITY(U,$J,358.3,9749,0)
+ ;;=375.22^^44^557^23
+ ;;^UTILITY(U,$J,358.3,9749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9749,1,3,0)
+ ;;=3^Epiphora, Insuff Drainage
+ ;;^UTILITY(U,$J,358.3,9749,1,4,0)
+ ;;=4^375.22
+ ;;^UTILITY(U,$J,358.3,9749,2)
+ ;;=Epiphora, Insuff Drainage^269138
+ ;;^UTILITY(U,$J,358.3,9750,0)
+ ;;=375.53^^44^557^67
+ ;;^UTILITY(U,$J,358.3,9750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9750,1,3,0)
+ ;;=3^Lacrimal,Canal Stenosis
+ ;;^UTILITY(U,$J,358.3,9750,1,4,0)
+ ;;=4^375.53
+ ;;^UTILITY(U,$J,358.3,9750,2)
+ ;;=Lacrimal Canal Stenosis^269154
+ ;;^UTILITY(U,$J,358.3,9751,0)
+ ;;=375.51^^44^557^70
+ ;;^UTILITY(U,$J,358.3,9751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9751,1,3,0)
+ ;;=3^Lacrimal,Punctum Eversion
+ ;;^UTILITY(U,$J,358.3,9751,1,4,0)
+ ;;=4^375.51
+ ;;^UTILITY(U,$J,358.3,9751,2)
+ ;;=Lacrimal Punctum Eversion^269150
+ ;;^UTILITY(U,$J,358.3,9752,0)
+ ;;=375.54^^44^557^71

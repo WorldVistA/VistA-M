@@ -1,13 +1,13 @@
-ECXPHVE ;ALB/JAM - Pharmacy Volume Edit ;6/27/12  15:12
- ;;3.0;DSS EXTRACTS;**92,120,136**;Dec 22, 1997;Build 28
+ECXPHVE ;ALB/JAM - Pharmacy Volume Edit ;5/28/15  14:29
+ ;;3.0;DSS EXTRACTS;**92,120,136,154**;Dec 22, 1997;Build 13
  ;
 EN ;entry point from menu option
  N DIR,DIRUT,ECXX,Y,STOP,ECPIECE
  N $ESTACK,$ETRAP S $ETRAP="D RESET^ECXPHVE"
- S DIR(0)="SO^P:PRE;I:IVP;U:UDP"
- S DIR("A")="Which extract do you need to edit?"
+ S DIR(0)="SO^P:PRE;I:IVP;U:UDP;B:BCM" ;154 BCM ADDED
  D ^DIR I $D(DIRUT) Q
- S ECXX=Y(0),ECPIECE=$S(ECXX="PRE":2,ECXX="IVP":19,1:8)
+ S DIR("A")="Which extract do you need to edit?"
+ S ECXX=Y(0),ECPIECE=$S(ECXX="PRE":2,ECXX="IVP":19,ECXX="BCM":29,1:8) ;Added BCM 154
  S STOP=0 I $P($G(^ECX(728,1,7.1)),"^",ECPIECE)]"" D  I STOP Q
  .W !!,ECXX," Extract running, cannot edit. Try later.",!! S STOP=1
  .K DIR S DIR(0)="E" D ^DIR
@@ -32,11 +32,17 @@ EXTEDT ;Edit extracts - PRE, IVP, or UDP
  .S DA=$$GETSEQ(727.809)
  .S DIC="^ECX(727.809,",DR="10"
  .D TURNON^DIAUTL(727.809,"10","y")
+ ;BCM extract (file #727.833) edit Component Dose Given (field #31) & Component Units (field #32) 154
+ I ECXX="BCM" D
+ .S DA=$$GETSEQ(727.833)
+ .S DIC="^ECX(727.833,",DR="31;32"
+ .D TURNON^DIAUTL(727.833,"31;32","y")
  S DIE=DIC D ^DIE
 RESET I $G(ECXX)="" Q
- I ECXX="PRE" D TURNON^DIAUTL(727.81,"16;22","e")
- I ECXX="IVP" D TURNON^DIAUTL(727.819,"10;20","e")
- I ECXX="UDP" D TURNON^DIAUTL(727.809,"10","e")
+ I ECXX="PRE" D TURNON^DIAUTL(727.81,"16;22","n")
+ I ECXX="IVP" D TURNON^DIAUTL(727.819,"10;20","n")
+ I ECXX="UDP" D TURNON^DIAUTL(727.809,"10","n")
+ I ECXX="BCM" D TURNON^DIAUTL(727.833,"31;32","n") ;154
  I $G(ECPIECE) S $P(^ECX(728,1,7.1),"^",ECPIECE)=""
  Q
 CKREC(ECXN) ;Checks if record should be edited.
@@ -51,6 +57,7 @@ CHKSEQ() ;Check sequence to see if it can be edited - API added in 136
  S CANEDIT=1
  I '$D(^ECX(FILE,X,0)) S CANEDIT=0
  I +SSN I $P($G(^ECX(FILE,X,0)),U,6)'=SSN S CANEDIT=0
+ I '$D(^ECX(FILE,"AC",EXT,X)) S CANEDIT=0 ;154 Added check to be sure sequence number is in selected extract
  Q CANEDIT
  ;
 GETSEQ(FILE) ;Get sequence number to edit
@@ -101,11 +108,15 @@ HELP2 ;Display list of sequence numbers to choose from
  D HDR
  S SEQNO=0 F  S SEQNO=$O(^ECX(FILE,"AC",EXT,SEQNO)) Q:'+SEQNO!('+Y)  D
  .I SSN I $P($G(^ECX(FILE,SEQNO,0)),U,6)'=SSN Q  ;Check for SSN if user entered
- .W !,SEQNO,?12,$P(^ECX(FILE,SEQNO,0),U,6),?24,$$ECXDATEX^ECXUTL($P(^(0),U,9)),?38,$P(^(0),U,$S(FILE=727.81:17,1:11)),?48,$S(FILE=727.81:$P(^(0),U,23),FILE=727.819:$P(^(0),U,20),1:"") S CNT=CNT+1
+ .;154 Added BCM fieldS
+ .W !,SEQNO,?12,$P(^ECX(FILE,SEQNO,0),U,6),?24,$$ECXDATEX^ECXUTL($P(^(0),U,9)),?38,$S(FILE'=727.833:$P(^(0),U,$S(FILE=727.81:17,1:11)),1:$P(^(1),U,7))
+ .W @$S(ECXX'="BCM":"?48",1:"?62"),$S(FILE=727.81:$P(^(0),U,23),FILE=727.819:$P(^(0),U,20),FILE=727.833:$P(^(1),U,8),1:"") S CNT=CNT+1
  .I CNT>18 S DIR(0)="E" D ^DIR S CNT=0 D HDR
  Q
  ;
 HDR ;
- W !,"SEQUENCE #",?12,"SSN",?24,$S(ECXX="PRE":"FILL DT",1:"DISPENSE DT"),?38,"QUANTITY",?48,$S(ECXX="PRE":"UNIT OF ISSUE",ECXX="IVP":"TOTAL DOSES/DAY",1:"")
- W !,$$REPEAT^XLFSTR("-",$S(ECXX'="UDP":64,1:48))
+ ;154 Added BCM fields 154
+ W !,"SEQUENCE #",?12,"SSN",?24,$S(ECXX="PRE":"FILL DT",1:"DISPENSE DT"),?38,$S(ECXX'="BCM":"QUANTITY",1:"COMPONENT DOSE GIVEN")
+ W @$S(ECXX'="BCM":"?48",1:"?62"),$S(ECXX="PRE":"UNIT OF ISSUE",ECXX="IVP":"TOTAL DOSES/DAY",ECXX="BCM":"COMPONENT UNITS",1:"")
+ W !,$$REPEAT^XLFSTR("-",$S(ECXX="UDP":48,ECXX="BCM":78,1:64)) ;154
  Q

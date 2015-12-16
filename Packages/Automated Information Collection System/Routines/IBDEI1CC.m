@@ -1,116 +1,136 @@
-IBDEI1CC ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1CC ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24045,1,3,0)
- ;;=3^64782
- ;;^UTILITY(U,$J,358.3,24046,0)
- ;;=64783^^142^1495^34^^^^1
- ;;^UTILITY(U,$J,358.3,24046,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24046,1,2,0)
- ;;=2^Excision of neuroma; hand or foot, each additional nerve, except same digit
- ;;^UTILITY(U,$J,358.3,24046,1,3,0)
- ;;=3^64783
- ;;^UTILITY(U,$J,358.3,24047,0)
- ;;=29999^^142^1496^18^^^^1
- ;;^UTILITY(U,$J,358.3,24047,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24047,1,2,0)
- ;;=2^Unlisted procedure, arthroscopy
- ;;^UTILITY(U,$J,358.3,24047,1,3,0)
- ;;=3^29999
- ;;^UTILITY(U,$J,358.3,24048,0)
- ;;=29893^^142^1496^11^^^^1
- ;;^UTILITY(U,$J,358.3,24048,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24048,1,2,0)
- ;;=2^Endoscopic plantar fasciotomy
- ;;^UTILITY(U,$J,358.3,24048,1,3,0)
- ;;=3^29893
- ;;^UTILITY(U,$J,358.3,24049,0)
- ;;=29894^^142^1496^3^^^^1
- ;;^UTILITY(U,$J,358.3,24049,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24049,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; w/removalof loose body or foreign body
- ;;^UTILITY(U,$J,358.3,24049,1,3,0)
- ;;=3^29894
- ;;^UTILITY(U,$J,358.3,24050,0)
- ;;=29897^^142^1496^1^^^^1
- ;;^UTILITY(U,$J,358.3,24050,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24050,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, limited
- ;;^UTILITY(U,$J,358.3,24050,1,3,0)
- ;;=3^29897
- ;;^UTILITY(U,$J,358.3,24051,0)
- ;;=29898^^142^1496^2^^^^1
- ;;^UTILITY(U,$J,358.3,24051,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24051,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, extensive
- ;;^UTILITY(U,$J,358.3,24051,1,3,0)
- ;;=3^29898
- ;;^UTILITY(U,$J,358.3,24052,0)
- ;;=20220^^142^1496^8^^^^1
- ;;^UTILITY(U,$J,358.3,24052,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24052,1,2,0)
- ;;=2^Biopsy, bone, trocar, or needle; superficial
- ;;^UTILITY(U,$J,358.3,24052,1,3,0)
- ;;=3^20220
- ;;^UTILITY(U,$J,358.3,24053,0)
- ;;=20650^^142^1496^14^^^^1
- ;;^UTILITY(U,$J,358.3,24053,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24053,1,2,0)
- ;;=2^Insertion of wire or pin with application of skeletal traction, including removal
- ;;^UTILITY(U,$J,358.3,24053,1,3,0)
- ;;=3^20650
- ;;^UTILITY(U,$J,358.3,24054,0)
- ;;=64726^^142^1496^10^^^^1
- ;;^UTILITY(U,$J,358.3,24054,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24054,1,2,0)
- ;;=2^Decompression; plantar digital nerve
- ;;^UTILITY(U,$J,358.3,24054,1,3,0)
- ;;=3^64726
- ;;^UTILITY(U,$J,358.3,24055,0)
- ;;=64999^^142^1496^19^^^^1
- ;;^UTILITY(U,$J,358.3,24055,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24055,1,2,0)
- ;;=2^Unlisted procedure, nervous system
- ;;^UTILITY(U,$J,358.3,24055,1,3,0)
- ;;=3^64999
- ;;^UTILITY(U,$J,358.3,24056,0)
- ;;=93922^^142^1496^17^^^^1
- ;;^UTILITY(U,$J,358.3,24056,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24056,1,2,0)
- ;;=2^Non-invasive physiologic studies of upper or lower extremity arteries, single level, bilateral
- ;;^UTILITY(U,$J,358.3,24056,1,3,0)
- ;;=3^93922
- ;;^UTILITY(U,$J,358.3,24057,0)
- ;;=29904^^142^1496^6^^^^1
- ;;^UTILITY(U,$J,358.3,24057,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24057,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/rem of foreign body
- ;;^UTILITY(U,$J,358.3,24057,1,3,0)
- ;;=3^29904
- ;;^UTILITY(U,$J,358.3,24058,0)
- ;;=29905^^142^1496^5^^^^1
- ;;^UTILITY(U,$J,358.3,24058,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24058,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/ Synovectomy
- ;;^UTILITY(U,$J,358.3,24058,1,3,0)
- ;;=3^29905
- ;;^UTILITY(U,$J,358.3,24059,0)
- ;;=29906^^142^1496^4^^^^1
- ;;^UTILITY(U,$J,358.3,24059,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24059,1,2,0)
- ;;=2^Arthroscopy, subtalar jt,w/ debridement
+ ;;^UTILITY(U,$J,358.3,23751,1,5,0)
+ ;;=5^Family Disruption NEC
+ ;;^UTILITY(U,$J,358.3,23751,2)
+ ;;=^336805
+ ;;^UTILITY(U,$J,358.3,23752,0)
+ ;;=V62.21^^127^1432^4
+ ;;^UTILITY(U,$J,358.3,23752,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23752,1,2,0)
+ ;;=2^V62.21
+ ;;^UTILITY(U,$J,358.3,23752,1,5,0)
+ ;;=5^Current Military Deployment
+ ;;^UTILITY(U,$J,358.3,23752,2)
+ ;;=^336806
+ ;;^UTILITY(U,$J,358.3,23753,0)
+ ;;=V62.22^^127^1432^16
+ ;;^UTILITY(U,$J,358.3,23753,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23753,1,2,0)
+ ;;=2^V62.22
+ ;;^UTILITY(U,$J,358.3,23753,1,5,0)
+ ;;=5^HX Retrn Military Deploy
+ ;;^UTILITY(U,$J,358.3,23753,2)
+ ;;=^336807
+ ;;^UTILITY(U,$J,358.3,23754,0)
+ ;;=V62.29^^127^1432^38
+ ;;^UTILITY(U,$J,358.3,23754,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23754,1,2,0)
+ ;;=2^V62.29
+ ;;^UTILITY(U,$J,358.3,23754,1,5,0)
+ ;;=5^Occupationl Circumst NEC
+ ;;^UTILITY(U,$J,358.3,23754,2)
+ ;;=^87746
+ ;;^UTILITY(U,$J,358.3,23755,0)
+ ;;=V60.81^^127^1432^15
+ ;;^UTILITY(U,$J,358.3,23755,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23755,1,2,0)
+ ;;=2^V60.81
+ ;;^UTILITY(U,$J,358.3,23755,1,5,0)
+ ;;=5^Foster Care (Status)
+ ;;^UTILITY(U,$J,358.3,23755,2)
+ ;;=^338505
+ ;;^UTILITY(U,$J,358.3,23756,0)
+ ;;=V60.89^^127^1432^19
+ ;;^UTILITY(U,$J,358.3,23756,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23756,1,2,0)
+ ;;=2^V60.89
+ ;;^UTILITY(U,$J,358.3,23756,1,5,0)
+ ;;=5^Housing/Econom Circum NEC
+ ;;^UTILITY(U,$J,358.3,23756,2)
+ ;;=^295545
+ ;;^UTILITY(U,$J,358.3,23757,0)
+ ;;=V61.22^^127^1432^44
+ ;;^UTILITY(U,$J,358.3,23757,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23757,1,2,0)
+ ;;=2^V61.22
+ ;;^UTILITY(U,$J,358.3,23757,1,5,0)
+ ;;=5^Perpetrator-Parental Child
+ ;;^UTILITY(U,$J,358.3,23757,2)
+ ;;=^304358
+ ;;^UTILITY(U,$J,358.3,23758,0)
+ ;;=V61.23^^127^1432^40
+ ;;^UTILITY(U,$J,358.3,23758,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23758,1,2,0)
+ ;;=2^V61.23
+ ;;^UTILITY(U,$J,358.3,23758,1,5,0)
+ ;;=5^Parent-Biological Child Prob
+ ;;^UTILITY(U,$J,358.3,23758,2)
+ ;;=^338508
+ ;;^UTILITY(U,$J,358.3,23759,0)
+ ;;=V61.24^^127^1432^39
+ ;;^UTILITY(U,$J,358.3,23759,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23759,1,2,0)
+ ;;=2^V61.24
+ ;;^UTILITY(U,$J,358.3,23759,1,5,0)
+ ;;=5^Parent-Adopted Child Prob
+ ;;^UTILITY(U,$J,358.3,23759,2)
+ ;;=^338509
+ ;;^UTILITY(U,$J,358.3,23760,0)
+ ;;=V61.25^^127^1432^42
+ ;;^UTILITY(U,$J,358.3,23760,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23760,1,2,0)
+ ;;=2^V61.25
+ ;;^UTILITY(U,$J,358.3,23760,1,5,0)
+ ;;=5^Parent-Foster Child Prob
+ ;;^UTILITY(U,$J,358.3,23760,2)
+ ;;=^338510
+ ;;^UTILITY(U,$J,358.3,23761,0)
+ ;;=V40.31^^127^1432^52
+ ;;^UTILITY(U,$J,358.3,23761,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23761,1,2,0)
+ ;;=2^V40.31
+ ;;^UTILITY(U,$J,358.3,23761,1,5,0)
+ ;;=5^Wandering-Dis Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,23761,2)
+ ;;=^340621
+ ;;^UTILITY(U,$J,358.3,23762,0)
+ ;;=V40.39^^127^1432^1
+ ;;^UTILITY(U,$J,358.3,23762,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23762,1,2,0)
+ ;;=2^V40.39
+ ;;^UTILITY(U,$J,358.3,23762,1,5,0)
+ ;;=5^Behavioral Problem NEC
+ ;;^UTILITY(U,$J,358.3,23762,2)
+ ;;=^340622
+ ;;^UTILITY(U,$J,358.3,23763,0)
+ ;;=V65.19^^127^1432^45
+ ;;^UTILITY(U,$J,358.3,23763,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23763,1,2,0)
+ ;;=2^V65.19
+ ;;^UTILITY(U,$J,358.3,23763,1,5,0)
+ ;;=5^Person Consulting on Behalf of Pt
+ ;;^UTILITY(U,$J,358.3,23763,2)
+ ;;=^329985
+ ;;^UTILITY(U,$J,358.3,23764,0)
+ ;;=V66.7^^127^1432^8
+ ;;^UTILITY(U,$J,358.3,23764,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23764,1,2,0)
+ ;;=2^V66.7
+ ;;^UTILITY(U,$J,358.3,23764,1,5,0)
+ ;;=5^Encounter for Palliative Care

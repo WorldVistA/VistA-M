@@ -1,144 +1,128 @@
-IBDEI07L ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07L ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3386,1,5,0)
- ;;=5^Abscess/cellulitis NOS
- ;;^UTILITY(U,$J,358.3,3386,2)
- ;;=^21160
- ;;^UTILITY(U,$J,358.3,3387,0)
- ;;=681.10^^31^274^10
- ;;^UTILITY(U,$J,358.3,3387,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3387,1,2,0)
- ;;=2^681.10
- ;;^UTILITY(U,$J,358.3,3387,1,5,0)
- ;;=5^Abscess/cellulitis toe
- ;;^UTILITY(U,$J,358.3,3387,2)
- ;;=^271885
- ;;^UTILITY(U,$J,358.3,3388,0)
- ;;=681.00^^31^274^5
- ;;^UTILITY(U,$J,358.3,3388,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3388,1,2,0)
- ;;=2^681.00
- ;;^UTILITY(U,$J,358.3,3388,1,5,0)
- ;;=5^Abscess/cellulitis finger
- ;;^UTILITY(U,$J,358.3,3388,2)
- ;;=^271883
- ;;^UTILITY(U,$J,358.3,3389,0)
- ;;=706.1^^31^275^2
- ;;^UTILITY(U,$J,358.3,3389,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3389,1,2,0)
- ;;=2^706.1
- ;;^UTILITY(U,$J,358.3,3389,1,5,0)
- ;;=5^Vulgaris
- ;;^UTILITY(U,$J,358.3,3389,2)
- ;;=^87239
- ;;^UTILITY(U,$J,358.3,3390,0)
- ;;=695.3^^31^275^1
- ;;^UTILITY(U,$J,358.3,3390,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3390,1,2,0)
- ;;=2^695.3
- ;;^UTILITY(U,$J,358.3,3390,1,5,0)
- ;;=5^Rosacea
- ;;^UTILITY(U,$J,358.3,3390,2)
- ;;=^107114
- ;;^UTILITY(U,$J,358.3,3391,0)
- ;;=704.00^^31^276^4
- ;;^UTILITY(U,$J,358.3,3391,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3391,1,2,0)
- ;;=2^704.00
- ;;^UTILITY(U,$J,358.3,3391,1,5,0)
- ;;=5^Loss Of Hair
- ;;^UTILITY(U,$J,358.3,3391,2)
- ;;=^5078
- ;;^UTILITY(U,$J,358.3,3392,0)
- ;;=704.01^^31^276^1
- ;;^UTILITY(U,$J,358.3,3392,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3392,1,2,0)
- ;;=2^704.01
- ;;^UTILITY(U,$J,358.3,3392,1,5,0)
- ;;=5^Alopecia Areata
- ;;^UTILITY(U,$J,358.3,3392,2)
- ;;=^5095
- ;;^UTILITY(U,$J,358.3,3393,0)
- ;;=704.02^^31^276^2
- ;;^UTILITY(U,$J,358.3,3393,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3393,1,2,0)
- ;;=2^704.02
- ;;^UTILITY(U,$J,358.3,3393,1,5,0)
- ;;=5^Alopecia, Telogen Effluvium
- ;;^UTILITY(U,$J,358.3,3393,2)
- ;;=^295751
- ;;^UTILITY(U,$J,358.3,3394,0)
- ;;=704.9^^31^276^3
- ;;^UTILITY(U,$J,358.3,3394,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3394,1,2,0)
- ;;=2^704.9
- ;;^UTILITY(U,$J,358.3,3394,1,5,0)
- ;;=5^Hair Disease NOS
- ;;^UTILITY(U,$J,358.3,3394,2)
- ;;=^53658
- ;;^UTILITY(U,$J,358.3,3395,0)
- ;;=692.71^^31^277^5
- ;;^UTILITY(U,$J,358.3,3395,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3395,1,2,0)
- ;;=2^692.71
- ;;^UTILITY(U,$J,358.3,3395,1,5,0)
- ;;=5^Sunburn, First Degree
- ;;^UTILITY(U,$J,358.3,3395,2)
- ;;=^115798
- ;;^UTILITY(U,$J,358.3,3396,0)
- ;;=692.76^^31^277^6
- ;;^UTILITY(U,$J,358.3,3396,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3396,1,2,0)
- ;;=2^692.76
- ;;^UTILITY(U,$J,358.3,3396,1,5,0)
- ;;=5^Sunburn, Second Degree
- ;;^UTILITY(U,$J,358.3,3396,2)
- ;;=^323553
- ;;^UTILITY(U,$J,358.3,3397,0)
- ;;=692.77^^31^277^7
- ;;^UTILITY(U,$J,358.3,3397,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3397,1,2,0)
- ;;=2^692.77
- ;;^UTILITY(U,$J,358.3,3397,1,5,0)
- ;;=5^Sunburn, Third Degree
- ;;^UTILITY(U,$J,358.3,3397,2)
- ;;=^323555
- ;;^UTILITY(U,$J,358.3,3398,0)
- ;;=949.1^^31^277^2
- ;;^UTILITY(U,$J,358.3,3398,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3398,1,2,0)
- ;;=2^949.1
- ;;^UTILITY(U,$J,358.3,3398,1,5,0)
- ;;=5^Burn Unspec, Erythema, First Degree
- ;;^UTILITY(U,$J,358.3,3398,2)
- ;;=^275878
- ;;^UTILITY(U,$J,358.3,3399,0)
- ;;=949.2^^31^277^1
- ;;^UTILITY(U,$J,358.3,3399,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3399,1,2,0)
- ;;=2^949.2
- ;;^UTILITY(U,$J,358.3,3399,1,5,0)
- ;;=5^Burn Unspec, Blisters,Epidermal Loss,Second Degree
- ;;^UTILITY(U,$J,358.3,3399,2)
- ;;=^275879
- ;;^UTILITY(U,$J,358.3,3400,0)
- ;;=949.3^^31^277^3
- ;;^UTILITY(U,$J,358.3,3400,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3400,1,2,0)
- ;;=2^949.3
+ ;;^UTILITY(U,$J,358.3,3051,1,3,0)
+ ;;=3^Delirium d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,3051,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,3051,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,3052,0)
+ ;;=F05.^^8^88^5
+ ;;^UTILITY(U,$J,358.3,3052,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3052,1,3,0)
+ ;;=3^Delirium d/t Multiple Etiologies
+ ;;^UTILITY(U,$J,358.3,3052,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,3052,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,3053,0)
+ ;;=A81.00^^8^89^5
+ ;;^UTILITY(U,$J,358.3,3053,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3053,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3053,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,3053,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,3054,0)
+ ;;=A81.01^^8^89^23
+ ;;^UTILITY(U,$J,358.3,3054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3054,1,3,0)
+ ;;=3^Variant Creutzfeldt-Jakob Disease
+ ;;^UTILITY(U,$J,358.3,3054,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,3054,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,3055,0)
+ ;;=A81.09^^8^89^4
+ ;;^UTILITY(U,$J,358.3,3055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3055,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,3055,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,3055,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,3056,0)
+ ;;=A81.2^^8^89^20
+ ;;^UTILITY(U,$J,358.3,3056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3056,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,3056,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,3056,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,3057,0)
+ ;;=F03.90^^8^89^12
+ ;;^UTILITY(U,$J,358.3,3057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3057,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,3057,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,3057,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,3058,0)
+ ;;=F01.50^^8^89^18
+ ;;^UTILITY(U,$J,358.3,3058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3058,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,3058,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,3058,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,3059,0)
+ ;;=F01.51^^8^89^19
+ ;;^UTILITY(U,$J,358.3,3059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3059,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,3059,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,3059,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,3060,0)
+ ;;=F10.27^^8^89^1
+ ;;^UTILITY(U,$J,358.3,3060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3060,1,3,0)
+ ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
+ ;;^UTILITY(U,$J,358.3,3060,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,3060,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,3061,0)
+ ;;=F19.97^^8^89^22
+ ;;^UTILITY(U,$J,358.3,3061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3061,1,3,0)
+ ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,3061,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,3061,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,3062,0)
+ ;;=F02.80^^8^89^9
+ ;;^UTILITY(U,$J,358.3,3062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3062,1,3,0)
+ ;;=3^Dementia in Other Diseases Classified Elsewhere w/o Behavorial Disturbance
+ ;;^UTILITY(U,$J,358.3,3062,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,3062,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,3063,0)
+ ;;=F02.81^^8^89^10
+ ;;^UTILITY(U,$J,358.3,3063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3063,1,3,0)
+ ;;=3^Dementia in Other Diseases Classified Elsewhere w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,3063,1,4,0)
+ ;;=4^F02.81

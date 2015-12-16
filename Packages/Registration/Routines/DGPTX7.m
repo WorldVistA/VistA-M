@@ -1,7 +1,7 @@
-DGPTX7 ; GENERATED FROM 'DG701' INPUT TEMPLATE(#432), FILE 45;08/05/14
+DGPTX7 ; GENERATED FROM 'DG701' INPUT TEMPLATE(#432), FILE 45;09/16/15
  D DE G BEGIN
 DE S DIE="^DGPT(",DIC=DIE,DP=45,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGPT(DA,""))=""
- I $D(^(70)) S %Z=^(70) S %=$P(%Z,U,10) S:%]"" DE(6)=% S %=$P(%Z,U,16) S:%]"" DE(16)=% S %=$P(%Z,U,17) S:%]"" DE(26)=% S %=$P(%Z,U,18) S:%]"" DE(36)=% S %=$P(%Z,U,19) S:%]"" DE(46)=% S %=$P(%Z,U,20) S:%]"" DE(56)=%
+ I $D(^(70)) S %Z=^(70) S %=$P(%Z,U,10) S:%]"" DE(6)=% S %=$P(%Z,U,16) S:%]"" DE(16)=% S %=$P(%Z,U,17) S:%]"" DE(26)=% S %=$P(%Z,U,18) S:%]"" DE(36)=% S %=$P(%Z,U,19) S:%]"" DE(46)=%
  I $D(^(82)) S %Z=^(82) S %=$P(%Z,U,1) S:%]"" DE(9)=% S %=$P(%Z,U,2) S:%]"" DE(19)=% S %=$P(%Z,U,3) S:%]"" DE(29)=% S %=$P(%Z,U,4) S:%]"" DE(39)=% S %=$P(%Z,U,5) S:%]"" DE(49)=%
  K %Z Q
  ;
@@ -74,8 +74,12 @@ X5 D CENSUS^DGPTIC10(DA)
  G RE
 C6 G C6S:$D(DE(6))[0 K DB
  S X=DE(6),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,1)=DIV,DIH=45,DIG=82.01 D ^DICR
+ S X=DE(6),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C6S S X="" G:DG(DQ)=X C6F1 K DB
+ S X=DG(DQ),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,1)=DIV,DIH=45,DIG=82.01 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C6F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
@@ -90,10 +94,12 @@ X7 S DGXX=X
 8 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=8 D X8 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X8 I DGCODSYS="ICD9"!(DGXX="")!(DGTYPE=2) S Y="@1"
  Q
-9 D:$D(DG)>9 F^DIE17,DE S DQ=9,DW="82;1",DV="S",DU="",DLB="POA PRINCIPAL DIAGNOSIS",DIFLD=82.01
- S DU="Y:Present at Admission;N:Not Present at Admission;U:Insufficient Docum to Present at Admission;W:Can't Determine if Present at Admission;"
+9 D:$D(DG)>9 F^DIE17,DE S DQ=9,DW="82;1",DV="SX",DU="",DLB="POA PRINCIPAL DIAGNOSIS",DIFLD=82.01
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
  G RE
-X9 Q
+X9 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,70,10) X
+ Q
+ ;
 10 S DQ=11 ;@1
 11 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=11 D X11 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X11 S X=DGXX
@@ -114,8 +120,12 @@ X15 S DGNFLD="@20"
  G RE
 C16 G C16S:$D(DE(16))[0 K DB
  S X=DE(16),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,2),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,2)=DIV,DIH=45,DIG=82.02 D ^DICR
+ S X=DE(16),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C16S S X="" G:DG(DQ)=X C16F1 K DB
+ S X=DG(DQ),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,2),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,2)=DIV,DIH=45,DIG=82.02 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C16F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
@@ -130,10 +140,12 @@ X17 S DGXX=X
 18 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=18 D X18 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X18 I DGCODSYS="ICD9"!(DGXX="")!(DGTYPE=2) S Y="@11"
  Q
-19 D:$D(DG)>9 F^DIE17,DE S DQ=19,DW="82;2",DV="S",DU="",DLB="POA SECONDARY DIAGNOSIS 1",DIFLD=82.02
- S DU="Y:Present at Admission;N:Not Present at Admission;U:Insufficient Docum to Present at Admission;W:Can't Determine if Present at Admission;"
+19 D:$D(DG)>9 F^DIE17,DE S DQ=19,DW="82;2",DV="SX",DU="",DLB="POA SECONDARY DIAGNOSIS 1",DIFLD=82.02
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
  G RE
-X19 Q
+X19 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,70,16) X
+ Q
+ ;
 20 S DQ=21 ;@11
 21 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=21 D X21 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X21 S X=DGXX
@@ -154,8 +166,12 @@ X25 S DGNFLD="@30"
  G RE
 C26 G C26S:$D(DE(26))[0 K DB
  S X=DE(26),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,3)=DIV,DIH=45,DIG=82.03 D ^DICR
+ S X=DE(26),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C26S S X="" G:DG(DQ)=X C26F1 K DB
+ S X=DG(DQ),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,3)=DIV,DIH=45,DIG=82.03 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C26F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
@@ -170,10 +186,12 @@ X27 S DGXX=X
 28 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=28 D X28 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X28 I DGCODSYS="ICD9"!(DGXX="")!(DGTYPE=2) S Y="@21"
  Q
-29 D:$D(DG)>9 F^DIE17,DE S DQ=29,DW="82;3",DV="S",DU="",DLB="POA SECONDARY DIAGNOSIS 2",DIFLD=82.03
- S DU="Y:Present at Admission;N:Not Present at Admission;U:Insufficient Docum to Present at Admission;W:Can't Determine if Present at Admission;"
+29 D:$D(DG)>9 F^DIE17,DE S DQ=29,DW="82;3",DV="SX",DU="",DLB="POA SECONDARY DIAGNOSIS 2",DIFLD=82.03
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
  G RE
-X29 Q
+X29 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,70,17) X
+ Q
+ ;
 30 S DQ=31 ;@21
 31 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=31 D X31 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X31 S X=DGXX
@@ -194,8 +212,12 @@ X35 S DGNFLD="@40"
  G RE
 C36 G C36S:$D(DE(36))[0 K DB
  S X=DE(36),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,4)=DIV,DIH=45,DIG=82.04 D ^DICR
+ S X=DE(36),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C36S S X="" G:DG(DQ)=X C36F1 K DB
+ S X=DG(DQ),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,4)=DIV,DIH=45,DIG=82.04 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
 C36F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
@@ -210,10 +232,12 @@ X37 S DGXX=X
 38 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=38 D X38 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X38 I DGCODSYS="ICD9"!(DGXX="")!(DGTYPE=2) S Y="@31"
  Q
-39 D:$D(DG)>9 F^DIE17,DE S DQ=39,DW="82;4",DV="S",DU="",DLB="POA SECONDARY DIAGNOSIS 3",DIFLD=82.04
- S DU="Y:Present at Admission;N:Not Present at Admission;U:Insufficient Docum to Present at Admission;W:Can't Determine if Present at Admission;"
+39 D:$D(DG)>9 F^DIE17,DE S DQ=39,DW="82;4",DV="SX",DU="",DLB="POA SECONDARY DIAGNOSIS 3",DIFLD=82.04
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
  G RE
-X39 Q
+X39 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,70,18) X
+ Q
+ ;
 40 S DQ=41 ;@31
 41 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=41 D X41 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X41 S X=DGXX
@@ -233,11 +257,9 @@ X45 S DGNFLD="@50"
  S DU="ICD9("
  G RE
 C46 G C46S:$D(DE(46))[0 K DB
- S X=DE(46),DIC=DIE
- X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
+ D ^DGPTX71
 C46S S X="" G:DG(DQ)=X C46F1 K DB
- S X=DG(DQ),DIC=DIE
- X "N DG1 S DG1=$P(^DGPT(DA,0),""^"",1) N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  D:(+DG1>0) ADGRU^DGRUDD01(DG1)"
+ D ^DGPTX72
 C46F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
  F DIXR=1194 S DIEZRXR(45,DIXR)=""
  Q
@@ -250,10 +272,12 @@ X47 S DGXX=X
 48 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=48 D X48 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X48 I DGCODSYS="ICD9"!(DGXX="")!(DGTYPE=2) S Y="@41"
  Q
-49 D:$D(DG)>9 F^DIE17,DE S DQ=49,DW="82;5",DV="S",DU="",DLB="POA SECONDARY DIAGNOSIS 4",DIFLD=82.05
- S DU="Y:Present at Admission;N:Not Present at Admission;U:Insufficient Docum to Present at Admission;W:Can't Determine if Present at Admission;"
+49 D:$D(DG)>9 F^DIE17,DE S DQ=49,DW="82;5",DV="SX",DU="",DLB="POA SECONDARY DIAGNOSIS 4",DIFLD=82.05
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
  G RE
-X49 Q
+X49 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,70,19) X
+ Q
+ ;
 50 S DQ=51 ;@41
 51 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=51 D X51 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X51 S X=DGXX
@@ -268,24 +292,4 @@ X53 S:$P($G(^DGPT(D0,70)),U,19,24)_$P($G(^DGPT(D0,71)),U,1,3)?."^" Y="@120"
 55 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=55 D X55 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X55 S DGNFLD="@55"
  Q
-56 S DW="70;20",DV="*P80'X",DU="",DLB="SECONDARY DIAGNOSIS 5",DIFLD=79.201
- S DE(DW)="C56^DGPTX7",DE(DW,"INDEX")=1
- S DU="ICD9("
- G RE
-C56 G C56S:$D(DE(56))[0 K DB
- D ^DGPTX71
-C56S S X="" G:DG(DQ)=X C56F1 K DB
- D ^DGPTX72
-C56F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1195 S DIEZRXR(45,DIXR)=""
- Q
-X56 N DGI S DGI=6 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
- Q
- ;
-57 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=57 D X57 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X57 S DGXX=X
- Q
-58 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=58 D X58 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X58 I DGCODSYS="ICD9"!(DGXX="")!(DGTYPE=2) S Y="@51"
- Q
-59 D:$D(DG)>9 F^DIE17 G ^DGPTX73
+56 D:$D(DG)>9 F^DIE17 G ^DGPTX73

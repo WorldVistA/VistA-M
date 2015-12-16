@@ -1,5 +1,5 @@
 VPRDTIU ;SLC/MKB -- TIU extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -44,10 +44,9 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's documents
  I CLASS="LR" D RPTS^VPRDLRA(DFN,BEG,END,MAX) Q
  F VPRC=1:1:$L(CLASS,U) S CLS=$P(CLASS,U,VPRC) D  Q:VPRCNT'<MAX
  . F VPRS=1:1:$L(STATUS,U) S CTXT=$P(STATUS,U,VPRS) D  Q:VPRCNT'<MAX
- .. D CONTEXT^TIUSRVLO(.VPRY,CLS,CTXT,DFN,BEG,END,,MAX,,1)
+ .. D CONTEXT^TIUSRVLO(.VPRY,CLS,CTXT,DFN,BEG,END,,,,1)
  .. S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  D  Q:VPRCNT'<MAX
  ... S VPRX=$G(@VPRY@(VPRN)) Q:'$$MATCH(VPRX)
- ... Q:$D(^TMP("VPRD",$J,+VPRX))  ;already included
  ... K VPRITM D EN1(VPRX,.VPRITM) Q:'$D(VPRITM)
  ... D XML(.VPRITM) S VPRCNT=VPRCNT+1
  .. K @VPRY
@@ -130,11 +129,26 @@ RPT(VPRY,IFN) ; -- Return text of document in @VPRY@(n)
  D TGET^TIUSRVR1(.VPRY,IFN)
  Q
  ;
-TEXT(IFN) ; -- Get document IFN text, return temp array name
- N VPRY,Y,I,J ;protect I&J for calling loops
- S IFN=+$G(IFN) D TGET^TIUSRVR1(.VPRY,IFN)
- M ^TMP("VPRTEXT",$J,IFN)=@VPRY K @VPRY
- S Y=$NA(^TMP("VPRTEXT",$J,IFN))
+TEXT(VPRIFN) ; -- Get document IFN text, return temp array name
+ N VPRY,Y
+ N IEN,IFN,CLASS,STATUS,CNT,X0,X,I,J ;protect for calling loops
+ S VPRIFN=+$G(VPRIFN) D TGET^TIUSRVR1(.VPRY,VPRIFN)
+ M ^TMP("VPRTEXT",$J,VPRIFN)=@VPRY K @VPRY
+ S Y=$NA(^TMP("VPRTEXT",$J,VPRIFN))
+ Q Y
+ ;
+INFO(IFN) ; -- Returns ien^localTitle^natlTitle^VUID
+ ; or -1^STATUS if not viewable
+ N X,Y,VPRTIU,LT,NT,VUID,I,J S IFN=+$G(IFN)
+ I '$D(^TIU(8925,IFN,0)) Q "-1^DELETED"
+ D EXTRACT^TIULQ(IFN,"VPRTIU",,".01;.05")
+ I VPRTIU(IFN,.05,"I")<7!(VPRTIU(IFN,.05,"I")>13) Q "-1^"_VPRTIU(IFN,.05,"E")
+ S LT=$G(VPRTIU(IFN,.01,"E")),VUID=""
+ I $P(LT," ")="Addendum" Q "-1^ADDENDUM"
+ S NT=$P($G(^TIU(8925.1,+$G(VPRTIU(IFN,.01,"I")),15)),U) I NT D
+ . S VUID=$$VUID^VPRD(+NT,8926.1)
+ . S NT=$$GET1^DIQ(8926.1,+NT_",",.01)
+ S Y=IFN_U_LT_U_NT_U_VUID
  Q Y
  ;
  ; ------------ Return data to middle tier ------------
@@ -147,7 +161,7 @@ XML(DOC) ; -- Return patient documents as XML
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(DOC(ATT,I)) Q:I<1  D
  ... S X=$G(DOC(ATT,I)),NAMES=""
- ... I ATT="clinician" S NAMES="code^name^role^dateTime^signature^taxonomyCode^providerType^classification^specialization^Z"
+ ... I ATT="clinician" S NAMES="code^name^role^dateTime^signature^"_$$PROVTAGS^VPRD_"^Z"
  ... S Y="<"_ATT_" "_$$LOOP_"/>" D ADD(Y)
  .. D ADD("</"_ATT_"s>")
  . S X=$G(DOC(ATT)),Y="" Q:'$L(X)
@@ -239,6 +253,7 @@ SETUP ; -- convert FILTER("attribute") = value to TIU criteria
 MATCH(DOC) ; -- Return 1 or 0, if document DA matches search criteria
  N Y,DA,LOCAL,NATL,X0,OK S Y=0
  S DA=+$G(DOC) G:DA<1 MQ
+ ; both parent + addenda returned by TIU if any match search criteria
  ; include addenda if pulling only unsigned items:
  I $P(DOC,U,2)?1"Addendum ".E,STATUS'=2 G MQ
  ; remove completed parent notes from TIU unsigned list:

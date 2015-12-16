@@ -1,134 +1,130 @@
-IBDEI1S4 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1S4 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31796,2)
- ;;=^5001236
- ;;^UTILITY(U,$J,358.3,31797,0)
- ;;=D03.9^^190^1943^155
- ;;^UTILITY(U,$J,358.3,31797,1,0)
+ ;;^UTILITY(U,$J,358.3,31406,1,4,0)
+ ;;=4^M86.612
+ ;;^UTILITY(U,$J,358.3,31406,2)
+ ;;=^5014632
+ ;;^UTILITY(U,$J,358.3,31407,0)
+ ;;=M86.652^^180^1956^14
+ ;;^UTILITY(U,$J,358.3,31407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31797,1,3,0)
- ;;=3^Melanoma in Situ,Unspec
- ;;^UTILITY(U,$J,358.3,31797,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,31797,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,31798,0)
- ;;=C45.0^^190^1943^156
- ;;^UTILITY(U,$J,358.3,31798,1,0)
+ ;;^UTILITY(U,$J,358.3,31407,1,3,0)
+ ;;=3^Chronic osteomyelitis, left thigh NEC
+ ;;^UTILITY(U,$J,358.3,31407,1,4,0)
+ ;;=4^M86.652
+ ;;^UTILITY(U,$J,358.3,31407,2)
+ ;;=^5014638
+ ;;^UTILITY(U,$J,358.3,31408,0)
+ ;;=M86.662^^180^1956^15
+ ;;^UTILITY(U,$J,358.3,31408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31798,1,3,0)
- ;;=3^Mesothelioma of Pleura
- ;;^UTILITY(U,$J,358.3,31798,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,31798,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,31799,0)
- ;;=C90.01^^190^1943^157
- ;;^UTILITY(U,$J,358.3,31799,1,0)
+ ;;^UTILITY(U,$J,358.3,31408,1,3,0)
+ ;;=3^Chronic osteomyelitis, left tibia and Fibula NEC
+ ;;^UTILITY(U,$J,358.3,31408,1,4,0)
+ ;;=4^M86.662
+ ;;^UTILITY(U,$J,358.3,31408,2)
+ ;;=^5134076
+ ;;^UTILITY(U,$J,358.3,31409,0)
+ ;;=M86.671^^180^1956^16
+ ;;^UTILITY(U,$J,358.3,31409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31799,1,3,0)
- ;;=3^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,31799,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,31799,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,31800,0)
- ;;=C90.00^^190^1943^158
- ;;^UTILITY(U,$J,358.3,31800,1,0)
+ ;;^UTILITY(U,$J,358.3,31409,1,3,0)
+ ;;=3^Chronic osteomyelitis, right ankle and foot NEC
+ ;;^UTILITY(U,$J,358.3,31409,1,4,0)
+ ;;=4^M86.671
+ ;;^UTILITY(U,$J,358.3,31409,2)
+ ;;=^5014641
+ ;;^UTILITY(U,$J,358.3,31410,0)
+ ;;=M86.641^^180^1956^17
+ ;;^UTILITY(U,$J,358.3,31410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31800,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,31800,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,31800,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,31801,0)
- ;;=C94.6^^190^1943^159
- ;;^UTILITY(U,$J,358.3,31801,1,0)
+ ;;^UTILITY(U,$J,358.3,31410,1,3,0)
+ ;;=3^Chronic osteomyelitis, right hand
+ ;;^UTILITY(U,$J,358.3,31410,1,4,0)
+ ;;=4^M86.641
+ ;;^UTILITY(U,$J,358.3,31410,2)
+ ;;=^5014636
+ ;;^UTILITY(U,$J,358.3,31411,0)
+ ;;=M86.621^^180^1956^18
+ ;;^UTILITY(U,$J,358.3,31411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31801,1,3,0)
- ;;=3^Myelodysplastic Disease NEC
- ;;^UTILITY(U,$J,358.3,31801,1,4,0)
- ;;=4^C94.6
- ;;^UTILITY(U,$J,358.3,31801,2)
- ;;=^5001846
- ;;^UTILITY(U,$J,358.3,31802,0)
- ;;=D61.82^^190^1943^160
- ;;^UTILITY(U,$J,358.3,31802,1,0)
+ ;;^UTILITY(U,$J,358.3,31411,1,3,0)
+ ;;=3^Chronic osteomyelitis, right humerus NEC
+ ;;^UTILITY(U,$J,358.3,31411,1,4,0)
+ ;;=4^M86.621
+ ;;^UTILITY(U,$J,358.3,31411,2)
+ ;;=^5014634
+ ;;^UTILITY(U,$J,358.3,31412,0)
+ ;;=M86.631^^180^1956^19
+ ;;^UTILITY(U,$J,358.3,31412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31802,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,31802,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,31802,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,31803,0)
- ;;=D47.9^^190^1943^161
- ;;^UTILITY(U,$J,358.3,31803,1,0)
+ ;;^UTILITY(U,$J,358.3,31412,1,3,0)
+ ;;=3^Chronic osteomyelitis, right radius and ulna
+ ;;^UTILITY(U,$J,358.3,31412,1,4,0)
+ ;;=4^M86.631
+ ;;^UTILITY(U,$J,358.3,31412,2)
+ ;;=^5014635
+ ;;^UTILITY(U,$J,358.3,31413,0)
+ ;;=M86.611^^180^1956^20
+ ;;^UTILITY(U,$J,358.3,31413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31803,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,31803,1,4,0)
- ;;=4^D47.9
- ;;^UTILITY(U,$J,358.3,31803,2)
- ;;=^5002260
- ;;^UTILITY(U,$J,358.3,31804,0)
- ;;=D53.9^^190^1943^165
- ;;^UTILITY(U,$J,358.3,31804,1,0)
+ ;;^UTILITY(U,$J,358.3,31413,1,3,0)
+ ;;=3^Chronic osteomyelitis, right shoulder NEC
+ ;;^UTILITY(U,$J,358.3,31413,1,4,0)
+ ;;=4^M86.611
+ ;;^UTILITY(U,$J,358.3,31413,2)
+ ;;=^5014631
+ ;;^UTILITY(U,$J,358.3,31414,0)
+ ;;=M86.651^^180^1956^21
+ ;;^UTILITY(U,$J,358.3,31414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31804,1,3,0)
- ;;=3^Nutritional Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,31804,1,4,0)
- ;;=4^D53.9
- ;;^UTILITY(U,$J,358.3,31804,2)
- ;;=^5002298
- ;;^UTILITY(U,$J,358.3,31805,0)
- ;;=D47.4^^190^1943^166
- ;;^UTILITY(U,$J,358.3,31805,1,0)
+ ;;^UTILITY(U,$J,358.3,31414,1,3,0)
+ ;;=3^Chronic osteomyelitis, right thigh NEC
+ ;;^UTILITY(U,$J,358.3,31414,1,4,0)
+ ;;=4^M86.651
+ ;;^UTILITY(U,$J,358.3,31414,2)
+ ;;=^5014637
+ ;;^UTILITY(U,$J,358.3,31415,0)
+ ;;=M86.661^^180^1956^22
+ ;;^UTILITY(U,$J,358.3,31415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31805,1,3,0)
- ;;=3^Osteomyelofibrosis
- ;;^UTILITY(U,$J,358.3,31805,1,4,0)
- ;;=4^D47.4
- ;;^UTILITY(U,$J,358.3,31805,2)
- ;;=^5002259
- ;;^UTILITY(U,$J,358.3,31806,0)
- ;;=D59.1^^190^1943^25
- ;;^UTILITY(U,$J,358.3,31806,1,0)
+ ;;^UTILITY(U,$J,358.3,31415,1,3,0)
+ ;;=3^Chronic osteomyelitis, right tibia and fibula NEC
+ ;;^UTILITY(U,$J,358.3,31415,1,4,0)
+ ;;=4^M86.661
+ ;;^UTILITY(U,$J,358.3,31415,2)
+ ;;=^5014640
+ ;;^UTILITY(U,$J,358.3,31416,0)
+ ;;=M25.572^^180^1956^31
+ ;;^UTILITY(U,$J,358.3,31416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31806,1,3,0)
- ;;=3^Autoimmune Hemolytic Anemia,Other
- ;;^UTILITY(U,$J,358.3,31806,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,31806,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,31807,0)
- ;;=D51.3^^190^1943^180
- ;;^UTILITY(U,$J,358.3,31807,1,0)
+ ;;^UTILITY(U,$J,358.3,31416,1,3,0)
+ ;;=3^Pain in left ankle and joints of left foot
+ ;;^UTILITY(U,$J,358.3,31416,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,31416,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,31417,0)
+ ;;=M25.522^^180^1956^32
+ ;;^UTILITY(U,$J,358.3,31417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31807,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Other
- ;;^UTILITY(U,$J,358.3,31807,1,4,0)
- ;;=4^D51.3
- ;;^UTILITY(U,$J,358.3,31807,2)
- ;;=^5002287
- ;;^UTILITY(U,$J,358.3,31808,0)
- ;;=D77.^^190^1943^52
- ;;^UTILITY(U,$J,358.3,31808,1,0)
+ ;;^UTILITY(U,$J,358.3,31417,1,3,0)
+ ;;=3^Pain in left elbow
+ ;;^UTILITY(U,$J,358.3,31417,1,4,0)
+ ;;=4^M25.522
+ ;;^UTILITY(U,$J,358.3,31417,2)
+ ;;=^5011606
+ ;;^UTILITY(U,$J,358.3,31418,0)
+ ;;=M79.642^^180^1956^33
+ ;;^UTILITY(U,$J,358.3,31418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31808,1,3,0)
- ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
- ;;^UTILITY(U,$J,358.3,31808,1,4,0)
- ;;=4^D77.
- ;;^UTILITY(U,$J,358.3,31808,2)
- ;;=^5002396
- ;;^UTILITY(U,$J,358.3,31809,0)
- ;;=D58.2^^190^1943^78
- ;;^UTILITY(U,$J,358.3,31809,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31809,1,3,0)
- ;;=3^Hemoglobinopathies,Other
- ;;^UTILITY(U,$J,358.3,31809,1,4,0)
- ;;=4^D58.2
+ ;;^UTILITY(U,$J,358.3,31418,1,3,0)
+ ;;=3^Pain in left hand
+ ;;^UTILITY(U,$J,358.3,31418,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,31418,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,31419,0)
+ ;;=M25.552^^180^1956^34

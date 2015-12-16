@@ -1,136 +1,128 @@
-IBDEI024 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI024 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,494,0)
- ;;=00350^^5^59^2^^^^1
- ;;^UTILITY(U,$J,358.3,494,1,0)
+ ;;^UTILITY(U,$J,358.3,441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,494,1,2,0)
- ;;=2^NECK VESSEL SURG,ANESTH
- ;;^UTILITY(U,$J,358.3,494,1,4,0)
- ;;=4^00350
- ;;^UTILITY(U,$J,358.3,495,0)
- ;;=00320^^5^59^3^^^^1
- ;;^UTILITY(U,$J,358.3,495,1,0)
+ ;;^UTILITY(U,$J,358.3,441,1,3,0)
+ ;;=3^Mix cellular class Hdgkn lymph, extrnod and solid org sites
+ ;;^UTILITY(U,$J,358.3,441,1,4,0)
+ ;;=4^C81.29
+ ;;^UTILITY(U,$J,358.3,441,2)
+ ;;=^5001420
+ ;;^UTILITY(U,$J,358.3,442,0)
+ ;;=C81.30^^2^21^41
+ ;;^UTILITY(U,$J,358.3,442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,495,1,2,0)
- ;;=2^PERCUTANEOUS TRACHEOSTOMY
- ;;^UTILITY(U,$J,358.3,495,1,4,0)
- ;;=4^00320
- ;;^UTILITY(U,$J,358.3,496,0)
- ;;=36620^^5^60^2^^^^1
- ;;^UTILITY(U,$J,358.3,496,1,0)
+ ;;^UTILITY(U,$J,358.3,442,1,3,0)
+ ;;=3^Lymphocyte depleted classical Hodgkin lymphoma, unsp site
+ ;;^UTILITY(U,$J,358.3,442,1,4,0)
+ ;;=4^C81.30
+ ;;^UTILITY(U,$J,358.3,442,2)
+ ;;=^5001421
+ ;;^UTILITY(U,$J,358.3,443,0)
+ ;;=C81.39^^2^21^40
+ ;;^UTILITY(U,$J,358.3,443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,496,1,2,0)
- ;;=2^ARTERIAL CATH,PERCUTANEOUS
- ;;^UTILITY(U,$J,358.3,496,1,4,0)
- ;;=4^36620
- ;;^UTILITY(U,$J,358.3,497,0)
- ;;=36600^^5^60^3^^^^1
- ;;^UTILITY(U,$J,358.3,497,1,0)
+ ;;^UTILITY(U,$J,358.3,443,1,3,0)
+ ;;=3^Lymphocy deplet class Hdgkn lymph, extrnod & solid org site
+ ;;^UTILITY(U,$J,358.3,443,1,4,0)
+ ;;=4^C81.39
+ ;;^UTILITY(U,$J,358.3,443,2)
+ ;;=^5001430
+ ;;^UTILITY(U,$J,358.3,444,0)
+ ;;=C81.40^^2^21^42
+ ;;^UTILITY(U,$J,358.3,444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,497,1,2,0)
- ;;=2^ARTERIAL PUNCTURE (ABG)
- ;;^UTILITY(U,$J,358.3,497,1,4,0)
- ;;=4^36600
- ;;^UTILITY(U,$J,358.3,498,0)
- ;;=01916^^5^60^1^^^^1
- ;;^UTILITY(U,$J,358.3,498,1,0)
+ ;;^UTILITY(U,$J,358.3,444,1,3,0)
+ ;;=3^Lymphocyte-rich classical Hodgkin lymphoma, unspecified site
+ ;;^UTILITY(U,$J,358.3,444,1,4,0)
+ ;;=4^C81.40
+ ;;^UTILITY(U,$J,358.3,444,2)
+ ;;=^5001431
+ ;;^UTILITY(U,$J,358.3,445,0)
+ ;;=C81.49^^2^21^37
+ ;;^UTILITY(U,$J,358.3,445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,498,1,2,0)
- ;;=2^ANESTH ARTERIOGRAPHY,DIAGNOSTIC
- ;;^UTILITY(U,$J,358.3,498,1,4,0)
- ;;=4^01916
- ;;^UTILITY(U,$J,358.3,499,0)
- ;;=92950^^5^61^10^^^^1
- ;;^UTILITY(U,$J,358.3,499,1,0)
+ ;;^UTILITY(U,$J,358.3,445,1,3,0)
+ ;;=3^Lymp-rich class Hodgkin lymph, extrnod and solid organ sites
+ ;;^UTILITY(U,$J,358.3,445,1,4,0)
+ ;;=4^C81.49
+ ;;^UTILITY(U,$J,358.3,445,2)
+ ;;=^5001440
+ ;;^UTILITY(U,$J,358.3,446,0)
+ ;;=C81.99^^2^21^35
+ ;;^UTILITY(U,$J,358.3,446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,499,1,2,0)
- ;;=2^CPR
- ;;^UTILITY(U,$J,358.3,499,1,4,0)
- ;;=4^92950
- ;;^UTILITY(U,$J,358.3,500,0)
- ;;=31500^^5^61^13^^^^1
- ;;^UTILITY(U,$J,358.3,500,1,0)
+ ;;^UTILITY(U,$J,358.3,446,1,3,0)
+ ;;=3^Hodgkin lymphoma, unsp, extranodal and solid organ sites
+ ;;^UTILITY(U,$J,358.3,446,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,446,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,447,0)
+ ;;=C81.90^^2^21^36
+ ;;^UTILITY(U,$J,358.3,447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,500,1,2,0)
- ;;=2^INTUBATION,EMERGENCY PROCEDURE
- ;;^UTILITY(U,$J,358.3,500,1,4,0)
- ;;=4^31500
- ;;^UTILITY(U,$J,358.3,501,0)
- ;;=31612^^5^61^16^^^^1
- ;;^UTILITY(U,$J,358.3,501,1,0)
+ ;;^UTILITY(U,$J,358.3,447,1,3,0)
+ ;;=3^Hodgkin lymphoma, unspecified, unspecified site
+ ;;^UTILITY(U,$J,358.3,447,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,447,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,448,0)
+ ;;=C82.69^^2^21^17
+ ;;^UTILITY(U,$J,358.3,448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,501,1,2,0)
- ;;=2^TRACH PUNC,PERC W/TRANS ASPIR/INJEC
- ;;^UTILITY(U,$J,358.3,501,1,4,0)
- ;;=4^31612
- ;;^UTILITY(U,$J,358.3,502,0)
- ;;=31605^^5^61^17^^^^1
- ;;^UTILITY(U,$J,358.3,502,1,0)
+ ;;^UTILITY(U,$J,358.3,448,1,3,0)
+ ;;=3^Cutan folicl center lymphoma, extrnod and solid organ sites
+ ;;^UTILITY(U,$J,358.3,448,1,4,0)
+ ;;=4^C82.69
+ ;;^UTILITY(U,$J,358.3,448,2)
+ ;;=^5001530
+ ;;^UTILITY(U,$J,358.3,449,0)
+ ;;=C82.60^^2^21^18
+ ;;^UTILITY(U,$J,358.3,449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,502,1,2,0)
- ;;=2^TRACHEOSTOMY,EMERGENCY
- ;;^UTILITY(U,$J,358.3,502,1,4,0)
- ;;=4^31605
- ;;^UTILITY(U,$J,358.3,503,0)
- ;;=01999^^5^61^19^^^^1
- ;;^UTILITY(U,$J,358.3,503,1,0)
+ ;;^UTILITY(U,$J,358.3,449,1,3,0)
+ ;;=3^Cutaneous follicle center lymphoma, unspecified site
+ ;;^UTILITY(U,$J,358.3,449,1,4,0)
+ ;;=4^C82.60
+ ;;^UTILITY(U,$J,358.3,449,2)
+ ;;=^5001521
+ ;;^UTILITY(U,$J,358.3,450,0)
+ ;;=C82.49^^2^21^22
+ ;;^UTILITY(U,$J,358.3,450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,503,1,2,0)
- ;;=2^UNLISTED ANESTH PROCEDURE
- ;;^UTILITY(U,$J,358.3,503,1,4,0)
- ;;=4^01999
- ;;^UTILITY(U,$J,358.3,504,0)
- ;;=62318^^5^61^11^^^^1
- ;;^UTILITY(U,$J,358.3,504,1,0)
+ ;;^UTILITY(U,$J,358.3,450,1,3,0)
+ ;;=3^Foliclar lymphoma grade IIIb, extrnod and solid organ sites
+ ;;^UTILITY(U,$J,358.3,450,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,450,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,451,0)
+ ;;=C82.40^^2^21^29
+ ;;^UTILITY(U,$J,358.3,451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,504,1,2,0)
- ;;=2^INJECT SUBST W/ CATH,CERVICAL/THORACIC
- ;;^UTILITY(U,$J,358.3,504,1,4,0)
- ;;=4^62318
- ;;^UTILITY(U,$J,358.3,505,0)
- ;;=62319^^5^61^12^^^^1
- ;;^UTILITY(U,$J,358.3,505,1,0)
+ ;;^UTILITY(U,$J,358.3,451,1,3,0)
+ ;;=3^Follicular lymphoma grade IIIb, unspecified site
+ ;;^UTILITY(U,$J,358.3,451,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,451,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,452,0)
+ ;;=C82.19^^2^21^25
+ ;;^UTILITY(U,$J,358.3,452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,505,1,2,0)
- ;;=2^INJECT SUBST W/ CATH,LUMBAR/SACRAL
- ;;^UTILITY(U,$J,358.3,505,1,4,0)
- ;;=4^62319
- ;;^UTILITY(U,$J,358.3,506,0)
- ;;=00190^^5^61^2^^^^1
- ;;^UTILITY(U,$J,358.3,506,1,0)
+ ;;^UTILITY(U,$J,358.3,452,1,3,0)
+ ;;=3^Follicular lymphoma grade II, extrnod and solid organ sites
+ ;;^UTILITY(U,$J,358.3,452,1,4,0)
+ ;;=4^C82.19
+ ;;^UTILITY(U,$J,358.3,452,2)
+ ;;=^5001480
+ ;;^UTILITY(U,$J,358.3,453,0)
+ ;;=C82.39^^2^21^21
+ ;;^UTILITY(U,$J,358.3,453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,506,1,2,0)
- ;;=2^ANESTH FACE/SKULL BONE SURG
- ;;^UTILITY(U,$J,358.3,506,1,4,0)
- ;;=4^00190
- ;;^UTILITY(U,$J,358.3,507,0)
- ;;=00300^^5^61^3^^^^1
- ;;^UTILITY(U,$J,358.3,507,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,507,1,2,0)
- ;;=2^ANESTH HEAD/NECK/TRUNK,WND DEBRIDEMENT
- ;;^UTILITY(U,$J,358.3,507,1,4,0)
- ;;=4^00300
- ;;^UTILITY(U,$J,358.3,508,0)
- ;;=00400^^5^61^7^^^^1
- ;;^UTILITY(U,$J,358.3,508,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,508,1,2,0)
- ;;=2^ANESTH SKIN EXT/PER/ATRUNK,PROSTATE BX
- ;;^UTILITY(U,$J,358.3,508,1,4,0)
- ;;=4^00400
- ;;^UTILITY(U,$J,358.3,509,0)
- ;;=00410^^5^61^1^^^^1
- ;;^UTILITY(U,$J,358.3,509,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,509,1,2,0)
- ;;=2^ANESTH CORRECT HEART RHYTHM
- ;;^UTILITY(U,$J,358.3,509,1,4,0)
- ;;=4^00410
- ;;^UTILITY(U,$J,358.3,510,0)
- ;;=00620^^5^61^8^^^^1
- ;;^UTILITY(U,$J,358.3,510,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,453,1,3,0)
+ ;;=3^Foliclar lymphoma grade IIIa, extrnod and solid organ sites

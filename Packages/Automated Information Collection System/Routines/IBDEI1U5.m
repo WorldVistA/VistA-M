@@ -1,128 +1,136 @@
-IBDEI1U5 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1U5 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32742,0)
- ;;=R87.619^^190^1959^1
- ;;^UTILITY(U,$J,358.3,32742,1,0)
+ ;;^UTILITY(U,$J,358.3,32327,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,32327,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,32327,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,32328,0)
+ ;;=H81.12^^182^1982^9
+ ;;^UTILITY(U,$J,358.3,32328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32742,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,32742,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,32742,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,32743,0)
- ;;=Z79.890^^190^1959^25
- ;;^UTILITY(U,$J,358.3,32743,1,0)
+ ;;^UTILITY(U,$J,358.3,32328,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,32328,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,32328,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,32329,0)
+ ;;=H81.11^^182^1982^10
+ ;;^UTILITY(U,$J,358.3,32329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32743,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,32743,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,32743,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,32744,0)
- ;;=Z33.1^^190^1959^48
- ;;^UTILITY(U,$J,358.3,32744,1,0)
+ ;;^UTILITY(U,$J,358.3,32329,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,32329,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,32329,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,32330,0)
+ ;;=H81.13^^182^1982^8
+ ;;^UTILITY(U,$J,358.3,32330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32744,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,32744,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,32744,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,32745,0)
- ;;=Z39.2^^190^1959^47
- ;;^UTILITY(U,$J,358.3,32745,1,0)
+ ;;^UTILITY(U,$J,358.3,32330,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,32330,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,32330,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,32331,0)
+ ;;=B37.0^^182^1983^12
+ ;;^UTILITY(U,$J,358.3,32331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32745,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,32745,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,32745,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,32746,0)
- ;;=Z30.09^^190^1959^10
- ;;^UTILITY(U,$J,358.3,32746,1,0)
+ ;;^UTILITY(U,$J,358.3,32331,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,32331,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,32331,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,32332,0)
+ ;;=B37.83^^182^1983^11
+ ;;^UTILITY(U,$J,358.3,32332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32746,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,32746,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,32746,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,32747,0)
- ;;=Z30.9^^190^1959^9
- ;;^UTILITY(U,$J,358.3,32747,1,0)
+ ;;^UTILITY(U,$J,358.3,32332,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,32332,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,32332,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,32333,0)
+ ;;=J00.^^182^1983^6
+ ;;^UTILITY(U,$J,358.3,32333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32747,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,32747,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,32747,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,32748,0)
- ;;=S31.000A^^190^1960^6
- ;;^UTILITY(U,$J,358.3,32748,1,0)
+ ;;^UTILITY(U,$J,358.3,32333,1,3,0)
+ ;;=3^Acute Nasopharyngitis [common cold]
+ ;;^UTILITY(U,$J,358.3,32333,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,32333,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,32334,0)
+ ;;=J01.00^^182^1983^5
+ ;;^UTILITY(U,$J,358.3,32334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32748,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,32748,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,32748,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,32749,0)
- ;;=S31.050A^^190^1960^5
- ;;^UTILITY(U,$J,358.3,32749,1,0)
+ ;;^UTILITY(U,$J,358.3,32334,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32334,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,32334,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,32335,0)
+ ;;=J01.10^^182^1983^1
+ ;;^UTILITY(U,$J,358.3,32335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32749,1,3,0)
- ;;=3^Open Bite Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,32749,1,4,0)
- ;;=4^S31.050A
- ;;^UTILITY(U,$J,358.3,32749,2)
- ;;=^5024017
- ;;^UTILITY(U,$J,358.3,32750,0)
- ;;=S31.030A^^190^1960^7
- ;;^UTILITY(U,$J,358.3,32750,1,0)
+ ;;^UTILITY(U,$J,358.3,32335,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32335,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,32335,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,32336,0)
+ ;;=J02.9^^182^1983^7
+ ;;^UTILITY(U,$J,358.3,32336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32750,1,3,0)
- ;;=3^Puncture Wnd w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,32750,1,4,0)
- ;;=4^S31.030A
- ;;^UTILITY(U,$J,358.3,32750,2)
- ;;=^5024008
- ;;^UTILITY(U,$J,358.3,32751,0)
- ;;=S31.010A^^190^1960^2
- ;;^UTILITY(U,$J,358.3,32751,1,0)
+ ;;^UTILITY(U,$J,358.3,32336,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32336,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,32336,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,32337,0)
+ ;;=J03.91^^182^1983^8
+ ;;^UTILITY(U,$J,358.3,32337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32751,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,32751,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,32751,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,32752,0)
- ;;=S38.3XXA^^190^1960^8
- ;;^UTILITY(U,$J,358.3,32752,1,0)
+ ;;^UTILITY(U,$J,358.3,32337,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,32337,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,32337,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,32338,0)
+ ;;=J04.0^^182^1983^3
+ ;;^UTILITY(U,$J,358.3,32338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32752,1,3,0)
- ;;=3^Transection (Partial) Abdomen,Init
- ;;^UTILITY(U,$J,358.3,32752,1,4,0)
- ;;=4^S38.3XXA
- ;;^UTILITY(U,$J,358.3,32752,2)
- ;;=^5026087
- ;;^UTILITY(U,$J,358.3,32753,0)
- ;;=T07.^^190^1960^4
- ;;^UTILITY(U,$J,358.3,32753,1,0)
+ ;;^UTILITY(U,$J,358.3,32338,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,32338,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,32338,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,32339,0)
+ ;;=J06.0^^182^1983^4
+ ;;^UTILITY(U,$J,358.3,32339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32753,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,32753,1,4,0)
- ;;=4^T07.
- ;;^UTILITY(U,$J,358.3,32753,2)
- ;;=^5046377
- ;;^UTILITY(U,$J,358.3,32754,0)
- ;;=L08.89^^190^1960^3
- ;;^UTILITY(U,$J,358.3,32754,1,0)
+ ;;^UTILITY(U,$J,358.3,32339,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,32339,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,32339,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,32340,0)
+ ;;=J06.9^^182^1983^9
+ ;;^UTILITY(U,$J,358.3,32340,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32340,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec

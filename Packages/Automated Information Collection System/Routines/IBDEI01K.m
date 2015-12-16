@@ -1,144 +1,128 @@
-IBDEI01K ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01K ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,201,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,201,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,201,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,202,0)
- ;;=301.84^^3^31^13
- ;;^UTILITY(U,$J,358.3,202,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,202,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,202,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,202,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,203,0)
- ;;=301.11^^3^31^9
- ;;^UTILITY(U,$J,358.3,203,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,203,1,2,0)
- ;;=2^301.11
- ;;^UTILITY(U,$J,358.3,203,1,5,0)
- ;;=5^Hypomanic Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,203,2)
- ;;=^268171
- ;;^UTILITY(U,$J,358.3,204,0)
- ;;=301.12^^3^31^7
- ;;^UTILITY(U,$J,358.3,204,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,204,1,2,0)
- ;;=2^301.12
- ;;^UTILITY(U,$J,358.3,204,1,5,0)
- ;;=5^Depressive Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,204,2)
- ;;=^268173
- ;;^UTILITY(U,$J,358.3,205,0)
- ;;=301.13^^3^31^5
- ;;^UTILITY(U,$J,358.3,205,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,205,1,2,0)
- ;;=2^301.13
- ;;^UTILITY(U,$J,358.3,205,1,5,0)
- ;;=5^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,205,2)
- ;;=^30028
- ;;^UTILITY(U,$J,358.3,206,0)
- ;;=301.21^^3^31^10
- ;;^UTILITY(U,$J,358.3,206,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,206,1,2,0)
- ;;=2^301.21
- ;;^UTILITY(U,$J,358.3,206,1,5,0)
- ;;=5^Introverted Personality
- ;;^UTILITY(U,$J,358.3,206,2)
- ;;=^268174
- ;;^UTILITY(U,$J,358.3,207,0)
- ;;=302.2^^3^32^7
- ;;^UTILITY(U,$J,358.3,207,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,207,1,2,0)
- ;;=2^302.2
- ;;^UTILITY(U,$J,358.3,207,1,5,0)
- ;;=5^Pedophilia
- ;;^UTILITY(U,$J,358.3,207,2)
- ;;=^91008
- ;;^UTILITY(U,$J,358.3,208,0)
- ;;=302.4^^3^32^2
- ;;^UTILITY(U,$J,358.3,208,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,208,1,2,0)
- ;;=2^302.4
- ;;^UTILITY(U,$J,358.3,208,1,5,0)
- ;;=5^Exhibitionism
- ;;^UTILITY(U,$J,358.3,208,2)
- ;;=^43610
- ;;^UTILITY(U,$J,358.3,209,0)
- ;;=302.72^^3^32^6
- ;;^UTILITY(U,$J,358.3,209,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,209,1,2,0)
- ;;=2^302.72
- ;;^UTILITY(U,$J,358.3,209,1,5,0)
- ;;=5^Inhibited Sex Excite
- ;;^UTILITY(U,$J,358.3,209,2)
- ;;=^100632
- ;;^UTILITY(U,$J,358.3,210,0)
- ;;=302.73^^3^32^4
- ;;^UTILITY(U,$J,358.3,210,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,210,1,2,0)
- ;;=2^302.73
- ;;^UTILITY(U,$J,358.3,210,1,5,0)
- ;;=5^Inhibited Female Orgasm
- ;;^UTILITY(U,$J,358.3,210,2)
- ;;=^100628
- ;;^UTILITY(U,$J,358.3,211,0)
- ;;=302.74^^3^32^5
- ;;^UTILITY(U,$J,358.3,211,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,211,1,2,0)
- ;;=2^302.74
- ;;^UTILITY(U,$J,358.3,211,1,5,0)
- ;;=5^Inhibited Male Orgasm
- ;;^UTILITY(U,$J,358.3,211,2)
- ;;=^100630
- ;;^UTILITY(U,$J,358.3,212,0)
- ;;=302.75^^3^32^8
- ;;^UTILITY(U,$J,358.3,212,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,212,1,2,0)
- ;;=2^302.75
- ;;^UTILITY(U,$J,358.3,212,1,5,0)
- ;;=5^Premature Ejaculation
- ;;^UTILITY(U,$J,358.3,212,2)
- ;;=^100637
- ;;^UTILITY(U,$J,358.3,213,0)
- ;;=302.85^^3^32^3
- ;;^UTILITY(U,$J,358.3,213,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,213,1,2,0)
- ;;=2^302.85
- ;;^UTILITY(U,$J,358.3,213,1,5,0)
- ;;=5^Gender Dysphoria in Adults/Adolescents
- ;;^UTILITY(U,$J,358.3,213,2)
- ;;=^268180
- ;;^UTILITY(U,$J,358.3,214,0)
- ;;=302.0^^3^32^1
- ;;^UTILITY(U,$J,358.3,214,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,214,1,2,0)
- ;;=2^302.0
- ;;^UTILITY(U,$J,358.3,214,1,5,0)
- ;;=5^Ego-Dystonic Sexual Orient
- ;;^UTILITY(U,$J,358.3,214,2)
- ;;=^331922
- ;;^UTILITY(U,$J,358.3,215,0)
- ;;=302.1^^3^32^14
- ;;^UTILITY(U,$J,358.3,215,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,176,1,4,0)
+ ;;=4^T45.1X1A
+ ;;^UTILITY(U,$J,358.3,176,2)
+ ;;=^5051014
+ ;;^UTILITY(U,$J,358.3,177,0)
+ ;;=T45.1X1D^^1^10^32
+ ;;^UTILITY(U,$J,358.3,177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,177,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, acc, subs
+ ;;^UTILITY(U,$J,358.3,177,1,4,0)
+ ;;=4^T45.1X1D
+ ;;^UTILITY(U,$J,358.3,177,2)
+ ;;=^5051015
+ ;;^UTILITY(U,$J,358.3,178,0)
+ ;;=T45.1X1S^^1^10^33
+ ;;^UTILITY(U,$J,358.3,178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,178,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, acc, sequela
+ ;;^UTILITY(U,$J,358.3,178,1,4,0)
+ ;;=4^T45.1X1S
+ ;;^UTILITY(U,$J,358.3,178,2)
+ ;;=^5051016
+ ;;^UTILITY(U,$J,358.3,179,0)
+ ;;=T45.1X3A^^1^10^34
+ ;;^UTILITY(U,$J,358.3,179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,179,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, assault, init
+ ;;^UTILITY(U,$J,358.3,179,1,4,0)
+ ;;=4^T45.1X3A
+ ;;^UTILITY(U,$J,358.3,179,2)
+ ;;=^5051020
+ ;;^UTILITY(U,$J,358.3,180,0)
+ ;;=T45.1X3D^^1^10^35
+ ;;^UTILITY(U,$J,358.3,180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,180,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, assault, subs
+ ;;^UTILITY(U,$J,358.3,180,1,4,0)
+ ;;=4^T45.1X3D
+ ;;^UTILITY(U,$J,358.3,180,2)
+ ;;=^5051021
+ ;;^UTILITY(U,$J,358.3,181,0)
+ ;;=T45.1X3S^^1^10^36
+ ;;^UTILITY(U,$J,358.3,181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,181,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, assault, sequela
+ ;;^UTILITY(U,$J,358.3,181,1,4,0)
+ ;;=4^T45.1X3S
+ ;;^UTILITY(U,$J,358.3,181,2)
+ ;;=^5051022
+ ;;^UTILITY(U,$J,358.3,182,0)
+ ;;=T45.1X2A^^1^10^37
+ ;;^UTILITY(U,$J,358.3,182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,182,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, self-harm, init
+ ;;^UTILITY(U,$J,358.3,182,1,4,0)
+ ;;=4^T45.1X2A
+ ;;^UTILITY(U,$J,358.3,182,2)
+ ;;=^5051017
+ ;;^UTILITY(U,$J,358.3,183,0)
+ ;;=T45.1X2D^^1^10^38
+ ;;^UTILITY(U,$J,358.3,183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,183,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, self-harm, subs
+ ;;^UTILITY(U,$J,358.3,183,1,4,0)
+ ;;=4^T45.1X2D
+ ;;^UTILITY(U,$J,358.3,183,2)
+ ;;=^5051018
+ ;;^UTILITY(U,$J,358.3,184,0)
+ ;;=T45.1X2S^^1^10^18
+ ;;^UTILITY(U,$J,358.3,184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,184,1,3,0)
+ ;;=3^Poisn by antineopl and immunosup drugs, self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,184,1,4,0)
+ ;;=4^T45.1X2S
+ ;;^UTILITY(U,$J,358.3,184,2)
+ ;;=^5051019
+ ;;^UTILITY(U,$J,358.3,185,0)
+ ;;=T45.1X4A^^1^10^39
+ ;;^UTILITY(U,$J,358.3,185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,185,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, undet, init
+ ;;^UTILITY(U,$J,358.3,185,1,4,0)
+ ;;=4^T45.1X4A
+ ;;^UTILITY(U,$J,358.3,185,2)
+ ;;=^5051023
+ ;;^UTILITY(U,$J,358.3,186,0)
+ ;;=T45.1X4D^^1^10^40
+ ;;^UTILITY(U,$J,358.3,186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,186,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, undet, subs
+ ;;^UTILITY(U,$J,358.3,186,1,4,0)
+ ;;=4^T45.1X4D
+ ;;^UTILITY(U,$J,358.3,186,2)
+ ;;=^5051024
+ ;;^UTILITY(U,$J,358.3,187,0)
+ ;;=T45.1X4S^^1^10^41
+ ;;^UTILITY(U,$J,358.3,187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,187,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, undet, sequela
+ ;;^UTILITY(U,$J,358.3,187,1,4,0)
+ ;;=4^T45.1X4S
+ ;;^UTILITY(U,$J,358.3,187,2)
+ ;;=^5051025
+ ;;^UTILITY(U,$J,358.3,188,0)
+ ;;=T36.8X1A^^1^10^42
+ ;;^UTILITY(U,$J,358.3,188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,188,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, accidental, init
+ ;;^UTILITY(U,$J,358.3,188,1,4,0)
+ ;;=4^T36.8X1A
+ ;;^UTILITY(U,$J,358.3,188,2)
+ ;;=^5049400

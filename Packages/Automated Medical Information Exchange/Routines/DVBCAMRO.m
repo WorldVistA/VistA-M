@@ -1,8 +1,22 @@
 DVBCAMRO ;ALB ISC/THM-REGIONAL OFFICE 2507 AMIS REPORT ; 9/28/91  6:39 AM
- ;;2.7;AMIE;**17,149,184**;Apr 10, 1995;Build 10
+ ;;2.7;AMIE;**17,149,184,192**;Apr 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 SETUP ;
+ ;
+ ; Check for AMIS 290 replacement URL
+ ;
+ ; Input:
+ ;   RTN - Return value, current URL
+ ;   WHICH - index of URL to retrieve
+ ;
+ ; Output:
+ ;   RTN - URL of location to replace this report
+ ;
+ N RTN,WHICH
+ S RTN="",WHICH=7
+ D URL^DVBABURL(.RTN,WHICH)
+ I Y'="" W !,"The AMIS 290 Regional Office Report is no longer available here.",!,"Please go to: ",RTN Q
  N DVBAPRTY,DVBAEXMP,DVBAP,DTOUT,DUOUT
  S UPDATE="N",PREVMO=$P(^DVB(396.1,1,0),U,11),HD="REGIONAL OFFICE 2507 AMIS REPORT" I '$D(DT) S X="T" D ^%DT S DT=Y
  S DVBCDT(0)=$$FMTE^XLFDT(DT,"5DZ")

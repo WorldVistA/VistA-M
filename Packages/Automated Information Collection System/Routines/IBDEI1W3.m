@@ -1,120 +1,140 @@
-IBDEI1W3 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1W3 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33603,1,0)
+ ;;^UTILITY(U,$J,358.3,33232,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,33232,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,33233,0)
+ ;;=M25.521^^182^1998^83
+ ;;^UTILITY(U,$J,358.3,33233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33603,1,3,0)
- ;;=3^Disp fx tuberosity lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,33603,1,4,0)
- ;;=4^S92.042K
- ;;^UTILITY(U,$J,358.3,33603,2)
- ;;=^5137550
- ;;^UTILITY(U,$J,358.3,33604,0)
- ;;=S92.041K^^191^1968^135
- ;;^UTILITY(U,$J,358.3,33604,1,0)
+ ;;^UTILITY(U,$J,358.3,33233,1,3,0)
+ ;;=3^Pain in Right Elbow
+ ;;^UTILITY(U,$J,358.3,33233,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,33233,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,33234,0)
+ ;;=M25.522^^182^1998^73
+ ;;^UTILITY(U,$J,358.3,33234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33604,1,3,0)
- ;;=3^Disp fx tuberosity rt calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,33604,1,4,0)
- ;;=4^S92.041K
- ;;^UTILITY(U,$J,358.3,33604,2)
- ;;=^5044497
- ;;^UTILITY(U,$J,358.3,33605,0)
- ;;=M84.675K^^191^1968^400
- ;;^UTILITY(U,$J,358.3,33605,1,0)
+ ;;^UTILITY(U,$J,358.3,33234,1,3,0)
+ ;;=3^Pain in Left Elbow
+ ;;^UTILITY(U,$J,358.3,33234,1,4,0)
+ ;;=4^M25.522
+ ;;^UTILITY(U,$J,358.3,33234,2)
+ ;;=^5011606
+ ;;^UTILITY(U,$J,358.3,33235,0)
+ ;;=M25.531^^182^1998^90
+ ;;^UTILITY(U,$J,358.3,33235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33605,1,3,0)
- ;;=3^Path fx lft ft, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,33605,1,4,0)
- ;;=4^M84.675K
- ;;^UTILITY(U,$J,358.3,33605,2)
- ;;=^5134042
- ;;^UTILITY(U,$J,358.3,33606,0)
- ;;=M84.674K^^191^1968^416
- ;;^UTILITY(U,$J,358.3,33606,1,0)
+ ;;^UTILITY(U,$J,358.3,33235,1,3,0)
+ ;;=3^Pain in Right Wrist
+ ;;^UTILITY(U,$J,358.3,33235,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,33235,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,33236,0)
+ ;;=M25.532^^182^1998^80
+ ;;^UTILITY(U,$J,358.3,33236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33606,1,3,0)
- ;;=3^Path fx rt ft, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,33606,1,4,0)
- ;;=4^M84.674K
- ;;^UTILITY(U,$J,358.3,33606,2)
- ;;=^5014301
- ;;^UTILITY(U,$J,358.3,33607,0)
- ;;=M84.68XK^^191^1968^419
- ;;^UTILITY(U,$J,358.3,33607,1,0)
+ ;;^UTILITY(U,$J,358.3,33236,1,3,0)
+ ;;=3^Pain in Left Wrist
+ ;;^UTILITY(U,$J,358.3,33236,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,33236,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,33237,0)
+ ;;=M25.551^^182^1998^86
+ ;;^UTILITY(U,$J,358.3,33237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33607,1,3,0)
- ;;=3^Path fx subs w/ nonunion, oth disease, oth site
- ;;^UTILITY(U,$J,358.3,33607,1,4,0)
- ;;=4^M84.68XK
- ;;^UTILITY(U,$J,358.3,33607,2)
- ;;=^5134054
- ;;^UTILITY(U,$J,358.3,33608,0)
- ;;=S82.65XN^^191^1968^268
- ;;^UTILITY(U,$J,358.3,33608,1,0)
+ ;;^UTILITY(U,$J,358.3,33237,1,3,0)
+ ;;=3^Pain in Right Hip
+ ;;^UTILITY(U,$J,358.3,33237,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,33237,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,33238,0)
+ ;;=M25.552^^182^1998^76
+ ;;^UTILITY(U,$J,358.3,33238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33608,1,3,0)
- ;;=3^Nondisp fx ltrl lmall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33608,1,4,0)
- ;;=4^S82.65XN
- ;;^UTILITY(U,$J,358.3,33608,2)
- ;;=^5042386
- ;;^UTILITY(U,$J,358.3,33609,0)
- ;;=S82.65XM^^191^1968^269
- ;;^UTILITY(U,$J,358.3,33609,1,0)
+ ;;^UTILITY(U,$J,358.3,33238,1,3,0)
+ ;;=3^Pain in Left Hip
+ ;;^UTILITY(U,$J,358.3,33238,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,33238,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,33239,0)
+ ;;=M25.561^^182^1998^87
+ ;;^UTILITY(U,$J,358.3,33239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33609,1,3,0)
- ;;=3^Nondisp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33609,1,4,0)
- ;;=4^S82.65XM
- ;;^UTILITY(U,$J,358.3,33609,2)
- ;;=^5042385
- ;;^UTILITY(U,$J,358.3,33610,0)
- ;;=S82.65XK^^191^1968^270
- ;;^UTILITY(U,$J,358.3,33610,1,0)
+ ;;^UTILITY(U,$J,358.3,33239,1,3,0)
+ ;;=3^Pain in Right Knee
+ ;;^UTILITY(U,$J,358.3,33239,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,33239,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,33240,0)
+ ;;=M25.562^^182^1998^77
+ ;;^UTILITY(U,$J,358.3,33240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33610,1,3,0)
- ;;=3^Nondisp fx ltrl mall lft fib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33610,1,4,0)
- ;;=4^S82.65XK
- ;;^UTILITY(U,$J,358.3,33610,2)
- ;;=^5042384
- ;;^UTILITY(U,$J,358.3,33611,0)
- ;;=S82.64XN^^191^1968^272
- ;;^UTILITY(U,$J,358.3,33611,1,0)
+ ;;^UTILITY(U,$J,358.3,33240,1,3,0)
+ ;;=3^Pain in Left Knee
+ ;;^UTILITY(U,$J,358.3,33240,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,33240,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,33241,0)
+ ;;=M25.571^^182^1998^81
+ ;;^UTILITY(U,$J,358.3,33241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33611,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33611,1,4,0)
- ;;=4^S82.64XN
- ;;^UTILITY(U,$J,358.3,33611,2)
- ;;=^5042370
- ;;^UTILITY(U,$J,358.3,33612,0)
- ;;=S82.64XM^^191^1968^273
- ;;^UTILITY(U,$J,358.3,33612,1,0)
+ ;;^UTILITY(U,$J,358.3,33241,1,3,0)
+ ;;=3^Pain in Right Ankle
+ ;;^UTILITY(U,$J,358.3,33241,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,33241,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,33242,0)
+ ;;=M25.572^^182^1998^71
+ ;;^UTILITY(U,$J,358.3,33242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33612,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33612,1,4,0)
- ;;=4^S82.64XM
- ;;^UTILITY(U,$J,358.3,33612,2)
- ;;=^5042369
- ;;^UTILITY(U,$J,358.3,33613,0)
- ;;=S82.64XK^^191^1968^271
- ;;^UTILITY(U,$J,358.3,33613,1,0)
+ ;;^UTILITY(U,$J,358.3,33242,1,3,0)
+ ;;=3^Pain in Left Ankle
+ ;;^UTILITY(U,$J,358.3,33242,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,33242,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,33243,0)
+ ;;=M79.601^^182^1998^82
+ ;;^UTILITY(U,$J,358.3,33243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33613,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33613,1,4,0)
- ;;=4^S82.64XK
- ;;^UTILITY(U,$J,358.3,33613,2)
- ;;=^5042368
- ;;^UTILITY(U,$J,358.3,33614,0)
- ;;=S82.842N^^191^1968^13
- ;;^UTILITY(U,$J,358.3,33614,1,0)
+ ;;^UTILITY(U,$J,358.3,33243,1,3,0)
+ ;;=3^Pain in Right Arm
+ ;;^UTILITY(U,$J,358.3,33243,1,4,0)
+ ;;=4^M79.601
+ ;;^UTILITY(U,$J,358.3,33243,2)
+ ;;=^5013325
+ ;;^UTILITY(U,$J,358.3,33244,0)
+ ;;=M79.602^^182^1998^72
+ ;;^UTILITY(U,$J,358.3,33244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33614,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33614,1,4,0)
- ;;=4^S82.842N
+ ;;^UTILITY(U,$J,358.3,33244,1,3,0)
+ ;;=3^Pain in Left Arm
+ ;;^UTILITY(U,$J,358.3,33244,1,4,0)
+ ;;=4^M79.602
+ ;;^UTILITY(U,$J,358.3,33244,2)
+ ;;=^5013326
+ ;;^UTILITY(U,$J,358.3,33245,0)
+ ;;=M79.604^^182^1998^88
+ ;;^UTILITY(U,$J,358.3,33245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33245,1,3,0)
+ ;;=3^Pain in Right Leg
+ ;;^UTILITY(U,$J,358.3,33245,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,33245,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,33246,0)
+ ;;=M79.605^^182^1998^78

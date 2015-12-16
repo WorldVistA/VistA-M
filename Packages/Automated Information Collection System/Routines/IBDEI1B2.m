@@ -1,120 +1,138 @@
-IBDEI1B2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1B2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23431,1,5,0)
- ;;=5^Fracture of ankle; lateral malleolus, closed
- ;;^UTILITY(U,$J,358.3,23431,2)
- ;;=^274247
- ;;^UTILITY(U,$J,358.3,23432,0)
- ;;=824.0^^139^1438^14
- ;;^UTILITY(U,$J,358.3,23432,1,0)
+ ;;^UTILITY(U,$J,358.3,23122,2)
+ ;;=^35946
+ ;;^UTILITY(U,$J,358.3,23123,0)
+ ;;=782.3^^125^1402^63
+ ;;^UTILITY(U,$J,358.3,23123,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23432,1,3,0)
- ;;=3^824.0
- ;;^UTILITY(U,$J,358.3,23432,1,5,0)
- ;;=5^Fracture of ankle; medial malleolus, closed
- ;;^UTILITY(U,$J,358.3,23432,2)
- ;;=^274245
- ;;^UTILITY(U,$J,358.3,23433,0)
- ;;=824.6^^139^1438^15
- ;;^UTILITY(U,$J,358.3,23433,1,0)
+ ;;^UTILITY(U,$J,358.3,23123,1,4,0)
+ ;;=4^782.3
+ ;;^UTILITY(U,$J,358.3,23123,1,5,0)
+ ;;=5^Edema
+ ;;^UTILITY(U,$J,358.3,23123,2)
+ ;;=Edema^38340
+ ;;^UTILITY(U,$J,358.3,23124,0)
+ ;;=457.1^^125^1402^64
+ ;;^UTILITY(U,$J,358.3,23124,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23433,1,3,0)
- ;;=3^824.6
- ;;^UTILITY(U,$J,358.3,23433,1,5,0)
- ;;=5^Fracture of ankle; trimalleolar, closed
- ;;^UTILITY(U,$J,358.3,23433,2)
- ;;=^274251
- ;;^UTILITY(U,$J,358.3,23434,0)
- ;;=825.20^^139^1438^16
- ;;^UTILITY(U,$J,358.3,23434,1,0)
+ ;;^UTILITY(U,$J,358.3,23124,1,4,0)
+ ;;=4^457.1
+ ;;^UTILITY(U,$J,358.3,23124,1,5,0)
+ ;;=5^Edema due to lymphatic obstruction
+ ;;^UTILITY(U,$J,358.3,23124,2)
+ ;;=   ^87693
+ ;;^UTILITY(U,$J,358.3,23125,0)
+ ;;=459.2^^125^1402^65
+ ;;^UTILITY(U,$J,358.3,23125,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23434,1,3,0)
- ;;=3^825.20
- ;;^UTILITY(U,$J,358.3,23434,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bone, closed; unspecified bone(s) of foot (except toes)
- ;;^UTILITY(U,$J,358.3,23434,2)
- ;;=^274265
- ;;^UTILITY(U,$J,358.3,23435,0)
- ;;=825.0^^139^1438^17
- ;;^UTILITY(U,$J,358.3,23435,1,0)
+ ;;^UTILITY(U,$J,358.3,23125,1,4,0)
+ ;;=4^459.2
+ ;;^UTILITY(U,$J,358.3,23125,1,5,0)
+ ;;=5^Edema due to venous obstruction 
+ ;;^UTILITY(U,$J,358.3,23125,2)
+ ;;=^269850
+ ;;^UTILITY(U,$J,358.3,23126,0)
+ ;;=780.79^^125^1402^107
+ ;;^UTILITY(U,$J,358.3,23126,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23435,1,3,0)
- ;;=3^825.0
- ;;^UTILITY(U,$J,358.3,23435,1,5,0)
- ;;=5^Fracture of one or more tarsal & metatarsal bone, closed; calcaneus, closed
- ;;^UTILITY(U,$J,358.3,23435,2)
- ;;=^274259
- ;;^UTILITY(U,$J,358.3,23436,0)
- ;;=825.23^^139^1438^18
- ;;^UTILITY(U,$J,358.3,23436,1,0)
+ ;;^UTILITY(U,$J,358.3,23126,1,4,0)
+ ;;=4^780.79
+ ;;^UTILITY(U,$J,358.3,23126,1,5,0)
+ ;;=5^Malaise
+ ;;^UTILITY(U,$J,358.3,23126,2)
+ ;;=Malaise^73344
+ ;;^UTILITY(U,$J,358.3,23127,0)
+ ;;=783.3^^125^1402^70
+ ;;^UTILITY(U,$J,358.3,23127,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23436,1,3,0)
- ;;=3^825.23
- ;;^UTILITY(U,$J,358.3,23436,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuboid
- ;;^UTILITY(U,$J,358.3,23436,2)
- ;;=^274270
- ;;^UTILITY(U,$J,358.3,23437,0)
- ;;=825.24^^139^1438^19
- ;;^UTILITY(U,$J,358.3,23437,1,0)
+ ;;^UTILITY(U,$J,358.3,23127,1,4,0)
+ ;;=4^783.3
+ ;;^UTILITY(U,$J,358.3,23127,1,5,0)
+ ;;=5^Feeding problem of the elderly
+ ;;^UTILITY(U,$J,358.3,23127,2)
+ ;;=   ^273364
+ ;;^UTILITY(U,$J,358.3,23128,0)
+ ;;=780.1^^125^1402^78
+ ;;^UTILITY(U,$J,358.3,23128,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23437,1,3,0)
- ;;=3^825.24
- ;;^UTILITY(U,$J,358.3,23437,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuneiform, foot &
- ;;^UTILITY(U,$J,358.3,23437,2)
- ;;=^274271
- ;;^UTILITY(U,$J,358.3,23438,0)
- ;;=825.25^^139^1438^20
- ;;^UTILITY(U,$J,358.3,23438,1,0)
+ ;;^UTILITY(U,$J,358.3,23128,1,4,0)
+ ;;=4^780.1
+ ;;^UTILITY(U,$J,358.3,23128,1,5,0)
+ ;;=5^Hallucinations
+ ;;^UTILITY(U,$J,358.3,23128,2)
+ ;;=Hallucinations^53738
+ ;;^UTILITY(U,$J,358.3,23129,0)
+ ;;=780.8^^125^1402^87
+ ;;^UTILITY(U,$J,358.3,23129,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23438,1,3,0)
- ;;=3^825.25
- ;;^UTILITY(U,$J,358.3,23438,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Jones 
- ;;^UTILITY(U,$J,358.3,23438,2)
- ;;=^274272
- ;;^UTILITY(U,$J,358.3,23439,0)
- ;;=825.22^^139^1438^21
- ;;^UTILITY(U,$J,358.3,23439,1,0)
+ ;;^UTILITY(U,$J,358.3,23129,1,4,0)
+ ;;=4^780.8
+ ;;^UTILITY(U,$J,358.3,23129,1,5,0)
+ ;;=5^Hyperhidrosis
+ ;;^UTILITY(U,$J,358.3,23129,2)
+ ;;=Hyperhidrosis^60030
+ ;;^UTILITY(U,$J,358.3,23130,0)
+ ;;=307.41^^125^1402^99
+ ;;^UTILITY(U,$J,358.3,23130,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23439,1,3,0)
- ;;=3^825.22
- ;;^UTILITY(U,$J,358.3,23439,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Navicular (scapiod), foot & metatarsal
- ;;^UTILITY(U,$J,358.3,23439,2)
- ;;=^274269
- ;;^UTILITY(U,$J,358.3,23440,0)
- ;;=825.21^^139^1438^22
- ;;^UTILITY(U,$J,358.3,23440,1,0)
+ ;;^UTILITY(U,$J,358.3,23130,1,4,0)
+ ;;=4^307.41
+ ;;^UTILITY(U,$J,358.3,23130,1,5,0)
+ ;;=5^Insomnia, Nonorganic, Transient
+ ;;^UTILITY(U,$J,358.3,23130,2)
+ ;;=^268285
+ ;;^UTILITY(U,$J,358.3,23131,0)
+ ;;=780.52^^125^1402^100
+ ;;^UTILITY(U,$J,358.3,23131,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23440,1,3,0)
- ;;=3^825.21
- ;;^UTILITY(U,$J,358.3,23440,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Astragalus, talus
- ;;^UTILITY(U,$J,358.3,23440,2)
- ;;=^274266
- ;;^UTILITY(U,$J,358.3,23441,0)
- ;;=825.29^^139^1438^23
- ;;^UTILITY(U,$J,358.3,23441,1,0)
+ ;;^UTILITY(U,$J,358.3,23131,1,4,0)
+ ;;=4^780.52
+ ;;^UTILITY(U,$J,358.3,23131,1,5,0)
+ ;;=5^Insomnia, Organic
+ ;;^UTILITY(U,$J,358.3,23131,2)
+ ;;=Insomnia, Organic^87662
+ ;;^UTILITY(U,$J,358.3,23132,0)
+ ;;=302.71^^125^1402^103
+ ;;^UTILITY(U,$J,358.3,23132,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23441,1,3,0)
- ;;=3^825.29
- ;;^UTILITY(U,$J,358.3,23441,1,5,0)
- ;;=5^Fracture of other tarsal & metatarsal bones, closed; Tarsal or tarsal w/metatarsal
- ;;^UTILITY(U,$J,358.3,23441,2)
- ;;=^274263
- ;;^UTILITY(U,$J,358.3,23442,0)
- ;;=826.0^^139^1438^24
- ;;^UTILITY(U,$J,358.3,23442,1,0)
+ ;;^UTILITY(U,$J,358.3,23132,1,4,0)
+ ;;=4^302.71
+ ;;^UTILITY(U,$J,358.3,23132,1,5,0)
+ ;;=5^Loss of Libido
+ ;;^UTILITY(U,$J,358.3,23132,2)
+ ;;=^268178
+ ;;^UTILITY(U,$J,358.3,23133,0)
+ ;;=785.6^^125^1402^106
+ ;;^UTILITY(U,$J,358.3,23133,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23442,1,3,0)
- ;;=3^826.0
- ;;^UTILITY(U,$J,358.3,23442,1,5,0)
- ;;=5^Fracture of one or more phalanges of foot/toe(s), closed
- ;;^UTILITY(U,$J,358.3,23442,2)
- ;;=^274282
- ;;^UTILITY(U,$J,358.3,23443,0)
- ;;=733.16^^139^1438^25
+ ;;^UTILITY(U,$J,358.3,23133,1,4,0)
+ ;;=4^785.6
+ ;;^UTILITY(U,$J,358.3,23133,1,5,0)
+ ;;=5^Lymphadenopathy
+ ;;^UTILITY(U,$J,358.3,23133,2)
+ ;;=Lymphadenopathy^72368
+ ;;^UTILITY(U,$J,358.3,23134,0)
+ ;;=728.85^^125^1402^112
+ ;;^UTILITY(U,$J,358.3,23134,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23134,1,4,0)
+ ;;=4^728.85
+ ;;^UTILITY(U,$J,358.3,23134,1,5,0)
+ ;;=5^Muscle Spasm
+ ;;^UTILITY(U,$J,358.3,23134,2)
+ ;;=Muscle Spasm^112558
+ ;;^UTILITY(U,$J,358.3,23135,0)
+ ;;=782.0^^125^1402^51
+ ;;^UTILITY(U,$J,358.3,23135,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23135,1,4,0)
+ ;;=4^782.0
+ ;;^UTILITY(U,$J,358.3,23135,1,5,0)
+ ;;=5^Disturbance of Skin Sensation
+ ;;^UTILITY(U,$J,358.3,23135,2)
+ ;;=Disturbance of Skin Sensation^35757
+ ;;^UTILITY(U,$J,358.3,23136,0)
+ ;;=278.00^^125^1402^117

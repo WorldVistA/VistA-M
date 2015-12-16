@@ -1,138 +1,118 @@
-IBDEI07G ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07G ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3313,1,4,0)
- ;;=4^290.42
- ;;^UTILITY(U,$J,358.3,3313,1,5,0)
- ;;=5^VASCULAR DEMENTIA W/ DELUSION
- ;;^UTILITY(U,$J,358.3,3313,2)
- ;;=^331821
- ;;^UTILITY(U,$J,358.3,3314,0)
- ;;=291.1^^28^261^1
- ;;^UTILITY(U,$J,358.3,3314,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3314,1,4,0)
- ;;=4^291.1
- ;;^UTILITY(U,$J,358.3,3314,1,5,0)
- ;;=5^ALCOHOL INDUCED AMNESTIC D/O
- ;;^UTILITY(U,$J,358.3,3314,2)
- ;;=^331823
- ;;^UTILITY(U,$J,358.3,3315,0)
- ;;=291.2^^28^261^2
- ;;^UTILITY(U,$J,358.3,3315,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3315,1,4,0)
- ;;=4^291.2
- ;;^UTILITY(U,$J,358.3,3315,1,5,0)
- ;;=5^ALCOHOL INDUCED PERSISTING DEMENTIA
- ;;^UTILITY(U,$J,358.3,3315,2)
- ;;=^331824
- ;;^UTILITY(U,$J,358.3,3316,0)
- ;;=291.3^^28^261^3
- ;;^UTILITY(U,$J,358.3,3316,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3316,1,4,0)
- ;;=4^291.3
- ;;^UTILITY(U,$J,358.3,3316,1,5,0)
- ;;=5^ALCOHOL INDUCED PSYCHOTIC D/O W/ HALLUC
- ;;^UTILITY(U,$J,358.3,3316,2)
- ;;=^331825
- ;;^UTILITY(U,$J,358.3,3317,0)
- ;;=291.0^^28^261^4
- ;;^UTILITY(U,$J,358.3,3317,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3317,1,4,0)
- ;;=4^291.0
- ;;^UTILITY(U,$J,358.3,3317,1,5,0)
- ;;=5^ALCOHOL WITHDRAWAL DELIRIUM
- ;;^UTILITY(U,$J,358.3,3317,2)
- ;;=^4589
- ;;^UTILITY(U,$J,358.3,3318,0)
- ;;=291.5^^28^261^5
- ;;^UTILITY(U,$J,358.3,3318,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3318,1,4,0)
- ;;=4^291.5
- ;;^UTILITY(U,$J,358.3,3318,1,5,0)
- ;;=5^ALCOHOL INDUCED PSYCH D/O w/ DELUSIONS
- ;;^UTILITY(U,$J,358.3,3318,2)
- ;;=^331826
- ;;^UTILITY(U,$J,358.3,3319,0)
- ;;=291.4^^28^261^6
- ;;^UTILITY(U,$J,358.3,3319,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3319,1,4,0)
- ;;=4^291.4
- ;;^UTILITY(U,$J,358.3,3319,1,5,0)
- ;;=5^IDIOSYNCRATIC ALCOHOL INTOXICATION
- ;;^UTILITY(U,$J,358.3,3319,2)
- ;;=^4574
- ;;^UTILITY(U,$J,358.3,3320,0)
- ;;=292.81^^28^262^1
- ;;^UTILITY(U,$J,358.3,3320,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3320,1,4,0)
- ;;=4^292.81
- ;;^UTILITY(U,$J,358.3,3320,1,5,0)
- ;;=5^DRUG INDUCED DELIRIUM
- ;;^UTILITY(U,$J,358.3,3320,2)
- ;;=^268022
- ;;^UTILITY(U,$J,358.3,3321,0)
- ;;=292.84^^28^262^2
- ;;^UTILITY(U,$J,358.3,3321,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3321,1,4,0)
- ;;=4^292.84
- ;;^UTILITY(U,$J,358.3,3321,1,5,0)
- ;;=5^DRUG INDUCED MOOD DISORD
- ;;^UTILITY(U,$J,358.3,3321,2)
- ;;=^331834
- ;;^UTILITY(U,$J,358.3,3322,0)
- ;;=292.83^^28^262^7
- ;;^UTILITY(U,$J,358.3,3322,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3322,1,4,0)
- ;;=4^292.83
- ;;^UTILITY(U,$J,358.3,3322,1,5,0)
- ;;=5^DRUG PERSIST AMNESTC DIS
- ;;^UTILITY(U,$J,358.3,3322,2)
- ;;=^331833
- ;;^UTILITY(U,$J,358.3,3323,0)
- ;;=292.82^^28^262^3
- ;;^UTILITY(U,$J,358.3,3323,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3323,1,4,0)
- ;;=4^292.82
- ;;^UTILITY(U,$J,358.3,3323,1,5,0)
- ;;=5^DRUG INDUCED PERSISTING DEMENTIA
- ;;^UTILITY(U,$J,358.3,3323,2)
- ;;=^331832
- ;;^UTILITY(U,$J,358.3,3324,0)
- ;;=292.11^^28^262^4
- ;;^UTILITY(U,$J,358.3,3324,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3324,1,4,0)
- ;;=4^292.11
- ;;^UTILITY(U,$J,358.3,3324,1,5,0)
- ;;=5^DRUG INDUCED PSYCHOTIC D/O W/ DELUSIONS
- ;;^UTILITY(U,$J,358.3,3324,2)
- ;;=^331830
- ;;^UTILITY(U,$J,358.3,3325,0)
- ;;=292.12^^28^262^5
- ;;^UTILITY(U,$J,358.3,3325,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3325,1,4,0)
- ;;=4^292.12
- ;;^UTILITY(U,$J,358.3,3325,1,5,0)
- ;;=5^DRUG INDUCED PSYCHOTIC D/O W/ HALLUCIN
- ;;^UTILITY(U,$J,358.3,3325,2)
- ;;=^331831
- ;;^UTILITY(U,$J,358.3,3326,0)
- ;;=292.85^^28^262^6
- ;;^UTILITY(U,$J,358.3,3326,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3326,1,4,0)
- ;;=4^292.85
- ;;^UTILITY(U,$J,358.3,3326,1,5,0)
- ;;=5^DRUG INDUCED SLEEP DISOR
+ ;;^UTILITY(U,$J,358.3,2989,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,2990,0)
+ ;;=T74.11XA^^8^85^8
+ ;;^UTILITY(U,$J,358.3,2990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2990,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,2990,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,2990,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,2991,0)
+ ;;=T74.11XD^^8^85^9
+ ;;^UTILITY(U,$J,358.3,2991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2991,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,2991,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,2991,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,2992,0)
+ ;;=T76.11XA^^8^85^10
+ ;;^UTILITY(U,$J,358.3,2992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2992,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,2992,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,2992,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,2993,0)
+ ;;=T76.11XD^^8^85^11
+ ;;^UTILITY(U,$J,358.3,2993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2993,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,2993,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,2993,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,2994,0)
+ ;;=Z69.11^^8^85^4
+ ;;^UTILITY(U,$J,358.3,2994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2994,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
+ ;;^UTILITY(U,$J,358.3,2994,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,2994,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,2995,0)
+ ;;=Z91.410^^8^85^5
+ ;;^UTILITY(U,$J,358.3,2995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2995,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,2995,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,2995,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,2996,0)
+ ;;=Z69.12^^8^85^2
+ ;;^UTILITY(U,$J,358.3,2996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2996,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,2996,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,2996,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,2997,0)
+ ;;=T74.21XA^^8^85^12
+ ;;^UTILITY(U,$J,358.3,2997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2997,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,2997,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,2997,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,2998,0)
+ ;;=T74.21XD^^8^85^13
+ ;;^UTILITY(U,$J,358.3,2998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2998,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,2998,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,2998,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,2999,0)
+ ;;=T76.21XA^^8^85^14
+ ;;^UTILITY(U,$J,358.3,2999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2999,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,2999,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,2999,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,3000,0)
+ ;;=T76.21XD^^8^85^15
+ ;;^UTILITY(U,$J,358.3,3000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3000,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
+ ;;^UTILITY(U,$J,358.3,3000,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,3000,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,3001,0)
+ ;;=Z69.81^^8^85^3

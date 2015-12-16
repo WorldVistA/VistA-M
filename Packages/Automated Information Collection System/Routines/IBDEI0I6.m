@@ -1,138 +1,134 @@
-IBDEI0I6 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0I6 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8801,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8801,1,3,0)
- ;;=3^Glaucoma Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,8801,1,4,0)
- ;;=4^365.74
- ;;^UTILITY(U,$J,358.3,8801,2)
- ;;=^340516
- ;;^UTILITY(U,$J,358.3,8802,0)
- ;;=V43.1^^52^586^33
- ;;^UTILITY(U,$J,358.3,8802,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8802,1,3,0)
- ;;=3^Lens Replacement NEC
- ;;^UTILITY(U,$J,358.3,8802,1,4,0)
- ;;=4^V43.1
- ;;^UTILITY(U,$J,358.3,8802,2)
- ;;=^69114
- ;;^UTILITY(U,$J,358.3,8803,0)
- ;;=369.4^^52^587^10
- ;;^UTILITY(U,$J,358.3,8803,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8803,1,3,0)
- ;;=3^Legally Blind,USA Def
- ;;^UTILITY(U,$J,358.3,8803,1,4,0)
- ;;=4^369.4
- ;;^UTILITY(U,$J,358.3,8803,2)
- ;;=^268887
- ;;^UTILITY(U,$J,358.3,8804,0)
- ;;=369.01^^52^587^25
- ;;^UTILITY(U,$J,358.3,8804,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8804,1,3,0)
- ;;=3^Total Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,8804,1,4,0)
- ;;=4^369.01
- ;;^UTILITY(U,$J,358.3,8804,2)
- ;;=^268861
- ;;^UTILITY(U,$J,358.3,8805,0)
- ;;=369.02^^52^587^15
- ;;^UTILITY(U,$J,358.3,8805,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8805,1,3,0)
- ;;=3^One Eye Near Total/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,8805,1,4,0)
- ;;=4^369.02
- ;;^UTILITY(U,$J,358.3,8805,2)
- ;;=^268862
- ;;^UTILITY(U,$J,358.3,8806,0)
- ;;=369.03^^52^587^16
- ;;^UTILITY(U,$J,358.3,8806,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8806,1,3,0)
- ;;=3^One Eye Near Total/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,8806,1,4,0)
- ;;=4^369.03
- ;;^UTILITY(U,$J,358.3,8806,2)
- ;;=^268863
- ;;^UTILITY(U,$J,358.3,8807,0)
- ;;=369.04^^52^587^13
- ;;^UTILITY(U,$J,358.3,8807,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8807,1,3,0)
- ;;=3^Near Total Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,8807,1,4,0)
- ;;=4^369.04
- ;;^UTILITY(U,$J,358.3,8807,2)
- ;;=^268864
- ;;^UTILITY(U,$J,358.3,8808,0)
- ;;=369.05^^52^587^17
- ;;^UTILITY(U,$J,358.3,8808,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8808,1,3,0)
- ;;=3^One Eye Prfnd Imprmt/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,8808,1,4,0)
- ;;=4^369.05
- ;;^UTILITY(U,$J,358.3,8808,2)
- ;;=^268865
- ;;^UTILITY(U,$J,358.3,8809,0)
- ;;=369.06^^52^587^19
- ;;^UTILITY(U,$J,358.3,8809,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8809,1,3,0)
- ;;=3^One Eye Prfnd Imprmt/Oth Eye Tot Impr
- ;;^UTILITY(U,$J,358.3,8809,1,4,0)
- ;;=4^369.06
- ;;^UTILITY(U,$J,358.3,8809,2)
- ;;=^268866
- ;;^UTILITY(U,$J,358.3,8810,0)
- ;;=369.07^^52^587^18
- ;;^UTILITY(U,$J,358.3,8810,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8810,1,3,0)
- ;;=3^One Eye Prfnd Imprmt/Oth Eye Nr Tot
- ;;^UTILITY(U,$J,358.3,8810,1,4,0)
- ;;=4^369.07
- ;;^UTILITY(U,$J,358.3,8810,2)
- ;;=^268867
- ;;^UTILITY(U,$J,358.3,8811,0)
- ;;=369.08^^52^587^23
- ;;^UTILITY(U,$J,358.3,8811,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8811,1,3,0)
- ;;=3^Profound Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,8811,1,4,0)
- ;;=4^369.08
- ;;^UTILITY(U,$J,358.3,8811,2)
- ;;=^268868
- ;;^UTILITY(U,$J,358.3,8812,0)
- ;;=369.11^^52^587^14
- ;;^UTILITY(U,$J,358.3,8812,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8812,1,3,0)
- ;;=3^One Eye Blind/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,8812,1,4,0)
- ;;=4^369.11
- ;;^UTILITY(U,$J,358.3,8812,2)
- ;;=^268871
- ;;^UTILITY(U,$J,358.3,8813,0)
- ;;=369.12^^52^587^22
- ;;^UTILITY(U,$J,358.3,8813,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8813,1,3,0)
- ;;=3^One Eye Svr Imprmt/Oth Eye Tot Imprmt
- ;;^UTILITY(U,$J,358.3,8813,1,4,0)
- ;;=4^369.12
- ;;^UTILITY(U,$J,358.3,8813,2)
- ;;=^268872
- ;;^UTILITY(U,$J,358.3,8814,0)
- ;;=369.13^^52^587^20
- ;;^UTILITY(U,$J,358.3,8814,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8814,1,3,0)
- ;;=3^One Eye Svr Imprmt/Oth Eye Near Tot
+ ;;^UTILITY(U,$J,358.3,8497,0)
+ ;;=V12.03^^35^485^39
+ ;;^UTILITY(U,$J,358.3,8497,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8497,1,4,0)
+ ;;=4^V12.03
+ ;;^UTILITY(U,$J,358.3,8497,1,5,0)
+ ;;=5^Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,8497,2)
+ ;;=Hx of Malaria^303395
+ ;;^UTILITY(U,$J,358.3,8498,0)
+ ;;=V10.82^^35^485^40
+ ;;^UTILITY(U,$J,358.3,8498,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8498,1,4,0)
+ ;;=4^V10.82
+ ;;^UTILITY(U,$J,358.3,8498,1,5,0)
+ ;;=5^Hx of Malignant Melanoma
+ ;;^UTILITY(U,$J,358.3,8498,2)
+ ;;=Hx of Malignant Melanoma^295240
+ ;;^UTILITY(U,$J,358.3,8499,0)
+ ;;=V10.62^^35^485^43
+ ;;^UTILITY(U,$J,358.3,8499,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8499,1,4,0)
+ ;;=4^V10.62
+ ;;^UTILITY(U,$J,358.3,8499,1,5,0)
+ ;;=5^Hx of Myeloid Leukemia
+ ;;^UTILITY(U,$J,358.3,8499,2)
+ ;;=Hx of Myeloid Leukemia^295233
+ ;;^UTILITY(U,$J,358.3,8500,0)
+ ;;=V10.63^^35^485^41
+ ;;^UTILITY(U,$J,358.3,8500,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8500,1,4,0)
+ ;;=4^V10.63
+ ;;^UTILITY(U,$J,358.3,8500,1,5,0)
+ ;;=5^Hx of Monocytic Leukemia
+ ;;^UTILITY(U,$J,358.3,8500,2)
+ ;;=Hx of Monocytic Leukemia^295234
+ ;;^UTILITY(U,$J,358.3,8501,0)
+ ;;=V11.2^^35^485^32
+ ;;^UTILITY(U,$J,358.3,8501,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8501,1,4,0)
+ ;;=4^V11.2
+ ;;^UTILITY(U,$J,358.3,8501,1,5,0)
+ ;;=5^Hx of Dysthymia
+ ;;^UTILITY(U,$J,358.3,8501,2)
+ ;;=Hx of Dysthymia^295251
+ ;;^UTILITY(U,$J,358.3,8502,0)
+ ;;=V15.81^^35^485^60
+ ;;^UTILITY(U,$J,358.3,8502,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8502,1,4,0)
+ ;;=4^V15.81
+ ;;^UTILITY(U,$J,358.3,8502,1,5,0)
+ ;;=5^Noncompliance With Medical Treatment
+ ;;^UTILITY(U,$J,358.3,8502,2)
+ ;;=^295290
+ ;;^UTILITY(U,$J,358.3,8503,0)
+ ;;=V10.43^^35^485^44
+ ;;^UTILITY(U,$J,358.3,8503,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8503,1,4,0)
+ ;;=4^V10.43
+ ;;^UTILITY(U,$J,358.3,8503,1,5,0)
+ ;;=5^Hx of Ovarian CA
+ ;;^UTILITY(U,$J,358.3,8503,2)
+ ;;=Hx of Ovarian CA^295221
+ ;;^UTILITY(U,$J,358.3,8504,0)
+ ;;=V12.71^^35^485^45
+ ;;^UTILITY(U,$J,358.3,8504,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8504,1,4,0)
+ ;;=4^V12.71
+ ;;^UTILITY(U,$J,358.3,8504,1,5,0)
+ ;;=5^Hx of Peptic Ulcer Disease
+ ;;^UTILITY(U,$J,358.3,8504,2)
+ ;;=^303400
+ ;;^UTILITY(U,$J,358.3,8505,0)
+ ;;=V10.46^^35^485^48
+ ;;^UTILITY(U,$J,358.3,8505,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8505,1,4,0)
+ ;;=4^V10.46
+ ;;^UTILITY(U,$J,358.3,8505,1,5,0)
+ ;;=5^Hx of Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,8505,2)
+ ;;=Hx of Prostate Cancer^295224
+ ;;^UTILITY(U,$J,358.3,8506,0)
+ ;;=V11.0^^35^485^50
+ ;;^UTILITY(U,$J,358.3,8506,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8506,1,4,0)
+ ;;=4^V11.0
+ ;;^UTILITY(U,$J,358.3,8506,1,5,0)
+ ;;=5^Hx of Schizophrenia
+ ;;^UTILITY(U,$J,358.3,8506,2)
+ ;;=Hx of Schizophrenia^295249
+ ;;^UTILITY(U,$J,358.3,8507,0)
+ ;;=V10.83^^35^485^51
+ ;;^UTILITY(U,$J,358.3,8507,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8507,1,4,0)
+ ;;=4^V10.83
+ ;;^UTILITY(U,$J,358.3,8507,1,5,0)
+ ;;=5^Hx of Skin Cancer (Non-Melanoma)
+ ;;^UTILITY(U,$J,358.3,8507,2)
+ ;;=^295241
+ ;;^UTILITY(U,$J,358.3,8508,0)
+ ;;=V15.1^^35^485^53
+ ;;^UTILITY(U,$J,358.3,8508,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8508,1,4,0)
+ ;;=4^V15.1
+ ;;^UTILITY(U,$J,358.3,8508,1,5,0)
+ ;;=5^Hx of Surgery To Heart And Great Vessels
+ ;;^UTILITY(U,$J,358.3,8508,2)
+ ;;=^295283
+ ;;^UTILITY(U,$J,358.3,8509,0)
+ ;;=V15.82^^35^485^57
+ ;;^UTILITY(U,$J,358.3,8509,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8509,1,4,0)
+ ;;=4^V15.82
+ ;;^UTILITY(U,$J,358.3,8509,1,5,0)
+ ;;=5^Hx of Tobacco Use (not current)
+ ;;^UTILITY(U,$J,358.3,8509,2)
+ ;;=Hx of Tobacco Use (not current)^303405

@@ -1,52 +1,46 @@
-XUESSO1 ;LUKE/SEA Single Sign-on utilities;02/11/10  14:57;08/18/09  14:29
- ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523**;Jul 10, 1995;Build 16
- ;Per VHA Directive 2004-038, this routine should not be modified.
+XUESSO1 ;SEA/LUKE,ISD/HGW Single Sign-on Utilities ;03/20/15  09:24
+ ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655**;Jul 10, 1995;Build 16
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 GET(INDUZ) ;Gather identifying data from user's home site.
- ;Must have Name, Access&Verify codes, SSN (no pseudo), station name&number
- N %,NAME,SITE,SSN,PHONE,X,N,VPID
- I '$D(DUZ) G BOMB
- I '$D(DUZ(2)) G BOMB
- ;I '$D(INDUZ) S INDUZ=DUZ
+ ;Called by SETVISIT^XUSBSE1 (Get visitor info for TOKEN)
+ ;Called by SNDQRY^DGROHLS (Retrieve user info) and SETUP^XWB2HL7 (Get visitor info)
+ ;To visit a remote site, user must have: Name, Access/Verify Codes, SSN (no pseudo), Station Name, Site Number
+ ;The following data is optional: Phone, SecID, Network Username
+ N %,NAME,SITE,SSN,PHONE,X,N,NETWORK
+ I '$D(DUZ) Q "-1^Insufficient info to allow visiting:  No DUZ"
+ I '$D(DUZ(2)) Q "-1^Insufficient info to allow visiting:  Missing DUZ(2)"
  S N=$G(^VA(200,DUZ,0))
- I '$L(N) G BOMB
- S %=$P(N,U,3) I $L(%)<1 G BOMB ;No Access Code
- S %=$P($G(^VA(200,DUZ,.1)),U,2) I $L(%)<1 G BOMB ;No Verify Code
- S %=$P(N,U,11) I $L(%)>1,(DT>%) G BOMB ;Terminated
+ I '$L(N) Q "-1^Insufficient info to allow visiting:  Missing NPF Zero Node"
+ S %=$P(N,U,3) I $L(%)<1 Q "-1^Insufficient info to allow visiting:  No Access Code"
+ S %=$P($G(^VA(200,DUZ,.1)),U,2) I $L(%)<1 Q "-1^Insufficient info to allow visiting:  No Verify Code"
+ S %=$P(N,U,11) I $L(%)>1,(DT>%) Q "-1^Insufficient info to allow visiting:  Terminated User"
+ I $P($$ACTIVE^XUSER(DUZ),U,1)'=1 Q "-1^Insufficient info to allow visiting:  Not an active user"
  S NAME=$P(N,U)
- I '$L(NAME) G BOMB
+ I '$L(NAME) Q "-1^Insufficient info to allow visiting:  No User Name"
  ;
  S SITE=$$NS^XUAF4(DUZ(2)) ;Site is name^station#
- I $P(SITE,U,2)="" G BOMB ;Need a station number
+ I $P(SITE,U,2)="" Q "-1^Insufficient info to allow visiting:  Missing Station Number"
  ;
  S SSN=$P($G(^VA(200,DUZ,1)),U,9)
- I $$SPECIAL($P(SITE,"^",2)) S SSN=999999999 G G4 ;Manila RO doesn't need SSN
- I 'SSN G BOMB
- ;Don't allow if the SSN is pseudo
- I $E(SSN,10)="P" G BOMB
- ;Don't allow if the SSN is not real, (e.g. 00000NNNN)
- I $E(SSN,1,5)="00000" G BOMB
+ I $$SPECIAL($P(SITE,"^",2)) S SSN=999999999 ;Manila RO doesn't need SSN
+ I 'SSN Q "-1^Insufficient info to allow visiting:  Missing SSN"
+ I $E(SSN,10)="P" Q "-1^Insufficient info to allow visiting:  User has a pseudo SSN"
+ I '$$SSNCHECK(SSN) Q "-1^Insufficient info to allow visiting:  User does not have a valid SSN"
  ;
-G4 S PHONE=$$PH
- S VPID=$$VPID^XUPS(DUZ) ;(p337)
+ S PHONE=$$PH
  S X=SSN_U_NAME_U_SITE_U_DUZ
  I $L(PHONE)>2&($L(PHONE<20)) S X=X_U_PHONE
- S $P(X,U,7)=VPID ;(p337)
- ;ssn^name^station name^station number^DUZ^phone^vpid
+ S $P(X,U,7)=$P($G(^VA(200,DUZ,205.1)),U) ;p655 SecID
+ S $P(X,U,8)=$P($G(^VA(200,DUZ,501)),U) ;p655 Network Username
+ ;X=ssn^name^station name^station number^DUZ^phone^SecID^network username
  Q X
- ;
- ;
-BOMB ;Insufficient information to allow visiting
- S X="-1^Insufficient User Information On File.  ssn,name,station name,station number,DUZ,phone"
- Q X
- ;
  ;
 PH() ; Try for a phone number or pager
  N %,X
  S %=""
  S X=$G(^VA(200,DUZ,.13))
  I '$L(X) Q ""
- ;
  S %=$P(X,U,5) I $L(%)>6 Q %  ;Commercial #
  S %=$P(X,U,2) I $L(%)>2 Q %  ;Office
  S %=$P(X,U,8) I $L(%)>6 Q %  ;Digital Pager
@@ -56,20 +50,23 @@ PH() ; Try for a phone number or pager
  S %=$P(X,U,1) I $L(%)>2 Q %  ;Home Phone
  Q "" ;Couldn't find one.
  ;
-SPECIAL(SN) ;Special Manila RO site
+SPECIAL(SN) ;INTRINSIC. Special Manila RO site
+ ; Returns 1 if SN is "358"
  Q 358=SN
  ;
- ;
 PUT(DATIN) ;;Setup data from authenticating site GET() at receiving site
+ ;Called by OLDCAPRI^XUSBSE1 (Old Capri) and SETUP^XUSBSE1 (BSE)
+ ;Called by DIQ^DGROHLU (Sensitive Patient access) and REMOTE^XWB2HL7 (Visitor access via HL7)
  ;Return: 0=fail, 1=OK
- N NEWDUZ,FDR,TODAY,IEN,DIC,USER,X,%T
- N SSN,NAME,SITE,SITENUM,RMTDUZ,PHONE,VPID,XUMF
+ N NEWDUZ,FDR,TODAY,IEN,DIC,USER,X,%T,XSITEIEN
+ N SSN,NAME,SITE,SITENUM,RMTDUZ,PHONE,SECID,XUMF,NETWORK
  S U="^",TODAY=$$HTFM^XLFDT($H),DT=$P(TODAY,"."),NEWDUZ=0
  K ^TMP("DIERR",$J)
  ;
  S SSN=$P(DATIN,U,1),NAME=$P(DATIN,U,2),SITE=$P(DATIN,U,3)
  S SITENUM=$P(DATIN,U,4),RMTDUZ=$P(DATIN,U,5),PHONE=$P(DATIN,U,6)
- S VPID=$P(DATIN,U,7) ;(p337)
+ S SECID=$P(DATIN,U,7) ;p655
+ S NETWORK=$P(DATIN,U,8) ;p655
  ;Format checks
  I NAME'?1U.E1","1U.E Q 0
  I SSN'?9N Q 0
@@ -77,149 +74,198 @@ PUT(DATIN) ;;Setup data from authenticating site GET() at receiving site
  S XUMF=1 D CHK^DIE(4,99,,SITENUM,.%T) I %T=U Q 0 ;p533
  D CHK^DIE(200.06,1,,SITE,.%T) I %T=U Q 0 ;p533
  I RMTDUZ'>0 Q 0 ;p337
- ;
+ ;      The following lines of code were added to provide additional security by verifying that the authenticating
+ ;      was not a "rogue" system but was an active site identified in the INSTITUTION file (#4). However, it cannot
+ ;      be activated at this time as there are active VA systems being used for authentication that are not listed
+ ;      in file #4.
+ ;Check if visitor is from a valid active site
+ ;S XSITEIEN=$$IEN^XUAF4(SITENUM) I XSITEIEN="" Q 0 ;p655
+ ;I '$$ACTIVE^XUAF4(XSITEIEN) Q 0 ;p612
+ ;I $P($$NS^XUAF4(XSITEIEN),"^",1)'=SITE Q 0 ;p655
  ;Get a LOCK. Block if can't get.
  L +^VA(200,"HL7"):10 Q:'$T 0
  S %T=$$TALL($G(DUZ,0)) L -^VA(200,"HL7")
  I %T Q $$SET(NEWDUZ) ;Return 1 if OK.
  Q 0
  ;
- ;Per PSIM don't load VPID's, Only done by PSIM.
- ;Code for adding VPID removed in p466.
-TALL(DUZ) ;Test for existing user or adds a new one
+TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
+ ; ZEXCEPT: NAME,NEWDUZ,PHONE,RMTDUZ,SITE,SITENUM,SSN,XSSN,TODAY,SECID,NETWORK ;global variables within this routine
+ ; ZEXCEPT: DIC ;turn off DIC(0) for ^XUA4A7 (work around)
  N FLAG,NEWREC
  S FLAG=0,DUZ(0)="@" ;Make sure we can add the entry
- ;See if match VPID, Per PSIM only use for lookup.
- I $L(VPID) D
- . S NEWDUZ=+$$IEN^XUPS(VPID) Q:NEWDUZ<1
+ ;See if match SECID. Only use for lookup. Do not load SECID's.
+ I $L(SECID) D
+ . S NEWDUZ=+$$SECMATCH^XUESSO2(SECID) Q:NEWDUZ<1  ;p655
  . I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
- . D UPDT S FLAG=1
+ . D ADDW,UPDT
+ . S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
  . Q
- I FLAG Q 1 ;Quit here if we found a match on VPID
+ I FLAG Q 1 ;Quit here if we found a match on SECID
  ;See if the SSN is in the NPF cross reference
- I '$$SPECIAL(SITENUM),$D(^VA(200,"SSN",SSN)) D
- .S NEWDUZ=$O(^VA(200,"SSN",SSN,0))
- .I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
- .D UPDT
- .S FLAG=1
- .Q
- ;See if in the AVISIT cross reference
- I 'FLAG,$$SPECIAL(SITENUM) D
- . S NEWDUZ=$O(^VA(200,"AVISIT",SITENUM,RMTDUZ,0))
+ I $D(^VA(200,"SSN",SSN)),$$SSNCHECK(SSN),'$$SPECIAL(SITENUM) D
+ . N XUEIEN,XUEAUSER
+ . S XUEIEN=0,NEWDUZ=0
+ . F  S XUEIEN=$O(^VA(200,"SSN",SSN,XUEIEN)) Q:(XUEIEN="")!(NEWDUZ>0)  D
+ . . N XUENAME S XUENAME=$P($G(^VA(200,XUEIEN,0)),U)
+ . . S NEWDUZ=XUEIEN
+ . . ;Update name if names don't match, user has visited before, and user is not an active local user
+ . . I (XUENAME'=NAME)&(XUEIEN=$O(^VA(200,"AVISIT",SITENUM,RMTDUZ,0)))&(('$$ACTIVE^XUSER(XUEIEN))) D ADDN
  . Q:NEWDUZ'>0
- . D UPDT S FLAG=1
+ . I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
+ . D ADDW,UPDT
+ . S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
  . Q
- I FLAG Q 1 ;Quit here if we found a match for SSN or AVISIT
- ;
- ;
- ;There is no matching SSN, try for a NAME match in "B"
- S FLAG=0,NAME=$$UP^XLFSTR(NAME)
+ I FLAG Q 1 ;Quit here if we found a match for SSN
+ ;See if in the AVISIT cross reference (Manila only)
+ I $$SPECIAL(SITENUM) D
+ . S NEWDUZ=$O(^VA(200,"AVISIT",SITENUM,RMTDUZ,0))
+ . Q:NEWDUZ'>0  ;User must have visited from Manila at least once to be found by this test
+ . D ADDW,UPDT S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
+ . Q
+ I FLAG Q 1 ;Quit here if we found a match for AVISIT
+ ;Try for a NAME match in "B"
+ N XUEIEN,XUESSN
+ S NAME=$$UP^XLFSTR(NAME)
  I $D(^VA(200,"B",NAME)) D
- .N %,USER,USER2
- .S NEWDUZ=$O(^VA(200,"B",NAME,0))
- .S USER2=$O(^VA(200,"B",NAME,NEWDUZ)) ;More then one?
- .Q:$L(USER2)>0
- .;
- .S %=$P($G(^VA(200,NEWDUZ,1)),U,9)
- .Q:%'=SSN  ;Don't use this name if it has a different SSN
- .;
- .I '$L($P(^VA(200,NEWDUZ,1),U,9)) D ADDS
- .I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
- .D UPDT S FLAG=1
- .Q
+ . S XUEIEN=0,NEWDUZ=0
+ . F  S XUEIEN=$O(^VA(200,"B",NAME,XUEIEN)) Q:(XUEIEN="")!(NEWDUZ>0)  D
+ . . S XUESSN=$P($G(^VA(200,XUEIEN,1)),U,9)
+ . . I (XUESSN'=SSN)&($L(XUESSN)>8) Q  ;Do not use if name has a different SSN
+ . . S NEWDUZ=XUEIEN
+ . I NEWDUZ>0 D
+ . . D ADDS
+ . . I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
+ . . D ADDW,UPDT
+ . . S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
+ . Q
  I FLAG Q 1 ;Quit here if we found an exact match for NAME (w/o SSN)
  ;
-NEWU ;We didn't find anybody under SSN or NAME so we add a new user
- ;
+ ;We didn't find anybody under VPID,SSN,VISITED FROM, or NAME so we add a new user
  S DIC(0)="" ;Turn off ^XUA4A7 (work around)
- ;
  ;Put the name in the .01 field first.
  D ADDU ;ADDU will set NEWDUZ
- ;If NEWDUZ is still 0, the User add didn't work so exit.
- I NEWDUZ=0 Q 0
- ; Add SSN and Alias.
- D ADDS,ADDA ;(p337)
- ; Fill in the  VISITED FROM multiple
- D VISM,UPDT ;Do update for all data in UPDT
- ;
+ I NEWDUZ=0 Q 0  ;If NEWDUZ is still 0, the User add didn't work so exit.
+ D ADDS,ADDA ;(p337) Add SSN and "VISITOR" Alias.
+ D ADDW ; Add NETWORK USERNAME
+ D VISM,UPDT ; Fill in the  VISITED FROM multiple
+ I NEWDUZ=0 Q 0 ;Couldn't update user
  I $D(^TMP("DIERR",$J)) Q 0  ;FileMan Error
  ;
- I NEWDUZ D BULL Q 1  ;Every thing OK
- Q 0  ;Couldn't add user
+ S FLAG=$$BULL(NAME,NEWDUZ,SITE,SITENUM,RMTDUZ,PHONE,TODAY)
+ S DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
+ Q 1  ;Every thing OK
  ;
- ;
- ;              *****Subroutines*****
- ;
- ;
-SET(NEWDUZ) ;Set the user up to go
+SET(NEWDUZ) ;INTRINSIC. Set the user up to go
+ ; ZEXCEPT: RMTDUZ,SITENUM ;global variables within this routine
+ ;Return: 0=fail, 1=OK
  Q:NEWDUZ'>0 0
  N XUSER,XOPT
  S DUZ=NEWDUZ,U="^",DUZ("VISITOR")=SITENUM_U_RMTDUZ ;p533
  D DUZ^XUS1A
  Q 1
  ;
-ADDU ;Add a new name to the New Person File
+ADDU ;SR. Add a new name to the New Person File
+ ; ZEXCEPT: FDR,NAME,NEWDUZ,NEWREC ;global variables within this routine
  N DD,DO,DIC,DA,X,Y
- S DIC="^VA(200,",DIC(0)="L",X=NAME,NEWREC=1 ;p533
+ S NEWDUZ=0
+ S DIC="^VA(200,",DIC(0)="F",X=NAME,NEWREC=1 ;p533
  D FILE^DICN
  S:Y>0 NEWDUZ=+Y
  Q
  ;
-ADDS ;Add a SSN to the file
- Q:$$SPECIAL(SITENUM)
+ADDS ;SR. Add a SSN to the New Person File
+ ; ZEXCEPT: FDR,NEWDUZ,SSN,SITENUM ;global variables within this routine
+ N IEN
+ Q:$$SPECIAL(SITENUM)  ;don't add SSN if from Manila
+ Q:$D(^VA(200,"SSN",SSN))  ;don't try to add a duplicate SSN
+ Q:'$$SSNCHECK(SSN)  ;only add a valid SSN
  S IEN=NEWDUZ_","
  S FDR(200,IEN,9)=SSN
  ;Do update for all data in UPDT
  Q
  ;
-ADDA ;Add a new Alias to file 200.04
- Q:$D(^VA(200,NEWDUZ,3,"B","VISITOR"))
+ADDN ;SR. Update the NAME in the New Person File
+ ; ZEXCEPT: FDR,NEWDUZ,NAME,RMTDUZ,SITENUM ;global variables within this routine
+ N IEN
+ Q:NAME=$P($G(^VA(200,NEWDUZ,0)),U,1)  ; name is unchanged, do nothing
+ I NEWDUZ'=$O(^VA(200,"AVISIT",SITENUM,RMTDUZ,0)) Q  ; user hasn't visited before, so this is not a valid name change
+ S IEN=NEWDUZ_","
+ S FDR(200,IEN,.01)=NAME
+ ;Do update for all data in UPDT
+ Q
+ ;
+ADDA ;SR. Add a new Alias to file 200.04
+ ; ZEXCEPT: FDR,NEWDUZ ;global variables within this routine
+ N IEN
+ Q:$D(^VA(200,NEWDUZ,3,"B","VISITOR"))  ; Quit if user is already marked as visitor
  S IEN="+2,"_NEWDUZ_","
- S FDR("200.04",IEN,.01)="VISITOR"
+ S FDR(200.04,IEN,.01)="VISITOR"
  ;Do update for all data in UPDT
  Q
  ;
-VISM ;Create a multiple for this site number in the VISTED FROM file
+ADDW ;SR. Add NETWORK USERNAME to the New Person File
+ ; ZEXCEPT: FDR,NEWDUZ,NETWORK ;global variables within this routine
+ N IEN
+ Q:$G(^VA(200,NEWDUZ,501))'=""  ; Quit if user already has a NETWORK USERNAME
+ Q:$L($G(NETWORK))<12  ; Quit if NETWORK USERNAME is too short
+ S IEN=NEWDUZ_","
+ S FDR(200,IEN,501.1)=$G(NETWORK)
+ ;Do update for all data in UPDT
+ Q
+ ;
+VISM ;SR. Create a multiple for this site number in the VISITED FROM file
+ ; ZEXCEPT: FDR,NEWDUZ,RMTDUZ,SITE,SITENUM,TODAY ;global variables within this routine
+ N IEN
  S IEN="+3,"_NEWDUZ_","
- S FDR("200.06",IEN,.01)=SITENUM
- ;
- S FDR("200.06",IEN,1)=SITE
- S FDR("200.06",IEN,2)=RMTDUZ
- S FDR("200.06",IEN,3)=TODAY
- ;I $D(PHONE),($L(PHONE)>2) S FDR("200.06",IEN,5)=PHONE
+ S FDR(200.06,IEN,.01)=SITENUM
+ S FDR(200.06,IEN,1)=SITE
+ S FDR(200.06,IEN,2)=RMTDUZ
+ S FDR(200.06,IEN,3)=TODAY
  ;Do update for all data in UPDT
  Q
  ;
-UPDT ;Update the LAST VISIT field
+UPDT ;SR. Update all data fields
+ ; Sets: NEWDUZ=0 if failed to complete update
+ ; ZEXCEPT: FDR,NAME,NEWDUZ,SITE,SITENUM,PHONE,TODAY,DATIN,NEWREC ;global variables within this routine
+ N IEN,FDQ
  I $D(FDR(200.06)) S IEN=$O(FDR(200.06,""))
  E  S IEN=$O(^VA(200,NEWDUZ,8910,"B",SITENUM,0))_","_NEWDUZ_","
  S FDR(200.06,IEN,4)=TODAY
- ;Update the phone each time
- I $D(PHONE),($L(PHONE)>2) S FDR("200.06",IEN,5)=PHONE ;p466
+ I $D(PHONE),($L(PHONE)>4) S FDR(200.06,IEN,5)=PHONE ;p466 Update the phone each time
+ I $D(SITE) S FDR(200.06,IEN,1)=SITE ;p655 Update the site each time (name changes in INSTITUTION file)
  K IEN D UPDATE^DIE("E","FDR","IEN") ;File all the data
- I $D(^TMP("DIERR",$J)) D
- . N DIK,DA
- . D FAIL
+ I $D(^TMP("DIERR",$J)) D  Q
+ . N DIK,DA,Y
  . I $D(NEWREC) S DIK="^VA(200,",DA=NEWDUZ D ^DIK ;Remove partial entry ;p533
  . S NEWDUZ=0 ;Tell failed
  Q
  ;
-BULL ;Set up the bulletin and fire it off, Let MM see if bulletin is there
+BULL(NAME,NEWDUZ,SITE,SITENUM,RMTDUZ,PHONE,TODAY) ;INTRINSIC. Send local bulletin if user added
+ ; Returns: 0 if failed to send bulletin, 1 if success
+ ; ZEXCEPT: XTMUNIT ;set for unit testing
  N XMB
+ I ($G(NAME)="")!($G(NEWDUZ)="")!($G(SITE)="")!($G(SITENUM)="") Q 0
+ I ($G(RMTDUZ)="")!($G(PHONE)="")!($G(TODAY)="") Q 0
  S XMB="XUVISIT"
  S XMB(1)=$$FMTE^XLFDT(TODAY)
  S XMB(2)=NAME,XMB(3)=NEWDUZ,XMB(4)=SITE
  S XMB(5)=SITENUM,XMB(6)=RMTDUZ,XMB(7)=PHONE
- D ^XMB
- Q
+ I '$D(XTMUNIT) D ^XMB
+ Q 1
  ;
-FAIL ;Send bulletin if fail to add user.
- N I,XMTEXT,XMY,XUTEXT,XMSUB,XMZ,XMMG,ZTQUEUED
- S XMSUB="XUESSO-VISIT ADD FAILED",ZTQUEUED=1
- D MSG^DIALOG("AEST",.XMTEXT)
- S XUTEXT(1)="Attempting to add "_NAME_" from "_SITE
- S XUTEXT(2)=$G(DATIN),XUTEXT(3)=" ",XUTEXT=3,I=0
- F  S I=$O(XMTEXT(I)) Q:'I  S XUTEXT=XUTEXT+1,XUTEXT(XUTEXT)=XMTEXT(I)
- S XMTEXT="XUTEXT(",XMY("G.XUSVISITFAIL@FO-OAKLAND.DOMAIN.EXT")=""
- D ^XMD
- Q
+SSNCHECK(SSN) ;INTRINSIC. Check for valid SSN
+ ; Input: SSN in format "nnnnnnnnn" or "nnn-nn-nnnn"
+ ; Returns: 0 if SSN is invalid, 1 if success
+ ; Valid SSN range 001-01-0001 to 899-99-9999 with exceptions (rule as of 2011)
+ ; Valid Individual Taxpayer Identification Number range 900-01-0001 to 999-99-9999 with exceptions (rule as of 1966)
+ N X
+ S X=$TR(SSN,"-")
+ I $L(X)'=9 Q 0
+ I $E(X,1,3)'>0 Q 0   ;1st 3 digits cannot be 000
+ I $E(X,4,5)'>0 Q 0   ;digits 4-5 cannot be 00
+ I $E(X,6,9)'>0 Q 0   ;digits 6-9 cannot be 0000
+ I $E(X,1,3)=666 Q 0  ;1st 3 digits cannot be 666
+ I (X>987654319)&(X<987654330) Q 0  ;SSN range reserved for advertising
+ I ($E(X,1,3)>899)&($E(X,4,5)=89) Q 0  ;digits 4-5 of ITIN cannot be 89
+ I ($E(X,1,3)>899)&($E(X,4,5)=93) Q 0  ;digits 4-5 of ITIN cannot be 93
+ Q 1

@@ -1,134 +1,132 @@
-IBDEI1QM ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QM ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31100,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,31100,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,31100,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,31101,0)
- ;;=L02.211^^190^1932^117
- ;;^UTILITY(U,$J,358.3,31101,1,0)
+ ;;^UTILITY(U,$J,358.3,30732,1,3,0)
+ ;;=3^Mixed incontinence
+ ;;^UTILITY(U,$J,358.3,30732,1,4,0)
+ ;;=4^N39.46
+ ;;^UTILITY(U,$J,358.3,30732,2)
+ ;;=^5015685
+ ;;^UTILITY(U,$J,358.3,30733,0)
+ ;;=K64.9^^178^1926^4
+ ;;^UTILITY(U,$J,358.3,30733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31101,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,31101,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,31101,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,31102,0)
- ;;=L02.212^^190^1932^118
- ;;^UTILITY(U,$J,358.3,31102,1,0)
+ ;;^UTILITY(U,$J,358.3,30733,1,3,0)
+ ;;=3^Hemorrhoids,Unspec
+ ;;^UTILITY(U,$J,358.3,30733,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,30733,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,30734,0)
+ ;;=K64.4^^178^1926^6
+ ;;^UTILITY(U,$J,358.3,30734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31102,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,31102,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,31102,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,31103,0)
- ;;=L02.213^^190^1932^119
- ;;^UTILITY(U,$J,358.3,31103,1,0)
+ ;;^UTILITY(U,$J,358.3,30734,1,3,0)
+ ;;=3^Residual hemorrhoidal skin tags
+ ;;^UTILITY(U,$J,358.3,30734,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,30734,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,30735,0)
+ ;;=K64.5^^178^1926^5
+ ;;^UTILITY(U,$J,358.3,30735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31103,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,31103,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,31103,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,31104,0)
- ;;=L02.214^^190^1932^121
- ;;^UTILITY(U,$J,358.3,31104,1,0)
+ ;;^UTILITY(U,$J,358.3,30735,1,3,0)
+ ;;=3^Perianal venous thrombosis
+ ;;^UTILITY(U,$J,358.3,30735,1,4,0)
+ ;;=4^K64.5
+ ;;^UTILITY(U,$J,358.3,30735,2)
+ ;;=^5008773
+ ;;^UTILITY(U,$J,358.3,30736,0)
+ ;;=K64.8^^178^1926^3
+ ;;^UTILITY(U,$J,358.3,30736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31104,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,31104,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,31104,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,31105,0)
- ;;=L02.215^^190^1932^126
- ;;^UTILITY(U,$J,358.3,31105,1,0)
+ ;;^UTILITY(U,$J,358.3,30736,1,3,0)
+ ;;=3^Hemorrhoids NEC
+ ;;^UTILITY(U,$J,358.3,30736,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,30736,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,30737,0)
+ ;;=R10.9^^178^1926^1
+ ;;^UTILITY(U,$J,358.3,30737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31105,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,31105,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,31105,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,31106,0)
- ;;=L02.216^^190^1932^131
- ;;^UTILITY(U,$J,358.3,31106,1,0)
+ ;;^UTILITY(U,$J,358.3,30737,1,3,0)
+ ;;=3^Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,30737,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,30737,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,30738,0)
+ ;;=R74.8^^178^1926^2
+ ;;^UTILITY(U,$J,358.3,30738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31106,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,31106,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,31106,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,31107,0)
- ;;=L02.219^^190^1932^130
- ;;^UTILITY(U,$J,358.3,31107,1,0)
+ ;;^UTILITY(U,$J,358.3,30738,1,3,0)
+ ;;=3^Abnormal levels of other serum enzymes
+ ;;^UTILITY(U,$J,358.3,30738,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,30738,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,30739,0)
+ ;;=M76.62^^179^1927^1
+ ;;^UTILITY(U,$J,358.3,30739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31107,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,31107,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,31107,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,31108,0)
- ;;=L02.32^^190^1932^154
- ;;^UTILITY(U,$J,358.3,31108,1,0)
+ ;;^UTILITY(U,$J,358.3,30739,1,3,0)
+ ;;=3^Achilles tendinitis, left leg
+ ;;^UTILITY(U,$J,358.3,30739,1,4,0)
+ ;;=4^M76.62
+ ;;^UTILITY(U,$J,358.3,30739,2)
+ ;;=^5013286
+ ;;^UTILITY(U,$J,358.3,30740,0)
+ ;;=M76.61^^179^1927^2
+ ;;^UTILITY(U,$J,358.3,30740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31108,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,31108,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,31108,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,31109,0)
- ;;=L02.33^^190^1932^92
- ;;^UTILITY(U,$J,358.3,31109,1,0)
+ ;;^UTILITY(U,$J,358.3,30740,1,3,0)
+ ;;=3^Achilles tendinitis, right leg
+ ;;^UTILITY(U,$J,358.3,30740,1,4,0)
+ ;;=4^M76.61
+ ;;^UTILITY(U,$J,358.3,30740,2)
+ ;;=^5013285
+ ;;^UTILITY(U,$J,358.3,30741,0)
+ ;;=M00.872^^179^1927^3
+ ;;^UTILITY(U,$J,358.3,30741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31109,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,31109,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,31109,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,31110,0)
- ;;=L02.415^^190^1932^129
- ;;^UTILITY(U,$J,358.3,31110,1,0)
+ ;;^UTILITY(U,$J,358.3,30741,1,3,0)
+ ;;=3^Arthritis due to other bacteria, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,30741,1,4,0)
+ ;;=4^M00.872
+ ;;^UTILITY(U,$J,358.3,30741,2)
+ ;;=^5009689
+ ;;^UTILITY(U,$J,358.3,30742,0)
+ ;;=M00.871^^179^1927^4
+ ;;^UTILITY(U,$J,358.3,30742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31110,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,31110,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,31110,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,31111,0)
- ;;=L02.416^^190^1932^124
- ;;^UTILITY(U,$J,358.3,31111,1,0)
+ ;;^UTILITY(U,$J,358.3,30742,1,3,0)
+ ;;=3^Arthritis due to other bacteria, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,30742,1,4,0)
+ ;;=4^M00.871
+ ;;^UTILITY(U,$J,358.3,30742,2)
+ ;;=^5009688
+ ;;^UTILITY(U,$J,358.3,30743,0)
+ ;;=S82.52XA^^179^1927^5
+ ;;^UTILITY(U,$J,358.3,30743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31111,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,31111,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,31111,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,31112,0)
- ;;=L02.511^^190^1932^128
- ;;^UTILITY(U,$J,358.3,31112,1,0)
+ ;;^UTILITY(U,$J,358.3,30743,1,3,0)
+ ;;=3^Disp fx of medial malleolus of left tibia, init for clos fx
+ ;;^UTILITY(U,$J,358.3,30743,1,4,0)
+ ;;=4^S82.52XA
+ ;;^UTILITY(U,$J,358.3,30743,2)
+ ;;=^5042231
+ ;;^UTILITY(U,$J,358.3,30744,0)
+ ;;=S82.51XA^^179^1927^6
+ ;;^UTILITY(U,$J,358.3,30744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31112,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,31112,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,31112,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,31113,0)
- ;;=L02.512^^190^1932^123
- ;;^UTILITY(U,$J,358.3,31113,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30744,1,3,0)
+ ;;=3^Disp fx of medial malleolus of right tibia, init for clos fx
+ ;;^UTILITY(U,$J,358.3,30744,1,4,0)
+ ;;=4^S82.51XA
+ ;;^UTILITY(U,$J,358.3,30744,2)
+ ;;=^5042215
+ ;;^UTILITY(U,$J,358.3,30745,0)
+ ;;=M24.072^^179^1927^11

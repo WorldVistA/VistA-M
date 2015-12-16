@@ -1,5 +1,5 @@
-ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ; 11/26/07 10:58am
- ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127**;Dec 22,1997;Build 36
+ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ;3/12/15  16:41
+ ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127,154**;Dec 22,1997;Build 13
  ;
 OBSPAT(ECXIO,ECXTS,DSSID) ;
  ; Get observation patient indicator from DSS TREATING SPECIALTY
@@ -68,7 +68,7 @@ ENCNUM(ECXIO,ECXSSN,ECXADT,ECXVDT,ECXTRT,ECXOBS,ECXEXT,ECXSTP,ECXSTP2) ;
  ;
  ;- Check input vars
  S ECXEXT=$G(ECXEXT),ECXIO=$G(ECXIO),ECXOBS=$G(ECXOBS),ECXTRT=+$G(ECXTRT)
- S ECXSTP=+$G(ECXSTP),ECXSTP2=+$G(ECXSTP2)
+ S:ECXEXT'="ECS"&(ECXEXT'="ECQ") ECXSTP=+$G(ECXSTP) S ECXSTP2=+$G(ECXSTP2) ;154 Allow stop code/DSS ID for ECS&ECQ to be non-numeric
  S ECXADT=+$G(ECXADT),ECXVDT=+$G(ECXVDT)
  ;
  ;- Don't use pseudo-SSN in encounter number
@@ -96,16 +96,11 @@ ENCNUM(ECXIO,ECXSSN,ECXADT,ECXVDT,ECXTRT,ECXOBS,ECXEXT,ECXSTP,ECXSTP2) ;
  ... ;- ADM, MOV, TRT have no outpat encounter number
  ... I ECXEXT="ADM"!(ECXEXT="MOV")!(ECXEXT="TRT") Q
  ... ;
- ... ;- Use 1st 3 chars of DSS ID for NOS and ECQ (feeder key for CLI)
- ... ;- Use observation stop code for IVP
- ... I ECXEXT="CLI"!(ECXEXT="NOS")!(ECXEXT="ECQ") S ECXSTCD=+$E(ECXSTP,1,3) Q:'ECXSTCD
+ ... ;- Use 1st 3 chars of DSS ID for NOS (feeder key for CLI)
+ ... I ECXEXT="CLI"!(ECXEXT="NOS") S ECXSTCD=+$E(ECXSTP,1,3) Q:'ECXSTCD
  ... ;
- ... ;- Use cost center to obtain stop code for ECS
- ... I ECXEXT="ECS" D  Q:'ECXSTCD
- .... S ECXSTCD=$$ECSCOST(ECXSTP2)
- ....;
- ....;- If no cost center, use 1st 3 chars of DSS ID
- .... I ECXSTCD="" S ECXSTCD=+$E(ECXSTP,1,3)
+ ... ;- 154, For ECS remove cost center conversion. For ECS and ECQ set stop code to first 3 characters of ECXSTP
+ ... I ECXEXT="ECS"!(ECXEXT="ECQ") S ECXSTCD=$E(ECXSTP,1,3) ;154
  ... ;
  ... ;- These extracts have predetermined stop code values
  ... I ECXEXT="DEN" S ECXSTCD=180
@@ -208,42 +203,6 @@ CANC(ECXNOR,ECXTMOR) ; Get Surgery Cancelled/Aborted Status
  . I +$G(ECXTMOR) S ECXCANC="A" Q
  . S ECXCANC="C"
  Q ECXCANC
- ;
-ECSCOST(ECXCOST) ;Get ECS extract stop code based on cost center
- ;
- ;
- ; Input:
- ;   ECXCOST  - ECS extract cost center
- ;
- ;Output:
- ;              ECS extract stop code
- ;
- N ECXFND,ECXSTOP,I
- S ECXFND=0
- S ECXSTOP=""
- S ECXCOST=+$G(ECXCOST)
- D
- . I 'ECXCOST Q
- . F I=1:1 Q:ECXFND!($P($T(COST+I),";;",2)="END")  D
- .. I ECXCOST=$P($T(COST+I),";;",2) S ECXSTOP=$P($T(COST+I),";;",3),ECXFND=1
- Q ECXSTOP
- ;
-COST ;- ECS Cost Center and stop code
- ;;833100;;652
- ;;833200;;653
- ;;833300;;681
- ;;834100;;651
- ;;834200;;650
- ;;834300;;681
- ;;834400;;654
- ;;834500;;681
- ;;834600;;681
- ;;834700;;681
- ;;834800;;681
- ;;834900;;681
- ;;836100;;654
- ;;836200;;654
- ;;END
  ;
 HNCI(ECXDFN) ; Get head & neck cancer indicator
  ;

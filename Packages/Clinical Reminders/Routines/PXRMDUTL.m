@@ -1,5 +1,5 @@
 PXRMDUTL ; SLC/AGP - DIALOG UTILITIES. ;04/10/2013
- ;;2.0;CLINICAL REMINDERS;**24,26**;Feb 04, 2005;Build 404
+ ;;2.0;CLINICAL REMINDERS;**24,26,53**;Feb 04, 2005;Build 225
  Q
  ;
  ;==========================================
@@ -52,27 +52,28 @@ DMAKENAT(DA) ; sets the class field and renamed to the correct national format
  Q
  ;
  ;=============================================================
- ; Build an array of findings for dialog types
+ ; Build a TEMP global of findings for dialog types
  ; Input a string of characters for the dialog type field.
  ;    example "EGS" = search element, groups, result groups
  ; Output an array by finding types, Finding IEN, Dialog IEN, "F" or "A"
  ;    example OUT("AUTTHF(",608,631,"F")=""
-FARRAY(OUTPUT,TYPES) ;
+FARRAY(SUB,TYPES) ;
  N AFIEN,AFIND,DIEN,FIND,NODE,OI,TYPE,X
+ K ^TMP($J,SUB)
  F X=1:1:$L(TYPES)  S TYPE=$E(TYPES,X) D 
  .S DIEN=""
  .F  S DIEN=$O(^PXRMD(801.41,"TYPE",TYPE,DIEN)) Q:DIEN'>0  D
  ..I TYPE="S" D  Q
  ...S FIND=$P($G(^PXRMD(801.41,DIEN,50)),U)
- ...I FIND'="" D SETGBL(.OUTPUT,DIEN,FIND_";YTT(601.71,","RG",0)
+ ...I FIND'="" D SETGBL(SUB,DIEN,FIND_";YTT(601.71,","RG",0)
  ..S NODE=$G(^PXRMD(801.41,DIEN,1))
  ..S FIND=$P(NODE,U,5),OI=$P(NODE,U,7)
- ..I FIND'="" D SETGBL(.OUTPUT,DIEN,FIND,"F",0)
- ..I OI'="" D SETGBL(.OUTPUT,DIEN,OI_";ORD(101.43,","O",0)
+ ..I FIND'="" D SETGBL(SUB,DIEN,FIND,"F",0)
+ ..I OI'="" D SETGBL(SUB,DIEN,OI_";ORD(101.43,","O",0)
  ..S AFIND=""
  ..F  S AFIND=$O(^PXRMD(801.41,DIEN,3,"B",AFIND)) Q:AFIND=""  D
  ...S AFIEN=$O(^PXRMD(801.41,DIEN,3,"B",AFIND,""))
- ...D SETGBL(.OUTPUT,DIEN,AFIND,"A",AFIEN)
+ ...D SETGBL(SUB,DIEN,AFIND,"A",AFIEN)
  Q
  ;
 RTAXNAME(NAME) ;
@@ -88,11 +89,11 @@ RTAXNAME(NAME) ;
  .I '$D(^PXD(811.2,"B",TEMP_CNT)) S RESULT=TEMP_CNT,FOUND=1
  Q RESULT
  ;
-SETGBL(ARRAY,DIEN,VARP,LOC,IEN) ;
+SETGBL(SUB,DIEN,VARP,LOC,IEN) ;
  N FIEN,GBL
  S GBL=$P(VARP,";",2),FIEN=$P(VARP,";")
- I LOC="A" S ARRAY(GBL,FIEN,DIEN,LOC,IEN)="" Q
- S ARRAY(GBL,FIEN,DIEN,LOC)=""
+ I LOC="A" S ^TMP($J,SUB,GBL,FIEN,DIEN,LOC,IEN)="" Q
+ S ^TMP($J,SUB,GBL,FIEN,DIEN,LOC)=""
  Q
  ;
 NATCONV(DIEN) ; entry point to convert a local dialog to a national dialog

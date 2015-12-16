@@ -1,6 +1,6 @@
 IBCSC4E ;ALB/ARH - ADD/ENTER PTF/OE DIAGNOSIS ;3/2/94
- ;;2.0;INTEGRATED BILLING;**8,106,121,124,210,266,403,479**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**8,106,121,124,210,266,403,479,522**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DXINPT(IBIFN) ; display and ask user to select PTF diagnosis
  N IBLIST,IBPTFDX
@@ -42,7 +42,7 @@ ITPTF ;
  .. S IBY="",IB1=$E(IBZ,2,999),IB2=$E(IB2,2,999),IBZ=$E(IBZ,1) I +IB2'>+IB1 K X Q
  .. F IBJ=IB1:1:IB2 S IBY=IBY_IBZ_IBJ_"-" I IBJ>$G(IBPTFDX(IBZ)) Q
  . F IBJ=1:1 S IB1=$P(IBY,"-",IBJ) Q:IB1=""  S IB2=$E(IB1,1),IB3=$E(IB1,2,99) D  Q:'$D(X)
- .. I IB1'?1U1.3N K X Q
+ .. I IB1'?1A1.3N K X Q
  .. I IB2=""!'IB3 K X Q
  .. I '$D(IBPTFDX(IB2)) K X Q
  .. I IB3>+$G(IBPTFDX(IB2)) K X Q
@@ -52,15 +52,15 @@ ITPTF ;
 PTFADD(IBIFN,LIST) ;
  Q:'$D(^TMP($J,"IBDX","S"))!($G(LIST)="")!('$G(IBIFN))  N IBX,IBY,IBI,IBCD,IBDX
  F IBI=1:1 S IBCD=$P(LIST,",",IBI) Q:IBCD=""  D
- . S IBDX=+$G(^TMP($J,"IBDX","S",IBCD)) Q:'IBDX
- . I ($$ICD9^IBACSV(+IBDX)'=""),'$D(^IBA(362.3,"AIFN"_IBIFN,+IBDX)) I $$ADD^IBCSC4D(+IBDX,IBIFN) W "."
+ . S IBDX=$G(^TMP($J,"IBDX","S",IBCD)) Q:'IBDX
+ . I ($$ICD9^IBACSV(+IBDX)'=""),'$D(^IBA(362.3,"AIFN"_IBIFN,+IBDX)) I $$ADD^IBCSC4D(+IBDX,IBIFN,$P(IBDX,U,3)) W "."
  Q
  ;
 PTFDSP(IBIFN) ; display PTF diagnosis within date range of the bill
  ; Output:  ^TMP($J,"IBDX") as defined by PTFDXDT^IBCSC4F   and
  ;          ^TMP($J,"IBDX","S",x) = DIAGNOSIS w/x=selection identifer for a dx
  N IB0,IBPTF,IBTF,IBU,IBFDT,IBTDT,IBDSCH,IBW,IBC,IBA,IBN,IBCNT,IBMCNT,IBMDT,IBMV,IBDT,IBLN,IBLABEL,IBDXCNT,IBI
- N IBDX,IBID,IBON,IBY,IBMDRG,X,IBDATE,IEN362,POA
+ N IBDX,IBID,IBON,IBY,IBMDRG,X,IBDATE,IBPOA,DIR,Y,IBMAXMV S IBMAXMV=0
  ;
  K ^TMP($J,"IBDX") S IBW=41
  ;
@@ -69,8 +69,10 @@ PTFDSP(IBIFN) ; display PTF diagnosis within date range of the bill
  S IBU=$G(^DGCR(399,+IBIFN,"U")),IBFDT=+IBU,IBTDT=$P(IBU,U,2) Q:$P(IB0,U,5)>2
  ;
  D PTFDXDT^IBCSC4F(IBPTF,IBFDT,IBTDT,IBTF) S IBDSCH=$P(+$P($G(^TMP($J,"IBDX","M")),U,3),".")
- ; ibmcnt=31 to skip '^'
- F IBN="M","D" S (IBCNT,IBMCNT,IBMDT)="" F  S IBMDT=$O(^TMP($J,"IBDX",IBN,IBMDT)) Q:'IBMDT  S IBMCNT=IBMCNT+1 S:IBMCNT=30 IBMCNT=31 D
+ ; 
+ F IBN="M","D" S (IBCNT,IBMCNT,IBMDT)="" F  S IBMDT=$O(^TMP($J,"IBDX",IBN,IBMDT)) Q:'IBMDT  D  Q:IBMAXMV
+ . S IBMCNT=IBMCNT+1 S IBMCNT=$S(IBMCNT=27:33,IBMCNT=24:25,IBMCNT=56:57,1:IBMCNT) I IBMCNT>58 S IBMAXMV=1 Q
+ . ;
  . S IBMV=$G(^TMP($J,"IBDX",IBN,IBMDT)),IBDT=+IBMV,IBMDRG=$P(IBMV,U,4)
  . I IBN="M" S IBC=0,IBLABEL="Move",IBA=$C(64+IBMCNT) I 'IBDT S IBDT="D/C"
  . I IBN="D" S IBC=41,IBLABEL="Discharge",IBA="X" I 'IBDT S IBDT="NOT DISCHARGED"
@@ -85,11 +87,9 @@ PTFDSP(IBIFN) ; display PTF diagnosis within date range of the bill
  . I '$O(^TMP($J,"IBDX",IBN,IBMDT,"")) S IBCNT=IBCNT+1,X(IBCNT)=$G(X(IBCNT))_$J("",IBW),X(IBCNT)=$E(X(IBCNT),1,IBC)_"  No DX Codes Entered For "_IBLABEL
  . ;
  . S (IBDXCNT,IBI)="" F  S IBI=$O(^TMP($J,"IBDX",IBN,IBMDT,IBI)) Q:'IBI  D
- .. S IBDX=^TMP($J,"IBDX",IBN,IBMDT,IBI),IBY=$$ICD9^IBACSV(+IBDX,IBDATE)
- .. S IEN362=$O(^IBA(362.3,"AIFN"_IBIFN,+IBDX,""))
- .. S IBDXCNT=IBDXCNT+1,IBID=IBA_IBDXCNT,IBON=$S(IEN362:"*",1:" ")
- .. S POA="" S:$P(IB0,U,19)=3 POA=$$GETPOA^IBCEU4(IEN362,1) S:POA'="" POA=" ("_POA_") "
- .. S IBLN=" "_IBON_IBID_" - "_$P(IBY,U,1)_POA_$J("",(7-$L($P(IBY,U,1))))_$E($P(IBY,U,3),1,23)
+ .. S IBDX=^TMP($J,"IBDX",IBN,IBMDT,IBI),IBPOA=$P(IBDX,U,3),IBY=$$ICD9^IBACSV(+IBDX,IBDATE)
+ .. S IBDXCNT=IBDXCNT+1,IBID=IBA_IBDXCNT,IBON=" " I +$O(^IBA(362.3,"AIFN"_IBIFN,+IBDX,"")) S IBON="*"
+ .. S IBLN=" "_IBON_IBID_" - " S IBLN=IBLN_$J("",(8-$L(IBLN)))_$P(IBY,U,1) S IBLN=IBLN_$J("",(17-$L(IBLN)))_$E($P(IBY,U,3),1,22) I IBPOA'="" S $E(IBLN,36,39)=" ("_IBPOA_")"
  .. S IBCNT=IBCNT+1,X(IBCNT)=$G(X(IBCNT))_$J("",IBW),X(IBCNT)=$E(X(IBCNT),1,IBC)_IBLN
  .. S ^TMP($J,"IBDX","S",IBID)=IBDX
  . ;
@@ -99,8 +99,11 @@ PTFDSP(IBIFN) ; display PTF diagnosis within date range of the bill
  I IBDSCH,IBTDT<IBDSCH S IBCNT=2,X(IBCNT)=$G(X(IBCNT))_$J("",IBW),X(IBCNT)=$E(X(IBCNT),1,IBW)_"Discharge: "_$$FMTE^XLFDT(+$P(IBDSCH,"."),2)_" Not In Bill Range"
  I 'IBDSCH,IBTDT<DT S IBCNT=2,X(IBCNT)=$G(X(IBCNT))_$J("",IBW),X(IBCNT)=$E(X(IBCNT),1,IBW)_"Discharge:  NOT DISCHARGED"
  ;
+ I IBMAXMV S IBCNT=$O(X("A"),-1)+1 S X(IBCNT)="Maximum number of displayable movements exceeded."
+ ;
  W @IOF,"=============================== Diagnosis Screen ==============================="
- S IBI="" F  S IBI=$O(X(IBI)) Q:'IBI  W !,$E(X(IBI),1,80)
+ S IBCNT=1,IBI="" F  S IBI=$O(X(IBI)) Q:'IBI  W !,$E(X(IBI),1,80) S IBCNT=IBCNT+1 I IBCNT>22 D  S IBCNT=1 Q:'Y
+ . S DIR(0)="E" D ^DIR W !
  Q
  ;
 DELALL(IBIFN) ; ask/delete all diagnosis on a bill, including all CPT associated Diagnosis

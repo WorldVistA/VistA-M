@@ -1,132 +1,124 @@
-IBDEI1X9 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1X9 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34133,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,34133,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,34134,0)
- ;;=C39.9^^192^1989^14
- ;;^UTILITY(U,$J,358.3,34134,1,0)
+ ;;^UTILITY(U,$J,358.3,33774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34134,1,3,0)
- ;;=3^Malig Neop Lower Respiratory Tract,Unspec Part
- ;;^UTILITY(U,$J,358.3,34134,1,4,0)
- ;;=4^C39.9
- ;;^UTILITY(U,$J,358.3,34134,2)
- ;;=^5000972
- ;;^UTILITY(U,$J,358.3,34135,0)
- ;;=C34.2^^192^1989^15
- ;;^UTILITY(U,$J,358.3,34135,1,0)
+ ;;^UTILITY(U,$J,358.3,33774,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33774,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,33774,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,33775,0)
+ ;;=W00.0XXD^^182^2011^76
+ ;;^UTILITY(U,$J,358.3,33775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34135,1,3,0)
- ;;=3^Malig Neop Middle Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34135,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,34135,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,34136,0)
- ;;=C34.82^^192^1989^16
- ;;^UTILITY(U,$J,358.3,34136,1,0)
+ ;;^UTILITY(U,$J,358.3,33775,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33775,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,33775,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,33776,0)
+ ;;=W00.1XXA^^182^2011^59
+ ;;^UTILITY(U,$J,358.3,33776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34136,1,3,0)
- ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34136,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,34136,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,34137,0)
- ;;=C34.81^^192^1989^17
- ;;^UTILITY(U,$J,358.3,34137,1,0)
+ ;;^UTILITY(U,$J,358.3,33776,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33776,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,33776,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,33777,0)
+ ;;=W00.1XXD^^182^2011^60
+ ;;^UTILITY(U,$J,358.3,33777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34137,1,3,0)
- ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34137,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,34137,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,34138,0)
- ;;=C38.4^^192^1989^18
- ;;^UTILITY(U,$J,358.3,34138,1,0)
+ ;;^UTILITY(U,$J,358.3,33777,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33777,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,33777,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,33778,0)
+ ;;=W00.2XXA^^182^2011^51
+ ;;^UTILITY(U,$J,358.3,33778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34138,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,34138,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,34138,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,34139,0)
- ;;=C34.01^^192^1989^21
- ;;^UTILITY(U,$J,358.3,34139,1,0)
+ ;;^UTILITY(U,$J,358.3,33778,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33778,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,33778,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,33779,0)
+ ;;=W00.2XXD^^182^2011^52
+ ;;^UTILITY(U,$J,358.3,33779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34139,1,3,0)
- ;;=3^Malig Neop Right Main Bronchus
- ;;^UTILITY(U,$J,358.3,34139,1,4,0)
- ;;=4^C34.01
- ;;^UTILITY(U,$J,358.3,34139,2)
- ;;=^5000958
- ;;^UTILITY(U,$J,358.3,34140,0)
- ;;=C34.92^^192^1989^10
- ;;^UTILITY(U,$J,358.3,34140,1,0)
+ ;;^UTILITY(U,$J,358.3,33779,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33779,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,33779,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,33780,0)
+ ;;=W00.9XXA^^182^2011^21
+ ;;^UTILITY(U,$J,358.3,33780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34140,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,34140,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,34140,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,34141,0)
- ;;=C34.91^^192^1989^19
- ;;^UTILITY(U,$J,358.3,34141,1,0)
+ ;;^UTILITY(U,$J,358.3,33780,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33780,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,33780,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,33781,0)
+ ;;=W00.9XXD^^182^2011^22
+ ;;^UTILITY(U,$J,358.3,33781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34141,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,34141,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,34141,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,34142,0)
- ;;=C34.12^^192^1989^13
- ;;^UTILITY(U,$J,358.3,34142,1,0)
+ ;;^UTILITY(U,$J,358.3,33781,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33781,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,33781,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,33782,0)
+ ;;=W01.0XXA^^182^2011^83
+ ;;^UTILITY(U,$J,358.3,33782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34142,1,3,0)
- ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34142,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,34142,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,34143,0)
- ;;=C34.11^^192^1989^22
- ;;^UTILITY(U,$J,358.3,34143,1,0)
+ ;;^UTILITY(U,$J,358.3,33782,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33782,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,33782,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,33783,0)
+ ;;=W01.0XXD^^182^2011^84
+ ;;^UTILITY(U,$J,358.3,33783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34143,1,3,0)
- ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34143,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,34143,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,34144,0)
- ;;=C39.0^^192^1989^23
- ;;^UTILITY(U,$J,358.3,34144,1,0)
+ ;;^UTILITY(U,$J,358.3,33783,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33783,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,33783,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,33784,0)
+ ;;=W03.XXXA^^182^2011^81
+ ;;^UTILITY(U,$J,358.3,33784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34144,1,3,0)
- ;;=3^Malig Neop Upper Respiratory Tract,Unspec Part
- ;;^UTILITY(U,$J,358.3,34144,1,4,0)
- ;;=4^C39.0
- ;;^UTILITY(U,$J,358.3,34144,2)
- ;;=^5000971
- ;;^UTILITY(U,$J,358.3,34145,0)
- ;;=J98.4^^192^1989^8
- ;;^UTILITY(U,$J,358.3,34145,1,0)
+ ;;^UTILITY(U,$J,358.3,33784,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33784,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,33784,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,33785,0)
+ ;;=W03.XXXD^^182^2011^82
+ ;;^UTILITY(U,$J,358.3,33785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34145,1,3,0)
- ;;=3^Lung Disorder NEC
- ;;^UTILITY(U,$J,358.3,34145,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,34145,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,34146,0)
- ;;=J98.19^^192^1989^24
- ;;^UTILITY(U,$J,358.3,34146,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33785,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33785,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,33785,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,33786,0)
+ ;;=W05.0XXA^^182^2011^49

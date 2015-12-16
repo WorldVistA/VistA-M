@@ -1,148 +1,128 @@
-IBDEI02K ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02K ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,732,2)
- ;;=^269397
- ;;^UTILITY(U,$J,358.3,733,0)
- ;;=382.1^^8^85^43
- ;;^UTILITY(U,$J,358.3,733,1,0)
+ ;;^UTILITY(U,$J,358.3,648,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of nasl cav, mid ear, & acces sinus
+ ;;^UTILITY(U,$J,358.3,648,1,4,0)
+ ;;=4^Z85.22
+ ;;^UTILITY(U,$J,358.3,648,2)
+ ;;=^5063412
+ ;;^UTILITY(U,$J,358.3,649,0)
+ ;;=Z85.238^^2^27^17
+ ;;^UTILITY(U,$J,358.3,649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,733,1,3,0)
- ;;=3^382.1
- ;;^UTILITY(U,$J,358.3,733,1,4,0)
- ;;=4^Chr Tubotympanic Supp OM
- ;;^UTILITY(U,$J,358.3,733,2)
- ;;=^269398
- ;;^UTILITY(U,$J,358.3,734,0)
- ;;=382.2^^8^85^32
- ;;^UTILITY(U,$J,358.3,734,1,0)
+ ;;^UTILITY(U,$J,358.3,649,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of thymus NEC
+ ;;^UTILITY(U,$J,358.3,649,1,4,0)
+ ;;=4^Z85.238
+ ;;^UTILITY(U,$J,358.3,649,2)
+ ;;=^5063414
+ ;;^UTILITY(U,$J,358.3,650,0)
+ ;;=Z85.29^^2^27^18
+ ;;^UTILITY(U,$J,358.3,650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,734,1,3,0)
- ;;=3^382.2
- ;;^UTILITY(U,$J,358.3,734,1,4,0)
- ;;=4^Chr Attrcoantral Supp OM
- ;;^UTILITY(U,$J,358.3,734,2)
- ;;=^269399
- ;;^UTILITY(U,$J,358.3,735,0)
- ;;=382.3^^8^85^42
- ;;^UTILITY(U,$J,358.3,735,1,0)
+ ;;^UTILITY(U,$J,358.3,650,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of resp and intrathorac organs
+ ;;^UTILITY(U,$J,358.3,650,1,4,0)
+ ;;=4^Z85.29
+ ;;^UTILITY(U,$J,358.3,650,2)
+ ;;=^5063415
+ ;;^UTILITY(U,$J,358.3,651,0)
+ ;;=Z85.3^^2^27^19
+ ;;^UTILITY(U,$J,358.3,651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,735,1,3,0)
- ;;=3^382.3
- ;;^UTILITY(U,$J,358.3,735,1,4,0)
- ;;=4^Chr Supp OM, NOS
- ;;^UTILITY(U,$J,358.3,735,2)
- ;;=^186937
- ;;^UTILITY(U,$J,358.3,736,0)
- ;;=382.4^^8^85^88
- ;;^UTILITY(U,$J,358.3,736,1,0)
+ ;;^UTILITY(U,$J,358.3,651,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of breast
+ ;;^UTILITY(U,$J,358.3,651,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,651,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,652,0)
+ ;;=Z85.41^^2^27^20
+ ;;^UTILITY(U,$J,358.3,652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,736,1,3,0)
- ;;=3^382.4
- ;;^UTILITY(U,$J,358.3,736,1,4,0)
- ;;=4^Suppurative OM, Unspec
- ;;^UTILITY(U,$J,358.3,736,2)
- ;;=^88285
- ;;^UTILITY(U,$J,358.3,737,0)
- ;;=382.9^^8^85^69
- ;;^UTILITY(U,$J,358.3,737,1,0)
+ ;;^UTILITY(U,$J,358.3,652,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of cervix uteri
+ ;;^UTILITY(U,$J,358.3,652,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,652,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,653,0)
+ ;;=Z85.43^^2^27^21
+ ;;^UTILITY(U,$J,358.3,653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,737,1,3,0)
- ;;=3^382.9
- ;;^UTILITY(U,$J,358.3,737,1,4,0)
- ;;=4^Otitis Media NOS
- ;;^UTILITY(U,$J,358.3,737,2)
- ;;=^123967
- ;;^UTILITY(U,$J,358.3,738,0)
- ;;=383.00^^8^85^6
- ;;^UTILITY(U,$J,358.3,738,1,0)
+ ;;^UTILITY(U,$J,358.3,653,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of ovary
+ ;;^UTILITY(U,$J,358.3,653,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,653,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,654,0)
+ ;;=Z85.44^^2^27^22
+ ;;^UTILITY(U,$J,358.3,654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,738,1,3,0)
- ;;=3^383.00
- ;;^UTILITY(U,$J,358.3,738,1,4,0)
- ;;=4^AC Mastoiditis w/o Compl
- ;;^UTILITY(U,$J,358.3,738,2)
- ;;=^269402
- ;;^UTILITY(U,$J,358.3,739,0)
- ;;=383.01^^8^85^87
- ;;^UTILITY(U,$J,358.3,739,1,0)
+ ;;^UTILITY(U,$J,358.3,654,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of female genital organs
+ ;;^UTILITY(U,$J,358.3,654,1,4,0)
+ ;;=4^Z85.44
+ ;;^UTILITY(U,$J,358.3,654,2)
+ ;;=^5063421
+ ;;^UTILITY(U,$J,358.3,655,0)
+ ;;=Z85.46^^2^27^23
+ ;;^UTILITY(U,$J,358.3,655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,739,1,3,0)
- ;;=3^383.01
- ;;^UTILITY(U,$J,358.3,739,1,4,0)
- ;;=4^Subperiosteal Mastoid Abscess
- ;;^UTILITY(U,$J,358.3,739,2)
- ;;=^269403
- ;;^UTILITY(U,$J,358.3,740,0)
- ;;=383.02^^8^85^7
- ;;^UTILITY(U,$J,358.3,740,1,0)
+ ;;^UTILITY(U,$J,358.3,655,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of prostate
+ ;;^UTILITY(U,$J,358.3,655,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,655,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,656,0)
+ ;;=Z85.47^^2^27^24
+ ;;^UTILITY(U,$J,358.3,656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,740,1,3,0)
- ;;=3^383.02
- ;;^UTILITY(U,$J,358.3,740,1,4,0)
- ;;=4^AC Mastoiditis w/oth Compl
- ;;^UTILITY(U,$J,358.3,740,2)
- ;;=^269404
- ;;^UTILITY(U,$J,358.3,741,0)
- ;;=383.1^^8^85^35
- ;;^UTILITY(U,$J,358.3,741,1,0)
+ ;;^UTILITY(U,$J,358.3,656,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of testis
+ ;;^UTILITY(U,$J,358.3,656,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,656,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,657,0)
+ ;;=Z85.49^^2^27^25
+ ;;^UTILITY(U,$J,358.3,657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,741,1,3,0)
- ;;=3^383.1
- ;;^UTILITY(U,$J,358.3,741,1,4,0)
- ;;=4^Chr Mastoiditis
- ;;^UTILITY(U,$J,358.3,741,2)
- ;;=^269405
- ;;^UTILITY(U,$J,358.3,742,0)
- ;;=383.30^^8^85^78
- ;;^UTILITY(U,$J,358.3,742,1,0)
+ ;;^UTILITY(U,$J,358.3,657,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of male genital organs
+ ;;^UTILITY(U,$J,358.3,657,1,4,0)
+ ;;=4^Z85.49
+ ;;^UTILITY(U,$J,358.3,657,2)
+ ;;=^5063426
+ ;;^UTILITY(U,$J,358.3,658,0)
+ ;;=Z85.51^^2^27^26
+ ;;^UTILITY(U,$J,358.3,658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,742,1,3,0)
- ;;=3^383.30
- ;;^UTILITY(U,$J,358.3,742,1,4,0)
- ;;=4^PostMastoidectomy Compl NOS
- ;;^UTILITY(U,$J,358.3,742,2)
- ;;=^269413
- ;;^UTILITY(U,$J,358.3,743,0)
- ;;=383.31^^8^85^79
- ;;^UTILITY(U,$J,358.3,743,1,0)
+ ;;^UTILITY(U,$J,358.3,658,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of bladder
+ ;;^UTILITY(U,$J,358.3,658,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,658,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,659,0)
+ ;;=Z85.528^^2^27^27
+ ;;^UTILITY(U,$J,358.3,659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,743,1,3,0)
- ;;=3^383.31
- ;;^UTILITY(U,$J,358.3,743,1,4,0)
- ;;=4^Postmastoid Mucosal Cyst
- ;;^UTILITY(U,$J,358.3,743,2)
- ;;=^269414
- ;;^UTILITY(U,$J,358.3,744,0)
- ;;=383.32^^8^85^82
- ;;^UTILITY(U,$J,358.3,744,1,0)
+ ;;^UTILITY(U,$J,358.3,659,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of kidney NEC
+ ;;^UTILITY(U,$J,358.3,659,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,659,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,660,0)
+ ;;=Z85.79^^2^27^28
+ ;;^UTILITY(U,$J,358.3,660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,744,1,3,0)
- ;;=3^383.32
- ;;^UTILITY(U,$J,358.3,744,1,4,0)
- ;;=4^Recurr Cholesteatma
- ;;^UTILITY(U,$J,358.3,744,2)
- ;;=^269415
- ;;^UTILITY(U,$J,358.3,745,0)
- ;;=383.33^^8^85^80
- ;;^UTILITY(U,$J,358.3,745,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,745,1,3,0)
- ;;=3^383.33
- ;;^UTILITY(U,$J,358.3,745,1,4,0)
- ;;=4^Postmastoidect Granulations
- ;;^UTILITY(U,$J,358.3,745,2)
- ;;=^269418
- ;;^UTILITY(U,$J,358.3,746,0)
- ;;=387.0^^8^85^72
- ;;^UTILITY(U,$J,358.3,746,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,746,1,3,0)
- ;;=3^387.0
- ;;^UTILITY(U,$J,358.3,746,1,4,0)
- ;;=4^Otoscler-Oval Wnd, Nonobl
- ;;^UTILITY(U,$J,358.3,746,2)
- ;;=^269515
- ;;^UTILITY(U,$J,358.3,747,0)
- ;;=387.1^^8^85^73
+ ;;^UTILITY(U,$J,358.3,660,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of lymphoid, hematpoetc & rel tiss
+ ;;^UTILITY(U,$J,358.3,660,1,4,0)
+ ;;=4^Z85.79

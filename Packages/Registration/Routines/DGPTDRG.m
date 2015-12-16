@@ -1,6 +1,11 @@
-DGPTDRG ;ALB/ABS - DRG Information Report User Prompts ;11/15/06 8:31am
- ;;5.3;Registration;**60,441,510,559,599,606,669,729,850**;Aug 13, 1993;Build 171
+DGPTDRG ;ALB/ABS,HIOFO/FT - DRG Information Report User Prompts ;07/01/2015  11:21 AM
+ ;;5.3;Registration;**60,441,510,559,599,606,669,729,850,884**;Aug 13, 1993;Build 31
  ;;ADL;Update for CSV Project;;Mar 28, 2003
+ ;
+ ; %ZIS APIs - #10086
+ ;
+ ; called by entry action of DRG Information Report [DG PTF DRG INFORMATION OUTPUT] DGPTODR=1
+ ; called by DRG Calculation [DG DRG CALCULATION]
  ;
  S U="^" D Q,DT^DICRW
 PAT ;
@@ -68,7 +73,7 @@ DX ;
  S DGDXPOA=$S(DGTERMIN="10D":$$ASKPOA(0),1:"Y")
  ;
  S PROMPT="Enter SECONDARY diagnosis "_$$DISP()_": " W !
- F DGI=2:1:5 D DIAG^DGPTFIC Q:$G(X)["^"!($G(X)="")  D
+ F DGI=2:1:25 D DIAG^DGPTFIC Q:$G(X)["^"!($G(X)="")  D
  . S DGPTTMP=Y
  . I '$P(DGPTTMP,U,10) D INAC S DGI=DGI-1 Q
  . I +DGPTTMP>0&($P(DGPTTMP,U,10)) S DGDX=DGDX_"^"_+Y,DGDX(DGI)=$P(DGPTTMP,"^",2)_"^"_$P(DGPTTMP,"^",4)
@@ -113,7 +118,7 @@ INAC ;
  Q
  ;
 ASKPOA(CNT) ; -- asks POA for each Diagnosis
- N X,Y,DIR,DUOUT,DTOUT,DIRUT,DIROUT,DGPOA
+ N X,Y,DIR,DUOUT,DTOUT,DIRUT,DIROUT,DGPOA,DA
  S DIR(0)="45,82.01"
  S DIR("A")=$S(+$G(CNT)=0:"POA FOR PRINCIPAL diagnosis",1:"POA FOR SECONDARY diagnosis "_+$G(CNT))
  S DIR("B")="Y"
@@ -129,7 +134,7 @@ OP() ; -- asks Operation Procedure code.
  S DGI=1
  S PROMPT="Enter Operation/Procedure "_$$DISP()_": "
  S DGDRGDT=DGDAT
- F DGI=1:1:4 D PROC^DGPTFIC Q:$G(X)["^"!($G(X)="")  D
+ F DGI=1:1:25 D PROC^DGPTFIC Q:$G(X)["^"!($G(X)="")  D
  . I +Y>0,($P(Y,U,10)'=0) S DGSURG=+Y_"^"_$G(DGSURG)
  . S:$P(Y,U,10)'=0 DGSURG(DGI)=$P(Y,U,2)_U_$P(Y,U,5)
  ; added next line for DG*5.3*441
@@ -145,7 +150,7 @@ Q2 K AGE,NAME,SEX,DGDMS,DGDRGPRT,DGDX,DGEXP,DGSURG,DGTRS,DGLN,DGPG,DGQ,DGTMP,DGX
  Q
  ;
 HDR ;print heading
- S DGPG=$G(DGPG)+1 W @IOF,"DRG Calculation",?45,"Date: " S Y=DT X ^DD("DD") W Y,"  Page: ",DGPG,!!
+ S DGPG=$G(DGPG)+1 W:$Y>0 @IOF,"DRG Calculation",?45,"Date: " S Y=DT X ^DD("DD") W Y,"  Page: ",DGPG,!!
  S Y=DGDAT D DD^%DT ; Y = external format of effective date
  W "Effective Date: ",Y,! I NAME]"" W "Patient: ",NAME,?40
  W "Sex: ",$S(SEX="M":"Male",1:"Female"),?61,"Age: ",AGE,!,"Expired: ",$S(DGEXP:"Yes",1:"No"),?18,"Transferred to Acute Care: ",$S(DGTRS:"Yes",1:"No"),?55,"Irreg D/C: ",$S(DGDMS:"Yes",1:"No")

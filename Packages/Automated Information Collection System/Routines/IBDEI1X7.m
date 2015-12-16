@@ -1,138 +1,128 @@
-IBDEI1X7 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1X7 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34107,1,0)
+ ;;^UTILITY(U,$J,358.3,33749,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,33750,0)
+ ;;=R40.2314^^182^2010^11
+ ;;^UTILITY(U,$J,358.3,33750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34107,1,3,0)
- ;;=3^REM Sleep Behavior Disorder
- ;;^UTILITY(U,$J,358.3,34107,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,34107,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,34108,0)
- ;;=R06.83^^192^1986^9
- ;;^UTILITY(U,$J,358.3,34108,1,0)
+ ;;^UTILITY(U,$J,358.3,33750,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33750,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,33750,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,33751,0)
+ ;;=R40.2313^^182^2010^14
+ ;;^UTILITY(U,$J,358.3,33751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34108,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,34108,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,34108,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,34109,0)
- ;;=G47.31^^192^1987^1
- ;;^UTILITY(U,$J,358.3,34109,1,0)
+ ;;^UTILITY(U,$J,358.3,33751,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33751,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,33751,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,33752,0)
+ ;;=R40.2312^^182^2010^12
+ ;;^UTILITY(U,$J,358.3,33752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34109,1,3,0)
- ;;=3^Central Sleep Apnea,Primary
- ;;^UTILITY(U,$J,358.3,34109,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,34109,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,34110,0)
- ;;=G47.36^^192^1987^2
- ;;^UTILITY(U,$J,358.3,34110,1,0)
+ ;;^UTILITY(U,$J,358.3,33752,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,33752,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,33752,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,33753,0)
+ ;;=R40.2311^^182^2010^15
+ ;;^UTILITY(U,$J,358.3,33753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34110,1,3,0)
- ;;=3^Hypoventilation,Sleep Related
- ;;^UTILITY(U,$J,358.3,34110,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,34110,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,34111,0)
- ;;=Z43.0^^192^1988^3
- ;;^UTILITY(U,$J,358.3,34111,1,0)
+ ;;^UTILITY(U,$J,358.3,33753,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,33753,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,33753,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,33754,0)
+ ;;=R40.2310^^182^2010^13
+ ;;^UTILITY(U,$J,358.3,33754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34111,1,3,0)
- ;;=3^Attention to Tracheostomy
- ;;^UTILITY(U,$J,358.3,34111,1,4,0)
- ;;=4^Z43.0
- ;;^UTILITY(U,$J,358.3,34111,2)
- ;;=^5062958
- ;;^UTILITY(U,$J,358.3,34112,0)
- ;;=Z71.3^^192^1988^5
- ;;^UTILITY(U,$J,358.3,34112,1,0)
+ ;;^UTILITY(U,$J,358.3,33754,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33754,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,33754,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,33755,0)
+ ;;=R40.4^^182^2010^38
+ ;;^UTILITY(U,$J,358.3,33755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34112,1,3,0)
- ;;=3^Counseling & Surveillance,Dietary
- ;;^UTILITY(U,$J,358.3,34112,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,34112,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,34113,0)
- ;;=Z71.89^^192^1988^6
- ;;^UTILITY(U,$J,358.3,34113,1,0)
+ ;;^UTILITY(U,$J,358.3,33755,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,33755,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,33755,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,33756,0)
+ ;;=V00.811A^^182^2011^43
+ ;;^UTILITY(U,$J,358.3,33756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34113,1,3,0)
- ;;=3^Counseling,Other Spec
- ;;^UTILITY(U,$J,358.3,34113,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,34113,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,34114,0)
- ;;=Z02.3^^192^1988^9
- ;;^UTILITY(U,$J,358.3,34114,1,0)
+ ;;^UTILITY(U,$J,358.3,33756,1,3,0)
+ ;;=3^Fall from Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33756,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,33756,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,33757,0)
+ ;;=V00.811D^^182^2011^44
+ ;;^UTILITY(U,$J,358.3,33757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34114,1,3,0)
- ;;=3^Recruitment to Armed Forces Exam
- ;;^UTILITY(U,$J,358.3,34114,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,34114,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,34115,0)
- ;;=Z02.1^^192^1988^8
- ;;^UTILITY(U,$J,358.3,34115,1,0)
+ ;;^UTILITY(U,$J,358.3,33757,1,3,0)
+ ;;=3^Fall from Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33757,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,33757,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,33758,0)
+ ;;=V00.812A^^182^2011^121
+ ;;^UTILITY(U,$J,358.3,33758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34115,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,34115,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,34115,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,34116,0)
- ;;=Z02.89^^192^1988^2
- ;;^UTILITY(U,$J,358.3,34116,1,0)
+ ;;^UTILITY(U,$J,358.3,33758,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33758,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,33758,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,33759,0)
+ ;;=V00.812D^^182^2011^122
+ ;;^UTILITY(U,$J,358.3,33759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34116,1,3,0)
- ;;=3^Administrative Exam
- ;;^UTILITY(U,$J,358.3,34116,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,34116,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,34117,0)
- ;;=Z13.83^^192^1988^10
- ;;^UTILITY(U,$J,358.3,34117,1,0)
+ ;;^UTILITY(U,$J,358.3,33759,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33759,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,33759,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,33760,0)
+ ;;=V00.818A^^182^2011^119
+ ;;^UTILITY(U,$J,358.3,33760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34117,1,3,0)
- ;;=3^Respiratory Disorder Screen
- ;;^UTILITY(U,$J,358.3,34117,1,4,0)
- ;;=4^Z13.83
- ;;^UTILITY(U,$J,358.3,34117,2)
- ;;=^5062715
- ;;^UTILITY(U,$J,358.3,34118,0)
- ;;=J98.01^^192^1988^1
- ;;^UTILITY(U,$J,358.3,34118,1,0)
+ ;;^UTILITY(U,$J,358.3,33760,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33760,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,33760,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,33761,0)
+ ;;=V00.818D^^182^2011^120
+ ;;^UTILITY(U,$J,358.3,33761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34118,1,3,0)
- ;;=3^Acute Bronchospasm
- ;;^UTILITY(U,$J,358.3,34118,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,34118,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,34119,0)
- ;;=G89.12^^192^1988^7
- ;;^UTILITY(U,$J,358.3,34119,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34119,1,3,0)
- ;;=3^Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,34119,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,34119,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,34120,0)
- ;;=J98.09^^192^1988^4
- ;;^UTILITY(U,$J,358.3,34120,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34120,1,3,0)
- ;;=3^Bronchus Diseases NEC
+ ;;^UTILITY(U,$J,358.3,33761,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33761,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,33761,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,33762,0)
+ ;;=V00.831A^^182^2011^41

@@ -1,5 +1,5 @@
 MHV7R6 ;KUM - HL7 RECEIVER FOR TIU TITLES QUERY ; 1/5/13 10:34am
- ;;1.0;My HealtheVet;**10**;Aug 23, 2005;Build 50
+ ;;1.0;My HealtheVet;**10,11**;Aug 23, 2005;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;  Integration Agreements:
@@ -140,6 +140,21 @@ VALIDMSG(MSGROOT,QRY,XMT,ERR)   ;Validate message
  . I $G(QRY("DCLSNM"))="" S ERR="QPD^1^6^101^AE^Document Class Name cannot be null" Q
  . S MHVDCIEN=$$DOCDEF^MHVXTIU($G(QRY("DCLSNM")))
  . I $G(MHVDCIEN)=0 S ERR="QPD^1^6^102^AE^Document Class Name "_$G(QRY("DCLSNM"))_" Unknown."
+ ;
+ ;Added for MHV*1.0*11 - Validations for SMDSSUnitsByProviderAndAClinic query Input parameters
+ S QRY("ACLN")=$G(QPD(3,1,2))
+ S QRY("PDUZ")=$G(QPD(3,1,3))
+ I (REQTYPE="SMDSSUnitsByProviderAndClinic")&($D(QPD))  D
+ . I $G(QRY("ACLN"))="" S ERR="QPD^1^6^101^AE^DSS6-Associated Clinic cannot be null" Q
+ . I $G(QRY("PDUZ"))="" S ERR="QPD^1^6^102^AE^DSS5-Provider DUZ cannot be null" Q
+ I ERR Q 0
+ ;
+ ;Added for MHV*1.0*11 - Validations for SMECSProcedures query Input parameters
+ S QRY("DSSI")=$G(QPD(3,1,2))
+ S QRY("LOCI")=$G(QPD(3,1,3))
+ I (REQTYPE="SMECSProcedures")&($D(QPD))  D
+ . I $G(QRY("DSSI"))="" S ERR="QPD^1^6^101^AE^DSS Unit IEN cannot be null" Q
+ . I $G(QRY("LOCI"))="" S ERR="QPD^1^6^102^AE^Location IEN cannot be null" Q
  I ERR Q 0
  ;
  I ERR'="" Q 0

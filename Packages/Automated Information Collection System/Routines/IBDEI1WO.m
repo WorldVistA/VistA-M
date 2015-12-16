@@ -1,128 +1,128 @@
-IBDEI1WO ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WO ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33866,1,3,0)
- ;;=3^Soft Tissue Disorders NEC
- ;;^UTILITY(U,$J,358.3,33866,1,4,0)
- ;;=4^M79.89
- ;;^UTILITY(U,$J,358.3,33866,2)
- ;;=^5013357
- ;;^UTILITY(U,$J,358.3,33867,0)
- ;;=S86.911A^^191^1978^25
- ;;^UTILITY(U,$J,358.3,33867,1,0)
+ ;;^UTILITY(U,$J,358.3,33512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33867,1,3,0)
- ;;=3^Strain of unsp musc/tend lwr rt leg, init
- ;;^UTILITY(U,$J,358.3,33867,1,4,0)
- ;;=4^S86.911A
- ;;^UTILITY(U,$J,358.3,33867,2)
- ;;=^5137199
- ;;^UTILITY(U,$J,358.3,33868,0)
- ;;=S86.912A^^191^1978^24
- ;;^UTILITY(U,$J,358.3,33868,1,0)
+ ;;^UTILITY(U,$J,358.3,33512,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,33512,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,33512,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,33513,0)
+ ;;=R82.90^^182^2004^23
+ ;;^UTILITY(U,$J,358.3,33513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33868,1,3,0)
- ;;=3^Strain of unsp musc/ten lwr lft leg, init
- ;;^UTILITY(U,$J,358.3,33868,1,4,0)
- ;;=4^S86.912A
- ;;^UTILITY(U,$J,358.3,33868,2)
- ;;=^5137200
- ;;^UTILITY(U,$J,358.3,33869,0)
- ;;=S93.401A^^191^1978^18
- ;;^UTILITY(U,$J,358.3,33869,1,0)
+ ;;^UTILITY(U,$J,358.3,33513,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,33513,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,33513,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,33514,0)
+ ;;=R82.91^^182^2004^46
+ ;;^UTILITY(U,$J,358.3,33514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33869,1,3,0)
- ;;=3^Sprain of unsp ligament rt ankl, init
- ;;^UTILITY(U,$J,358.3,33869,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,33869,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,33870,0)
- ;;=S93.402A^^191^1978^17
- ;;^UTILITY(U,$J,358.3,33870,1,0)
+ ;;^UTILITY(U,$J,358.3,33514,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,33514,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,33514,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,33515,0)
+ ;;=R82.99^^182^2004^22
+ ;;^UTILITY(U,$J,358.3,33515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33870,1,3,0)
- ;;=3^Sprain of unsp ligament lft ankl, init
- ;;^UTILITY(U,$J,358.3,33870,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,33870,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,33871,0)
- ;;=S93.601A^^191^1978^5
- ;;^UTILITY(U,$J,358.3,33871,1,0)
+ ;;^UTILITY(U,$J,358.3,33515,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,33515,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,33515,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,33516,0)
+ ;;=R89.9^^182^2004^17
+ ;;^UTILITY(U,$J,358.3,33516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33871,1,3,0)
- ;;=3^Sprain Rt Ft,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,33871,1,4,0)
- ;;=4^S93.601A
- ;;^UTILITY(U,$J,358.3,33871,2)
- ;;=^5045867
- ;;^UTILITY(U,$J,358.3,33872,0)
- ;;=S93.602A^^191^1978^6
- ;;^UTILITY(U,$J,358.3,33872,1,0)
+ ;;^UTILITY(U,$J,358.3,33516,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,33516,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,33516,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,33517,0)
+ ;;=R90.0^^182^2004^92
+ ;;^UTILITY(U,$J,358.3,33517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33872,1,3,0)
- ;;=3^Sprain Rt Ft,Unspec,Init Enctr
- ;;^UTILITY(U,$J,358.3,33872,1,4,0)
- ;;=4^S93.602A
- ;;^UTILITY(U,$J,358.3,33872,2)
- ;;=^5045870
- ;;^UTILITY(U,$J,358.3,33873,0)
- ;;=S93.621A^^191^1978^15
- ;;^UTILITY(U,$J,358.3,33873,1,0)
+ ;;^UTILITY(U,$J,358.3,33517,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,33517,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,33517,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,33518,0)
+ ;;=R90.89^^182^2004^12
+ ;;^UTILITY(U,$J,358.3,33518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33873,1,3,0)
- ;;=3^Sprain of tarsometarsal ligament rt ft, init
- ;;^UTILITY(U,$J,358.3,33873,1,4,0)
- ;;=4^S93.621A
- ;;^UTILITY(U,$J,358.3,33873,2)
- ;;=^5045882
- ;;^UTILITY(U,$J,358.3,33874,0)
- ;;=S93.622A^^191^1978^16
- ;;^UTILITY(U,$J,358.3,33874,1,0)
+ ;;^UTILITY(U,$J,358.3,33518,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,33518,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,33518,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,33519,0)
+ ;;=R91.1^^182^2004^142
+ ;;^UTILITY(U,$J,358.3,33519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33874,1,3,0)
- ;;=3^Sprain of tarsometatarsal ligament lft ft, init
- ;;^UTILITY(U,$J,358.3,33874,1,4,0)
- ;;=4^S93.622A
- ;;^UTILITY(U,$J,358.3,33874,2)
- ;;=^5045885
- ;;^UTILITY(U,$J,358.3,33875,0)
- ;;=S93.525A^^191^1978^7
- ;;^UTILITY(U,$J,358.3,33875,1,0)
+ ;;^UTILITY(U,$J,358.3,33519,1,3,0)
+ ;;=3^Solitary Pulmonary Nodule
+ ;;^UTILITY(U,$J,358.3,33519,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,33519,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,33520,0)
+ ;;=R91.8^^182^2004^16
+ ;;^UTILITY(U,$J,358.3,33520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33875,1,3,0)
- ;;=3^Sprain of MTP jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33875,1,4,0)
- ;;=4^S93.525A
- ;;^UTILITY(U,$J,358.3,33875,2)
- ;;=^5045858
- ;;^UTILITY(U,$J,358.3,33876,0)
- ;;=S93.524A^^191^1978^8
- ;;^UTILITY(U,$J,358.3,33876,1,0)
+ ;;^UTILITY(U,$J,358.3,33520,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,33520,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,33520,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,33521,0)
+ ;;=R92.0^^182^2004^111
+ ;;^UTILITY(U,$J,358.3,33521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33876,1,3,0)
- ;;=3^Sprain of MTP jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33876,1,4,0)
- ;;=4^S93.524A
- ;;^UTILITY(U,$J,358.3,33876,2)
- ;;=^5045855
- ;;^UTILITY(U,$J,358.3,33877,0)
- ;;=S93.521A^^191^1978^14
- ;;^UTILITY(U,$J,358.3,33877,1,0)
+ ;;^UTILITY(U,$J,358.3,33521,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,33521,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,33521,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,33522,0)
+ ;;=R92.1^^182^2004^110
+ ;;^UTILITY(U,$J,358.3,33522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33877,1,3,0)
- ;;=3^Sprain of metatarsophalangeal jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,33877,1,4,0)
- ;;=4^S93.521A
- ;;^UTILITY(U,$J,358.3,33877,2)
- ;;=^5045846
- ;;^UTILITY(U,$J,358.3,33878,0)
- ;;=S93.522A^^191^1978^13
- ;;^UTILITY(U,$J,358.3,33878,1,0)
+ ;;^UTILITY(U,$J,358.3,33522,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,33522,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,33522,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,33523,0)
+ ;;=R92.2^^182^2004^86
+ ;;^UTILITY(U,$J,358.3,33523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33878,1,3,0)
- ;;=3^Sprain of metatarsophalangeal jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,33878,1,4,0)
- ;;=4^S93.522A
+ ;;^UTILITY(U,$J,358.3,33523,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,33523,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,33523,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,33524,0)
+ ;;=R93.0^^182^2004^10
+ ;;^UTILITY(U,$J,358.3,33524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33524,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC

@@ -1,30 +1,36 @@
-DGICP ;AL/AAS KUM - LOOK UP ICD-10 PROCEDURE CODE;12/07/2011
- ;;5.3;Registration;**850**;Aug 13, 1993;Build 171
+DGICP ;AL/AAS/PLT KUM,WIOFO/PMK - LOOK UP ICD-10 PROCEDURE CODE ;04/15/2015 1:17 PM
+ ;;5.3;Registration;**850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;This routine does not conform to Standard & Conventions routine naming
+ ;conventions since package routine names of DG_I* (with the exceptions
+ ;of Kernel, VA FileMan, and routines created to support the INIT 
+ ;process) should not be used.  The SACC has granted an exemption for
+ ;this routine.
+ ;
  ;copied from ICDCODLK 
  ;
- ; ICDDATE is EFFECTIVE DATE that is passed in from Calling Routine
+ ; ICDDATE is EFFDATE variable that is passed in from Calling Routine
  ;
 EN ; Initialize variables
  W ! ;@IOF
  D LOOK
  G EXIT
 LOOK ; Look-up term
- W !! K X D ASK K DIC
+ N X
+ W !! S X="" D ASK K DIC
 AGAIN ; Try again?
  Q
+ ;
 ASK ; Get user input
- N DIR,DIRUT,DIROUT,ICDDATE1,ICDT1,ICDX,DGXX
+ N DIR,DIRUT,DIROUT,ICDDATE,ICDDATE1,ICDT1,ICDX,DGXX
  Q:X="?BAD"!(X["^")
  I X["?" D  K X,Y Q  ; - added here for calls that bypass ^DGICDGT
  . N TAG,FORMAT
  . S TAG=$S(X["???":"P3^DGICDGT",X["??":"P2^DGICDGT",X["?":"P1^DGICDGT",1:"P1^DGICDGT")
  . D @TAG
  . Q
- ; If processing a procedure then use entered procedure date for effective date
- N DGPRDT S DGPRDT=$S(+$G(DGPROCD):+DGPROCD,1:+$G(DGPROCI,0))
- S ICDDATE=$G(DGPRDT)
- ;S ICDDATE=$G(EFFDATE)
- S:'ICDDATE ICDDATE=$G(EFFDATE)
+ S ICDDATE=$G(EFFDATE)
  I $G(ICDDATE)'="" S ICDDATE1=ICDDATE
  S ICDPRC=$G(X),ICDX=0
  S ICDPRC=$$TR(X)
@@ -117,9 +123,9 @@ AA ; Read character by character
  W !
  I $G(ICDX)=1 D PRCDESC  W !
  W "Press '*' to display available choices for next character or '^' to exit."
- W !,"ICD-10 Procedure code:"_ICDPRC S ICDREAD="R *ICDA:300 I '$T S ICDA=13"
+ W !,"ICD-10 Procedure code:"_ICDPRC
  I $L(ICDPRC)>6 G BB
- X ICDREAD
+ S ICDA=$$READ^XGF(1,300) S ICDA=$S($G(DTOUT):13,1:$A(ICDA))
  ; show choices on "*"
  I ICDA=42 G BB
  ; Exit when Enter and is full length else ignore
@@ -138,7 +144,7 @@ AA ; Read character by character
  . S ICDX=1
 BB ;Exit
  W !
- K ICDA,ICDREAD
+ K ICDA
  Q
 PRCDESCB ; Call Before PRCDESC
  W !,"ICD-10 Procedure code:"_ICDPRC

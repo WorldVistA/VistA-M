@@ -1,5 +1,5 @@
 PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313**;DEC 1997;Build 76
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282**;DEC 1997;Build 18
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -7,25 +7,29 @@ PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
 EN(PSOSIGX) ;
  N VARIABLE
  Q
-SCH ;SCH = schedule entered     SCHEX = expanded schedule
- N SQFLAG,SCLOOP,SCLP,SCLPS,SCLHOLD,SCIN,SODL,SST
- K SCHEX S SQFLAG=0
- I $G(SCH)="" S SCHEX="" Q
- I SCH[""""!($A(SCH)=45)!(SCH?.E1C.E)!($L(SCH," ")>3)!($L(SCH)>20)!($L(SCH)<1) K SCH Q
- N PSOSCUP S SCH=$$UPPER(SCH)
- F SCLOOP=0:0 S SCLOOP=$O(^PS(51.1,"B",SCH,SCLOOP)) Q:'SCLOOP!(SQFLAG)  I $P($G(^PS(51.1,SCLOOP,0)),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SQFLAG=1
- Q:SQFLAG
- I $P($G(^PS(51,"A",SCH)),"^")'="" S SCHEX=$P(^(SCH),"^") Q
- S SCLOOP=0 F SCLP=1:1:$L(SCH) S SCLPS=$E(SCH,SCLP) I SCLPS=" " S SCLOOP=SCLOOP+1
- I SCLOOP=0 S SCHEX=SCH Q
- S SCLOOP=SCLOOP+1
- K SCLHOLD F SCIN=1:1:SCLOOP S (SODL,SCLHOLD(SCIN))=$P(SCH," ",SCIN) D
- .Q:$G(SODL)=""
- .S SQFLAG=0 F SST=0:0 S SST=$O(^PS(51.1,"B",SODL,SST)) Q:'SST!($G(SQFLAG))  I $P($G(^PS(51.1,SST,0)),"^",8)'="" S SCLHOLD(SCIN)=$P($G(^(0)),"^",8),SQFLAG=1
- .Q:$G(SQFLAG)
- .I $P($G(^PS(51,"A",SODL)),"^")'="" S SCLHOLD(SCIN)=$P(^(SODL),"^")
- S SCHEX="",SQFLAG=0 F SST=1:1:SCLOOP S SCHEX=SCHEX_$S($G(SQFLAG):" ",1:"")_$G(SCLHOLD(SST)),SQFLAG=1
+SCH ;*282 Preserve old functionality
+ S SCHEX=$$SCHE(SCH)
  Q
+ ;
+ ;SCHE is the new schedule expander
+SCHE(SCH) ;
+ ;SCH = Schedule entered
+ ;Returns Expanded Schedule, or ""
+ N SCHEX,SPCT
+ I SCH[""""!($A(SCH)=45)!(SCH?.E1C.E)!($L(SCH," ")>$S(SCH["PRN":4,1:3))!($L(SCH)>20)!($L(SCH)<1) K SCH Q ""
+ S SCH=$$UPPER(SCH)
+ S SPCT=0 F I=1:1:$L(SCH) I $E(SCH,I)=" " S SPCT=SPCT+1
+ S SCHEX=$$EXP(SCH) I SCHEX]"" Q SCHEX
+ Q:SPCT=0 SCH
+ Q $$SCHE($P(SCH," ",1,SPCT))_" "_$$SCHE($P(SCH," ",SPCT+1))
+EXP(X) ; expand based on 51.1 and 51
+ N PSIN,SCFLG,SCHEX
+ S PSIN=0 F  S PSIN=$O(^PS(51.1,"APPSJ",X,PSIN)) Q:'PSIN!$G(SCFLG)  I $P(^PS(51.1,PSIN,0),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SCFLG=1
+ Q:$G(SCFLG) SCHEX
+ S PSIN=0 F  S PSIN=$O(^PS(51,"B",X,PSIN)) Q:'PSIN!$G(SCLFL)  I PSIN,($P(^PS(51,PSIN,0),"^",4)<2)&($P($G(^PS(51,"A",X)),"^")'="") S SCHEX=$P(^(X),"^"),SCFLG=1
+ Q:$G(SCFLG) SCHEX
+ Q ""
+ ;
 QTY(PSOQX) ;
  N QDOSE
  K PSOQX("QTY")
@@ -94,28 +98,26 @@ COMP ;COMPLEX DOSE HERE
  I $G(PSQQUIT) G QEND
  I $G(PSOQRND) D ROUND
  G QEND
-QTS ;Find frequency
- ;QTSH = SHCEDULE
- ;either return PSOFRQ for frequency or PSSQUIT for no frequency
- N SQTFLAG,SQQT,ZZQT,ZZQ,ZZQQ,ZQHOLD,QGLFLAG,PZQT,ZDL,ZZQX
- K PSOFRQ
- S (QGLFLAG,ZZQX)=0
- I $G(QTSH)="" S PSQQUIT=1 Q
- S SQTFLAG=0 F SQQT=0:0 S SQQT=$O(^PS(51.1,"B",QTSH,SQQT)) Q:'SQQT!($G(SQTFLAG))  I $P($G(^PS(51.1,SQQT,0)),"^",3) S PSOFRQ=$P($G(^(0)),"^",3),SQTFLAG=1
- Q:SQTFLAG
- F SQQT=0:0 S SQQT=$O(^PS(51,"B",QTSH,SQQT)) Q:'SQQT!($G(SQTFLAG))  I $P($G(^PS(51,SQQT,0)),"^",8) S PSOFRQ=$P($G(^(0)),"^",8),SQTFLAG=1
- Q:SQTFLAG
- S ZZQT=0 F ZZQ=1:1:$L(QTSH) S ZZQQ=$E(QTSH,ZZQ) I ZZQQ=" " S ZZQT=ZZQT+1
- I 'ZZQT S PSQQUIT=1 Q
- S ZZQT=ZZQT+1
- K ZQHOLD S QGLFLAG=0 F PZQT=1:1:ZZQT S (ZDL,ZQHOLD)=$P(QTSH," ",PZQT) D
- .Q:$G(ZDL)=""
- .S ZZQX=0 F SQQT=0:0 S SQQT=$O(^PS(51.1,"B",ZDL,SQQT)) Q:'SQQT!($G(ZZQX))  I $P($G(^PS(51.1,SQQT,0)),"^",3) S PSOFRQ=$P($G(^(0)),"^",3),ZZQX=1,QGLFLAG=QGLFLAG+1
- .Q:ZZQX
- .S ZZQX=0 F SQQT=0:0 S SQQT=$O(^PS(51,"B",ZDL,SQQT)) Q:'SQQT!($G(ZZQX))  I $P($G(^PS(51,SQQT,0)),"^",8) S PSOFRQ=$P($G(^(0)),"^",8),ZZQX=1,QGLFLAG=QGLFLAG+1
- I $G(QGLFLAG)>1 K PSOFRQ
+QTS ;*282 Preserve Old Functionality
+ S PSOFRQ=$$QTSCH(QTSH)
  I '$G(PSOFRQ) S PSQQUIT=1
  Q
+ ;
+QTSCH(QTSH) ; 
+ ; Return Frequency for Schedule QTSH
+ ; Otherwise return ""
+ N PSOFRQ,SPCT,FOUND
+ Q:$G(QTSH)="" ""
+ Q:$E(QTSH,1)=" " ""
+ S SPCT=1,PSOFRQ=0 F I=1:1:$L(QTSH) I $E(QTSH,I)=" " S SPCT=SPCT+1
+ F I=0:1:SPCT-1 S SCHTMP=$P(QTSH," ",1,SPCT-I) Q:PSOFRQ  D
+ . F II=0:0 S II=$O(^PS(51.1,"APPSJ",SCHTMP,II)) Q:'II!PSOFRQ  S PSOFRQ=$P(^PS(51.1,II,0),"^",3)
+ Q:PSOFRQ PSOFRQ
+  F I=0:1:SPCT-1 S SCHTMP=$P(QTSH," ",1,SPCT-I) Q:PSOFRQ  D
+ . F II=0:0 S II=$O(^PS(51,"B",SCHTMP,II)) Q:'II!PSOFRQ  I $P(^PS(51,II,0),"^",4)<2 S PSOFRQ=$P(^PS(51,II,0),"^",8)
+ Q:PSOFRQ PSOFRQ
+ Q ""
+ ;
 QEND ;
  ; PSOMTFLG variable indicates a Maintenance Rx (Titration/Maintenance)
  K PSOFRQ

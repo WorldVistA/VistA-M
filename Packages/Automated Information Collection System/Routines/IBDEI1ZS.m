@@ -1,144 +1,124 @@
-IBDEI1ZS ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQR(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZS ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.5,65,2,1,0)
- ;;=NATIONAL EYE TECHNICIAN^^^0^0
- ;;^UTILITY(U,$J,358.5,66,0)
- ;;=Patient name^81^3
- ;;^UTILITY(U,$J,358.5,66,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,66,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,67,0)
- ;;=SSN^81^4
- ;;^UTILITY(U,$J,358.5,67,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,67,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,68,0)
- ;;=Age^81^5
- ;;^UTILITY(U,$J,358.5,68,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,68,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,68,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,69,0)
- ;;=HEADER^86
- ;;^UTILITY(U,$J,358.5,69,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,69,2,1,0)
- ;;=NATIONAL EYE^^^0^0
- ;;^UTILITY(U,$J,358.5,70,0)
- ;;=Patient name^87^3
- ;;^UTILITY(U,$J,358.5,70,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,70,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,71,0)
- ;;=SSN^87^4
- ;;^UTILITY(U,$J,358.5,71,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,71,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,72,0)
- ;;=Age^87^5
- ;;^UTILITY(U,$J,358.5,72,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,72,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,72,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,73,0)
- ;;=HEADER^91
- ;;^UTILITY(U,$J,358.5,73,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,73,2,1,0)
- ;;=NATIONAL GENERAL SURGERY^^^0^0
- ;;^UTILITY(U,$J,358.5,74,0)
- ;;=Patient name^92^3
- ;;^UTILITY(U,$J,358.5,74,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,74,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,75,0)
- ;;=SSN^92^4
- ;;^UTILITY(U,$J,358.5,75,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,75,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,76,0)
- ;;=Age^92^5
- ;;^UTILITY(U,$J,358.5,76,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,76,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,76,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,77,0)
- ;;=HEADER^94
- ;;^UTILITY(U,$J,358.5,77,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,77,2,1,0)
- ;;=NATIONAL GERIATRIC CARE^^^0^0
- ;;^UTILITY(U,$J,358.5,78,0)
- ;;=Patient name^96^3
- ;;^UTILITY(U,$J,358.5,78,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,78,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,79,0)
- ;;=SSN^96^4
- ;;^UTILITY(U,$J,358.5,79,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,79,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,80,0)
- ;;=Age^96^5
- ;;^UTILITY(U,$J,358.5,80,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,80,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,80,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,81,0)
- ;;=HEADER^101
- ;;^UTILITY(U,$J,358.5,81,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,81,2,1,0)
- ;;=NATIONAL GI/HEPATOLOGY^^^0^0
- ;;^UTILITY(U,$J,358.5,82,0)
- ;;=Patient name^102^3
- ;;^UTILITY(U,$J,358.5,82,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,82,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,83,0)
- ;;=SSN^102^4
- ;;^UTILITY(U,$J,358.5,83,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,83,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,84,0)
- ;;=Age^102^5
- ;;^UTILITY(U,$J,358.5,84,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,84,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,84,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,85,0)
- ;;=HEADER^104
- ;;^UTILITY(U,$J,358.5,85,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,85,2,1,0)
- ;;=NATIONAL HBPC CLINICIAN^^^0^0
- ;;^UTILITY(U,$J,358.5,86,0)
- ;;=Patient name^105^3
- ;;^UTILITY(U,$J,358.5,86,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,86,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,87,0)
- ;;=SSN^105^4
+ ;;^UTILITY(U,$J,358.3,34877,1,4,0)
+ ;;=4^S42.025S
+ ;;^UTILITY(U,$J,358.3,34877,2)
+ ;;=^5026480
+ ;;^UTILITY(U,$J,358.3,34878,0)
+ ;;=S42.024S^^183^2023^90
+ ;;^UTILITY(U,$J,358.3,34878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34878,1,3,0)
+ ;;=3^Nondisp fx of shaft of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,34878,1,4,0)
+ ;;=4^S42.024S
+ ;;^UTILITY(U,$J,358.3,34878,2)
+ ;;=^5026473
+ ;;^UTILITY(U,$J,358.3,34879,0)
+ ;;=S42.018S^^183^2023^95
+ ;;^UTILITY(U,$J,358.3,34879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34879,1,3,0)
+ ;;=3^Nondisp fx of sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,34879,1,4,0)
+ ;;=4^S42.018S
+ ;;^UTILITY(U,$J,358.3,34879,2)
+ ;;=^5026438
+ ;;^UTILITY(U,$J,358.3,34880,0)
+ ;;=S42.017S^^183^2023^96
+ ;;^UTILITY(U,$J,358.3,34880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34880,1,3,0)
+ ;;=3^Nondisp fx of sternal end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,34880,1,4,0)
+ ;;=4^S42.017S
+ ;;^UTILITY(U,$J,358.3,34880,2)
+ ;;=^5026431
+ ;;^UTILITY(U,$J,358.3,34881,0)
+ ;;=S42.015S^^183^2023^105
+ ;;^UTILITY(U,$J,358.3,34881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34881,1,3,0)
+ ;;=3^Posterior disp fx of sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,34881,1,4,0)
+ ;;=4^S42.015S
+ ;;^UTILITY(U,$J,358.3,34881,2)
+ ;;=^5026417
+ ;;^UTILITY(U,$J,358.3,34882,0)
+ ;;=S42.014S^^183^2023^106
+ ;;^UTILITY(U,$J,358.3,34882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34882,1,3,0)
+ ;;=3^Posterior disp fx of sternal end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,34882,1,4,0)
+ ;;=4^S42.014S
+ ;;^UTILITY(U,$J,358.3,34882,2)
+ ;;=^5026410
+ ;;^UTILITY(U,$J,358.3,34883,0)
+ ;;=S82.142S^^183^2024^1
+ ;;^UTILITY(U,$J,358.3,34883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34883,1,3,0)
+ ;;=3^Disp fx of bicondylar left tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,34883,1,4,0)
+ ;;=4^S82.142S
+ ;;^UTILITY(U,$J,358.3,34883,2)
+ ;;=^5040902
+ ;;^UTILITY(U,$J,358.3,34884,0)
+ ;;=S82.141S^^183^2024^2
+ ;;^UTILITY(U,$J,358.3,34884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34884,1,3,0)
+ ;;=3^Disp fx of bicondylar right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,34884,1,4,0)
+ ;;=4^S82.141S
+ ;;^UTILITY(U,$J,358.3,34884,2)
+ ;;=^5040886
+ ;;^UTILITY(U,$J,358.3,34885,0)
+ ;;=S82.252S^^183^2024^4
+ ;;^UTILITY(U,$J,358.3,34885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34885,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
+ ;;^UTILITY(U,$J,358.3,34885,1,4,0)
+ ;;=4^S82.252S
+ ;;^UTILITY(U,$J,358.3,34885,2)
+ ;;=^5041458
+ ;;^UTILITY(U,$J,358.3,34886,0)
+ ;;=S82.251S^^183^2024^6
+ ;;^UTILITY(U,$J,358.3,34886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34886,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,34886,1,4,0)
+ ;;=4^S82.251S
+ ;;^UTILITY(U,$J,358.3,34886,2)
+ ;;=^5041442
+ ;;^UTILITY(U,$J,358.3,34887,0)
+ ;;=S82.122S^^183^2024^7
+ ;;^UTILITY(U,$J,358.3,34887,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34887,1,3,0)
+ ;;=3^Disp fx of lateral condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,34887,1,4,0)
+ ;;=4^S82.122S
+ ;;^UTILITY(U,$J,358.3,34887,2)
+ ;;=^5040710
+ ;;^UTILITY(U,$J,358.3,34888,0)
+ ;;=S82.112S^^183^2024^11
+ ;;^UTILITY(U,$J,358.3,34888,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34888,1,3,0)
+ ;;=3^Disp fx of left tibial spine, sequela        
+ ;;^UTILITY(U,$J,358.3,34888,1,4,0)
+ ;;=4^S82.112S
+ ;;^UTILITY(U,$J,358.3,34888,2)
+ ;;=^5040614
+ ;;^UTILITY(U,$J,358.3,34889,0)
+ ;;=S82.121S^^183^2024^8
+ ;;^UTILITY(U,$J,358.3,34889,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34889,1,3,0)
+ ;;=3^Disp fx of lateral condyle of right tibia, sequela

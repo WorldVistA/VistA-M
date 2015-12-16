@@ -1,138 +1,122 @@
-IBDEI1YC ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YC ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34635,1,0)
+ ;;^UTILITY(U,$J,358.3,34257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34635,1,3,0)
- ;;=3^Acute Lymphangitis,Unspec
- ;;^UTILITY(U,$J,358.3,34635,1,4,0)
- ;;=4^L03.91
- ;;^UTILITY(U,$J,358.3,34635,2)
- ;;=^5009068
- ;;^UTILITY(U,$J,358.3,34636,0)
- ;;=L23.9^^192^2006^3
- ;;^UTILITY(U,$J,358.3,34636,1,0)
+ ;;^UTILITY(U,$J,358.3,34257,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,34257,1,4,0)
+ ;;=4^S06.316S
+ ;;^UTILITY(U,$J,358.3,34257,2)
+ ;;=^5020806
+ ;;^UTILITY(U,$J,358.3,34258,0)
+ ;;=S06.313S^^183^2018^23
+ ;;^UTILITY(U,$J,358.3,34258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34636,1,3,0)
- ;;=3^Allergic Contact Dermatitis
- ;;^UTILITY(U,$J,358.3,34636,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,34636,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,34637,0)
- ;;=L03.90^^192^2006^4
- ;;^UTILITY(U,$J,358.3,34637,1,0)
+ ;;^UTILITY(U,$J,358.3,34258,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34258,1,4,0)
+ ;;=4^S06.313S
+ ;;^UTILITY(U,$J,358.3,34258,2)
+ ;;=^5020797
+ ;;^UTILITY(U,$J,358.3,34259,0)
+ ;;=S06.311S^^183^2018^24
+ ;;^UTILITY(U,$J,358.3,34259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34637,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,34637,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,34637,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,34638,0)
- ;;=L02.91^^192^2006^7
- ;;^UTILITY(U,$J,358.3,34638,1,0)
+ ;;^UTILITY(U,$J,358.3,34259,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34259,1,4,0)
+ ;;=4^S06.311S
+ ;;^UTILITY(U,$J,358.3,34259,2)
+ ;;=^5020791
+ ;;^UTILITY(U,$J,358.3,34260,0)
+ ;;=S06.312S^^183^2018^25
+ ;;^UTILITY(U,$J,358.3,34260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34638,1,3,0)
- ;;=3^Cutaneous Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,34638,1,4,0)
- ;;=4^L02.91
- ;;^UTILITY(U,$J,358.3,34638,2)
- ;;=^5009016
- ;;^UTILITY(U,$J,358.3,34639,0)
- ;;=L30.2^^192^2006^8
- ;;^UTILITY(U,$J,358.3,34639,1,0)
+ ;;^UTILITY(U,$J,358.3,34260,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34260,1,4,0)
+ ;;=4^S06.312S
+ ;;^UTILITY(U,$J,358.3,34260,2)
+ ;;=^5020794
+ ;;^UTILITY(U,$J,358.3,34261,0)
+ ;;=S06.314S^^183^2018^26
+ ;;^UTILITY(U,$J,358.3,34261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34639,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,34639,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,34639,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,34640,0)
- ;;=L30.9^^192^2006^10
- ;;^UTILITY(U,$J,358.3,34640,1,0)
+ ;;^UTILITY(U,$J,358.3,34261,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,34261,1,4,0)
+ ;;=4^S06.314S
+ ;;^UTILITY(U,$J,358.3,34261,2)
+ ;;=^5020800
+ ;;^UTILITY(U,$J,358.3,34262,0)
+ ;;=S06.319S^^183^2018^27
+ ;;^UTILITY(U,$J,358.3,34262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34640,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,34640,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,34640,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,34641,0)
- ;;=Z48.01^^192^2006^5
- ;;^UTILITY(U,$J,358.3,34641,1,0)
+ ;;^UTILITY(U,$J,358.3,34262,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34262,1,4,0)
+ ;;=4^S06.319S
+ ;;^UTILITY(U,$J,358.3,34262,2)
+ ;;=^5020815
+ ;;^UTILITY(U,$J,358.3,34263,0)
+ ;;=S06.310S^^183^2018^28
+ ;;^UTILITY(U,$J,358.3,34263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34641,1,3,0)
- ;;=3^Change/Removal of Surgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,34641,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,34641,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,34642,0)
- ;;=L98.3^^192^2006^11
- ;;^UTILITY(U,$J,358.3,34642,1,0)
+ ;;^UTILITY(U,$J,358.3,34263,1,3,0)
+ ;;=3^Contus/lac right cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34263,1,4,0)
+ ;;=4^S06.310S
+ ;;^UTILITY(U,$J,358.3,34263,2)
+ ;;=^5020788
+ ;;^UTILITY(U,$J,358.3,34264,0)
+ ;;=S06.385S^^183^2018^29
+ ;;^UTILITY(U,$J,358.3,34264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34642,1,3,0)
- ;;=3^Eosinophilic Cellulitis
- ;;^UTILITY(U,$J,358.3,34642,1,4,0)
- ;;=4^L98.3
- ;;^UTILITY(U,$J,358.3,34642,2)
- ;;=^5009576
- ;;^UTILITY(U,$J,358.3,34643,0)
- ;;=L40.1^^192^2006^18
- ;;^UTILITY(U,$J,358.3,34643,1,0)
+ ;;^UTILITY(U,$J,358.3,34264,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34264,1,4,0)
+ ;;=4^S06.385S
+ ;;^UTILITY(U,$J,358.3,34264,2)
+ ;;=^5021013
+ ;;^UTILITY(U,$J,358.3,34265,0)
+ ;;=S06.386S^^183^2018^30
+ ;;^UTILITY(U,$J,358.3,34265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34643,1,3,0)
- ;;=3^Pustular Psoriasis,Generalized
- ;;^UTILITY(U,$J,358.3,34643,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,34643,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,34644,0)
- ;;=L40.4^^192^2006^12
- ;;^UTILITY(U,$J,358.3,34644,1,0)
+ ;;^UTILITY(U,$J,358.3,34265,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,34265,1,4,0)
+ ;;=4^S06.386S
+ ;;^UTILITY(U,$J,358.3,34265,2)
+ ;;=^5021016
+ ;;^UTILITY(U,$J,358.3,34266,0)
+ ;;=S06.383S^^183^2018^31
+ ;;^UTILITY(U,$J,358.3,34266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34644,1,3,0)
- ;;=3^Guttate Psoriasis
- ;;^UTILITY(U,$J,358.3,34644,1,4,0)
- ;;=4^L40.4
- ;;^UTILITY(U,$J,358.3,34644,2)
- ;;=^5009164
- ;;^UTILITY(U,$J,358.3,34645,0)
- ;;=L24.9^^192^2006^13
- ;;^UTILITY(U,$J,358.3,34645,1,0)
+ ;;^UTILITY(U,$J,358.3,34266,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34266,1,4,0)
+ ;;=4^S06.383S
+ ;;^UTILITY(U,$J,358.3,34266,2)
+ ;;=^5021007
+ ;;^UTILITY(U,$J,358.3,34267,0)
+ ;;=S06.381S^^183^2018^32
+ ;;^UTILITY(U,$J,358.3,34267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34645,1,3,0)
- ;;=3^Irritant Contact Dermatitis
- ;;^UTILITY(U,$J,358.3,34645,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,34645,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,34646,0)
- ;;=L30.0^^192^2006^14
- ;;^UTILITY(U,$J,358.3,34646,1,0)
+ ;;^UTILITY(U,$J,358.3,34267,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34267,1,4,0)
+ ;;=4^S06.381S
+ ;;^UTILITY(U,$J,358.3,34267,2)
+ ;;=^5021001
+ ;;^UTILITY(U,$J,358.3,34268,0)
+ ;;=S06.382S^^183^2018^33
+ ;;^UTILITY(U,$J,358.3,34268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34646,1,3,0)
- ;;=3^Nummular Dermatitis
- ;;^UTILITY(U,$J,358.3,34646,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,34646,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,34647,0)
- ;;=L40.8^^192^2006^15
- ;;^UTILITY(U,$J,358.3,34647,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34647,1,3,0)
- ;;=3^Psoriasis NEC
- ;;^UTILITY(U,$J,358.3,34647,1,4,0)
- ;;=4^L40.8
- ;;^UTILITY(U,$J,358.3,34647,2)
- ;;=^271917
- ;;^UTILITY(U,$J,358.3,34648,0)
- ;;=L30.8^^192^2006^9
- ;;^UTILITY(U,$J,358.3,34648,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34648,1,3,0)
- ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,34268,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34268,1,4,0)
+ ;;=4^S06.382S
+ ;;^UTILITY(U,$J,358.3,34268,2)
+ ;;=^5021004

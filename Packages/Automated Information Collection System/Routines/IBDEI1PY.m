@@ -1,124 +1,126 @@
-IBDEI1PY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30804,1,3,0)
- ;;=3^Intraoperative Complication of the Ear/Mastoid NEC
- ;;^UTILITY(U,$J,358.3,30804,1,4,0)
- ;;=4^H95.88
- ;;^UTILITY(U,$J,358.3,30804,2)
- ;;=^5007036
- ;;^UTILITY(U,$J,358.3,30805,0)
- ;;=N99.81^^189^1924^16
- ;;^UTILITY(U,$J,358.3,30805,1,0)
+ ;;^UTILITY(U,$J,358.3,30433,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,30433,1,4,0)
+ ;;=4^O41.02X0
+ ;;^UTILITY(U,$J,358.3,30433,2)
+ ;;=^5017227
+ ;;^UTILITY(U,$J,358.3,30434,0)
+ ;;=O41.02X1^^178^1917^45
+ ;;^UTILITY(U,$J,358.3,30434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30805,1,3,0)
- ;;=3^Intraoperative Complication of the GU System NEC
- ;;^UTILITY(U,$J,358.3,30805,1,4,0)
- ;;=4^N99.81
- ;;^UTILITY(U,$J,358.3,30805,2)
- ;;=^5015967
- ;;^UTILITY(U,$J,358.3,30806,0)
- ;;=M96.89^^189^1924^17
- ;;^UTILITY(U,$J,358.3,30806,1,0)
+ ;;^UTILITY(U,$J,358.3,30434,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30434,1,4,0)
+ ;;=4^O41.02X1
+ ;;^UTILITY(U,$J,358.3,30434,2)
+ ;;=^5017228
+ ;;^UTILITY(U,$J,358.3,30435,0)
+ ;;=O41.02X2^^178^1917^46
+ ;;^UTILITY(U,$J,358.3,30435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30806,1,3,0)
- ;;=3^Intraoperative Complication of the Musculoskeletal System NEC
- ;;^UTILITY(U,$J,358.3,30806,1,4,0)
- ;;=4^M96.89
- ;;^UTILITY(U,$J,358.3,30806,2)
- ;;=^5015399
- ;;^UTILITY(U,$J,358.3,30807,0)
- ;;=G97.81^^189^1924^18
- ;;^UTILITY(U,$J,358.3,30807,1,0)
+ ;;^UTILITY(U,$J,358.3,30435,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,30435,1,4,0)
+ ;;=4^O41.02X2
+ ;;^UTILITY(U,$J,358.3,30435,2)
+ ;;=^5017229
+ ;;^UTILITY(U,$J,358.3,30436,0)
+ ;;=O41.02X3^^178^1917^47
+ ;;^UTILITY(U,$J,358.3,30436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30807,1,3,0)
- ;;=3^Intraoperative Complication of the Nervous System
- ;;^UTILITY(U,$J,358.3,30807,1,4,0)
- ;;=4^G97.81
- ;;^UTILITY(U,$J,358.3,30807,2)
- ;;=^5004211
- ;;^UTILITY(U,$J,358.3,30808,0)
- ;;=J95.88^^189^1924^19
- ;;^UTILITY(U,$J,358.3,30808,1,0)
+ ;;^UTILITY(U,$J,358.3,30436,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,30436,1,4,0)
+ ;;=4^O41.02X3
+ ;;^UTILITY(U,$J,358.3,30436,2)
+ ;;=^5017230
+ ;;^UTILITY(U,$J,358.3,30437,0)
+ ;;=O41.02X4^^178^1917^48
+ ;;^UTILITY(U,$J,358.3,30437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30808,1,3,0)
- ;;=3^Intraoperative Complication of the Respiratory System NEC
- ;;^UTILITY(U,$J,358.3,30808,1,4,0)
- ;;=4^J95.88
- ;;^UTILITY(U,$J,358.3,30808,2)
- ;;=^5008345
- ;;^UTILITY(U,$J,358.3,30809,0)
- ;;=L76.81^^189^1924^20
- ;;^UTILITY(U,$J,358.3,30809,1,0)
+ ;;^UTILITY(U,$J,358.3,30437,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,30437,1,4,0)
+ ;;=4^O41.02X4
+ ;;^UTILITY(U,$J,358.3,30437,2)
+ ;;=^5017231
+ ;;^UTILITY(U,$J,358.3,30438,0)
+ ;;=O41.02X5^^178^1917^49
+ ;;^UTILITY(U,$J,358.3,30438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30809,1,3,0)
- ;;=3^Intraoperative Complication of the Skin NEC
- ;;^UTILITY(U,$J,358.3,30809,1,4,0)
- ;;=4^L76.81
- ;;^UTILITY(U,$J,358.3,30809,2)
- ;;=^5009308
- ;;^UTILITY(U,$J,358.3,30810,0)
- ;;=D78.81^^189^1924^21
- ;;^UTILITY(U,$J,358.3,30810,1,0)
+ ;;^UTILITY(U,$J,358.3,30438,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30438,1,4,0)
+ ;;=4^O41.02X5
+ ;;^UTILITY(U,$J,358.3,30438,2)
+ ;;=^5017232
+ ;;^UTILITY(U,$J,358.3,30439,0)
+ ;;=O41.03X0^^178^1917^56
+ ;;^UTILITY(U,$J,358.3,30439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30810,1,3,0)
- ;;=3^Intraoperative Complication of the Spleen
- ;;^UTILITY(U,$J,358.3,30810,1,4,0)
- ;;=4^D78.81
- ;;^UTILITY(U,$J,358.3,30810,2)
- ;;=^5002403
- ;;^UTILITY(U,$J,358.3,30811,0)
- ;;=S31.154A^^189^1925^3
- ;;^UTILITY(U,$J,358.3,30811,1,0)
+ ;;^UTILITY(U,$J,358.3,30439,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,30439,1,4,0)
+ ;;=4^O41.03X0
+ ;;^UTILITY(U,$J,358.3,30439,2)
+ ;;=^5017234
+ ;;^UTILITY(U,$J,358.3,30440,0)
+ ;;=O41.03X1^^178^1917^51
+ ;;^UTILITY(U,$J,358.3,30440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30811,1,3,0)
- ;;=3^Open Bite of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30811,1,4,0)
- ;;=4^S31.154A
- ;;^UTILITY(U,$J,358.3,30811,2)
- ;;=^5134487
- ;;^UTILITY(U,$J,358.3,30812,0)
- ;;=S31.151A^^189^1925^4
- ;;^UTILITY(U,$J,358.3,30812,1,0)
+ ;;^UTILITY(U,$J,358.3,30440,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30440,1,4,0)
+ ;;=4^O41.03X1
+ ;;^UTILITY(U,$J,358.3,30440,2)
+ ;;=^5017235
+ ;;^UTILITY(U,$J,358.3,30441,0)
+ ;;=O41.03X2^^178^1917^52
+ ;;^UTILITY(U,$J,358.3,30441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30812,1,3,0)
- ;;=3^Open Bite of LUQ of Abd Wall w/o Penet Perit Cav,Init Cav
- ;;^UTILITY(U,$J,358.3,30812,1,4,0)
- ;;=4^S31.151A
- ;;^UTILITY(U,$J,358.3,30812,2)
- ;;=^5024104
- ;;^UTILITY(U,$J,358.3,30813,0)
- ;;=S31.153A^^189^1925^35
- ;;^UTILITY(U,$J,358.3,30813,1,0)
+ ;;^UTILITY(U,$J,358.3,30441,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,30441,1,4,0)
+ ;;=4^O41.03X2
+ ;;^UTILITY(U,$J,358.3,30441,2)
+ ;;=^5017236
+ ;;^UTILITY(U,$J,358.3,30442,0)
+ ;;=O41.03X3^^178^1917^53
+ ;;^UTILITY(U,$J,358.3,30442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30813,1,3,0)
- ;;=3^Open Bite of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30813,1,4,0)
- ;;=4^S31.153A
- ;;^UTILITY(U,$J,358.3,30813,2)
- ;;=^5024110
- ;;^UTILITY(U,$J,358.3,30814,0)
- ;;=S31.150A^^189^1925^36
- ;;^UTILITY(U,$J,358.3,30814,1,0)
+ ;;^UTILITY(U,$J,358.3,30442,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,30442,1,4,0)
+ ;;=4^O41.03X3
+ ;;^UTILITY(U,$J,358.3,30442,2)
+ ;;=^5017237
+ ;;^UTILITY(U,$J,358.3,30443,0)
+ ;;=O41.03X4^^178^1917^54
+ ;;^UTILITY(U,$J,358.3,30443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30814,1,3,0)
- ;;=3^Open Bite of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,30814,1,4,0)
- ;;=4^S31.150A
- ;;^UTILITY(U,$J,358.3,30814,2)
- ;;=^5024101
- ;;^UTILITY(U,$J,358.3,30815,0)
- ;;=S91.052A^^189^1925^5
- ;;^UTILITY(U,$J,358.3,30815,1,0)
+ ;;^UTILITY(U,$J,358.3,30443,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,30443,1,4,0)
+ ;;=4^O41.03X4
+ ;;^UTILITY(U,$J,358.3,30443,2)
+ ;;=^5017238
+ ;;^UTILITY(U,$J,358.3,30444,0)
+ ;;=O41.03X5^^178^1917^55
+ ;;^UTILITY(U,$J,358.3,30444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30815,1,3,0)
- ;;=3^Open Bite of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,30815,1,4,0)
- ;;=4^S91.052A
- ;;^UTILITY(U,$J,358.3,30815,2)
- ;;=^5044162
- ;;^UTILITY(U,$J,358.3,30816,0)
- ;;=S31.825A^^189^1925^6
- ;;^UTILITY(U,$J,358.3,30816,1,0)
+ ;;^UTILITY(U,$J,358.3,30444,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30444,1,4,0)
+ ;;=4^O41.03X5
+ ;;^UTILITY(U,$J,358.3,30444,2)
+ ;;=^5017239
+ ;;^UTILITY(U,$J,358.3,30445,0)
+ ;;=O41.03X9^^178^1917^57
+ ;;^UTILITY(U,$J,358.3,30445,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30445,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, other fetus

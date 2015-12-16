@@ -1,142 +1,112 @@
-IBDEI0TO ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0TO ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14639,2)
- ;;=^274507
- ;;^UTILITY(U,$J,358.3,14640,0)
- ;;=842.00^^89^896^74
- ;;^UTILITY(U,$J,358.3,14640,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14640,1,4,0)
- ;;=4^842.00
- ;;^UTILITY(U,$J,358.3,14640,1,5,0)
- ;;=5^Sprain, Wrist
- ;;^UTILITY(U,$J,358.3,14640,2)
- ;;=^274483
- ;;^UTILITY(U,$J,358.3,14641,0)
- ;;=847.0^^89^896^72
- ;;^UTILITY(U,$J,358.3,14641,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14641,1,4,0)
- ;;=4^847.0
- ;;^UTILITY(U,$J,358.3,14641,1,5,0)
- ;;=5^Sprain, Cervical
- ;;^UTILITY(U,$J,358.3,14641,2)
- ;;=^81735
- ;;^UTILITY(U,$J,358.3,14642,0)
- ;;=847.2^^89^896^69
- ;;^UTILITY(U,$J,358.3,14642,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14642,1,4,0)
- ;;=4^847.2
- ;;^UTILITY(U,$J,358.3,14642,1,5,0)
- ;;=5^Sprain Lumbar
- ;;^UTILITY(U,$J,358.3,14642,2)
- ;;=^274527
- ;;^UTILITY(U,$J,358.3,14643,0)
- ;;=847.1^^89^896^73
- ;;^UTILITY(U,$J,358.3,14643,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14643,1,4,0)
- ;;=4^847.1
- ;;^UTILITY(U,$J,358.3,14643,1,5,0)
- ;;=5^Sprain, Thoracic
- ;;^UTILITY(U,$J,358.3,14643,2)
- ;;=^274526
- ;;^UTILITY(U,$J,358.3,14644,0)
- ;;=729.81^^89^896^75
- ;;^UTILITY(U,$J,358.3,14644,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14644,1,4,0)
- ;;=4^729.81
- ;;^UTILITY(U,$J,358.3,14644,1,5,0)
- ;;=5^Swelling Of Limb
- ;;^UTILITY(U,$J,358.3,14644,2)
- ;;=^272609
- ;;^UTILITY(U,$J,358.3,14645,0)
- ;;=710.0^^89^896^76
- ;;^UTILITY(U,$J,358.3,14645,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14645,1,4,0)
- ;;=4^710.0
- ;;^UTILITY(U,$J,358.3,14645,1,5,0)
- ;;=5^Syst Lupus Erythematosis
- ;;^UTILITY(U,$J,358.3,14645,2)
- ;;=^72159
- ;;^UTILITY(U,$J,358.3,14646,0)
- ;;=524.60^^89^896^77
- ;;^UTILITY(U,$J,358.3,14646,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14646,1,4,0)
- ;;=4^524.60
- ;;^UTILITY(U,$J,358.3,14646,1,5,0)
- ;;=5^TMJ Syndrome
- ;;^UTILITY(U,$J,358.3,14646,2)
- ;;=^117722
- ;;^UTILITY(U,$J,358.3,14647,0)
- ;;=726.90^^89^896^78
- ;;^UTILITY(U,$J,358.3,14647,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14647,1,4,0)
- ;;=4^726.90
- ;;^UTILITY(U,$J,358.3,14647,1,5,0)
- ;;=5^Tendonitis
- ;;^UTILITY(U,$J,358.3,14647,2)
- ;;=^41010
- ;;^UTILITY(U,$J,358.3,14648,0)
- ;;=354.2^^89^896^80
- ;;^UTILITY(U,$J,358.3,14648,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14648,1,4,0)
- ;;=4^354.2
- ;;^UTILITY(U,$J,358.3,14648,1,5,0)
- ;;=5^Ulnar Nerve Entrapment
- ;;^UTILITY(U,$J,358.3,14648,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,14649,0)
- ;;=715.97^^89^896^14
- ;;^UTILITY(U,$J,358.3,14649,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14649,1,4,0)
- ;;=4^715.97
- ;;^UTILITY(U,$J,358.3,14649,1,5,0)
- ;;=5^DJD of Ankle/Foot
- ;;^UTILITY(U,$J,358.3,14649,2)
- ;;=DJD Ankle/Foot^272168
- ;;^UTILITY(U,$J,358.3,14650,0)
- ;;=731.0^^89^896^45
- ;;^UTILITY(U,$J,358.3,14650,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14650,1,4,0)
- ;;=4^731.0
- ;;^UTILITY(U,$J,358.3,14650,1,5,0)
- ;;=5^Paget's Disease
- ;;^UTILITY(U,$J,358.3,14650,2)
- ;;=Paget's Disease^86892
- ;;^UTILITY(U,$J,358.3,14651,0)
- ;;=733.01^^89^896^44
- ;;^UTILITY(U,$J,358.3,14651,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14651,1,4,0)
- ;;=4^733.01
- ;;^UTILITY(U,$J,358.3,14651,1,5,0)
- ;;=5^Osteoporosis, Senile
- ;;^UTILITY(U,$J,358.3,14651,2)
- ;;=Osteoporosis, Senile^87188
- ;;^UTILITY(U,$J,358.3,14652,0)
- ;;=733.02^^89^896^43
- ;;^UTILITY(U,$J,358.3,14652,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14652,1,4,0)
- ;;=4^733.02
- ;;^UTILITY(U,$J,358.3,14652,1,5,0)
- ;;=5^Osteoporosis, Idiopathic
- ;;^UTILITY(U,$J,358.3,14652,2)
- ;;=Osteoporosis, Idiopathic^272692
- ;;^UTILITY(U,$J,358.3,14653,0)
- ;;=733.90^^89^896^41
- ;;^UTILITY(U,$J,358.3,14653,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14653,1,4,0)
- ;;=4^733.90
+ ;;^UTILITY(U,$J,358.3,14368,1,3,0)
+ ;;=3^28111
+ ;;^UTILITY(U,$J,358.3,14369,0)
+ ;;=28112^^75^886^29^^^^1
+ ;;^UTILITY(U,$J,358.3,14369,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14369,1,2,0)
+ ;;=2^Ostectomy, complete excision; other metatarsal head (2nd, 3rd, 4th)
+ ;;^UTILITY(U,$J,358.3,14369,1,3,0)
+ ;;=3^28112
+ ;;^UTILITY(U,$J,358.3,14370,0)
+ ;;=28113^^75^886^27^^^^1
+ ;;^UTILITY(U,$J,358.3,14370,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14370,1,2,0)
+ ;;=2^Ostectomy, complete excision; 5th metatarsal head
+ ;;^UTILITY(U,$J,358.3,14370,1,3,0)
+ ;;=3^28113
+ ;;^UTILITY(U,$J,358.3,14371,0)
+ ;;=28114^^75^886^28^^^^1
+ ;;^UTILITY(U,$J,358.3,14371,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14371,1,2,0)
+ ;;=2^Ostectomy, complete excision; all metatarsal heads, with partial proximal phalangectomy, excluding first metatarsal 
+ ;;^UTILITY(U,$J,358.3,14371,1,3,0)
+ ;;=3^28114
+ ;;^UTILITY(U,$J,358.3,14372,0)
+ ;;=28140^^75^886^24^^^^1
+ ;;^UTILITY(U,$J,358.3,14372,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14372,1,2,0)
+ ;;=2^Metatarsectomy
+ ;;^UTILITY(U,$J,358.3,14372,1,3,0)
+ ;;=3^28140
+ ;;^UTILITY(U,$J,358.3,14373,0)
+ ;;=28119^^75^886^25^^^^1
+ ;;^UTILITY(U,$J,358.3,14373,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14373,1,2,0)
+ ;;=2^Ostectomy, calcaneus; for spur, with or without plantar fascial release
+ ;;^UTILITY(U,$J,358.3,14373,1,3,0)
+ ;;=3^28119
+ ;;^UTILITY(U,$J,358.3,14374,0)
+ ;;=28120^^75^886^32^^^^1
+ ;;^UTILITY(U,$J,358.3,14374,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14374,1,2,0)
+ ;;=2^Partial excision bone; talus or calcaneus
+ ;;^UTILITY(U,$J,358.3,14374,1,3,0)
+ ;;=3^28120
+ ;;^UTILITY(U,$J,358.3,14375,0)
+ ;;=28122^^75^886^33^^^^1
+ ;;^UTILITY(U,$J,358.3,14375,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14375,1,2,0)
+ ;;=2^Partial excision bone; tarsal or metatarsal bone, except talus or calcaneus
+ ;;^UTILITY(U,$J,358.3,14375,1,3,0)
+ ;;=3^28122
+ ;;^UTILITY(U,$J,358.3,14376,0)
+ ;;=28124^^75^886^31^^^^1
+ ;;^UTILITY(U,$J,358.3,14376,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14376,1,2,0)
+ ;;=2^Partial excision bone; phalanx of toe
+ ;;^UTILITY(U,$J,358.3,14376,1,3,0)
+ ;;=3^28124
+ ;;^UTILITY(U,$J,358.3,14377,0)
+ ;;=28153^^75^886^34^^^^1
+ ;;^UTILITY(U,$J,358.3,14377,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14377,1,2,0)
+ ;;=2^Resection, condyle(s), distal end of phalanx, each toe
+ ;;^UTILITY(U,$J,358.3,14377,1,3,0)
+ ;;=3^28153
+ ;;^UTILITY(U,$J,358.3,14378,0)
+ ;;=28160^^75^886^23^^^^1
+ ;;^UTILITY(U,$J,358.3,14378,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14378,1,2,0)
+ ;;=2^Hemiphalangectomy or interphalangeal joint excision, toe, proximal end of phalanx, each
+ ;;^UTILITY(U,$J,358.3,14378,1,3,0)
+ ;;=3^28160
+ ;;^UTILITY(U,$J,358.3,14379,0)
+ ;;=64774^^75^886^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14379,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14379,1,2,0)
+ ;;=2^Excision of neuroma; cutaneous nerve, surgically identifiable
+ ;;^UTILITY(U,$J,358.3,14379,1,3,0)
+ ;;=3^64774
+ ;;^UTILITY(U,$J,358.3,14380,0)
+ ;;=64776^^75^886^9^^^^1
+ ;;^UTILITY(U,$J,358.3,14380,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14380,1,2,0)
+ ;;=2^Excision of neuroma; digital nerve, one or both, same digit
+ ;;^UTILITY(U,$J,358.3,14380,1,3,0)
+ ;;=3^64776
+ ;;^UTILITY(U,$J,358.3,14381,0)
+ ;;=64778^^75^886^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14381,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14381,1,2,0)
+ ;;=2^Excision of neuroma; digital nerve, each additional digit (list separately in addition to code for primary procedure)
+ ;;^UTILITY(U,$J,358.3,14381,1,3,0)
+ ;;=3^64778
+ ;;^UTILITY(U,$J,358.3,14382,0)
+ ;;=64782^^75^886^11^^^^1

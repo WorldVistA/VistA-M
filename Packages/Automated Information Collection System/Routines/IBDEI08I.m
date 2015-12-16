@@ -1,126 +1,138 @@
-IBDEI08I ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI08I ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3853,1,3,0)
- ;;=3^Debride of nail(s) any method;1-5
- ;;^UTILITY(U,$J,358.3,3854,0)
- ;;=11721^^32^352^3^^^^1
- ;;^UTILITY(U,$J,358.3,3854,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3854,1,2,0)
- ;;=2^11721
- ;;^UTILITY(U,$J,358.3,3854,1,3,0)
- ;;=3^Debride of nail(s) any method;6+
- ;;^UTILITY(U,$J,358.3,3855,0)
- ;;=11730^^32^352^4^^^^1
- ;;^UTILITY(U,$J,358.3,3855,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3855,1,2,0)
- ;;=2^11730
- ;;^UTILITY(U,$J,358.3,3855,1,3,0)
- ;;=3^Avulsion of nail plate,simple;single
- ;;^UTILITY(U,$J,358.3,3856,0)
- ;;=11732^^32^352^5^^^^1
- ;;^UTILITY(U,$J,358.3,3856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3856,1,2,0)
- ;;=2^11732
- ;;^UTILITY(U,$J,358.3,3856,1,3,0)
- ;;=3^Avulsion of nail plate,Ea Add nail plate
- ;;^UTILITY(U,$J,358.3,3857,0)
- ;;=11740^^32^352^6^^^^1
- ;;^UTILITY(U,$J,358.3,3857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3857,1,2,0)
- ;;=2^11740
- ;;^UTILITY(U,$J,358.3,3857,1,3,0)
- ;;=3^Evacuation of subungual hematoma
- ;;^UTILITY(U,$J,358.3,3858,0)
- ;;=11750^^32^352^7^^^^1
- ;;^UTILITY(U,$J,358.3,3858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3858,1,2,0)
- ;;=2^11750
- ;;^UTILITY(U,$J,358.3,3858,1,3,0)
- ;;=3^Exc of nail&nail matrix,perm removal
- ;;^UTILITY(U,$J,358.3,3859,0)
- ;;=11752^^32^352^8^^^^1
- ;;^UTILITY(U,$J,358.3,3859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3859,1,2,0)
- ;;=2^11752
- ;;^UTILITY(U,$J,358.3,3859,1,3,0)
- ;;=3^Exc of nail&nail matrix,w/amp of tuft
- ;;^UTILITY(U,$J,358.3,3860,0)
- ;;=11760^^32^352^9^^^^1
- ;;^UTILITY(U,$J,358.3,3860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3860,1,2,0)
- ;;=2^11760
- ;;^UTILITY(U,$J,358.3,3860,1,3,0)
- ;;=3^Repair of nail bed
- ;;^UTILITY(U,$J,358.3,3861,0)
- ;;=11765^^32^352^10^^^^1
- ;;^UTILITY(U,$J,358.3,3861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3861,1,2,0)
- ;;=2^11765
- ;;^UTILITY(U,$J,358.3,3861,1,3,0)
- ;;=3^Wedge excision of skin of nail fold
- ;;^UTILITY(U,$J,358.3,3862,0)
- ;;=11300^^32^353^1^^^^1
- ;;^UTILITY(U,$J,358.3,3862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3862,1,2,0)
- ;;=2^11300
- ;;^UTILITY(U,$J,358.3,3862,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 0.5cm or less
- ;;^UTILITY(U,$J,358.3,3863,0)
- ;;=11301^^32^353^2^^^^1
- ;;^UTILITY(U,$J,358.3,3863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3863,1,2,0)
- ;;=2^11301
- ;;^UTILITY(U,$J,358.3,3863,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,3864,0)
- ;;=11302^^32^353^3^^^^1
- ;;^UTILITY(U,$J,358.3,3864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3864,1,2,0)
- ;;=2^11302
- ;;^UTILITY(U,$J,358.3,3864,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,3865,0)
- ;;=11303^^32^353^4^^^^1
- ;;^UTILITY(U,$J,358.3,3865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3865,1,2,0)
- ;;=2^11303
- ;;^UTILITY(U,$J,358.3,3865,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg > 2.0cm
- ;;^UTILITY(U,$J,358.3,3866,0)
- ;;=12001^^32^354^1^^^^1
- ;;^UTILITY(U,$J,358.3,3866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3866,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,3866,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,3867,0)
- ;;=12002^^32^354^2^^^^1
- ;;^UTILITY(U,$J,358.3,3867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3867,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,3867,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,3868,0)
- ;;=12004^^32^354^3^^^^1
- ;;^UTILITY(U,$J,358.3,3868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,3868,1,2,0)
- ;;=2^12004
- ;;^UTILITY(U,$J,358.3,3868,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 7.6 cm to 12.5 cm
+ ;;^UTILITY(U,$J,358.3,3506,1,2,0)
+ ;;=2^296.66
+ ;;^UTILITY(U,$J,358.3,3506,1,5,0)
+ ;;=5^Bipolar Mixed, Full Remiss
+ ;;^UTILITY(U,$J,358.3,3506,2)
+ ;;=^303632
+ ;;^UTILITY(U,$J,358.3,3507,0)
+ ;;=296.7^^11^151^9
+ ;;^UTILITY(U,$J,358.3,3507,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3507,1,2,0)
+ ;;=2^296.7
+ ;;^UTILITY(U,$J,358.3,3507,1,5,0)
+ ;;=5^Bipolar I Disorder, NOS
+ ;;^UTILITY(U,$J,358.3,3507,2)
+ ;;=^303633
+ ;;^UTILITY(U,$J,358.3,3508,0)
+ ;;=296.80^^11^151^8
+ ;;^UTILITY(U,$J,358.3,3508,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3508,1,2,0)
+ ;;=2^296.80
+ ;;^UTILITY(U,$J,358.3,3508,1,5,0)
+ ;;=5^Bipolar Disorder,NOS
+ ;;^UTILITY(U,$J,358.3,3508,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,3509,0)
+ ;;=296.89^^11^151^10
+ ;;^UTILITY(U,$J,358.3,3509,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3509,1,2,0)
+ ;;=2^296.89
+ ;;^UTILITY(U,$J,358.3,3509,1,5,0)
+ ;;=5^Bipolar II Disorder,NOS
+ ;;^UTILITY(U,$J,358.3,3509,2)
+ ;;=^331893
+ ;;^UTILITY(U,$J,358.3,3510,0)
+ ;;=297.0^^11^152^3
+ ;;^UTILITY(U,$J,358.3,3510,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3510,1,2,0)
+ ;;=2^297.0
+ ;;^UTILITY(U,$J,358.3,3510,1,5,0)
+ ;;=5^Paranoid State, Simple
+ ;;^UTILITY(U,$J,358.3,3510,2)
+ ;;=^268149
+ ;;^UTILITY(U,$J,358.3,3511,0)
+ ;;=298.9^^11^152^4
+ ;;^UTILITY(U,$J,358.3,3511,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3511,1,2,0)
+ ;;=2^298.9
+ ;;^UTILITY(U,$J,358.3,3511,1,5,0)
+ ;;=5^Psychosis, NOS
+ ;;^UTILITY(U,$J,358.3,3511,2)
+ ;;=^259059
+ ;;^UTILITY(U,$J,358.3,3512,0)
+ ;;=298.8^^11^152^5
+ ;;^UTILITY(U,$J,358.3,3512,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3512,1,2,0)
+ ;;=2^298.8
+ ;;^UTILITY(U,$J,358.3,3512,1,5,0)
+ ;;=5^Psychosis, Reactive
+ ;;^UTILITY(U,$J,358.3,3512,2)
+ ;;=^87326
+ ;;^UTILITY(U,$J,358.3,3513,0)
+ ;;=297.9^^11^152^2
+ ;;^UTILITY(U,$J,358.3,3513,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3513,1,2,0)
+ ;;=2^297.9
+ ;;^UTILITY(U,$J,358.3,3513,1,5,0)
+ ;;=5^Paranoia
+ ;;^UTILITY(U,$J,358.3,3513,2)
+ ;;=^123970
+ ;;^UTILITY(U,$J,358.3,3514,0)
+ ;;=297.1^^11^152^1
+ ;;^UTILITY(U,$J,358.3,3514,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3514,1,2,0)
+ ;;=2^297.1
+ ;;^UTILITY(U,$J,358.3,3514,1,5,0)
+ ;;=5^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,3514,2)
+ ;;=^331896
+ ;;^UTILITY(U,$J,358.3,3515,0)
+ ;;=301.7^^11^153^1
+ ;;^UTILITY(U,$J,358.3,3515,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3515,1,2,0)
+ ;;=2^301.7
+ ;;^UTILITY(U,$J,358.3,3515,1,5,0)
+ ;;=5^Antisocial Personality Dis
+ ;;^UTILITY(U,$J,358.3,3515,2)
+ ;;=Antisocial Personality Dis^9066
+ ;;^UTILITY(U,$J,358.3,3516,0)
+ ;;=301.82^^11^153^2
+ ;;^UTILITY(U,$J,358.3,3516,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3516,1,2,0)
+ ;;=2^301.82
+ ;;^UTILITY(U,$J,358.3,3516,1,5,0)
+ ;;=5^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3516,2)
+ ;;=Avoidant Personality Disorder^265347
+ ;;^UTILITY(U,$J,358.3,3517,0)
+ ;;=301.83^^11^153^3
+ ;;^UTILITY(U,$J,358.3,3517,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3517,1,2,0)
+ ;;=2^301.83
+ ;;^UTILITY(U,$J,358.3,3517,1,5,0)
+ ;;=5^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3517,2)
+ ;;=Borderline Personality Disorder^16372
+ ;;^UTILITY(U,$J,358.3,3518,0)
+ ;;=301.6^^11^153^6
+ ;;^UTILITY(U,$J,358.3,3518,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3518,1,2,0)
+ ;;=2^301.6
+ ;;^UTILITY(U,$J,358.3,3518,1,5,0)
+ ;;=5^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3518,2)
+ ;;=Dependent Personality Disorder^32860
+ ;;^UTILITY(U,$J,358.3,3519,0)
+ ;;=301.50^^11^153^8
+ ;;^UTILITY(U,$J,358.3,3519,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3519,1,2,0)
+ ;;=2^301.50
+ ;;^UTILITY(U,$J,358.3,3519,1,5,0)
+ ;;=5^Histrionic Personality Disorder

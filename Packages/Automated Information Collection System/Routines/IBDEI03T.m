@@ -1,142 +1,130 @@
-IBDEI03T ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI03T ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1425,1,4,0)
- ;;=4^V53.31
- ;;^UTILITY(U,$J,358.3,1425,1,5,0)
- ;;=5^Reprog Card Pacemaker
- ;;^UTILITY(U,$J,358.3,1425,2)
- ;;=^295506
- ;;^UTILITY(U,$J,358.3,1426,0)
- ;;=V53.32^^11^122^29
- ;;^UTILITY(U,$J,358.3,1426,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1426,1,4,0)
- ;;=4^V53.32
- ;;^UTILITY(U,$J,358.3,1426,1,5,0)
- ;;=5^Reprogramming of AICD
- ;;^UTILITY(U,$J,358.3,1426,2)
- ;;=Reprogramming of AICD^303454
- ;;^UTILITY(U,$J,358.3,1427,0)
- ;;=V53.39^^11^122^13
- ;;^UTILITY(U,$J,358.3,1427,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1427,1,4,0)
- ;;=4^V53.39
- ;;^UTILITY(U,$J,358.3,1427,1,5,0)
- ;;=5^Cardiac Device Reprogramming
- ;;^UTILITY(U,$J,358.3,1427,2)
- ;;=^303455
- ;;^UTILITY(U,$J,358.3,1428,0)
- ;;=427.9^^11^122^14
- ;;^UTILITY(U,$J,358.3,1428,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1428,1,4,0)
- ;;=4^427.9
- ;;^UTILITY(U,$J,358.3,1428,1,5,0)
- ;;=5^Cardiac Dysrhythmia NOS
- ;;^UTILITY(U,$J,358.3,1428,2)
- ;;=^10166
- ;;^UTILITY(U,$J,358.3,1429,0)
- ;;=427.61^^11^122^10
- ;;^UTILITY(U,$J,358.3,1429,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1429,1,4,0)
- ;;=4^427.61
- ;;^UTILITY(U,$J,358.3,1429,1,5,0)
- ;;=5^Atrial Premature Beats
- ;;^UTILITY(U,$J,358.3,1429,2)
- ;;=^116007
- ;;^UTILITY(U,$J,358.3,1430,0)
- ;;=433.00^^11^123^20
- ;;^UTILITY(U,$J,358.3,1430,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1430,1,4,0)
- ;;=4^433.00
- ;;^UTILITY(U,$J,358.3,1430,1,5,0)
- ;;=5^Athero Basilar W/O CVA
- ;;^UTILITY(U,$J,358.3,1430,2)
- ;;=^295800
- ;;^UTILITY(U,$J,358.3,1431,0)
- ;;=433.01^^11^123^19
- ;;^UTILITY(U,$J,358.3,1431,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1431,1,4,0)
- ;;=4^433.01
- ;;^UTILITY(U,$J,358.3,1431,1,5,0)
- ;;=5^Athero Basilar W/CVA
- ;;^UTILITY(U,$J,358.3,1431,2)
- ;;=^295730
- ;;^UTILITY(U,$J,358.3,1432,0)
- ;;=433.10^^11^123^21
- ;;^UTILITY(U,$J,358.3,1432,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1432,1,4,0)
- ;;=4^433.10
- ;;^UTILITY(U,$J,358.3,1432,1,5,0)
- ;;=5^Athero Carotid W/CVA
- ;;^UTILITY(U,$J,358.3,1432,2)
- ;;=^295801
- ;;^UTILITY(U,$J,358.3,1433,0)
- ;;=433.11^^11^123^22
- ;;^UTILITY(U,$J,358.3,1433,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1433,1,4,0)
- ;;=4^433.11
- ;;^UTILITY(U,$J,358.3,1433,1,5,0)
- ;;=5^Athero Carotid W/CVA
- ;;^UTILITY(U,$J,358.3,1433,2)
- ;;=^295731
- ;;^UTILITY(U,$J,358.3,1434,0)
- ;;=433.20^^11^123^36
- ;;^UTILITY(U,$J,358.3,1434,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1434,1,4,0)
- ;;=4^433.20
- ;;^UTILITY(U,$J,358.3,1434,1,5,0)
- ;;=5^Athero Vertebral W/O Cva
- ;;^UTILITY(U,$J,358.3,1434,2)
- ;;=^295802
- ;;^UTILITY(U,$J,358.3,1435,0)
- ;;=433.21^^11^123^35
- ;;^UTILITY(U,$J,358.3,1435,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1435,1,4,0)
- ;;=4^433.21
- ;;^UTILITY(U,$J,358.3,1435,1,5,0)
- ;;=5^Athero Vertebral W/CVA
- ;;^UTILITY(U,$J,358.3,1435,2)
- ;;=^295732
- ;;^UTILITY(U,$J,358.3,1436,0)
- ;;=433.30^^11^123^33
- ;;^UTILITY(U,$J,358.3,1436,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1436,1,4,0)
- ;;=4^433.30
- ;;^UTILITY(U,$J,358.3,1436,1,5,0)
- ;;=5^Athero Multi/Bi W/O CVA
- ;;^UTILITY(U,$J,358.3,1436,2)
- ;;=^295803
- ;;^UTILITY(U,$J,358.3,1437,0)
- ;;=433.31^^11^123^23
- ;;^UTILITY(U,$J,358.3,1437,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1437,1,4,0)
- ;;=4^433.31
- ;;^UTILITY(U,$J,358.3,1437,1,5,0)
- ;;=5^Athero Ero Multi/Bi W/Cva
- ;;^UTILITY(U,$J,358.3,1437,2)
- ;;=^295733
- ;;^UTILITY(U,$J,358.3,1438,0)
- ;;=435.9^^11^123^48
- ;;^UTILITY(U,$J,358.3,1438,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1438,1,4,0)
- ;;=4^435.9
- ;;^UTILITY(U,$J,358.3,1438,1,5,0)
- ;;=5^TIA
- ;;^UTILITY(U,$J,358.3,1438,2)
- ;;=^21635
- ;;^UTILITY(U,$J,358.3,1439,0)
- ;;=440.0^^11^123^18
+ ;;^UTILITY(U,$J,358.3,1252,0)
+ ;;=C73.^^3^39^79
+ ;;^UTILITY(U,$J,358.3,1252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1252,1,3,0)
+ ;;=3^Malignant neoplasm of thyroid gland
+ ;;^UTILITY(U,$J,358.3,1252,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,1252,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,1253,0)
+ ;;=C76.0^^3^39^61
+ ;;^UTILITY(U,$J,358.3,1253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1253,1,3,0)
+ ;;=3^Malignant neoplasm of head, face and neck
+ ;;^UTILITY(U,$J,358.3,1253,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,1253,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,1254,0)
+ ;;=C77.0^^3^39^115
+ ;;^UTILITY(U,$J,358.3,1254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1254,1,3,0)
+ ;;=3^Secondary and unsp malig neoplasm of nodes of head, face and neck
+ ;;^UTILITY(U,$J,358.3,1254,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,1254,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,1255,0)
+ ;;=C77.1^^3^39^117
+ ;;^UTILITY(U,$J,358.3,1255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1255,1,3,0)
+ ;;=3^Secondary and unsp malignant neoplasm of intrathorac nodes
+ ;;^UTILITY(U,$J,358.3,1255,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,1255,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,1256,0)
+ ;;=C77.2^^3^39^118
+ ;;^UTILITY(U,$J,358.3,1256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1256,1,3,0)
+ ;;=3^Secondary and unsp malignant neoplasm of intra-abd nodes
+ ;;^UTILITY(U,$J,358.3,1256,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,1256,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,1257,0)
+ ;;=C77.3^^3^39^114
+ ;;^UTILITY(U,$J,358.3,1257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1257,1,3,0)
+ ;;=3^Secondary and unsp malig neoplasm of axilla and upper limb nodes
+ ;;^UTILITY(U,$J,358.3,1257,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,1257,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,1258,0)
+ ;;=C77.8^^3^39^116
+ ;;^UTILITY(U,$J,358.3,1258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1258,1,3,0)
+ ;;=3^Secondary and unsp malig neoplasm of nodes of multiple regions
+ ;;^UTILITY(U,$J,358.3,1258,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,1258,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,1259,0)
+ ;;=C78.01^^3^39^126
+ ;;^UTILITY(U,$J,358.3,1259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1259,1,3,0)
+ ;;=3^Secondary malignant neoplasm of right lung
+ ;;^UTILITY(U,$J,358.3,1259,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,1259,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,1260,0)
+ ;;=C78.02^^3^39^123
+ ;;^UTILITY(U,$J,358.3,1260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1260,1,3,0)
+ ;;=3^Secondary malignant neoplasm of left lung
+ ;;^UTILITY(U,$J,358.3,1260,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,1260,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,1261,0)
+ ;;=C78.7^^3^39^124
+ ;;^UTILITY(U,$J,358.3,1261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1261,1,3,0)
+ ;;=3^Secondary malignant neoplasm of liver/intrahepatic bile duct
+ ;;^UTILITY(U,$J,358.3,1261,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,1261,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,1262,0)
+ ;;=C79.31^^3^39^121
+ ;;^UTILITY(U,$J,358.3,1262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1262,1,3,0)
+ ;;=3^Secondary malignant neoplasm of brain
+ ;;^UTILITY(U,$J,358.3,1262,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,1262,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,1263,0)
+ ;;=C79.51^^3^39^119
+ ;;^UTILITY(U,$J,358.3,1263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1263,1,3,0)
+ ;;=3^Secondary malignant neoplasm of bone
+ ;;^UTILITY(U,$J,358.3,1263,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,1263,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,1264,0)
+ ;;=C79.52^^3^39^120
+ ;;^UTILITY(U,$J,358.3,1264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1264,1,3,0)
+ ;;=3^Secondary malignant neoplasm of bone marrow

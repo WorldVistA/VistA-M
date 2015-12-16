@@ -1,5 +1,5 @@
-PXRPC ;ISL/JLC - PCE DATA2PCE RPC;01/28/2014 12:52 ; 17 Apr 2014  9:00 AM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**200**;Aug 12, 1996;Build 14
+PXRPC ;ISL/JLC - PCE DATA2PCE RPC ; 07 Apr 2015  3:12 PM
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**200,209**;Aug 12, 1996;Build 4
  ;
  ;
  ;
@@ -16,6 +16,8 @@ DQSAVE ;
  N PRV,CPT,ICD,IMM,SK,PED,HF,XAM,TRT,MOD,MODCNT,MODIDX,MODS
  N COM,COMMENT,COMMENTS
  N DFN,PROBLEMS,PXAPREDT,ORCPTDEL
+ ; Vars for Info Source (IMMIS) Imm. Admin Route (IMMRT), Body Site (IMMAL), Lot, Manufacturer, Exp. Date & Comments
+ N IMMISNM,IMMISIEN,IMMRTNM,IMMRTIEN,IMMRTERR,IMMALNAME,IMMALIEN,IMMALERR,IMMLOT,IMMMANUF,IMMEXPDT,IMMCOMM,IMMCOMMS
  S PKG=$$PKG2IEN^VSIT(PKGNAME) I PKG=-1 S OK=-3 Q
  S (PRV,CPT,ICD,IMM,SK,PED,HF,XAM,TRT)=0
  S I="" F  S I=$O(PCELIST(I)) Q:'I  S X=PCELIST(I) D
@@ -94,6 +96,36 @@ DQSAVE ;
  . . S:$L($P(X,U,9)) @ROOT@("REFUSED")=$P(X,U,9)
  . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
  . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="IMMUNIZATION^"_IMM
+ . . ; These are the additional fields being added by PX*1.0*209
+ . . ;S:$L($P(X,U,11)) @ROOT@("CVX")=$P(X,U,11)
+ . . S IMMISNM=$P(X,U,12)
+ . . ; Look up the value in the "H" Cross-reference
+ . . S IMMISIEN=$$FIND1^DIC(920.1,,,IMMISNM,"H",,"IMMISERR")
+ . . S:IMMISIEN @ROOT@("INFO SOURCE")=IMMISIEN
+ . . S:$L($P(X,U,13)) @ROOT@("DOSAGE")=$P(X,U,13)
+ . . S IMMRTNM=$P(X,U,14)
+ . . S IMMRTIEN=$$FIND1^DIC(920.2,,,IMMRTNM,,,"IMMRTERR")
+ . . S:IMMRTIEN @ROOT@("ADMIN ROUTE")=IMMRTIEN
+ . . S IMMALNAME=$P(X,U,15)
+ . . S IMMALIEN=$$FIND1^DIC(920.3,,,IMMALNAME,,,"IMMALERR")
+ . . S:IMMALIEN @ROOT@("ANATOMIC LOC")=IMMALIEN
+ . . ;S:$L($P(X,U,16)) @ROOT@("LOT NUM")=$P(X,U,16)
+ . . S IMMLOT=$P(X,U,16)
+ . . S IMMMANUF=$P(X,U,17)
+ . . S IMMEXPDT=$P(X,U,18)
+ . . ; If the Lot Number, Manufacturer and Expiration Date are all specified,
+ . . ; then find an entry matching all three values in File 9999999.41 (IMMUNIZATION LOT)
+ . . ; If we don't find a match, then add the fields to the Comment.
+ . . ; For now, we will not receive the Expiration Date from Walgreens, so we always update the Comment.
+ . . S IMMCOMM=""
+ . . S:IMMLOT'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Lot#: "_IMMLOT
+ . . S:IMMMANUF'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Mfr: "_IMMMANUF
+ . . S:IMMEXPDT'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Expiration Date: "_IMMEXPDT
+ . . ; If we have something to add to the Imm comment, either add it to the existing comment
+ . . ; (if one exists) or just set it in the COMMENT field.
+ . . I IMMCOMM'="" D
+ . . . I $L($P(X,U,10)) S IMMCOMMS($P(X,U,10))=IMMCOMM ; This will get added later to the existing comment
+ . . . E  S @ROOT@("COMMENT")=IMMCOMM
  . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
  . I $E(TYP,1,2)="SK" D  Q
  . . Q:'$L(CODE)
@@ -149,7 +181,10 @@ DQSAVE ;
  . . S COMMENTS(CODE)=$P(X,U,3,999)
  ;Store the comments
  S COM=""
- F  S COM=$O(COMMENT(COM)) Q:COM=""  S:$D(COMMENTS(COM)) PXAPI($P(COMMENT(COM),"^",1),$P(COMMENT(COM),"^",2),"COMMENT")=COMMENTS(COM)
+ ;F  S COM=$O(COMMENT(COM)) Q:COM=""  S:$D(COMMENTS(COM)) PXAPI($P(COMMENT(COM),"^",1),$P(COMMENT(COM),"^",2),"COMMENT")=COMMENTS(COM)
+ F  S COM=$O(COMMENT(COM)) Q:COM=""  D:$D(COMMENTS(COM))
+ . I $G(IMMCOMMS(COM))'="" S COMMENTS(COM)=COMMENTS(COM)_$S(COMMENTS(COM)="":"",1:" ")_IMMCOMMS(COM)
+ . S PXAPI($P(COMMENT(COM),"^",1),$P(COMMENT(COM),"^",2),"COMMENT")=COMMENTS(COM)
  ;
  S PXAPI("ENCOUNTER",1,"ENCOUNTER TYPE")="P"
 DATA2PCE ; 

@@ -1,5 +1,5 @@
 PSJHL9 ;BIR/LDT-VALIDATE INCOMING HL7 DATA/CREATE NEW ORDER ; 2/14/12 7:14am
- ;;5.0;INPATIENT MEDICATIONS;**1,18,31,42,47,50,63,72,75,58,80,110,111,134,267,279**;16 DEC 97;Build 150
+ ;;5.0;INPATIENT MEDICATIONS;**1,18,31,42,47,50,63,72,75,58,80,110,111,134,267,279,194**;16 DEC 97;Build 42
  ;
  ; Reference to ^PSDRUG is supported by DBIA# 2192.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
@@ -16,7 +16,8 @@ VALID ;
  S:APPL="" APPL="IP"
  I APPL'="F" D
  .I $G(SCHEDULE)]"" N X S X=SCHEDULE D  S SCHEDULE=X
- ..I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!($L($P(X,"@"))>70)!($L($P(X,"@",2))>119)!($L(X)<1)!(X["P RN")!(X["PR N") S X="" Q
+ ..;*194 Allow multi-word schedules
+ ..I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!($L($P(X,"@"))>70)!($L($P(X,"@",2))>119)!($L(X)<1)!(X["P RN")!(X["PR N") S X="" Q
  ..I X?.E1L.E S X=$$ENLU^PSGMI(X)
  ..S X=$$TRIM^XLFSTR(X,"R"," ")
  ..I X["Q0" S X="" Q

@@ -1,112 +1,134 @@
-IBDEI1CH ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1CH ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24112,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24112,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,24112,1,3,0)
- ;;=3^28545
- ;;^UTILITY(U,$J,358.3,24113,0)
- ;;=28546^^142^1497^48^^^^1
- ;;^UTILITY(U,$J,358.3,24113,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24113,1,2,0)
- ;;=2^Perc Fixation Tarsal Bone Dislocation
- ;;^UTILITY(U,$J,358.3,24113,1,3,0)
- ;;=3^28546
- ;;^UTILITY(U,$J,358.3,24114,0)
- ;;=28555^^142^1497^49^^^^1
- ;;^UTILITY(U,$J,358.3,24114,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24114,1,2,0)
- ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,24114,1,3,0)
- ;;=3^28555
- ;;^UTILITY(U,$J,358.3,24115,0)
- ;;=28570^^142^1497^50^^^^1
- ;;^UTILITY(U,$J,358.3,24115,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24115,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,24115,1,3,0)
- ;;=3^28570
- ;;^UTILITY(U,$J,358.3,24116,0)
- ;;=28575^^142^1497^51^^^^1
- ;;^UTILITY(U,$J,358.3,24116,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24116,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,24116,1,3,0)
- ;;=3^28575
- ;;^UTILITY(U,$J,358.3,24117,0)
- ;;=28576^^142^1497^52^^^^1
- ;;^UTILITY(U,$J,358.3,24117,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24117,1,2,0)
- ;;=2^Perc Fixation Talotarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,24117,1,3,0)
- ;;=3^28576
- ;;^UTILITY(U,$J,358.3,24118,0)
- ;;=28585^^142^1497^53^^^^1
- ;;^UTILITY(U,$J,358.3,24118,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24118,1,2,0)
- ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,24118,1,3,0)
- ;;=3^28585
- ;;^UTILITY(U,$J,358.3,24119,0)
- ;;=28600^^142^1497^55^^^^1
- ;;^UTILITY(U,$J,358.3,24119,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24119,1,2,0)
- ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,24119,1,3,0)
- ;;=3^28600
- ;;^UTILITY(U,$J,358.3,24120,0)
- ;;=28606^^142^1497^56^^^^1
- ;;^UTILITY(U,$J,358.3,24120,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24120,1,2,0)
- ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,24120,1,3,0)
- ;;=3^28606
- ;;^UTILITY(U,$J,358.3,24121,0)
- ;;=28615^^142^1497^57^^^^1
- ;;^UTILITY(U,$J,358.3,24121,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24121,1,2,0)
- ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,24121,1,3,0)
- ;;=3^28615
- ;;^UTILITY(U,$J,358.3,24122,0)
- ;;=28630^^142^1497^58^^^^1
- ;;^UTILITY(U,$J,358.3,24122,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24122,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,24122,1,3,0)
- ;;=3^28630
- ;;^UTILITY(U,$J,358.3,24123,0)
- ;;=28635^^142^1497^59^^^^1
- ;;^UTILITY(U,$J,358.3,24123,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24123,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,24123,1,3,0)
- ;;=3^28635
- ;;^UTILITY(U,$J,358.3,24124,0)
- ;;=28636^^142^1497^60^^^^1
- ;;^UTILITY(U,$J,358.3,24124,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24124,1,2,0)
- ;;=2^Perc Fixation Metatarsophalangeal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,24124,1,3,0)
- ;;=3^28636
- ;;^UTILITY(U,$J,358.3,24125,0)
- ;;=28645^^142^1497^61^^^^1
- ;;^UTILITY(U,$J,358.3,24125,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24125,1,2,0)
- ;;=2^Open Tx of metatarsophalangeal joint dislocation, with or w/o internal or external fixation
+ ;;^UTILITY(U,$J,358.3,23818,0)
+ ;;=295.02^^127^1436^21
+ ;;^UTILITY(U,$J,358.3,23818,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23818,1,2,0)
+ ;;=2^295.02
+ ;;^UTILITY(U,$J,358.3,23818,1,5,0)
+ ;;=5^Simple Schizophrenia, Chronic
+ ;;^UTILITY(U,$J,358.3,23818,2)
+ ;;=Simple Schizophrenia, Chronic^268046
+ ;;^UTILITY(U,$J,358.3,23819,0)
+ ;;=295.04^^127^1436^20
+ ;;^UTILITY(U,$J,358.3,23819,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23819,1,2,0)
+ ;;=2^295.04
+ ;;^UTILITY(U,$J,358.3,23819,1,5,0)
+ ;;=5^Simple Schizophrenia,  Chr w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,23819,2)
+ ;;=^268048
+ ;;^UTILITY(U,$J,358.3,23820,0)
+ ;;=295.92^^127^1436^14
+ ;;^UTILITY(U,$J,358.3,23820,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23820,1,2,0)
+ ;;=2^295.92
+ ;;^UTILITY(U,$J,358.3,23820,1,5,0)
+ ;;=5^Schizophrenia, NOS, Chronic
+ ;;^UTILITY(U,$J,358.3,23820,2)
+ ;;=Schizophrenia, NOS, Chronic^268093
+ ;;^UTILITY(U,$J,358.3,23821,0)
+ ;;=295.94^^127^1436^15
+ ;;^UTILITY(U,$J,358.3,23821,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23821,1,2,0)
+ ;;=2^295.94
+ ;;^UTILITY(U,$J,358.3,23821,1,5,0)
+ ;;=5^Schizophrenia, NOS, Chronic w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,23821,2)
+ ;;=^268095
+ ;;^UTILITY(U,$J,358.3,23822,0)
+ ;;=295.00^^127^1436^19
+ ;;^UTILITY(U,$J,358.3,23822,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23822,1,2,0)
+ ;;=2^295.00
+ ;;^UTILITY(U,$J,358.3,23822,1,5,0)
+ ;;=5^Simple Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,23822,2)
+ ;;=^265175
+ ;;^UTILITY(U,$J,358.3,23823,0)
+ ;;=295.10^^127^1436^1
+ ;;^UTILITY(U,$J,358.3,23823,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23823,1,2,0)
+ ;;=2^295.10
+ ;;^UTILITY(U,$J,358.3,23823,1,5,0)
+ ;;=5^Disorganized Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,23823,2)
+ ;;=^108319
+ ;;^UTILITY(U,$J,358.3,23824,0)
+ ;;=295.30^^127^1436^7
+ ;;^UTILITY(U,$J,358.3,23824,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23824,1,2,0)
+ ;;=2^295.30
+ ;;^UTILITY(U,$J,358.3,23824,1,5,0)
+ ;;=5^Paranoid Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,23824,2)
+ ;;=^108330
+ ;;^UTILITY(U,$J,358.3,23825,0)
+ ;;=295.40^^127^1436^16
+ ;;^UTILITY(U,$J,358.3,23825,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23825,1,2,0)
+ ;;=2^295.40
+ ;;^UTILITY(U,$J,358.3,23825,1,5,0)
+ ;;=5^Schizophreniform Disorder NOS
+ ;;^UTILITY(U,$J,358.3,23825,2)
+ ;;=^331845
+ ;;^UTILITY(U,$J,358.3,23826,0)
+ ;;=295.50^^127^1436^4
+ ;;^UTILITY(U,$J,358.3,23826,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23826,1,2,0)
+ ;;=2^295.50
+ ;;^UTILITY(U,$J,358.3,23826,1,5,0)
+ ;;=5^Latent Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,23826,2)
+ ;;=^68517
+ ;;^UTILITY(U,$J,358.3,23827,0)
+ ;;=295.60^^127^1436^22
+ ;;^UTILITY(U,$J,358.3,23827,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23827,1,2,0)
+ ;;=2^295.60
+ ;;^UTILITY(U,$J,358.3,23827,1,5,0)
+ ;;=5^Undifferentiated Schizophrenia NOS
+ ;;^UTILITY(U,$J,358.3,23827,2)
+ ;;=^331851
+ ;;^UTILITY(U,$J,358.3,23828,0)
+ ;;=295.70^^127^1436^10
+ ;;^UTILITY(U,$J,358.3,23828,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23828,1,2,0)
+ ;;=2^295.70
+ ;;^UTILITY(U,$J,358.3,23828,1,5,0)
+ ;;=5^Schizoaffective Disorder NOS
+ ;;^UTILITY(U,$J,358.3,23828,2)
+ ;;=^331857
+ ;;^UTILITY(U,$J,358.3,23829,0)
+ ;;=295.90^^127^1436^13
+ ;;^UTILITY(U,$J,358.3,23829,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23829,1,2,0)
+ ;;=2^295.90
+ ;;^UTILITY(U,$J,358.3,23829,1,5,0)
+ ;;=5^Schizophrenia NOS,Unspec
+ ;;^UTILITY(U,$J,358.3,23829,2)
+ ;;=^108287
+ ;;^UTILITY(U,$J,358.3,23830,0)
+ ;;=300.11^^127^1437^1
+ ;;^UTILITY(U,$J,358.3,23830,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23830,1,2,0)
+ ;;=2^300.11
+ ;;^UTILITY(U,$J,358.3,23830,1,5,0)
+ ;;=5^Conversion Disorder
+ ;;^UTILITY(U,$J,358.3,23830,2)
+ ;;=^28139

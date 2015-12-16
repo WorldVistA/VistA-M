@@ -1,5 +1,5 @@
-VAFHLZCD ;ALB/KCL,Zoltan,JAN,TDM - Create HL7 Catastrophic Disability (ZCD) segment ; 9/19/05 11:31am
- ;;5.3;Registration;**122,232,387,653**;Aug 13, 1993;Build 2
+VAFHLZCD ;ALB/KCL,Zoltan,JAN,TDM,TEJ,LMD - Create HL7 Catastrophic Disability (ZCD) segment ; 9/19/05 11:31am
+ ;;5.3;Registration;**122,232,387,653,894**;Aug 13, 1993;Build 48
  ;
  ;
  ; This generic extrinsic function is designed to return the
@@ -62,7 +62,7 @@ EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
  I 'VALOK F SUB="REVDTE","BY","FACDET","DATE","METDET","VCD" S VAFCAT(SUB)=""
  ;
  ; if VAFSTR not passed, return all data fields
- I $G(VAFSTR)="" S VAFSTR="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16"
+ I $G(VAFSTR)="" S VAFSTR="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17"    ;DG*5.3*894
  ;
  ; initialize output string and requested data fields
  S $P(VAFY,VAFHLFS,$L(VAFSTR,","))=""
@@ -89,14 +89,16 @@ EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
  I VAFSTR[",5," S $P(VAFY,VAFHLFS,5)=$S(VAFCAT("DATE")'="":$$HLDATE^HLFNC(VAFCAT("DATE")),1:VAFHLQ)
  ; 6 - Method of Determination
  I VAFSTR[",6," S $P(VAFY,VAFHLFS,6)=$S(VAFCAT("METDET")'="":$$METH2HL7^DGENA5(VAFCAT("METDET")),1:VAFHLQ)
- ; 7 - Diagnosis (multiple)
- I VAFSTR[",7," S $P(VAFY,VAFHLFS,7)=$S($G(VAFCDLST(SETID,"DIAG"))'="":$$RSNTOHL7^DGENA5(VAFCDLST(SETID,"DIAG")),1:VAFHLQ)
- ; 8 - Procedure (multiple)
- I VAFSTR[",8," S $P(VAFY,VAFHLFS,8)=$S($G(VAFCDLST(SETID,"PROC"))'="":$$RSNTOHL7^DGENA5(VAFCDLST(SETID,"PROC")),1:VAFHLQ)
+ ; 17 - Catastrophic Disability Descriptor(s) - DG*5.3*894
+ K VANO S VANO=1 I VAFSTR[",17,",$D(VAFCAT("DESCR"))>0 S $P(VAFY,VAFHLFS,17)=$$DSCR2HL7^DGENA5(DFN) S:$P(VAFY,VAFHLFS,17)]"" VANO=0
+ ; 7 - Diagnosis (multiple), DG*5.3*894
+ I VANO,VAFSTR[",7," S $P(VAFY,VAFHLFS,7)=$S($G(VAFCDLST(SETID,"DIAG"))'="":$$RSNTOHL7^DGENA5(VAFCDLST(SETID,"DIAG")),1:VAFHLQ)
+ ; 8 - Procedure (multiple), DG*5.3*894
+ I VANO,VAFSTR[",8," S $P(VAFY,VAFHLFS,8)=$S($G(VAFCDLST(SETID,"PROC"))'="":$$RSNTOHL7^DGENA5(VAFCDLST(SETID,"PROC")),1:VAFHLQ)
  ; 9 - Affected Extremity (Procedure sub-field)
  I VAFSTR[",9," S $P(VAFY,VAFHLFS,9)=$S($G(VAFCDLST(SETID,"EXT"))'="":$$LIMBTOHL^DGENA5(VAFCDLST(SETID,"EXT")),1:VAFHLQ)
- ; 10 - Condition (multiple)
- I VAFSTR[",10," S $P(VAFY,VAFHLFS,10)=$S($G(VAFCDLST(SETID,"COND"))'="":$$RSNTOHL7^DGENA5(VAFCDLST(SETID,"COND")),1:VAFHLQ)
+ ; 10 - Condition (multiple), DG*5.3*894
+ I VANO,VAFSTR[",10," S $P(VAFY,VAFHLFS,10)=$S($G(VAFCDLST(SETID,"COND"))'="":$$RSNTOHL7^DGENA5(VAFCDLST(SETID,"COND")),1:VAFHLQ)
  ; 11 - Score (Condition sub-field)
  I VAFSTR[",11," S $P(VAFY,VAFHLFS,11)=$S($G(VAFCDLST(SETID,"SCORE"))'="":VAFCDLST(SETID,"SCORE"),1:VAFHLQ)
  ; 12 - Veteran Catastrophically Disabled?
@@ -109,7 +111,7 @@ EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
  I VAFSTR[",15," S $P(VAFY,VAFHLFS,15)=$S(VAFCAT("DTFACIRV")'="":$$HLDATE^HLFNC(VAFCAT("DTFACIRV")),1:VAFHLQ)
  ; 16 - Date Veteran Was Notified
  I VAFSTR[",16," S $P(VAFY,VAFHLFS,16)=$S(VAFCAT("DTVETNOT")'="":$$HLDATE^HLFNC(VAFCAT("DTVETNOT")),1:VAFHLQ)
- ;
+ ;  
  S:$E(VAFSTR,1)="," VAFSTR=$E(VAFSTR,2,$L(VAFSTR))
  S:$E(VAFSTR,$L(VAFSTR))="," VAFSTR=$E(VAFSTR,1,$L(VAFSTR)-1)
 ENQ Q "ZCD"_VAFHLFS_$G(VAFY)
@@ -127,6 +129,7 @@ MAKELST(VAFCDLST,VAFCAT) ; Make list of ZCD Segments.
  ;  VAFCDLST(Segment#,"COND")= CD Condition (pointer to #27.17).
  ;  VAFCDLST(Segment#,"PERM") = Permanent Indicator (for condition).
  ;  VAFCDLST(Segment#,"SCORE") = Test Score (for condition).
+ ;  VAFCDLST(Segment#,"DESCR") = CD Descriptor(for VCD="yes")         * DG*5.3*894
  ;
  ; Per Enrollment Phase II SRS (Section 4.2.4) no ZCD segment should
  ; contain more than one CD Reason (Diagnosis, Procedure, Condition.)

@@ -1,14 +1,12 @@
 VPRDGMRC ;SLC/MKB -- Consult extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; ^TIU(8925.1                   5677
  ; DIQ                           2056
  ; GMRCGUIB                      2980
  ; GMRCSLM1,^TMP("GMRCR",$J)     2740
- ; TIULQ                         2693
  ; XUAF4                         2171
  ;
  ; ------------ Get consults from VistA ------------
@@ -27,7 +25,7 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's consults
  ;
 EN1(ID,CONS) ; -- return a consult in CONS("attribute")=value
  ;     Expects DFN, VPRX=^TMP("GMRCR",$J,"CS",VPRN,0) [from EN]
- N VPRD,X0,VPRJ,X,VPRTIU,LT,NT
+ N VPRD,X0,VPRJ,X,VPRTIU
  K CONS,^TMP("VPRTEXT",$J)
  S CONS("id")=ID,CONS("requested")=$P(VPRX,U,2)
  S CONS("status")=$P(VPRX,U,3),CONS("service")=$P(VPRX,U,4)
@@ -37,11 +35,8 @@ EN1(ID,CONS) ; -- return a consult in CONS("attribute")=value
  D DOCLIST^GMRCGUIB(.VPRD,ID) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
  S X=$P(X0,U,14) S:X CONS("provider")=X_U_$P($G(^VA(200,X,0)),U)_U_$$PROVSPC^VPRD(X)
  S VPRJ=0 F  S VPRJ=$O(VPRD(50,VPRJ)) Q:VPRJ<1  S X=$G(VPRD(50,VPRJ)) D
- . Q:'$D(@(U_$P(X,";",2)_+X_")"))  ;text deleted
- . D EXTRACT^TIULQ(+X,"VPRTIU",,.01)
- . S LT=$G(VPRTIU(+X,.01,"E")) ;print name
- . S NT=$$GET1^DIQ(8925.1,+$G(VPRTIU(+X,.01,"I"))_",",1501)
- . S CONS("document",VPRJ)=+X_U_LT_U_NT
+ . N Y S Y=$$INFO^VPRDTIU(+X) Q:Y<1  ;draft or retracted
+ . S CONS("document",VPRJ)=Y
  . S:$G(VPRTEXT) CONS("document",VPRJ,"content")=$$TEXT^VPRDTIU(X)
  S X=$P(X0,U,21),CONS("facility")=$S(X:$$STA^XUAF4(X)_U_$P($$NS^XUAF4(X),U),1:$$FAC^VPRD)
  Q
@@ -53,7 +48,7 @@ XML(CONS) ; -- Return patient consult as XML
  N ATT,X,Y,I,J,NAMES
  D ADD("<consult>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(CONS(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
- . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle",ATT="provider":"code^name^taxonomyCode^providerType^classification^specialization",1:"code^name")_"^Z"
+ . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^vuid",ATT="provider":"code^name^"_$$PROVTAGS^VPRD,1:"code^name")_"^Z"
  . I $O(CONS(ATT,0)) D  S Y="" Q  ;multiples
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(CONS(ATT,I)) Q:I<1  D

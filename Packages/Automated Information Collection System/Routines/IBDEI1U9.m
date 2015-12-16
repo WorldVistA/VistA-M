@@ -1,128 +1,138 @@
-IBDEI1U9 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1U9 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32791,0)
- ;;=R40.2311^^190^1961^15
- ;;^UTILITY(U,$J,358.3,32791,1,0)
+ ;;^UTILITY(U,$J,358.3,32380,0)
+ ;;=E23.0^^182^1984^30
+ ;;^UTILITY(U,$J,358.3,32380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32791,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,32791,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,32791,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,32792,0)
- ;;=R40.2310^^190^1961^13
- ;;^UTILITY(U,$J,358.3,32792,1,0)
+ ;;^UTILITY(U,$J,358.3,32380,1,3,0)
+ ;;=3^Hypopituitarism
+ ;;^UTILITY(U,$J,358.3,32380,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,32380,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,32381,0)
+ ;;=E27.1^^182^1984^48
+ ;;^UTILITY(U,$J,358.3,32381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32792,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,32792,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,32792,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,32793,0)
- ;;=R40.4^^190^1961^38
- ;;^UTILITY(U,$J,358.3,32793,1,0)
+ ;;^UTILITY(U,$J,358.3,32381,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,32381,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,32381,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,32382,0)
+ ;;=E27.2^^182^1984^1
+ ;;^UTILITY(U,$J,358.3,32382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32793,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,32793,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,32793,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,32794,0)
- ;;=V00.811A^^190^1962^43
- ;;^UTILITY(U,$J,358.3,32794,1,0)
+ ;;^UTILITY(U,$J,358.3,32382,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,32382,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,32382,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,32383,0)
+ ;;=E27.3^^182^1984^22
+ ;;^UTILITY(U,$J,358.3,32383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32794,1,3,0)
- ;;=3^Fall from Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,32794,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,32794,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,32795,0)
- ;;=V00.811D^^190^1962^44
- ;;^UTILITY(U,$J,358.3,32795,1,0)
+ ;;^UTILITY(U,$J,358.3,32383,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,32383,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,32383,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,32384,0)
+ ;;=E29.1^^182^1984^49
+ ;;^UTILITY(U,$J,358.3,32384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32795,1,3,0)
- ;;=3^Fall from Moving Wheelchair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32795,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,32795,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,32796,0)
- ;;=V00.812A^^190^1962^121
- ;;^UTILITY(U,$J,358.3,32796,1,0)
+ ;;^UTILITY(U,$J,358.3,32384,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,32384,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,32384,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,32385,0)
+ ;;=E55.9^^182^1984^56
+ ;;^UTILITY(U,$J,358.3,32385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32796,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,32796,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,32796,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,32797,0)
- ;;=V00.812D^^190^1962^122
- ;;^UTILITY(U,$J,358.3,32797,1,0)
+ ;;^UTILITY(U,$J,358.3,32385,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,32385,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,32385,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,32386,0)
+ ;;=E66.01^^182^1984^37
+ ;;^UTILITY(U,$J,358.3,32386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32797,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32797,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,32797,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,32798,0)
- ;;=V00.818A^^190^1962^119
- ;;^UTILITY(U,$J,358.3,32798,1,0)
+ ;;^UTILITY(U,$J,358.3,32386,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,32386,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,32386,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,32387,0)
+ ;;=E66.8^^182^1984^41
+ ;;^UTILITY(U,$J,358.3,32387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32798,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,32798,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,32798,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,32799,0)
- ;;=V00.818D^^190^1962^120
- ;;^UTILITY(U,$J,358.3,32799,1,0)
+ ;;^UTILITY(U,$J,358.3,32387,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,32387,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,32387,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,32388,0)
+ ;;=E66.9^^182^1984^42
+ ;;^UTILITY(U,$J,358.3,32388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32799,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32799,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,32799,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,32800,0)
- ;;=V00.831A^^190^1962^41
- ;;^UTILITY(U,$J,358.3,32800,1,0)
+ ;;^UTILITY(U,$J,358.3,32388,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,32388,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,32388,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,32389,0)
+ ;;=E74.39^^182^1984^34
+ ;;^UTILITY(U,$J,358.3,32389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32800,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,32800,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,32800,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,32801,0)
- ;;=V00.831D^^190^1962^42
- ;;^UTILITY(U,$J,358.3,32801,1,0)
+ ;;^UTILITY(U,$J,358.3,32389,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,32389,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,32389,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,32390,0)
+ ;;=E83.30^^182^1984^44
+ ;;^UTILITY(U,$J,358.3,32390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32801,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32801,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,32801,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,32802,0)
- ;;=V00.832A^^190^1962^91
- ;;^UTILITY(U,$J,358.3,32802,1,0)
+ ;;^UTILITY(U,$J,358.3,32390,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32390,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,32390,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,32391,0)
+ ;;=E83.51^^182^1984^27
+ ;;^UTILITY(U,$J,358.3,32391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32802,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,32802,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,32802,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,32803,0)
- ;;=V00.832D^^190^1962^92
- ;;^UTILITY(U,$J,358.3,32803,1,0)
+ ;;^UTILITY(U,$J,358.3,32391,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,32391,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,32391,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,32392,0)
+ ;;=E83.52^^182^1984^25
+ ;;^UTILITY(U,$J,358.3,32392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32392,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,32392,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,32392,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,32393,0)
+ ;;=E87.5^^182^1984^26
+ ;;^UTILITY(U,$J,358.3,32393,1,0)
  ;;=^358.31IA^4^2

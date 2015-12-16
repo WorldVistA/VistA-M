@@ -1,138 +1,120 @@
-IBDEI1PD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30547,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,30548,0)
- ;;=R06.02^^189^1919^25
- ;;^UTILITY(U,$J,358.3,30548,1,0)
+ ;;^UTILITY(U,$J,358.3,30186,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts5
+ ;;^UTILITY(U,$J,358.3,30186,1,4,0)
+ ;;=4^O31.11X5
+ ;;^UTILITY(U,$J,358.3,30186,2)
+ ;;=^5016542
+ ;;^UTILITY(U,$J,358.3,30187,0)
+ ;;=O31.12X5^^178^1915^39
+ ;;^UTILITY(U,$J,358.3,30187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30548,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,30548,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,30548,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,30549,0)
- ;;=R06.83^^189^1919^27
- ;;^UTILITY(U,$J,358.3,30549,1,0)
+ ;;^UTILITY(U,$J,358.3,30187,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,30187,1,4,0)
+ ;;=4^O31.12X5
+ ;;^UTILITY(U,$J,358.3,30187,2)
+ ;;=^5016549
+ ;;^UTILITY(U,$J,358.3,30188,0)
+ ;;=O31.13X5^^178^1915^40
+ ;;^UTILITY(U,$J,358.3,30188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30549,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,30549,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,30549,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,30550,0)
- ;;=R06.00^^189^1919^18
- ;;^UTILITY(U,$J,358.3,30550,1,0)
+ ;;^UTILITY(U,$J,358.3,30188,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts5
+ ;;^UTILITY(U,$J,358.3,30188,1,4,0)
+ ;;=4^O31.13X5
+ ;;^UTILITY(U,$J,358.3,30188,2)
+ ;;=^5016556
+ ;;^UTILITY(U,$J,358.3,30189,0)
+ ;;=O31.31X0^^178^1915^4
+ ;;^UTILITY(U,$J,358.3,30189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30550,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,30550,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,30550,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,30551,0)
- ;;=R06.09^^189^1919^17
- ;;^UTILITY(U,$J,358.3,30551,1,0)
+ ;;^UTILITY(U,$J,358.3,30189,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, unsp
+ ;;^UTILITY(U,$J,358.3,30189,1,4,0)
+ ;;=4^O31.31X0
+ ;;^UTILITY(U,$J,358.3,30189,2)
+ ;;=^5016593
+ ;;^UTILITY(U,$J,358.3,30190,0)
+ ;;=O31.32X0^^178^1915^5
+ ;;^UTILITY(U,$J,358.3,30190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30551,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,30551,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,30551,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,30552,0)
- ;;=R06.89^^189^1919^14
- ;;^UTILITY(U,$J,358.3,30552,1,0)
+ ;;^UTILITY(U,$J,358.3,30190,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, unsp
+ ;;^UTILITY(U,$J,358.3,30190,1,4,0)
+ ;;=4^O31.32X0
+ ;;^UTILITY(U,$J,358.3,30190,2)
+ ;;=^5016600
+ ;;^UTILITY(U,$J,358.3,30191,0)
+ ;;=O31.33X0^^178^1915^6
+ ;;^UTILITY(U,$J,358.3,30191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30552,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,30552,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,30552,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,30553,0)
- ;;=R22.2^^189^1919^29
- ;;^UTILITY(U,$J,358.3,30553,1,0)
+ ;;^UTILITY(U,$J,358.3,30191,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, unsp
+ ;;^UTILITY(U,$J,358.3,30191,1,4,0)
+ ;;=4^O31.33X0
+ ;;^UTILITY(U,$J,358.3,30191,2)
+ ;;=^5016607
+ ;;^UTILITY(U,$J,358.3,30192,0)
+ ;;=O31.31X1^^178^1915^7
+ ;;^UTILITY(U,$J,358.3,30192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30553,1,3,0)
- ;;=3^Swelling/Mass/Lump,Trunk,Localized
- ;;^UTILITY(U,$J,358.3,30553,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,30553,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,30554,0)
- ;;=R91.8^^189^1919^1
- ;;^UTILITY(U,$J,358.3,30554,1,0)
+ ;;^UTILITY(U,$J,358.3,30192,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts1
+ ;;^UTILITY(U,$J,358.3,30192,1,4,0)
+ ;;=4^O31.31X1
+ ;;^UTILITY(U,$J,358.3,30192,2)
+ ;;=^5016594
+ ;;^UTILITY(U,$J,358.3,30193,0)
+ ;;=O31.32X1^^178^1915^8
+ ;;^UTILITY(U,$J,358.3,30193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30554,1,3,0)
- ;;=3^Abnormal Finding of Lung Field
- ;;^UTILITY(U,$J,358.3,30554,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,30554,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,30555,0)
- ;;=R91.1^^189^1919^28
- ;;^UTILITY(U,$J,358.3,30555,1,0)
+ ;;^UTILITY(U,$J,358.3,30193,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts1
+ ;;^UTILITY(U,$J,358.3,30193,1,4,0)
+ ;;=4^O31.32X1
+ ;;^UTILITY(U,$J,358.3,30193,2)
+ ;;=^5016601
+ ;;^UTILITY(U,$J,358.3,30194,0)
+ ;;=O31.33X1^^178^1915^9
+ ;;^UTILITY(U,$J,358.3,30194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30555,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,30555,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,30555,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,30556,0)
- ;;=L98.9^^189^1920^1
- ;;^UTILITY(U,$J,358.3,30556,1,0)
+ ;;^UTILITY(U,$J,358.3,30194,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts1
+ ;;^UTILITY(U,$J,358.3,30194,1,4,0)
+ ;;=4^O31.33X1
+ ;;^UTILITY(U,$J,358.3,30194,2)
+ ;;=^5016608
+ ;;^UTILITY(U,$J,358.3,30195,0)
+ ;;=O31.31X2^^178^1915^10
+ ;;^UTILITY(U,$J,358.3,30195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30556,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30556,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,30556,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,30557,0)
- ;;=M65.351^^189^1920^8
- ;;^UTILITY(U,$J,358.3,30557,1,0)
+ ;;^UTILITY(U,$J,358.3,30195,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts2
+ ;;^UTILITY(U,$J,358.3,30195,1,4,0)
+ ;;=4^O31.31X2
+ ;;^UTILITY(U,$J,358.3,30195,2)
+ ;;=^5016595
+ ;;^UTILITY(U,$J,358.3,30196,0)
+ ;;=O31.32X2^^178^1915^11
+ ;;^UTILITY(U,$J,358.3,30196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30557,1,3,0)
- ;;=3^Trigger Finger,Right Little Finger
- ;;^UTILITY(U,$J,358.3,30557,1,4,0)
- ;;=4^M65.351
- ;;^UTILITY(U,$J,358.3,30557,2)
- ;;=^5012789
- ;;^UTILITY(U,$J,358.3,30558,0)
- ;;=M65.352^^189^1920^3
- ;;^UTILITY(U,$J,358.3,30558,1,0)
+ ;;^UTILITY(U,$J,358.3,30196,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts2
+ ;;^UTILITY(U,$J,358.3,30196,1,4,0)
+ ;;=4^O31.32X2
+ ;;^UTILITY(U,$J,358.3,30196,2)
+ ;;=^5016602
+ ;;^UTILITY(U,$J,358.3,30197,0)
+ ;;=O31.33X2^^178^1915^12
+ ;;^UTILITY(U,$J,358.3,30197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30558,1,3,0)
- ;;=3^Trigger Finger,Left Little Finger
- ;;^UTILITY(U,$J,358.3,30558,1,4,0)
- ;;=4^M65.352
- ;;^UTILITY(U,$J,358.3,30558,2)
- ;;=^5012790
- ;;^UTILITY(U,$J,358.3,30559,0)
- ;;=M65.341^^189^1920^10
- ;;^UTILITY(U,$J,358.3,30559,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30559,1,3,0)
- ;;=3^Trigger Finger,Right Ring Finger
- ;;^UTILITY(U,$J,358.3,30559,1,4,0)
- ;;=4^M65.341
- ;;^UTILITY(U,$J,358.3,30559,2)
- ;;=^5012786
- ;;^UTILITY(U,$J,358.3,30560,0)
- ;;=M65.342^^189^1920^5
- ;;^UTILITY(U,$J,358.3,30560,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30560,1,3,0)
- ;;=3^Trigger Finger,Left Ring Finger
- ;;^UTILITY(U,$J,358.3,30560,1,4,0)
- ;;=4^M65.342
- ;;^UTILITY(U,$J,358.3,30560,2)
- ;;=^5012787
- ;;^UTILITY(U,$J,358.3,30561,0)
- ;;=M65.332^^189^1920^4
+ ;;^UTILITY(U,$J,358.3,30197,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts2
+ ;;^UTILITY(U,$J,358.3,30197,1,4,0)
+ ;;=4^O31.33X2
+ ;;^UTILITY(U,$J,358.3,30197,2)
+ ;;=^5016609

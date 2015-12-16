@@ -1,5 +1,7 @@
-DGENCD ;ALB/CJM,Zoltan,ISA/KWP,JAN,BRM - Catastrophic Disability Enter/Edit Option;May 24, 1999,Nov 14, 2001 ; 8/4/03 3:01pm
- ;;5.3;Registration;**121,122,232,237,302,387,451**;Aug 13,1993
+DGENCD ;ALB/CJM,Zoltan,ISA/KWP,JAN,BRM,DJS - Catastrophic Disability Enter/Edit Option;May 24, 1999,Nov 14, 2001 ; 8/4/03 3:01pm
+ ;;5.3;Registration;**121,122,232,237,302,387,451,894**;Aug 13,1993;Build 48
+ ;
+ ; DG*5.3*894 - Enhance Catastrophic Disability to use Descriptors rather than Diagnoses/Procedures/Conditions.
  ;
 EN ;
  ;Description: Entry point used for enter/edit catastrophic disability
@@ -32,6 +34,7 @@ EDITCD(DFN) ;
  . . I $$STORE^DGENCDA2(DFN,.DGCDIS,.ERROR) S QUIT=1 Q
  . . ; Quit if the user elects not to try again.
  . . I '$$AGAIN(.ERROR) S QUIT=1
+ S DIR(0)="EA",DIR("A")="Press return to continue..." D ^DIR
  Q
  ;
 AGAIN(ERROR) ;
@@ -59,7 +62,7 @@ PATIENT() ;
 EDIT(DGCDIS) ;
  ;Description: Allows user to enter values in DGCDIS array
  ; which is passed by reference.
- N SUB,OK,RESPONSE,FLST,EXIT,SUBEXIT,ITEM,FILENUM,FLDNUM,GETOUT,REQ,VAL
+ N SUB,OK,RESPONSE,FLST,EXIT,SUBEXIT,ITEM,FILENUM,FLDNUM,REQ,VAL
  S OK=1
  F VAL="BY^1","DATE^1","REVDTE^1","METDET^1" D  Q:'OK
  . S SUB=$P(VAL,"^",1)
@@ -71,51 +74,62 @@ EDIT(DGCDIS) ;
  . . I $P(VAL,"^",1)="BY" S RESPONSE=$$UPPER^DGUTL(RESPONSE)
  . . S DGCDIS(SUB)=RESPONSE
  I 'OK Q OK
- S GETOUT=0
- F FLST="DIAG","PROC;EXT","COND;SCORE;PERM" D  Q:'OK!GETOUT
+ S FLST="DESCR" D
  . N LOOKUP
- . S ITEM="",SUB=$P(FLST,";")
+ . S ITEM="",SUB=FLST
  . F  S ITEM=$O(DGCDIS(SUB,ITEM)) Q:ITEM=""  S LOOKUP(DGCDIS(SUB,ITEM))=ITEM
  . S EXIT=0
  . S ITEM=1
  . W !
  . F  D  Q:EXIT
- . . N PC
- . . S SUB=$P(FLST,";")
  . . S FILENUM=$$FILE^DGENCDU(SUB)
  . . S FLDNUM=$$FLD^DGENCDU(SUB)
  . . W !
- . . I '$$PROMPT^DGENU(FILENUM,FLDNUM,$G(DGCDIS(SUB,ITEM)),.RESPONSE,0) S (EXIT,GETOUT)=1 Q
- . . I RESPONSE="" D  Q
- . . . F PC=1:1:$L(FLST,";") K DGCDIS($P(FLST,";",PC),ITEM)
- . . . S ITEM=$O(DGCDIS(SUB,ITEM))
- . . . I ITEM="" S EXIT=1
- . . I $G(LOOKUP(RESPONSE)) S ITEM=LOOKUP(RESPONSE)
+ . . I '$$PROMPT^DGENU(FILENUM,FLDNUM,$G(DGCDIS(SUB,ITEM)),.RESPONSE,0),X="^" S RESPONSE=X
+ . . I X="@",$G(DGCDIS(SUB,ITEM)) K DGCDIS(SUB,ITEM) S EXIT=0,OK=1 D QEXIT Q
+ . . I RESPONSE="" N HIT S HIT=1 D  I HIT W !!,"Must enter at least one CD Descriptor or ""^"" to exit" S EXIT=0,OK=1 D QEXIT Q
+ . . . N I F I=ITEM:-1:1 I $G(DGCDIS(SUB,I))'="" S HIT=0 Q
+ . . I SUB="DESCR",RESPONSE'="^",RESPONSE'="",$P(^DGEN(27.17,RESPONSE,0),U,4)=5,'$D(LOOKUP(RESPONSE)) I '$$CKDOAD S RESPONSE="",EXIT=0,OK=1 D QEXIT Q
+ . . I SUB="DESCR",$D(DGCDIS("DESCR")),$G(DGCDIS("DESCR",ITEM))'=RESPONSE N EXIT1,ENTRY S EXIT1=0 D  I EXIT1 Q
+ . . . S ENTRY=0 F  S ENTRY=$O(DGCDIS("DESCR",ENTRY)) Q:ENTRY=""  D  Q:EXIT1
+ . . . . I DGCDIS("DESCR",ENTRY)=RESPONSE D
+ . . . . . W !!,"CD Descriptor previously selected, cannot select same CD Descriptor twice"
+ . . . . . S RESPONSE="",EXIT=0,OK=1,EXIT1=1
+ . . . I EXIT1 D QEXIT
+ . . I RESPONSE="^"!(RESPONSE=""&$D(DGCDIS(SUB))) N ITEM,CNT D  D:'CNT DELETE^DGENCDA1(DFN) Q
+ . . . S EXIT=1,OK=0
+ . . . S (ITEM,CNT)=""
+ . . . F  S ITEM=$O(DGCDIS(SUB,ITEM)) Q:ITEM=""  D
+ . . . . I DGCDIS(SUB,ITEM)'=""&(DGCDIS(SUB,ITEM)'="^") S CNT=1 Q
+ . . . . I DGCDIS(SUB,ITEM)="" K DGCDIS(SUB,ITEM) Q
+ . . . . I DGCDIS(SUB,ITEM)="^" K DGCDIS(SUB,ITEM)
+ . . I RESPONSE'="",$D(LOOKUP(RESPONSE)) S ITEM=LOOKUP(RESPONSE)
  . . E  S ITEM=$O(DGCDIS(SUB,""),-1)+1,LOOKUP(RESPONSE)=ITEM
  . . S DGCDIS(SUB,ITEM)=RESPONSE
  . . S SUBEXIT=0
- . . F PC=2:1:$L(FLST,";") D  Q:SUBEXIT
- . . . S SUB=$P(FLST,";",PC)
- . . . S FLDNUM=$$FLD^DGENCDU(SUB)
- . . . I '$$PROMPT^DGENU(FILENUM,FLDNUM,$G(DGCDIS(SUB,ITEM)),.RESPONSE,1) S SUBEXIT=1 Q
- . . . I RESPONSE="" S (EXIT,SUBEXIT)=1 Q
- . . . I SUB="EXT" D  Q
- . . . . I '$D(DGCDIS(SUB,ITEM,1)) S DGCDIS(SUB,ITEM,1)=RESPONSE
- . . . . E  S:DGCDIS(SUB,ITEM,1)'=RESPONSE DGCDIS(SUB,ITEM,2)=RESPONSE
- . . . I SUB="SCORE",'$$VALID^DGENA5(DGCDIS("COND",ITEM),RESPONSE) D  Q
- . . . . W !,"ERROR: This is not a valid test score.",!
- . . . . Q:$G(DGCDIS("SCORE",ITEM))
- . . . . K LOOKUP(DGCDIS("COND",ITEM))
- . . . . F PC=1:1:$L(FLST,";") K DGCDIS($P(FLST,";",PC),ITEM)
- . . . . S PC=$L(FLST,";")
- . . . I SUB="SCORE",'$$RANGEMET^DGENA5(DGCDIS("COND",ITEM),RESPONSE,1) D  Q
- . . . . S PC=$L(FLST,";")
- . . . . S DGCDIS("SCORE",ITEM)=RESPONSE
- . . . . S DGCDIS("PERM",ITEM)=""
- . . . S DGCDIS(SUB,ITEM)=RESPONSE
  . . S ITEM=ITEM+'SUBEXIT
- S DGCDIS("VCD")="Y"
- S DGCDIS("VCD")=$S($$ISCD^DGENCDA1(.DGCDIS):"Y",1:"N")
- S OK=$$PROMPT^DGENU(2,.39,DGCDIS("VCD"),.RESPONSE,0) ; Is Veteran CD?
- I OK S DGCDIS("VCD")=RESPONSE
+ I $D(DGCDIS("DESCR")) S DGCDIS("VCD")="Y",OK=1 W !!,"VETERAN IS CATASTROPHICALLY DISABLED",!
+ E  I '$D(DGCDIS("DESCR")) D
+ . S DGCDIS("VCD")="N",OK=1
+ . N I F I="BY","DATE","DTFACIRV","FACDET","METDET","REVDTE","VETREQDT" S DGCDIS(I)=""
+ . W !!,"VETERAN IS NOT CATASTROPHICALLY DISABLED",!
  Q OK
+ ; 
+CKDOAD()  ; Ask qualifying question if descriptor is AMPUTATION, DISARTICULATION OR DETACHMENT
+ N CK
+ F  D  Q:CK'=""
+ . W !,"Has the Amputation, Disarticulation or Detachment occurred on more "
+ . W !,"than one limb? "
+ . R CK:120
+ . I CK["?" W !!,"Enter 'YES' or 'NO'.",! S CK="" Q
+ . S CK=$S($E(CK)="Y":1,$E(CK)="y":1,$E(CK)="N":0,$E(CK)="n":0,1:"")
+ I CK=0 W !!,"The Descriptor does not meet the criteria to be added."
+ Q CK
+ ;
+QEXIT()  ; sets an empty DGCDIS entry before exiting
+ S ITEM=$O(DGCDIS(SUB,ITEM))
+ I ITEM="" S ITEM=$O(DGCDIS(SUB,""),-1)+1,DGCDIS(SUB,ITEM)=""
+ Q 
+ ;
+DBPROC()  ; replaces input transform for CD Procedure
+ Q ($P(^DGEN(27.17,+Y,0),U,3)["ICPT")!($P(^DGEN(27.17,+Y,0),U,9)=$$ICDVER^DGENA5("P"))

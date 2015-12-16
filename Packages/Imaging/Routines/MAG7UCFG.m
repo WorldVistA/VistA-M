@@ -1,5 +1,5 @@
-MAG7UCFG ;WOIFO/MLH - Configure HL7 PACS interface ; 02 Apr 2008 4:29 PM
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAG7UCFG ;WOIFO/MLH,DAC - Configure HL7 PACS interface ; 16 NOV 2014 4:29 PM
+ ;;3.0;IMAGING;**49,156**;Mar 19, 2002;Build 10;Nov 16, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -96,7 +96,9 @@ CONFIG ; MAIN ENTRY POINT - Configure the HL7 PACS interface
  ; Toggle the interface
  W !!,"Enter Y or YES below to turn the IHE-based HL7 PACS interface ON;",!
  W "enter N or NO to turn the interface OFF.",!
- S DIE="^MAG(2006.1,",DA=1,DR=3.01 D ^DIE Q:$D(DTOUT)  Q:$D(Y)
+ S DIE="^MAG(2006.1," ; P156 DAC - Removed hardcoded reference to the 1st entry
+ S DA=$O(^MAG(2006.1,"B",DUZ(2),""))
+ S DR=3.01 D ^DIE Q:$D(DTOUT)  Q:$D(Y) 
  G END
  ;
 ABEND ;

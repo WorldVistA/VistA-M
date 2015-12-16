@@ -1,114 +1,140 @@
-IBDEI1CE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1CE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24074,1,2,0)
- ;;=2^Open/Closed TX of Talus FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,24074,1,3,0)
- ;;=3^28445
- ;;^UTILITY(U,$J,358.3,24075,0)
- ;;=28450^^142^1497^10^^^^1
- ;;^UTILITY(U,$J,358.3,24075,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24075,1,2,0)
- ;;=2^TX of tarsal bone fracture; without manipulation, each 
- ;;^UTILITY(U,$J,358.3,24075,1,3,0)
- ;;=3^28450
- ;;^UTILITY(U,$J,358.3,24076,0)
- ;;=28455^^142^1497^11^^^^1
- ;;^UTILITY(U,$J,358.3,24076,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24076,1,2,0)
- ;;=2^TX of tarsal bone fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,24076,1,3,0)
- ;;=3^28455
- ;;^UTILITY(U,$J,358.3,24077,0)
- ;;=28456^^142^1497^12^^^^1
- ;;^UTILITY(U,$J,358.3,24077,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24077,1,2,0)
- ;;=2^Perc Fixation Tarsal Fx
- ;;^UTILITY(U,$J,358.3,24077,1,3,0)
- ;;=3^28456
- ;;^UTILITY(U,$J,358.3,24078,0)
- ;;=28465^^142^1497^13^^^^1
- ;;^UTILITY(U,$J,358.3,24078,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24078,1,2,0)
- ;;=2^Open/Closed TX of tarsal FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,24078,1,3,0)
- ;;=3^28465
- ;;^UTILITY(U,$J,358.3,24079,0)
- ;;=28470^^142^1497^14^^^^1
- ;;^UTILITY(U,$J,358.3,24079,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24079,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; without manipulation, eachnt of me
- ;;^UTILITY(U,$J,358.3,24079,1,3,0)
- ;;=3^28470
- ;;^UTILITY(U,$J,358.3,24080,0)
- ;;=28475^^142^1497^15^^^^1
- ;;^UTILITY(U,$J,358.3,24080,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24080,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,24080,1,3,0)
- ;;=3^28475
- ;;^UTILITY(U,$J,358.3,24081,0)
- ;;=28476^^142^1497^16^^^^1
- ;;^UTILITY(U,$J,358.3,24081,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24081,1,2,0)
- ;;=2^Perc Fixation Metatarsal Fx
- ;;^UTILITY(U,$J,358.3,24081,1,3,0)
- ;;=3^28476
- ;;^UTILITY(U,$J,358.3,24082,0)
- ;;=28485^^142^1497^17^^^^1
- ;;^UTILITY(U,$J,358.3,24082,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24082,1,2,0)
- ;;=2^Open/Closed TX of Metatarsal FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,24082,1,3,0)
- ;;=3^28485
- ;;^UTILITY(U,$J,358.3,24083,0)
- ;;=28490^^142^1497^18^^^^1
- ;;^UTILITY(U,$J,358.3,24083,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24083,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; without manipulation
- ;;^UTILITY(U,$J,358.3,24083,1,3,0)
- ;;=3^28490
- ;;^UTILITY(U,$J,358.3,24084,0)
- ;;=28495^^142^1497^19^^^^1
- ;;^UTILITY(U,$J,358.3,24084,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24084,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; with manipulation
- ;;^UTILITY(U,$J,358.3,24084,1,3,0)
- ;;=3^28495
- ;;^UTILITY(U,$J,358.3,24085,0)
- ;;=28496^^142^1497^20^^^^1
- ;;^UTILITY(U,$J,358.3,24085,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24085,1,2,0)
- ;;=2^Perc Fixation Great Toe Fx
- ;;^UTILITY(U,$J,358.3,24085,1,3,0)
- ;;=3^28496
- ;;^UTILITY(U,$J,358.3,24086,0)
- ;;=28505^^142^1497^21^^^^1
- ;;^UTILITY(U,$J,358.3,24086,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24086,1,2,0)
- ;;=2^Open TX of fracture great toe, phalanx or phalanges, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,24086,1,3,0)
- ;;=3^28505
- ;;^UTILITY(U,$J,358.3,24087,0)
- ;;=28510^^142^1497^22^^^^1
- ;;^UTILITY(U,$J,358.3,24087,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24087,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; without manipulation, each
- ;;^UTILITY(U,$J,358.3,24087,1,3,0)
- ;;=3^28510
- ;;^UTILITY(U,$J,358.3,24088,0)
- ;;=28515^^142^1497^23^^^^1
+ ;;^UTILITY(U,$J,358.3,23778,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23778,1,2,0)
+ ;;=2^V58.83
+ ;;^UTILITY(U,$J,358.3,23778,1,5,0)
+ ;;=5^Therapeutic Drug Monitoring
+ ;;^UTILITY(U,$J,358.3,23778,2)
+ ;;=^322076
+ ;;^UTILITY(U,$J,358.3,23779,0)
+ ;;=V62.5^^127^1432^34
+ ;;^UTILITY(U,$J,358.3,23779,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23779,1,2,0)
+ ;;=2^V62.5
+ ;;^UTILITY(U,$J,358.3,23779,1,5,0)
+ ;;=5^Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,23779,2)
+ ;;=^175799
+ ;;^UTILITY(U,$J,358.3,23780,0)
+ ;;=V79.1^^127^1433^1
+ ;;^UTILITY(U,$J,358.3,23780,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23780,1,2,0)
+ ;;=2^V79.1
+ ;;^UTILITY(U,$J,358.3,23780,1,5,0)
+ ;;=5^Alcohol Screen
+ ;;^UTILITY(U,$J,358.3,23780,2)
+ ;;=^295678
+ ;;^UTILITY(U,$J,358.3,23781,0)
+ ;;=V61.21^^127^1433^8
+ ;;^UTILITY(U,$J,358.3,23781,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23781,1,2,0)
+ ;;=2^V61.21
+ ;;^UTILITY(U,$J,358.3,23781,1,5,0)
+ ;;=5^Victim Child Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,23781,2)
+ ;;=^304301
+ ;;^UTILITY(U,$J,358.3,23782,0)
+ ;;=V65.40^^127^1433^2
+ ;;^UTILITY(U,$J,358.3,23782,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23782,1,2,0)
+ ;;=2^V65.40
+ ;;^UTILITY(U,$J,358.3,23782,1,5,0)
+ ;;=5^Counseling NOS
+ ;;^UTILITY(U,$J,358.3,23782,2)
+ ;;=^87449
+ ;;^UTILITY(U,$J,358.3,23783,0)
+ ;;=V65.42^^127^1433^7
+ ;;^UTILITY(U,$J,358.3,23783,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23783,1,2,0)
+ ;;=2^V65.42
+ ;;^UTILITY(U,$J,358.3,23783,1,5,0)
+ ;;=5^Substance Use/Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,23783,2)
+ ;;=^303467
+ ;;^UTILITY(U,$J,358.3,23784,0)
+ ;;=V65.44^^127^1433^3
+ ;;^UTILITY(U,$J,358.3,23784,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23784,1,2,0)
+ ;;=2^V65.44
+ ;;^UTILITY(U,$J,358.3,23784,1,5,0)
+ ;;=5^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,23784,2)
+ ;;=^303469
+ ;;^UTILITY(U,$J,358.3,23785,0)
+ ;;=V65.49^^127^1433^5
+ ;;^UTILITY(U,$J,358.3,23785,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23785,1,2,0)
+ ;;=2^V65.49
+ ;;^UTILITY(U,$J,358.3,23785,1,5,0)
+ ;;=5^Oth Specified Counseling
+ ;;^UTILITY(U,$J,358.3,23785,2)
+ ;;=^303471
+ ;;^UTILITY(U,$J,358.3,23786,0)
+ ;;=V68.1^^127^1433^4
+ ;;^UTILITY(U,$J,358.3,23786,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23786,1,2,0)
+ ;;=2^V68.1
+ ;;^UTILITY(U,$J,358.3,23786,1,5,0)
+ ;;=5^Issue Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,23786,2)
+ ;;=^295585
+ ;;^UTILITY(U,$J,358.3,23787,0)
+ ;;=V70.2^^127^1433^6
+ ;;^UTILITY(U,$J,358.3,23787,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23787,1,2,0)
+ ;;=2^V70.2
+ ;;^UTILITY(U,$J,358.3,23787,1,5,0)
+ ;;=5^Psychiatric Examination
+ ;;^UTILITY(U,$J,358.3,23787,2)
+ ;;=^295592
+ ;;^UTILITY(U,$J,358.3,23788,0)
+ ;;=296.20^^127^1434^14
+ ;;^UTILITY(U,$J,358.3,23788,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23788,1,2,0)
+ ;;=2^296.20
+ ;;^UTILITY(U,$J,358.3,23788,1,5,0)
+ ;;=5^MDD, Single, NOS
+ ;;^UTILITY(U,$J,358.3,23788,2)
+ ;;=^73311
+ ;;^UTILITY(U,$J,358.3,23789,0)
+ ;;=296.21^^127^1434^12
+ ;;^UTILITY(U,$J,358.3,23789,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23789,1,2,0)
+ ;;=2^296.21
+ ;;^UTILITY(U,$J,358.3,23789,1,5,0)
+ ;;=5^MDD, Single, Mild
+ ;;^UTILITY(U,$J,358.3,23789,2)
+ ;;=^268110
+ ;;^UTILITY(U,$J,358.3,23790,0)
+ ;;=296.22^^127^1434^13
+ ;;^UTILITY(U,$J,358.3,23790,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23790,1,2,0)
+ ;;=2^296.22
+ ;;^UTILITY(U,$J,358.3,23790,1,5,0)
+ ;;=5^MDD, Single, Moderate
+ ;;^UTILITY(U,$J,358.3,23790,2)
+ ;;=^268111
+ ;;^UTILITY(U,$J,358.3,23791,0)
+ ;;=296.23^^127^1434^5
+ ;;^UTILITY(U,$J,358.3,23791,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23791,1,2,0)
+ ;;=2^296.23
+ ;;^UTILITY(U,$J,358.3,23791,1,5,0)
+ ;;=5^MDD Sing, Sev w/o Psychosis

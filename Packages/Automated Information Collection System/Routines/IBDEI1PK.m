@@ -1,124 +1,122 @@
-IBDEI1PK ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PK ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30633,1,4,0)
- ;;=4^I70.642
- ;;^UTILITY(U,$J,358.3,30633,2)
- ;;=^5007748
- ;;^UTILITY(U,$J,358.3,30634,0)
- ;;=I70.643^^189^1921^43
- ;;^UTILITY(U,$J,358.3,30634,1,0)
+ ;;^UTILITY(U,$J,358.3,30268,2)
+ ;;=^5017100
+ ;;^UTILITY(U,$J,358.3,30269,0)
+ ;;=O36.8125^^178^1916^6
+ ;;^UTILITY(U,$J,358.3,30269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30634,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,30634,1,4,0)
- ;;=4^I70.643
- ;;^UTILITY(U,$J,358.3,30634,2)
- ;;=^5007749
- ;;^UTILITY(U,$J,358.3,30635,0)
- ;;=I70.644^^189^1921^46
- ;;^UTILITY(U,$J,358.3,30635,1,0)
+ ;;^UTILITY(U,$J,358.3,30269,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30269,1,4,0)
+ ;;=4^O36.8125
+ ;;^UTILITY(U,$J,358.3,30269,2)
+ ;;=^5017094
+ ;;^UTILITY(U,$J,358.3,30270,0)
+ ;;=O36.8135^^178^1916^12
+ ;;^UTILITY(U,$J,358.3,30270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30635,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,30635,1,4,0)
- ;;=4^I70.644
- ;;^UTILITY(U,$J,358.3,30635,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,30636,0)
- ;;=I70.645^^189^1921^45
- ;;^UTILITY(U,$J,358.3,30636,1,0)
+ ;;^UTILITY(U,$J,358.3,30270,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30270,1,4,0)
+ ;;=4^O36.8135
+ ;;^UTILITY(U,$J,358.3,30270,2)
+ ;;=^5017101
+ ;;^UTILITY(U,$J,358.3,30271,0)
+ ;;=O43.011^^178^1916^14
+ ;;^UTILITY(U,$J,358.3,30271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30636,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,30636,1,4,0)
- ;;=4^I70.645
- ;;^UTILITY(U,$J,358.3,30636,2)
- ;;=^5007751
- ;;^UTILITY(U,$J,358.3,30637,0)
- ;;=I70.648^^189^1921^47
- ;;^UTILITY(U,$J,358.3,30637,1,0)
+ ;;^UTILITY(U,$J,358.3,30271,1,3,0)
+ ;;=3^Fetomaternal placental transfusion syndrome, first trimester
+ ;;^UTILITY(U,$J,358.3,30271,1,4,0)
+ ;;=4^O43.011
+ ;;^UTILITY(U,$J,358.3,30271,2)
+ ;;=^5017389
+ ;;^UTILITY(U,$J,358.3,30272,0)
+ ;;=O43.012^^178^1916^13
+ ;;^UTILITY(U,$J,358.3,30272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30637,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,30637,1,4,0)
- ;;=4^I70.648
- ;;^UTILITY(U,$J,358.3,30637,2)
- ;;=^5007752
- ;;^UTILITY(U,$J,358.3,30638,0)
- ;;=I70.649^^189^1921^49
- ;;^UTILITY(U,$J,358.3,30638,1,0)
+ ;;^UTILITY(U,$J,358.3,30272,1,3,0)
+ ;;=3^Fetomaternal placental transfuse syndrome, second trimester
+ ;;^UTILITY(U,$J,358.3,30272,1,4,0)
+ ;;=4^O43.012
+ ;;^UTILITY(U,$J,358.3,30272,2)
+ ;;=^5017390
+ ;;^UTILITY(U,$J,358.3,30273,0)
+ ;;=O43.013^^178^1916^15
+ ;;^UTILITY(U,$J,358.3,30273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30638,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,30638,1,4,0)
- ;;=4^I70.649
- ;;^UTILITY(U,$J,358.3,30638,2)
- ;;=^5007753
- ;;^UTILITY(U,$J,358.3,30639,0)
- ;;=I70.731^^189^1921^83
- ;;^UTILITY(U,$J,358.3,30639,1,0)
+ ;;^UTILITY(U,$J,358.3,30273,1,3,0)
+ ;;=3^Fetomaternal placental transfusion syndrome, third trimester
+ ;;^UTILITY(U,$J,358.3,30273,1,4,0)
+ ;;=4^O43.013
+ ;;^UTILITY(U,$J,358.3,30273,2)
+ ;;=^5017391
+ ;;^UTILITY(U,$J,358.3,30274,0)
+ ;;=O36.0110^^178^1916^43
+ ;;^UTILITY(U,$J,358.3,30274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30639,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,30639,1,4,0)
- ;;=4^I70.731
- ;;^UTILITY(U,$J,358.3,30639,2)
- ;;=^5007769
- ;;^UTILITY(U,$J,358.3,30640,0)
- ;;=I70.732^^189^1921^79
- ;;^UTILITY(U,$J,358.3,30640,1,0)
+ ;;^UTILITY(U,$J,358.3,30274,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, first trimester, unsp
+ ;;^UTILITY(U,$J,358.3,30274,1,4,0)
+ ;;=4^O36.0110
+ ;;^UTILITY(U,$J,358.3,30274,2)
+ ;;=^5016842
+ ;;^UTILITY(U,$J,358.3,30275,0)
+ ;;=O36.0111^^178^1916^44
+ ;;^UTILITY(U,$J,358.3,30275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30640,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,30640,1,4,0)
- ;;=4^I70.732
- ;;^UTILITY(U,$J,358.3,30640,2)
- ;;=^5007770
- ;;^UTILITY(U,$J,358.3,30641,0)
- ;;=I70.733^^189^1921^78
- ;;^UTILITY(U,$J,358.3,30641,1,0)
+ ;;^UTILITY(U,$J,358.3,30275,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, first tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,30275,1,4,0)
+ ;;=4^O36.0111
+ ;;^UTILITY(U,$J,358.3,30275,2)
+ ;;=^5016843
+ ;;^UTILITY(U,$J,358.3,30276,0)
+ ;;=O36.0112^^178^1916^45
+ ;;^UTILITY(U,$J,358.3,30276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30641,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,30641,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,30641,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,30642,0)
- ;;=I70.734^^189^1921^81
- ;;^UTILITY(U,$J,358.3,30642,1,0)
+ ;;^UTILITY(U,$J,358.3,30276,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, first tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,30276,1,4,0)
+ ;;=4^O36.0112
+ ;;^UTILITY(U,$J,358.3,30276,2)
+ ;;=^5016844
+ ;;^UTILITY(U,$J,358.3,30277,0)
+ ;;=O36.0113^^178^1916^46
+ ;;^UTILITY(U,$J,358.3,30277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30642,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,30642,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,30642,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,30643,0)
- ;;=I70.735^^189^1921^80
- ;;^UTILITY(U,$J,358.3,30643,1,0)
+ ;;^UTILITY(U,$J,358.3,30277,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, first tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,30277,1,4,0)
+ ;;=4^O36.0113
+ ;;^UTILITY(U,$J,358.3,30277,2)
+ ;;=^5016845
+ ;;^UTILITY(U,$J,358.3,30278,0)
+ ;;=O36.0114^^178^1916^47
+ ;;^UTILITY(U,$J,358.3,30278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30643,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,30643,1,4,0)
- ;;=4^I70.735
- ;;^UTILITY(U,$J,358.3,30643,2)
- ;;=^5007773
- ;;^UTILITY(U,$J,358.3,30644,0)
- ;;=I70.738^^189^1921^82
- ;;^UTILITY(U,$J,358.3,30644,1,0)
+ ;;^UTILITY(U,$J,358.3,30278,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, first tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,30278,1,4,0)
+ ;;=4^O36.0114
+ ;;^UTILITY(U,$J,358.3,30278,2)
+ ;;=^5016846
+ ;;^UTILITY(U,$J,358.3,30279,0)
+ ;;=O36.0115^^178^1916^48
+ ;;^UTILITY(U,$J,358.3,30279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30644,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,30644,1,4,0)
- ;;=4^I70.738
- ;;^UTILITY(U,$J,358.3,30644,2)
- ;;=^5007774
- ;;^UTILITY(U,$J,358.3,30645,0)
- ;;=I70.739^^189^1921^84
- ;;^UTILITY(U,$J,358.3,30645,1,0)
+ ;;^UTILITY(U,$J,358.3,30279,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, first tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,30279,1,4,0)
+ ;;=4^O36.0115
+ ;;^UTILITY(U,$J,358.3,30279,2)
+ ;;=^5016847
+ ;;^UTILITY(U,$J,358.3,30280,0)
+ ;;=O36.0120^^178^1916^49
+ ;;^UTILITY(U,$J,358.3,30280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30645,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,30280,1,3,0)
+ ;;=3^Maternal care for anti-D antibodies, second trimester, unsp

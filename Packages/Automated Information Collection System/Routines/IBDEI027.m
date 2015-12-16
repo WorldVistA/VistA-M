@@ -1,136 +1,134 @@
-IBDEI027 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI027 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,543,0)
- ;;=01220^^5^71^4^^^^1
- ;;^UTILITY(U,$J,358.3,543,1,0)
+ ;;^UTILITY(U,$J,358.3,479,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,479,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,480,0)
+ ;;=C91.11^^2^21^14
+ ;;^UTILITY(U,$J,358.3,480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,543,1,2,0)
- ;;=2^ANESTH PROCEDURE ON FEMUR
- ;;^UTILITY(U,$J,358.3,543,1,4,0)
- ;;=4^01220
- ;;^UTILITY(U,$J,358.3,544,0)
- ;;=01230^^5^71^5^^^^1
- ;;^UTILITY(U,$J,358.3,544,1,0)
+ ;;^UTILITY(U,$J,358.3,480,1,3,0)
+ ;;=3^Chronic lymphocytic leukemia of B-cell type in remission
+ ;;^UTILITY(U,$J,358.3,480,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,480,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,481,0)
+ ;;=C91.12^^2^21^15
+ ;;^UTILITY(U,$J,358.3,481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,544,1,2,0)
- ;;=2^ANESTH SURGERY OF FEMUR
- ;;^UTILITY(U,$J,358.3,544,1,4,0)
- ;;=4^01230
- ;;^UTILITY(U,$J,358.3,545,0)
- ;;=01380^^5^71^3^^^^1
- ;;^UTILITY(U,$J,358.3,545,1,0)
+ ;;^UTILITY(U,$J,358.3,481,1,3,0)
+ ;;=3^Chronic lymphocytic leukemia of B-cell type in relapse
+ ;;^UTILITY(U,$J,358.3,481,1,4,0)
+ ;;=4^C91.12
+ ;;^UTILITY(U,$J,358.3,481,2)
+ ;;=^5001767
+ ;;^UTILITY(U,$J,358.3,482,0)
+ ;;=D47.1^^2^21^16
+ ;;^UTILITY(U,$J,358.3,482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,545,1,2,0)
- ;;=2^ANESTH KNEE JT PROC,MUA KNEE
- ;;^UTILITY(U,$J,358.3,545,1,4,0)
- ;;=4^01380
- ;;^UTILITY(U,$J,358.3,546,0)
- ;;=01382^^5^71^1^^^^1
- ;;^UTILITY(U,$J,358.3,546,1,0)
+ ;;^UTILITY(U,$J,358.3,482,1,3,0)
+ ;;=3^Chronic myeloproliferative disease
+ ;;^UTILITY(U,$J,358.3,482,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,482,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,483,0)
+ ;;=C94.42^^2^21^5
+ ;;^UTILITY(U,$J,358.3,483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,546,1,2,0)
- ;;=2^ANESTH KNEE ARTHROSCOPY,DIAGNOSTIC
- ;;^UTILITY(U,$J,358.3,546,1,4,0)
- ;;=4^01382
- ;;^UTILITY(U,$J,358.3,547,0)
- ;;=01400^^5^71^2^^^^1
- ;;^UTILITY(U,$J,358.3,547,1,0)
+ ;;^UTILITY(U,$J,358.3,483,1,3,0)
+ ;;=3^Acute panmyelosis with myelofibrosis, in relapse
+ ;;^UTILITY(U,$J,358.3,483,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,483,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,484,0)
+ ;;=C94.41^^2^21^6
+ ;;^UTILITY(U,$J,358.3,484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,547,1,2,0)
- ;;=2^ANESTH KNEE ARTHROSCOPY,SURGICAL
- ;;^UTILITY(U,$J,358.3,547,1,4,0)
- ;;=4^01400
- ;;^UTILITY(U,$J,358.3,548,0)
- ;;=00320^^5^72^3^^^^1
- ;;^UTILITY(U,$J,358.3,548,1,0)
+ ;;^UTILITY(U,$J,358.3,484,1,3,0)
+ ;;=3^Acute panmyelosis with myelofibrosis, in remission
+ ;;^UTILITY(U,$J,358.3,484,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,484,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,485,0)
+ ;;=C94.40^^2^21^4
+ ;;^UTILITY(U,$J,358.3,485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,548,1,2,0)
- ;;=2^ANESTHESIA FOR NECK/LYMPH PROCEDURE
- ;;^UTILITY(U,$J,358.3,548,1,4,0)
- ;;=4^00320
- ;;^UTILITY(U,$J,358.3,549,0)
- ;;=00520^^5^72^1^^^^1
- ;;^UTILITY(U,$J,358.3,549,1,0)
+ ;;^UTILITY(U,$J,358.3,485,1,3,0)
+ ;;=3^Acute panmyelosis w myelofibrosis not achieve remission
+ ;;^UTILITY(U,$J,358.3,485,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,485,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,486,0)
+ ;;=D47.2^^2^21^48
+ ;;^UTILITY(U,$J,358.3,486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,549,1,2,0)
- ;;=2^ANESTHESIA FOR CHEST PROCEDURE NEC
- ;;^UTILITY(U,$J,358.3,549,1,4,0)
- ;;=4^00520
- ;;^UTILITY(U,$J,358.3,550,0)
- ;;=00524^^5^72^2^^^^1
- ;;^UTILITY(U,$J,358.3,550,1,0)
+ ;;^UTILITY(U,$J,358.3,486,1,3,0)
+ ;;=3^Monoclonal gammopathy
+ ;;^UTILITY(U,$J,358.3,486,1,4,0)
+ ;;=4^D47.2
+ ;;^UTILITY(U,$J,358.3,486,2)
+ ;;=^5002257
+ ;;^UTILITY(U,$J,358.3,487,0)
+ ;;=C88.0^^2^21^59
+ ;;^UTILITY(U,$J,358.3,487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,550,1,2,0)
- ;;=2^ANESTHESIA FOR CHEST TUBE PLACEMNT/DRAIN
- ;;^UTILITY(U,$J,358.3,550,1,4,0)
- ;;=4^00524
- ;;^UTILITY(U,$J,358.3,551,0)
- ;;=00540^^5^72^4^^^^1
- ;;^UTILITY(U,$J,358.3,551,1,0)
+ ;;^UTILITY(U,$J,358.3,487,1,3,0)
+ ;;=3^Waldenstrom macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,487,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,487,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,488,0)
+ ;;=C77.0^^2^22^13
+ ;;^UTILITY(U,$J,358.3,488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,551,1,2,0)
- ;;=2^ANESTHESIA FOR THORACOTOMY PROCEDURES
- ;;^UTILITY(U,$J,358.3,551,1,4,0)
- ;;=4^00540
- ;;^UTILITY(U,$J,358.3,552,0)
- ;;=00541^^5^72^5^^^^1
- ;;^UTILITY(U,$J,358.3,552,1,0)
+ ;;^UTILITY(U,$J,358.3,488,1,3,0)
+ ;;=3^Secondary malignant neoplasm of nodes of head, face and neck
+ ;;^UTILITY(U,$J,358.3,488,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,488,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,489,0)
+ ;;=C77.1^^2^22^8
+ ;;^UTILITY(U,$J,358.3,489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,552,1,2,0)
- ;;=2^ANESTHESIA,ONE LUNG VENTILATION
- ;;^UTILITY(U,$J,358.3,552,1,4,0)
- ;;=4^00541
- ;;^UTILITY(U,$J,358.3,553,0)
- ;;=62273^^5^73^1^^^^1
- ;;^UTILITY(U,$J,358.3,553,1,0)
+ ;;^UTILITY(U,$J,358.3,489,1,3,0)
+ ;;=3^Secondary malignant neoplasm of intrathorac nodes
+ ;;^UTILITY(U,$J,358.3,489,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,489,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,490,0)
+ ;;=C77.2^^2^22^7
+ ;;^UTILITY(U,$J,358.3,490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,553,1,2,0)
- ;;=2^INJECT EPIDURAL PATCH
- ;;^UTILITY(U,$J,358.3,553,1,4,0)
- ;;=4^62273
- ;;^UTILITY(U,$J,358.3,554,0)
- ;;=62310^^5^73^2^^^^1
- ;;^UTILITY(U,$J,358.3,554,1,0)
+ ;;^UTILITY(U,$J,358.3,490,1,3,0)
+ ;;=3^Secondary malignant neoplasm of intra-abd nodes
+ ;;^UTILITY(U,$J,358.3,490,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,490,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,491,0)
+ ;;=C77.3^^2^22^1
+ ;;^UTILITY(U,$J,358.3,491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,554,1,2,0)
- ;;=2^INJECT SPINE C/T
- ;;^UTILITY(U,$J,358.3,554,1,4,0)
- ;;=4^62310
- ;;^UTILITY(U,$J,358.3,555,0)
- ;;=62311^^5^73^3^^^^1
- ;;^UTILITY(U,$J,358.3,555,1,0)
+ ;;^UTILITY(U,$J,358.3,491,1,3,0)
+ ;;=3^Secondary malignant neoplasm of axilla and upper limb nodes
+ ;;^UTILITY(U,$J,358.3,491,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,491,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,492,0)
+ ;;=C77.4^^2^22^6
+ ;;^UTILITY(U,$J,358.3,492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,555,1,2,0)
- ;;=2^INJECT SPINE L/S (CD)
- ;;^UTILITY(U,$J,358.3,555,1,4,0)
- ;;=4^62311
- ;;^UTILITY(U,$J,358.3,556,0)
- ;;=62318^^5^73^4^^^^1
- ;;^UTILITY(U,$J,358.3,556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,556,1,2,0)
- ;;=2^INJECT SPINE W/CATH C/T
- ;;^UTILITY(U,$J,358.3,556,1,4,0)
- ;;=4^62318
- ;;^UTILITY(U,$J,358.3,557,0)
- ;;=62319^^5^73^5^^^^1
- ;;^UTILITY(U,$J,358.3,557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,557,1,2,0)
- ;;=2^INJECT SPINE W/CATH L/S (CD)
- ;;^UTILITY(U,$J,358.3,557,1,4,0)
- ;;=4^62319
- ;;^UTILITY(U,$J,358.3,558,0)
- ;;=789.06^^6^74^8
- ;;^UTILITY(U,$J,358.3,558,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,558,1,4,0)
- ;;=4^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,558,1,5,0)
- ;;=5^789.06
- ;;^UTILITY(U,$J,358.3,558,2)
- ;;=Epigastric Pain^303323
- ;;^UTILITY(U,$J,358.3,559,0)
- ;;=789.07^^6^74^1
+ ;;^UTILITY(U,$J,358.3,492,1,3,0)
+ ;;=3^Secondary malignant neoplasm of inguinal and lower limb nodes

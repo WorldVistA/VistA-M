@@ -1,138 +1,124 @@
-IBDEI0NI ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0NI ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11511,1,4,0)
- ;;=4^789.01
- ;;^UTILITY(U,$J,358.3,11511,1,5,0)
- ;;=5^Abdominal pain, RUQ
- ;;^UTILITY(U,$J,358.3,11511,2)
- ;;=^303318
- ;;^UTILITY(U,$J,358.3,11512,0)
- ;;=789.02^^64^699^4
- ;;^UTILITY(U,$J,358.3,11512,1,0)
+ ;;^UTILITY(U,$J,358.3,11200,1,2,0)
+ ;;=2^301.7
+ ;;^UTILITY(U,$J,358.3,11200,1,5,0)
+ ;;=5^Antisocial Personality Dis
+ ;;^UTILITY(U,$J,358.3,11200,2)
+ ;;=Antisocial Personality Dis^9066
+ ;;^UTILITY(U,$J,358.3,11201,0)
+ ;;=301.82^^50^637^2
+ ;;^UTILITY(U,$J,358.3,11201,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11512,1,4,0)
- ;;=4^789.02
- ;;^UTILITY(U,$J,358.3,11512,1,5,0)
- ;;=5^Abdominal pain, LUQ
- ;;^UTILITY(U,$J,358.3,11512,2)
- ;;=^303319
- ;;^UTILITY(U,$J,358.3,11513,0)
- ;;=789.03^^64^699^6
- ;;^UTILITY(U,$J,358.3,11513,1,0)
+ ;;^UTILITY(U,$J,358.3,11201,1,2,0)
+ ;;=2^301.82
+ ;;^UTILITY(U,$J,358.3,11201,1,5,0)
+ ;;=5^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11201,2)
+ ;;=Avoidant Personality Disorder^265347
+ ;;^UTILITY(U,$J,358.3,11202,0)
+ ;;=301.83^^50^637^3
+ ;;^UTILITY(U,$J,358.3,11202,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11513,1,4,0)
- ;;=4^789.03
- ;;^UTILITY(U,$J,358.3,11513,1,5,0)
- ;;=5^Abdominal pain, RLQ
- ;;^UTILITY(U,$J,358.3,11513,2)
- ;;=^303320
- ;;^UTILITY(U,$J,358.3,11514,0)
- ;;=789.04^^64^699^3
- ;;^UTILITY(U,$J,358.3,11514,1,0)
+ ;;^UTILITY(U,$J,358.3,11202,1,2,0)
+ ;;=2^301.83
+ ;;^UTILITY(U,$J,358.3,11202,1,5,0)
+ ;;=5^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11202,2)
+ ;;=Borderline Personality Disorder^16372
+ ;;^UTILITY(U,$J,358.3,11203,0)
+ ;;=301.6^^50^637^6
+ ;;^UTILITY(U,$J,358.3,11203,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11514,1,4,0)
- ;;=4^789.04
- ;;^UTILITY(U,$J,358.3,11514,1,5,0)
- ;;=5^Abdominal pain, LLQ
- ;;^UTILITY(U,$J,358.3,11514,2)
- ;;=^303321
- ;;^UTILITY(U,$J,358.3,11515,0)
- ;;=789.06^^64^699^2
- ;;^UTILITY(U,$J,358.3,11515,1,0)
+ ;;^UTILITY(U,$J,358.3,11203,1,2,0)
+ ;;=2^301.6
+ ;;^UTILITY(U,$J,358.3,11203,1,5,0)
+ ;;=5^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11203,2)
+ ;;=Dependent Personality Disorder^32860
+ ;;^UTILITY(U,$J,358.3,11204,0)
+ ;;=301.50^^50^637^8
+ ;;^UTILITY(U,$J,358.3,11204,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11515,1,4,0)
- ;;=4^789.06
- ;;^UTILITY(U,$J,358.3,11515,1,5,0)
- ;;=5^Abdominal pain, Epigastric
- ;;^UTILITY(U,$J,358.3,11515,2)
- ;;=^303323
- ;;^UTILITY(U,$J,358.3,11516,0)
- ;;=789.05^^64^699^5
- ;;^UTILITY(U,$J,358.3,11516,1,0)
+ ;;^UTILITY(U,$J,358.3,11204,1,2,0)
+ ;;=2^301.50
+ ;;^UTILITY(U,$J,358.3,11204,1,5,0)
+ ;;=5^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11204,2)
+ ;;=Histrionic Personality Disorder^57763
+ ;;^UTILITY(U,$J,358.3,11205,0)
+ ;;=301.81^^50^637^11
+ ;;^UTILITY(U,$J,358.3,11205,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11516,1,4,0)
- ;;=4^789.05
- ;;^UTILITY(U,$J,358.3,11516,1,5,0)
- ;;=5^Abdominal pain, Periumbilical
- ;;^UTILITY(U,$J,358.3,11516,2)
- ;;=^303322
- ;;^UTILITY(U,$J,358.3,11517,0)
- ;;=789.40^^64^699^8
- ;;^UTILITY(U,$J,358.3,11517,1,0)
+ ;;^UTILITY(U,$J,358.3,11205,1,2,0)
+ ;;=2^301.81
+ ;;^UTILITY(U,$J,358.3,11205,1,5,0)
+ ;;=5^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11205,2)
+ ;;=Narcissistic Personality Disorder^265353
+ ;;^UTILITY(U,$J,358.3,11206,0)
+ ;;=301.0^^50^637^12
+ ;;^UTILITY(U,$J,358.3,11206,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11517,1,4,0)
- ;;=4^789.40
- ;;^UTILITY(U,$J,358.3,11517,1,5,0)
- ;;=5^Abdominal rigidity, unsp site
- ;;^UTILITY(U,$J,358.3,11517,2)
- ;;=^273393
- ;;^UTILITY(U,$J,358.3,11518,0)
- ;;=789.1^^64^699^83
- ;;^UTILITY(U,$J,358.3,11518,1,0)
+ ;;^UTILITY(U,$J,358.3,11206,1,2,0)
+ ;;=2^301.0
+ ;;^UTILITY(U,$J,358.3,11206,1,5,0)
+ ;;=5^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11206,2)
+ ;;=Paranoid Personality Disorder^89982
+ ;;^UTILITY(U,$J,358.3,11207,0)
+ ;;=301.9^^50^637^16
+ ;;^UTILITY(U,$J,358.3,11207,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11518,1,4,0)
- ;;=4^789.1
- ;;^UTILITY(U,$J,358.3,11518,1,5,0)
- ;;=5^Hepatomegaly
- ;;^UTILITY(U,$J,358.3,11518,2)
- ;;=Hepatomegaly^56494
- ;;^UTILITY(U,$J,358.3,11519,0)
- ;;=789.30^^64^699^1
- ;;^UTILITY(U,$J,358.3,11519,1,0)
+ ;;^UTILITY(U,$J,358.3,11207,1,2,0)
+ ;;=2^301.9
+ ;;^UTILITY(U,$J,358.3,11207,1,5,0)
+ ;;=5^Unspecified Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11207,2)
+ ;;=Unspecified Personality Disorder^92451
+ ;;^UTILITY(U,$J,358.3,11208,0)
+ ;;=301.20^^50^637^14
+ ;;^UTILITY(U,$J,358.3,11208,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11519,1,4,0)
- ;;=4^789.30
- ;;^UTILITY(U,$J,358.3,11519,1,5,0)
- ;;=5^Abdominal Mass/Lump
- ;;^UTILITY(U,$J,358.3,11519,2)
- ;;=Abdominal Mass/Lump^917
- ;;^UTILITY(U,$J,358.3,11520,0)
- ;;=789.2^^64^699^140
- ;;^UTILITY(U,$J,358.3,11520,1,0)
+ ;;^UTILITY(U,$J,358.3,11208,1,2,0)
+ ;;=2^301.20
+ ;;^UTILITY(U,$J,358.3,11208,1,5,0)
+ ;;=5^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11208,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,11209,0)
+ ;;=301.22^^50^637^15
+ ;;^UTILITY(U,$J,358.3,11209,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11520,1,4,0)
- ;;=4^789.2
- ;;^UTILITY(U,$J,358.3,11520,1,5,0)
- ;;=5^Splenomegaly
- ;;^UTILITY(U,$J,358.3,11520,2)
- ;;=Splenomegaly^113452
- ;;^UTILITY(U,$J,358.3,11521,0)
- ;;=785.2^^64^699^34
- ;;^UTILITY(U,$J,358.3,11521,1,0)
+ ;;^UTILITY(U,$J,358.3,11209,1,2,0)
+ ;;=2^301.22
+ ;;^UTILITY(U,$J,358.3,11209,1,5,0)
+ ;;=5^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11209,2)
+ ;;=Schizotypal Personality Disorder^108367
+ ;;^UTILITY(U,$J,358.3,11210,0)
+ ;;=301.4^^50^637^4
+ ;;^UTILITY(U,$J,358.3,11210,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11521,1,4,0)
- ;;=4^785.2
- ;;^UTILITY(U,$J,358.3,11521,1,5,0)
- ;;=5^Cardiac murmurs, undiagnosed
- ;;^UTILITY(U,$J,358.3,11521,2)
- ;;=^295854
- ;;^UTILITY(U,$J,358.3,11522,0)
- ;;=786.50^^64^699^37
- ;;^UTILITY(U,$J,358.3,11522,1,0)
+ ;;^UTILITY(U,$J,358.3,11210,1,2,0)
+ ;;=2^301.4
+ ;;^UTILITY(U,$J,358.3,11210,1,5,0)
+ ;;=5^Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11210,2)
+ ;;=Compulsive Personality Disorder^27122
+ ;;^UTILITY(U,$J,358.3,11211,0)
+ ;;=301.84^^50^637^13
+ ;;^UTILITY(U,$J,358.3,11211,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11522,1,4,0)
- ;;=4^786.50
- ;;^UTILITY(U,$J,358.3,11522,1,5,0)
- ;;=5^Chest pain/Discomfort (nonsp) chest pain diff from discomfort
- ;;^UTILITY(U,$J,358.3,11522,2)
- ;;=^22485
- ;;^UTILITY(U,$J,358.3,11523,0)
- ;;=786.51^^64^699^131
- ;;^UTILITY(U,$J,358.3,11523,1,0)
+ ;;^UTILITY(U,$J,358.3,11211,1,2,0)
+ ;;=2^301.84
+ ;;^UTILITY(U,$J,358.3,11211,1,5,0)
+ ;;=5^Passive-Aggressive Personality Dis
+ ;;^UTILITY(U,$J,358.3,11211,2)
+ ;;=Passive-Aggressive Personality Dis^90602
+ ;;^UTILITY(U,$J,358.3,11212,0)
+ ;;=301.11^^50^637^9
+ ;;^UTILITY(U,$J,358.3,11212,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11523,1,4,0)
- ;;=4^786.51
- ;;^UTILITY(U,$J,358.3,11523,1,5,0)
- ;;=5^Precordial Pain
- ;;^UTILITY(U,$J,358.3,11523,2)
- ;;=Precordial Pain^276877
- ;;^UTILITY(U,$J,358.3,11524,0)
- ;;=786.2^^64^699^45
- ;;^UTILITY(U,$J,358.3,11524,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11524,1,4,0)
- ;;=4^786.2
- ;;^UTILITY(U,$J,358.3,11524,1,5,0)
- ;;=5^Cough

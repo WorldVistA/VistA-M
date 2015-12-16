@@ -1,132 +1,138 @@
-IBDEI0WW ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0WW ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16244,1,4,0)
- ;;=4^354.2
- ;;^UTILITY(U,$J,358.3,16244,1,5,0)
- ;;=5^Ulnar Nerve Entrapment
- ;;^UTILITY(U,$J,358.3,16244,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,16245,0)
- ;;=729.1^^92^935^35
- ;;^UTILITY(U,$J,358.3,16245,1,0)
+ ;;^UTILITY(U,$J,358.3,15990,2)
+ ;;=Abnormal UA^273408
+ ;;^UTILITY(U,$J,358.3,15991,0)
+ ;;=789.01^^81^951^7
+ ;;^UTILITY(U,$J,358.3,15991,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16245,1,4,0)
- ;;=4^729.1
- ;;^UTILITY(U,$J,358.3,16245,1,5,0)
- ;;=5^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,16245,2)
- ;;=Fibromyalgia^80160
- ;;^UTILITY(U,$J,358.3,16246,0)
- ;;=438.20^^92^935^11
- ;;^UTILITY(U,$J,358.3,16246,1,0)
+ ;;^UTILITY(U,$J,358.3,15991,1,4,0)
+ ;;=4^789.01
+ ;;^UTILITY(U,$J,358.3,15991,1,5,0)
+ ;;=5^Abdominal pain, RUQ
+ ;;^UTILITY(U,$J,358.3,15991,2)
+ ;;=^303318
+ ;;^UTILITY(U,$J,358.3,15992,0)
+ ;;=789.02^^81^951^4
+ ;;^UTILITY(U,$J,358.3,15992,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16246,1,4,0)
- ;;=4^438.20
- ;;^UTILITY(U,$J,358.3,16246,1,5,0)
- ;;=5^CVA w/Hemiplegia (late effect)
- ;;^UTILITY(U,$J,358.3,16246,2)
- ;;=CVA w/Hemiplegia^317910
- ;;^UTILITY(U,$J,358.3,16247,0)
- ;;=438.12^^92^935^8
- ;;^UTILITY(U,$J,358.3,16247,1,0)
+ ;;^UTILITY(U,$J,358.3,15992,1,4,0)
+ ;;=4^789.02
+ ;;^UTILITY(U,$J,358.3,15992,1,5,0)
+ ;;=5^Abdominal pain, LUQ
+ ;;^UTILITY(U,$J,358.3,15992,2)
+ ;;=^303319
+ ;;^UTILITY(U,$J,358.3,15993,0)
+ ;;=789.03^^81^951^6
+ ;;^UTILITY(U,$J,358.3,15993,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16247,1,4,0)
- ;;=4^438.12
- ;;^UTILITY(U,$J,358.3,16247,1,5,0)
- ;;=5^CVA w/Dysphasia (late effect)
- ;;^UTILITY(U,$J,358.3,16247,2)
- ;;=Stroke w/Dysphasia^317908
- ;;^UTILITY(U,$J,358.3,16248,0)
- ;;=356.8^^92^935^90
- ;;^UTILITY(U,$J,358.3,16248,1,0)
+ ;;^UTILITY(U,$J,358.3,15993,1,4,0)
+ ;;=4^789.03
+ ;;^UTILITY(U,$J,358.3,15993,1,5,0)
+ ;;=5^Abdominal pain, RLQ
+ ;;^UTILITY(U,$J,358.3,15993,2)
+ ;;=^303320
+ ;;^UTILITY(U,$J,358.3,15994,0)
+ ;;=789.04^^81^951^3
+ ;;^UTILITY(U,$J,358.3,15994,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16248,1,4,0)
- ;;=4^356.8
- ;;^UTILITY(U,$J,358.3,16248,1,5,0)
- ;;=5^Peripheral Neuropathy, Idiopathic
- ;;^UTILITY(U,$J,358.3,16248,2)
- ;;=Peripheral Neuropathy, Idio^268525
- ;;^UTILITY(U,$J,358.3,16249,0)
- ;;=337.20^^92^935^100
- ;;^UTILITY(U,$J,358.3,16249,1,0)
+ ;;^UTILITY(U,$J,358.3,15994,1,4,0)
+ ;;=4^789.04
+ ;;^UTILITY(U,$J,358.3,15994,1,5,0)
+ ;;=5^Abdominal pain, LLQ
+ ;;^UTILITY(U,$J,358.3,15994,2)
+ ;;=^303321
+ ;;^UTILITY(U,$J,358.3,15995,0)
+ ;;=789.06^^81^951^2
+ ;;^UTILITY(U,$J,358.3,15995,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16249,1,4,0)
- ;;=4^337.20
- ;;^UTILITY(U,$J,358.3,16249,1,5,0)
- ;;=5^Reflexive Sympathetic Dystrophy
- ;;^UTILITY(U,$J,358.3,16249,2)
- ;;=Reflexive Sympathetic Dystrophy^295799
- ;;^UTILITY(U,$J,358.3,16250,0)
- ;;=294.8^^92^935^33
- ;;^UTILITY(U,$J,358.3,16250,1,0)
+ ;;^UTILITY(U,$J,358.3,15995,1,4,0)
+ ;;=4^789.06
+ ;;^UTILITY(U,$J,358.3,15995,1,5,0)
+ ;;=5^Abdominal pain, Epigastric
+ ;;^UTILITY(U,$J,358.3,15995,2)
+ ;;=^303323
+ ;;^UTILITY(U,$J,358.3,15996,0)
+ ;;=789.05^^81^951^5
+ ;;^UTILITY(U,$J,358.3,15996,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16250,1,4,0)
- ;;=4^294.8
- ;;^UTILITY(U,$J,358.3,16250,1,5,0)
- ;;=5^Dementia, Other
- ;;^UTILITY(U,$J,358.3,16250,2)
- ;;=^268044
- ;;^UTILITY(U,$J,358.3,16251,0)
- ;;=438.6^^92^935^7
- ;;^UTILITY(U,$J,358.3,16251,1,0)
+ ;;^UTILITY(U,$J,358.3,15996,1,4,0)
+ ;;=4^789.05
+ ;;^UTILITY(U,$J,358.3,15996,1,5,0)
+ ;;=5^Abdominal pain, Periumbilical
+ ;;^UTILITY(U,$J,358.3,15996,2)
+ ;;=^303322
+ ;;^UTILITY(U,$J,358.3,15997,0)
+ ;;=789.40^^81^951^8
+ ;;^UTILITY(U,$J,358.3,15997,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16251,1,4,0)
- ;;=4^438.6
- ;;^UTILITY(U,$J,358.3,16251,1,5,0)
- ;;=5^CVA w/Dysesthesia (late effect)
- ;;^UTILITY(U,$J,358.3,16251,2)
- ;;=CVA w/Dysesthesia (late effect)^328503
- ;;^UTILITY(U,$J,358.3,16252,0)
- ;;=438.7^^92^935^26
- ;;^UTILITY(U,$J,358.3,16252,1,0)
+ ;;^UTILITY(U,$J,358.3,15997,1,4,0)
+ ;;=4^789.40
+ ;;^UTILITY(U,$J,358.3,15997,1,5,0)
+ ;;=5^Abdominal rigidity, unsp site
+ ;;^UTILITY(U,$J,358.3,15997,2)
+ ;;=^273393
+ ;;^UTILITY(U,$J,358.3,15998,0)
+ ;;=789.1^^81^951^83
+ ;;^UTILITY(U,$J,358.3,15998,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16252,1,4,0)
- ;;=4^438.7
- ;;^UTILITY(U,$J,358.3,16252,1,5,0)
- ;;=5^CVA w/Vision Changes (late effect)
- ;;^UTILITY(U,$J,358.3,16252,2)
- ;;=CVA w/Vision Changes (late effect)^328504
- ;;^UTILITY(U,$J,358.3,16253,0)
- ;;=438.84^^92^935^5
- ;;^UTILITY(U,$J,358.3,16253,1,0)
+ ;;^UTILITY(U,$J,358.3,15998,1,4,0)
+ ;;=4^789.1
+ ;;^UTILITY(U,$J,358.3,15998,1,5,0)
+ ;;=5^Hepatomegaly
+ ;;^UTILITY(U,$J,358.3,15998,2)
+ ;;=Hepatomegaly^56494
+ ;;^UTILITY(U,$J,358.3,15999,0)
+ ;;=789.30^^81^951^1
+ ;;^UTILITY(U,$J,358.3,15999,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16253,1,4,0)
- ;;=4^438.84
- ;;^UTILITY(U,$J,358.3,16253,1,5,0)
- ;;=5^CVA w/Ataxia (late effect)
- ;;^UTILITY(U,$J,358.3,16253,2)
- ;;=CVA w/Ataxia (late effect)^328507
- ;;^UTILITY(U,$J,358.3,16254,0)
- ;;=434.91^^92^935^27
- ;;^UTILITY(U,$J,358.3,16254,1,0)
+ ;;^UTILITY(U,$J,358.3,15999,1,4,0)
+ ;;=4^789.30
+ ;;^UTILITY(U,$J,358.3,15999,1,5,0)
+ ;;=5^Abdominal Mass/Lump
+ ;;^UTILITY(U,$J,358.3,15999,2)
+ ;;=Abdominal Mass/Lump^917
+ ;;^UTILITY(U,$J,358.3,16000,0)
+ ;;=789.2^^81^951^140
+ ;;^UTILITY(U,$J,358.3,16000,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16254,1,4,0)
- ;;=4^434.91
- ;;^UTILITY(U,$J,358.3,16254,1,5,0)
- ;;=5^CVA, Acute Onset
- ;;^UTILITY(U,$J,358.3,16254,2)
- ;;=^295738
- ;;^UTILITY(U,$J,358.3,16255,0)
- ;;=333.94^^92^935^101
- ;;^UTILITY(U,$J,358.3,16255,1,0)
+ ;;^UTILITY(U,$J,358.3,16000,1,4,0)
+ ;;=4^789.2
+ ;;^UTILITY(U,$J,358.3,16000,1,5,0)
+ ;;=5^Splenomegaly
+ ;;^UTILITY(U,$J,358.3,16000,2)
+ ;;=Splenomegaly^113452
+ ;;^UTILITY(U,$J,358.3,16001,0)
+ ;;=785.2^^81^951^34
+ ;;^UTILITY(U,$J,358.3,16001,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16255,1,4,0)
- ;;=4^333.94
- ;;^UTILITY(U,$J,358.3,16255,1,5,0)
- ;;=5^Restless Leg Syndrome
- ;;^UTILITY(U,$J,358.3,16255,2)
- ;;=^105368
- ;;^UTILITY(U,$J,358.3,16256,0)
- ;;=345.90^^92^935^104
- ;;^UTILITY(U,$J,358.3,16256,1,0)
+ ;;^UTILITY(U,$J,358.3,16001,1,4,0)
+ ;;=4^785.2
+ ;;^UTILITY(U,$J,358.3,16001,1,5,0)
+ ;;=5^Cardiac murmurs, undiagnosed
+ ;;^UTILITY(U,$J,358.3,16001,2)
+ ;;=^295854
+ ;;^UTILITY(U,$J,358.3,16002,0)
+ ;;=786.50^^81^951^37
+ ;;^UTILITY(U,$J,358.3,16002,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16256,1,4,0)
- ;;=4^345.90
- ;;^UTILITY(U,$J,358.3,16256,1,5,0)
- ;;=5^Seizure Disorder
- ;;^UTILITY(U,$J,358.3,16256,2)
- ;;=^268477
- ;;^UTILITY(U,$J,358.3,16257,0)
- ;;=907.0^^92^935^73
+ ;;^UTILITY(U,$J,358.3,16002,1,4,0)
+ ;;=4^786.50
+ ;;^UTILITY(U,$J,358.3,16002,1,5,0)
+ ;;=5^Chest pain/Discomfort (nonsp) chest pain diff from discomfort
+ ;;^UTILITY(U,$J,358.3,16002,2)
+ ;;=^22485
+ ;;^UTILITY(U,$J,358.3,16003,0)
+ ;;=786.51^^81^951^131
+ ;;^UTILITY(U,$J,358.3,16003,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,16003,1,4,0)
+ ;;=4^786.51
+ ;;^UTILITY(U,$J,358.3,16003,1,5,0)
+ ;;=5^Precordial Pain
+ ;;^UTILITY(U,$J,358.3,16003,2)
+ ;;=Precordial Pain^276877
+ ;;^UTILITY(U,$J,358.3,16004,0)
+ ;;=786.2^^81^951^45

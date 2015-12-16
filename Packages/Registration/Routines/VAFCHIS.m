@@ -1,5 +1,5 @@
 VAFCHIS ;SF/CMC-TESTING CROSS REFERENCE ;11/20/97
- ;;5.3;Registration;**149,255,307,711**;Aug 13, 1993
+ ;;5.3;Registration;**149,255,307,711,902**;Aug 13, 1993;Build 2
  ;
  ; Integration Agreements Utilized:
  ;    CHECKDG^MPIFSPC - #3158
@@ -17,7 +17,7 @@ ICN(OLD,ENT) ;
  ; ^ UPDATE ICN WITH SAME ICN DON'T PUT IT IN HISTORY
  ;
  S OLDDA=DA,OLDX=OLD
- N DA
+ N DA,CKOLD
  ;
  D NOW^%DTC
  S HAP=%
@@ -29,9 +29,19 @@ ICN(OLD,ENT) ;
  S DA(1)=ENT
  D ^DIC
  ;**711 change setting of checksum and CMOR ensure correct data stored
- S $P(^DPT(ENT,"MPIFHIS",+Y,0),"^",2)=$$CHECKDG^MPIFSPC(OLD)
+ ;**902 save correct old checksum to store in FULL ICN history also
+ ;S $P(^DPT(ENT,"MPIFHIS",+Y,0),"^",2)=$$CHECKDG^MPIFSPC(OLD)
+ S CKOLD=$$CHECKDG^MPIFSPC(OLD)
+ S $P(^DPT(ENT,"MPIFHIS",+Y,0),"^",2)=CKOLD
  S $P(^DPT(ENT,"MPIFHIS",+Y,0),"^",3)=$P($G(^DPT(ENT,"MPI")),"^",3)
  S $P(^DPT(ENT,"MPIFHIS",+Y,0),"^",4)=HAP
+ ;
+ ;**902 set FULL ICN history
+ K DA,DIC
+ S X=OLD_"V"_CKOLD
+ S DIC="^DPT("_ENT_",""MPIFICNHIS"",",DIC(0)="L"
+ S DA(1)=ENT
+ D ^DIC
  ;
  S ^DPT("AICN",OLD,ENT)=""
  K NODE,%,HAP

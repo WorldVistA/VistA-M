@@ -1,142 +1,138 @@
-IBDEI048 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI048 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1634,1,4,0)
- ;;=4^996.02
- ;;^UTILITY(U,$J,358.3,1634,1,5,0)
- ;;=5^Mech Comp Valve Prosth
- ;;^UTILITY(U,$J,358.3,1634,2)
- ;;=^276265
- ;;^UTILITY(U,$J,358.3,1635,0)
- ;;=996.04^^11^135^3
- ;;^UTILITY(U,$J,358.3,1635,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1635,1,4,0)
- ;;=4^996.04
- ;;^UTILITY(U,$J,358.3,1635,1,5,0)
- ;;=5^Complication of ICD
- ;;^UTILITY(U,$J,358.3,1635,2)
- ;;=^303359
- ;;^UTILITY(U,$J,358.3,1636,0)
- ;;=996.1^^11^135^4
- ;;^UTILITY(U,$J,358.3,1636,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1636,1,4,0)
- ;;=4^996.1
- ;;^UTILITY(U,$J,358.3,1636,1,5,0)
- ;;=5^Mech Comp AV Fistula
- ;;^UTILITY(U,$J,358.3,1636,2)
- ;;=^276268
- ;;^UTILITY(U,$J,358.3,1637,0)
- ;;=996.61^^11^135^1
- ;;^UTILITY(U,$J,358.3,1637,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1637,1,4,0)
- ;;=4^996.61
- ;;^UTILITY(U,$J,358.3,1637,1,5,0)
- ;;=5^Cardiac Device Complication
- ;;^UTILITY(U,$J,358.3,1637,2)
- ;;=^276284
- ;;^UTILITY(U,$J,358.3,1638,0)
- ;;=996.72^^11^135^6
- ;;^UTILITY(U,$J,358.3,1638,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1638,1,4,0)
- ;;=4^996.72
- ;;^UTILITY(U,$J,358.3,1638,1,5,0)
- ;;=5^Occlusion AV Fist Grft
- ;;^UTILITY(U,$J,358.3,1638,2)
- ;;=^276295
- ;;^UTILITY(U,$J,358.3,1639,0)
- ;;=996.74^^11^135^7
- ;;^UTILITY(U,$J,358.3,1639,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1639,1,4,0)
- ;;=4^996.74
- ;;^UTILITY(U,$J,358.3,1639,1,5,0)
- ;;=5^Oth Comp of Heart Valve Prosth
- ;;^UTILITY(U,$J,358.3,1639,2)
- ;;=^276297
- ;;^UTILITY(U,$J,358.3,1640,0)
- ;;=996.71^^11^135^8
- ;;^UTILITY(U,$J,358.3,1640,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1640,1,4,0)
- ;;=4^996.71
- ;;^UTILITY(U,$J,358.3,1640,1,5,0)
- ;;=5^Thrombus Valve Prosth
- ;;^UTILITY(U,$J,358.3,1640,2)
- ;;=^276294
- ;;^UTILITY(U,$J,358.3,1641,0)
- ;;=V45.89^^11^136^12
- ;;^UTILITY(U,$J,358.3,1641,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1641,1,4,0)
- ;;=4^V45.89
- ;;^UTILITY(U,$J,358.3,1641,1,5,0)
- ;;=5^S/P Valve Surgery
- ;;^UTILITY(U,$J,358.3,1641,2)
- ;;=^276679
- ;;^UTILITY(U,$J,358.3,1642,0)
- ;;=V43.3^^11^136^11
- ;;^UTILITY(U,$J,358.3,1642,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1642,1,4,0)
- ;;=4^V43.3
- ;;^UTILITY(U,$J,358.3,1642,1,5,0)
- ;;=5^S/P Artif Valve Replac
- ;;^UTILITY(U,$J,358.3,1642,2)
- ;;=^295440
- ;;^UTILITY(U,$J,358.3,1643,0)
- ;;=V58.61^^11^136^9
- ;;^UTILITY(U,$J,358.3,1643,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1643,1,4,0)
- ;;=4^V58.61
- ;;^UTILITY(U,$J,358.3,1643,1,5,0)
- ;;=5^Long Term Use Anticoagulants
- ;;^UTILITY(U,$J,358.3,1643,2)
- ;;=^303459
- ;;^UTILITY(U,$J,358.3,1644,0)
- ;;=V45.81^^11^136^5
- ;;^UTILITY(U,$J,358.3,1644,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1644,1,4,0)
- ;;=4^V45.81
- ;;^UTILITY(U,$J,358.3,1644,1,5,0)
- ;;=5^History of Cardiac Bypass
- ;;^UTILITY(U,$J,358.3,1644,2)
- ;;=^97129
- ;;^UTILITY(U,$J,358.3,1645,0)
- ;;=V45.82^^11^136^6
- ;;^UTILITY(U,$J,358.3,1645,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1645,1,4,0)
- ;;=4^V45.82
- ;;^UTILITY(U,$J,358.3,1645,1,5,0)
- ;;=5^History of Cardiac Stent
- ;;^UTILITY(U,$J,358.3,1645,2)
- ;;=^303425
- ;;^UTILITY(U,$J,358.3,1646,0)
- ;;=412.^^11^136^7
- ;;^UTILITY(U,$J,358.3,1646,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1646,1,4,0)
- ;;=4^412.
- ;;^UTILITY(U,$J,358.3,1646,1,5,0)
- ;;=5^History of Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,1646,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,1647,0)
- ;;=V45.02^^11^136^1
- ;;^UTILITY(U,$J,358.3,1647,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,1647,1,4,0)
- ;;=4^V45.02
- ;;^UTILITY(U,$J,358.3,1647,1,5,0)
- ;;=5^Auto Impl Card Defib in Situ
- ;;^UTILITY(U,$J,358.3,1647,2)
- ;;=^303420
- ;;^UTILITY(U,$J,358.3,1648,0)
- ;;=V45.01^^11^136^4
+ ;;^UTILITY(U,$J,358.3,1449,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,1450,0)
+ ;;=R50.9^^3^41^60
+ ;;^UTILITY(U,$J,358.3,1450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1450,1,3,0)
+ ;;=3^Fever, unspecified
+ ;;^UTILITY(U,$J,358.3,1450,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,1450,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,1451,0)
+ ;;=R59.9^^3^41^57
+ ;;^UTILITY(U,$J,358.3,1451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1451,1,3,0)
+ ;;=3^Enlarged lymph nodes, unspecified
+ ;;^UTILITY(U,$J,358.3,1451,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,1451,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,1452,0)
+ ;;=R36.9^^3^41^106
+ ;;^UTILITY(U,$J,358.3,1452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1452,1,3,0)
+ ;;=3^Urethral discharge, unspecified
+ ;;^UTILITY(U,$J,358.3,1452,1,4,0)
+ ;;=4^R36.9
+ ;;^UTILITY(U,$J,358.3,1452,2)
+ ;;=^5019338
+ ;;^UTILITY(U,$J,358.3,1453,0)
+ ;;=R36.0^^3^41^105
+ ;;^UTILITY(U,$J,358.3,1453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1453,1,3,0)
+ ;;=3^Urethral discharge without blood
+ ;;^UTILITY(U,$J,358.3,1453,1,4,0)
+ ;;=4^R36.0
+ ;;^UTILITY(U,$J,358.3,1453,2)
+ ;;=^5019337
+ ;;^UTILITY(U,$J,358.3,1454,0)
+ ;;=R76.11^^3^41^82
+ ;;^UTILITY(U,$J,358.3,1454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1454,1,3,0)
+ ;;=3^Nonspecific reaction to skin test w/o active tuberculosis
+ ;;^UTILITY(U,$J,358.3,1454,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,1454,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,1455,0)
+ ;;=Z21.^^3^41^27
+ ;;^UTILITY(U,$J,358.3,1455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1455,1,3,0)
+ ;;=3^Asymptomatic human immunodeficiency virus infection status
+ ;;^UTILITY(U,$J,358.3,1455,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,1455,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,1456,0)
+ ;;=Z86.19^^3^41^88
+ ;;^UTILITY(U,$J,358.3,1456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1456,1,3,0)
+ ;;=3^Personal history of other infectious and parasitic diseases
+ ;;^UTILITY(U,$J,358.3,1456,1,4,0)
+ ;;=4^Z86.19
+ ;;^UTILITY(U,$J,358.3,1456,2)
+ ;;=^5063465
+ ;;^UTILITY(U,$J,358.3,1457,0)
+ ;;=B49.^^3^42^5
+ ;;^UTILITY(U,$J,358.3,1457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1457,1,3,0)
+ ;;=3^Mycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,1457,1,4,0)
+ ;;=4^B49.
+ ;;^UTILITY(U,$J,358.3,1457,2)
+ ;;=^5000690
+ ;;^UTILITY(U,$J,358.3,1458,0)
+ ;;=J67.0^^3^42^3
+ ;;^UTILITY(U,$J,358.3,1458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1458,1,3,0)
+ ;;=3^Farmer's lung
+ ;;^UTILITY(U,$J,358.3,1458,1,4,0)
+ ;;=4^J67.0
+ ;;^UTILITY(U,$J,358.3,1458,2)
+ ;;=^44962
+ ;;^UTILITY(U,$J,358.3,1459,0)
+ ;;=J67.9^^3^42^4
+ ;;^UTILITY(U,$J,358.3,1459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1459,1,3,0)
+ ;;=3^Hypersensitivity pneumonitis due to unspecified organic dust
+ ;;^UTILITY(U,$J,358.3,1459,1,4,0)
+ ;;=4^J67.9
+ ;;^UTILITY(U,$J,358.3,1459,2)
+ ;;=^5008280
+ ;;^UTILITY(U,$J,358.3,1460,0)
+ ;;=J69.0^^3^42^6
+ ;;^UTILITY(U,$J,358.3,1460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1460,1,3,0)
+ ;;=3^Pneumonitis due to inhalation of food and vomit
+ ;;^UTILITY(U,$J,358.3,1460,1,4,0)
+ ;;=4^J69.0
+ ;;^UTILITY(U,$J,358.3,1460,2)
+ ;;=^5008288
+ ;;^UTILITY(U,$J,358.3,1461,0)
+ ;;=J86.0^^3^42^7
+ ;;^UTILITY(U,$J,358.3,1461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1461,1,3,0)
+ ;;=3^Pyothorax with fistula
+ ;;^UTILITY(U,$J,358.3,1461,1,4,0)
+ ;;=4^J86.0
+ ;;^UTILITY(U,$J,358.3,1461,2)
+ ;;=^5008308
+ ;;^UTILITY(U,$J,358.3,1462,0)
+ ;;=J86.9^^3^42^8
+ ;;^UTILITY(U,$J,358.3,1462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1462,1,3,0)
+ ;;=3^Pyothorax without fistula
+ ;;^UTILITY(U,$J,358.3,1462,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,1462,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,1463,0)
+ ;;=J85.2^^3^42^2

@@ -1,148 +1,138 @@
-IBDEI01E ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01E ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,118,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,118,1,2,0)
- ;;=2^300.20
- ;;^UTILITY(U,$J,358.3,118,1,5,0)
- ;;=5^Phobia, Unspecified
- ;;^UTILITY(U,$J,358.3,118,2)
- ;;=^93428
- ;;^UTILITY(U,$J,358.3,119,0)
- ;;=300.21^^3^24^10
- ;;^UTILITY(U,$J,358.3,119,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,119,1,2,0)
- ;;=2^300.21
- ;;^UTILITY(U,$J,358.3,119,1,5,0)
- ;;=5^Panic W/Agoraphobia
- ;;^UTILITY(U,$J,358.3,119,2)
- ;;=^268168
- ;;^UTILITY(U,$J,358.3,120,0)
- ;;=300.22^^3^24^3
- ;;^UTILITY(U,$J,358.3,120,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,120,1,2,0)
- ;;=2^300.22
- ;;^UTILITY(U,$J,358.3,120,1,5,0)
- ;;=5^Agoraphobia w/o Panic
- ;;^UTILITY(U,$J,358.3,120,2)
- ;;=^4218
- ;;^UTILITY(U,$J,358.3,121,0)
- ;;=300.23^^3^24^13
- ;;^UTILITY(U,$J,358.3,121,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,121,1,2,0)
- ;;=2^300.23
- ;;^UTILITY(U,$J,358.3,121,1,5,0)
- ;;=5^Phobia, Social
- ;;^UTILITY(U,$J,358.3,121,2)
- ;;=^93420
- ;;^UTILITY(U,$J,358.3,122,0)
- ;;=300.29^^3^24^12
- ;;^UTILITY(U,$J,358.3,122,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,122,1,2,0)
- ;;=2^300.29
- ;;^UTILITY(U,$J,358.3,122,1,5,0)
- ;;=5^Phobia, Simple
- ;;^UTILITY(U,$J,358.3,122,2)
- ;;=^87670
- ;;^UTILITY(U,$J,358.3,123,0)
- ;;=300.3^^3^24^8
- ;;^UTILITY(U,$J,358.3,123,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,123,1,2,0)
- ;;=2^300.3
- ;;^UTILITY(U,$J,358.3,123,1,5,0)
- ;;=5^Obsessive/Compulsive
- ;;^UTILITY(U,$J,358.3,123,2)
- ;;=^84904
- ;;^UTILITY(U,$J,358.3,124,0)
- ;;=308.9^^3^24^1
- ;;^UTILITY(U,$J,358.3,124,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,124,1,2,0)
- ;;=2^308.9
- ;;^UTILITY(U,$J,358.3,124,1,5,0)
- ;;=5^Acute Stress Reaction
- ;;^UTILITY(U,$J,358.3,124,2)
- ;;=^268303
- ;;^UTILITY(U,$J,358.3,125,0)
- ;;=300.15^^3^24^6
- ;;^UTILITY(U,$J,358.3,125,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,125,1,2,0)
- ;;=2^300.15
- ;;^UTILITY(U,$J,358.3,125,1,5,0)
- ;;=5^Dissociative Reaction
- ;;^UTILITY(U,$J,358.3,125,2)
- ;;=^35700
- ;;^UTILITY(U,$J,358.3,126,0)
- ;;=291.1^^3^25^5
- ;;^UTILITY(U,$J,358.3,126,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,126,1,2,0)
- ;;=2^291.1
- ;;^UTILITY(U,$J,358.3,126,1,5,0)
- ;;=5^Amnestic Syndrome Due to Alcohol
- ;;^UTILITY(U,$J,358.3,126,2)
- ;;=^303492
- ;;^UTILITY(U,$J,358.3,127,0)
- ;;=294.0^^3^25^7
- ;;^UTILITY(U,$J,358.3,127,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,127,1,2,0)
- ;;=2^294.0
- ;;^UTILITY(U,$J,358.3,127,1,5,0)
- ;;=5^Amnestic Syndrome, NOS
- ;;^UTILITY(U,$J,358.3,127,2)
- ;;=^6319
- ;;^UTILITY(U,$J,358.3,128,0)
- ;;=292.83^^3^25^6
- ;;^UTILITY(U,$J,358.3,128,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,128,1,2,0)
- ;;=2^292.83
- ;;^UTILITY(U,$J,358.3,128,1,5,0)
- ;;=5^Amnestic Syndrome Due to Drugs
- ;;^UTILITY(U,$J,358.3,128,2)
- ;;=^268027
- ;;^UTILITY(U,$J,358.3,129,0)
- ;;=291.2^^3^25^3
- ;;^UTILITY(U,$J,358.3,129,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,129,1,2,0)
- ;;=2^291.2
- ;;^UTILITY(U,$J,358.3,129,1,5,0)
- ;;=5^Alcohol Persisting Dementia
- ;;^UTILITY(U,$J,358.3,129,2)
- ;;=^331824
- ;;^UTILITY(U,$J,358.3,130,0)
- ;;=291.3^^3^25^1
- ;;^UTILITY(U,$J,358.3,130,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,130,1,2,0)
- ;;=2^291.3
- ;;^UTILITY(U,$J,358.3,130,1,5,0)
- ;;=5^Alc Ind Psy D/O w/ Hallucination
- ;;^UTILITY(U,$J,358.3,130,2)
- ;;=^331825
- ;;^UTILITY(U,$J,358.3,131,0)
- ;;=291.4^^3^25^8
- ;;^UTILITY(U,$J,358.3,131,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,131,1,2,0)
- ;;=2^291.4
- ;;^UTILITY(U,$J,358.3,131,1,5,0)
- ;;=5^Idiosyncratic Alcohol Intox
- ;;^UTILITY(U,$J,358.3,131,2)
- ;;=^4574
- ;;^UTILITY(U,$J,358.3,132,0)
- ;;=291.5^^3^25^2
- ;;^UTILITY(U,$J,358.3,132,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,132,1,2,0)
- ;;=2^291.5
+ ;;^UTILITY(U,$J,358.3,97,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,97,1,3,0)
+ ;;=3^Swimmer's ear, right ear
+ ;;^UTILITY(U,$J,358.3,97,1,4,0)
+ ;;=4^H60.331
+ ;;^UTILITY(U,$J,358.3,97,2)
+ ;;=^5006455
+ ;;^UTILITY(U,$J,358.3,98,0)
+ ;;=H72.823^^1^5^35
+ ;;^UTILITY(U,$J,358.3,98,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,98,1,3,0)
+ ;;=3^Total perforations of tympanic membrane, bilateral
+ ;;^UTILITY(U,$J,358.3,98,1,4,0)
+ ;;=4^H72.823
+ ;;^UTILITY(U,$J,358.3,98,2)
+ ;;=^5006760
+ ;;^UTILITY(U,$J,358.3,99,0)
+ ;;=H72.822^^1^5^36
+ ;;^UTILITY(U,$J,358.3,99,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,99,1,3,0)
+ ;;=3^Total perforations of tympanic membrane, left ear
+ ;;^UTILITY(U,$J,358.3,99,1,4,0)
+ ;;=4^H72.822
+ ;;^UTILITY(U,$J,358.3,99,2)
+ ;;=^5006759
+ ;;^UTILITY(U,$J,358.3,100,0)
+ ;;=H72.821^^1^5^37
+ ;;^UTILITY(U,$J,358.3,100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,100,1,3,0)
+ ;;=3^Total perforations of tympanic membrane, right ear
+ ;;^UTILITY(U,$J,358.3,100,1,4,0)
+ ;;=4^H72.821
+ ;;^UTILITY(U,$J,358.3,100,2)
+ ;;=^5006758
+ ;;^UTILITY(U,$J,358.3,101,0)
+ ;;=H74.03^^1^5^38
+ ;;^UTILITY(U,$J,358.3,101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,101,1,3,0)
+ ;;=3^Tympanosclerosis, bilateral
+ ;;^UTILITY(U,$J,358.3,101,1,4,0)
+ ;;=4^H74.03
+ ;;^UTILITY(U,$J,358.3,101,2)
+ ;;=^5006798
+ ;;^UTILITY(U,$J,358.3,102,0)
+ ;;=H74.02^^1^5^39
+ ;;^UTILITY(U,$J,358.3,102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,102,1,3,0)
+ ;;=3^Tympanosclerosis, left ear
+ ;;^UTILITY(U,$J,358.3,102,1,4,0)
+ ;;=4^H74.02
+ ;;^UTILITY(U,$J,358.3,102,2)
+ ;;=^5006797
+ ;;^UTILITY(U,$J,358.3,103,0)
+ ;;=H74.01^^1^5^40
+ ;;^UTILITY(U,$J,358.3,103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,103,1,3,0)
+ ;;=3^Tympanosclerosis, right ear
+ ;;^UTILITY(U,$J,358.3,103,1,4,0)
+ ;;=4^H74.01
+ ;;^UTILITY(U,$J,358.3,103,2)
+ ;;=^5006796
+ ;;^UTILITY(U,$J,358.3,104,0)
+ ;;=H69.93^^1^5^15
+ ;;^UTILITY(U,$J,358.3,104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,104,1,3,0)
+ ;;=3^Eustachian Tube Disorders,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,104,1,4,0)
+ ;;=4^H69.93
+ ;;^UTILITY(U,$J,358.3,104,2)
+ ;;=^5006684
+ ;;^UTILITY(U,$J,358.3,105,0)
+ ;;=H69.92^^1^5^17
+ ;;^UTILITY(U,$J,358.3,105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,105,1,3,0)
+ ;;=3^Eustachian Tube Disorders,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,105,1,4,0)
+ ;;=4^H69.92
+ ;;^UTILITY(U,$J,358.3,105,2)
+ ;;=^5006683
+ ;;^UTILITY(U,$J,358.3,106,0)
+ ;;=H69.91^^1^5^19
+ ;;^UTILITY(U,$J,358.3,106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,106,1,3,0)
+ ;;=3^Eustachian Tube Disorders,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,106,1,4,0)
+ ;;=4^H69.91
+ ;;^UTILITY(U,$J,358.3,106,2)
+ ;;=^5006682
+ ;;^UTILITY(U,$J,358.3,107,0)
+ ;;=T16.1XXA^^1^6^4
+ ;;^UTILITY(U,$J,358.3,107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,107,1,3,0)
+ ;;=3^Foreign body in right ear, initial encounter
+ ;;^UTILITY(U,$J,358.3,107,1,4,0)
+ ;;=4^T16.1XXA
+ ;;^UTILITY(U,$J,358.3,107,2)
+ ;;=^5046417
+ ;;^UTILITY(U,$J,358.3,108,0)
+ ;;=T16.1XXD^^1^6^6
+ ;;^UTILITY(U,$J,358.3,108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,108,1,3,0)
+ ;;=3^Foreign body in right ear, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,108,1,4,0)
+ ;;=4^T16.1XXD
+ ;;^UTILITY(U,$J,358.3,108,2)
+ ;;=^5046418
+ ;;^UTILITY(U,$J,358.3,109,0)
+ ;;=T16.1XXS^^1^6^5
+ ;;^UTILITY(U,$J,358.3,109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,109,1,3,0)
+ ;;=3^Foreign body in right ear, sequela
+ ;;^UTILITY(U,$J,358.3,109,1,4,0)
+ ;;=4^T16.1XXS
+ ;;^UTILITY(U,$J,358.3,109,2)
+ ;;=^5046419
+ ;;^UTILITY(U,$J,358.3,110,0)
+ ;;=T16.2XXA^^1^6^1
+ ;;^UTILITY(U,$J,358.3,110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,110,1,3,0)
+ ;;=3^Foreign body in left ear, initial encounter

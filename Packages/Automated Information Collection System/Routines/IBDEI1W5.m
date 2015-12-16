@@ -1,124 +1,134 @@
-IBDEI1W5 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1W5 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33626,1,4,0)
- ;;=4^S82.54XN
- ;;^UTILITY(U,$J,358.3,33626,2)
- ;;=^5042274
- ;;^UTILITY(U,$J,358.3,33627,0)
- ;;=S82.54XM^^191^1968^281
- ;;^UTILITY(U,$J,358.3,33627,1,0)
+ ;;^UTILITY(U,$J,358.3,33259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33627,1,3,0)
- ;;=3^Nondisp fx med mall rt tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33627,1,4,0)
- ;;=4^S82.54XM
- ;;^UTILITY(U,$J,358.3,33627,2)
- ;;=^5042273
- ;;^UTILITY(U,$J,358.3,33628,0)
- ;;=S82.54XK^^191^1968^279
- ;;^UTILITY(U,$J,358.3,33628,1,0)
+ ;;^UTILITY(U,$J,358.3,33259,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,33259,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,33259,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,33260,0)
+ ;;=G44.209^^182^1999^37
+ ;;^UTILITY(U,$J,358.3,33260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33628,1,3,0)
- ;;=3^Nondisp fx med mall rt tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33628,1,4,0)
- ;;=4^S82.54XK
- ;;^UTILITY(U,$J,358.3,33628,2)
- ;;=^5042272
- ;;^UTILITY(U,$J,358.3,33629,0)
- ;;=S82.52XN^^191^1968^50
- ;;^UTILITY(U,$J,358.3,33629,1,0)
+ ;;^UTILITY(U,$J,358.3,33260,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,33260,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,33260,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,33261,0)
+ ;;=F09.^^182^1999^18
+ ;;^UTILITY(U,$J,358.3,33261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33629,1,3,0)
- ;;=3^Disp fx med mal lft tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33629,1,4,0)
- ;;=4^S82.52XN
- ;;^UTILITY(U,$J,358.3,33629,2)
- ;;=^5042242
- ;;^UTILITY(U,$J,358.3,33630,0)
- ;;=S82.52XM^^191^1968^54
- ;;^UTILITY(U,$J,358.3,33630,1,0)
+ ;;^UTILITY(U,$J,358.3,33261,1,3,0)
+ ;;=3^Menatl Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,33261,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,33261,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,33262,0)
+ ;;=F07.9^^182^1999^33
+ ;;^UTILITY(U,$J,358.3,33262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33630,1,3,0)
- ;;=3^Disp fx med mallft tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33630,1,4,0)
- ;;=4^S82.52XM
- ;;^UTILITY(U,$J,358.3,33630,2)
- ;;=^5042241
- ;;^UTILITY(U,$J,358.3,33631,0)
- ;;=S82.52XK^^191^1968^51
- ;;^UTILITY(U,$J,358.3,33631,1,0)
+ ;;^UTILITY(U,$J,358.3,33262,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,33262,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,33262,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,33263,0)
+ ;;=G30.0^^182^1999^1
+ ;;^UTILITY(U,$J,358.3,33263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33631,1,3,0)
- ;;=3^Disp fx med mall lft tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33631,1,4,0)
- ;;=4^S82.52XK
- ;;^UTILITY(U,$J,358.3,33631,2)
- ;;=^5042240
- ;;^UTILITY(U,$J,358.3,33632,0)
- ;;=S82.51XN^^191^1968^52
- ;;^UTILITY(U,$J,358.3,33632,1,0)
+ ;;^UTILITY(U,$J,358.3,33263,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,33263,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,33263,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,33264,0)
+ ;;=G30.8^^182^1999^3
+ ;;^UTILITY(U,$J,358.3,33264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33632,1,3,0)
- ;;=3^Disp fx med mall rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33632,1,4,0)
- ;;=4^S82.51XN
- ;;^UTILITY(U,$J,358.3,33632,2)
- ;;=^5042226
- ;;^UTILITY(U,$J,358.3,33633,0)
- ;;=S82.51XM^^191^1968^53
- ;;^UTILITY(U,$J,358.3,33633,1,0)
+ ;;^UTILITY(U,$J,358.3,33264,1,3,0)
+ ;;=3^Alzheimer's Disease,Other
+ ;;^UTILITY(U,$J,358.3,33264,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,33264,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,33265,0)
+ ;;=G30.1^^182^1999^2
+ ;;^UTILITY(U,$J,358.3,33265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33633,1,3,0)
- ;;=3^Disp fx med mall rt tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33633,1,4,0)
- ;;=4^S82.51XM
- ;;^UTILITY(U,$J,358.3,33633,2)
- ;;=^5042225
- ;;^UTILITY(U,$J,358.3,33634,0)
- ;;=S82.51XK^^191^1968^103
- ;;^UTILITY(U,$J,358.3,33634,1,0)
+ ;;^UTILITY(U,$J,358.3,33265,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,33265,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,33265,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,33266,0)
+ ;;=G30.9^^182^1999^4
+ ;;^UTILITY(U,$J,358.3,33266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33634,1,3,0)
- ;;=3^Disp fx of med mall rt tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33634,1,4,0)
- ;;=4^S82.51XK
- ;;^UTILITY(U,$J,358.3,33634,2)
- ;;=^5042224
- ;;^UTILITY(U,$J,358.3,33635,0)
- ;;=M84.378K^^191^1968^421
- ;;^UTILITY(U,$J,358.3,33635,1,0)
+ ;;^UTILITY(U,$J,358.3,33266,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,33266,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,33266,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,33267,0)
+ ;;=G21.4^^182^1999^40
+ ;;^UTILITY(U,$J,358.3,33267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33635,1,3,0)
- ;;=3^Stress fx lft toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33635,1,4,0)
- ;;=4^M84.378K
- ;;^UTILITY(U,$J,358.3,33635,2)
- ;;=^5013779
- ;;^UTILITY(U,$J,358.3,33636,0)
- ;;=M84.377K^^191^1968^423
- ;;^UTILITY(U,$J,358.3,33636,1,0)
+ ;;^UTILITY(U,$J,358.3,33267,1,3,0)
+ ;;=3^Vascular Parkinsonism
+ ;;^UTILITY(U,$J,358.3,33267,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,33267,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,33268,0)
+ ;;=G20.^^182^1999^32
+ ;;^UTILITY(U,$J,358.3,33268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33636,1,3,0)
- ;;=3^Stress fx rt toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33636,1,4,0)
- ;;=4^M84.377K
- ;;^UTILITY(U,$J,358.3,33636,2)
- ;;=^5013773
- ;;^UTILITY(U,$J,358.3,33637,0)
- ;;=M84.375K^^191^1968^420
- ;;^UTILITY(U,$J,358.3,33637,1,0)
+ ;;^UTILITY(U,$J,358.3,33268,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,33268,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,33268,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,33269,0)
+ ;;=G25.0^^182^1999^15
+ ;;^UTILITY(U,$J,358.3,33269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33637,1,3,0)
- ;;=3^Stress fx lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33637,1,4,0)
- ;;=4^M84.375K
- ;;^UTILITY(U,$J,358.3,33637,2)
- ;;=^5013761
- ;;^UTILITY(U,$J,358.3,33638,0)
- ;;=M84.374K^^191^1968^422
- ;;^UTILITY(U,$J,358.3,33638,1,0)
+ ;;^UTILITY(U,$J,358.3,33269,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,33269,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,33269,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,33270,0)
+ ;;=G25.2^^182^1999^39
+ ;;^UTILITY(U,$J,358.3,33270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33638,1,3,0)
- ;;=3^Stress fx rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,33270,1,3,0)
+ ;;=3^Tremor,Other Spec Forms
+ ;;^UTILITY(U,$J,358.3,33270,1,4,0)
+ ;;=4^G25.2
+ ;;^UTILITY(U,$J,358.3,33270,2)
+ ;;=^5003793
+ ;;^UTILITY(U,$J,358.3,33271,0)
+ ;;=G25.1^^182^1999^38
+ ;;^UTILITY(U,$J,358.3,33271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33271,1,3,0)
+ ;;=3^Tremor,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,33271,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,33271,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,33272,0)
+ ;;=G25.81^^182^1999^36

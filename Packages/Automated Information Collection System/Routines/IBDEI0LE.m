@@ -1,122 +1,138 @@
-IBDEI0LE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0LE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10476,0)
- ;;=459.10^^64^684^73
- ;;^UTILITY(U,$J,358.3,10476,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10476,1,4,0)
- ;;=4^459.10
- ;;^UTILITY(U,$J,358.3,10476,1,5,0)
- ;;=5^Post Phlebotic Syndrome
- ;;^UTILITY(U,$J,358.3,10476,2)
- ;;=Post Phlebotic Syndrome^328597
- ;;^UTILITY(U,$J,358.3,10477,0)
- ;;=428.20^^64^684^50
- ;;^UTILITY(U,$J,358.3,10477,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10477,1,4,0)
- ;;=4^428.20
- ;;^UTILITY(U,$J,358.3,10477,1,5,0)
- ;;=5^Heart Failure, Systolic, Unspec
- ;;^UTILITY(U,$J,358.3,10477,2)
- ;;=Heart Failure, Systolic^328594
- ;;^UTILITY(U,$J,358.3,10478,0)
- ;;=428.21^^64^684^42
- ;;^UTILITY(U,$J,358.3,10478,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10478,1,4,0)
- ;;=4^428.21
- ;;^UTILITY(U,$J,358.3,10478,1,5,0)
- ;;=5^Heart Failure, Acute Systolic
- ;;^UTILITY(U,$J,358.3,10478,2)
- ;;=Heart Failure, Acute Systolic^328494
- ;;^UTILITY(U,$J,358.3,10479,0)
- ;;=428.22^^64^684^44
- ;;^UTILITY(U,$J,358.3,10479,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10479,1,4,0)
- ;;=4^428.22
- ;;^UTILITY(U,$J,358.3,10479,1,5,0)
- ;;=5^Heart Failure, Chronic Systolic
- ;;^UTILITY(U,$J,358.3,10479,2)
- ;;=Heart Failure, Chronic Systolic^328495
- ;;^UTILITY(U,$J,358.3,10480,0)
- ;;=428.23^^64^684^49
- ;;^UTILITY(U,$J,358.3,10480,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10480,1,4,0)
- ;;=4^428.23
- ;;^UTILITY(U,$J,358.3,10480,1,5,0)
- ;;=5^Heart Failure, Systolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,10480,2)
- ;;=Heart Failure, Systolic, Acute on Chronic^328496
- ;;^UTILITY(U,$J,358.3,10481,0)
- ;;=428.30^^64^684^45
- ;;^UTILITY(U,$J,358.3,10481,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10481,1,4,0)
- ;;=4^428.30
- ;;^UTILITY(U,$J,358.3,10481,1,5,0)
- ;;=5^Heart Failure, Diastolic
- ;;^UTILITY(U,$J,358.3,10481,2)
- ;;=Heart Failure, Diastolic^328595
- ;;^UTILITY(U,$J,358.3,10482,0)
- ;;=428.31^^64^684^41
- ;;^UTILITY(U,$J,358.3,10482,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10482,1,4,0)
- ;;=4^428.31
- ;;^UTILITY(U,$J,358.3,10482,1,5,0)
- ;;=5^Heart Failure, Acute Diastolic
- ;;^UTILITY(U,$J,358.3,10482,2)
- ;;=Heart Failure, Acute Diastolic^328497
- ;;^UTILITY(U,$J,358.3,10483,0)
- ;;=428.32^^64^684^43
- ;;^UTILITY(U,$J,358.3,10483,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10483,1,4,0)
- ;;=4^428.32
- ;;^UTILITY(U,$J,358.3,10483,1,5,0)
- ;;=5^Heart Failure, Chronic Diastolic
- ;;^UTILITY(U,$J,358.3,10483,2)
- ;;=Heart Failure, Chronic Diastolic^328498
- ;;^UTILITY(U,$J,358.3,10484,0)
- ;;=428.33^^64^684^47
- ;;^UTILITY(U,$J,358.3,10484,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10484,1,4,0)
- ;;=4^428.33
- ;;^UTILITY(U,$J,358.3,10484,1,5,0)
- ;;=5^Heart Failure, Diastolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,10484,2)
- ;;=Heart Failure, Diastolic, Acute on Chronic^328499
- ;;^UTILITY(U,$J,358.3,10485,0)
- ;;=428.40^^64^684^46
- ;;^UTILITY(U,$J,358.3,10485,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10485,1,4,0)
- ;;=4^428.40
- ;;^UTILITY(U,$J,358.3,10485,1,5,0)
- ;;=5^Heart Failure, Diastolic& Systolic
- ;;^UTILITY(U,$J,358.3,10485,2)
- ;;=Heart Failure, Systolic and Diastolic^328596
- ;;^UTILITY(U,$J,358.3,10486,0)
- ;;=428.41^^64^684^48
- ;;^UTILITY(U,$J,358.3,10486,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10486,1,4,0)
- ;;=4^428.41
- ;;^UTILITY(U,$J,358.3,10486,1,5,0)
- ;;=5^Heart Failure, Systolic & Diastolic, Acute
- ;;^UTILITY(U,$J,358.3,10486,2)
- ;;=Heart Failure, Systolic & Diastolic, Acute^328500
- ;;^UTILITY(U,$J,358.3,10487,0)
- ;;=428.42^^64^684^52
- ;;^UTILITY(U,$J,358.3,10487,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10487,1,4,0)
- ;;=4^428.42
- ;;^UTILITY(U,$J,358.3,10487,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,10141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10141,1,3,0)
+ ;;=3^Blindness-One Eye
+ ;;^UTILITY(U,$J,358.3,10141,1,4,0)
+ ;;=4^369.62
+ ;;^UTILITY(U,$J,358.3,10141,2)
+ ;;=^268890
+ ;;^UTILITY(U,$J,358.3,10142,0)
+ ;;=377.00^^44^561^99
+ ;;^UTILITY(U,$J,358.3,10142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10142,1,3,0)
+ ;;=3^Papilledema,Unspec
+ ;;^UTILITY(U,$J,358.3,10142,1,4,0)
+ ;;=4^377.00
+ ;;^UTILITY(U,$J,358.3,10142,2)
+ ;;=^89575
+ ;;^UTILITY(U,$J,358.3,10143,0)
+ ;;=377.02^^44^561^98
+ ;;^UTILITY(U,$J,358.3,10143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10143,1,3,0)
+ ;;=3^Papilledema,Decreased Ocul Pressure
+ ;;^UTILITY(U,$J,358.3,10143,1,4,0)
+ ;;=4^377.02
+ ;;^UTILITY(U,$J,358.3,10143,2)
+ ;;=^269213
+ ;;^UTILITY(U,$J,358.3,10144,0)
+ ;;=377.03^^44^561^97
+ ;;^UTILITY(U,$J,358.3,10144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10144,1,3,0)
+ ;;=3^Papilledema w/ Retina D/O
+ ;;^UTILITY(U,$J,358.3,10144,1,4,0)
+ ;;=4^377.03
+ ;;^UTILITY(U,$J,358.3,10144,2)
+ ;;=^269214
+ ;;^UTILITY(U,$J,358.3,10145,0)
+ ;;=377.04^^44^561^40
+ ;;^UTILITY(U,$J,358.3,10145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10145,1,3,0)
+ ;;=3^Foster-Kennedy Syndrome
+ ;;^UTILITY(U,$J,358.3,10145,1,4,0)
+ ;;=4^377.04
+ ;;^UTILITY(U,$J,358.3,10145,2)
+ ;;=^265146
+ ;;^UTILITY(U,$J,358.3,10146,0)
+ ;;=377.11^^44^561^83
+ ;;^UTILITY(U,$J,358.3,10146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10146,1,3,0)
+ ;;=3^Optic Atrophy,Primary
+ ;;^UTILITY(U,$J,358.3,10146,1,4,0)
+ ;;=4^377.11
+ ;;^UTILITY(U,$J,358.3,10146,2)
+ ;;=^269215
+ ;;^UTILITY(U,$J,358.3,10147,0)
+ ;;=377.12^^44^561^82
+ ;;^UTILITY(U,$J,358.3,10147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10147,1,3,0)
+ ;;=3^Optic Atrophy,Postinflammatory
+ ;;^UTILITY(U,$J,358.3,10147,1,4,0)
+ ;;=4^377.12
+ ;;^UTILITY(U,$J,358.3,10147,2)
+ ;;=^269216
+ ;;^UTILITY(U,$J,358.3,10148,0)
+ ;;=377.15^^44^561^81
+ ;;^UTILITY(U,$J,358.3,10148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10148,1,3,0)
+ ;;=3^Optic Atrophy,Partial
+ ;;^UTILITY(U,$J,358.3,10148,1,4,0)
+ ;;=4^377.15
+ ;;^UTILITY(U,$J,358.3,10148,2)
+ ;;=^269219
+ ;;^UTILITY(U,$J,358.3,10149,0)
+ ;;=377.16^^44^561^80
+ ;;^UTILITY(U,$J,358.3,10149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10149,1,3,0)
+ ;;=3^Optic Atrophy,Leber's
+ ;;^UTILITY(U,$J,358.3,10149,1,4,0)
+ ;;=4^377.16
+ ;;^UTILITY(U,$J,358.3,10149,2)
+ ;;=^85931
+ ;;^UTILITY(U,$J,358.3,10150,0)
+ ;;=377.31^^44^561^94
+ ;;^UTILITY(U,$J,358.3,10150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10150,1,3,0)
+ ;;=3^Optic Papillitis
+ ;;^UTILITY(U,$J,358.3,10150,1,4,0)
+ ;;=4^377.31
+ ;;^UTILITY(U,$J,358.3,10150,2)
+ ;;=^276874
+ ;;^UTILITY(U,$J,358.3,10151,0)
+ ;;=377.32^^44^561^89
+ ;;^UTILITY(U,$J,358.3,10151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10151,1,3,0)
+ ;;=3^Optic Neuritis,Retrobulbar,Acute
+ ;;^UTILITY(U,$J,358.3,10151,1,4,0)
+ ;;=4^377.32
+ ;;^UTILITY(U,$J,358.3,10151,2)
+ ;;=^269225
+ ;;^UTILITY(U,$J,358.3,10152,0)
+ ;;=377.33^^44^561^92
+ ;;^UTILITY(U,$J,358.3,10152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10152,1,3,0)
+ ;;=3^Optic Neuropathy,Nutritional
+ ;;^UTILITY(U,$J,358.3,10152,1,4,0)
+ ;;=4^377.33
+ ;;^UTILITY(U,$J,358.3,10152,2)
+ ;;=^269226
+ ;;^UTILITY(U,$J,358.3,10153,0)
+ ;;=377.39^^44^561^93
+ ;;^UTILITY(U,$J,358.3,10153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10153,1,3,0)
+ ;;=3^Optic Neuropathy,Other
+ ;;^UTILITY(U,$J,358.3,10153,1,4,0)
+ ;;=4^377.39
+ ;;^UTILITY(U,$J,358.3,10153,2)
+ ;;=^87748
+ ;;^UTILITY(U,$J,358.3,10154,0)
+ ;;=377.42^^44^561^87
+ ;;^UTILITY(U,$J,358.3,10154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10154,1,3,0)
+ ;;=3^Optic Nerve Sheaths Hemorrhage

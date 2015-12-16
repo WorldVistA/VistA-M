@@ -1,132 +1,124 @@
-IBDEI0T1 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0T1 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14323,1,2,0)
- ;;=2^36600
- ;;^UTILITY(U,$J,358.3,14323,1,3,0)
- ;;=3^ABG
- ;;^UTILITY(U,$J,358.3,14324,0)
- ;;=29580^^88^887^25^^^^1
- ;;^UTILITY(U,$J,358.3,14324,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14324,1,2,0)
- ;;=2^29580
- ;;^UTILITY(U,$J,358.3,14324,1,3,0)
- ;;=3^Strapping, Unna Boot
- ;;^UTILITY(U,$J,358.3,14325,0)
- ;;=97602^^88^887^26^^^^1
- ;;^UTILITY(U,$J,358.3,14325,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14325,1,2,0)
- ;;=2^97602
- ;;^UTILITY(U,$J,358.3,14325,1,3,0)
- ;;=3^Wound Care, non-selective debridement
- ;;^UTILITY(U,$J,358.3,14326,0)
- ;;=51701^^88^887^14^^^^1
- ;;^UTILITY(U,$J,358.3,14326,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14326,1,2,0)
- ;;=2^51701
- ;;^UTILITY(U,$J,358.3,14326,1,3,0)
- ;;=3^Insert Catheter for Residual Urine
- ;;^UTILITY(U,$J,358.3,14327,0)
- ;;=51702^^88^887^15^^^^1
- ;;^UTILITY(U,$J,358.3,14327,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14327,1,2,0)
- ;;=2^51702
- ;;^UTILITY(U,$J,358.3,14327,1,3,0)
- ;;=3^Insert Foley Cath
- ;;^UTILITY(U,$J,358.3,14328,0)
- ;;=51798^^88^887^27^^^^1
- ;;^UTILITY(U,$J,358.3,14328,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14328,1,2,0)
- ;;=2^51798
- ;;^UTILITY(U,$J,358.3,14328,1,3,0)
- ;;=3^Ultrasound for Resid Urine
- ;;^UTILITY(U,$J,358.3,14329,0)
- ;;=96360^^88^887^2^^^^1
- ;;^UTILITY(U,$J,358.3,14329,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14329,1,2,0)
- ;;=2^96360
- ;;^UTILITY(U,$J,358.3,14329,1,3,0)
- ;;=3^Hydration,IV,first hour
- ;;^UTILITY(U,$J,358.3,14330,0)
- ;;=96361^^88^887^3^^^^1
- ;;^UTILITY(U,$J,358.3,14330,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14330,1,2,0)
- ;;=2^96361
- ;;^UTILITY(U,$J,358.3,14330,1,3,0)
- ;;=3^Hydration,IV,EA addl hour (+96360)
- ;;^UTILITY(U,$J,358.3,14331,0)
- ;;=96365^^88^887^4^^^^1
- ;;^UTILITY(U,$J,358.3,14331,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14331,1,2,0)
- ;;=2^96365
- ;;^UTILITY(U,$J,358.3,14331,1,3,0)
- ;;=3^Infusion,IV up to 1 hour
- ;;^UTILITY(U,$J,358.3,14332,0)
- ;;=96366^^88^887^5^^^^1
- ;;^UTILITY(U,$J,358.3,14332,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14332,1,2,0)
- ;;=2^96366
- ;;^UTILITY(U,$J,358.3,14332,1,3,0)
- ;;=3^Infusion,IV ea add hr (+96365)
- ;;^UTILITY(U,$J,358.3,14333,0)
- ;;=29105^^88^888^1^^^^1
- ;;^UTILITY(U,$J,358.3,14333,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14333,1,2,0)
- ;;=2^29105
- ;;^UTILITY(U,$J,358.3,14333,1,3,0)
- ;;=3^Long Arm Splint
- ;;^UTILITY(U,$J,358.3,14334,0)
- ;;=29125^^88^888^2^^^^1
- ;;^UTILITY(U,$J,358.3,14334,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14334,1,2,0)
- ;;=2^29125
- ;;^UTILITY(U,$J,358.3,14334,1,3,0)
- ;;=3^Short Arm Splint; Static
- ;;^UTILITY(U,$J,358.3,14335,0)
- ;;=29126^^88^888^3^^^^1
- ;;^UTILITY(U,$J,358.3,14335,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14335,1,2,0)
- ;;=2^29126
- ;;^UTILITY(U,$J,358.3,14335,1,3,0)
- ;;=3^Short Arm Splint; Dynamic
- ;;^UTILITY(U,$J,358.3,14336,0)
- ;;=29130^^88^888^4^^^^1
- ;;^UTILITY(U,$J,358.3,14336,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14336,1,2,0)
- ;;=2^29130
- ;;^UTILITY(U,$J,358.3,14336,1,3,0)
- ;;=3^Finger Splint
- ;;^UTILITY(U,$J,358.3,14337,0)
- ;;=99347^^88^889^1^^^^1
- ;;^UTILITY(U,$J,358.3,14337,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14337,1,2,0)
- ;;=2^99347
- ;;^UTILITY(U,$J,358.3,14337,1,3,0)
- ;;=3^Est Pt-Prob Focus Home Visit
- ;;^UTILITY(U,$J,358.3,14338,0)
- ;;=99348^^88^889^2^^^^1
- ;;^UTILITY(U,$J,358.3,14338,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14338,1,2,0)
- ;;=2^99348
- ;;^UTILITY(U,$J,358.3,14338,1,3,0)
- ;;=3^Est Pt-Exp Prob Focus Home Visit
- ;;^UTILITY(U,$J,358.3,14339,0)
- ;;=99349^^88^889^3^^^^1
- ;;^UTILITY(U,$J,358.3,14339,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14054,2)
+ ;;=^275336
+ ;;^UTILITY(U,$J,358.3,14055,0)
+ ;;=891.1^^74^854^10
+ ;;^UTILITY(U,$J,358.3,14055,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14055,1,3,0)
+ ;;=3^891.1
+ ;;^UTILITY(U,$J,358.3,14055,1,5,0)
+ ;;=5^Foreign body, open wound of knee, leg(except thigh), & ankle; complicated
+ ;;^UTILITY(U,$J,358.3,14055,2)
+ ;;=^275088
+ ;;^UTILITY(U,$J,358.3,14056,0)
+ ;;=824.8^^74^854^11
+ ;;^UTILITY(U,$J,358.3,14056,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14056,1,3,0)
+ ;;=3^824.8
+ ;;^UTILITY(U,$J,358.3,14056,1,5,0)
+ ;;=5^Fracture of ankle; unspecified, closed
+ ;;^UTILITY(U,$J,358.3,14056,2)
+ ;;=^274256
+ ;;^UTILITY(U,$J,358.3,14057,0)
+ ;;=824.4^^74^854^12
+ ;;^UTILITY(U,$J,358.3,14057,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14057,1,3,0)
+ ;;=3^824.4
+ ;;^UTILITY(U,$J,358.3,14057,1,5,0)
+ ;;=5^Fracture of ankle; bimalleolar, closed
+ ;;^UTILITY(U,$J,358.3,14057,2)
+ ;;=^14370
+ ;;^UTILITY(U,$J,358.3,14058,0)
+ ;;=824.2^^74^854^13
+ ;;^UTILITY(U,$J,358.3,14058,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14058,1,3,0)
+ ;;=3^824.2
+ ;;^UTILITY(U,$J,358.3,14058,1,5,0)
+ ;;=5^Fracture of ankle; lateral malleolus, closed
+ ;;^UTILITY(U,$J,358.3,14058,2)
+ ;;=^274247
+ ;;^UTILITY(U,$J,358.3,14059,0)
+ ;;=824.0^^74^854^14
+ ;;^UTILITY(U,$J,358.3,14059,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14059,1,3,0)
+ ;;=3^824.0
+ ;;^UTILITY(U,$J,358.3,14059,1,5,0)
+ ;;=5^Fracture of ankle; medial malleolus, closed
+ ;;^UTILITY(U,$J,358.3,14059,2)
+ ;;=^274245
+ ;;^UTILITY(U,$J,358.3,14060,0)
+ ;;=824.6^^74^854^15
+ ;;^UTILITY(U,$J,358.3,14060,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14060,1,3,0)
+ ;;=3^824.6
+ ;;^UTILITY(U,$J,358.3,14060,1,5,0)
+ ;;=5^Fracture of ankle; trimalleolar, closed
+ ;;^UTILITY(U,$J,358.3,14060,2)
+ ;;=^274251
+ ;;^UTILITY(U,$J,358.3,14061,0)
+ ;;=825.20^^74^854^16
+ ;;^UTILITY(U,$J,358.3,14061,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14061,1,3,0)
+ ;;=3^825.20
+ ;;^UTILITY(U,$J,358.3,14061,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bone, closed; unspecified bone(s) of foot (except toes)
+ ;;^UTILITY(U,$J,358.3,14061,2)
+ ;;=^274265
+ ;;^UTILITY(U,$J,358.3,14062,0)
+ ;;=825.0^^74^854^17
+ ;;^UTILITY(U,$J,358.3,14062,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14062,1,3,0)
+ ;;=3^825.0
+ ;;^UTILITY(U,$J,358.3,14062,1,5,0)
+ ;;=5^Fracture of one or more tarsal & metatarsal bone, closed; calcaneus, closed
+ ;;^UTILITY(U,$J,358.3,14062,2)
+ ;;=^274259
+ ;;^UTILITY(U,$J,358.3,14063,0)
+ ;;=825.23^^74^854^18
+ ;;^UTILITY(U,$J,358.3,14063,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14063,1,3,0)
+ ;;=3^825.23
+ ;;^UTILITY(U,$J,358.3,14063,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuboid
+ ;;^UTILITY(U,$J,358.3,14063,2)
+ ;;=^274270
+ ;;^UTILITY(U,$J,358.3,14064,0)
+ ;;=825.24^^74^854^19
+ ;;^UTILITY(U,$J,358.3,14064,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14064,1,3,0)
+ ;;=3^825.24
+ ;;^UTILITY(U,$J,358.3,14064,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Cuneiform, foot &
+ ;;^UTILITY(U,$J,358.3,14064,2)
+ ;;=^274271
+ ;;^UTILITY(U,$J,358.3,14065,0)
+ ;;=825.25^^74^854^20
+ ;;^UTILITY(U,$J,358.3,14065,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14065,1,3,0)
+ ;;=3^825.25
+ ;;^UTILITY(U,$J,358.3,14065,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Jones 
+ ;;^UTILITY(U,$J,358.3,14065,2)
+ ;;=^274272
+ ;;^UTILITY(U,$J,358.3,14066,0)
+ ;;=825.22^^74^854^21
+ ;;^UTILITY(U,$J,358.3,14066,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14066,1,3,0)
+ ;;=3^825.22
+ ;;^UTILITY(U,$J,358.3,14066,1,5,0)
+ ;;=5^Fracture of other tarsal & metatarsal bones, closed; Navicular (scapiod), foot & metatarsal

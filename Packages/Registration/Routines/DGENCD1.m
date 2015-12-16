@@ -1,5 +1,5 @@
-DGENCD1 ;ALB/CJM,Zoltan,PHH,BRM - Catastrophic Disability Protocols; 02/17/2005
- ;;5.3;Registration;**121,232,387,451,610**;Aug 13,1993
+DGENCD1 ;ALB/CJM,Zoltan,PHH,BRM,DJS - Catastrophic Disability Protocols; 02/17/2005
+ ;;5.3;Registration;**121,232,387,451,610,894**;Aug 13,1993;Build 48
  ;
 EN(DFN) ;Entry point for DGENCD CATASTROPHIC DISABILITY protocol
  D EN^DGENLCD(DFN)
@@ -49,14 +49,22 @@ ADDCD ;Entry point for DGENCD ADD/EDIT CATASTROPHIC DISABILITY protocol
 DELETECD ;Entry point for DGENCD DELETE CATASTROPHIC DISABILITY protocol 
  ; Input  -- DFN      Patient IEN
  ; Output -- VALMBCK  R   =Refresh screen
+ N DGCDIS
  S VALMBCK=""
  D FULL^VALM1
- I $$GET^DGENCDA(DFN,.DGCD),'$D(DGCD("DIAG")) D
- .W !!,">>>No Catastrophic Disabilities exist for this veteran.<<<"
+ I $$GET^DGENCDA(DFN,.DGCDIS),'$D(DGCDIS("DESCR")) D
+ .W !!,">>> No Catastrophic Disabilities exist for this veteran.<<<"
+ .W !!,"VETERAN IS NOT CATASTROPHICALLY DISABLED"
  .S DIR(0)="EA",DIR("A")="Press return to continue..." D ^DIR
+ .S DGCDIS("VCD")="N"
+ .N I F I="BY","DATE","DTFACIRV","FACDET","METDET","REVDTE","VETREQDT" S DGCDIS(I)=""   ; DG*5.3*894
  E  D
  .I $$RUSURE(DFN) D
- ..I $$DELETE^DGENCDA1(DFN)
+ . . S DGCDIS("VCD")="N"
+ . . N I,ERROR
+ . . F I="BY","DATE","DTFACIRV","FACDET","METDET","REVDTE","VETREQDT" S DGCDIS(I)=""   ; DG*5.3*894
+ . . F I=1:1 Q:'$D(DGCDIS("DESCR",I))  K DGCDIS("DESCR",I)
+ . . I $$STORE^DGENCDA2(DFN,.DGCDIS,.ERROR)
  D INIT^DGENLCD
  S VALMBCK="R"
  Q
@@ -73,6 +81,7 @@ RUSURE(DFN) ;
  .D BMES^XPDUTL("This Catastrophic Disability evaluation was entered at Site:"_$P(SITEINF,"^",2))
  .D MES^XPDUTL("Please Contact Site "_$P(SITEINF,"^"))
  .D MES^XPDUTL("if it is necessary to delete this evaluation.")
+ .S DIR(0)="EA",DIR("A")="Press return to continue..." D ^DIR
  ; was this entered in error?
  I $$CDTYPE^DGENCDA(DFN) D  Q:$G(NOERR) 0
  .D BMES^XPDUTL("This Veteran is currently determined to be Catastrophically Disabled, you")
@@ -87,8 +96,8 @@ RUSURE(DFN) ;
  S DIR("A")="Are you sure that the Catastrophic Disability should be deleted"
  S DIR("B")="NO"
  I $$HASCAT^DGENCDA(DFN) D
- . W !!,">>> Deleting the Catastrophic Disability information will also delete all <<<",!
- . W ">>>  supporting fields, including Diagnoses, Procedures and Conditions.   <<<",!
+ . W !!,">>> Deleting the Catastrophic Disability information will <<<",!
+ . W ">>>  also delete all supporting fields, including Descriptors.   <<<",!
  D ^DIR
  Q:$D(DIRUT) 0
  Q Y

@@ -1,134 +1,134 @@
-IBDEI1SE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31924,1,4,0)
- ;;=4^Z82.79
- ;;^UTILITY(U,$J,358.3,31924,2)
- ;;=^5063374
- ;;^UTILITY(U,$J,358.3,31925,0)
- ;;=Z84.89^^190^1944^37
- ;;^UTILITY(U,$J,358.3,31925,1,0)
+ ;;^UTILITY(U,$J,358.3,31532,1,3,0)
+ ;;=3^Osteoarthritis of first carpometacarpal joint, unspecified
+ ;;^UTILITY(U,$J,358.3,31532,1,4,0)
+ ;;=4^M18.9
+ ;;^UTILITY(U,$J,358.3,31532,2)
+ ;;=^5010807
+ ;;^UTILITY(U,$J,358.3,31533,0)
+ ;;=M16.9^^180^1959^45
+ ;;^UTILITY(U,$J,358.3,31533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31925,1,3,0)
- ;;=3^Family Hx of Other Spec Conditions
- ;;^UTILITY(U,$J,358.3,31925,1,4,0)
- ;;=4^Z84.89
- ;;^UTILITY(U,$J,358.3,31925,2)
- ;;=^5063393
- ;;^UTILITY(U,$J,358.3,31926,0)
- ;;=Z81.1^^190^1944^15
- ;;^UTILITY(U,$J,358.3,31926,1,0)
+ ;;^UTILITY(U,$J,358.3,31533,1,3,0)
+ ;;=3^Osteoarthritis of hip, unspecified
+ ;;^UTILITY(U,$J,358.3,31533,1,4,0)
+ ;;=4^M16.9
+ ;;^UTILITY(U,$J,358.3,31533,2)
+ ;;=^5010783
+ ;;^UTILITY(U,$J,358.3,31534,0)
+ ;;=M17.9^^180^1959^46
+ ;;^UTILITY(U,$J,358.3,31534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31926,1,3,0)
- ;;=3^Family Hx of Alcohol Abuse/Dependence
- ;;^UTILITY(U,$J,358.3,31926,1,4,0)
- ;;=4^Z81.1
- ;;^UTILITY(U,$J,358.3,31926,2)
- ;;=^5063359
- ;;^UTILITY(U,$J,358.3,31927,0)
- ;;=Z82.62^^190^1944^36
- ;;^UTILITY(U,$J,358.3,31927,1,0)
+ ;;^UTILITY(U,$J,358.3,31534,1,3,0)
+ ;;=3^Osteoarthritis of knee, unspecified
+ ;;^UTILITY(U,$J,358.3,31534,1,4,0)
+ ;;=4^M17.9
+ ;;^UTILITY(U,$J,358.3,31534,2)
+ ;;=^5010794
+ ;;^UTILITY(U,$J,358.3,31535,0)
+ ;;=R20.8^^180^1960^1
+ ;;^UTILITY(U,$J,358.3,31535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31927,1,3,0)
- ;;=3^Family Hx of Osteoporosis
- ;;^UTILITY(U,$J,358.3,31927,1,4,0)
- ;;=4^Z82.62
- ;;^UTILITY(U,$J,358.3,31927,2)
- ;;=^5063372
- ;;^UTILITY(U,$J,358.3,31928,0)
- ;;=Z83.71^^190^1944^20
- ;;^UTILITY(U,$J,358.3,31928,1,0)
+ ;;^UTILITY(U,$J,358.3,31535,1,3,0)
+ ;;=3^Disturbances of skin sensation NEC
+ ;;^UTILITY(U,$J,358.3,31535,1,4,0)
+ ;;=4^R20.8
+ ;;^UTILITY(U,$J,358.3,31535,2)
+ ;;=^5019281
+ ;;^UTILITY(U,$J,358.3,31536,0)
+ ;;=T79.8XXA^^180^1960^2
+ ;;^UTILITY(U,$J,358.3,31536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31928,1,3,0)
- ;;=3^Family Hx of Colonic Polyps
- ;;^UTILITY(U,$J,358.3,31928,1,4,0)
- ;;=4^Z83.71
- ;;^UTILITY(U,$J,358.3,31928,2)
- ;;=^5063386
- ;;^UTILITY(U,$J,358.3,31929,0)
- ;;=Z84.81^^190^1944^24
- ;;^UTILITY(U,$J,358.3,31929,1,0)
+ ;;^UTILITY(U,$J,358.3,31536,1,3,0)
+ ;;=3^Early complications of trauma, initial encounter
+ ;;^UTILITY(U,$J,358.3,31536,1,4,0)
+ ;;=4^T79.8XXA
+ ;;^UTILITY(U,$J,358.3,31536,2)
+ ;;=^5054317
+ ;;^UTILITY(U,$J,358.3,31537,0)
+ ;;=R53.83^^180^1960^3
+ ;;^UTILITY(U,$J,358.3,31537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31929,1,3,0)
- ;;=3^Family Hx of Genetic Disease
- ;;^UTILITY(U,$J,358.3,31929,1,4,0)
- ;;=4^Z84.81
- ;;^UTILITY(U,$J,358.3,31929,2)
- ;;=^5063392
- ;;^UTILITY(U,$J,358.3,31930,0)
- ;;=Z86.010^^190^1944^61
- ;;^UTILITY(U,$J,358.3,31930,1,0)
+ ;;^UTILITY(U,$J,358.3,31537,1,3,0)
+ ;;=3^Fatigue NEC
+ ;;^UTILITY(U,$J,358.3,31537,1,4,0)
+ ;;=4^R53.83
+ ;;^UTILITY(U,$J,358.3,31537,2)
+ ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,31538,0)
+ ;;=M23.8X2^^180^1960^4
+ ;;^UTILITY(U,$J,358.3,31538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31930,1,3,0)
- ;;=3^Personal Hx of Colonic Polyps
- ;;^UTILITY(U,$J,358.3,31930,1,4,0)
- ;;=4^Z86.010
- ;;^UTILITY(U,$J,358.3,31930,2)
- ;;=^5063456
- ;;^UTILITY(U,$J,358.3,31931,0)
- ;;=Z86.14^^190^1944^86
- ;;^UTILITY(U,$J,358.3,31931,1,0)
+ ;;^UTILITY(U,$J,358.3,31538,1,3,0)
+ ;;=3^Internal derangements of left knee NEC
+ ;;^UTILITY(U,$J,358.3,31538,1,4,0)
+ ;;=4^M23.8X2
+ ;;^UTILITY(U,$J,358.3,31538,2)
+ ;;=^5011274
+ ;;^UTILITY(U,$J,358.3,31539,0)
+ ;;=M23.8X1^^180^1960^5
+ ;;^UTILITY(U,$J,358.3,31539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31931,1,3,0)
- ;;=3^Personal Hx of Methicillin Resis Staph Infection
- ;;^UTILITY(U,$J,358.3,31931,1,4,0)
- ;;=4^Z86.14
- ;;^UTILITY(U,$J,358.3,31931,2)
- ;;=^5063464
- ;;^UTILITY(U,$J,358.3,31932,0)
- ;;=Z86.31^^190^1944^62
- ;;^UTILITY(U,$J,358.3,31932,1,0)
+ ;;^UTILITY(U,$J,358.3,31539,1,3,0)
+ ;;=3^Internal derangements of right knee NEC
+ ;;^UTILITY(U,$J,358.3,31539,1,4,0)
+ ;;=4^M23.8X1
+ ;;^UTILITY(U,$J,358.3,31539,2)
+ ;;=^5011273
+ ;;^UTILITY(U,$J,358.3,31540,0)
+ ;;=R53.81^^180^1960^6
+ ;;^UTILITY(U,$J,358.3,31540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31932,1,3,0)
- ;;=3^Personal Hx of Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31932,1,4,0)
- ;;=4^Z86.31
- ;;^UTILITY(U,$J,358.3,31932,2)
- ;;=^5063467
- ;;^UTILITY(U,$J,358.3,31933,0)
- ;;=Z86.711^^190^1944^94
- ;;^UTILITY(U,$J,358.3,31933,1,0)
+ ;;^UTILITY(U,$J,358.3,31540,1,3,0)
+ ;;=3^Malaise NEC
+ ;;^UTILITY(U,$J,358.3,31540,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,31540,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,31541,0)
+ ;;=M62.838^^180^1960^7
+ ;;^UTILITY(U,$J,358.3,31541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31933,1,3,0)
- ;;=3^Personal Hx of Pulmonary Embolism
- ;;^UTILITY(U,$J,358.3,31933,1,4,0)
- ;;=4^Z86.711
- ;;^UTILITY(U,$J,358.3,31933,2)
- ;;=^5063474
- ;;^UTILITY(U,$J,358.3,31934,0)
- ;;=Z86.72^^190^1944^99
- ;;^UTILITY(U,$J,358.3,31934,1,0)
+ ;;^UTILITY(U,$J,358.3,31541,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,31541,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,31541,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,31542,0)
+ ;;=F45.42^^180^1960^8
+ ;;^UTILITY(U,$J,358.3,31542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31934,1,3,0)
- ;;=3^Personal Hx of Thrombophlebitis
- ;;^UTILITY(U,$J,358.3,31934,1,4,0)
- ;;=4^Z86.72
- ;;^UTILITY(U,$J,358.3,31934,2)
- ;;=^5063476
- ;;^UTILITY(U,$J,358.3,31935,0)
- ;;=Z87.310^^190^1944^92
- ;;^UTILITY(U,$J,358.3,31935,1,0)
+ ;;^UTILITY(U,$J,358.3,31542,1,3,0)
+ ;;=3^Pain disorder with related psychological factors
+ ;;^UTILITY(U,$J,358.3,31542,1,4,0)
+ ;;=4^F45.42
+ ;;^UTILITY(U,$J,358.3,31542,2)
+ ;;=^5003591
+ ;;^UTILITY(U,$J,358.3,31543,0)
+ ;;=M72.0^^180^1960^9
+ ;;^UTILITY(U,$J,358.3,31543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31935,1,3,0)
- ;;=3^Personal Hx of Osteoporosis Fx
- ;;^UTILITY(U,$J,358.3,31935,1,4,0)
- ;;=4^Z87.310
- ;;^UTILITY(U,$J,358.3,31935,2)
- ;;=^5063485
- ;;^UTILITY(U,$J,358.3,31936,0)
- ;;=Z87.442^^190^1944^103
- ;;^UTILITY(U,$J,358.3,31936,1,0)
+ ;;^UTILITY(U,$J,358.3,31543,1,3,0)
+ ;;=3^Palmar fascial fibromatosis [Dupuytren]
+ ;;^UTILITY(U,$J,358.3,31543,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,31543,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,31544,0)
+ ;;=R43.2^^180^1960^10
+ ;;^UTILITY(U,$J,358.3,31544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31936,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,31936,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,31936,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,31937,0)
- ;;=Z87.81^^190^1944^101
- ;;^UTILITY(U,$J,358.3,31937,1,0)
+ ;;^UTILITY(U,$J,358.3,31544,1,3,0)
+ ;;=3^Parageusia
+ ;;^UTILITY(U,$J,358.3,31544,1,4,0)
+ ;;=4^R43.2
+ ;;^UTILITY(U,$J,358.3,31544,2)
+ ;;=^5019452
+ ;;^UTILITY(U,$J,358.3,31545,0)
+ ;;=G82.20^^180^1960^11
+ ;;^UTILITY(U,$J,358.3,31545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31937,1,3,0)
- ;;=3^Personal Hx of Traumatic Fx

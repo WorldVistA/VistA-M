@@ -1,132 +1,126 @@
-IBDEI1R4 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1R4 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31329,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,31329,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,31329,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,31330,0)
- ;;=H61.23^^190^1933^21
- ;;^UTILITY(U,$J,358.3,31330,1,0)
+ ;;^UTILITY(U,$J,358.3,30958,1,4,0)
+ ;;=4^M00.851
+ ;;^UTILITY(U,$J,358.3,30958,2)
+ ;;=^5009682
+ ;;^UTILITY(U,$J,358.3,30959,0)
+ ;;=M00.852^^179^1937^2
+ ;;^UTILITY(U,$J,358.3,30959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31330,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral
- ;;^UTILITY(U,$J,358.3,31330,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,31330,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,31331,0)
- ;;=H65.03^^190^1933^3
- ;;^UTILITY(U,$J,358.3,31331,1,0)
+ ;;^UTILITY(U,$J,358.3,30959,1,3,0)
+ ;;=3^Arthritis due to other bacteria, left hip
+ ;;^UTILITY(U,$J,358.3,30959,1,4,0)
+ ;;=4^M00.852
+ ;;^UTILITY(U,$J,358.3,30959,2)
+ ;;=^5009683
+ ;;^UTILITY(U,$J,358.3,30960,0)
+ ;;=S70.02XA^^179^1937^3
+ ;;^UTILITY(U,$J,358.3,30960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31331,1,3,0)
- ;;=3^Acute Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,31331,1,4,0)
- ;;=4^H65.03
- ;;^UTILITY(U,$J,358.3,31331,2)
- ;;=^5006572
- ;;^UTILITY(U,$J,358.3,31332,0)
- ;;=H65.01^^190^1933^5
- ;;^UTILITY(U,$J,358.3,31332,1,0)
+ ;;^UTILITY(U,$J,358.3,30960,1,3,0)
+ ;;=3^Contusion of left hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,30960,1,4,0)
+ ;;=4^S70.02XA
+ ;;^UTILITY(U,$J,358.3,30960,2)
+ ;;=^5036837
+ ;;^UTILITY(U,$J,358.3,30961,0)
+ ;;=S70.01XA^^179^1937^4
+ ;;^UTILITY(U,$J,358.3,30961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31332,1,3,0)
- ;;=3^Acute Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,31332,1,4,0)
- ;;=4^H65.01
- ;;^UTILITY(U,$J,358.3,31332,2)
- ;;=^5006570
- ;;^UTILITY(U,$J,358.3,31333,0)
- ;;=H65.23^^190^1933^13
- ;;^UTILITY(U,$J,358.3,31333,1,0)
+ ;;^UTILITY(U,$J,358.3,30961,1,3,0)
+ ;;=3^Contusion of right hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,30961,1,4,0)
+ ;;=4^S70.01XA
+ ;;^UTILITY(U,$J,358.3,30961,2)
+ ;;=^5036834
+ ;;^UTILITY(U,$J,358.3,30962,0)
+ ;;=S72.142A^^179^1937^5
+ ;;^UTILITY(U,$J,358.3,30962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31333,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,31333,1,4,0)
- ;;=4^H65.23
- ;;^UTILITY(U,$J,358.3,31333,2)
- ;;=^5006596
- ;;^UTILITY(U,$J,358.3,31334,0)
- ;;=H65.22^^190^1933^14
- ;;^UTILITY(U,$J,358.3,31334,1,0)
+ ;;^UTILITY(U,$J,358.3,30962,1,3,0)
+ ;;=3^Displaced intertrochanteric fracture of left femur, init
+ ;;^UTILITY(U,$J,358.3,30962,1,4,0)
+ ;;=4^S72.142A
+ ;;^UTILITY(U,$J,358.3,30962,2)
+ ;;=^5037931
+ ;;^UTILITY(U,$J,358.3,30963,0)
+ ;;=S72.141A^^179^1937^6
+ ;;^UTILITY(U,$J,358.3,30963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31334,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,31334,1,4,0)
- ;;=4^H65.22
- ;;^UTILITY(U,$J,358.3,31334,2)
- ;;=^5006595
- ;;^UTILITY(U,$J,358.3,31335,0)
- ;;=H65.21^^190^1933^15
- ;;^UTILITY(U,$J,358.3,31335,1,0)
+ ;;^UTILITY(U,$J,358.3,30963,1,3,0)
+ ;;=3^Displaced intertrochanteric fracture of right femur, init
+ ;;^UTILITY(U,$J,358.3,30963,1,4,0)
+ ;;=4^S72.141A
+ ;;^UTILITY(U,$J,358.3,30963,2)
+ ;;=^5037915
+ ;;^UTILITY(U,$J,358.3,30964,0)
+ ;;=S72.143A^^179^1937^7
+ ;;^UTILITY(U,$J,358.3,30964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31335,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,31335,1,4,0)
- ;;=4^H65.21
- ;;^UTILITY(U,$J,358.3,31335,2)
- ;;=^5006594
- ;;^UTILITY(U,$J,358.3,31336,0)
- ;;=H66.012^^190^1933^6
- ;;^UTILITY(U,$J,358.3,31336,1,0)
+ ;;^UTILITY(U,$J,358.3,30964,1,3,0)
+ ;;=3^Displaced intertrochanteric fracture of unsp femur, init
+ ;;^UTILITY(U,$J,358.3,30964,1,4,0)
+ ;;=4^S72.143A
+ ;;^UTILITY(U,$J,358.3,30964,2)
+ ;;=^5037947
+ ;;^UTILITY(U,$J,358.3,30965,0)
+ ;;=S72.22XA^^179^1937^8
+ ;;^UTILITY(U,$J,358.3,30965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31336,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
- ;;^UTILITY(U,$J,358.3,31336,1,4,0)
- ;;=4^H66.012
- ;;^UTILITY(U,$J,358.3,31336,2)
- ;;=^5133534
- ;;^UTILITY(U,$J,358.3,31337,0)
- ;;=H66.011^^190^1933^7
- ;;^UTILITY(U,$J,358.3,31337,1,0)
+ ;;^UTILITY(U,$J,358.3,30965,1,3,0)
+ ;;=3^Displaced subtrochanteric fracture of left femur, init
+ ;;^UTILITY(U,$J,358.3,30965,1,4,0)
+ ;;=4^S72.22XA
+ ;;^UTILITY(U,$J,358.3,30965,2)
+ ;;=^5038027
+ ;;^UTILITY(U,$J,358.3,30966,0)
+ ;;=S72.21XA^^179^1937^9
+ ;;^UTILITY(U,$J,358.3,30966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31337,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
- ;;^UTILITY(U,$J,358.3,31337,1,4,0)
- ;;=4^H66.011
- ;;^UTILITY(U,$J,358.3,31337,2)
- ;;=^5006621
- ;;^UTILITY(U,$J,358.3,31338,0)
- ;;=H66.91^^190^1933^36
- ;;^UTILITY(U,$J,358.3,31338,1,0)
+ ;;^UTILITY(U,$J,358.3,30966,1,3,0)
+ ;;=3^Displaced subtrochanteric fracture of right femur, init
+ ;;^UTILITY(U,$J,358.3,30966,1,4,0)
+ ;;=4^S72.21XA
+ ;;^UTILITY(U,$J,358.3,30966,2)
+ ;;=^5038011
+ ;;^UTILITY(U,$J,358.3,30967,0)
+ ;;=S72.002A^^179^1937^10
+ ;;^UTILITY(U,$J,358.3,30967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31338,1,3,0)
- ;;=3^Otitis Media,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,31338,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,31338,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,31339,0)
- ;;=H66.92^^190^1933^35
- ;;^UTILITY(U,$J,358.3,31339,1,0)
+ ;;^UTILITY(U,$J,358.3,30967,1,3,0)
+ ;;=3^Fracture of unsp part of neck of left femur, init
+ ;;^UTILITY(U,$J,358.3,30967,1,4,0)
+ ;;=4^S72.002A
+ ;;^UTILITY(U,$J,358.3,30967,2)
+ ;;=^5037063
+ ;;^UTILITY(U,$J,358.3,30968,0)
+ ;;=S72.001A^^179^1937^11
+ ;;^UTILITY(U,$J,358.3,30968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31339,1,3,0)
- ;;=3^Otitis Media,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,31339,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,31339,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,31340,0)
- ;;=H66.93^^190^1933^34
- ;;^UTILITY(U,$J,358.3,31340,1,0)
+ ;;^UTILITY(U,$J,358.3,30968,1,3,0)
+ ;;=3^Fracture of unsp part of neck of right femur, init
+ ;;^UTILITY(U,$J,358.3,30968,1,4,0)
+ ;;=4^S72.001A
+ ;;^UTILITY(U,$J,358.3,30968,2)
+ ;;=^5037047
+ ;;^UTILITY(U,$J,358.3,30969,0)
+ ;;=M87.052^^179^1937^12
+ ;;^UTILITY(U,$J,358.3,30969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31340,1,3,0)
- ;;=3^Otitis Media,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,31340,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,31340,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,31341,0)
- ;;=H81.09^^190^1933^29
- ;;^UTILITY(U,$J,358.3,31341,1,0)
+ ;;^UTILITY(U,$J,358.3,30969,1,3,0)
+ ;;=3^Idiopathic aseptic necrosis of left femur
+ ;;^UTILITY(U,$J,358.3,30969,1,4,0)
+ ;;=4^M87.052
+ ;;^UTILITY(U,$J,358.3,30969,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,30970,0)
+ ;;=M87.051^^179^1937^13
+ ;;^UTILITY(U,$J,358.3,30970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31341,1,3,0)
- ;;=3^Meniere's Disease,Unspec Ear
- ;;^UTILITY(U,$J,358.3,31341,1,4,0)
- ;;=4^H81.09
- ;;^UTILITY(U,$J,358.3,31341,2)
- ;;=^5006863
- ;;^UTILITY(U,$J,358.3,31342,0)
- ;;=H81.10^^190^1933^37
+ ;;^UTILITY(U,$J,358.3,30970,1,3,0)
+ ;;=3^Idiopathic aseptic necrosis of right femur
+ ;;^UTILITY(U,$J,358.3,30970,1,4,0)
+ ;;=4^M87.051

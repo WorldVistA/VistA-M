@@ -1,6 +1,6 @@
 HLOUSR ;ALB/CJM/OAK/PIJ/RBN -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;02/28/2012
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139,146,147,153,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139,146,147,153,158,163**;Oct 13, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
  ;
@@ -41,7 +41,9 @@ BRIEF ;
  ..N IP,LINK
  ..S LINK=$P($G(^HLD(779.1,1,0)),"^",10)
  ..I LINK,$$GET^HLOTLNK(LINK,.LINK) D
- ...F IP="127.0.0.1","0.0.0.0",LINK("IP") D  Q:STATUS
+ ...;ADD LOOPBACK FOR IPV6 - HL*1.6*163
+ ...;$$CONVERT^XLFIPV(IP) API (ICR #5844)
+ ...F IP=$$CONVERT^XLFIPV("127.0.0.1"),$$CONVERT^XLFIPV("0.0.0.0"),LINK("IP") D  Q:STATUS
  ....N POP,IO,IOF,IOST
  ....D CALL^%ZISTCP(IP,LINK("PORT"),5)
  ....S STATUS='POP

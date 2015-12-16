@@ -1,5 +1,5 @@
 VPRDSR ;SLC/MKB -- Surgical Procedures ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -41,7 +41,7 @@ ONE(NUM,SURG) ; -- return a surgery in SURG("attribute")=value
  S SURG("id")=IEN,X=$P(VPRX,U,2),SURG("status")="COMPLETED"
  I X?1"* Aborted * ".E S X=$E(X,13,999),SURG("status")="ABORTED"
  S SURG("name")=X,SURG("dateTime")=$P(VPRX,U,3)
- S X=$P(VPRX,U,4) S:X SURG("provider")=$TR(X,";","^")
+ S X=$P(VPRX,U,4) S:X SURG("provider")=$TR(X,";","^")_U_$$PROVSPC^VPRD(+X)
  S X=$$GET1^DIQ(130,IEN_",",50,"I"),SURG("facility")=$$FAC^VPRD(X)
  S SURG("encounter")=$$GET1^DIQ(130,IEN_",",.015,"I")
  S X=$$GET1^DIQ(136,IEN_",",.02,"I") I X D
@@ -55,11 +55,10 @@ ONE(NUM,SURG) ; -- return a surgery in SURG("attribute")=value
  . S X=+$G(VPROTH(136.03,I,.01,"I")) Q:'X
  . S SURG("otherProcedure",+I)=$$CPT(X)
  S I=0 F  S I=$O(@VPRY@(NUM,I)) Q:I<1  S X=$G(@VPRY@(NUM,I)) I X D
- . N LT,NT S LT=$P(X,U,2) Q:$P(LT," ")="Addendum"
- . S NT=$$GET1^DIQ(8925,+X_",",".01:1501")
- . S SURG("document",I)=+X_U_LT_U_NT
+ . S Y=$$INFO^VPRDTIU(+X) Q:Y<1  ;draft or retracted
+ . S SURG("document",I)=Y
  . S:$G(VPRTEXT) SURG("document",I,"content")=$$TEXT^VPRDTIU(+X)
- . I LT["OPERATION REPORT"!(LT["PROCEDURE REPORT") S SURG("opReport")=+X_U_LT_U_NT
+ . I Y["OPERATION REPORT"!(Y["PROCEDURE REPORT") S SURG("opReport")=Y
  S SURG("category")="SR"
  Q
  ;
@@ -71,7 +70,7 @@ EN1(IEN,SURG) ; -- return a surgery in SURG("attribute")=value
  S SURG("id")=IEN,X=$P(VPRX,U,2),SURG("status")="COMPLETED"
  I X?1"* Aborted * ".E S X=$E(X,13,999),SURG("status")="ABORTED"
  S SURG("name")=X,SURG("dateTime")=$P(VPRX,U,3)
- S X=$P(VPRX,U,4) S:X SURG("provider")=$TR(X,";","^")
+ S X=$P(VPRX,U,4) S:X SURG("provider")=$TR(X,";","^")_U_$$PROVSPC^VPRD(+X)
  S X=$$GET1^DIQ(130,IEN_",",50,"I"),SURG("facility")=$$FAC^VPRD(X)
  S SURG("encounter")=$$GET1^DIQ(130,IEN_",",.015,"I")
  S X=$$GET1^DIQ(136,IEN_",",.02,"I") I X D
@@ -85,11 +84,10 @@ EN1(IEN,SURG) ; -- return a surgery in SURG("attribute")=value
  . S X=+$G(VPROTH(136.03,I,.01,"I")) Q:'X
  . S SURG("otherProcedure",+I)=$$CPT(X)
  S I=0 F  S I=$O(VPRY(IEN,I)) Q:I<1  S X=$G(VPRY(IEN,I)) I X D
- . N LT,NT S LT=$P(X,U,2) Q:$P(LT," ")="Addendum"
- . S NT=$$GET1^DIQ(8925,+X_",",".01:1501")
- . S SURG("document",I)=+X_U_LT_U_NT
+ . S Y=$$INFO^VPRDTIU(+X) Q:Y<1  ;draft or retracted
+ . S SURG("document",I)=Y
  . S:$G(VPRTEXT) SURG("document",I,"content")=$$TEXT^VPRDTIU(+X)
- . I LT["OPERATION REPORT"!(LT["PROCEDURE REPORT") S SURG("opReport")=+X_U_LT_U_NT
+ . I Y["OPERATION REPORT"!(Y["PROCEDURE REPORT") S SURG("opReport")=Y
  S SURG("category")="SR"
  Q
  ;
@@ -114,7 +112,7 @@ XML(SURG) ; -- Return surgery as XML
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(SURG(ATT,I)) Q:I<1  D
  ... S X=$G(SURG(ATT,I)),NAMES=""
- ... S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^Z",1:"code^name^Z")
+ ... S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^vuid^Z",1:"code^name^Z")
  ... S Y="<"_ATT_" "_$$LOOP ;_"/>" D ADD(Y)
  ... S X=$G(SURG(ATT,I,"content")) I '$L(X) S Y=Y_"/>" D ADD(Y) Q
  ... S Y=Y_">" D ADD(Y)
@@ -124,7 +122,7 @@ XML(SURG) ; -- Return surgery as XML
  .. D ADD("</"_ATT_"s>")
  . S X=$G(SURG(ATT)),Y="" Q:'$L(X)
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
- . S NAMES=$S(ATT="opReport":"id^localTitle^nationalTitle^Z",1:"code^name^Z")
+ . S NAMES=$S(ATT="opReport":"id^localTitle^nationalTitle^vuid",ATT="provider":"code^name^"_$$PROVTAGS^VPRD,1:"code^name")_"^Z"
  . I $L(X)>1 S Y="<"_ATT_" "_$$LOOP_"/>"
  D ADD("</surgery>")
  Q

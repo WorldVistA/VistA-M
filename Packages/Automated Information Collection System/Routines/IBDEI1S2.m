@@ -1,136 +1,128 @@
-IBDEI1S2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1S2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31770,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,31771,0)
- ;;=C65.2^^190^1943^129
- ;;^UTILITY(U,$J,358.3,31771,1,0)
+ ;;^UTILITY(U,$J,358.3,31381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31771,1,3,0)
- ;;=3^Malig Neop Left Renal Pelvis
- ;;^UTILITY(U,$J,358.3,31771,1,4,0)
- ;;=4^C65.2
- ;;^UTILITY(U,$J,358.3,31771,2)
- ;;=^5001252
- ;;^UTILITY(U,$J,358.3,31772,0)
- ;;=C62.92^^190^1943^130
- ;;^UTILITY(U,$J,358.3,31772,1,0)
+ ;;^UTILITY(U,$J,358.3,31381,1,3,0)
+ ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,31381,1,4,0)
+ ;;=4^T84.82XA
+ ;;^UTILITY(U,$J,358.3,31381,2)
+ ;;=^5055457
+ ;;^UTILITY(U,$J,358.3,31382,0)
+ ;;=T84.83XA^^180^1955^3
+ ;;^UTILITY(U,$J,358.3,31382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31772,1,3,0)
- ;;=3^Malig Neop Left Testis,Unspec
- ;;^UTILITY(U,$J,358.3,31772,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,31772,2)
- ;;=^5001238
- ;;^UTILITY(U,$J,358.3,31773,0)
- ;;=C22.8^^190^1943^131
- ;;^UTILITY(U,$J,358.3,31773,1,0)
+ ;;^UTILITY(U,$J,358.3,31382,1,3,0)
+ ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,31382,1,4,0)
+ ;;=4^T84.83XA
+ ;;^UTILITY(U,$J,358.3,31382,2)
+ ;;=^5055460
+ ;;^UTILITY(U,$J,358.3,31383,0)
+ ;;=T84.84XA^^180^1955^4
+ ;;^UTILITY(U,$J,358.3,31383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31773,1,3,0)
- ;;=3^Malig Neop Liver,Primary
- ;;^UTILITY(U,$J,358.3,31773,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,31773,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,31774,0)
- ;;=C06.9^^190^1943^134
- ;;^UTILITY(U,$J,358.3,31774,1,0)
+ ;;^UTILITY(U,$J,358.3,31383,1,3,0)
+ ;;=3^Pain due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,31383,1,4,0)
+ ;;=4^T84.84XA
+ ;;^UTILITY(U,$J,358.3,31383,2)
+ ;;=^5055463
+ ;;^UTILITY(U,$J,358.3,31384,0)
+ ;;=T84.85XA^^180^1955^5
+ ;;^UTILITY(U,$J,358.3,31384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31774,1,3,0)
- ;;=3^Malig Neop Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,31774,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,31774,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,31775,0)
- ;;=C11.9^^190^1943^135
- ;;^UTILITY(U,$J,358.3,31775,1,0)
+ ;;^UTILITY(U,$J,358.3,31384,1,3,0)
+ ;;=3^Stenosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,31384,1,4,0)
+ ;;=4^T84.85XA
+ ;;^UTILITY(U,$J,358.3,31384,2)
+ ;;=^5055466
+ ;;^UTILITY(U,$J,358.3,31385,0)
+ ;;=T84.86XA^^180^1955^6
+ ;;^UTILITY(U,$J,358.3,31385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31775,1,3,0)
- ;;=3^Malig Neop Nasopharynx,Unspec
- ;;^UTILITY(U,$J,358.3,31775,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,31775,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,31776,0)
- ;;=C10.9^^190^1943^138
- ;;^UTILITY(U,$J,358.3,31776,1,0)
+ ;;^UTILITY(U,$J,358.3,31385,1,3,0)
+ ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,31385,1,4,0)
+ ;;=4^T84.86XA
+ ;;^UTILITY(U,$J,358.3,31385,2)
+ ;;=^5055469
+ ;;^UTILITY(U,$J,358.3,31386,0)
+ ;;=Z89.442^^180^1956^1
+ ;;^UTILITY(U,$J,358.3,31386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31776,1,3,0)
- ;;=3^Malig Neop Oropharynx,Unspec
- ;;^UTILITY(U,$J,358.3,31776,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,31776,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,31777,0)
- ;;=C25.9^^190^1943^139
- ;;^UTILITY(U,$J,358.3,31777,1,0)
+ ;;^UTILITY(U,$J,358.3,31386,1,3,0)
+ ;;=3^Acquired absence of left ankle
+ ;;^UTILITY(U,$J,358.3,31386,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,31386,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,31387,0)
+ ;;=Z89.622^^180^1956^2
+ ;;^UTILITY(U,$J,358.3,31387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31777,1,3,0)
- ;;=3^Malig Neop Pancreas,Unspec
- ;;^UTILITY(U,$J,358.3,31777,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,31777,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,31778,0)
- ;;=C47.9^^190^1943^140
- ;;^UTILITY(U,$J,358.3,31778,1,0)
+ ;;^UTILITY(U,$J,358.3,31387,1,3,0)
+ ;;=3^Acquired absence of left hip joint
+ ;;^UTILITY(U,$J,358.3,31387,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,31387,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,31388,0)
+ ;;=Z89.612^^180^1956^3
+ ;;^UTILITY(U,$J,358.3,31388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31778,1,3,0)
- ;;=3^Malig Neop Peripheral Nerves/Autonomic Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,31778,1,4,0)
- ;;=4^C47.9
- ;;^UTILITY(U,$J,358.3,31778,2)
- ;;=^5001121
- ;;^UTILITY(U,$J,358.3,31779,0)
- ;;=C38.4^^190^1943^141
- ;;^UTILITY(U,$J,358.3,31779,1,0)
+ ;;^UTILITY(U,$J,358.3,31388,1,3,0)
+ ;;=3^Acquired absence of left leg above knee
+ ;;^UTILITY(U,$J,358.3,31388,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,31388,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,31389,0)
+ ;;=Z89.512^^180^1956^4
+ ;;^UTILITY(U,$J,358.3,31389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31779,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,31779,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,31779,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,31780,0)
- ;;=C61.^^190^1943^142
- ;;^UTILITY(U,$J,358.3,31780,1,0)
+ ;;^UTILITY(U,$J,358.3,31389,1,3,0)
+ ;;=3^Acquired absence of left leg below knee
+ ;;^UTILITY(U,$J,358.3,31389,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,31389,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,31390,0)
+ ;;=Z89.441^^180^1956^5
+ ;;^UTILITY(U,$J,358.3,31390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31780,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,31780,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,31780,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,31781,0)
- ;;=C20.^^190^1943^143
- ;;^UTILITY(U,$J,358.3,31781,1,0)
+ ;;^UTILITY(U,$J,358.3,31390,1,3,0)
+ ;;=3^Acquired absence of right ankle
+ ;;^UTILITY(U,$J,358.3,31390,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,31390,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,31391,0)
+ ;;=Z89.621^^180^1956^6
+ ;;^UTILITY(U,$J,358.3,31391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31781,1,3,0)
- ;;=3^Malig Neop Rectum
- ;;^UTILITY(U,$J,358.3,31781,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,31781,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,31782,0)
- ;;=C64.1^^190^1943^147
- ;;^UTILITY(U,$J,358.3,31782,1,0)
+ ;;^UTILITY(U,$J,358.3,31391,1,3,0)
+ ;;=3^Acquired absence of right hip joint
+ ;;^UTILITY(U,$J,358.3,31391,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,31391,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,31392,0)
+ ;;=Z89.611^^180^1956^7
+ ;;^UTILITY(U,$J,358.3,31392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31782,1,3,0)
- ;;=3^Malig Neop Right Kidney,Except Renal pelvis
- ;;^UTILITY(U,$J,358.3,31782,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,31782,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,31783,0)
- ;;=C65.1^^190^1943^149
- ;;^UTILITY(U,$J,358.3,31783,1,0)
+ ;;^UTILITY(U,$J,358.3,31392,1,3,0)
+ ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,31392,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,31392,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,31393,0)
+ ;;=Z89.511^^180^1956^8
+ ;;^UTILITY(U,$J,358.3,31393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31783,1,3,0)
- ;;=3^Malig Neop Right Renal Pelvis
- ;;^UTILITY(U,$J,358.3,31783,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,31783,2)
- ;;=^5001251
+ ;;^UTILITY(U,$J,358.3,31393,1,3,0)
+ ;;=3^Acquired absence of right leg below knee

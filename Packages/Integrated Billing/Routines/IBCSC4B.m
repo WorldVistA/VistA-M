@@ -1,70 +1,79 @@
 IBCSC4B ;ALB/MJB - MCCR PTF SCREEN (CONT.) ;24 FEB 89  9:52
- ;;2.0;INTEGRATED BILLING;**210,228,304,479**;21-MAR-94;Build 29
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**210,228,304,479,522**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;MAP TO DGCRSC4B
  ;
-DX Q:$S(IBPTF="":1,'$D(^DGPT(IBPTF,0)):1,1:0)  S IBUC="UNSPECIFIED CODE",IBNC="NO DX CODES ENTERED FOR THIS DATE",IBDXC=0,X="DIAGNOSIS SCREEN" K IBWE,IBWO
- W @IOF,?(40-($L(X)\2)),X,! F I=1:1:79 W "="
- S IBDIA="" I '$D(^UTILITY($J,"IBDX")) W !!," * No DIAGNOSIS CODES in PTF record for this episode of care." D SELD^IBCSC4C G Q
- F I=1:1:13 S IBDIA=$O(^UTILITY($J,"IBDX",IBDIA)) Q:IBDIA=""  D ODD^IBCSC4A S IBDIA=$O(^UTILITY($J,"IBDX",IBDIA)) D:IBDIA]"" EVEN^IBCSC4A D WR D:$Y+6>IOSL ASK Q:IBDIA=""
- S IBDIA="" ; D SELD^IBCSC4C
- G Q
+PRO ; display PTF procedures within date range of bill
+ ; ^UTILITY is rebuilt because PCM may have changed since originally built
  ;
-WR N IBDATE
- S IBDATE=$$PTFDATE^IBACSV(+$G(IBPTF)) ; Date to be used as a "date of service"
- I '$D(IBWE(0)) F B=0:1:5 S IBWE(B)=""
- W !!,"Move: " S Y=$P(IBWO(0),U,2) X ^DD("DD") W $S($P(IBWO(0),U,4)]"":$P(IBWO(0),U,4)_" ",1:""),Y," " W:$P(IBWO(0),"^",3)]"" $E($P(^DIC(42.4,$P(IBWO(0),U,3),0),U),1,12) W " ",$P(IBWO(0),"^",5)
- I IBDIA]"",IBWE(0)]"" W ?43,"Move: " S Y=$P(IBWE(0),U,2) X ^DD("DD") W $S($P(IBWE(0),U,4)]"":$P(IBWE(0),U,4)_" ",1:""),Y," " W:$P(IBWE(0),"^",3)]"" $E($P(^DIC(42.4,$P(IBWE(0),U,3),0),U),1,12) W " ",$P(IBWE(0),"^",5)
- S IBAO=$P(IBWO(0),U,1) I IBAO']"" W:'$D(IBDXY) !,"* ",IBNC S IBDXY=1 F K=1:1:5 S IBWO(K)="" I IBDIA]"" W:K>1 ! D WE Q:IBWO(K)=""&(IBWE(K)="")
- I IBAO]"" F K=1:1:5 Q:IBWO(K)=""&(IBWE(K)="")  D
- . W !
- . I IBWO(K) S X=$S($P(IBWO(0),"^",3)["+":$$CPT^IBACSV(+IBWO(K),IBDATE),1:$$ICD9^IBACSV(+IBWO(K),IBDATE)) D
- .. W IBAO,K," - ",$S(X]"":$J($P(X,U),6)_"  "_$E($S($P(IBWO(0),"^",3)["+":$P(X,U,2),1:$P(X,U,3)),1,24),1:IBUC)
- . I IBDIA'="" D WE
+ D PTFPDSP($G(IBIFN))
  Q
-WE S IBAE=$P(IBWE(0),U)
- I IBAE="",'$D(IBDXX),IBWE(0)]"" W ?43,"* ",IBNC S (IBWE(1),IBWE(2),IBWE(3),IBWE(4),IBWE(5))="",IBDXX=1
- I IBAE]"",IBWE(K)]"" S X=$S($P(IBWE(0),"^",3)["+":$$CPT^IBACSV(+IBWE(K),$G(IBDATE)),1:$$ICD9^IBACSV(+IBWE(K),$G(IBDATE))) D
- . W ?43,IBAE,K," - ",$S(X]"":$J($P(X,U),6)_"  "_$E($S($P(IBWE(0),"^",3)["+":$P(X,U,2),1:$P(X,U,3)),1,24),1:IBUC)
+ ;
+PTFPDSP(IBIFN) ; display PTF procedures within the date range of the bill
+ ; Output:  ^UTILITY($J,"IB") as defined by PTFPRDT^IBCSC4A
+ ; includes ICD Surgeries (401) and ICD Procedures (601) or CPT Professional Services (801)
+ N IB0,IBU,IBPTF,IBFDT,IBTDT,IBPCM K ^UTILITY($J,"IB")
+ N IBLCNT,IBE,IBE1,IBE2,IBC,IBI,IBR,IBHEADER,IBCODE,IBLINE,IBCNT,TYPE,SGRP,IBSGCD,PRTARR,DIR,Y,X
+ ;
+ S IB0=$G(^DGCR(399,+$G(IBIFN),0)),IBPTF=$P(IB0,U,8),IBPCM=+$P(IB0,U,9)
+ S IBU=$G(^DGCR(399,+IBIFN,"U")),IBFDT=+IBU,IBTDT=$P(IBU,U,2) Q:$P(IB0,U,5)>2
+ ;
+ D PTFPRDT^IBCSC4A(IBPTF,IBFDT,IBTDT,IBPCM,IBIFN)
+ ;
+ W @IOF,?27,"OPERATION/PROCEDURE SCREEN",! S IBLCNT=2
+ I '$O(^UTILITY($J,"IB",0)) W !!,"* No PROCEDURE CODES in PTF record for this episode of care.",!! Q
+ ;
+ S IBE1=0 F  S IBE1=$O(^UTILITY($J,"IB",IBE1)) Q:'IBE1  S IBE2=$O(^UTILITY($J,"IB",IBE1)) D  S IBE1=IBE2 Q:'IBE1
+ . ;
+ . K PRTARR S PRTARR(1)=""
+ . ;
+ . S IBE=IBE1,IBCNT=2,IBR=0 D  S IBE=IBE2,IBCNT=2,IBR=40 I +IBE D
+ .. ;
+ .. S IBHEADER=$G(^UTILITY($J,"IB",IBE,1)),TYPE=$P(IBHEADER,U,4),SGRP=$P(IBHEADER,U,3)
+ .. S IBLINE=$G(PRTARR(IBCNT)) S PRTARR(IBCNT)=IBLINE_$$DSPWDH(IBLINE,IBR)_$$DSPHDR(IBHEADER,TYPE) S IBCNT=IBCNT+1
+ .. ;
+ .. S IBC=0 F  S IBC=$O(^UTILITY($J,"IB",IBE,IBC)) Q:'IBC  D
+ ... ;
+ ... S IBCODE=$G(^UTILITY($J,"IB",IBE,IBC)),IBSGCD=SGRP_IBC
+ ... S IBLINE=$G(PRTARR(IBCNT)) S PRTARR(IBCNT)=IBLINE_$$DSPWDH(IBLINE,IBR)_$$DSPCOD(IBCODE,TYPE,IBSGCD) S IBCNT=IBCNT+1
+ .. ;
+ . S IBI="" F  S IBI=$O(PRTARR(IBI)) Q:IBI=""  W !,PRTARR(IBI) S IBLCNT=IBLCNT+1 I IBLCNT>21 D  S IBLCNT=1 I 'Y S IBE2=0 Q
+ .. W ! S DIR(0)="E" D ^DIR K DIR,DIRUT W !
+ ;
  Q
-ASK W !!,"<RETURN> to see more ",$S($D(IBP):"procedure",1:"diagnosis")," codes or '^' to QUIT: " R A:DTIME I '$T!(A["^") S:$D(IBDIA) IBDIA="" S:$D(IBP) IBP="" Q
- I A["?" W !!?4,"Enter <RETURN> to view more ",$S($D(IBP):"operation/procedure",1:"movement dates and diagnosis")," codes",!?4,"or '^' to stop the display." G ASK
- S A=$S($D(IBP):"OPERATION/PROCEDURE",1:"DIAGNOSIS")_" SCREEN (CONT.)" W !,@IOF,?(40-($L(A)\2)),A,! F S=1:1:79 W "="
- Q
-PRO Q:'$D(IBPTF)  D TYPE S IBUC="UNSPECIFIED CODE",IBNC="NO PRO CODES ENTERED FOR THIS DATE",IBOPC=0,X="OPERATION/PROCEDURE SCREEN",IBNOR="Non-O/R Procedure Date: ",IBSD="Surgery Date: ",IBPRO="Prof Svc Date: "
- K IBWE,IBWO
- W @IOF,?(40-($L(X)\2)),X,! S X="",$P(X,"=",1,79)="" W X
- S IBP="" I '$D(^UTILITY($J,"IB")) W !!," * No PROCEDURE CODES in PTF record for this episode of care." G Q
- F I=1:1:13 S IBP=$O(^UTILITY($J,"IB",IBP)) Q:IBP=""  D ODDP^IBCSC4A S IBP=$O(^UTILITY($J,"IB",IBP)) D:IBP]"" EVENP^IBCSC4A D WRP D:$Y+6>IOSL ASK Q:IBP=""
- S IBP=""
+ ;
+DSPWDH(LN,RCOL) ; Pad line to RCOL width
+ S LN=$G(LN) S LN=$J("",($G(RCOL)-$L(LN)))
+ Q LN
+ ;
+DSPHDR(LN,TYPE) ; Format header line
+ N IBX,IBLINE S IBLINE=""
+ I $G(TYPE)="" S IBLINE="Surgery Date: "
+ I $G(TYPE)="*" S IBLINE="Non-O/R Procedure Date: "
+ I $G(TYPE)="+" S IBLINE="Prof Svc Date: "
+ S IBX=$P($G(LN),U,2) I +IBX S IBLINE=IBLINE_$$FMTE^XLFDT(+IBX)
+ ;
+ S IBLINE=$E(IBLINE,1,38)
+ Q IBLINE
+ ;
+DSPCOD(LN,TYPE,SG) ; Format code line
+ N IBX,IBPB,IBLINE S IBLINE=""
+ S IBPB=" " I $G(SG)'="" S IBPB=$G(^UTILITY($J,"IB","B",SG)) S IBPB=$S($P(IBPB,U,3)="Y":"*",1:" ")
+ ;
+ I '$G(LN) S IBLINE=$J($G(SG)_"-",4)_"UNSPECIFIED CODE"
+ ;
+ I $G(TYPE)'="+",+$G(LN) S IBX=$$ICD0^IBACSV(+LN) D
+ . S IBLINE=IBPB_$J($G(SG)_"-",4)_$P(IBX,U,1) S IBLINE=IBLINE_$$DSPWDH(IBLINE,14)_$P(IBX,U,4)
+ ;
+ I $G(TYPE)="+",+$G(LN) S IBX=$$CPT^IBACSV(+LN) D
+ . S IBLINE=$J($G(SG)_"-",4)_$P(IBX,U,1) I $P(LN,U,5)'="" S IBLINE=IBLINE_"("_$P(LN,U,5)_")"
+ . S IBLINE=IBLINE_$$DSPWDH(IBLINE,13)_"PROV-"_$P($G(^VA(200,+$P($G(LN),U,13),0)),U,1)
+ . I $P(LN,U,10)>1 S IBLINE=$E(IBLINE,1,(38-($L($P(LN,U,10))+3)))_" ("_$P(LN,U,10)_")"
+ ;
+ S IBLINE=$E(IBLINE,1,38)
+ Q IBLINE
+ ;
+ ;
 Q K IB3,IB4,IB5,IB6,IB7,IB8,IB9,IBAE,IBAO,IBCT,IBDIA,IBDP,IBDX,IBDXC,IBDXX,IBDXY,IBI,IBNC,IBNOR,IBP,IBPY,IBOP,IBOPC,IBOPX,IBOPY,IBPP,IBPX,IBSD,IBSP,IBWE,IBWO,IBPRO,IBPROT
- K %DT,A,B,DIC,F,I,J,K,M,S,X,Y
- Q
-WRP N IBDATE
- S IBDATE=$$PTFDATE^IBACSV(+$G(IBPTF)) ; Date to be used as a "date of service"
- I '$D(IBWE(0)) F B=0:1:5 S IBWE(B)=""
- W !!,$S($P(IBWO(0),U,3)["*":IBNOR,$P(IBWO(0),U,3)["+":IBPRO,1:IBSD) S Y=$P(IBWO(0),U,2) X ^DD("DD") W Y I IBP]"" W ?43,$S($P(IBWE(0),U,3)["*":IBNOR,$P(IBWO(0),U,3)["+":IBPRO,1:IBSD) S Y=$P(IBWE(0),U,2) X ^DD("DD") W Y
- S IBAO=$P(IBWO(0),U,1) I IBAO']"" W:'$D(IBOPY) !,"* ",IBNC S IBOPY=1 F K=1:1:5 S IBWO(K)="" I IBP]"" W:K>1 ! D WEP
- I IBAO]"" F K=1:1:5 Q:IBWO(K)']""&(IBWE(K)']"")  D
- . S X=$S($P(IBWO(0),U,3)["+":$$CPT^IBACSV(+IBWO(K),IBDATE),1:$$ICD0^IBACSV(+IBWO(K),IBDATE)) S:$P(IBWO(0),U,3)["+"&($L($G(^VA(200,+$P(IBWO(K),U,$S(K=1:10,1:13)),0)))) $P(X,U,2)="PROV-"_$P(^(0),U) D
- .. W:IBWO(K)]"" !,IBAO,K,"-",$S(X]"":$J($P(X,U,1),5)_$S($L($P(IBWO(K),"^",$S(K=1:2,1:5))):"("_$P(IBWO(K),"^",$S(K=1:2,1:5))_")",1:"    ")_$E($S($P(IBWO(0),U,3)["+":$P(X,U,2),1:$P(X,U,4)),1,24),1:IBUC) W:IBWO(K)']"" !,"" D:IBP]"" WEP
- Q
-WEP S IBAE=$P(IBWE(0),U,1) I IBAE']"",'$D(IBOPX) W ?43,"* ",IBNC S (IBWE(1),IBWE(2),IBWE(3),IBWE(4),IBWE(5))="",IBOPX=1
- I IBAE]"",IBWE(K)]"" S X=$S($P(IBWE(0),"^",3)["+":$$CPT^IBACSV(+IBWE(K),$G(IBDATE)),1:$$ICD0^IBACSV(+IBWE(K),$G(IBDATE))) S:$P(IBWE(0),U,3)["+"&($L($G(^VA(200,+$P(IBWE(K),U,$S(K=1:10,1:13)),0)))) $P(X,U,2)="PROV-"_$P(^(0),U) D
- . W ?43,IBAE,K,"-",$S(X]"":$J($P(X,U,1),5)_$S($L($P(IBWE(K),"^",$S(K=1:2,1:5))):"("_$P(IBWE(K),"^",$S(K=1:2,1:5))_")",1:"    ")_$E($S($P(IBWE(0),"^",3)["+":$P(X,U,2),1:$P(X,U,4)),1,24),1:IBUC)
- Q
- ;
-TYPE ; cleans up the ^utility based on the type of coding
- ; save in ^tmp
- N IBA,IBB,IBC,IBD,IBE
- I '$D(^TMP("IBTYPE",$J)) M ^TMP("IBTYPE",$J)=^UTILITY($J,"IB")
- K ^UTILITY($J,"IB")
- S (IBA,IBB)=0 F  S IBA=$O(^TMP("IBTYPE",$J,IBA)) Q:IBA<1  D
- . I $P($G(^TMP("IBTYPE",$J,IBA,1)),"^",4)["+",IBPROT=5 D  Q
- .. ; ibb=31 to skip '^'
- .. S IBB=IBB+1,(IBC,IBD)=0 S:IBB=30 IBB=31 F  S IBC=$O(^TMP("IBTYPE",$J,IBA,IBC)) Q:IBC<1  S IBE=^TMP("IBTYPE",$J,IBA,IBC),IBD=IBD+1,^UTILITY($J,"IB",IBB,IBD)=$P(IBE,"^",1,2)_"^"_$C(64+IBB)_"^"_$P(IBE,"^",4,14)
- . I $P($G(^TMP("IBTYPE",$J,IBA,1)),"^",4)["+" Q
- . I IBPROT'=5 S IBB=IBB+1,(IBC,IBD)=0 S:IBB=30 IBB=31 F  S IBC=$O(^TMP("IBTYPE",$J,IBA,IBC)) Q:IBC<1  D
- .. S IBE=^TMP("IBTYPE",$J,IBA,IBC),IBD=IBD+1,^UTILITY($J,"IB",IBB,IBD)=$P(IBE,"^",1)_$S(IBD=1:"^"_$P(IBE,"^",2)_"^"_$C(64+IBB)_$S($L($P(IBE,"^",4)):"^"_$P(IBE,"^",4),1:""),1:"")
+ K %DT,A,B,DIC,F,I,J,K,M,S,X,Y,N,P
  Q

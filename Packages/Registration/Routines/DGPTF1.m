@@ -1,11 +1,12 @@
-DGPTF1 ;ALB/JDS - PTF ENTRY/EDIT ; 5/17/05 3:29pm
- ;;5.3;Registration;**69,114,195,397,342,415,565,664**;Aug 13, 1993;Build 15
+DGPTF1 ;ALB/JDS/PLT - PTF ENTRY/EDIT ;5/17/05 3:29pm
+ ;;5.3;Registration;**69,114,195,397,342,415,565,664,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  I '$D(IOF) S IOP="HOME" D ^%ZIS K IOP
  S:'$D(IOST) IOST="C" S DGVI="""""",DGVO=DGVI I $D(IOST(0)) S:$D(^%ZIS(2,IOST(0),5)) I=^(5) S:$L($P(I,U,4)) DGVI=$P(I,U,4) S:$L($P(I,U,5)) DGVO=$P(I,U,5) I $L(DGVI_DGVO)>4 S X=132 X ^%ZOSF("RM")
 WR G GET:'$D(A)!('$D(B)) W @IOF,HEAD,?72,@DGVI,"<101>",@DGVO
-FAC I $D(DGCST) W !?40,"Census Status: ",$P($P($P(^DD(45,6,0),"^",3),+DGCST_":",2),";")
- W !! S Z=1 D Z W "   Facility: " S Z=$P(B(0),U,3)_$P(B(0),U,5),Z1=23 D Z1
+FAC W ! I $D(DGCST) S:$G(DGCN) X=$G(^DG(45.86,DGCN,0)) W ?37,"Census " W:$G(DGCN) "Date: ",$E(X,4,5),"/",$E(X,6,7),"/",$E(X,2,3),"  " W "Status: ",$$EXTERNAL^DILFD(45,6,,+DGCST)
+ W ! S Z=1 D Z W "   Facility: " S Z=$P(B(0),U,3)_$P(B(0),U,5),Z1=23 D Z1
 MAR S Z=2 D Z W " Marit Stat: ",$S($D(^DIC(11,+$P(A(0),U,5),0)):$P(^(0),U,1),1:"")
 SA W !," Source of Adm: ",$S($D(^DIC(45.1,+B(101),0)):$P(^(0),U,5),1:"")
  N VADM D DEM^VADPT
@@ -32,13 +33,13 @@ SA W !," Source of Adm: ",$S($D(^DIC(45.1,+B(101),0)):$P(^(0),U,5),1:"")
  ..I NUM S RACE=","_RACE
  ..W RACE
  K VADM
- W !," Source of Pay: " S L=";"_$P(^DD(45,22,0),U,3),L1=";"_$P(B(101),U,3)_":" W $P($P(L,L1,2),";",1)
+ W !," Source of Pay: ",$$EXTERNAL^DILFD(45,22,,$P(B(101),U,3))
 SEX S SEX=$P(A(0),U,2) W ?39,"           Sex: ",$S(SEX="M":"MALE",SEX="F":"FEMALE",1:"")
  W !,"Trans Facility: ",$P(B(101),U,5)_$P(B(101),U,6)
 DOB S DOB=$P(A(0),U,3),Y=DOB D D^DGPTUTL W ?39," Date of Birth: ",Y
 CAT I DGPTFMT<2 W !,"    Cat of Ben: ",$S($D(^DIC(45.82,+$P(B(101),U,4),0)):$E($P(^(0),U,2),1,26),1:"")
  W:$X>50 !
- W "    Admit Elig: "_$S(+$P(B(101),U,8):$P($G(^DIC(8,+$P(B(101),U,8),0)),U),1:"UNKNOWN") W ?50,"SCI: " S L=";"_$P(^DD(2,57.4,0),U,3),L1=";"_$P(A(57),U,4)_":" W $P($P(L,L1,2),";",1)
+ W "    Admit Elig: "_$S(+$P(B(101),U,8):$P($G(^DIC(8,+$P(B(101),U,8),0)),U),1:"UNKNOWN") W ?50,"SCI: ",$$EXTERNAL^DILFD(2,57.4,,$P(A(57),U,4))
 VIET W ! S Z=3 D Z W "Vietnam SRV: " S L=$P(A(.321),U,1),Z=$S(L="Y":"YES",L="N":"NO",1:"UNKNOWN"),Z1=27 D Z1
 ST S Z=4 D Z W $S('$$FORIEN^DGADDUTL($P(A(.11),U,10))!('$P(A(.11),U,10)):"  State: "_$S($D(^DIC(5,+$P(A(.11),U,5),0)):$P(^(0),U,1),1:""),1:"Country: "_$$CNTRYI^DGADDUTL($P(A(.11),U,10)))
 POW W !?11,"POW: " S L=$P(A(.52),U,5) W $S(L="Y":"YES",L="N":"NO",1:"UNKNOWN")

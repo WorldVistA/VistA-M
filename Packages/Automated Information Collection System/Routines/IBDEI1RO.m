@@ -1,134 +1,126 @@
-IBDEI1RO ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1RO ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31589,1,4,0)
- ;;=4^N47.5
- ;;^UTILITY(U,$J,358.3,31589,2)
- ;;=^5015728
- ;;^UTILITY(U,$J,358.3,31590,0)
- ;;=N47.4^^190^1939^17
- ;;^UTILITY(U,$J,358.3,31590,1,0)
+ ;;^UTILITY(U,$J,358.3,31205,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,31205,1,4,0)
+ ;;=4^I69.951
+ ;;^UTILITY(U,$J,358.3,31205,2)
+ ;;=^5007561
+ ;;^UTILITY(U,$J,358.3,31206,0)
+ ;;=I69.953^^180^1948^6
+ ;;^UTILITY(U,$J,358.3,31206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31590,1,3,0)
- ;;=3^Cyst of Prepuce,Benign
- ;;^UTILITY(U,$J,358.3,31590,1,4,0)
- ;;=4^N47.4
- ;;^UTILITY(U,$J,358.3,31590,2)
- ;;=^5015727
- ;;^UTILITY(U,$J,358.3,31591,0)
- ;;=N47.8^^190^1939^23
- ;;^UTILITY(U,$J,358.3,31591,1,0)
+ ;;^UTILITY(U,$J,358.3,31206,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff right nondom side
+ ;;^UTILITY(U,$J,358.3,31206,1,4,0)
+ ;;=4^I69.953
+ ;;^UTILITY(U,$J,358.3,31206,2)
+ ;;=^5007562
+ ;;^UTILITY(U,$J,358.3,31207,0)
+ ;;=I69.942^^180^1948^7
+ ;;^UTILITY(U,$J,358.3,31207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31591,1,3,0)
- ;;=3^Disorders of Prepuce
- ;;^UTILITY(U,$J,358.3,31591,1,4,0)
- ;;=4^N47.8
- ;;^UTILITY(U,$J,358.3,31591,2)
- ;;=^5015730
- ;;^UTILITY(U,$J,358.3,31592,0)
- ;;=N47.7^^190^1939^54
- ;;^UTILITY(U,$J,358.3,31592,1,0)
+ ;;^UTILITY(U,$J,358.3,31207,1,3,0)
+ ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff left dom side
+ ;;^UTILITY(U,$J,358.3,31207,1,4,0)
+ ;;=4^I69.942
+ ;;^UTILITY(U,$J,358.3,31207,2)
+ ;;=^5133582
+ ;;^UTILITY(U,$J,358.3,31208,0)
+ ;;=I69.944^^180^1948^8
+ ;;^UTILITY(U,$J,358.3,31208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31592,1,3,0)
- ;;=3^Inflammatory Diseases of Prepuce
- ;;^UTILITY(U,$J,358.3,31592,1,4,0)
- ;;=4^N47.7
- ;;^UTILITY(U,$J,358.3,31592,2)
- ;;=^5015729
- ;;^UTILITY(U,$J,358.3,31593,0)
- ;;=N47.6^^190^1939^3
- ;;^UTILITY(U,$J,358.3,31593,1,0)
+ ;;^UTILITY(U,$J,358.3,31208,1,3,0)
+ ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff left nondom side
+ ;;^UTILITY(U,$J,358.3,31208,1,4,0)
+ ;;=4^I69.944
+ ;;^UTILITY(U,$J,358.3,31208,2)
+ ;;=^5133585
+ ;;^UTILITY(U,$J,358.3,31209,0)
+ ;;=I69.941^^180^1948^9
+ ;;^UTILITY(U,$J,358.3,31209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31593,1,3,0)
- ;;=3^Balanoposthitis
- ;;^UTILITY(U,$J,358.3,31593,1,4,0)
- ;;=4^N47.6
- ;;^UTILITY(U,$J,358.3,31593,2)
- ;;=^12530
- ;;^UTILITY(U,$J,358.3,31594,0)
- ;;=N48.1^^190^1939^2
- ;;^UTILITY(U,$J,358.3,31594,1,0)
+ ;;^UTILITY(U,$J,358.3,31209,1,3,0)
+ ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff right dom side
+ ;;^UTILITY(U,$J,358.3,31209,1,4,0)
+ ;;=4^I69.941
+ ;;^UTILITY(U,$J,358.3,31209,2)
+ ;;=^5133581
+ ;;^UTILITY(U,$J,358.3,31210,0)
+ ;;=I69.943^^180^1948^10
+ ;;^UTILITY(U,$J,358.3,31210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31594,1,3,0)
- ;;=3^Balanitis
- ;;^UTILITY(U,$J,358.3,31594,1,4,0)
- ;;=4^N48.1
- ;;^UTILITY(U,$J,358.3,31594,2)
- ;;=^12525
- ;;^UTILITY(U,$J,358.3,31595,0)
- ;;=N52.9^^190^1939^61
- ;;^UTILITY(U,$J,358.3,31595,1,0)
+ ;;^UTILITY(U,$J,358.3,31210,1,3,0)
+ ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff right nondom side
+ ;;^UTILITY(U,$J,358.3,31210,1,4,0)
+ ;;=4^I69.943
+ ;;^UTILITY(U,$J,358.3,31210,2)
+ ;;=^5133584
+ ;;^UTILITY(U,$J,358.3,31211,0)
+ ;;=I69.920^^180^1948^1
+ ;;^UTILITY(U,$J,358.3,31211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31595,1,3,0)
- ;;=3^Male Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,31595,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,31595,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,31596,0)
- ;;=N52.8^^190^1939^60
- ;;^UTILITY(U,$J,358.3,31596,1,0)
+ ;;^UTILITY(U,$J,358.3,31211,1,3,0)
+ ;;=3^Aphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,31211,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,31211,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,31212,0)
+ ;;=Z89.442^^180^1949^1
+ ;;^UTILITY(U,$J,358.3,31212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31596,1,3,0)
- ;;=3^Male Erectile Dysfunction,Other
- ;;^UTILITY(U,$J,358.3,31596,1,4,0)
- ;;=4^N52.8
- ;;^UTILITY(U,$J,358.3,31596,2)
- ;;=^5015762
- ;;^UTILITY(U,$J,358.3,31597,0)
- ;;=N52.34^^190^1939^35
- ;;^UTILITY(U,$J,358.3,31597,1,0)
+ ;;^UTILITY(U,$J,358.3,31212,1,3,0)
+ ;;=3^Acquired absence of left ankle
+ ;;^UTILITY(U,$J,358.3,31212,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,31212,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,31213,0)
+ ;;=Z89.022^^180^1949^2
+ ;;^UTILITY(U,$J,358.3,31213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31597,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,31597,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,31597,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,31598,0)
- ;;=N52.39^^190^1939^37
- ;;^UTILITY(U,$J,358.3,31598,1,0)
+ ;;^UTILITY(U,$J,358.3,31213,1,3,0)
+ ;;=3^Acquired absence of left finger(s)
+ ;;^UTILITY(U,$J,358.3,31213,1,4,0)
+ ;;=4^Z89.022
+ ;;^UTILITY(U,$J,358.3,31213,2)
+ ;;=^5063535
+ ;;^UTILITY(U,$J,358.3,31214,0)
+ ;;=Z89.432^^180^1949^3
+ ;;^UTILITY(U,$J,358.3,31214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31598,1,3,0)
- ;;=3^Erectile Dysfunction Post-Surgical
- ;;^UTILITY(U,$J,358.3,31598,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,31598,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,31599,0)
- ;;=N52.33^^190^1939^36
- ;;^UTILITY(U,$J,358.3,31599,1,0)
+ ;;^UTILITY(U,$J,358.3,31214,1,3,0)
+ ;;=3^Acquired absence of left foot
+ ;;^UTILITY(U,$J,358.3,31214,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,31214,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,31215,0)
+ ;;=Z89.412^^180^1949^4
+ ;;^UTILITY(U,$J,358.3,31215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31599,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,31599,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,31599,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,31600,0)
- ;;=N52.32^^190^1939^33
- ;;^UTILITY(U,$J,358.3,31600,1,0)
+ ;;^UTILITY(U,$J,358.3,31215,1,3,0)
+ ;;=3^Acquired absence of left great toe
+ ;;^UTILITY(U,$J,358.3,31215,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,31215,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,31216,0)
+ ;;=Z89.112^^180^1949^5
+ ;;^UTILITY(U,$J,358.3,31216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31600,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,31600,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,31600,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,31601,0)
- ;;=N52.31^^190^1939^34
- ;;^UTILITY(U,$J,358.3,31601,1,0)
+ ;;^UTILITY(U,$J,358.3,31216,1,3,0)
+ ;;=3^Acquired absence of left hand
+ ;;^UTILITY(U,$J,358.3,31216,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,31216,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,31217,0)
+ ;;=Z89.622^^180^1949^6
+ ;;^UTILITY(U,$J,358.3,31217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31601,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,31601,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,31601,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,31602,0)
- ;;=N52.2^^190^1939^40
- ;;^UTILITY(U,$J,358.3,31602,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31602,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,31217,1,3,0)
+ ;;=3^Acquired absence of left hip joint

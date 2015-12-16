@@ -1,142 +1,126 @@
-IBDEI07J ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07J ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3358,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,3358,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,3359,0)
- ;;=99024^^30^271^1
- ;;^UTILITY(U,$J,358.3,3359,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,3359,1,1,0)
- ;;=1^Post-Op Follow-up Visit
- ;;^UTILITY(U,$J,358.3,3359,1,2,0)
- ;;=2^99024
- ;;^UTILITY(U,$J,358.3,3360,0)
- ;;=911.0^^31^272^9
- ;;^UTILITY(U,$J,358.3,3360,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3360,1,2,0)
- ;;=2^911.0
- ;;^UTILITY(U,$J,358.3,3360,1,5,0)
- ;;=5^Abrasion Trunk w/o infection
- ;;^UTILITY(U,$J,358.3,3360,2)
- ;;=^275275
- ;;^UTILITY(U,$J,358.3,3361,0)
- ;;=913.0^^31^272^6
- ;;^UTILITY(U,$J,358.3,3361,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3361,1,2,0)
- ;;=2^913.0
- ;;^UTILITY(U,$J,358.3,3361,1,5,0)
- ;;=5^Abrasion Forearm w/o infection
- ;;^UTILITY(U,$J,358.3,3361,2)
- ;;=^275297
- ;;^UTILITY(U,$J,358.3,3362,0)
- ;;=910.0^^31^272^3
- ;;^UTILITY(U,$J,358.3,3362,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3362,1,2,0)
- ;;=2^910.0
- ;;^UTILITY(U,$J,358.3,3362,1,5,0)
- ;;=5^Abrasion Face w/o infection
- ;;^UTILITY(U,$J,358.3,3362,2)
- ;;=^275263
- ;;^UTILITY(U,$J,358.3,3363,0)
- ;;=915.0^^31^272^4
- ;;^UTILITY(U,$J,358.3,3363,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3363,1,2,0)
- ;;=2^915.0
- ;;^UTILITY(U,$J,358.3,3363,1,5,0)
- ;;=5^Abrasion Finger w/o infection
- ;;^UTILITY(U,$J,358.3,3363,2)
- ;;=^275319
- ;;^UTILITY(U,$J,358.3,3364,0)
- ;;=917.0^^31^272^5
- ;;^UTILITY(U,$J,358.3,3364,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3364,1,2,0)
- ;;=2^917.0
- ;;^UTILITY(U,$J,358.3,3364,1,5,0)
- ;;=5^Abrasion Foot/Toe w/o infection
- ;;^UTILITY(U,$J,358.3,3364,2)
- ;;=^275341
- ;;^UTILITY(U,$J,358.3,3365,0)
- ;;=914.0^^31^272^7
- ;;^UTILITY(U,$J,358.3,3365,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3365,1,2,0)
- ;;=2^914.0
- ;;^UTILITY(U,$J,358.3,3365,1,5,0)
- ;;=5^Abrasion Hand w/o infection
- ;;^UTILITY(U,$J,358.3,3365,2)
- ;;=^275308
- ;;^UTILITY(U,$J,358.3,3366,0)
- ;;=916.0^^31^272^8
- ;;^UTILITY(U,$J,358.3,3366,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3366,1,2,0)
- ;;=2^916.0
- ;;^UTILITY(U,$J,358.3,3366,1,5,0)
- ;;=5^Abrasion Leg w/o infection
- ;;^UTILITY(U,$J,358.3,3366,2)
- ;;=^275330
- ;;^UTILITY(U,$J,358.3,3367,0)
- ;;=919.0^^31^272^10
- ;;^UTILITY(U,$J,358.3,3367,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3367,1,2,0)
- ;;=2^919.0
- ;;^UTILITY(U,$J,358.3,3367,1,5,0)
- ;;=5^Abrasion w/o Infection, Site NOS
- ;;^UTILITY(U,$J,358.3,3367,2)
- ;;=^1305
- ;;^UTILITY(U,$J,358.3,3368,0)
- ;;=918.0^^31^272^2
- ;;^UTILITY(U,$J,358.3,3368,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3368,1,2,0)
- ;;=2^918.0
- ;;^UTILITY(U,$J,358.3,3368,1,5,0)
- ;;=5^Abrasion Eyelid w/o Infection
- ;;^UTILITY(U,$J,358.3,3368,2)
- ;;=^275352
- ;;^UTILITY(U,$J,358.3,3369,0)
- ;;=912.0^^31^272^1
- ;;^UTILITY(U,$J,358.3,3369,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3369,1,2,0)
- ;;=2^912.0
- ;;^UTILITY(U,$J,358.3,3369,1,5,0)
- ;;=5^Abrasion Arm w/o infection
- ;;^UTILITY(U,$J,358.3,3369,2)
- ;;=^275286
- ;;^UTILITY(U,$J,358.3,3370,0)
- ;;=911.1^^31^273^8
- ;;^UTILITY(U,$J,358.3,3370,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3370,1,2,0)
- ;;=2^911.1
- ;;^UTILITY(U,$J,358.3,3370,1,5,0)
- ;;=5^Abrasion Trunk-Infected
- ;;^UTILITY(U,$J,358.3,3370,2)
- ;;=^275276
- ;;^UTILITY(U,$J,358.3,3371,0)
- ;;=913.1^^31^273^1
- ;;^UTILITY(U,$J,358.3,3371,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3371,1,2,0)
- ;;=2^913.1
- ;;^UTILITY(U,$J,358.3,3371,1,5,0)
- ;;=5^Abrasion Arm-Infected
- ;;^UTILITY(U,$J,358.3,3371,2)
- ;;=^275298
- ;;^UTILITY(U,$J,358.3,3372,0)
- ;;=910.1^^31^273^2
- ;;^UTILITY(U,$J,358.3,3372,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3372,1,2,0)
- ;;=2^910.1
+ ;;^UTILITY(U,$J,358.3,3026,1,4,0)
+ ;;=4^F40.241
+ ;;^UTILITY(U,$J,358.3,3026,2)
+ ;;=^5003555
+ ;;^UTILITY(U,$J,358.3,3027,0)
+ ;;=F40.248^^8^86^14
+ ;;^UTILITY(U,$J,358.3,3027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3027,1,3,0)
+ ;;=3^Situational Type Phobia NEC
+ ;;^UTILITY(U,$J,358.3,3027,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,3027,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,3028,0)
+ ;;=F06.33^^8^87^1
+ ;;^UTILITY(U,$J,358.3,3028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3028,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
+ ;;^UTILITY(U,$J,358.3,3028,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,3028,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,3029,0)
+ ;;=F06.34^^8^87^2
+ ;;^UTILITY(U,$J,358.3,3029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3029,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,3029,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,3029,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,3030,0)
+ ;;=F31.11^^8^87^4
+ ;;^UTILITY(U,$J,358.3,3030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3030,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,Mild
+ ;;^UTILITY(U,$J,358.3,3030,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,3030,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,3031,0)
+ ;;=F31.12^^8^87^5
+ ;;^UTILITY(U,$J,358.3,3031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3031,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,Moderate
+ ;;^UTILITY(U,$J,358.3,3031,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,3031,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,3032,0)
+ ;;=F31.13^^8^87^6
+ ;;^UTILITY(U,$J,358.3,3032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3032,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,Severe
+ ;;^UTILITY(U,$J,358.3,3032,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,3032,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,3033,0)
+ ;;=F31.2^^8^87^7
+ ;;^UTILITY(U,$J,358.3,3033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3033,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,3033,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,3033,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,3034,0)
+ ;;=F31.73^^8^87^8
+ ;;^UTILITY(U,$J,358.3,3034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3034,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,3034,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,3034,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,3035,0)
+ ;;=F31.74^^8^87^9
+ ;;^UTILITY(U,$J,358.3,3035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3035,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,In Full Remission
+ ;;^UTILITY(U,$J,358.3,3035,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,3035,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,3036,0)
+ ;;=F31.30^^8^87^10
+ ;;^UTILITY(U,$J,358.3,3036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3036,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Unspec
+ ;;^UTILITY(U,$J,358.3,3036,1,4,0)
+ ;;=4^F31.30
+ ;;^UTILITY(U,$J,358.3,3036,2)
+ ;;=^5003500
+ ;;^UTILITY(U,$J,358.3,3037,0)
+ ;;=F31.31^^8^87^11
+ ;;^UTILITY(U,$J,358.3,3037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3037,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Mild
+ ;;^UTILITY(U,$J,358.3,3037,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,3037,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,3038,0)
+ ;;=F31.32^^8^87^12
+ ;;^UTILITY(U,$J,358.3,3038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3038,1,3,0)
+ ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Moderate
+ ;;^UTILITY(U,$J,358.3,3038,1,4,0)
+ ;;=4^F31.32

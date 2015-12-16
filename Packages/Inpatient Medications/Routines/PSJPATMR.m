@@ -1,5 +1,5 @@
 PSJPATMR        ;BIR/RSB,LDT-UTILITY FOR PATIENT MERGE ;28 Oct 99 / 12:53 PM
- ;;5.0; INPATIENT MEDICATIONS ;**36**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**36,217**;16 DEC 97;Build 25
  ;
  ; Reference to ^PS(55 supported by DBIA #2191.
  ; Reference to ^PS(52.6 is supported by DBIA 1231
@@ -155,7 +155,8 @@ CHKPL(PSJDFN1)       ;
  N PLNUM,PSJFLAG
  S PSJFLAG=0
  F PLNUM=0:0 S PLNUM=$O(^PS(53.5,PLNUM)) Q:'PLNUM  D
- . I $D(^PS(53.5,PLNUM,1,"B",PSJDFN1,PSJDFN1)) S PSJFLAG=1 Q
+ . ;*217 If pick list is filed away or to be filed away, it should not stop merge.
+ . I $D(^PS(53.5,PLNUM,1,"B",PSJDFN1,PSJDFN1)),'$P(^PS(53.5,PLNUM,0),"^",5) S PSJFLAG=1 Q
  Q PSJFLAG
 CNVUD(DFN,ON)        ;Convert UD orders.
  N PSJOI,ND,DDRG,XX

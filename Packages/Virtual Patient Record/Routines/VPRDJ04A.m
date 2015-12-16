@@ -1,5 +1,5 @@
 VPRDJ04A ;SLC/MKB -- Admissions,PTF ;7/25/13
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -14,7 +14,7 @@ VPRDJ04A ;SLC/MKB -- Admissions,PTF ;7/25/13
  ; DIC                           2051
  ; DILFD                         2055
  ; DIQ                           2056
- ; ICDCODE                       3990
+ ; ICDEX                         5747
  ; ICPTCOD                       1995
  ; VADPT                        10061
  ; XUAF4                         2171
@@ -50,9 +50,11 @@ ADM(ID,DATE) ; -- admission [from VSIT1]
  I $G(VAIP(17)) S ADM("stay","dischargeDateTime")=$$JSONDT^VPRUTILS(+$G(VAIP(17,1)))
  I $G(VAIP(18)) S I=I+1 D PROV("ADM",I,+VAIP(18),"A")         ;attending
  I $G(VAIP(MVT,5)) S I=I+1 D PROV("ADM",I,+VAIP(MVT,5),"P",1) ;primary
- S ICD=$$POV^VPRDVSIT(VST) S:'ICD ICD=$$PTF^VPRDVSIT(DFN,VAIP(12)) ;PTF>ICD
- I $L(ICD)<2 S ADM("reasonName")=$G(VAIP(MVT,7))
- E  S ADM("reasonUid")=$$SETNCS^VPRUTILS("icd",ICD),ADM("reasonName")=$P(ICD,U,2)
+ S ICD=$$POV^VPRDVSIT(VST,DATE) S:'ICD ICD=$$PTF^VPRDVSIT(DFN,VAIP(12),DATE) ;PTF>ICD
+ I $L(ICD)<3 S ADM("reasonName")=$G(VAIP(MVT,7))
+ E  D
+ . N SYS S SYS=$P(ICD,U,3),SYS=$$LOW^XLFSTR(SYS)
+ . S ADM("reasonUid")=$$SETNCS^VPRUTILS(SYS,ICD),ADM("reasonName")=$P(ICD,U,2)
  S X=$$CPT^VPRDVSIT(VST),ADM("typeName")=$S(X:$P($$CPT^ICPTCOD(X),U,3),1:$$CATG^VPRDVSIT("H"))
  D MVT(VADMVT)   ;sub-movements
  D TIU(VST,.ADM) ;notes/summary
@@ -60,8 +62,9 @@ ADM(ID,DATE) ; -- admission [from VSIT1]
  Q
  ;
 TIU(VISIT,ARR) ; -- add notes to ARR("document")
- N X,Y,I,VPRX,LT,NT,DA,CNT,VPRY
- D FIND^DIC(8925,,.01,"QX",+$G(VISIT),,"V",,,"VPRX")
+ N X,Y,I,SCR,VPRX,LT,NT,DA,CNT,VPRY
+ S SCR="I $P(^(0),U,5)>6,$P(^(0),U,5)<14"
+ D FIND^DIC(8925,,.01,"QX",+$G(VISIT),,"V",SCR,,"VPRX")
  S Y="",(I,CNT)=0
  F  S I=$O(VPRX("DILIST",1,I)) Q:I<1  D
  . S LT=$G(VPRX("DILIST","ID",I,.01)) Q:$P(LT," ")="Addendum"
@@ -96,26 +99,21 @@ MVT(CA) ; -- add movements to ADM("movement",i,"attribute")
  .. S ADM("movements",CNT,"locationName")=$P($G(^SC(HLOC,0)),U)
  Q
  ;
-PTFA(ID) ; -- find ID in ^PXRMINDX(FNUM), fall thru to PX1 if successful
- N ROOT,IDX,ITEM,DATE K ^TMP("VPRPX",$J)
- S P=$L(ID,";"),TYPE=$P(ID,";",P),ID=$P(ID,";",1,P-1)
- S ROOT="^PXRMINDX(45,""ICD9"",""PNI"","_+$G(DFN)_","_""""_TYPE_""""
- S IDX=ROOT_")" F  S IDX=$Q(@IDX) Q:$P(IDX,",",1,5)'=ROOT  D
- . I """"_ID_""")"'=$P(IDX,",",8) Q
- . S DATE=+$P(IDX,",",7),ITEM=+$P(IDX,",",6)
- . S VPRIDT=9999999-DATE,^TMP("VPRPX",$J,VPRIDT,ID_";"_TYPE)=ITEM_U_DATE
- Q:'$D(^TMP("VPRPX",$J))  ;not found
- S ID=ID_";"_TYPE
+PTFA(ID) ; -- find ID in ^TMP("VPRPX",$J), fall thru to PX1 if successful
+ N IDT S (IDT,VPRIDT)=0
+ F  S IDT=$O(^TMP("VPRPX",$J,IDT)) Q:IDT<1  I $D(^(IDT,ID)) S VPRIDT=IDT Q
+ Q:VPRIDT<1  ;not found
 PTF1 ; -- PTF where ID=iens;TYPE
- ;   Expects ^TMP("VPRPX",$J,VPRIDT,ID)=ITM^[DISCHARGE]DATE
+ ;   Expects ^TMP("VPRPX",$J,VPRIDT,ID)=ITM^[DISCHARGE]DATE^SYS
  N TMP,PTF,ADM,DIS,VAIN,VAINDT,HLOC,FAC,X,Y,VISIT,X0
  ; PTF^DGPTPXRM(+ID,.VPRF)
  S TMP=$G(^TMP("VPRPX",$J,VPRIDT,ID))
  ;
  S PTF("localId")=ID,PTF("uid")=$$SETUID^VPRUTILS("ptf",DFN,ID)
  S P=$L(ID,";"),TYPE=$P(ID,";",P) S:TYPE="DXLS" PTF("principalDx")="true"
- S X=$$ICDDX^ICDCODE($P(TMP,U),$P(TMP,U,2)),Y=$S($P(X,U,4)'="":$P(X,U,4),1:$P(X,U,2))
- S PTF("icdCode")=$$SETNCS^VPRUTILS("icd",$P(X,U,2)),PTF("icdName")=Y
+ S X=$$ICDDX^ICDEX($P(TMP,U),$P(TMP,U,2),,"E")
+ S Y=$$LOW^XLFSTR($$SAB^ICDEX($P(X,U,20))) ;coding system
+ S PTF("icdCode")=$$SETNCS^VPRUTILS(Y,$P(X,U,2)),PTF("icdName")=$P(X,U,4)
  S DIS=$P(TMP,U,2) S:DIS VAINDT=DIS-.0001 D INP^VADPT
  S ADM=+$G(VAIN(7)),HLOC=+$G(^DIC(42,+$G(VAIN(4)),44))
  S:ADM PTF("arrivalDateTime")=$$JSONDT^VPRUTILS(ADM)

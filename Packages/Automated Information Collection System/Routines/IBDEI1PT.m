@@ -1,130 +1,118 @@
-IBDEI1PT ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PT ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30744,0)
- ;;=N52.2^^189^1922^14
- ;;^UTILITY(U,$J,358.3,30744,1,0)
+ ;;^UTILITY(U,$J,358.3,30374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30744,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced
- ;;^UTILITY(U,$J,358.3,30744,1,4,0)
- ;;=4^N52.2
- ;;^UTILITY(U,$J,358.3,30744,2)
- ;;=^5015756
- ;;^UTILITY(U,$J,358.3,30745,0)
- ;;=N52.02^^189^1922^13
- ;;^UTILITY(U,$J,358.3,30745,1,0)
+ ;;^UTILITY(U,$J,358.3,30374,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts1
+ ;;^UTILITY(U,$J,358.3,30374,1,4,0)
+ ;;=4^O36.5911
+ ;;^UTILITY(U,$J,358.3,30374,2)
+ ;;=^5017004
+ ;;^UTILITY(U,$J,358.3,30375,0)
+ ;;=O36.5912^^178^1916^166
+ ;;^UTILITY(U,$J,358.3,30375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30745,1,3,0)
- ;;=3^Erectile Dysfunction,Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,30745,1,4,0)
- ;;=4^N52.02
- ;;^UTILITY(U,$J,358.3,30745,2)
- ;;=^5015753
- ;;^UTILITY(U,$J,358.3,30746,0)
- ;;=N52.03^^189^1922^12
- ;;^UTILITY(U,$J,358.3,30746,1,0)
+ ;;^UTILITY(U,$J,358.3,30375,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts2
+ ;;^UTILITY(U,$J,358.3,30375,1,4,0)
+ ;;=4^O36.5912
+ ;;^UTILITY(U,$J,358.3,30375,2)
+ ;;=^5017005
+ ;;^UTILITY(U,$J,358.3,30376,0)
+ ;;=O36.5913^^178^1916^167
+ ;;^UTILITY(U,$J,358.3,30376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30746,1,3,0)
- ;;=3^Erectile Dysfunction,Artrl Insuff/Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,30746,1,4,0)
- ;;=4^N52.03
- ;;^UTILITY(U,$J,358.3,30746,2)
- ;;=^5015754
- ;;^UTILITY(U,$J,358.3,30747,0)
- ;;=N52.1^^189^1922^18
- ;;^UTILITY(U,$J,358.3,30747,1,0)
+ ;;^UTILITY(U,$J,358.3,30376,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts3
+ ;;^UTILITY(U,$J,358.3,30376,1,4,0)
+ ;;=4^O36.5913
+ ;;^UTILITY(U,$J,358.3,30376,2)
+ ;;=^5017006
+ ;;^UTILITY(U,$J,358.3,30377,0)
+ ;;=O36.5914^^178^1916^168
+ ;;^UTILITY(U,$J,358.3,30377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30747,1,3,0)
- ;;=3^Eriectile Dysfunction d/t Oth Diseases
- ;;^UTILITY(U,$J,358.3,30747,1,4,0)
- ;;=4^N52.1
- ;;^UTILITY(U,$J,358.3,30747,2)
- ;;=^5015755
- ;;^UTILITY(U,$J,358.3,30748,0)
- ;;=N52.01^^189^1922^17
- ;;^UTILITY(U,$J,358.3,30748,1,0)
+ ;;^UTILITY(U,$J,358.3,30377,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts4
+ ;;^UTILITY(U,$J,358.3,30377,1,4,0)
+ ;;=4^O36.5914
+ ;;^UTILITY(U,$J,358.3,30377,2)
+ ;;=^5017007
+ ;;^UTILITY(U,$J,358.3,30378,0)
+ ;;=O36.5915^^178^1916^169
+ ;;^UTILITY(U,$J,358.3,30378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30748,1,3,0)
- ;;=3^Eriectile Dysfunction d/t Arterial Insufficiency
- ;;^UTILITY(U,$J,358.3,30748,1,4,0)
- ;;=4^N52.01
- ;;^UTILITY(U,$J,358.3,30748,2)
- ;;=^5015752
- ;;^UTILITY(U,$J,358.3,30749,0)
- ;;=R33.9^^189^1922^35
- ;;^UTILITY(U,$J,358.3,30749,1,0)
+ ;;^UTILITY(U,$J,358.3,30378,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts5
+ ;;^UTILITY(U,$J,358.3,30378,1,4,0)
+ ;;=4^O36.5915
+ ;;^UTILITY(U,$J,358.3,30378,2)
+ ;;=^5017008
+ ;;^UTILITY(U,$J,358.3,30379,0)
+ ;;=O36.5920^^178^1916^170
+ ;;^UTILITY(U,$J,358.3,30379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30749,1,3,0)
- ;;=3^Retention of Urine,Unspec
- ;;^UTILITY(U,$J,358.3,30749,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,30749,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,30750,0)
- ;;=R32.^^189^1922^39
- ;;^UTILITY(U,$J,358.3,30750,1,0)
+ ;;^UTILITY(U,$J,358.3,30379,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, unsp
+ ;;^UTILITY(U,$J,358.3,30379,1,4,0)
+ ;;=4^O36.5920
+ ;;^UTILITY(U,$J,358.3,30379,2)
+ ;;=^5017009
+ ;;^UTILITY(U,$J,358.3,30380,0)
+ ;;=O36.5921^^178^1916^171
+ ;;^UTILITY(U,$J,358.3,30380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30750,1,3,0)
- ;;=3^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,30750,1,4,0)
- ;;=4^R32.
- ;;^UTILITY(U,$J,358.3,30750,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,30751,0)
- ;;=R35.0^^189^1922^19
- ;;^UTILITY(U,$J,358.3,30751,1,0)
+ ;;^UTILITY(U,$J,358.3,30380,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts1
+ ;;^UTILITY(U,$J,358.3,30380,1,4,0)
+ ;;=4^O36.5921
+ ;;^UTILITY(U,$J,358.3,30380,2)
+ ;;=^5017010
+ ;;^UTILITY(U,$J,358.3,30381,0)
+ ;;=O36.5922^^178^1916^172
+ ;;^UTILITY(U,$J,358.3,30381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30751,1,3,0)
- ;;=3^Frequency of Micturition
- ;;^UTILITY(U,$J,358.3,30751,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,30751,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,30752,0)
- ;;=I83.019^^189^1923^21
- ;;^UTILITY(U,$J,358.3,30752,1,0)
+ ;;^UTILITY(U,$J,358.3,30381,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts2
+ ;;^UTILITY(U,$J,358.3,30381,1,4,0)
+ ;;=4^O36.5922
+ ;;^UTILITY(U,$J,358.3,30381,2)
+ ;;=^5017011
+ ;;^UTILITY(U,$J,358.3,30382,0)
+ ;;=O36.5923^^178^1916^173
+ ;;^UTILITY(U,$J,358.3,30382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30752,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,30752,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,30752,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,30753,0)
- ;;=I83.029^^189^1923^12
- ;;^UTILITY(U,$J,358.3,30753,1,0)
+ ;;^UTILITY(U,$J,358.3,30382,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts3
+ ;;^UTILITY(U,$J,358.3,30382,1,4,0)
+ ;;=4^O36.5923
+ ;;^UTILITY(U,$J,358.3,30382,2)
+ ;;=^5017012
+ ;;^UTILITY(U,$J,358.3,30383,0)
+ ;;=O36.5924^^178^1916^174
+ ;;^UTILITY(U,$J,358.3,30383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30753,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,30753,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,30753,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,30754,0)
- ;;=I83.014^^189^1923^13
- ;;^UTILITY(U,$J,358.3,30754,1,0)
+ ;;^UTILITY(U,$J,358.3,30383,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts4
+ ;;^UTILITY(U,$J,358.3,30383,1,4,0)
+ ;;=4^O36.5924
+ ;;^UTILITY(U,$J,358.3,30383,2)
+ ;;=^5017013
+ ;;^UTILITY(U,$J,358.3,30384,0)
+ ;;=O36.5925^^178^1916^175
+ ;;^UTILITY(U,$J,358.3,30384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30754,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,30754,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,30754,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,30755,0)
- ;;=I83.013^^189^1923^14
- ;;^UTILITY(U,$J,358.3,30755,1,0)
+ ;;^UTILITY(U,$J,358.3,30384,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,30384,1,4,0)
+ ;;=4^O36.5925
+ ;;^UTILITY(U,$J,358.3,30384,2)
+ ;;=^5017014
+ ;;^UTILITY(U,$J,358.3,30385,0)
+ ;;=O36.5930^^178^1916^176
+ ;;^UTILITY(U,$J,358.3,30385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30755,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,30755,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,30755,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,30756,0)
- ;;=I83.012^^189^1923^15
- ;;^UTILITY(U,$J,358.3,30756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30756,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,30385,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, unsp

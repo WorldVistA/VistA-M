@@ -1,140 +1,124 @@
-IBDEI05U ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05U ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2469,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2469,1,4,0)
- ;;=4^733.00
- ;;^UTILITY(U,$J,358.3,2469,1,5,0)
- ;;=5^OSTEOPOROSIS NOS
- ;;^UTILITY(U,$J,358.3,2470,0)
- ;;=009.2^^21^199^42
- ;;^UTILITY(U,$J,358.3,2470,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2470,1,4,0)
- ;;=4^009.2
- ;;^UTILITY(U,$J,358.3,2470,1,5,0)
- ;;=5^DIARRHEA, INFECTIOUS
- ;;^UTILITY(U,$J,358.3,2471,0)
- ;;=562.10^^21^199^44
- ;;^UTILITY(U,$J,358.3,2471,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2471,1,4,0)
- ;;=4^562.10
- ;;^UTILITY(U,$J,358.3,2471,1,5,0)
- ;;=5^DIVERTICULOSIS OF COLON
- ;;^UTILITY(U,$J,358.3,2472,0)
- ;;=455.6^^21^199^61
- ;;^UTILITY(U,$J,358.3,2472,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2472,1,4,0)
- ;;=4^455.6
- ;;^UTILITY(U,$J,358.3,2472,1,5,0)
- ;;=5^HEMORRHOIDS NOS
- ;;^UTILITY(U,$J,358.3,2473,0)
- ;;=413.9^^21^199^4
- ;;^UTILITY(U,$J,358.3,2473,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2473,1,4,0)
- ;;=4^413.9
- ;;^UTILITY(U,$J,358.3,2473,1,5,0)
- ;;=5^ANGINA PECTORIS NEC/NOS
- ;;^UTILITY(U,$J,358.3,2474,0)
- ;;=564.1^^21^199^73
- ;;^UTILITY(U,$J,358.3,2474,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2474,1,4,0)
- ;;=4^564.1
- ;;^UTILITY(U,$J,358.3,2474,1,5,0)
- ;;=5^IRRITABLE COLON
- ;;^UTILITY(U,$J,358.3,2475,0)
- ;;=414.8^^21^199^26
- ;;^UTILITY(U,$J,358.3,2475,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2475,1,4,0)
- ;;=4^414.8
- ;;^UTILITY(U,$J,358.3,2475,1,5,0)
- ;;=5^CHR ISCHEMIC HRT DIS NEC
- ;;^UTILITY(U,$J,358.3,2476,0)
- ;;=786.50^^21^199^24
- ;;^UTILITY(U,$J,358.3,2476,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2476,1,4,0)
- ;;=4^786.50
- ;;^UTILITY(U,$J,358.3,2476,1,5,0)
- ;;=5^CHEST PAIN NOS
- ;;^UTILITY(U,$J,358.3,2477,0)
- ;;=596.59^^21^199^12
- ;;^UTILITY(U,$J,358.3,2477,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2477,1,4,0)
- ;;=4^596.59
- ;;^UTILITY(U,$J,358.3,2477,1,5,0)
- ;;=5^BLADDER DYSFUNCTION
- ;;^UTILITY(U,$J,358.3,2478,0)
- ;;=427.31^^21^199^10
- ;;^UTILITY(U,$J,358.3,2478,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2478,1,4,0)
- ;;=4^427.31
- ;;^UTILITY(U,$J,358.3,2478,1,5,0)
- ;;=5^ATRIAL FIBRILLATION
- ;;^UTILITY(U,$J,358.3,2479,0)
- ;;=427.9^^21^199^21
- ;;^UTILITY(U,$J,358.3,2479,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2479,1,4,0)
- ;;=4^427.9
- ;;^UTILITY(U,$J,358.3,2479,1,5,0)
- ;;=5^CARDIAC DYSRHYTHMIA NOS
- ;;^UTILITY(U,$J,358.3,2480,0)
- ;;=424.1^^21^199^6
- ;;^UTILITY(U,$J,358.3,2480,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2480,1,4,0)
- ;;=4^424.1
- ;;^UTILITY(U,$J,358.3,2480,1,5,0)
- ;;=5^AORTIC VALVE DISORDER
- ;;^UTILITY(U,$J,358.3,2481,0)
- ;;=428.0^^21^199^37
- ;;^UTILITY(U,$J,358.3,2481,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2481,1,4,0)
- ;;=4^428.0
- ;;^UTILITY(U,$J,358.3,2481,1,5,0)
- ;;=5^CONGESTIVE HEART FAILURE
- ;;^UTILITY(U,$J,358.3,2482,0)
- ;;=791.0^^21^199^90
- ;;^UTILITY(U,$J,358.3,2482,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2482,1,4,0)
- ;;=4^791.0
- ;;^UTILITY(U,$J,358.3,2482,1,5,0)
- ;;=5^PROTEINURIA
- ;;^UTILITY(U,$J,358.3,2483,0)
- ;;=447.9^^21^199^7
- ;;^UTILITY(U,$J,358.3,2483,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2483,1,4,0)
- ;;=4^447.9
- ;;^UTILITY(U,$J,358.3,2483,1,5,0)
- ;;=5^ARTERIAL DISEASE NOS
- ;;^UTILITY(U,$J,358.3,2484,0)
- ;;=601.9^^21^199^89
- ;;^UTILITY(U,$J,358.3,2484,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2484,1,4,0)
- ;;=4^601.9
- ;;^UTILITY(U,$J,358.3,2484,1,5,0)
- ;;=5^PROSTATITIS NOS
- ;;^UTILITY(U,$J,358.3,2485,0)
- ;;=459.9^^21^199^35
- ;;^UTILITY(U,$J,358.3,2485,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2485,1,4,0)
- ;;=4^459.9
- ;;^UTILITY(U,$J,358.3,2485,1,5,0)
- ;;=5^CIRCULATORY DISEASE NOS
- ;;^UTILITY(U,$J,358.3,2486,0)
- ;;=599.0^^21^199^100
+ ;;^UTILITY(U,$J,358.3,2205,2)
+ ;;=^5043112
+ ;;^UTILITY(U,$J,358.3,2206,0)
+ ;;=S83.421A^^4^62^200
+ ;;^UTILITY(U,$J,358.3,2206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2206,1,3,0)
+ ;;=3^Sprain of lateral collateral ligament of right knee, init
+ ;;^UTILITY(U,$J,358.3,2206,1,4,0)
+ ;;=4^S83.421A
+ ;;^UTILITY(U,$J,358.3,2206,2)
+ ;;=^5043118
+ ;;^UTILITY(U,$J,358.3,2207,0)
+ ;;=S83.422A^^4^62^201
+ ;;^UTILITY(U,$J,358.3,2207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2207,1,3,0)
+ ;;=3^Sprain of lateral collateral ligament of left knee, init
+ ;;^UTILITY(U,$J,358.3,2207,1,4,0)
+ ;;=4^S83.422A
+ ;;^UTILITY(U,$J,358.3,2207,2)
+ ;;=^5043121
+ ;;^UTILITY(U,$J,358.3,2208,0)
+ ;;=S83.501A^^4^62^236
+ ;;^UTILITY(U,$J,358.3,2208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2208,1,3,0)
+ ;;=3^Sprain of unsp cruciate ligament of right knee, init encntr
+ ;;^UTILITY(U,$J,358.3,2208,1,4,0)
+ ;;=4^S83.501A
+ ;;^UTILITY(U,$J,358.3,2208,2)
+ ;;=^5043127
+ ;;^UTILITY(U,$J,358.3,2209,0)
+ ;;=S83.502A^^4^62^235
+ ;;^UTILITY(U,$J,358.3,2209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2209,1,3,0)
+ ;;=3^Sprain of unsp cruciate ligament of left knee, init encntr
+ ;;^UTILITY(U,$J,358.3,2209,1,4,0)
+ ;;=4^S83.502A
+ ;;^UTILITY(U,$J,358.3,2209,2)
+ ;;=^5043130
+ ;;^UTILITY(U,$J,358.3,2210,0)
+ ;;=S83.511A^^4^62^197
+ ;;^UTILITY(U,$J,358.3,2210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2210,1,3,0)
+ ;;=3^Sprain of anterior cruciate ligament of right knee, init
+ ;;^UTILITY(U,$J,358.3,2210,1,4,0)
+ ;;=4^S83.511A
+ ;;^UTILITY(U,$J,358.3,2210,2)
+ ;;=^5043133
+ ;;^UTILITY(U,$J,358.3,2211,0)
+ ;;=S83.512A^^4^62^198
+ ;;^UTILITY(U,$J,358.3,2211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2211,1,3,0)
+ ;;=3^Sprain of anterior cruciate ligament of left knee, init
+ ;;^UTILITY(U,$J,358.3,2211,1,4,0)
+ ;;=4^S83.512A
+ ;;^UTILITY(U,$J,358.3,2211,2)
+ ;;=^5043136
+ ;;^UTILITY(U,$J,358.3,2212,0)
+ ;;=S83.521A^^4^62^219
+ ;;^UTILITY(U,$J,358.3,2212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2212,1,3,0)
+ ;;=3^Sprain of posterior cruciate ligament of right knee, init
+ ;;^UTILITY(U,$J,358.3,2212,1,4,0)
+ ;;=4^S83.521A
+ ;;^UTILITY(U,$J,358.3,2212,2)
+ ;;=^5043142
+ ;;^UTILITY(U,$J,358.3,2213,0)
+ ;;=S83.522A^^4^62^220
+ ;;^UTILITY(U,$J,358.3,2213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2213,1,3,0)
+ ;;=3^Sprain of posterior cruciate ligament of left knee, init
+ ;;^UTILITY(U,$J,358.3,2213,1,4,0)
+ ;;=4^S83.522A
+ ;;^UTILITY(U,$J,358.3,2213,2)
+ ;;=^5043145
+ ;;^UTILITY(U,$J,358.3,2214,0)
+ ;;=S76.111A^^4^62^244
+ ;;^UTILITY(U,$J,358.3,2214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2214,1,3,0)
+ ;;=3^Strain of right quadriceps muscle, fascia and tendon, init
+ ;;^UTILITY(U,$J,358.3,2214,1,4,0)
+ ;;=4^S76.111A
+ ;;^UTILITY(U,$J,358.3,2214,2)
+ ;;=^5039546
+ ;;^UTILITY(U,$J,358.3,2215,0)
+ ;;=S76.112A^^4^62^241
+ ;;^UTILITY(U,$J,358.3,2215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2215,1,3,0)
+ ;;=3^Strain of left quadriceps muscle, fascia and tendon, init
+ ;;^UTILITY(U,$J,358.3,2215,1,4,0)
+ ;;=4^S76.112A
+ ;;^UTILITY(U,$J,358.3,2215,2)
+ ;;=^5039549
+ ;;^UTILITY(U,$J,358.3,2216,0)
+ ;;=S33.5XXA^^4^62^215
+ ;;^UTILITY(U,$J,358.3,2216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2216,1,3,0)
+ ;;=3^Sprain of ligaments of lumbar spine, initial encounter
+ ;;^UTILITY(U,$J,358.3,2216,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,2216,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,2217,0)
+ ;;=S13.9XXA^^4^62^199
+ ;;^UTILITY(U,$J,358.3,2217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2217,1,3,0)
+ ;;=3^Sprain of joints and ligaments of unsp parts of neck, init
+ ;;^UTILITY(U,$J,358.3,2217,1,4,0)
+ ;;=4^S13.9XXA

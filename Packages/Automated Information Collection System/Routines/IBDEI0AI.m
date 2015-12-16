@@ -1,130 +1,142 @@
-IBDEI0AI ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0AI ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4945,0)
- ;;=272.0^^41^478^55
- ;;^UTILITY(U,$J,358.3,4945,1,0)
+ ;;^UTILITY(U,$J,358.3,4535,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4945,1,4,0)
- ;;=4^272.0
- ;;^UTILITY(U,$J,358.3,4945,1,5,0)
- ;;=5^Hypercholesterolemia, Pure
- ;;^UTILITY(U,$J,358.3,4945,2)
- ;;=^59973
- ;;^UTILITY(U,$J,358.3,4946,0)
- ;;=272.1^^41^478^58
- ;;^UTILITY(U,$J,358.3,4946,1,0)
+ ;;^UTILITY(U,$J,358.3,4535,1,4,0)
+ ;;=4^V10.41
+ ;;^UTILITY(U,$J,358.3,4535,1,5,0)
+ ;;=5^H/O Cervical Cancer
+ ;;^UTILITY(U,$J,358.3,4535,2)
+ ;;=^295219
+ ;;^UTILITY(U,$J,358.3,4536,0)
+ ;;=V10.05^^23^232^36
+ ;;^UTILITY(U,$J,358.3,4536,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4946,1,4,0)
- ;;=4^272.1
- ;;^UTILITY(U,$J,358.3,4946,1,5,0)
- ;;=5^Hypertriglyceridemia
- ;;^UTILITY(U,$J,358.3,4946,2)
- ;;=Hypertriglyceridemia^101303
- ;;^UTILITY(U,$J,358.3,4947,0)
- ;;=272.2^^41^478^63
- ;;^UTILITY(U,$J,358.3,4947,1,0)
+ ;;^UTILITY(U,$J,358.3,4536,1,4,0)
+ ;;=4^V10.05
+ ;;^UTILITY(U,$J,358.3,4536,1,5,0)
+ ;;=5^H/O Colon Cancer
+ ;;^UTILITY(U,$J,358.3,4536,2)
+ ;;=H/O Colon Cancer^295207
+ ;;^UTILITY(U,$J,358.3,4537,0)
+ ;;=V10.03^^23^232^37
+ ;;^UTILITY(U,$J,358.3,4537,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4947,1,4,0)
- ;;=4^272.2
- ;;^UTILITY(U,$J,358.3,4947,1,5,0)
- ;;=5^Mixed Hyperlipidemia
- ;;^UTILITY(U,$J,358.3,4947,2)
- ;;=^78424
- ;;^UTILITY(U,$J,358.3,4948,0)
- ;;=396.0^^41^478^11
- ;;^UTILITY(U,$J,358.3,4948,1,0)
+ ;;^UTILITY(U,$J,358.3,4537,1,4,0)
+ ;;=4^V10.03
+ ;;^UTILITY(U,$J,358.3,4537,1,5,0)
+ ;;=5^H/O Esophageal Cancer
+ ;;^UTILITY(U,$J,358.3,4537,2)
+ ;;=^295205
+ ;;^UTILITY(U,$J,358.3,4538,0)
+ ;;=V10.60^^23^232^39
+ ;;^UTILITY(U,$J,358.3,4538,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4948,1,4,0)
- ;;=4^396.0
- ;;^UTILITY(U,$J,358.3,4948,1,5,0)
- ;;=5^Aortic and Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,4948,2)
- ;;=Aortic and Mitral Stenosis^269580
- ;;^UTILITY(U,$J,358.3,4949,0)
- ;;=414.02^^41^478^18
- ;;^UTILITY(U,$J,358.3,4949,1,0)
+ ;;^UTILITY(U,$J,358.3,4538,1,4,0)
+ ;;=4^V10.60
+ ;;^UTILITY(U,$J,358.3,4538,1,5,0)
+ ;;=5^H/O Leukemia
+ ;;^UTILITY(U,$J,358.3,4538,2)
+ ;;=H/O Leukemia^295231
+ ;;^UTILITY(U,$J,358.3,4539,0)
+ ;;=V10.11^^23^232^40
+ ;;^UTILITY(U,$J,358.3,4539,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4949,1,4,0)
- ;;=4^414.02
- ;;^UTILITY(U,$J,358.3,4949,1,5,0)
- ;;=5^CAD, Occlusion of Venous Graft
- ;;^UTILITY(U,$J,358.3,4949,2)
- ;;=CAD, Occlusion of Venous Graft^303282
- ;;^UTILITY(U,$J,358.3,4950,0)
- ;;=459.10^^41^478^73
- ;;^UTILITY(U,$J,358.3,4950,1,0)
+ ;;^UTILITY(U,$J,358.3,4539,1,4,0)
+ ;;=4^V10.11
+ ;;^UTILITY(U,$J,358.3,4539,1,5,0)
+ ;;=5^H/O Lung Cancer
+ ;;^UTILITY(U,$J,358.3,4539,2)
+ ;;=H/O Lung Cancer^295211
+ ;;^UTILITY(U,$J,358.3,4540,0)
+ ;;=V10.79^^23^232^41
+ ;;^UTILITY(U,$J,358.3,4540,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4950,1,4,0)
- ;;=4^459.10
- ;;^UTILITY(U,$J,358.3,4950,1,5,0)
- ;;=5^Post Phlebotic Syndrome
- ;;^UTILITY(U,$J,358.3,4950,2)
- ;;=Post Phlebotic Syndrome^328597
- ;;^UTILITY(U,$J,358.3,4951,0)
- ;;=428.20^^41^478^50
- ;;^UTILITY(U,$J,358.3,4951,1,0)
+ ;;^UTILITY(U,$J,358.3,4540,1,4,0)
+ ;;=4^V10.79
+ ;;^UTILITY(U,$J,358.3,4540,1,5,0)
+ ;;=5^H/O Lymphoma
+ ;;^UTILITY(U,$J,358.3,4540,2)
+ ;;=H/O Lymphoma^295238
+ ;;^UTILITY(U,$J,358.3,4541,0)
+ ;;=V10.82^^23^232^43
+ ;;^UTILITY(U,$J,358.3,4541,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4951,1,4,0)
- ;;=4^428.20
- ;;^UTILITY(U,$J,358.3,4951,1,5,0)
- ;;=5^Heart Failure, Systolic, Unspec
- ;;^UTILITY(U,$J,358.3,4951,2)
- ;;=Heart Failure, Systolic^328594
- ;;^UTILITY(U,$J,358.3,4952,0)
- ;;=428.21^^41^478^42
- ;;^UTILITY(U,$J,358.3,4952,1,0)
+ ;;^UTILITY(U,$J,358.3,4541,1,4,0)
+ ;;=4^V10.82
+ ;;^UTILITY(U,$J,358.3,4541,1,5,0)
+ ;;=5^H/O Malig Melanoma Of Skin
+ ;;^UTILITY(U,$J,358.3,4541,2)
+ ;;=^295240
+ ;;^UTILITY(U,$J,358.3,4542,0)
+ ;;=V10.02^^23^232^45
+ ;;^UTILITY(U,$J,358.3,4542,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4952,1,4,0)
- ;;=4^428.21
- ;;^UTILITY(U,$J,358.3,4952,1,5,0)
- ;;=5^Heart Failure, Acute Systolic
- ;;^UTILITY(U,$J,358.3,4952,2)
- ;;=Heart Failure, Acute Systolic^328494
- ;;^UTILITY(U,$J,358.3,4953,0)
- ;;=428.22^^41^478^44
- ;;^UTILITY(U,$J,358.3,4953,1,0)
+ ;;^UTILITY(U,$J,358.3,4542,1,4,0)
+ ;;=4^V10.02
+ ;;^UTILITY(U,$J,358.3,4542,1,5,0)
+ ;;=5^H/O Oral Cavity/Pharynx Cancer
+ ;;^UTILITY(U,$J,358.3,4542,2)
+ ;;=^295204
+ ;;^UTILITY(U,$J,358.3,4543,0)
+ ;;=V10.43^^23^232^46
+ ;;^UTILITY(U,$J,358.3,4543,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4953,1,4,0)
- ;;=4^428.22
- ;;^UTILITY(U,$J,358.3,4953,1,5,0)
- ;;=5^Heart Failure, Chronic Systolic
- ;;^UTILITY(U,$J,358.3,4953,2)
- ;;=Heart Failure, Chronic Systolic^328495
- ;;^UTILITY(U,$J,358.3,4954,0)
- ;;=428.23^^41^478^49
- ;;^UTILITY(U,$J,358.3,4954,1,0)
+ ;;^UTILITY(U,$J,358.3,4543,1,4,0)
+ ;;=4^V10.43
+ ;;^UTILITY(U,$J,358.3,4543,1,5,0)
+ ;;=5^H/O Ovarian Cancer
+ ;;^UTILITY(U,$J,358.3,4543,2)
+ ;;=^295221
+ ;;^UTILITY(U,$J,358.3,4544,0)
+ ;;=V10.46^^23^232^47
+ ;;^UTILITY(U,$J,358.3,4544,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4954,1,4,0)
- ;;=4^428.23
- ;;^UTILITY(U,$J,358.3,4954,1,5,0)
- ;;=5^Heart Failure, Systolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,4954,2)
- ;;=Heart Failure, Systolic, Acute on Chronic^328496
- ;;^UTILITY(U,$J,358.3,4955,0)
- ;;=428.30^^41^478^45
- ;;^UTILITY(U,$J,358.3,4955,1,0)
+ ;;^UTILITY(U,$J,358.3,4544,1,4,0)
+ ;;=4^V10.46
+ ;;^UTILITY(U,$J,358.3,4544,1,5,0)
+ ;;=5^H/O Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,4544,2)
+ ;;=^295224
+ ;;^UTILITY(U,$J,358.3,4545,0)
+ ;;=V10.06^^23^232^48
+ ;;^UTILITY(U,$J,358.3,4545,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4955,1,4,0)
- ;;=4^428.30
- ;;^UTILITY(U,$J,358.3,4955,1,5,0)
- ;;=5^Heart Failure, Diastolic
- ;;^UTILITY(U,$J,358.3,4955,2)
- ;;=Heart Failure, Diastolic^328595
- ;;^UTILITY(U,$J,358.3,4956,0)
- ;;=428.31^^41^478^41
- ;;^UTILITY(U,$J,358.3,4956,1,0)
+ ;;^UTILITY(U,$J,358.3,4545,1,4,0)
+ ;;=4^V10.06
+ ;;^UTILITY(U,$J,358.3,4545,1,5,0)
+ ;;=5^H/O Rectal/Anal Cancer
+ ;;^UTILITY(U,$J,358.3,4545,2)
+ ;;=^295208
+ ;;^UTILITY(U,$J,358.3,4546,0)
+ ;;=V10.52^^23^232^49
+ ;;^UTILITY(U,$J,358.3,4546,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4956,1,4,0)
- ;;=4^428.31
- ;;^UTILITY(U,$J,358.3,4956,1,5,0)
- ;;=5^Heart Failure, Acute Diastolic
- ;;^UTILITY(U,$J,358.3,4956,2)
- ;;=Heart Failure, Acute Diastolic^328497
- ;;^UTILITY(U,$J,358.3,4957,0)
- ;;=428.32^^41^478^43
- ;;^UTILITY(U,$J,358.3,4957,1,0)
+ ;;^UTILITY(U,$J,358.3,4546,1,4,0)
+ ;;=4^V10.52
+ ;;^UTILITY(U,$J,358.3,4546,1,5,0)
+ ;;=5^H/O Renal Cancer
+ ;;^UTILITY(U,$J,358.3,4546,2)
+ ;;=H/o Renal Cancer^295229
+ ;;^UTILITY(U,$J,358.3,4547,0)
+ ;;=V10.04^^23^232^51
+ ;;^UTILITY(U,$J,358.3,4547,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4957,1,4,0)
- ;;=4^428.32
+ ;;^UTILITY(U,$J,358.3,4547,1,4,0)
+ ;;=4^V10.04
+ ;;^UTILITY(U,$J,358.3,4547,1,5,0)
+ ;;=5^H/O Stomach Cancer
+ ;;^UTILITY(U,$J,358.3,4547,2)
+ ;;=^295206
+ ;;^UTILITY(U,$J,358.3,4548,0)
+ ;;=V10.47^^23^232^52
+ ;;^UTILITY(U,$J,358.3,4548,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,4548,1,4,0)
+ ;;=4^V10.47
+ ;;^UTILITY(U,$J,358.3,4548,1,5,0)
+ ;;=5^H/O Testicular Cancer
+ ;;^UTILITY(U,$J,358.3,4548,2)
+ ;;=^295225

@@ -1,126 +1,142 @@
-IBDEI1AZ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1AZ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23393,1,0)
+ ;;^UTILITY(U,$J,358.3,23081,2)
+ ;;=^332859
+ ;;^UTILITY(U,$J,358.3,23082,0)
+ ;;=V13.59^^125^1400^42
+ ;;^UTILITY(U,$J,358.3,23082,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23393,1,3,0)
- ;;=3^110.4
- ;;^UTILITY(U,$J,358.3,23393,1,5,0)
- ;;=5^Dermatophytosis of foot
- ;;^UTILITY(U,$J,358.3,23393,2)
- ;;=^33168
- ;;^UTILITY(U,$J,358.3,23394,0)
- ;;=250.00^^139^1436^7
- ;;^UTILITY(U,$J,358.3,23394,1,0)
+ ;;^UTILITY(U,$J,358.3,23082,1,4,0)
+ ;;=4^V13.59
+ ;;^UTILITY(U,$J,358.3,23082,1,5,0)
+ ;;=5^Hx of Musculosk Disease
+ ;;^UTILITY(U,$J,358.3,23082,2)
+ ;;=^295268
+ ;;^UTILITY(U,$J,358.3,23083,0)
+ ;;=V15.52^^125^1400^55
+ ;;^UTILITY(U,$J,358.3,23083,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23394,1,3,0)
- ;;=3^250.00
- ;;^UTILITY(U,$J,358.3,23394,1,5,0)
- ;;=5^DM II w/o complication 
- ;;^UTILITY(U,$J,358.3,23394,2)
- ;;=^33605
- ;;^UTILITY(U,$J,358.3,23395,0)
- ;;=250.01^^139^1436^3
- ;;^UTILITY(U,$J,358.3,23395,1,0)
+ ;;^UTILITY(U,$J,358.3,23083,1,4,0)
+ ;;=4^V15.52
+ ;;^UTILITY(U,$J,358.3,23083,1,5,0)
+ ;;=5^Hx of TBI
+ ;;^UTILITY(U,$J,358.3,23083,2)
+ ;;=^338495
+ ;;^UTILITY(U,$J,358.3,23084,0)
+ ;;=V12.04^^125^1400^38
+ ;;^UTILITY(U,$J,358.3,23084,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23395,1,3,0)
- ;;=3^250.01
- ;;^UTILITY(U,$J,358.3,23395,1,5,0)
- ;;=5^DM I w/o complication 
- ;;^UTILITY(U,$J,358.3,23395,2)
- ;;=^33586
- ;;^UTILITY(U,$J,358.3,23396,0)
- ;;=838.00^^139^1436^23
- ;;^UTILITY(U,$J,358.3,23396,1,0)
+ ;;^UTILITY(U,$J,358.3,23084,1,4,0)
+ ;;=4^V12.04
+ ;;^UTILITY(U,$J,358.3,23084,1,5,0)
+ ;;=5^Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,23084,2)
+ ;;=^336780
+ ;;^UTILITY(U,$J,358.3,23085,0)
+ ;;=V13.51^^125^1400^23
+ ;;^UTILITY(U,$J,358.3,23085,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23396,1,3,0)
- ;;=3^838.00
- ;;^UTILITY(U,$J,358.3,23396,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; foot, unspecified
- ;;^UTILITY(U,$J,358.3,23396,2)
- ;;=^274391
- ;;^UTILITY(U,$J,358.3,23397,0)
- ;;=838.01^^139^1436^24
- ;;^UTILITY(U,$J,358.3,23397,1,0)
+ ;;^UTILITY(U,$J,358.3,23085,1,4,0)
+ ;;=4^V13.51
+ ;;^UTILITY(U,$J,358.3,23085,1,5,0)
+ ;;=5^Hs of Pathological Fx
+ ;;^UTILITY(U,$J,358.3,23085,2)
+ ;;=^336781
+ ;;^UTILITY(U,$J,358.3,23086,0)
+ ;;=V15.51^^125^1400^58
+ ;;^UTILITY(U,$J,358.3,23086,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23397,1,3,0)
- ;;=3^838.01
- ;;^UTILITY(U,$J,358.3,23397,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; tarsal(bone), joint unspecified 
- ;;^UTILITY(U,$J,358.3,23397,2)
- ;;=^274394
- ;;^UTILITY(U,$J,358.3,23398,0)
- ;;=838.02^^139^1436^25
- ;;^UTILITY(U,$J,358.3,23398,1,0)
+ ;;^UTILITY(U,$J,358.3,23086,1,4,0)
+ ;;=4^V15.51
+ ;;^UTILITY(U,$J,358.3,23086,1,5,0)
+ ;;=5^Hx of Traumatic Fx
+ ;;^UTILITY(U,$J,358.3,23086,2)
+ ;;=^336786
+ ;;^UTILITY(U,$J,358.3,23087,0)
+ ;;=V62.22^^125^1400^49
+ ;;^UTILITY(U,$J,358.3,23087,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23398,1,3,0)
- ;;=3^838.02
- ;;^UTILITY(U,$J,358.3,23398,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; midtarsal (joint)
- ;;^UTILITY(U,$J,358.3,23398,2)
- ;;=^274395
- ;;^UTILITY(U,$J,358.3,23399,0)
- ;;=838.03^^139^1436^26
- ;;^UTILITY(U,$J,358.3,23399,1,0)
+ ;;^UTILITY(U,$J,358.3,23087,1,4,0)
+ ;;=4^V62.22
+ ;;^UTILITY(U,$J,358.3,23087,1,5,0)
+ ;;=5^Hx of Return from Military Deployment
+ ;;^UTILITY(U,$J,358.3,23087,2)
+ ;;=^336807
+ ;;^UTILITY(U,$J,358.3,23088,0)
+ ;;=919.1^^125^1401^1
+ ;;^UTILITY(U,$J,358.3,23088,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23399,1,3,0)
- ;;=3^838.03
- ;;^UTILITY(U,$J,358.3,23399,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; tarsometatarsal (joint)
- ;;^UTILITY(U,$J,358.3,23399,2)
- ;;=^274396
- ;;^UTILITY(U,$J,358.3,23400,0)
- ;;=838.04^^139^1436^27
- ;;^UTILITY(U,$J,358.3,23400,1,0)
+ ;;^UTILITY(U,$J,358.3,23088,1,4,0)
+ ;;=4^919.1
+ ;;^UTILITY(U,$J,358.3,23088,1,5,0)
+ ;;=5^Abrasion, Infected
+ ;;^UTILITY(U,$J,358.3,23088,2)
+ ;;=^275358
+ ;;^UTILITY(U,$J,358.3,23089,0)
+ ;;=919.0^^125^1401^2
+ ;;^UTILITY(U,$J,358.3,23089,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23400,1,3,0)
- ;;=3^838.04
- ;;^UTILITY(U,$J,358.3,23400,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; metatarsal(bone), joint unspecified
- ;;^UTILITY(U,$J,358.3,23400,2)
- ;;=^274397
- ;;^UTILITY(U,$J,358.3,23401,0)
- ;;=838.05^^139^1436^28
- ;;^UTILITY(U,$J,358.3,23401,1,0)
+ ;;^UTILITY(U,$J,358.3,23089,1,4,0)
+ ;;=4^919.0
+ ;;^UTILITY(U,$J,358.3,23089,1,5,0)
+ ;;=5^Abrasion, Not Infected
+ ;;^UTILITY(U,$J,358.3,23089,2)
+ ;;=^1305
+ ;;^UTILITY(U,$J,358.3,23090,0)
+ ;;=924.9^^125^1401^3
+ ;;^UTILITY(U,$J,358.3,23090,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23401,1,3,0)
- ;;=3^838.05
- ;;^UTILITY(U,$J,358.3,23401,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; metatarsophalangeal(joint)
- ;;^UTILITY(U,$J,358.3,23401,2)
- ;;=^274398
- ;;^UTILITY(U,$J,358.3,23402,0)
- ;;=838.06^^139^1436^29
- ;;^UTILITY(U,$J,358.3,23402,1,0)
+ ;;^UTILITY(U,$J,358.3,23090,1,4,0)
+ ;;=4^924.9
+ ;;^UTILITY(U,$J,358.3,23090,1,5,0)
+ ;;=5^Bite, Human, Contusion
+ ;;^UTILITY(U,$J,358.3,23090,2)
+ ;;=^28117
+ ;;^UTILITY(U,$J,358.3,23091,0)
+ ;;=879.8^^125^1401^4
+ ;;^UTILITY(U,$J,358.3,23091,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23402,1,3,0)
- ;;=3^838.06
- ;;^UTILITY(U,$J,358.3,23402,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; interphalangeal(joint) foot
- ;;^UTILITY(U,$J,358.3,23402,2)
- ;;=^274399
- ;;^UTILITY(U,$J,358.3,23403,0)
- ;;=838.09^^139^1436^30
- ;;^UTILITY(U,$J,358.3,23403,1,0)
+ ;;^UTILITY(U,$J,358.3,23091,1,4,0)
+ ;;=4^879.8
+ ;;^UTILITY(U,$J,358.3,23091,1,5,0)
+ ;;=5^Bite, Human, Penetrating
+ ;;^UTILITY(U,$J,358.3,23091,2)
+ ;;=^275021
+ ;;^UTILITY(U,$J,358.3,23092,0)
+ ;;=919.3^^125^1401^5
+ ;;^UTILITY(U,$J,358.3,23092,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23403,1,3,0)
- ;;=3^838.09
- ;;^UTILITY(U,$J,358.3,23403,1,5,0)
- ;;=5^Dislocation of foot, closed dislocation; other, toe(s)
- ;;^UTILITY(U,$J,358.3,23403,2)
- ;;=^274400
- ;;^UTILITY(U,$J,358.3,23404,0)
- ;;=12.5^1^139^1436^19^-DIABETES MELLITUS^1^1
- ;;^UTILITY(U,$J,358.3,23404,1,0)
+ ;;^UTILITY(U,$J,358.3,23092,1,4,0)
+ ;;=4^919.3
+ ;;^UTILITY(U,$J,358.3,23092,1,5,0)
+ ;;=5^Blister, Infected
+ ;;^UTILITY(U,$J,358.3,23092,2)
+ ;;=^275359
+ ;;^UTILITY(U,$J,358.3,23093,0)
+ ;;=919.2^^125^1401^6
+ ;;^UTILITY(U,$J,358.3,23093,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23404,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,23404,1,5,0)
- ;;=5
- ;;^UTILITY(U,$J,358.3,23405,0)
- ;;=64.5^1^139^1436^22^-Dislocation^1^1
- ;;^UTILITY(U,$J,358.3,23405,1,0)
+ ;;^UTILITY(U,$J,358.3,23093,1,4,0)
+ ;;=4^919.2
+ ;;^UTILITY(U,$J,358.3,23093,1,5,0)
+ ;;=5^Blister, Not Infected
+ ;;^UTILITY(U,$J,358.3,23093,2)
+ ;;=^15350
+ ;;^UTILITY(U,$J,358.3,23094,0)
+ ;;=919.5^^125^1401^9
+ ;;^UTILITY(U,$J,358.3,23094,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23405,1,3,0)
- ;;=3
+ ;;^UTILITY(U,$J,358.3,23094,1,4,0)
+ ;;=4^919.5
+ ;;^UTILITY(U,$J,358.3,23094,1,5,0)
+ ;;=5^Insect Bite, Infected
+ ;;^UTILITY(U,$J,358.3,23094,2)
+ ;;=^275360
+ ;;^UTILITY(U,$J,358.3,23095,0)
+ ;;=919.4^^125^1401^10
+ ;;^UTILITY(U,$J,358.3,23095,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23095,1,4,0)
+ ;;=4^919.4

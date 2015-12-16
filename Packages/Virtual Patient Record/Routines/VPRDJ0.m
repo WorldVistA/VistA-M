@@ -1,5 +1,5 @@
 VPRDJ0 ;SLC/MKB -- Serve VistA data as JSON cont ;6/25/12  16:11
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -140,16 +140,13 @@ MED ; -- Pharmacy
  Q
  ;
 PTF ; -- Patient Treatment File
- N VPRIDT,ID,P,TYPE
+ N VPRIDT,ID
+ D PTF^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
  I $G(VPRID),VPRID'=+VPRID D PTFA^VPRDJ04A(VPRID) Q
- I $G(VPRID) D  Q:'$D(^TMP("VPRPX",$J))  ;update via DGPM = ien only
- . N X,Y,I S VPRIDT=9999999              ;so build ^TMP nodes
- . D RPC^DGPTFAPI(.Y,VPRID)
- . S X=$P($G(Y(1)),U,3) I $L(X) S ^TMP("VPRPX",$J,VPRIDT,VPRID_";70;DXLS")=X_U
- . F I=1:1:9 S X=$P($G(Y(2)),U,I) I $L(X) S ^TMP("VPRPX",$J,VPRIDT,VPRID_";70;D SD"_I)=X_U
- D:'$G(VPRID) PTF^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
  S VPRIDT=0 F  S VPRIDT=$O(^TMP("VPRPX",$J,VPRIDT)) Q:VPRIDT<1  D  Q:VPRI'<VPRMAX
- . S ID="" F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID=""  D PTF1^VPRDJ04A Q:VPRI'<VPRMAX
+ . S ID="" F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID=""  D
+ .. I VPRID=+VPRID,+ID'=+VPRID Q  ;single PTF record only
+ .. D PTF1^VPRDJ04A
  K ^TMP("VPRPX",$J)
  Q
  ;
@@ -211,7 +208,7 @@ DOCUMENT ; -- Text Integration Utilities
  . I CLS="LR" D LR^VPRDJ08A(DFN,VPRSTART,VPRSTOP,VPRMAX) Q
  . ; TIU document classes, by sig status
  . F VPRS=1:1:$L(STATUS,U) S CTXT=$P(STATUS,U,VPRS) D  Q:VPRI'<VPRMAX
- .. D CONTEXT^TIUSRVLO(.VPRY,CLS,CTXT,DFN,VPRSTART,VPRSTOP,,VPRMAX,,1)
+ .. D CONTEXT^TIUSRVLO(.VPRY,CLS,CTXT,DFN,VPRSTART,VPRSTOP,,,,1)
  .. S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  D  Q:VPRI'<VPRMAX
  ... S VPRX=$G(@VPRY@(VPRN)) Q:'$$MATCH^VPRDJ08(VPRX,CTXT)
  ... Q:$D(^TMP("VPRD",$J,+VPRX))  ;already included

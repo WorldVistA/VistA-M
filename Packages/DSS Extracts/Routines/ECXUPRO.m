@@ -1,5 +1,5 @@
-ECXUPRO ;ALB/TJL-Prosthetic Extract Unusual Cost Report ;4/2/14  11:30
- ;;3.0;DSS EXTRACTS;**49,111,144,148,149**;Dec 22, 1997;Build 27
+ECXUPRO ;ALB/TJL-Prosthetic Extract Unusual Cost Report ;4/15/15  15:54
+ ;;3.0;DSS EXTRACTS;**49,111,144,148,149,154**;Dec 22, 1997;Build 13
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;144
@@ -12,7 +12,7 @@ EN ; entry point
  D SELECT Q:QFLG
  S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
  .K ^TMP($J) ;144
- .S ^TMP($J,"ECXPORT",0)="NAME^SSN^DATE OF SERVICE^PSAS HCPCS CODE^FEEDER KEY^QUANTITY^COST OF TRANSACTION^TRANSACTION TYPE" ;144,149
+ .S ^TMP($J,"ECXPORT",0)="NAME^SSN^DATE OF SERVICE^FORM^FORM DESCRIPTION^PSAS HCPCS CODE^FEEDER KEY^QUANTITY^COST OF TRANSACTION^TRANSACTION TYPE" ;144,149,154
  .S CNT=1 ;144
  .D PROCESS ;144
  .D EXPDISP^ECXUTL1 ;144
@@ -97,9 +97,10 @@ PRINT ; process temp file and print report
  ....I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=REC,CNT=CNT+1 Q  ;144
  ....S COUNT=COUNT+1
  ....I $Y+3>IOSL D HEADER Q:QFLG
- ....W !,$P(REC,U),?8,$P(REC,U,2),?21,$P(REC,U,3),?39,$P(REC,U,4),?70,$P(REC,U,5),?93,$$RJ^XLFSTR($P(REC,U,6),8),?110,$$RJ^XLFSTR($P(REC,U,7),11),?127,$P(REC,U,8) ;149
+ ....W !,$P(REC,U),?8,$P(REC,U,2),?21,$P(REC,U,3),?39,$P(REC,U,4),?45,$P(REC,U,5),?70,$P(REC,U,6),?93,$$RJ^XLFSTR($P(REC,U,7),8),?110,$$RJ^XLFSTR($P(REC,U,8),11),?127,$P(REC,U,9) ;149,154
  Q:QFLG!($G(ECXPORT))  ;144
  I COUNT=0 W !!,?8,"No unusual costs to report for this extract"
+ I COUNT W ! D FOOTER^ECXPROCT ;154 Print key to forms if report had data
 CLOSE ;
  I $E(IOST)="C",'QFLG D
  .S SS=22-$Y F JJ=1:1:SS W !
@@ -116,8 +117,8 @@ HEADER ;header and page control
  W !,"Prosthetic Extract Unusual Cost Report",?124,"Page: "_PG
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time: "_ECRUN
  W !,"  End Date: ",ECEND,?97,"     Threshold Value: ",ECTHLD
- W !!,?21,"Date of",?39,"PSAS",?112,"Cost of",?126,"Tran" ;149
- W !,"Name",?11,"SSN",?21,"Service",?39,"HCPCS CODE" ;149
+ W !!,?21,"Date of",?45,"PSAS",?112,"Cost of",?126,"Tran" ;149,154
+ W !,"Name",?11,"SSN",?21,"Service",?39,"FORM",?45,"HCPCS CODE" ;149,154
  W ?70,"Feeder Key",?93,"Quantity",?110,"Transaction",?126,"Type" ;149
  W !,LN,!
  Q

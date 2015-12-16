@@ -1,132 +1,128 @@
-IBDEI1P0 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1P0 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30379,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,30380,0)
- ;;=M47.815^^189^1914^35
- ;;^UTILITY(U,$J,358.3,30380,1,0)
+ ;;^UTILITY(U,$J,358.3,30030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30380,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,30380,1,4,0)
- ;;=4^M47.815
- ;;^UTILITY(U,$J,358.3,30380,2)
- ;;=^5012072
- ;;^UTILITY(U,$J,358.3,30381,0)
- ;;=S08.111A^^189^1915^3
- ;;^UTILITY(U,$J,358.3,30381,1,0)
+ ;;^UTILITY(U,$J,358.3,30030,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30030,1,4,0)
+ ;;=4^O31.02X5
+ ;;^UTILITY(U,$J,358.3,30030,2)
+ ;;=^5016521
+ ;;^UTILITY(U,$J,358.3,30031,0)
+ ;;=O31.01X0^^178^1913^44
+ ;;^UTILITY(U,$J,358.3,30031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30381,1,3,0)
- ;;=3^Complete Traumatic Amputation of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,30381,1,4,0)
- ;;=4^S08.111A
- ;;^UTILITY(U,$J,358.3,30381,2)
- ;;=^5021251
- ;;^UTILITY(U,$J,358.3,30382,0)
- ;;=S08.112A^^189^1915^2
- ;;^UTILITY(U,$J,358.3,30382,1,0)
+ ;;^UTILITY(U,$J,358.3,30031,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,30031,1,4,0)
+ ;;=4^O31.01X0
+ ;;^UTILITY(U,$J,358.3,30031,2)
+ ;;=^5016509
+ ;;^UTILITY(U,$J,358.3,30032,0)
+ ;;=O31.01X1^^178^1913^39
+ ;;^UTILITY(U,$J,358.3,30032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30382,1,3,0)
- ;;=3^Complete Traumatic Amputation of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,30382,1,4,0)
- ;;=4^S08.112A
- ;;^UTILITY(U,$J,358.3,30382,2)
- ;;=^5021254
- ;;^UTILITY(U,$J,358.3,30383,0)
- ;;=S08.0XXA^^189^1915^1
- ;;^UTILITY(U,$J,358.3,30383,1,0)
+ ;;^UTILITY(U,$J,358.3,30032,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,30032,1,4,0)
+ ;;=4^O31.01X1
+ ;;^UTILITY(U,$J,358.3,30032,2)
+ ;;=^5016510
+ ;;^UTILITY(U,$J,358.3,30033,0)
+ ;;=O31.01X2^^178^1913^40
+ ;;^UTILITY(U,$J,358.3,30033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30383,1,3,0)
- ;;=3^Avulsion of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,30383,1,4,0)
- ;;=4^S08.0XXA
- ;;^UTILITY(U,$J,358.3,30383,2)
- ;;=^5021248
- ;;^UTILITY(U,$J,358.3,30384,0)
- ;;=S09.90XA^^189^1915^6
- ;;^UTILITY(U,$J,358.3,30384,1,0)
+ ;;^UTILITY(U,$J,358.3,30033,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,30033,1,4,0)
+ ;;=4^O31.01X2
+ ;;^UTILITY(U,$J,358.3,30033,2)
+ ;;=^5016511
+ ;;^UTILITY(U,$J,358.3,30034,0)
+ ;;=O31.01X3^^178^1913^41
+ ;;^UTILITY(U,$J,358.3,30034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30384,1,3,0)
- ;;=3^Injury of Head,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,30384,1,4,0)
- ;;=4^S09.90XA
- ;;^UTILITY(U,$J,358.3,30384,2)
- ;;=^5021332
- ;;^UTILITY(U,$J,358.3,30385,0)
- ;;=S09.8XXA^^189^1915^5
- ;;^UTILITY(U,$J,358.3,30385,1,0)
+ ;;^UTILITY(U,$J,358.3,30034,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,30034,1,4,0)
+ ;;=4^O31.01X3
+ ;;^UTILITY(U,$J,358.3,30034,2)
+ ;;=^5016512
+ ;;^UTILITY(U,$J,358.3,30035,0)
+ ;;=O31.01X4^^178^1913^42
+ ;;^UTILITY(U,$J,358.3,30035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30385,1,3,0)
- ;;=3^Injury of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,30385,1,4,0)
- ;;=4^S09.8XXA
- ;;^UTILITY(U,$J,358.3,30385,2)
- ;;=^5021329
- ;;^UTILITY(U,$J,358.3,30386,0)
- ;;=S08.89XA^^189^1915^7
- ;;^UTILITY(U,$J,358.3,30386,1,0)
+ ;;^UTILITY(U,$J,358.3,30035,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,30035,1,4,0)
+ ;;=4^O31.01X4
+ ;;^UTILITY(U,$J,358.3,30035,2)
+ ;;=^5016513
+ ;;^UTILITY(U,$J,358.3,30036,0)
+ ;;=O31.01X5^^178^1913^43
+ ;;^UTILITY(U,$J,358.3,30036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30386,1,3,0)
- ;;=3^Traumatic Amputation of Parts of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,30386,1,4,0)
- ;;=4^S08.89XA
- ;;^UTILITY(U,$J,358.3,30386,2)
- ;;=^5021275
- ;;^UTILITY(U,$J,358.3,30387,0)
- ;;=S09.93XA^^189^1915^4
- ;;^UTILITY(U,$J,358.3,30387,1,0)
+ ;;^UTILITY(U,$J,358.3,30036,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,30036,1,4,0)
+ ;;=4^O31.01X5
+ ;;^UTILITY(U,$J,358.3,30036,2)
+ ;;=^5016514
+ ;;^UTILITY(U,$J,358.3,30037,0)
+ ;;=O12.01^^178^1913^26
+ ;;^UTILITY(U,$J,358.3,30037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30387,1,3,0)
- ;;=3^Injury of Face,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,30387,1,4,0)
- ;;=4^S09.93XA
- ;;^UTILITY(U,$J,358.3,30387,2)
- ;;=^5021341
- ;;^UTILITY(U,$J,358.3,30388,0)
- ;;=M79.671^^189^1916^13
- ;;^UTILITY(U,$J,358.3,30388,1,0)
+ ;;^UTILITY(U,$J,358.3,30037,1,3,0)
+ ;;=3^Gestational edema, first trimester
+ ;;^UTILITY(U,$J,358.3,30037,1,4,0)
+ ;;=4^O12.01
+ ;;^UTILITY(U,$J,358.3,30037,2)
+ ;;=^5016147
+ ;;^UTILITY(U,$J,358.3,30038,0)
+ ;;=O12.02^^178^1913^27
+ ;;^UTILITY(U,$J,358.3,30038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30388,1,3,0)
- ;;=3^Right Foot Pain
- ;;^UTILITY(U,$J,358.3,30388,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,30388,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,30389,0)
- ;;=M79.675^^189^1916^9
- ;;^UTILITY(U,$J,358.3,30389,1,0)
+ ;;^UTILITY(U,$J,358.3,30038,1,3,0)
+ ;;=3^Gestational edema, second trimester
+ ;;^UTILITY(U,$J,358.3,30038,1,4,0)
+ ;;=4^O12.02
+ ;;^UTILITY(U,$J,358.3,30038,2)
+ ;;=^5016148
+ ;;^UTILITY(U,$J,358.3,30039,0)
+ ;;=O12.03^^178^1913^28
+ ;;^UTILITY(U,$J,358.3,30039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30389,1,3,0)
- ;;=3^Left Toe(s) Pain
- ;;^UTILITY(U,$J,358.3,30389,1,4,0)
- ;;=4^M79.675
- ;;^UTILITY(U,$J,358.3,30389,2)
- ;;=^5013354
- ;;^UTILITY(U,$J,358.3,30390,0)
- ;;=M79.674^^189^1916^19
- ;;^UTILITY(U,$J,358.3,30390,1,0)
+ ;;^UTILITY(U,$J,358.3,30039,1,3,0)
+ ;;=3^Gestational edema, third trimester
+ ;;^UTILITY(U,$J,358.3,30039,1,4,0)
+ ;;=4^O12.03
+ ;;^UTILITY(U,$J,358.3,30039,2)
+ ;;=^5016149
+ ;;^UTILITY(U,$J,358.3,30040,0)
+ ;;=O12.21^^178^1913^23
+ ;;^UTILITY(U,$J,358.3,30040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30390,1,3,0)
- ;;=3^Right Toe(s) Pain
- ;;^UTILITY(U,$J,358.3,30390,1,4,0)
- ;;=4^M79.674
- ;;^UTILITY(U,$J,358.3,30390,2)
- ;;=^5013353
- ;;^UTILITY(U,$J,358.3,30391,0)
- ;;=M79.672^^189^1916^3
- ;;^UTILITY(U,$J,358.3,30391,1,0)
+ ;;^UTILITY(U,$J,358.3,30040,1,3,0)
+ ;;=3^Gestational edema with proteinuria, first trimester
+ ;;^UTILITY(U,$J,358.3,30040,1,4,0)
+ ;;=4^O12.21
+ ;;^UTILITY(U,$J,358.3,30040,2)
+ ;;=^5016155
+ ;;^UTILITY(U,$J,358.3,30041,0)
+ ;;=O12.22^^178^1913^24
+ ;;^UTILITY(U,$J,358.3,30041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30391,1,3,0)
- ;;=3^Left Foot Pain
- ;;^UTILITY(U,$J,358.3,30391,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,30391,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,30392,0)
- ;;=M79.661^^189^1916^17
- ;;^UTILITY(U,$J,358.3,30392,1,0)
+ ;;^UTILITY(U,$J,358.3,30041,1,3,0)
+ ;;=3^Gestational edema with proteinuria, second trimester
+ ;;^UTILITY(U,$J,358.3,30041,1,4,0)
+ ;;=4^O12.22
+ ;;^UTILITY(U,$J,358.3,30041,2)
+ ;;=^5016156
+ ;;^UTILITY(U,$J,358.3,30042,0)
+ ;;=O12.23^^178^1913^25
+ ;;^UTILITY(U,$J,358.3,30042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30392,1,3,0)
- ;;=3^Right Lower Leg Pain
+ ;;^UTILITY(U,$J,358.3,30042,1,3,0)
+ ;;=3^Gestational edema with proteinuria, third trimester

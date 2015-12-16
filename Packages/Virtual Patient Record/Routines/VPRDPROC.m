@@ -1,5 +1,5 @@
 VPRDPROC ;SLC/MKB -- Procedure extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -56,7 +56,7 @@ XML(PROC) ; -- Return procedures as XML
  N ATT,X,Y,I,J,NAMES
  D ADD("<procedure>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(PROC(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
- . S NAMES=$S(ATT="document"!(ATT="opReport"):"id^localTitle^nationalTitle^status^Z",1:"code^name^Z")
+ . S NAMES=$S(ATT="document"!(ATT="opReport"):"id^localTitle^nationalTitle^vuid^status^Z",1:"code^name^Z")
  . I $O(PROC(ATT,0)) D  S Y="" Q  ;multiples
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(PROC(ATT,I)) Q:I<1  D

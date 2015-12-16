@@ -1,130 +1,140 @@
-IBDEI0GF ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0GF ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7933,1,2,0)
- ;;=2^Dilate Lacrimal Punctum,w/ or w/o Irr
- ;;^UTILITY(U,$J,358.3,7933,1,3,0)
- ;;=3^68801
- ;;^UTILITY(U,$J,358.3,7934,0)
- ;;=65400^^51^571^31^^^^1
- ;;^UTILITY(U,$J,358.3,7934,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7934,1,2,0)
- ;;=2^Superficial Keratectomy
- ;;^UTILITY(U,$J,358.3,7934,1,3,0)
- ;;=3^65400
- ;;^UTILITY(U,$J,358.3,7935,0)
- ;;=65436^^51^571^28^^^^1
- ;;^UTILITY(U,$J,358.3,7935,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7935,1,2,0)
- ;;=2^Remove Corneal Epith, EDTA
- ;;^UTILITY(U,$J,358.3,7935,1,3,0)
- ;;=3^65436
- ;;^UTILITY(U,$J,358.3,7936,0)
- ;;=65772^^51^571^24^^^^1
- ;;^UTILITY(U,$J,358.3,7936,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7936,1,2,0)
- ;;=2^Incision, Cornea, Relaxation
- ;;^UTILITY(U,$J,358.3,7936,1,3,0)
- ;;=3^65772
- ;;^UTILITY(U,$J,358.3,7937,0)
- ;;=37609^^51^571^32^^^^1
- ;;^UTILITY(U,$J,358.3,7937,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7937,1,2,0)
- ;;=2^Temporal Artery Biopsy
- ;;^UTILITY(U,$J,358.3,7937,1,3,0)
- ;;=3^37609
- ;;^UTILITY(U,$J,358.3,7938,0)
- ;;=66170^^51^571^23^^^^1
- ;;^UTILITY(U,$J,358.3,7938,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7938,1,2,0)
- ;;=2^Fistulization Sclera for Glauc Trabeculectomy
- ;;^UTILITY(U,$J,358.3,7938,1,3,0)
- ;;=3^66170
- ;;^UTILITY(U,$J,358.3,7939,0)
- ;;=65800^^51^571^13^^^^1
- ;;^UTILITY(U,$J,358.3,7939,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7939,1,2,0)
- ;;=2^Drainage of Eye
- ;;^UTILITY(U,$J,358.3,7939,1,3,0)
- ;;=3^65800
- ;;^UTILITY(U,$J,358.3,7940,0)
- ;;=67805^^51^571^6^^^^1
- ;;^UTILITY(U,$J,358.3,7940,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7940,1,2,0)
- ;;=2^Chalazion-Excision;Mult,Different Lid
- ;;^UTILITY(U,$J,358.3,7940,1,3,0)
- ;;=3^67805
- ;;^UTILITY(U,$J,358.3,7941,0)
- ;;=67801^^51^571^7^^^^1
- ;;^UTILITY(U,$J,358.3,7941,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7941,1,2,0)
- ;;=2^Chalazion-Excision;Mult,Same Lid
- ;;^UTILITY(U,$J,358.3,7941,1,3,0)
- ;;=3^67801
- ;;^UTILITY(U,$J,358.3,7942,0)
- ;;=68110^^51^571^29^^^^1
- ;;^UTILITY(U,$J,358.3,7942,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7942,1,2,0)
- ;;=2^Remove Eyelid Lining Lesion
- ;;^UTILITY(U,$J,358.3,7942,1,3,0)
- ;;=3^68110
- ;;^UTILITY(U,$J,358.3,7943,0)
- ;;=65855^^51^572^11^^^^1
- ;;^UTILITY(U,$J,358.3,7943,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7943,1,2,0)
- ;;=2^Trabeculoplasty, one/more sessions
- ;;^UTILITY(U,$J,358.3,7943,1,3,0)
- ;;=3^65855
- ;;^UTILITY(U,$J,358.3,7944,0)
- ;;=65860^^51^572^10^^^^1
- ;;^UTILITY(U,$J,358.3,7944,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7944,1,2,0)
- ;;=2^Sever Adhesions of Ant Segment
- ;;^UTILITY(U,$J,358.3,7944,1,3,0)
- ;;=3^65860
- ;;^UTILITY(U,$J,358.3,7945,0)
- ;;=66761^^51^572^5^^^^1
- ;;^UTILITY(U,$J,358.3,7945,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7945,1,2,0)
- ;;=2^Iridotomy/Iridectomy, one/more session
- ;;^UTILITY(U,$J,358.3,7945,1,3,0)
- ;;=3^66761
- ;;^UTILITY(U,$J,358.3,7946,0)
- ;;=66762^^51^572^4^^^^1
- ;;^UTILITY(U,$J,358.3,7946,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7946,1,2,0)
- ;;=2^Iridoplasty, one/more sessions
- ;;^UTILITY(U,$J,358.3,7946,1,3,0)
- ;;=3^66762
- ;;^UTILITY(U,$J,358.3,7947,0)
- ;;=67105^^51^572^9^^^^1
- ;;^UTILITY(U,$J,358.3,7947,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7947,1,2,0)
- ;;=2^Repair Detach Retina 1 or + Sessions,Photocoag
- ;;^UTILITY(U,$J,358.3,7947,1,3,0)
- ;;=3^67105
- ;;^UTILITY(U,$J,358.3,7948,0)
- ;;=67145^^51^572^8^^^^1
- ;;^UTILITY(U,$J,358.3,7948,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7948,1,2,0)
- ;;=2^Prophylactic Tx of Retina 1 or + Sessions,Photocoag
- ;;^UTILITY(U,$J,358.3,7948,1,3,0)
- ;;=3^67145
- ;;^UTILITY(U,$J,358.3,7949,0)
- ;;=67210^^51^572^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7618,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7618,1,4,0)
+ ;;=4^275.49
+ ;;^UTILITY(U,$J,358.3,7618,1,5,0)
+ ;;=5^Pseudohypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,7618,2)
+ ;;=Pseudohypparathyroidism^317904
+ ;;^UTILITY(U,$J,358.3,7619,0)
+ ;;=266.2^^35^473^53
+ ;;^UTILITY(U,$J,358.3,7619,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7619,1,4,0)
+ ;;=4^266.2
+ ;;^UTILITY(U,$J,358.3,7619,1,5,0)
+ ;;=5^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,7619,2)
+ ;;=Vitamin B12 Deficiency^87347
+ ;;^UTILITY(U,$J,358.3,7620,0)
+ ;;=268.9^^35^473^55
+ ;;^UTILITY(U,$J,358.3,7620,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7620,1,4,0)
+ ;;=4^268.9
+ ;;^UTILITY(U,$J,358.3,7620,1,5,0)
+ ;;=5^Vitamin D Deficiency
+ ;;^UTILITY(U,$J,358.3,7620,2)
+ ;;=Vitamin D Deficiency^126968
+ ;;^UTILITY(U,$J,358.3,7621,0)
+ ;;=266.1^^35^473^54
+ ;;^UTILITY(U,$J,358.3,7621,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7621,1,4,0)
+ ;;=4^266.1
+ ;;^UTILITY(U,$J,358.3,7621,1,5,0)
+ ;;=5^Vitamin B6 Deficiency
+ ;;^UTILITY(U,$J,358.3,7621,2)
+ ;;=^101683
+ ;;^UTILITY(U,$J,358.3,7622,0)
+ ;;=780.99^^35^473^3
+ ;;^UTILITY(U,$J,358.3,7622,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7622,1,4,0)
+ ;;=4^780.99
+ ;;^UTILITY(U,$J,358.3,7622,1,5,0)
+ ;;=5^Cold Intolerance
+ ;;^UTILITY(U,$J,358.3,7622,2)
+ ;;=Cold Intolerance^328568
+ ;;^UTILITY(U,$J,358.3,7623,0)
+ ;;=255.41^^35^473^1
+ ;;^UTILITY(U,$J,358.3,7623,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7623,1,4,0)
+ ;;=4^255.41
+ ;;^UTILITY(U,$J,358.3,7623,1,5,0)
+ ;;=5^Adrenal Insuff
+ ;;^UTILITY(U,$J,358.3,7623,2)
+ ;;=^335240
+ ;;^UTILITY(U,$J,358.3,7624,0)
+ ;;=249.00^^35^473^49
+ ;;^UTILITY(U,$J,358.3,7624,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7624,1,4,0)
+ ;;=4^249.00
+ ;;^UTILITY(U,$J,358.3,7624,1,5,0)
+ ;;=5^Secondary DM w/o Complication
+ ;;^UTILITY(U,$J,358.3,7624,2)
+ ;;=^336728
+ ;;^UTILITY(U,$J,358.3,7625,0)
+ ;;=249.40^^35^473^48
+ ;;^UTILITY(U,$J,358.3,7625,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7625,1,4,0)
+ ;;=4^249.40
+ ;;^UTILITY(U,$J,358.3,7625,1,5,0)
+ ;;=5^Secondary DM w/ Renal Complications
+ ;;^UTILITY(U,$J,358.3,7625,2)
+ ;;=^336732
+ ;;^UTILITY(U,$J,358.3,7626,0)
+ ;;=249.60^^35^473^47
+ ;;^UTILITY(U,$J,358.3,7626,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7626,1,4,0)
+ ;;=4^249.60
+ ;;^UTILITY(U,$J,358.3,7626,1,5,0)
+ ;;=5^Secondary DM w/ Neuro Complications
+ ;;^UTILITY(U,$J,358.3,7626,2)
+ ;;=^336734
+ ;;^UTILITY(U,$J,358.3,7627,0)
+ ;;=257.2^^35^473^31
+ ;;^UTILITY(U,$J,358.3,7627,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7627,1,4,0)
+ ;;=4^257.2
+ ;;^UTILITY(U,$J,358.3,7627,1,5,0)
+ ;;=5^Hypogonadism
+ ;;^UTILITY(U,$J,358.3,7627,2)
+ ;;=^88213
+ ;;^UTILITY(U,$J,358.3,7628,0)
+ ;;=255.42^^35^473^38
+ ;;^UTILITY(U,$J,358.3,7628,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7628,1,4,0)
+ ;;=4^255.42
+ ;;^UTILITY(U,$J,358.3,7628,1,5,0)
+ ;;=5^Mineralcorticoid Deficient
+ ;;^UTILITY(U,$J,358.3,7628,2)
+ ;;=^335241
+ ;;^UTILITY(U,$J,358.3,7629,0)
+ ;;=259.50^^35^473^2
+ ;;^UTILITY(U,$J,358.3,7629,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7629,1,4,0)
+ ;;=4^259.50
+ ;;^UTILITY(U,$J,358.3,7629,1,5,0)
+ ;;=5^Androgen Insensitivity,Unspec
+ ;;^UTILITY(U,$J,358.3,7629,2)
+ ;;=^336738
+ ;;^UTILITY(U,$J,358.3,7630,0)
+ ;;=275.5^^35^473^18
+ ;;^UTILITY(U,$J,358.3,7630,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7630,1,4,0)
+ ;;=4^275.5
+ ;;^UTILITY(U,$J,358.3,7630,1,5,0)
+ ;;=5^Hungry Bone Syndrome
+ ;;^UTILITY(U,$J,358.3,7630,2)
+ ;;=^336538
+ ;;^UTILITY(U,$J,358.3,7631,0)
+ ;;=793.2^^35^474^3
+ ;;^UTILITY(U,$J,358.3,7631,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7631,1,4,0)
+ ;;=4^793.2
+ ;;^UTILITY(U,$J,358.3,7631,1,5,0)
+ ;;=5^Abnormal Chest x-ray, other

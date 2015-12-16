@@ -1,5 +1,5 @@
 PSSGSGUI ;BIR/CML3-SCHEDULE PROCESSOR FOR GUI ONLY ;05/29/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**12,27,38,44,56,59,94**;9/30/97;Build 26
+ ;;1.0;PHARMACY DATA MANAGEMENT;**12,27,38,44,56,59,94,119**;9/30/97;Build 9
  ;
  ; Reference to ^PS(53.1 supported by DBIA #2140
  ; Reference to ^PSIVUTL supported by DBIA #4580
@@ -22,7 +22,8 @@ EN(X,PSSGUIPK) ; validate
  ;I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>2)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N")!($E(X,1)=" ") K X Q
  I $G(PSSGUIPK)="O" D  Q
  .Q:$G(X)=""
- .I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!(X["^")!($L(X)>20)!($L(X)<1) K X Q
+ .;*119 Allow multi-word schedules
+ .I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!(X["^")!($L(X)>20)!($L(X)<1) K X Q
  .N PSSUPGUI S X=$$UPPER(X)
  ;I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N")!($E(X,1)=" ") K X Q
  I $TR(X," ")="PRN" S X="PRN"

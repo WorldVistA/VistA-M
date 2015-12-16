@@ -1,132 +1,124 @@
-IBDEI1P7 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1P7 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30471,1,3,0)
- ;;=3^Cutaneous Abscess of Left Axilla
- ;;^UTILITY(U,$J,358.3,30471,1,4,0)
- ;;=4^L02.412
- ;;^UTILITY(U,$J,358.3,30471,2)
- ;;=^5008975
- ;;^UTILITY(U,$J,358.3,30472,0)
- ;;=L02.612^^189^1917^65
- ;;^UTILITY(U,$J,358.3,30472,1,0)
+ ;;^UTILITY(U,$J,358.3,30115,1,3,0)
+ ;;=3^Obesity complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,30115,1,4,0)
+ ;;=4^O99.215
+ ;;^UTILITY(U,$J,358.3,30115,2)
+ ;;=^5017933
+ ;;^UTILITY(U,$J,358.3,30116,0)
+ ;;=O99.841^^178^1914^2
+ ;;^UTILITY(U,$J,358.3,30116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30472,1,3,0)
- ;;=3^Cutaneous Abscess of Left Foot
- ;;^UTILITY(U,$J,358.3,30472,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,30472,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,30473,0)
- ;;=L02.512^^189^1917^66
- ;;^UTILITY(U,$J,358.3,30473,1,0)
+ ;;^UTILITY(U,$J,358.3,30116,1,3,0)
+ ;;=3^Bariatric surgery status comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30116,1,4,0)
+ ;;=4^O99.841
+ ;;^UTILITY(U,$J,358.3,30116,2)
+ ;;=^5018004
+ ;;^UTILITY(U,$J,358.3,30117,0)
+ ;;=O99.842^^178^1914^3
+ ;;^UTILITY(U,$J,358.3,30117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30473,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,30473,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,30473,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,30474,0)
- ;;=L02.416^^189^1917^67
- ;;^UTILITY(U,$J,358.3,30474,1,0)
+ ;;^UTILITY(U,$J,358.3,30117,1,3,0)
+ ;;=3^Bariatric surgery status comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30117,1,4,0)
+ ;;=4^O99.842
+ ;;^UTILITY(U,$J,358.3,30117,2)
+ ;;=^5018005
+ ;;^UTILITY(U,$J,358.3,30118,0)
+ ;;=O99.843^^178^1914^4
+ ;;^UTILITY(U,$J,358.3,30118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30474,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,30474,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,30474,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,30475,0)
- ;;=L02.414^^189^1917^68
- ;;^UTILITY(U,$J,358.3,30475,1,0)
+ ;;^UTILITY(U,$J,358.3,30118,1,3,0)
+ ;;=3^Bariatric surgery status comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30118,1,4,0)
+ ;;=4^O99.843
+ ;;^UTILITY(U,$J,358.3,30118,2)
+ ;;=^5018006
+ ;;^UTILITY(U,$J,358.3,30119,0)
+ ;;=O99.845^^178^1914^5
+ ;;^UTILITY(U,$J,358.3,30119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30475,1,3,0)
- ;;=3^Cutaneous Abscess of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,30475,1,4,0)
- ;;=4^L02.414
- ;;^UTILITY(U,$J,358.3,30475,2)
- ;;=^5008977
- ;;^UTILITY(U,$J,358.3,30476,0)
- ;;=L02.11^^189^1917^69
- ;;^UTILITY(U,$J,358.3,30476,1,0)
+ ;;^UTILITY(U,$J,358.3,30119,1,3,0)
+ ;;=3^Bariatric surgery status complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,30119,1,4,0)
+ ;;=4^O99.845
+ ;;^UTILITY(U,$J,358.3,30119,2)
+ ;;=^5018008
+ ;;^UTILITY(U,$J,358.3,30120,0)
+ ;;=O99.351^^178^1914^10
+ ;;^UTILITY(U,$J,358.3,30120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30476,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,30476,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,30476,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,30477,0)
- ;;=L02.818^^189^1917^70
- ;;^UTILITY(U,$J,358.3,30477,1,0)
+ ;;^UTILITY(U,$J,358.3,30120,1,3,0)
+ ;;=3^Diseases of the nervous sys comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30120,1,4,0)
+ ;;=4^O99.351
+ ;;^UTILITY(U,$J,358.3,30120,2)
+ ;;=^5017965
+ ;;^UTILITY(U,$J,358.3,30121,0)
+ ;;=O99.352^^178^1914^11
+ ;;^UTILITY(U,$J,358.3,30121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30477,1,3,0)
- ;;=3^Cutaneous Abscess of Other Sites
- ;;^UTILITY(U,$J,358.3,30477,1,4,0)
- ;;=4^L02.818
- ;;^UTILITY(U,$J,358.3,30477,2)
- ;;=^5009011
- ;;^UTILITY(U,$J,358.3,30478,0)
- ;;=L02.215^^189^1917^71
- ;;^UTILITY(U,$J,358.3,30478,1,0)
+ ;;^UTILITY(U,$J,358.3,30121,1,3,0)
+ ;;=3^Diseases of the nervous sys comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30121,1,4,0)
+ ;;=4^O99.352
+ ;;^UTILITY(U,$J,358.3,30121,2)
+ ;;=^5017966
+ ;;^UTILITY(U,$J,358.3,30122,0)
+ ;;=O99.353^^178^1914^12
+ ;;^UTILITY(U,$J,358.3,30122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30478,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,30478,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,30478,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,30479,0)
- ;;=L02.411^^189^1917^72
- ;;^UTILITY(U,$J,358.3,30479,1,0)
+ ;;^UTILITY(U,$J,358.3,30122,1,3,0)
+ ;;=3^Diseases of the nervous sys comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30122,1,4,0)
+ ;;=4^O99.353
+ ;;^UTILITY(U,$J,358.3,30122,2)
+ ;;=^5017967
+ ;;^UTILITY(U,$J,358.3,30123,0)
+ ;;=O26.851^^178^1914^24
+ ;;^UTILITY(U,$J,358.3,30123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30479,1,3,0)
- ;;=3^Cutaneous Abscess of Right Axilla
- ;;^UTILITY(U,$J,358.3,30479,1,4,0)
- ;;=4^L02.411
- ;;^UTILITY(U,$J,358.3,30479,2)
- ;;=^5008974
- ;;^UTILITY(U,$J,358.3,30480,0)
- ;;=L02.611^^189^1917^73
- ;;^UTILITY(U,$J,358.3,30480,1,0)
+ ;;^UTILITY(U,$J,358.3,30123,1,3,0)
+ ;;=3^Spotting complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30123,1,4,0)
+ ;;=4^O26.851
+ ;;^UTILITY(U,$J,358.3,30123,2)
+ ;;=^5016349
+ ;;^UTILITY(U,$J,358.3,30124,0)
+ ;;=O26.852^^178^1914^25
+ ;;^UTILITY(U,$J,358.3,30124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30480,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,30480,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,30480,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,30481,0)
- ;;=L02.511^^189^1917^74
- ;;^UTILITY(U,$J,358.3,30481,1,0)
+ ;;^UTILITY(U,$J,358.3,30124,1,3,0)
+ ;;=3^Spotting complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30124,1,4,0)
+ ;;=4^O26.852
+ ;;^UTILITY(U,$J,358.3,30124,2)
+ ;;=^5016350
+ ;;^UTILITY(U,$J,358.3,30125,0)
+ ;;=O26.853^^178^1914^26
+ ;;^UTILITY(U,$J,358.3,30125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30481,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,30481,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,30481,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,30482,0)
- ;;=L02.415^^189^1917^75
- ;;^UTILITY(U,$J,358.3,30482,1,0)
+ ;;^UTILITY(U,$J,358.3,30125,1,3,0)
+ ;;=3^Spotting complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30125,1,4,0)
+ ;;=4^O26.853
+ ;;^UTILITY(U,$J,358.3,30125,2)
+ ;;=^5016351
+ ;;^UTILITY(U,$J,358.3,30126,0)
+ ;;=O26.841^^178^1914^28
+ ;;^UTILITY(U,$J,358.3,30126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30482,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,30482,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,30482,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,30483,0)
- ;;=L02.413^^189^1917^76
- ;;^UTILITY(U,$J,358.3,30483,1,0)
+ ;;^UTILITY(U,$J,358.3,30126,1,3,0)
+ ;;=3^Uterine size-date discrepancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30126,1,4,0)
+ ;;=4^O26.841
+ ;;^UTILITY(U,$J,358.3,30126,2)
+ ;;=^5016345
+ ;;^UTILITY(U,$J,358.3,30127,0)
+ ;;=O26.842^^178^1914^29
+ ;;^UTILITY(U,$J,358.3,30127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30483,1,3,0)
- ;;=3^Cutaneous Abscess of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,30483,1,4,0)
- ;;=4^L02.413
- ;;^UTILITY(U,$J,358.3,30483,2)
- ;;=^5008976
- ;;^UTILITY(U,$J,358.3,30484,0)
- ;;=L02.219^^189^1917^77

@@ -1,126 +1,134 @@
-IBDEI1XC ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XC ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34171,1,0)
+ ;;^UTILITY(U,$J,358.3,33811,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,33811,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,33812,0)
+ ;;=W13.9XXA^^182^2011^31
+ ;;^UTILITY(U,$J,358.3,33812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34171,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,34171,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,34171,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,34172,0)
- ;;=I25.751^^192^1990^34
- ;;^UTILITY(U,$J,358.3,34172,1,0)
+ ;;^UTILITY(U,$J,358.3,33812,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33812,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,33812,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,33813,0)
+ ;;=W13.9XXD^^182^2011^32
+ ;;^UTILITY(U,$J,358.3,33813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34172,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34172,1,4,0)
- ;;=4^I25.751
- ;;^UTILITY(U,$J,358.3,34172,2)
- ;;=^5007132
- ;;^UTILITY(U,$J,358.3,34173,0)
- ;;=I25.758^^192^1990^35
- ;;^UTILITY(U,$J,358.3,34173,1,0)
+ ;;^UTILITY(U,$J,358.3,33813,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33813,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,33813,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,33814,0)
+ ;;=W14.XXXA^^182^2011^65
+ ;;^UTILITY(U,$J,358.3,33814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34173,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34173,1,4,0)
- ;;=4^I25.758
- ;;^UTILITY(U,$J,358.3,34173,2)
- ;;=^5007133
- ;;^UTILITY(U,$J,358.3,34174,0)
- ;;=I25.759^^192^1990^36
- ;;^UTILITY(U,$J,358.3,34174,1,0)
+ ;;^UTILITY(U,$J,358.3,33814,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33814,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,33814,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,33815,0)
+ ;;=W14.XXXD^^182^2011^66
+ ;;^UTILITY(U,$J,358.3,33815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34174,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34174,1,4,0)
- ;;=4^I25.759
- ;;^UTILITY(U,$J,358.3,34174,2)
- ;;=^5007134
- ;;^UTILITY(U,$J,358.3,34175,0)
- ;;=I25.750^^192^1990^37
- ;;^UTILITY(U,$J,358.3,34175,1,0)
+ ;;^UTILITY(U,$J,358.3,33815,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33815,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,33815,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,33816,0)
+ ;;=W17.2XXA^^182^2011^73
+ ;;^UTILITY(U,$J,358.3,33816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34175,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,34175,1,4,0)
- ;;=4^I25.750
- ;;^UTILITY(U,$J,358.3,34175,2)
- ;;=^5007131
- ;;^UTILITY(U,$J,358.3,34176,0)
- ;;=I25.731^^192^1990^39
- ;;^UTILITY(U,$J,358.3,34176,1,0)
+ ;;^UTILITY(U,$J,358.3,33816,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33816,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,33816,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,33817,0)
+ ;;=W17.2XXD^^182^2011^74
+ ;;^UTILITY(U,$J,358.3,33817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34176,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34176,1,4,0)
- ;;=4^I25.731
- ;;^UTILITY(U,$J,358.3,34176,2)
- ;;=^5007128
- ;;^UTILITY(U,$J,358.3,34177,0)
- ;;=I25.738^^192^1990^38
- ;;^UTILITY(U,$J,358.3,34177,1,0)
+ ;;^UTILITY(U,$J,358.3,33817,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33817,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,33817,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,33818,0)
+ ;;=W17.3XXA^^182^2011^71
+ ;;^UTILITY(U,$J,358.3,33818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34177,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34177,1,4,0)
- ;;=4^I25.738
- ;;^UTILITY(U,$J,358.3,34177,2)
- ;;=^5007129
- ;;^UTILITY(U,$J,358.3,34178,0)
- ;;=I25.739^^192^1990^40
- ;;^UTILITY(U,$J,358.3,34178,1,0)
+ ;;^UTILITY(U,$J,358.3,33818,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33818,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,33818,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,33819,0)
+ ;;=W17.3XXD^^182^2011^72
+ ;;^UTILITY(U,$J,358.3,33819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34178,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34178,1,4,0)
- ;;=4^I25.739
- ;;^UTILITY(U,$J,358.3,34178,2)
- ;;=^5007130
- ;;^UTILITY(U,$J,358.3,34179,0)
- ;;=I25.730^^192^1990^41
- ;;^UTILITY(U,$J,358.3,34179,1,0)
+ ;;^UTILITY(U,$J,358.3,33819,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33819,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,33819,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,33820,0)
+ ;;=W17.4XXA^^182^2011^37
+ ;;^UTILITY(U,$J,358.3,33820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34179,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,34179,1,4,0)
- ;;=4^I25.730
- ;;^UTILITY(U,$J,358.3,34179,2)
- ;;=^5007127
- ;;^UTILITY(U,$J,358.3,34180,0)
- ;;=I25.791^^192^1990^24
- ;;^UTILITY(U,$J,358.3,34180,1,0)
+ ;;^UTILITY(U,$J,358.3,33820,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33820,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,33820,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,33821,0)
+ ;;=W17.4XXD^^182^2011^38
+ ;;^UTILITY(U,$J,358.3,33821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34180,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34180,1,4,0)
- ;;=4^I25.791
- ;;^UTILITY(U,$J,358.3,34180,2)
- ;;=^5007140
- ;;^UTILITY(U,$J,358.3,34181,0)
- ;;=I25.798^^192^1990^22
- ;;^UTILITY(U,$J,358.3,34181,1,0)
+ ;;^UTILITY(U,$J,358.3,33821,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33821,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,33821,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,33822,0)
+ ;;=W17.81XA^^182^2011^23
+ ;;^UTILITY(U,$J,358.3,33822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34181,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34181,1,4,0)
- ;;=4^I25.798
- ;;^UTILITY(U,$J,358.3,34181,2)
- ;;=^5133558
- ;;^UTILITY(U,$J,358.3,34182,0)
- ;;=I25.799^^192^1990^26
- ;;^UTILITY(U,$J,358.3,34182,1,0)
+ ;;^UTILITY(U,$J,358.3,33822,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33822,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,33822,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,33823,0)
+ ;;=W17.81XD^^182^2011^24
+ ;;^UTILITY(U,$J,358.3,33823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34182,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34182,1,4,0)
- ;;=4^I25.799
- ;;^UTILITY(U,$J,358.3,34182,2)
- ;;=^5133559
- ;;^UTILITY(U,$J,358.3,34183,0)
- ;;=I25.790^^192^1990^28
- ;;^UTILITY(U,$J,358.3,34183,1,0)
+ ;;^UTILITY(U,$J,358.3,33823,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33823,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,33823,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,33824,0)
+ ;;=W17.89XA^^182^2011^53
+ ;;^UTILITY(U,$J,358.3,33824,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33824,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr

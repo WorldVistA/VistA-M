@@ -1,130 +1,128 @@
-IBDEI1S9 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1S9 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31860,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,31860,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,31860,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,31861,0)
- ;;=Z85.118^^190^1944^71
- ;;^UTILITY(U,$J,358.3,31861,1,0)
+ ;;^UTILITY(U,$J,358.3,31468,1,4,0)
+ ;;=4^S42.401S
+ ;;^UTILITY(U,$J,358.3,31468,2)
+ ;;=^5027300
+ ;;^UTILITY(U,$J,358.3,31469,0)
+ ;;=S92.901S^^180^1957^12
+ ;;^UTILITY(U,$J,358.3,31469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31861,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,31861,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,31861,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,31862,0)
- ;;=Z85.21^^190^1944^76
- ;;^UTILITY(U,$J,358.3,31862,1,0)
+ ;;^UTILITY(U,$J,358.3,31469,1,3,0)
+ ;;=3^Fracture of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,31469,1,4,0)
+ ;;=4^S92.901S
+ ;;^UTILITY(U,$J,358.3,31469,2)
+ ;;=^5045584
+ ;;^UTILITY(U,$J,358.3,31470,0)
+ ;;=S52.91XS^^180^1957^13
+ ;;^UTILITY(U,$J,358.3,31470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31862,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,31862,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,31862,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,31863,0)
- ;;=Z85.3^^190^1944^70
- ;;^UTILITY(U,$J,358.3,31863,1,0)
+ ;;^UTILITY(U,$J,358.3,31470,1,3,0)
+ ;;=3^Fracture of right forearm, sequela
+ ;;^UTILITY(U,$J,358.3,31470,1,4,0)
+ ;;=4^S52.91XS
+ ;;^UTILITY(U,$J,358.3,31470,2)
+ ;;=^5031173
+ ;;^UTILITY(U,$J,358.3,31471,0)
+ ;;=S82.91XS^^180^1957^14
+ ;;^UTILITY(U,$J,358.3,31471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31863,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,31863,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,31863,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,31864,0)
- ;;=Z85.41^^190^1944^72
- ;;^UTILITY(U,$J,358.3,31864,1,0)
+ ;;^UTILITY(U,$J,358.3,31471,1,3,0)
+ ;;=3^Fracture of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,31471,1,4,0)
+ ;;=4^S82.91XS
+ ;;^UTILITY(U,$J,358.3,31471,2)
+ ;;=^5136991
+ ;;^UTILITY(U,$J,358.3,31472,0)
+ ;;=S82.001S^^180^1957^15
+ ;;^UTILITY(U,$J,358.3,31472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31864,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,31864,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,31864,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,31865,0)
- ;;=Z85.43^^190^1944^80
- ;;^UTILITY(U,$J,358.3,31865,1,0)
+ ;;^UTILITY(U,$J,358.3,31472,1,3,0)
+ ;;=3^Fracture of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,31472,1,4,0)
+ ;;=4^S82.001S
+ ;;^UTILITY(U,$J,358.3,31472,2)
+ ;;=^5040119
+ ;;^UTILITY(U,$J,358.3,31473,0)
+ ;;=S92.911S^^180^1957^17
+ ;;^UTILITY(U,$J,358.3,31473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31865,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,31865,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,31865,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,31866,0)
- ;;=Z85.46^^190^1944^81
- ;;^UTILITY(U,$J,358.3,31866,1,0)
+ ;;^UTILITY(U,$J,358.3,31473,1,3,0)
+ ;;=3^Fracture of right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,31473,1,4,0)
+ ;;=4^S92.911S
+ ;;^UTILITY(U,$J,358.3,31473,2)
+ ;;=^5045598
+ ;;^UTILITY(U,$J,358.3,31474,0)
+ ;;=S62.91XS^^180^1957^18
+ ;;^UTILITY(U,$J,358.3,31474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31866,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,31866,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,31866,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,31867,0)
- ;;=Z85.47^^190^1944^85
- ;;^UTILITY(U,$J,358.3,31867,1,0)
+ ;;^UTILITY(U,$J,358.3,31474,1,3,0)
+ ;;=3^Fracture of right wrist and hand, sequela
+ ;;^UTILITY(U,$J,358.3,31474,1,4,0)
+ ;;=4^S62.91XS
+ ;;^UTILITY(U,$J,358.3,31474,2)
+ ;;=^5034885
+ ;;^UTILITY(U,$J,358.3,31475,0)
+ ;;=S42.302S^^180^1957^19
+ ;;^UTILITY(U,$J,358.3,31475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31867,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,31867,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,31867,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,31868,0)
- ;;=Z85.51^^190^1944^69
- ;;^UTILITY(U,$J,358.3,31868,1,0)
+ ;;^UTILITY(U,$J,358.3,31475,1,3,0)
+ ;;=3^Fracture of shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,31475,1,4,0)
+ ;;=4^S42.302S
+ ;;^UTILITY(U,$J,358.3,31475,2)
+ ;;=^5027044
+ ;;^UTILITY(U,$J,358.3,31476,0)
+ ;;=S42.301S^^180^1957^20
+ ;;^UTILITY(U,$J,358.3,31476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31868,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,31868,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,31868,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,31869,0)
- ;;=Z85.528^^190^1944^74
- ;;^UTILITY(U,$J,358.3,31869,1,0)
+ ;;^UTILITY(U,$J,358.3,31476,1,3,0)
+ ;;=3^Fracture of shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,31476,1,4,0)
+ ;;=4^S42.301S
+ ;;^UTILITY(U,$J,358.3,31476,2)
+ ;;=^5027037
+ ;;^UTILITY(U,$J,358.3,31477,0)
+ ;;=S42.202S^^180^1957^23
+ ;;^UTILITY(U,$J,358.3,31477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31869,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,31869,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,31869,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,31870,0)
- ;;=Z85.6^^190^1944^66
- ;;^UTILITY(U,$J,358.3,31870,1,0)
+ ;;^UTILITY(U,$J,358.3,31477,1,3,0)
+ ;;=3^Fracture of upper end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,31477,1,4,0)
+ ;;=4^S42.202S
+ ;;^UTILITY(U,$J,358.3,31477,2)
+ ;;=^5026774
+ ;;^UTILITY(U,$J,358.3,31478,0)
+ ;;=S42.201S^^180^1957^24
+ ;;^UTILITY(U,$J,358.3,31478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31870,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,31870,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,31870,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,31871,0)
- ;;=Z85.72^^190^1944^91
- ;;^UTILITY(U,$J,358.3,31871,1,0)
+ ;;^UTILITY(U,$J,358.3,31478,1,3,0)
+ ;;=3^Fracture of upper end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,31478,1,4,0)
+ ;;=4^S42.201S
+ ;;^UTILITY(U,$J,358.3,31478,2)
+ ;;=^5026767
+ ;;^UTILITY(U,$J,358.3,31479,0)
+ ;;=S79.002S^^180^1957^25
+ ;;^UTILITY(U,$J,358.3,31479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31871,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,31871,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,31871,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,31872,0)
- ;;=Z85.79^^190^1944^79
- ;;^UTILITY(U,$J,358.3,31872,1,0)
+ ;;^UTILITY(U,$J,358.3,31479,1,3,0)
+ ;;=3^Physeal fracture of upper end of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,31479,1,4,0)
+ ;;=4^S79.002S
+ ;;^UTILITY(U,$J,358.3,31479,2)
+ ;;=^5039767
+ ;;^UTILITY(U,$J,358.3,31480,0)
+ ;;=S79.001S^^180^1957^26
+ ;;^UTILITY(U,$J,358.3,31480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31872,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,31872,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,31872,2)
- ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,31480,1,3,0)
+ ;;=3^Physeal fracture of upper end of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,31480,1,4,0)
+ ;;=4^S79.001S
+ ;;^UTILITY(U,$J,358.3,31480,2)
+ ;;=^5039761

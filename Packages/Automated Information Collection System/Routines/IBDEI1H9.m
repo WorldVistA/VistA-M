@@ -1,140 +1,124 @@
-IBDEI1H9 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1H9 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26514,1,3,0)
- ;;=3^OCCUPATIONAL THERAPY
- ;;^UTILITY(U,$J,358.3,26514,1,4,0)
- ;;=4^V57.21
- ;;^UTILITY(U,$J,358.3,26514,2)
- ;;=^19761
- ;;^UTILITY(U,$J,358.3,26515,0)
- ;;=V57.22^^157^1621^6
- ;;^UTILITY(U,$J,358.3,26515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26515,1,3,0)
- ;;=3^VOCATIONAL THERAPY
- ;;^UTILITY(U,$J,358.3,26515,1,4,0)
- ;;=4^V57.22
- ;;^UTILITY(U,$J,358.3,26515,2)
- ;;=^303457
- ;;^UTILITY(U,$J,358.3,26516,0)
- ;;=V57.81^^157^1621^2
- ;;^UTILITY(U,$J,358.3,26516,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26516,1,3,0)
- ;;=3^ORTHOTIC TRAINING
- ;;^UTILITY(U,$J,358.3,26516,1,4,0)
- ;;=4^V57.81
- ;;^UTILITY(U,$J,358.3,26516,2)
- ;;=^295527
- ;;^UTILITY(U,$J,358.3,26517,0)
- ;;=V53.8^^157^1621^7
- ;;^UTILITY(U,$J,358.3,26517,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26517,1,3,0)
- ;;=3^WHEELCHAIR ADJUSTMENT
- ;;^UTILITY(U,$J,358.3,26517,1,4,0)
- ;;=4^V53.8
- ;;^UTILITY(U,$J,358.3,26517,2)
- ;;=^295511
- ;;^UTILITY(U,$J,358.3,26518,0)
- ;;=V57.3^^157^1621^5
- ;;^UTILITY(U,$J,358.3,26518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26518,1,3,0)
- ;;=3^Speech-Language Therapy
- ;;^UTILITY(U,$J,358.3,26518,1,4,0)
- ;;=4^V57.3
- ;;^UTILITY(U,$J,358.3,26518,2)
- ;;=^338565
- ;;^UTILITY(U,$J,358.3,26519,0)
- ;;=V57.89^^157^1621^4
- ;;^UTILITY(U,$J,358.3,26519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26519,1,3,0)
- ;;=3^Rehab Procedure NEC
- ;;^UTILITY(U,$J,358.3,26519,1,4,0)
- ;;=4^V57.89
- ;;^UTILITY(U,$J,358.3,26519,2)
- ;;=^177367
- ;;^UTILITY(U,$J,358.3,26520,0)
- ;;=V57.0^^158^1622^2
- ;;^UTILITY(U,$J,358.3,26520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26520,1,3,0)
- ;;=3^Breathing Exercises
- ;;^UTILITY(U,$J,358.3,26520,1,4,0)
- ;;=4^V57.0
- ;;^UTILITY(U,$J,358.3,26520,2)
- ;;=^19759
- ;;^UTILITY(U,$J,358.3,26521,0)
- ;;=V57.89^^158^1622^8
- ;;^UTILITY(U,$J,358.3,26521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26521,1,3,0)
- ;;=3^Multiple Training or Therapy
- ;;^UTILITY(U,$J,358.3,26521,1,4,0)
- ;;=4^V57.89
- ;;^UTILITY(U,$J,358.3,26521,2)
- ;;=^177367
- ;;^UTILITY(U,$J,358.3,26522,0)
- ;;=V52.0^^158^1622^4
- ;;^UTILITY(U,$J,358.3,26522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26522,1,3,0)
- ;;=3^Fitting Artificial Arm
- ;;^UTILITY(U,$J,358.3,26522,1,4,0)
- ;;=4^V52.0
- ;;^UTILITY(U,$J,358.3,26522,2)
- ;;=^295496
- ;;^UTILITY(U,$J,358.3,26523,0)
- ;;=V52.1^^158^1622^5
- ;;^UTILITY(U,$J,358.3,26523,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26523,1,3,0)
- ;;=3^Fitting Artificial Leg
- ;;^UTILITY(U,$J,358.3,26523,1,4,0)
- ;;=4^V52.1
- ;;^UTILITY(U,$J,358.3,26523,2)
- ;;=^295497
- ;;^UTILITY(U,$J,358.3,26524,0)
- ;;=V53.7^^158^1622^3
- ;;^UTILITY(U,$J,358.3,26524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26524,1,3,0)
- ;;=3^Fit Orthopedic Devices
- ;;^UTILITY(U,$J,358.3,26524,1,4,0)
- ;;=4^V53.7
- ;;^UTILITY(U,$J,358.3,26524,2)
- ;;=^295510
- ;;^UTILITY(U,$J,358.3,26525,0)
- ;;=V52.9^^158^1622^6
- ;;^UTILITY(U,$J,358.3,26525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26525,1,3,0)
- ;;=3^Fitting Prosthesis Nos
- ;;^UTILITY(U,$J,358.3,26525,1,4,0)
- ;;=4^V52.9
- ;;^UTILITY(U,$J,358.3,26525,2)
- ;;=^295502
- ;;^UTILITY(U,$J,358.3,26526,0)
- ;;=V57.9^^158^1622^12
- ;;^UTILITY(U,$J,358.3,26526,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26526,1,3,0)
- ;;=3^Rehabilitation Proc Nos
- ;;^UTILITY(U,$J,358.3,26526,1,4,0)
- ;;=4^V57.9
- ;;^UTILITY(U,$J,358.3,26526,2)
- ;;=^19769
- ;;^UTILITY(U,$J,358.3,26527,0)
- ;;=V54.89^^158^1622^10
- ;;^UTILITY(U,$J,358.3,26527,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26527,1,3,0)
- ;;=3^Other Ortho Aftercare
- ;;^UTILITY(U,$J,358.3,26527,1,4,0)
- ;;=4^V54.89
+ ;;^UTILITY(U,$J,358.3,26215,1,5,0)
+ ;;=5^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26215,2)
+ ;;=Borderline Personality Disorder^16372
+ ;;^UTILITY(U,$J,358.3,26216,0)
+ ;;=301.6^^152^1676^6
+ ;;^UTILITY(U,$J,358.3,26216,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26216,1,2,0)
+ ;;=2^301.6
+ ;;^UTILITY(U,$J,358.3,26216,1,5,0)
+ ;;=5^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26216,2)
+ ;;=Dependent Personality Disorder^32860
+ ;;^UTILITY(U,$J,358.3,26217,0)
+ ;;=301.50^^152^1676^8
+ ;;^UTILITY(U,$J,358.3,26217,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26217,1,2,0)
+ ;;=2^301.50
+ ;;^UTILITY(U,$J,358.3,26217,1,5,0)
+ ;;=5^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26217,2)
+ ;;=Histrionic Personality Disorder^57763
+ ;;^UTILITY(U,$J,358.3,26218,0)
+ ;;=301.81^^152^1676^11
+ ;;^UTILITY(U,$J,358.3,26218,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26218,1,2,0)
+ ;;=2^301.81
+ ;;^UTILITY(U,$J,358.3,26218,1,5,0)
+ ;;=5^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26218,2)
+ ;;=Narcissistic Personality Disorder^265353
+ ;;^UTILITY(U,$J,358.3,26219,0)
+ ;;=301.0^^152^1676^12
+ ;;^UTILITY(U,$J,358.3,26219,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26219,1,2,0)
+ ;;=2^301.0
+ ;;^UTILITY(U,$J,358.3,26219,1,5,0)
+ ;;=5^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26219,2)
+ ;;=Paranoid Personality Disorder^89982
+ ;;^UTILITY(U,$J,358.3,26220,0)
+ ;;=301.9^^152^1676^16
+ ;;^UTILITY(U,$J,358.3,26220,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26220,1,2,0)
+ ;;=2^301.9
+ ;;^UTILITY(U,$J,358.3,26220,1,5,0)
+ ;;=5^Unspecified Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26220,2)
+ ;;=Unspecified Personality Disorder^92451
+ ;;^UTILITY(U,$J,358.3,26221,0)
+ ;;=301.20^^152^1676^14
+ ;;^UTILITY(U,$J,358.3,26221,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26221,1,2,0)
+ ;;=2^301.20
+ ;;^UTILITY(U,$J,358.3,26221,1,5,0)
+ ;;=5^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26221,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,26222,0)
+ ;;=301.22^^152^1676^15
+ ;;^UTILITY(U,$J,358.3,26222,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26222,1,2,0)
+ ;;=2^301.22
+ ;;^UTILITY(U,$J,358.3,26222,1,5,0)
+ ;;=5^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26222,2)
+ ;;=Schizotypal Personality Disorder^108367
+ ;;^UTILITY(U,$J,358.3,26223,0)
+ ;;=301.4^^152^1676^4
+ ;;^UTILITY(U,$J,358.3,26223,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26223,1,2,0)
+ ;;=2^301.4
+ ;;^UTILITY(U,$J,358.3,26223,1,5,0)
+ ;;=5^Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,26223,2)
+ ;;=Compulsive Personality Disorder^27122
+ ;;^UTILITY(U,$J,358.3,26224,0)
+ ;;=301.84^^152^1676^13
+ ;;^UTILITY(U,$J,358.3,26224,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26224,1,2,0)
+ ;;=2^301.84
+ ;;^UTILITY(U,$J,358.3,26224,1,5,0)
+ ;;=5^Passive-Aggressive Personality Dis
+ ;;^UTILITY(U,$J,358.3,26224,2)
+ ;;=Passive-Aggressive Personality Dis^90602
+ ;;^UTILITY(U,$J,358.3,26225,0)
+ ;;=301.11^^152^1676^9
+ ;;^UTILITY(U,$J,358.3,26225,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26225,1,2,0)
+ ;;=2^301.11
+ ;;^UTILITY(U,$J,358.3,26225,1,5,0)
+ ;;=5^Hypomanic Personality D/O,Chr
+ ;;^UTILITY(U,$J,358.3,26225,2)
+ ;;=^268171
+ ;;^UTILITY(U,$J,358.3,26226,0)
+ ;;=301.12^^152^1676^7
+ ;;^UTILITY(U,$J,358.3,26226,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26226,1,2,0)
+ ;;=2^301.12
+ ;;^UTILITY(U,$J,358.3,26226,1,5,0)
+ ;;=5^Depressive Personality D/O,Chr
+ ;;^UTILITY(U,$J,358.3,26226,2)
+ ;;=^268173
+ ;;^UTILITY(U,$J,358.3,26227,0)
+ ;;=301.13^^152^1676^5
+ ;;^UTILITY(U,$J,358.3,26227,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,26227,1,2,0)
+ ;;=2^301.13

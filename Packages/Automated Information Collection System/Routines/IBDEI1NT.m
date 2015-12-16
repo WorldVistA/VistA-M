@@ -1,126 +1,132 @@
-IBDEI1NT ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1NT ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29831,1,3,0)
- ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,29831,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,29831,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,29832,0)
- ;;=K50.918^^189^1898^16
- ;;^UTILITY(U,$J,358.3,29832,1,0)
+ ;;^UTILITY(U,$J,358.3,29479,2)
+ ;;=^5004195
+ ;;^UTILITY(U,$J,358.3,29480,0)
+ ;;=G96.11^^176^1884^7
+ ;;^UTILITY(U,$J,358.3,29480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29832,1,3,0)
- ;;=3^Crohn's Disease w/ Oth Complications,Unspec
- ;;^UTILITY(U,$J,358.3,29832,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,29832,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,29833,0)
- ;;=K50.919^^189^1898^18
- ;;^UTILITY(U,$J,358.3,29833,1,0)
+ ;;^UTILITY(U,$J,358.3,29480,1,3,0)
+ ;;=3^Dural tear
+ ;;^UTILITY(U,$J,358.3,29480,1,4,0)
+ ;;=4^G96.11
+ ;;^UTILITY(U,$J,358.3,29480,2)
+ ;;=^5004196
+ ;;^UTILITY(U,$J,358.3,29481,0)
+ ;;=G82.51^^176^1884^10
+ ;;^UTILITY(U,$J,358.3,29481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29833,1,3,0)
- ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,29833,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,29833,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,29834,0)
- ;;=K50.911^^189^1898^17
- ;;^UTILITY(U,$J,358.3,29834,1,0)
+ ;;^UTILITY(U,$J,358.3,29481,1,3,0)
+ ;;=3^Quadriplegia, C1-C4 complete
+ ;;^UTILITY(U,$J,358.3,29481,1,4,0)
+ ;;=4^G82.51
+ ;;^UTILITY(U,$J,358.3,29481,2)
+ ;;=^5004129
+ ;;^UTILITY(U,$J,358.3,29482,0)
+ ;;=G82.52^^176^1884^11
+ ;;^UTILITY(U,$J,358.3,29482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29834,1,3,0)
- ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,29834,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,29834,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,29835,0)
- ;;=K50.90^^189^1898^19
- ;;^UTILITY(U,$J,358.3,29835,1,0)
+ ;;^UTILITY(U,$J,358.3,29482,1,3,0)
+ ;;=3^Quadriplegia, C1-C4 incomplete
+ ;;^UTILITY(U,$J,358.3,29482,1,4,0)
+ ;;=4^G82.52
+ ;;^UTILITY(U,$J,358.3,29482,2)
+ ;;=^5004130
+ ;;^UTILITY(U,$J,358.3,29483,0)
+ ;;=G82.53^^176^1884^12
+ ;;^UTILITY(U,$J,358.3,29483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29835,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,29835,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,29835,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,29836,0)
- ;;=K50.913^^189^1898^14
- ;;^UTILITY(U,$J,358.3,29836,1,0)
+ ;;^UTILITY(U,$J,358.3,29483,1,3,0)
+ ;;=3^Quadriplegia, C5-C7 complete
+ ;;^UTILITY(U,$J,358.3,29483,1,4,0)
+ ;;=4^G82.53
+ ;;^UTILITY(U,$J,358.3,29483,2)
+ ;;=^5004131
+ ;;^UTILITY(U,$J,358.3,29484,0)
+ ;;=G82.54^^176^1884^13
+ ;;^UTILITY(U,$J,358.3,29484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29836,1,3,0)
- ;;=3^Crohn's Disease w/ Fistual,Unspec
- ;;^UTILITY(U,$J,358.3,29836,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,29836,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,29837,0)
- ;;=K50.914^^189^1898^13
- ;;^UTILITY(U,$J,358.3,29837,1,0)
+ ;;^UTILITY(U,$J,358.3,29484,1,3,0)
+ ;;=3^Quadriplegia, C5-C7 incomplete
+ ;;^UTILITY(U,$J,358.3,29484,1,4,0)
+ ;;=4^G82.54
+ ;;^UTILITY(U,$J,358.3,29484,2)
+ ;;=^5004132
+ ;;^UTILITY(U,$J,358.3,29485,0)
+ ;;=M45.4^^176^1885^1
+ ;;^UTILITY(U,$J,358.3,29485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29837,1,3,0)
- ;;=3^Crohn's Disease w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,29837,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,29837,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,29838,0)
- ;;=K50.114^^189^1898^1
- ;;^UTILITY(U,$J,358.3,29838,1,0)
+ ;;^UTILITY(U,$J,358.3,29485,1,3,0)
+ ;;=3^Ankylosing spondylitis of thoracic region
+ ;;^UTILITY(U,$J,358.3,29485,1,4,0)
+ ;;=4^M45.4
+ ;;^UTILITY(U,$J,358.3,29485,2)
+ ;;=^5011964
+ ;;^UTILITY(U,$J,358.3,29486,0)
+ ;;=M47.14^^176^1885^13
+ ;;^UTILITY(U,$J,358.3,29486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29838,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,29838,1,4,0)
- ;;=4^K50.114
- ;;^UTILITY(U,$J,358.3,29838,2)
- ;;=^5008635
- ;;^UTILITY(U,$J,358.3,29839,0)
- ;;=K50.814^^189^1898^12
- ;;^UTILITY(U,$J,358.3,29839,1,0)
+ ;;^UTILITY(U,$J,358.3,29486,1,3,0)
+ ;;=3^Spondylosis with myelopathy, thoracic region NEC
+ ;;^UTILITY(U,$J,358.3,29486,1,4,0)
+ ;;=4^M47.14
+ ;;^UTILITY(U,$J,358.3,29486,2)
+ ;;=^5012054
+ ;;^UTILITY(U,$J,358.3,29487,0)
+ ;;=M51.34^^176^1885^5
+ ;;^UTILITY(U,$J,358.3,29487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29839,1,3,0)
- ;;=3^Crohn's Disease of Small/Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,29839,1,4,0)
- ;;=4^K50.814
- ;;^UTILITY(U,$J,358.3,29839,2)
- ;;=^5008642
- ;;^UTILITY(U,$J,358.3,29840,0)
- ;;=K57.20^^189^1899^3
- ;;^UTILITY(U,$J,358.3,29840,1,0)
+ ;;^UTILITY(U,$J,358.3,29487,1,3,0)
+ ;;=3^Intervertebral disc degeneration, thoracic region NEC
+ ;;^UTILITY(U,$J,358.3,29487,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,29487,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,29488,0)
+ ;;=M51.24^^176^1885^7
+ ;;^UTILITY(U,$J,358.3,29488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29840,1,3,0)
- ;;=3^Diverticulitis of Large Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29840,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,29840,2)
- ;;=^5008721
- ;;^UTILITY(U,$J,358.3,29841,0)
- ;;=K57.92^^189^1899^2
- ;;^UTILITY(U,$J,358.3,29841,1,0)
+ ;;^UTILITY(U,$J,358.3,29488,1,3,0)
+ ;;=3^Intervertebral disc displacement, thoracic region NEC
+ ;;^UTILITY(U,$J,358.3,29488,1,4,0)
+ ;;=4^M51.24
+ ;;^UTILITY(U,$J,358.3,29488,2)
+ ;;=^5012247
+ ;;^UTILITY(U,$J,358.3,29489,0)
+ ;;=M51.04^^176^1885^6
+ ;;^UTILITY(U,$J,358.3,29489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29841,1,3,0)
- ;;=3^Diverticulitis of Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29841,1,4,0)
- ;;=4^K57.92
- ;;^UTILITY(U,$J,358.3,29841,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,29842,0)
- ;;=K57.80^^189^1899^1
- ;;^UTILITY(U,$J,358.3,29842,1,0)
+ ;;^UTILITY(U,$J,358.3,29489,1,3,0)
+ ;;=3^Intervertebral disc disorders w myelopathy, thoracic region
+ ;;^UTILITY(U,$J,358.3,29489,1,4,0)
+ ;;=4^M51.04
+ ;;^UTILITY(U,$J,358.3,29489,2)
+ ;;=^5012239
+ ;;^UTILITY(U,$J,358.3,29490,0)
+ ;;=M51.05^^176^1885^9
+ ;;^UTILITY(U,$J,358.3,29490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29842,1,3,0)
- ;;=3^Diverticulitis of Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29842,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,29842,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,29843,0)
- ;;=K57.52^^189^1899^5
- ;;^UTILITY(U,$J,358.3,29843,1,0)
+ ;;^UTILITY(U,$J,358.3,29490,1,3,0)
+ ;;=3^Intvrt disc disorders w myelopathy, thoracolumbar region
+ ;;^UTILITY(U,$J,358.3,29490,1,4,0)
+ ;;=4^M51.05
+ ;;^UTILITY(U,$J,358.3,29490,2)
+ ;;=^5012240
+ ;;^UTILITY(U,$J,358.3,29491,0)
+ ;;=M48.04^^176^1885^11
+ ;;^UTILITY(U,$J,358.3,29491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29843,1,3,0)
- ;;=3^Diverticulitis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,29491,1,3,0)
+ ;;=3^Spinal stenosis, thoracic region
+ ;;^UTILITY(U,$J,358.3,29491,1,4,0)
+ ;;=4^M48.04
+ ;;^UTILITY(U,$J,358.3,29491,2)
+ ;;=^5012091
+ ;;^UTILITY(U,$J,358.3,29492,0)
+ ;;=Q76.2^^176^1885^3
+ ;;^UTILITY(U,$J,358.3,29492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29492,1,3,0)
+ ;;=3^Congenital spondylolisthesis

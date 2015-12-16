@@ -1,150 +1,126 @@
-IBDEI01M ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01M ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,229,2)
- ;;=^77931
- ;;^UTILITY(U,$J,358.3,230,0)
- ;;=312.32^^3^34^7
- ;;^UTILITY(U,$J,358.3,230,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,230,1,2,0)
- ;;=2^312.32
- ;;^UTILITY(U,$J,358.3,230,1,5,0)
- ;;=5^Kleptomania
- ;;^UTILITY(U,$J,358.3,230,2)
- ;;=^67477
- ;;^UTILITY(U,$J,358.3,231,0)
- ;;=312.33^^3^34^11
- ;;^UTILITY(U,$J,358.3,231,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,231,1,2,0)
- ;;=2^312.33
- ;;^UTILITY(U,$J,358.3,231,1,5,0)
- ;;=5^Pyromania
- ;;^UTILITY(U,$J,358.3,231,2)
- ;;=^46554
- ;;^UTILITY(U,$J,358.3,232,0)
- ;;=312.34^^3^34^5
- ;;^UTILITY(U,$J,358.3,232,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,232,1,2,0)
- ;;=2^312.34
- ;;^UTILITY(U,$J,358.3,232,1,5,0)
- ;;=5^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,232,2)
- ;;=^64512
- ;;^UTILITY(U,$J,358.3,233,0)
- ;;=312.35^^3^34^6
- ;;^UTILITY(U,$J,358.3,233,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,233,1,2,0)
- ;;=2^312.35
- ;;^UTILITY(U,$J,358.3,233,1,5,0)
- ;;=5^Isolated Explosive Disorder
- ;;^UTILITY(U,$J,358.3,233,2)
- ;;=^268334
- ;;^UTILITY(U,$J,358.3,234,0)
- ;;=300.16^^3^34^4
- ;;^UTILITY(U,$J,358.3,234,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,234,1,2,0)
- ;;=2^300.16
- ;;^UTILITY(U,$J,358.3,234,1,5,0)
- ;;=5^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,234,2)
- ;;=^331910
- ;;^UTILITY(U,$J,358.3,235,0)
- ;;=312.31^^3^34^9
- ;;^UTILITY(U,$J,358.3,235,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,235,1,2,0)
- ;;=2^312.31
- ;;^UTILITY(U,$J,358.3,235,1,5,0)
- ;;=5^Pathological Gambling
- ;;^UTILITY(U,$J,358.3,235,2)
- ;;=^90682
- ;;^UTILITY(U,$J,358.3,236,0)
- ;;=314.00^^3^34^3
- ;;^UTILITY(U,$J,358.3,236,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,236,1,2,0)
- ;;=2^314.00
- ;;^UTILITY(U,$J,358.3,236,1,5,0)
- ;;=5^Attn Defic w/o Hyperactiv
- ;;^UTILITY(U,$J,358.3,236,2)
- ;;=^268351
- ;;^UTILITY(U,$J,358.3,237,0)
- ;;=796.0^^3^34^1
- ;;^UTILITY(U,$J,358.3,237,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,237,1,2,0)
- ;;=2^796.0
- ;;^UTILITY(U,$J,358.3,237,1,5,0)
- ;;=5^Abn Toxicologic Finding
- ;;^UTILITY(U,$J,358.3,237,2)
- ;;=^273463
- ;;^UTILITY(U,$J,358.3,238,0)
- ;;=303.90^^3^35^12
- ;;^UTILITY(U,$J,358.3,238,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,238,1,2,0)
- ;;=2^303.90
- ;;^UTILITY(U,$J,358.3,238,1,5,0)
- ;;=5^Alcohol Dependence
- ;;^UTILITY(U,$J,358.3,238,2)
- ;;=^268187
- ;;^UTILITY(U,$J,358.3,239,0)
- ;;=303.93^^3^35^11
- ;;^UTILITY(U,$J,358.3,239,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,239,1,2,0)
- ;;=2^303.93
- ;;^UTILITY(U,$J,358.3,239,1,5,0)
- ;;=5^Alcohol Dep-Remission
- ;;^UTILITY(U,$J,358.3,239,2)
- ;;=^268190
- ;;^UTILITY(U,$J,358.3,240,0)
- ;;=305.00^^3^35^9
- ;;^UTILITY(U,$J,358.3,240,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,240,1,2,0)
- ;;=2^305.00
- ;;^UTILITY(U,$J,358.3,240,1,5,0)
- ;;=5^Alcohol Abuse
- ;;^UTILITY(U,$J,358.3,240,2)
- ;;=^268227
- ;;^UTILITY(U,$J,358.3,241,0)
- ;;=305.03^^3^35^10
- ;;^UTILITY(U,$J,358.3,241,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,241,1,2,0)
- ;;=2^305.03
- ;;^UTILITY(U,$J,358.3,241,1,5,0)
- ;;=5^Alcohol Abuse-Remission
- ;;^UTILITY(U,$J,358.3,241,2)
- ;;=^268230
- ;;^UTILITY(U,$J,358.3,242,0)
- ;;=304.00^^3^35^74
- ;;^UTILITY(U,$J,358.3,242,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,242,1,2,0)
- ;;=2^304.00
- ;;^UTILITY(U,$J,358.3,242,1,5,0)
- ;;=5^Opioid Dependence
- ;;^UTILITY(U,$J,358.3,242,2)
- ;;=^81364
- ;;^UTILITY(U,$J,358.3,243,0)
- ;;=304.23^^3^35^72
- ;;^UTILITY(U,$J,358.3,243,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,243,1,2,0)
- ;;=2^304.23
- ;;^UTILITY(U,$J,358.3,243,1,5,0)
- ;;=5^Opioid Dep-Remission
- ;;^UTILITY(U,$J,358.3,243,2)
- ;;=^268200
- ;;^UTILITY(U,$J,358.3,244,0)
- ;;=305.50^^3^35^68
- ;;^UTILITY(U,$J,358.3,244,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,201,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, accidental, subs
+ ;;^UTILITY(U,$J,358.3,201,1,4,0)
+ ;;=4^T49.6X1D
+ ;;^UTILITY(U,$J,358.3,201,2)
+ ;;=^5051915
+ ;;^UTILITY(U,$J,358.3,202,0)
+ ;;=T49.6X1S^^1^10^56
+ ;;^UTILITY(U,$J,358.3,202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,202,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, accidental, sequela
+ ;;^UTILITY(U,$J,358.3,202,1,4,0)
+ ;;=4^T49.6X1S
+ ;;^UTILITY(U,$J,358.3,202,2)
+ ;;=^5051916
+ ;;^UTILITY(U,$J,358.3,203,0)
+ ;;=T49.6X3D^^1^10^64
+ ;;^UTILITY(U,$J,358.3,203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,203,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and preparations, assault, subs
+ ;;^UTILITY(U,$J,358.3,203,1,4,0)
+ ;;=4^T49.6X3D
+ ;;^UTILITY(U,$J,358.3,203,2)
+ ;;=^5051921
+ ;;^UTILITY(U,$J,358.3,204,0)
+ ;;=T49.6X3S^^1^10^57
+ ;;^UTILITY(U,$J,358.3,204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,204,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, assault, sequela
+ ;;^UTILITY(U,$J,358.3,204,1,4,0)
+ ;;=4^T49.6X3S
+ ;;^UTILITY(U,$J,358.3,204,2)
+ ;;=^5051922
+ ;;^UTILITY(U,$J,358.3,205,0)
+ ;;=T49.6X2A^^1^10^58
+ ;;^UTILITY(U,$J,358.3,205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,205,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, self-harm, init
+ ;;^UTILITY(U,$J,358.3,205,1,4,0)
+ ;;=4^T49.6X2A
+ ;;^UTILITY(U,$J,358.3,205,2)
+ ;;=^5051917
+ ;;^UTILITY(U,$J,358.3,206,0)
+ ;;=T49.6X2D^^1^10^59
+ ;;^UTILITY(U,$J,358.3,206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,206,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, self-harm, subs
+ ;;^UTILITY(U,$J,358.3,206,1,4,0)
+ ;;=4^T49.6X2D
+ ;;^UTILITY(U,$J,358.3,206,2)
+ ;;=^5051918
+ ;;^UTILITY(U,$J,358.3,207,0)
+ ;;=T49.6X2S^^1^10^60
+ ;;^UTILITY(U,$J,358.3,207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,207,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,207,1,4,0)
+ ;;=4^T49.6X2S
+ ;;^UTILITY(U,$J,358.3,207,2)
+ ;;=^5051919
+ ;;^UTILITY(U,$J,358.3,208,0)
+ ;;=T49.6X4A^^1^10^61
+ ;;^UTILITY(U,$J,358.3,208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,208,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, undetermined, init
+ ;;^UTILITY(U,$J,358.3,208,1,4,0)
+ ;;=4^T49.6X4A
+ ;;^UTILITY(U,$J,358.3,208,2)
+ ;;=^5051923
+ ;;^UTILITY(U,$J,358.3,209,0)
+ ;;=T49.6X4D^^1^10^62
+ ;;^UTILITY(U,$J,358.3,209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,209,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, undetermined, subs
+ ;;^UTILITY(U,$J,358.3,209,1,4,0)
+ ;;=4^T49.6X4D
+ ;;^UTILITY(U,$J,358.3,209,2)
+ ;;=^5051924
+ ;;^UTILITY(U,$J,358.3,210,0)
+ ;;=T49.6X4S^^1^10^63
+ ;;^UTILITY(U,$J,358.3,210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,210,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, undetermined, sequela
+ ;;^UTILITY(U,$J,358.3,210,1,4,0)
+ ;;=4^T49.6X4S
+ ;;^UTILITY(U,$J,358.3,210,2)
+ ;;=^5051925
+ ;;^UTILITY(U,$J,358.3,211,0)
+ ;;=T36.91XA^^1^10^65
+ ;;^UTILITY(U,$J,358.3,211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,211,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, accidental, init
+ ;;^UTILITY(U,$J,358.3,211,1,4,0)
+ ;;=4^T36.91XA
+ ;;^UTILITY(U,$J,358.3,211,2)
+ ;;=^5049418
+ ;;^UTILITY(U,$J,358.3,212,0)
+ ;;=T36.91XD^^1^10^66
+ ;;^UTILITY(U,$J,358.3,212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,212,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, accidental, subs
+ ;;^UTILITY(U,$J,358.3,212,1,4,0)
+ ;;=4^T36.91XD
+ ;;^UTILITY(U,$J,358.3,212,2)
+ ;;=^5049419
+ ;;^UTILITY(U,$J,358.3,213,0)
+ ;;=T36.91XS^^1^10^67
+ ;;^UTILITY(U,$J,358.3,213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,213,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, accidental, sequela

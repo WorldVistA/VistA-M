@@ -1,6 +1,6 @@
 PSBOMV ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**60,78,72**;Mar 2004;Build 16
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**60,78,72,86**;Mar 2004;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DPT/10035
@@ -54,7 +54,7 @@ BYWDPT ;Print by Ward and Sort by Patient.
  .....W ?48,$$GET1^DIQ(53.78,PSBY_",",.04)
  .....W ?75,$$GET1^DIQ(53.78,PSBY_",",.05)
  .....W ?95,$$GET1^DIQ(53.78,PSBY_",",.06)
- .....W ?102,$$GET1^DIQ(53.78,PSBY_",",.07)
+ .....;W ?102,$$GET1^DIQ(53.78,PSBY_",",.07) - Remove .07 since medication is written through pointer, PSB*3*86
  .....W ?102,$$GET1^DIQ(53.78,PSBY_",","MED LOG PTR:ADMINISTRATION MEDICATION")
  .....D VCOM ;Print Ward and Comments from Med Log.
  .....W !?52
@@ -77,7 +77,7 @@ BYWDRB ;Print by Ward and Sort by Room and Bed.
  .....W ?48,$$GET1^DIQ(53.78,PSBY_",",.04)
  .....W ?75,$$GET1^DIQ(53.78,PSBY_",",.05)
  .....W ?95,$$GET1^DIQ(53.78,PSBY_",",.06)
- .....W ?102,$$GET1^DIQ(53.78,PSBY_",",.07)
+ .....;W ?102,$$GET1^DIQ(53.78,PSBY_",",.07) - Remove .07 since medication is written through pointer, PSB*3*86
  .....W ?102,$$GET1^DIQ(53.78,PSBY_",","MED LOG PTR:ADMINISTRATION MEDICATION")
  .....D VCOM ;Print Ward and Comments from Med Log.
  .....W !?52
@@ -96,7 +96,7 @@ BYDFN ;Print by Patient.
  .....W !,$$GET1^DIQ(53.78,PSBY_",",.04)
  .....W ?23,$$GET1^DIQ(53.78,PSBY_",",.05)
  .....W ?43,$$GET1^DIQ(53.78,PSBY_",",.06)
- .....W ?50,$$GET1^DIQ(53.78,PSBY_",",.07)
+ .....;W ?50,$$GET1^DIQ(53.78,PSBY_",",.07) - Remove .07 since medication is written through pointer, PSB*3*86
  .....W ?50,$$GET1^DIQ(53.78,PSBY_",","MED LOG PTR:ADMINISTRATION MEDICATION")
  .....D VCOM ;Print Ward and Comments from Med Log.
  .W !!  D EVEPRNT

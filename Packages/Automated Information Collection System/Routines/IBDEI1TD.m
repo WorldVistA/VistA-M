@@ -1,136 +1,124 @@
-IBDEI1TD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1TD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32379,1,0)
+ ;;^UTILITY(U,$J,358.3,31971,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,31971,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,31972,0)
+ ;;=I70.219^^182^1979^3
+ ;;^UTILITY(U,$J,358.3,31972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32379,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,32379,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,32379,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,32380,0)
- ;;=J09.X9^^190^1953^29
- ;;^UTILITY(U,$J,358.3,32380,1,0)
+ ;;^UTILITY(U,$J,358.3,31972,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,31972,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,31972,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,31973,0)
+ ;;=I70.213^^182^1979^4
+ ;;^UTILITY(U,$J,358.3,31973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32380,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,32380,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,32380,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,32381,0)
- ;;=J44.9^^190^1953^15
- ;;^UTILITY(U,$J,358.3,32381,1,0)
+ ;;^UTILITY(U,$J,358.3,31973,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,31973,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,31973,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,31974,0)
+ ;;=I70.212^^182^1979^5
+ ;;^UTILITY(U,$J,358.3,31974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32381,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,32381,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,32381,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,32382,0)
- ;;=J44.1^^190^1953^14
- ;;^UTILITY(U,$J,358.3,32382,1,0)
+ ;;^UTILITY(U,$J,358.3,31974,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,31974,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,31974,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,31975,0)
+ ;;=I70.211^^182^1979^6
+ ;;^UTILITY(U,$J,358.3,31975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32382,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32382,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,32382,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,32383,0)
- ;;=J42.^^190^1953^12
- ;;^UTILITY(U,$J,358.3,32383,1,0)
+ ;;^UTILITY(U,$J,358.3,31975,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,31975,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,31975,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,31976,0)
+ ;;=I70.25^^182^1979^2
+ ;;^UTILITY(U,$J,358.3,31976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32383,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,32383,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,32383,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,32384,0)
- ;;=J43.9^^190^1953^23
- ;;^UTILITY(U,$J,358.3,32384,1,0)
+ ;;^UTILITY(U,$J,358.3,31976,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,31976,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,31976,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,31977,0)
+ ;;=I70.249^^182^1979^7
+ ;;^UTILITY(U,$J,358.3,31977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32384,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,32384,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,32384,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,32385,0)
- ;;=J43.0^^190^1953^31
- ;;^UTILITY(U,$J,358.3,32385,1,0)
+ ;;^UTILITY(U,$J,358.3,31977,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,31977,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,31977,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,31978,0)
+ ;;=I70.239^^182^1979^8
+ ;;^UTILITY(U,$J,358.3,31978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32385,1,3,0)
- ;;=3^MacLeod's Syndrome
- ;;^UTILITY(U,$J,358.3,32385,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,32385,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,32386,0)
- ;;=J43.1^^190^1953^22
- ;;^UTILITY(U,$J,358.3,32386,1,0)
+ ;;^UTILITY(U,$J,358.3,31978,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,31978,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,31978,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,31979,0)
+ ;;=I70.269^^182^1979^9
+ ;;^UTILITY(U,$J,358.3,31979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32386,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,32386,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,32386,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,32387,0)
- ;;=J43.2^^190^1953^20
- ;;^UTILITY(U,$J,358.3,32387,1,0)
+ ;;^UTILITY(U,$J,358.3,31979,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,31979,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,31979,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,31980,0)
+ ;;=I70.263^^182^1979^10
+ ;;^UTILITY(U,$J,358.3,31980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32387,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,32387,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,32387,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,32388,0)
- ;;=J43.8^^190^1953^21
- ;;^UTILITY(U,$J,358.3,32388,1,0)
+ ;;^UTILITY(U,$J,358.3,31980,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,31980,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,31980,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,31981,0)
+ ;;=I70.262^^182^1979^11
+ ;;^UTILITY(U,$J,358.3,31981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32388,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,32388,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,32388,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,32389,0)
- ;;=J45.902^^190^1953^6
- ;;^UTILITY(U,$J,358.3,32389,1,0)
+ ;;^UTILITY(U,$J,358.3,31981,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
+ ;;^UTILITY(U,$J,358.3,31981,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,31981,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,31982,0)
+ ;;=I70.261^^182^1979^12
+ ;;^UTILITY(U,$J,358.3,31982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32389,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,32389,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,32389,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,32390,0)
- ;;=J45.901^^190^1953^5
- ;;^UTILITY(U,$J,358.3,32390,1,0)
+ ;;^UTILITY(U,$J,358.3,31982,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
+ ;;^UTILITY(U,$J,358.3,31982,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,31982,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,31983,0)
+ ;;=I71.2^^182^1979^20
+ ;;^UTILITY(U,$J,358.3,31983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32390,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,32390,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,32390,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,32391,0)
- ;;=J47.9^^190^1953^11
- ;;^UTILITY(U,$J,358.3,32391,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32391,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32391,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,32391,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,32392,0)
- ;;=J47.1^^190^1953^9
- ;;^UTILITY(U,$J,358.3,32392,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31983,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture

@@ -1,136 +1,122 @@
-IBDEI1PC ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PC ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30534,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,30534,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,30535,0)
- ;;=J20.3^^189^1919^2
- ;;^UTILITY(U,$J,358.3,30535,1,0)
+ ;;^UTILITY(U,$J,358.3,30174,1,4,0)
+ ;;=4^O31.11X1
+ ;;^UTILITY(U,$J,358.3,30174,2)
+ ;;=^5016538
+ ;;^UTILITY(U,$J,358.3,30175,0)
+ ;;=O31.11X2^^178^1915^27
+ ;;^UTILITY(U,$J,358.3,30175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30535,1,3,0)
- ;;=3^Acute Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,30535,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,30535,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,30536,0)
- ;;=J20.1^^189^1919^3
- ;;^UTILITY(U,$J,358.3,30536,1,0)
+ ;;^UTILITY(U,$J,358.3,30175,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts2
+ ;;^UTILITY(U,$J,358.3,30175,1,4,0)
+ ;;=4^O31.11X2
+ ;;^UTILITY(U,$J,358.3,30175,2)
+ ;;=^5016539
+ ;;^UTILITY(U,$J,358.3,30176,0)
+ ;;=O31.12X1^^178^1915^28
+ ;;^UTILITY(U,$J,358.3,30176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30536,1,3,0)
- ;;=3^Acute Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,30536,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,30536,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,30537,0)
- ;;=J20.0^^189^1919^4
- ;;^UTILITY(U,$J,358.3,30537,1,0)
+ ;;^UTILITY(U,$J,358.3,30176,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts 1
+ ;;^UTILITY(U,$J,358.3,30176,1,4,0)
+ ;;=4^O31.12X1
+ ;;^UTILITY(U,$J,358.3,30176,2)
+ ;;=^5016545
+ ;;^UTILITY(U,$J,358.3,30177,0)
+ ;;=O31.12X2^^178^1915^29
+ ;;^UTILITY(U,$J,358.3,30177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30537,1,3,0)
- ;;=3^Acute Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,30537,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,30537,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,30538,0)
- ;;=J42.^^189^1919^16
- ;;^UTILITY(U,$J,358.3,30538,1,0)
+ ;;^UTILITY(U,$J,358.3,30177,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts2
+ ;;^UTILITY(U,$J,358.3,30177,1,4,0)
+ ;;=4^O31.12X2
+ ;;^UTILITY(U,$J,358.3,30177,2)
+ ;;=^5016546
+ ;;^UTILITY(U,$J,358.3,30178,0)
+ ;;=O31.13X1^^178^1915^30
+ ;;^UTILITY(U,$J,358.3,30178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30538,1,3,0)
- ;;=3^Chronic Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,30538,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,30538,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,30539,0)
- ;;=J45.998^^189^1919^11
- ;;^UTILITY(U,$J,358.3,30539,1,0)
+ ;;^UTILITY(U,$J,358.3,30178,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts1
+ ;;^UTILITY(U,$J,358.3,30178,1,4,0)
+ ;;=4^O31.13X1
+ ;;^UTILITY(U,$J,358.3,30178,2)
+ ;;=^5016552
+ ;;^UTILITY(U,$J,358.3,30179,0)
+ ;;=O31.13X2^^178^1915^31
+ ;;^UTILITY(U,$J,358.3,30179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30539,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,30539,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,30539,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,30540,0)
- ;;=J45.909^^189^1919^13
- ;;^UTILITY(U,$J,358.3,30540,1,0)
+ ;;^UTILITY(U,$J,358.3,30179,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts2
+ ;;^UTILITY(U,$J,358.3,30179,1,4,0)
+ ;;=4^O31.13X2
+ ;;^UTILITY(U,$J,358.3,30179,2)
+ ;;=^5016553
+ ;;^UTILITY(U,$J,358.3,30180,0)
+ ;;=O31.11X3^^178^1915^32
+ ;;^UTILITY(U,$J,358.3,30180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30540,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,30540,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,30540,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,30541,0)
- ;;=J45.902^^189^1919^12
- ;;^UTILITY(U,$J,358.3,30541,1,0)
+ ;;^UTILITY(U,$J,358.3,30180,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts3
+ ;;^UTILITY(U,$J,358.3,30180,1,4,0)
+ ;;=4^O31.11X3
+ ;;^UTILITY(U,$J,358.3,30180,2)
+ ;;=^5016540
+ ;;^UTILITY(U,$J,358.3,30181,0)
+ ;;=O31.12X3^^178^1915^33
+ ;;^UTILITY(U,$J,358.3,30181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30541,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,30541,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,30541,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,30542,0)
- ;;=J44.9^^189^1919^15
- ;;^UTILITY(U,$J,358.3,30542,1,0)
+ ;;^UTILITY(U,$J,358.3,30181,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts3
+ ;;^UTILITY(U,$J,358.3,30181,1,4,0)
+ ;;=4^O31.12X3
+ ;;^UTILITY(U,$J,358.3,30181,2)
+ ;;=^5016547
+ ;;^UTILITY(U,$J,358.3,30182,0)
+ ;;=O31.13X3^^178^1915^34
+ ;;^UTILITY(U,$J,358.3,30182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30542,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,30542,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,30542,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,30543,0)
- ;;=J61.^^189^1919^24
- ;;^UTILITY(U,$J,358.3,30543,1,0)
+ ;;^UTILITY(U,$J,358.3,30182,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts3
+ ;;^UTILITY(U,$J,358.3,30182,1,4,0)
+ ;;=4^O31.13X3
+ ;;^UTILITY(U,$J,358.3,30182,2)
+ ;;=^5016554
+ ;;^UTILITY(U,$J,358.3,30183,0)
+ ;;=O31.11X4^^178^1915^35
+ ;;^UTILITY(U,$J,358.3,30183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30543,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,30543,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,30543,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,30544,0)
- ;;=R09.1^^189^1919^23
- ;;^UTILITY(U,$J,358.3,30544,1,0)
+ ;;^UTILITY(U,$J,358.3,30183,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts4
+ ;;^UTILITY(U,$J,358.3,30183,1,4,0)
+ ;;=4^O31.11X4
+ ;;^UTILITY(U,$J,358.3,30183,2)
+ ;;=^5016541
+ ;;^UTILITY(U,$J,358.3,30184,0)
+ ;;=O31.12X4^^178^1915^36
+ ;;^UTILITY(U,$J,358.3,30184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30544,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,30544,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,30544,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,30545,0)
- ;;=J84.17^^189^1919^19
- ;;^UTILITY(U,$J,358.3,30545,1,0)
+ ;;^UTILITY(U,$J,358.3,30184,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts4
+ ;;^UTILITY(U,$J,358.3,30184,1,4,0)
+ ;;=4^O31.12X4
+ ;;^UTILITY(U,$J,358.3,30184,2)
+ ;;=^5016548
+ ;;^UTILITY(U,$J,358.3,30185,0)
+ ;;=O31.13X4^^178^1915^37
+ ;;^UTILITY(U,$J,358.3,30185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30545,1,3,0)
- ;;=3^Interstitial Pulmonary Disease w/ Fibrosis NEC
- ;;^UTILITY(U,$J,358.3,30545,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,30545,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,30546,0)
- ;;=J98.4^^189^1919^20
- ;;^UTILITY(U,$J,358.3,30546,1,0)
+ ;;^UTILITY(U,$J,358.3,30185,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts4
+ ;;^UTILITY(U,$J,358.3,30185,1,4,0)
+ ;;=4^O31.13X4
+ ;;^UTILITY(U,$J,358.3,30185,2)
+ ;;=^5016555
+ ;;^UTILITY(U,$J,358.3,30186,0)
+ ;;=O31.11X5^^178^1915^38
+ ;;^UTILITY(U,$J,358.3,30186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30546,1,3,0)
- ;;=3^Lung Disorders NEC
- ;;^UTILITY(U,$J,358.3,30546,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,30546,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,30547,0)
- ;;=G47.30^^189^1919^26
- ;;^UTILITY(U,$J,358.3,30547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30547,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,30547,1,4,0)
- ;;=4^G47.30

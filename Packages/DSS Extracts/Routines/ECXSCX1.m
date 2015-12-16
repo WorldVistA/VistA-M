@@ -1,5 +1,5 @@
-ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;3/10/14  13:03
- ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149**;Dec 22, 1997;Build 27
+ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;4/14/15  16:26
+ ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149,154**;Dec 22, 1997;Build 13
 EN ;entry point from ecxscx
  N ECX
  ;send missing clinic message
@@ -134,7 +134,7 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  Q:ECXERR
  S DATE=$P($P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,0),U,1),".",1)
  S ECXVIST("SOURCE")=$P($G(^TMP("PXKENC",$J,VISIT,"VST",VISIT,812)),U,3)
- ;get icd9 codes upto 5; else use 799.9
+ ;get icd codes upto 5, will be stored in ICD9 named variables, even if they're 10 codes (or any future version)
  K ARY S ICD("P")=0,ICD("S")=0,(ARY,REC)=""
  F  S REC=$O(^TMP("PXKENC",$J,VISIT,"POV",REC)) Q:REC=""  D
  .S VAL=^TMP("PXKENC",$J,VISIT,"POV",REC,0) Q:'VAL
@@ -144,12 +144,12 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  .I $P(VAL,U,12)'="P" D
  ..S:'$D(ARY("S",+VAL)) CNT=ICD("S")+1,ICD("S",CNT)=+VAL,ICD("S")=CNT
  ..S ARY("S",+VAL)=""
- S CNT=0,ECXVIST("ICD9P")=$P($G(^ICD9(+$G(ICD("P",1),0),0)),U)
+ S CNT=0,ECXVIST("ICD9P")=$S(+$G(ICD("P",1)):$$CODEC^ICDEX(80,ICD("P",1)),1:"") ;154 Get code if value exists in ICD("P",1) else return null
  F I=2:1 Q:'$D(ICD("P",I))  D  Q:CNT>4
- .S CNT=CNT+1,ECXVIST("ICD9"_CNT)=$P($G(^ICD9(ICD("P",I),0)),U)
+ .S CNT=CNT+1,ECXVIST("ICD9"_CNT)=$S(+$G(ICD("P",I)):$$CODEC^ICDEX(80,ICD("P",I)),1:"") ;154 Get code if value exists in ICD("P",I) else return null
  I CNT<4 F I=1:1:8 Q:'$D(ICD("S",I))  D  Q:CNT>4
  .I '$D(ARY("P",ICD("S",I))) D
- ..S CNT=CNT+1,ECXVIST("ICD9"_CNT)=$P($G(^ICD9(ICD("S",I),0)),U)
+ ..S CNT=CNT+1,ECXVIST("ICD9"_CNT)=$S(+$G(ICD("S",I)):$$CODEC^ICDEX(80,ICD("S",I)),1:"") ;154 Get code if value exists in ICD("S",I) else return null
  ;get first provider designated as primary
  ;if no primary, then get first physician provider
  ;if no physician, then get first provider
@@ -221,7 +221,7 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  .S IR=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,3),MST=$P(^(800),U,5)
  .S PGE=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,4),HNC=$P(^(800),U,6)
  .S CV=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,7),SHAD=$P(^(800),U,8)
- .S ENCCL="" ;144 Encounter Camp Lejeune, will need to be updated once call to PXAPI adds this data
+ .S ENCCL=$P(^TMP("PXKENC",$J,VISIT,"VST",VISIT,800),U,9) ;144,154 Encounter Camp Lejeune
  .S ECXVIST("AO")=$S(AO=0:"N",AO=1:"Y",1:"")
  .S ECXVIST("IR")=$S(IR=0:"N",IR=1:"Y",1:"")
  .S ECXVIST("MST")=$S(MST=0:"N",MST=1:"Y",1:"")
@@ -230,5 +230,5 @@ VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data
  .S ECXVIST("CV")=$S(CV=0:"N",CV=1:"Y",1:"")
  .S ECXVIST("SHAD")=$S(SHAD=0:"N",SHAD=1:"Y",1:"")
  .S ECXVIST("ENCSC")=$S(ENCSC=0:"N",ENCSC=1:"Y",1:"") ;144 Encounter Service Connected
- .S ECXVIST("ENCCL")=$S(ENCCL=0:"N",ENCCL=1:"Y",1:"") ;144 Encounter Camp Lejeune.  Assumption made that Camp Lejeune data will be returned similiarly to other status data.
+ .S ECXVIST("ENCCL")=$S(ENCCL=0:"N",ENCCL=1:"Y",1:"") ;144 Encounter Camp Lejeune.
  Q

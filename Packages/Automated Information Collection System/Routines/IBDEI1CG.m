@@ -1,94 +1,130 @@
-IBDEI1CG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1CG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24101,0)
- ;;=27816^^142^1497^36^^^^1
- ;;^UTILITY(U,$J,358.3,24101,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24101,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,24101,1,3,0)
- ;;=3^27816
- ;;^UTILITY(U,$J,358.3,24102,0)
- ;;=27818^^142^1497^37^^^^1
- ;;^UTILITY(U,$J,358.3,24102,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24102,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; with manipulation
- ;;^UTILITY(U,$J,358.3,24102,1,3,0)
- ;;=3^27818
- ;;^UTILITY(U,$J,358.3,24103,0)
- ;;=27822^^142^1497^38^^^^1
- ;;^UTILITY(U,$J,358.3,24103,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24103,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation of, medial and/or lateral malleolus; w/o fixation of posterior lip
- ;;^UTILITY(U,$J,358.3,24103,1,3,0)
- ;;=3^27822
- ;;^UTILITY(U,$J,358.3,24104,0)
- ;;=27823^^142^1497^39^^^^1
- ;;^UTILITY(U,$J,358.3,24104,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24104,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation, medial and/or lateral malleolus; with fixation of posterior lip  
- ;;^UTILITY(U,$J,358.3,24104,1,3,0)
- ;;=3^27823
- ;;^UTILITY(U,$J,358.3,24105,0)
- ;;=27824^^142^1497^40^^^^1
- ;;^UTILITY(U,$J,358.3,24105,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24105,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; w/o manipulation 
- ;;^UTILITY(U,$J,358.3,24105,1,3,0)
- ;;=3^27824
- ;;^UTILITY(U,$J,358.3,24106,0)
- ;;=27825^^142^1497^41^^^^1
- ;;^UTILITY(U,$J,358.3,24106,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24106,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; with skeletal traction &/or requiring manipulation
- ;;^UTILITY(U,$J,358.3,24106,1,3,0)
- ;;=3^27825
- ;;^UTILITY(U,$J,358.3,24107,0)
- ;;=27826^^142^1497^42^^^^1
- ;;^UTILITY(U,$J,358.3,24107,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24107,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of fibula only
- ;;^UTILITY(U,$J,358.3,24107,1,3,0)
- ;;=3^27826
- ;;^UTILITY(U,$J,358.3,24108,0)
- ;;=27827^^142^1497^43^^^^1
- ;;^UTILITY(U,$J,358.3,24108,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24108,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of tibia only
- ;;^UTILITY(U,$J,358.3,24108,1,3,0)
- ;;=3^27827
- ;;^UTILITY(U,$J,358.3,24109,0)
- ;;=27828^^142^1497^44^^^^1
- ;;^UTILITY(U,$J,358.3,24109,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24109,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portionof distal tibia, w/ internal or external fixation; of both tibia & fibula
- ;;^UTILITY(U,$J,358.3,24109,1,3,0)
- ;;=3^27828
- ;;^UTILITY(U,$J,358.3,24110,0)
- ;;=27829^^142^1497^45^^^^1
- ;;^UTILITY(U,$J,358.3,24110,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24110,1,2,0)
- ;;=2^Open Tx of distal tibiofibular joint disruption, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,24110,1,3,0)
- ;;=3^27829
- ;;^UTILITY(U,$J,358.3,24111,0)
- ;;=28540^^142^1497^46^^^^1
- ;;^UTILITY(U,$J,358.3,24111,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24111,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,24111,1,3,0)
- ;;=3^28540
- ;;^UTILITY(U,$J,358.3,24112,0)
- ;;=28545^^142^1497^47^^^^1
+ ;;^UTILITY(U,$J,358.3,23805,1,2,0)
+ ;;=2^293.82
+ ;;^UTILITY(U,$J,358.3,23805,1,5,0)
+ ;;=5^Psychotic D/O,Transient,Hallucination
+ ;;^UTILITY(U,$J,358.3,23805,2)
+ ;;=^331837
+ ;;^UTILITY(U,$J,358.3,23806,0)
+ ;;=293.83^^127^1435^3
+ ;;^UTILITY(U,$J,358.3,23806,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23806,1,2,0)
+ ;;=2^293.83
+ ;;^UTILITY(U,$J,358.3,23806,1,5,0)
+ ;;=5^Mood D/O,Transient,Depressive
+ ;;^UTILITY(U,$J,358.3,23806,2)
+ ;;=^331838
+ ;;^UTILITY(U,$J,358.3,23807,0)
+ ;;=295.12^^127^1436^2
+ ;;^UTILITY(U,$J,358.3,23807,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23807,1,2,0)
+ ;;=2^295.12
+ ;;^UTILITY(U,$J,358.3,23807,1,5,0)
+ ;;=5^Disorganized Schizophrenia, Chronic
+ ;;^UTILITY(U,$J,358.3,23807,2)
+ ;;=^268051
+ ;;^UTILITY(U,$J,358.3,23808,0)
+ ;;=295.14^^127^1436^3
+ ;;^UTILITY(U,$J,358.3,23808,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23808,1,2,0)
+ ;;=2^295.14
+ ;;^UTILITY(U,$J,358.3,23808,1,5,0)
+ ;;=5^Disorganized Schizophrenia,Chr w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,23808,2)
+ ;;=^268053
+ ;;^UTILITY(U,$J,358.3,23809,0)
+ ;;=295.52^^127^1436^6
+ ;;^UTILITY(U,$J,358.3,23809,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23809,1,2,0)
+ ;;=2^295.52
+ ;;^UTILITY(U,$J,358.3,23809,1,5,0)
+ ;;=5^Latent Schizophrenia, Chronic
+ ;;^UTILITY(U,$J,358.3,23809,2)
+ ;;=Latent Schizophrenia, Chronic^268073
+ ;;^UTILITY(U,$J,358.3,23810,0)
+ ;;=295.54^^127^1436^5
+ ;;^UTILITY(U,$J,358.3,23810,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23810,1,2,0)
+ ;;=2^295.54
+ ;;^UTILITY(U,$J,358.3,23810,1,5,0)
+ ;;=5^Latent Schizophrenia, Chr w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,23810,2)
+ ;;=^268075
+ ;;^UTILITY(U,$J,358.3,23811,0)
+ ;;=295.32^^127^1436^8
+ ;;^UTILITY(U,$J,358.3,23811,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23811,1,2,0)
+ ;;=2^295.32
+ ;;^UTILITY(U,$J,358.3,23811,1,5,0)
+ ;;=5^Paranoid Schizophrenia, Chronic
+ ;;^UTILITY(U,$J,358.3,23811,2)
+ ;;=Paranoid Schizophrenia, Chronic^268061
+ ;;^UTILITY(U,$J,358.3,23812,0)
+ ;;=295.34^^127^1436^9
+ ;;^UTILITY(U,$J,358.3,23812,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23812,1,2,0)
+ ;;=2^295.34
+ ;;^UTILITY(U,$J,358.3,23812,1,5,0)
+ ;;=5^Paranoid, Schizophrenia Chr w/Exacerbation
+ ;;^UTILITY(U,$J,358.3,23812,2)
+ ;;=^268063
+ ;;^UTILITY(U,$J,358.3,23813,0)
+ ;;=295.62^^127^1436^23
+ ;;^UTILITY(U,$J,358.3,23813,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23813,1,2,0)
+ ;;=2^295.62
+ ;;^UTILITY(U,$J,358.3,23813,1,5,0)
+ ;;=5^Undifferentiated Schizophrenia, Chr
+ ;;^UTILITY(U,$J,358.3,23813,2)
+ ;;=^268078
+ ;;^UTILITY(U,$J,358.3,23814,0)
+ ;;=295.72^^127^1436^11
+ ;;^UTILITY(U,$J,358.3,23814,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23814,1,2,0)
+ ;;=2^295.72
+ ;;^UTILITY(U,$J,358.3,23814,1,5,0)
+ ;;=5^Schizoaffective Disorder, Chr
+ ;;^UTILITY(U,$J,358.3,23814,2)
+ ;;=^268083
+ ;;^UTILITY(U,$J,358.3,23815,0)
+ ;;=295.74^^127^1436^12
+ ;;^UTILITY(U,$J,358.3,23815,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23815,1,2,0)
+ ;;=2^295.74
+ ;;^UTILITY(U,$J,358.3,23815,1,5,0)
+ ;;=5^Schizoaffective Disorder, w/Exacerb.
+ ;;^UTILITY(U,$J,358.3,23815,2)
+ ;;=^268085
+ ;;^UTILITY(U,$J,358.3,23816,0)
+ ;;=295.42^^127^1436^17
+ ;;^UTILITY(U,$J,358.3,23816,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23816,1,2,0)
+ ;;=2^295.42
+ ;;^UTILITY(U,$J,358.3,23816,1,5,0)
+ ;;=5^Schizophreniform Disorder, Chr
+ ;;^UTILITY(U,$J,358.3,23816,2)
+ ;;=^268068
+ ;;^UTILITY(U,$J,358.3,23817,0)
+ ;;=295.44^^127^1436^18
+ ;;^UTILITY(U,$J,358.3,23817,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23817,1,2,0)
+ ;;=2^295.44
+ ;;^UTILITY(U,$J,358.3,23817,1,5,0)
+ ;;=5^Schizophreniform Disorderw/Exacerb.
+ ;;^UTILITY(U,$J,358.3,23817,2)
+ ;;=^268070

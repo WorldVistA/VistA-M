@@ -1,9 +1,10 @@
 PSOQUTIL ;HINES/RMS - MISCELLANEOUS UTILITIES ; 30 Nov 2007  7:59 AM
- ;;7.0;OUTPATIENT PHARMACY;**294**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**294,282**;DEC 1997;Build 18
  ;
 LSIG(SIG) ;EXPAND A SIG
  S SGY="" F P=1:1:$L(SIG," ") S X=$P(SIG," ",P) D:X]""  ;
- .I $D(^PS(51,"A",X)) S %=^(X),X=$P(%,"^") I $P(%,"^",2)]"" S Y=$P(SIG,"",P-1),Y=$E(Y,$L(Y)) S:Y>1 X=$P(%,"^",2)
+ .;PSO*7*282 Intended Use Check
+ .N PSOIN S PSOIN=$O(^PS(51,"B",X,0)) I PSOIN,($P(^PS(51,PSOIN,0),"^",4)<2)&($D(^PS(51,"A",X))) S %=^(X),X=$P(%,"^") I $P(%,"^",2)]"" S Y=$P(SIG,"",P-1),Y=$E(Y,$L(Y)) S:Y>1 X=$P(%,"^",2)
  .S SGY=SGY_X_" "
  Q SGY
 WRAPTEXT(TEXT,LIMIT,CSPACES) ;

@@ -1,124 +1,124 @@
-IBDEI1PF ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PF ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30573,1,4,0)
- ;;=4^I70.235
- ;;^UTILITY(U,$J,358.3,30573,2)
- ;;=^5007592
- ;;^UTILITY(U,$J,358.3,30574,0)
- ;;=I70.238^^189^1921^27
- ;;^UTILITY(U,$J,358.3,30574,1,0)
+ ;;^UTILITY(U,$J,358.3,30209,1,4,0)
+ ;;=4^O31.33X9
+ ;;^UTILITY(U,$J,358.3,30209,2)
+ ;;=^5016613
+ ;;^UTILITY(U,$J,358.3,30210,0)
+ ;;=O35.0XX0^^178^1916^37
+ ;;^UTILITY(U,$J,358.3,30210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30574,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,30574,1,4,0)
- ;;=4^I70.238
- ;;^UTILITY(U,$J,358.3,30574,2)
- ;;=^5007593
- ;;^UTILITY(U,$J,358.3,30575,0)
- ;;=I70.239^^189^1921^28
- ;;^UTILITY(U,$J,358.3,30575,1,0)
+ ;;^UTILITY(U,$J,358.3,30210,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, unsp
+ ;;^UTILITY(U,$J,358.3,30210,1,4,0)
+ ;;=4^O35.0XX0
+ ;;^UTILITY(U,$J,358.3,30210,2)
+ ;;=^5016775
+ ;;^UTILITY(U,$J,358.3,30211,0)
+ ;;=O35.0XX1^^178^1916^38
+ ;;^UTILITY(U,$J,358.3,30211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30575,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,30575,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,30575,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,30576,0)
- ;;=I70.241^^189^1921^20
- ;;^UTILITY(U,$J,358.3,30576,1,0)
+ ;;^UTILITY(U,$J,358.3,30211,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 1
+ ;;^UTILITY(U,$J,358.3,30211,1,4,0)
+ ;;=4^O35.0XX1
+ ;;^UTILITY(U,$J,358.3,30211,2)
+ ;;=^5016776
+ ;;^UTILITY(U,$J,358.3,30212,0)
+ ;;=O35.0XX2^^178^1916^39
+ ;;^UTILITY(U,$J,358.3,30212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30576,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,30576,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,30576,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,30577,0)
- ;;=I70.242^^189^1921^16
- ;;^UTILITY(U,$J,358.3,30577,1,0)
+ ;;^UTILITY(U,$J,358.3,30212,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 2
+ ;;^UTILITY(U,$J,358.3,30212,1,4,0)
+ ;;=4^O35.0XX2
+ ;;^UTILITY(U,$J,358.3,30212,2)
+ ;;=^5016777
+ ;;^UTILITY(U,$J,358.3,30213,0)
+ ;;=O35.0XX3^^178^1916^40
+ ;;^UTILITY(U,$J,358.3,30213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30577,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,30577,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,30577,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,30578,0)
- ;;=I70.243^^189^1921^15
- ;;^UTILITY(U,$J,358.3,30578,1,0)
+ ;;^UTILITY(U,$J,358.3,30213,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 3
+ ;;^UTILITY(U,$J,358.3,30213,1,4,0)
+ ;;=4^O35.0XX3
+ ;;^UTILITY(U,$J,358.3,30213,2)
+ ;;=^5016778
+ ;;^UTILITY(U,$J,358.3,30214,0)
+ ;;=O35.0XX4^^178^1916^41
+ ;;^UTILITY(U,$J,358.3,30214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30578,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,30578,1,4,0)
- ;;=4^I70.243
- ;;^UTILITY(U,$J,358.3,30578,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,30579,0)
- ;;=I70.244^^189^1921^18
- ;;^UTILITY(U,$J,358.3,30579,1,0)
+ ;;^UTILITY(U,$J,358.3,30214,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 4
+ ;;^UTILITY(U,$J,358.3,30214,1,4,0)
+ ;;=4^O35.0XX4
+ ;;^UTILITY(U,$J,358.3,30214,2)
+ ;;=^5016779
+ ;;^UTILITY(U,$J,358.3,30215,0)
+ ;;=O35.0XX5^^178^1916^42
+ ;;^UTILITY(U,$J,358.3,30215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30579,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,30579,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,30579,2)
- ;;=^5007598
- ;;^UTILITY(U,$J,358.3,30580,0)
- ;;=I70.245^^189^1921^17
- ;;^UTILITY(U,$J,358.3,30580,1,0)
+ ;;^UTILITY(U,$J,358.3,30215,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 5
+ ;;^UTILITY(U,$J,358.3,30215,1,4,0)
+ ;;=4^O35.0XX5
+ ;;^UTILITY(U,$J,358.3,30215,2)
+ ;;=^5016780
+ ;;^UTILITY(U,$J,358.3,30216,0)
+ ;;=O35.1XX0^^178^1916^61
+ ;;^UTILITY(U,$J,358.3,30216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30580,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,30580,1,4,0)
- ;;=4^I70.245
- ;;^UTILITY(U,$J,358.3,30580,2)
- ;;=^5007599
- ;;^UTILITY(U,$J,358.3,30581,0)
- ;;=I70.248^^189^1921^19
- ;;^UTILITY(U,$J,358.3,30581,1,0)
+ ;;^UTILITY(U,$J,358.3,30216,1,3,0)
+ ;;=3^Maternal care for chromosomal abnormality in fetus, unsp
+ ;;^UTILITY(U,$J,358.3,30216,1,4,0)
+ ;;=4^O35.1XX0
+ ;;^UTILITY(U,$J,358.3,30216,2)
+ ;;=^5016782
+ ;;^UTILITY(U,$J,358.3,30217,0)
+ ;;=O35.1XX1^^178^1916^62
+ ;;^UTILITY(U,$J,358.3,30217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30581,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,30581,1,4,0)
- ;;=4^I70.248
- ;;^UTILITY(U,$J,358.3,30581,2)
- ;;=^5007600
- ;;^UTILITY(U,$J,358.3,30582,0)
- ;;=I70.249^^189^1921^21
- ;;^UTILITY(U,$J,358.3,30582,1,0)
+ ;;^UTILITY(U,$J,358.3,30217,1,3,0)
+ ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 1
+ ;;^UTILITY(U,$J,358.3,30217,1,4,0)
+ ;;=4^O35.1XX1
+ ;;^UTILITY(U,$J,358.3,30217,2)
+ ;;=^5016783
+ ;;^UTILITY(U,$J,358.3,30218,0)
+ ;;=O35.1XX2^^178^1916^63
+ ;;^UTILITY(U,$J,358.3,30218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30582,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,30582,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,30582,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,30583,0)
- ;;=I70.331^^189^1921^64
- ;;^UTILITY(U,$J,358.3,30583,1,0)
+ ;;^UTILITY(U,$J,358.3,30218,1,3,0)
+ ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 2
+ ;;^UTILITY(U,$J,358.3,30218,1,4,0)
+ ;;=4^O35.1XX2
+ ;;^UTILITY(U,$J,358.3,30218,2)
+ ;;=^5016784
+ ;;^UTILITY(U,$J,358.3,30219,0)
+ ;;=O35.1XX3^^178^1916^64
+ ;;^UTILITY(U,$J,358.3,30219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30583,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,30583,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,30583,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,30584,0)
- ;;=I70.332^^189^1921^65
- ;;^UTILITY(U,$J,358.3,30584,1,0)
+ ;;^UTILITY(U,$J,358.3,30219,1,3,0)
+ ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 3
+ ;;^UTILITY(U,$J,358.3,30219,1,4,0)
+ ;;=4^O35.1XX3
+ ;;^UTILITY(U,$J,358.3,30219,2)
+ ;;=^5016785
+ ;;^UTILITY(U,$J,358.3,30220,0)
+ ;;=O35.1XX4^^178^1916^65
+ ;;^UTILITY(U,$J,358.3,30220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30584,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,30584,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,30584,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,30585,0)
- ;;=I70.333^^189^1921^66
- ;;^UTILITY(U,$J,358.3,30585,1,0)
+ ;;^UTILITY(U,$J,358.3,30220,1,3,0)
+ ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 4
+ ;;^UTILITY(U,$J,358.3,30220,1,4,0)
+ ;;=4^O35.1XX4
+ ;;^UTILITY(U,$J,358.3,30220,2)
+ ;;=^5016786
+ ;;^UTILITY(U,$J,358.3,30221,0)
+ ;;=O35.1XX5^^178^1916^66
+ ;;^UTILITY(U,$J,358.3,30221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30585,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,30221,1,3,0)
+ ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 5

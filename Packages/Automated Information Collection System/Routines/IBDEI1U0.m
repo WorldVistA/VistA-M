@@ -1,132 +1,122 @@
-IBDEI1U0 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1U0 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32675,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,32675,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,32676,0)
- ;;=F10.21^^190^1957^3
- ;;^UTILITY(U,$J,358.3,32676,1,0)
+ ;;^UTILITY(U,$J,358.3,32264,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,32264,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,32265,0)
+ ;;=L97.523^^182^1981^184
+ ;;^UTILITY(U,$J,358.3,32265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32676,1,3,0)
- ;;=3^Alcohol Dependence,In Remission
- ;;^UTILITY(U,$J,358.3,32676,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,32676,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,32677,0)
- ;;=F12.10^^190^1957^5
- ;;^UTILITY(U,$J,358.3,32677,1,0)
+ ;;^UTILITY(U,$J,358.3,32265,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,32265,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,32265,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,32266,0)
+ ;;=L97.524^^182^1981^185
+ ;;^UTILITY(U,$J,358.3,32266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32677,1,3,0)
- ;;=3^Cannabis Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32677,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,32677,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,32678,0)
- ;;=F12.20^^190^1957^7
- ;;^UTILITY(U,$J,358.3,32678,1,0)
+ ;;^UTILITY(U,$J,358.3,32266,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,32266,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,32266,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,32267,0)
+ ;;=L97.529^^182^1981^186
+ ;;^UTILITY(U,$J,358.3,32267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32678,1,3,0)
- ;;=3^Cannabis Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32678,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,32678,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,32679,0)
- ;;=F12.21^^190^1957^6
- ;;^UTILITY(U,$J,358.3,32679,1,0)
+ ;;^UTILITY(U,$J,358.3,32267,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,32267,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,32267,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,32268,0)
+ ;;=L97.911^^182^1981^222
+ ;;^UTILITY(U,$J,358.3,32268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32679,1,3,0)
- ;;=3^Cannabis Dependence,In Remission
- ;;^UTILITY(U,$J,358.3,32679,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,32679,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,32680,0)
- ;;=F12.90^^190^1957^8
- ;;^UTILITY(U,$J,358.3,32680,1,0)
+ ;;^UTILITY(U,$J,358.3,32268,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,32268,1,4,0)
+ ;;=4^L97.911
+ ;;^UTILITY(U,$J,358.3,32268,2)
+ ;;=^5133679
+ ;;^UTILITY(U,$J,358.3,32269,0)
+ ;;=L97.912^^182^1981^223
+ ;;^UTILITY(U,$J,358.3,32269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32680,1,3,0)
- ;;=3^Cannabis Use,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32680,1,4,0)
- ;;=4^F12.90
- ;;^UTILITY(U,$J,358.3,32680,2)
- ;;=^5003178
- ;;^UTILITY(U,$J,358.3,32681,0)
- ;;=I83.019^^190^1958^3
- ;;^UTILITY(U,$J,358.3,32681,1,0)
+ ;;^UTILITY(U,$J,358.3,32269,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,32269,1,4,0)
+ ;;=4^L97.912
+ ;;^UTILITY(U,$J,358.3,32269,2)
+ ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,32270,0)
+ ;;=L97.913^^182^1981^224
+ ;;^UTILITY(U,$J,358.3,32270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32681,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer
- ;;^UTILITY(U,$J,358.3,32681,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,32681,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,32682,0)
- ;;=I83.219^^190^1958^4
- ;;^UTILITY(U,$J,358.3,32682,1,0)
+ ;;^UTILITY(U,$J,358.3,32270,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,32270,1,4,0)
+ ;;=4^L97.913
+ ;;^UTILITY(U,$J,358.3,32270,2)
+ ;;=^5133683
+ ;;^UTILITY(U,$J,358.3,32271,0)
+ ;;=L97.914^^182^1981^225
+ ;;^UTILITY(U,$J,358.3,32271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32682,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam
- ;;^UTILITY(U,$J,358.3,32682,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,32682,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,32683,0)
- ;;=I83.029^^190^1958^1
- ;;^UTILITY(U,$J,358.3,32683,1,0)
+ ;;^UTILITY(U,$J,358.3,32271,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,32271,1,4,0)
+ ;;=4^L97.914
+ ;;^UTILITY(U,$J,358.3,32271,2)
+ ;;=^5133685
+ ;;^UTILITY(U,$J,358.3,32272,0)
+ ;;=L97.919^^182^1981^226
+ ;;^UTILITY(U,$J,358.3,32272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32683,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer
- ;;^UTILITY(U,$J,358.3,32683,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,32683,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,32684,0)
- ;;=I83.229^^190^1958^2
- ;;^UTILITY(U,$J,358.3,32684,1,0)
+ ;;^UTILITY(U,$J,358.3,32272,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,32272,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,32272,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,32273,0)
+ ;;=L97.921^^182^1981^192
+ ;;^UTILITY(U,$J,358.3,32273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32684,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam
- ;;^UTILITY(U,$J,358.3,32684,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,32684,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,32685,0)
- ;;=B00.81^^190^1959^24
- ;;^UTILITY(U,$J,358.3,32685,1,0)
+ ;;^UTILITY(U,$J,358.3,32273,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,32273,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,32273,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,32274,0)
+ ;;=L97.922^^182^1981^193
+ ;;^UTILITY(U,$J,358.3,32274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32685,1,3,0)
- ;;=3^Herpesviral Hepatitis
- ;;^UTILITY(U,$J,358.3,32685,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,32685,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,32686,0)
- ;;=D25.9^^190^1959^29
- ;;^UTILITY(U,$J,358.3,32686,1,0)
+ ;;^UTILITY(U,$J,358.3,32274,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,32274,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,32274,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,32275,0)
+ ;;=L97.923^^182^1981^194
+ ;;^UTILITY(U,$J,358.3,32275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32686,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,32686,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,32686,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,32687,0)
- ;;=F52.9^^190^1959^53
- ;;^UTILITY(U,$J,358.3,32687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32687,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,32687,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,32687,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,32688,0)
- ;;=R37.^^190^1959^54
- ;;^UTILITY(U,$J,358.3,32688,1,0)
+ ;;^UTILITY(U,$J,358.3,32275,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,32275,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,32275,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,32276,0)
+ ;;=L97.924^^182^1981^195
+ ;;^UTILITY(U,$J,358.3,32276,1,0)
  ;;=^358.31IA^4^2

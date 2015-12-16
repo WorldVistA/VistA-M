@@ -1,5 +1,5 @@
 PSOHLSIG ;BIR/RTR-Parse out and create possible Sig ; 7/21/96
- ;;7.0;OUTPATIENT PHARMACY;**1,18,41,60**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**1,18,41,60,282**;DEC 1997;Build 18
  ;External reference to File #50.7 supported by DBIA 2223
  ;External reference to File #51 supported by DBIA 2224
  ;External reference to File #51.1 supported by DBIA 2225
@@ -11,19 +11,9 @@ PSOHLSIG ;BIR/RTR-Parse out and create possible Sig ; 7/21/96
  F SSS=0:0 S SSS=$O(^PS(52.41,PENDING,1,SSS)) Q:'SSS  S SIG0(SSS)=$G(^PS(52.41,PENDING,1,SSS,0)),SIG1(SSS)=$G(^(1)) D NON
  ;I SIG0(1)'["&" D SIG1 G STUFF
  S PSOROUTE=$S($P($G(^PS(51.2,+SIGRT,0)),"^",2)'="":$P(^(0),"^",2),$P($G(^(0)),"^",3)'="":$P(^(0),"^",3),1:$P($G(^(0)),"^")) S MEDEXP=$S($P($G(^PS(51.2,+SIGRT,0)),"^",2)="":0,1:1)
- F GGG=0:0 S GGG=$O(SIG1(GGG)) Q:'GGG  S ZSCHED(GGG)=$P(SIG1(GGG),"^") D
- .I $G(ZSCHED(GGG))="" S SCHED(GGG)="" Q
- .S SGLFLAG=0 F WW=0:0 S WW=$O(^PS(51.1,"B",ZSCHED(GGG),WW)) Q:'WW!($G(SGLFLAG))  I $P($G(^PS(51.1,WW,0)),"^",8)'="" S SCHED(GGG)=$P($G(^(0)),"^",8),SGLFLAG=1
- .Q:$G(SGLFLAG)
- .I $G(^PS(51,"A",ZSCHED(GGG)))'="" S SCHED(GGG)=$P(^(ZSCHED(GGG)),"^") Q
- .S ZZSB=0 F ZZS=1:1:$L(ZSCHED(GGG)) S SZZ=$E(ZSCHED(GGG),ZZS) I SZZ=" " S ZZSB=ZZSB+1
- .S ZZSB=ZZSB+1
- .K SCHHOLD F GGGZ=1:1:ZZSB S (SDL,SCHHOLD(GGGZ))=$P(ZSCHED(GGG)," ",GGGZ) D
- ..Q:$G(SDL)=""
- ..S SGLFLAG=0 F WW=0:0 S WW=$O(^PS(51.1,"B",SDL,WW)) Q:'WW!($G(SGLFLAG))  I $P($G(^PS(51.1,WW,0)),"^",8)'="" S SCHHOLD(GGGZ)=$P($G(^(0)),"^",8),SGLFLAG=1
- ..Q:$G(SGLFLAG)
- ..I $G(^PS(51,"A",SDL))'="" S SCHHOLD(GGGZ)=$P(^(SDL),"^")
- .S SCHED(GGG)="",SGLFLAG=0 F WW=1:1:ZZSB S SCHED(GGG)=SCHED(GGG)_$S($G(SGLFLAG):" ",1:"")_$G(SCHHOLD(WW)),SGLFLAG=1
+ ;282 Schedule Expander Changed
+ F GGG=0:0 S GGG=$O(SIG1(GGG)) Q:'GGG  S SCHED(GGG)=$$SCHE^PSOSIG($P(SIG1(GGG),"^"))
+ ;282 End Change
  F TT=0:0 S TT=$O(SIG1(TT)) Q:'TT  D DAYS S PSDUR(TT)=$S($P(SIG1(TT),"^",2)=""!($E($P(SIG1(TT),"^",2))="I"):"NULL",1:"FOR "_$E($P(SIG1(TT),"^",2),2,$L($P(SIG1(TT),"^",2)))) D  I PSDUR(TT)'="NULL" S PSDUR(TT)=PSDUR(TT)_" "_INTERVAL
  .I PSDUR(TT)'="NULL" S INTERVAL=$P(SIG1(TT),"^",2),INTERVAL=$S($E(INTERVAL)="D":"DAY(S)",$E(INTERVAL)="W":"WEEK(S)",$E(INTERVAL)="H":"HOUR(S)",$E(INTERVAL)="L":"MONTH(S)",$E(INTERVAL)="M":"MINUTE(S)",$E(INTERVAL)="S":"SECOND(S)",1:"")
  F FFF=0:0 S FFF=$O(SIG0(FFF)) Q:'FFF  D

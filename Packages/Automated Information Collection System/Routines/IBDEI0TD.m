@@ -1,138 +1,120 @@
-IBDEI0TD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0TD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14488,1,5,0)
- ;;=5^Adrenal Insuff
- ;;^UTILITY(U,$J,358.3,14488,2)
- ;;=^335240
- ;;^UTILITY(U,$J,358.3,14489,0)
- ;;=249.00^^89^893^49
- ;;^UTILITY(U,$J,358.3,14489,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14489,1,4,0)
- ;;=4^249.00
- ;;^UTILITY(U,$J,358.3,14489,1,5,0)
- ;;=5^Secondary DM w/o Complication
- ;;^UTILITY(U,$J,358.3,14489,2)
- ;;=^336728
- ;;^UTILITY(U,$J,358.3,14490,0)
- ;;=249.40^^89^893^48
- ;;^UTILITY(U,$J,358.3,14490,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14490,1,4,0)
- ;;=4^249.40
- ;;^UTILITY(U,$J,358.3,14490,1,5,0)
- ;;=5^Secondary DM w/ Renal Complications
- ;;^UTILITY(U,$J,358.3,14490,2)
- ;;=^336732
- ;;^UTILITY(U,$J,358.3,14491,0)
- ;;=249.60^^89^893^47
- ;;^UTILITY(U,$J,358.3,14491,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14491,1,4,0)
- ;;=4^249.60
- ;;^UTILITY(U,$J,358.3,14491,1,5,0)
- ;;=5^Secondary DM w/ Neuro Complications
- ;;^UTILITY(U,$J,358.3,14491,2)
- ;;=^336734
- ;;^UTILITY(U,$J,358.3,14492,0)
- ;;=257.2^^89^893^31
- ;;^UTILITY(U,$J,358.3,14492,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14492,1,4,0)
- ;;=4^257.2
- ;;^UTILITY(U,$J,358.3,14492,1,5,0)
- ;;=5^Hypogonadism
- ;;^UTILITY(U,$J,358.3,14492,2)
- ;;=^88213
- ;;^UTILITY(U,$J,358.3,14493,0)
- ;;=255.42^^89^893^38
- ;;^UTILITY(U,$J,358.3,14493,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14493,1,4,0)
- ;;=4^255.42
- ;;^UTILITY(U,$J,358.3,14493,1,5,0)
- ;;=5^Mineralcorticoid Deficient
- ;;^UTILITY(U,$J,358.3,14493,2)
- ;;=^335241
- ;;^UTILITY(U,$J,358.3,14494,0)
- ;;=259.50^^89^893^2
- ;;^UTILITY(U,$J,358.3,14494,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14494,1,4,0)
- ;;=4^259.50
- ;;^UTILITY(U,$J,358.3,14494,1,5,0)
- ;;=5^Androgen Insensitivity,Unspec
- ;;^UTILITY(U,$J,358.3,14494,2)
- ;;=^336738
- ;;^UTILITY(U,$J,358.3,14495,0)
- ;;=275.5^^89^893^18
- ;;^UTILITY(U,$J,358.3,14495,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14495,1,4,0)
- ;;=4^275.5
- ;;^UTILITY(U,$J,358.3,14495,1,5,0)
- ;;=5^Hungry Bone Syndrome
- ;;^UTILITY(U,$J,358.3,14495,2)
- ;;=^336538
- ;;^UTILITY(U,$J,358.3,14496,0)
- ;;=793.2^^89^894^3
- ;;^UTILITY(U,$J,358.3,14496,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14496,1,4,0)
- ;;=4^793.2
- ;;^UTILITY(U,$J,358.3,14496,1,5,0)
- ;;=5^Abnormal Chest x-ray, other
- ;;^UTILITY(U,$J,358.3,14496,2)
- ;;=^273419
- ;;^UTILITY(U,$J,358.3,14497,0)
- ;;=277.6^^89^894^5
- ;;^UTILITY(U,$J,358.3,14497,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14497,1,4,0)
- ;;=4^277.6
- ;;^UTILITY(U,$J,358.3,14497,1,5,0)
- ;;=5^Alpha-1 antitrypsin deficiency
- ;;^UTILITY(U,$J,358.3,14497,2)
- ;;=^87463
- ;;^UTILITY(U,$J,358.3,14498,0)
- ;;=493.92^^89^894^6
- ;;^UTILITY(U,$J,358.3,14498,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14498,1,4,0)
- ;;=4^493.92
- ;;^UTILITY(U,$J,358.3,14498,1,5,0)
- ;;=5^Asthma, Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,14498,2)
- ;;=^322001
- ;;^UTILITY(U,$J,358.3,14499,0)
- ;;=493.20^^89^894^11
- ;;^UTILITY(U,$J,358.3,14499,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14499,1,4,0)
- ;;=4^493.20
- ;;^UTILITY(U,$J,358.3,14499,1,5,0)
- ;;=5^COPD with Asthma
- ;;^UTILITY(U,$J,358.3,14499,2)
- ;;=COPD with Asthma^269964
- ;;^UTILITY(U,$J,358.3,14500,0)
- ;;=493.91^^89^894^7
- ;;^UTILITY(U,$J,358.3,14500,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14500,1,4,0)
- ;;=4^493.91
- ;;^UTILITY(U,$J,358.3,14500,1,5,0)
- ;;=5^Asthma, with Status Asthmat
- ;;^UTILITY(U,$J,358.3,14500,2)
- ;;=^269967
- ;;^UTILITY(U,$J,358.3,14501,0)
- ;;=491.21^^89^894^10
- ;;^UTILITY(U,$J,358.3,14501,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14501,1,4,0)
- ;;=4^491.21
- ;;^UTILITY(U,$J,358.3,14501,1,5,0)
- ;;=5^COPD Exacerbation
- ;;^UTILITY(U,$J,358.3,14501,2)
- ;;=COPD Exacerbation^269954
+ ;;^UTILITY(U,$J,358.3,14215,0)
+ ;;=11305^^75^873^1
+ ;;^UTILITY(U,$J,358.3,14215,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14215,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand;0.5cm or less
+ ;;^UTILITY(U,$J,358.3,14215,1,3,0)
+ ;;=3^11305
+ ;;^UTILITY(U,$J,358.3,14216,0)
+ ;;=11306^^75^873^2
+ ;;^UTILITY(U,$J,358.3,14216,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14216,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand;0.6cm-1.0cm
+ ;;^UTILITY(U,$J,358.3,14216,1,3,0)
+ ;;=3^11306
+ ;;^UTILITY(U,$J,358.3,14217,0)
+ ;;=11307^^75^873^3
+ ;;^UTILITY(U,$J,358.3,14217,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14217,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand;1.1cm-2.0cm
+ ;;^UTILITY(U,$J,358.3,14217,1,3,0)
+ ;;=3^11307
+ ;;^UTILITY(U,$J,358.3,14218,0)
+ ;;=11308^^75^873^4
+ ;;^UTILITY(U,$J,358.3,14218,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14218,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand > 2.0cm
+ ;;^UTILITY(U,$J,358.3,14218,1,3,0)
+ ;;=3^11308
+ ;;^UTILITY(U,$J,358.3,14219,0)
+ ;;=11303^^75^873^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14219,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14219,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;> 2.0cm
+ ;;^UTILITY(U,$J,358.3,14219,1,3,0)
+ ;;=3^11303
+ ;;^UTILITY(U,$J,358.3,14220,0)
+ ;;=11719^^75^874^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14220,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14220,1,2,0)
+ ;;=2^Trimming Nondystrophic Nails, any number
+ ;;^UTILITY(U,$J,358.3,14220,1,3,0)
+ ;;=3^11719
+ ;;^UTILITY(U,$J,358.3,14221,0)
+ ;;=G0127^^75^874^9^^^^1
+ ;;^UTILITY(U,$J,358.3,14221,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14221,1,2,0)
+ ;;=2^Trimming Dystrophic Nails, any number
+ ;;^UTILITY(U,$J,358.3,14221,1,3,0)
+ ;;=3^G0127
+ ;;^UTILITY(U,$J,358.3,14222,0)
+ ;;=11720^^75^874^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14222,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14222,1,2,0)
+ ;;=2^Debridement of Nail(s)any method(s); 1-5 
+ ;;^UTILITY(U,$J,358.3,14222,1,3,0)
+ ;;=3^11720
+ ;;^UTILITY(U,$J,358.3,14223,0)
+ ;;=11721^^75^874^5^^^^1
+ ;;^UTILITY(U,$J,358.3,14223,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14223,1,2,0)
+ ;;=2^Debridement of Nails any method; 6 or more
+ ;;^UTILITY(U,$J,358.3,14223,1,3,0)
+ ;;=3^11721
+ ;;^UTILITY(U,$J,358.3,14224,0)
+ ;;=11730^^75^874^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14224,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14224,1,2,0)
+ ;;=2^Avulsion of Nail Plate,part/comp,single
+ ;;^UTILITY(U,$J,358.3,14224,1,3,0)
+ ;;=3^11730
+ ;;^UTILITY(U,$J,358.3,14225,0)
+ ;;=11732^^75^874^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14225,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14225,1,2,0)
+ ;;=2^Avulsion of Nail Plate,part/comp,ea addl nail
+ ;;^UTILITY(U,$J,358.3,14225,1,3,0)
+ ;;=3^11732
+ ;;^UTILITY(U,$J,358.3,14226,0)
+ ;;=11740^^75^874^6^^^^1
+ ;;^UTILITY(U,$J,358.3,14226,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14226,1,2,0)
+ ;;=2^Evacuation Subungual Hematoma
+ ;;^UTILITY(U,$J,358.3,14226,1,3,0)
+ ;;=3^11740
+ ;;^UTILITY(U,$J,358.3,14227,0)
+ ;;=11750^^75^874^7^^^^1
+ ;;^UTILITY(U,$J,358.3,14227,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14227,1,2,0)
+ ;;=2^Excision of Nail and Nail Matrx, partial or complete, for permanent removal
+ ;;^UTILITY(U,$J,358.3,14227,1,3,0)
+ ;;=3^11750
+ ;;^UTILITY(U,$J,358.3,14228,0)
+ ;;=11755^^75^874^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14228,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14228,1,2,0)
+ ;;=2^Biopsy of Nail Unit
+ ;;^UTILITY(U,$J,358.3,14228,1,3,0)
+ ;;=3^11755
+ ;;^UTILITY(U,$J,358.3,14229,0)
+ ;;=11760^^75^874^8^^^^1
+ ;;^UTILITY(U,$J,358.3,14229,1,0)
+ ;;=^358.31IA^3^2

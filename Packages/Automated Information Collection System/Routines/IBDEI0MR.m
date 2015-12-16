@@ -1,140 +1,132 @@
-IBDEI0MR ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0MR ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11142,0)
- ;;=V10.41^^64^694^58
- ;;^UTILITY(U,$J,358.3,11142,1,0)
+ ;;^UTILITY(U,$J,358.3,10829,1,5,0)
+ ;;=5^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10829,2)
+ ;;=Narcissistic Personality Disorder^265353
+ ;;^UTILITY(U,$J,358.3,10830,0)
+ ;;=301.0^^47^606^12
+ ;;^UTILITY(U,$J,358.3,10830,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11142,1,4,0)
- ;;=4^V10.41
- ;;^UTILITY(U,$J,358.3,11142,1,5,0)
- ;;=5^H/O Cervical Cancer
- ;;^UTILITY(U,$J,358.3,11142,2)
- ;;=^295219
- ;;^UTILITY(U,$J,358.3,11143,0)
- ;;=V10.05^^64^694^59
- ;;^UTILITY(U,$J,358.3,11143,1,0)
+ ;;^UTILITY(U,$J,358.3,10830,1,2,0)
+ ;;=2^301.0
+ ;;^UTILITY(U,$J,358.3,10830,1,5,0)
+ ;;=5^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10830,2)
+ ;;=Paranoid Personality Disorder^89982
+ ;;^UTILITY(U,$J,358.3,10831,0)
+ ;;=301.9^^47^606^16
+ ;;^UTILITY(U,$J,358.3,10831,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11143,1,4,0)
- ;;=4^V10.05
- ;;^UTILITY(U,$J,358.3,11143,1,5,0)
- ;;=5^H/O Colon Cancer
- ;;^UTILITY(U,$J,358.3,11143,2)
- ;;=H/O Colon Cancer^295207
- ;;^UTILITY(U,$J,358.3,11144,0)
- ;;=V10.03^^64^694^60
- ;;^UTILITY(U,$J,358.3,11144,1,0)
+ ;;^UTILITY(U,$J,358.3,10831,1,2,0)
+ ;;=2^301.9
+ ;;^UTILITY(U,$J,358.3,10831,1,5,0)
+ ;;=5^Unspecified Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10831,2)
+ ;;=Unspecified Personality Disorder^92451
+ ;;^UTILITY(U,$J,358.3,10832,0)
+ ;;=301.20^^47^606^14
+ ;;^UTILITY(U,$J,358.3,10832,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11144,1,4,0)
- ;;=4^V10.03
- ;;^UTILITY(U,$J,358.3,11144,1,5,0)
- ;;=5^H/O Esophageal Cancer
- ;;^UTILITY(U,$J,358.3,11144,2)
- ;;=^295205
- ;;^UTILITY(U,$J,358.3,11145,0)
- ;;=V10.60^^64^694^62
- ;;^UTILITY(U,$J,358.3,11145,1,0)
+ ;;^UTILITY(U,$J,358.3,10832,1,2,0)
+ ;;=2^301.20
+ ;;^UTILITY(U,$J,358.3,10832,1,5,0)
+ ;;=5^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10832,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,10833,0)
+ ;;=301.22^^47^606^15
+ ;;^UTILITY(U,$J,358.3,10833,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11145,1,4,0)
- ;;=4^V10.60
- ;;^UTILITY(U,$J,358.3,11145,1,5,0)
- ;;=5^H/O Leukemia
- ;;^UTILITY(U,$J,358.3,11145,2)
- ;;=H/O Leukemia^295231
- ;;^UTILITY(U,$J,358.3,11146,0)
- ;;=V10.11^^64^694^63
- ;;^UTILITY(U,$J,358.3,11146,1,0)
+ ;;^UTILITY(U,$J,358.3,10833,1,2,0)
+ ;;=2^301.22
+ ;;^UTILITY(U,$J,358.3,10833,1,5,0)
+ ;;=5^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10833,2)
+ ;;=Schizotypal Personality Disorder^108367
+ ;;^UTILITY(U,$J,358.3,10834,0)
+ ;;=301.4^^47^606^4
+ ;;^UTILITY(U,$J,358.3,10834,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11146,1,4,0)
- ;;=4^V10.11
- ;;^UTILITY(U,$J,358.3,11146,1,5,0)
- ;;=5^H/O Lung Cancer
- ;;^UTILITY(U,$J,358.3,11146,2)
- ;;=H/O Lung Cancer^295211
- ;;^UTILITY(U,$J,358.3,11147,0)
- ;;=V10.79^^64^694^64
- ;;^UTILITY(U,$J,358.3,11147,1,0)
+ ;;^UTILITY(U,$J,358.3,10834,1,2,0)
+ ;;=2^301.4
+ ;;^UTILITY(U,$J,358.3,10834,1,5,0)
+ ;;=5^Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10834,2)
+ ;;=Compulsive Personality Disorder^27122
+ ;;^UTILITY(U,$J,358.3,10835,0)
+ ;;=301.84^^47^606^13
+ ;;^UTILITY(U,$J,358.3,10835,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11147,1,4,0)
- ;;=4^V10.79
- ;;^UTILITY(U,$J,358.3,11147,1,5,0)
- ;;=5^H/O Lymphoma
- ;;^UTILITY(U,$J,358.3,11147,2)
- ;;=H/O Lymphoma^295238
- ;;^UTILITY(U,$J,358.3,11148,0)
- ;;=V10.82^^64^694^65
- ;;^UTILITY(U,$J,358.3,11148,1,0)
+ ;;^UTILITY(U,$J,358.3,10835,1,2,0)
+ ;;=2^301.84
+ ;;^UTILITY(U,$J,358.3,10835,1,5,0)
+ ;;=5^Passive-Aggressive Personality Dis
+ ;;^UTILITY(U,$J,358.3,10835,2)
+ ;;=Passive-Aggressive Personality Dis^90602
+ ;;^UTILITY(U,$J,358.3,10836,0)
+ ;;=301.11^^47^606^9
+ ;;^UTILITY(U,$J,358.3,10836,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11148,1,4,0)
- ;;=4^V10.82
- ;;^UTILITY(U,$J,358.3,11148,1,5,0)
- ;;=5^H/O Malig Melanoma Of Skin
- ;;^UTILITY(U,$J,358.3,11148,2)
- ;;=^295240
- ;;^UTILITY(U,$J,358.3,11149,0)
- ;;=V10.02^^64^694^68
- ;;^UTILITY(U,$J,358.3,11149,1,0)
+ ;;^UTILITY(U,$J,358.3,10836,1,2,0)
+ ;;=2^301.11
+ ;;^UTILITY(U,$J,358.3,10836,1,5,0)
+ ;;=5^Hypomanic Personality D/O,Chr
+ ;;^UTILITY(U,$J,358.3,10836,2)
+ ;;=^268171
+ ;;^UTILITY(U,$J,358.3,10837,0)
+ ;;=301.12^^47^606^7
+ ;;^UTILITY(U,$J,358.3,10837,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11149,1,4,0)
- ;;=4^V10.02
- ;;^UTILITY(U,$J,358.3,11149,1,5,0)
- ;;=5^H/O Oral Cavity/Pharynx Cancer
- ;;^UTILITY(U,$J,358.3,11149,2)
- ;;=^295204
- ;;^UTILITY(U,$J,358.3,11150,0)
- ;;=V10.43^^64^694^69
- ;;^UTILITY(U,$J,358.3,11150,1,0)
+ ;;^UTILITY(U,$J,358.3,10837,1,2,0)
+ ;;=2^301.12
+ ;;^UTILITY(U,$J,358.3,10837,1,5,0)
+ ;;=5^Depressive Personality D/O,Chr
+ ;;^UTILITY(U,$J,358.3,10837,2)
+ ;;=^268173
+ ;;^UTILITY(U,$J,358.3,10838,0)
+ ;;=301.13^^47^606^5
+ ;;^UTILITY(U,$J,358.3,10838,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11150,1,4,0)
- ;;=4^V10.43
- ;;^UTILITY(U,$J,358.3,11150,1,5,0)
- ;;=5^H/O Ovarian Cancer
- ;;^UTILITY(U,$J,358.3,11150,2)
- ;;=^295221
- ;;^UTILITY(U,$J,358.3,11151,0)
- ;;=V10.46^^64^694^70
- ;;^UTILITY(U,$J,358.3,11151,1,0)
+ ;;^UTILITY(U,$J,358.3,10838,1,2,0)
+ ;;=2^301.13
+ ;;^UTILITY(U,$J,358.3,10838,1,5,0)
+ ;;=5^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,10838,2)
+ ;;=^30028
+ ;;^UTILITY(U,$J,358.3,10839,0)
+ ;;=301.21^^47^606^10
+ ;;^UTILITY(U,$J,358.3,10839,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11151,1,4,0)
- ;;=4^V10.46
- ;;^UTILITY(U,$J,358.3,11151,1,5,0)
- ;;=5^H/O Prostate Cancer
- ;;^UTILITY(U,$J,358.3,11151,2)
- ;;=^295224
- ;;^UTILITY(U,$J,358.3,11152,0)
- ;;=V10.06^^64^694^71
- ;;^UTILITY(U,$J,358.3,11152,1,0)
+ ;;^UTILITY(U,$J,358.3,10839,1,2,0)
+ ;;=2^301.21
+ ;;^UTILITY(U,$J,358.3,10839,1,5,0)
+ ;;=5^Introverted Personality
+ ;;^UTILITY(U,$J,358.3,10839,2)
+ ;;=^268174
+ ;;^UTILITY(U,$J,358.3,10840,0)
+ ;;=302.2^^47^607^7
+ ;;^UTILITY(U,$J,358.3,10840,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11152,1,4,0)
- ;;=4^V10.06
- ;;^UTILITY(U,$J,358.3,11152,1,5,0)
- ;;=5^H/O Rectal/Anal Cancer
- ;;^UTILITY(U,$J,358.3,11152,2)
- ;;=^295208
- ;;^UTILITY(U,$J,358.3,11153,0)
- ;;=V10.52^^64^694^72
- ;;^UTILITY(U,$J,358.3,11153,1,0)
+ ;;^UTILITY(U,$J,358.3,10840,1,2,0)
+ ;;=2^302.2
+ ;;^UTILITY(U,$J,358.3,10840,1,5,0)
+ ;;=5^Pedophilia
+ ;;^UTILITY(U,$J,358.3,10840,2)
+ ;;=^91008
+ ;;^UTILITY(U,$J,358.3,10841,0)
+ ;;=302.4^^47^607^2
+ ;;^UTILITY(U,$J,358.3,10841,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11153,1,4,0)
- ;;=4^V10.52
- ;;^UTILITY(U,$J,358.3,11153,1,5,0)
- ;;=5^H/O Renal Cancer
- ;;^UTILITY(U,$J,358.3,11153,2)
- ;;=H/o Renal Cancer^295229
- ;;^UTILITY(U,$J,358.3,11154,0)
- ;;=V10.04^^64^694^74
- ;;^UTILITY(U,$J,358.3,11154,1,0)
+ ;;^UTILITY(U,$J,358.3,10841,1,2,0)
+ ;;=2^302.4
+ ;;^UTILITY(U,$J,358.3,10841,1,5,0)
+ ;;=5^Exhibitionism
+ ;;^UTILITY(U,$J,358.3,10841,2)
+ ;;=^43610
+ ;;^UTILITY(U,$J,358.3,10842,0)
+ ;;=302.72^^47^607^6
+ ;;^UTILITY(U,$J,358.3,10842,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11154,1,4,0)
- ;;=4^V10.04
- ;;^UTILITY(U,$J,358.3,11154,1,5,0)
- ;;=5^H/O Stomach Cancer
- ;;^UTILITY(U,$J,358.3,11154,2)
- ;;=^295206
- ;;^UTILITY(U,$J,358.3,11155,0)
- ;;=V10.47^^64^694^75
- ;;^UTILITY(U,$J,358.3,11155,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11155,1,4,0)
- ;;=4^V10.47

@@ -1,132 +1,124 @@
-IBDEI1XM ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XM ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34299,0)
- ;;=J20.8^^192^1997^14
- ;;^UTILITY(U,$J,358.3,34299,1,0)
+ ;;^UTILITY(U,$J,358.3,33935,1,4,0)
+ ;;=4^I69.021
+ ;;^UTILITY(U,$J,358.3,33935,2)
+ ;;=^5007396
+ ;;^UTILITY(U,$J,358.3,33936,0)
+ ;;=I69.821^^183^2013^31
+ ;;^UTILITY(U,$J,358.3,33936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34299,1,3,0)
- ;;=3^AC Bronchitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,34299,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,34299,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,34300,0)
- ;;=J20.4^^192^1997^11
- ;;^UTILITY(U,$J,358.3,34300,1,0)
+ ;;^UTILITY(U,$J,358.3,33936,1,3,0)
+ ;;=3^Dysphasia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,33936,1,4,0)
+ ;;=4^I69.821
+ ;;^UTILITY(U,$J,358.3,33936,2)
+ ;;=^5007523
+ ;;^UTILITY(U,$J,358.3,33937,0)
+ ;;=I69.221^^183^2013^30
+ ;;^UTILITY(U,$J,358.3,33937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34300,1,3,0)
- ;;=3^AC Bronchitis d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,34300,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,34300,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,34301,0)
- ;;=J20.5^^192^1997^12
- ;;^UTILITY(U,$J,358.3,34301,1,0)
+ ;;^UTILITY(U,$J,358.3,33937,1,3,0)
+ ;;=3^Dysphasia following oth nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,33937,1,4,0)
+ ;;=4^I69.221
+ ;;^UTILITY(U,$J,358.3,33937,2)
+ ;;=^5007460
+ ;;^UTILITY(U,$J,358.3,33938,0)
+ ;;=G11.1^^183^2013^32
+ ;;^UTILITY(U,$J,358.3,33938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34301,1,3,0)
- ;;=3^AC Bronchitis d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,34301,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,34301,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,34302,0)
- ;;=J20.6^^192^1997^13
- ;;^UTILITY(U,$J,358.3,34302,1,0)
+ ;;^UTILITY(U,$J,358.3,33938,1,3,0)
+ ;;=3^Early-onset cerebellar ataxia
+ ;;^UTILITY(U,$J,358.3,33938,1,4,0)
+ ;;=4^G11.1
+ ;;^UTILITY(U,$J,358.3,33938,2)
+ ;;=^5003753
+ ;;^UTILITY(U,$J,358.3,33939,0)
+ ;;=I69.392^^183^2013^33
+ ;;^UTILITY(U,$J,358.3,33939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34302,1,3,0)
- ;;=3^AC Bronchitis d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,34302,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,34302,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,34303,0)
- ;;=J20.2^^192^1997^15
- ;;^UTILITY(U,$J,358.3,34303,1,0)
+ ;;^UTILITY(U,$J,358.3,33939,1,3,0)
+ ;;=3^Facial weakness following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,33939,1,4,0)
+ ;;=4^I69.392
+ ;;^UTILITY(U,$J,358.3,33939,2)
+ ;;=^5007517
+ ;;^UTILITY(U,$J,358.3,33940,0)
+ ;;=I69.192^^183^2013^34
+ ;;^UTILITY(U,$J,358.3,33940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34303,1,3,0)
- ;;=3^AC Bronchitis d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,34303,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,34303,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,34304,0)
- ;;=J20.9^^192^1997^16
- ;;^UTILITY(U,$J,358.3,34304,1,0)
+ ;;^UTILITY(U,$J,358.3,33940,1,3,0)
+ ;;=3^Facial weakness following nontraumatic intcrbl hemorrhage
+ ;;^UTILITY(U,$J,358.3,33940,1,4,0)
+ ;;=4^I69.192
+ ;;^UTILITY(U,$J,358.3,33940,2)
+ ;;=^5007454
+ ;;^UTILITY(U,$J,358.3,33941,0)
+ ;;=I69.292^^183^2013^36
+ ;;^UTILITY(U,$J,358.3,33941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34304,1,3,0)
- ;;=3^AC Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,34304,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,34304,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,34305,0)
- ;;=H60.523^^192^1997^17
- ;;^UTILITY(U,$J,358.3,34305,1,0)
+ ;;^UTILITY(U,$J,358.3,33941,1,3,0)
+ ;;=3^Facial weakness following oth nontraumatic intcrn hemorrhage
+ ;;^UTILITY(U,$J,358.3,33941,1,4,0)
+ ;;=4^I69.292
+ ;;^UTILITY(U,$J,358.3,33941,2)
+ ;;=^5007486
+ ;;^UTILITY(U,$J,358.3,33942,0)
+ ;;=I69.092^^183^2013^35
+ ;;^UTILITY(U,$J,358.3,33942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34305,1,3,0)
- ;;=3^AC Chemical Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,34305,1,4,0)
- ;;=4^H60.523
- ;;^UTILITY(U,$J,358.3,34305,2)
- ;;=^5006476
- ;;^UTILITY(U,$J,358.3,34306,0)
- ;;=H60.522^^192^1997^18
- ;;^UTILITY(U,$J,358.3,34306,1,0)
+ ;;^UTILITY(U,$J,358.3,33942,1,3,0)
+ ;;=3^Facial weakness following ntrm subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,33942,1,4,0)
+ ;;=4^I69.092
+ ;;^UTILITY(U,$J,358.3,33942,2)
+ ;;=^5007422
+ ;;^UTILITY(U,$J,358.3,33943,0)
+ ;;=I69.892^^183^2013^37
+ ;;^UTILITY(U,$J,358.3,33943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34306,1,3,0)
- ;;=3^AC Chemical Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,34306,1,4,0)
- ;;=4^H60.522
- ;;^UTILITY(U,$J,358.3,34306,2)
- ;;=^5006475
- ;;^UTILITY(U,$J,358.3,34307,0)
- ;;=H60.521^^192^1997^19
- ;;^UTILITY(U,$J,358.3,34307,1,0)
+ ;;^UTILITY(U,$J,358.3,33943,1,3,0)
+ ;;=3^Facial weakness following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,33943,1,4,0)
+ ;;=4^I69.892
+ ;;^UTILITY(U,$J,358.3,33943,2)
+ ;;=^5007548
+ ;;^UTILITY(U,$J,358.3,33944,0)
+ ;;=I69.351^^183^2013^39
+ ;;^UTILITY(U,$J,358.3,33944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34307,1,3,0)
- ;;=3^AC Chemical Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,34307,1,4,0)
- ;;=4^H60.521
- ;;^UTILITY(U,$J,358.3,34307,2)
- ;;=^5006474
- ;;^UTILITY(U,$J,358.3,34308,0)
- ;;=H60.543^^192^1997^20
- ;;^UTILITY(U,$J,358.3,34308,1,0)
+ ;;^UTILITY(U,$J,358.3,33944,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,33944,1,4,0)
+ ;;=4^I69.351
+ ;;^UTILITY(U,$J,358.3,33944,2)
+ ;;=^5007504
+ ;;^UTILITY(U,$J,358.3,33945,0)
+ ;;=I69.352^^183^2013^38
+ ;;^UTILITY(U,$J,358.3,33945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34308,1,3,0)
- ;;=3^AC Eczematoid Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,34308,1,4,0)
- ;;=4^H60.543
- ;;^UTILITY(U,$J,358.3,34308,2)
- ;;=^5006484
- ;;^UTILITY(U,$J,358.3,34309,0)
- ;;=H60.542^^192^1997^21
- ;;^UTILITY(U,$J,358.3,34309,1,0)
+ ;;^UTILITY(U,$J,358.3,33945,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,33945,1,4,0)
+ ;;=4^I69.352
+ ;;^UTILITY(U,$J,358.3,33945,2)
+ ;;=^5007505
+ ;;^UTILITY(U,$J,358.3,33946,0)
+ ;;=I69.353^^183^2013^40
+ ;;^UTILITY(U,$J,358.3,33946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34309,1,3,0)
- ;;=3^AC Eczematoid Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,34309,1,4,0)
- ;;=4^H60.542
- ;;^UTILITY(U,$J,358.3,34309,2)
- ;;=^5006483
- ;;^UTILITY(U,$J,358.3,34310,0)
- ;;=H60.541^^192^1997^22
- ;;^UTILITY(U,$J,358.3,34310,1,0)
+ ;;^UTILITY(U,$J,358.3,33946,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,33946,1,4,0)
+ ;;=4^I69.353
+ ;;^UTILITY(U,$J,358.3,33946,2)
+ ;;=^5007506
+ ;;^UTILITY(U,$J,358.3,33947,0)
+ ;;=I69.354^^183^2013^41
+ ;;^UTILITY(U,$J,358.3,33947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34310,1,3,0)
- ;;=3^AC Eczematoid Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,34310,1,4,0)
- ;;=4^H60.541
- ;;^UTILITY(U,$J,358.3,34310,2)
- ;;=^5006482
- ;;^UTILITY(U,$J,358.3,34311,0)
- ;;=J04.0^^192^1997^23
- ;;^UTILITY(U,$J,358.3,34311,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34311,1,3,0)
- ;;=3^AC Laryngitis
- ;;^UTILITY(U,$J,358.3,34311,1,4,0)
- ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,33947,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc affecting left nondom side

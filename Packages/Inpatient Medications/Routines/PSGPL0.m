@@ -1,5 +1,5 @@
-PSGPL0 ;BIR/CML3-GETS UNITS COUNT FOR PSGPL & PSGPEN ;29 OCT 96 / 8:31 PM
- ;;5.0; INPATIENT MEDICATIONS ;**50,83,110,125,129**;16 DEC 97
+PSGPL0 ;BIR/CML3 - GETS UNITS COUNT FOR PSGPL & PSGPEN ;29 OCT 96 / 8:31 PM
+ ;;5.0;INPATIENT MEDICATIONS ;**50,83,110,125,129,316**;16 DEC 97;Build 8
  ;
  ; Reference to ^PS(51.1 supported by DBIA #2177.
  ; Reference to ^PS(55 is supported by DBIA #2191.
@@ -27,7 +27,8 @@ ENIV ;*** Entry to be called from ^PSGMIV (24 HOUR MAR IV).
  I TS>0,"24"[$L($P(TS,"-")) S:PSGPLS>ST ST=PSGPLS G TS
  ;
 MN ; if only minutes (MN) are found
- I MN'>0 S PSGPLC="OI" Q
+ ;I MN'>0 S PSGPLC="OI" Q
+ I MN'>0 S PSGPLC="" Q  ;316 - If no frequency for PRN order, default to spaces
  S (OD,X1)=PSGPLS,HM=MN,X2=ST D ^%DTC I X>1 S AM=X-1*1440\HM*HM D ADD S ST=X
  S (CML,X)=ST F I=0:1 S AM=HM*I,ST=CML D:AM ADD Q:X>CD!(CD=PLSD&(X'<CD))  I X'<OD S PSGPLC=PSGPLC+1,PSGMAR($E($P(X,".",2)_"0",1,2))=""
  S ST=CML Q

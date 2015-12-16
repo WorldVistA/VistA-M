@@ -1,5 +1,5 @@
 PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;2/13/07 11:35am
- ;;7.0;OUTPATIENT PHARMACY;**132,118,203,265**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**132,118,203,265,282**;DEC 1997;Build 18
  ;External reference ^PS(50.606 supported by DBIA 2174
  ;External reference ^PS(50.7 supported by DBIA 2223
  ;External reference ^PS(55 supported by DBIA 2228
@@ -89,25 +89,8 @@ DC F OO=0:0 S OO=$O(PMSG(OO)) Q:'OO  I $P(PMSG(OO),"|")="ORC",$P(PMSG(OO),"|",2)
  K XO,OO,PMSG
  Q
 SCHED(SCH) ; Returns the SCHEDULE description
- N SCHED,CNT,FND,A,I,K,HOLD
- S SCHED="" Q:$G(SCH)="" SCHED
- ;
- F A=0:0 S A=$O(^PS(51.1,"B",SCH,A)) Q:'A  D  I SCHED'="" Q
- . S:$P($G(^PS(51.1,A,0)),"^",8)'="" SCHED=$P($G(^(0)),"^",8)
- I SCHED'="" G QSCH
- ;
- I $G(^PS(51,"A",SCH))'="" S SCHED=$P(^PS(51,"A",SCH),"^") G QSCH
- ;
- S CNT=$L(SCH," "),FND=0
- F I=1:1:CNT S (WORD,HOLD(I))=$P(SCH," ",I) D
- . I WORD="" Q
- . F K=0:0 S K=$O(^PS(51.1,"B",WORD,K)) Q:'K  D  I FND Q
- . . I $P($G(^PS(51.1,K,0)),"^",8)'="" D
- . . . S HOLD(I)=$P($G(^PS(51.1,K,0)),"^",8),FND=1
- . I $G(^PS(51,"A",WORD))]"" S HOLD(I)=$P(^(WORD),"^")
- S FND=0 F K=1:1:CNT S SCHED=SCHED_$S($G(FND):" ",1:"")_$G(HOLD(K)),FND=1
- ;
-QSCH Q SCHED
+ ; *282 Centralized call
+ Q $$SCHE^PSOSIG(SCH)
  ;
 ROUTE(RTIEN) ; Returns the ROUTE description
  N X

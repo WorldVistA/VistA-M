@@ -1,5 +1,5 @@
-ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;11/19/14  17:57
- ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153**;Dec 22, 1997;Build 2
+ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;6/3/15  10:20
+ ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154**;Dec 22, 1997;Build 13
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -38,11 +38,12 @@ GETCASE ;Find all cases associated with the verified report and store in extract
  ;
 GET ;get data
  ;149 All code in GET has been modified so that it's no longer at block structure level as that's no longer needed
- N ECXIEN,X,SUB,TYPE,ECDOCPC,ECXIS,ECXISPC,ECXPRCL,ECXCSC,ECXUSRTN,ECXCM,ECSTAT ;136
+ N ECXIEN,X,SUB,TYPE,ECDOCPC,ECXIS,ECXISPC,ECXPRCL,ECXCSC,ECXUSRTN,ECXCM,ECSTAT,ECXMVDT ;136,154
  N ECXESC,ECXECL,ECXCLST,VISIT,ECXVIST,ECXERR ;144
  S ECTM=$$ECXTIME^ECXUTL(ECXMDT) S:ECTM>235959 ECTM=235959
  S ECXDAY=$$ECXDATE^ECXUTL(ECXMDT,ECXYM)
- K ECXPAT S OK=$$PAT^ECXUTL3(ECXDFN,$P(ECXMDT,"."),"1;3",.ECXPAT)
+ S ECXMVDT=$$ECXDATE^ECXUTL($P($G(^RARPT(ECXDA,0)),U,7),ECXYM) ;154 Get exam verification date and convert to YYYYMMDD format
+ K ECXPAT S OK=$$PAT^ECXUTL3(ECXDFN,$P(ECXMDT,"."),"1;3;5",.ECXPAT) ;154 Added service information (5) to list
  Q:'OK
  S ECXPNM=ECXPAT("NAME"),ECXSSN=ECXPAT("SSN"),ECXMPI=ECXPAT("MPI")
  S ECXCLST=ECXPAT("CL STAT") ;144
@@ -131,7 +132,7 @@ FILE ;file record
  ;pal clinic ECXPRCL^clinc stop code ECXCSC^emergency response indicator
  ;(FEMA) ECXERI^assoc pc provider npi^interpreting rad npi^pc provider npi^req physician npi^Patient Category (PATCAT) ECXPATCAT^Credit Method ECXCM
  ;NODE2
- ;Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
+ ;Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Exam verification date ECXMVDT
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
@@ -154,6 +155,7 @@ FILE ;file record
  I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT ;127 PATCAT
  I ECXLOGIC>2012 S ECODE1=ECODE1_U_ECXCM_U ;136 Credit Method 144 End of node needs an ^
  I ECXLOGIC>2013 S ECODE2=ECXESC_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2015 S ECODE2=ECODE2_U_ECXMVDT ;154 Add verification date
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1 ;144
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

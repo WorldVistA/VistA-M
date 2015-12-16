@@ -1,5 +1,6 @@
-DGPTF41 ;ALB/JDS - PTF ENTRY/EDIT-4 ;11/15/06 8:37am
- ;;5.3;Registration;**64,635,729,850**;Aug 13, 1993;Build 171
+DGPTF41 ;ALB/JDS/PLT - PTF ENTRY/EDIT-4 ;11/15/06 8:37am
+ ;;5.3;Registration;**64,635,729,850,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ACT ; -- 701 actions
  G ACT1:DGST
@@ -19,7 +20,10 @@ ACT ; -- 701 actions
  I X="O" G O^DGPTF4
  I X="R",DGN G REL
  I X'=1 D HELP G EN1^DGPTF4
- S DR="[DG701]",DIE="^DGPT(",(DGPTF,DA)=PTF D ^DIE
+ S DGCODSYS=$$CODESYS^DGPTIC10(PTF),DR=$S(DGCODSYS="ICD10":"[DG701-10D]",1:"[DG701]")
+ ;used only for roll back icd10 to icd9
+ I DR="[DG701]",$P($G(^DGPT(PTF,71)),U,4,999)'?."^" S DR="[DG701-10D]"
+ S DIE="^DGPT(",(DGPTF,DA)=PTF D ^DIE
  F I=0,70 S B(I)="" S:$D(^DGPT(PTF,I)) B(I)=^(I)
  K DGPTF,DR,DGCODSYS,DGXX,DGTYPE
  G EN1^DGPTF4

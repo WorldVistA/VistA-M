@@ -1,144 +1,130 @@
-IBDEI01I ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01I ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,174,1,2,0)
- ;;=2^296.45
- ;;^UTILITY(U,$J,358.3,174,1,5,0)
- ;;=5^Bipolar Manic, Part Remiss
- ;;^UTILITY(U,$J,358.3,174,2)
- ;;=^303612
- ;;^UTILITY(U,$J,358.3,175,0)
- ;;=296.46^^3^29^11
- ;;^UTILITY(U,$J,358.3,175,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,175,1,2,0)
- ;;=2^296.46
- ;;^UTILITY(U,$J,358.3,175,1,5,0)
- ;;=5^Bipolar Manic, Full Remiss
- ;;^UTILITY(U,$J,358.3,175,2)
- ;;=^303618
- ;;^UTILITY(U,$J,358.3,176,0)
- ;;=296.60^^3^29^21
- ;;^UTILITY(U,$J,358.3,176,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,176,1,2,0)
- ;;=2^296.60
- ;;^UTILITY(U,$J,358.3,176,1,5,0)
- ;;=5^Bipolar Mixed, NOS
- ;;^UTILITY(U,$J,358.3,176,2)
- ;;=^303626
- ;;^UTILITY(U,$J,358.3,177,0)
- ;;=296.61^^3^29^19
- ;;^UTILITY(U,$J,358.3,177,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,177,1,2,0)
- ;;=2^296.61
- ;;^UTILITY(U,$J,358.3,177,1,5,0)
- ;;=5^Bipolar Mixed, Mild
- ;;^UTILITY(U,$J,358.3,177,2)
- ;;=^303627
- ;;^UTILITY(U,$J,358.3,178,0)
- ;;=296.62^^3^29^20
- ;;^UTILITY(U,$J,358.3,178,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,178,1,2,0)
- ;;=2^296.62
- ;;^UTILITY(U,$J,358.3,178,1,5,0)
- ;;=5^Bipolar Mixed, Moderate
- ;;^UTILITY(U,$J,358.3,178,2)
- ;;=Bipolar Mixed, Moderate^303628
- ;;^UTILITY(U,$J,358.3,179,0)
- ;;=296.63^^3^29^24
- ;;^UTILITY(U,$J,358.3,179,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,179,1,2,0)
- ;;=2^296.63
- ;;^UTILITY(U,$J,358.3,179,1,5,0)
- ;;=5^Bipolar Mixed, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,179,2)
- ;;=^303629
- ;;^UTILITY(U,$J,358.3,180,0)
- ;;=296.64^^3^29^23
- ;;^UTILITY(U,$J,358.3,180,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,180,1,2,0)
- ;;=2^296.64
- ;;^UTILITY(U,$J,358.3,180,1,5,0)
- ;;=5^Bipolar Mixed, Sev W/Psychosis
- ;;^UTILITY(U,$J,358.3,180,2)
- ;;=^303630
- ;;^UTILITY(U,$J,358.3,181,0)
- ;;=296.65^^3^29^22
- ;;^UTILITY(U,$J,358.3,181,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,181,1,2,0)
- ;;=2^296.65
- ;;^UTILITY(U,$J,358.3,181,1,5,0)
- ;;=5^Bipolar Mixed, Part Remiss
- ;;^UTILITY(U,$J,358.3,181,2)
- ;;=Bipolar Mixed, Part Remiss^303631
- ;;^UTILITY(U,$J,358.3,182,0)
- ;;=296.66^^3^29^18
- ;;^UTILITY(U,$J,358.3,182,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,182,1,2,0)
- ;;=2^296.66
- ;;^UTILITY(U,$J,358.3,182,1,5,0)
- ;;=5^Bipolar Mixed, Full Remiss
- ;;^UTILITY(U,$J,358.3,182,2)
- ;;=^303632
- ;;^UTILITY(U,$J,358.3,183,0)
- ;;=296.7^^3^29^9
- ;;^UTILITY(U,$J,358.3,183,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,183,1,2,0)
- ;;=2^296.7
- ;;^UTILITY(U,$J,358.3,183,1,5,0)
- ;;=5^Bipolar I Disorder, NOS
- ;;^UTILITY(U,$J,358.3,183,2)
- ;;=^303633
- ;;^UTILITY(U,$J,358.3,184,0)
- ;;=296.80^^3^29^8
- ;;^UTILITY(U,$J,358.3,184,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,184,1,2,0)
- ;;=2^296.80
- ;;^UTILITY(U,$J,358.3,184,1,5,0)
- ;;=5^Bipolar Disorder,NOS
- ;;^UTILITY(U,$J,358.3,184,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,185,0)
- ;;=296.89^^3^29^10
- ;;^UTILITY(U,$J,358.3,185,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,185,1,2,0)
- ;;=2^296.89
- ;;^UTILITY(U,$J,358.3,185,1,5,0)
- ;;=5^Bipolar II Disorder,NOS
- ;;^UTILITY(U,$J,358.3,185,2)
- ;;=^331893
- ;;^UTILITY(U,$J,358.3,186,0)
- ;;=297.0^^3^30^3
- ;;^UTILITY(U,$J,358.3,186,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,186,1,2,0)
- ;;=2^297.0
- ;;^UTILITY(U,$J,358.3,186,1,5,0)
- ;;=5^Paranoid State, Simple
- ;;^UTILITY(U,$J,358.3,186,2)
- ;;=^268149
- ;;^UTILITY(U,$J,358.3,187,0)
- ;;=298.9^^3^30^4
- ;;^UTILITY(U,$J,358.3,187,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,187,1,2,0)
- ;;=2^298.9
- ;;^UTILITY(U,$J,358.3,187,1,5,0)
- ;;=5^Psychosis, NOS
- ;;^UTILITY(U,$J,358.3,187,2)
- ;;=^259059
- ;;^UTILITY(U,$J,358.3,188,0)
- ;;=298.8^^3^30^5
- ;;^UTILITY(U,$J,358.3,188,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,151,1,4,0)
+ ;;=4^T45.1X5S
+ ;;^UTILITY(U,$J,358.3,151,2)
+ ;;=^5051028
+ ;;^UTILITY(U,$J,358.3,152,0)
+ ;;=T36.8X5A^^1^10^7
+ ;;^UTILITY(U,$J,358.3,152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,152,1,3,0)
+ ;;=3^Adverse effect of other systemic antibiotics, init encntr
+ ;;^UTILITY(U,$J,358.3,152,1,4,0)
+ ;;=4^T36.8X5A
+ ;;^UTILITY(U,$J,358.3,152,2)
+ ;;=^5049412
+ ;;^UTILITY(U,$J,358.3,153,0)
+ ;;=T36.8X5D^^1^10^8
+ ;;^UTILITY(U,$J,358.3,153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,153,1,3,0)
+ ;;=3^Adverse effect of other systemic antibiotics, subs encntr
+ ;;^UTILITY(U,$J,358.3,153,1,4,0)
+ ;;=4^T36.8X5D
+ ;;^UTILITY(U,$J,358.3,153,2)
+ ;;=^5049413
+ ;;^UTILITY(U,$J,358.3,154,0)
+ ;;=T36.8X5S^^1^10^9
+ ;;^UTILITY(U,$J,358.3,154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,154,1,3,0)
+ ;;=3^Adverse effect of other systemic antibiotics, sequela
+ ;;^UTILITY(U,$J,358.3,154,1,4,0)
+ ;;=4^T36.8X5S
+ ;;^UTILITY(U,$J,358.3,154,2)
+ ;;=^5049414
+ ;;^UTILITY(U,$J,358.3,155,0)
+ ;;=T49.6X5A^^1^10^10
+ ;;^UTILITY(U,$J,358.3,155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,155,1,3,0)
+ ;;=3^Adverse effect of otorhino drugs and preparations, init
+ ;;^UTILITY(U,$J,358.3,155,1,4,0)
+ ;;=4^T49.6X5A
+ ;;^UTILITY(U,$J,358.3,155,2)
+ ;;=^5051926
+ ;;^UTILITY(U,$J,358.3,156,0)
+ ;;=T49.6X5D^^1^10^11
+ ;;^UTILITY(U,$J,358.3,156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,156,1,3,0)
+ ;;=3^Adverse effect of otorhino drugs and preparations, subs
+ ;;^UTILITY(U,$J,358.3,156,1,4,0)
+ ;;=4^T49.6X5D
+ ;;^UTILITY(U,$J,358.3,156,2)
+ ;;=^5051927
+ ;;^UTILITY(U,$J,358.3,157,0)
+ ;;=T49.6X5S^^1^10^12
+ ;;^UTILITY(U,$J,358.3,157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,157,1,3,0)
+ ;;=3^Adverse effect of otorhino drugs and preparations, sequela
+ ;;^UTILITY(U,$J,358.3,157,1,4,0)
+ ;;=4^T49.6X5S
+ ;;^UTILITY(U,$J,358.3,157,2)
+ ;;=^5051928
+ ;;^UTILITY(U,$J,358.3,158,0)
+ ;;=T36.95XA^^1^10^13
+ ;;^UTILITY(U,$J,358.3,158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,158,1,3,0)
+ ;;=3^Adverse effect of unsp systemic antibiotic, init encntr
+ ;;^UTILITY(U,$J,358.3,158,1,4,0)
+ ;;=4^T36.95XA
+ ;;^UTILITY(U,$J,358.3,158,2)
+ ;;=^5049430
+ ;;^UTILITY(U,$J,358.3,159,0)
+ ;;=T36.95XD^^1^10^14
+ ;;^UTILITY(U,$J,358.3,159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,159,1,3,0)
+ ;;=3^Adverse effect of unsp systemic antibiotic, subs encntr
+ ;;^UTILITY(U,$J,358.3,159,1,4,0)
+ ;;=4^T36.95XD
+ ;;^UTILITY(U,$J,358.3,159,2)
+ ;;=^5049431
+ ;;^UTILITY(U,$J,358.3,160,0)
+ ;;=T36.95XS^^1^10^15
+ ;;^UTILITY(U,$J,358.3,160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,160,1,3,0)
+ ;;=3^Adverse effect of unspecified systemic antibiotic, sequela
+ ;;^UTILITY(U,$J,358.3,160,1,4,0)
+ ;;=4^T36.95XS
+ ;;^UTILITY(U,$J,358.3,160,2)
+ ;;=^5049432
+ ;;^UTILITY(U,$J,358.3,161,0)
+ ;;=S04.60XA^^1^10^16
+ ;;^UTILITY(U,$J,358.3,161,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,161,1,3,0)
+ ;;=3^Injury of acoustic nerve, unspecified side, init encntr
+ ;;^UTILITY(U,$J,358.3,161,1,4,0)
+ ;;=4^S04.60XA
+ ;;^UTILITY(U,$J,358.3,161,2)
+ ;;=^5020537
+ ;;^UTILITY(U,$J,358.3,162,0)
+ ;;=S04.9XXA^^1^10^17
+ ;;^UTILITY(U,$J,358.3,162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,162,1,3,0)
+ ;;=3^Injury of unspecified cranial nerve, initial encounter
+ ;;^UTILITY(U,$J,358.3,162,1,4,0)
+ ;;=4^S04.9XXA
+ ;;^UTILITY(U,$J,358.3,162,2)
+ ;;=^5020573
+ ;;^UTILITY(U,$J,358.3,163,0)
+ ;;=R49.8^^1^10^92
+ ;;^UTILITY(U,$J,358.3,163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,163,1,3,0)
+ ;;=3^Voice and Resonance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,163,1,4,0)
+ ;;=4^R49.8
+ ;;^UTILITY(U,$J,358.3,163,2)
+ ;;=^5019505
+ ;;^UTILITY(U,$J,358.3,164,0)
+ ;;=T36.5X1A^^1^10^19

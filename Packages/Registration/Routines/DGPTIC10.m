@@ -1,5 +1,7 @@
-DGPTIC10 ;ALB/AAS - PTF API TO ICD10 Remediation calls ;9/29/2011
- ;;5.3;Registration;**850,905**;Aug 13, 1993;Build 2
+DGPTIC10 ;ALB/AAS/PLT - PTF API TO ICD10 Remediation calls ;9/29/2011
+ ;;5.3;Registration;**850,905,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
+ QUIT
  ;
  ; CODEC^ICDEX     ICR 5747
  ; VLT^ICDEX       ICR 5747
@@ -12,20 +14,8 @@ GETCODSY(CSYS,IEN,DATE) ; -- RETURN IF THIS IS ICD9 OR ICD10
  ;
 IMPDATE(CODESYS) ; - calls IMPDATE^LEXU(CODESYS)
  ;  CODESYS: 10D = diagnosis, 10P = procedure
- ; -- For testing, enter a valid date in MAS Parameter file, 
- ;    fields 50001 a 50002.  The two dates resolve the issue of collecting ICD-10
- ;    code earlier than their implementation and for storing them in fields that check
- ;    to see if they are active.  (Codes become active on 10/1/2013 currently)
- ;   
- ; -- The ICD-10 Implementation date (50001) allows setting of a test implementation date.
- ; -- The ICD-10 Active Date will be used in calls to test if the code is active on this date.
- ;    
- N TEST,IMPDATE
- S TEST=$G(^DG(43,1,"ICD10"))
- I +TEST?7N Q TEST
  I $G(CODESYS)="" S CODESYS="10D"
- S IMPDATE=$$IMPDATE^LEXU($G(CODESYS))
- Q IMPDATE
+ QUIT $$IMPDATE^LEXU($G(CODESYS))
  ;
  ;
 EFFDATE(DGPTF,DGTYPE,DGMOVE,DGCSYS) ;-- build ICD-10 Implementation date / effective date
@@ -41,7 +31,8 @@ EFFDATE(DGPTF,DGTYPE,DGMOVE,DGCSYS) ;-- build ICD-10 Implementation date / effec
  S:DGTYPE="801" (DGPTDAT,DGCPTDT,EFFDATE)=$$GET8DATE($G(DGPTF))
 EQ S DGTEMP=$$IMPDATE^DGPTIC10(DGCSYS)
  S IMPDATE=$P(DGTEMP,U,1)
- I DGPTDAT'<IMPDATE,+$P(DGTEMP,U,2)?7N S EFFDATE=+$P(DGTEMP,U,2)
+ ;piece 2 of dgtemp has no 7n value and code below removed
+ ;I DGPTDAT'<IMPDATE,+$P(DGTEMP,U,2)?7N S EFFDATE=+$P(DGTEMP,U,2)
  Q
  ;
 EFFDAT1(DGPTDAT) ;-- build ICD-10 Implementation date / effective date
@@ -63,7 +54,6 @@ CODESYS(PTFIEN) ; returns coding system for a PTF Based on Discharge Date
  S PTR=$P($G(^DGPT(PTFIEN,0)),U,13) I PTR'="" S DISDATE=$P($G(^DG(45.86,PTR,0)),U,1) G:DISDATE'="" CSQ
  ; -- requires a census
  S PTF=PTFIEN D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- ;905 D CEN^DGPTC1
  N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S DISDATE=$P($G(^DG(45.86,DGCN,0)),U,1) G:DISDATE?7N CSQ
@@ -101,7 +91,6 @@ GET7DATE(PATNUM) ; FROM icdgtdrg
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" G7OUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- ;905 D CEN^DGPTC1
  N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT
@@ -126,7 +115,6 @@ GET5DATE(PATNUM,MOVE) ; FROM icdgtdrg
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" G5OUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- ;905 D CEN^DGPTC1
  N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT
@@ -155,7 +143,6 @@ GET6DATE(PATNUM,PROC,DGI) ; FROM icdgtdrg
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" G6OUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- ;905 D CEN^DGPTC1
  N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT ; DGCNO=0th node
@@ -183,7 +170,6 @@ GETCDATE(PATNUM,CPT) ;
  S PTR=$P($G(^DGPT(PATNUM,0)),U,13) I PTR'="" S EFFD=$P($G(^DG(45.86,PTR,0)),U,1) G:EFFD'="" GCOUT
  ; -- requires a census
  S PTF=PATNUM D:'$D(DGPMCA) PM^DGPTUTL ; -- gets admission in DGPMCA and 0th node in DGPMAN
- ;905 D CEN^DGPTC1
  N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ; -- DGCST=Census Status, dgcn=ien of census date file
  I $D(DGCST),DGCST=0,DGCN>0 S EFFD=$P($G(^DG(45.86,DGCN,0)),U,1) G:EFFD?7N G7OUT
@@ -308,6 +294,8 @@ TDAT(DGSDAT) ; ask for end date
  Q Y
  ;
 CENSUS(DGPTF) ; display warning to user for ICD-10 transition census records
+ ;this census subroutine call displaying a warning message is disabled 
+ ;and is not used for the icd-10 implementation period.
  ; -- do not remove this procedure from the routine
  ; -- called by input templates DG401, DG501, DG501F, DG601, and DG701
  ;
@@ -318,7 +306,6 @@ CENSUS(DGPTF) ; display warning to user for ICD-10 transition census records
  Q:'$D(PTF)  ; -- Called directly from fileman, no variable set up.
  ;
  ; -- Get census status (DGCST) and ien of census date (DGCN)
- ;905 D CEN^DGPTC1
  N DGSAVE S DGSAVE=$G(DGPTF0) D CEN^DGPTC1 S DGPTF0=DGSAVE
  ;
  I '$D(DGCST) G CENSUSQ

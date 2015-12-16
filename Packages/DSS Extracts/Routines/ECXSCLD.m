@@ -1,5 +1,5 @@
-ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/1/14  12:06
- ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149**;Dec 22, 1997;Build 27
+ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/20/15  13:29
+ ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154**;Dec 22, 1997;Build 13
 EN ;entry point from option
  ;load entries
  N DIR,X,Y,DIRUT,DTOUT,DUOUT ;144
@@ -62,19 +62,24 @@ FIX(EC) ;
  ;setup for stops
  F ECS=7,18 S ECP=+$P(ECD,U,ECS),ECS(ECS)=$P($G(^DIC(40.7,ECP,0)),U,2)_U_$P($G(^DIC(40.7,ECP,0)),U,3)
  S ECDF=$S($P(ECS(18),U)]"":5,1:1) S:$P(ECD,U,17)="Y" ECDF=6 S:$G(^SC(EC,"OOS")) ECDF=6
- S ECDB=EC_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"")
+ S ECDB=EC_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"")_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"") ;154 added DSS SC CSC
  ;new entry
  I '$D(ECD2) D
- .S $P(^ECX(728.44,EC,0),U,1,5)=ECDB_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"")
+ .S $P(^ECX(728.44,EC,0),U,1,5)=ECDB ;154
+ .;S $P(^ECX(728.44,EC,0),U,1,5)=ECDB_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"")
  .S $P(^(0),U,6)=ECDF,$P(^(0),U,12)=$P(ECD,U,17)
  .S ECDNEW=^ECX(728.44,EC,0)
  ;changes to existing entry
  I $D(ECD2) D
- .S $P(ECD2,U,1,3)=ECDB,$P(ECDDIF,U,1,3)=ECDB
+ .S $P(ECD2,U,1,5)=ECDB,$P(ECDDIF,U,1,3)=ECDB ;154 ADDED DSS SC CSC
  .;differs in stop code
- .I +ECS(7)'=+ECS2(2) S $P(ECD2,U,7)="",X=$P(ECDDIF,U,2)_"!",$P(ECDDIF,U,2)=X
+ .I +ECS(7)'=+ECS2(2) S $P(ECD2,U,7)="",X=$P(ECDDIF,U,2)_"!",$P(ECDDIF,U,2)=X ;W !," SC ",?10,X,?20,ECS(7),?40,ECS2(2)
+ .;154 added DSS STOP CODE
+ .I +ECS(7)'=+ECS2(4) S $P(ECD2,U,7)="",X=$P(ECDDIF,U,4)_"!",$P(ECDDIF,U,4)=X ;W !,"DSS SC ",?10,X,?20,ECS(7),?40,ECS2(4)
  .;differs in credit stop code
  .I +ECS(18)'=+ECS2(3) S $P(ECD2,U,7)="",X=$P(ECDDIF,U,3)_"!",$P(ECDDIF,U,3)=X
+ .;154 added DSS CREDIT STOP CODE
+ .I +ECS(18)'=+ECS2(5) S $P(ECD2,U,7)="",X=$P(ECDDIF,U,5)_"!",$P(ECDDIF,U,5)=X ; W !,"DSS CSC",!
  .;change in non-count
  .I $P(ECD2,U,12)'=$P(ECD,U,17) S X=$P(ECD,U,17)_"!",$P(ECDDIF,U,12)=X,$P(ECD2,U,12)=$P(ECD,U,17),$P(ECD2,U,7)=""
  .;reset entry
@@ -91,7 +96,7 @@ FIX(EC) ;
 UPDATE(ECSC,ECDDIF,ECSCSIGN) ;update ^xtmp node with today's changes
  N ECXOLD,J,L1,L2,X,X1,X2
  S ECXOLD=^XTMP("ECX UNREVIEWED CLINICS",ECSC)
- F J=2,3 S X1=+$P(ECXOLD,U,J),X2=+$P(ECDDIF,U,J) I X2=X1,$P(ECDDIF,U,J)'=$P(ECXOLD,U,J) D
+ F J=2,3,4,5 S X1=+$P(ECXOLD,U,J),X2=+$P(ECDDIF,U,J) I X2=X1,$P(ECDDIF,U,J)'=$P(ECXOLD,U,J) D
  .S L1=$L($P(ECXOLD,U,J)),L2=$L($P(ECDDIF,U,J))
  .I L1>L2 S $P(ECDDIF,U,J)=$P(ECXOLD,U,J)
  S X1=$E($P(ECXOLD,U,12),1),X2=$E($P(ECDDIF,U,12),1) I X2=X1 S $P(ECDDIF,U,12)=$P(ECXOLD,U,12)
@@ -166,7 +171,7 @@ SPRINT ; queued entry to print work sheet
  .F DC=0:0 S DC=$O(^ECX(728.44,DC)) Q:'DC  I $D(^ECX(728.44,DC,0)) S ECSDC=^ECX(728.44,DC,0) D
  ..I $P($G(^SC(DC,0)),U,3)'="C"!($P(^ECX(728.44,DC,0),U,10)'="") Q  ;149 Don't include non clinic types or inactive ones
  ..I $D(^SC(DC,0)) D
- ...S STOPC=$P(ECSDC,U,4),CREDSC=$P(ECSDC,U,5),NATC=$P(ECSDC,U,8)
+ ...S STOPC=$P(ECSDC,U,2),CREDSC=$P(ECSDC,U,3),NATC=$P(ECSDC,U,8) ;154 CVW
  ...S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I")
  ...I 'FIRST D
  ....I ($D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL))) D
@@ -201,86 +206,38 @@ EDIT ; put in DSS stopcodes and which one to send
  ;patch 142-added for loop to allow for new clinic prompt
  F  W ! K DIC S DIC=728.44,DIC(0)="QEAMZ",DIC("S")="I $P($G(^SC(Y,0)),U,3)=""C""" D ^DIC Q:Y<0  D  ;149
  .S CLIEN1=+Y
- .W !!,"EXISTING CLINIC FILE DATA:",?35,"EXISTING DSS CLINIC FILE DATA:"
- .W !!,"STOP CODE :       ",$P(Y(0),U,2),?35,"DSS STOP CODE :   ",$P(Y(0),U,4)
- .W !,"CREDIT STOP CODE :",$P(Y(0),U,3),?35,"DSS CREDIT STOP CODE :",$P(Y(0),U,5)
+ .W !!,"EXISTING CLINIC FILE DATA:" ;,?35,"EXISTING DSS CLINIC FILE DATA:" 154
+ .W !!,"STOP CODE:        ",$P(Y(0),U,2) ;,?35,"DSS STOP CODE :   ",$P(Y(0),U,4) 154
+ .W !,"CREDIT STOP CODE: ",$P(Y(0),U,3) ;,?35,"DSS CREDIT STOP CODE :",$P(Y(0),U,5) 154
  .W !
- .D EDIT1
+ .D ENDCHK
+ .;D EDIT1 154 **EDIT1 code was moved to ECXSCLD1 for space
  D ENDX
  Q
-EDIT1 ;check input & update field #3; allow '@' deletion; allow bypass empty with no entry
- N DIR ;136
- S OUT=0 F  D  Q:OUT
- .K DIC,DIR,ECXMSG,FDA,AMIS,X,Y
- .S STOP=$P(^ECX(728.44,CLIEN1,0),U,4)
- .S DIR(0)="FO^1:99",DIR("A")="DSS STOP CODE (3-digit code only)" I STOP]"" S DIR("B")=STOP
- .S DIR("?")="^S DIC=40.7,DIC(0)=""EMQZ"" D ^DIC"
- .D ^DIR
- .I X="@" D  Q
- ..S IENS=CLIEN1_",",FDA(728.44,IENS,3)=X D FILE^DIE("","FDA")
- ..S OUT=1 W "   deleted..."
- .I X="" S X=STOP K DIRUT S OUT=2 Q
- .S DIC("A")="DSS STOP CODE (3-digit code only): "
- .S DIC="^DIC(40.7,",DIC(0)="EMQZ"
- .S DIC("S")="I $P(^(0),U,3)=""""" D ^DIC
- .I X="@" D  Q
- ..S IENS=CLIEN1_",",FDA(728.44,IENS,3)=X D FILE^DIE("","FDA")
- ..S OUT=2 W "   deleted..."
- .I X="" K DIRUT S OUT=2 Q
- .I ($G(DIRUT)!$G(DUOUT)!$G(DTOUT)) S OUT=3 Q
- .I +X'=X W !,?5,"Invalid... try again." Q
- .I +Y'>0  Q
- .S AMIS=$P(^DIC(40.7,+Y,0),"^",2)
- .S CODE=+Y,ECXMSG=$$ERRCHK(CODE,3,CLIEN1)
- .I ECXMSG=-1 W !,?5,"Invalid... try again." Q
- .I $G(ECXMSG)]"" W !,?5,ECXMSG,! Q
- .S IENS=CLIEN1_",",FDA(728.44,IENS,3)=AMIS D FILE^DIE("U","FDA")
- .S OUT=1
- I ($G(DIRUT)!$G(DUOUT)!$G(DTOUT)) G ENDX
- ;check input & update field #4; allow '@' deletion; allow bypass empty with no entry
- S OUT=0 F  D  G:OUT=1 ENDCHK
- .K DIC,DIR,ECXMSG,FDA,AMIS,X,Y
- .S CSTOP=$P(^ECX(728.44,CLIEN1,0),U,5)
- .S DIR(0)="FO^1:99",DIR("A")="DSS CREDIT STOP CODE (3-digit code only)" I CSTOP]"" S DIR("B")=CSTOP
- .S DIR("?")="^S DIC=40.7,DIC(0)=""EMQZ"" D ^DIC"
- .D ^DIR
- .I X="@" D  Q
- ..S IENS=CLIEN1_",",FDA(728.44,IENS,4)=X D FILE^DIE("","FDA")
- ..S OUT=1 W "   deleted..."
- .I X="" S X=CSTOP K DIRUT S OUT=1 Q
- .S DIC("A")="DSS CREDIT STOP CODE (3-digit code only): "
- .S DIC("S")="I $P(^(0),U,3)=""""" D ^DIC
- .S DIC=40.7,DIC(0)="EMQZ" D ^DIC
- .I X="" K DIRUT S OUT=1 Q
- .I ($G(DIRUT)!$G(DUOUT)!$G(DTOUT)) S OUT=1 Q
- .I +X'=X W !,?5,"Invalid... try again." Q
- .I +Y'>0  Q
- .S AMIS=$P(^DIC(40.7,+Y,0),"^",2)
- .S CODE=+Y,ECXMSG=$$ERRCHK(CODE,4,CLIEN1)
- .I ECXMSG=-1 W !,?5,"Invalid... try again." Q
- .I $G(ECXMSG)]"" W !,?5,ECXMSG,! Q
- .S IENS=CLIEN1_",",FDA(728.44,IENS,4)=AMIS D FILE^DIE("U","FDA")
- .S OUT=1
- I ($G(DIRUT)!$G(DUOUT)!$G(DTOUT)) G ENDX
- K I,WARNING,DIC,DIE,DA,DR,DIR,DIRUT,DTOUT,DUOUT,X,Y,ERRCHK
- K CLIEN1,CODE,ECXMSG,IENS,STOP,CSTOP,AMIS,FDA,OUT,ERR,WRN,ECXERR
- Q
 ENDCHK ;check validity of clinic
- S CODE=$P(^ECX(728.44,CLIEN1,0),U,4)
- K ERR,WRN,ECXERR,WARNING,ERRCHK
- S ERRCHK=0
- D STOP^ECXSTOP(CODE,"DSS Stop Code",CLIEN1) D ERRPRNT
- I $D(ECXERR) S ERRCHK=1
- K ERR,WRN,ECXERR,WARNING
- S CODE=$P(^ECX(728.44,CLIEN1,0),U,5)
- D STOP^ECXSTOP(CODE,"Credit Stop Code",CLIEN1) D ERRPRNT
- I $D(ECXERR) S ERRCHK=1
- W !!,"...Validity Checker Complete."
- I ERRCHK=1 W !!,"...Errors found please fix." G EDIT1
+ N ECXB4ARR,ECXAFARR,ECXCHNG ;154
+ S ECXCHNG=0 ;154
+ ;154 REMOVED ALL ERROR CHECKING SINCE EDIT OF FIELDS REMOVED **EDIT1 code was moved to ECXSCLD1 for space
+ ;S CODE=$P(^ECX(728.44,CLIEN1,0),U,4)
+ ;K ERR,WRN,ECXERR,WARNING,ERRCHK
+ ;S ERRCHK=0
+ ;D STOP^ECXSTOP(CODE,"DSS Stop Code",CLIEN1) D ERRPRNT
+ ;I $D(ECXERR) S ERRCHK=1
+ ;K ERR,WRN,ECXERR,WARNING
+ ;S CODE=$P(^ECX(728.44,CLIEN1,0),U,5)
+ ;D STOP^ECXSTOP(CODE,"Credit Stop Code",CLIEN1) D ERRPRNT
+ ;I $D(ECXERR) S ERRCHK=1
+ ;W; !!,"...Validity Checker Complete."
+ ;I ERRCHK=1 W !!,"...Errors found please fix." G EDIT1
  ;remaining fields
+ D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXB4ARR")
  S DIE=728.44,DA=+CLIEN1
- S DR="5//1;S:X'=4 Y=6;7;6///"_DT_";8;10" D ^DIE ;136
- S:$P(^ECX(728.44,DA,0),U,6)'=4 $P(^(0),U,8)="" S $P(^(0),U,7)=""
+ ;S DR="5//1;S:X'=4 Y=6;7CHAR4 CODE;6///"_DT_";8;10" D ^DIE ;136
+ S DR="5//1;S:X'=4 Y=8;7CHAR4 CODE;8;10" D ^DIE ;154
+ S:$P(^ECX(728.44,DA,0),U,6)'=4 $P(^ECX(728.44,CLIEN1,0),U,8)="" ;S $P(^(0),U,7)="" ;154
+ D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXAFARR") ;154
+ F I=5,7,8 I ECXB4ARR(728.44,CLIEN1_",",I,"I")'=ECXAFARR(728.44,CLIEN1_",",I,"I") S ECXCHNG=1 Q  ;154
+ I ECXCHNG S $P(^ECX(728.44,CLIEN1,0),U,7)="" ;154
  Q
 ERRPRNT ;print errors 149 moved to ECXSCLD1 due to size
  D ERRPRNT^ECXSCLD1

@@ -1,130 +1,128 @@
-IBDEI1YK ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YK ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34737,1,4,0)
- ;;=4^R09.01
- ;;^UTILITY(U,$J,358.3,34737,2)
- ;;=^11005
- ;;^UTILITY(U,$J,358.3,34738,0)
- ;;=R07.9^^192^2010^12
- ;;^UTILITY(U,$J,358.3,34738,1,0)
+ ;;^UTILITY(U,$J,358.3,34351,1,4,0)
+ ;;=4^S06.5X4S
+ ;;^UTILITY(U,$J,358.3,34351,2)
+ ;;=^5021070
+ ;;^UTILITY(U,$J,358.3,34352,0)
+ ;;=S06.5X9S^^183^2018^104
+ ;;^UTILITY(U,$J,358.3,34352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34738,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,34738,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,34738,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,34739,0)
- ;;=M48.52XA^^192^2010^13
- ;;^UTILITY(U,$J,358.3,34739,1,0)
+ ;;^UTILITY(U,$J,358.3,34352,1,3,0)
+ ;;=3^Traum subdr hem w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34352,1,4,0)
+ ;;=4^S06.5X9S
+ ;;^UTILITY(U,$J,358.3,34352,2)
+ ;;=^5021085
+ ;;^UTILITY(U,$J,358.3,34353,0)
+ ;;=S06.5X0S^^183^2018^105
+ ;;^UTILITY(U,$J,358.3,34353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34739,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34739,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,34739,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,34740,0)
- ;;=M48.53XA^^192^2010^14
- ;;^UTILITY(U,$J,358.3,34740,1,0)
+ ;;^UTILITY(U,$J,358.3,34353,1,3,0)
+ ;;=3^Traum subdr hem w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34353,1,4,0)
+ ;;=4^S06.5X0S
+ ;;^UTILITY(U,$J,358.3,34353,2)
+ ;;=^5021058
+ ;;^UTILITY(U,$J,358.3,34354,0)
+ ;;=M84.351S^^183^2019^107
+ ;;^UTILITY(U,$J,358.3,34354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34740,1,3,0)
- ;;=3^Collapsed Vertebra,Cervicothoracic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34740,1,4,0)
- ;;=4^M48.53XA
- ;;^UTILITY(U,$J,358.3,34740,2)
- ;;=^5012171
- ;;^UTILITY(U,$J,358.3,34741,0)
- ;;=M48.56XA^^192^2010^15
- ;;^UTILITY(U,$J,358.3,34741,1,0)
+ ;;^UTILITY(U,$J,358.3,34354,1,3,0)
+ ;;=3^Stress fracture, right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34354,1,4,0)
+ ;;=4^M84.351S
+ ;;^UTILITY(U,$J,358.3,34354,2)
+ ;;=^5013685
+ ;;^UTILITY(U,$J,358.3,34355,0)
+ ;;=M84.352S^^183^2019^106
+ ;;^UTILITY(U,$J,358.3,34355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34741,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbar Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34741,1,4,0)
- ;;=4^M48.56XA
- ;;^UTILITY(U,$J,358.3,34741,2)
- ;;=^5012183
- ;;^UTILITY(U,$J,358.3,34742,0)
- ;;=M48.57XA^^192^2010^16
- ;;^UTILITY(U,$J,358.3,34742,1,0)
+ ;;^UTILITY(U,$J,358.3,34355,1,3,0)
+ ;;=3^Stress fracture, left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34355,1,4,0)
+ ;;=4^M84.352S
+ ;;^UTILITY(U,$J,358.3,34355,2)
+ ;;=^5013691
+ ;;^UTILITY(U,$J,358.3,34356,0)
+ ;;=M84.451S^^183^2019^95
+ ;;^UTILITY(U,$J,358.3,34356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34742,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34742,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,34742,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,34743,0)
- ;;=M48.51XA^^192^2010^17
- ;;^UTILITY(U,$J,358.3,34743,1,0)
+ ;;^UTILITY(U,$J,358.3,34356,1,3,0)
+ ;;=3^Pathological fracture, right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34356,1,4,0)
+ ;;=4^M84.451S
+ ;;^UTILITY(U,$J,358.3,34356,2)
+ ;;=^5013907
+ ;;^UTILITY(U,$J,358.3,34357,0)
+ ;;=M84.452S^^183^2019^94
+ ;;^UTILITY(U,$J,358.3,34357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34743,1,3,0)
- ;;=3^Collapsed Vertebra,Occipito/Atlanto/Axial Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34743,1,4,0)
- ;;=4^M48.51XA
- ;;^UTILITY(U,$J,358.3,34743,2)
- ;;=^5012163
- ;;^UTILITY(U,$J,358.3,34744,0)
- ;;=M48.58XA^^192^2010^18
- ;;^UTILITY(U,$J,358.3,34744,1,0)
+ ;;^UTILITY(U,$J,358.3,34357,1,3,0)
+ ;;=3^Pathological fracture, left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34357,1,4,0)
+ ;;=4^M84.452S
+ ;;^UTILITY(U,$J,358.3,34357,2)
+ ;;=^5013913
+ ;;^UTILITY(U,$J,358.3,34358,0)
+ ;;=S72.021S^^183^2019^12
+ ;;^UTILITY(U,$J,358.3,34358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34744,1,3,0)
- ;;=3^Collapsed Vertebra,Sacral/Sacrococcygeal Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34744,1,4,0)
- ;;=4^M48.58XA
- ;;^UTILITY(U,$J,358.3,34744,2)
- ;;=^5012191
- ;;^UTILITY(U,$J,358.3,34745,0)
- ;;=M48.50XA^^192^2010^21
- ;;^UTILITY(U,$J,358.3,34745,1,0)
+ ;;^UTILITY(U,$J,358.3,34358,1,3,0)
+ ;;=3^Displaced epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34358,1,4,0)
+ ;;=4^S72.021S
+ ;;^UTILITY(U,$J,358.3,34358,2)
+ ;;=^5037136
+ ;;^UTILITY(U,$J,358.3,34359,0)
+ ;;=S72.022S^^183^2019^11
+ ;;^UTILITY(U,$J,358.3,34359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34745,1,3,0)
- ;;=3^Collapsed Vertebra,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,34745,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,34745,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,34746,0)
- ;;=M48.54XA^^192^2010^19
- ;;^UTILITY(U,$J,358.3,34746,1,0)
+ ;;^UTILITY(U,$J,358.3,34359,1,3,0)
+ ;;=3^Displaced epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34359,1,4,0)
+ ;;=4^S72.022S
+ ;;^UTILITY(U,$J,358.3,34359,2)
+ ;;=^5037152
+ ;;^UTILITY(U,$J,358.3,34360,0)
+ ;;=S72.024S^^183^2019^58
+ ;;^UTILITY(U,$J,358.3,34360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34746,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34746,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,34746,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,34747,0)
- ;;=M48.55XA^^192^2010^20
- ;;^UTILITY(U,$J,358.3,34747,1,0)
+ ;;^UTILITY(U,$J,358.3,34360,1,3,0)
+ ;;=3^Nondisp epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34360,1,4,0)
+ ;;=4^S72.024S
+ ;;^UTILITY(U,$J,358.3,34360,2)
+ ;;=^5037184
+ ;;^UTILITY(U,$J,358.3,34361,0)
+ ;;=S72.025S^^183^2019^57
+ ;;^UTILITY(U,$J,358.3,34361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34747,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracolumbar Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34747,1,4,0)
- ;;=4^M48.55XA
- ;;^UTILITY(U,$J,358.3,34747,2)
- ;;=^5012179
- ;;^UTILITY(U,$J,358.3,34748,0)
- ;;=K59.00^^192^2010^22
- ;;^UTILITY(U,$J,358.3,34748,1,0)
+ ;;^UTILITY(U,$J,358.3,34361,1,3,0)
+ ;;=3^Nondisp epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34361,1,4,0)
+ ;;=4^S72.025S
+ ;;^UTILITY(U,$J,358.3,34361,2)
+ ;;=^5037200
+ ;;^UTILITY(U,$J,358.3,34362,0)
+ ;;=S72.031S^^183^2019^28
+ ;;^UTILITY(U,$J,358.3,34362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34748,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,34748,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,34748,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,34749,0)
- ;;=R05.^^192^2010^23
- ;;^UTILITY(U,$J,358.3,34749,1,0)
+ ;;^UTILITY(U,$J,358.3,34362,1,3,0)
+ ;;=3^Displaced midcervical fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34362,1,4,0)
+ ;;=4^S72.031S
+ ;;^UTILITY(U,$J,358.3,34362,2)
+ ;;=^5037232
+ ;;^UTILITY(U,$J,358.3,34363,0)
+ ;;=S72.032S^^183^2019^27
+ ;;^UTILITY(U,$J,358.3,34363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34749,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,34749,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,34749,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,34750,0)
- ;;=R19.7^^192^2010^24
+ ;;^UTILITY(U,$J,358.3,34363,1,3,0)
+ ;;=3^Displaced midcervical fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34363,1,4,0)
+ ;;=4^S72.032S
+ ;;^UTILITY(U,$J,358.3,34363,2)
+ ;;=^5037248

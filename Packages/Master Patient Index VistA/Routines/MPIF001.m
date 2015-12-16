@@ -1,5 +1,5 @@
 MPIF001 ;ALB/RJS/CMC-UTILITY ROUTINE OF APIS ;JUL 12, 1996
- ;;1.0; MASTER PATIENT INDEX VISTA ;**1,3,9,16,18,21,27,33,35,41,45,48**;30 Apr 99;Build 6
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,9,16,18,21,27,33,35,41,45,48,60**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;  ^DPT( - #2070
@@ -55,6 +55,8 @@ ICNLC(DFN) ;This API will return an ICN if one exists or create and return
  .I ICNX="" K NOLOCK S ICN="-1^PROBLEM CREATING LOCAL ICN" Q
  .S TMP=$$SETICN(DFN,ICNX,CHKSUM)
  .I +TMP=-1 K NOLOCK Q
+ .;**60 (elz) MVI_793 new Full ICN field
+ .S TMP=$$SETFICN(DFN,ICNX_"V"_CHKSUM)
  .S TMP=$$SETLOC(DFN,1)
  .S TMP=$$CHANGE(DFN,$P($$SITE^VASITE(),"^"))
  .K NOLOCK
@@ -236,6 +238,77 @@ HL7CMOR(DFN,SEP) ; This function returns the CMOR station number and institution
  S RETURN=$P(STAT,"^",2)_SEP_$P(STAT,"^")
 EXIT7 ;
  Q RETURN
+ ;
+ICN2DFN(ICN) ; - This function will return a DFN based on the ICN entered
+ ; **60 (elz) MVI_793  this is the new function to use the new single
+ ;   ICN field/cross-reference.  The full ICN value must be passed in
+ N RETURN,DFN
+ I $G(ICN)'>0 S RETURN="-1^NO ICN PASSED IN" G QICN2DFN
+ I ICN'["V" S RETURN="-1^FULL ICN VALUE REQUIRED" G QICN2DFN
+ I '$D(^DPT("AFICN",ICN)) S RETURN="-1^ICN NOT FOUND IN DATABASE" G QICN2DFN
+ S DFN=$O(^DPT("AFICN",ICN,0))
+ I $G(DFN)'>0 S RETURN="-1^BAD ICN CROSS-REFERENCE" G QICN2DFN
+ I '$D(^DPT(DFN)) K ^DPT("AFICN",ICN) S RETURN="-1^ICN NOT IN DATABASE" G QICN2DFN
+ S RETURN=DFN
+ ;
+QICN2DFN ;
+ Q RETURN
+ ;
+ ;
+DFN2ICN(DFN) ; This function will return an ICN based on the DFN entered
+ ; **60 (elz) MVI_793  this is the new function to use the new single
+ ;   ICN field.  The full ICN value will be returned
+ N RETURN,NODE
+ I $G(DFN)'>0 S RETURN="-1^NO DFN" G QDFN2ICN
+ I '$D(^DPT(DFN,0)) S RETURN="-1^PATIENT NOT IN DATABASE" G QDFN2ICN
+ I '$D(^DPT(DFN,"MPI")) S RETURN="-1^NO MPI NODE" G QDFN2ICN
+ S NODE=$G(^DPT(DFN,"MPI"))
+ I '$L($P(NODE,"^",10)) S RETURN="-1^NO ICN" G QDFN2ICN
+ S RETURN=$P(NODE,"^",10)
+ I '$D(^DPT("AFICN",RETURN,DFN)) S ^DPT("AFICN",RETURN,DFN)=""
+QDFN2ICN ;
+ Q RETURN
+ ;
+ ;
+SETFICN(DFN,ICN) ; - Set the Full ICN value
+ ; ** this function is to only be used by approved packages **
+ ;**60 (elz) MVI_793 this function will set/update the full ICN value
+ ;     in the new FULL ICN field in the Patient file for a given patient
+ ;
+ ; DFN - ien in the Patient file to be updated
+ ; ICN - FULL ICN (with checksum) to be updated
+ ; return:  -1^error message - problem
+ ;          1 - successful
+ N RETURN,DIQUIET,DIE,DA,DR,RGRSICN,Y,ERR
+ S (RETURN,DIQUIET,RGRSICN)=1
+ I $G(DFN)'>0 S RETURN="-1^NO DFN PASSED" G QSETFICN
+ I '$D(^DPT(DFN,0)) S RETURN="-1^PATIENT NOT IN DATABASE" G QSETFICN
+ I $G(ICN)'>0 S RETURN="-1^NO ICN PASSED" G QSETFICN
+ I ICN'["V" S RETURN="-1^FULL ICN VALUE REQUIRED" G QSETFICN
+ I +$$DFN2ICN(DFN)>0 I $E(ICN,1,3)=$P($$SITE^VASITE(),"^",3),$E($$DFN2ICN(DFN),1,3)'=$E(ICN,1,3) S RETURN="-1^Don't overwrite national with local" G QSETFICN
+ ; ^ stop local from overwriting a national ICN
+ I +$$DFN2ICN(DFN)>0 I $E(ICN,1,3)=$P($$SITE^VASITE(),"^",3),$E($$DFN2ICN(DFN),1,3)=$P($$SITE^VASITE(),"^",3) S RETURN="-1^Don't overwrite local ICN with another Local ICN" G QSETFICN
+ ; ^ STOP LOCAL FROM OVERWRITING ANOTHER LOCAL ICN
+ I $D(^DPT("AFICN",ICN)) D
+ .Q:DFN=$O(^DPT("AFICN",ICN,""))
+ .I DFN'=($O(^DPT("AFICN",ICN,""))) D
+ ..N DFN2 S DFN2=$O(^DPT("AFICN",ICN,""))
+ ..I '$D(TWODFN) D TWODFNS^MPIF002(DFN2,DFN,ICN)
+ .S RETURN="-1^ICN ALREADY IN USE"
+ G:+RETURN=-1 QSETFICN
+ I '$D(NOLOCK) D LOCK
+ S DIQUIET=1
+ S DIE="^DPT(",DA=DFN,DR="991.1///^S X=ICN"
+ D ^DIE
+ I +$G(Y)=-1 S RETURN="-1^UNSUCCESSFUL DIE CALL"
+ I +RETURN>0 D
+ .K ^DPT("AMPIMIS",DFN)
+ .I $E(ICN,1,3)=$P($$SITE^VASITE(),"^",3) S ERR=$$SETLOC(DFN,1)
+ .I $E(ICN,1,3)'=$P($$SITE^VASITE(),"^",3) S ERR=$$SETLOC(DFN,0)
+ I '$D(NOLOCK) D UNLOCK
+QSETFICN ;
+ Q RETURN
+ ;
  ;
 LOCK ;
  F  L +^DPT(DFN,"MPI"):10 Q:$T

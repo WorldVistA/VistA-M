@@ -1,136 +1,130 @@
-IBDEI1QP ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QP ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31139,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,31139,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,31140,0)
- ;;=L03.123^^190^1932^27
- ;;^UTILITY(U,$J,358.3,31140,1,0)
+ ;;^UTILITY(U,$J,358.3,30769,1,4,0)
+ ;;=4^M12.571
+ ;;^UTILITY(U,$J,358.3,30769,2)
+ ;;=^5010637
+ ;;^UTILITY(U,$J,358.3,30770,0)
+ ;;=S82.92XA^^179^1927^7
+ ;;^UTILITY(U,$J,358.3,30770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31140,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,31140,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,31140,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,31141,0)
- ;;=L03.124^^190^1932^21
- ;;^UTILITY(U,$J,358.3,31141,1,0)
+ ;;^UTILITY(U,$J,358.3,30770,1,3,0)
+ ;;=3^Fracture of left lower leg, init for clos fx,Unspec
+ ;;^UTILITY(U,$J,358.3,30770,1,4,0)
+ ;;=4^S82.92XA
+ ;;^UTILITY(U,$J,358.3,30770,2)
+ ;;=^5136962
+ ;;^UTILITY(U,$J,358.3,30771,0)
+ ;;=S82.91XA^^179^1927^8
+ ;;^UTILITY(U,$J,358.3,30771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31141,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,31141,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,31141,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,31142,0)
- ;;=L03.125^^190^1932^25
- ;;^UTILITY(U,$J,358.3,31142,1,0)
+ ;;^UTILITY(U,$J,358.3,30771,1,3,0)
+ ;;=3^Fracture of right lower leg, init for clos fx,Unspec
+ ;;^UTILITY(U,$J,358.3,30771,1,4,0)
+ ;;=4^S82.91XA
+ ;;^UTILITY(U,$J,358.3,30771,2)
+ ;;=^5136961
+ ;;^UTILITY(U,$J,358.3,30772,0)
+ ;;=G56.22^^179^1928^15
+ ;;^UTILITY(U,$J,358.3,30772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31142,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,31142,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,31142,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,31143,0)
- ;;=L03.126^^190^1932^19
- ;;^UTILITY(U,$J,358.3,31143,1,0)
+ ;;^UTILITY(U,$J,358.3,30772,1,3,0)
+ ;;=3^Lesion of ulnar nerve, left upper limb
+ ;;^UTILITY(U,$J,358.3,30772,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,30772,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,30773,0)
+ ;;=G56.21^^179^1928^16
+ ;;^UTILITY(U,$J,358.3,30773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31143,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,31143,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,31143,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,31144,0)
- ;;=L03.211^^190^1932^99
- ;;^UTILITY(U,$J,358.3,31144,1,0)
+ ;;^UTILITY(U,$J,358.3,30773,1,3,0)
+ ;;=3^Lesion of ulnar nerve, right upper limb
+ ;;^UTILITY(U,$J,358.3,30773,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,30773,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,30774,0)
+ ;;=M00.822^^179^1928^1
+ ;;^UTILITY(U,$J,358.3,30774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31144,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,31144,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,31144,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,31145,0)
- ;;=L03.212^^190^1932^16
- ;;^UTILITY(U,$J,358.3,31145,1,0)
+ ;;^UTILITY(U,$J,358.3,30774,1,3,0)
+ ;;=3^Arthritis due to other bacteria, left elbow
+ ;;^UTILITY(U,$J,358.3,30774,1,4,0)
+ ;;=4^M00.822
+ ;;^UTILITY(U,$J,358.3,30774,2)
+ ;;=^5009674
+ ;;^UTILITY(U,$J,358.3,30775,0)
+ ;;=M00.821^^179^1928^2
+ ;;^UTILITY(U,$J,358.3,30775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31145,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,31145,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,31145,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,31146,0)
- ;;=L03.221^^190^1932^106
- ;;^UTILITY(U,$J,358.3,31146,1,0)
+ ;;^UTILITY(U,$J,358.3,30775,1,3,0)
+ ;;=3^Arthritis due to other bacteria, right elbow
+ ;;^UTILITY(U,$J,358.3,30775,1,4,0)
+ ;;=4^M00.821
+ ;;^UTILITY(U,$J,358.3,30775,2)
+ ;;=^5009673
+ ;;^UTILITY(U,$J,358.3,30776,0)
+ ;;=M24.522^^179^1928^3
+ ;;^UTILITY(U,$J,358.3,30776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31146,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,31146,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,31146,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,31147,0)
- ;;=L03.222^^190^1932^22
- ;;^UTILITY(U,$J,358.3,31147,1,0)
+ ;;^UTILITY(U,$J,358.3,30776,1,3,0)
+ ;;=3^Contracture, left elbow
+ ;;^UTILITY(U,$J,358.3,30776,1,4,0)
+ ;;=4^M24.522
+ ;;^UTILITY(U,$J,358.3,30776,2)
+ ;;=^5011406
+ ;;^UTILITY(U,$J,358.3,30777,0)
+ ;;=M24.521^^179^1928^4
+ ;;^UTILITY(U,$J,358.3,30777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31147,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,31147,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,31147,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,31148,0)
- ;;=L03.311^^190^1932^95
- ;;^UTILITY(U,$J,358.3,31148,1,0)
+ ;;^UTILITY(U,$J,358.3,30777,1,3,0)
+ ;;=3^Contracture, right elbow
+ ;;^UTILITY(U,$J,358.3,30777,1,4,0)
+ ;;=4^M24.521
+ ;;^UTILITY(U,$J,358.3,30777,2)
+ ;;=^5011405
+ ;;^UTILITY(U,$J,358.3,30778,0)
+ ;;=S50.02XA^^179^1928^5
+ ;;^UTILITY(U,$J,358.3,30778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31148,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,31148,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,31148,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,31149,0)
- ;;=L03.312^^190^1932^96
- ;;^UTILITY(U,$J,358.3,31149,1,0)
+ ;;^UTILITY(U,$J,358.3,30778,1,3,0)
+ ;;=3^Contusion of left elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,30778,1,4,0)
+ ;;=4^S50.02XA
+ ;;^UTILITY(U,$J,358.3,30778,2)
+ ;;=^5028488
+ ;;^UTILITY(U,$J,358.3,30779,0)
+ ;;=S50.01XA^^179^1928^6
+ ;;^UTILITY(U,$J,358.3,30779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31149,1,3,0)
- ;;=3^Cellulitis of Back
- ;;^UTILITY(U,$J,358.3,31149,1,4,0)
- ;;=4^L03.312
- ;;^UTILITY(U,$J,358.3,31149,2)
- ;;=^5009048
- ;;^UTILITY(U,$J,358.3,31150,0)
- ;;=L03.313^^190^1932^98
- ;;^UTILITY(U,$J,358.3,31150,1,0)
+ ;;^UTILITY(U,$J,358.3,30779,1,3,0)
+ ;;=3^Contusion of right elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,30779,1,4,0)
+ ;;=4^S50.01XA
+ ;;^UTILITY(U,$J,358.3,30779,2)
+ ;;=^5028485
+ ;;^UTILITY(U,$J,358.3,30780,0)
+ ;;=S52.122A^^179^1928^7
+ ;;^UTILITY(U,$J,358.3,30780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31150,1,3,0)
- ;;=3^Cellulitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,31150,1,4,0)
- ;;=4^L03.313
- ;;^UTILITY(U,$J,358.3,31150,2)
- ;;=^5009049
- ;;^UTILITY(U,$J,358.3,31151,0)
- ;;=L03.314^^190^1932^100
- ;;^UTILITY(U,$J,358.3,31151,1,0)
+ ;;^UTILITY(U,$J,358.3,30780,1,3,0)
+ ;;=3^Disp fx of head of left radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,30780,1,4,0)
+ ;;=4^S52.122A
+ ;;^UTILITY(U,$J,358.3,30780,2)
+ ;;=^5029063
+ ;;^UTILITY(U,$J,358.3,30781,0)
+ ;;=S52.121A^^179^1928^8
+ ;;^UTILITY(U,$J,358.3,30781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31151,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,31151,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,31151,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,31152,0)
- ;;=L03.315^^190^1932^107
- ;;^UTILITY(U,$J,358.3,31152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31152,1,3,0)
- ;;=3^Cellulitis of Perineum
- ;;^UTILITY(U,$J,358.3,31152,1,4,0)
- ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,30781,1,3,0)
+ ;;=3^Disp fx of head of right radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,30781,1,4,0)
+ ;;=4^S52.121A
+ ;;^UTILITY(U,$J,358.3,30781,2)
+ ;;=^5029047
+ ;;^UTILITY(U,$J,358.3,30782,0)
+ ;;=S52.032A^^179^1928^9

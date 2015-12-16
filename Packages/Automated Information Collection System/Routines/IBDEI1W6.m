@@ -1,132 +1,130 @@
-IBDEI1W6 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1W6 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33638,1,4,0)
- ;;=4^M84.374K
- ;;^UTILITY(U,$J,358.3,33638,2)
- ;;=^5013755
- ;;^UTILITY(U,$J,358.3,33639,0)
- ;;=M84.475K^^191^1968^399
- ;;^UTILITY(U,$J,358.3,33639,1,0)
+ ;;^UTILITY(U,$J,358.3,33272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33639,1,3,0)
- ;;=3^Path fx lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33639,1,4,0)
- ;;=4^M84.475K
- ;;^UTILITY(U,$J,358.3,33639,2)
- ;;=^5013989
- ;;^UTILITY(U,$J,358.3,33640,0)
- ;;=M84.474K^^191^1968^415
- ;;^UTILITY(U,$J,358.3,33640,1,0)
+ ;;^UTILITY(U,$J,358.3,33272,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,33272,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,33272,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,33273,0)
+ ;;=G35.^^182^1999^29
+ ;;^UTILITY(U,$J,358.3,33273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33640,1,3,0)
- ;;=3^Path fx rt ft, sub w/ nonunion
- ;;^UTILITY(U,$J,358.3,33640,1,4,0)
- ;;=4^M84.474K
- ;;^UTILITY(U,$J,358.3,33640,2)
- ;;=^5013983
- ;;^UTILITY(U,$J,358.3,33641,0)
- ;;=M84.472K^^191^1968^394
- ;;^UTILITY(U,$J,358.3,33641,1,0)
+ ;;^UTILITY(U,$J,358.3,33273,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,33273,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,33273,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,33274,0)
+ ;;=G40.901^^182^1999^13
+ ;;^UTILITY(U,$J,358.3,33274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33641,1,3,0)
- ;;=3^Path fx lft ankl, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33641,1,4,0)
- ;;=4^M84.472K
- ;;^UTILITY(U,$J,358.3,33641,2)
- ;;=^5013971
- ;;^UTILITY(U,$J,358.3,33642,0)
- ;;=M84.471K^^191^1968^411
- ;;^UTILITY(U,$J,358.3,33642,1,0)
+ ;;^UTILITY(U,$J,358.3,33274,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,33274,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,33274,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,33275,0)
+ ;;=G40.909^^182^1999^14
+ ;;^UTILITY(U,$J,358.3,33275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33642,1,3,0)
- ;;=3^Path fx rt ankl, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33642,1,4,0)
- ;;=4^M84.471K
- ;;^UTILITY(U,$J,358.3,33642,2)
- ;;=^5013965
- ;;^UTILITY(U,$J,358.3,33643,0)
- ;;=M84.571K^^191^1968^404
- ;;^UTILITY(U,$J,358.3,33643,1,0)
+ ;;^UTILITY(U,$J,358.3,33275,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,33275,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,33275,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,33276,0)
+ ;;=G43.809^^182^1999^26
+ ;;^UTILITY(U,$J,358.3,33276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33643,1,3,0)
- ;;=3^Path fx neopl dis rt ankl, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33643,1,4,0)
- ;;=4^M84.571K
- ;;^UTILITY(U,$J,358.3,33643,2)
- ;;=^5014175
- ;;^UTILITY(U,$J,358.3,33644,0)
- ;;=M84.575K^^191^1968^403
- ;;^UTILITY(U,$J,358.3,33644,1,0)
+ ;;^UTILITY(U,$J,358.3,33276,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,33276,1,4,0)
+ ;;=4^G43.809
+ ;;^UTILITY(U,$J,358.3,33276,2)
+ ;;=^5003901
+ ;;^UTILITY(U,$J,358.3,33277,0)
+ ;;=G43.B0^^182^1999^28
+ ;;^UTILITY(U,$J,358.3,33277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33644,1,3,0)
- ;;=3^Path fx neopl dis lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33644,1,4,0)
- ;;=4^M84.575K
- ;;^UTILITY(U,$J,358.3,33644,2)
- ;;=^5014199
- ;;^UTILITY(U,$J,358.3,33645,0)
- ;;=M84.574K^^191^1968^405
- ;;^UTILITY(U,$J,358.3,33645,1,0)
+ ;;^UTILITY(U,$J,358.3,33277,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Not Intractable
+ ;;^UTILITY(U,$J,358.3,33277,1,4,0)
+ ;;=4^G43.B0
+ ;;^UTILITY(U,$J,358.3,33277,2)
+ ;;=^5003914
+ ;;^UTILITY(U,$J,358.3,33278,0)
+ ;;=G43.C0^^182^1999^17
+ ;;^UTILITY(U,$J,358.3,33278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33645,1,3,0)
- ;;=3^Path fx neopl dis rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33645,1,4,0)
- ;;=4^M84.574K
- ;;^UTILITY(U,$J,358.3,33645,2)
- ;;=^5014193
- ;;^UTILITY(U,$J,358.3,33646,0)
- ;;=M84.478K^^191^1968^402
- ;;^UTILITY(U,$J,358.3,33646,1,0)
+ ;;^UTILITY(U,$J,358.3,33278,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Not Intractable
+ ;;^UTILITY(U,$J,358.3,33278,1,4,0)
+ ;;=4^G43.C0
+ ;;^UTILITY(U,$J,358.3,33278,2)
+ ;;=^5003916
+ ;;^UTILITY(U,$J,358.3,33279,0)
+ ;;=G43.A0^^182^1999^8
+ ;;^UTILITY(U,$J,358.3,33279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33646,1,3,0)
- ;;=3^Path fx lft toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33646,1,4,0)
- ;;=4^M84.478K
- ;;^UTILITY(U,$J,358.3,33646,2)
- ;;=^5014007
- ;;^UTILITY(U,$J,358.3,33647,0)
- ;;=M84.477K^^191^1968^418
- ;;^UTILITY(U,$J,358.3,33647,1,0)
+ ;;^UTILITY(U,$J,358.3,33279,1,3,0)
+ ;;=3^Cyclical Vomiting Not Intractable
+ ;;^UTILITY(U,$J,358.3,33279,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,33279,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,33280,0)
+ ;;=G43.C1^^182^1999^16
+ ;;^UTILITY(U,$J,358.3,33280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33647,1,3,0)
- ;;=3^Path fx rt toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33647,1,4,0)
- ;;=4^M84.477K
- ;;^UTILITY(U,$J,358.3,33647,2)
- ;;=^5014001
- ;;^UTILITY(U,$J,358.3,33648,0)
- ;;=M21.372^^191^1968^166
- ;;^UTILITY(U,$J,358.3,33648,1,0)
+ ;;^UTILITY(U,$J,358.3,33280,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Intractable
+ ;;^UTILITY(U,$J,358.3,33280,1,4,0)
+ ;;=4^G43.C1
+ ;;^UTILITY(U,$J,358.3,33280,2)
+ ;;=^5003917
+ ;;^UTILITY(U,$J,358.3,33281,0)
+ ;;=G43.B1^^182^1999^27
+ ;;^UTILITY(U,$J,358.3,33281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33648,1,3,0)
- ;;=3^Foot Drop,Left Foot
- ;;^UTILITY(U,$J,358.3,33648,1,4,0)
- ;;=4^M21.372
- ;;^UTILITY(U,$J,358.3,33648,2)
- ;;=^5011111
- ;;^UTILITY(U,$J,358.3,33649,0)
- ;;=M25.272^^191^1968^162
- ;;^UTILITY(U,$J,358.3,33649,1,0)
+ ;;^UTILITY(U,$J,358.3,33281,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Intractable
+ ;;^UTILITY(U,$J,358.3,33281,1,4,0)
+ ;;=4^G43.B1
+ ;;^UTILITY(U,$J,358.3,33281,2)
+ ;;=^5003915
+ ;;^UTILITY(U,$J,358.3,33282,0)
+ ;;=G43.A1^^182^1999^7
+ ;;^UTILITY(U,$J,358.3,33282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33649,1,3,0)
- ;;=3^Flail Joint,Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,33649,1,4,0)
- ;;=4^M25.272
- ;;^UTILITY(U,$J,358.3,33649,2)
- ;;=^5011547
- ;;^UTILITY(U,$J,358.3,33650,0)
- ;;=M25.271^^191^1968^163
- ;;^UTILITY(U,$J,358.3,33650,1,0)
+ ;;^UTILITY(U,$J,358.3,33282,1,3,0)
+ ;;=3^Cyclical Vomiting Intractable
+ ;;^UTILITY(U,$J,358.3,33282,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,33282,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,33283,0)
+ ;;=G43.819^^182^1999^23
+ ;;^UTILITY(U,$J,358.3,33283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33650,1,3,0)
- ;;=3^Flail Joint,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,33650,1,4,0)
- ;;=4^M25.271
- ;;^UTILITY(U,$J,358.3,33650,2)
- ;;=^5011546
- ;;^UTILITY(U,$J,358.3,33651,0)
- ;;=M21.42^^191^1968^164
- ;;^UTILITY(U,$J,358.3,33651,1,0)
+ ;;^UTILITY(U,$J,358.3,33283,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,33283,1,4,0)
+ ;;=4^G43.819
+ ;;^UTILITY(U,$J,358.3,33283,2)
+ ;;=^5003903
+ ;;^UTILITY(U,$J,358.3,33284,0)
+ ;;=G43.909^^182^1999^25
+ ;;^UTILITY(U,$J,358.3,33284,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33284,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,33284,1,4,0)
+ ;;=4^G43.909

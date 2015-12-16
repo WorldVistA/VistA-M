@@ -1,15 +1,17 @@
 TIUSRVR1 ; SLC/JER - RPC for record-wise GET ;8/16/06  11:48
- ;;1.0;TEXT INTEGRATION UTILITIES;**19,32,87,89,100,109,112,173,186,208,211,222**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**19,32,87,89,100,109,112,173,186,208,211,222,295**;Jun 20, 1997;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified
 TGET(TIUY,TIUDA,ACTION) ; Build ^TMP("TIUVIEW",$J,
  N TIUL,TIUREC,TIUARR,TIUGDATA,TIUNAME,TIUPRM0,TIUPRM1,X,Y,TIUCPF,ONBROWSE
  K ^TMP("TIUVIEW",$J),^TMP("TIU FOCUS",$J)
  S ACTION=$G(ACTION,"VIEW"),TIUL=0
  D SETPARM^TIULE
+ ; *295 next line moved up 3 lines to avoid error when TIUDA is null
+ I '$D(^TIU(8925,+$G(TIUDA),0)) S VALMQUIT=1 Q
  S TIUGDATA=$$SETGDATA(TIUDA)
  S TIUY=$NA(^TMP("TIUVIEW",$J))
  S TIUARR="^TMP(""TIUVIEW"",$J)"
- I '$D(^TIU(8925,+TIUDA,0)) S VALMQUIT=1 Q
- ; Initialize ^TMP("TIU FOCUS",$J) to the entry that has focus
+  ; Initialize ^TMP("TIU FOCUS",$J) to the entry that has focus
  S ^TMP("TIU FOCUS",$J)=TIUDA
  ; if the document has a browse action, execute it
  S ONBROWSE=$$ONBROWSE^TIULC1(+$G(^TIU(8925,+TIUDA,0)))

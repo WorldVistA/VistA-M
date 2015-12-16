@@ -1,142 +1,140 @@
-IBDEI01H ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01H ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,160,1,5,0)
- ;;=5^Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,160,2)
- ;;=Withdrawal Delirium^4589
- ;;^UTILITY(U,$J,358.3,161,0)
- ;;=292.81^^3^28^2
- ;;^UTILITY(U,$J,358.3,161,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,161,1,2,0)
- ;;=2^292.81
- ;;^UTILITY(U,$J,358.3,161,1,5,0)
- ;;=5^Drug Induced Delirium
- ;;^UTILITY(U,$J,358.3,161,2)
- ;;=Drug Induced Delirium^268022
- ;;^UTILITY(U,$J,358.3,162,0)
- ;;=296.50^^3^29^6
- ;;^UTILITY(U,$J,358.3,162,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,162,1,2,0)
- ;;=2^296.50
- ;;^UTILITY(U,$J,358.3,162,1,5,0)
- ;;=5^Bipolar Depressed, NOS
- ;;^UTILITY(U,$J,358.3,162,2)
- ;;=^268130
- ;;^UTILITY(U,$J,358.3,163,0)
- ;;=296.51^^3^29^4
- ;;^UTILITY(U,$J,358.3,163,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,163,1,2,0)
- ;;=2^296.51
- ;;^UTILITY(U,$J,358.3,163,1,5,0)
- ;;=5^Bipolar Depressed, Mild
- ;;^UTILITY(U,$J,358.3,163,2)
- ;;=^303620
- ;;^UTILITY(U,$J,358.3,164,0)
- ;;=296.52^^3^29^5
- ;;^UTILITY(U,$J,358.3,164,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,164,1,2,0)
- ;;=2^296.52
- ;;^UTILITY(U,$J,358.3,164,1,5,0)
- ;;=5^Bipolar Depressed, Moderate
- ;;^UTILITY(U,$J,358.3,164,2)
- ;;=^303621
- ;;^UTILITY(U,$J,358.3,165,0)
- ;;=296.53^^3^29^2
- ;;^UTILITY(U,$J,358.3,165,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,165,1,2,0)
- ;;=2^296.53
- ;;^UTILITY(U,$J,358.3,165,1,5,0)
- ;;=5^Bipolar Depress Severe w/o Psychosis
- ;;^UTILITY(U,$J,358.3,165,2)
- ;;=^303622
- ;;^UTILITY(U,$J,358.3,166,0)
- ;;=296.54^^3^29^1
- ;;^UTILITY(U,$J,358.3,166,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,166,1,2,0)
- ;;=2^296.54
- ;;^UTILITY(U,$J,358.3,166,1,5,0)
- ;;=5^Bipolar Depress Severe w/Psychosis
- ;;^UTILITY(U,$J,358.3,166,2)
- ;;=Bipolar Depress Severe w/Psychosis^303623
- ;;^UTILITY(U,$J,358.3,167,0)
- ;;=296.55^^3^29^7
- ;;^UTILITY(U,$J,358.3,167,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,167,1,2,0)
- ;;=2^296.55
- ;;^UTILITY(U,$J,358.3,167,1,5,0)
- ;;=5^Bipolar Depressed, Part Remiss
- ;;^UTILITY(U,$J,358.3,167,2)
- ;;=^303624
- ;;^UTILITY(U,$J,358.3,168,0)
- ;;=296.56^^3^29^3
- ;;^UTILITY(U,$J,358.3,168,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,168,1,2,0)
- ;;=2^296.56
- ;;^UTILITY(U,$J,358.3,168,1,5,0)
- ;;=5^Bipolar Depressed, Full Remission
- ;;^UTILITY(U,$J,358.3,168,2)
- ;;=^303625
- ;;^UTILITY(U,$J,358.3,169,0)
- ;;=296.40^^3^29^14
- ;;^UTILITY(U,$J,358.3,169,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,169,1,2,0)
- ;;=2^296.40
- ;;^UTILITY(U,$J,358.3,169,1,5,0)
- ;;=5^Bipolar Manic, NOS
- ;;^UTILITY(U,$J,358.3,169,2)
- ;;=^303607
- ;;^UTILITY(U,$J,358.3,170,0)
- ;;=296.41^^3^29^12
- ;;^UTILITY(U,$J,358.3,170,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,170,1,2,0)
- ;;=2^296.41
- ;;^UTILITY(U,$J,358.3,170,1,5,0)
- ;;=5^Bipolar Manic, Mild
- ;;^UTILITY(U,$J,358.3,170,2)
- ;;=^303608
- ;;^UTILITY(U,$J,358.3,171,0)
- ;;=296.42^^3^29^13
- ;;^UTILITY(U,$J,358.3,171,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,171,1,2,0)
- ;;=2^296.42
- ;;^UTILITY(U,$J,358.3,171,1,5,0)
- ;;=5^Bipolar Manic, Mod
- ;;^UTILITY(U,$J,358.3,171,2)
- ;;=^303609
- ;;^UTILITY(U,$J,358.3,172,0)
- ;;=296.43^^3^29^17
- ;;^UTILITY(U,$J,358.3,172,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,172,1,2,0)
- ;;=2^296.43
- ;;^UTILITY(U,$J,358.3,172,1,5,0)
- ;;=5^Bipolar Manic, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,172,2)
- ;;=^303610
- ;;^UTILITY(U,$J,358.3,173,0)
- ;;=296.44^^3^29^16
- ;;^UTILITY(U,$J,358.3,173,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,173,1,2,0)
- ;;=2^296.44
- ;;^UTILITY(U,$J,358.3,173,1,5,0)
- ;;=5^Bipolar Manic, Sev w/Psychosis
- ;;^UTILITY(U,$J,358.3,173,2)
- ;;=^303611
- ;;^UTILITY(U,$J,358.3,174,0)
- ;;=296.45^^3^29^15
- ;;^UTILITY(U,$J,358.3,174,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,138,0)
+ ;;=H83.3X2^^1^8^2
+ ;;^UTILITY(U,$J,358.3,138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,138,1,3,0)
+ ;;=3^Noise effects on left inner ear
+ ;;^UTILITY(U,$J,358.3,138,1,4,0)
+ ;;=4^H83.3X2
+ ;;^UTILITY(U,$J,358.3,138,2)
+ ;;=^5006907
+ ;;^UTILITY(U,$J,358.3,139,0)
+ ;;=H83.3X3^^1^8^1
+ ;;^UTILITY(U,$J,358.3,139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,139,1,3,0)
+ ;;=3^Noise effects on bilateral inner ear
+ ;;^UTILITY(U,$J,358.3,139,1,4,0)
+ ;;=4^H83.3X3
+ ;;^UTILITY(U,$J,358.3,139,2)
+ ;;=^5006908
+ ;;^UTILITY(U,$J,358.3,140,0)
+ ;;=H55.01^^1^9^1
+ ;;^UTILITY(U,$J,358.3,140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,140,1,3,0)
+ ;;=3^Congenital nystagmus
+ ;;^UTILITY(U,$J,358.3,140,1,4,0)
+ ;;=4^H55.01
+ ;;^UTILITY(U,$J,358.3,140,2)
+ ;;=^5006371
+ ;;^UTILITY(U,$J,358.3,141,0)
+ ;;=H55.04^^1^9^2
+ ;;^UTILITY(U,$J,358.3,141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,141,1,3,0)
+ ;;=3^Dissociated nystagmus
+ ;;^UTILITY(U,$J,358.3,141,1,4,0)
+ ;;=4^H55.04
+ ;;^UTILITY(U,$J,358.3,141,2)
+ ;;=^269325
+ ;;^UTILITY(U,$J,358.3,142,0)
+ ;;=H55.02^^1^9^3
+ ;;^UTILITY(U,$J,358.3,142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,142,1,3,0)
+ ;;=3^Latent nystagmus
+ ;;^UTILITY(U,$J,358.3,142,1,4,0)
+ ;;=4^H55.02
+ ;;^UTILITY(U,$J,358.3,142,2)
+ ;;=^5006372
+ ;;^UTILITY(U,$J,358.3,143,0)
+ ;;=H55.09^^1^9^4
+ ;;^UTILITY(U,$J,358.3,143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,143,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,143,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,143,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,144,0)
+ ;;=H55.81^^1^9^5
+ ;;^UTILITY(U,$J,358.3,144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,144,1,3,0)
+ ;;=3^Saccadic eye movements
+ ;;^UTILITY(U,$J,358.3,144,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,144,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,145,0)
+ ;;=H55.03^^1^9^6
+ ;;^UTILITY(U,$J,358.3,145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,145,1,3,0)
+ ;;=3^Visual deprivation nystagmus
+ ;;^UTILITY(U,$J,358.3,145,1,4,0)
+ ;;=4^H55.03
+ ;;^UTILITY(U,$J,358.3,145,2)
+ ;;=^269322
+ ;;^UTILITY(U,$J,358.3,146,0)
+ ;;=T36.5X5A^^1^10^1
+ ;;^UTILITY(U,$J,358.3,146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,146,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, initial encounter
+ ;;^UTILITY(U,$J,358.3,146,1,4,0)
+ ;;=4^T36.5X5A
+ ;;^UTILITY(U,$J,358.3,146,2)
+ ;;=^5049358
+ ;;^UTILITY(U,$J,358.3,147,0)
+ ;;=T36.5X5S^^1^10^2
+ ;;^UTILITY(U,$J,358.3,147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,147,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, sequela
+ ;;^UTILITY(U,$J,358.3,147,1,4,0)
+ ;;=4^T36.5X5S
+ ;;^UTILITY(U,$J,358.3,147,2)
+ ;;=^5049360
+ ;;^UTILITY(U,$J,358.3,148,0)
+ ;;=T36.5X5D^^1^10^3
+ ;;^UTILITY(U,$J,358.3,148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,148,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,148,1,4,0)
+ ;;=4^T36.5X5D
+ ;;^UTILITY(U,$J,358.3,148,2)
+ ;;=^5049359
+ ;;^UTILITY(U,$J,358.3,149,0)
+ ;;=T45.1X5A^^1^10^5
+ ;;^UTILITY(U,$J,358.3,149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,149,1,3,0)
+ ;;=3^Adverse effect of antineoplastic and immunosup drugs, init
+ ;;^UTILITY(U,$J,358.3,149,1,4,0)
+ ;;=4^T45.1X5A
+ ;;^UTILITY(U,$J,358.3,149,2)
+ ;;=^5051026
+ ;;^UTILITY(U,$J,358.3,150,0)
+ ;;=T45.1X5D^^1^10^6
+ ;;^UTILITY(U,$J,358.3,150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,150,1,3,0)
+ ;;=3^Adverse effect of antineoplastic and immunosup drugs, subs
+ ;;^UTILITY(U,$J,358.3,150,1,4,0)
+ ;;=4^T45.1X5D
+ ;;^UTILITY(U,$J,358.3,150,2)
+ ;;=^5051027
+ ;;^UTILITY(U,$J,358.3,151,0)
+ ;;=T45.1X5S^^1^10^4
+ ;;^UTILITY(U,$J,358.3,151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,151,1,3,0)
+ ;;=3^Adverse effect of antineopl and immunosup drugs, sequela

@@ -1,5 +1,5 @@
 MDWOR ; HOIFO/NCA - Main Routine to Decode HL7 ;9/8/08  15:20
- ;;1.0;CLINICAL PROCEDURES;**14,11,21,20**;Apr 01,2004;Build 9
+ ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,37**;Apr 01,2004;Build 4
  ; Reference IA# 2263 [Supported] XPAR calls
  ;               3468 [Subscription] Call GMRCCP.
  ;               3071 [Subscription] Call $$PKGID^ORX8.
@@ -7,6 +7,7 @@ MDWOR ; HOIFO/NCA - Main Routine to Decode HL7 ;9/8/08  15:20
  ;              10040 [Supported] Access SC(
  ;              10061 [Supported] VADPT call
  ;              10103 [Supported] XLFDT calls
+ ; 03/18/2014 KAM MD*1*37 Rem Ticket 451758 Auto Check-in issue
 EN(MDMSG) ; Entry Point for CPRS and pass MSG in MDMSG
  N DFN,MDCON,MDCPROC,MDCANC,MDCANR,MDFN,MDIFN,MDINST,MDFLG,MDINT,MDL,MDIN,MDINP,MDINST,MDLOC,MDNAM,MDOBC,MDOBX,MDOPRO,MDPROC,MDPAT
  N MDLL,MDK1,MDPROV,MDREQ,MDQTIM,MDROOT,MDRR,MDSINP,MDVSTD,MDX S MDVSTD=""
@@ -24,7 +25,12 @@ EN(MDMSG) ; Entry Point for CPRS and pass MSG in MDMSG
  .S:+MDRR MDVSTD="A"_";"_$P(MDRR,"^",1)_";"_+$P(MDROOT,"^",2)
  I +MDFLG<1&(MDVSTD'="") F MDK1=0:0 S MDK1=$O(MDLL(MDK1)) Q:MDK1<1  S MDROOT=$P($G(MDLL(MDK1)),"^",2) I +$P(MDROOT,";",2)=MDPROC D
  .I +$P(MDVSTD,";",3)>0&(+MDROOT=$P(MDVSTD,";",3)) S MDFLG=0 Q
- .I +$P(MDVSTD,";",3)>0&(+MDROOT'=$P(MDVSTD,";",3)) S MDFLG=1 Q
+ ;
+ ; 03/18/2014 KAM MD*1*37 Rem Ticket 451758
+ ; Commented out the next line - setting the MDFLG to 1 on a clinic 
+ ; change is not needed
+ ;.I +$P(MDVSTD,";",3)>0&(+MDROOT'=$P(MDVSTD,";",3)) S MDFLG=1 Q
+ ;
  I +MDFLG<1&(+MDCANC<1) S MDATA="+1,^"_MDPROC_"^"_+MDCON_"^"_MDINST_"^"_MDVSTD D CHKIN(MDFN,MDREQ,MDPROV,MDATA,MDVSTD)
  Q
 MSH ; Decode MSH

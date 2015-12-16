@@ -1,130 +1,128 @@
-IBDEI1XA ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XA ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34146,1,3,0)
- ;;=3^Pulmonary Collapse NEC
- ;;^UTILITY(U,$J,358.3,34146,1,4,0)
- ;;=4^J98.19
- ;;^UTILITY(U,$J,358.3,34146,2)
- ;;=^5008361
- ;;^UTILITY(U,$J,358.3,34147,0)
- ;;=C78.02^^192^1989^25
- ;;^UTILITY(U,$J,358.3,34147,1,0)
+ ;;^UTILITY(U,$J,358.3,33786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34147,1,3,0)
- ;;=3^Secondary Malig Neop Left Lung
- ;;^UTILITY(U,$J,358.3,34147,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,34147,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,34148,0)
- ;;=C78.01^^192^1989^26
- ;;^UTILITY(U,$J,358.3,34148,1,0)
+ ;;^UTILITY(U,$J,358.3,33786,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33786,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,33786,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,33787,0)
+ ;;=W05.0XXD^^182^2011^50
+ ;;^UTILITY(U,$J,358.3,33787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34148,1,3,0)
- ;;=3^Secondary Malig Neop Right Lung
- ;;^UTILITY(U,$J,358.3,34148,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,34148,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,34149,0)
- ;;=I50.41^^192^1990^1
- ;;^UTILITY(U,$J,358.3,34149,1,0)
+ ;;^UTILITY(U,$J,358.3,33787,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33787,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,33787,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,33788,0)
+ ;;=W05.1XXA^^182^2011^47
+ ;;^UTILITY(U,$J,358.3,33788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34149,1,3,0)
- ;;=3^AC Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34149,1,4,0)
- ;;=4^I50.41
- ;;^UTILITY(U,$J,358.3,34149,2)
- ;;=^5007248
- ;;^UTILITY(U,$J,358.3,34150,0)
- ;;=I50.31^^192^1990^2
- ;;^UTILITY(U,$J,358.3,34150,1,0)
+ ;;^UTILITY(U,$J,358.3,33788,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33788,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,33788,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,33789,0)
+ ;;=W05.1XXD^^182^2011^48
+ ;;^UTILITY(U,$J,358.3,33789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34150,1,3,0)
- ;;=3^AC Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34150,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,34150,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,34151,0)
- ;;=I50.43^^192^1990^4
- ;;^UTILITY(U,$J,358.3,34151,1,0)
+ ;;^UTILITY(U,$J,358.3,33789,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33789,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,33789,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,33790,0)
+ ;;=W05.2XXA^^182^2011^45
+ ;;^UTILITY(U,$J,358.3,33790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34151,1,3,0)
- ;;=3^AC on Chr Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34151,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,34151,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,34152,0)
- ;;=I50.33^^192^1990^5
- ;;^UTILITY(U,$J,358.3,34152,1,0)
+ ;;^UTILITY(U,$J,358.3,33790,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33790,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,33790,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,33791,0)
+ ;;=W05.2XXD^^182^2011^46
+ ;;^UTILITY(U,$J,358.3,33791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34152,1,3,0)
- ;;=3^AC on Chr Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34152,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,34152,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,34153,0)
- ;;=I50.23^^192^1990^6
- ;;^UTILITY(U,$J,358.3,34153,1,0)
+ ;;^UTILITY(U,$J,358.3,33791,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33791,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,33791,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,33792,0)
+ ;;=W06.XXXA^^182^2011^27
+ ;;^UTILITY(U,$J,358.3,33792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34153,1,3,0)
- ;;=3^AC on Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34153,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,34153,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,34154,0)
- ;;=I50.21^^192^1990^3
- ;;^UTILITY(U,$J,358.3,34154,1,0)
+ ;;^UTILITY(U,$J,358.3,33792,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33792,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,33792,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,33793,0)
+ ;;=W06.XXXD^^182^2011^28
+ ;;^UTILITY(U,$J,358.3,33793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34154,1,3,0)
- ;;=3^AC Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34154,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,34154,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,34155,0)
- ;;=I20.9^^192^1990^8
- ;;^UTILITY(U,$J,358.3,34155,1,0)
+ ;;^UTILITY(U,$J,358.3,33793,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33793,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,33793,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,33794,0)
+ ;;=W07.XXXA^^182^2011^35
+ ;;^UTILITY(U,$J,358.3,33794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34155,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,34155,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,34155,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,34156,0)
- ;;=I25.721^^192^1990^9
- ;;^UTILITY(U,$J,358.3,34156,1,0)
+ ;;^UTILITY(U,$J,358.3,33794,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33794,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,33794,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,33795,0)
+ ;;=W07.XXXD^^182^2011^36
+ ;;^UTILITY(U,$J,358.3,33795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34156,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34156,1,4,0)
- ;;=4^I25.721
- ;;^UTILITY(U,$J,358.3,34156,2)
- ;;=^5007126
- ;;^UTILITY(U,$J,358.3,34157,0)
- ;;=I25.728^^192^1990^10
- ;;^UTILITY(U,$J,358.3,34157,1,0)
+ ;;^UTILITY(U,$J,358.3,33795,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33795,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,33795,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,33796,0)
+ ;;=W10.1XXA^^182^2011^77
+ ;;^UTILITY(U,$J,358.3,33796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34157,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34157,1,4,0)
- ;;=4^I25.728
- ;;^UTILITY(U,$J,358.3,34157,2)
- ;;=^5133560
- ;;^UTILITY(U,$J,358.3,34158,0)
- ;;=I25.729^^192^1990^11
- ;;^UTILITY(U,$J,358.3,34158,1,0)
+ ;;^UTILITY(U,$J,358.3,33796,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33796,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,33796,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,33797,0)
+ ;;=W10.1XXD^^182^2011^78
+ ;;^UTILITY(U,$J,358.3,33797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34158,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34158,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,34158,2)
- ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,33797,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33797,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,33797,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,33798,0)
+ ;;=W11.XXXA^^182^2011^39
+ ;;^UTILITY(U,$J,358.3,33798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33798,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr

@@ -1,5 +1,5 @@
-ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ; 7/24/09 2:06pm
- ;;3.0;DSS EXTRACTS;**92,105,112,119,132**;Dec 22, 1997;Build 18
+ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;4/10/15  14:31
+ ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154**;Dec 22, 1997;Build 13
  ;
 NUTKEY(P,D) ;Generate n&fs feeder key
  ;Required variables
@@ -197,10 +197,10 @@ SURPODX(PRODX,PODX1,PODX2,PODX3,PODX4,PODX5) ;Get postop diagnosis codes
  ;Check input
  Q:'$D(DATAOP) 0
  ;Get principal postop dx code
- S PRODX=$$GET1^DIQ(80,$P(DATAOP,U,3),.01)
+ I $P(DATAOP,U,3)'="" S PRODX=$$CODEC^ICDEX(80,$P(DATAOP,U,3)) ;154
  ;Get other postop dx codes
  S (CODE,I)=0 F  S CODE=$O(^SRO(136,ECD0,4,CODE)) Q:'CODE  Q:I>5  D
- .S I=I+1,PODX="PODX"_I,@PODX=$$GET1^DIQ(80,$P(^SRO(136,ECD0,4,CODE,0),U),.01)
+ .S I=I+1,PODX="PODX"_I I $P(^SRO(136,ECD0,4,CODE,0),U)'="" S @PODX=$$CODEC^ICDEX(80,$P(^SRO(136,ECD0,4,CODE,0),U)) ;154
  Q 1
  ;
 LOINC(ARRAY) ;Get DSS lab test information out of DSS LOINC CODE (#727.29) file

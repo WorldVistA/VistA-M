@@ -1,5 +1,5 @@
-MAGGTU4D ;WOIFO/SG/NST/JSL/GEK - VERSION CONTROL (CLINICAL DISPLAY) ; 25 May 2014  2:24 PM
- ;;3.0;IMAGING;**93,94,106,117,122,131,149**;Aug 11, 2014;Build 14;Aug 14, 2013
+MAGGTU4D ;WOIFO/SG/NST/JSL - VERSION CONTROL (CLINICAL DISPLAY) ; 29 Aug 2013 3:58 PM
+ ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161**;Mar 19, 2002;Build 20;Sep 1, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,8 +23,9 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.161 |   2 |  85 | OCT 2015                                 | 
  ;;| 3.0.149 |   4 |  75 | Sep 2014                                 |
- ;;| 3.0.130 |  17 |  70 | Sep 2013                                 |
+ ;;| 3.0.130 |  18 |  70 | Aug 2013                                 |
  ;;| 3.0.131 |  21 |  65 | Aug 2013                                 |
  ;;| 3.0.122 |  15 |  55 | Jul 2012                                 |
  ;;==================================================================
@@ -35,10 +36,11 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
- ; NOTE:  Patch 149 removed support for 
- ;        - Patch  94
- ;        - Patch 106
- ;        - Patch 117
+ ; In Patch MAG*3.0*161 we stop support for any Display Client
+ ; below Patch 122,  specifically we stop support for :
+ ; 3.0.117 |   8 |  45 | Jul 2011
+ ; 3.0.106 |  13 |  40 | Feb 2011
+ ; 3.0.94  |  12 |  35 | May 2010
  Q
  ;
  ;***** ADDS A CLIENT-SPECIFIC WARNING (IF NECESSARY)

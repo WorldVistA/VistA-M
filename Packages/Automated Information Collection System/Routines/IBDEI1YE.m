@@ -1,122 +1,124 @@
-IBDEI1YE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34661,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,34662,0)
- ;;=I63.9^^192^2007^13
- ;;^UTILITY(U,$J,358.3,34662,1,0)
+ ;;^UTILITY(U,$J,358.3,34280,2)
+ ;;=^5020995
+ ;;^UTILITY(U,$J,358.3,34281,0)
+ ;;=S06.370S^^183^2018^46
+ ;;^UTILITY(U,$J,358.3,34281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34662,1,3,0)
- ;;=3^Cerebral Infarction,Unspec
- ;;^UTILITY(U,$J,358.3,34662,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,34662,2)
- ;;=^5007355
- ;;^UTILITY(U,$J,358.3,34663,0)
- ;;=I63.50^^192^2007^7
- ;;^UTILITY(U,$J,358.3,34663,1,0)
+ ;;^UTILITY(U,$J,358.3,34281,1,3,0)
+ ;;=3^Contus/lac/hem crblm w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34281,1,4,0)
+ ;;=4^S06.370S
+ ;;^UTILITY(U,$J,358.3,34281,2)
+ ;;=^5020968
+ ;;^UTILITY(U,$J,358.3,34282,0)
+ ;;=S06.2X5S^^183^2018^47
+ ;;^UTILITY(U,$J,358.3,34282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34663,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebral Artery
- ;;^UTILITY(U,$J,358.3,34663,1,4,0)
- ;;=4^I63.50
- ;;^UTILITY(U,$J,358.3,34663,2)
- ;;=^5007343
- ;;^UTILITY(U,$J,358.3,34664,0)
- ;;=I63.549^^192^2007^8
- ;;^UTILITY(U,$J,358.3,34664,1,0)
+ ;;^UTILITY(U,$J,358.3,34282,1,3,0)
+ ;;=3^Diffuse TBI w LOC >24 hr w return to consc levels, sequela
+ ;;^UTILITY(U,$J,358.3,34282,1,4,0)
+ ;;=4^S06.2X5S
+ ;;^UTILITY(U,$J,358.3,34282,2)
+ ;;=^5020743
+ ;;^UTILITY(U,$J,358.3,34283,0)
+ ;;=S06.2X6S^^183^2018^48
+ ;;^UTILITY(U,$J,358.3,34283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34664,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebellar Artery
- ;;^UTILITY(U,$J,358.3,34664,1,4,0)
- ;;=4^I63.549
- ;;^UTILITY(U,$J,358.3,34664,2)
- ;;=^5133571
- ;;^UTILITY(U,$J,358.3,34665,0)
- ;;=I63.8^^192^2007^2
- ;;^UTILITY(U,$J,358.3,34665,1,0)
+ ;;^UTILITY(U,$J,358.3,34283,1,3,0)
+ ;;=3^Diffuse TBI w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,34283,1,4,0)
+ ;;=4^S06.2X6S
+ ;;^UTILITY(U,$J,358.3,34283,2)
+ ;;=^5020746
+ ;;^UTILITY(U,$J,358.3,34284,0)
+ ;;=S06.2X3S^^183^2018^49
+ ;;^UTILITY(U,$J,358.3,34284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34665,1,3,0)
- ;;=3^Cerebral Infarction NEC
- ;;^UTILITY(U,$J,358.3,34665,1,4,0)
- ;;=4^I63.8
- ;;^UTILITY(U,$J,358.3,34665,2)
- ;;=^5007354
- ;;^UTILITY(U,$J,358.3,34666,0)
- ;;=I63.512^^192^2007^5
- ;;^UTILITY(U,$J,358.3,34666,1,0)
+ ;;^UTILITY(U,$J,358.3,34284,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34284,1,4,0)
+ ;;=4^S06.2X3S
+ ;;^UTILITY(U,$J,358.3,34284,2)
+ ;;=^5020737
+ ;;^UTILITY(U,$J,358.3,34285,0)
+ ;;=S06.2X1S^^183^2018^50
+ ;;^UTILITY(U,$J,358.3,34285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34666,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34666,1,4,0)
- ;;=4^I63.512
- ;;^UTILITY(U,$J,358.3,34666,2)
- ;;=^5007345
- ;;^UTILITY(U,$J,358.3,34667,0)
- ;;=I63.522^^192^2007^3
- ;;^UTILITY(U,$J,358.3,34667,1,0)
+ ;;^UTILITY(U,$J,358.3,34285,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,34285,1,4,0)
+ ;;=4^S06.2X1S
+ ;;^UTILITY(U,$J,358.3,34285,2)
+ ;;=^5020731
+ ;;^UTILITY(U,$J,358.3,34286,0)
+ ;;=S06.2X2S^^183^2018^51
+ ;;^UTILITY(U,$J,358.3,34286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34667,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34667,1,4,0)
- ;;=4^I63.522
- ;;^UTILITY(U,$J,358.3,34667,2)
- ;;=^5007347
- ;;^UTILITY(U,$J,358.3,34668,0)
- ;;=I63.532^^192^2007^6
- ;;^UTILITY(U,$J,358.3,34668,1,0)
+ ;;^UTILITY(U,$J,358.3,34286,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34286,1,4,0)
+ ;;=4^S06.2X2S
+ ;;^UTILITY(U,$J,358.3,34286,2)
+ ;;=^5020734
+ ;;^UTILITY(U,$J,358.3,34287,0)
+ ;;=S06.2X4S^^183^2018^52
+ ;;^UTILITY(U,$J,358.3,34287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34668,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34668,1,4,0)
- ;;=4^I63.532
- ;;^UTILITY(U,$J,358.3,34668,2)
- ;;=^5007349
- ;;^UTILITY(U,$J,358.3,34669,0)
- ;;=I63.542^^192^2007^4
- ;;^UTILITY(U,$J,358.3,34669,1,0)
+ ;;^UTILITY(U,$J,358.3,34287,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,34287,1,4,0)
+ ;;=4^S06.2X4S
+ ;;^UTILITY(U,$J,358.3,34287,2)
+ ;;=^5020740
+ ;;^UTILITY(U,$J,358.3,34288,0)
+ ;;=S06.2X9S^^183^2018^53
+ ;;^UTILITY(U,$J,358.3,34288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34669,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34669,1,4,0)
- ;;=4^I63.542
- ;;^UTILITY(U,$J,358.3,34669,2)
- ;;=^5007351
- ;;^UTILITY(U,$J,358.3,34670,0)
- ;;=I63.511^^192^2007^11
- ;;^UTILITY(U,$J,358.3,34670,1,0)
+ ;;^UTILITY(U,$J,358.3,34288,1,3,0)
+ ;;=3^Diffuse TBI w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,34288,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,34288,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,34289,0)
+ ;;=S06.2X0S^^183^2018^54
+ ;;^UTILITY(U,$J,358.3,34289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34670,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34670,1,4,0)
- ;;=4^I63.511
- ;;^UTILITY(U,$J,358.3,34670,2)
- ;;=^5007344
- ;;^UTILITY(U,$J,358.3,34671,0)
- ;;=I63.521^^192^2007^9
- ;;^UTILITY(U,$J,358.3,34671,1,0)
+ ;;^UTILITY(U,$J,358.3,34289,1,3,0)
+ ;;=3^Diffuse TBI w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,34289,1,4,0)
+ ;;=4^S06.2X0S
+ ;;^UTILITY(U,$J,358.3,34289,2)
+ ;;=^5020728
+ ;;^UTILITY(U,$J,358.3,34290,0)
+ ;;=S06.4X5S^^183^2018^55
+ ;;^UTILITY(U,$J,358.3,34290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34671,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34671,1,4,0)
- ;;=4^I63.521
- ;;^UTILITY(U,$J,358.3,34671,2)
- ;;=^5007346
- ;;^UTILITY(U,$J,358.3,34672,0)
- ;;=I63.531^^192^2007^12
- ;;^UTILITY(U,$J,358.3,34672,1,0)
+ ;;^UTILITY(U,$J,358.3,34290,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,34290,1,4,0)
+ ;;=4^S06.4X5S
+ ;;^UTILITY(U,$J,358.3,34290,2)
+ ;;=^5021043
+ ;;^UTILITY(U,$J,358.3,34291,0)
+ ;;=S06.4X6S^^183^2018^56
+ ;;^UTILITY(U,$J,358.3,34291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34672,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Posterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,34672,1,4,0)
- ;;=4^I63.531
- ;;^UTILITY(U,$J,358.3,34672,2)
- ;;=^5007348
- ;;^UTILITY(U,$J,358.3,34673,0)
- ;;=I63.541^^192^2007^10
- ;;^UTILITY(U,$J,358.3,34673,1,0)
+ ;;^UTILITY(U,$J,358.3,34291,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,34291,1,4,0)
+ ;;=4^S06.4X6S
+ ;;^UTILITY(U,$J,358.3,34291,2)
+ ;;=^5021046
+ ;;^UTILITY(U,$J,358.3,34292,0)
+ ;;=S06.4X3S^^183^2018^57
+ ;;^UTILITY(U,$J,358.3,34292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34673,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,34292,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,34292,1,4,0)
+ ;;=4^S06.4X3S

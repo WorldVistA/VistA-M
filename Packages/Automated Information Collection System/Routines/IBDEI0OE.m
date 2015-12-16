@@ -1,134 +1,138 @@
-IBDEI0OE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0OE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11957,1,5,0)
- ;;=5^Bipolar Disorder,NOS
- ;;^UTILITY(U,$J,358.3,11957,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,11958,0)
- ;;=296.89^^66^722^10
- ;;^UTILITY(U,$J,358.3,11958,1,0)
+ ;;^UTILITY(U,$J,358.3,11631,2)
+ ;;=^268192
+ ;;^UTILITY(U,$J,358.3,11632,0)
+ ;;=304.11^^53^668^28
+ ;;^UTILITY(U,$J,358.3,11632,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11958,1,2,0)
- ;;=2^296.89
- ;;^UTILITY(U,$J,358.3,11958,1,5,0)
- ;;=5^Bipolar II Disorder,NOS
- ;;^UTILITY(U,$J,358.3,11958,2)
- ;;=^331893
- ;;^UTILITY(U,$J,358.3,11959,0)
- ;;=297.0^^66^723^3
- ;;^UTILITY(U,$J,358.3,11959,1,0)
+ ;;^UTILITY(U,$J,358.3,11632,1,2,0)
+ ;;=2^304.11
+ ;;^UTILITY(U,$J,358.3,11632,1,5,0)
+ ;;=5^Anxiolytic Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,11632,2)
+ ;;=^331932
+ ;;^UTILITY(U,$J,358.3,11633,0)
+ ;;=304.12^^53^668^29
+ ;;^UTILITY(U,$J,358.3,11633,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11959,1,2,0)
- ;;=2^297.0
- ;;^UTILITY(U,$J,358.3,11959,1,5,0)
- ;;=5^Paranoid State, Simple
- ;;^UTILITY(U,$J,358.3,11959,2)
- ;;=^268149
- ;;^UTILITY(U,$J,358.3,11960,0)
- ;;=298.9^^66^723^4
- ;;^UTILITY(U,$J,358.3,11960,1,0)
+ ;;^UTILITY(U,$J,358.3,11633,1,2,0)
+ ;;=2^304.12
+ ;;^UTILITY(U,$J,358.3,11633,1,5,0)
+ ;;=5^Anxiolytic Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,11633,2)
+ ;;=^331933
+ ;;^UTILITY(U,$J,358.3,11634,0)
+ ;;=304.21^^53^668^44
+ ;;^UTILITY(U,$J,358.3,11634,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11960,1,2,0)
- ;;=2^298.9
- ;;^UTILITY(U,$J,358.3,11960,1,5,0)
- ;;=5^Psychosis, NOS
- ;;^UTILITY(U,$J,358.3,11960,2)
- ;;=^259059
- ;;^UTILITY(U,$J,358.3,11961,0)
- ;;=298.8^^66^723^5
- ;;^UTILITY(U,$J,358.3,11961,1,0)
+ ;;^UTILITY(U,$J,358.3,11634,1,2,0)
+ ;;=2^304.21
+ ;;^UTILITY(U,$J,358.3,11634,1,5,0)
+ ;;=5^Cocaine Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,11634,2)
+ ;;=^268198
+ ;;^UTILITY(U,$J,358.3,11635,0)
+ ;;=304.22^^53^668^45
+ ;;^UTILITY(U,$J,358.3,11635,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11961,1,2,0)
- ;;=2^298.8
- ;;^UTILITY(U,$J,358.3,11961,1,5,0)
- ;;=5^Psychosis, Reactive
- ;;^UTILITY(U,$J,358.3,11961,2)
- ;;=^87326
- ;;^UTILITY(U,$J,358.3,11962,0)
- ;;=297.9^^66^723^2
- ;;^UTILITY(U,$J,358.3,11962,1,0)
+ ;;^UTILITY(U,$J,358.3,11635,1,2,0)
+ ;;=2^304.22
+ ;;^UTILITY(U,$J,358.3,11635,1,5,0)
+ ;;=5^Cocaine Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,11635,2)
+ ;;=^268199
+ ;;^UTILITY(U,$J,358.3,11636,0)
+ ;;=304.31^^53^668^36
+ ;;^UTILITY(U,$J,358.3,11636,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11962,1,2,0)
- ;;=2^297.9
- ;;^UTILITY(U,$J,358.3,11962,1,5,0)
- ;;=5^Paranoia
- ;;^UTILITY(U,$J,358.3,11962,2)
- ;;=^123970
- ;;^UTILITY(U,$J,358.3,11963,0)
- ;;=297.1^^66^723^1
- ;;^UTILITY(U,$J,358.3,11963,1,0)
+ ;;^UTILITY(U,$J,358.3,11636,1,2,0)
+ ;;=2^304.31
+ ;;^UTILITY(U,$J,358.3,11636,1,5,0)
+ ;;=5^Cannabis Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,11636,2)
+ ;;=^268201
+ ;;^UTILITY(U,$J,358.3,11637,0)
+ ;;=304.32^^53^668^37
+ ;;^UTILITY(U,$J,358.3,11637,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11963,1,2,0)
- ;;=2^297.1
- ;;^UTILITY(U,$J,358.3,11963,1,5,0)
- ;;=5^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,11963,2)
- ;;=^331896
- ;;^UTILITY(U,$J,358.3,11964,0)
- ;;=301.7^^66^724^1
- ;;^UTILITY(U,$J,358.3,11964,1,0)
+ ;;^UTILITY(U,$J,358.3,11637,1,2,0)
+ ;;=2^304.32
+ ;;^UTILITY(U,$J,358.3,11637,1,5,0)
+ ;;=5^Cannabis Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,11637,2)
+ ;;=^268202
+ ;;^UTILITY(U,$J,358.3,11638,0)
+ ;;=304.41^^53^668^20
+ ;;^UTILITY(U,$J,358.3,11638,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11964,1,2,0)
- ;;=2^301.7
- ;;^UTILITY(U,$J,358.3,11964,1,5,0)
- ;;=5^Antisocial Personality Dis
- ;;^UTILITY(U,$J,358.3,11964,2)
- ;;=Antisocial Personality Dis^9066
- ;;^UTILITY(U,$J,358.3,11965,0)
- ;;=301.82^^66^724^2
- ;;^UTILITY(U,$J,358.3,11965,1,0)
+ ;;^UTILITY(U,$J,358.3,11638,1,2,0)
+ ;;=2^304.41
+ ;;^UTILITY(U,$J,358.3,11638,1,5,0)
+ ;;=5^Amphetamine Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,11638,2)
+ ;;=^268205
+ ;;^UTILITY(U,$J,358.3,11639,0)
+ ;;=304.42^^53^668^21
+ ;;^UTILITY(U,$J,358.3,11639,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11965,1,2,0)
- ;;=2^301.82
- ;;^UTILITY(U,$J,358.3,11965,1,5,0)
- ;;=5^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,11965,2)
- ;;=Avoidant Personality Disorder^265347
- ;;^UTILITY(U,$J,358.3,11966,0)
- ;;=301.83^^66^724^3
- ;;^UTILITY(U,$J,358.3,11966,1,0)
+ ;;^UTILITY(U,$J,358.3,11639,1,2,0)
+ ;;=2^304.42
+ ;;^UTILITY(U,$J,358.3,11639,1,5,0)
+ ;;=5^Amphetamine Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,11639,2)
+ ;;=^268206
+ ;;^UTILITY(U,$J,358.3,11640,0)
+ ;;=304.51^^53^668^60
+ ;;^UTILITY(U,$J,358.3,11640,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11966,1,2,0)
- ;;=2^301.83
- ;;^UTILITY(U,$J,358.3,11966,1,5,0)
- ;;=5^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,11966,2)
- ;;=Borderline Personality Disorder^16372
- ;;^UTILITY(U,$J,358.3,11967,0)
- ;;=301.6^^66^724^6
- ;;^UTILITY(U,$J,358.3,11967,1,0)
+ ;;^UTILITY(U,$J,358.3,11640,1,2,0)
+ ;;=2^304.51
+ ;;^UTILITY(U,$J,358.3,11640,1,5,0)
+ ;;=5^Hallucinogen Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,11640,2)
+ ;;=^268208
+ ;;^UTILITY(U,$J,358.3,11641,0)
+ ;;=304.52^^53^668^61
+ ;;^UTILITY(U,$J,358.3,11641,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11967,1,2,0)
- ;;=2^301.6
- ;;^UTILITY(U,$J,358.3,11967,1,5,0)
- ;;=5^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,11967,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,11968,0)
- ;;=301.50^^66^724^8
- ;;^UTILITY(U,$J,358.3,11968,1,0)
+ ;;^UTILITY(U,$J,358.3,11641,1,2,0)
+ ;;=2^304.52
+ ;;^UTILITY(U,$J,358.3,11641,1,5,0)
+ ;;=5^Hallucinogen Depend, Episodic
+ ;;^UTILITY(U,$J,358.3,11641,2)
+ ;;=^268209
+ ;;^UTILITY(U,$J,358.3,11642,0)
+ ;;=304.61^^53^668^52
+ ;;^UTILITY(U,$J,358.3,11642,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11968,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,11968,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,11968,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,11969,0)
- ;;=301.81^^66^724^11
- ;;^UTILITY(U,$J,358.3,11969,1,0)
+ ;;^UTILITY(U,$J,358.3,11642,1,2,0)
+ ;;=2^304.61
+ ;;^UTILITY(U,$J,358.3,11642,1,5,0)
+ ;;=5^Drug Depend-Other, Continuous
+ ;;^UTILITY(U,$J,358.3,11642,2)
+ ;;=^268211
+ ;;^UTILITY(U,$J,358.3,11643,0)
+ ;;=304.62^^53^668^53
+ ;;^UTILITY(U,$J,358.3,11643,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11969,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,11969,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,11969,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,11970,0)
- ;;=301.0^^66^724^12
- ;;^UTILITY(U,$J,358.3,11970,1,0)
+ ;;^UTILITY(U,$J,358.3,11643,1,2,0)
+ ;;=2^304.62
+ ;;^UTILITY(U,$J,358.3,11643,1,5,0)
+ ;;=5^Drug Depend-Other, Episodic
+ ;;^UTILITY(U,$J,358.3,11643,2)
+ ;;=^268212
+ ;;^UTILITY(U,$J,358.3,11644,0)
+ ;;=304.71^^53^668^66
+ ;;^UTILITY(U,$J,358.3,11644,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11970,1,2,0)
- ;;=2^301.0
+ ;;^UTILITY(U,$J,358.3,11644,1,2,0)
+ ;;=2^304.71
+ ;;^UTILITY(U,$J,358.3,11644,1,5,0)
+ ;;=5^Opioid + Other Depend, Continuous
+ ;;^UTILITY(U,$J,358.3,11644,2)
+ ;;=^268215
+ ;;^UTILITY(U,$J,358.3,11645,0)
+ ;;=304.72^^53^668^67

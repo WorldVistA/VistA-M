@@ -1,138 +1,146 @@
-IBDEI018 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI018 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,13,2)
+ ;;=^5006984
+ ;;^UTILITY(U,$J,358.3,14,0)
+ ;;=H93.223^^1^2^9
+ ;;^UTILITY(U,$J,358.3,14,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14,1,3,0)
+ ;;=3^Diplacusis, bilateral
+ ;;^UTILITY(U,$J,358.3,14,1,4,0)
+ ;;=4^H93.223
+ ;;^UTILITY(U,$J,358.3,14,2)
+ ;;=^5006974
+ ;;^UTILITY(U,$J,358.3,15,0)
+ ;;=H93.222^^1^2^10
+ ;;^UTILITY(U,$J,358.3,15,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15,1,3,0)
+ ;;=3^Diplacusis, left ear
+ ;;^UTILITY(U,$J,358.3,15,1,4,0)
+ ;;=4^H93.222
+ ;;^UTILITY(U,$J,358.3,15,2)
+ ;;=^5006973
+ ;;^UTILITY(U,$J,358.3,16,0)
+ ;;=H93.221^^1^2^11
+ ;;^UTILITY(U,$J,358.3,16,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16,1,3,0)
+ ;;=3^Diplacusis, right ear
+ ;;^UTILITY(U,$J,358.3,16,1,4,0)
+ ;;=4^H93.221
+ ;;^UTILITY(U,$J,358.3,16,2)
+ ;;=^5006972
+ ;;^UTILITY(U,$J,358.3,17,0)
+ ;;=R42.^^1^2^12
+ ;;^UTILITY(U,$J,358.3,17,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17,1,3,0)
+ ;;=3^Dizziness and giddiness
+ ;;^UTILITY(U,$J,358.3,17,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,17,2)
+ ;;=^5019450
  ;;^UTILITY(U,$J,358.3,18,0)
- ;;=90876^^1^3^17^^^^1
+ ;;=Z45.49^^1^2^4
  ;;^UTILITY(U,$J,358.3,18,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,18,1,2,0)
- ;;=2^90876
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18,1,3,0)
- ;;=3^Psych Thpy w/ Biofeedback 45-50min
+ ;;=3^Adjust/Mgmt of Implanted Nervous System Device
+ ;;^UTILITY(U,$J,358.3,18,1,4,0)
+ ;;=4^Z45.49
+ ;;^UTILITY(U,$J,358.3,18,2)
+ ;;=^5063006
  ;;^UTILITY(U,$J,358.3,19,0)
- ;;=90832^^1^3^1^^^^1
+ ;;=Z46.1^^1^2^17
  ;;^UTILITY(U,$J,358.3,19,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,19,1,2,0)
- ;;=2^90832
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,19,1,3,0)
- ;;=3^PsyTx Pt/Fam 16-37Min
+ ;;=3^Fit/Adjust of Hearing Aid
+ ;;^UTILITY(U,$J,358.3,19,1,4,0)
+ ;;=4^Z46.1
+ ;;^UTILITY(U,$J,358.3,19,2)
+ ;;=^5063014
  ;;^UTILITY(U,$J,358.3,20,0)
- ;;=90834^^1^3^2^^^^1
+ ;;=Z46.2^^1^2^15
  ;;^UTILITY(U,$J,358.3,20,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20,1,2,0)
- ;;=2^90834
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20,1,3,0)
- ;;=3^PsyTx Pt/Fam 38-52Min
+ ;;=3^Fit/Adjust Device Rel to Nervous System/Special Senses
+ ;;^UTILITY(U,$J,358.3,20,1,4,0)
+ ;;=4^Z46.2
+ ;;^UTILITY(U,$J,358.3,20,2)
+ ;;=^5063015
  ;;^UTILITY(U,$J,358.3,21,0)
- ;;=90837^^1^3^3^^^^1
+ ;;=Z44.8^^1^2^16
  ;;^UTILITY(U,$J,358.3,21,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21,1,2,0)
- ;;=2^90837
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,21,1,3,0)
- ;;=3^PsyTx Pt/Fam 53+ Min
+ ;;=3^Fit/Adjust of External Prosthetic Devices
+ ;;^UTILITY(U,$J,358.3,21,1,4,0)
+ ;;=4^Z44.8
+ ;;^UTILITY(U,$J,358.3,21,2)
+ ;;=^5062992
  ;;^UTILITY(U,$J,358.3,22,0)
- ;;=90833^^1^3^4^^^^1
+ ;;=Z82.2^^1^2^13
  ;;^UTILITY(U,$J,358.3,22,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22,1,2,0)
- ;;=2^90833
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,22,1,3,0)
- ;;=3^PsyTx Pt/Fam 16-37min-Report w/ E&M code
+ ;;=3^Family history of deafness and hearing loss
+ ;;^UTILITY(U,$J,358.3,22,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,22,2)
+ ;;=^5063366
  ;;^UTILITY(U,$J,358.3,23,0)
- ;;=90836^^1^3^5^^^^1
+ ;;=Z83.52^^1^2^14
  ;;^UTILITY(U,$J,358.3,23,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23,1,2,0)
- ;;=2^90836
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23,1,3,0)
- ;;=3^PsyTx Pt/Fam 38-52min-Report w/ E&M code
+ ;;=3^Family history of ear disorders
+ ;;^UTILITY(U,$J,358.3,23,1,4,0)
+ ;;=4^Z83.52
+ ;;^UTILITY(U,$J,358.3,23,2)
+ ;;=^5063384
  ;;^UTILITY(U,$J,358.3,24,0)
- ;;=90838^^1^3^6^^^^1
+ ;;=H93.233^^1^2^18
  ;;^UTILITY(U,$J,358.3,24,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24,1,2,0)
- ;;=2^90838
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24,1,3,0)
- ;;=3^PsyTx Pt/Fam 53+ Min-Report w/ E&M code
+ ;;=3^Hyperacusis, bilateral
+ ;;^UTILITY(U,$J,358.3,24,1,4,0)
+ ;;=4^H93.233
+ ;;^UTILITY(U,$J,358.3,24,2)
+ ;;=^5006978
  ;;^UTILITY(U,$J,358.3,25,0)
- ;;=90839^^1^3^7^^^^1
+ ;;=H93.232^^1^2^19
  ;;^UTILITY(U,$J,358.3,25,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25,1,2,0)
- ;;=2^90839
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25,1,3,0)
- ;;=3^PsyTx Crisis Initial 60Min
+ ;;=3^Hyperacusis, left ear
+ ;;^UTILITY(U,$J,358.3,25,1,4,0)
+ ;;=4^H93.232
+ ;;^UTILITY(U,$J,358.3,25,2)
+ ;;=^5006977
  ;;^UTILITY(U,$J,358.3,26,0)
- ;;=90840^^1^3^8^^^^1
+ ;;=H93.231^^1^2^20
  ;;^UTILITY(U,$J,358.3,26,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26,1,2,0)
- ;;=2^90840
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,26,1,3,0)
- ;;=3^PsyTx Crisis Ea Addl 30Min
+ ;;=3^Hyperacusis, right ear
+ ;;^UTILITY(U,$J,358.3,26,1,4,0)
+ ;;=4^H93.231
+ ;;^UTILITY(U,$J,358.3,26,2)
+ ;;=^5006976
  ;;^UTILITY(U,$J,358.3,27,0)
- ;;=90785^^1^3^10^^^^1
+ ;;=H92.03^^1^2^22
  ;;^UTILITY(U,$J,358.3,27,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27,1,2,0)
- ;;=2^90785
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,27,1,3,0)
- ;;=3^PsyTx Complex Interactive,Add-On
- ;;^UTILITY(U,$J,358.3,28,0)
- ;;=99354^^1^3^11^^^^1
- ;;^UTILITY(U,$J,358.3,28,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,28,1,3,0)
- ;;=3^Prolonged Office Visit 1st hr
- ;;^UTILITY(U,$J,358.3,29,0)
- ;;=99355^^1^3^12^^^^1
- ;;^UTILITY(U,$J,358.3,29,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,29,1,3,0)
- ;;=3^Prolonged Office Vst Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,30,0)
- ;;=96116^^1^4^2^^^^1
- ;;^UTILITY(U,$J,358.3,30,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30,1,2,0)
- ;;=2^96116
- ;;^UTILITY(U,$J,358.3,30,1,3,0)
- ;;=3^Neuropsych Status Exam
- ;;^UTILITY(U,$J,358.3,31,0)
- ;;=96120^^1^4^3^^^^1
- ;;^UTILITY(U,$J,358.3,31,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31,1,2,0)
- ;;=2^96120
- ;;^UTILITY(U,$J,358.3,31,1,3,0)
- ;;=3^Neuropsych Tst Adm by Comp
- ;;^UTILITY(U,$J,358.3,32,0)
- ;;=96118^^1^4^4^^^^1
- ;;^UTILITY(U,$J,358.3,32,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32,1,2,0)
- ;;=2^96118
- ;;^UTILITY(U,$J,358.3,32,1,3,0)
- ;;=3^Neuropsych Tst by Psych/Phys
- ;;^UTILITY(U,$J,358.3,33,0)
- ;;=96119^^1^4^5^^^^1
- ;;^UTILITY(U,$J,358.3,33,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33,1,2,0)
- ;;=2^96119
- ;;^UTILITY(U,$J,358.3,33,1,3,0)
- ;;=3^Neuropsych Tst,Tech,Ea Hr
- ;;^UTILITY(U,$J,358.3,34,0)
- ;;=90899^^1^4^9^^^^1
- ;;^UTILITY(U,$J,358.3,34,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34,1,2,0)
- ;;=2^90899
+ ;;=3^Otalgia, bilateral
+ ;;^UTILITY(U,$J,358.3,27,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,27,2)
+ ;;=^5006947

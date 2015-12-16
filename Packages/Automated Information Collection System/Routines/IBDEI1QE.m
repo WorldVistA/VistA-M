@@ -1,128 +1,136 @@
-IBDEI1QE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31000,2)
- ;;=^5007119
- ;;^UTILITY(U,$J,358.3,31001,0)
- ;;=I20.9^^190^1929^3
- ;;^UTILITY(U,$J,358.3,31001,1,0)
+ ;;^UTILITY(U,$J,358.3,30628,2)
+ ;;=^5002040
+ ;;^UTILITY(U,$J,358.3,30629,0)
+ ;;=D25.9^^178^1924^64
+ ;;^UTILITY(U,$J,358.3,30629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31001,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,31001,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,31001,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,31002,0)
- ;;=I25.729^^190^1929^4
- ;;^UTILITY(U,$J,358.3,31002,1,0)
+ ;;^UTILITY(U,$J,358.3,30629,1,3,0)
+ ;;=3^Leiomyoma of uterus, unspecified
+ ;;^UTILITY(U,$J,358.3,30629,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,30629,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,30630,0)
+ ;;=D28.0^^178^1924^21
+ ;;^UTILITY(U,$J,358.3,30630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31002,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,31002,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,31002,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,31003,0)
- ;;=I25.709^^190^1929^11
- ;;^UTILITY(U,$J,358.3,31003,1,0)
+ ;;^UTILITY(U,$J,358.3,30630,1,3,0)
+ ;;=3^Benign neoplasm of vulva
+ ;;^UTILITY(U,$J,358.3,30630,1,4,0)
+ ;;=4^D28.0
+ ;;^UTILITY(U,$J,358.3,30630,2)
+ ;;=^267650
+ ;;^UTILITY(U,$J,358.3,30631,0)
+ ;;=D06.9^^178^1924^23
+ ;;^UTILITY(U,$J,358.3,30631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31003,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,31003,1,4,0)
- ;;=4^I25.709
- ;;^UTILITY(U,$J,358.3,31003,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,31004,0)
- ;;=I25.10^^190^1929^6
- ;;^UTILITY(U,$J,358.3,31004,1,0)
+ ;;^UTILITY(U,$J,358.3,30631,1,3,0)
+ ;;=3^Carcinoma in situ of cervix, unspecified
+ ;;^UTILITY(U,$J,358.3,30631,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,30631,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,30632,0)
+ ;;=D06.0^^178^1924^24
+ ;;^UTILITY(U,$J,358.3,30632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31004,1,3,0)
- ;;=3^Athscl HRT Disease of Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,31004,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,31004,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,31005,0)
- ;;=I25.810^^190^1929^8
- ;;^UTILITY(U,$J,358.3,31005,1,0)
+ ;;^UTILITY(U,$J,358.3,30632,1,3,0)
+ ;;=3^Carcinoma in situ of endocervix
+ ;;^UTILITY(U,$J,358.3,30632,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,30632,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,30633,0)
+ ;;=D06.1^^178^1924^25
+ ;;^UTILITY(U,$J,358.3,30633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31005,1,3,0)
- ;;=3^Athscl of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,31005,1,4,0)
- ;;=4^I25.810
- ;;^UTILITY(U,$J,358.3,31005,2)
- ;;=^5007141
- ;;^UTILITY(U,$J,358.3,31006,0)
- ;;=I65.29^^190^1930^18
- ;;^UTILITY(U,$J,358.3,31006,1,0)
+ ;;^UTILITY(U,$J,358.3,30633,1,3,0)
+ ;;=3^Carcinoma in situ of exocervix
+ ;;^UTILITY(U,$J,358.3,30633,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,30633,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,30634,0)
+ ;;=D06.7^^178^1924^26
+ ;;^UTILITY(U,$J,358.3,30634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31006,1,3,0)
- ;;=3^Occlusion & Stenosis Unspec Carotid Artery
- ;;^UTILITY(U,$J,358.3,31006,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,31006,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,31007,0)
- ;;=I65.22^^190^1930^16
- ;;^UTILITY(U,$J,358.3,31007,1,0)
+ ;;^UTILITY(U,$J,358.3,30634,1,3,0)
+ ;;=3^Carcinoma in situ of other parts of cervix
+ ;;^UTILITY(U,$J,358.3,30634,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,30634,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,30635,0)
+ ;;=E28.2^^178^1924^79
+ ;;^UTILITY(U,$J,358.3,30635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31007,1,3,0)
- ;;=3^Occlusion & Stenosis Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,31007,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,31007,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,31008,0)
- ;;=I65.23^^190^1930^15
- ;;^UTILITY(U,$J,358.3,31008,1,0)
+ ;;^UTILITY(U,$J,358.3,30635,1,3,0)
+ ;;=3^Polycystic ovarian syndrome
+ ;;^UTILITY(U,$J,358.3,30635,1,4,0)
+ ;;=4^E28.2
+ ;;^UTILITY(U,$J,358.3,30635,2)
+ ;;=^5002749
+ ;;^UTILITY(U,$J,358.3,30636,0)
+ ;;=N60.11^^178^1924^38
+ ;;^UTILITY(U,$J,358.3,30636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31008,1,3,0)
- ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,31008,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,31008,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,31009,0)
- ;;=I65.21^^190^1930^17
- ;;^UTILITY(U,$J,358.3,31009,1,0)
+ ;;^UTILITY(U,$J,358.3,30636,1,3,0)
+ ;;=3^Diffuse cystic mastopathy of right breast
+ ;;^UTILITY(U,$J,358.3,30636,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,30636,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,30637,0)
+ ;;=N60.12^^178^1924^37
+ ;;^UTILITY(U,$J,358.3,30637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31009,1,3,0)
- ;;=3^Occlusion & Stenosis Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,31009,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,31009,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,31010,0)
- ;;=I70.219^^190^1930^3
- ;;^UTILITY(U,$J,358.3,31010,1,0)
+ ;;^UTILITY(U,$J,358.3,30637,1,3,0)
+ ;;=3^Diffuse cystic mastopathy of left breast
+ ;;^UTILITY(U,$J,358.3,30637,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,30637,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,30638,0)
+ ;;=N64.4^^178^1924^70
+ ;;^UTILITY(U,$J,358.3,30638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31010,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
- ;;^UTILITY(U,$J,358.3,31010,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,31010,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,31011,0)
- ;;=I70.213^^190^1930^4
- ;;^UTILITY(U,$J,358.3,31011,1,0)
+ ;;^UTILITY(U,$J,358.3,30638,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,30638,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,30638,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,30639,0)
+ ;;=N63.^^178^1924^66
+ ;;^UTILITY(U,$J,358.3,30639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31011,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,31011,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,31011,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,31012,0)
- ;;=I70.212^^190^1930^5
- ;;^UTILITY(U,$J,358.3,31012,1,0)
+ ;;^UTILITY(U,$J,358.3,30639,1,3,0)
+ ;;=3^Lump in Breast,Unspec
+ ;;^UTILITY(U,$J,358.3,30639,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,30639,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,30640,0)
+ ;;=N70.01^^178^1924^12
+ ;;^UTILITY(U,$J,358.3,30640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31012,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,31012,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,31012,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,31013,0)
- ;;=I70.211^^190^1930^6
+ ;;^UTILITY(U,$J,358.3,30640,1,3,0)
+ ;;=3^Acute salpingitis
+ ;;^UTILITY(U,$J,358.3,30640,1,4,0)
+ ;;=4^N70.01
+ ;;^UTILITY(U,$J,358.3,30640,2)
+ ;;=^5015802
+ ;;^UTILITY(U,$J,358.3,30641,0)
+ ;;=N70.02^^178^1924^11
+ ;;^UTILITY(U,$J,358.3,30641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30641,1,3,0)
+ ;;=3^Acute oophoritis
+ ;;^UTILITY(U,$J,358.3,30641,1,4,0)
+ ;;=4^N70.02
+ ;;^UTILITY(U,$J,358.3,30641,2)
+ ;;=^5015803

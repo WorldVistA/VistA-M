@@ -1,140 +1,130 @@
-IBDEI05N ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI05N ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2362,2)
- ;;=^276291
- ;;^UTILITY(U,$J,358.3,2363,0)
- ;;=996.79^^21^193^7
- ;;^UTILITY(U,$J,358.3,2363,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2363,1,4,0)
- ;;=4^996.79
- ;;^UTILITY(U,$J,358.3,2363,1,5,0)
- ;;=5^Complication from Int Prosthetic Device
- ;;^UTILITY(U,$J,358.3,2363,2)
- ;;=^276302
- ;;^UTILITY(U,$J,358.3,2364,0)
- ;;=998.9^^21^193^36
- ;;^UTILITY(U,$J,358.3,2364,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2364,1,4,0)
- ;;=4^998.9
- ;;^UTILITY(U,$J,358.3,2364,1,5,0)
- ;;=5^Surgical Complication NOS
- ;;^UTILITY(U,$J,358.3,2364,2)
- ;;=^276344
- ;;^UTILITY(U,$J,358.3,2365,0)
- ;;=997.2^^21^193^13
- ;;^UTILITY(U,$J,358.3,2365,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2365,1,4,0)
- ;;=4^997.2
- ;;^UTILITY(U,$J,358.3,2365,1,5,0)
- ;;=5^Complication of Peri Vasc System
- ;;^UTILITY(U,$J,358.3,2365,2)
- ;;=^276322
- ;;^UTILITY(U,$J,358.3,2366,0)
- ;;=512.1^^21^193^24
- ;;^UTILITY(U,$J,358.3,2366,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2366,1,4,0)
- ;;=4^512.1
- ;;^UTILITY(U,$J,358.3,2366,1,5,0)
- ;;=5^Pneumothorax
- ;;^UTILITY(U,$J,358.3,2366,2)
- ;;=^303293
- ;;^UTILITY(U,$J,358.3,2367,0)
- ;;=415.11^^21^193^26
- ;;^UTILITY(U,$J,358.3,2367,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2367,1,4,0)
- ;;=4^415.11
- ;;^UTILITY(U,$J,358.3,2367,1,5,0)
- ;;=5^Pulmonary Embolism
- ;;^UTILITY(U,$J,358.3,2367,2)
- ;;=^303284
- ;;^UTILITY(U,$J,358.3,2368,0)
- ;;=996.73^^21^193^9
- ;;^UTILITY(U,$J,358.3,2368,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2368,1,4,0)
- ;;=4^996.73
- ;;^UTILITY(U,$J,358.3,2368,1,5,0)
- ;;=5^Complication from Renal Dialysis Device
- ;;^UTILITY(U,$J,358.3,2368,2)
- ;;=^276296
- ;;^UTILITY(U,$J,358.3,2369,0)
- ;;=997.39^^21^193^34
- ;;^UTILITY(U,$J,358.3,2369,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2369,1,4,0)
- ;;=4^997.39
- ;;^UTILITY(U,$J,358.3,2369,1,5,0)
- ;;=5^Respiratory Complications
- ;;^UTILITY(U,$J,358.3,2369,2)
- ;;=^336693
- ;;^UTILITY(U,$J,358.3,2370,0)
- ;;=998.13^^21^193^35
- ;;^UTILITY(U,$J,358.3,2370,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2370,1,4,0)
- ;;=4^998.13
- ;;^UTILITY(U,$J,358.3,2370,1,5,0)
- ;;=5^Seroma Complicating Procedure
- ;;^UTILITY(U,$J,358.3,2370,2)
- ;;=^304349
- ;;^UTILITY(U,$J,358.3,2371,0)
- ;;=997.5^^21^193^14
- ;;^UTILITY(U,$J,358.3,2371,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2371,1,4,0)
- ;;=4^997.5
- ;;^UTILITY(U,$J,358.3,2371,1,5,0)
- ;;=5^Complication of Urinary Tract
- ;;^UTILITY(U,$J,358.3,2371,2)
- ;;=^276325
- ;;^UTILITY(U,$J,358.3,2372,0)
- ;;=996.1^^21^193^20
- ;;^UTILITY(U,$J,358.3,2372,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2372,1,4,0)
- ;;=4^996.1
- ;;^UTILITY(U,$J,358.3,2372,1,5,0)
- ;;=5^Malfunction of Vascular Device
- ;;^UTILITY(U,$J,358.3,2372,2)
- ;;=^276268
- ;;^UTILITY(U,$J,358.3,2373,0)
- ;;=996.62^^21^193^33
- ;;^UTILITY(U,$J,358.3,2373,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2373,1,4,0)
- ;;=4^996.62
- ;;^UTILITY(U,$J,358.3,2373,1,5,0)
- ;;=5^Reaction to Vacular Device
- ;;^UTILITY(U,$J,358.3,2373,2)
- ;;=^276285
- ;;^UTILITY(U,$J,358.3,2374,0)
- ;;=996.74^^21^193^10
- ;;^UTILITY(U,$J,358.3,2374,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2374,1,4,0)
- ;;=4^996.74
- ;;^UTILITY(U,$J,358.3,2374,1,5,0)
- ;;=5^Complication from Vascular Device
- ;;^UTILITY(U,$J,358.3,2374,2)
- ;;=^276297
- ;;^UTILITY(U,$J,358.3,2375,0)
- ;;=998.83^^21^193^22
- ;;^UTILITY(U,$J,358.3,2375,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,2375,1,4,0)
- ;;=4^998.83
- ;;^UTILITY(U,$J,358.3,2375,1,5,0)
- ;;=5^Non-Healing Surgical Wound
- ;;^UTILITY(U,$J,358.3,2375,2)
- ;;=^304351
- ;;^UTILITY(U,$J,358.3,2376,0)
- ;;=569.60^^21^193^2
- ;;^UTILITY(U,$J,358.3,2376,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,2119,1,4,0)
+ ;;=4^S22.32XA
+ ;;^UTILITY(U,$J,358.3,2119,2)
+ ;;=^5023111
+ ;;^UTILITY(U,$J,358.3,2120,0)
+ ;;=S42.91XA^^4^62^84
+ ;;^UTILITY(U,$J,358.3,2120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2120,1,3,0)
+ ;;=3^Fx of right shoulder girdle, part unsp, init
+ ;;^UTILITY(U,$J,358.3,2120,1,4,0)
+ ;;=4^S42.91XA
+ ;;^UTILITY(U,$J,358.3,2120,2)
+ ;;=^5027643
+ ;;^UTILITY(U,$J,358.3,2121,0)
+ ;;=S42.92XA^^4^62^71
+ ;;^UTILITY(U,$J,358.3,2121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2121,1,3,0)
+ ;;=3^Fx of left shoulder girdle, part unsp, init
+ ;;^UTILITY(U,$J,358.3,2121,1,4,0)
+ ;;=4^S42.92XA
+ ;;^UTILITY(U,$J,358.3,2121,2)
+ ;;=^5027650
+ ;;^UTILITY(U,$J,358.3,2122,0)
+ ;;=S42.101A^^4^62^95
+ ;;^UTILITY(U,$J,358.3,2122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2122,1,3,0)
+ ;;=3^Fx of unsp part of scapula, right shoulder, init
+ ;;^UTILITY(U,$J,358.3,2122,1,4,0)
+ ;;=4^S42.101A
+ ;;^UTILITY(U,$J,358.3,2122,2)
+ ;;=^5026530
+ ;;^UTILITY(U,$J,358.3,2123,0)
+ ;;=S42.102A^^4^62^94
+ ;;^UTILITY(U,$J,358.3,2123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2123,1,3,0)
+ ;;=3^Fx of unsp part of scapula, left shoulder, init
+ ;;^UTILITY(U,$J,358.3,2123,1,4,0)
+ ;;=4^S42.102A
+ ;;^UTILITY(U,$J,358.3,2123,2)
+ ;;=^5026537
+ ;;^UTILITY(U,$J,358.3,2124,0)
+ ;;=S92.201A^^4^62^107
+ ;;^UTILITY(U,$J,358.3,2124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2124,1,3,0)
+ ;;=3^Fx of unsp tarsal bone(s) of right foot, init
+ ;;^UTILITY(U,$J,358.3,2124,1,4,0)
+ ;;=4^S92.201A
+ ;;^UTILITY(U,$J,358.3,2124,2)
+ ;;=^5044822
+ ;;^UTILITY(U,$J,358.3,2125,0)
+ ;;=S92.202A^^4^62^106
+ ;;^UTILITY(U,$J,358.3,2125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2125,1,3,0)
+ ;;=3^Fx of unsp tarsal bone(s) of left foot, init
+ ;;^UTILITY(U,$J,358.3,2125,1,4,0)
+ ;;=4^S92.202A
+ ;;^UTILITY(U,$J,358.3,2125,2)
+ ;;=^5044829
+ ;;^UTILITY(U,$J,358.3,2126,0)
+ ;;=S62.501A^^4^62^105
+ ;;^UTILITY(U,$J,358.3,2126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2126,1,3,0)
+ ;;=3^Fx of unsp phalanx of right thumb, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2126,1,4,0)
+ ;;=4^S62.501A
+ ;;^UTILITY(U,$J,358.3,2126,2)
+ ;;=^5034284
+ ;;^UTILITY(U,$J,358.3,2127,0)
+ ;;=S62.502A^^4^62^100
+ ;;^UTILITY(U,$J,358.3,2127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2127,1,3,0)
+ ;;=3^Fx of unsp phalanx of left thumb, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2127,1,4,0)
+ ;;=4^S62.502A
+ ;;^UTILITY(U,$J,358.3,2127,2)
+ ;;=^5034291
+ ;;^UTILITY(U,$J,358.3,2128,0)
+ ;;=S82.201A^^4^62^85
+ ;;^UTILITY(U,$J,358.3,2128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2128,1,3,0)
+ ;;=3^Fx of right tibia shaft unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2128,1,4,0)
+ ;;=4^S82.201A
+ ;;^UTILITY(U,$J,358.3,2128,2)
+ ;;=^5041102
+ ;;^UTILITY(U,$J,358.3,2129,0)
+ ;;=S82.202A^^4^62^72
+ ;;^UTILITY(U,$J,358.3,2129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2129,1,3,0)
+ ;;=3^Fx of left tibia shaft unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2129,1,4,0)
+ ;;=4^S82.202A
+ ;;^UTILITY(U,$J,358.3,2129,2)
+ ;;=^5041118
+ ;;^UTILITY(U,$J,358.3,2130,0)
+ ;;=S92.911A^^4^62^86
+ ;;^UTILITY(U,$J,358.3,2130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2130,1,3,0)
+ ;;=3^Fx of right toe(s) unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2130,1,4,0)
+ ;;=4^S92.911A
+ ;;^UTILITY(U,$J,358.3,2130,2)
+ ;;=^5045592
+ ;;^UTILITY(U,$J,358.3,2131,0)
+ ;;=S92.912A^^4^62^73
+ ;;^UTILITY(U,$J,358.3,2131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2131,1,3,0)
+ ;;=3^Fx of left toe(s) unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,2131,1,4,0)
+ ;;=4^S92.912A
+ ;;^UTILITY(U,$J,358.3,2131,2)
+ ;;=^5045599
+ ;;^UTILITY(U,$J,358.3,2132,0)
+ ;;=S52.201A^^4^62^87

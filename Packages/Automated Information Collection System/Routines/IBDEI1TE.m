@@ -1,138 +1,134 @@
-IBDEI1TE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1TE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32392,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32392,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,32392,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,32393,0)
- ;;=J47.0^^190^1953^10
- ;;^UTILITY(U,$J,358.3,32393,1,0)
+ ;;^UTILITY(U,$J,358.3,31983,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,31983,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,31984,0)
+ ;;=I71.4^^182^1979^1
+ ;;^UTILITY(U,$J,358.3,31984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32393,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,32393,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,32393,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,32394,0)
- ;;=R09.1^^190^1953^37
- ;;^UTILITY(U,$J,358.3,32394,1,0)
+ ;;^UTILITY(U,$J,358.3,31984,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,31984,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,31984,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,31985,0)
+ ;;=I73.9^^182^1979^19
+ ;;^UTILITY(U,$J,358.3,31985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32394,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,32394,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,32394,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,32395,0)
- ;;=J94.9^^190^1953^33
- ;;^UTILITY(U,$J,358.3,32395,1,0)
+ ;;^UTILITY(U,$J,358.3,31985,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,31985,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,31985,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,31986,0)
+ ;;=I82.891^^182^1979^14
+ ;;^UTILITY(U,$J,358.3,31986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32395,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,32395,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,32395,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,32396,0)
- ;;=J92.9^^190^1953^36
- ;;^UTILITY(U,$J,358.3,32396,1,0)
+ ;;^UTILITY(U,$J,358.3,31986,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,31986,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,31986,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,31987,0)
+ ;;=I82.890^^182^1979^13
+ ;;^UTILITY(U,$J,358.3,31987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32396,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,32396,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,32396,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,32397,0)
- ;;=J94.8^^190^1953^34
- ;;^UTILITY(U,$J,358.3,32397,1,0)
+ ;;^UTILITY(U,$J,358.3,31987,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,31987,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,31987,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,31988,0)
+ ;;=E78.0^^182^1980^10
+ ;;^UTILITY(U,$J,358.3,31988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32397,1,3,0)
- ;;=3^Pleural Conditions,Other Spec
- ;;^UTILITY(U,$J,358.3,32397,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,32397,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,32398,0)
- ;;=J86.9^^190^1953^38
- ;;^UTILITY(U,$J,358.3,32398,1,0)
+ ;;^UTILITY(U,$J,358.3,31988,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,31988,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,31988,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,31989,0)
+ ;;=E78.1^^182^1980^11
+ ;;^UTILITY(U,$J,358.3,31989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32398,1,3,0)
- ;;=3^Pyothorax w/o Fistula
- ;;^UTILITY(U,$J,358.3,32398,1,4,0)
- ;;=4^J86.9
- ;;^UTILITY(U,$J,358.3,32398,2)
- ;;=^5008309
- ;;^UTILITY(U,$J,358.3,32399,0)
- ;;=J91.8^^190^1953^35
- ;;^UTILITY(U,$J,358.3,32399,1,0)
+ ;;^UTILITY(U,$J,358.3,31989,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,31989,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,31989,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,31990,0)
+ ;;=E78.2^^182^1980^9
+ ;;^UTILITY(U,$J,358.3,31990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32399,1,3,0)
- ;;=3^Pleural Effusion in Other Conditions
- ;;^UTILITY(U,$J,358.3,32399,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,32399,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,32400,0)
- ;;=J84.9^^190^1953^30
- ;;^UTILITY(U,$J,358.3,32400,1,0)
+ ;;^UTILITY(U,$J,358.3,31990,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,31990,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,31990,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,31991,0)
+ ;;=I10.^^182^1980^1
+ ;;^UTILITY(U,$J,358.3,31991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32400,1,3,0)
- ;;=3^Interstitial Pulmonary Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32400,1,4,0)
- ;;=4^J84.9
- ;;^UTILITY(U,$J,358.3,32400,2)
- ;;=^5008304
- ;;^UTILITY(U,$J,358.3,32401,0)
- ;;=J98.01^^190^1953^13
- ;;^UTILITY(U,$J,358.3,32401,1,0)
+ ;;^UTILITY(U,$J,358.3,31991,1,3,0)
+ ;;=3^Essential Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,31991,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,31991,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,31992,0)
+ ;;=I11.9^^182^1980^8
+ ;;^UTILITY(U,$J,358.3,31992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32401,1,3,0)
- ;;=3^Bronchospasm,Acute
- ;;^UTILITY(U,$J,358.3,32401,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,32401,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,32402,0)
- ;;=G47.30^^190^1953^53
- ;;^UTILITY(U,$J,358.3,32402,1,0)
+ ;;^UTILITY(U,$J,358.3,31992,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,31992,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,31992,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,31993,0)
+ ;;=I11.0^^182^1980^7
+ ;;^UTILITY(U,$J,358.3,31993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32402,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,32402,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,32402,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,32403,0)
- ;;=R06.02^^190^1953^52
- ;;^UTILITY(U,$J,358.3,32403,1,0)
+ ;;^UTILITY(U,$J,358.3,31993,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,31993,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,31993,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,31994,0)
+ ;;=I12.0^^182^1980^6
+ ;;^UTILITY(U,$J,358.3,31994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32403,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,32403,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,32403,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,32404,0)
- ;;=R06.09^^190^1953^18
- ;;^UTILITY(U,$J,358.3,32404,1,0)
+ ;;^UTILITY(U,$J,358.3,31994,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
+ ;;^UTILITY(U,$J,358.3,31994,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,31994,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,31995,0)
+ ;;=I13.10^^182^1980^4
+ ;;^UTILITY(U,$J,358.3,31995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32404,1,3,0)
- ;;=3^Dyspnea,Other Forms
- ;;^UTILITY(U,$J,358.3,32404,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,32404,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,32405,0)
- ;;=R06.00^^190^1953^19
- ;;^UTILITY(U,$J,358.3,32405,1,0)
+ ;;^UTILITY(U,$J,358.3,31995,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,31995,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,31995,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,31996,0)
+ ;;=I13.0^^182^1980^2
+ ;;^UTILITY(U,$J,358.3,31996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32405,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,32405,1,4,0)
- ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,31996,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny

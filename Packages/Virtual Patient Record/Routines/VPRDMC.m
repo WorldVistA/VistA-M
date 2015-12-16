@@ -1,11 +1,10 @@
 VPRDMC ;SLC/MKB -- Clinical Procedures (Medicine) ;3/14/12  09:03
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^SC                          10040
- ; ^TIU(8925.1                   5677
  ; ^VA(200                      10060
  ; %DT                          10003
  ; DILFD                         2055
@@ -22,7 +21,7 @@ VPRDMC ;SLC/MKB -- Clinical Procedures (Medicine) ;3/14/12  09:03
  ; ------------ Get procedures from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's procedures
- N VPRITM,RES,VPRN,VPRX,RTN,DATE,CONS,TIUN,X0,DA,GBL,X,Y,%DT,VPRT,LT,NT,LOC
+ N VPRITM,RES,VPRN,VPRX,RTN,DATE,CONS,TIUN,X0,DA,GBL,X,Y,%DT,VPRT,LOC
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  S DFN=+$G(DFN) Q:DFN<1
  ;
@@ -39,7 +38,7 @@ EN(DFN,BEG,END,MAX,ID) ; -- find patient's procedures
  S VPRN=0 F  S VPRN=$O(^TMP("MDHSP",$J,VPRN)) Q:VPRN<1  S VPRX=$G(^(VPRN)) D
  . I $G(ID),ID'=+$P(VPRX,U,2) Q              ;update one procedure
  . S RTN=$P(VPRX,U,3,4) Q:RTN="PRPRO^MDPS4"  ;skip non-CP items
- . S X=$P(VPRX,U,6),%DT="TX" D ^%DT S:Y>0 DATE=Y
+ . S X=$P(VPRX,U,6),%DT="STX" D ^%DT S:Y>0 DATE=Y
  . S GBL=+$P(VPRX,U,2)_";"_$S(RTN="PR702^MDPS1":"MDD(702,",1:$$ROOT(DFN,$P(VPRX,U,11),DATE))
  . Q:'GBL  I $G(ID),ID'=GBL Q                ;unknown, or not requested
  . ;
@@ -54,14 +53,13 @@ A . ;
  .. S VPRITM("requested")=+X0,VPRITM("order")=+$P(X0,U,3)
  .. S VPRITM("status")=$$EXTERNAL^DILFD(123,8,,$P(X0,U,12))
  .. S VPRJ=0 F  S VPRJ=$O(VPRD(50,VPRJ)) Q:VPRJ<1  S X=+$G(VPRD(50,VPRJ)) D
- ... K VPRT D EXTRACT^TIULQ(X,"VPRT",,.01) S LT=$G(VPRT(X,.01,"E"))
- ... S NT=$$GET1^DIQ(8925.1,+$G(VPRT(X,.01,"I"))_",",1501)
- ... S VPRITM("document",X)=X_U_LT_U_NT  ;ien^local^national title
+ ... N Y S Y=$$INFO^VPRDTIU(+X) Q:Y<1  ;draft or retracted
+ ... S VPRITM("document",X)=Y  ;ien^local^national title^VUID
  ... S:$G(VPRTEXT) VPRITM("document",X,"content")=$$TEXT^VPRDTIU(X)
  ... S:'TIUN TIUN=X ;get supporting fields
 B . ;
  . I TIUN D
- .. S X=$P(TIUN,U,5) S:X VPRITM("provider")=+X_U_$P(X,";",3)
+ .. S X=$P(TIUN,U,5) S:X VPRITM("provider")=+X_U_$P(X,";",3)_U_$$PROVSPC^VPRD(+X)
  .. S:$P(TIUN,U,11) VPRITM("hasImages")=1
  .. K VPRT D EXTRACT^TIULQ(+TIUN,"VPRT",,".03;.05;1211",,,"I")
  .. S VPRITM("encounter")=+$G(VPRT(+TIUN,.03,"I"))
@@ -70,12 +68,14 @@ B . ;
  .. S:LOC VPRITM("location")=LOC,VPRITM("facility")=$$FAC^VPRD(+LOC)
  .. I '$D(VPRITM("status")) S X=+$G(VPRT(+TIUN,.05,"I")),VPRITM("status")=$S(X<6:"PARTIAL RESULTS",1:"COMPLETE")
  .. I '$G(VPRITM("document",+TIUN)) D
- ... K VPRT D EXTRACT^TIULQ(+TIUN,"VPRT",,.01,,,"I")
- ... S NT=$$GET1^DIQ(8925.1,+$G(VPRT(+TIUN,.01,"I"))_",",1501)
- ... S VPRITM("document",+TIUN)=$P(TIUN,U,1,2)_U_NT  ;ien^local^national title
+ ... N Y S Y=$$INFO^VPRDTIU(+TIUN) Q:Y<1  ;draft or retracted
+ ... S VPRITM("document",+TIUN)=Y  ;ien^local^national title^VUID
  ... S:$G(VPRTEXT) VPRITM("document",+TIUN,"content")=$$TEXT^VPRDTIU(+TIUN)
 C . ;
  . ; if no consult or note/visit ...
+ . I TIUN<1 D
+ .. S VPRITM("document",1)=GBL_U_$P(VPRX,U)_"^PROCEDURE REPORT^4696566"
+ .. S:$G(VPRTEXT) VPRITM("document",1,"content")=$$TEXT(DFN,GBL,$P(VPRX,U,11))
  . I '$D(VPRITM("facility")) S X=$P(X0,U,21),VPRITM("facility")=$S(X:$$STA^XUAF4(X)_U_$P($$NS^XUAF4(X),U),1:$$FAC^VPRD)
  . I '$D(VPRITM("status")) S VPRITM("status")="COMPLETE"
  . ;I DA D  ;get CPT code from #697.2
@@ -115,10 +115,10 @@ RPTS(DFN,BEG,END,MAX) ; -- find patient's medicine reports
  S VPRN=0 F  S VPRN=$O(^TMP("MDHSP",$J,VPRN)) Q:VPRN<1  S VPRX=$G(^(VPRN)) D
  . S RTN=$P(VPRX,U,3,4) ;Q:RTN="PRPRO^MDPS4"  ;skip non-CP items
  . S TIUN=+$P(VPRX,U,14) K VPRITM
- . I TIUN D EN1^VPRDTIU(TIUN,.VPRITM),XML^VPRDTIU(.VPRITM):$D(VPRITM)
+ . I TIUN,$$INFO^VPRDTIU(TIUN)>0 D EN1^VPRDTIU(TIUN,.VPRITM),XML^VPRDTIU(.VPRITM):$D(VPRITM)
  . S CONS=+$P(VPRX,U,13) D:CONS DOCLIST^GMRCGUIB(.VPRD,CONS)
  . S I=0 F  S I=$O(VPRD(50,I)) Q:I<1  D
- .. K VPRITM S DA=+VPRD(50,I) Q:DA=TIUN
+ .. K VPRITM S DA=+VPRD(50,I) Q:DA=TIUN  Q:$$INFO^VPRDTIU(DA)<1
  .. D EN1^VPRDTIU(DA,.VPRITM),XML^VPRDTIU(.VPRITM):$D(VPRITM)
  . Q:TIUN!$G(DA)                             ;done [got TIU note(s)]
  . Q:RTN="PR702^MDPS1"                       ;CP, but no TIU note yet
@@ -145,9 +145,9 @@ RPT1(DFN,ID,RPT) ; -- return report as a TIU document
  S X=$$GET1^DIQ(VPRFN,+ID_",",1506)
  S RPT("status")=$S($L(X):X,1:"COMPLETED")
  S X=+$$GET1^DIQ(VPRFN,+ID_",",701,"I")
- S:X RPT("clinician",1)=X_U_$P($G(^VA(200,X,0)),U)_"^A"
+ S:X RPT("clinician",1)=X_U_$P($G(^VA(200,X,0)),U)_"^A^^^"_$$PROVSPC^VPRD(X)
  S X=+$$GET1^DIQ(VPRFN,+ID_",",1503,"I")
- S:X RPT("clinician",2)=X_U_$P($G(^VA(200,X,0)),U)_"^S^"_$$GET1^DIQ(VPRFN,+ID_",",1505,"I")_U_$$SIG^VPRDTIU(X)
+ S:X RPT("clinician",2)=X_U_$P($G(^VA(200,X,0)),U)_"^S^"_$$GET1^DIQ(VPRFN,+ID_",",1505,"I")_U_$$SIG^VPRDTIU(X)_U_$$PROVSPC^VPRD(X)
  ; RPT("encounter")=$$GET1^DIQ(VPRFN,+ID_",",900,"I")
  S RPT("facility")=$$FAC^VPRD
  S:$G(VPRTEXT) RPT("content")=$$TEXT(DFN,ID,$P(VPRY,U,9))
@@ -159,6 +159,7 @@ TEXT(DFN,ID,NAME) ; -- Get report text, return temp array name
  K ^TMP("VPRTEXT",$J,ID)
  S I=0 F  S I=$O(^TMP("MDPTXT",$J,MCARGDA,MCPRO,I)) Q:I<1  S X=$G(^(I,0)),^TMP("VPRTEXT",$J,ID,I)=X
  S Y=$NA(^TMP("VPRTEXT",$J,ID))
+ K ^TMP("MDPTXT",$J)
  Q Y
  ;
  ; ------------ Return data to middle tier ------------
@@ -168,7 +169,7 @@ XML(PROC) ; -- Return patient procedure as XML
  N ATT,X,Y,I,J,NAMES
  D ADD("<procedure>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(PROC(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
- . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^Z",1:"code^name^Z")
+ . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^vuid",ATT="provider":"code^name^"_$$PROVTAGS^VPRD,1:"code^name")_"^Z"
  . I $O(PROC(ATT,0)) D  S Y="" Q  ;multiples
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(PROC(ATT,I)) Q:I<1  D

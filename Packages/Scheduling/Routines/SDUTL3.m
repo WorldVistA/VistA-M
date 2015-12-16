@@ -1,5 +1,5 @@
-SDUTL3 ;ALB/REW - Primary Care API Calls ;9/16/10  17:17
- ;;5.3;Scheduling;**30,39,41,148,177,568**;Aug 13, 1993;Build 14
+SDUTL3 ;ALB/REW - Primary Care API Calls ;2/13/15  10:36
+ ;;5.3;Scheduling;**30,39,41,148,177,568,633**;Aug 13, 1993;Build 8
  ;
 OUTPTPR(DFN,SCDATE,SCPCROLE) ;given patient, return internal^external of the pc practitioner
  ; Input: DFN - ien of patient file (#2)
@@ -104,13 +104,3 @@ INPTTM(DFN,TEAM) ;store current PC team; return SDOKS=0, if fails
  E  D
  .S SDOKS=0
 QTITM Q
- ;
-UPDLOCAL ;Called from SD EDIT LOCAL STOP CODE NAME option.  Allows entry of the .01 field of file 40.7 only if the amis code indicates it is a local entry
- ;Entire section added in patch 568
- N DIC,DIE,SDASC,DA,Y,X,DR
- W !!,"You may only edit the NAME field of locally defined entries.",!,"Enter ?? to see the list of entries you're allowed to edit.",!
- S DIC=40.7,DIC(0)="AEMQ",DIC("S")="S SDASC=+$P(^DIC(40.7,+Y,0),U,2) I SDASC&(SDASC>450)&(SDASC<486)&(SDASC'=457)&(SDASC'=474)&(SDASC'=480)&(SDASC'=481)" ;only allows local amis codes
- D ^DIC Q:Y=-1  ;Stop if entry selected isn't one of the local entries
- S DIE=40.7,DA=+Y,DR=".01"
- D ^DIE
- Q  ;End of section

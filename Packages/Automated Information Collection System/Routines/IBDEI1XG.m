@@ -1,134 +1,124 @@
-IBDEI1XG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34222,0)
- ;;=E87.8^^192^1991^3
- ;;^UTILITY(U,$J,358.3,34222,1,0)
+ ;;^UTILITY(U,$J,358.3,33861,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,33861,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,33862,0)
+ ;;=Y36.200A^^182^2011^113
+ ;;^UTILITY(U,$J,358.3,33862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34222,1,3,0)
- ;;=3^Electrolyte/Fluid Balance Disorders NEC
- ;;^UTILITY(U,$J,358.3,34222,1,4,0)
- ;;=4^E87.8
- ;;^UTILITY(U,$J,358.3,34222,2)
- ;;=^5003026
- ;;^UTILITY(U,$J,358.3,34223,0)
- ;;=E13.9^^192^1991^2
- ;;^UTILITY(U,$J,358.3,34223,1,0)
+ ;;^UTILITY(U,$J,358.3,33862,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33862,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,33862,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,33863,0)
+ ;;=Y36.200D^^182^2011^114
+ ;;^UTILITY(U,$J,358.3,33863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34223,1,3,0)
- ;;=3^Diabetes Mellitus w/o Complications 
- ;;^UTILITY(U,$J,358.3,34223,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,34223,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,34224,0)
- ;;=E11.9^^192^1991^1
- ;;^UTILITY(U,$J,358.3,34224,1,0)
+ ;;^UTILITY(U,$J,358.3,33863,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33863,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,33863,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,33864,0)
+ ;;=Y36.300A^^182^2011^115
+ ;;^UTILITY(U,$J,358.3,33864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34224,1,3,0)
- ;;=3^DM Type 2 w/o Complicataions
- ;;^UTILITY(U,$J,358.3,34224,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,34224,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,34225,0)
- ;;=H60.03^^192^1992^1
- ;;^UTILITY(U,$J,358.3,34225,1,0)
+ ;;^UTILITY(U,$J,358.3,33864,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33864,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,33864,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,33865,0)
+ ;;=Y36.300D^^182^2011^116
+ ;;^UTILITY(U,$J,358.3,33865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34225,1,3,0)
- ;;=3^Abscess Bilateral External Ear
- ;;^UTILITY(U,$J,358.3,34225,1,4,0)
- ;;=4^H60.03
- ;;^UTILITY(U,$J,358.3,34225,2)
- ;;=^5006438
- ;;^UTILITY(U,$J,358.3,34226,0)
- ;;=H60.02^^192^1992^2
- ;;^UTILITY(U,$J,358.3,34226,1,0)
+ ;;^UTILITY(U,$J,358.3,33865,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33865,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,33865,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,33866,0)
+ ;;=Y36.410A^^182^2011^111
+ ;;^UTILITY(U,$J,358.3,33866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34226,1,3,0)
- ;;=3^Abscess Left External Ear
- ;;^UTILITY(U,$J,358.3,34226,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,34226,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,34227,0)
- ;;=H60.01^^192^1992^3
- ;;^UTILITY(U,$J,358.3,34227,1,0)
+ ;;^UTILITY(U,$J,358.3,33866,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33866,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,33866,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,33867,0)
+ ;;=Y36.410D^^182^2011^112
+ ;;^UTILITY(U,$J,358.3,33867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34227,1,3,0)
- ;;=3^Abscess Right External Ear
- ;;^UTILITY(U,$J,358.3,34227,1,4,0)
- ;;=4^H60.01
- ;;^UTILITY(U,$J,358.3,34227,2)
- ;;=^5006436
- ;;^UTILITY(U,$J,358.3,34228,0)
- ;;=H60.13^^192^1992^5
- ;;^UTILITY(U,$J,358.3,34228,1,0)
+ ;;^UTILITY(U,$J,358.3,33867,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33867,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,33867,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,33868,0)
+ ;;=Y36.6X0A^^182^2011^109
+ ;;^UTILITY(U,$J,358.3,33868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34228,1,3,0)
- ;;=3^Cellulitis Bilateral External Ear
- ;;^UTILITY(U,$J,358.3,34228,1,4,0)
- ;;=4^H60.13
- ;;^UTILITY(U,$J,358.3,34228,2)
- ;;=^5006442
- ;;^UTILITY(U,$J,358.3,34229,0)
- ;;=H60.12^^192^1992^6
- ;;^UTILITY(U,$J,358.3,34229,1,0)
+ ;;^UTILITY(U,$J,358.3,33868,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33868,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,33868,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,33869,0)
+ ;;=Y36.6X0D^^182^2011^110
+ ;;^UTILITY(U,$J,358.3,33869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34229,1,3,0)
- ;;=3^Cellulitis Left External Ear
- ;;^UTILITY(U,$J,358.3,34229,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,34229,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,34230,0)
- ;;=H60.11^^192^1992^7
- ;;^UTILITY(U,$J,358.3,34230,1,0)
+ ;;^UTILITY(U,$J,358.3,33869,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33869,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,33869,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,33870,0)
+ ;;=Y36.7X0A^^182^2011^117
+ ;;^UTILITY(U,$J,358.3,33870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34230,1,3,0)
- ;;=3^Cellulitis Right External Ear
- ;;^UTILITY(U,$J,358.3,34230,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,34230,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,34231,0)
- ;;=H60.323^^192^1992^8
- ;;^UTILITY(U,$J,358.3,34231,1,0)
+ ;;^UTILITY(U,$J,358.3,33870,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33870,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,33870,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,33871,0)
+ ;;=Y36.7X0D^^182^2011^118
+ ;;^UTILITY(U,$J,358.3,33871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34231,1,3,0)
- ;;=3^Hemorrhagic Bilateral Otitis Externa
- ;;^UTILITY(U,$J,358.3,34231,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,34231,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,34232,0)
- ;;=H60.322^^192^1992^9
- ;;^UTILITY(U,$J,358.3,34232,1,0)
+ ;;^UTILITY(U,$J,358.3,33871,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33871,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,33871,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,33872,0)
+ ;;=Y36.810A^^182^2011^19
+ ;;^UTILITY(U,$J,358.3,33872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34232,1,3,0)
- ;;=3^Hemorrhagic Left Otitis Externa
- ;;^UTILITY(U,$J,358.3,34232,1,4,0)
- ;;=4^H60.322
- ;;^UTILITY(U,$J,358.3,34232,2)
- ;;=^5006452
- ;;^UTILITY(U,$J,358.3,34233,0)
- ;;=H60.321^^192^1992^10
- ;;^UTILITY(U,$J,358.3,34233,1,0)
+ ;;^UTILITY(U,$J,358.3,33872,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33872,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,33872,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,33873,0)
+ ;;=Y36.810D^^182^2011^20
+ ;;^UTILITY(U,$J,358.3,33873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34233,1,3,0)
- ;;=3^Hemorrhagic Right Otitis Externa
- ;;^UTILITY(U,$J,358.3,34233,1,4,0)
- ;;=4^H60.321
- ;;^UTILITY(U,$J,358.3,34233,2)
- ;;=^5006451
- ;;^UTILITY(U,$J,358.3,34234,0)
- ;;=H60.393^^192^1992^11
- ;;^UTILITY(U,$J,358.3,34234,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34234,1,3,0)
- ;;=3^Infective Bilateral Otitis Externa NEC
- ;;^UTILITY(U,$J,358.3,34234,1,4,0)
- ;;=4^H60.393
- ;;^UTILITY(U,$J,358.3,34234,2)
- ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,33873,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr

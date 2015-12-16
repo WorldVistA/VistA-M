@@ -1,5 +1,5 @@
-MAGVRS52 ;WOIFO/EdM/DAC/NST - Imaging RPCs for Query/Retrieve ; 21 Aug 2014  8:05 AM
- ;;3.0;IMAGING;**118,145**;Mar 19, 2002;Build 7;Aug 21, 2014
+MAGVRS52 ;WOIFO/EdM/DAC/NST/JSL - Imaging RPCs ,156for Query/Retrieve ; 30 Jan 2015 3:05 PM
+ ;;3.0;IMAGING;**118,145,138,156**;Mar 19, 2002;Build 10;Jan 3, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -46,6 +46,10 @@ AETITLE(OUT,RTITLE,LOCATION) ; MAG DICOM CHECK AE TITLE RPC
  . . S MATCH=MATCH+1
  . . ; Add Services and Roles to output
  . . D AESECMX(.OUT,AEIEN)
+ . . ;--- Add N-Response Delay (#13) in seconds, N-Response Retries (#14) *79.
+ . . S OUT(1)=OUT(1)_OSEP_(60*$$GET1^DIQ(2006.9192,AEIEN,13,"I"))
+ . . S OUT(1)=OUT(1)_OSEP_(1*$$GET1^DIQ(2006.9192,AEIEN,14,"I"))
+ . . Q
  . Q
  I MATCH=0 S OUT(1)="-2,No entry for AE Title """_RTITLE_""" at location """_LOCATION_"""."
  Q

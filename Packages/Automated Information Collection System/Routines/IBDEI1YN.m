@@ -1,136 +1,124 @@
-IBDEI1YN ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YN ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34777,0)
- ;;=E66.9^^192^2010^53
- ;;^UTILITY(U,$J,358.3,34777,1,0)
+ ;;^UTILITY(U,$J,358.3,34388,0)
+ ;;=S72.145S^^183^2019^61
+ ;;^UTILITY(U,$J,358.3,34388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34777,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,34777,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,34777,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,34778,0)
- ;;=M87.10^^192^2010^54
- ;;^UTILITY(U,$J,358.3,34778,1,0)
+ ;;^UTILITY(U,$J,358.3,34388,1,3,0)
+ ;;=3^Nondisp intertroch fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34388,1,4,0)
+ ;;=4^S72.145S
+ ;;^UTILITY(U,$J,358.3,34388,2)
+ ;;=^5037994
+ ;;^UTILITY(U,$J,358.3,34389,0)
+ ;;=S72.21XS^^183^2019^38
+ ;;^UTILITY(U,$J,358.3,34389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34778,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Unspec Bone
- ;;^UTILITY(U,$J,358.3,34778,1,4,0)
- ;;=4^M87.10
- ;;^UTILITY(U,$J,358.3,34778,2)
- ;;=^5014700
- ;;^UTILITY(U,$J,358.3,34779,0)
- ;;=M87.20^^192^2010^55
- ;;^UTILITY(U,$J,358.3,34779,1,0)
+ ;;^UTILITY(U,$J,358.3,34389,1,3,0)
+ ;;=3^Displaced subtrochanteric fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34389,1,4,0)
+ ;;=4^S72.21XS
+ ;;^UTILITY(U,$J,358.3,34389,2)
+ ;;=^5038026
+ ;;^UTILITY(U,$J,358.3,34390,0)
+ ;;=S72.22XS^^183^2019^37
+ ;;^UTILITY(U,$J,358.3,34390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34779,1,3,0)
- ;;=3^Osteonecrosis d/t Previous Trauma,Unspec Bone
- ;;^UTILITY(U,$J,358.3,34779,1,4,0)
- ;;=4^M87.20
- ;;^UTILITY(U,$J,358.3,34779,2)
- ;;=^5014744
- ;;^UTILITY(U,$J,358.3,34780,0)
- ;;=M90.50^^192^2010^56
- ;;^UTILITY(U,$J,358.3,34780,1,0)
+ ;;^UTILITY(U,$J,358.3,34390,1,3,0)
+ ;;=3^Displaced subtrochanteric fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34390,1,4,0)
+ ;;=4^S72.22XS
+ ;;^UTILITY(U,$J,358.3,34390,2)
+ ;;=^5038042
+ ;;^UTILITY(U,$J,358.3,34391,0)
+ ;;=S72.24XS^^183^2019^85
+ ;;^UTILITY(U,$J,358.3,34391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34780,1,3,0)
- ;;=3^Osteonecrosis in Diseases Classified Elsewhere,Unspec Site
- ;;^UTILITY(U,$J,358.3,34780,1,4,0)
- ;;=4^M90.50
- ;;^UTILITY(U,$J,358.3,34780,2)
- ;;=^5015120
- ;;^UTILITY(U,$J,358.3,34781,0)
- ;;=M87.9^^192^2010^57
- ;;^UTILITY(U,$J,358.3,34781,1,0)
+ ;;^UTILITY(U,$J,358.3,34391,1,3,0)
+ ;;=3^Nondisp subtrochanteric fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34391,1,4,0)
+ ;;=4^S72.24XS
+ ;;^UTILITY(U,$J,358.3,34391,2)
+ ;;=^5038074
+ ;;^UTILITY(U,$J,358.3,34392,0)
+ ;;=S72.25XS^^183^2019^84
+ ;;^UTILITY(U,$J,358.3,34392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34781,1,3,0)
- ;;=3^Osteonecrosis,Unspec
- ;;^UTILITY(U,$J,358.3,34781,1,4,0)
- ;;=4^M87.9
- ;;^UTILITY(U,$J,358.3,34781,2)
- ;;=^5014873
- ;;^UTILITY(U,$J,358.3,34782,0)
- ;;=R06.89^^192^2010^10
- ;;^UTILITY(U,$J,358.3,34782,1,0)
+ ;;^UTILITY(U,$J,358.3,34392,1,3,0)
+ ;;=3^Nondisp subtrochanteric fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34392,1,4,0)
+ ;;=4^S72.25XS
+ ;;^UTILITY(U,$J,358.3,34392,2)
+ ;;=^5038090
+ ;;^UTILITY(U,$J,358.3,34393,0)
+ ;;=S72.321S^^183^2019^46
+ ;;^UTILITY(U,$J,358.3,34393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34782,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,34782,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,34782,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,34783,0)
- ;;=R53.83^^192^2010^34
- ;;^UTILITY(U,$J,358.3,34783,1,0)
+ ;;^UTILITY(U,$J,358.3,34393,1,3,0)
+ ;;=3^Displaced transverse fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34393,1,4,0)
+ ;;=4^S72.321S
+ ;;^UTILITY(U,$J,358.3,34393,2)
+ ;;=^5038159
+ ;;^UTILITY(U,$J,358.3,34394,0)
+ ;;=S72.322S^^183^2019^45
+ ;;^UTILITY(U,$J,358.3,34394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34783,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,34783,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,34783,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,34784,0)
- ;;=R06.09^^192^2010^28
- ;;^UTILITY(U,$J,358.3,34784,1,0)
+ ;;^UTILITY(U,$J,358.3,34394,1,3,0)
+ ;;=3^Displaced transverse fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34394,1,4,0)
+ ;;=4^S72.322S
+ ;;^UTILITY(U,$J,358.3,34394,2)
+ ;;=^5038175
+ ;;^UTILITY(U,$J,358.3,34395,0)
+ ;;=S72.324S^^183^2019^93
+ ;;^UTILITY(U,$J,358.3,34395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34784,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,34784,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,34784,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,34785,0)
- ;;=R53.81^^192^2010^48
- ;;^UTILITY(U,$J,358.3,34785,1,0)
+ ;;^UTILITY(U,$J,358.3,34395,1,3,0)
+ ;;=3^Nondisp transverse fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34395,1,4,0)
+ ;;=4^S72.324S
+ ;;^UTILITY(U,$J,358.3,34395,2)
+ ;;=^5038207
+ ;;^UTILITY(U,$J,358.3,34396,0)
+ ;;=S72.325S^^183^2019^92
+ ;;^UTILITY(U,$J,358.3,34396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34785,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,34785,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,34785,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,34786,0)
- ;;=M87.30^^192^2010^66
- ;;^UTILITY(U,$J,358.3,34786,1,0)
+ ;;^UTILITY(U,$J,358.3,34396,1,3,0)
+ ;;=3^Nondisp transverse fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34396,1,4,0)
+ ;;=4^S72.325S
+ ;;^UTILITY(U,$J,358.3,34396,2)
+ ;;=^5038223
+ ;;^UTILITY(U,$J,358.3,34397,0)
+ ;;=S72.331S^^183^2019^30
+ ;;^UTILITY(U,$J,358.3,34397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34786,1,3,0)
- ;;=3^Secondary Osteonecrosis,Unspec Bone
- ;;^UTILITY(U,$J,358.3,34786,1,4,0)
- ;;=4^M87.30
- ;;^UTILITY(U,$J,358.3,34786,2)
- ;;=^5014787
- ;;^UTILITY(U,$J,358.3,34787,0)
- ;;=M85.80^^192^2010^8
- ;;^UTILITY(U,$J,358.3,34787,1,0)
+ ;;^UTILITY(U,$J,358.3,34397,1,3,0)
+ ;;=3^Displaced oblique fx of shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34397,1,4,0)
+ ;;=4^S72.331S
+ ;;^UTILITY(U,$J,358.3,34397,2)
+ ;;=^5038255
+ ;;^UTILITY(U,$J,358.3,34398,0)
+ ;;=S72.332S^^183^2019^29
+ ;;^UTILITY(U,$J,358.3,34398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34787,1,3,0)
- ;;=3^Bone Density/Structure Disorder,Unspec Site
- ;;^UTILITY(U,$J,358.3,34787,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,34787,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,34788,0)
- ;;=K52.89^^192^2010^52
- ;;^UTILITY(U,$J,358.3,34788,1,0)
+ ;;^UTILITY(U,$J,358.3,34398,1,3,0)
+ ;;=3^Displaced oblique fx of shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34398,1,4,0)
+ ;;=4^S72.332S
+ ;;^UTILITY(U,$J,358.3,34398,2)
+ ;;=^5038271
+ ;;^UTILITY(U,$J,358.3,34399,0)
+ ;;=S72.334S^^183^2019^76
+ ;;^UTILITY(U,$J,358.3,34399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34788,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis
- ;;^UTILITY(U,$J,358.3,34788,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,34788,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,34789,0)
- ;;=R30.9^^192^2010^59
- ;;^UTILITY(U,$J,358.3,34789,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34789,1,3,0)
- ;;=3^Painful Micturition,Unspec
- ;;^UTILITY(U,$J,358.3,34789,1,4,0)
- ;;=4^R30.9
- ;;^UTILITY(U,$J,358.3,34789,2)
- ;;=^5019324
- ;;^UTILITY(U,$J,358.3,34790,0)
- ;;=R00.2^^192^2010^60
+ ;;^UTILITY(U,$J,358.3,34399,1,3,0)
+ ;;=3^Nondisp oblique fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34399,1,4,0)
+ ;;=4^S72.334S
+ ;;^UTILITY(U,$J,358.3,34399,2)
+ ;;=^5038303

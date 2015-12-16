@@ -1,13 +1,12 @@
-GMTSPXU1 ; SLC/SBW,TC - PCE Utilities sub-routines ;07/19/13  11:05
- ;;2.7;Health Summary;**10,37,71,86,101**;Oct 20, 1995;Build 12
+GMTSPXU1 ; SLC/SBW,TC - PCE Utilities sub-routines ;06/25/15  15:51
+ ;;2.7;Health Summary;**10,37,71,86,101,111**;Oct 20, 1995;Build 17
  ;
  ; External References
- ;   DBIA  3390  $$ICDDX^ICDCODE
- ;   DBIA  3390  $$ICDOP^ICDCODE
- ;   DBIA  3390  $$ICDD^ICDCODE
- ;   DBIA  1995  $$CPT^ICPTCOD
- ;   DBIA 10026  ^DIR
- ;   DBIA 10011  ^DIWP
+ ;   ICR  5699  $$ICDDATA,ICDDESC^ICDXCODE
+ ;   ICR  1995  $$CPT^ICPTCOD
+ ;   ICR  5679  $$IMPDATE^LEXU
+ ;   ICR 10026  ^DIR
+ ;   ICR 10011  ^DIWP
  ;
 GETICDDX(GMTSICD,GMTSICF,GMMOD,GMTSDATE,GMTSCSYS) ; Entry point to get ICD data
  N REC,CODE,NAME,DESC,ICDX,ICDI,GMTSICDA
@@ -106,9 +105,32 @@ GETICDCD(DATE,TYPE) ;
  ; TYPE is either "PROC" or "DIAG"
  ; DATE is the date you want to check the coding system for
  N RET,OUT
- I TYPE="DIAG" S TYPE="10D",RET="ICD-"
- I TYPE="PROC" S TYPE="10P",RET="ICP-"
+ I TYPE="DIAG" S TYPE="10D"
+ I TYPE="PROC" S TYPE="10P"
+ S RET="ICD-"
  S OUT=10
  I DATE<$$IMPDATE^LEXU(TYPE) S OUT=9
+ I TYPE="10P"&(OUT=9) S OUT=OUT_" Proc"
+ I TYPE="10P"&(OUT=10) S OUT=OUT_"-PCS"
  S RET=RET_OUT
  Q RET
+ ;
+CODESYS(GMTSCODA,GMTSFILE) ; create coding system and label based on IEN
+ ;input
+ ;  GMTSCODA - IEN of code in either file 80 or 80.1
+ ;  GMTSFILE - 80 or 80.1, should be able to tell based on context when this API is called
+ ;ouput
+ ;  GMTSRET - code from 80 or 80.1 ^ coding system label
+ ; or -1 ^ error message
+ ; check for error condition using $P($G(GMTSRET),U)=-1 vice +$G(GMTSRET)=-1 as urnary operator
+ ; can interpret some procedure codes as scientific notation and trigger <MAXNUMBER> error (e.g. "3E1988X").
+ N GMTSCSYS,GMTSCODE,GMTSRET
+ S GMTSCSYS=$$CSI^ICDEX($G(GMTSFILE),$G(GMTSCODA)) ;Coding system for IEN or NULL
+ I $G(GMTSCSYS)="" S GMTSRET="-1^Error determining coding system" Q GMTSRET
+ S GMTSCSYS=$$SNAM^ICDEX($G(GMTSCSYS)) ;short versioned description or -1
+ I $G(GMTSCSYS)="-1" S GMTSRET="-1^Error determining coding system" Q GMTSRET
+ ;
+ S GMTSCODE=$$CODEC^ICDEX($G(GMTSFILE),$G(GMTSCODA)) ;Code from an IEN or -1^error message
+ I $P($G(GMTSCODE),U)=-1 S GMTSRET="-1^Error: "_$P($G(GMTSCODE),U,2) Q GMTSRET
+ S GMTSRET=$G(GMTSCODE)_U_$G(GMTSCSYS)
+ Q GMTSRET

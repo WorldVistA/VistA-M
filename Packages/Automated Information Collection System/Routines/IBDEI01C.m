@@ -1,138 +1,138 @@
-IBDEI01C ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01C ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,87,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,87,1,1,0)
- ;;=1^Problem Focused Hx/Exam;Straight MDM
- ;;^UTILITY(U,$J,358.3,87,1,2,0)
- ;;=2^99324
- ;;^UTILITY(U,$J,358.3,88,0)
- ;;=99325^^2^19^2
- ;;^UTILITY(U,$J,358.3,88,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,88,1,1,0)
- ;;=1^Exp Prob Focus Hx/Exam;Low Complex MDM
- ;;^UTILITY(U,$J,358.3,88,1,2,0)
- ;;=2^99325
- ;;^UTILITY(U,$J,358.3,89,0)
- ;;=99326^^2^19^3
- ;;^UTILITY(U,$J,358.3,89,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,89,1,1,0)
- ;;=1^Detailed Hx/Exam;Mod Complex MDM
- ;;^UTILITY(U,$J,358.3,89,1,2,0)
- ;;=2^99326
- ;;^UTILITY(U,$J,358.3,90,0)
- ;;=99327^^2^19^4
- ;;^UTILITY(U,$J,358.3,90,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,90,1,1,0)
- ;;=1^Comp Hx/Exam;Mod Complex MDM
- ;;^UTILITY(U,$J,358.3,90,1,2,0)
- ;;=2^99327
- ;;^UTILITY(U,$J,358.3,91,0)
- ;;=99328^^2^19^5
- ;;^UTILITY(U,$J,358.3,91,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,91,1,1,0)
- ;;=1^Comp Hx/Exam;High Complex MDM
- ;;^UTILITY(U,$J,358.3,91,1,2,0)
- ;;=2^99328
- ;;^UTILITY(U,$J,358.3,92,0)
- ;;=99347^^2^20^1
- ;;^UTILITY(U,$J,358.3,92,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,92,1,1,0)
- ;;=1^Problem Focused Hx/Exam;Straight MDM
- ;;^UTILITY(U,$J,358.3,92,1,2,0)
- ;;=2^99347
- ;;^UTILITY(U,$J,358.3,93,0)
- ;;=99348^^2^20^2
- ;;^UTILITY(U,$J,358.3,93,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,93,1,1,0)
- ;;=1^Exp Prob Focus Hx/Exam;Low Complex MDM
- ;;^UTILITY(U,$J,358.3,93,1,2,0)
- ;;=2^99348
- ;;^UTILITY(U,$J,358.3,94,0)
- ;;=99349^^2^20^3
- ;;^UTILITY(U,$J,358.3,94,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,94,1,1,0)
- ;;=1^Detailed Dx/Exam;Mod Complex MDM
- ;;^UTILITY(U,$J,358.3,94,1,2,0)
- ;;=2^99349
- ;;^UTILITY(U,$J,358.3,95,0)
- ;;=99350^^2^20^4
- ;;^UTILITY(U,$J,358.3,95,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,95,1,1,0)
- ;;=1^Comp Hx/Exam;High Complex MDM
- ;;^UTILITY(U,$J,358.3,95,1,2,0)
- ;;=2^99350
- ;;^UTILITY(U,$J,358.3,96,0)
- ;;=99342^^2^21^1
- ;;^UTILITY(U,$J,358.3,96,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,96,1,1,0)
- ;;=1^Exp Prob Fuocus Hx/Exam;Low Complex MDM
- ;;^UTILITY(U,$J,358.3,96,1,2,0)
- ;;=2^99342
- ;;^UTILITY(U,$J,358.3,97,0)
- ;;=99343^^2^21^2
- ;;^UTILITY(U,$J,358.3,97,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,97,1,1,0)
- ;;=1^Detailed Hx/Exam;Mod Complex MDM
- ;;^UTILITY(U,$J,358.3,97,1,2,0)
- ;;=2^99343
- ;;^UTILITY(U,$J,358.3,98,0)
- ;;=99344^^2^21^3
- ;;^UTILITY(U,$J,358.3,98,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,98,1,1,0)
- ;;=1^Comp Hx/Exam;Mod Complex MDM
- ;;^UTILITY(U,$J,358.3,98,1,2,0)
- ;;=2^99344
- ;;^UTILITY(U,$J,358.3,99,0)
- ;;=99345^^2^21^4
- ;;^UTILITY(U,$J,358.3,99,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,99,1,1,0)
- ;;=1^Comp Hx/Exam;High Complex MDM
- ;;^UTILITY(U,$J,358.3,99,1,2,0)
- ;;=2^99345
- ;;^UTILITY(U,$J,358.3,100,0)
- ;;=99366^^2^22^2
- ;;^UTILITY(U,$J,358.3,100,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,100,1,1,0)
- ;;=1^Team Conf,HCP,Pt Present > 29 Min
- ;;^UTILITY(U,$J,358.3,100,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,101,0)
- ;;=99367^^2^22^3
- ;;^UTILITY(U,$J,358.3,101,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,101,1,1,0)
- ;;=1^Team Conf,Phys,Pt Not Present > 29 Min
- ;;^UTILITY(U,$J,358.3,101,1,2,0)
- ;;=2^99367
- ;;^UTILITY(U,$J,358.3,102,0)
- ;;=99368^^2^22^1
- ;;^UTILITY(U,$J,358.3,102,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,102,1,1,0)
- ;;=1^Team Conf,HCP,Pt Not Present > 29 Min
- ;;^UTILITY(U,$J,358.3,102,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,103,0)
- ;;=309.24^^3^23^3
- ;;^UTILITY(U,$J,358.3,103,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,103,1,2,0)
- ;;=2^309.24
- ;;^UTILITY(U,$J,358.3,103,1,5,0)
- ;;=5^Adj Reac w/Anx Mood
+ ;;^UTILITY(U,$J,358.3,70,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,70,1,3,0)
+ ;;=3^Atrophic nonflaccid tympanic membrane, bilateral
+ ;;^UTILITY(U,$J,358.3,70,1,4,0)
+ ;;=4^H73.823
+ ;;^UTILITY(U,$J,358.3,70,2)
+ ;;=^5006786
+ ;;^UTILITY(U,$J,358.3,71,0)
+ ;;=H73.822^^1^5^5
+ ;;^UTILITY(U,$J,358.3,71,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,71,1,3,0)
+ ;;=3^Atrophic nonflaccid tympanic membrane, left ear
+ ;;^UTILITY(U,$J,358.3,71,1,4,0)
+ ;;=4^H73.822
+ ;;^UTILITY(U,$J,358.3,71,2)
+ ;;=^5006785
+ ;;^UTILITY(U,$J,358.3,72,0)
+ ;;=H73.821^^1^5^6
+ ;;^UTILITY(U,$J,358.3,72,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,72,1,3,0)
+ ;;=3^Atrophic nonflaccid tympanic membrane, right ear
+ ;;^UTILITY(U,$J,358.3,72,1,4,0)
+ ;;=4^H73.821
+ ;;^UTILITY(U,$J,358.3,72,2)
+ ;;=^5006784
+ ;;^UTILITY(U,$J,358.3,73,0)
+ ;;=H72.13^^1^5^7
+ ;;^UTILITY(U,$J,358.3,73,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,73,1,3,0)
+ ;;=3^Attic perforation of tympanic membrane, bilateral
+ ;;^UTILITY(U,$J,358.3,73,1,4,0)
+ ;;=4^H72.13
+ ;;^UTILITY(U,$J,358.3,73,2)
+ ;;=^5006749
+ ;;^UTILITY(U,$J,358.3,74,0)
+ ;;=H72.12^^1^5^8
+ ;;^UTILITY(U,$J,358.3,74,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,74,1,3,0)
+ ;;=3^Attic perforation of tympanic membrane, left ear
+ ;;^UTILITY(U,$J,358.3,74,1,4,0)
+ ;;=4^H72.12
+ ;;^UTILITY(U,$J,358.3,74,2)
+ ;;=^5006748
+ ;;^UTILITY(U,$J,358.3,75,0)
+ ;;=H72.11^^1^5^9
+ ;;^UTILITY(U,$J,358.3,75,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,75,1,3,0)
+ ;;=3^Attic perforation of tympanic membrane, right ear
+ ;;^UTILITY(U,$J,358.3,75,1,4,0)
+ ;;=4^H72.11
+ ;;^UTILITY(U,$J,358.3,75,2)
+ ;;=^5006747
+ ;;^UTILITY(U,$J,358.3,76,0)
+ ;;=H51.0^^1^5^10
+ ;;^UTILITY(U,$J,358.3,76,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,76,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,76,1,4,0)
+ ;;=4^H51.0
+ ;;^UTILITY(U,$J,358.3,76,2)
+ ;;=^5006250
+ ;;^UTILITY(U,$J,358.3,77,0)
+ ;;=H72.03^^1^5^11
+ ;;^UTILITY(U,$J,358.3,77,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,77,1,3,0)
+ ;;=3^Central perforation of tympanic membrane, bilateral
+ ;;^UTILITY(U,$J,358.3,77,1,4,0)
+ ;;=4^H72.03
+ ;;^UTILITY(U,$J,358.3,77,2)
+ ;;=^5006745
+ ;;^UTILITY(U,$J,358.3,78,0)
+ ;;=H72.02^^1^5^12
+ ;;^UTILITY(U,$J,358.3,78,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,78,1,3,0)
+ ;;=3^Central perforation of tympanic membrane, left ear
+ ;;^UTILITY(U,$J,358.3,78,1,4,0)
+ ;;=4^H72.02
+ ;;^UTILITY(U,$J,358.3,78,2)
+ ;;=^5006744
+ ;;^UTILITY(U,$J,358.3,79,0)
+ ;;=H72.01^^1^5^13
+ ;;^UTILITY(U,$J,358.3,79,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,79,1,3,0)
+ ;;=3^Central perforation of tympanic membrane, right ear
+ ;;^UTILITY(U,$J,358.3,79,1,4,0)
+ ;;=4^H72.01
+ ;;^UTILITY(U,$J,358.3,79,2)
+ ;;=^5006743
+ ;;^UTILITY(U,$J,358.3,80,0)
+ ;;=H61.23^^1^5^20
+ ;;^UTILITY(U,$J,358.3,80,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,80,1,3,0)
+ ;;=3^Impacted cerumen, bilateral
+ ;;^UTILITY(U,$J,358.3,80,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,80,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,81,0)
+ ;;=H61.22^^1^5^21
+ ;;^UTILITY(U,$J,358.3,81,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,81,1,3,0)
+ ;;=3^Impacted cerumen, left ear
+ ;;^UTILITY(U,$J,358.3,81,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,81,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,82,0)
+ ;;=H61.21^^1^5^22
+ ;;^UTILITY(U,$J,358.3,82,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,82,1,3,0)
+ ;;=3^Impacted cerumen, right ear
+ ;;^UTILITY(U,$J,358.3,82,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,82,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,83,0)
+ ;;=H72.813^^1^5^26
+ ;;^UTILITY(U,$J,358.3,83,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,83,1,3,0)
+ ;;=3^Multiple perforations of tympanic membrane, bilateral

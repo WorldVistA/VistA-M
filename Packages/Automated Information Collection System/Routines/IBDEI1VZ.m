@@ -1,126 +1,136 @@
-IBDEI1VZ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1VZ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33555,1,0)
+ ;;^UTILITY(U,$J,358.3,33180,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,33181,0)
+ ;;=M62.40^^182^1998^27
+ ;;^UTILITY(U,$J,358.3,33181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33555,1,3,0)
- ;;=3^Disp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33555,1,4,0)
- ;;=4^S92.131K
- ;;^UTILITY(U,$J,358.3,33555,2)
- ;;=^5044693
- ;;^UTILITY(U,$J,358.3,33556,0)
- ;;=S92.125K^^191^1968^256
- ;;^UTILITY(U,$J,358.3,33556,1,0)
+ ;;^UTILITY(U,$J,358.3,33181,1,3,0)
+ ;;=3^Contracture of Muscle,Unspec
+ ;;^UTILITY(U,$J,358.3,33181,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,33181,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,33182,0)
+ ;;=M62.831^^182^1998^51
+ ;;^UTILITY(U,$J,358.3,33182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33556,1,3,0)
- ;;=3^Nondisp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33556,1,4,0)
- ;;=4^S92.125K
- ;;^UTILITY(U,$J,358.3,33556,2)
- ;;=^5044679
- ;;^UTILITY(U,$J,358.3,33557,0)
- ;;=S92.124K^^191^1968^258
- ;;^UTILITY(U,$J,358.3,33557,1,0)
+ ;;^UTILITY(U,$J,358.3,33182,1,3,0)
+ ;;=3^Muscle Spasm of Calf
+ ;;^UTILITY(U,$J,358.3,33182,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,33182,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,33183,0)
+ ;;=M62.838^^182^1998^50
+ ;;^UTILITY(U,$J,358.3,33183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33557,1,3,0)
- ;;=3^Nondisp fx body rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33557,1,4,0)
- ;;=4^S92.124K
- ;;^UTILITY(U,$J,358.3,33557,2)
- ;;=^5044672
- ;;^UTILITY(U,$J,358.3,33558,0)
- ;;=S92.122K^^191^1968^31
- ;;^UTILITY(U,$J,358.3,33558,1,0)
+ ;;^UTILITY(U,$J,358.3,33183,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,33183,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,33183,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,33184,0)
+ ;;=M70.21^^182^1998^55
+ ;;^UTILITY(U,$J,358.3,33184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33558,1,3,0)
- ;;=3^Disp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33558,1,4,0)
- ;;=4^S92.122K
- ;;^UTILITY(U,$J,358.3,33558,2)
- ;;=^5044658
- ;;^UTILITY(U,$J,358.3,33559,0)
- ;;=S92.121K^^191^1968^33
- ;;^UTILITY(U,$J,358.3,33559,1,0)
+ ;;^UTILITY(U,$J,358.3,33184,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,33184,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,33184,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,33185,0)
+ ;;=M70.22^^182^1998^54
+ ;;^UTILITY(U,$J,358.3,33185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33559,1,3,0)
- ;;=3^Disp fx body rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33559,1,4,0)
- ;;=4^S92.121K
- ;;^UTILITY(U,$J,358.3,33559,2)
- ;;=^5044651
- ;;^UTILITY(U,$J,358.3,33560,0)
- ;;=S92.002K^^191^1968^192
- ;;^UTILITY(U,$J,358.3,33560,1,0)
+ ;;^UTILITY(U,$J,358.3,33185,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,33185,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,33185,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,33186,0)
+ ;;=M71.161^^182^1998^39
+ ;;^UTILITY(U,$J,358.3,33186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33560,1,3,0)
- ;;=3^Fx of lft calcaneus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33560,1,4,0)
- ;;=4^S92.002K
- ;;^UTILITY(U,$J,358.3,33560,2)
- ;;=^5044364
- ;;^UTILITY(U,$J,358.3,33561,0)
- ;;=S92.001K^^191^1968^209
- ;;^UTILITY(U,$J,358.3,33561,1,0)
+ ;;^UTILITY(U,$J,358.3,33186,1,3,0)
+ ;;=3^Infective Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,33186,1,4,0)
+ ;;=4^M71.161
+ ;;^UTILITY(U,$J,358.3,33186,2)
+ ;;=^5013139
+ ;;^UTILITY(U,$J,358.3,33187,0)
+ ;;=M71.162^^182^1998^38
+ ;;^UTILITY(U,$J,358.3,33187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33561,1,3,0)
- ;;=3^Fx of rt calcaneus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33561,1,4,0)
- ;;=4^S92.001K
- ;;^UTILITY(U,$J,358.3,33561,2)
- ;;=^5044357
- ;;^UTILITY(U,$J,358.3,33562,0)
- ;;=S92.102K^^191^1968^202
- ;;^UTILITY(U,$J,358.3,33562,1,0)
+ ;;^UTILITY(U,$J,358.3,33187,1,3,0)
+ ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,33187,1,4,0)
+ ;;=4^M71.162
+ ;;^UTILITY(U,$J,358.3,33187,2)
+ ;;=^5013140
+ ;;^UTILITY(U,$J,358.3,33188,0)
+ ;;=M72.0^^182^1998^91
+ ;;^UTILITY(U,$J,358.3,33188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33562,1,3,0)
- ;;=3^Fx of lft talus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33562,1,4,0)
- ;;=4^S92.102K
- ;;^UTILITY(U,$J,358.3,33562,2)
- ;;=^5044602
- ;;^UTILITY(U,$J,358.3,33563,0)
- ;;=S92.101K^^191^1968^218
- ;;^UTILITY(U,$J,358.3,33563,1,0)
+ ;;^UTILITY(U,$J,358.3,33188,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,33188,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,33188,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,33189,0)
+ ;;=M75.111^^182^1998^134
+ ;;^UTILITY(U,$J,358.3,33189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33563,1,3,0)
- ;;=3^Fx of rt talus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,33563,1,4,0)
- ;;=4^S92.101K
- ;;^UTILITY(U,$J,358.3,33563,2)
- ;;=^5044595
- ;;^UTILITY(U,$J,358.3,33564,0)
- ;;=S92.065K^^191^1968^363
- ;;^UTILITY(U,$J,358.3,33564,1,0)
+ ;;^UTILITY(U,$J,358.3,33189,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,33189,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,33189,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,33190,0)
+ ;;=M75.112^^182^1998^133
+ ;;^UTILITY(U,$J,358.3,33190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33564,1,3,0)
- ;;=3^Nondisp intartic fx lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33564,1,4,0)
- ;;=4^S92.065K
- ;;^UTILITY(U,$J,358.3,33564,2)
- ;;=^5044581
- ;;^UTILITY(U,$J,358.3,33565,0)
- ;;=S92.064K^^191^1968^364
- ;;^UTILITY(U,$J,358.3,33565,1,0)
+ ;;^UTILITY(U,$J,358.3,33190,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,33190,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,33190,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,33191,0)
+ ;;=M75.51^^182^1998^9
+ ;;^UTILITY(U,$J,358.3,33191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33565,1,3,0)
- ;;=3^Nondisp intartic fx rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33565,1,4,0)
- ;;=4^S92.064K
- ;;^UTILITY(U,$J,358.3,33565,2)
- ;;=^5044574
- ;;^UTILITY(U,$J,358.3,33566,0)
- ;;=S92.062K^^191^1968^136
- ;;^UTILITY(U,$J,358.3,33566,1,0)
+ ;;^UTILITY(U,$J,358.3,33191,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,33191,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,33191,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,33192,0)
+ ;;=M75.52^^182^1998^8
+ ;;^UTILITY(U,$J,358.3,33192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33566,1,3,0)
- ;;=3^Disp intraarticular fx lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,33566,1,4,0)
- ;;=4^S92.062K
- ;;^UTILITY(U,$J,358.3,33566,2)
- ;;=^5044560
- ;;^UTILITY(U,$J,358.3,33567,0)
- ;;=S92.061K^^191^1968^139
- ;;^UTILITY(U,$J,358.3,33567,1,0)
+ ;;^UTILITY(U,$J,358.3,33192,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,33192,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,33192,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,33193,0)
+ ;;=M77.11^^182^1998^46
+ ;;^UTILITY(U,$J,358.3,33193,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33193,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,33193,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,33193,2)
+ ;;=^5013304

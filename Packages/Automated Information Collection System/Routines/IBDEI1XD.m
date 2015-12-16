@@ -1,130 +1,124 @@
-IBDEI1XD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34183,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,34183,1,4,0)
- ;;=4^I25.790
- ;;^UTILITY(U,$J,358.3,34183,2)
- ;;=^5007139
- ;;^UTILITY(U,$J,358.3,34184,0)
- ;;=I25.111^^192^1990^29
- ;;^UTILITY(U,$J,358.3,34184,1,0)
+ ;;^UTILITY(U,$J,358.3,33824,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,33824,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,33825,0)
+ ;;=W17.89XD^^182^2011^54
+ ;;^UTILITY(U,$J,358.3,33825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34184,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34184,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,34184,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,34185,0)
- ;;=I25.118^^192^1990^30
- ;;^UTILITY(U,$J,358.3,34185,1,0)
+ ;;^UTILITY(U,$J,358.3,33825,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33825,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,33825,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,33826,0)
+ ;;=W18.11XA^^182^2011^63
+ ;;^UTILITY(U,$J,358.3,33826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34185,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34185,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,34185,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,34186,0)
- ;;=I25.119^^192^1990^31
- ;;^UTILITY(U,$J,358.3,34186,1,0)
+ ;;^UTILITY(U,$J,358.3,33826,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33826,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,33826,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,33827,0)
+ ;;=W18.11XD^^182^2011^64
+ ;;^UTILITY(U,$J,358.3,33827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34186,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34186,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,34186,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,34187,0)
- ;;=I25.110^^192^1990^32
- ;;^UTILITY(U,$J,358.3,34187,1,0)
+ ;;^UTILITY(U,$J,358.3,33827,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33827,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,33827,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,33828,0)
+ ;;=W18.12XA^^182^2011^61
+ ;;^UTILITY(U,$J,358.3,33828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34187,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,34187,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,34187,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,34188,0)
- ;;=I25.10^^192^1990^33
- ;;^UTILITY(U,$J,358.3,34188,1,0)
+ ;;^UTILITY(U,$J,358.3,33828,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33828,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,33828,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,33829,0)
+ ;;=W18.12XD^^182^2011^62
+ ;;^UTILITY(U,$J,358.3,33829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34188,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,34188,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,34188,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,34189,0)
- ;;=I48.0^^192^1990^42
- ;;^UTILITY(U,$J,358.3,34189,1,0)
+ ;;^UTILITY(U,$J,358.3,33829,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33829,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,33829,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,33830,0)
+ ;;=W18.2XXA^^182^2011^69
+ ;;^UTILITY(U,$J,358.3,33830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34189,1,3,0)
- ;;=3^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,34189,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,34189,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,34190,0)
- ;;=I49.9^^192^1990^44
- ;;^UTILITY(U,$J,358.3,34190,1,0)
+ ;;^UTILITY(U,$J,358.3,33830,1,3,0)
+ ;;=3^Fall into Empty Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33830,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,33830,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,33831,0)
+ ;;=W18.2XXD^^182^2011^70
+ ;;^UTILITY(U,$J,358.3,33831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34190,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,34190,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,34190,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,34191,0)
- ;;=I42.9^^192^1990^45
- ;;^UTILITY(U,$J,358.3,34191,1,0)
+ ;;^UTILITY(U,$J,358.3,33831,1,3,0)
+ ;;=3^Fall into Empty Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33831,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,33831,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,33832,0)
+ ;;=W18.40XA^^182^2011^101
+ ;;^UTILITY(U,$J,358.3,33832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34191,1,3,0)
- ;;=3^Cardiomyopathy,Unspec
- ;;^UTILITY(U,$J,358.3,34191,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,34191,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,34192,0)
- ;;=I50.42^^192^1990^47
- ;;^UTILITY(U,$J,358.3,34192,1,0)
+ ;;^UTILITY(U,$J,358.3,33832,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33832,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,33832,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,33833,0)
+ ;;=W18.40XD^^182^2011^102
+ ;;^UTILITY(U,$J,358.3,33833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34192,1,3,0)
- ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34192,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,34192,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,34193,0)
- ;;=I50.32^^192^1990^48
- ;;^UTILITY(U,$J,358.3,34193,1,0)
+ ;;^UTILITY(U,$J,358.3,33833,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33833,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,33833,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,33834,0)
+ ;;=W18.41XA^^182^2011^103
+ ;;^UTILITY(U,$J,358.3,33834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34193,1,3,0)
- ;;=3^Chr Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34193,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,34193,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,34194,0)
- ;;=I27.82^^192^1990^49
- ;;^UTILITY(U,$J,358.3,34194,1,0)
+ ;;^UTILITY(U,$J,358.3,33834,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33834,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,33834,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,33835,0)
+ ;;=W18.41XD^^182^2011^104
+ ;;^UTILITY(U,$J,358.3,33835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34194,1,3,0)
- ;;=3^Chr Pulmonary Embolism
- ;;^UTILITY(U,$J,358.3,34194,1,4,0)
- ;;=4^I27.82
- ;;^UTILITY(U,$J,358.3,34194,2)
- ;;=^338238
- ;;^UTILITY(U,$J,358.3,34195,0)
- ;;=I50.22^^192^1990^50
- ;;^UTILITY(U,$J,358.3,34195,1,0)
+ ;;^UTILITY(U,$J,358.3,33835,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33835,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,33835,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,33836,0)
+ ;;=W18.42XA^^182^2011^105
+ ;;^UTILITY(U,$J,358.3,33836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34195,1,3,0)
- ;;=3^Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34195,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,34195,2)
- ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,33836,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr

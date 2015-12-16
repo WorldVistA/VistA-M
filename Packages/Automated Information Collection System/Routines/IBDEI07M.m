@@ -1,146 +1,132 @@
-IBDEI07M ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07M ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3400,1,5,0)
- ;;=5^Burn Unspec, Full-Thickness Skin, Third Degree
- ;;^UTILITY(U,$J,358.3,3400,2)
- ;;=^275880
- ;;^UTILITY(U,$J,358.3,3401,0)
- ;;=949.0^^31^277^4
- ;;^UTILITY(U,$J,358.3,3401,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3401,1,2,0)
- ;;=2^949.0
- ;;^UTILITY(U,$J,358.3,3401,1,5,0)
- ;;=5^Burn,Unspecified Degree
- ;;^UTILITY(U,$J,358.3,3401,2)
- ;;=^17590
- ;;^UTILITY(U,$J,358.3,3402,0)
- ;;=112.0^^31^278^1
- ;;^UTILITY(U,$J,358.3,3402,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3402,1,2,0)
- ;;=2^112.0
- ;;^UTILITY(U,$J,358.3,3402,1,5,0)
- ;;=5^Candidiasis Mouth
- ;;^UTILITY(U,$J,358.3,3402,2)
- ;;=^18599
- ;;^UTILITY(U,$J,358.3,3403,0)
- ;;=112.3^^31^278^2
- ;;^UTILITY(U,$J,358.3,3403,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3403,1,2,0)
- ;;=2^112.3
- ;;^UTILITY(U,$J,358.3,3403,1,5,0)
- ;;=5^Candidiasis Skin
- ;;^UTILITY(U,$J,358.3,3403,2)
- ;;=^18577
- ;;^UTILITY(U,$J,358.3,3404,0)
- ;;=682.3^^31^279^2
- ;;^UTILITY(U,$J,358.3,3404,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3404,1,2,0)
- ;;=2^682.3
- ;;^UTILITY(U,$J,358.3,3404,1,5,0)
- ;;=5^Cellulitis arm/forearm
- ;;^UTILITY(U,$J,358.3,3404,2)
- ;;=^271891
- ;;^UTILITY(U,$J,358.3,3405,0)
- ;;=682.5^^31^279^3
- ;;^UTILITY(U,$J,358.3,3405,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3405,1,2,0)
- ;;=2^682.5
- ;;^UTILITY(U,$J,358.3,3405,1,5,0)
- ;;=5^Cellulitis buttock
- ;;^UTILITY(U,$J,358.3,3405,2)
- ;;=^271893
- ;;^UTILITY(U,$J,358.3,3406,0)
- ;;=682.0^^31^279^4
- ;;^UTILITY(U,$J,358.3,3406,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3406,1,2,0)
- ;;=2^682.0
- ;;^UTILITY(U,$J,358.3,3406,1,5,0)
- ;;=5^Cellulitis face
- ;;^UTILITY(U,$J,358.3,3406,2)
- ;;=^271888
- ;;^UTILITY(U,$J,358.3,3407,0)
- ;;=682.7^^31^279^5
- ;;^UTILITY(U,$J,358.3,3407,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3407,1,2,0)
- ;;=2^682.7
- ;;^UTILITY(U,$J,358.3,3407,1,5,0)
- ;;=5^Cellulitis foot
- ;;^UTILITY(U,$J,358.3,3407,2)
- ;;=^271895
- ;;^UTILITY(U,$J,358.3,3408,0)
- ;;=682.4^^31^279^6
- ;;^UTILITY(U,$J,358.3,3408,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3408,1,2,0)
- ;;=2^682.4
- ;;^UTILITY(U,$J,358.3,3408,1,5,0)
- ;;=5^Cellulitis hand
- ;;^UTILITY(U,$J,358.3,3408,2)
- ;;=^271892
- ;;^UTILITY(U,$J,358.3,3409,0)
- ;;=682.6^^31^279^7
- ;;^UTILITY(U,$J,358.3,3409,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3409,1,2,0)
- ;;=2^682.6
- ;;^UTILITY(U,$J,358.3,3409,1,5,0)
- ;;=5^Cellulitis leg(except foot)
- ;;^UTILITY(U,$J,358.3,3409,2)
- ;;=^271894
- ;;^UTILITY(U,$J,358.3,3410,0)
- ;;=682.1^^31^279^8
- ;;^UTILITY(U,$J,358.3,3410,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3410,1,2,0)
- ;;=2^682.1
- ;;^UTILITY(U,$J,358.3,3410,1,5,0)
- ;;=5^Cellulitis neck
- ;;^UTILITY(U,$J,358.3,3410,2)
- ;;=^271889
- ;;^UTILITY(U,$J,358.3,3411,0)
- ;;=682.8^^31^279^9
- ;;^UTILITY(U,$J,358.3,3411,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3411,1,2,0)
- ;;=2^682.8
- ;;^UTILITY(U,$J,358.3,3411,1,5,0)
- ;;=5^Cellulitis scalp
- ;;^UTILITY(U,$J,358.3,3411,2)
- ;;=^271896
- ;;^UTILITY(U,$J,358.3,3412,0)
- ;;=682.2^^31^279^10
- ;;^UTILITY(U,$J,358.3,3412,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3412,1,2,0)
- ;;=2^682.2
- ;;^UTILITY(U,$J,358.3,3412,1,5,0)
- ;;=5^Cellulitis trunk
- ;;^UTILITY(U,$J,358.3,3412,2)
- ;;=^271890
- ;;^UTILITY(U,$J,358.3,3413,0)
- ;;=682.9^^31^279^1
- ;;^UTILITY(U,$J,358.3,3413,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3413,1,2,0)
- ;;=2^682.9
- ;;^UTILITY(U,$J,358.3,3413,1,5,0)
- ;;=5^Cellulitis NOS
- ;;^UTILITY(U,$J,358.3,3413,2)
- ;;=^21160
- ;;^UTILITY(U,$J,358.3,3414,0)
- ;;=691.8^^31^280^4
- ;;^UTILITY(U,$J,358.3,3414,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3414,1,2,0)
- ;;=2^691.8
- ;;^UTILITY(U,$J,358.3,3414,1,5,0)
- ;;=5^Atopic Dermatitis
+ ;;^UTILITY(U,$J,358.3,3063,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,3064,0)
+ ;;=F06.8^^8^89^16
+ ;;^UTILITY(U,$J,358.3,3064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3064,1,3,0)
+ ;;=3^Mental Disorder d/t Another Medical Condition NEC
+ ;;^UTILITY(U,$J,358.3,3064,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,3064,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,3065,0)
+ ;;=G30.9^^8^89^2
+ ;;^UTILITY(U,$J,358.3,3065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3065,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3065,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,3065,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,3066,0)
+ ;;=G31.9^^8^89^14
+ ;;^UTILITY(U,$J,358.3,3066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3066,1,3,0)
+ ;;=3^Major Neurocognitive Disorder d/t Alzheimer's Disease,Possible
+ ;;^UTILITY(U,$J,358.3,3066,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,3066,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,3067,0)
+ ;;=G31.01^^8^89^17
+ ;;^UTILITY(U,$J,358.3,3067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3067,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,3067,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,3067,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,3068,0)
+ ;;=G31.1^^8^89^21
+ ;;^UTILITY(U,$J,358.3,3068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3068,1,3,0)
+ ;;=3^Senile Degeneration of the Brain NOS
+ ;;^UTILITY(U,$J,358.3,3068,1,4,0)
+ ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,3068,2)
+ ;;=^5003809
+ ;;^UTILITY(U,$J,358.3,3069,0)
+ ;;=G94.^^8^89^3
+ ;;^UTILITY(U,$J,358.3,3069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3069,1,3,0)
+ ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,3069,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,3069,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,3070,0)
+ ;;=G31.83^^8^89^11
+ ;;^UTILITY(U,$J,358.3,3070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3070,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,3070,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,3070,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,3071,0)
+ ;;=G31.89^^8^89^7
+ ;;^UTILITY(U,$J,358.3,3071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3071,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,3071,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,3071,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,3072,0)
+ ;;=G31.9^^8^89^8
+ ;;^UTILITY(U,$J,358.3,3072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3072,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,3072,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,3072,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,3073,0)
+ ;;=G23.8^^8^89^6
+ ;;^UTILITY(U,$J,358.3,3073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3073,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,3073,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,3073,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,3074,0)
+ ;;=G10.^^8^89^15
+ ;;^UTILITY(U,$J,358.3,3074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3074,1,3,0)
+ ;;=3^Major Neurocognitive Disorder d/t Huntington's Disease w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,3074,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,3074,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,3075,0)
+ ;;=G31.09^^8^89^13
+ ;;^UTILITY(U,$J,358.3,3075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3075,1,3,0)
+ ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,3075,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,3075,2)
+ ;;=^329916^F02.81
+ ;;^UTILITY(U,$J,358.3,3076,0)
+ ;;=F06.30^^8^90^2
+ ;;^UTILITY(U,$J,358.3,3076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3076,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec

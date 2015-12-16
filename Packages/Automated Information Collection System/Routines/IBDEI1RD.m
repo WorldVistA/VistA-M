@@ -1,132 +1,132 @@
-IBDEI1RD ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1RD ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31448,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,31448,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,31448,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,31449,0)
- ;;=H11.31^^190^1936^7
- ;;^UTILITY(U,$J,358.3,31449,1,0)
+ ;;^UTILITY(U,$J,358.3,31069,1,4,0)
+ ;;=4^S62.101A
+ ;;^UTILITY(U,$J,358.3,31069,2)
+ ;;=^5033199
+ ;;^UTILITY(U,$J,358.3,31070,0)
+ ;;=M67.432^^179^1940^11
+ ;;^UTILITY(U,$J,358.3,31070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31449,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,31449,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,31449,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,31450,0)
- ;;=H01.002^^190^1936^3
- ;;^UTILITY(U,$J,358.3,31450,1,0)
+ ;;^UTILITY(U,$J,358.3,31070,1,3,0)
+ ;;=3^Ganglion, left wrist
+ ;;^UTILITY(U,$J,358.3,31070,1,4,0)
+ ;;=4^M67.432
+ ;;^UTILITY(U,$J,358.3,31070,2)
+ ;;=^5012964
+ ;;^UTILITY(U,$J,358.3,31071,0)
+ ;;=M67.431^^179^1940^12
+ ;;^UTILITY(U,$J,358.3,31071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31450,1,3,0)
- ;;=3^Blepharitis Unspec,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,31450,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,31450,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,31451,0)
- ;;=H01.004^^190^1936^2
- ;;^UTILITY(U,$J,358.3,31451,1,0)
+ ;;^UTILITY(U,$J,358.3,31071,1,3,0)
+ ;;=3^Ganglion, right wrist
+ ;;^UTILITY(U,$J,358.3,31071,1,4,0)
+ ;;=4^M67.431
+ ;;^UTILITY(U,$J,358.3,31071,2)
+ ;;=^5012963
+ ;;^UTILITY(U,$J,358.3,31072,0)
+ ;;=M25.532^^179^1940^13
+ ;;^UTILITY(U,$J,358.3,31072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31451,1,3,0)
- ;;=3^Blepharitis Unspec,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,31451,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,31451,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,31452,0)
- ;;=H01.005^^190^1936^1
- ;;^UTILITY(U,$J,358.3,31452,1,0)
+ ;;^UTILITY(U,$J,358.3,31072,1,3,0)
+ ;;=3^Pain in left wrist
+ ;;^UTILITY(U,$J,358.3,31072,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,31072,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,31073,0)
+ ;;=M25.531^^179^1940^14
+ ;;^UTILITY(U,$J,358.3,31073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31452,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,31452,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,31452,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,31453,0)
- ;;=H01.001^^190^1936^4
- ;;^UTILITY(U,$J,358.3,31453,1,0)
+ ;;^UTILITY(U,$J,358.3,31073,1,3,0)
+ ;;=3^Pain in right wrist
+ ;;^UTILITY(U,$J,358.3,31073,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,31073,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,31074,0)
+ ;;=M19.032^^179^1940^15
+ ;;^UTILITY(U,$J,358.3,31074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31453,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,31453,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,31453,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,31454,0)
- ;;=H57.13^^190^1936^10
- ;;^UTILITY(U,$J,358.3,31454,1,0)
+ ;;^UTILITY(U,$J,358.3,31074,1,3,0)
+ ;;=3^Primary osteoarthritis, left wrist
+ ;;^UTILITY(U,$J,358.3,31074,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,31074,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,31075,0)
+ ;;=M19.031^^179^1940^16
+ ;;^UTILITY(U,$J,358.3,31075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31454,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,31454,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,31454,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,31455,0)
- ;;=H57.12^^190^1936^11
- ;;^UTILITY(U,$J,358.3,31455,1,0)
+ ;;^UTILITY(U,$J,358.3,31075,1,3,0)
+ ;;=3^Primary osteoarthritis, right wrist
+ ;;^UTILITY(U,$J,358.3,31075,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,31075,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,31076,0)
+ ;;=M65.4^^179^1940^17
+ ;;^UTILITY(U,$J,358.3,31076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31455,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,31455,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,31455,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,31456,0)
- ;;=H57.11^^190^1936^12
- ;;^UTILITY(U,$J,358.3,31456,1,0)
+ ;;^UTILITY(U,$J,358.3,31076,1,3,0)
+ ;;=3^Radial styloid tenosynovitis [de Quervain]
+ ;;^UTILITY(U,$J,358.3,31076,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,31076,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,31077,0)
+ ;;=M12.532^^179^1940^20
+ ;;^UTILITY(U,$J,358.3,31077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31456,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,31456,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,31456,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,31457,0)
- ;;=S05.02XA^^190^1937^1
- ;;^UTILITY(U,$J,358.3,31457,1,0)
+ ;;^UTILITY(U,$J,358.3,31077,1,3,0)
+ ;;=3^Traumatic arthropathy, left wrist
+ ;;^UTILITY(U,$J,358.3,31077,1,4,0)
+ ;;=4^M12.532
+ ;;^UTILITY(U,$J,358.3,31077,2)
+ ;;=^5010626
+ ;;^UTILITY(U,$J,358.3,31078,0)
+ ;;=M12.531^^179^1940^21
+ ;;^UTILITY(U,$J,358.3,31078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31457,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,31457,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,31457,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,31458,0)
- ;;=S05.01XA^^190^1937^2
- ;;^UTILITY(U,$J,358.3,31458,1,0)
+ ;;^UTILITY(U,$J,358.3,31078,1,3,0)
+ ;;=3^Traumatic arthropathy, right wrist
+ ;;^UTILITY(U,$J,358.3,31078,1,4,0)
+ ;;=4^M12.531
+ ;;^UTILITY(U,$J,358.3,31078,2)
+ ;;=^5010625
+ ;;^UTILITY(U,$J,358.3,31079,0)
+ ;;=S52.502A^^179^1940^7
+ ;;^UTILITY(U,$J,358.3,31079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31458,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,31458,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,31458,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,31459,0)
- ;;=B96.81^^190^1938^51
- ;;^UTILITY(U,$J,358.3,31459,1,0)
+ ;;^UTILITY(U,$J,358.3,31079,1,3,0)
+ ;;=3^Fracture of the lower end of left radius, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,31079,1,4,0)
+ ;;=4^S52.502A
+ ;;^UTILITY(U,$J,358.3,31079,2)
+ ;;=^5030603
+ ;;^UTILITY(U,$J,358.3,31080,0)
+ ;;=S52.501A^^179^1940^8
+ ;;^UTILITY(U,$J,358.3,31080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31459,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,31459,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,31459,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,31460,0)
- ;;=B15.9^^190^1938^53
- ;;^UTILITY(U,$J,358.3,31460,1,0)
+ ;;^UTILITY(U,$J,358.3,31080,1,3,0)
+ ;;=3^Fracture of the lower end of right radius, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,31080,1,4,0)
+ ;;=4^S52.501A
+ ;;^UTILITY(U,$J,358.3,31080,2)
+ ;;=^5030587
+ ;;^UTILITY(U,$J,358.3,31081,0)
+ ;;=S63.502A^^179^1940^18
+ ;;^UTILITY(U,$J,358.3,31081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31460,1,3,0)
- ;;=3^Hepatitis A w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,31460,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,31460,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,31461,0)
- ;;=B16.9^^190^1938^54
+ ;;^UTILITY(U,$J,358.3,31081,1,3,0)
+ ;;=3^Sprain of left wrist, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,31081,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,31081,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,31082,0)
+ ;;=S63.501A^^179^1940^19
+ ;;^UTILITY(U,$J,358.3,31082,1,0)
+ ;;=^358.31IA^4^2

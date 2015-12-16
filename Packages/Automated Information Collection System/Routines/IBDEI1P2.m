@@ -1,136 +1,128 @@
-IBDEI1P2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1P2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30406,1,0)
+ ;;^UTILITY(U,$J,358.3,30054,1,4,0)
+ ;;=4^O26.823
+ ;;^UTILITY(U,$J,358.3,30054,2)
+ ;;=^5016339
+ ;;^UTILITY(U,$J,358.3,30055,0)
+ ;;=O86.11^^178^1913^7
+ ;;^UTILITY(U,$J,358.3,30055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30406,1,3,0)
- ;;=3^Left Arm Pain
- ;;^UTILITY(U,$J,358.3,30406,1,4,0)
- ;;=4^M79.602
- ;;^UTILITY(U,$J,358.3,30406,2)
- ;;=^5013326
- ;;^UTILITY(U,$J,358.3,30407,0)
- ;;=M79.604^^189^1916^16
- ;;^UTILITY(U,$J,358.3,30407,1,0)
+ ;;^UTILITY(U,$J,358.3,30055,1,3,0)
+ ;;=3^Cervicitis following delivery
+ ;;^UTILITY(U,$J,358.3,30055,1,4,0)
+ ;;=4^O86.11
+ ;;^UTILITY(U,$J,358.3,30055,2)
+ ;;=^5017755
+ ;;^UTILITY(U,$J,358.3,30056,0)
+ ;;=O86.13^^178^1913^89
+ ;;^UTILITY(U,$J,358.3,30056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30407,1,3,0)
- ;;=3^Right Leg Pain
- ;;^UTILITY(U,$J,358.3,30407,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,30407,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,30408,0)
- ;;=L03.321^^189^1917^1
- ;;^UTILITY(U,$J,358.3,30408,1,0)
+ ;;^UTILITY(U,$J,358.3,30056,1,3,0)
+ ;;=3^Vaginitis following delivery
+ ;;^UTILITY(U,$J,358.3,30056,1,4,0)
+ ;;=4^O86.13
+ ;;^UTILITY(U,$J,358.3,30056,2)
+ ;;=^5017757
+ ;;^UTILITY(U,$J,358.3,30057,0)
+ ;;=O86.20^^178^1913^88
+ ;;^UTILITY(U,$J,358.3,30057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30408,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,30408,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,30408,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,30409,0)
- ;;=L03.322^^189^1917^2
- ;;^UTILITY(U,$J,358.3,30409,1,0)
+ ;;^UTILITY(U,$J,358.3,30057,1,3,0)
+ ;;=3^Urinary tract infection following delivery, unspecified
+ ;;^UTILITY(U,$J,358.3,30057,1,4,0)
+ ;;=4^O86.20
+ ;;^UTILITY(U,$J,358.3,30057,2)
+ ;;=^5017759
+ ;;^UTILITY(U,$J,358.3,30058,0)
+ ;;=O86.21^^178^1913^34
+ ;;^UTILITY(U,$J,358.3,30058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30409,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,30409,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,30409,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,30410,0)
- ;;=L03.327^^189^1917^3
- ;;^UTILITY(U,$J,358.3,30410,1,0)
+ ;;^UTILITY(U,$J,358.3,30058,1,3,0)
+ ;;=3^Infection of kidney following delivery
+ ;;^UTILITY(U,$J,358.3,30058,1,4,0)
+ ;;=4^O86.21
+ ;;^UTILITY(U,$J,358.3,30058,2)
+ ;;=^5017760
+ ;;^UTILITY(U,$J,358.3,30059,0)
+ ;;=O86.22^^178^1913^33
+ ;;^UTILITY(U,$J,358.3,30059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30410,1,3,0)
- ;;=3^Acute Lymphangitis of Buttock
- ;;^UTILITY(U,$J,358.3,30410,1,4,0)
- ;;=4^L03.327
- ;;^UTILITY(U,$J,358.3,30410,2)
- ;;=^5009061
- ;;^UTILITY(U,$J,358.3,30411,0)
- ;;=L03.323^^189^1917^4
- ;;^UTILITY(U,$J,358.3,30411,1,0)
+ ;;^UTILITY(U,$J,358.3,30059,1,3,0)
+ ;;=3^Infection of bladder following delivery
+ ;;^UTILITY(U,$J,358.3,30059,1,4,0)
+ ;;=4^O86.22
+ ;;^UTILITY(U,$J,358.3,30059,2)
+ ;;=^5017761
+ ;;^UTILITY(U,$J,358.3,30060,0)
+ ;;=O26.611^^178^1913^35
+ ;;^UTILITY(U,$J,358.3,30060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30411,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,30411,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,30411,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,30412,0)
- ;;=L03.212^^189^1917^5
- ;;^UTILITY(U,$J,358.3,30412,1,0)
+ ;;^UTILITY(U,$J,358.3,30060,1,3,0)
+ ;;=3^Liver and biliary tract disord in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30060,1,4,0)
+ ;;=4^O26.611
+ ;;^UTILITY(U,$J,358.3,30060,2)
+ ;;=^5016321
+ ;;^UTILITY(U,$J,358.3,30061,0)
+ ;;=O26.612^^178^1913^36
+ ;;^UTILITY(U,$J,358.3,30061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30412,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,30412,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,30412,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,30413,0)
- ;;=L03.324^^189^1917^6
- ;;^UTILITY(U,$J,358.3,30413,1,0)
+ ;;^UTILITY(U,$J,358.3,30061,1,3,0)
+ ;;=3^Liver and biliary tract disord in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30061,1,4,0)
+ ;;=4^O26.612
+ ;;^UTILITY(U,$J,358.3,30061,2)
+ ;;=^5016322
+ ;;^UTILITY(U,$J,358.3,30062,0)
+ ;;=O26.613^^178^1913^37
+ ;;^UTILITY(U,$J,358.3,30062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30413,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,30413,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,30413,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,30414,0)
- ;;=L03.891^^189^1917^7
- ;;^UTILITY(U,$J,358.3,30414,1,0)
+ ;;^UTILITY(U,$J,358.3,30062,1,3,0)
+ ;;=3^Liver and biliary tract disord in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30062,1,4,0)
+ ;;=4^O26.613
+ ;;^UTILITY(U,$J,358.3,30062,2)
+ ;;=^5016323
+ ;;^UTILITY(U,$J,358.3,30063,0)
+ ;;=O98.111^^178^1913^80
+ ;;^UTILITY(U,$J,358.3,30063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30414,1,3,0)
- ;;=3^Acute Lymphangitis of Head
- ;;^UTILITY(U,$J,358.3,30414,1,4,0)
- ;;=4^L03.891
- ;;^UTILITY(U,$J,358.3,30414,2)
- ;;=^5009065
- ;;^UTILITY(U,$J,358.3,30415,0)
- ;;=L03.122^^189^1917^8
- ;;^UTILITY(U,$J,358.3,30415,1,0)
+ ;;^UTILITY(U,$J,358.3,30063,1,3,0)
+ ;;=3^Syphilis complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30063,1,4,0)
+ ;;=4^O98.111
+ ;;^UTILITY(U,$J,358.3,30063,2)
+ ;;=^5017863
+ ;;^UTILITY(U,$J,358.3,30064,0)
+ ;;=O98.112^^178^1913^81
+ ;;^UTILITY(U,$J,358.3,30064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30415,1,3,0)
- ;;=3^Acute Lymphangitis of Left Axilla
- ;;^UTILITY(U,$J,358.3,30415,1,4,0)
- ;;=4^L03.122
- ;;^UTILITY(U,$J,358.3,30415,2)
- ;;=^5009038
- ;;^UTILITY(U,$J,358.3,30416,0)
- ;;=L03.022^^189^1917^9
- ;;^UTILITY(U,$J,358.3,30416,1,0)
+ ;;^UTILITY(U,$J,358.3,30064,1,3,0)
+ ;;=3^Syphilis complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30064,1,4,0)
+ ;;=4^O98.112
+ ;;^UTILITY(U,$J,358.3,30064,2)
+ ;;=^5017864
+ ;;^UTILITY(U,$J,358.3,30065,0)
+ ;;=O98.113^^178^1913^82
+ ;;^UTILITY(U,$J,358.3,30065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30416,1,3,0)
- ;;=3^Acute Lymphangitis of Left Finger
- ;;^UTILITY(U,$J,358.3,30416,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,30416,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,30417,0)
- ;;=L03.126^^189^1917^10
- ;;^UTILITY(U,$J,358.3,30417,1,0)
+ ;;^UTILITY(U,$J,358.3,30065,1,3,0)
+ ;;=3^Syphilis complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30065,1,4,0)
+ ;;=4^O98.113
+ ;;^UTILITY(U,$J,358.3,30065,2)
+ ;;=^5017865
+ ;;^UTILITY(U,$J,358.3,30066,0)
+ ;;=O98.13^^178^1913^83
+ ;;^UTILITY(U,$J,358.3,30066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30417,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,30417,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,30417,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,30418,0)
- ;;=L03.042^^189^1917^11
- ;;^UTILITY(U,$J,358.3,30418,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30418,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,30418,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,30418,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,30419,0)
- ;;=L03.124^^189^1917^12
- ;;^UTILITY(U,$J,358.3,30419,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30066,1,3,0)
+ ;;=3^Syphilis complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,30066,1,4,0)
+ ;;=4^O98.13
+ ;;^UTILITY(U,$J,358.3,30066,2)
+ ;;=^5017868

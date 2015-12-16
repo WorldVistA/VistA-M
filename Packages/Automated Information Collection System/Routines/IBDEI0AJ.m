@@ -1,130 +1,142 @@
-IBDEI0AJ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0AJ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4957,1,5,0)
- ;;=5^Heart Failure, Chronic Diastolic
- ;;^UTILITY(U,$J,358.3,4957,2)
- ;;=Heart Failure, Chronic Diastolic^328498
- ;;^UTILITY(U,$J,358.3,4958,0)
- ;;=428.33^^41^478^47
- ;;^UTILITY(U,$J,358.3,4958,1,0)
+ ;;^UTILITY(U,$J,358.3,4549,0)
+ ;;=V10.83^^23^232^50
+ ;;^UTILITY(U,$J,358.3,4549,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4958,1,4,0)
- ;;=4^428.33
- ;;^UTILITY(U,$J,358.3,4958,1,5,0)
- ;;=5^Heart Failure, Diastolic, Acute on Chronic
- ;;^UTILITY(U,$J,358.3,4958,2)
- ;;=Heart Failure, Diastolic, Acute on Chronic^328499
- ;;^UTILITY(U,$J,358.3,4959,0)
- ;;=428.40^^41^478^46
- ;;^UTILITY(U,$J,358.3,4959,1,0)
+ ;;^UTILITY(U,$J,358.3,4549,1,4,0)
+ ;;=4^V10.83
+ ;;^UTILITY(U,$J,358.3,4549,1,5,0)
+ ;;=5^H/O Skin Cancer
+ ;;^UTILITY(U,$J,358.3,4549,2)
+ ;;=H/O Skin Cancer^295241
+ ;;^UTILITY(U,$J,358.3,4550,0)
+ ;;=201.90^^23^232^60
+ ;;^UTILITY(U,$J,358.3,4550,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4959,1,4,0)
- ;;=4^428.40
- ;;^UTILITY(U,$J,358.3,4959,1,5,0)
- ;;=5^Heart Failure, Diastolic& Systolic
- ;;^UTILITY(U,$J,358.3,4959,2)
- ;;=Heart Failure, Systolic and Diastolic^328596
- ;;^UTILITY(U,$J,358.3,4960,0)
- ;;=428.41^^41^478^48
- ;;^UTILITY(U,$J,358.3,4960,1,0)
+ ;;^UTILITY(U,$J,358.3,4550,1,4,0)
+ ;;=4^201.90
+ ;;^UTILITY(U,$J,358.3,4550,1,5,0)
+ ;;=5^Hodgkin's Lymphoma, Unpsec Type & Site
+ ;;^UTILITY(U,$J,358.3,4550,2)
+ ;;=^267430
+ ;;^UTILITY(U,$J,358.3,4551,0)
+ ;;=200.20^^23^232^64
+ ;;^UTILITY(U,$J,358.3,4551,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4960,1,4,0)
- ;;=4^428.41
- ;;^UTILITY(U,$J,358.3,4960,1,5,0)
- ;;=5^Heart Failure, Systolic & Diastolic, Acute
- ;;^UTILITY(U,$J,358.3,4960,2)
- ;;=Heart Failure, Systolic & Diastolic, Acute^328500
- ;;^UTILITY(U,$J,358.3,4961,0)
- ;;=428.42^^41^478^52
- ;;^UTILITY(U,$J,358.3,4961,1,0)
+ ;;^UTILITY(U,$J,358.3,4551,1,4,0)
+ ;;=4^200.20
+ ;;^UTILITY(U,$J,358.3,4551,1,5,0)
+ ;;=5^Lymphoma,Burkitt's,Site Unspec
+ ;;^UTILITY(U,$J,358.3,4551,2)
+ ;;=^17529
+ ;;^UTILITY(U,$J,358.3,4552,0)
+ ;;=202.00^^23^232^66
+ ;;^UTILITY(U,$J,358.3,4552,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4961,1,4,0)
- ;;=4^428.42
- ;;^UTILITY(U,$J,358.3,4961,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic,Chronic
- ;;^UTILITY(U,$J,358.3,4961,2)
- ;;=^328501
- ;;^UTILITY(U,$J,358.3,4962,0)
- ;;=428.43^^41^478^51
- ;;^UTILITY(U,$J,358.3,4962,1,0)
+ ;;^UTILITY(U,$J,358.3,4552,1,4,0)
+ ;;=4^202.00
+ ;;^UTILITY(U,$J,358.3,4552,1,5,0)
+ ;;=5^Lymphoma,Low-Grade,Site Unspec
+ ;;^UTILITY(U,$J,358.3,4552,2)
+ ;;=^72606
+ ;;^UTILITY(U,$J,358.3,4553,0)
+ ;;=200.10^^23^232^65
+ ;;^UTILITY(U,$J,358.3,4553,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4962,1,4,0)
- ;;=4^428.43
- ;;^UTILITY(U,$J,358.3,4962,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic
- ;;^UTILITY(U,$J,358.3,4962,2)
- ;;=^328502
- ;;^UTILITY(U,$J,358.3,4963,0)
- ;;=396.3^^41^478^10
- ;;^UTILITY(U,$J,358.3,4963,1,0)
+ ;;^UTILITY(U,$J,358.3,4553,1,4,0)
+ ;;=4^200.10
+ ;;^UTILITY(U,$J,358.3,4553,1,5,0)
+ ;;=5^Lymphoma,Int or High Grade,Site Unspec
+ ;;^UTILITY(U,$J,358.3,4553,2)
+ ;;=^175886
+ ;;^UTILITY(U,$J,358.3,4554,0)
+ ;;=203.00^^23^232^77
+ ;;^UTILITY(U,$J,358.3,4554,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4963,1,4,0)
- ;;=4^396.3
- ;;^UTILITY(U,$J,358.3,4963,1,5,0)
- ;;=5^Aortic and Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,4963,2)
- ;;=Aortic and Mitral Insufficiency^269583
- ;;^UTILITY(U,$J,358.3,4964,0)
- ;;=429.9^^41^478^28
- ;;^UTILITY(U,$J,358.3,4964,1,0)
+ ;;^UTILITY(U,$J,358.3,4554,1,4,0)
+ ;;=4^203.00
+ ;;^UTILITY(U,$J,358.3,4554,1,5,0)
+ ;;=5^Multiple Myeloma w/o Remission
+ ;;^UTILITY(U,$J,358.3,4554,2)
+ ;;=^267514
+ ;;^UTILITY(U,$J,358.3,4555,0)
+ ;;=203.01^^23^232^79
+ ;;^UTILITY(U,$J,358.3,4555,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4964,1,4,0)
- ;;=4^429.9
- ;;^UTILITY(U,$J,358.3,4964,1,5,0)
- ;;=5^Diastolic Dysfunction
- ;;^UTILITY(U,$J,358.3,4964,2)
- ;;=^54741
- ;;^UTILITY(U,$J,358.3,4965,0)
- ;;=453.79^^41^478^27
- ;;^UTILITY(U,$J,358.3,4965,1,0)
+ ;;^UTILITY(U,$J,358.3,4555,1,4,0)
+ ;;=4^203.01
+ ;;^UTILITY(U,$J,358.3,4555,1,5,0)
+ ;;=5^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,4555,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,4556,0)
+ ;;=V10.21^^23^232^38
+ ;;^UTILITY(U,$J,358.3,4556,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4965,1,4,0)
- ;;=4^453.79
- ;;^UTILITY(U,$J,358.3,4965,1,5,0)
- ;;=5^Chr Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,4965,2)
- ;;=^338251
- ;;^UTILITY(U,$J,358.3,4966,0)
- ;;=453.89^^41^478^1
- ;;^UTILITY(U,$J,358.3,4966,1,0)
+ ;;^UTILITY(U,$J,358.3,4556,1,4,0)
+ ;;=4^V10.21
+ ;;^UTILITY(U,$J,358.3,4556,1,5,0)
+ ;;=5^H/O Laryngeal Cancer
+ ;;^UTILITY(U,$J,358.3,4556,2)
+ ;;=^295214
+ ;;^UTILITY(U,$J,358.3,4557,0)
+ ;;=180.9^^23^232^8
+ ;;^UTILITY(U,$J,358.3,4557,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4966,1,4,0)
- ;;=4^453.89
- ;;^UTILITY(U,$J,358.3,4966,1,5,0)
- ;;=5^AC Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,4966,2)
- ;;=^338259
- ;;^UTILITY(U,$J,358.3,4967,0)
- ;;=454.2^^41^478^85
- ;;^UTILITY(U,$J,358.3,4967,1,0)
+ ;;^UTILITY(U,$J,358.3,4557,1,4,0)
+ ;;=4^180.9
+ ;;^UTILITY(U,$J,358.3,4557,1,5,0)
+ ;;=5^Ca Cervix
+ ;;^UTILITY(U,$J,358.3,4557,2)
+ ;;=^267214
+ ;;^UTILITY(U,$J,358.3,4558,0)
+ ;;=203.02^^23^232^78
+ ;;^UTILITY(U,$J,358.3,4558,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4967,1,4,0)
- ;;=4^454.2
- ;;^UTILITY(U,$J,358.3,4967,1,5,0)
- ;;=5^Varicose Veins w/Ulcer&Inflam
- ;;^UTILITY(U,$J,358.3,4967,2)
- ;;=^269821
- ;;^UTILITY(U,$J,358.3,4968,0)
- ;;=397.1^^41^478^74
- ;;^UTILITY(U,$J,358.3,4968,1,0)
+ ;;^UTILITY(U,$J,358.3,4558,1,4,0)
+ ;;=4^203.02
+ ;;^UTILITY(U,$J,358.3,4558,1,5,0)
+ ;;=5^Multiple Myeloma,In Relapse
+ ;;^UTILITY(U,$J,358.3,4558,2)
+ ;;=^336462
+ ;;^UTILITY(U,$J,358.3,4559,0)
+ ;;=V10.91^^23^232^44
+ ;;^UTILITY(U,$J,358.3,4559,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4968,1,4,0)
- ;;=4^397.1
- ;;^UTILITY(U,$J,358.3,4968,1,5,0)
- ;;=5^Rheumatic Disease Pulmonary Valve
- ;;^UTILITY(U,$J,358.3,4968,2)
- ;;=^269587
- ;;^UTILITY(U,$J,358.3,4969,0)
- ;;=397.0^^41^478^75
- ;;^UTILITY(U,$J,358.3,4969,1,0)
+ ;;^UTILITY(U,$J,358.3,4559,1,4,0)
+ ;;=4^V10.91
+ ;;^UTILITY(U,$J,358.3,4559,1,5,0)
+ ;;=5^H/O Neuroendocrine CA Tumor
+ ;;^UTILITY(U,$J,358.3,4559,2)
+ ;;=^338494
+ ;;^UTILITY(U,$J,358.3,4560,0)
+ ;;=196.9^^23^232^62
+ ;;^UTILITY(U,$J,358.3,4560,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4969,1,4,0)
- ;;=4^397.0
- ;;^UTILITY(U,$J,358.3,4969,1,5,0)
- ;;=5^Rheumatic Disease Tricuspid Valve
- ;;^UTILITY(U,$J,358.3,4969,2)
- ;;=^35528
- ;;^UTILITY(U,$J,358.3,4970,0)
- ;;=414.3^^41^478^17
+ ;;^UTILITY(U,$J,358.3,4560,1,4,0)
+ ;;=4^196.9
+ ;;^UTILITY(U,$J,358.3,4560,1,5,0)
+ ;;=5^Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,4560,2)
+ ;;=^267313
+ ;;^UTILITY(U,$J,358.3,4561,0)
+ ;;=204.90^^23^232^63
+ ;;^UTILITY(U,$J,358.3,4561,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,4561,1,4,0)
+ ;;=4^204.90
+ ;;^UTILITY(U,$J,358.3,4561,1,5,0)
+ ;;=5^Lymphoid Leukemia
+ ;;^UTILITY(U,$J,358.3,4561,2)
+ ;;=^336854
+ ;;^UTILITY(U,$J,358.3,4562,0)
+ ;;=V10.82^^23^232^42
+ ;;^UTILITY(U,$J,358.3,4562,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,4562,1,4,0)
+ ;;=4^V10.82
+ ;;^UTILITY(U,$J,358.3,4562,1,5,0)
+ ;;=5^H/O Malig Melanoma

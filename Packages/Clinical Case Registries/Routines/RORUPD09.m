@@ -1,5 +1,5 @@
-RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ; 8/3/05 9:50am
- ;;1.5;CLINICAL CASE REGISTRIES;**18**;Feb 17, 2006;Build 25
+RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ;8/3/05 9:50am
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,25**;Feb 17, 2006;Build 19
  ;
  ;*****************************************************************************
  ;*****************************************************************************
@@ -8,6 +8,8 @@ RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ; 8/3/05 9:50am
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*18   APR 2012    C RAY        Modified PTF RULE to use B xref #798.5
+ ;ROR*1.5*25   FEB 2015    T KOPP       Modified PTF rule to add new Diagnosis
+ ;                                      fields for ICD-10 PTF expansion.
  ;                                      
  ;*****************************************************************************
  ;*****************************************************************************
@@ -99,6 +101,6 @@ PTF(UPDSTART,PATIEN) ;
 PTFRULE(ICD) ;
  N DATELMT,RC
  S RC=0
- F DATELMT=111,101,102,103,104,105,106,107,108,109,110  D  Q:RC
+ F DATELMT=111,101:1:110,131:1:147  D  Q:RC
  . S RC=+$D(^ROR(798.5,REGIEN,1,"B",+$G(RORVALS("DV",45,DATELMT,"I"))))
  Q RC

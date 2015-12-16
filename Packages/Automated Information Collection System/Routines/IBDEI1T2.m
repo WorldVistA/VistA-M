@@ -1,128 +1,128 @@
-IBDEI1T2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1T2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32235,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,32235,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,32235,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,32236,0)
- ;;=M80.08XD^^190^1949^2
- ;;^UTILITY(U,$J,358.3,32236,1,0)
+ ;;^UTILITY(U,$J,358.3,31828,1,4,0)
+ ;;=4^S06.892A
+ ;;^UTILITY(U,$J,358.3,31828,2)
+ ;;=^5021182
+ ;;^UTILITY(U,$J,358.3,31829,0)
+ ;;=S06.894A^^181^1968^37
+ ;;^UTILITY(U,$J,358.3,31829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32236,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32236,1,4,0)
- ;;=4^M80.08XD
- ;;^UTILITY(U,$J,358.3,32236,2)
- ;;=^5013496
- ;;^UTILITY(U,$J,358.3,32237,0)
- ;;=M84.48XA^^190^1949^92
- ;;^UTILITY(U,$J,358.3,32237,1,0)
+ ;;^UTILITY(U,$J,358.3,31829,1,3,0)
+ ;;=3^Intcran inj w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,31829,1,4,0)
+ ;;=4^S06.894A
+ ;;^UTILITY(U,$J,358.3,31829,2)
+ ;;=^5021188
+ ;;^UTILITY(U,$J,358.3,31830,0)
+ ;;=S06.895A^^181^1968^33
+ ;;^UTILITY(U,$J,358.3,31830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32237,1,3,0)
- ;;=3^Pathological Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,32237,1,4,0)
- ;;=4^M84.48XA
- ;;^UTILITY(U,$J,358.3,32237,2)
- ;;=^5014016
- ;;^UTILITY(U,$J,358.3,32238,0)
- ;;=M84.48XD^^190^1949^93
- ;;^UTILITY(U,$J,358.3,32238,1,0)
+ ;;^UTILITY(U,$J,358.3,31830,1,3,0)
+ ;;=3^Intcran inj w LOC >24 hr w ret consc lev, init
+ ;;^UTILITY(U,$J,358.3,31830,1,4,0)
+ ;;=4^S06.895A
+ ;;^UTILITY(U,$J,358.3,31830,2)
+ ;;=^5021191
+ ;;^UTILITY(U,$J,358.3,31831,0)
+ ;;=S06.896A^^181^1968^34
+ ;;^UTILITY(U,$J,358.3,31831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32238,1,3,0)
- ;;=3^Pathological Fx,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32238,1,4,0)
- ;;=4^M84.48XD
- ;;^UTILITY(U,$J,358.3,32238,2)
- ;;=^5014017
- ;;^UTILITY(U,$J,358.3,32239,0)
- ;;=M87.011^^190^1949^37
- ;;^UTILITY(U,$J,358.3,32239,1,0)
+ ;;^UTILITY(U,$J,358.3,31831,1,3,0)
+ ;;=3^Intcran inj w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,31831,1,4,0)
+ ;;=4^S06.896A
+ ;;^UTILITY(U,$J,358.3,31831,2)
+ ;;=^5021194
+ ;;^UTILITY(U,$J,358.3,31832,0)
+ ;;=S06.897A^^181^1968^40
+ ;;^UTILITY(U,$J,358.3,31832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32239,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,32239,1,4,0)
- ;;=4^M87.011
- ;;^UTILITY(U,$J,358.3,32239,2)
- ;;=^5014658
- ;;^UTILITY(U,$J,358.3,32240,0)
- ;;=M87.012^^190^1949^34
- ;;^UTILITY(U,$J,358.3,32240,1,0)
+ ;;^UTILITY(U,$J,358.3,31832,1,3,0)
+ ;;=3^Intcran inj w LOC w death due to brain injury bf consc, init
+ ;;^UTILITY(U,$J,358.3,31832,1,4,0)
+ ;;=4^S06.897A
+ ;;^UTILITY(U,$J,358.3,31832,2)
+ ;;=^5021197
+ ;;^UTILITY(U,$J,358.3,31833,0)
+ ;;=S06.898A^^181^1968^39
+ ;;^UTILITY(U,$J,358.3,31833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32240,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,32240,1,4,0)
- ;;=4^M87.012
- ;;^UTILITY(U,$J,358.3,32240,2)
- ;;=^5014659
- ;;^UTILITY(U,$J,358.3,32241,0)
- ;;=M87.050^^190^1949^35
- ;;^UTILITY(U,$J,358.3,32241,1,0)
+ ;;^UTILITY(U,$J,358.3,31833,1,3,0)
+ ;;=3^Intcran inj w LOC w death d/t oth cause bf consc, init
+ ;;^UTILITY(U,$J,358.3,31833,1,4,0)
+ ;;=4^S06.898A
+ ;;^UTILITY(U,$J,358.3,31833,2)
+ ;;=^5021200
+ ;;^UTILITY(U,$J,358.3,31834,0)
+ ;;=S06.899A^^181^1968^38
+ ;;^UTILITY(U,$J,358.3,31834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32241,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Pelvis
- ;;^UTILITY(U,$J,358.3,32241,1,4,0)
- ;;=4^M87.050
- ;;^UTILITY(U,$J,358.3,32241,2)
- ;;=^5014679
- ;;^UTILITY(U,$J,358.3,32242,0)
- ;;=M87.051^^190^1949^36
- ;;^UTILITY(U,$J,358.3,32242,1,0)
+ ;;^UTILITY(U,$J,358.3,31834,1,3,0)
+ ;;=3^Intcran inj w LOC of unsp duration, init
+ ;;^UTILITY(U,$J,358.3,31834,1,4,0)
+ ;;=4^S06.899A
+ ;;^UTILITY(U,$J,358.3,31834,2)
+ ;;=^5021203
+ ;;^UTILITY(U,$J,358.3,31835,0)
+ ;;=S06.890D^^181^1968^42
+ ;;^UTILITY(U,$J,358.3,31835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32242,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Femur
- ;;^UTILITY(U,$J,358.3,32242,1,4,0)
- ;;=4^M87.051
- ;;^UTILITY(U,$J,358.3,32242,2)
- ;;=^5014680
- ;;^UTILITY(U,$J,358.3,32243,0)
- ;;=M87.052^^190^1949^33
- ;;^UTILITY(U,$J,358.3,32243,1,0)
+ ;;^UTILITY(U,$J,358.3,31835,1,3,0)
+ ;;=3^Intcran inj w/o LOC, subs encntr
+ ;;^UTILITY(U,$J,358.3,31835,1,4,0)
+ ;;=4^S06.890D
+ ;;^UTILITY(U,$J,358.3,31835,2)
+ ;;=^5021177
+ ;;^UTILITY(U,$J,358.3,31836,0)
+ ;;=F32.9^^181^1969^3
+ ;;^UTILITY(U,$J,358.3,31836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32243,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Femur
- ;;^UTILITY(U,$J,358.3,32243,1,4,0)
- ;;=4^M87.052
- ;;^UTILITY(U,$J,358.3,32243,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,32244,0)
- ;;=M87.111^^190^1949^65
- ;;^UTILITY(U,$J,358.3,32244,1,0)
+ ;;^UTILITY(U,$J,358.3,31836,1,3,0)
+ ;;=3^Major depressive disorder, single episode, unspecified
+ ;;^UTILITY(U,$J,358.3,31836,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,31836,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,31837,0)
+ ;;=F43.21^^181^1969^1
+ ;;^UTILITY(U,$J,358.3,31837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32244,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
- ;;^UTILITY(U,$J,358.3,32244,1,4,0)
- ;;=4^M87.111
- ;;^UTILITY(U,$J,358.3,32244,2)
- ;;=^5014701
- ;;^UTILITY(U,$J,358.3,32245,0)
- ;;=M87.112^^190^1949^62
- ;;^UTILITY(U,$J,358.3,32245,1,0)
+ ;;^UTILITY(U,$J,358.3,31837,1,3,0)
+ ;;=3^Adjustment disorder with depressed mood
+ ;;^UTILITY(U,$J,358.3,31837,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,31837,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,31838,0)
+ ;;=G47.00^^181^1969^2
+ ;;^UTILITY(U,$J,358.3,31838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32245,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
- ;;^UTILITY(U,$J,358.3,32245,1,4,0)
- ;;=4^M87.112
- ;;^UTILITY(U,$J,358.3,32245,2)
- ;;=^5014702
- ;;^UTILITY(U,$J,358.3,32246,0)
- ;;=M87.150^^190^1949^63
- ;;^UTILITY(U,$J,358.3,32246,1,0)
+ ;;^UTILITY(U,$J,358.3,31838,1,3,0)
+ ;;=3^Insomnia, unspecified
+ ;;^UTILITY(U,$J,358.3,31838,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,31838,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,31839,0)
+ ;;=F43.10^^181^1969^5
+ ;;^UTILITY(U,$J,358.3,31839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32246,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
- ;;^UTILITY(U,$J,358.3,32246,1,4,0)
- ;;=4^M87.150
- ;;^UTILITY(U,$J,358.3,32246,2)
- ;;=^5014722
- ;;^UTILITY(U,$J,358.3,32247,0)
- ;;=M87.151^^190^1949^64
- ;;^UTILITY(U,$J,358.3,32247,1,0)
+ ;;^UTILITY(U,$J,358.3,31839,1,3,0)
+ ;;=3^Post-traumatic stress disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,31839,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,31839,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,31840,0)
+ ;;=F43.12^^181^1969^4
+ ;;^UTILITY(U,$J,358.3,31840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32247,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
- ;;^UTILITY(U,$J,358.3,32247,1,4,0)
- ;;=4^M87.151
+ ;;^UTILITY(U,$J,358.3,31840,1,3,0)
+ ;;=3^Post-traumatic stress disorder, chronic
+ ;;^UTILITY(U,$J,358.3,31840,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,31840,2)
+ ;;=^5003572

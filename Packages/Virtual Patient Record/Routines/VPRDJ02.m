@@ -1,5 +1,5 @@
 VPRDJ02 ;SLC/MKB -- Problems,Allergies,Vitals ;6/25/12  16:11
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -15,7 +15,7 @@ VPRDJ02 ;SLC/MKB -- Problems,Allergies,Vitals ;6/25/12  16:11
  ; GMVGETQL                      5048
  ; GMVGETVT                      5047
  ; GMVUTL                        5046
- ; ICDCODE                       3990
+ ; ICDEX                         5747
  ; XLFSTR                       10104
  ; XUAF4                         2171
  ;
@@ -30,10 +30,11 @@ GMPL1(ID) ; -- problem
  S DATE=$P($G(VPRL("ENTERED")),U)
  S:$L(DATE) DATE=$$DATE^VPRDGMPL(DATE),PROB("entered")=$$JSONDT^VPRUTILS(DATE)
  S X=$G(VPRL("DIAGNOSIS")) I $L(X) D
- . N ICD9ZN,DIAG
+ . N ICD9ZN,DIAG,SYS
  . I DATE'>0 S DATE=DT
- . S ICD9ZN=$$ICDDX^ICDCODE(X,DATE),DIAG=$S($P($G(ICD9ZN),U,4)'="":$P(ICD9ZN,U,4),1:X)
- . S PROB("icdCode")=$$SETNCS^VPRUTILS("icd",X),PROB("icdName")=DIAG
+ . S ICD9ZN=$$ICDDX^ICDEX(X,DATE,,"E"),DIAG=$S($P($G(ICD9ZN),U,4)'="":$P(ICD9ZN,U,4),1:X)
+ . S SYS=$$LOW^XLFSTR($G(VPRL("CSYS"),"ICD")) ;icd or 10d
+ . S PROB("icdCode")=$$SETNCS^VPRUTILS(SYS,X),PROB("icdName")=DIAG
  S X=$G(VPRL("ONSET")) S:$L(X) X=$$DATE^VPRDGMPL(X),PROB("onset")=$$JSONDT^VPRUTILS(X)
  S X=$G(VPRL("MODIFIED")) S:$L(X) X=$$DATE^VPRDGMPL(X),PROB("updated")=$$JSONDT^VPRUTILS(X)
  S X=$G(VPRL("STATUS")) I $L(X) D

@@ -1,142 +1,142 @@
-IBDEI02R ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI02R ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,832,2)
- ;;=^338565
- ;;^UTILITY(U,$J,358.3,833,0)
- ;;=V68.2^^8^90^5
- ;;^UTILITY(U,$J,358.3,833,1,0)
+ ;;^UTILITY(U,$J,358.3,742,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,743,0)
+ ;;=L03.113^^3^32^25
+ ;;^UTILITY(U,$J,358.3,743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,833,1,3,0)
- ;;=3^V68.2
- ;;^UTILITY(U,$J,358.3,833,1,4,0)
- ;;=4^Expert Evidence Request
- ;;^UTILITY(U,$J,358.3,833,2)
- ;;=^295586
- ;;^UTILITY(U,$J,358.3,834,0)
- ;;=V65.5^^8^90^6
- ;;^UTILITY(U,$J,358.3,834,1,0)
+ ;;^UTILITY(U,$J,358.3,743,1,3,0)
+ ;;=3^Cellulitis of right upper limb
+ ;;^UTILITY(U,$J,358.3,743,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,743,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,744,0)
+ ;;=L03.114^^3^32^19
+ ;;^UTILITY(U,$J,358.3,744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,834,1,3,0)
- ;;=3^V65.5
- ;;^UTILITY(U,$J,358.3,834,1,4,0)
- ;;=4^Feared Complaint w/ No Diagnosis
- ;;^UTILITY(U,$J,358.3,834,2)
- ;;=^295564
- ;;^UTILITY(U,$J,358.3,835,0)
- ;;=V67.00^^8^90^15
- ;;^UTILITY(U,$J,358.3,835,1,0)
+ ;;^UTILITY(U,$J,358.3,744,1,3,0)
+ ;;=3^Cellulitis of left upper limb
+ ;;^UTILITY(U,$J,358.3,744,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,744,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,745,0)
+ ;;=L03.115^^3^32^22
+ ;;^UTILITY(U,$J,358.3,745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,835,1,3,0)
- ;;=3^V67.00
- ;;^UTILITY(U,$J,358.3,835,1,4,0)
- ;;=4^Surgical Follow-Up
- ;;^UTILITY(U,$J,358.3,835,2)
- ;;=^322077
- ;;^UTILITY(U,$J,358.3,836,0)
- ;;=V70.5^^8^90^9
- ;;^UTILITY(U,$J,358.3,836,1,0)
+ ;;^UTILITY(U,$J,358.3,745,1,3,0)
+ ;;=3^Cellulitis of right lower limb
+ ;;^UTILITY(U,$J,358.3,745,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,745,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,746,0)
+ ;;=L03.116^^3^32^16
+ ;;^UTILITY(U,$J,358.3,746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,836,1,3,0)
- ;;=3^V70.5
- ;;^UTILITY(U,$J,358.3,836,1,4,0)
- ;;=4^Health Exam of Defined Subpopulations
- ;;^UTILITY(U,$J,358.3,836,2)
- ;;=^295595
- ;;^UTILITY(U,$J,358.3,837,0)
- ;;=V72.19^^8^90^4
- ;;^UTILITY(U,$J,358.3,837,1,0)
+ ;;^UTILITY(U,$J,358.3,746,1,3,0)
+ ;;=3^Cellulitis of left lower limb
+ ;;^UTILITY(U,$J,358.3,746,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,746,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,747,0)
+ ;;=L08.9^^3^32^54
+ ;;^UTILITY(U,$J,358.3,747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,837,1,3,0)
- ;;=3^V72.19
- ;;^UTILITY(U,$J,358.3,837,1,4,0)
- ;;=4^Ear & Hearing Exam
- ;;^UTILITY(U,$J,358.3,837,2)
- ;;=^334219
- ;;^UTILITY(U,$J,358.3,838,0)
- ;;=V80.3^^8^90^13
- ;;^UTILITY(U,$J,358.3,838,1,0)
+ ;;^UTILITY(U,$J,358.3,747,1,3,0)
+ ;;=3^Local infection of the skin and subcutaneous tissue, unsp
+ ;;^UTILITY(U,$J,358.3,747,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,747,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,748,0)
+ ;;=L21.9^^3^32^140
+ ;;^UTILITY(U,$J,358.3,748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,838,1,3,0)
- ;;=3^V80.3
- ;;^UTILITY(U,$J,358.3,838,1,4,0)
- ;;=4^Screen for Ear Diseases
- ;;^UTILITY(U,$J,358.3,838,2)
- ;;=^295686
- ;;^UTILITY(U,$J,358.3,839,0)
- ;;=V72.12^^8^90^11
- ;;^UTILITY(U,$J,358.3,839,1,0)
+ ;;^UTILITY(U,$J,358.3,748,1,3,0)
+ ;;=3^Seborrheic dermatitis, unspecified
+ ;;^UTILITY(U,$J,358.3,748,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,748,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,749,0)
+ ;;=L21.8^^3^32^138
+ ;;^UTILITY(U,$J,358.3,749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,839,1,3,0)
- ;;=3^V72.12
- ;;^UTILITY(U,$J,358.3,839,1,4,0)
- ;;=4^Hearing Conservation/Treatment
- ;;^UTILITY(U,$J,358.3,839,2)
- ;;=^335322
- ;;^UTILITY(U,$J,358.3,840,0)
- ;;=92583^^9^91^32^^^^1
- ;;^UTILITY(U,$J,358.3,840,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,840,1,2,0)
- ;;=2^92583
- ;;^UTILITY(U,$J,358.3,840,1,3,0)
- ;;=3^Select Picture Audiometry
- ;;^UTILITY(U,$J,358.3,841,0)
- ;;=92555^^9^91^33^^^^1
- ;;^UTILITY(U,$J,358.3,841,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,841,1,2,0)
- ;;=2^92555
- ;;^UTILITY(U,$J,358.3,841,1,3,0)
- ;;=3^Speech Audiometry Threshold
- ;;^UTILITY(U,$J,358.3,842,0)
- ;;=92556^^9^91^34^^^^1
- ;;^UTILITY(U,$J,358.3,842,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,842,1,2,0)
- ;;=2^92556
- ;;^UTILITY(U,$J,358.3,842,1,3,0)
- ;;=3^Speech Audiometry, Complete
- ;;^UTILITY(U,$J,358.3,843,0)
- ;;=92564^^9^91^31^^^^1
- ;;^UTILITY(U,$J,358.3,843,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,843,1,2,0)
- ;;=2^92564
- ;;^UTILITY(U,$J,358.3,843,1,3,0)
- ;;=3^SISI Hearing Test
- ;;^UTILITY(U,$J,358.3,844,0)
- ;;=92572^^9^91^35^^^^1
- ;;^UTILITY(U,$J,358.3,844,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,844,1,2,0)
- ;;=2^92572
- ;;^UTILITY(U,$J,358.3,844,1,3,0)
- ;;=3^Staggered Spondaic Word Test
- ;;^UTILITY(U,$J,358.3,845,0)
- ;;=92565^^9^91^36^^^^1
- ;;^UTILITY(U,$J,358.3,845,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,845,1,2,0)
- ;;=2^92565
- ;;^UTILITY(U,$J,358.3,845,1,3,0)
- ;;=3^Stenger Test, Pure Tone
- ;;^UTILITY(U,$J,358.3,846,0)
- ;;=92577^^9^91^37^^^^1
- ;;^UTILITY(U,$J,358.3,846,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,846,1,2,0)
- ;;=2^92577
- ;;^UTILITY(U,$J,358.3,846,1,3,0)
- ;;=3^Stenger Test, Speech
- ;;^UTILITY(U,$J,358.3,847,0)
- ;;=92576^^9^91^38^^^^1
- ;;^UTILITY(U,$J,358.3,847,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,847,1,2,0)
- ;;=2^92576
- ;;^UTILITY(U,$J,358.3,847,1,3,0)
- ;;=3^Synthetic Sentence Test
- ;;^UTILITY(U,$J,358.3,848,0)
- ;;=92563^^9^91^40^^^^1
+ ;;^UTILITY(U,$J,358.3,749,1,3,0)
+ ;;=3^Seborrheic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,749,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,749,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,750,0)
+ ;;=L20.81^^3^32^8
+ ;;^UTILITY(U,$J,358.3,750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,750,1,3,0)
+ ;;=3^Atopic neurodermatitis
+ ;;^UTILITY(U,$J,358.3,750,1,4,0)
+ ;;=4^L20.81
+ ;;^UTILITY(U,$J,358.3,750,2)
+ ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,751,0)
+ ;;=L20.0^^3^32^9
+ ;;^UTILITY(U,$J,358.3,751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,751,1,3,0)
+ ;;=3^Besnier's prurigo
+ ;;^UTILITY(U,$J,358.3,751,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,751,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,752,0)
+ ;;=L20.82^^3^32^41
+ ;;^UTILITY(U,$J,358.3,752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,752,1,3,0)
+ ;;=3^Flexural eczema
+ ;;^UTILITY(U,$J,358.3,752,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,752,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,753,0)
+ ;;=L20.84^^3^32^52
+ ;;^UTILITY(U,$J,358.3,753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,753,1,3,0)
+ ;;=3^Intrinsic (allergic) eczema
+ ;;^UTILITY(U,$J,358.3,753,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,753,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,754,0)
+ ;;=L20.89^^3^32^7
+ ;;^UTILITY(U,$J,358.3,754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,754,1,3,0)
+ ;;=3^Atopic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,754,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,754,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,755,0)
+ ;;=L25.5^^3^32^27
+ ;;^UTILITY(U,$J,358.3,755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,755,1,3,0)
+ ;;=3^Contact Dermatitis d/t Plants,Unspec
+ ;;^UTILITY(U,$J,358.3,755,1,4,0)
+ ;;=4^L25.5
+ ;;^UTILITY(U,$J,358.3,755,2)
+ ;;=^5009142
+ ;;^UTILITY(U,$J,358.3,756,0)
+ ;;=L56.0^^3^32^33
+ ;;^UTILITY(U,$J,358.3,756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,756,1,3,0)
+ ;;=3^Drug phototoxic response

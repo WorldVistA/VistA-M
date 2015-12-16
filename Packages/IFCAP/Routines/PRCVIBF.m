@@ -1,7 +1,11 @@
 PRCVIBF ;WOIFO/AS-FUND PROCESSING USING DATA FROM DYNAMED ;4/11/05  15:15
- ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**81,186**;Oct 20, 2000;Build 10
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;PRC*5.1*186 Fix duplicate entries in file 443 by changing 
+ ;            the direct field 1.5 and x-ref 'AC' set to 
+ ;            Fileman update of status field.
+ ; 
 INIT(NOD) ;
  ;  1. Find out it is IV or SV
  ;
@@ -109,12 +113,14 @@ ESIG ;
  K MESSAGE
  S X=STOT D TRANS^PRCSES
  ;    no sub-cp processing  (removed the code)
+ ;
+ ;PRC*5.1*186
  I $P(PRCSN,U,4)>1 D
  . S X=$P(PRCSN,U,1),DIC="^PRC(443,",DIC(0)="L",DLAYGO=443
  . D ^DIC K DIC,DLAYGO,X
- . S X=$O(^PRCD(442.3,"C",60,0))
+ . S X=$O(^PRCD(442.3,"C",60,0)),PRCSTAT=X
  . S:PRCSCP=1 X=$O(^PRCD(442.3,"C",10,0))
- . S $P(^PRC(443,DA,0),U,7)=X,^PRC(443,"AC",X,DA)=""
+ . S DIE="^PRC(443,",DR="1.5////^S X=PRCSTAT" D ^DIE K DR,DIE,PRCSTAT
  . S $P(^PRC(443,DA,0),U,11)=$P(PRCSN,U,6)
  ;   No sub-cp  so no --->        increment due-ins and due-outs
  ;   D EN2^PRCPWI

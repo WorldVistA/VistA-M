@@ -1,5 +1,5 @@
 MPIF002 ;CIOFOSF/CMC-UTILITY ROUTINE OF APIS ;JUL 12, 1996
- ;;1.0; MASTER PATIENT INDEX VISTA ;**20,27,33,43,52**;30 Apr 99;Build 7
+ ;;1.0;MASTER PATIENT INDEX VISTA;**20,27,33,43,52,60**;30 Apr 99;Build 2
  ;
  ;Integration Agreements Utilized:
  ;  ^DPT( - #2070
@@ -72,13 +72,16 @@ TWODFNS(DFN1,DFN2,ICN) ;Logging Exceptions when there are two DFNs trying to hav
  Q
 CLEAN(DFN,ARR,MPIRETN) ; clean up MPI data from DPT for "stub" records
  ; called from UPDATE^MPIFAPI
- N ICN,CMOR
+ N ICN,CMOR,FICN
  S ICN=+$$GETICN^MPIF001(DFN),CMOR=$$SITE^VASITE()
+ ;**60 (elz) MVI_793 added Full ICN
+ S FICN=$$DFN2ICN^MPIF001(DFN)
  I +ICN<0 S MPIRETN="-1^PT HAS NO ICN" Q
  I $E(ICN,1,3)'=$P(CMOR,"^",3) S MPIRETN="-1^not a local ICN not cleaned up" Q
  S CMOR=$P(CMOR,"^",1)
  S ^DPT(DFN,"MPI")=""
- K ^DPT("AICNL",1,ICN),^DPT("AICN",ICN),^DPT("ACMOR",CMOR,DFN)
+ ;**60 (elz) MVI_793 add cross reference for full ICN
+ K ^DPT("AICNL",1,ICN),^DPT("AICN",ICN),^DPT("ACMOR",CMOR,DFN),^DPT("AFICN",FICN)
  S MPIRETN=0
  Q
  ;**43 COMPARE AND MIMDQ ADDED in patch 43

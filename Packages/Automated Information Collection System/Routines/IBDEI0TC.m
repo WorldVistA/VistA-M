@@ -1,136 +1,122 @@
-IBDEI0TC ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0TC ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14475,1,4,0)
- ;;=4^244.2
- ;;^UTILITY(U,$J,358.3,14475,1,5,0)
- ;;=5^Hypothyroid d/t Iodine Rx
- ;;^UTILITY(U,$J,358.3,14475,2)
- ;;=^267817
- ;;^UTILITY(U,$J,358.3,14476,0)
- ;;=244.9^^89^893^37
- ;;^UTILITY(U,$J,358.3,14476,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14476,1,4,0)
- ;;=4^244.9
- ;;^UTILITY(U,$J,358.3,14476,1,5,0)
- ;;=5^Hypothyroid, Unspec Cause
- ;;^UTILITY(U,$J,358.3,14476,2)
- ;;=^123752
- ;;^UTILITY(U,$J,358.3,14477,0)
- ;;=245.0^^89^893^51
- ;;^UTILITY(U,$J,358.3,14477,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14477,1,4,0)
- ;;=4^245.0
- ;;^UTILITY(U,$J,358.3,14477,1,5,0)
- ;;=5^Thyroiditis, Acute
- ;;^UTILITY(U,$J,358.3,14477,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,14478,0)
- ;;=245.1^^89^893^52
- ;;^UTILITY(U,$J,358.3,14478,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14478,1,4,0)
- ;;=4^245.1
- ;;^UTILITY(U,$J,358.3,14478,1,5,0)
- ;;=5^Thyroiditis, Subacute
- ;;^UTILITY(U,$J,358.3,14478,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,14479,0)
- ;;=733.01^^89^893^45
- ;;^UTILITY(U,$J,358.3,14479,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14479,1,4,0)
- ;;=4^733.01
- ;;^UTILITY(U,$J,358.3,14479,1,5,0)
- ;;=5^Osteoporosis, Senile
- ;;^UTILITY(U,$J,358.3,14479,2)
- ;;=Osteoporosis, Senile^87188
- ;;^UTILITY(U,$J,358.3,14480,0)
- ;;=733.02^^89^893^44
- ;;^UTILITY(U,$J,358.3,14480,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14480,1,4,0)
- ;;=4^733.02
- ;;^UTILITY(U,$J,358.3,14480,1,5,0)
- ;;=5^Osteoporosis, Idiopathic
- ;;^UTILITY(U,$J,358.3,14480,2)
- ;;=Osteoporosis, Idiopathic^272692
- ;;^UTILITY(U,$J,358.3,14481,0)
- ;;=268.2^^89^893^41
- ;;^UTILITY(U,$J,358.3,14481,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14481,1,4,0)
- ;;=4^268.2
- ;;^UTILITY(U,$J,358.3,14481,1,5,0)
- ;;=5^Osteomalacia
- ;;^UTILITY(U,$J,358.3,14481,2)
- ;;=Osteomalacia^87103
- ;;^UTILITY(U,$J,358.3,14482,0)
- ;;=733.90^^89^893^42
- ;;^UTILITY(U,$J,358.3,14482,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14482,1,4,0)
- ;;=4^733.90
- ;;^UTILITY(U,$J,358.3,14482,1,5,0)
- ;;=5^Osteopenia
- ;;^UTILITY(U,$J,358.3,14482,2)
- ;;=Osteopenia^35593
- ;;^UTILITY(U,$J,358.3,14483,0)
- ;;=275.49^^89^893^46
- ;;^UTILITY(U,$J,358.3,14483,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14483,1,4,0)
- ;;=4^275.49
- ;;^UTILITY(U,$J,358.3,14483,1,5,0)
- ;;=5^Pseudohypoparathyroidism
- ;;^UTILITY(U,$J,358.3,14483,2)
- ;;=Pseudohypparathyroidism^317904
- ;;^UTILITY(U,$J,358.3,14484,0)
- ;;=266.2^^89^893^53
- ;;^UTILITY(U,$J,358.3,14484,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14484,1,4,0)
- ;;=4^266.2
- ;;^UTILITY(U,$J,358.3,14484,1,5,0)
- ;;=5^Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,14484,2)
- ;;=Vitamin B12 Deficiency^87347
- ;;^UTILITY(U,$J,358.3,14485,0)
- ;;=268.9^^89^893^55
- ;;^UTILITY(U,$J,358.3,14485,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14485,1,4,0)
- ;;=4^268.9
- ;;^UTILITY(U,$J,358.3,14485,1,5,0)
- ;;=5^Vitamin D Deficiency
- ;;^UTILITY(U,$J,358.3,14485,2)
- ;;=Vitamin D Deficiency^126968
- ;;^UTILITY(U,$J,358.3,14486,0)
- ;;=266.1^^89^893^54
- ;;^UTILITY(U,$J,358.3,14486,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14486,1,4,0)
- ;;=4^266.1
- ;;^UTILITY(U,$J,358.3,14486,1,5,0)
- ;;=5^Vitamin B6 Deficiency
- ;;^UTILITY(U,$J,358.3,14486,2)
- ;;=^101683
- ;;^UTILITY(U,$J,358.3,14487,0)
- ;;=780.99^^89^893^3
- ;;^UTILITY(U,$J,358.3,14487,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14487,1,4,0)
- ;;=4^780.99
- ;;^UTILITY(U,$J,358.3,14487,1,5,0)
- ;;=5^Cold Intolerance
- ;;^UTILITY(U,$J,358.3,14487,2)
- ;;=Cold Intolerance^328568
- ;;^UTILITY(U,$J,358.3,14488,0)
- ;;=255.41^^89^893^1
- ;;^UTILITY(U,$J,358.3,14488,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14488,1,4,0)
- ;;=4^255.41
+ ;;^UTILITY(U,$J,358.3,14200,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14200,1,2,0)
+ ;;=2^Debr of extensive eczematous 10%
+ ;;^UTILITY(U,$J,358.3,14200,1,3,0)
+ ;;=3^11000
+ ;;^UTILITY(U,$J,358.3,14201,0)
+ ;;=11010^^75^872^2
+ ;;^UTILITY(U,$J,358.3,14201,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14201,1,2,0)
+ ;;=2^Debr Rmvl Foreign Material;Skin,Subq Tissue
+ ;;^UTILITY(U,$J,358.3,14201,1,3,0)
+ ;;=3^11010
+ ;;^UTILITY(U,$J,358.3,14202,0)
+ ;;=11011^^75^872^3
+ ;;^UTILITY(U,$J,358.3,14202,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14202,1,2,0)
+ ;;=2^Debr Rmvl Foreign Material;Skin,Subq Tissue,Muscle
+ ;;^UTILITY(U,$J,358.3,14202,1,3,0)
+ ;;=3^11011
+ ;;^UTILITY(U,$J,358.3,14203,0)
+ ;;=11042^^75^872^6
+ ;;^UTILITY(U,$J,358.3,14203,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14203,1,2,0)
+ ;;=2^Debridement; Skin & Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,14203,1,3,0)
+ ;;=3^11042
+ ;;^UTILITY(U,$J,358.3,14204,0)
+ ;;=11043^^75^872^7
+ ;;^UTILITY(U,$J,358.3,14204,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14204,1,2,0)
+ ;;=2^Debridement; Skin, Subcutaneous Tissue & Muscle 
+ ;;^UTILITY(U,$J,358.3,14204,1,3,0)
+ ;;=3^11043
+ ;;^UTILITY(U,$J,358.3,14205,0)
+ ;;=11044^^75^872^8
+ ;;^UTILITY(U,$J,358.3,14205,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14205,1,2,0)
+ ;;=2^Debridement; Skin, Subcutaneous Tissue, Muscle & Bone
+ ;;^UTILITY(U,$J,358.3,14205,1,3,0)
+ ;;=3^11044
+ ;;^UTILITY(U,$J,358.3,14206,0)
+ ;;=11012^^75^872^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14206,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14206,1,2,0)
+ ;;=2^Debr Rmvl Foreign Material;Muscle,Bone
+ ;;^UTILITY(U,$J,358.3,14206,1,3,0)
+ ;;=3^11012
+ ;;^UTILITY(U,$J,358.3,14207,0)
+ ;;=11001^^75^872^5^^^^1
+ ;;^UTILITY(U,$J,358.3,14207,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14207,1,2,0)
+ ;;=2^Debr of extensive eczematous;ea addl 10%
+ ;;^UTILITY(U,$J,358.3,14207,1,3,0)
+ ;;=3^11001
+ ;;^UTILITY(U,$J,358.3,14208,0)
+ ;;=97597^^75^872^11^^^^1
+ ;;^UTILITY(U,$J,358.3,14208,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14208,1,2,0)
+ ;;=2^Rmvl Devital Tiss <= 20 Sq cm
+ ;;^UTILITY(U,$J,358.3,14208,1,3,0)
+ ;;=3^97597
+ ;;^UTILITY(U,$J,358.3,14209,0)
+ ;;=97602^^75^872^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14209,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14209,1,2,0)
+ ;;=2^Non-Selective Debridement
+ ;;^UTILITY(U,$J,358.3,14209,1,3,0)
+ ;;=3^97602
+ ;;^UTILITY(U,$J,358.3,14210,0)
+ ;;=97610^^75^872^9^^^^1
+ ;;^UTILITY(U,$J,358.3,14210,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14210,1,2,0)
+ ;;=2^Low Freq Non-Thermal US,Wound Assess
+ ;;^UTILITY(U,$J,358.3,14210,1,3,0)
+ ;;=3^97610
+ ;;^UTILITY(U,$J,358.3,14211,0)
+ ;;=97598^^75^872^12^^^^1
+ ;;^UTILITY(U,$J,358.3,14211,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14211,1,2,0)
+ ;;=2^Rmvl Devital Tiss,Ea Addl 20 sq cm
+ ;;^UTILITY(U,$J,358.3,14211,1,3,0)
+ ;;=3^97598
+ ;;^UTILITY(U,$J,358.3,14212,0)
+ ;;=11300^^75^873^5
+ ;;^UTILITY(U,$J,358.3,14212,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14212,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;0.5cm or less
+ ;;^UTILITY(U,$J,358.3,14212,1,3,0)
+ ;;=3^11300
+ ;;^UTILITY(U,$J,358.3,14213,0)
+ ;;=11301^^75^873^6
+ ;;^UTILITY(U,$J,358.3,14213,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14213,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;0.6cm-1.0cm
+ ;;^UTILITY(U,$J,358.3,14213,1,3,0)
+ ;;=3^11301
+ ;;^UTILITY(U,$J,358.3,14214,0)
+ ;;=11302^^75^873^7
+ ;;^UTILITY(U,$J,358.3,14214,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14214,1,2,0)
+ ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;1.1cm-2.0cm
+ ;;^UTILITY(U,$J,358.3,14214,1,3,0)
+ ;;=3^11302

@@ -1,5 +1,6 @@
 PSBOHDR ;BIRMINGHAM/EFC - REPORT HEADERS ;12/12/12 12:12pm
- ;;3.0;BAR CODE MED ADMIN;**5,13,42,74,70,76**;Mar 2004;Build 10
+ ;;3.0;BAR CODE MED ADMIN;**5,13,42,74,70,76,86**;Mar 2004;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; EN6^GMRVUTL/1120
@@ -32,9 +33,9 @@ PT(DFN,PSBHDR,PSBCONT,PSBDT,SRCHTXT,SUBHD) ;
  .S PSBHDR("SEX")=$P(VADM(5),U,2)
  .S PSBHDR("MVMTTYPE")=$P(VAIP(2),U,2)
  .S PSBHDR("MVMTLAST")=$P(VAIP(3),U,2)
- .S PSBHDR("WARD")=$P(VAIP(5),U,2)
- .S PSBHDR("ROOM")=$P(VAIP(6),U,2)
- .S PSBHDR("DX")=VAIP(9)
+ .S PSBHDR("WARD")=$S(PSBHDR("MVMTTYPE")="DISCHARGE":"",1:$P(VAIP(5),U,2)) ;Don't display ward upon discharge - PSB*3*86
+ .S PSBHDR("ROOM")=$S(PSBHDR("MVMTTYPE")="DISCHARGE":"",1:$P(VAIP(6),U,2)) ;Don't display room upon discharge - PSB*3*86
+ .S PSBHDR("DX")=$S(PSBHDR("MVMTTYPE")="DISCHARGE":"",1:VAIP(9)) ;;Don't display diagnosis upon discharge - PSB*3*86
  .K VAIP,VADM,VA
  .;
  .;IHS/MSC/PLS - Call Vitals lookup based on agency code
@@ -48,7 +49,7 @@ PT(DFN,PSBHDR,PSBCONT,PSBDT,SRCHTXT,SUBHD) ;
  ..S GMRVSTR="HT" D EN6^GMRVUTL
  ..S X=+$P(X,U,8) S:X X=$J((X*2.54),3,0) S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*") ;Rounding correction, PSB*3*76
  ..S GMRVSTR="WT" D EN6^GMRVUTL
- ..S X=+$P(X,U,8) S:X X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*") ;Rounding correction, PSB*3*76
+ ..S X=+$P(X,U,8) S:X X=$J(X/2.20462262,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*") ;Rounding more exact, PSB*3*86
  .;
  .N PSBADRX D ALLR^PSBALL(.PSBADRX,DFN) S X=0,Y=""
  .F  S X=$O(PSBADRX(X)) Q:'X  D

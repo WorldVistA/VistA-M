@@ -1,5 +1,5 @@
-MHVXPAT ;WAS/DLF - Patient extract ; 9/25/08 4:11pm
- ;;1.0;My HealtheVet;**6,9,10**;Aug 23, 2005;Build 50
+MHVXPAT ;WAS/DLF/KUM - Patient extract ; 9/25/08 4:11pm
+ ;;1.0;My HealtheVet;**6,9,10,11**;Aug 23, 2005;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -11,9 +11,9 @@ MHVXPAT ;WAS/DLF - Patient extract ; 9/25/08 4:11pm
  ;                1916 : PTPR^SCAPMC
  ;                       PRPT^SCAPMC
  ;                3859 : GETAPPT^SDAMA201
- ;                5250 : PTCL^SCAPMC
+ ;                4433 : $$SDAPI^SDAMA301
  ;                2692 : TEAMPTS^ORQPTQ1
- ;                       TEAMSPT^ORQPTQ1
+ ;                       TMSPT^ORQPTQ1
  ;               10103 : $$DT^XLFDT
  ;                       $$NOW^XLFDT
  ;                       $$HL7TFM$XLFDT
@@ -45,29 +45,43 @@ PATCL(QRY,ERR,DATAROOT)             ;Patients for clinic
  ;
  I '$G(QRY("FROMDT")) S QRY("FROMDT")=2920101
  I '$G(QRY("TODT")) S QRY("TODT")=DT
- S FROMDT=QRY("FROMDT")
- S TODT=QRY("TODT")
+ S FROMDT=$G(QRY("FROMDT"))
+ S TODT=$G(QRY("TODT"))
  S CLINIEN=$G(QRY("IEN"))
  I '(CLINIEN>0) S ERR="1^Clinic IEN missing" Q
- ;
- ;
  ; get all PCM patients for CLinic
  D:'ERR
- .N MHVDATES,J,RSLT,RSLTLST,SCER,TM,ICN,PTIEN
- .S RSLTLST=$NA(^TMP(RTN,$J,"CLINIC"))
- .S MHVDATES("BEGIN")=$$HL7TFM^XLFDT(FROMDT)
- .S MHVDATES("END")=$$HL7TFM^XLFDT(TODT)
- .S MHVDATES("INCL")=0
- .S RSLT=$$PTCL^SCAPMC(CLINIEN,.MHVDATES,RSLTLST,"SCER")
- .I $G(SCER(0)) D  Q
- ..S ERR="1^errors ("_SCER(0)_") returned by PTCL^SCAPMC"
- .; now save results
- .S J=0
- .F  S J=$O(^TMP(RTN,$J,"CLINIC",J))  Q:'J  S TM=$G(^TMP(RTN,$J,"CLINIC",J))  D
- ..S PTIEN=$P(TM,U,1)
- ..S ICN=$$GET1^DIQ(2,PTIEN_",",991.01)
- ..S SSN=$$GET1^DIQ(2,PTIEN_",",.09)
- ..S HIT=HIT+1,@DATAROOT@(HIT)=PTIEN_U_""_U_$P(TM,U,2)_U_ICN_U_SSN
+ .N MHVDATES,J,RSLT,RSLTLST,SCER,TM,ICN,PTIEN,MHVARR,MHVSTAT
+ .K ^TMP($J,"SDAMA301")
+ .S MHVARR(1)=FROMDT_";"_TODT
+ .S MHVARR(2)=CLINIEN
+ .S MHVARR("FLDS")="4"
+ .S MHVARR("SORT")="P"
+ .S MHVSTAT=$$SDAPI^SDAMA301(.MHVARR)
+ .I MHVSTAT<0 D  Q
+ .. S ERRTXT="",ERRNUM=0
+ .. S ERRNUM=$O(^TMP($J,"SDAMA301",ERRNUM))
+ .. S:ERRNUM'="" ERRTXT=$G(^TMP($J,"SDAMA301",ERRNUM))
+ .. S ERR="1^Appointment Extract Error: "_ERRNUM_";"_ERRTXT
+ .. K ^TMP($J,"SDAMA301")
+ .. Q
+ .I MHVSTAT>0 D
+ ..;resort appts to ensure same patient can only be added to list once
+ ..K ^TMP($J,"RE-SORT","SDAMA301")
+ ..S (SDY,SDX)=0
+ ..F  S SDX=$O(^TMP($J,"SDAMA301",SDX)) Q:'SDX  D
+ ...S SDY=$O(^TMP($J,"SDAMA301",SDX,""))
+ ...S ^TMP($J,"RE-SORT","SDAMA301",SDY,SDX)=""
+ ..K ^TMP($J,"SDAMA301")
+ ..K ^TMP($J,"EXCLPAT")
+ ..S (SCDT,DFN)=0
+ ..F  S SCDT=$O(^TMP($J,"RE-SORT","SDAMA301",SCDT)) Q:'SCDT  D
+ ...F  S DFN=$O(^TMP($J,"RE-SORT","SDAMA301",SCDT,DFN)) Q:'DFN  D
+ ....Q:$D(^TMP($J,"EXCLPAT",+DFN))
+ ....S ICN=$$GET1^DIQ(2,DFN_",",991.01)
+ ....S SSN=$$GET1^DIQ(2,DFN_",",.09)
+ ....S HIT=HIT+1,@DATAROOT@(HIT)=DFN_U_""_U_$$GET1^DIQ(2,DFN_",",.01)_U_ICN_U_SSN
+ ....S ^TMP($J,"EXCLPAT",+DFN)="Y"
  ;
  S @DATAROOT=HIT_U_EXTIME  ; hits ^ time
  D XITLOG(LOGND,HIT)

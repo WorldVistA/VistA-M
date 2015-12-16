@@ -1,124 +1,130 @@
-IBDEI0SY ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0SY ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14276,0)
- ;;=37239^^86^880^54^^^^1
- ;;^UTILITY(U,$J,358.3,14276,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14276,1,2,0)
- ;;=2^Transcath Plcmt Stent,Open/Perc,Ea Addl Vein
- ;;^UTILITY(U,$J,358.3,14276,1,4,0)
- ;;=4^37239
- ;;^UTILITY(U,$J,358.3,14277,0)
- ;;=37241^^86^880^65^^^^1
- ;;^UTILITY(U,$J,358.3,14277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14277,1,2,0)
- ;;=2^Vasc Emb,Venous,Other Than Hemorrhage
- ;;^UTILITY(U,$J,358.3,14277,1,4,0)
- ;;=4^37241
- ;;^UTILITY(U,$J,358.3,14278,0)
- ;;=37242^^86^880^64^^^^1
- ;;^UTILITY(U,$J,358.3,14278,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14278,1,2,0)
- ;;=2^Vasc Emb,Arterial,Other Than Hemorrhage
- ;;^UTILITY(U,$J,358.3,14278,1,4,0)
- ;;=4^37242
- ;;^UTILITY(U,$J,358.3,14279,0)
- ;;=37243^^86^880^62^^^^1
- ;;^UTILITY(U,$J,358.3,14279,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14279,1,2,0)
- ;;=2^Vasc Emb for Tumors,Organ Ischemia,Infarct
- ;;^UTILITY(U,$J,358.3,14279,1,4,0)
- ;;=4^37243
- ;;^UTILITY(U,$J,358.3,14280,0)
- ;;=37244^^86^880^63^^^^1
- ;;^UTILITY(U,$J,358.3,14280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14280,1,2,0)
- ;;=2^Vasc Emb,Art or Ven Hemor/Lymph Extrav
- ;;^UTILITY(U,$J,358.3,14280,1,4,0)
- ;;=4^37244
- ;;^UTILITY(U,$J,358.3,14281,0)
- ;;=75970^^86^880^58^^^^1
- ;;^UTILITY(U,$J,358.3,14281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14281,1,2,0)
- ;;=2^Transcatheter Biopsy,Radiological S&I
- ;;^UTILITY(U,$J,358.3,14281,1,4,0)
- ;;=4^75970
- ;;^UTILITY(U,$J,358.3,14282,0)
- ;;=36222^^86^880^38^^^^1
- ;;^UTILITY(U,$J,358.3,14282,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14282,1,2,0)
- ;;=2^Select Cath w/ Cervicocerebral Arch Angio
- ;;^UTILITY(U,$J,358.3,14282,1,4,0)
- ;;=4^36222
- ;;^UTILITY(U,$J,358.3,14283,0)
- ;;=36223^^86^880^39^^^^1
- ;;^UTILITY(U,$J,358.3,14283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14283,1,2,0)
- ;;=2^Select Cath w/ Extracranial Carotid Angio
- ;;^UTILITY(U,$J,358.3,14283,1,4,0)
- ;;=4^36223
- ;;^UTILITY(U,$J,358.3,14284,0)
- ;;=36224^^86^880^40^^^^1
- ;;^UTILITY(U,$J,358.3,14284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14284,1,2,0)
- ;;=2^Select Cath w/ Ipsilateral Intracranial Angio
- ;;^UTILITY(U,$J,358.3,14284,1,4,0)
- ;;=4^36224
- ;;^UTILITY(U,$J,358.3,14285,0)
- ;;=36253^^86^880^43^^^^1
- ;;^UTILITY(U,$J,358.3,14285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14285,1,2,0)
- ;;=2^Superselect Cath Ren Art&Access Art
- ;;^UTILITY(U,$J,358.3,14285,1,4,0)
- ;;=4^36253
- ;;^UTILITY(U,$J,358.3,14286,0)
- ;;=37251^^86^880^23^^^^1
- ;;^UTILITY(U,$J,358.3,14286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14286,1,2,0)
- ;;=2^Intravas US,Non/Cor,Diag/Ther Interv,Ea Addl
- ;;^UTILITY(U,$J,358.3,14286,1,4,0)
- ;;=4^37251
- ;;^UTILITY(U,$J,358.3,14287,0)
- ;;=34800^^86^881^4^^^^1
- ;;^UTILITY(U,$J,358.3,14287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14287,1,2,0)
- ;;=2^Endovasc Abdo Repair w/ Tube
- ;;^UTILITY(U,$J,358.3,14287,1,4,0)
- ;;=4^34800
- ;;^UTILITY(U,$J,358.3,14288,0)
- ;;=34802^^86^881^3^^^^1
- ;;^UTILITY(U,$J,358.3,14288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14288,1,2,0)
- ;;=2^Endovasc Abdo Repair w/ Bifurc
- ;;^UTILITY(U,$J,358.3,14288,1,4,0)
- ;;=4^34802
- ;;^UTILITY(U,$J,358.3,14289,0)
- ;;=34803^^86^881^2^^^^1
- ;;^UTILITY(U,$J,358.3,14289,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14289,1,2,0)
- ;;=2^Endovas AAA Repair w/ 3-P Part
- ;;^UTILITY(U,$J,358.3,14289,1,4,0)
- ;;=4^34803
- ;;^UTILITY(U,$J,358.3,14290,0)
- ;;=36005^^86^882^1^^^^1
- ;;^UTILITY(U,$J,358.3,14290,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14290,1,2,0)
- ;;=2^Contrast Venography
- ;;^UTILITY(U,$J,358.3,14290,1,4,0)
- ;;=4^36005
+ ;;^UTILITY(U,$J,358.3,14015,1,5,0)
+ ;;=5^Deformity, ankle- congenital
+ ;;^UTILITY(U,$J,358.3,14015,2)
+ ;;=^273054
+ ;;^UTILITY(U,$J,358.3,14016,0)
+ ;;=692.9^^74^852^14
+ ;;^UTILITY(U,$J,358.3,14016,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14016,1,3,0)
+ ;;=3^692.9
+ ;;^UTILITY(U,$J,358.3,14016,1,5,0)
+ ;;=5^Dermatitis (contact/eczema/venenata)
+ ;;^UTILITY(U,$J,358.3,14016,2)
+ ;;=^27800
+ ;;^UTILITY(U,$J,358.3,14017,0)
+ ;;=459.81^^74^852^15
+ ;;^UTILITY(U,$J,358.3,14017,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14017,1,3,0)
+ ;;=3^459.81
+ ;;^UTILITY(U,$J,358.3,14017,1,5,0)
+ ;;=5^Dermatitis, Stasis (w/o varicose veins) 
+ ;;^UTILITY(U,$J,358.3,14017,2)
+ ;;=^125826
+ ;;^UTILITY(U,$J,358.3,14018,0)
+ ;;=454.1^^74^852^17
+ ;;^UTILITY(U,$J,358.3,14018,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14018,1,3,0)
+ ;;=3^454.1
+ ;;^UTILITY(U,$J,358.3,14018,1,5,0)
+ ;;=5^Dermatitis, Status due to varicose veins 
+ ;;^UTILITY(U,$J,358.3,14018,2)
+ ;;=^125435
+ ;;^UTILITY(U,$J,358.3,14019,0)
+ ;;=454.2^^74^852^16
+ ;;^UTILITY(U,$J,358.3,14019,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14019,1,3,0)
+ ;;=3^454.2
+ ;;^UTILITY(U,$J,358.3,14019,1,5,0)
+ ;;=5^Dermatitis, Stasis with ulcer/ulcerated
+ ;;^UTILITY(U,$J,358.3,14019,2)
+ ;;=^269821
+ ;;^UTILITY(U,$J,358.3,14020,0)
+ ;;=110.4^^74^852^18
+ ;;^UTILITY(U,$J,358.3,14020,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14020,1,3,0)
+ ;;=3^110.4
+ ;;^UTILITY(U,$J,358.3,14020,1,5,0)
+ ;;=5^Dermatophytosis of foot
+ ;;^UTILITY(U,$J,358.3,14020,2)
+ ;;=^33168
+ ;;^UTILITY(U,$J,358.3,14021,0)
+ ;;=250.00^^74^852^7
+ ;;^UTILITY(U,$J,358.3,14021,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14021,1,3,0)
+ ;;=3^250.00
+ ;;^UTILITY(U,$J,358.3,14021,1,5,0)
+ ;;=5^DM II w/o complication 
+ ;;^UTILITY(U,$J,358.3,14021,2)
+ ;;=^33605
+ ;;^UTILITY(U,$J,358.3,14022,0)
+ ;;=250.01^^74^852^3
+ ;;^UTILITY(U,$J,358.3,14022,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14022,1,3,0)
+ ;;=3^250.01
+ ;;^UTILITY(U,$J,358.3,14022,1,5,0)
+ ;;=5^DM I w/o complication 
+ ;;^UTILITY(U,$J,358.3,14022,2)
+ ;;=^33586
+ ;;^UTILITY(U,$J,358.3,14023,0)
+ ;;=838.00^^74^852^23
+ ;;^UTILITY(U,$J,358.3,14023,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14023,1,3,0)
+ ;;=3^838.00
+ ;;^UTILITY(U,$J,358.3,14023,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; foot, unspecified
+ ;;^UTILITY(U,$J,358.3,14023,2)
+ ;;=^274391
+ ;;^UTILITY(U,$J,358.3,14024,0)
+ ;;=838.01^^74^852^24
+ ;;^UTILITY(U,$J,358.3,14024,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14024,1,3,0)
+ ;;=3^838.01
+ ;;^UTILITY(U,$J,358.3,14024,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; tarsal(bone), joint unspecified 
+ ;;^UTILITY(U,$J,358.3,14024,2)
+ ;;=^274394
+ ;;^UTILITY(U,$J,358.3,14025,0)
+ ;;=838.02^^74^852^25
+ ;;^UTILITY(U,$J,358.3,14025,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14025,1,3,0)
+ ;;=3^838.02
+ ;;^UTILITY(U,$J,358.3,14025,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; midtarsal (joint)
+ ;;^UTILITY(U,$J,358.3,14025,2)
+ ;;=^274395
+ ;;^UTILITY(U,$J,358.3,14026,0)
+ ;;=838.03^^74^852^26
+ ;;^UTILITY(U,$J,358.3,14026,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14026,1,3,0)
+ ;;=3^838.03
+ ;;^UTILITY(U,$J,358.3,14026,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; tarsometatarsal (joint)
+ ;;^UTILITY(U,$J,358.3,14026,2)
+ ;;=^274396
+ ;;^UTILITY(U,$J,358.3,14027,0)
+ ;;=838.04^^74^852^27
+ ;;^UTILITY(U,$J,358.3,14027,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,14027,1,3,0)
+ ;;=3^838.04
+ ;;^UTILITY(U,$J,358.3,14027,1,5,0)
+ ;;=5^Dislocation of foot, closed dislocation; metatarsal(bone), joint unspecified
+ ;;^UTILITY(U,$J,358.3,14027,2)
+ ;;=^274397
+ ;;^UTILITY(U,$J,358.3,14028,0)
+ ;;=838.05^^74^852^28

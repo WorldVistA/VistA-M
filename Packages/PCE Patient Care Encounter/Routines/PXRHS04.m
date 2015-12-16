@@ -1,5 +1,5 @@
 PXRHS04 ; SLC/SBW - PCE Visit Skin Test Data Extract ;11/25/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13**;Aug 12, 1996
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,206**;Aug 12, 1996;Build 50
 SKIN(DFN) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
  ;OUTPUT : 
@@ -31,13 +31,18 @@ SKIN(DFN) ; Control branching
  . . S PXIFN=0
  . . F  S PXIFN=$O(^AUPNVSK("AA",DFN,PXSK,PXIVD,PXIFN)) Q:PXIFN'>0  D
  . . . N DIC,DIQ,DR,DA,REC,VDATA,SKIN,SKDT,RESULTC,RESULT,READING,RDT
- . . . N OPROV,EPROV,HLOC,HLOCABB,SOURCE,IDT,COMMENT
+ . . . N OPROV,EPROV,HLOC,HLOCABB,SOURCE,IDT,COMMENT,PXSKIEN
  . . . S DIC=9000010.12,DA=PXIFN,DIQ="REC(",DIQ(0)="IE"
  . . . S DR=".01;.03;.04;.05;.06;1201;1202;1204;80102;81101"
  . . . D EN^DIQ1
  . . . Q:'$D(REC)
  . . . S VDATA=$$GETVDATA^PXRHS03(+REC(9000010.12,DA,.03,"I"))
- . . . S SKIN=REC(9000010.12,DA,.01,"E")
+ . . . S SKIN=REC(9000010.12,DA,.01,"E")  ;+ORIG
+ . . . S PXSKIEN=REC(9000010.12,DA,.01,"I")  ;get SKIN TEST IEN
+ . . . ;replace Name with PRINT NAME for National records
+ . . . I $P($G(^AUTTSK(+PXSKIEN,12)),U)]"" S SKIN=$P(^AUTTSK(+PXSKIEN,12),U)
+ . . . I $L(SKIN)>11 D  ;name longer than 11 characters
+ . . . . S SKIN=$E(SKIN,1,10)_"*"  ;truncate
  . . . S SKDT=REC(9000010.12,DA,1201,"I")
  . . . S:SKDT']"" SKDT=$P(VDATA,U)
  . . . S IDT=9999999-SKDT

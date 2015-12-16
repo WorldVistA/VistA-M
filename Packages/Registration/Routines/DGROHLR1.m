@@ -1,5 +1,5 @@
-DGROHLR1 ;GTS/PHH,TDM - ROM HL7 RECEIVE DRIVERS ; 10/20/10 2:47pm
- ;;5.3;Registration;**572,622,647,809,754,797**;Aug 13, 1993;Build 24
+DGROHLR1 ;GTS/PHH,TDM - ROM HL7 RECEIVE DRIVERS ; 6/26/13 2:37pm
+ ;;5.3;Registration;**572,622,647,809,754,797,897**;Aug 13, 1993;Build 10
  ;
 CONVFDA(DFN,DGDATA) ; LOOP THROUGH DATA TO FILE
  N DFNC,F,IEN,FIELD,DGROAR,FNUM,QVAR,INX,DGRONUPD
@@ -97,14 +97,19 @@ FILE ;*Execute FILE or UPDATE per FNUM (1st subscpt) for file # according
  . D CONVERT ;Convert MSE fields to internal format
  . D UPDATE^DIE("","@DGROAR","","ERR")
  I (+FNUM=2.02)!(+FNUM=2.06) DO
- . N DGRODNUM,DGIEN,DNUMDATA,DGIEN2,DGROIEN
+ . N DGRODNUM,DGIEN,DNUMDATA,DGIEN2,DGROIEN,DGFLD
  . S DGRODNUM=0
  . F  S DGRODNUM=$O(@DGROAR@(+FNUM,DGRODNUM)) Q:DGRODNUM=""  D
  . . S DGIEN=$P(DGRODNUM,",")
  . . I DGIEN S DGIEN2=$P(DGIEN,"+",2)
  . . S DNUMDATA=$G(@DGROAR@(+FNUM,DGRODNUM,.01))
- . . I DGIEN2 S DGROIEN(DGIEN2)=DNUMDATA D
- . . . D UPDATE^DIE("","@DGROAR","DGROIEN","ERR") ;*Converted Ext to Int
+ . . ; Changed FileMan call for processing of DINUM recs DG*5.3*897
+ . . ; I DGIEN2 S DGROIEN(DGIEN2)=DNUMDATA D
+ . . ; . D UPDATE^DIE("","@DGROAR","DGROIEN","ERR") ;*Converted Ext to Int
+ . . I DGIEN2 S DGROIEN(DGIEN2)=DNUMDATA
+ . . S DGFLD="."_$P(FNUM,".",2) D
+ . . . S (X,DINUM)=DNUMDATA,DIC="^DPT(DFN,DGFLD,",DA(1)=DFN,DIC(0)="L"
+ . . . K DO D FILE^DICN K DIC,X,DINUM,DA
  ;
  ;* Processing fields [indicated in 391.23] not part of Patient file.
  ;* Define IF section for each file not a Patient file field or

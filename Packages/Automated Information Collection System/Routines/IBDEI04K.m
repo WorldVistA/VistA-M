@@ -1,142 +1,128 @@
-IBDEI04K ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI04K ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1810,2)
- ;;=^272168
- ;;^UTILITY(U,$J,358.3,1811,0)
- ;;=715.94^^17^160^44
- ;;^UTILITY(U,$J,358.3,1811,1,0)
+ ;;^UTILITY(U,$J,358.3,1609,1,4,0)
+ ;;=4^S22.009A
+ ;;^UTILITY(U,$J,358.3,1609,2)
+ ;;=^5022829
+ ;;^UTILITY(U,$J,358.3,1610,0)
+ ;;=S32.009A^^3^45^30
+ ;;^UTILITY(U,$J,358.3,1610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1811,1,3,0)
- ;;=3^Osteoarthros NOS-Hand
- ;;^UTILITY(U,$J,358.3,1811,1,4,0)
- ;;=4^715.94
- ;;^UTILITY(U,$J,358.3,1811,2)
- ;;=^272165
- ;;^UTILITY(U,$J,358.3,1812,0)
- ;;=715.96^^17^160^46
- ;;^UTILITY(U,$J,358.3,1812,1,0)
+ ;;^UTILITY(U,$J,358.3,1610,1,3,0)
+ ;;=3^Fx of Lumbar Vertebra,Unspec,Init for Closed Fx
+ ;;^UTILITY(U,$J,358.3,1610,1,4,0)
+ ;;=4^S32.009A
+ ;;^UTILITY(U,$J,358.3,1610,2)
+ ;;=^5024365
+ ;;^UTILITY(U,$J,358.3,1611,0)
+ ;;=S32.10XA^^3^45^32
+ ;;^UTILITY(U,$J,358.3,1611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1812,1,3,0)
- ;;=3^Osteoarthros NOS-L/Leg
- ;;^UTILITY(U,$J,358.3,1812,1,4,0)
- ;;=4^715.96
- ;;^UTILITY(U,$J,358.3,1812,2)
- ;;=^272167
- ;;^UTILITY(U,$J,358.3,1813,0)
- ;;=715.91^^17^160^48
- ;;^UTILITY(U,$J,358.3,1813,1,0)
+ ;;^UTILITY(U,$J,358.3,1611,1,3,0)
+ ;;=3^Fx of Sacrum,Init for Closed Fx
+ ;;^UTILITY(U,$J,358.3,1611,1,4,0)
+ ;;=4^S32.10XA
+ ;;^UTILITY(U,$J,358.3,1611,2)
+ ;;=^5024521
+ ;;^UTILITY(U,$J,358.3,1612,0)
+ ;;=S32.2XXA^^3^45^29
+ ;;^UTILITY(U,$J,358.3,1612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1813,1,3,0)
- ;;=3^Osteoarthros NOS-Shlder
- ;;^UTILITY(U,$J,358.3,1813,1,4,0)
- ;;=4^715.91
- ;;^UTILITY(U,$J,358.3,1813,2)
- ;;=^272162
- ;;^UTILITY(U,$J,358.3,1814,0)
- ;;=715.00^^17^160^14
- ;;^UTILITY(U,$J,358.3,1814,1,0)
+ ;;^UTILITY(U,$J,358.3,1612,1,3,0)
+ ;;=3^Fx of Coccyx,Init for Closed Fx
+ ;;^UTILITY(U,$J,358.3,1612,1,4,0)
+ ;;=4^S32.2XXA
+ ;;^UTILITY(U,$J,358.3,1612,2)
+ ;;=^5024629
+ ;;^UTILITY(U,$J,358.3,1613,0)
+ ;;=S83.201A^^3^45^11
+ ;;^UTILITY(U,$J,358.3,1613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1814,1,3,0)
- ;;=3^General Osteoarthrosis
- ;;^UTILITY(U,$J,358.3,1814,1,4,0)
- ;;=4^715.00
- ;;^UTILITY(U,$J,358.3,1814,2)
- ;;=^272125
- ;;^UTILITY(U,$J,358.3,1815,0)
- ;;=716.91^^17^160^8
- ;;^UTILITY(U,$J,358.3,1815,1,0)
+ ;;^UTILITY(U,$J,358.3,1613,1,3,0)
+ ;;=3^Bucket-hndl tear of unsp mensc, current injury, l knee, init
+ ;;^UTILITY(U,$J,358.3,1613,1,4,0)
+ ;;=4^S83.201A
+ ;;^UTILITY(U,$J,358.3,1613,2)
+ ;;=^5043028
+ ;;^UTILITY(U,$J,358.3,1614,0)
+ ;;=S43.421A^^3^45^106
+ ;;^UTILITY(U,$J,358.3,1614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1815,1,3,0)
- ;;=3^Arthropathy/Arthritis,Shoulder
- ;;^UTILITY(U,$J,358.3,1815,1,4,0)
- ;;=4^716.91
- ;;^UTILITY(U,$J,358.3,1815,2)
- ;;=^272248
- ;;^UTILITY(U,$J,358.3,1816,0)
- ;;=716.92^^17^160^9
- ;;^UTILITY(U,$J,358.3,1816,1,0)
+ ;;^UTILITY(U,$J,358.3,1614,1,3,0)
+ ;;=3^Sprain of right rotator cuff capsule, initial encounter
+ ;;^UTILITY(U,$J,358.3,1614,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,1614,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,1615,0)
+ ;;=S43.422A^^3^45^102
+ ;;^UTILITY(U,$J,358.3,1615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1816,1,3,0)
- ;;=3^Arthropathy/Arthritis,Upper Arm/Elbow
- ;;^UTILITY(U,$J,358.3,1816,1,4,0)
- ;;=4^716.92
- ;;^UTILITY(U,$J,358.3,1816,2)
- ;;=^272249
- ;;^UTILITY(U,$J,358.3,1817,0)
- ;;=716.93^^17^160^6
- ;;^UTILITY(U,$J,358.3,1817,1,0)
+ ;;^UTILITY(U,$J,358.3,1615,1,3,0)
+ ;;=3^Sprain of left rotator cuff capsule, initial encounter
+ ;;^UTILITY(U,$J,358.3,1615,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,1615,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,1616,0)
+ ;;=S63.501A^^3^45^101
+ ;;^UTILITY(U,$J,358.3,1616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1817,1,3,0)
- ;;=3^Arthropathy/Arthritis,Forearm/Wrist
- ;;^UTILITY(U,$J,358.3,1817,1,4,0)
- ;;=4^716.93
- ;;^UTILITY(U,$J,358.3,1817,2)
- ;;=^272250
- ;;^UTILITY(U,$J,358.3,1818,0)
- ;;=716.94^^17^160^7
- ;;^UTILITY(U,$J,358.3,1818,1,0)
+ ;;^UTILITY(U,$J,358.3,1616,1,3,0)
+ ;;=3^Sprain of Right Wrist,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1616,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,1616,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,1617,0)
+ ;;=S63.502A^^3^45^100
+ ;;^UTILITY(U,$J,358.3,1617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1818,1,3,0)
- ;;=3^Arthropathy/Arthritis,Hand
- ;;^UTILITY(U,$J,358.3,1818,1,4,0)
- ;;=4^716.94
- ;;^UTILITY(U,$J,358.3,1818,2)
- ;;=^272251
- ;;^UTILITY(U,$J,358.3,1819,0)
- ;;=715.31^^17^160^40
- ;;^UTILITY(U,$J,358.3,1819,1,0)
+ ;;^UTILITY(U,$J,358.3,1617,1,3,0)
+ ;;=3^Sprain of Left Wrist,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1617,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,1617,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,1618,0)
+ ;;=S93.401A^^3^45^108
+ ;;^UTILITY(U,$J,358.3,1618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1819,1,3,0)
- ;;=3^OA,localized,shoulder
- ;;^UTILITY(U,$J,358.3,1819,1,4,0)
- ;;=4^715.31
- ;;^UTILITY(U,$J,358.3,1819,2)
- ;;=^272150
- ;;^UTILITY(U,$J,358.3,1820,0)
- ;;=715.32^^17^160^41
- ;;^UTILITY(U,$J,358.3,1820,1,0)
+ ;;^UTILITY(U,$J,358.3,1618,1,3,0)
+ ;;=3^Sprain of unspecified ligament of right ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,1618,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,1618,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,1619,0)
+ ;;=S93.402A^^3^45^107
+ ;;^UTILITY(U,$J,358.3,1619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1820,1,3,0)
- ;;=3^OA,localized,upper arm
- ;;^UTILITY(U,$J,358.3,1820,1,4,0)
- ;;=4^715.32
- ;;^UTILITY(U,$J,358.3,1820,2)
- ;;=^272151
- ;;^UTILITY(U,$J,358.3,1821,0)
- ;;=715.33^^17^160^36
- ;;^UTILITY(U,$J,358.3,1821,1,0)
+ ;;^UTILITY(U,$J,358.3,1619,1,3,0)
+ ;;=3^Sprain of unspecified ligament of left ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,1619,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,1619,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,1620,0)
+ ;;=S13.4XXA^^3^45^103
+ ;;^UTILITY(U,$J,358.3,1620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1821,1,3,0)
- ;;=3^OA,localized,forearm
- ;;^UTILITY(U,$J,358.3,1821,1,4,0)
- ;;=4^715.33
- ;;^UTILITY(U,$J,358.3,1821,2)
- ;;=^272152
- ;;^UTILITY(U,$J,358.3,1822,0)
- ;;=715.34^^17^160^37
- ;;^UTILITY(U,$J,358.3,1822,1,0)
+ ;;^UTILITY(U,$J,358.3,1620,1,3,0)
+ ;;=3^Sprain of ligaments of cervical spine, initial encounter
+ ;;^UTILITY(U,$J,358.3,1620,1,4,0)
+ ;;=4^S13.4XXA
+ ;;^UTILITY(U,$J,358.3,1620,2)
+ ;;=^5022028
+ ;;^UTILITY(U,$J,358.3,1621,0)
+ ;;=S23.3XXA^^3^45^105
+ ;;^UTILITY(U,$J,358.3,1621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1822,1,3,0)
- ;;=3^OA,localized,hand
- ;;^UTILITY(U,$J,358.3,1822,1,4,0)
- ;;=4^715.34
- ;;^UTILITY(U,$J,358.3,1822,2)
- ;;=^272153
- ;;^UTILITY(U,$J,358.3,1823,0)
- ;;=715.35^^17^160^38
- ;;^UTILITY(U,$J,358.3,1823,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1823,1,3,0)
- ;;=3^OA,localized,hip
- ;;^UTILITY(U,$J,358.3,1823,1,4,0)
- ;;=4^715.35
- ;;^UTILITY(U,$J,358.3,1823,2)
- ;;=^272154
- ;;^UTILITY(U,$J,358.3,1824,0)
- ;;=715.36^^17^160^39
- ;;^UTILITY(U,$J,358.3,1824,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1824,1,3,0)
- ;;=3^OA,localized,knee
+ ;;^UTILITY(U,$J,358.3,1621,1,3,0)
+ ;;=3^Sprain of ligaments of thoracic spine, initial encounter
+ ;;^UTILITY(U,$J,358.3,1621,1,4,0)
+ ;;=4^S23.3XXA
+ ;;^UTILITY(U,$J,358.3,1621,2)
+ ;;=^5023246

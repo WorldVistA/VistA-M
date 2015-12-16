@@ -1,126 +1,124 @@
-IBDEI1NQ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1NQ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29794,1,3,0)
- ;;=3^Occlusion/Stenosis of Precerebral Arteries NEC
- ;;^UTILITY(U,$J,358.3,29794,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,29794,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,29795,0)
- ;;=I70.211^^189^1895^11
- ;;^UTILITY(U,$J,358.3,29795,1,0)
+ ;;^UTILITY(U,$J,358.3,29443,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 31-59 min, init
+ ;;^UTILITY(U,$J,358.3,29443,1,4,0)
+ ;;=4^S06.1X2A
+ ;;^UTILITY(U,$J,358.3,29443,2)
+ ;;=^5020702
+ ;;^UTILITY(U,$J,358.3,29444,0)
+ ;;=S06.1X2D^^176^1883^51
+ ;;^UTILITY(U,$J,358.3,29444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29795,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,29795,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,29795,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,29796,0)
- ;;=I70.212^^189^1895^10
- ;;^UTILITY(U,$J,358.3,29796,1,0)
+ ;;^UTILITY(U,$J,358.3,29444,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 31-59 min, subs
+ ;;^UTILITY(U,$J,358.3,29444,1,4,0)
+ ;;=4^S06.1X2D
+ ;;^UTILITY(U,$J,358.3,29444,2)
+ ;;=^5020703
+ ;;^UTILITY(U,$J,358.3,29445,0)
+ ;;=S06.1X2S^^176^1883^52
+ ;;^UTILITY(U,$J,358.3,29445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29796,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,29796,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,29796,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,29797,0)
- ;;=I70.213^^189^1895^9
- ;;^UTILITY(U,$J,358.3,29797,1,0)
+ ;;^UTILITY(U,$J,358.3,29445,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,29445,1,4,0)
+ ;;=4^S06.1X2S
+ ;;^UTILITY(U,$J,358.3,29445,2)
+ ;;=^5020704
+ ;;^UTILITY(U,$J,358.3,29446,0)
+ ;;=S06.1X3A^^176^1883^44
+ ;;^UTILITY(U,$J,358.3,29446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29797,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,29797,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,29797,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,29798,0)
- ;;=I71.2^^189^1895^29
- ;;^UTILITY(U,$J,358.3,29798,1,0)
+ ;;^UTILITY(U,$J,358.3,29446,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 1-5 hrs 59 min, init
+ ;;^UTILITY(U,$J,358.3,29446,1,4,0)
+ ;;=4^S06.1X3A
+ ;;^UTILITY(U,$J,358.3,29446,2)
+ ;;=^5020705
+ ;;^UTILITY(U,$J,358.3,29447,0)
+ ;;=S06.1X3D^^176^1883^45
+ ;;^UTILITY(U,$J,358.3,29447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29798,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,29798,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,29798,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,29799,0)
- ;;=I71.4^^189^1895^1
- ;;^UTILITY(U,$J,358.3,29799,1,0)
+ ;;^UTILITY(U,$J,358.3,29447,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 1-5 hrs 59 min, subs
+ ;;^UTILITY(U,$J,358.3,29447,1,4,0)
+ ;;=4^S06.1X3D
+ ;;^UTILITY(U,$J,358.3,29447,2)
+ ;;=^5020706
+ ;;^UTILITY(U,$J,358.3,29448,0)
+ ;;=S06.1X3S^^176^1883^46
+ ;;^UTILITY(U,$J,358.3,29448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29799,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,29799,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,29799,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,29800,0)
- ;;=I73.9^^189^1895^27
- ;;^UTILITY(U,$J,358.3,29800,1,0)
+ ;;^UTILITY(U,$J,358.3,29448,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,29448,1,4,0)
+ ;;=4^S06.1X3S
+ ;;^UTILITY(U,$J,358.3,29448,2)
+ ;;=^5020707
+ ;;^UTILITY(U,$J,358.3,29449,0)
+ ;;=S06.1X4A^^176^1883^53
+ ;;^UTILITY(U,$J,358.3,29449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29800,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,29800,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,29800,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,29801,0)
- ;;=I74.2^^189^1895^21
- ;;^UTILITY(U,$J,358.3,29801,1,0)
+ ;;^UTILITY(U,$J,358.3,29449,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,29449,1,4,0)
+ ;;=4^S06.1X4A
+ ;;^UTILITY(U,$J,358.3,29449,2)
+ ;;=^5020708
+ ;;^UTILITY(U,$J,358.3,29450,0)
+ ;;=S06.1X4D^^176^1883^54
+ ;;^UTILITY(U,$J,358.3,29450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29801,1,3,0)
- ;;=3^Embolism/Thrombosis of Upper Extremity Arteries
- ;;^UTILITY(U,$J,358.3,29801,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,29801,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,29802,0)
- ;;=I74.3^^189^1895^19
- ;;^UTILITY(U,$J,358.3,29802,1,0)
+ ;;^UTILITY(U,$J,358.3,29450,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 6 hours to 24 hours, subs
+ ;;^UTILITY(U,$J,358.3,29450,1,4,0)
+ ;;=4^S06.1X4D
+ ;;^UTILITY(U,$J,358.3,29450,2)
+ ;;=^5020709
+ ;;^UTILITY(U,$J,358.3,29451,0)
+ ;;=S06.1X4S^^176^1883^55
+ ;;^UTILITY(U,$J,358.3,29451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29802,1,3,0)
- ;;=3^Embolism/Thrombosis of Lower Extremity Arteries
- ;;^UTILITY(U,$J,358.3,29802,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,29802,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,29803,0)
- ;;=I82.402^^189^1895^18
- ;;^UTILITY(U,$J,358.3,29803,1,0)
+ ;;^UTILITY(U,$J,358.3,29451,1,3,0)
+ ;;=3^Traum cereb edema w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,29451,1,4,0)
+ ;;=4^S06.1X4S
+ ;;^UTILITY(U,$J,358.3,29451,2)
+ ;;=^5020710
+ ;;^UTILITY(U,$J,358.3,29452,0)
+ ;;=S06.1X5A^^176^1883^38
+ ;;^UTILITY(U,$J,358.3,29452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29803,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Lower Extrem Deep Veins,Acute
- ;;^UTILITY(U,$J,358.3,29803,1,4,0)
- ;;=4^I82.402
- ;;^UTILITY(U,$J,358.3,29803,2)
- ;;=^5007855
- ;;^UTILITY(U,$J,358.3,29804,0)
- ;;=I82.401^^189^1895^20
- ;;^UTILITY(U,$J,358.3,29804,1,0)
+ ;;^UTILITY(U,$J,358.3,29452,1,3,0)
+ ;;=3^Traum cereb edema w LOC >24 hr w ret consc lev, init
+ ;;^UTILITY(U,$J,358.3,29452,1,4,0)
+ ;;=4^S06.1X5A
+ ;;^UTILITY(U,$J,358.3,29452,2)
+ ;;=^5020711
+ ;;^UTILITY(U,$J,358.3,29453,0)
+ ;;=S06.1X5D^^176^1883^39
+ ;;^UTILITY(U,$J,358.3,29453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29804,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Lower Extrem Deep Veins,Acute
- ;;^UTILITY(U,$J,358.3,29804,1,4,0)
- ;;=4^I82.401
- ;;^UTILITY(U,$J,358.3,29804,2)
- ;;=^5007854
- ;;^UTILITY(U,$J,358.3,29805,0)
- ;;=I82.403^^189^1895^17
- ;;^UTILITY(U,$J,358.3,29805,1,0)
+ ;;^UTILITY(U,$J,358.3,29453,1,3,0)
+ ;;=3^Traum cereb edema w LOC >24 hr w ret consc lev, subs
+ ;;^UTILITY(U,$J,358.3,29453,1,4,0)
+ ;;=4^S06.1X5D
+ ;;^UTILITY(U,$J,358.3,29453,2)
+ ;;=^5020712
+ ;;^UTILITY(U,$J,358.3,29454,0)
+ ;;=S06.1X5S^^176^1883^40
+ ;;^UTILITY(U,$J,358.3,29454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29805,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Lower Extrem Deep Veins,Acute
- ;;^UTILITY(U,$J,358.3,29805,1,4,0)
- ;;=4^I82.403
- ;;^UTILITY(U,$J,358.3,29805,2)
- ;;=^5007856
- ;;^UTILITY(U,$J,358.3,29806,0)
- ;;=K70.30^^189^1896^2
- ;;^UTILITY(U,$J,358.3,29806,1,0)
+ ;;^UTILITY(U,$J,358.3,29454,1,3,0)
+ ;;=3^Traum cereb edema w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,29454,1,4,0)
+ ;;=4^S06.1X5S
+ ;;^UTILITY(U,$J,358.3,29454,2)
+ ;;=^5020713
+ ;;^UTILITY(U,$J,358.3,29455,0)
+ ;;=S06.1X6A^^176^1883^41
+ ;;^UTILITY(U,$J,358.3,29455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29806,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites

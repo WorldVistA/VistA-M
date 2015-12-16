@@ -1,126 +1,130 @@
-IBDEI1V4 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1V4 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33176,1,3,0)
- ;;=3^Dislocation of MTP joint of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33176,1,4,0)
- ;;=4^S93.124A
- ;;^UTILITY(U,$J,358.3,33176,2)
- ;;=^5045666
- ;;^UTILITY(U,$J,358.3,33177,0)
- ;;=S93.121A^^191^1966^59
- ;;^UTILITY(U,$J,358.3,33177,1,0)
+ ;;^UTILITY(U,$J,358.3,32781,0)
+ ;;=D05.80^^182^1992^34
+ ;;^UTILITY(U,$J,358.3,32781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33177,1,3,0)
- ;;=3^Dislocation of MTP joint of rt great toe, init
- ;;^UTILITY(U,$J,358.3,33177,1,4,0)
- ;;=4^S93.121A
- ;;^UTILITY(U,$J,358.3,33177,2)
- ;;=^5045657
- ;;^UTILITY(U,$J,358.3,33178,0)
- ;;=S93.122A^^191^1966^57
- ;;^UTILITY(U,$J,358.3,33178,1,0)
+ ;;^UTILITY(U,$J,358.3,32781,1,3,0)
+ ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,32781,1,4,0)
+ ;;=4^D05.80
+ ;;^UTILITY(U,$J,358.3,32781,2)
+ ;;=^5001932
+ ;;^UTILITY(U,$J,358.3,32782,0)
+ ;;=D56.8^^182^1992^175
+ ;;^UTILITY(U,$J,358.3,32782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33178,1,3,0)
- ;;=3^Dislocation of MTP joint of lft great toe, init
- ;;^UTILITY(U,$J,358.3,33178,1,4,0)
- ;;=4^S93.122A
- ;;^UTILITY(U,$J,358.3,33178,2)
- ;;=^5045660
- ;;^UTILITY(U,$J,358.3,33179,0)
- ;;=S93.111A^^191^1966^63
- ;;^UTILITY(U,$J,358.3,33179,1,0)
+ ;;^UTILITY(U,$J,358.3,32782,1,3,0)
+ ;;=3^Thalassemias,Other
+ ;;^UTILITY(U,$J,358.3,32782,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,32782,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,32783,0)
+ ;;=C82.89^^182^1992^71
+ ;;^UTILITY(U,$J,358.3,32783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33179,1,3,0)
- ;;=3^Dislocation of interphaln joint of right grt toe, init
- ;;^UTILITY(U,$J,358.3,33179,1,4,0)
- ;;=4^S93.111A
- ;;^UTILITY(U,$J,358.3,33179,2)
- ;;=^5045636
- ;;^UTILITY(U,$J,358.3,33180,0)
- ;;=S93.112A^^191^1966^61
- ;;^UTILITY(U,$J,358.3,33180,1,0)
+ ;;^UTILITY(U,$J,358.3,32783,1,3,0)
+ ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
+ ;;^UTILITY(U,$J,358.3,32783,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,32783,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,32784,0)
+ ;;=D51.8^^182^1992^182
+ ;;^UTILITY(U,$J,358.3,32784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33180,1,3,0)
- ;;=3^Dislocation of interphalangeal joint of lft grt toe, init
- ;;^UTILITY(U,$J,358.3,33180,1,4,0)
- ;;=4^S93.112A
- ;;^UTILITY(U,$J,358.3,33180,2)
- ;;=^5045639
- ;;^UTILITY(U,$J,358.3,33181,0)
- ;;=S93.114A^^191^1966^64
- ;;^UTILITY(U,$J,358.3,33181,1,0)
+ ;;^UTILITY(U,$J,358.3,32784,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemias,Other
+ ;;^UTILITY(U,$J,358.3,32784,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,32784,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,32785,0)
+ ;;=I80.9^^182^1992^167
+ ;;^UTILITY(U,$J,358.3,32785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33181,1,3,0)
- ;;=3^Dislocation of interphaln joint of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33181,1,4,0)
- ;;=4^S93.114A
- ;;^UTILITY(U,$J,358.3,33181,2)
- ;;=^5045645
- ;;^UTILITY(U,$J,358.3,33182,0)
- ;;=S93.115A^^191^1966^62
- ;;^UTILITY(U,$J,358.3,33182,1,0)
+ ;;^UTILITY(U,$J,358.3,32785,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,32785,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,32785,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,32786,0)
+ ;;=D45.^^182^1992^168
+ ;;^UTILITY(U,$J,358.3,32786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33182,1,3,0)
- ;;=3^Dislocation of interphaln joint of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33182,1,4,0)
- ;;=4^S93.115A
- ;;^UTILITY(U,$J,358.3,33182,2)
- ;;=^5045648
- ;;^UTILITY(U,$J,358.3,33183,0)
- ;;=S93.104A^^191^1966^70
- ;;^UTILITY(U,$J,358.3,33183,1,0)
+ ;;^UTILITY(U,$J,358.3,32786,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,32786,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,32786,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,32787,0)
+ ;;=C77.3^^182^1992^104
+ ;;^UTILITY(U,$J,358.3,32787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33183,1,3,0)
- ;;=3^Dislocation of rt toe(s), unspec, init enc
- ;;^UTILITY(U,$J,358.3,33183,1,4,0)
- ;;=4^S93.104A
- ;;^UTILITY(U,$J,358.3,33183,2)
- ;;=^5045630
- ;;^UTILITY(U,$J,358.3,33184,0)
- ;;=S93.105A^^191^1966^67
- ;;^UTILITY(U,$J,358.3,33184,1,0)
+ ;;^UTILITY(U,$J,358.3,32787,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Notes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,32787,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,32787,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,32788,0)
+ ;;=C77.2^^182^1992^120
+ ;;^UTILITY(U,$J,358.3,32788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33184,1,3,0)
- ;;=3^Dislocation of lft toe(s), unspec, init enc
- ;;^UTILITY(U,$J,358.3,33184,1,4,0)
- ;;=4^S93.105A
- ;;^UTILITY(U,$J,358.3,33184,2)
- ;;=^5045633
- ;;^UTILITY(U,$J,358.3,33185,0)
- ;;=L30.9^^191^1966^56
- ;;^UTILITY(U,$J,358.3,33185,1,0)
+ ;;^UTILITY(U,$J,358.3,32788,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,32788,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,32788,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,32789,0)
+ ;;=C77.1^^182^1992^121
+ ;;^UTILITY(U,$J,358.3,32789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33185,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,33185,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,33185,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,33186,0)
- ;;=M20.5X2^^191^1966^40
- ;;^UTILITY(U,$J,358.3,33186,1,0)
+ ;;^UTILITY(U,$J,358.3,32789,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,32789,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,32789,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,32790,0)
+ ;;=C77.0^^182^1992^136
+ ;;^UTILITY(U,$J,358.3,32790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33186,1,3,0)
- ;;=3^Deformitis,Left Toe(s),Acquired
- ;;^UTILITY(U,$J,358.3,33186,1,4,0)
- ;;=4^M20.5X2
- ;;^UTILITY(U,$J,358.3,33186,2)
- ;;=^5011054
- ;;^UTILITY(U,$J,358.3,33187,0)
- ;;=M20.5X1^^191^1966^42
- ;;^UTILITY(U,$J,358.3,33187,1,0)
+ ;;^UTILITY(U,$J,358.3,32790,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,32790,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,32790,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,32791,0)
+ ;;=C77.8^^182^1992^137
+ ;;^UTILITY(U,$J,358.3,32791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33187,1,3,0)
- ;;=3^Deformitis,Right Toe(s),Acquired
- ;;^UTILITY(U,$J,358.3,33187,1,4,0)
- ;;=4^M20.5X1
- ;;^UTILITY(U,$J,358.3,33187,2)
- ;;=^5011053
- ;;^UTILITY(U,$J,358.3,33188,0)
- ;;=M24.871^^191^1966^49
- ;;^UTILITY(U,$J,358.3,33188,1,0)
+ ;;^UTILITY(U,$J,358.3,32791,1,3,0)
+ ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,32791,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,32791,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,32792,0)
+ ;;=C79.51^^182^1992^107
+ ;;^UTILITY(U,$J,358.3,32792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33188,1,3,0)
- ;;=3^Derangement,Right Ankle Joint NEC
+ ;;^UTILITY(U,$J,358.3,32792,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,32792,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,32792,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,32793,0)
+ ;;=C79.52^^182^1992^106
+ ;;^UTILITY(U,$J,358.3,32793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32793,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary

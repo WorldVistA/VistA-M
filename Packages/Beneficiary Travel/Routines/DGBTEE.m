@@ -1,8 +1,9 @@
-DGBTEE ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT; 12/3/92@1600 ;12/15/11  11:17
- ;;1.0;Beneficiary Travel;**2,14,20,21**;September 25, 2001;Build 7
+DGBTEE ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT; 12/3/92@1600 ; 7/2/14 1:17pm
+ ;;1.0;Beneficiary Travel;**2,14,20,21,25**;September 25, 2001;Build 12
  Q
 SCREEN ;
  ;
+ I '$D(^DGBT(392,DGBTDT,"D"))&('$D(^DGBT(392,DGBTDT,"T"))) S DGBTSP2M=1 D STUFF^DGBTE1 K DGBTSP2M ;dbe patch DGBT*1.0*25 - added for conversion from SP to M during claim edit
  D SCREEN^DGBTEE1 Q:$G(DGBTTOUT)=-1!($G(DGBTTOUT)=1)  Q:'$D(^DGBT(392,DGBTDT,0))
  ;  The following section of code moved to DGBTEE2 for space problems
  D STUFF^DGBTEE2
@@ -86,7 +87,7 @@ DIE2 ;  stuff eligibility data, SC%, acct. type
  .S FDA(392,DGBTDTI_",",8)=0
  .D FILE^DIE(,"FDA")
  S:$D(DGBTREC) DGBTME=$$DICLKUP^DGBTUTL(DGBTREC,DGBTDV1,3) S:DGBTME="" DGBTME=0 S DR="8//"_DGBTME_";W:'X X S DGBTME=X" D ^DIE I X=""!(X="^") S DGBTTOUT=-1 G EXIT
-TCOST ; calculate total cost and monthly cum. deductable
+TCOST ; calculate total cost and monthly cum. deductible
 MLFB ;
  ;
  N OWAIV
@@ -115,9 +116,10 @@ MLFB ;
  .I '$G(DGBTCC),'$G(DGBTCCREQ),$G(DGBTMLT)'>0 S DGBTDCV=0
  .I '$G(DGBTCC),DGBTMLT>DGBTDPV S (DGBTDCV,DGBTDE)=DGBTDPV
  .I ($G(CHZFLG))&($$GET1^DIQ(392,DGBTDT,9)=0)&($P($G(MONTOT),U,5)["Y") S (DGBTDCV,DGBTE)=0
- .I (+$P($G(MONTOT),U,7)<18)&((+$P($G(MONTOT),U,7)+DGBTDCV)>18)&(OWAIV'["Y")&('$G(CHZFLG)) S DGBTDCV=18-$P(MONTOT,U,7),$P(MONTOT,U,5)="NO" ; RFE 12/5/12
- .I (+$G(CHZFLG)&(($P($G(MONTOT),U,7)+DGBTDCV)>18)) S DGBTDCV=18-$P(MONTOT,U,7),$P(MONTOT,U,5)="NO" ; RFE 12/5/12
- .I (+$P($G(MONTOT),U,1)>6)!(+$P($G(MONTOT),U,7)>18)!($P($G(MONTOT),U,5)["Y")&('$G(CHZFLG)) S DGBTDCV=0 ; Added ELSE RFE 12/5/12
+ .;dbe patch DGBT*1.0*25 - modified the next three lines to use the total deductible for the month, MONTOT piece 4
+ .I (+$P($G(MONTOT),U,4)<18)&((+$P($G(MONTOT),U,4)+DGBTDCV)>18)&(OWAIV'["Y")&('$G(CHZFLG)) S DGBTDCV=18-$P(MONTOT,U,4),$P(MONTOT,U,5)="NO" ; RFE 12/5/12
+ .I (+$G(CHZFLG)&(($P($G(MONTOT),U,4)+DGBTDCV)>18)) S DGBTDCV=18-$P(MONTOT,U,4),$P(MONTOT,U,5)="NO" ; RFE 12/5/12
+ .I (+$P($G(MONTOT),U,1)>6)!(+$P($G(MONTOT),U,4)>18)!($P($G(MONTOT),U,5)["Y")&('$G(CHZFLG)) S DGBTDCV=0 ; Added ELSE RFE 12/5/12
  .I $$DENIED(DGBTDT) S DGBTDCV=0
  .I $G(CHZFLG)=0 S ($P(MONTOT,U,4),$P(MONTOT,U,7))=$P(MONTOT,U,4)+DGBTDCV
  .S DGBTOTHER=$$GET1^DIQ(392,DGBTDT,43.1,"I")

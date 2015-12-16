@@ -1,124 +1,120 @@
-IBDEI1PV ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PV ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30768,1,4,0)
- ;;=4^I83.022
- ;;^UTILITY(U,$J,358.3,30768,2)
- ;;=^5007981
- ;;^UTILITY(U,$J,358.3,30769,0)
- ;;=I83.021^^189^1923^10
- ;;^UTILITY(U,$J,358.3,30769,1,0)
+ ;;^UTILITY(U,$J,358.3,30397,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, unsp
+ ;;^UTILITY(U,$J,358.3,30397,1,4,0)
+ ;;=4^O36.62X0
+ ;;^UTILITY(U,$J,358.3,30397,2)
+ ;;=^5017040
+ ;;^UTILITY(U,$J,358.3,30398,0)
+ ;;=O36.62X1^^178^1916^99
+ ;;^UTILITY(U,$J,358.3,30398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30769,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,30769,1,4,0)
- ;;=4^I83.021
- ;;^UTILITY(U,$J,358.3,30769,2)
- ;;=^5007980
- ;;^UTILITY(U,$J,358.3,30770,0)
- ;;=I83.12^^189^1923^11
- ;;^UTILITY(U,$J,358.3,30770,1,0)
+ ;;^UTILITY(U,$J,358.3,30398,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,30398,1,4,0)
+ ;;=4^O36.62X1
+ ;;^UTILITY(U,$J,358.3,30398,2)
+ ;;=^5017041
+ ;;^UTILITY(U,$J,358.3,30399,0)
+ ;;=O36.62X2^^178^1916^100
+ ;;^UTILITY(U,$J,358.3,30399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30770,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,30770,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,30770,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,30771,0)
- ;;=I83.93^^189^1923^1
- ;;^UTILITY(U,$J,358.3,30771,1,0)
+ ;;^UTILITY(U,$J,358.3,30399,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,30399,1,4,0)
+ ;;=4^O36.62X2
+ ;;^UTILITY(U,$J,358.3,30399,2)
+ ;;=^5017042
+ ;;^UTILITY(U,$J,358.3,30400,0)
+ ;;=O36.62X3^^178^1916^101
+ ;;^UTILITY(U,$J,358.3,30400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30771,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extrem
- ;;^UTILITY(U,$J,358.3,30771,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,30771,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,30772,0)
- ;;=I83.92^^189^1923^2
- ;;^UTILITY(U,$J,358.3,30772,1,0)
+ ;;^UTILITY(U,$J,358.3,30400,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,30400,1,4,0)
+ ;;=4^O36.62X3
+ ;;^UTILITY(U,$J,358.3,30400,2)
+ ;;=^5017043
+ ;;^UTILITY(U,$J,358.3,30401,0)
+ ;;=O36.62X4^^178^1916^102
+ ;;^UTILITY(U,$J,358.3,30401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30772,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Left Lower Extrem
- ;;^UTILITY(U,$J,358.3,30772,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,30772,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,30773,0)
- ;;=H59.112^^189^1924^31
- ;;^UTILITY(U,$J,358.3,30773,1,0)
+ ;;^UTILITY(U,$J,358.3,30401,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,30401,1,4,0)
+ ;;=4^O36.62X4
+ ;;^UTILITY(U,$J,358.3,30401,2)
+ ;;=^5017044
+ ;;^UTILITY(U,$J,358.3,30402,0)
+ ;;=O36.62X5^^178^1916^103
+ ;;^UTILITY(U,$J,358.3,30402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30773,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Left Eye/Adnexa
- ;;^UTILITY(U,$J,358.3,30773,1,4,0)
- ;;=4^H59.112
- ;;^UTILITY(U,$J,358.3,30773,2)
- ;;=^5006402
- ;;^UTILITY(U,$J,358.3,30774,0)
- ;;=H59.111^^189^1924^35
- ;;^UTILITY(U,$J,358.3,30774,1,0)
+ ;;^UTILITY(U,$J,358.3,30402,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,30402,1,4,0)
+ ;;=4^O36.62X5
+ ;;^UTILITY(U,$J,358.3,30402,2)
+ ;;=^5017045
+ ;;^UTILITY(U,$J,358.3,30403,0)
+ ;;=O36.63X0^^178^1916^104
+ ;;^UTILITY(U,$J,358.3,30403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30774,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Right Eye/Adnexa
- ;;^UTILITY(U,$J,358.3,30774,1,4,0)
- ;;=4^H59.111
- ;;^UTILITY(U,$J,358.3,30774,2)
- ;;=^5006401
- ;;^UTILITY(U,$J,358.3,30775,0)
- ;;=G97.32^^189^1924^34
- ;;^UTILITY(U,$J,358.3,30775,1,0)
+ ;;^UTILITY(U,$J,358.3,30403,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, third trimester, unsp
+ ;;^UTILITY(U,$J,358.3,30403,1,4,0)
+ ;;=4^O36.63X0
+ ;;^UTILITY(U,$J,358.3,30403,2)
+ ;;=^5017047
+ ;;^UTILITY(U,$J,358.3,30404,0)
+ ;;=O36.63X1^^178^1916^105
+ ;;^UTILITY(U,$J,358.3,30404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30775,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Nervous System Organ/Sturcture
- ;;^UTILITY(U,$J,358.3,30775,1,4,0)
- ;;=4^G97.32
- ;;^UTILITY(U,$J,358.3,30775,2)
- ;;=^5004205
- ;;^UTILITY(U,$J,358.3,30776,0)
- ;;=D78.02^^189^1924^38
- ;;^UTILITY(U,$J,358.3,30776,1,0)
+ ;;^UTILITY(U,$J,358.3,30404,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, third tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,30404,1,4,0)
+ ;;=4^O36.63X1
+ ;;^UTILITY(U,$J,358.3,30404,2)
+ ;;=^5017048
+ ;;^UTILITY(U,$J,358.3,30405,0)
+ ;;=O36.63X2^^178^1916^106
+ ;;^UTILITY(U,$J,358.3,30405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30776,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Spleen
- ;;^UTILITY(U,$J,358.3,30776,1,4,0)
- ;;=4^D78.02
- ;;^UTILITY(U,$J,358.3,30776,2)
- ;;=^5002398
- ;;^UTILITY(U,$J,358.3,30777,0)
- ;;=E36.01^^189^1924^27
- ;;^UTILITY(U,$J,358.3,30777,1,0)
+ ;;^UTILITY(U,$J,358.3,30405,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, third tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,30405,1,4,0)
+ ;;=4^O36.63X2
+ ;;^UTILITY(U,$J,358.3,30405,2)
+ ;;=^5017049
+ ;;^UTILITY(U,$J,358.3,30406,0)
+ ;;=O36.63X3^^178^1916^107
+ ;;^UTILITY(U,$J,358.3,30406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30777,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System Organ/Structure
- ;;^UTILITY(U,$J,358.3,30777,1,4,0)
- ;;=4^E36.01
- ;;^UTILITY(U,$J,358.3,30777,2)
- ;;=^5002779
- ;;^UTILITY(U,$J,358.3,30778,0)
- ;;=I97.711^^189^1924^11
- ;;^UTILITY(U,$J,358.3,30778,1,0)
+ ;;^UTILITY(U,$J,358.3,30406,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, third tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,30406,1,4,0)
+ ;;=4^O36.63X3
+ ;;^UTILITY(U,$J,358.3,30406,2)
+ ;;=^5017050
+ ;;^UTILITY(U,$J,358.3,30407,0)
+ ;;=O36.63X4^^178^1916^108
+ ;;^UTILITY(U,$J,358.3,30407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30778,1,3,0)
- ;;=3^Intraoperative Cardiac Arrest During Surgery
- ;;^UTILITY(U,$J,358.3,30778,1,4,0)
- ;;=4^I97.711
- ;;^UTILITY(U,$J,358.3,30778,2)
- ;;=^5008104
- ;;^UTILITY(U,$J,358.3,30779,0)
- ;;=I97.791^^189^1924^12
- ;;^UTILITY(U,$J,358.3,30779,1,0)
+ ;;^UTILITY(U,$J,358.3,30407,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, third tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,30407,1,4,0)
+ ;;=4^O36.63X4
+ ;;^UTILITY(U,$J,358.3,30407,2)
+ ;;=^5017051
+ ;;^UTILITY(U,$J,358.3,30408,0)
+ ;;=O36.63X5^^178^1916^109
+ ;;^UTILITY(U,$J,358.3,30408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30779,1,3,0)
- ;;=3^Intraoperative Cardiac Functional Disturbance During Surgery
- ;;^UTILITY(U,$J,358.3,30779,1,4,0)
- ;;=4^I97.791
- ;;^UTILITY(U,$J,358.3,30779,2)
- ;;=^5008106
- ;;^UTILITY(U,$J,358.3,30780,0)
- ;;=I97.411^^189^1924^23
- ;;^UTILITY(U,$J,358.3,30780,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30780,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,30408,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, third tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,30408,1,4,0)
+ ;;=4^O36.63X5
+ ;;^UTILITY(U,$J,358.3,30408,2)
+ ;;=^5017052

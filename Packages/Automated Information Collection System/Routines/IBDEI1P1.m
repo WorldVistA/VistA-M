@@ -1,140 +1,124 @@
-IBDEI1P1 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1P1 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30392,1,4,0)
- ;;=4^M79.661
- ;;^UTILITY(U,$J,358.3,30392,2)
- ;;=^5013347
- ;;^UTILITY(U,$J,358.3,30393,0)
- ;;=M79.662^^189^1916^7
- ;;^UTILITY(U,$J,358.3,30393,1,0)
+ ;;^UTILITY(U,$J,358.3,30042,1,4,0)
+ ;;=4^O12.23
+ ;;^UTILITY(U,$J,358.3,30042,2)
+ ;;=^5016157
+ ;;^UTILITY(U,$J,358.3,30043,0)
+ ;;=O26.01^^178^1913^20
+ ;;^UTILITY(U,$J,358.3,30043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30393,1,3,0)
- ;;=3^Left Lower Leg Pain
- ;;^UTILITY(U,$J,358.3,30393,1,4,0)
- ;;=4^M79.662
- ;;^UTILITY(U,$J,358.3,30393,2)
- ;;=^5013348
- ;;^UTILITY(U,$J,358.3,30394,0)
- ;;=M79.652^^189^1916^8
- ;;^UTILITY(U,$J,358.3,30394,1,0)
+ ;;^UTILITY(U,$J,358.3,30043,1,3,0)
+ ;;=3^Excessive weight gain in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30043,1,4,0)
+ ;;=4^O26.01
+ ;;^UTILITY(U,$J,358.3,30043,2)
+ ;;=^5016298
+ ;;^UTILITY(U,$J,358.3,30044,0)
+ ;;=O26.02^^178^1913^21
+ ;;^UTILITY(U,$J,358.3,30044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30394,1,3,0)
- ;;=3^Left Thigh Pain
- ;;^UTILITY(U,$J,358.3,30394,1,4,0)
- ;;=4^M79.652
- ;;^UTILITY(U,$J,358.3,30394,2)
- ;;=^5013345
- ;;^UTILITY(U,$J,358.3,30395,0)
- ;;=M79.651^^189^1916^18
- ;;^UTILITY(U,$J,358.3,30395,1,0)
+ ;;^UTILITY(U,$J,358.3,30044,1,3,0)
+ ;;=3^Excessive weight gain in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30044,1,4,0)
+ ;;=4^O26.02
+ ;;^UTILITY(U,$J,358.3,30044,2)
+ ;;=^5016299
+ ;;^UTILITY(U,$J,358.3,30045,0)
+ ;;=O26.03^^178^1913^22
+ ;;^UTILITY(U,$J,358.3,30045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30395,1,3,0)
- ;;=3^Right Thigh Pain
- ;;^UTILITY(U,$J,358.3,30395,1,4,0)
- ;;=4^M79.651
- ;;^UTILITY(U,$J,358.3,30395,2)
- ;;=^5013344
- ;;^UTILITY(U,$J,358.3,30396,0)
- ;;=M79.605^^189^1916^6
- ;;^UTILITY(U,$J,358.3,30396,1,0)
+ ;;^UTILITY(U,$J,358.3,30045,1,3,0)
+ ;;=3^Excessive weight gain in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30045,1,4,0)
+ ;;=4^O26.03
+ ;;^UTILITY(U,$J,358.3,30045,2)
+ ;;=^5016300
+ ;;^UTILITY(U,$J,358.3,30046,0)
+ ;;=O26.831^^178^1913^72
+ ;;^UTILITY(U,$J,358.3,30046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30396,1,3,0)
- ;;=3^Left Leg Pain
- ;;^UTILITY(U,$J,358.3,30396,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,30396,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,30397,0)
- ;;=M79.621^^189^1916^20
- ;;^UTILITY(U,$J,358.3,30397,1,0)
+ ;;^UTILITY(U,$J,358.3,30046,1,3,0)
+ ;;=3^Pregnancy related renal disease, first trimester
+ ;;^UTILITY(U,$J,358.3,30046,1,4,0)
+ ;;=4^O26.831
+ ;;^UTILITY(U,$J,358.3,30046,2)
+ ;;=^5016341
+ ;;^UTILITY(U,$J,358.3,30047,0)
+ ;;=O26.832^^178^1913^73
+ ;;^UTILITY(U,$J,358.3,30047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30397,1,3,0)
- ;;=3^Right Upper Arm Pain
- ;;^UTILITY(U,$J,358.3,30397,1,4,0)
- ;;=4^M79.621
- ;;^UTILITY(U,$J,358.3,30397,2)
- ;;=^5013332
- ;;^UTILITY(U,$J,358.3,30398,0)
- ;;=M79.622^^189^1916^10
- ;;^UTILITY(U,$J,358.3,30398,1,0)
+ ;;^UTILITY(U,$J,358.3,30047,1,3,0)
+ ;;=3^Pregnancy related renal disease, second trimester
+ ;;^UTILITY(U,$J,358.3,30047,1,4,0)
+ ;;=4^O26.832
+ ;;^UTILITY(U,$J,358.3,30047,2)
+ ;;=^5016342
+ ;;^UTILITY(U,$J,358.3,30048,0)
+ ;;=O26.833^^178^1913^74
+ ;;^UTILITY(U,$J,358.3,30048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30398,1,3,0)
- ;;=3^Left Upper Arm Pain
- ;;^UTILITY(U,$J,358.3,30398,1,4,0)
- ;;=4^M79.622
- ;;^UTILITY(U,$J,358.3,30398,2)
- ;;=^5013333
- ;;^UTILITY(U,$J,358.3,30399,0)
- ;;=M79.631^^189^1916^14
- ;;^UTILITY(U,$J,358.3,30399,1,0)
+ ;;^UTILITY(U,$J,358.3,30048,1,3,0)
+ ;;=3^Pregnancy related renal disease, third trimester
+ ;;^UTILITY(U,$J,358.3,30048,1,4,0)
+ ;;=4^O26.833
+ ;;^UTILITY(U,$J,358.3,30048,2)
+ ;;=^5016343
+ ;;^UTILITY(U,$J,358.3,30049,0)
+ ;;=O26.21^^178^1913^66
+ ;;^UTILITY(U,$J,358.3,30049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30399,1,3,0)
- ;;=3^Right Forearm Pain
- ;;^UTILITY(U,$J,358.3,30399,1,4,0)
- ;;=4^M79.631
- ;;^UTILITY(U,$J,358.3,30399,2)
- ;;=^5013335
- ;;^UTILITY(U,$J,358.3,30400,0)
- ;;=M79.632^^189^1916^4
- ;;^UTILITY(U,$J,358.3,30400,1,0)
+ ;;^UTILITY(U,$J,358.3,30049,1,3,0)
+ ;;=3^Preg care for patient w recurrent preg loss, first trimester
+ ;;^UTILITY(U,$J,358.3,30049,1,4,0)
+ ;;=4^O26.21
+ ;;^UTILITY(U,$J,358.3,30049,2)
+ ;;=^5016306
+ ;;^UTILITY(U,$J,358.3,30050,0)
+ ;;=O26.22^^178^1913^67
+ ;;^UTILITY(U,$J,358.3,30050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30400,1,3,0)
- ;;=3^Left Forearm Pain
- ;;^UTILITY(U,$J,358.3,30400,1,4,0)
- ;;=4^M79.632
- ;;^UTILITY(U,$J,358.3,30400,2)
- ;;=^5013336
- ;;^UTILITY(U,$J,358.3,30401,0)
- ;;=M79.641^^189^1916^15
- ;;^UTILITY(U,$J,358.3,30401,1,0)
+ ;;^UTILITY(U,$J,358.3,30050,1,3,0)
+ ;;=3^Preg care for patient w recurrent preg loss, second trimester
+ ;;^UTILITY(U,$J,358.3,30050,1,4,0)
+ ;;=4^O26.22
+ ;;^UTILITY(U,$J,358.3,30050,2)
+ ;;=^5016307
+ ;;^UTILITY(U,$J,358.3,30051,0)
+ ;;=O26.23^^178^1913^68
+ ;;^UTILITY(U,$J,358.3,30051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30401,1,3,0)
- ;;=3^Right Hand Pain
- ;;^UTILITY(U,$J,358.3,30401,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,30401,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,30402,0)
- ;;=M79.642^^189^1916^5
- ;;^UTILITY(U,$J,358.3,30402,1,0)
+ ;;^UTILITY(U,$J,358.3,30051,1,3,0)
+ ;;=3^Preg care for patient w recurrent preg loss, third trimester
+ ;;^UTILITY(U,$J,358.3,30051,1,4,0)
+ ;;=4^O26.23
+ ;;^UTILITY(U,$J,358.3,30051,2)
+ ;;=^5016308
+ ;;^UTILITY(U,$J,358.3,30052,0)
+ ;;=O26.821^^178^1913^69
+ ;;^UTILITY(U,$J,358.3,30052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30402,1,3,0)
- ;;=3^Left Hand Pain
- ;;^UTILITY(U,$J,358.3,30402,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,30402,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,30403,0)
- ;;=M79.644^^189^1916^12
- ;;^UTILITY(U,$J,358.3,30403,1,0)
+ ;;^UTILITY(U,$J,358.3,30052,1,3,0)
+ ;;=3^Pregnancy related peripheral neuritis, first trimester
+ ;;^UTILITY(U,$J,358.3,30052,1,4,0)
+ ;;=4^O26.821
+ ;;^UTILITY(U,$J,358.3,30052,2)
+ ;;=^5016337
+ ;;^UTILITY(U,$J,358.3,30053,0)
+ ;;=O26.822^^178^1913^70
+ ;;^UTILITY(U,$J,358.3,30053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30403,1,3,0)
- ;;=3^Right Finger(s) Pain
- ;;^UTILITY(U,$J,358.3,30403,1,4,0)
- ;;=4^M79.644
- ;;^UTILITY(U,$J,358.3,30403,2)
- ;;=^5013341
- ;;^UTILITY(U,$J,358.3,30404,0)
- ;;=M79.645^^189^1916^2
- ;;^UTILITY(U,$J,358.3,30404,1,0)
+ ;;^UTILITY(U,$J,358.3,30053,1,3,0)
+ ;;=3^Pregnancy related peripheral neuritis, second trimester
+ ;;^UTILITY(U,$J,358.3,30053,1,4,0)
+ ;;=4^O26.822
+ ;;^UTILITY(U,$J,358.3,30053,2)
+ ;;=^5016338
+ ;;^UTILITY(U,$J,358.3,30054,0)
+ ;;=O26.823^^178^1913^71
+ ;;^UTILITY(U,$J,358.3,30054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30404,1,3,0)
- ;;=3^Left Finger(s) Pain
- ;;^UTILITY(U,$J,358.3,30404,1,4,0)
- ;;=4^M79.645
- ;;^UTILITY(U,$J,358.3,30404,2)
- ;;=^5013342
- ;;^UTILITY(U,$J,358.3,30405,0)
- ;;=M79.601^^189^1916^11
- ;;^UTILITY(U,$J,358.3,30405,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30405,1,3,0)
- ;;=3^Right Arm Pain
- ;;^UTILITY(U,$J,358.3,30405,1,4,0)
- ;;=4^M79.601
- ;;^UTILITY(U,$J,358.3,30405,2)
- ;;=^5013325
- ;;^UTILITY(U,$J,358.3,30406,0)
- ;;=M79.602^^189^1916^1
+ ;;^UTILITY(U,$J,358.3,30054,1,3,0)
+ ;;=3^Pregnancy related peripheral neuritis, third trimester

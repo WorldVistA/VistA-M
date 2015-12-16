@@ -1,112 +1,140 @@
-IBDEI1C2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1C2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23908,1,3,0)
- ;;=3^11403
- ;;^UTILITY(U,$J,358.3,23909,0)
- ;;=11404^^142^1486^5^^^^1
- ;;^UTILITY(U,$J,358.3,23909,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23909,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,23909,1,3,0)
- ;;=3^11404
- ;;^UTILITY(U,$J,358.3,23910,0)
- ;;=11406^^142^1486^6^^^^1
- ;;^UTILITY(U,$J,358.3,23910,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23910,1,2,0)
- ;;=2^Excision Benign Lesion-trunk,  legs; over 4.0cm
- ;;^UTILITY(U,$J,358.3,23910,1,3,0)
- ;;=3^11406
- ;;^UTILITY(U,$J,358.3,23911,0)
- ;;=11420^^142^1486^7^^^^1
- ;;^UTILITY(U,$J,358.3,23911,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23911,1,2,0)
- ;;=2^Excisiofeet, genitalia; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,23911,1,3,0)
- ;;=3^11420
- ;;^UTILITY(U,$J,358.3,23912,0)
- ;;=11421^^142^1486^8^^^^1
- ;;^UTILITY(U,$J,358.3,23912,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23912,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,23912,1,3,0)
- ;;=3^11421
- ;;^UTILITY(U,$J,358.3,23913,0)
- ;;=11422^^142^1486^9^^^^1
- ;;^UTILITY(U,$J,358.3,23913,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23913,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,23913,1,3,0)
- ;;=3^11422
- ;;^UTILITY(U,$J,358.3,23914,0)
- ;;=11423^^142^1486^10^^^^1
- ;;^UTILITY(U,$J,358.3,23914,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23914,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; 2.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,23914,1,3,0)
- ;;=3^11423
- ;;^UTILITY(U,$J,358.3,23915,0)
- ;;=11424^^142^1486^11^^^^1
- ;;^UTILITY(U,$J,358.3,23915,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23915,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands,feet, genitalia; 3.1cm to 4.0cm 
- ;;^UTILITY(U,$J,358.3,23915,1,3,0)
- ;;=3^11424
- ;;^UTILITY(U,$J,358.3,23916,0)
- ;;=11426^^142^1486^12^^^^1
- ;;^UTILITY(U,$J,358.3,23916,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23916,1,2,0)
- ;;=2^Excision Benign Lesion-scalp, neck, hands, feet, genitalia; over 4.0cm
- ;;^UTILITY(U,$J,358.3,23916,1,3,0)
- ;;=3^11426
- ;;^UTILITY(U,$J,358.3,23917,0)
- ;;=11600^^142^1487^1^^^^1
- ;;^UTILITY(U,$J,358.3,23917,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23917,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,23917,1,3,0)
- ;;=3^11600
- ;;^UTILITY(U,$J,358.3,23918,0)
- ;;=11601^^142^1487^2^^^^1
- ;;^UTILITY(U,$J,358.3,23918,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23918,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,23918,1,3,0)
- ;;=3^11601
- ;;^UTILITY(U,$J,358.3,23919,0)
- ;;=11602^^142^1487^3^^^^1
- ;;^UTILITY(U,$J,358.3,23919,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23919,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,23919,1,3,0)
- ;;=3^11602
- ;;^UTILITY(U,$J,358.3,23920,0)
- ;;=11603^^142^1487^4^^^^1
- ;;^UTILITY(U,$J,358.3,23920,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23920,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 2.1cm to 3.0cm
- ;;^UTILITY(U,$J,358.3,23920,1,3,0)
- ;;=3^11603
- ;;^UTILITY(U,$J,358.3,23921,0)
- ;;=11604^^142^1487^5^^^^1
- ;;^UTILITY(U,$J,358.3,23921,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23921,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,23921,1,3,0)
- ;;=3^11604
- ;;^UTILITY(U,$J,358.3,23922,0)
- ;;=11606^^142^1487^6^^^^1
+ ;;^UTILITY(U,$J,358.3,23616,1,5,0)
+ ;;=5^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,23616,2)
+ ;;=^30028
+ ;;^UTILITY(U,$J,358.3,23617,0)
+ ;;=301.21^^127^1427^10
+ ;;^UTILITY(U,$J,358.3,23617,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23617,1,2,0)
+ ;;=2^301.21
+ ;;^UTILITY(U,$J,358.3,23617,1,5,0)
+ ;;=5^Introverted Personality
+ ;;^UTILITY(U,$J,358.3,23617,2)
+ ;;=^268174
+ ;;^UTILITY(U,$J,358.3,23618,0)
+ ;;=302.2^^127^1428^7
+ ;;^UTILITY(U,$J,358.3,23618,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23618,1,2,0)
+ ;;=2^302.2
+ ;;^UTILITY(U,$J,358.3,23618,1,5,0)
+ ;;=5^Pedophilia
+ ;;^UTILITY(U,$J,358.3,23618,2)
+ ;;=^91008
+ ;;^UTILITY(U,$J,358.3,23619,0)
+ ;;=302.4^^127^1428^2
+ ;;^UTILITY(U,$J,358.3,23619,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23619,1,2,0)
+ ;;=2^302.4
+ ;;^UTILITY(U,$J,358.3,23619,1,5,0)
+ ;;=5^Exhibitionism
+ ;;^UTILITY(U,$J,358.3,23619,2)
+ ;;=^43610
+ ;;^UTILITY(U,$J,358.3,23620,0)
+ ;;=302.72^^127^1428^6
+ ;;^UTILITY(U,$J,358.3,23620,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23620,1,2,0)
+ ;;=2^302.72
+ ;;^UTILITY(U,$J,358.3,23620,1,5,0)
+ ;;=5^Inhibited Sex Excite
+ ;;^UTILITY(U,$J,358.3,23620,2)
+ ;;=^100632
+ ;;^UTILITY(U,$J,358.3,23621,0)
+ ;;=302.73^^127^1428^4
+ ;;^UTILITY(U,$J,358.3,23621,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23621,1,2,0)
+ ;;=2^302.73
+ ;;^UTILITY(U,$J,358.3,23621,1,5,0)
+ ;;=5^Inhibited Female Orgasm
+ ;;^UTILITY(U,$J,358.3,23621,2)
+ ;;=^100628
+ ;;^UTILITY(U,$J,358.3,23622,0)
+ ;;=302.74^^127^1428^5
+ ;;^UTILITY(U,$J,358.3,23622,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23622,1,2,0)
+ ;;=2^302.74
+ ;;^UTILITY(U,$J,358.3,23622,1,5,0)
+ ;;=5^Inhibited Male Orgasm
+ ;;^UTILITY(U,$J,358.3,23622,2)
+ ;;=^100630
+ ;;^UTILITY(U,$J,358.3,23623,0)
+ ;;=302.75^^127^1428^8
+ ;;^UTILITY(U,$J,358.3,23623,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23623,1,2,0)
+ ;;=2^302.75
+ ;;^UTILITY(U,$J,358.3,23623,1,5,0)
+ ;;=5^Premature Ejaculation
+ ;;^UTILITY(U,$J,358.3,23623,2)
+ ;;=^100637
+ ;;^UTILITY(U,$J,358.3,23624,0)
+ ;;=302.85^^127^1428^3
+ ;;^UTILITY(U,$J,358.3,23624,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23624,1,2,0)
+ ;;=2^302.85
+ ;;^UTILITY(U,$J,358.3,23624,1,5,0)
+ ;;=5^Gender Dysphoria in Adults/Adolescents
+ ;;^UTILITY(U,$J,358.3,23624,2)
+ ;;=^268180
+ ;;^UTILITY(U,$J,358.3,23625,0)
+ ;;=302.0^^127^1428^1
+ ;;^UTILITY(U,$J,358.3,23625,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23625,1,2,0)
+ ;;=2^302.0
+ ;;^UTILITY(U,$J,358.3,23625,1,5,0)
+ ;;=5^Ego-Dystonic Sexual Orient
+ ;;^UTILITY(U,$J,358.3,23625,2)
+ ;;=^331922
+ ;;^UTILITY(U,$J,358.3,23626,0)
+ ;;=302.1^^127^1428^14
+ ;;^UTILITY(U,$J,358.3,23626,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23626,1,2,0)
+ ;;=2^302.1
+ ;;^UTILITY(U,$J,358.3,23626,1,5,0)
+ ;;=5^Zoophilia
+ ;;^UTILITY(U,$J,358.3,23626,2)
+ ;;=^265356
+ ;;^UTILITY(U,$J,358.3,23627,0)
+ ;;=302.3^^127^1428^13
+ ;;^UTILITY(U,$J,358.3,23627,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23627,1,2,0)
+ ;;=2^302.3
+ ;;^UTILITY(U,$J,358.3,23627,1,5,0)
+ ;;=5^Transvestic Fetishism
+ ;;^UTILITY(U,$J,358.3,23627,2)
+ ;;=^331923
+ ;;^UTILITY(U,$J,358.3,23628,0)
+ ;;=302.50^^127^1428^9
+ ;;^UTILITY(U,$J,358.3,23628,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23628,1,2,0)
+ ;;=2^302.50
+ ;;^UTILITY(U,$J,358.3,23628,1,5,0)
+ ;;=5^Trans-sexualism NOS
+ ;;^UTILITY(U,$J,358.3,23628,2)
+ ;;=^120949
+ ;;^UTILITY(U,$J,358.3,23629,0)
+ ;;=302.51^^127^1428^10
+ ;;^UTILITY(U,$J,358.3,23629,1,0)
+ ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,23629,1,2,0)
+ ;;=2^302.51
+ ;;^UTILITY(U,$J,358.3,23629,1,5,0)
+ ;;=5^Trans-sexualism w/ Asexual Hx
+ ;;^UTILITY(U,$J,358.3,23629,2)
+ ;;=^268175
+ ;;^UTILITY(U,$J,358.3,23630,0)
+ ;;=302.52^^127^1428^12

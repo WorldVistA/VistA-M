@@ -1,7 +1,8 @@
-PSOHELP2 ;B'ham ISC/SAB - utility routine #3 ;12/29/94  19:32
- ;;7.0;OUTPATIENT PHARMACY;;DEC 1997
-EN ; validate
- I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>2)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
+PSOHELP2 ;B'ham ISC/SAB - utility routine #3 ; 3/23/11 8:17am
+ ;;7.0;OUTPATIENT PHARMACY;**282**;DEC 1997;Build 18
+EN ; validate 
+ ;*282 Allow multi-word schedules
+ I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N") K X Q
  I X?.E1L.E S X=$$ENLU^PSGMI(X) W "  (",X,")"
  ;
 ENOS ; order set entry

@@ -1,136 +1,132 @@
-IBDEI1RE ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1RE ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31461,1,0)
+ ;;^UTILITY(U,$J,358.3,31082,1,3,0)
+ ;;=3^Sprain of right wrist, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,31082,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,31082,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,31083,0)
+ ;;=Z89.442^^179^1941^1
+ ;;^UTILITY(U,$J,358.3,31083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31461,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,31461,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,31461,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,31462,0)
- ;;=B19.10^^190^1938^56
- ;;^UTILITY(U,$J,358.3,31462,1,0)
+ ;;^UTILITY(U,$J,358.3,31083,1,3,0)
+ ;;=3^Acquired absence of left ankle
+ ;;^UTILITY(U,$J,358.3,31083,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,31083,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,31084,0)
+ ;;=Z89.432^^179^1941^2
+ ;;^UTILITY(U,$J,358.3,31084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31462,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,31462,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,31462,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,31463,0)
- ;;=B18.1^^190^1938^55
- ;;^UTILITY(U,$J,358.3,31463,1,0)
+ ;;^UTILITY(U,$J,358.3,31084,1,3,0)
+ ;;=3^Acquired absence of left foot
+ ;;^UTILITY(U,$J,358.3,31084,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,31084,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,31085,0)
+ ;;=Z89.412^^179^1941^3
+ ;;^UTILITY(U,$J,358.3,31085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31463,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,31463,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,31463,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,31464,0)
- ;;=B17.10^^190^1938^57
- ;;^UTILITY(U,$J,358.3,31464,1,0)
+ ;;^UTILITY(U,$J,358.3,31085,1,3,0)
+ ;;=3^Acquired absence of left great toe
+ ;;^UTILITY(U,$J,358.3,31085,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,31085,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,31086,0)
+ ;;=Z89.112^^179^1941^4
+ ;;^UTILITY(U,$J,358.3,31086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31464,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,31464,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,31464,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,31465,0)
- ;;=B18.2^^190^1938^58
- ;;^UTILITY(U,$J,358.3,31465,1,0)
+ ;;^UTILITY(U,$J,358.3,31086,1,3,0)
+ ;;=3^Acquired absence of left hand
+ ;;^UTILITY(U,$J,358.3,31086,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,31086,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,31087,0)
+ ;;=Z89.622^^179^1941^5
+ ;;^UTILITY(U,$J,358.3,31087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31465,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,31465,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,31465,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,31466,0)
- ;;=B18.8^^190^1938^60
- ;;^UTILITY(U,$J,358.3,31466,1,0)
+ ;;^UTILITY(U,$J,358.3,31087,1,3,0)
+ ;;=3^Acquired absence of left hip joint
+ ;;^UTILITY(U,$J,358.3,31087,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,31087,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,31088,0)
+ ;;=Z89.612^^179^1941^6
+ ;;^UTILITY(U,$J,358.3,31088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31466,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,31466,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,31466,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,31467,0)
- ;;=B17.8^^190^1938^61
- ;;^UTILITY(U,$J,358.3,31467,1,0)
+ ;;^UTILITY(U,$J,358.3,31088,1,3,0)
+ ;;=3^Acquired absence of left leg above knee
+ ;;^UTILITY(U,$J,358.3,31088,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,31088,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,31089,0)
+ ;;=Z89.512^^179^1941^7
+ ;;^UTILITY(U,$J,358.3,31089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31467,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
- ;;^UTILITY(U,$J,358.3,31467,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,31467,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,31468,0)
- ;;=B18.9^^190^1938^59
- ;;^UTILITY(U,$J,358.3,31468,1,0)
+ ;;^UTILITY(U,$J,358.3,31089,1,3,0)
+ ;;=3^Acquired absence of left leg below knee
+ ;;^UTILITY(U,$J,358.3,31089,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,31089,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,31090,0)
+ ;;=Z89.212^^179^1941^8
+ ;;^UTILITY(U,$J,358.3,31090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31468,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,31468,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,31468,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,31469,0)
- ;;=B37.81^^190^1938^15
- ;;^UTILITY(U,$J,358.3,31469,1,0)
+ ;;^UTILITY(U,$J,358.3,31090,1,3,0)
+ ;;=3^Acquired absence of left upper limb below elbow
+ ;;^UTILITY(U,$J,358.3,31090,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,31090,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,31091,0)
+ ;;=Z89.422^^179^1941^9
+ ;;^UTILITY(U,$J,358.3,31091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31469,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,31469,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,31469,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,31470,0)
- ;;=D12.0^^190^1938^10
- ;;^UTILITY(U,$J,358.3,31470,1,0)
+ ;;^UTILITY(U,$J,358.3,31091,1,3,0)
+ ;;=3^Acquired absence of other left toe(s)
+ ;;^UTILITY(U,$J,358.3,31091,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,31091,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,31092,0)
+ ;;=Z89.421^^179^1941^10
+ ;;^UTILITY(U,$J,358.3,31092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31470,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,31470,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,31470,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,31471,0)
- ;;=D12.6^^190^1938^11
- ;;^UTILITY(U,$J,358.3,31471,1,0)
+ ;;^UTILITY(U,$J,358.3,31092,1,3,0)
+ ;;=3^Acquired absence of other right toe(s)
+ ;;^UTILITY(U,$J,358.3,31092,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,31092,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,31093,0)
+ ;;=Z89.441^^179^1941^11
+ ;;^UTILITY(U,$J,358.3,31093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31471,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,31471,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,31471,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,31472,0)
- ;;=D12.1^^190^1938^8
- ;;^UTILITY(U,$J,358.3,31472,1,0)
+ ;;^UTILITY(U,$J,358.3,31093,1,3,0)
+ ;;=3^Acquired absence of right ankle
+ ;;^UTILITY(U,$J,358.3,31093,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,31093,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,31094,0)
+ ;;=Z89.431^^179^1941^12
+ ;;^UTILITY(U,$J,358.3,31094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31472,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,31472,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,31472,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,31473,0)
- ;;=K63.5^^190^1938^67
- ;;^UTILITY(U,$J,358.3,31473,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31473,1,3,0)
- ;;=3^Polyp of Colon
- ;;^UTILITY(U,$J,358.3,31473,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,31473,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,31474,0)
- ;;=D12.3^^190^1938^14
- ;;^UTILITY(U,$J,358.3,31474,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31094,1,3,0)
+ ;;=3^Acquired absence of right foot
+ ;;^UTILITY(U,$J,358.3,31094,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,31094,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,31095,0)
+ ;;=Z89.411^^179^1941^13

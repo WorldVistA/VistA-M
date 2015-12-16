@@ -1,140 +1,128 @@
-IBDEI1U2 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1U2 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32701,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,32701,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,32702,0)
- ;;=N80.9^^190^1959^18
- ;;^UTILITY(U,$J,358.3,32702,1,0)
+ ;;^UTILITY(U,$J,358.3,32288,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,32288,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,32288,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,32289,0)
+ ;;=I70.745^^182^1981^78
+ ;;^UTILITY(U,$J,358.3,32289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32702,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,32702,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,32702,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,32703,0)
- ;;=N81.4^^190^1959^59
- ;;^UTILITY(U,$J,358.3,32703,1,0)
+ ;;^UTILITY(U,$J,358.3,32289,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,32289,1,4,0)
+ ;;=4^I70.745
+ ;;^UTILITY(U,$J,358.3,32289,2)
+ ;;=^5133605
+ ;;^UTILITY(U,$J,358.3,32290,0)
+ ;;=I83.009^^182^1981^288
+ ;;^UTILITY(U,$J,358.3,32290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32703,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,32703,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,32703,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,32704,0)
- ;;=N83.20^^190^1959^40
- ;;^UTILITY(U,$J,358.3,32704,1,0)
+ ;;^UTILITY(U,$J,358.3,32290,1,3,0)
+ ;;=3^Varicose Veins of Lower Extremity w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,32290,1,4,0)
+ ;;=4^I83.009
+ ;;^UTILITY(U,$J,358.3,32290,2)
+ ;;=^5007972
+ ;;^UTILITY(U,$J,358.3,32291,0)
+ ;;=H61.22^^182^1982^23
+ ;;^UTILITY(U,$J,358.3,32291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32704,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,32704,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,32704,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,32705,0)
- ;;=N83.29^^190^1959^39
- ;;^UTILITY(U,$J,358.3,32705,1,0)
+ ;;^UTILITY(U,$J,358.3,32291,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,32291,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,32291,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,32292,0)
+ ;;=H61.23^^182^1982^21
+ ;;^UTILITY(U,$J,358.3,32292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32705,1,3,0)
- ;;=3^Ovarian Cysts,Other
- ;;^UTILITY(U,$J,358.3,32705,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,32705,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,32706,0)
- ;;=N84.8^^190^1959^45
- ;;^UTILITY(U,$J,358.3,32706,1,0)
+ ;;^UTILITY(U,$J,358.3,32292,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,32292,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,32292,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,32293,0)
+ ;;=H65.03^^182^1982^3
+ ;;^UTILITY(U,$J,358.3,32293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32706,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,32706,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,32706,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,32707,0)
- ;;=N84.0^^190^1959^43
- ;;^UTILITY(U,$J,358.3,32707,1,0)
+ ;;^UTILITY(U,$J,358.3,32293,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,32293,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,32293,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,32294,0)
+ ;;=H65.01^^182^1982^5
+ ;;^UTILITY(U,$J,358.3,32294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32707,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,32707,1,4,0)
- ;;=4^N84.0
- ;;^UTILITY(U,$J,358.3,32707,2)
- ;;=^270517
- ;;^UTILITY(U,$J,358.3,32708,0)
- ;;=N84.9^^190^1959^44
- ;;^UTILITY(U,$J,358.3,32708,1,0)
+ ;;^UTILITY(U,$J,358.3,32294,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,32294,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,32294,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,32295,0)
+ ;;=H65.23^^182^1982^13
+ ;;^UTILITY(U,$J,358.3,32295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32708,1,3,0)
- ;;=3^Polyp of Female Genital Tract,Unspec
- ;;^UTILITY(U,$J,358.3,32708,1,4,0)
- ;;=4^N84.9
- ;;^UTILITY(U,$J,358.3,32708,2)
- ;;=^5015869
- ;;^UTILITY(U,$J,358.3,32709,0)
- ;;=N84.1^^190^1959^42
- ;;^UTILITY(U,$J,358.3,32709,1,0)
+ ;;^UTILITY(U,$J,358.3,32295,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,32295,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,32295,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,32296,0)
+ ;;=H65.22^^182^1982^14
+ ;;^UTILITY(U,$J,358.3,32296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32709,1,3,0)
- ;;=3^Polyp of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,32709,1,4,0)
- ;;=4^N84.1
- ;;^UTILITY(U,$J,358.3,32709,2)
- ;;=^5015866
- ;;^UTILITY(U,$J,358.3,32710,0)
- ;;=N89.1^^190^1959^61
- ;;^UTILITY(U,$J,358.3,32710,1,0)
+ ;;^UTILITY(U,$J,358.3,32296,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,32296,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,32296,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,32297,0)
+ ;;=H65.21^^182^1982^15
+ ;;^UTILITY(U,$J,358.3,32297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32710,1,3,0)
- ;;=3^Vaginal Dysplasia,Moderate
- ;;^UTILITY(U,$J,358.3,32710,1,4,0)
- ;;=4^N89.1
- ;;^UTILITY(U,$J,358.3,32710,2)
- ;;=^5015886
- ;;^UTILITY(U,$J,358.3,32711,0)
- ;;=N89.0^^190^1959^60
- ;;^UTILITY(U,$J,358.3,32711,1,0)
+ ;;^UTILITY(U,$J,358.3,32297,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,32297,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,32297,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,32298,0)
+ ;;=H66.012^^182^1982^6
+ ;;^UTILITY(U,$J,358.3,32298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32711,1,3,0)
- ;;=3^Vaginal Dysplasia,Mild
- ;;^UTILITY(U,$J,358.3,32711,1,4,0)
- ;;=4^N89.0
- ;;^UTILITY(U,$J,358.3,32711,2)
- ;;=^5015885
- ;;^UTILITY(U,$J,358.3,32712,0)
- ;;=N89.3^^190^1959^62
- ;;^UTILITY(U,$J,358.3,32712,1,0)
+ ;;^UTILITY(U,$J,358.3,32298,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,32298,1,4,0)
+ ;;=4^H66.012
+ ;;^UTILITY(U,$J,358.3,32298,2)
+ ;;=^5133534
+ ;;^UTILITY(U,$J,358.3,32299,0)
+ ;;=H66.011^^182^1982^7
+ ;;^UTILITY(U,$J,358.3,32299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32712,1,3,0)
- ;;=3^Vaginal Dysplasia,Unspec
- ;;^UTILITY(U,$J,358.3,32712,1,4,0)
- ;;=4^N89.3
- ;;^UTILITY(U,$J,358.3,32712,2)
- ;;=^5015887
- ;;^UTILITY(U,$J,358.3,32713,0)
- ;;=N90.4^^190^1959^30
- ;;^UTILITY(U,$J,358.3,32713,1,0)
+ ;;^UTILITY(U,$J,358.3,32299,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
+ ;;^UTILITY(U,$J,358.3,32299,1,4,0)
+ ;;=4^H66.011
+ ;;^UTILITY(U,$J,358.3,32299,2)
+ ;;=^5006621
+ ;;^UTILITY(U,$J,358.3,32300,0)
+ ;;=H66.91^^182^1982^36
+ ;;^UTILITY(U,$J,358.3,32300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32713,1,3,0)
- ;;=3^Leukoplakia of Vulva
- ;;^UTILITY(U,$J,358.3,32713,1,4,0)
- ;;=4^N90.4
- ;;^UTILITY(U,$J,358.3,32713,2)
- ;;=^5015894
- ;;^UTILITY(U,$J,358.3,32714,0)
- ;;=N94.1^^190^1959^17
- ;;^UTILITY(U,$J,358.3,32714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32714,1,3,0)
- ;;=3^Dyspareunia
- ;;^UTILITY(U,$J,358.3,32714,1,4,0)
- ;;=4^N94.1
- ;;^UTILITY(U,$J,358.3,32714,2)
- ;;=^5015917
- ;;^UTILITY(U,$J,358.3,32715,0)
- ;;=N94.2^^190^1959^63
+ ;;^UTILITY(U,$J,358.3,32300,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,32300,1,4,0)
+ ;;=4^H66.91

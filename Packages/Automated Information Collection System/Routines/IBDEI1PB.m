@@ -1,134 +1,122 @@
-IBDEI1PB ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1PB ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30521,1,4,0)
- ;;=4^D78.22
- ;;^UTILITY(U,$J,358.3,30521,2)
- ;;=^5002402
- ;;^UTILITY(U,$J,358.3,30522,0)
- ;;=K91.82^^189^1918^22
- ;;^UTILITY(U,$J,358.3,30522,1,0)
+ ;;^UTILITY(U,$J,358.3,30162,2)
+ ;;=^5016468
+ ;;^UTILITY(U,$J,358.3,30163,0)
+ ;;=O30.203^^178^1915^52
+ ;;^UTILITY(U,$J,358.3,30163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30522,1,3,0)
- ;;=3^Postprocedural Hepatic Failure
- ;;^UTILITY(U,$J,358.3,30522,1,4,0)
- ;;=4^K91.82
- ;;^UTILITY(U,$J,358.3,30522,2)
- ;;=^5008908
- ;;^UTILITY(U,$J,358.3,30523,0)
- ;;=K91.83^^189^1918^23
- ;;^UTILITY(U,$J,358.3,30523,1,0)
+ ;;^UTILITY(U,$J,358.3,30163,1,3,0)
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, third trimester
+ ;;^UTILITY(U,$J,358.3,30163,1,4,0)
+ ;;=4^O30.203
+ ;;^UTILITY(U,$J,358.3,30163,2)
+ ;;=^5016469
+ ;;^UTILITY(U,$J,358.3,30164,0)
+ ;;=O30.211^^178^1915^44
+ ;;^UTILITY(U,$J,358.3,30164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30523,1,3,0)
- ;;=3^Postprocedural Hepatorenal Syndrome
- ;;^UTILITY(U,$J,358.3,30523,1,4,0)
- ;;=4^K91.83
- ;;^UTILITY(U,$J,358.3,30523,2)
- ;;=^5008909
- ;;^UTILITY(U,$J,358.3,30524,0)
- ;;=K91.3^^189^1918^24
- ;;^UTILITY(U,$J,358.3,30524,1,0)
+ ;;^UTILITY(U,$J,358.3,30164,1,3,0)
+ ;;=3^Quad preg w two or more monochorionic fetuses, first tri
+ ;;^UTILITY(U,$J,358.3,30164,1,4,0)
+ ;;=4^O30.211
+ ;;^UTILITY(U,$J,358.3,30164,2)
+ ;;=^5016470
+ ;;^UTILITY(U,$J,358.3,30165,0)
+ ;;=O30.212^^178^1915^45
+ ;;^UTILITY(U,$J,358.3,30165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30524,1,3,0)
- ;;=3^Postprocedural Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,30524,1,4,0)
- ;;=4^K91.3
- ;;^UTILITY(U,$J,358.3,30524,2)
- ;;=^5008902
- ;;^UTILITY(U,$J,358.3,30525,0)
- ;;=K68.11^^189^1918^25
- ;;^UTILITY(U,$J,358.3,30525,1,0)
+ ;;^UTILITY(U,$J,358.3,30165,1,3,0)
+ ;;=3^Quad preg w two or more monochorionic fetuses, second tri
+ ;;^UTILITY(U,$J,358.3,30165,1,4,0)
+ ;;=4^O30.212
+ ;;^UTILITY(U,$J,358.3,30165,2)
+ ;;=^5016471
+ ;;^UTILITY(U,$J,358.3,30166,0)
+ ;;=O30.213^^178^1915^46
+ ;;^UTILITY(U,$J,358.3,30166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30525,1,3,0)
- ;;=3^Postprocedural Retroperitoneal Abscess
- ;;^UTILITY(U,$J,358.3,30525,1,4,0)
- ;;=4^K68.11
- ;;^UTILITY(U,$J,358.3,30525,2)
- ;;=^5008782
- ;;^UTILITY(U,$J,358.3,30526,0)
- ;;=K91.850^^189^1918^26
- ;;^UTILITY(U,$J,358.3,30526,1,0)
+ ;;^UTILITY(U,$J,358.3,30166,1,3,0)
+ ;;=3^Quad preg w two or more monochorionic fetuses, third tri
+ ;;^UTILITY(U,$J,358.3,30166,1,4,0)
+ ;;=4^O30.213
+ ;;^UTILITY(U,$J,358.3,30166,2)
+ ;;=^5016472
+ ;;^UTILITY(U,$J,358.3,30167,0)
+ ;;=O30.221^^178^1915^41
+ ;;^UTILITY(U,$J,358.3,30167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30526,1,3,0)
- ;;=3^Pouchitis
- ;;^UTILITY(U,$J,358.3,30526,1,4,0)
- ;;=4^K91.850
- ;;^UTILITY(U,$J,358.3,30526,2)
- ;;=^338261
- ;;^UTILITY(U,$J,358.3,30527,0)
- ;;=C34.91^^189^1919^22
- ;;^UTILITY(U,$J,358.3,30527,1,0)
+ ;;^UTILITY(U,$J,358.3,30167,1,3,0)
+ ;;=3^Quad preg w two or more monoamnio fetuses, first trimester
+ ;;^UTILITY(U,$J,358.3,30167,1,4,0)
+ ;;=4^O30.221
+ ;;^UTILITY(U,$J,358.3,30167,2)
+ ;;=^5016474
+ ;;^UTILITY(U,$J,358.3,30168,0)
+ ;;=O30.222^^178^1915^42
+ ;;^UTILITY(U,$J,358.3,30168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30527,1,3,0)
- ;;=3^Malig Neop of Right Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,30527,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,30527,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,30528,0)
- ;;=C34.92^^189^1919^21
- ;;^UTILITY(U,$J,358.3,30528,1,0)
+ ;;^UTILITY(U,$J,358.3,30168,1,3,0)
+ ;;=3^Quad preg w two or more monoamnio fetuses, second trimester
+ ;;^UTILITY(U,$J,358.3,30168,1,4,0)
+ ;;=4^O30.222
+ ;;^UTILITY(U,$J,358.3,30168,2)
+ ;;=^5016475
+ ;;^UTILITY(U,$J,358.3,30169,0)
+ ;;=O30.223^^178^1915^43
+ ;;^UTILITY(U,$J,358.3,30169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30528,1,3,0)
- ;;=3^Malig Neop of Left Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,30528,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,30528,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,30529,0)
- ;;=J20.9^^189^1919^10
- ;;^UTILITY(U,$J,358.3,30529,1,0)
+ ;;^UTILITY(U,$J,358.3,30169,1,3,0)
+ ;;=3^Quad preg w two or more monoamnio fetuses, third trimester
+ ;;^UTILITY(U,$J,358.3,30169,1,4,0)
+ ;;=4^O30.223
+ ;;^UTILITY(U,$J,358.3,30169,2)
+ ;;=^5016476
+ ;;^UTILITY(U,$J,358.3,30170,0)
+ ;;=O30.291^^178^1915^47
+ ;;^UTILITY(U,$J,358.3,30170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30529,1,3,0)
- ;;=3^Acute Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,30529,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,30529,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,30530,0)
- ;;=J20.8^^189^1919^5
- ;;^UTILITY(U,$J,358.3,30530,1,0)
+ ;;^UTILITY(U,$J,358.3,30170,1,3,0)
+ ;;=3^Quad preg, unable to dtrm num plcnta & amnio sacs, 1st tri
+ ;;^UTILITY(U,$J,358.3,30170,1,4,0)
+ ;;=4^O30.291
+ ;;^UTILITY(U,$J,358.3,30170,2)
+ ;;=^5016478
+ ;;^UTILITY(U,$J,358.3,30171,0)
+ ;;=O30.292^^178^1915^48
+ ;;^UTILITY(U,$J,358.3,30171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30530,1,3,0)
- ;;=3^Acute Bronchitis d/t Organisms NEC
- ;;^UTILITY(U,$J,358.3,30530,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,30530,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,30531,0)
- ;;=J20.5^^189^1919^7
- ;;^UTILITY(U,$J,358.3,30531,1,0)
+ ;;^UTILITY(U,$J,358.3,30171,1,3,0)
+ ;;=3^Quad preg, unable to dtrm num plcnta & amnio sacs, 2nd tri
+ ;;^UTILITY(U,$J,358.3,30171,1,4,0)
+ ;;=4^O30.292
+ ;;^UTILITY(U,$J,358.3,30171,2)
+ ;;=^5016479
+ ;;^UTILITY(U,$J,358.3,30172,0)
+ ;;=O30.293^^178^1915^49
+ ;;^UTILITY(U,$J,358.3,30172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30531,1,3,0)
- ;;=3^Acute Bronchitis d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,30531,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,30531,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,30532,0)
- ;;=J20.6^^189^1919^8
- ;;^UTILITY(U,$J,358.3,30532,1,0)
+ ;;^UTILITY(U,$J,358.3,30172,1,3,0)
+ ;;=3^Quad preg, unable to dtrm num plcnta & amnio sacs, 3rd tri
+ ;;^UTILITY(U,$J,358.3,30172,1,4,0)
+ ;;=4^O30.293
+ ;;^UTILITY(U,$J,358.3,30172,2)
+ ;;=^5016480
+ ;;^UTILITY(U,$J,358.3,30173,0)
+ ;;=O31.11X0^^178^1915^25
+ ;;^UTILITY(U,$J,358.3,30173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30532,1,3,0)
- ;;=3^Acute Bronchitis d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,30532,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,30532,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,30533,0)
- ;;=J20.2^^189^1919^9
- ;;^UTILITY(U,$J,358.3,30533,1,0)
+ ;;^UTILITY(U,$J,358.3,30173,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, unsp
+ ;;^UTILITY(U,$J,358.3,30173,1,4,0)
+ ;;=4^O31.11X0
+ ;;^UTILITY(U,$J,358.3,30173,2)
+ ;;=^5016537
+ ;;^UTILITY(U,$J,358.3,30174,0)
+ ;;=O31.11X1^^178^1915^26
+ ;;^UTILITY(U,$J,358.3,30174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30533,1,3,0)
- ;;=3^Acute Bronchitis d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,30533,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,30533,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,30534,0)
- ;;=J20.4^^189^1919^6
- ;;^UTILITY(U,$J,358.3,30534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30534,1,3,0)
- ;;=3^Acute Bronchitis d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,30174,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fetus 1

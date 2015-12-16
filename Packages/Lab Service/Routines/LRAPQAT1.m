@@ -1,8 +1,9 @@
-LRAPQAT1 ;AVAMC/REG/CYM - QA CODE SEARCH ;2/12/98  14:31
- ;;5.2;LAB SERVICE;**201,315,422**;Sep 27, 1994;Build 29
+LRAPQAT1 ;AVAMC/REG/CYM,WOIFO/PMK - QA CODE SEARCH ;12/31/2014 11:06 AM
+ ;;5.2;LAB SERVICE;**201,315,422,442**;Sep 27, 1994;Build 15
  ;
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ; Reference to $$ICDOP^ICDEX supported by ICR #5747
+ ; Reference to DGPTFUT supported by IA #6130
  ;
  D EN^LRUA S (LR("W"),LRS(5),LRQ(9),LRQ(3))=1,LRSDT=9999999-LRSDT,LRP=0
  F LRB=0:0 S LRP=$O(^TMP("LRAP",$J,LRP)) Q:LRP=""!(LR("Q"))  F LRDFN=0:0 S LRDFN=$O(^TMP("LRAP",$J,LRP,LRDFN)) Q:'LRDFN!(LR("Q"))  S X=^(LRDFN) D L
@@ -22,11 +23,8 @@ A S LRPTF=VAIN(10)
  W !,"Adm: ",$P(LRADM,"@"),?35,LRWARD
  W !,?12,"Specialty: ",$P(LRADM,"@"),?35,LRTS
  Q:'LRPTF
- I $D(^DGPT(LRPTF,70)),$P(^(70),"^",10) S W=^(70) F X=10,11,16:1:24 I $P(W,"^",X) S LRF($P(W,"^",X))=""
- F Y=0:0 S Y=$O(^DGPT(LRPTF,"M",Y)) Q:'Y  S W=^(Y,0) F X=5:1:9,11:1:15 I $P(W,"^",X) S LRF($P(W,"^",X))=""
- I $D(^DGPT(LRPTF,"401P")) S W=^("401P") F X=1:1:5 I $P(W,"^",X) S LRC($P(W,"^",X))=""
- F Y=0:0 S Y=$O(^DGPT(LRPTF,"P",Y)) Q:'Y  S W=^(Y,0) F X=5:1:9 I $P(W,"^",X) S LRC($P(W,"^",X))=""
- F Y=0:0 S Y=$O(^DGPT(LRPTF,"S",Y)) Q:'Y  S W=^(Y,0) F X=8:1:12 I $P(W,"^",X) S LRC($P(W,"^",X))=""
+ D LOOKUP(LRPTF,.LRF,.LRC)
+ ; output the results 
  N LRTMP,LRX
  F LRTMP=0:0 S LRTMP=$O(LRF(LRTMP)) Q:'LRTMP  D
  . S LRX=$$ICDDX^ICDEX(LRTMP,,,"I")
@@ -39,3 +37,29 @@ A S LRPTF=VAIN(10)
  . W !,$P(LRX,"^",2),?10,$P(LRX,"^",5)
  . Q
  Q
+ ;
+LOOKUP(LRPTF,LRF,LRC) ; get icd codes from Patient Treatment File
+ D GETCODES(701,LRPTF,.LRF) ; 70 - primary/secondary diagnosis
+ D GETCODES(501,LRPTF,.LRF) ; M - movements
+ D GETCODES(601,LRPTF,.LRC) ; P - procedures
+ D GETCODES(401,LRPTF,.LRC) ; S - surgeries
+ Q
+ ;
+GETCODES(DGA,DGB,ARRAY) ; get codes from Patient Treatment File (#45)
+ N DGC,DGD,I
+ I DGA=701 D
+ . D PTFICD^DGPTFUT(DGA,DGB,,.DGD),COPY(.DGD,.ARRAY)
+ . Q
+ E  D
+ . D PTFIEN^DGPTFUT(DGA,DGB,.DGC)
+ . S I="" F  S I=$O(DGC(I)) Q:I=""  D
+ . . D PTFICD^DGPTFUT(DGA,DGB,I,.DGD),COPY(.DGD,.ARRAY)
+ . . Q
+ . Q
+ Q
+ ;
+COPY(DGD,ARRAY) ; copy results into ARRAY
+ N I
+ S I="" F  S I=$O(DGD(I)) Q:I=""  S ARRAY($P(DGD(I),"^",1))=""
+ Q
+ ;

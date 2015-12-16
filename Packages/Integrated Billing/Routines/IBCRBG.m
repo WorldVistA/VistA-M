@@ -1,6 +1,6 @@
 IBCRBG ;ALB/ARH - RATES: BILL SOURCE EVENTS (INPT) ;21 MAY 96
- ;;2.0;INTEGRATED BILLING;**52,80,106,51,142,159,210,245,382,389,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,106,51,142,159,210,245,382,389,461,522**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INPTPTF(IBIFN,CS) ; search PTF record for billable bedsections, transfer DRGs, and length of stay 
  ; - screens out days for pass, leave and SC treatment
@@ -148,7 +148,7 @@ DXVER(DX,DATE) ; check the code version of the diagnosis matchs the code version
  ;
 MVDRG(PTF,M,CDATE) ; Return the DRG for a specific PTF Movememt (M=move ifn)
  ; CDATE is optional, used if need to calculate DRG for some day within the move, not at the end date
- N DPT0,PTF0,PTFM0,PTFM82,PTF70,IBBEG,IBEND,IBDSST,IBDX,IBPRC0,IBPRC,IBDRG,IBVDATE,IBI,IBJ,IBP
+ N DPT0,PTF0,PTFM0,PTFM82,PTF70,IBBEG,IBEND,IBDSST,IBDX,IBPRC0,IBPRC,IBDRG,IBVDATE,IBI,IBJ,IBP,PTFARR
  N SEX,AGE,ICDDX,ICDPOA,ICDPRC,ICDEXP,ICDDMS,ICDTRS,ICDDRG,ICDMDC,ICDRTC,ICDDATE
  N ICDCSYS,ICD0,ICDCDSY,ICDEDT,ICDX,ICDTMP,ICDRG,ICD10ORNIT,ICD10ORT,X1,X2,ICDSEX,ICDY ; ICDDRG clean-up
  S IBDRG=""
@@ -169,21 +169,22 @@ MVDRG(PTF,M,CDATE) ; Return the DRG for a specific PTF Movememt (M=move ifn)
  . I IBDSST=4 S ICDDMS=1 ;  patient left against medical advice
  . I IBDSST=5,+$P(PTF70,U,13) S ICDTRS=1 ; patient transfered to another facility
  ;
- S IBJ=0 F IBI=5:1:9 S IBDX=$P(PTFM0,U,IBI) D  ; Diagnosis
- . I +IBDX,($$ICD9^IBACSV(+IBDX)'="") S IBJ=IBJ+1,ICDDX(IBJ)=IBDX,ICDPOA(IBJ)=$P(PTFM82,U,(IBI-4))
+ D PTFCDS^IBCSC4F(+PTF,501,+$G(M),.PTFARR) D  K PTFARR ; Diagnosis
+ . S IBJ=0,IBI="" F  S IBI=$O(PTFARR(IBI)) Q:IBI=""  S IBDX=PTFARR(IBI) I +IBDX D
+ .. S IBJ=IBJ+1,ICDDX(IBJ)=+IBDX,ICDPOA(IBJ)=$P(IBDX,U,2)
  ;
  I '$G(ICDDX(1)) G MVDRGQ
  ;
  S IBJ=0
- S IBP=0 F  S IBP=$O(^DGPT(+PTF,"S",IBP)) Q:'IBP  D  ; surguries
+ S IBP=0 F  S IBP=$O(^DGPT(+PTF,"S",IBP)) Q:'IBP  D  ; surgeries
  . S IBPRC0=$G(^DGPT(+PTF,"S",IBP,0)) Q:'IBPRC0
- . I +IBPRC0'<IBBEG,+IBPRC0'>IBEND D
- .. F IBI=8:1:12 S IBPRC=$P(IBPRC0,U,IBI) I +IBPRC,($$ICD0^IBACSV(+IBPRC)'="") S IBJ=IBJ+1,ICDPRC(IBJ)=+IBPRC
+ . I +IBPRC0'<IBBEG,+IBPRC0'>IBEND D PTFCDS^IBCSC4F(+PTF,401,IBP,.PTFARR) D  K PTFARR
+ .. S IBI="" F  S IBI=$O(PTFARR(IBI)) Q:IBI=""  S IBPRC=PTFARR(IBI) I +IBPRC S IBJ=IBJ+1,ICDPRC(IBJ)=+IBPRC
  ;
  S IBP=0 F  S IBP=$O(^DGPT(+PTF,"P",IBP)) Q:'IBP  D  ; procedures
  . S IBPRC0=$G(^DGPT(+PTF,"P",IBP,0)) Q:'IBPRC0
- . I +IBPRC0'<IBBEG,+IBPRC0'>IBEND D
- .. F IBI=5:1:9 S IBPRC=$P(IBPRC0,U,IBI) I +IBPRC,($$ICD0^IBACSV(+IBPRC)'="") S IBJ=IBJ+1,ICDPRC(IBJ)=+IBPRC
+ . I +IBPRC0'<IBBEG,+IBPRC0'>IBEND D PTFCDS^IBCSC4F(+PTF,601,IBP,.PTFARR) D  K PTFARR
+ .. S IBI="" F  S IBI=$O(PTFARR(IBI)) Q:IBI=""  S IBPRC=PTFARR(IBI) I +IBPRC S IBJ=IBJ+1,ICDPRC(IBJ)=+IBPRC
  ;
  S ICDDATE=$S(+$G(CDATE):CDATE,+$P(PTFM0,U,10):+$P(PTFM0,U,10),1:DT) ; date for the DRG Grouper versioning
  S IBVDATE=$$DXVER(ICDDX(1),ICDDATE) I +IBVDATE S ICDDATE=IBVDATE ; reset date to within Dx code version

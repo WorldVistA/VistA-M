@@ -1,128 +1,134 @@
-IBDEI06B ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI06B ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2730,0)
- ;;=11622^^25^222^3^^^^1
- ;;^UTILITY(U,$J,358.3,2730,1,0)
+ ;;^UTILITY(U,$J,358.3,2429,1,3,0)
+ ;;=3^Acute/subacute allergic otitis media, r ear
+ ;;^UTILITY(U,$J,358.3,2429,1,4,0)
+ ;;=4^H65.111
+ ;;^UTILITY(U,$J,358.3,2429,2)
+ ;;=^5006577
+ ;;^UTILITY(U,$J,358.3,2430,0)
+ ;;=H65.112^^5^71^7
+ ;;^UTILITY(U,$J,358.3,2430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2730,1,2,0)
- ;;=2^Scalp/Neck/Head 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2730,1,4,0)
- ;;=4^11622
- ;;^UTILITY(U,$J,358.3,2731,0)
- ;;=11623^^25^222^4^^^^1
- ;;^UTILITY(U,$J,358.3,2731,1,0)
+ ;;^UTILITY(U,$J,358.3,2430,1,3,0)
+ ;;=3^Acute/subacute allergic otitis media, left ear
+ ;;^UTILITY(U,$J,358.3,2430,1,4,0)
+ ;;=4^H65.112
+ ;;^UTILITY(U,$J,358.3,2430,2)
+ ;;=^5006578
+ ;;^UTILITY(U,$J,358.3,2431,0)
+ ;;=H66.001^^5^71^5
+ ;;^UTILITY(U,$J,358.3,2431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2731,1,2,0)
- ;;=2^Scalp/Neck/Head 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2731,1,4,0)
- ;;=4^11623
- ;;^UTILITY(U,$J,358.3,2732,0)
- ;;=11624^^25^222^5^^^^1
- ;;^UTILITY(U,$J,358.3,2732,1,0)
+ ;;^UTILITY(U,$J,358.3,2431,1,3,0)
+ ;;=3^Acute suppr otitis media w/o spon rupt ear drum, right
+ ;;^UTILITY(U,$J,358.3,2431,1,4,0)
+ ;;=4^H66.001
+ ;;^UTILITY(U,$J,358.3,2431,2)
+ ;;=^5006613
+ ;;^UTILITY(U,$J,358.3,2432,0)
+ ;;=H66.002^^5^71^6
+ ;;^UTILITY(U,$J,358.3,2432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2732,1,2,0)
- ;;=2^Scalp/Neck/Head 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2732,1,4,0)
- ;;=4^11624
- ;;^UTILITY(U,$J,358.3,2733,0)
- ;;=11626^^25^222^6^^^^1
- ;;^UTILITY(U,$J,358.3,2733,1,0)
+ ;;^UTILITY(U,$J,358.3,2432,1,3,0)
+ ;;=3^Acute suppr otitis media w/o spon rupt ear drum, left e
+ ;;^UTILITY(U,$J,358.3,2432,1,4,0)
+ ;;=4^H66.002
+ ;;^UTILITY(U,$J,358.3,2432,2)
+ ;;=^5006614
+ ;;^UTILITY(U,$J,358.3,2433,0)
+ ;;=H66.3X1^^5^71^18
+ ;;^UTILITY(U,$J,358.3,2433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2733,1,2,0)
- ;;=2^Scalp/Neck/Head > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2733,1,4,0)
- ;;=4^11626
- ;;^UTILITY(U,$J,358.3,2734,0)
- ;;=11600^^25^223^1^^^^1
- ;;^UTILITY(U,$J,358.3,2734,1,0)
+ ;;^UTILITY(U,$J,358.3,2433,1,3,0)
+ ;;=3^Chronic suppurative otitis media, right ear NEC
+ ;;^UTILITY(U,$J,358.3,2433,1,4,0)
+ ;;=4^H66.3X1
+ ;;^UTILITY(U,$J,358.3,2433,2)
+ ;;=^5006633
+ ;;^UTILITY(U,$J,358.3,2434,0)
+ ;;=H66.3X2^^5^71^17
+ ;;^UTILITY(U,$J,358.3,2434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2734,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,2734,1,4,0)
- ;;=4^11600
- ;;^UTILITY(U,$J,358.3,2735,0)
- ;;=11601^^25^223^2^^^^1
- ;;^UTILITY(U,$J,358.3,2735,1,0)
+ ;;^UTILITY(U,$J,358.3,2434,1,3,0)
+ ;;=3^Chronic suppurative otitis media, left ear NEC
+ ;;^UTILITY(U,$J,358.3,2434,1,4,0)
+ ;;=4^H66.3X2
+ ;;^UTILITY(U,$J,358.3,2434,2)
+ ;;=^5133538
+ ;;^UTILITY(U,$J,358.3,2435,0)
+ ;;=H74.01^^5^71^57
+ ;;^UTILITY(U,$J,358.3,2435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2735,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2735,1,4,0)
- ;;=4^11601
- ;;^UTILITY(U,$J,358.3,2736,0)
- ;;=11602^^25^223^3^^^^1
- ;;^UTILITY(U,$J,358.3,2736,1,0)
+ ;;^UTILITY(U,$J,358.3,2435,1,3,0)
+ ;;=3^Tympanosclerosis, right ear
+ ;;^UTILITY(U,$J,358.3,2435,1,4,0)
+ ;;=4^H74.01
+ ;;^UTILITY(U,$J,358.3,2435,2)
+ ;;=^5006796
+ ;;^UTILITY(U,$J,358.3,2436,0)
+ ;;=H74.02^^5^71^56
+ ;;^UTILITY(U,$J,358.3,2436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2736,1,2,0)
- ;;=2^Trunk/Arm/Leg 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2736,1,4,0)
- ;;=4^11602
- ;;^UTILITY(U,$J,358.3,2737,0)
- ;;=11603^^25^223^4^^^^1
- ;;^UTILITY(U,$J,358.3,2737,1,0)
+ ;;^UTILITY(U,$J,358.3,2436,1,3,0)
+ ;;=3^Tympanosclerosis, left ear
+ ;;^UTILITY(U,$J,358.3,2436,1,4,0)
+ ;;=4^H74.02
+ ;;^UTILITY(U,$J,358.3,2436,2)
+ ;;=^5006797
+ ;;^UTILITY(U,$J,358.3,2437,0)
+ ;;=H74.11^^5^71^10
+ ;;^UTILITY(U,$J,358.3,2437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2737,1,2,0)
- ;;=2^Trunk/Arm/Leg 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2737,1,4,0)
- ;;=4^11603
- ;;^UTILITY(U,$J,358.3,2738,0)
- ;;=11604^^25^223^5^^^^1
- ;;^UTILITY(U,$J,358.3,2738,1,0)
+ ;;^UTILITY(U,$J,358.3,2437,1,3,0)
+ ;;=3^Adhesive right middle ear disease
+ ;;^UTILITY(U,$J,358.3,2437,1,4,0)
+ ;;=4^H74.11
+ ;;^UTILITY(U,$J,358.3,2437,2)
+ ;;=^5006800
+ ;;^UTILITY(U,$J,358.3,2438,0)
+ ;;=H74.12^^5^71^9
+ ;;^UTILITY(U,$J,358.3,2438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2738,1,2,0)
- ;;=2^Trunk/Arm/Leg 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2738,1,4,0)
- ;;=4^11604
- ;;^UTILITY(U,$J,358.3,2739,0)
- ;;=11606^^25^223^6^^^^1
- ;;^UTILITY(U,$J,358.3,2739,1,0)
+ ;;^UTILITY(U,$J,358.3,2438,1,3,0)
+ ;;=3^Adhesive left middle ear disease
+ ;;^UTILITY(U,$J,358.3,2438,1,4,0)
+ ;;=4^H74.12
+ ;;^UTILITY(U,$J,358.3,2438,2)
+ ;;=^5006801
+ ;;^UTILITY(U,$J,358.3,2439,0)
+ ;;=H81.01^^5^71^38
+ ;;^UTILITY(U,$J,358.3,2439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2739,1,2,0)
- ;;=2^Trunk/Arm/Leg > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,2739,1,4,0)
- ;;=4^11606
- ;;^UTILITY(U,$J,358.3,2740,0)
- ;;=12001^^25^224^1^^^^1
- ;;^UTILITY(U,$J,358.3,2740,1,0)
+ ;;^UTILITY(U,$J,358.3,2439,1,3,0)
+ ;;=3^Meniere's disease, right ear
+ ;;^UTILITY(U,$J,358.3,2439,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,2439,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,2440,0)
+ ;;=H81.02^^5^71^37
+ ;;^UTILITY(U,$J,358.3,2440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2740,1,2,0)
- ;;=2^Repair, Simple < 2.5cm or less
- ;;^UTILITY(U,$J,358.3,2740,1,4,0)
- ;;=4^12001
- ;;^UTILITY(U,$J,358.3,2741,0)
- ;;=12002^^25^224^2^^^^1
- ;;^UTILITY(U,$J,358.3,2741,1,0)
+ ;;^UTILITY(U,$J,358.3,2440,1,3,0)
+ ;;=3^Meniere's disease, left ear
+ ;;^UTILITY(U,$J,358.3,2440,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,2440,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,2441,0)
+ ;;=H81.391^^5^71^49
+ ;;^UTILITY(U,$J,358.3,2441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2741,1,2,0)
- ;;=2^Repair, Simple, 2.6-7.5cm
- ;;^UTILITY(U,$J,358.3,2741,1,4,0)
- ;;=4^12002
- ;;^UTILITY(U,$J,358.3,2742,0)
- ;;=12004^^25^224^3^^^^1
- ;;^UTILITY(U,$J,358.3,2742,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2742,1,2,0)
- ;;=2^Repair, Simple, 7.6-12.5cm
- ;;^UTILITY(U,$J,358.3,2742,1,4,0)
- ;;=4^12004
- ;;^UTILITY(U,$J,358.3,2743,0)
- ;;=12005^^25^224^4^^^^1
- ;;^UTILITY(U,$J,358.3,2743,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2743,1,2,0)
- ;;=2^Repair, Simple, 12.6-20.0cm
- ;;^UTILITY(U,$J,358.3,2743,1,4,0)
- ;;=4^12005
- ;;^UTILITY(U,$J,358.3,2744,0)
- ;;=12006^^25^224^5^^^^1
- ;;^UTILITY(U,$J,358.3,2744,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2744,1,2,0)
- ;;=2^Repair, Simple, 20.1-30.0cm
- ;;^UTILITY(U,$J,358.3,2744,1,4,0)
- ;;=4^12006
- ;;^UTILITY(U,$J,358.3,2745,0)
- ;;=12007^^25^224^6^^^^1
- ;;^UTILITY(U,$J,358.3,2745,1,0)
+ ;;^UTILITY(U,$J,358.3,2441,1,3,0)
+ ;;=3^Peripheral vertigo, right ear NEC
+ ;;^UTILITY(U,$J,358.3,2441,1,4,0)
+ ;;=4^H81.391
+ ;;^UTILITY(U,$J,358.3,2441,2)
+ ;;=^5006876
+ ;;^UTILITY(U,$J,358.3,2442,0)
+ ;;=H81.392^^5^71^48
+ ;;^UTILITY(U,$J,358.3,2442,1,0)
  ;;=^358.31IA^4^2

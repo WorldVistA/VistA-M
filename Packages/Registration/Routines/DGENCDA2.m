@@ -1,5 +1,7 @@
-DGENCDA2 ;ALB/CJM,ISA/KWP,Zoltan,JAN,CKN - Catastrophic Disability API - File Data;May 24, 1999
- ;;5.3;Registration;**232,387,653,850**;Aug 13,1993;Build 171
+DGENCDA2 ;ALB/CJM,ISA/KWP,Zoltan,JAN,CKN,TGH - Catastrophic Disability API - File Data;May 24, 1999
+ ;;5.3;Registration;**232,387,653,850,894**;Aug 13,1993;Build 48
+ ;
+ ; DG*5.3*894 - Enhance Catastrophic Disability to use Descriptors rather than Diagnoses/Procedures/Conditions.
  ;
 STORE(DFN,DGCDIS,ERROR) ;
  ;Description: Creates a catastrophic disability record for a patient.
@@ -11,9 +13,10 @@ STORE(DFN,DGCDIS,ERROR) ;
  ;  Function Value - returns 1 if successful, otherwise 0
  ;  ERROR - if not successful, an error message is returned,pass
  ;          by reference
- N SUCCESS,FDA,SUB,HIEN,HSUB,FDB,NIEN,EIEN,DIERR,DGCDERR
+ N SUCCESS,FDA,SUB,HIEN,HSUB,FDB,NIEN,EIEN,DGCDERR
  S SUCCESS=1
  S ERROR=""
+ I DGCDIS("VCD")="N" N I F I="BY","DATE","DTFACIRV","FACDET","METDET","REVDTE","VETREQDT" S DGCD(I)=""   ; DG*5.3*894 
  D  ;drops out if invalid condition found
  . I $G(DFN),$D(^DPT(DFN,0))
  . E  S SUCCESS=0,ERROR="PATIENT NOT FOUND" Q
@@ -40,38 +43,19 @@ STORE(DFN,DGCDIS,ERROR) ;
  . S FDA(2,DFN_",",.3953)=DGCDIS("DTVETNOT")
  . S FDB(2.399,HIEN,.3953)=DGCDIS("DTVETNOT")
  . S SUB="",HSUB=0
- . S NIEN=0 F  S SUB=$O(DGCDIS("DIAG",SUB)) Q:'SUB  D
- . . I DGCDIS("DIAG",SUB)="" Q
+ . S NIEN=0 F  S SUB=$O(DGCDIS("DESCR",SUB)) Q:'SUB  D
+ . . I DGCDIS("DESCR",SUB)="" Q
  . . S NIEN=NIEN+1
- . . S FDB(2.396,NIEN_","_DFN_",",.01)=DGCDIS("DIAG",SUB)
+ . . S FDB(2.401,NIEN_","_DFN_",",.01)=DGCDIS("DESCR",SUB)
  . . S HSUB=HSUB+1
- . . S FDB(2.409,HSUB_","_HIEN,.01)=DGCDIS("DIAG",SUB)
- . S NIEN=0 F  S SUB=$O(DGCDIS("PROC",SUB)) Q:'SUB  D
- . . I DGCDIS("PROC",SUB)="" Q
- . . S EIEN=0 F  S EIEN=$O(DGCDIS("EXT",SUB,EIEN)) Q:'EIEN  D
- . . . S NIEN=NIEN+1
- . . . S FDB(2.397,NIEN_","_DFN_",",.01)=DGCDIS("PROC",SUB)
- . . . S HSUB=HSUB+1
- . . . S FDB(2.409,HSUB_","_HIEN,.01)=DGCDIS("PROC",SUB)
- . . . S FDB(2.397,NIEN_","_DFN_",",1)=DGCDIS("EXT",SUB,EIEN)
- . . . S FDB(2.409,HSUB_","_HIEN,1)=DGCDIS("EXT",SUB,EIEN)
- . S NIEN=0 F  S SUB=$O(DGCDIS("COND",SUB)) Q:'SUB  D
- . . I DGCDIS("COND",SUB)="" Q
- . . S NIEN=NIEN+1
- . . S FDB(2.398,NIEN_","_DFN_",",.01)=DGCDIS("COND",SUB)
- . . S HSUB=HSUB+1
- . . S FDB(2.409,HSUB_","_HIEN,.01)=DGCDIS("COND",SUB)
- . . S FDB(2.398,NIEN_","_DFN_",",1)=DGCDIS("SCORE",SUB)
- . . S FDB(2.409,HSUB_","_HIEN,2)=DGCDIS("SCORE",SUB)
- . . S FDB(2.398,NIEN_","_DFN_",",2)=DGCDIS("PERM",SUB)
- . . S FDB(2.409,HSUB_","_HIEN,3)=DGCDIS("PERM",SUB)
+ . . S FDB(2.409,HSUB_","_HIEN,.01)=DGCDIS("DESCR",SUB)
  . S FDB(2.399,HIEN,.01)=$$NOW^XLFDT
  I SUCCESS D
- . N SUBFDA,SUBFILE
+ . N SUBFDA,SUBFILE,IENS
  . S SUCCESS=$$DELETE^DGENCDA1(DFN)
  . Q:'SUCCESS
- . D FILE^DIE("K","FDA","DGCDERR")
- . I $G(DIERR) D  Q
+ . D UPDATE^DIE("","FDA","","DGCDERR")
+ . I $G(DGCDERR) D  Q
  . . S ERROR="FILEMAN UNABLE TO PERFORM UPDATE"
  . . S SUCCESS=0
  . . D ERRDISP^DGENCDA1(2)
@@ -99,7 +83,7 @@ STORE(DFN,DGCDIS,ERROR) ;
  . . Q:'SUCCESS
  . . K SUBFDA
  . . M SUBFDA(SUBFILE)=FDB(SUBFILE)
- . . D FILE^DIE("K","SUBFDA","DGCDERR")
+ . . D FILE^DIE("","SUBFDA","DGCDERR")
  . . I $G(DIERR) D
  . . . S ERROR=ERROR_" #"_SUBFILE
  . . . S SUCCESS=0

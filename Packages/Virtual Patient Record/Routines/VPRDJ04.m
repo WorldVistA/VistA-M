@@ -1,5 +1,5 @@
 VPRDJ04 ;SLC/MKB -- Appointments,Visits ;6/25/12  16:11
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,5**;Sep 01, 2011;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -120,7 +120,9 @@ VSIT1(ID) ; -- visit
  . S X=$$SERV^VPRDVSIT($P(L0,U,20)) Q:X=""
  . S:$L(X) VST("service")=X,VST("summary")="${"_VST("service")_"}:"_$P(L0,U)
  S:$D(AMIS) VST("stopCodeUid")="urn:va:stop-code:"_$P(AMIS,U),VST("stopCodeName")=$P(AMIS,U,2)
- S X=$$POV^VPRDVSIT(ID) S:$L(X) VST("reasonUid")=$$SETNCS^VPRUTILS("icd",$P(X,U)),VST("reasonName")=$P(X,U,2)
+ S X=$$POV^VPRDVSIT(ID) I $L(X) D
+ . N SYS S SYS=$P(X,U,3),SYS=$$LOW^XLFSTR(SYS)
+ . S VST("reasonUid")=$$SETNCS^VPRUTILS(SYS,$P(X,U)),VST("reasonName")=$P(X,U,2)
  ; provider(s)
  S DA=0 F  S DA=$O(^TMP("PXKENC",$J,ID,"PRV",DA)) Q:DA<1  S X0=$G(^(DA,0)) D
  . I $P(X0,U,4)="P" D PROV("VST",DA,+X0,"P",1) Q  ;primary

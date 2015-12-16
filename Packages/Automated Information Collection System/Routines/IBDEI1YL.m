@@ -1,144 +1,124 @@
-IBDEI1YL ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1YL ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34750,1,0)
+ ;;^UTILITY(U,$J,358.3,34364,0)
+ ;;=S72.034S^^183^2019^74
+ ;;^UTILITY(U,$J,358.3,34364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34750,1,3,0)
- ;;=3^Diarrhea,Unspec
- ;;^UTILITY(U,$J,358.3,34750,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,34750,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,34751,0)
- ;;=M89.9^^192^2010^9
- ;;^UTILITY(U,$J,358.3,34751,1,0)
+ ;;^UTILITY(U,$J,358.3,34364,1,3,0)
+ ;;=3^Nondisp midcervical fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34364,1,4,0)
+ ;;=4^S72.034S
+ ;;^UTILITY(U,$J,358.3,34364,2)
+ ;;=^5037280
+ ;;^UTILITY(U,$J,358.3,34365,0)
+ ;;=S72.035S^^183^2019^73
+ ;;^UTILITY(U,$J,358.3,34365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34751,1,3,0)
- ;;=3^Bone Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,34751,1,4,0)
- ;;=4^M89.9
- ;;^UTILITY(U,$J,358.3,34751,2)
- ;;=^5015119
- ;;^UTILITY(U,$J,358.3,34752,0)
- ;;=M94.9^^192^2010^11
- ;;^UTILITY(U,$J,358.3,34752,1,0)
+ ;;^UTILITY(U,$J,358.3,34365,1,3,0)
+ ;;=3^Nondisp midcervical fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34365,1,4,0)
+ ;;=4^S72.035S
+ ;;^UTILITY(U,$J,358.3,34365,2)
+ ;;=^5037296
+ ;;^UTILITY(U,$J,358.3,34366,0)
+ ;;=S72.041S^^183^2019^6
+ ;;^UTILITY(U,$J,358.3,34366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34752,1,3,0)
- ;;=3^Cartilage Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,34752,1,4,0)
- ;;=4^M94.9
- ;;^UTILITY(U,$J,358.3,34752,2)
- ;;=^5015366
- ;;^UTILITY(U,$J,358.3,34753,0)
- ;;=R42.^^192^2010^25
- ;;^UTILITY(U,$J,358.3,34753,1,0)
+ ;;^UTILITY(U,$J,358.3,34366,1,3,0)
+ ;;=3^Displaced base of neck fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34366,1,4,0)
+ ;;=4^S72.041S
+ ;;^UTILITY(U,$J,358.3,34366,2)
+ ;;=^5037328
+ ;;^UTILITY(U,$J,358.3,34367,0)
+ ;;=S72.042S^^183^2019^5
+ ;;^UTILITY(U,$J,358.3,34367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34753,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,34753,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,34753,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,34754,0)
- ;;=R50.2^^192^2010^26
- ;;^UTILITY(U,$J,358.3,34754,1,0)
+ ;;^UTILITY(U,$J,358.3,34367,1,3,0)
+ ;;=3^Displaced base of neck fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34367,1,4,0)
+ ;;=4^S72.042S
+ ;;^UTILITY(U,$J,358.3,34367,2)
+ ;;=^5037344
+ ;;^UTILITY(U,$J,358.3,34368,0)
+ ;;=S72.044S^^183^2019^52
+ ;;^UTILITY(U,$J,358.3,34368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34754,1,3,0)
- ;;=3^Drug-Induced Fever
- ;;^UTILITY(U,$J,358.3,34754,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,34754,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,34755,0)
- ;;=E66.1^^192^2010^27
- ;;^UTILITY(U,$J,358.3,34755,1,0)
+ ;;^UTILITY(U,$J,358.3,34368,1,3,0)
+ ;;=3^Nondisp base of neck fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34368,1,4,0)
+ ;;=4^S72.044S
+ ;;^UTILITY(U,$J,358.3,34368,2)
+ ;;=^5037376
+ ;;^UTILITY(U,$J,358.3,34369,0)
+ ;;=S72.061S^^183^2019^4
+ ;;^UTILITY(U,$J,358.3,34369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34755,1,3,0)
- ;;=3^Drug-Induced Obesity
- ;;^UTILITY(U,$J,358.3,34755,1,4,0)
- ;;=4^E66.1
- ;;^UTILITY(U,$J,358.3,34755,2)
- ;;=^5002828
- ;;^UTILITY(U,$J,358.3,34756,0)
- ;;=R06.00^^192^2010^29
- ;;^UTILITY(U,$J,358.3,34756,1,0)
+ ;;^UTILITY(U,$J,358.3,34369,1,3,0)
+ ;;=3^Displaced articular fx of head of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34369,1,4,0)
+ ;;=4^S72.061S
+ ;;^UTILITY(U,$J,358.3,34369,2)
+ ;;=^5037461
+ ;;^UTILITY(U,$J,358.3,34370,0)
+ ;;=S72.062S^^183^2019^3
+ ;;^UTILITY(U,$J,358.3,34370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34756,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,34756,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,34756,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,34757,0)
- ;;=R30.0^^192^2010^30
- ;;^UTILITY(U,$J,358.3,34757,1,0)
+ ;;^UTILITY(U,$J,358.3,34370,1,3,0)
+ ;;=3^Displaced articular fx of head of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34370,1,4,0)
+ ;;=4^S72.062S
+ ;;^UTILITY(U,$J,358.3,34370,2)
+ ;;=^5037477
+ ;;^UTILITY(U,$J,358.3,34371,0)
+ ;;=S72.064S^^183^2019^50
+ ;;^UTILITY(U,$J,358.3,34371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34757,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,34757,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,34757,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,34758,0)
- ;;=R60.9^^192^2010^33
- ;;^UTILITY(U,$J,358.3,34758,1,0)
+ ;;^UTILITY(U,$J,358.3,34371,1,3,0)
+ ;;=3^Nondisp articular fx of head of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34371,1,4,0)
+ ;;=4^S72.064S
+ ;;^UTILITY(U,$J,358.3,34371,2)
+ ;;=^5037509
+ ;;^UTILITY(U,$J,358.3,34372,0)
+ ;;=S72.065S^^183^2019^49
+ ;;^UTILITY(U,$J,358.3,34372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34758,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,34758,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,34758,2)
- ;;=^5019534
- ;;^UTILITY(U,$J,358.3,34759,0)
- ;;=R50.9^^192^2010^35
- ;;^UTILITY(U,$J,358.3,34759,1,0)
+ ;;^UTILITY(U,$J,358.3,34372,1,3,0)
+ ;;=3^Nondisp articular fx of head of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34372,1,4,0)
+ ;;=4^S72.065S
+ ;;^UTILITY(U,$J,358.3,34372,2)
+ ;;=^5037525
+ ;;^UTILITY(U,$J,358.3,34373,0)
+ ;;=S72.111S^^183^2019^14
+ ;;^UTILITY(U,$J,358.3,34373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34759,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,34759,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,34759,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,34760,0)
- ;;=R35.0^^192^2010^49
- ;;^UTILITY(U,$J,358.3,34760,1,0)
+ ;;^UTILITY(U,$J,358.3,34373,1,3,0)
+ ;;=3^Displaced greater trochanter fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34373,1,4,0)
+ ;;=4^S72.111S
+ ;;^UTILITY(U,$J,358.3,34373,2)
+ ;;=^5037642
+ ;;^UTILITY(U,$J,358.3,34374,0)
+ ;;=S72.112S^^183^2019^13
+ ;;^UTILITY(U,$J,358.3,34374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34760,1,3,0)
- ;;=3^Micturition Frequency
- ;;^UTILITY(U,$J,358.3,34760,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,34760,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,34761,0)
- ;;=K30.^^192^2010^36
- ;;^UTILITY(U,$J,358.3,34761,1,0)
+ ;;^UTILITY(U,$J,358.3,34374,1,3,0)
+ ;;=3^Displaced greater trochanter fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,34374,1,4,0)
+ ;;=4^S72.112S
+ ;;^UTILITY(U,$J,358.3,34374,2)
+ ;;=^5037658
+ ;;^UTILITY(U,$J,358.3,34375,0)
+ ;;=S72.114S^^183^2019^60
+ ;;^UTILITY(U,$J,358.3,34375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34761,1,3,0)
- ;;=3^Functional Dyspepsia
- ;;^UTILITY(U,$J,358.3,34761,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,34761,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,34762,0)
- ;;=R60.1^^192^2010^31
- ;;^UTILITY(U,$J,358.3,34762,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34762,1,3,0)
- ;;=3^Edema,Generalized
- ;;^UTILITY(U,$J,358.3,34762,1,4,0)
- ;;=4^R60.1
- ;;^UTILITY(U,$J,358.3,34762,2)
- ;;=^5019533
- ;;^UTILITY(U,$J,358.3,34763,0)
- ;;=R51.^^192^2010^37
- ;;^UTILITY(U,$J,358.3,34763,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34763,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,34763,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,34763,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,34764,0)
- ;;=M87.00^^192^2010^38
+ ;;^UTILITY(U,$J,358.3,34375,1,3,0)
+ ;;=3^Nondisp greater trochanter fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,34375,1,4,0)
+ ;;=4^S72.114S
+ ;;^UTILITY(U,$J,358.3,34375,2)
+ ;;=^5037690

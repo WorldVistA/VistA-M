@@ -1,5 +1,6 @@
-DGPTFM7 ;ALB/MJK - Display Phys. MPCR mvts ; 11/30/06 8:31am
- ;;5.3;Registration;**78,590,594,683,729**;Aug 13, 1993;Build 59
+DGPTFM7 ;ALB/MJ/PLT - Display Phys. MPCR mvts ; 11/30/06 8:31am
+ ;;5.3;Registration;**78,590,594,683,729,884**;Aug 13, 1993;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry pt to display MPCR screen
  ; -- PTF and DGPTFMT must be defined
@@ -66,7 +67,7 @@ PRT ; -- collect 501 and 535 data and then print
  I $D(^DIC(42.4,+$P(DGCDR0,U,2),0)) D
  . S DG5SP=$P(^DIC(42.4,+$P(DGCDR0,U,2),0),"^",2)
  . I DG5SP="" S DG5SP=$P(^DIC(42.4,+$P(DGCDR0,U,2),0),"^")
- . S DGMSP=$E(DGMSP,1,14)
+ . S DG5SP=$E(DG5SP,1,14)
  E  S DG5SP="UNKNOWN"
  S DG5CDR=$J(+$P(DGCDR0,U,16),7,2)
  S DGWARD=$E($S($D(^DIC(42,+$P(DGCDR0,U,6),0)):$P(^(0),U),1:"UNKNOWN"),1,8)

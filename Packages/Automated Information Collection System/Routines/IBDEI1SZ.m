@@ -1,126 +1,124 @@
-IBDEI1SZ ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1SZ ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32196,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,32197,0)
- ;;=M47.814^^190^1949^143
- ;;^UTILITY(U,$J,358.3,32197,1,0)
+ ;;^UTILITY(U,$J,358.3,31792,1,4,0)
+ ;;=4^S06.4X9A
+ ;;^UTILITY(U,$J,358.3,31792,2)
+ ;;=^5021053
+ ;;^UTILITY(U,$J,358.3,31793,0)
+ ;;=S06.4X0D^^181^1968^32
+ ;;^UTILITY(U,$J,358.3,31793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32197,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,32197,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,32197,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,32198,0)
- ;;=M47.817^^190^1949^144
- ;;^UTILITY(U,$J,358.3,32198,1,0)
+ ;;^UTILITY(U,$J,358.3,31793,1,3,0)
+ ;;=3^Epidural hemorrhage w/o LOC, subs encntr
+ ;;^UTILITY(U,$J,358.3,31793,1,4,0)
+ ;;=4^S06.4X0D
+ ;;^UTILITY(U,$J,358.3,31793,2)
+ ;;=^5021027
+ ;;^UTILITY(U,$J,358.3,31794,0)
+ ;;=S06.5X0A^^181^1968^53
+ ;;^UTILITY(U,$J,358.3,31794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32198,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,32198,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,32198,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,32199,0)
- ;;=M48.50XA^^190^1949^18
- ;;^UTILITY(U,$J,358.3,32199,1,0)
+ ;;^UTILITY(U,$J,358.3,31794,1,3,0)
+ ;;=3^Traum subdr hem w/o LOC, init
+ ;;^UTILITY(U,$J,358.3,31794,1,4,0)
+ ;;=4^S06.5X0A
+ ;;^UTILITY(U,$J,358.3,31794,2)
+ ;;=^5021056
+ ;;^UTILITY(U,$J,358.3,31795,0)
+ ;;=S06.5X1A^^181^1968^46
+ ;;^UTILITY(U,$J,358.3,31795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32199,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,32199,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,32199,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,32200,0)
- ;;=M48.50XD^^190^1949^19
- ;;^UTILITY(U,$J,358.3,32200,1,0)
+ ;;^UTILITY(U,$J,358.3,31795,1,3,0)
+ ;;=3^Traum subdr hem w LOC of 30 minutes or less, init
+ ;;^UTILITY(U,$J,358.3,31795,1,4,0)
+ ;;=4^S06.5X1A
+ ;;^UTILITY(U,$J,358.3,31795,2)
+ ;;=^5021059
+ ;;^UTILITY(U,$J,358.3,31796,0)
+ ;;=S06.5X2A^^181^1968^47
+ ;;^UTILITY(U,$J,358.3,31796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32200,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32200,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,32200,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,32201,0)
- ;;=M48.52XA^^190^1949^20
- ;;^UTILITY(U,$J,358.3,32201,1,0)
+ ;;^UTILITY(U,$J,358.3,31796,1,3,0)
+ ;;=3^Traum subdr hem w LOC of 31-59 min, init
+ ;;^UTILITY(U,$J,358.3,31796,1,4,0)
+ ;;=4^S06.5X2A
+ ;;^UTILITY(U,$J,358.3,31796,2)
+ ;;=^5021062
+ ;;^UTILITY(U,$J,358.3,31797,0)
+ ;;=S06.5X3A^^181^1968^45
+ ;;^UTILITY(U,$J,358.3,31797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32201,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,32201,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,32201,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,32202,0)
- ;;=M48.52XD^^190^1949^21
- ;;^UTILITY(U,$J,358.3,32202,1,0)
+ ;;^UTILITY(U,$J,358.3,31797,1,3,0)
+ ;;=3^Traum subdr hem w LOC of 1-5 hrs 59 min, init
+ ;;^UTILITY(U,$J,358.3,31797,1,4,0)
+ ;;=4^S06.5X3A
+ ;;^UTILITY(U,$J,358.3,31797,2)
+ ;;=^5021065
+ ;;^UTILITY(U,$J,358.3,31798,0)
+ ;;=S06.5X4A^^181^1968^48
+ ;;^UTILITY(U,$J,358.3,31798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32202,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32202,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,32202,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,32203,0)
- ;;=M48.54XA^^190^1949^24
- ;;^UTILITY(U,$J,358.3,32203,1,0)
+ ;;^UTILITY(U,$J,358.3,31798,1,3,0)
+ ;;=3^Traum subdr hem w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,31798,1,4,0)
+ ;;=4^S06.5X4A
+ ;;^UTILITY(U,$J,358.3,31798,2)
+ ;;=^5021068
+ ;;^UTILITY(U,$J,358.3,31799,0)
+ ;;=S06.5X5A^^181^1968^43
+ ;;^UTILITY(U,$J,358.3,31799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32203,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,32203,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,32203,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,32204,0)
- ;;=M48.54XD^^190^1949^25
- ;;^UTILITY(U,$J,358.3,32204,1,0)
+ ;;^UTILITY(U,$J,358.3,31799,1,3,0)
+ ;;=3^Traum subdr hem w LOC >24 hr w ret consc lev, init
+ ;;^UTILITY(U,$J,358.3,31799,1,4,0)
+ ;;=4^S06.5X5A
+ ;;^UTILITY(U,$J,358.3,31799,2)
+ ;;=^5021071
+ ;;^UTILITY(U,$J,358.3,31800,0)
+ ;;=S06.5X6A^^181^1968^44
+ ;;^UTILITY(U,$J,358.3,31800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32204,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32204,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,32204,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,32205,0)
- ;;=M48.57XA^^190^1949^22
- ;;^UTILITY(U,$J,358.3,32205,1,0)
+ ;;^UTILITY(U,$J,358.3,31800,1,3,0)
+ ;;=3^Traum subdr hem w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,31800,1,4,0)
+ ;;=4^S06.5X6A
+ ;;^UTILITY(U,$J,358.3,31800,2)
+ ;;=^5021074
+ ;;^UTILITY(U,$J,358.3,31801,0)
+ ;;=S06.5X7A^^181^1968^50
+ ;;^UTILITY(U,$J,358.3,31801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32205,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,32205,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,32205,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,32206,0)
- ;;=M48.57XD^^190^1949^23
- ;;^UTILITY(U,$J,358.3,32206,1,0)
+ ;;^UTILITY(U,$J,358.3,31801,1,3,0)
+ ;;=3^Traum subdr hem w LOC w dth d/t brain inj bef reg consc,init
+ ;;^UTILITY(U,$J,358.3,31801,1,4,0)
+ ;;=4^S06.5X7A
+ ;;^UTILITY(U,$J,358.3,31801,2)
+ ;;=^5021077
+ ;;^UTILITY(U,$J,358.3,31802,0)
+ ;;=S06.5X8A^^181^1968^51
+ ;;^UTILITY(U,$J,358.3,31802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32206,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,32206,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,32206,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,32207,0)
- ;;=M50.30^^190^1949^12
- ;;^UTILITY(U,$J,358.3,32207,1,0)
+ ;;^UTILITY(U,$J,358.3,31802,1,3,0)
+ ;;=3^Traum subdr hem w LOC w dth d/t oth cause bef reg consc,init
+ ;;^UTILITY(U,$J,358.3,31802,1,4,0)
+ ;;=4^S06.5X8A
+ ;;^UTILITY(U,$J,358.3,31802,2)
+ ;;=^5021080
+ ;;^UTILITY(U,$J,358.3,31803,0)
+ ;;=S06.5X0S^^181^1968^54
+ ;;^UTILITY(U,$J,358.3,31803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32207,1,3,0)
- ;;=3^Cervical Disc Degeneration NEC
- ;;^UTILITY(U,$J,358.3,32207,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,32207,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,32208,0)
- ;;=M51.14^^190^1949^44
- ;;^UTILITY(U,$J,358.3,32208,1,0)
+ ;;^UTILITY(U,$J,358.3,31803,1,3,0)
+ ;;=3^Traum subdr hem w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,31803,1,4,0)
+ ;;=4^S06.5X0S
+ ;;^UTILITY(U,$J,358.3,31803,2)
+ ;;=^5021058
+ ;;^UTILITY(U,$J,358.3,31804,0)
+ ;;=S06.5X8S^^181^1968^52
+ ;;^UTILITY(U,$J,358.3,31804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32208,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,32208,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,32208,2)
- ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,31804,1,3,0)
+ ;;=3^Traum subdr hem w LOC w dth d/t oth cause bef reg consc,sqla

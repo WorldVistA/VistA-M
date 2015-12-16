@@ -1,144 +1,138 @@
-IBDEI01Q ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01Q ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,287,1,5,0)
- ;;=5^Cocaine Depend, Episodic
- ;;^UTILITY(U,$J,358.3,287,2)
- ;;=^268199
- ;;^UTILITY(U,$J,358.3,288,0)
- ;;=304.31^^3^35^37
- ;;^UTILITY(U,$J,358.3,288,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,288,1,2,0)
- ;;=2^304.31
- ;;^UTILITY(U,$J,358.3,288,1,5,0)
- ;;=5^Cannabis Depend, Continuous
- ;;^UTILITY(U,$J,358.3,288,2)
- ;;=^268201
- ;;^UTILITY(U,$J,358.3,289,0)
- ;;=304.32^^3^35^38
- ;;^UTILITY(U,$J,358.3,289,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,289,1,2,0)
- ;;=2^304.32
- ;;^UTILITY(U,$J,358.3,289,1,5,0)
- ;;=5^Cannabis Depend, Episodic
- ;;^UTILITY(U,$J,358.3,289,2)
- ;;=^268202
- ;;^UTILITY(U,$J,358.3,290,0)
- ;;=304.41^^3^35^21
- ;;^UTILITY(U,$J,358.3,290,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,290,1,2,0)
- ;;=2^304.41
- ;;^UTILITY(U,$J,358.3,290,1,5,0)
- ;;=5^Amphetamine Depend, Continuous
- ;;^UTILITY(U,$J,358.3,290,2)
- ;;=^268205
- ;;^UTILITY(U,$J,358.3,291,0)
- ;;=304.42^^3^35^22
- ;;^UTILITY(U,$J,358.3,291,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,291,1,2,0)
- ;;=2^304.42
- ;;^UTILITY(U,$J,358.3,291,1,5,0)
- ;;=5^Amphetamine Depend, Episodic
- ;;^UTILITY(U,$J,358.3,291,2)
- ;;=^268206
- ;;^UTILITY(U,$J,358.3,292,0)
- ;;=304.51^^3^35^60
- ;;^UTILITY(U,$J,358.3,292,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,292,1,2,0)
- ;;=2^304.51
- ;;^UTILITY(U,$J,358.3,292,1,5,0)
- ;;=5^Hallucinogen Depend, Continuous
- ;;^UTILITY(U,$J,358.3,292,2)
- ;;=^268208
- ;;^UTILITY(U,$J,358.3,293,0)
- ;;=304.52^^3^35^61
- ;;^UTILITY(U,$J,358.3,293,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,293,1,2,0)
- ;;=2^304.52
- ;;^UTILITY(U,$J,358.3,293,1,5,0)
- ;;=5^Hallucinogen Depend, Episodic
- ;;^UTILITY(U,$J,358.3,293,2)
- ;;=^268209
- ;;^UTILITY(U,$J,358.3,294,0)
- ;;=304.61^^3^35^52
- ;;^UTILITY(U,$J,358.3,294,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,294,1,2,0)
- ;;=2^304.61
- ;;^UTILITY(U,$J,358.3,294,1,5,0)
- ;;=5^Drug Depend-Other, Continuous
- ;;^UTILITY(U,$J,358.3,294,2)
- ;;=^268211
- ;;^UTILITY(U,$J,358.3,295,0)
- ;;=304.62^^3^35^53
- ;;^UTILITY(U,$J,358.3,295,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,295,1,2,0)
- ;;=2^304.62
- ;;^UTILITY(U,$J,358.3,295,1,5,0)
- ;;=5^Drug Depend-Other, Episodic
- ;;^UTILITY(U,$J,358.3,295,2)
- ;;=^268212
- ;;^UTILITY(U,$J,358.3,296,0)
- ;;=304.71^^3^35^66
- ;;^UTILITY(U,$J,358.3,296,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,296,1,2,0)
- ;;=2^304.71
- ;;^UTILITY(U,$J,358.3,296,1,5,0)
- ;;=5^Opioid + Other Depend, Continuous
- ;;^UTILITY(U,$J,358.3,296,2)
- ;;=^268215
- ;;^UTILITY(U,$J,358.3,297,0)
- ;;=304.72^^3^35^67
- ;;^UTILITY(U,$J,358.3,297,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,297,1,2,0)
- ;;=2^304.72
- ;;^UTILITY(U,$J,358.3,297,1,5,0)
- ;;=5^Opioid + Other Depend, Episodic
- ;;^UTILITY(U,$J,358.3,297,2)
- ;;=^268216
- ;;^UTILITY(U,$J,358.3,298,0)
- ;;=304.81^^3^35^48
- ;;^UTILITY(U,$J,358.3,298,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,298,1,2,0)
- ;;=2^304.81
- ;;^UTILITY(U,$J,358.3,298,1,5,0)
- ;;=5^Comb Drug Depend, Continuous
- ;;^UTILITY(U,$J,358.3,298,2)
- ;;=^268219
- ;;^UTILITY(U,$J,358.3,299,0)
- ;;=304.82^^3^35^49
- ;;^UTILITY(U,$J,358.3,299,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,299,1,2,0)
- ;;=2^304.82
- ;;^UTILITY(U,$J,358.3,299,1,5,0)
- ;;=5^Comb Drug Depend, Episodic
- ;;^UTILITY(U,$J,358.3,299,2)
- ;;=^268220
- ;;^UTILITY(U,$J,358.3,300,0)
- ;;=305.01^^3^35^1
- ;;^UTILITY(U,$J,358.3,300,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,300,1,2,0)
- ;;=2^305.01
- ;;^UTILITY(U,$J,358.3,300,1,5,0)
- ;;=5^Alc Abuse, Continuous
- ;;^UTILITY(U,$J,358.3,300,2)
- ;;=^268228
- ;;^UTILITY(U,$J,358.3,301,0)
- ;;=305.02^^3^35^2
- ;;^UTILITY(U,$J,358.3,301,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,301,1,2,0)
- ;;=2^305.02
+ ;;^UTILITY(U,$J,358.3,251,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,252,0)
+ ;;=Z02.79^^1^11^21
+ ;;^UTILITY(U,$J,358.3,252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,252,1,3,0)
+ ;;=3^Medical Certificate Issue NEC
+ ;;^UTILITY(U,$J,358.3,252,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,252,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,253,0)
+ ;;=Z02.1^^1^11^10
+ ;;^UTILITY(U,$J,358.3,253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,253,1,3,0)
+ ;;=3^Exam for Employment
+ ;;^UTILITY(U,$J,358.3,253,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,253,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,254,0)
+ ;;=Z13.5^^1^11^14
+ ;;^UTILITY(U,$J,358.3,254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,254,1,3,0)
+ ;;=3^Eye/Ear Disorder Screening
+ ;;^UTILITY(U,$J,358.3,254,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,254,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,255,0)
+ ;;=Z82.2^^1^11^16
+ ;;^UTILITY(U,$J,358.3,255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,255,1,3,0)
+ ;;=3^Family history of deafness and hearing loss
+ ;;^UTILITY(U,$J,358.3,255,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,255,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,256,0)
+ ;;=Z83.52^^1^11^17
+ ;;^UTILITY(U,$J,358.3,256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,256,1,3,0)
+ ;;=3^Family history of ear disorders
+ ;;^UTILITY(U,$J,358.3,256,1,4,0)
+ ;;=4^Z83.52
+ ;;^UTILITY(U,$J,358.3,256,2)
+ ;;=^5063384
+ ;;^UTILITY(U,$J,358.3,257,0)
+ ;;=Z91.81^^1^11^19
+ ;;^UTILITY(U,$J,358.3,257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,257,1,3,0)
+ ;;=3^History of falling
+ ;;^UTILITY(U,$J,358.3,257,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,257,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,258,0)
+ ;;=Z76.5^^1^11^20
+ ;;^UTILITY(U,$J,358.3,258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,258,1,3,0)
+ ;;=3^Malingerer [conscious simulation]
+ ;;^UTILITY(U,$J,358.3,258,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,258,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,259,0)
+ ;;=Z53.09^^1^11^22
+ ;;^UTILITY(U,$J,358.3,259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,259,1,3,0)
+ ;;=3^Proc/trtmt not carried out because of contraindication
+ ;;^UTILITY(U,$J,358.3,259,1,4,0)
+ ;;=4^Z53.09
+ ;;^UTILITY(U,$J,358.3,259,2)
+ ;;=^5063093
+ ;;^UTILITY(U,$J,358.3,260,0)
+ ;;=Z53.29^^1^11^24
+ ;;^UTILITY(U,$J,358.3,260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,260,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec pt decision for oth reasons
+ ;;^UTILITY(U,$J,358.3,260,1,4,0)
+ ;;=4^Z53.29
+ ;;^UTILITY(U,$J,358.3,260,2)
+ ;;=^5063097
+ ;;^UTILITY(U,$J,358.3,261,0)
+ ;;=Z53.1^^1^11^23
+ ;;^UTILITY(U,$J,358.3,261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,261,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec pt belief and group pressure
+ ;;^UTILITY(U,$J,358.3,261,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,261,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,262,0)
+ ;;=Z53.21^^1^11^26
+ ;;^UTILITY(U,$J,358.3,262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,262,1,3,0)
+ ;;=3^Proc/trtmt not crd out d/t pt lv bef seen by hlth care prov
+ ;;^UTILITY(U,$J,358.3,262,1,4,0)
+ ;;=4^Z53.21
+ ;;^UTILITY(U,$J,358.3,262,2)
+ ;;=^5063096
+ ;;^UTILITY(U,$J,358.3,263,0)
+ ;;=Z53.8^^1^11^25
+ ;;^UTILITY(U,$J,358.3,263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,263,1,3,0)
+ ;;=3^Proc/trtmt not crd out d/t other reasons
+ ;;^UTILITY(U,$J,358.3,263,1,4,0)
+ ;;=4^Z53.8
+ ;;^UTILITY(U,$J,358.3,263,2)
+ ;;=^5063098
+ ;;^UTILITY(U,$J,358.3,264,0)
+ ;;=D50.9^^2^12^27
+ ;;^UTILITY(U,$J,358.3,264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,264,1,3,0)
+ ;;=3^Iron deficiency anemia, unspecified
+ ;;^UTILITY(U,$J,358.3,264,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,264,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,265,0)
+ ;;=D51.0^^2^12^37

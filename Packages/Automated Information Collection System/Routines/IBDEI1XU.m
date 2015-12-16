@@ -1,128 +1,124 @@
-IBDEI1XU ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XU ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34403,0)
- ;;=M05.172^^192^1998^26
- ;;^UTILITY(U,$J,358.3,34403,1,0)
+ ;;^UTILITY(U,$J,358.3,34033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34403,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,34403,1,4,0)
- ;;=4^M05.172
- ;;^UTILITY(U,$J,358.3,34403,2)
- ;;=^5009882
- ;;^UTILITY(U,$J,358.3,34404,0)
- ;;=M05.122^^192^1998^27
- ;;^UTILITY(U,$J,358.3,34404,1,0)
+ ;;^UTILITY(U,$J,358.3,34033,1,3,0)
+ ;;=3^Comp of internal orthopedic prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,34033,1,4,0)
+ ;;=4^T84.89XS
+ ;;^UTILITY(U,$J,358.3,34033,2)
+ ;;=^5055474
+ ;;^UTILITY(U,$J,358.3,34034,0)
+ ;;=T84.84XA^^183^2015^13
+ ;;^UTILITY(U,$J,358.3,34034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34404,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Elbow
- ;;^UTILITY(U,$J,358.3,34404,1,4,0)
- ;;=4^M05.122
- ;;^UTILITY(U,$J,358.3,34404,2)
- ;;=^5009867
- ;;^UTILITY(U,$J,358.3,34405,0)
- ;;=M05.142^^192^1998^28
- ;;^UTILITY(U,$J,358.3,34405,1,0)
+ ;;^UTILITY(U,$J,358.3,34034,1,3,0)
+ ;;=3^Pain due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,34034,1,4,0)
+ ;;=4^T84.84XA
+ ;;^UTILITY(U,$J,358.3,34034,2)
+ ;;=^5055463
+ ;;^UTILITY(U,$J,358.3,34035,0)
+ ;;=T84.84XD^^183^2015^14
+ ;;^UTILITY(U,$J,358.3,34035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34405,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hand
- ;;^UTILITY(U,$J,358.3,34405,1,4,0)
- ;;=4^M05.142
- ;;^UTILITY(U,$J,358.3,34405,2)
- ;;=^5009873
- ;;^UTILITY(U,$J,358.3,34406,0)
- ;;=M05.152^^192^1998^29
- ;;^UTILITY(U,$J,358.3,34406,1,0)
+ ;;^UTILITY(U,$J,358.3,34035,1,3,0)
+ ;;=3^Pain due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,34035,1,4,0)
+ ;;=4^T84.84XD
+ ;;^UTILITY(U,$J,358.3,34035,2)
+ ;;=^5055464
+ ;;^UTILITY(U,$J,358.3,34036,0)
+ ;;=T84.84XS^^183^2015^15
+ ;;^UTILITY(U,$J,358.3,34036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34406,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hip
- ;;^UTILITY(U,$J,358.3,34406,1,4,0)
- ;;=4^M05.152
- ;;^UTILITY(U,$J,358.3,34406,2)
- ;;=^5009876
- ;;^UTILITY(U,$J,358.3,34407,0)
- ;;=M05.162^^192^1998^30
- ;;^UTILITY(U,$J,358.3,34407,1,0)
+ ;;^UTILITY(U,$J,358.3,34036,1,3,0)
+ ;;=3^Pain due to internal orthopedic prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,34036,1,4,0)
+ ;;=4^T84.84XS
+ ;;^UTILITY(U,$J,358.3,34036,2)
+ ;;=^5055465
+ ;;^UTILITY(U,$J,358.3,34037,0)
+ ;;=T84.85XA^^183^2015^16
+ ;;^UTILITY(U,$J,358.3,34037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34407,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Knee
- ;;^UTILITY(U,$J,358.3,34407,1,4,0)
- ;;=4^M05.162
- ;;^UTILITY(U,$J,358.3,34407,2)
- ;;=^5009879
- ;;^UTILITY(U,$J,358.3,34408,0)
- ;;=M05.112^^192^1998^31
- ;;^UTILITY(U,$J,358.3,34408,1,0)
+ ;;^UTILITY(U,$J,358.3,34037,1,3,0)
+ ;;=3^Stenosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,34037,1,4,0)
+ ;;=4^T84.85XA
+ ;;^UTILITY(U,$J,358.3,34037,2)
+ ;;=^5055466
+ ;;^UTILITY(U,$J,358.3,34038,0)
+ ;;=T84.85XD^^183^2015^17
+ ;;^UTILITY(U,$J,358.3,34038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34408,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Shldr
- ;;^UTILITY(U,$J,358.3,34408,1,4,0)
- ;;=4^M05.112
- ;;^UTILITY(U,$J,358.3,34408,2)
- ;;=^5009864
- ;;^UTILITY(U,$J,358.3,34409,0)
- ;;=M05.132^^192^1998^32
- ;;^UTILITY(U,$J,358.3,34409,1,0)
+ ;;^UTILITY(U,$J,358.3,34038,1,3,0)
+ ;;=3^Stenosis due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,34038,1,4,0)
+ ;;=4^T84.85XD
+ ;;^UTILITY(U,$J,358.3,34038,2)
+ ;;=^5055467
+ ;;^UTILITY(U,$J,358.3,34039,0)
+ ;;=T84.85XS^^183^2015^18
+ ;;^UTILITY(U,$J,358.3,34039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34409,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
- ;;^UTILITY(U,$J,358.3,34409,1,4,0)
- ;;=4^M05.132
- ;;^UTILITY(U,$J,358.3,34409,2)
- ;;=^5009870
- ;;^UTILITY(U,$J,358.3,34410,0)
- ;;=M05.19^^192^1998^33
- ;;^UTILITY(U,$J,358.3,34410,1,0)
+ ;;^UTILITY(U,$J,358.3,34039,1,3,0)
+ ;;=3^Stenosis due to internal orthopedic prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,34039,1,4,0)
+ ;;=4^T84.85XS
+ ;;^UTILITY(U,$J,358.3,34039,2)
+ ;;=^5055468
+ ;;^UTILITY(U,$J,358.3,34040,0)
+ ;;=T84.86XA^^183^2015^20
+ ;;^UTILITY(U,$J,358.3,34040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34410,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Mult Sites
- ;;^UTILITY(U,$J,358.3,34410,1,4,0)
- ;;=4^M05.19
- ;;^UTILITY(U,$J,358.3,34410,2)
- ;;=^5009884
- ;;^UTILITY(U,$J,358.3,34411,0)
- ;;=M05.171^^192^1998^34
- ;;^UTILITY(U,$J,358.3,34411,1,0)
+ ;;^UTILITY(U,$J,358.3,34040,1,3,0)
+ ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,34040,1,4,0)
+ ;;=4^T84.86XA
+ ;;^UTILITY(U,$J,358.3,34040,2)
+ ;;=^5055469
+ ;;^UTILITY(U,$J,358.3,34041,0)
+ ;;=T84.86XD^^183^2015^21
+ ;;^UTILITY(U,$J,358.3,34041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34411,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,34411,1,4,0)
- ;;=4^M05.171
- ;;^UTILITY(U,$J,358.3,34411,2)
- ;;=^5009881
- ;;^UTILITY(U,$J,358.3,34412,0)
- ;;=M05.121^^192^1998^35
- ;;^UTILITY(U,$J,358.3,34412,1,0)
+ ;;^UTILITY(U,$J,358.3,34041,1,3,0)
+ ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,34041,1,4,0)
+ ;;=4^T84.86XD
+ ;;^UTILITY(U,$J,358.3,34041,2)
+ ;;=^5055470
+ ;;^UTILITY(U,$J,358.3,34042,0)
+ ;;=T84.86XS^^183^2015^19
+ ;;^UTILITY(U,$J,358.3,34042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34412,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Elbow
- ;;^UTILITY(U,$J,358.3,34412,1,4,0)
- ;;=4^M05.121
- ;;^UTILITY(U,$J,358.3,34412,2)
- ;;=^5009866
- ;;^UTILITY(U,$J,358.3,34413,0)
- ;;=M05.141^^192^1998^36
- ;;^UTILITY(U,$J,358.3,34413,1,0)
+ ;;^UTILITY(U,$J,358.3,34042,1,3,0)
+ ;;=3^Thrombosis due to internal orth prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,34042,1,4,0)
+ ;;=4^T84.86XS
+ ;;^UTILITY(U,$J,358.3,34042,2)
+ ;;=^5055471
+ ;;^UTILITY(U,$J,358.3,34043,0)
+ ;;=M76.62^^183^2016^1
+ ;;^UTILITY(U,$J,358.3,34043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34413,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hand
- ;;^UTILITY(U,$J,358.3,34413,1,4,0)
- ;;=4^M05.141
- ;;^UTILITY(U,$J,358.3,34413,2)
- ;;=^5009872
- ;;^UTILITY(U,$J,358.3,34414,0)
- ;;=M05.151^^192^1998^37
- ;;^UTILITY(U,$J,358.3,34414,1,0)
+ ;;^UTILITY(U,$J,358.3,34043,1,3,0)
+ ;;=3^Achilles tendinitis, left leg
+ ;;^UTILITY(U,$J,358.3,34043,1,4,0)
+ ;;=4^M76.62
+ ;;^UTILITY(U,$J,358.3,34043,2)
+ ;;=^5013286
+ ;;^UTILITY(U,$J,358.3,34044,0)
+ ;;=M76.61^^183^2016^2
+ ;;^UTILITY(U,$J,358.3,34044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34414,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hip
- ;;^UTILITY(U,$J,358.3,34414,1,4,0)
- ;;=4^M05.151
- ;;^UTILITY(U,$J,358.3,34414,2)
- ;;=^5009875
- ;;^UTILITY(U,$J,358.3,34415,0)
- ;;=M05.161^^192^1998^38
- ;;^UTILITY(U,$J,358.3,34415,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34044,1,3,0)
+ ;;=3^Achilles tendinitis, right leg
+ ;;^UTILITY(U,$J,358.3,34044,1,4,0)
+ ;;=4^M76.61
+ ;;^UTILITY(U,$J,358.3,34044,2)
+ ;;=^5013285
+ ;;^UTILITY(U,$J,358.3,34045,0)
+ ;;=M75.02^^183^2016^3

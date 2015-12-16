@@ -1,5 +1,5 @@
 PSSGS0 ;BIR/CML3-SCHEDULE PROCESSOR ;06/01/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**12,27,38,44,56,69,59,143**;9/30/97;Build 24
+ ;;1.0;PHARMACY DATA MANAGEMENT;**12,27,38,44,56,69,59,143,119**;9/30/97;Build 9
  ;Reference to $$TRIM^XLFSTR supported by DBIA #10104
  ;Reference to ^PS(53.1 supported by DBIA #2140
  ;
@@ -18,7 +18,8 @@ EN5 ;
 EN(X,PSSLSTPK) ; validate
  ;I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>2)!($L(X)>70)!($L(X)<1)!(X["P RN")!(X["PR N")!($E(X,1)=" ") K X Q
  I $G(PSSLSTPK)="O"!(PSSLSTPK="X") Q:$G(X)=""  G ENOP
- I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!($L(X)>70)!($L(X)<1) K X Q
+ ;*119 Allow multi-word schedules
+ I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!($L(X)>70)!($L(X)<1) K X Q
  S X=$$TRIM^XLFSTR(X,"R"," ")
  I X?.E1L.E S X=$$ENLU^PSSGMI(X)
  ;
@@ -46,7 +47,8 @@ ENCHK ;Ward times
  Q
  ;
 ENOP ;
- I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>3)!($L(X)>20)!($L(X)<1) K X Q
+ ;*119 Allow multi-word schedules
+ I X[""""!($A(X)=45)!(X?.E1C.E)!($L(X," ")>$S(X["PRN":4,1:3))!($L(X)>20)!($L(X)<1) K X Q
  N PSSUPPER S X=$$UPPER(X)
  K Y,DIC S DIC="^PS(51.1,",DIC(0)="E",D="APPSJ",DIC("W")="D DICW^PSSGS0" D IX^DIC I Y>0 S X=$P(Y,"^",2) Q
  K Y,DIC S DIC=51,DIC(0)="ME" D ^DIC I Y>0 S X=$P(Y,"^",2)

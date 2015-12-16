@@ -1,11 +1,13 @@
-DGPTR3 ;ALB/JDS/MJK - ALB/BOK  PTF TRANSMISSION ; 01 DEC 87 @0800
- ;;5.3;Registration;**183,729**;Aug 13, 1993;Build 59
+DGPTR3 ;ALB/JDS/MJK/BOK,HIOFO/FT - PTF TRANSMISSION ;4/17/15 3:10pm
+ ;;5.3;Registration;**183,729,884**;Aug 13, 1993;Build 31
+ ;
+ ; no external references
  ;
 535 ; -- setup 535 transactions
  F I=0:0 S I=$O(^DGPT(J,535,I)) Q:'I  I $D(^(I,0)) S DGM=^(0),DGTD=+$P(DGM,U,10) I $P(DGM,U,17)'="n",'$P(DGM,U,7),'$D(^DGPT(J,"M","AM",DGTD)),DGTD'<T1,DGTD'>T2 D PHY
  Q
  ;
-PHY ; -- set up physcial mvt
+PHY ; -- set up physical mvt
  S Y=$S(T1:"C",1:"N")_"535"_DGHEAD,X=$P(DGTD,".")_"       ",Y=Y_$E(X,4,5)_$E(X,6,7)_$E(X,2,3)_$E($P(DGTD,".",2)_"0000",1,4)
  ; physical cdr
  S Z=$P(DGM,U,16) D CDR^DGPTR2
@@ -37,6 +39,6 @@ ENTER S Y=Y_$J($P(X,U,Z),L)
 ENTER0 S Y=Y_$S($P(X,U,Z)]"":$E("00000",$L($P(X,U,Z))+1,L)_$P(X,U,Z),1:$J($P(X,U,Z),L))
  Q
  ;
-SAVE D START^DGPTR1 S:'DGERR ^XMB(3.9,DGXMZ,2,DGCNT,0)=Y,DGCNT=DGCNT+1
- I DGERR'>0 S DGACNT=DGACNT+1,^TMP("AEDIT",$J,$E(Y,1,4),DGACNT)=Y
+SAVE ;
+ D SAVE^DGPTR2
 Q Q

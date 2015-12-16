@@ -1,142 +1,130 @@
-IBDEI080 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI080 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3597,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3597,1,2,0)
- ;;=2^757.33
- ;;^UTILITY(U,$J,358.3,3597,1,5,0)
- ;;=5^Urticaria Pigmentosa
- ;;^UTILITY(U,$J,358.3,3597,2)
- ;;=^27472
- ;;^UTILITY(U,$J,358.3,3598,0)
- ;;=708.9^^31^312^5
- ;;^UTILITY(U,$J,358.3,3598,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3598,1,2,0)
- ;;=2^708.9
- ;;^UTILITY(U,$J,358.3,3598,1,5,0)
- ;;=5^Generalized Urticaria
- ;;^UTILITY(U,$J,358.3,3598,2)
- ;;=^124650
- ;;^UTILITY(U,$J,358.3,3599,0)
- ;;=454.1^^31^313^1
- ;;^UTILITY(U,$J,358.3,3599,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3599,1,2,0)
- ;;=2^454.1
- ;;^UTILITY(U,$J,358.3,3599,1,5,0)
- ;;=5^Varicose Veins W/ Inflammation
- ;;^UTILITY(U,$J,358.3,3599,2)
- ;;=^125435
- ;;^UTILITY(U,$J,358.3,3600,0)
- ;;=454.2^^31^313^2
- ;;^UTILITY(U,$J,358.3,3600,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3600,1,2,0)
- ;;=2^454.2
- ;;^UTILITY(U,$J,358.3,3600,1,5,0)
- ;;=5^Varicose Veins W/ Inflammation, Ulcerated
- ;;^UTILITY(U,$J,358.3,3600,2)
- ;;=^269821
- ;;^UTILITY(U,$J,358.3,3601,0)
- ;;=454.0^^31^313^3
- ;;^UTILITY(U,$J,358.3,3601,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3601,1,2,0)
- ;;=2^454.0
- ;;^UTILITY(U,$J,358.3,3601,1,5,0)
- ;;=5^Varicose Veins, Ulcerated
- ;;^UTILITY(U,$J,358.3,3601,2)
- ;;=^125410
- ;;^UTILITY(U,$J,358.3,3602,0)
- ;;=998.83^^31^314^4
- ;;^UTILITY(U,$J,358.3,3602,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3602,1,2,0)
- ;;=2^998.83
- ;;^UTILITY(U,$J,358.3,3602,1,5,0)
- ;;=5^Non-Healing Surgical Wound
- ;;^UTILITY(U,$J,358.3,3602,2)
- ;;=^304351
- ;;^UTILITY(U,$J,358.3,3603,0)
- ;;=998.59^^31^314^3
- ;;^UTILITY(U,$J,358.3,3603,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3603,1,2,0)
- ;;=2^998.59
- ;;^UTILITY(U,$J,358.3,3603,1,5,0)
- ;;=5^Infection(Post Operative)
- ;;^UTILITY(U,$J,358.3,3603,2)
- ;;=^97081
- ;;^UTILITY(U,$J,358.3,3604,0)
- ;;=998.12^^31^314^2
- ;;^UTILITY(U,$J,358.3,3604,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3604,1,2,0)
- ;;=2^998.12
- ;;^UTILITY(U,$J,358.3,3604,1,5,0)
- ;;=5^Hematoma(Post Operative)
- ;;^UTILITY(U,$J,358.3,3604,2)
- ;;=^304348
- ;;^UTILITY(U,$J,358.3,3605,0)
- ;;=998.32^^31^314^1
- ;;^UTILITY(U,$J,358.3,3605,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3605,1,2,0)
- ;;=2^998.32
- ;;^UTILITY(U,$J,358.3,3605,1,5,0)
- ;;=5^Disruption of ext surg wound
- ;;^UTILITY(U,$J,358.3,3605,2)
- ;;=Disruption of ext surg wound
- ;;^UTILITY(U,$J,358.3,3606,0)
- ;;=701.2^^31^315^1
- ;;^UTILITY(U,$J,358.3,3606,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3606,1,2,0)
- ;;=2^701.2
- ;;^UTILITY(U,$J,358.3,3606,1,5,0)
- ;;=5^Acanthosis Nigricans
- ;;^UTILITY(U,$J,358.3,3606,2)
- ;;=^2231
- ;;^UTILITY(U,$J,358.3,3607,0)
- ;;=528.8^^31^315^3
- ;;^UTILITY(U,$J,358.3,3607,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3607,1,2,0)
- ;;=2^528.8
- ;;^UTILITY(U,$J,358.3,3607,1,5,0)
- ;;=5^Apthous Stomatitis
- ;;^UTILITY(U,$J,358.3,3607,2)
- ;;=^86127
- ;;^UTILITY(U,$J,358.3,3608,0)
- ;;=277.30^^31^315^2
- ;;^UTILITY(U,$J,358.3,3608,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3608,1,2,0)
- ;;=2^277.30
- ;;^UTILITY(U,$J,358.3,3608,1,5,0)
- ;;=5^Amyloidosis NOS
- ;;^UTILITY(U,$J,358.3,3608,2)
- ;;=^334185
- ;;^UTILITY(U,$J,358.3,3609,0)
- ;;=136.1^^31^316^1
- ;;^UTILITY(U,$J,358.3,3609,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3609,1,2,0)
- ;;=2^136.1
- ;;^UTILITY(U,$J,358.3,3609,1,5,0)
- ;;=5^Behcet's Syndrome
- ;;^UTILITY(U,$J,358.3,3609,2)
- ;;=^13205
- ;;^UTILITY(U,$J,358.3,3610,0)
- ;;=705.89^^31^316^2
- ;;^UTILITY(U,$J,358.3,3610,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3610,1,2,0)
- ;;=2^705.89
- ;;^UTILITY(U,$J,358.3,3610,1,5,0)
- ;;=5^Bromhidrosis
- ;;^UTILITY(U,$J,358.3,3610,2)
- ;;=^271930
+ ;;^UTILITY(U,$J,358.3,3249,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,3249,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,3249,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,3250,0)
+ ;;=F10.24^^8^112^9
+ ;;^UTILITY(U,$J,358.3,3250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3250,1,3,0)
+ ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,3250,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,3250,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,3251,0)
+ ;;=F10.29^^8^112^11
+ ;;^UTILITY(U,$J,358.3,3251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3251,1,3,0)
+ ;;=3^Alcohol-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3251,1,4,0)
+ ;;=4^F10.29
+ ;;^UTILITY(U,$J,358.3,3251,2)
+ ;;=^5003100
+ ;;^UTILITY(U,$J,358.3,3252,0)
+ ;;=F15.10^^8^113^4
+ ;;^UTILITY(U,$J,358.3,3252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3252,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,3252,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,3252,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,3253,0)
+ ;;=F15.14^^8^113^2
+ ;;^UTILITY(U,$J,358.3,3253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3253,1,3,0)
+ ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,3253,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,3253,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,3254,0)
+ ;;=F15.182^^8^113^3
+ ;;^UTILITY(U,$J,358.3,3254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3254,1,3,0)
+ ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,3254,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,3254,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,3255,0)
+ ;;=F15.20^^8^113^5
+ ;;^UTILITY(U,$J,358.3,3255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3255,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,3255,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,3255,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,3256,0)
+ ;;=F15.21^^8^113^6
+ ;;^UTILITY(U,$J,358.3,3256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3256,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,3256,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,3256,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,3257,0)
+ ;;=F15.23^^8^113^1
+ ;;^UTILITY(U,$J,358.3,3257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3257,1,3,0)
+ ;;=3^Amphetamine or Other Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,3257,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,3257,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,3258,0)
+ ;;=F12.10^^8^114^1
+ ;;^UTILITY(U,$J,358.3,3258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3258,1,3,0)
+ ;;=3^Cannabis Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,3258,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,3258,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,3259,0)
+ ;;=F12.180^^8^114^2
+ ;;^UTILITY(U,$J,358.3,3259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3259,1,3,0)
+ ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
+ ;;^UTILITY(U,$J,358.3,3259,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,3259,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,3260,0)
+ ;;=F12.188^^8^114^3
+ ;;^UTILITY(U,$J,358.3,3260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3260,1,3,0)
+ ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,3260,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,3260,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,3261,0)
+ ;;=F12.20^^8^114^4
+ ;;^UTILITY(U,$J,358.3,3261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3261,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,3261,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,3261,2)
+ ;;=^5003166

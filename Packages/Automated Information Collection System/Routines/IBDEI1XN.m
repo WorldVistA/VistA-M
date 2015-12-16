@@ -1,134 +1,124 @@
-IBDEI1XN ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XN ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34311,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,34312,0)
- ;;=J04.2^^192^1997^24
- ;;^UTILITY(U,$J,358.3,34312,1,0)
+ ;;^UTILITY(U,$J,358.3,33947,1,4,0)
+ ;;=4^I69.354
+ ;;^UTILITY(U,$J,358.3,33947,2)
+ ;;=^5007507
+ ;;^UTILITY(U,$J,358.3,33948,0)
+ ;;=I69.151^^183^2013^44
+ ;;^UTILITY(U,$J,358.3,33948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34312,1,3,0)
- ;;=3^AC Laryngotracheitis
- ;;^UTILITY(U,$J,358.3,34312,1,4,0)
- ;;=4^J04.2
- ;;^UTILITY(U,$J,358.3,34312,2)
- ;;=^269868
- ;;^UTILITY(U,$J,358.3,34313,0)
- ;;=J00.^^192^1997^25
- ;;^UTILITY(U,$J,358.3,34313,1,0)
+ ;;^UTILITY(U,$J,358.3,33948,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,33948,1,4,0)
+ ;;=4^I69.151
+ ;;^UTILITY(U,$J,358.3,33948,2)
+ ;;=^5007441
+ ;;^UTILITY(U,$J,358.3,33949,0)
+ ;;=I69.152^^183^2013^42
+ ;;^UTILITY(U,$J,358.3,33949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34313,1,3,0)
- ;;=3^AC Nasopharyngitis
- ;;^UTILITY(U,$J,358.3,34313,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,34313,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,34314,0)
- ;;=J02.8^^192^1997^29
- ;;^UTILITY(U,$J,358.3,34314,1,0)
+ ;;^UTILITY(U,$J,358.3,33949,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,33949,1,4,0)
+ ;;=4^I69.152
+ ;;^UTILITY(U,$J,358.3,33949,2)
+ ;;=^5007442
+ ;;^UTILITY(U,$J,358.3,33950,0)
+ ;;=I69.153^^183^2013^45
+ ;;^UTILITY(U,$J,358.3,33950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34314,1,3,0)
- ;;=3^AC Pharyngitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,34314,1,4,0)
- ;;=4^J02.8
- ;;^UTILITY(U,$J,358.3,34314,2)
- ;;=^5008129
- ;;^UTILITY(U,$J,358.3,34315,0)
- ;;=J02.9^^192^1997^30
- ;;^UTILITY(U,$J,358.3,34315,1,0)
+ ;;^UTILITY(U,$J,358.3,33950,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,33950,1,4,0)
+ ;;=4^I69.153
+ ;;^UTILITY(U,$J,358.3,33950,2)
+ ;;=^5007443
+ ;;^UTILITY(U,$J,358.3,33951,0)
+ ;;=I69.154^^183^2013^43
+ ;;^UTILITY(U,$J,358.3,33951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34315,1,3,0)
- ;;=3^AC Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,34315,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,34315,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,34316,0)
- ;;=B40.0^^192^1997^31
- ;;^UTILITY(U,$J,358.3,34316,1,0)
+ ;;^UTILITY(U,$J,358.3,33951,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,33951,1,4,0)
+ ;;=4^I69.154
+ ;;^UTILITY(U,$J,358.3,33951,2)
+ ;;=^5007444
+ ;;^UTILITY(U,$J,358.3,33952,0)
+ ;;=I69.851^^183^2013^50
+ ;;^UTILITY(U,$J,358.3,33952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34316,1,3,0)
- ;;=3^AC Pulmonary Blastomycosis
- ;;^UTILITY(U,$J,358.3,34316,1,4,0)
- ;;=4^B40.0
- ;;^UTILITY(U,$J,358.3,34316,2)
- ;;=^5000639
- ;;^UTILITY(U,$J,358.3,34317,0)
- ;;=H60.553^^192^1997^32
- ;;^UTILITY(U,$J,358.3,34317,1,0)
+ ;;^UTILITY(U,$J,358.3,33952,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,33952,1,4,0)
+ ;;=4^I69.851
+ ;;^UTILITY(U,$J,358.3,33952,2)
+ ;;=^5007535
+ ;;^UTILITY(U,$J,358.3,33953,0)
+ ;;=I69.852^^183^2013^51
+ ;;^UTILITY(U,$J,358.3,33953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34317,1,3,0)
- ;;=3^AC Reactive Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,34317,1,4,0)
- ;;=4^H60.553
- ;;^UTILITY(U,$J,358.3,34317,2)
- ;;=^5006488
- ;;^UTILITY(U,$J,358.3,34318,0)
- ;;=H60.552^^192^1997^33
- ;;^UTILITY(U,$J,358.3,34318,1,0)
+ ;;^UTILITY(U,$J,358.3,33953,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
+ ;;^UTILITY(U,$J,358.3,33953,1,4,0)
+ ;;=4^I69.852
+ ;;^UTILITY(U,$J,358.3,33953,2)
+ ;;=^5007536
+ ;;^UTILITY(U,$J,358.3,33954,0)
+ ;;=I69.853^^183^2013^52
+ ;;^UTILITY(U,$J,358.3,33954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34318,1,3,0)
- ;;=3^AC Reactive Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,34318,1,4,0)
- ;;=4^H60.552
- ;;^UTILITY(U,$J,358.3,34318,2)
- ;;=^5006487
- ;;^UTILITY(U,$J,358.3,34319,0)
- ;;=H60.551^^192^1997^34
- ;;^UTILITY(U,$J,358.3,34319,1,0)
+ ;;^UTILITY(U,$J,358.3,33954,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
+ ;;^UTILITY(U,$J,358.3,33954,1,4,0)
+ ;;=4^I69.853
+ ;;^UTILITY(U,$J,358.3,33954,2)
+ ;;=^5007537
+ ;;^UTILITY(U,$J,358.3,33955,0)
+ ;;=I69.854^^183^2013^53
+ ;;^UTILITY(U,$J,358.3,33955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34319,1,3,0)
- ;;=3^AC Reactive Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,34319,1,4,0)
- ;;=4^H60.551
- ;;^UTILITY(U,$J,358.3,34319,2)
- ;;=^5006486
- ;;^UTILITY(U,$J,358.3,34320,0)
- ;;=J01.91^^192^1997^35
- ;;^UTILITY(U,$J,358.3,34320,1,0)
+ ;;^UTILITY(U,$J,358.3,33955,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
+ ;;^UTILITY(U,$J,358.3,33955,1,4,0)
+ ;;=4^I69.854
+ ;;^UTILITY(U,$J,358.3,33955,2)
+ ;;=^5007538
+ ;;^UTILITY(U,$J,358.3,33956,0)
+ ;;=I69.251^^183^2013^54
+ ;;^UTILITY(U,$J,358.3,33956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34320,1,3,0)
- ;;=3^AC Recurrent Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,34320,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,34320,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,34321,0)
- ;;=J03.81^^192^1997^36
- ;;^UTILITY(U,$J,358.3,34321,1,0)
+ ;;^UTILITY(U,$J,358.3,33956,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,33956,1,4,0)
+ ;;=4^I69.251
+ ;;^UTILITY(U,$J,358.3,33956,2)
+ ;;=^5007473
+ ;;^UTILITY(U,$J,358.3,33957,0)
+ ;;=I69.252^^183^2013^55
+ ;;^UTILITY(U,$J,358.3,33957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34321,1,3,0)
- ;;=3^AC Recurrent Tonsillitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,34321,1,4,0)
- ;;=4^J03.81
- ;;^UTILITY(U,$J,358.3,34321,2)
- ;;=^5008134
- ;;^UTILITY(U,$J,358.3,34322,0)
- ;;=J03.91^^192^1997^37
- ;;^UTILITY(U,$J,358.3,34322,1,0)
+ ;;^UTILITY(U,$J,358.3,33957,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,33957,1,4,0)
+ ;;=4^I69.252
+ ;;^UTILITY(U,$J,358.3,33957,2)
+ ;;=^5007474
+ ;;^UTILITY(U,$J,358.3,33958,0)
+ ;;=I69.253^^183^2013^56
+ ;;^UTILITY(U,$J,358.3,33958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34322,1,3,0)
- ;;=3^AC Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,34322,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,34322,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,34323,0)
- ;;=J01.90^^192^1997^38
- ;;^UTILITY(U,$J,358.3,34323,1,0)
+ ;;^UTILITY(U,$J,358.3,33958,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,33958,1,4,0)
+ ;;=4^I69.253
+ ;;^UTILITY(U,$J,358.3,33958,2)
+ ;;=^5007475
+ ;;^UTILITY(U,$J,358.3,33959,0)
+ ;;=I69.254^^183^2013^57
+ ;;^UTILITY(U,$J,358.3,33959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34323,1,3,0)
- ;;=3^AC Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,34323,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,34323,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,34324,0)
- ;;=J03.80^^192^1997^39
- ;;^UTILITY(U,$J,358.3,34324,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34324,1,3,0)
- ;;=3^AC Tonsillitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,34324,1,4,0)
- ;;=4^J03.80
+ ;;^UTILITY(U,$J,358.3,33959,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side

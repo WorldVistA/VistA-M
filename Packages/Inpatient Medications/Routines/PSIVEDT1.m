@@ -1,5 +1,5 @@
 PSIVEDT1 ;BIR/MLM-EDIT IV ORDER (CONT) ;2/14/12 7:20am
- ;;5.0;INPATIENT MEDICATIONS;**3,7,41,47,50,64,58,116,110,111,113,267,279,305**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**3,7,41,47,50,64,58,116,110,111,113,267,279,305,194**;16 DEC 97;Build 42
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
@@ -50,7 +50,8 @@ A25 I $G(ON)["V"!($G(ON)["U") I $$COMPLEX^PSJOE(DFN,ON) D  Q
  I '$$SCHREQ^PSJLIVFD(.P) S P(7)="" I $P(X,"@",2)=0 D  G 26
  .W $C(7),!!?2,"'@0' is not permitted for Continuous IV's",!
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS G 26
- I X?1."?"!($L(X)>22)!($L(X," ")>3) S F1=55.01,F2=.09 D ENHLP^PSIVORC1 G 26
+ ;*194 Allow multi-word schedules
+ I X?1."?"!($L(X)>22)!($L(X," ")>$S(X["PRN":4,1:3)) S F1=55.01,F2=.09 D ENHLP^PSIVORC1 G 26
  S CHG=0 I P(9)]"",X'=P(9) S CHG=1
  S P(7)="" K PSGOES D EN^PSIVSP S:XT<0 X="" I $G(X)="" W $C(7),"??" G 26
  I CHG D

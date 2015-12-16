@@ -1,130 +1,134 @@
-IBDEI1WP ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1WP ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33878,2)
- ;;=^5045849
- ;;^UTILITY(U,$J,358.3,33879,0)
- ;;=S93.514A^^191^1978^12
- ;;^UTILITY(U,$J,358.3,33879,1,0)
+ ;;^UTILITY(U,$J,358.3,33524,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,33524,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,33525,0)
+ ;;=R93.2^^182^2004^9
+ ;;^UTILITY(U,$J,358.3,33525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33879,1,3,0)
- ;;=3^Sprain of interphalangeal jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33879,1,4,0)
- ;;=4^S93.514A
- ;;^UTILITY(U,$J,358.3,33879,2)
- ;;=^5045834
- ;;^UTILITY(U,$J,358.3,33880,0)
- ;;=S93.515A^^191^1978^10
- ;;^UTILITY(U,$J,358.3,33880,1,0)
+ ;;^UTILITY(U,$J,358.3,33525,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,33525,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,33525,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,33526,0)
+ ;;=R93.3^^182^2004^7
+ ;;^UTILITY(U,$J,358.3,33526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33880,1,3,0)
- ;;=3^Sprain of interphalangeal jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,33880,1,4,0)
- ;;=4^S93.515A
- ;;^UTILITY(U,$J,358.3,33880,2)
- ;;=^5045837
- ;;^UTILITY(U,$J,358.3,33881,0)
- ;;=S93.511A^^191^1978^11
- ;;^UTILITY(U,$J,358.3,33881,1,0)
+ ;;^UTILITY(U,$J,358.3,33526,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,33526,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,33526,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,33527,0)
+ ;;=R93.4^^182^2004^11
+ ;;^UTILITY(U,$J,358.3,33527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33881,1,3,0)
- ;;=3^Sprain of interphalangeal jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,33881,1,4,0)
- ;;=4^S93.511A
- ;;^UTILITY(U,$J,358.3,33881,2)
- ;;=^5045825
- ;;^UTILITY(U,$J,358.3,33882,0)
- ;;=S93.512A^^191^1978^9
- ;;^UTILITY(U,$J,358.3,33882,1,0)
+ ;;^UTILITY(U,$J,358.3,33527,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Urinary Organs
+ ;;^UTILITY(U,$J,358.3,33527,1,4,0)
+ ;;=4^R93.4
+ ;;^UTILITY(U,$J,358.3,33527,2)
+ ;;=^5019717
+ ;;^UTILITY(U,$J,358.3,33528,0)
+ ;;=R93.5^^182^2004^6
+ ;;^UTILITY(U,$J,358.3,33528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33882,1,3,0)
- ;;=3^Sprain of interphalangeal jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,33882,1,4,0)
- ;;=4^S93.512A
- ;;^UTILITY(U,$J,358.3,33882,2)
- ;;=^5045828
- ;;^UTILITY(U,$J,358.3,33883,0)
- ;;=M70.842^^191^1978^3
- ;;^UTILITY(U,$J,358.3,33883,1,0)
+ ;;^UTILITY(U,$J,358.3,33528,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,33528,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,33528,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,33529,0)
+ ;;=R93.6^^182^2004^8
+ ;;^UTILITY(U,$J,358.3,33529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33883,1,3,0)
- ;;=3^Soft Tissue Disorders r/t Use/Pressure,Left Hand
- ;;^UTILITY(U,$J,358.3,33883,1,4,0)
- ;;=4^M70.842
- ;;^UTILITY(U,$J,358.3,33883,2)
- ;;=^5013075
- ;;^UTILITY(U,$J,358.3,33884,0)
- ;;=M70.841^^191^1978^4
- ;;^UTILITY(U,$J,358.3,33884,1,0)
+ ;;^UTILITY(U,$J,358.3,33529,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,33529,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,33529,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,33530,0)
+ ;;=R94.4^^182^2004^14
+ ;;^UTILITY(U,$J,358.3,33530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33884,1,3,0)
- ;;=3^Soft Tissue Disorders r/t Use/Pressure,Right Hand
- ;;^UTILITY(U,$J,358.3,33884,1,4,0)
- ;;=4^M70.841
- ;;^UTILITY(U,$J,358.3,33884,2)
- ;;=^5013074
- ;;^UTILITY(U,$J,358.3,33885,0)
- ;;=M65.872^^191^1978^45
- ;;^UTILITY(U,$J,358.3,33885,1,0)
+ ;;^UTILITY(U,$J,358.3,33530,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,33530,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,33530,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,33531,0)
+ ;;=R94.5^^182^2004^15
+ ;;^UTILITY(U,$J,358.3,33531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33885,1,3,0)
- ;;=3^Synovitis & Tenosynovitis,Left Ankle/Foot NEC
- ;;^UTILITY(U,$J,358.3,33885,1,4,0)
- ;;=4^M65.872
- ;;^UTILITY(U,$J,358.3,33885,2)
- ;;=^5012813
- ;;^UTILITY(U,$J,358.3,33886,0)
- ;;=M65.871^^191^1978^46
- ;;^UTILITY(U,$J,358.3,33886,1,0)
+ ;;^UTILITY(U,$J,358.3,33531,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,33531,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,33531,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,33532,0)
+ ;;=R94.6^^182^2004^19
+ ;;^UTILITY(U,$J,358.3,33532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33886,1,3,0)
- ;;=3^Synovitis & Tenosynovitis,Right Ankle/Foot NEC
- ;;^UTILITY(U,$J,358.3,33886,1,4,0)
- ;;=4^M65.871
- ;;^UTILITY(U,$J,358.3,33886,2)
- ;;=^5012812
- ;;^UTILITY(U,$J,358.3,33887,0)
- ;;=M76.72^^191^1979^6
- ;;^UTILITY(U,$J,358.3,33887,1,0)
+ ;;^UTILITY(U,$J,358.3,33532,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,33532,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,33532,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,33533,0)
+ ;;=R94.7^^182^2004^5
+ ;;^UTILITY(U,$J,358.3,33533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33887,1,3,0)
- ;;=3^Tendinitis,Peroneal,Left Leg
- ;;^UTILITY(U,$J,358.3,33887,1,4,0)
- ;;=4^M76.72
- ;;^UTILITY(U,$J,358.3,33887,2)
- ;;=^5013289
- ;;^UTILITY(U,$J,358.3,33888,0)
- ;;=M76.71^^191^1979^7
- ;;^UTILITY(U,$J,358.3,33888,1,0)
+ ;;^UTILITY(U,$J,358.3,33533,1,3,0)
+ ;;=3^Abnormal Endocrine Function Sutdies NEC
+ ;;^UTILITY(U,$J,358.3,33533,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,33533,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,33534,0)
+ ;;=R94.31^^182^2004^4
+ ;;^UTILITY(U,$J,358.3,33534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33888,1,3,0)
- ;;=3^Tendinitis,Peroneal,Right Leg
- ;;^UTILITY(U,$J,358.3,33888,1,4,0)
- ;;=4^M76.71
- ;;^UTILITY(U,$J,358.3,33888,2)
- ;;=^5013288
- ;;^UTILITY(U,$J,358.3,33889,0)
- ;;=Q66.1^^191^1979^3
- ;;^UTILITY(U,$J,358.3,33889,1,0)
+ ;;^UTILITY(U,$J,358.3,33534,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,33534,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,33534,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,33535,0)
+ ;;=R97.0^^182^2004^63
+ ;;^UTILITY(U,$J,358.3,33535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33889,1,3,0)
- ;;=3^Talipes Calcaneovarus,Congenital
- ;;^UTILITY(U,$J,358.3,33889,1,4,0)
- ;;=4^Q66.1
- ;;^UTILITY(U,$J,358.3,33889,2)
- ;;=^5018862
- ;;^UTILITY(U,$J,358.3,33890,0)
- ;;=Q66.4^^191^1979^2
- ;;^UTILITY(U,$J,358.3,33890,1,0)
+ ;;^UTILITY(U,$J,358.3,33535,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,33535,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,33535,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,33536,0)
+ ;;=R97.1^^182^2004^62
+ ;;^UTILITY(U,$J,358.3,33536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33890,1,3,0)
- ;;=3^Talipes Calcaneovalgus,Congenital
- ;;^UTILITY(U,$J,358.3,33890,1,4,0)
- ;;=4^Q66.4
- ;;^UTILITY(U,$J,358.3,33890,2)
- ;;=^5018865
- ;;^UTILITY(U,$J,358.3,33891,0)
- ;;=M76.62^^191^1979^4
- ;;^UTILITY(U,$J,358.3,33891,1,0)
+ ;;^UTILITY(U,$J,358.3,33536,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,33536,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,33536,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,33537,0)
+ ;;=R97.2^^182^2004^64
+ ;;^UTILITY(U,$J,358.3,33537,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33537,1,3,0)
+ ;;=3^Elevated PSA

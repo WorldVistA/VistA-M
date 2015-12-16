@@ -1,9 +1,13 @@
 PRCSAPP2 ;WISC/KMB/BGJ/SC/ASU - CONTINUATION OF PRCSAPP ; 3/31/05 3:07pm
-V ;;5.1;IFCAP;**14,81,148**;Oct 20, 2000;Build 5
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**14,81,148,186**;Oct 20, 2000;Build 10
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*81-if a 2237 trx is being approved & it originated from
  ;DynaMed RIL then update DM re. approval thru a call to rtn PRCVTAP
+ ;
+ ;PRC*5.1*186 Fix duplicate entries in file 443 by changing 
+ ;            the direct field 1.5 and x-ref 'AC' set to 
+ ;            Fileman update of status field.
  ;
 FINAL ;   ask if request was reviewed. print request if needed.
  ;
@@ -60,8 +64,13 @@ FINAL2 ;
  ;
  S PRCSSCP=0 F PRCSSI=1:1 S PRCSSCP=$O(^PRCS(410,DA,12,PRCSSCP)) Q:PRCSSCP'>0  I $D(^PRCS(410,DA,12,PRCSSCP,0)) S X=$P(^(0),U,2) I X S DA(1)=DA,DA=PRCSSCP D TRANS^PRCSEZZ S DA=DA(1)
  K PRCSSCP,PRCSSI L -^PRCS(410,DA)
- I $P(PRCSN,U,4)>1 S X=$P(PRCSN,U,1),DIC="^PRC(443,",DIC(0)="L",DLAYGO=443 D ^DIC K DIC,DLAYGO,X
- I $P(PRCSN,U,4)>1 S X=$O(^PRCD(442.3,"C",60,0)) S:PRCSCP=1 X=$O(^PRCD(442.3,"C",10,0)) S $P(^PRC(443,DA,0),U,7)=X,^PRC(443,"AC",X,DA)="",$P(^PRC(443,DA,0),U,11)=$P(PRCSN,U,6)
+ ;PRC*5.1*186
+ I $P(PRCSN,U,4)>1 D
+ . S X=$P(PRCSN,U,1),DIC="^PRC(443,",DIC(0)="L",DLAYGO=443 D ^DIC K DIC,DLAYGO,X
+ . S X=$O(^PRCD(442.3,"C",60,0)) S:PRCSCP=1 X=$O(^PRCD(442.3,"C",10,0))
+ . S PRCSSTS=X
+ . S DIE="^PRC(443,",DR="1.5////^S X=PRCSSTS" D ^DIE K DR,DIE,PRCSSTS
+ . S $P(^PRC(443,DA,0),U,11)=$P(PRCSN,U,6)
  D EN2^PRCPWI
  S (PRCS,PRCPRIB)=DA,TRNODE(0)=0 D:PRCHQ=1 NODE^PRCS58OB(DA,.TRNODE)
 TAG ;

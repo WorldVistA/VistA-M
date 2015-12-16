@@ -1,134 +1,130 @@
-IBDEI1XW ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1XW ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34428,1,4,0)
- ;;=4^D86.89
- ;;^UTILITY(U,$J,358.3,34428,2)
- ;;=^5002453
- ;;^UTILITY(U,$J,358.3,34429,0)
- ;;=D86.3^^192^1998^52
- ;;^UTILITY(U,$J,358.3,34429,1,0)
+ ;;^UTILITY(U,$J,358.3,34058,0)
+ ;;=M62.432^^183^2016^16
+ ;;^UTILITY(U,$J,358.3,34058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34429,1,3,0)
- ;;=3^Sarcoidosis of Skin
- ;;^UTILITY(U,$J,358.3,34429,1,4,0)
- ;;=4^D86.3
- ;;^UTILITY(U,$J,358.3,34429,2)
- ;;=^5002445
- ;;^UTILITY(U,$J,358.3,34430,0)
- ;;=D86.9^^192^1998^53
- ;;^UTILITY(U,$J,358.3,34430,1,0)
+ ;;^UTILITY(U,$J,358.3,34058,1,3,0)
+ ;;=3^Contracture of muscle, left forearm
+ ;;^UTILITY(U,$J,358.3,34058,1,4,0)
+ ;;=4^M62.432
+ ;;^UTILITY(U,$J,358.3,34058,2)
+ ;;=^5012639
+ ;;^UTILITY(U,$J,358.3,34059,0)
+ ;;=M62.442^^183^2016^17
+ ;;^UTILITY(U,$J,358.3,34059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34430,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,34430,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,34430,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,34431,0)
- ;;=M35.01^^192^1998^54
- ;;^UTILITY(U,$J,358.3,34431,1,0)
+ ;;^UTILITY(U,$J,358.3,34059,1,3,0)
+ ;;=3^Contracture of muscle, left hand
+ ;;^UTILITY(U,$J,358.3,34059,1,4,0)
+ ;;=4^M62.442
+ ;;^UTILITY(U,$J,358.3,34059,2)
+ ;;=^5012642
+ ;;^UTILITY(U,$J,358.3,34060,0)
+ ;;=M62.462^^183^2016^18
+ ;;^UTILITY(U,$J,358.3,34060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34431,1,3,0)
- ;;=3^Sicca Syndrome w/ Keratoconjunctivitis
- ;;^UTILITY(U,$J,358.3,34431,1,4,0)
- ;;=4^M35.01
- ;;^UTILITY(U,$J,358.3,34431,2)
- ;;=^5011787
- ;;^UTILITY(U,$J,358.3,34432,0)
- ;;=M35.02^^192^1998^55
- ;;^UTILITY(U,$J,358.3,34432,1,0)
+ ;;^UTILITY(U,$J,358.3,34060,1,3,0)
+ ;;=3^Contracture of muscle, left lower leg
+ ;;^UTILITY(U,$J,358.3,34060,1,4,0)
+ ;;=4^M62.462
+ ;;^UTILITY(U,$J,358.3,34060,2)
+ ;;=^5012648
+ ;;^UTILITY(U,$J,358.3,34061,0)
+ ;;=M62.412^^183^2016^19
+ ;;^UTILITY(U,$J,358.3,34061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34432,1,3,0)
- ;;=3^Sicca Syndrome w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,34432,1,4,0)
- ;;=4^M35.02
- ;;^UTILITY(U,$J,358.3,34432,2)
- ;;=^5011788
- ;;^UTILITY(U,$J,358.3,34433,0)
- ;;=M35.03^^192^1998^56
- ;;^UTILITY(U,$J,358.3,34433,1,0)
+ ;;^UTILITY(U,$J,358.3,34061,1,3,0)
+ ;;=3^Contracture of muscle, left shoulder
+ ;;^UTILITY(U,$J,358.3,34061,1,4,0)
+ ;;=4^M62.412
+ ;;^UTILITY(U,$J,358.3,34061,2)
+ ;;=^5012633
+ ;;^UTILITY(U,$J,358.3,34062,0)
+ ;;=M62.452^^183^2016^20
+ ;;^UTILITY(U,$J,358.3,34062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34433,1,3,0)
- ;;=3^Sicca Syndrome w/ Myopathy
- ;;^UTILITY(U,$J,358.3,34433,1,4,0)
- ;;=4^M35.03
- ;;^UTILITY(U,$J,358.3,34433,2)
- ;;=^5011789
- ;;^UTILITY(U,$J,358.3,34434,0)
- ;;=M35.09^^192^1998^57
- ;;^UTILITY(U,$J,358.3,34434,1,0)
+ ;;^UTILITY(U,$J,358.3,34062,1,3,0)
+ ;;=3^Contracture of muscle, left thigh
+ ;;^UTILITY(U,$J,358.3,34062,1,4,0)
+ ;;=4^M62.452
+ ;;^UTILITY(U,$J,358.3,34062,2)
+ ;;=^5012645
+ ;;^UTILITY(U,$J,358.3,34063,0)
+ ;;=M62.422^^183^2016^21
+ ;;^UTILITY(U,$J,358.3,34063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34434,1,3,0)
- ;;=3^Sicca Syndrome w/ Oth Organ Involvement
- ;;^UTILITY(U,$J,358.3,34434,1,4,0)
- ;;=4^M35.09
- ;;^UTILITY(U,$J,358.3,34434,2)
- ;;=^5011791
- ;;^UTILITY(U,$J,358.3,34435,0)
- ;;=M35.04^^192^1998^58
- ;;^UTILITY(U,$J,358.3,34435,1,0)
+ ;;^UTILITY(U,$J,358.3,34063,1,3,0)
+ ;;=3^Contracture of muscle, left upper arm
+ ;;^UTILITY(U,$J,358.3,34063,1,4,0)
+ ;;=4^M62.422
+ ;;^UTILITY(U,$J,358.3,34063,2)
+ ;;=^5012636
+ ;;^UTILITY(U,$J,358.3,34064,0)
+ ;;=M62.49^^183^2016^22
+ ;;^UTILITY(U,$J,358.3,34064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34435,1,3,0)
- ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
- ;;^UTILITY(U,$J,358.3,34435,1,4,0)
- ;;=4^M35.04
- ;;^UTILITY(U,$J,358.3,34435,2)
- ;;=^5011790
- ;;^UTILITY(U,$J,358.3,34436,0)
- ;;=M35.00^^192^1998^59
- ;;^UTILITY(U,$J,358.3,34436,1,0)
+ ;;^UTILITY(U,$J,358.3,34064,1,3,0)
+ ;;=3^Contracture of muscle, multiple sites
+ ;;^UTILITY(U,$J,358.3,34064,1,4,0)
+ ;;=4^M62.49
+ ;;^UTILITY(U,$J,358.3,34064,2)
+ ;;=^5012654
+ ;;^UTILITY(U,$J,358.3,34065,0)
+ ;;=M62.48^^183^2016^23
+ ;;^UTILITY(U,$J,358.3,34065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34436,1,3,0)
- ;;=3^Sicca Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,34436,1,4,0)
- ;;=4^M35.00
- ;;^UTILITY(U,$J,358.3,34436,2)
- ;;=^5011786
- ;;^UTILITY(U,$J,358.3,34437,0)
- ;;=M32.10^^192^1998^62
- ;;^UTILITY(U,$J,358.3,34437,1,0)
+ ;;^UTILITY(U,$J,358.3,34065,1,3,0)
+ ;;=3^Contracture of muscle, other site
+ ;;^UTILITY(U,$J,358.3,34065,1,4,0)
+ ;;=4^M62.48
+ ;;^UTILITY(U,$J,358.3,34065,2)
+ ;;=^5012653
+ ;;^UTILITY(U,$J,358.3,34066,0)
+ ;;=M62.471^^183^2016^24
+ ;;^UTILITY(U,$J,358.3,34066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34437,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
- ;;^UTILITY(U,$J,358.3,34437,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,34437,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,34438,0)
- ;;=M32.9^^192^1998^61
- ;;^UTILITY(U,$J,358.3,34438,1,0)
+ ;;^UTILITY(U,$J,358.3,34066,1,3,0)
+ ;;=3^Contracture of muscle, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,34066,1,4,0)
+ ;;=4^M62.471
+ ;;^UTILITY(U,$J,358.3,34066,2)
+ ;;=^5012650
+ ;;^UTILITY(U,$J,358.3,34067,0)
+ ;;=M62.431^^183^2016^25
+ ;;^UTILITY(U,$J,358.3,34067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34438,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,34438,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,34438,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,34439,0)
- ;;=M34.2^^192^1998^63
- ;;^UTILITY(U,$J,358.3,34439,1,0)
+ ;;^UTILITY(U,$J,358.3,34067,1,3,0)
+ ;;=3^Contracture of muscle, right forearm
+ ;;^UTILITY(U,$J,358.3,34067,1,4,0)
+ ;;=4^M62.431
+ ;;^UTILITY(U,$J,358.3,34067,2)
+ ;;=^5012638
+ ;;^UTILITY(U,$J,358.3,34068,0)
+ ;;=M62.441^^183^2016^26
+ ;;^UTILITY(U,$J,358.3,34068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34439,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,34439,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,34439,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,34440,0)
- ;;=M34.81^^192^1998^64
- ;;^UTILITY(U,$J,358.3,34440,1,0)
+ ;;^UTILITY(U,$J,358.3,34068,1,3,0)
+ ;;=3^Contracture of muscle, right hand
+ ;;^UTILITY(U,$J,358.3,34068,1,4,0)
+ ;;=4^M62.441
+ ;;^UTILITY(U,$J,358.3,34068,2)
+ ;;=^5012641
+ ;;^UTILITY(U,$J,358.3,34069,0)
+ ;;=M62.461^^183^2016^27
+ ;;^UTILITY(U,$J,358.3,34069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34440,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,34440,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,34440,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,34441,0)
- ;;=M34.82^^192^1998^65
- ;;^UTILITY(U,$J,358.3,34441,1,0)
+ ;;^UTILITY(U,$J,358.3,34069,1,3,0)
+ ;;=3^Contracture of muscle, right lower leg
+ ;;^UTILITY(U,$J,358.3,34069,1,4,0)
+ ;;=4^M62.461
+ ;;^UTILITY(U,$J,358.3,34069,2)
+ ;;=^5012647
+ ;;^UTILITY(U,$J,358.3,34070,0)
+ ;;=M62.411^^183^2016^28
+ ;;^UTILITY(U,$J,358.3,34070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34441,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,34070,1,3,0)
+ ;;=3^Contracture of muscle, right shoulder

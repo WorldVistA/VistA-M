@@ -1,6 +1,6 @@
 PSBRPC ;BIRMINGHAM/EFC - BCMA RPC BROKER CALLS ; 19 Jul 2013  12:34 PM
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42,58,66,70,76**;Mar 2004;Build 10
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42,58,66,70,76,86**;Mar 2004;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; File 211.4/1409
@@ -160,6 +160,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  ; 
  N DFN,PSBWARD,PSBHDR   ;[*70-1489]
  I "SS"[$P($G(PSBDATA),"^",3)  D  Q:RESULTS(1)<0
+ .I $P($G(PSBDATA),"^")["`" S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup" Q  ;Add code to disallow "`", PSB*3*86
  .S:$P(PSBDATA,"^")?1"0"9N.U PSBDATA=$E(PSBDATA,2,99) N PSBCNT
  .;  IHS vs VA Agency check for Patient ID info
  .I $G(DUZ("AG"))'="I",$G(DUZ("AG"))'="V" S RESULTS(0)=1,RESULTS(1)="-1^Invalid Agency Code - Not IHS or VA" Q
@@ -213,7 +214,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
  .S GMRVSTR="HT" D EN6^GMRVUTL
  .S X=+$P(X,U,8) S:X X=$J((X*2.54),3,0) S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*") ;Rounding correction, PSB*3*76
  .S GMRVSTR="WT" D EN6^GMRVUTL
- .S X=+$P(X,U,8) S X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
+ .S X=+$P(X,U,8) S X=$J(X/2.20462262,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*") ;Rounding to more actuate calculation, PSB*3*86
  ;
  S $P(RESULTS(9),U,3)=$$GET1^DIQ(42,$P(RESULTS(9),U)_",",44,"I")_"^"_$$GET1^DIQ(42,$P(RESULTS(9),U)_",",44)
  S PSBWARD=$P($G(RESULTS(9)),U,2) D IVBAGPAR(PSBWARD)   ;[*70-1489]

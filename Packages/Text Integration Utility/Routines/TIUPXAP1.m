@@ -1,9 +1,11 @@
 TIUPXAP1 ; SLC/JER - Interface w/PCE/Visit Tracking ;28-OCT-2003 16:45:37 [8/18/04 11:24am]
- ;;1.0;TEXT INTEGRATION UTILITIES;**15,29,20,89,82,107,117,126,124,149,179,205**;Jun 20, 1997;Build 1
+ ;;1.0;TEXT INTEGRATION UTILITIES;**15,29,20,89,82,107,117,126,124,149,179,205,295**;Jun 20, 1997;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified
 QUE ; Use a RESOURCE to post visit tracking information in background
  N ZTDTH,ZTIO,ZTSAVE,ZTSK,ZTRTN,ZTDESC
  ; if there is already a visit, and no workload data quit
- I +$P($G(TIUDPRM(0)),U,16),(+$P($G(^TIU(8925,$S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA)),0)),U,11)=0),+$$WORKOK($S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA))) D  Q:'$$BROKER^XWBLIB
+ ; *295 Skip defer logic if from reassign (TIURD3)
+ I '$G(TIUREASS),+$P($G(TIUDPRM(0)),U,16),(+$P($G(^TIU(8925,$S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA)),0)),U,11)=0),+$$WORKOK($S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA))) D  Q:'$$BROKER^XWBLIB
  . D DEFER($S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA)))
  I +$G(TIU("VISIT")),($D(CPT)'>9) Q
  I +$P($G(^TIU(8925,$S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA)),0)),U,3),($D(CPT)'>9) Q

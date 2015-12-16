@@ -1,146 +1,134 @@
-IBDEI07V ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07V ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3526,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3526,1,2,0)
- ;;=2^697.0
- ;;^UTILITY(U,$J,358.3,3526,1,5,0)
- ;;=5^Lichen Planus
- ;;^UTILITY(U,$J,358.3,3526,2)
- ;;=^70682
- ;;^UTILITY(U,$J,358.3,3527,0)
- ;;=698.3^^31^297^0
- ;;^UTILITY(U,$J,358.3,3527,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3527,1,2,0)
- ;;=2^698.3
- ;;^UTILITY(U,$J,358.3,3527,1,5,0)
- ;;=5^Lichenification
- ;;^UTILITY(U,$J,358.3,3527,2)
- ;;=^70705
- ;;^UTILITY(U,$J,358.3,3528,0)
- ;;=701.0^^31^297^3
- ;;^UTILITY(U,$J,358.3,3528,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3528,1,2,0)
- ;;=2^701.0
- ;;^UTILITY(U,$J,358.3,3528,1,5,0)
- ;;=5^Lichen Sclerosis Et Atrophicus
- ;;^UTILITY(U,$J,358.3,3528,2)
- ;;=^108577
- ;;^UTILITY(U,$J,358.3,3529,0)
- ;;=697.1^^31^297^1
- ;;^UTILITY(U,$J,358.3,3529,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3529,1,2,0)
- ;;=2^697.1
- ;;^UTILITY(U,$J,358.3,3529,1,5,0)
- ;;=5^Lichen Nitidus
- ;;^UTILITY(U,$J,358.3,3529,2)
- ;;=^279029
- ;;^UTILITY(U,$J,358.3,3530,0)
- ;;=695.4^^31^298^1
- ;;^UTILITY(U,$J,358.3,3530,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3530,1,2,0)
- ;;=2^695.4
- ;;^UTILITY(U,$J,358.3,3530,1,5,0)
- ;;=5^Lupus, Discoid
- ;;^UTILITY(U,$J,358.3,3530,2)
- ;;=^72141
- ;;^UTILITY(U,$J,358.3,3531,0)
- ;;=710.0^^31^298^2
- ;;^UTILITY(U,$J,358.3,3531,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3531,1,2,0)
- ;;=2^710.0
- ;;^UTILITY(U,$J,358.3,3531,1,5,0)
- ;;=5^Lupus, Erythematosus systemic
- ;;^UTILITY(U,$J,358.3,3531,2)
- ;;=^72159
- ;;^UTILITY(U,$J,358.3,3532,0)
- ;;=172.6^^31^299^1
- ;;^UTILITY(U,$J,358.3,3532,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3532,1,2,0)
- ;;=2^172.6
- ;;^UTILITY(U,$J,358.3,3532,1,5,0)
- ;;=5^Malig Melanoma Arm
- ;;^UTILITY(U,$J,358.3,3532,2)
- ;;=^267181
- ;;^UTILITY(U,$J,358.3,3533,0)
- ;;=172.5^^31^299^9
- ;;^UTILITY(U,$J,358.3,3533,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3533,1,2,0)
- ;;=2^172.5
- ;;^UTILITY(U,$J,358.3,3533,1,5,0)
- ;;=5^Malig Melanoma Trunk
- ;;^UTILITY(U,$J,358.3,3533,2)
- ;;=^267180
- ;;^UTILITY(U,$J,358.3,3534,0)
- ;;=172.2^^31^299^2
- ;;^UTILITY(U,$J,358.3,3534,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3534,1,2,0)
- ;;=2^172.2
- ;;^UTILITY(U,$J,358.3,3534,1,5,0)
- ;;=5^Malig Melanoma Ear
- ;;^UTILITY(U,$J,358.3,3534,2)
- ;;=^267177
- ;;^UTILITY(U,$J,358.3,3535,0)
- ;;=172.1^^31^299^3
- ;;^UTILITY(U,$J,358.3,3535,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3535,1,2,0)
- ;;=2^172.1
- ;;^UTILITY(U,$J,358.3,3535,1,5,0)
- ;;=5^Malig Melanoma Eyelid
- ;;^UTILITY(U,$J,358.3,3535,2)
- ;;=^267176
- ;;^UTILITY(U,$J,358.3,3536,0)
- ;;=172.3^^31^299^4
- ;;^UTILITY(U,$J,358.3,3536,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3536,1,2,0)
- ;;=2^172.3
- ;;^UTILITY(U,$J,358.3,3536,1,5,0)
- ;;=5^Malig Melanoma Face
- ;;^UTILITY(U,$J,358.3,3536,2)
- ;;=^267178
- ;;^UTILITY(U,$J,358.3,3537,0)
- ;;=172.7^^31^299^5
- ;;^UTILITY(U,$J,358.3,3537,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3537,1,2,0)
- ;;=2^172.7
- ;;^UTILITY(U,$J,358.3,3537,1,5,0)
- ;;=5^Malig Melanoma Leg
- ;;^UTILITY(U,$J,358.3,3537,2)
- ;;=^267182
- ;;^UTILITY(U,$J,358.3,3538,0)
- ;;=172.0^^31^299^6
- ;;^UTILITY(U,$J,358.3,3538,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3538,1,2,0)
- ;;=2^172.0
- ;;^UTILITY(U,$J,358.3,3538,1,5,0)
- ;;=5^Malig Melanoma Lip
- ;;^UTILITY(U,$J,358.3,3538,2)
- ;;=^267175
- ;;^UTILITY(U,$J,358.3,3539,0)
- ;;=172.4^^31^299^7
- ;;^UTILITY(U,$J,358.3,3539,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3539,1,2,0)
- ;;=2^172.4
- ;;^UTILITY(U,$J,358.3,3539,1,5,0)
- ;;=5^Malig Melanoma Neck
- ;;^UTILITY(U,$J,358.3,3539,2)
- ;;=^267179
- ;;^UTILITY(U,$J,358.3,3540,0)
- ;;=172.8^^31^299^8
- ;;^UTILITY(U,$J,358.3,3540,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,3184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3184,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3184,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,3184,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,3185,0)
+ ;;=F60.81^^8^104^6
+ ;;^UTILITY(U,$J,358.3,3185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3185,1,3,0)
+ ;;=3^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3185,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,3185,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,3186,0)
+ ;;=F60.6^^8^104^2
+ ;;^UTILITY(U,$J,358.3,3186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3186,1,3,0)
+ ;;=3^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3186,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,3186,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,3187,0)
+ ;;=F60.3^^8^104^3
+ ;;^UTILITY(U,$J,358.3,3187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3187,1,3,0)
+ ;;=3^Boderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,3187,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,3187,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,3188,0)
+ ;;=F60.89^^8^104^9
+ ;;^UTILITY(U,$J,358.3,3188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3188,1,3,0)
+ ;;=3^Personality Disorder NEC
+ ;;^UTILITY(U,$J,358.3,3188,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,3188,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,3189,0)
+ ;;=F60.9^^8^104^10
+ ;;^UTILITY(U,$J,358.3,3189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3189,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3189,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,3189,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,3190,0)
+ ;;=Z65.4^^8^105^4
+ ;;^UTILITY(U,$J,358.3,3190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3190,1,3,0)
+ ;;=3^Victim of Crime,Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,3190,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,3190,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,3191,0)
+ ;;=Z65.0^^8^105^1
+ ;;^UTILITY(U,$J,358.3,3191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3191,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,3191,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,3191,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,3192,0)
+ ;;=Z65.2^^8^105^3
+ ;;^UTILITY(U,$J,358.3,3192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3192,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,3192,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,3192,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,3193,0)
+ ;;=Z65.3^^8^105^2
+ ;;^UTILITY(U,$J,358.3,3193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3193,1,3,0)
+ ;;=3^Problems Related to Oth Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,3193,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,3193,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,3194,0)
+ ;;=F70.^^8^106^1
+ ;;^UTILITY(U,$J,358.3,3194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3194,1,3,0)
+ ;;=3^Intellectual Diability (Intellectual Developmental Disorder),Mild
+ ;;^UTILITY(U,$J,358.3,3194,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,3194,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,3195,0)
+ ;;=Z65.8^^8^107^5
+ ;;^UTILITY(U,$J,358.3,3195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3195,1,3,0)
+ ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,3195,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,3195,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,3196,0)
+ ;;=Z64.0^^8^107^4
+ ;;^UTILITY(U,$J,358.3,3196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3196,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,3196,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,3196,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,3197,0)
+ ;;=Z64.1^^8^107^3

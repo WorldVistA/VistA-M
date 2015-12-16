@@ -1,140 +1,128 @@
-IBDEI0YK ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0YK ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17061,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17061,1,4,0)
- ;;=4^782.62
- ;;^UTILITY(U,$J,358.3,17061,1,5,0)
- ;;=5^Flushing
- ;;^UTILITY(U,$J,358.3,17061,2)
- ;;=Flushing^47184
- ;;^UTILITY(U,$J,358.3,17062,0)
- ;;=703.0^^92^945^120
- ;;^UTILITY(U,$J,358.3,17062,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17062,1,4,0)
- ;;=4^703.0
- ;;^UTILITY(U,$J,358.3,17062,1,5,0)
- ;;=5^Onychocryptosis
- ;;^UTILITY(U,$J,358.3,17062,2)
- ;;=Onychocryptosis^81221
- ;;^UTILITY(U,$J,358.3,17063,0)
- ;;=782.4^^92^945^101
- ;;^UTILITY(U,$J,358.3,17063,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17063,1,4,0)
- ;;=4^782.4
- ;;^UTILITY(U,$J,358.3,17063,1,5,0)
- ;;=5^Jaundice
- ;;^UTILITY(U,$J,358.3,17063,2)
- ;;=Jaundice^66155
- ;;^UTILITY(U,$J,358.3,17064,0)
- ;;=782.2^^92^945^110
- ;;^UTILITY(U,$J,358.3,17064,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17064,1,4,0)
- ;;=4^782.2
- ;;^UTILITY(U,$J,358.3,17064,1,5,0)
- ;;=5^Mass, Lump of skin
- ;;^UTILITY(U,$J,358.3,17064,2)
- ;;=^71690
- ;;^UTILITY(U,$J,358.3,17065,0)
- ;;=703.8^^92^945^121
- ;;^UTILITY(U,$J,358.3,17065,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17065,1,4,0)
- ;;=4^703.8
- ;;^UTILITY(U,$J,358.3,17065,1,5,0)
- ;;=5^Onychodystrophy/Onycholysis
- ;;^UTILITY(U,$J,358.3,17065,2)
- ;;=Onychodystrophy/Onycholysis^271926
- ;;^UTILITY(U,$J,358.3,17066,0)
- ;;=110.1^^92^945^122
- ;;^UTILITY(U,$J,358.3,17066,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17066,1,4,0)
- ;;=4^110.1
- ;;^UTILITY(U,$J,358.3,17066,1,5,0)
- ;;=5^Onychomycosis finger or toe
- ;;^UTILITY(U,$J,358.3,17066,2)
- ;;=^33173
- ;;^UTILITY(U,$J,358.3,17067,0)
- ;;=782.61^^92^945^125
- ;;^UTILITY(U,$J,358.3,17067,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17067,1,4,0)
- ;;=4^782.61
- ;;^UTILITY(U,$J,358.3,17067,1,5,0)
- ;;=5^Pallor
- ;;^UTILITY(U,$J,358.3,17067,2)
- ;;=Pallor^89216
- ;;^UTILITY(U,$J,358.3,17068,0)
- ;;=782.1^^92^945^137
- ;;^UTILITY(U,$J,358.3,17068,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17068,1,4,0)
- ;;=4^782.1
- ;;^UTILITY(U,$J,358.3,17068,1,5,0)
- ;;=5^Skin eruption, nonspec
- ;;^UTILITY(U,$J,358.3,17068,2)
- ;;=^102948
- ;;^UTILITY(U,$J,358.3,17069,0)
- ;;=788.35^^92^945^54
- ;;^UTILITY(U,$J,358.3,17069,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17069,1,4,0)
- ;;=4^788.35
- ;;^UTILITY(U,$J,358.3,17069,1,5,0)
- ;;=5^Dribbling, post-void
- ;;^UTILITY(U,$J,358.3,17069,2)
- ;;=^293938
- ;;^UTILITY(U,$J,358.3,17070,0)
- ;;=788.1^^92^945^61
- ;;^UTILITY(U,$J,358.3,17070,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17070,1,4,0)
- ;;=4^788.1
- ;;^UTILITY(U,$J,358.3,17070,1,5,0)
- ;;=5^Dysuria
- ;;^UTILITY(U,$J,358.3,17070,2)
- ;;=Dysuria^37716
- ;;^UTILITY(U,$J,358.3,17071,0)
- ;;=788.36^^92^945^68
- ;;^UTILITY(U,$J,358.3,17071,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17071,1,4,0)
- ;;=4^788.36
- ;;^UTILITY(U,$J,358.3,17071,1,5,0)
- ;;=5^Enuresis, nocturnal
- ;;^UTILITY(U,$J,358.3,17071,2)
- ;;=^293939
- ;;^UTILITY(U,$J,358.3,17072,0)
- ;;=788.41^^92^945^77
- ;;^UTILITY(U,$J,358.3,17072,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17072,1,4,0)
- ;;=4^788.41
- ;;^UTILITY(U,$J,358.3,17072,1,5,0)
- ;;=5^Frequency of urine
- ;;^UTILITY(U,$J,358.3,17072,2)
- ;;=^124396
- ;;^UTILITY(U,$J,358.3,17073,0)
- ;;=788.21^^92^945^91
- ;;^UTILITY(U,$J,358.3,17073,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17073,1,4,0)
- ;;=4^788.21
- ;;^UTILITY(U,$J,358.3,17073,1,5,0)
- ;;=5^Incomplet bladder emptying
- ;;^UTILITY(U,$J,358.3,17073,2)
- ;;=^295766
- ;;^UTILITY(U,$J,358.3,17074,0)
- ;;=788.34^^92^945^93
- ;;^UTILITY(U,$J,358.3,17074,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,17074,1,4,0)
- ;;=4^788.34
- ;;^UTILITY(U,$J,358.3,17074,1,5,0)
- ;;=5^Incontinence, continuous
+ ;;^UTILITY(U,$J,358.3,16849,2)
+ ;;=Aortic and Mitral Stenosis/Regurg^269584
+ ;;^UTILITY(U,$J,358.3,16850,0)
+ ;;=507.0^^87^1024^1
+ ;;^UTILITY(U,$J,358.3,16850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16850,1,3,0)
+ ;;=3^507.0
+ ;;^UTILITY(U,$J,358.3,16850,1,4,0)
+ ;;=4^Aspriation Pneumonitia/Pneumonia
+ ;;^UTILITY(U,$J,358.3,16850,2)
+ ;;=Aspriation Pneumonitia/Pneumonia^95581
+ ;;^UTILITY(U,$J,358.3,16851,0)
+ ;;=495.2^^87^1024^2
+ ;;^UTILITY(U,$J,358.3,16851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16851,1,3,0)
+ ;;=3^495.2
+ ;;^UTILITY(U,$J,358.3,16851,1,4,0)
+ ;;=4^Bird Fanciers Lung
+ ;;^UTILITY(U,$J,358.3,16851,2)
+ ;;=Bird Fanciers Lung^14840
+ ;;^UTILITY(U,$J,358.3,16852,0)
+ ;;=506.4^^87^1024^7
+ ;;^UTILITY(U,$J,358.3,16852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16852,1,3,0)
+ ;;=3^506.4
+ ;;^UTILITY(U,$J,358.3,16852,1,4,0)
+ ;;=4^Interstitial Lung Disease, Chemical
+ ;;^UTILITY(U,$J,358.3,16852,2)
+ ;;=Interstitial Lung Disease, Chemical^269978
+ ;;^UTILITY(U,$J,358.3,16853,0)
+ ;;=515.^^87^1024^6
+ ;;^UTILITY(U,$J,358.3,16853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16853,1,3,0)
+ ;;=3^515.
+ ;;^UTILITY(U,$J,358.3,16853,1,4,0)
+ ;;=4^Interstital Lung Disease, Unspec
+ ;;^UTILITY(U,$J,358.3,16853,2)
+ ;;=Interstital Lung Disease, Unspec^101072
+ ;;^UTILITY(U,$J,358.3,16854,0)
+ ;;=495.9^^87^1024^4
+ ;;^UTILITY(U,$J,358.3,16854,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16854,1,3,0)
+ ;;=3^495.9
+ ;;^UTILITY(U,$J,358.3,16854,1,4,0)
+ ;;=4^Hypersensitivity Pneumonitis
+ ;;^UTILITY(U,$J,358.3,16854,2)
+ ;;=Hypersensitivity Pneumonitis^5656
+ ;;^UTILITY(U,$J,358.3,16855,0)
+ ;;=495.0^^87^1024^3
+ ;;^UTILITY(U,$J,358.3,16855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16855,1,3,0)
+ ;;=3^495.0
+ ;;^UTILITY(U,$J,358.3,16855,1,4,0)
+ ;;=4^Farmer's Lung
+ ;;^UTILITY(U,$J,358.3,16855,2)
+ ;;=Farmer's Lung^44970
+ ;;^UTILITY(U,$J,358.3,16856,0)
+ ;;=507.1^^87^1024^8
+ ;;^UTILITY(U,$J,358.3,16856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16856,1,3,0)
+ ;;=3^507.1
+ ;;^UTILITY(U,$J,358.3,16856,1,4,0)
+ ;;=4^Lipoid Pneumonia
+ ;;^UTILITY(U,$J,358.3,16856,2)
+ ;;=Lipoid Pneumonia^95664
+ ;;^UTILITY(U,$J,358.3,16857,0)
+ ;;=710.0^^87^1024^9
+ ;;^UTILITY(U,$J,358.3,16857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16857,1,3,0)
+ ;;=3^710.0
+ ;;^UTILITY(U,$J,358.3,16857,1,4,0)
+ ;;=4^Lupus Pneumonitis
+ ;;^UTILITY(U,$J,358.3,16857,2)
+ ;;=Lupus Pneumonitis^72159^517.8
+ ;;^UTILITY(U,$J,358.3,16858,0)
+ ;;=516.0^^87^1024^10
+ ;;^UTILITY(U,$J,358.3,16858,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16858,1,3,0)
+ ;;=3^516.0
+ ;;^UTILITY(U,$J,358.3,16858,1,4,0)
+ ;;=4^Pulmonary Alveolar Proteinosis
+ ;;^UTILITY(U,$J,358.3,16858,2)
+ ;;=Pulmonary Alveolar Proteinosis^100985
+ ;;^UTILITY(U,$J,358.3,16859,0)
+ ;;=135.^^87^1024^11
+ ;;^UTILITY(U,$J,358.3,16859,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16859,1,3,0)
+ ;;=3^135.
+ ;;^UTILITY(U,$J,358.3,16859,1,4,0)
+ ;;=4^Pulmonary Sarcoidosis
+ ;;^UTILITY(U,$J,358.3,16859,2)
+ ;;=Pulmonary Sarcoidosis^107916^517.8
+ ;;^UTILITY(U,$J,358.3,16860,0)
+ ;;=714.81^^87^1024^12
+ ;;^UTILITY(U,$J,358.3,16860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16860,1,3,0)
+ ;;=3^714.81
+ ;;^UTILITY(U,$J,358.3,16860,1,4,0)
+ ;;=4^Rheumatoid Lung
+ ;;^UTILITY(U,$J,358.3,16860,2)
+ ;;=Rheumatoid Lung^106037
+ ;;^UTILITY(U,$J,358.3,16861,0)
+ ;;=710.1^^87^1024^13
+ ;;^UTILITY(U,$J,358.3,16861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16861,1,3,0)
+ ;;=3^710.1
+ ;;^UTILITY(U,$J,358.3,16861,1,4,0)
+ ;;=4^Scleroderma/Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,16861,2)
+ ;;=Scleroderma/Systemic Sclerosis^108590^517.8
+ ;;^UTILITY(U,$J,358.3,16862,0)
+ ;;=710.2^^87^1024^14

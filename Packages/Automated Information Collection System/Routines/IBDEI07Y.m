@@ -1,146 +1,130 @@
-IBDEI07Y ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI07Y ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3568,1,5,0)
- ;;=5^Uncertain Behavior Neo Skin
- ;;^UTILITY(U,$J,358.3,3568,2)
- ;;=^267777
- ;;^UTILITY(U,$J,358.3,3569,0)
- ;;=239.2^^31^303^4
- ;;^UTILITY(U,$J,358.3,3569,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3569,1,2,0)
- ;;=2^239.2
- ;;^UTILITY(U,$J,358.3,3569,1,5,0)
- ;;=5^Unspecified Neoplasm
- ;;^UTILITY(U,$J,358.3,3569,2)
- ;;=^267783
- ;;^UTILITY(U,$J,358.3,3570,0)
- ;;=V76.43^^31^303^2
- ;;^UTILITY(U,$J,358.3,3570,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3570,1,2,0)
- ;;=2^V76.43
- ;;^UTILITY(U,$J,358.3,3570,1,5,0)
- ;;=5^Screening for malignant neoplasm
- ;;^UTILITY(U,$J,358.3,3570,2)
- ;;=^295657
- ;;^UTILITY(U,$J,358.3,3571,0)
- ;;=698.3^^31^304^2
- ;;^UTILITY(U,$J,358.3,3571,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3571,1,2,0)
- ;;=2^698.3
- ;;^UTILITY(U,$J,358.3,3571,1,5,0)
- ;;=5^Prurigo Nodularis
- ;;^UTILITY(U,$J,358.3,3571,2)
- ;;=^70705
- ;;^UTILITY(U,$J,358.3,3572,0)
- ;;=698.2^^31^304^1
- ;;^UTILITY(U,$J,358.3,3572,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3572,1,2,0)
- ;;=2^698.2
- ;;^UTILITY(U,$J,358.3,3572,1,5,0)
- ;;=5^Prurigo
- ;;^UTILITY(U,$J,358.3,3572,2)
- ;;=^100043
- ;;^UTILITY(U,$J,358.3,3573,0)
- ;;=132.1^^31^305^1
- ;;^UTILITY(U,$J,358.3,3573,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3573,1,2,0)
- ;;=2^132.1
- ;;^UTILITY(U,$J,358.3,3573,1,5,0)
- ;;=5^Pediculosis, Body
- ;;^UTILITY(U,$J,358.3,3573,2)
- ;;=^266961
- ;;^UTILITY(U,$J,358.3,3574,0)
- ;;=132.0^^31^305^2
- ;;^UTILITY(U,$J,358.3,3574,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3574,1,2,0)
- ;;=2^132.0
- ;;^UTILITY(U,$J,358.3,3574,1,5,0)
- ;;=5^Pediculosis, Head
- ;;^UTILITY(U,$J,358.3,3574,2)
- ;;=^266960
- ;;^UTILITY(U,$J,358.3,3575,0)
- ;;=132.2^^31^305^3
- ;;^UTILITY(U,$J,358.3,3575,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3575,1,2,0)
- ;;=2^132.2
- ;;^UTILITY(U,$J,358.3,3575,1,5,0)
- ;;=5^Pediculosis, Pubic
- ;;^UTILITY(U,$J,358.3,3575,2)
- ;;=^266962
- ;;^UTILITY(U,$J,358.3,3576,0)
- ;;=696.3^^31^306^1
- ;;^UTILITY(U,$J,358.3,3576,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3576,1,2,0)
- ;;=2^696.3
- ;;^UTILITY(U,$J,358.3,3576,1,5,0)
- ;;=5^Pityriasis Rosea
- ;;^UTILITY(U,$J,358.3,3576,2)
- ;;=^94726
- ;;^UTILITY(U,$J,358.3,3577,0)
- ;;=696.4^^31^306^2
- ;;^UTILITY(U,$J,358.3,3577,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3577,1,2,0)
- ;;=2^696.4
- ;;^UTILITY(U,$J,358.3,3577,1,5,0)
- ;;=5^Pityriasis Rubra Pilaris
- ;;^UTILITY(U,$J,358.3,3577,2)
- ;;=^94729
- ;;^UTILITY(U,$J,358.3,3578,0)
- ;;=698.0^^31^307^2
- ;;^UTILITY(U,$J,358.3,3578,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3578,1,2,0)
- ;;=2^698.0
- ;;^UTILITY(U,$J,358.3,3578,1,5,0)
- ;;=5^Pruritus Ani
- ;;^UTILITY(U,$J,358.3,3578,2)
- ;;=^100061
- ;;^UTILITY(U,$J,358.3,3579,0)
- ;;=698.1^^31^307^3
- ;;^UTILITY(U,$J,358.3,3579,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3579,1,2,0)
- ;;=2^698.1
- ;;^UTILITY(U,$J,358.3,3579,1,5,0)
- ;;=5^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,3579,2)
- ;;=^100071
- ;;^UTILITY(U,$J,358.3,3580,0)
- ;;=698.9^^31^307^1
- ;;^UTILITY(U,$J,358.3,3580,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3580,1,2,0)
- ;;=2^698.9
- ;;^UTILITY(U,$J,358.3,3580,1,5,0)
- ;;=5^Pruritic Disorder Unspecified
- ;;^UTILITY(U,$J,358.3,3580,2)
- ;;=^123977
- ;;^UTILITY(U,$J,358.3,3581,0)
- ;;=696.1^^31^308^1
- ;;^UTILITY(U,$J,358.3,3581,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3581,1,2,0)
- ;;=2^696.1
- ;;^UTILITY(U,$J,358.3,3581,1,5,0)
- ;;=5^Psoriasis
- ;;^UTILITY(U,$J,358.3,3581,2)
- ;;=^87816
- ;;^UTILITY(U,$J,358.3,3582,0)
- ;;=696.2^^31^308^2
- ;;^UTILITY(U,$J,358.3,3582,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3582,1,2,0)
- ;;=2^696.2
- ;;^UTILITY(U,$J,358.3,3582,1,5,0)
- ;;=5^Parapsoriasis
+ ;;^UTILITY(U,$J,358.3,3224,0)
+ ;;=G47.10^^8^111^9
+ ;;^UTILITY(U,$J,358.3,3224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3224,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,3224,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,3224,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,3225,0)
+ ;;=G47.419^^8^111^12
+ ;;^UTILITY(U,$J,358.3,3225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3225,1,3,0)
+ ;;=3^Narcolepsy
+ ;;^UTILITY(U,$J,358.3,3225,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,3225,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,3226,0)
+ ;;=G47.33^^8^111^16
+ ;;^UTILITY(U,$J,358.3,3226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3226,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,3226,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,3226,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,3227,0)
+ ;;=G47.31^^8^111^1
+ ;;^UTILITY(U,$J,358.3,3227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3227,1,3,0)
+ ;;=3^Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,3227,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,3227,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,3228,0)
+ ;;=G47.21^^8^111^3
+ ;;^UTILITY(U,$J,358.3,3228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3228,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,3228,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,3228,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,3229,0)
+ ;;=G47.22^^8^111^2
+ ;;^UTILITY(U,$J,358.3,3229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3229,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,3229,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,3229,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,3230,0)
+ ;;=G47.23^^8^111^4
+ ;;^UTILITY(U,$J,358.3,3230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3230,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,3230,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,3230,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,3231,0)
+ ;;=G47.24^^8^111^5
+ ;;^UTILITY(U,$J,358.3,3231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3231,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,3231,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,3231,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,3232,0)
+ ;;=G47.26^^8^111^6
+ ;;^UTILITY(U,$J,358.3,3232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3232,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,3232,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,3232,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,3233,0)
+ ;;=G47.20^^8^111^7
+ ;;^UTILITY(U,$J,358.3,3233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3233,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
+ ;;^UTILITY(U,$J,358.3,3233,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,3233,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,3234,0)
+ ;;=F51.3^^8^111^14
+ ;;^UTILITY(U,$J,358.3,3234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3234,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleepwalking Type
+ ;;^UTILITY(U,$J,358.3,3234,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,3234,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,3235,0)
+ ;;=F51.4^^8^111^15
+ ;;^UTILITY(U,$J,358.3,3235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3235,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,3235,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,3235,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,3236,0)
+ ;;=F51.5^^8^111^13
+ ;;^UTILITY(U,$J,358.3,3236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3236,1,3,0)
+ ;;=3^Nightmare Disorder

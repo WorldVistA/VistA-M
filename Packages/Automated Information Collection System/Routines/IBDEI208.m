@@ -1,58 +1,128 @@
-IBDEI208 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI208 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,35067,1,4,0)
+ ;;=4^S32.120S
+ ;;^UTILITY(U,$J,358.3,35067,2)
+ ;;=^5024556
+ ;;^UTILITY(U,$J,358.3,35068,0)
+ ;;=S32.130S^^183^2025^26
+ ;;^UTILITY(U,$J,358.3,35068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35068,1,3,0)
+ ;;=3^Nondisp Zone III fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35068,1,4,0)
+ ;;=4^S32.130S
+ ;;^UTILITY(U,$J,358.3,35068,2)
+ ;;=^5024580
+ ;;^UTILITY(U,$J,358.3,35069,0)
+ ;;=S32.112S^^183^2025^30
+ ;;^UTILITY(U,$J,358.3,35069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35069,1,3,0)
+ ;;=3^Severely displaced Zone I fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35069,1,4,0)
+ ;;=4^S32.112S
+ ;;^UTILITY(U,$J,358.3,35069,2)
+ ;;=^5024544
+ ;;^UTILITY(U,$J,358.3,35070,0)
+ ;;=S32.122S^^183^2025^31
+ ;;^UTILITY(U,$J,358.3,35070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35070,1,3,0)
+ ;;=3^Severely displaced Zone II fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35070,1,4,0)
+ ;;=4^S32.122S
+ ;;^UTILITY(U,$J,358.3,35070,2)
+ ;;=^5024568
+ ;;^UTILITY(U,$J,358.3,35071,0)
+ ;;=S32.132S^^183^2025^32
+ ;;^UTILITY(U,$J,358.3,35071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35071,1,3,0)
+ ;;=3^Severely displaced Zone III fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35071,1,4,0)
+ ;;=4^S32.132S
+ ;;^UTILITY(U,$J,358.3,35071,2)
+ ;;=^5024592
+ ;;^UTILITY(U,$J,358.3,35072,0)
+ ;;=S32.14XS^^183^2025^47
+ ;;^UTILITY(U,$J,358.3,35072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35072,1,3,0)
+ ;;=3^Type 1 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35072,1,4,0)
+ ;;=4^S32.14XS
+ ;;^UTILITY(U,$J,358.3,35072,2)
+ ;;=^5024604
+ ;;^UTILITY(U,$J,358.3,35073,0)
+ ;;=S32.15XS^^183^2025^48
+ ;;^UTILITY(U,$J,358.3,35073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35073,1,3,0)
+ ;;=3^Type 2 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35073,1,4,0)
+ ;;=4^S32.15XS
+ ;;^UTILITY(U,$J,358.3,35073,2)
+ ;;=^5024610
+ ;;^UTILITY(U,$J,358.3,35074,0)
+ ;;=S32.16XS^^183^2025^49
+ ;;^UTILITY(U,$J,358.3,35074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35074,1,3,0)
+ ;;=3^Type 3 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35074,1,4,0)
+ ;;=4^S32.16XS
+ ;;^UTILITY(U,$J,358.3,35074,2)
+ ;;=^5024616
+ ;;^UTILITY(U,$J,358.3,35075,0)
+ ;;=S32.17XS^^183^2025^56
+ ;;^UTILITY(U,$J,358.3,35075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35075,1,3,0)
+ ;;=3^Type 4 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,35075,1,4,0)
+ ;;=4^S32.17XS
+ ;;^UTILITY(U,$J,358.3,35075,2)
+ ;;=^5024622
+ ;;^UTILITY(U,$J,358.3,35076,0)
+ ;;=S32.2XXS^^183^2025^19
+ ;;^UTILITY(U,$J,358.3,35076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35076,1,3,0)
+ ;;=3^Fracture of coccyx, sequela
+ ;;^UTILITY(U,$J,358.3,35076,1,4,0)
+ ;;=4^S32.2XXS
+ ;;^UTILITY(U,$J,358.3,35076,2)
+ ;;=^5024634
+ ;;^UTILITY(U,$J,358.3,35077,0)
+ ;;=S12.110S^^183^2025^1
+ ;;^UTILITY(U,$J,358.3,35077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35077,1,3,0)
+ ;;=3^Anterior displaced Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,35077,1,4,0)
+ ;;=4^S12.110S
+ ;;^UTILITY(U,$J,358.3,35077,2)
+ ;;=^5021622
+ ;;^UTILITY(U,$J,358.3,35078,0)
+ ;;=S12.112S^^183^2025^23
+ ;;^UTILITY(U,$J,358.3,35078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35078,1,3,0)
+ ;;=3^Nondisp Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,35078,1,4,0)
+ ;;=4^S12.112S
+ ;;^UTILITY(U,$J,358.3,35078,2)
+ ;;=^5021634
+ ;;^UTILITY(U,$J,358.3,35079,0)
+ ;;=S12.111S^^183^2025^29
+ ;;^UTILITY(U,$J,358.3,35079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35079,1,3,0)
+ ;;=3^Posterior displaced Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,35079,1,4,0)
+ ;;=4^S12.111S
+ ;;^UTILITY(U,$J,358.3,35079,2)
+ ;;=^5021628

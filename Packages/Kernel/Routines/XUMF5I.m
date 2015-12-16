@@ -1,5 +1,5 @@
-XUMF5I ;ISS/PAVEL - XUMF5 MD5 Hash Entry point ;5/19/06  06:15
- ;;8.0;KERNEL;**383,407,502**;July 10, 1995;Build 17
+XUMF5I ;ISS/PAVEL - XUMF5 MD5 Hash Entry point ;02/26/2015
+ ;;8.0;KERNEL;**383,407,502,654**;July 10, 1995;Build 32
  ;
  ;MD5 based on info from 4.005 SORT BY VUID or USER DEFINED SORTING
  ;
@@ -210,12 +210,15 @@ ACTIVE(FILE,IEN)        ;GET 1 = Active 0 = Inactive
  Q XX
 GETSIE(X2,IENS,LEV)     ;GET Internal/External values + replace pointed field .01 with VUID
  K TMP1(LEV) D GETS^DIQ(X2,IENS,"*","","TMP1(LEV)")
- D:$D(TMP2(X2))!$D(TMP4(X2))
+ ;D:$D(TMP2(X2))!$D(TMP4(X2)) ;remove p654
+ D:$D(TMP2(X2))!$D(TMP4(X2))!$D(TMP8(X2))
  .N TMP3,I
  .D GETS^DIQ(X2,IENS,"*","I","TMP3")
  .S I="" F  S I=$O(TMP2(X2,I)) Q:'I  S:$D(TMP1(LEV,X2,IENS,I)) TMP1(LEV,X2,IENS,I)=TMP3(X2,IENS,I,"I")
  .;+++++++++++++++ Replace pointed .01 field with VUID if indicate so in 4.005
  .S I="" F  S I=$O(TMP4(X2,I)) Q:'I  S:$D(TMP1(LEV,X2,IENS,I)) TMP1(LEV,X2,IENS,I)=$$GET1^DIQ(TMP4(X2,I),TMP3(X2,IENS,I,"I")_",",VAR1)
+ .;+++++++++++++++ Process post action on field patch XU*8.0*654
+ .S I="" F  S I=$O(TMP8(X2,I)) Q:'I  X:$D(TMP1(LEV,X2,IENS,I)) TMP8(X2,I)
  Q
 ACTALL() ;See if there is some active entry on the file....
  I $G(SORTACT) Q 1

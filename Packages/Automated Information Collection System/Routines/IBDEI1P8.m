@@ -1,136 +1,124 @@
-IBDEI1P8 ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1P8 ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30484,1,0)
+ ;;^UTILITY(U,$J,358.3,30127,1,3,0)
+ ;;=3^Uterine size-date discrepancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30127,1,4,0)
+ ;;=4^O26.842
+ ;;^UTILITY(U,$J,358.3,30127,2)
+ ;;=^5016346
+ ;;^UTILITY(U,$J,358.3,30128,0)
+ ;;=O26.843^^178^1914^30
+ ;;^UTILITY(U,$J,358.3,30128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30484,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,30484,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,30484,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,30485,0)
- ;;=L02.216^^189^1917^78
- ;;^UTILITY(U,$J,358.3,30485,1,0)
+ ;;^UTILITY(U,$J,358.3,30128,1,3,0)
+ ;;=3^Uterine size-date discrepancy, third trimester
+ ;;^UTILITY(U,$J,358.3,30128,1,4,0)
+ ;;=4^O26.843
+ ;;^UTILITY(U,$J,358.3,30128,2)
+ ;;=^5016347
+ ;;^UTILITY(U,$J,358.3,30129,0)
+ ;;=O26.872^^178^1914^6
+ ;;^UTILITY(U,$J,358.3,30129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30485,1,3,0)
- ;;=3^Cutaneous Abscess of Umbilicus
- ;;^UTILITY(U,$J,358.3,30485,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,30485,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,30486,0)
- ;;=L02.91^^189^1917^79
- ;;^UTILITY(U,$J,358.3,30486,1,0)
+ ;;^UTILITY(U,$J,358.3,30129,1,3,0)
+ ;;=3^Cervical shortening, second trimester
+ ;;^UTILITY(U,$J,358.3,30129,1,4,0)
+ ;;=4^O26.872
+ ;;^UTILITY(U,$J,358.3,30129,2)
+ ;;=^5016354
+ ;;^UTILITY(U,$J,358.3,30130,0)
+ ;;=O26.873^^178^1914^7
+ ;;^UTILITY(U,$J,358.3,30130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30486,1,3,0)
- ;;=3^Cutaneous Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,30486,1,4,0)
- ;;=4^L02.91
- ;;^UTILITY(U,$J,358.3,30486,2)
- ;;=^5009016
- ;;^UTILITY(U,$J,358.3,30487,0)
- ;;=L98.3^^189^1917^82
- ;;^UTILITY(U,$J,358.3,30487,1,0)
+ ;;^UTILITY(U,$J,358.3,30130,1,3,0)
+ ;;=3^Cervical shortening, third trimester
+ ;;^UTILITY(U,$J,358.3,30130,1,4,0)
+ ;;=4^O26.873
+ ;;^UTILITY(U,$J,358.3,30130,2)
+ ;;=^5016355
+ ;;^UTILITY(U,$J,358.3,30131,0)
+ ;;=O30.001^^178^1915^77
+ ;;^UTILITY(U,$J,358.3,30131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30487,1,3,0)
- ;;=3^Eosinophilic Cellulitis
- ;;^UTILITY(U,$J,358.3,30487,1,4,0)
- ;;=4^L98.3
- ;;^UTILITY(U,$J,358.3,30487,2)
- ;;=^5009576
- ;;^UTILITY(U,$J,358.3,30488,0)
- ;;=L72.0^^189^1917^83
- ;;^UTILITY(U,$J,358.3,30488,1,0)
+ ;;^UTILITY(U,$J,358.3,30131,1,3,0)
+ ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, first trimester
+ ;;^UTILITY(U,$J,358.3,30131,1,4,0)
+ ;;=4^O30.001
+ ;;^UTILITY(U,$J,358.3,30131,2)
+ ;;=^5016429
+ ;;^UTILITY(U,$J,358.3,30132,0)
+ ;;=O30.002^^178^1915^78
+ ;;^UTILITY(U,$J,358.3,30132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30488,1,3,0)
- ;;=3^Epidermal Cyst
- ;;^UTILITY(U,$J,358.3,30488,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,30488,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,30489,0)
- ;;=L72.9^^189^1917^84
- ;;^UTILITY(U,$J,358.3,30489,1,0)
+ ;;^UTILITY(U,$J,358.3,30132,1,3,0)
+ ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, second trimester
+ ;;^UTILITY(U,$J,358.3,30132,1,4,0)
+ ;;=4^O30.002
+ ;;^UTILITY(U,$J,358.3,30132,2)
+ ;;=^5016430
+ ;;^UTILITY(U,$J,358.3,30133,0)
+ ;;=O30.003^^178^1915^79
+ ;;^UTILITY(U,$J,358.3,30133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30489,1,3,0)
- ;;=3^Follicular Cyst of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,30489,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,30489,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,30490,0)
- ;;=L60.0^^189^1917^86
- ;;^UTILITY(U,$J,358.3,30490,1,0)
+ ;;^UTILITY(U,$J,358.3,30133,1,3,0)
+ ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, third trimester
+ ;;^UTILITY(U,$J,358.3,30133,1,4,0)
+ ;;=4^O30.003
+ ;;^UTILITY(U,$J,358.3,30133,2)
+ ;;=^5016431
+ ;;^UTILITY(U,$J,358.3,30134,0)
+ ;;=O30.011^^178^1915^71
+ ;;^UTILITY(U,$J,358.3,30134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30490,1,3,0)
- ;;=3^Ingrowing Nail
- ;;^UTILITY(U,$J,358.3,30490,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,30490,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,30491,0)
- ;;=C43.9^^189^1917^87
- ;;^UTILITY(U,$J,358.3,30491,1,0)
+ ;;^UTILITY(U,$J,358.3,30134,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/monoamniotic, first trimester
+ ;;^UTILITY(U,$J,358.3,30134,1,4,0)
+ ;;=4^O30.011
+ ;;^UTILITY(U,$J,358.3,30134,2)
+ ;;=^5016432
+ ;;^UTILITY(U,$J,358.3,30135,0)
+ ;;=O30.012^^178^1915^72
+ ;;^UTILITY(U,$J,358.3,30135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30491,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,30491,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,30491,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,30492,0)
- ;;=D03.9^^189^1917^91
- ;;^UTILITY(U,$J,358.3,30492,1,0)
+ ;;^UTILITY(U,$J,358.3,30135,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/monoamniotic, second trimester
+ ;;^UTILITY(U,$J,358.3,30135,1,4,0)
+ ;;=4^O30.012
+ ;;^UTILITY(U,$J,358.3,30135,2)
+ ;;=^5016433
+ ;;^UTILITY(U,$J,358.3,30136,0)
+ ;;=O30.013^^178^1915^73
+ ;;^UTILITY(U,$J,358.3,30136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30492,1,3,0)
- ;;=3^Melanoma in Situ,Unspec
- ;;^UTILITY(U,$J,358.3,30492,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,30492,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,30493,0)
- ;;=L72.8^^189^1917^85
- ;;^UTILITY(U,$J,358.3,30493,1,0)
+ ;;^UTILITY(U,$J,358.3,30136,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/monoamniotic, third trimester
+ ;;^UTILITY(U,$J,358.3,30136,1,4,0)
+ ;;=4^O30.013
+ ;;^UTILITY(U,$J,358.3,30136,2)
+ ;;=^5016434
+ ;;^UTILITY(U,$J,358.3,30137,0)
+ ;;=O30.021^^178^1915^1
+ ;;^UTILITY(U,$J,358.3,30137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30493,1,3,0)
- ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
- ;;^UTILITY(U,$J,358.3,30493,1,4,0)
- ;;=4^L72.8
- ;;^UTILITY(U,$J,358.3,30493,2)
- ;;=^5009282
- ;;^UTILITY(U,$J,358.3,30494,0)
- ;;=E13.621^^189^1917^81
- ;;^UTILITY(U,$J,358.3,30494,1,0)
+ ;;^UTILITY(U,$J,358.3,30137,1,3,0)
+ ;;=3^Conjoined twin pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,30137,1,4,0)
+ ;;=4^O30.021
+ ;;^UTILITY(U,$J,358.3,30137,2)
+ ;;=^5016436
+ ;;^UTILITY(U,$J,358.3,30138,0)
+ ;;=O30.022^^178^1915^2
+ ;;^UTILITY(U,$J,358.3,30138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30494,1,3,0)
- ;;=3^Diabetes w/ Foot Ulcer NEC
- ;;^UTILITY(U,$J,358.3,30494,1,4,0)
- ;;=4^E13.621
- ;;^UTILITY(U,$J,358.3,30494,2)
- ;;=^5002694
- ;;^UTILITY(U,$J,358.3,30495,0)
- ;;=L72.2^^189^1917^92
- ;;^UTILITY(U,$J,358.3,30495,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30495,1,3,0)
- ;;=3^Steatocystoma Multiplex
- ;;^UTILITY(U,$J,358.3,30495,1,4,0)
- ;;=4^L72.2
- ;;^UTILITY(U,$J,358.3,30495,2)
- ;;=^5009280
- ;;^UTILITY(U,$J,358.3,30496,0)
- ;;=L72.12^^189^1917^93
- ;;^UTILITY(U,$J,358.3,30496,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30496,1,3,0)
- ;;=3^Trichodermal Cyst
- ;;^UTILITY(U,$J,358.3,30496,1,4,0)
- ;;=4^L72.12
- ;;^UTILITY(U,$J,358.3,30496,2)
- ;;=^5009279
- ;;^UTILITY(U,$J,358.3,30497,0)
- ;;=E11.621^^189^1917^80
- ;;^UTILITY(U,$J,358.3,30497,1,0)
+ ;;^UTILITY(U,$J,358.3,30138,1,3,0)
+ ;;=3^Conjoined twin pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,30138,1,4,0)
+ ;;=4^O30.022
+ ;;^UTILITY(U,$J,358.3,30138,2)
+ ;;=^5016437
+ ;;^UTILITY(U,$J,358.3,30139,0)
+ ;;=O30.023^^178^1915^3
+ ;;^UTILITY(U,$J,358.3,30139,1,0)
  ;;=^358.31IA^4^2

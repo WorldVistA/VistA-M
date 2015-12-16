@@ -1,5 +1,5 @@
-ECXPRO2 ;ALB/GTS - Prosthetics Extract for DSS (Continued) ; 15 Apr 2011  1:49 PM
- ;;3.0;DSS EXTRACTS;**9,15,21,24,33,127,132**;Dec 22, 1997;Build 18
+ECXPRO2 ;ALB/GTS - Prosthetics Extract for DSS (Continued) ;3/26/15  16:38
+ ;;3.0;DSS EXTRACTS;**9,15,21,24,33,127,132,154**;Dec 22, 1997;Build 13
  ;
 ECXBUL(ECXLNE,ECXEBDT,ECXEEDT,ECNUM) ;* Set up the header for the exception msg
  ;
@@ -87,13 +87,14 @@ FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB,ECXNPPDC) ;Get
  I ECXLAB="NONL" S ECXFELOC=ECXSTAT2_$S(ECXNPPDC[800:"HO2",1:"NONL")
  ;
  ;* If processing a Lab Transaction
- I ECXLAB="LAB" D  Q
+ I ECXLAB="LAB" D  ;154 Removed Q so processing continues
  .I ECXSTAT2=ECXRCST D
  ..S ECXFELOC=ECXRCST_"LAB"
  ..S ECXFEKEY=ECXFEKEY_ECXRQST_"REQ"
- I ECXLAB="ORD" D  Q
+ I ECXLAB="ORD" D  ;154 Removed Q so processing continues
  .I ECXSTAT2=ECXRQST D
  ..S ECXFELOC=ECXRQST_"ORD"
  ..S ECXFEKEY=ECXFEKEY_ECXRCST_"REC"
+ S ECXFEKEY=ECXFEKEY_$S($P($G(ECXFORM),U,2)=11:"S",$P($G(ECXFORM),U,2)=12:"I",1:"") ;154 If form requested on is stock, add "S", if inventory add "I"
  ;
  Q

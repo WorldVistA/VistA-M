@@ -1,148 +1,128 @@
-IBDEI01O ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI01O ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,258,2)
- ;;=^268207
- ;;^UTILITY(U,$J,358.3,259,0)
- ;;=305.70^^3^35^16
- ;;^UTILITY(U,$J,358.3,259,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,259,1,2,0)
- ;;=2^305.70
- ;;^UTILITY(U,$J,358.3,259,1,5,0)
- ;;=5^Amphetamine Abuse
- ;;^UTILITY(U,$J,358.3,259,2)
- ;;=^268250
- ;;^UTILITY(U,$J,358.3,260,0)
- ;;=305.73^^3^35^19
- ;;^UTILITY(U,$J,358.3,260,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,260,1,2,0)
- ;;=2^305.73
- ;;^UTILITY(U,$J,358.3,260,1,5,0)
- ;;=5^Amphetamine Abuse-Remission
- ;;^UTILITY(U,$J,358.3,260,2)
- ;;=^268253
- ;;^UTILITY(U,$J,358.3,261,0)
- ;;=304.50^^3^35^62
- ;;^UTILITY(U,$J,358.3,261,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,261,1,2,0)
- ;;=2^304.50
- ;;^UTILITY(U,$J,358.3,261,1,5,0)
- ;;=5^Hallucinogen Dependence
- ;;^UTILITY(U,$J,358.3,261,2)
- ;;=^53744
- ;;^UTILITY(U,$J,358.3,262,0)
- ;;=304.53^^3^35^59
- ;;^UTILITY(U,$J,358.3,262,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,262,1,2,0)
- ;;=2^304.53
- ;;^UTILITY(U,$J,358.3,262,1,5,0)
- ;;=5^Hallucinogen Dep-Remission
- ;;^UTILITY(U,$J,358.3,262,2)
- ;;=^268210
- ;;^UTILITY(U,$J,358.3,263,0)
- ;;=305.30^^3^35^56
- ;;^UTILITY(U,$J,358.3,263,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,263,1,2,0)
- ;;=2^305.30
- ;;^UTILITY(U,$J,358.3,263,1,5,0)
- ;;=5^Hallucinogen Abuse
- ;;^UTILITY(U,$J,358.3,263,2)
- ;;=^53741
- ;;^UTILITY(U,$J,358.3,264,0)
- ;;=305.33^^3^35^55
- ;;^UTILITY(U,$J,358.3,264,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,264,1,2,0)
- ;;=2^305.33
- ;;^UTILITY(U,$J,358.3,264,1,5,0)
- ;;=5^Hallucinog Abuse-Remission
- ;;^UTILITY(U,$J,358.3,264,2)
- ;;=^268239
- ;;^UTILITY(U,$J,358.3,265,0)
- ;;=304.60^^3^35^54
- ;;^UTILITY(U,$J,358.3,265,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,265,1,2,0)
- ;;=2^304.60
- ;;^UTILITY(U,$J,358.3,265,1,5,0)
- ;;=5^Drug Dependence, Other
- ;;^UTILITY(U,$J,358.3,265,2)
- ;;=^88038
- ;;^UTILITY(U,$J,358.3,266,0)
- ;;=304.63^^3^35^51
- ;;^UTILITY(U,$J,358.3,266,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,266,1,2,0)
- ;;=2^304.63
- ;;^UTILITY(U,$J,358.3,266,1,5,0)
- ;;=5^Drug Depend Other-Remission
- ;;^UTILITY(U,$J,358.3,266,2)
- ;;=^268213
- ;;^UTILITY(U,$J,358.3,267,0)
- ;;=305.90^^3^35^76
- ;;^UTILITY(U,$J,358.3,267,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,267,1,2,0)
- ;;=2^305.90
- ;;^UTILITY(U,$J,358.3,267,1,5,0)
- ;;=5^Other Drug Abuse
- ;;^UTILITY(U,$J,358.3,267,2)
- ;;=^268258
- ;;^UTILITY(U,$J,358.3,268,0)
- ;;=305.93^^3^35^79
- ;;^UTILITY(U,$J,358.3,268,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,268,1,2,0)
- ;;=2^305.93
- ;;^UTILITY(U,$J,358.3,268,1,5,0)
- ;;=5^Other Drug Abuse-Remission
- ;;^UTILITY(U,$J,358.3,268,2)
- ;;=^268261
- ;;^UTILITY(U,$J,358.3,269,0)
- ;;=304.70^^3^35^65
- ;;^UTILITY(U,$J,358.3,269,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,269,1,2,0)
- ;;=2^304.70
- ;;^UTILITY(U,$J,358.3,269,1,5,0)
- ;;=5^Opioid + Other Depend
- ;;^UTILITY(U,$J,358.3,269,2)
- ;;=^268214
- ;;^UTILITY(U,$J,358.3,270,0)
- ;;=304.73^^3^35^64
- ;;^UTILITY(U,$J,358.3,270,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,270,1,2,0)
- ;;=2^304.73
- ;;^UTILITY(U,$J,358.3,270,1,5,0)
- ;;=5^Opioid + Other Dep-Remis
- ;;^UTILITY(U,$J,358.3,270,2)
- ;;=^268217
- ;;^UTILITY(U,$J,358.3,271,0)
- ;;=304.80^^3^35^50
- ;;^UTILITY(U,$J,358.3,271,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,271,1,2,0)
- ;;=2^304.80
- ;;^UTILITY(U,$J,358.3,271,1,5,0)
- ;;=5^Combination Drug Dep
- ;;^UTILITY(U,$J,358.3,271,2)
- ;;=^268218
- ;;^UTILITY(U,$J,358.3,272,0)
- ;;=304.83^^3^35^47
- ;;^UTILITY(U,$J,358.3,272,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,272,1,2,0)
- ;;=2^304.83
- ;;^UTILITY(U,$J,358.3,272,1,5,0)
- ;;=5^Comb Drug Dep-Remission
- ;;^UTILITY(U,$J,358.3,272,2)
- ;;=^268221
- ;;^UTILITY(U,$J,358.3,273,0)
- ;;=305.1^^3^35^63
+ ;;^UTILITY(U,$J,358.3,226,0)
+ ;;=T45.1X6A^^1^10^80
+ ;;^UTILITY(U,$J,358.3,226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,226,1,3,0)
+ ;;=3^Underdosing of antineoplastic and immunosup drugs, init
+ ;;^UTILITY(U,$J,358.3,226,1,4,0)
+ ;;=4^T45.1X6A
+ ;;^UTILITY(U,$J,358.3,226,2)
+ ;;=^5051029
+ ;;^UTILITY(U,$J,358.3,227,0)
+ ;;=T45.1X6D^^1^10^81
+ ;;^UTILITY(U,$J,358.3,227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,227,1,3,0)
+ ;;=3^Underdosing of antineoplastic and immunosup drugs, subs
+ ;;^UTILITY(U,$J,358.3,227,1,4,0)
+ ;;=4^T45.1X6D
+ ;;^UTILITY(U,$J,358.3,227,2)
+ ;;=^5051030
+ ;;^UTILITY(U,$J,358.3,228,0)
+ ;;=T45.1X6S^^1^10^82
+ ;;^UTILITY(U,$J,358.3,228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,228,1,3,0)
+ ;;=3^Underdosing of antineoplastic and immunosup drugs, sequela
+ ;;^UTILITY(U,$J,358.3,228,1,4,0)
+ ;;=4^T45.1X6S
+ ;;^UTILITY(U,$J,358.3,228,2)
+ ;;=^5051031
+ ;;^UTILITY(U,$J,358.3,229,0)
+ ;;=T36.8X6A^^1^10^83
+ ;;^UTILITY(U,$J,358.3,229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,229,1,3,0)
+ ;;=3^Underdosing of other systemic antibiotics, initial encounter
+ ;;^UTILITY(U,$J,358.3,229,1,4,0)
+ ;;=4^T36.8X6A
+ ;;^UTILITY(U,$J,358.3,229,2)
+ ;;=^5049415
+ ;;^UTILITY(U,$J,358.3,230,0)
+ ;;=T36.8X6D^^1^10^84
+ ;;^UTILITY(U,$J,358.3,230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,230,1,3,0)
+ ;;=3^Underdosing of other systemic antibiotics, subs encntr
+ ;;^UTILITY(U,$J,358.3,230,1,4,0)
+ ;;=4^T36.8X6D
+ ;;^UTILITY(U,$J,358.3,230,2)
+ ;;=^5049416
+ ;;^UTILITY(U,$J,358.3,231,0)
+ ;;=T36.8X6S^^1^10^85
+ ;;^UTILITY(U,$J,358.3,231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,231,1,3,0)
+ ;;=3^Underdosing of other systemic antibiotics, sequela
+ ;;^UTILITY(U,$J,358.3,231,1,4,0)
+ ;;=4^T36.8X6S
+ ;;^UTILITY(U,$J,358.3,231,2)
+ ;;=^5049417
+ ;;^UTILITY(U,$J,358.3,232,0)
+ ;;=T49.6X6A^^1^10^86
+ ;;^UTILITY(U,$J,358.3,232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,232,1,3,0)
+ ;;=3^Underdosing of otorhino drugs and preparations, init
+ ;;^UTILITY(U,$J,358.3,232,1,4,0)
+ ;;=4^T49.6X6A
+ ;;^UTILITY(U,$J,358.3,232,2)
+ ;;=^5051929
+ ;;^UTILITY(U,$J,358.3,233,0)
+ ;;=T49.6X6D^^1^10^87
+ ;;^UTILITY(U,$J,358.3,233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,233,1,3,0)
+ ;;=3^Underdosing of otorhino drugs and preparations, subs
+ ;;^UTILITY(U,$J,358.3,233,1,4,0)
+ ;;=4^T49.6X6D
+ ;;^UTILITY(U,$J,358.3,233,2)
+ ;;=^5051930
+ ;;^UTILITY(U,$J,358.3,234,0)
+ ;;=T49.6X6S^^1^10^88
+ ;;^UTILITY(U,$J,358.3,234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,234,1,3,0)
+ ;;=3^Underdosing of otorhino drugs and preparations, sequela
+ ;;^UTILITY(U,$J,358.3,234,1,4,0)
+ ;;=4^T49.6X6S
+ ;;^UTILITY(U,$J,358.3,234,2)
+ ;;=^5051931
+ ;;^UTILITY(U,$J,358.3,235,0)
+ ;;=T36.96XA^^1^10^89
+ ;;^UTILITY(U,$J,358.3,235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,235,1,3,0)
+ ;;=3^Underdosing of unspecified systemic antibiotic, init encntr
+ ;;^UTILITY(U,$J,358.3,235,1,4,0)
+ ;;=4^T36.96XA
+ ;;^UTILITY(U,$J,358.3,235,2)
+ ;;=^5049433
+ ;;^UTILITY(U,$J,358.3,236,0)
+ ;;=T36.96XD^^1^10^90
+ ;;^UTILITY(U,$J,358.3,236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,236,1,3,0)
+ ;;=3^Underdosing of unspecified systemic antibiotic, subs encntr
+ ;;^UTILITY(U,$J,358.3,236,1,4,0)
+ ;;=4^T36.96XD
+ ;;^UTILITY(U,$J,358.3,236,2)
+ ;;=^5049434
+ ;;^UTILITY(U,$J,358.3,237,0)
+ ;;=T36.96XS^^1^10^91
+ ;;^UTILITY(U,$J,358.3,237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,237,1,3,0)
+ ;;=3^Underdosing of unspecified systemic antibiotic, sequela
+ ;;^UTILITY(U,$J,358.3,237,1,4,0)
+ ;;=4^T36.96XS
+ ;;^UTILITY(U,$J,358.3,237,2)
+ ;;=^5049435
+ ;;^UTILITY(U,$J,358.3,238,0)
+ ;;=Z45.320^^1^11^1
+ ;;^UTILITY(U,$J,358.3,238,1,0)
+ ;;=^358.31IA^4^2

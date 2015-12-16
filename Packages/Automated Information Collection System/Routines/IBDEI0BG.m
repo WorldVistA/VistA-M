@@ -1,142 +1,136 @@
-IBDEI0BG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI0BG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5415,1,0)
+ ;;^UTILITY(U,$J,358.3,5031,2)
+ ;;=^266557
+ ;;^UTILITY(U,$J,358.3,5032,0)
+ ;;=V16.8^^25^270^5
+ ;;^UTILITY(U,$J,358.3,5032,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5415,1,4,0)
- ;;=4^556.9
- ;;^UTILITY(U,$J,358.3,5415,1,5,0)
- ;;=5^Ulcerative Colitis
- ;;^UTILITY(U,$J,358.3,5415,2)
- ;;=^26044
- ;;^UTILITY(U,$J,358.3,5416,0)
- ;;=787.03^^41^485^92
- ;;^UTILITY(U,$J,358.3,5416,1,0)
+ ;;^UTILITY(U,$J,358.3,5032,1,2,0)
+ ;;=2^V16.8
+ ;;^UTILITY(U,$J,358.3,5032,1,5,0)
+ ;;=5^Family History of SCC/BCC
+ ;;^UTILITY(U,$J,358.3,5032,2)
+ ;;=Family Hx of Skin Cancer^295300
+ ;;^UTILITY(U,$J,358.3,5033,0)
+ ;;=V10.82^^25^270^10
+ ;;^UTILITY(U,$J,358.3,5033,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5416,1,4,0)
- ;;=4^787.03
- ;;^UTILITY(U,$J,358.3,5416,1,5,0)
- ;;=5^Vomiting Alone
- ;;^UTILITY(U,$J,358.3,5416,2)
- ;;=^127237
- ;;^UTILITY(U,$J,358.3,5417,0)
- ;;=789.07^^41^485^46
- ;;^UTILITY(U,$J,358.3,5417,1,0)
+ ;;^UTILITY(U,$J,358.3,5033,1,2,0)
+ ;;=2^V10.82
+ ;;^UTILITY(U,$J,358.3,5033,1,5,0)
+ ;;=5^Personal History of Malig Melanoma
+ ;;^UTILITY(U,$J,358.3,5033,2)
+ ;;=Personal History of Malig Melanoma^295240
+ ;;^UTILITY(U,$J,358.3,5034,0)
+ ;;=V15.82^^25^270^7
+ ;;^UTILITY(U,$J,358.3,5034,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5417,1,4,0)
- ;;=4^789.07
- ;;^UTILITY(U,$J,358.3,5417,1,5,0)
- ;;=5^Generalized Abdominal Pain
- ;;^UTILITY(U,$J,358.3,5417,2)
- ;;=Generalized Abdominal Pain^303324
- ;;^UTILITY(U,$J,358.3,5418,0)
- ;;=564.00^^41^485^12
- ;;^UTILITY(U,$J,358.3,5418,1,0)
+ ;;^UTILITY(U,$J,358.3,5034,1,2,0)
+ ;;=2^V15.82
+ ;;^UTILITY(U,$J,358.3,5034,1,5,0)
+ ;;=5^History Of Tobacco Use
+ ;;^UTILITY(U,$J,358.3,5034,2)
+ ;;=^303405
+ ;;^UTILITY(U,$J,358.3,5035,0)
+ ;;=V13.3^^25^270^6
+ ;;^UTILITY(U,$J,358.3,5035,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5418,1,4,0)
- ;;=4^564.00
- ;;^UTILITY(U,$J,358.3,5418,1,5,0)
- ;;=5^Constipation
- ;;^UTILITY(U,$J,358.3,5418,2)
- ;;=Constipation^323537
- ;;^UTILITY(U,$J,358.3,5419,0)
- ;;=V18.51^^41^485^34
- ;;^UTILITY(U,$J,358.3,5419,1,0)
+ ;;^UTILITY(U,$J,358.3,5035,1,2,0)
+ ;;=2^V13.3
+ ;;^UTILITY(U,$J,358.3,5035,1,5,0)
+ ;;=5^History Of Other Skin Disorder
+ ;;^UTILITY(U,$J,358.3,5035,2)
+ ;;=^295266
+ ;;^UTILITY(U,$J,358.3,5036,0)
+ ;;=V10.83^^25^270^9
+ ;;^UTILITY(U,$J,358.3,5036,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5419,1,4,0)
- ;;=4^V18.51
- ;;^UTILITY(U,$J,358.3,5419,1,5,0)
- ;;=5^Family hx Colonic Polyps
- ;;^UTILITY(U,$J,358.3,5419,2)
- ;;=^334209
- ;;^UTILITY(U,$J,358.3,5420,0)
- ;;=V18.59^^41^485^35
- ;;^UTILITY(U,$J,358.3,5420,1,0)
+ ;;^UTILITY(U,$J,358.3,5036,1,2,0)
+ ;;=2^V10.83
+ ;;^UTILITY(U,$J,358.3,5036,1,5,0)
+ ;;=5^Personal History of BCC/SCC
+ ;;^UTILITY(U,$J,358.3,5036,2)
+ ;;=Hx of Skin Cancer^295241
+ ;;^UTILITY(U,$J,358.3,5037,0)
+ ;;=V15.89^^25^270^2
+ ;;^UTILITY(U,$J,358.3,5037,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5420,1,4,0)
- ;;=4^V18.59
- ;;^UTILITY(U,$J,358.3,5420,1,5,0)
- ;;=5^Family hx Other GI Problems
- ;;^UTILITY(U,$J,358.3,5420,2)
- ;;=^334210
- ;;^UTILITY(U,$J,358.3,5421,0)
- ;;=787.20^^41^485^19
- ;;^UTILITY(U,$J,358.3,5421,1,0)
+ ;;^UTILITY(U,$J,358.3,5037,1,2,0)
+ ;;=2^V15.89
+ ;;^UTILITY(U,$J,358.3,5037,1,5,0)
+ ;;=5^Exposure to Env Contaminants in Pers Gulf
+ ;;^UTILITY(U,$J,358.3,5037,2)
+ ;;=Exposure to Env Contaminante in Pers Gulf^295291
+ ;;^UTILITY(U,$J,358.3,5038,0)
+ ;;=V15.81^^25^270^8
+ ;;^UTILITY(U,$J,358.3,5038,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5421,1,4,0)
- ;;=4^787.20
- ;;^UTILITY(U,$J,358.3,5421,1,5,0)
- ;;=5^Dysphagia
- ;;^UTILITY(U,$J,358.3,5421,2)
- ;;=^335307
- ;;^UTILITY(U,$J,358.3,5422,0)
- ;;=789.59^^41^485^4
- ;;^UTILITY(U,$J,358.3,5422,1,0)
+ ;;^UTILITY(U,$J,358.3,5038,1,2,0)
+ ;;=2^V15.81
+ ;;^UTILITY(U,$J,358.3,5038,1,5,0)
+ ;;=5^History of non-compliance
+ ;;^UTILITY(U,$J,358.3,5038,2)
+ ;;=^295290
+ ;;^UTILITY(U,$J,358.3,5039,0)
+ ;;=757.1^^25^271^2
+ ;;^UTILITY(U,$J,358.3,5039,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5422,1,4,0)
- ;;=4^789.59
- ;;^UTILITY(U,$J,358.3,5422,1,5,0)
- ;;=5^Ascites
- ;;^UTILITY(U,$J,358.3,5422,2)
- ;;=^335282
- ;;^UTILITY(U,$J,358.3,5423,0)
- ;;=533.90^^41^485^76
- ;;^UTILITY(U,$J,358.3,5423,1,0)
+ ;;^UTILITY(U,$J,358.3,5039,1,2,0)
+ ;;=2^757.1
+ ;;^UTILITY(U,$J,358.3,5039,1,5,0)
+ ;;=5^Ichthyosis Congenital
+ ;;^UTILITY(U,$J,358.3,5039,2)
+ ;;=^61019
+ ;;^UTILITY(U,$J,358.3,5040,0)
+ ;;=911.4^^25^272^7
+ ;;^UTILITY(U,$J,358.3,5040,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5423,1,4,0)
- ;;=4^533.90
- ;;^UTILITY(U,$J,358.3,5423,1,5,0)
- ;;=5^PUD
- ;;^UTILITY(U,$J,358.3,5423,2)
- ;;=^93051
- ;;^UTILITY(U,$J,358.3,5424,0)
- ;;=790.6^^41^485^3
- ;;^UTILITY(U,$J,358.3,5424,1,0)
+ ;;^UTILITY(U,$J,358.3,5040,1,2,0)
+ ;;=2^911.4
+ ;;^UTILITY(U,$J,358.3,5040,1,5,0)
+ ;;=5^Insect Bite, Trunk, W/O Infection
+ ;;^UTILITY(U,$J,358.3,5040,2)
+ ;;=^275279
+ ;;^UTILITY(U,$J,358.3,5041,0)
+ ;;=913.4^^25^272^1
+ ;;^UTILITY(U,$J,358.3,5041,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5424,1,4,0)
- ;;=4^790.6
- ;;^UTILITY(U,$J,358.3,5424,1,5,0)
- ;;=5^Abnormal LFT's
- ;;^UTILITY(U,$J,358.3,5424,2)
- ;;=Abnormal LFT's^87228
- ;;^UTILITY(U,$J,358.3,5425,0)
- ;;=V12.72^^41^485^65
- ;;^UTILITY(U,$J,358.3,5425,1,0)
+ ;;^UTILITY(U,$J,358.3,5041,1,2,0)
+ ;;=2^913.4
+ ;;^UTILITY(U,$J,358.3,5041,1,5,0)
+ ;;=5^Insect Bite, Arm, W/O Infection
+ ;;^UTILITY(U,$J,358.3,5041,2)
+ ;;=^275301
+ ;;^UTILITY(U,$J,358.3,5042,0)
+ ;;=910.4^^25^272^2
+ ;;^UTILITY(U,$J,358.3,5042,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5425,1,4,0)
- ;;=4^V12.72
- ;;^UTILITY(U,$J,358.3,5425,1,5,0)
- ;;=5^Hx of Colon Polyps
- ;;^UTILITY(U,$J,358.3,5425,2)
- ;;=^303401
- ;;^UTILITY(U,$J,358.3,5426,0)
- ;;=530.13^^41^485^33
- ;;^UTILITY(U,$J,358.3,5426,1,0)
+ ;;^UTILITY(U,$J,358.3,5042,1,2,0)
+ ;;=2^910.4
+ ;;^UTILITY(U,$J,358.3,5042,1,5,0)
+ ;;=5^Insect Bite, Face, W/O Infection
+ ;;^UTILITY(U,$J,358.3,5042,2)
+ ;;=^275267
+ ;;^UTILITY(U,$J,358.3,5043,0)
+ ;;=915.4^^25^272^3
+ ;;^UTILITY(U,$J,358.3,5043,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5426,1,4,0)
- ;;=4^530.13
- ;;^UTILITY(U,$J,358.3,5426,1,5,0)
- ;;=5^Esophagitis,Eosinophilic
- ;;^UTILITY(U,$J,358.3,5426,2)
- ;;=^336605
- ;;^UTILITY(U,$J,358.3,5427,0)
- ;;=535.70^^41^485^45
- ;;^UTILITY(U,$J,358.3,5427,1,0)
+ ;;^UTILITY(U,$J,358.3,5043,1,2,0)
+ ;;=2^915.4
+ ;;^UTILITY(U,$J,358.3,5043,1,5,0)
+ ;;=5^Insect Bite, Finger, W/O Infection
+ ;;^UTILITY(U,$J,358.3,5043,2)
+ ;;=^275323
+ ;;^UTILITY(U,$J,358.3,5044,0)
+ ;;=917.4^^25^272^4
+ ;;^UTILITY(U,$J,358.3,5044,1,0)
  ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5427,1,4,0)
- ;;=4^535.70
- ;;^UTILITY(U,$J,358.3,5427,1,5,0)
- ;;=5^Gastritis,Eosinophilic w/o Hemorrhage
- ;;^UTILITY(U,$J,358.3,5427,2)
- ;;=^336750
- ;;^UTILITY(U,$J,358.3,5428,0)
- ;;=535.71^^41^485^44
- ;;^UTILITY(U,$J,358.3,5428,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5428,1,4,0)
- ;;=4^535.71
- ;;^UTILITY(U,$J,358.3,5428,1,5,0)
- ;;=5^Gastritis,Eosinophilic w/ Hemorrhage
- ;;^UTILITY(U,$J,358.3,5428,2)
- ;;=^336606
+ ;;^UTILITY(U,$J,358.3,5044,1,2,0)
+ ;;=2^917.4
+ ;;^UTILITY(U,$J,358.3,5044,1,5,0)
+ ;;=5^Insect Bite, Foot, W/O Infection 
+ ;;^UTILITY(U,$J,358.3,5044,2)
+ ;;=^275345

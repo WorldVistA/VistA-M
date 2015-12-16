@@ -1,120 +1,136 @@
-IBDEI1OI ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1OI ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30158,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30158,1,4,0)
- ;;=4^S61.317A
- ;;^UTILITY(U,$J,358.3,30158,2)
- ;;=^5032927
- ;;^UTILITY(U,$J,358.3,30159,0)
- ;;=S61.217A^^189^1909^23
- ;;^UTILITY(U,$J,358.3,30159,1,0)
+ ;;^UTILITY(U,$J,358.3,29800,1,4,0)
+ ;;=4^H11.33
+ ;;^UTILITY(U,$J,358.3,29800,2)
+ ;;=^5004784
+ ;;^UTILITY(U,$J,358.3,29801,0)
+ ;;=H11.31^^177^1898^3
+ ;;^UTILITY(U,$J,358.3,29801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30159,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30159,1,4,0)
- ;;=4^S61.217A
- ;;^UTILITY(U,$J,358.3,30159,2)
- ;;=^5032792
- ;;^UTILITY(U,$J,358.3,30160,0)
- ;;=S61.313A^^189^1909^25
- ;;^UTILITY(U,$J,358.3,30160,1,0)
+ ;;^UTILITY(U,$J,358.3,29801,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,29801,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,29801,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,29802,0)
+ ;;=H11.32^^177^1898^2
+ ;;^UTILITY(U,$J,358.3,29802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30160,1,3,0)
- ;;=3^Laceration w/o FB of Left Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30160,1,4,0)
- ;;=4^S61.313A
- ;;^UTILITY(U,$J,358.3,30160,2)
- ;;=^5032915
- ;;^UTILITY(U,$J,358.3,30161,0)
- ;;=S61.213A^^189^1909^26
- ;;^UTILITY(U,$J,358.3,30161,1,0)
+ ;;^UTILITY(U,$J,358.3,29802,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,29802,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,29802,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,29803,0)
+ ;;=H61.23^^177^1898^12
+ ;;^UTILITY(U,$J,358.3,29803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30161,1,3,0)
- ;;=3^Laceration w/o FB of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30161,1,4,0)
- ;;=4^S61.213A
- ;;^UTILITY(U,$J,358.3,30161,2)
- ;;=^5032780
- ;;^UTILITY(U,$J,358.3,30162,0)
- ;;=S61.315A^^189^1909^27
- ;;^UTILITY(U,$J,358.3,30162,1,0)
+ ;;^UTILITY(U,$J,358.3,29803,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,29803,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,29803,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,29804,0)
+ ;;=H61.22^^177^1898^13
+ ;;^UTILITY(U,$J,358.3,29804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30162,1,3,0)
- ;;=3^Laceration w/o FB of Left Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30162,1,4,0)
- ;;=4^S61.315A
- ;;^UTILITY(U,$J,358.3,30162,2)
- ;;=^5032921
- ;;^UTILITY(U,$J,358.3,30163,0)
- ;;=S61.215A^^189^1909^28
- ;;^UTILITY(U,$J,358.3,30163,1,0)
+ ;;^UTILITY(U,$J,358.3,29804,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,29804,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,29804,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,29805,0)
+ ;;=H66.91^^177^1898^17
+ ;;^UTILITY(U,$J,358.3,29805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30163,1,3,0)
- ;;=3^Laceration w/o FB of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30163,1,4,0)
- ;;=4^S61.215A
- ;;^UTILITY(U,$J,358.3,30163,2)
- ;;=^5032786
- ;;^UTILITY(U,$J,358.3,30164,0)
- ;;=S41.012A^^189^1909^29
- ;;^UTILITY(U,$J,358.3,30164,1,0)
+ ;;^UTILITY(U,$J,358.3,29805,1,3,0)
+ ;;=3^Otitis Media,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,29805,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,29805,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,29806,0)
+ ;;=H66.92^^177^1898^16
+ ;;^UTILITY(U,$J,358.3,29806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30164,1,3,0)
- ;;=3^Laceration w/o FB of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,30164,1,4,0)
- ;;=4^S41.012A
- ;;^UTILITY(U,$J,358.3,30164,2)
- ;;=^5026300
- ;;^UTILITY(U,$J,358.3,30165,0)
- ;;=S61.112A^^189^1909^31
- ;;^UTILITY(U,$J,358.3,30165,1,0)
+ ;;^UTILITY(U,$J,358.3,29806,1,3,0)
+ ;;=3^Otitis Media,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,29806,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,29806,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,29807,0)
+ ;;=H66.93^^177^1898^15
+ ;;^UTILITY(U,$J,358.3,29807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30165,1,3,0)
- ;;=3^Laceration w/o FB of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30165,1,4,0)
- ;;=4^S61.112A
- ;;^UTILITY(U,$J,358.3,30165,2)
- ;;=^5032729
- ;;^UTILITY(U,$J,358.3,30166,0)
- ;;=S61.012A^^189^1909^32
- ;;^UTILITY(U,$J,358.3,30166,1,0)
+ ;;^UTILITY(U,$J,358.3,29807,1,3,0)
+ ;;=3^Otitis Media,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,29807,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,29807,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,29808,0)
+ ;;=H91.91^^177^1898^11
+ ;;^UTILITY(U,$J,358.3,29808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30166,1,3,0)
- ;;=3^Laceration w/o FB of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,30166,1,4,0)
- ;;=4^S61.012A
- ;;^UTILITY(U,$J,358.3,30166,2)
- ;;=^5032693
- ;;^UTILITY(U,$J,358.3,30167,0)
- ;;=S61.512A^^189^1909^33
- ;;^UTILITY(U,$J,358.3,30167,1,0)
+ ;;^UTILITY(U,$J,358.3,29808,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,29808,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,29808,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,29809,0)
+ ;;=H91.92^^177^1898^10
+ ;;^UTILITY(U,$J,358.3,29809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30167,1,3,0)
- ;;=3^Laceration w/o FB of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,30167,1,4,0)
- ;;=4^S61.512A
- ;;^UTILITY(U,$J,358.3,30167,2)
- ;;=^5033029
- ;;^UTILITY(U,$J,358.3,30168,0)
- ;;=S01.21XA^^189^1909^36
- ;;^UTILITY(U,$J,358.3,30168,1,0)
+ ;;^UTILITY(U,$J,358.3,29809,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,29809,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,29809,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,29810,0)
+ ;;=H91.93^^177^1898^9
+ ;;^UTILITY(U,$J,358.3,29810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30168,1,3,0)
- ;;=3^Laceration w/o FB of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,30168,1,4,0)
- ;;=4^S01.21XA
- ;;^UTILITY(U,$J,358.3,30168,2)
- ;;=^5020093
- ;;^UTILITY(U,$J,358.3,30169,0)
- ;;=S01.81XA^^189^1909^3
- ;;^UTILITY(U,$J,358.3,30169,1,0)
+ ;;^UTILITY(U,$J,358.3,29810,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,29810,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,29810,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,29811,0)
+ ;;=H61.21^^177^1898^14
+ ;;^UTILITY(U,$J,358.3,29811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30169,1,3,0)
- ;;=3^Laceration w/o FB of Head,Other Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,30169,1,4,0)
- ;;=4^S01.81XA
- ;;^UTILITY(U,$J,358.3,30169,2)
- ;;=^5020225
+ ;;^UTILITY(U,$J,358.3,29811,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,29811,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,29811,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,29812,0)
+ ;;=B18.2^^177^1899^6
+ ;;^UTILITY(U,$J,358.3,29812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29812,1,3,0)
+ ;;=3^Chr Viral Hepatitis C
+ ;;^UTILITY(U,$J,358.3,29812,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,29812,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,29813,0)
+ ;;=D12.6^^177^1899^5
+ ;;^UTILITY(U,$J,358.3,29813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29813,1,3,0)
+ ;;=3^Benign Neop of Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,29813,1,4,0)
+ ;;=4^D12.6

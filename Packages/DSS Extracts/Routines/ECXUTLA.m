@@ -1,5 +1,5 @@
-ECXUTLA ;ALB/JAP - Utilities for Audit Reports ; 4/16/08 4:04pm
- ;;3.0;DSS EXTRACTS;**8,14,112**;Dec 22, 1997;Build 26
+ECXUTLA ;ALB/JAP - Utilities for Audit Reports ;2/24/15  10:22
+ ;;3.0;DSS EXTRACTS;**8,14,112,154**;Dec 22, 1997;Build 13
  ;
 AUDIT(ECXHEAD,ECXERR,ECXARRAY,ECXAUD) ;set audit report parameters
  ;   input
@@ -34,7 +34,7 @@ AUDIT(ECXHEAD,ECXERR,ECXARRAY,ECXAUD) ;set audit report parameters
  Q:ECXERR
  S DIC="^ECX(727,",DIC(0)="AEMQ",DIC("S")="I $P(^(0),U,3)=$P(ECXTYPE,U),'$D(^(""PURG""))"
  D ^DIC
- I Y=-1!($G(DUOUT))!($G(DTOUT)) S ECXERR=1 Q
+ I Y=-1!($G(DUOUT))!($G(DTOUT)) D:'$G(ECXAUD) RUN S ECXERR=1 Q  ;154
  S DIC="^ECX(727,",(DA,ECXDA)=+Y,DR=".01;1;2;3;4;5;15;300",DIQ="ECXARR",DIQ(0)="IE"
  D EN^DIQ1
  W !!,?5,"Extract:      ",ECXARR(727,ECXDA,2,"E")," #",ECXDA
@@ -214,4 +214,27 @@ SASHEAD(ECXFL,ECXHEAD,ECXDIV,ECXARRAY,ECXPG,ECXTAB) ;header and page control
  I '$D(ECXDIV(ECXFL)) W !,"Division/Site:        "_"Unknown",?68,"Page: "_ECXPG
  W !!,"Feeder Location",?ECXTAB,"Feeder Key",?68,"Quantity"
  W !,LN,!
+ Q
+ ;
+RUN ;154 Section allows extract to be run from within audit report
+ N DIR,X,Y,DTOUT,DUOUT,ECPACK,ECGRP,ECFILE,ECRTN,ECPIECE,ECVER,ECHEAD,ECXAUDIT
+ W !
+ S DIR("A",1)="You didn't select an existing extract log record number.  Remember"
+ S DIR("A",2)="the extract must be run first, before you can run this audit."
+ S DIR("A",3)="If there is no log record number, run the extract from the Package Extracts"
+ S DIR("A",4)="menu or if unavailable there, from here (you will be prompted to"
+ S DIR("A",5)="queue the extract below)."
+ S DIR("A",6)=""
+ S DIR("A",7)="Remember that if you queue the extract to run from here"
+ S DIR("A",8)="(the extract audit report menu), you may have to wait overnight for the"
+ S DIR("A",9)="extract to finish. It must finish before you can pick its log record number"
+ S DIR("A",10)="to run the extract audit."
+ S DIR("A",11)=""
+ S DIR("A")="Would you like to queue the "_ECXHEAD_" extract"
+ S DIR(0)="Y",DIR("B")="NO" D ^DIR K DIR
+ Q:Y'=1
+ S ECHEAD=ECXHEAD,ECXAUDIT=1
+ D ECXDEF^ECXUTL2(ECHEAD,.ECPACK,.ECGRP,.ECFILE,.ECRTN,.ECPIECE,.ECVER)
+ I ECFILE="" Q
+ D ^ECXTRAC,^ECXKILL
  Q

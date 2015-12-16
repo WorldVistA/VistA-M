@@ -1,132 +1,136 @@
-IBDEI1QG ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1QG ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31025,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
- ;;^UTILITY(U,$J,358.3,31025,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,31025,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,31026,0)
- ;;=E78.0^^190^1931^10
- ;;^UTILITY(U,$J,358.3,31026,1,0)
+ ;;^UTILITY(U,$J,358.3,30655,1,3,0)
+ ;;=3^Cystocele, midline
+ ;;^UTILITY(U,$J,358.3,30655,1,4,0)
+ ;;=4^N81.11
+ ;;^UTILITY(U,$J,358.3,30655,2)
+ ;;=^331534
+ ;;^UTILITY(U,$J,358.3,30656,0)
+ ;;=N81.0^^178^1924^101
+ ;;^UTILITY(U,$J,358.3,30656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31026,1,3,0)
- ;;=3^Pure Hypercholesterolemia
- ;;^UTILITY(U,$J,358.3,31026,1,4,0)
- ;;=4^E78.0
- ;;^UTILITY(U,$J,358.3,31026,2)
- ;;=^5002966
- ;;^UTILITY(U,$J,358.3,31027,0)
- ;;=E78.1^^190^1931^11
- ;;^UTILITY(U,$J,358.3,31027,1,0)
+ ;;^UTILITY(U,$J,358.3,30656,1,3,0)
+ ;;=3^Urethrocele
+ ;;^UTILITY(U,$J,358.3,30656,1,4,0)
+ ;;=4^N81.0
+ ;;^UTILITY(U,$J,358.3,30656,2)
+ ;;=^331536
+ ;;^UTILITY(U,$J,358.3,30657,0)
+ ;;=N81.6^^178^1924^86
+ ;;^UTILITY(U,$J,358.3,30657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31027,1,3,0)
- ;;=3^Pure Hyperglyceridemia
- ;;^UTILITY(U,$J,358.3,31027,1,4,0)
- ;;=4^E78.1
- ;;^UTILITY(U,$J,358.3,31027,2)
- ;;=^101303
- ;;^UTILITY(U,$J,358.3,31028,0)
- ;;=E78.2^^190^1931^9
- ;;^UTILITY(U,$J,358.3,31028,1,0)
+ ;;^UTILITY(U,$J,358.3,30657,1,3,0)
+ ;;=3^Rectocele
+ ;;^UTILITY(U,$J,358.3,30657,1,4,0)
+ ;;=4^N81.6
+ ;;^UTILITY(U,$J,358.3,30657,2)
+ ;;=^259590
+ ;;^UTILITY(U,$J,358.3,30658,0)
+ ;;=N81.2^^178^1924^57
+ ;;^UTILITY(U,$J,358.3,30658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31028,1,3,0)
- ;;=3^Mixed Hyperlipidemia
- ;;^UTILITY(U,$J,358.3,31028,1,4,0)
- ;;=4^E78.2
- ;;^UTILITY(U,$J,358.3,31028,2)
- ;;=^78424
- ;;^UTILITY(U,$J,358.3,31029,0)
- ;;=I10.^^190^1931^1
- ;;^UTILITY(U,$J,358.3,31029,1,0)
+ ;;^UTILITY(U,$J,358.3,30658,1,3,0)
+ ;;=3^Incomplete uterovaginal prolapse
+ ;;^UTILITY(U,$J,358.3,30658,1,4,0)
+ ;;=4^N81.2
+ ;;^UTILITY(U,$J,358.3,30658,2)
+ ;;=^5015839
+ ;;^UTILITY(U,$J,358.3,30659,0)
+ ;;=N81.4^^178^1924^102
+ ;;^UTILITY(U,$J,358.3,30659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31029,1,3,0)
- ;;=3^Essential Primary Hypertension
- ;;^UTILITY(U,$J,358.3,31029,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,31029,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,31030,0)
- ;;=I11.9^^190^1931^8
- ;;^UTILITY(U,$J,358.3,31030,1,0)
+ ;;^UTILITY(U,$J,358.3,30659,1,3,0)
+ ;;=3^Uterovaginal prolapse, unspecified
+ ;;^UTILITY(U,$J,358.3,30659,1,4,0)
+ ;;=4^N81.4
+ ;;^UTILITY(U,$J,358.3,30659,2)
+ ;;=^5015841
+ ;;^UTILITY(U,$J,358.3,30660,0)
+ ;;=N83.0^^178^1924^55
+ ;;^UTILITY(U,$J,358.3,30660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31030,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,31030,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,31030,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,31031,0)
- ;;=I11.0^^190^1931^7
- ;;^UTILITY(U,$J,358.3,31031,1,0)
+ ;;^UTILITY(U,$J,358.3,30660,1,3,0)
+ ;;=3^Follicular cyst of ovary
+ ;;^UTILITY(U,$J,358.3,30660,1,4,0)
+ ;;=4^N83.0
+ ;;^UTILITY(U,$J,358.3,30660,2)
+ ;;=^5015854
+ ;;^UTILITY(U,$J,358.3,30661,0)
+ ;;=N83.1^^178^1924^33
+ ;;^UTILITY(U,$J,358.3,30661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31031,1,3,0)
- ;;=3^Hypertensive Heart Disease w/ Heart Failure
- ;;^UTILITY(U,$J,358.3,31031,1,4,0)
- ;;=4^I11.0
- ;;^UTILITY(U,$J,358.3,31031,2)
- ;;=^5007063
- ;;^UTILITY(U,$J,358.3,31032,0)
- ;;=I12.0^^190^1931^6
- ;;^UTILITY(U,$J,358.3,31032,1,0)
+ ;;^UTILITY(U,$J,358.3,30661,1,3,0)
+ ;;=3^Corpus luteum cyst
+ ;;^UTILITY(U,$J,358.3,30661,1,4,0)
+ ;;=4^N83.1
+ ;;^UTILITY(U,$J,358.3,30661,2)
+ ;;=^28631
+ ;;^UTILITY(U,$J,358.3,30662,0)
+ ;;=N83.8^^178^1924^73
+ ;;^UTILITY(U,$J,358.3,30662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31032,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
- ;;^UTILITY(U,$J,358.3,31032,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,31032,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,31033,0)
- ;;=I13.10^^190^1931^4
- ;;^UTILITY(U,$J,358.3,31033,1,0)
+ ;;^UTILITY(U,$J,358.3,30662,1,3,0)
+ ;;=3^Noninflammatory disord of ovary, fallop and broad ligmt NEC
+ ;;^UTILITY(U,$J,358.3,30662,1,4,0)
+ ;;=4^N83.8
+ ;;^UTILITY(U,$J,358.3,30662,2)
+ ;;=^5015864
+ ;;^UTILITY(U,$J,358.3,30663,0)
+ ;;=N83.20^^178^1924^75
+ ;;^UTILITY(U,$J,358.3,30663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31033,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,31033,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,31033,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,31034,0)
- ;;=I13.0^^190^1931^2
- ;;^UTILITY(U,$J,358.3,31034,1,0)
+ ;;^UTILITY(U,$J,358.3,30663,1,3,0)
+ ;;=3^Ovarian Cysts,Unspec
+ ;;^UTILITY(U,$J,358.3,30663,1,4,0)
+ ;;=4^N83.20
+ ;;^UTILITY(U,$J,358.3,30663,2)
+ ;;=^5015855
+ ;;^UTILITY(U,$J,358.3,30664,0)
+ ;;=N83.29^^178^1924^74
+ ;;^UTILITY(U,$J,358.3,30664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31034,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,31034,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,31034,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,31035,0)
- ;;=I13.11^^190^1931^5
- ;;^UTILITY(U,$J,358.3,31035,1,0)
+ ;;^UTILITY(U,$J,358.3,30664,1,3,0)
+ ;;=3^Ovarian Cysts NEC
+ ;;^UTILITY(U,$J,358.3,30664,1,4,0)
+ ;;=4^N83.29
+ ;;^UTILITY(U,$J,358.3,30664,2)
+ ;;=^5015856
+ ;;^UTILITY(U,$J,358.3,30665,0)
+ ;;=N85.00^^178^1924^44
+ ;;^UTILITY(U,$J,358.3,30665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31035,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
- ;;^UTILITY(U,$J,358.3,31035,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,31035,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,31036,0)
- ;;=I13.2^^190^1931^3
- ;;^UTILITY(U,$J,358.3,31036,1,0)
+ ;;^UTILITY(U,$J,358.3,30665,1,3,0)
+ ;;=3^Endometrial hyperplasia, unspecified
+ ;;^UTILITY(U,$J,358.3,30665,1,4,0)
+ ;;=4^N85.00
+ ;;^UTILITY(U,$J,358.3,30665,2)
+ ;;=^331542
+ ;;^UTILITY(U,$J,358.3,30666,0)
+ ;;=N87.9^^178^1924^41
+ ;;^UTILITY(U,$J,358.3,30666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31036,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
- ;;^UTILITY(U,$J,358.3,31036,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,31036,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,31037,0)
- ;;=B07.9^^190^1932^289
- ;;^UTILITY(U,$J,358.3,31037,1,0)
+ ;;^UTILITY(U,$J,358.3,30666,1,3,0)
+ ;;=3^Dysplasia of cervix uteri, unspecified
+ ;;^UTILITY(U,$J,358.3,30666,1,4,0)
+ ;;=4^N87.9
+ ;;^UTILITY(U,$J,358.3,30666,2)
+ ;;=^5015877
+ ;;^UTILITY(U,$J,358.3,30667,0)
+ ;;=N88.2^^178^1924^94
+ ;;^UTILITY(U,$J,358.3,30667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31037,1,3,0)
- ;;=3^Viral Wart,Unspec
- ;;^UTILITY(U,$J,358.3,31037,1,4,0)
- ;;=4^B07.9
- ;;^UTILITY(U,$J,358.3,31037,2)
- ;;=^5000519
- ;;^UTILITY(U,$J,358.3,31038,0)
- ;;=A63.0^^190^1932^34
+ ;;^UTILITY(U,$J,358.3,30667,1,3,0)
+ ;;=3^Stricture and stenosis of cervix uteri
+ ;;^UTILITY(U,$J,358.3,30667,1,4,0)
+ ;;=4^N88.2
+ ;;^UTILITY(U,$J,358.3,30667,2)
+ ;;=^5015880
+ ;;^UTILITY(U,$J,358.3,30668,0)
+ ;;=N84.1^^178^1924^80
+ ;;^UTILITY(U,$J,358.3,30668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30668,1,3,0)
+ ;;=3^Polyp of cervix uteri

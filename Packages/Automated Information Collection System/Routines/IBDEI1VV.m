@@ -1,120 +1,130 @@
-IBDEI1VV ; ; 20-MAY-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;OCT 15, 2014
+IBDEI1VV ; ; 06-AUG-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33508,2)
- ;;=^5042778
- ;;^UTILITY(U,$J,358.3,33509,0)
- ;;=S82.872N^^191^1968^141
- ;;^UTILITY(U,$J,358.3,33509,1,0)
+ ;;^UTILITY(U,$J,358.3,33130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33509,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33509,1,4,0)
- ;;=4^S82.872N
- ;;^UTILITY(U,$J,358.3,33509,2)
- ;;=^5042794
- ;;^UTILITY(U,$J,358.3,33510,0)
- ;;=S82.871M^^191^1968^147
- ;;^UTILITY(U,$J,358.3,33510,1,0)
+ ;;^UTILITY(U,$J,358.3,33130,1,3,0)
+ ;;=3^Rheumatoid Nodule,Mult Sites
+ ;;^UTILITY(U,$J,358.3,33130,1,4,0)
+ ;;=4^M06.39
+ ;;^UTILITY(U,$J,358.3,33130,2)
+ ;;=^5010119
+ ;;^UTILITY(U,$J,358.3,33131,0)
+ ;;=M15.0^^182^1998^94
+ ;;^UTILITY(U,$J,358.3,33131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33510,1,3,0)
- ;;=3^Disp pilon fx rt tib, subs for opn fx type I/2 w/ nonunion
- ;;^UTILITY(U,$J,358.3,33510,1,4,0)
- ;;=4^S82.871M
- ;;^UTILITY(U,$J,358.3,33510,2)
- ;;=^5042777
- ;;^UTILITY(U,$J,358.3,33511,0)
- ;;=S82.872M^^191^1968^142
- ;;^UTILITY(U,$J,358.3,33511,1,0)
+ ;;^UTILITY(U,$J,358.3,33131,1,3,0)
+ ;;=3^Primary Generalized Osteoarthritis
+ ;;^UTILITY(U,$J,358.3,33131,1,4,0)
+ ;;=4^M15.0
+ ;;^UTILITY(U,$J,358.3,33131,2)
+ ;;=^5010762
+ ;;^UTILITY(U,$J,358.3,33132,0)
+ ;;=M06.9^^182^1998^129
+ ;;^UTILITY(U,$J,358.3,33132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33511,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type I/2 w/nonunion
- ;;^UTILITY(U,$J,358.3,33511,1,4,0)
- ;;=4^S82.872M
- ;;^UTILITY(U,$J,358.3,33511,2)
- ;;=^5042793
- ;;^UTILITY(U,$J,358.3,33512,0)
- ;;=S82.871K^^191^1968^148
- ;;^UTILITY(U,$J,358.3,33512,1,0)
+ ;;^UTILITY(U,$J,358.3,33132,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,33132,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,33132,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,33133,0)
+ ;;=M16.0^^182^1998^97
+ ;;^UTILITY(U,$J,358.3,33133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33512,1,3,0)
- ;;=3^Disp pilon fx rt tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33512,1,4,0)
- ;;=4^S82.871K
- ;;^UTILITY(U,$J,358.3,33512,2)
- ;;=^5042776
- ;;^UTILITY(U,$J,358.3,33513,0)
- ;;=S82.872K^^191^1968^143
- ;;^UTILITY(U,$J,358.3,33513,1,0)
+ ;;^UTILITY(U,$J,358.3,33133,1,3,0)
+ ;;=3^Primary Osteoarthritis of Hip,Bilateral
+ ;;^UTILITY(U,$J,358.3,33133,1,4,0)
+ ;;=4^M16.0
+ ;;^UTILITY(U,$J,358.3,33133,2)
+ ;;=^5010769
+ ;;^UTILITY(U,$J,358.3,33134,0)
+ ;;=M16.11^^182^1998^106
+ ;;^UTILITY(U,$J,358.3,33134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33513,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33513,1,4,0)
- ;;=4^S82.872K
- ;;^UTILITY(U,$J,358.3,33513,2)
- ;;=^5042792
- ;;^UTILITY(U,$J,358.3,33514,0)
- ;;=S82.874N^^191^1968^373
- ;;^UTILITY(U,$J,358.3,33514,1,0)
+ ;;^UTILITY(U,$J,358.3,33134,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,33134,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,33134,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,33135,0)
+ ;;=M16.12^^182^1998^100
+ ;;^UTILITY(U,$J,358.3,33135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33514,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33514,1,4,0)
- ;;=4^S82.874N
- ;;^UTILITY(U,$J,358.3,33514,2)
- ;;=^5042826
- ;;^UTILITY(U,$J,358.3,33515,0)
- ;;=S82.875N^^191^1968^368
- ;;^UTILITY(U,$J,358.3,33515,1,0)
+ ;;^UTILITY(U,$J,358.3,33135,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,33135,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,33135,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,33136,0)
+ ;;=M17.0^^182^1998^96
+ ;;^UTILITY(U,$J,358.3,33136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33515,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,33515,1,4,0)
- ;;=4^S82.875N
- ;;^UTILITY(U,$J,358.3,33515,2)
- ;;=^5042842
- ;;^UTILITY(U,$J,358.3,33516,0)
- ;;=S82.874M^^191^1968^374
- ;;^UTILITY(U,$J,358.3,33516,1,0)
+ ;;^UTILITY(U,$J,358.3,33136,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,33136,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,33136,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,33137,0)
+ ;;=M17.11^^182^1998^107
+ ;;^UTILITY(U,$J,358.3,33137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33516,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33516,1,4,0)
- ;;=4^S82.874M
- ;;^UTILITY(U,$J,358.3,33516,2)
- ;;=^5042825
- ;;^UTILITY(U,$J,358.3,33517,0)
- ;;=S82.875M^^191^1968^369
- ;;^UTILITY(U,$J,358.3,33517,1,0)
+ ;;^UTILITY(U,$J,358.3,33137,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,33137,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,33137,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,33138,0)
+ ;;=M17.12^^182^1998^101
+ ;;^UTILITY(U,$J,358.3,33138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33517,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,33517,1,4,0)
- ;;=4^S82.875M
- ;;^UTILITY(U,$J,358.3,33517,2)
- ;;=^5042841
- ;;^UTILITY(U,$J,358.3,33518,0)
- ;;=S82.874K^^191^1968^372
- ;;^UTILITY(U,$J,358.3,33518,1,0)
+ ;;^UTILITY(U,$J,358.3,33138,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,33138,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,33138,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,33139,0)
+ ;;=M18.0^^182^1998^95
+ ;;^UTILITY(U,$J,358.3,33139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33518,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33518,1,4,0)
- ;;=4^S82.874K
- ;;^UTILITY(U,$J,358.3,33518,2)
- ;;=^5042824
- ;;^UTILITY(U,$J,358.3,33519,0)
- ;;=S82.875K^^191^1968^367
- ;;^UTILITY(U,$J,358.3,33519,1,0)
+ ;;^UTILITY(U,$J,358.3,33139,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,33139,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,33139,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,33140,0)
+ ;;=M18.11^^182^1998^105
+ ;;^UTILITY(U,$J,358.3,33140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33519,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,33519,1,4,0)
- ;;=4^S82.875K
- ;;^UTILITY(U,$J,358.3,33519,2)
- ;;=^5042840
- ;;^UTILITY(U,$J,358.3,33520,0)
- ;;=S82.845K^^191^1968^240
- ;;^UTILITY(U,$J,358.3,33520,1,0)
+ ;;^UTILITY(U,$J,358.3,33140,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,33140,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,33140,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,33141,0)
+ ;;=M18.12^^182^1998^99
+ ;;^UTILITY(U,$J,358.3,33141,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33141,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,33141,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,33141,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,33142,0)
+ ;;=M19.011^^182^1998^108
+ ;;^UTILITY(U,$J,358.3,33142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33142,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,33142,1,4,0)
+ ;;=4^M19.011
