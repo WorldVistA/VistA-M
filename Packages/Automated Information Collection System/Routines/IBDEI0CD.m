@@ -1,134 +1,128 @@
-IBDEI0CD ; ; 06-AUG-2015
+IBDEI0CD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5508,0)
- ;;=87220^^26^349^4^^^^1
- ;;^UTILITY(U,$J,358.3,5508,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5508,1,2,0)
- ;;=2^87220
- ;;^UTILITY(U,$J,358.3,5508,1,3,0)
- ;;=3^Tissue Exam for Fungi
- ;;^UTILITY(U,$J,358.3,5509,0)
- ;;=17311^^26^350^1^^^^1
- ;;^UTILITY(U,$J,358.3,5509,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5509,1,2,0)
- ;;=2^17311
- ;;^UTILITY(U,$J,358.3,5509,1,3,0)
- ;;=3^MOHS 1 Stage H/N/HF/G
- ;;^UTILITY(U,$J,358.3,5510,0)
- ;;=17312^^26^350^2^^^^1
- ;;^UTILITY(U,$J,358.3,5510,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5510,1,2,0)
- ;;=2^17312
- ;;^UTILITY(U,$J,358.3,5510,1,3,0)
- ;;=3^MOHS H/N/HF/G,Ea Addl Stage
- ;;^UTILITY(U,$J,358.3,5511,0)
- ;;=17313^^26^350^3^^^^1
- ;;^UTILITY(U,$J,358.3,5511,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5511,1,2,0)
- ;;=2^17313
- ;;^UTILITY(U,$J,358.3,5511,1,3,0)
- ;;=3^MOHS 1 Stage T/A/L
- ;;^UTILITY(U,$J,358.3,5512,0)
- ;;=17314^^26^350^4^^^^1
- ;;^UTILITY(U,$J,358.3,5512,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5512,1,2,0)
- ;;=2^17314
- ;;^UTILITY(U,$J,358.3,5512,1,3,0)
- ;;=3^MOHS T/A/L,Ea Addl Stage
- ;;^UTILITY(U,$J,358.3,5513,0)
- ;;=17315^^26^350^5^^^^1
- ;;^UTILITY(U,$J,358.3,5513,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5513,1,2,0)
- ;;=2^17315
- ;;^UTILITY(U,$J,358.3,5513,1,3,0)
- ;;=3^MOHS Surg Addl Block
- ;;^UTILITY(U,$J,358.3,5514,0)
- ;;=96372^^26^351^8^^^^1
- ;;^UTILITY(U,$J,358.3,5514,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5514,1,2,0)
- ;;=2^96372
- ;;^UTILITY(U,$J,358.3,5514,1,3,0)
- ;;=3^Ther/Proph/Diag Inj SC/IM
- ;;^UTILITY(U,$J,358.3,5515,0)
- ;;=96406^^26^351^2^^^^1
- ;;^UTILITY(U,$J,358.3,5515,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5515,1,2,0)
- ;;=2^96406
- ;;^UTILITY(U,$J,358.3,5515,1,3,0)
- ;;=3^Chemo Intralesional > 7
- ;;^UTILITY(U,$J,358.3,5516,0)
- ;;=96405^^26^351^1^^^^1
- ;;^UTILITY(U,$J,358.3,5516,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5516,1,2,0)
- ;;=2^96405
- ;;^UTILITY(U,$J,358.3,5516,1,3,0)
- ;;=3^Chemo Intralesional Up to 7
- ;;^UTILITY(U,$J,358.3,5517,0)
- ;;=C9800^^26^351^3^^^^1
- ;;^UTILITY(U,$J,358.3,5517,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5517,1,2,0)
- ;;=2^C9800
- ;;^UTILITY(U,$J,358.3,5517,1,3,0)
- ;;=3^Dermal Filler Inj Px/Supply
- ;;^UTILITY(U,$J,358.3,5518,0)
- ;;=11901^^26^351^7^^^^1
- ;;^UTILITY(U,$J,358.3,5518,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5518,1,2,0)
- ;;=2^11901
- ;;^UTILITY(U,$J,358.3,5518,1,3,0)
- ;;=3^Skin Lesion Injection,Addl Lesions
- ;;^UTILITY(U,$J,358.3,5519,0)
- ;;=11900^^26^351^6^^^^1
- ;;^UTILITY(U,$J,358.3,5519,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5519,1,2,0)
- ;;=2^11900
- ;;^UTILITY(U,$J,358.3,5519,1,3,0)
- ;;=3^Skin Lesion Injection,Up to 7 Lesions
- ;;^UTILITY(U,$J,358.3,5520,0)
- ;;=Q2026^^26^351^4^^^^1
- ;;^UTILITY(U,$J,358.3,5520,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5520,1,2,0)
- ;;=2^Q2026
- ;;^UTILITY(U,$J,358.3,5520,1,3,0)
- ;;=3^Radiesse Inj 0.1 ml
- ;;^UTILITY(U,$J,358.3,5521,0)
- ;;=Q2028^^26^351^5^^^^1
- ;;^UTILITY(U,$J,358.3,5521,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5521,1,2,0)
- ;;=2^Q2028
- ;;^UTILITY(U,$J,358.3,5521,1,3,0)
- ;;=3^Sculptra Inj 0.5mg
- ;;^UTILITY(U,$J,358.3,5522,0)
- ;;=15780^^26^352^6^^^^1
- ;;^UTILITY(U,$J,358.3,5522,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5522,1,2,0)
- ;;=2^15780
- ;;^UTILITY(U,$J,358.3,5522,1,3,0)
- ;;=3^Dermabrasion,Total Face
- ;;^UTILITY(U,$J,358.3,5523,0)
- ;;=15781^^26^352^2^^^^1
- ;;^UTILITY(U,$J,358.3,5523,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5523,1,2,0)
- ;;=2^15781
- ;;^UTILITY(U,$J,358.3,5523,1,3,0)
- ;;=3^Dermabrasion,Segmental,Face
- ;;^UTILITY(U,$J,358.3,5524,0)
- ;;=15782^^26^352^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5342,1,3,0)
+ ;;=3^Athscl of Bypass Graft,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5342,1,4,0)
+ ;;=4^I70.762
+ ;;^UTILITY(U,$J,358.3,5342,2)
+ ;;=^5133608
+ ;;^UTILITY(U,$J,358.3,5343,0)
+ ;;=I70.761^^40^365^6
+ ;;^UTILITY(U,$J,358.3,5343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5343,1,3,0)
+ ;;=3^Athscl of Bypass Graft,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5343,1,4,0)
+ ;;=4^I70.761
+ ;;^UTILITY(U,$J,358.3,5343,2)
+ ;;=^5007777
+ ;;^UTILITY(U,$J,358.3,5344,0)
+ ;;=I70.663^^40^365^10
+ ;;^UTILITY(U,$J,358.3,5344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5344,1,3,0)
+ ;;=3^Athscl of Nonbiol Bypass,Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5344,1,4,0)
+ ;;=4^I70.663
+ ;;^UTILITY(U,$J,358.3,5344,2)
+ ;;=^5007757
+ ;;^UTILITY(U,$J,358.3,5345,0)
+ ;;=I70.662^^40^365^11
+ ;;^UTILITY(U,$J,358.3,5345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5345,1,3,0)
+ ;;=3^Athscl of Nonbiol Bypass,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5345,1,4,0)
+ ;;=4^I70.662
+ ;;^UTILITY(U,$J,358.3,5345,2)
+ ;;=^5007756
+ ;;^UTILITY(U,$J,358.3,5346,0)
+ ;;=I70.661^^40^365^12
+ ;;^UTILITY(U,$J,358.3,5346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5346,1,3,0)
+ ;;=3^Athscl of Nonbiol Bypass,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5346,1,4,0)
+ ;;=4^I70.661
+ ;;^UTILITY(U,$J,358.3,5346,2)
+ ;;=^5007755
+ ;;^UTILITY(U,$J,358.3,5347,0)
+ ;;=I70.561^^40^365^9
+ ;;^UTILITY(U,$J,358.3,5347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5347,1,3,0)
+ ;;=3^Athscl of Nonaut Bio Bypass,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5347,1,4,0)
+ ;;=4^I70.561
+ ;;^UTILITY(U,$J,358.3,5347,2)
+ ;;=^5007717
+ ;;^UTILITY(U,$J,358.3,5348,0)
+ ;;=I70.562^^40^365^8
+ ;;^UTILITY(U,$J,358.3,5348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5348,1,3,0)
+ ;;=3^Athscl of Nonaut Bio Bypass,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5348,1,4,0)
+ ;;=4^I70.562
+ ;;^UTILITY(U,$J,358.3,5348,2)
+ ;;=^5007718
+ ;;^UTILITY(U,$J,358.3,5349,0)
+ ;;=I70.563^^40^365^7
+ ;;^UTILITY(U,$J,358.3,5349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5349,1,3,0)
+ ;;=3^Athscl of Nonaut Bio Bypass,Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5349,1,4,0)
+ ;;=4^I70.563
+ ;;^UTILITY(U,$J,358.3,5349,2)
+ ;;=^5007719
+ ;;^UTILITY(U,$J,358.3,5350,0)
+ ;;=I70.462^^40^365^2
+ ;;^UTILITY(U,$J,358.3,5350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5350,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5350,1,4,0)
+ ;;=4^I70.462
+ ;;^UTILITY(U,$J,358.3,5350,2)
+ ;;=^5007680
+ ;;^UTILITY(U,$J,358.3,5351,0)
+ ;;=I70.461^^40^365^3
+ ;;^UTILITY(U,$J,358.3,5351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5351,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5351,1,4,0)
+ ;;=4^I70.461
+ ;;^UTILITY(U,$J,358.3,5351,2)
+ ;;=^5007679
+ ;;^UTILITY(U,$J,358.3,5352,0)
+ ;;=I70.463^^40^365^1
+ ;;^UTILITY(U,$J,358.3,5352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5352,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5352,1,4,0)
+ ;;=4^I70.463
+ ;;^UTILITY(U,$J,358.3,5352,2)
+ ;;=^5007681
+ ;;^UTILITY(U,$J,358.3,5353,0)
+ ;;=I70.361^^40^365^15
+ ;;^UTILITY(U,$J,358.3,5353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5353,1,3,0)
+ ;;=3^Athscl of Unspec Bypass,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5353,1,4,0)
+ ;;=4^I70.361
+ ;;^UTILITY(U,$J,358.3,5353,2)
+ ;;=^5007641
+ ;;^UTILITY(U,$J,358.3,5354,0)
+ ;;=I70.362^^40^365^14
+ ;;^UTILITY(U,$J,358.3,5354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5354,1,3,0)
+ ;;=3^Athscl of Unspec Bypass,Left Leg w/ Gangrene

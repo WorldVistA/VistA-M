@@ -1,142 +1,128 @@
-IBDEI0RI ; ; 06-AUG-2015
+IBDEI0RI ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13269,1,3,0)
- ;;=3^Hand Amput Status
- ;;^UTILITY(U,$J,358.3,13269,1,4,0)
- ;;=4^V49.63
- ;;^UTILITY(U,$J,358.3,13269,2)
- ;;=^303430
- ;;^UTILITY(U,$J,358.3,13270,0)
- ;;=V49.64^^65^785^16
- ;;^UTILITY(U,$J,358.3,13270,1,0)
+ ;;^UTILITY(U,$J,358.3,12622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13270,1,3,0)
- ;;=3^Wrist Amput Status
- ;;^UTILITY(U,$J,358.3,13270,1,4,0)
- ;;=4^V49.64
- ;;^UTILITY(U,$J,358.3,13270,2)
- ;;=^303431
- ;;^UTILITY(U,$J,358.3,13271,0)
- ;;=V49.65^^65^785^4
- ;;^UTILITY(U,$J,358.3,13271,1,0)
+ ;;^UTILITY(U,$J,358.3,12622,1,3,0)
+ ;;=3^Dysphagia, pharyngeal phase
+ ;;^UTILITY(U,$J,358.3,12622,1,4,0)
+ ;;=4^R13.13
+ ;;^UTILITY(U,$J,358.3,12622,2)
+ ;;=^335278
+ ;;^UTILITY(U,$J,358.3,12623,0)
+ ;;=R13.14^^77^733^4
+ ;;^UTILITY(U,$J,358.3,12623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13271,1,3,0)
- ;;=3^Below Elbow Amput Status
- ;;^UTILITY(U,$J,358.3,13271,1,4,0)
- ;;=4^V49.65
- ;;^UTILITY(U,$J,358.3,13271,2)
- ;;=^303432
- ;;^UTILITY(U,$J,358.3,13272,0)
- ;;=V49.66^^65^785^1
- ;;^UTILITY(U,$J,358.3,13272,1,0)
+ ;;^UTILITY(U,$J,358.3,12623,1,3,0)
+ ;;=3^Dysphagia, pharyngoesophageal phase
+ ;;^UTILITY(U,$J,358.3,12623,1,4,0)
+ ;;=4^R13.14
+ ;;^UTILITY(U,$J,358.3,12623,2)
+ ;;=^335279
+ ;;^UTILITY(U,$J,358.3,12624,0)
+ ;;=S02.2XXA^^77^734^2
+ ;;^UTILITY(U,$J,358.3,12624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13272,1,3,0)
- ;;=3^Above Elbow Amput Status
- ;;^UTILITY(U,$J,358.3,13272,1,4,0)
- ;;=4^V49.66
- ;;^UTILITY(U,$J,358.3,13272,2)
- ;;=^303433
- ;;^UTILITY(U,$J,358.3,13273,0)
- ;;=V49.67^^65^785^13
- ;;^UTILITY(U,$J,358.3,13273,1,0)
+ ;;^UTILITY(U,$J,358.3,12624,1,3,0)
+ ;;=3^Fracture of nasal bones, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,12624,1,4,0)
+ ;;=4^S02.2XXA
+ ;;^UTILITY(U,$J,358.3,12624,2)
+ ;;=^5020306
+ ;;^UTILITY(U,$J,358.3,12625,0)
+ ;;=S02.609A^^77^734^1
+ ;;^UTILITY(U,$J,358.3,12625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13273,1,3,0)
- ;;=3^Shoulder Amput Status
- ;;^UTILITY(U,$J,358.3,13273,1,4,0)
- ;;=4^V49.67
- ;;^UTILITY(U,$J,358.3,13273,2)
- ;;=^303434
- ;;^UTILITY(U,$J,358.3,13274,0)
- ;;=V49.70^^65^785^10
- ;;^UTILITY(U,$J,358.3,13274,1,0)
+ ;;^UTILITY(U,$J,358.3,12625,1,3,0)
+ ;;=3^Fracture of mandible, unsp, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,12625,1,4,0)
+ ;;=4^S02.609A
+ ;;^UTILITY(U,$J,358.3,12625,2)
+ ;;=^5020372
+ ;;^UTILITY(U,$J,358.3,12626,0)
+ ;;=S02.92XA^^77^734^4
+ ;;^UTILITY(U,$J,358.3,12626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13274,1,3,0)
- ;;=3^Lower Limb Amput Status,Unsp
- ;;^UTILITY(U,$J,358.3,13274,1,4,0)
- ;;=4^V49.70
- ;;^UTILITY(U,$J,358.3,13274,2)
- ;;=^303438
- ;;^UTILITY(U,$J,358.3,13275,0)
- ;;=V49.71^^65^785^7
- ;;^UTILITY(U,$J,358.3,13275,1,0)
+ ;;^UTILITY(U,$J,358.3,12626,1,3,0)
+ ;;=3^Fracture of unsp facial bones, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,12626,1,4,0)
+ ;;=4^S02.92XA
+ ;;^UTILITY(U,$J,358.3,12626,2)
+ ;;=^5020438
+ ;;^UTILITY(U,$J,358.3,12627,0)
+ ;;=S02.3XXA^^77^734^3
+ ;;^UTILITY(U,$J,358.3,12627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13275,1,3,0)
- ;;=3^Great Toe Amput Status
- ;;^UTILITY(U,$J,358.3,13275,1,4,0)
- ;;=4^V49.71
- ;;^UTILITY(U,$J,358.3,13275,2)
- ;;=^303439
- ;;^UTILITY(U,$J,358.3,13276,0)
- ;;=V49.72^^65^785^12
- ;;^UTILITY(U,$J,358.3,13276,1,0)
+ ;;^UTILITY(U,$J,358.3,12627,1,3,0)
+ ;;=3^Fracture of orbital floor, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,12627,1,4,0)
+ ;;=4^S02.3XXA
+ ;;^UTILITY(U,$J,358.3,12627,2)
+ ;;=^5020312
+ ;;^UTILITY(U,$J,358.3,12628,0)
+ ;;=S02.92XB^^77^734^5
+ ;;^UTILITY(U,$J,358.3,12628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13276,1,3,0)
- ;;=3^Oth Toe(s) Amput Status
- ;;^UTILITY(U,$J,358.3,13276,1,4,0)
- ;;=4^V49.72
- ;;^UTILITY(U,$J,358.3,13276,2)
- ;;=^303440
- ;;^UTILITY(U,$J,358.3,13277,0)
- ;;=V49.73^^65^785^6
- ;;^UTILITY(U,$J,358.3,13277,1,0)
+ ;;^UTILITY(U,$J,358.3,12628,1,3,0)
+ ;;=3^Fracture of unsp facial bones, init encntr for open fracture
+ ;;^UTILITY(U,$J,358.3,12628,1,4,0)
+ ;;=4^S02.92XB
+ ;;^UTILITY(U,$J,358.3,12628,2)
+ ;;=^5020439
+ ;;^UTILITY(U,$J,358.3,12629,0)
+ ;;=C00.2^^77^735^13
+ ;;^UTILITY(U,$J,358.3,12629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13277,1,3,0)
- ;;=3^Foot Amput Status
- ;;^UTILITY(U,$J,358.3,13277,1,4,0)
- ;;=4^V49.73
- ;;^UTILITY(U,$J,358.3,13277,2)
- ;;=^303441
- ;;^UTILITY(U,$J,358.3,13278,0)
- ;;=V49.74^^65^785^3
- ;;^UTILITY(U,$J,358.3,13278,1,0)
+ ;;^UTILITY(U,$J,358.3,12629,1,3,0)
+ ;;=3^Malignant neoplasm of external lip, unspecified
+ ;;^UTILITY(U,$J,358.3,12629,1,4,0)
+ ;;=4^C00.2
+ ;;^UTILITY(U,$J,358.3,12629,2)
+ ;;=^5000884
+ ;;^UTILITY(U,$J,358.3,12630,0)
+ ;;=C02.9^^77^735^30
+ ;;^UTILITY(U,$J,358.3,12630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13278,1,3,0)
- ;;=3^Ankle Amput Status
- ;;^UTILITY(U,$J,358.3,13278,1,4,0)
- ;;=4^V49.74
- ;;^UTILITY(U,$J,358.3,13278,2)
- ;;=^303442
- ;;^UTILITY(U,$J,358.3,13279,0)
- ;;=V49.75^^65^785^5
- ;;^UTILITY(U,$J,358.3,13279,1,0)
+ ;;^UTILITY(U,$J,358.3,12630,1,3,0)
+ ;;=3^Malignant neoplasm of tongue, unspecified
+ ;;^UTILITY(U,$J,358.3,12630,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,12630,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,12631,0)
+ ;;=C07.^^77^735^24
+ ;;^UTILITY(U,$J,358.3,12631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13279,1,3,0)
- ;;=3^Below Knee Amput Status
- ;;^UTILITY(U,$J,358.3,13279,1,4,0)
- ;;=4^V49.75
- ;;^UTILITY(U,$J,358.3,13279,2)
- ;;=^303443
- ;;^UTILITY(U,$J,358.3,13280,0)
- ;;=V49.76^^65^785^2
- ;;^UTILITY(U,$J,358.3,13280,1,0)
+ ;;^UTILITY(U,$J,358.3,12631,1,3,0)
+ ;;=3^Malignant neoplasm of parotid gland
+ ;;^UTILITY(U,$J,358.3,12631,1,4,0)
+ ;;=4^C07.
+ ;;^UTILITY(U,$J,358.3,12631,2)
+ ;;=^267005
+ ;;^UTILITY(U,$J,358.3,12632,0)
+ ;;=C08.0^^77^735^27
+ ;;^UTILITY(U,$J,358.3,12632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13280,1,3,0)
- ;;=3^Above Knee Amput Status
- ;;^UTILITY(U,$J,358.3,13280,1,4,0)
- ;;=4^V49.76
- ;;^UTILITY(U,$J,358.3,13280,2)
- ;;=^303444
- ;;^UTILITY(U,$J,358.3,13281,0)
- ;;=V49.77^^65^785^9
- ;;^UTILITY(U,$J,358.3,13281,1,0)
+ ;;^UTILITY(U,$J,358.3,12632,1,3,0)
+ ;;=3^Malignant neoplasm of submandibular gland
+ ;;^UTILITY(U,$J,358.3,12632,1,4,0)
+ ;;=4^C08.0
+ ;;^UTILITY(U,$J,358.3,12632,2)
+ ;;=^267006
+ ;;^UTILITY(U,$J,358.3,12633,0)
+ ;;=C03.9^^77^735^16
+ ;;^UTILITY(U,$J,358.3,12633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13281,1,3,0)
- ;;=3^Hip Amput Status
- ;;^UTILITY(U,$J,358.3,13281,1,4,0)
- ;;=4^V49.77
- ;;^UTILITY(U,$J,358.3,13281,2)
- ;;=^303445
- ;;^UTILITY(U,$J,358.3,13282,0)
- ;;=713.5^^66^786^1
- ;;^UTILITY(U,$J,358.3,13282,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13282,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13282,1,3,0)
- ;;=3^Charcot's Arthropathy
- ;;^UTILITY(U,$J,358.3,13282,1,4,0)
- ;;=4^713.5
- ;;^UTILITY(U,$J,358.3,13282,2)
- ;;=^10545
+ ;;^UTILITY(U,$J,358.3,12633,1,3,0)
+ ;;=3^Malignant neoplasm of gum, unspecified
+ ;;^UTILITY(U,$J,358.3,12633,1,4,0)
+ ;;=4^C03.9
+ ;;^UTILITY(U,$J,358.3,12633,2)
+ ;;=^5000892
+ ;;^UTILITY(U,$J,358.3,12634,0)
+ ;;=C04.9^^77^735^14
+ ;;^UTILITY(U,$J,358.3,12634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12634,1,3,0)
+ ;;=3^Malignant neoplasm of floor of mouth, unspecified

@@ -1,14 +1,20 @@
 DPTLK2 ;ALB/RMO,ERC - MAS Patient Look-up Add New Patient ; 07/07/06
- ;;5.3;Registration;**32,197,214,244,532,578,615,620,647,680,702,653**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**32,197,214,244,532,578,615,620,647,680,702,653,915**;Aug 13, 1993;Build 6
  N DPTCT,DGVV,DPTLIDR,DGCOL S DGCOL=0
  I $D(DDS) D CLRMSG^DDS S DX=0,DY=DDSHBX+1 X DDXY
  I '$D(DUZ(0)) W:DIC(0)["Q" !?3,*7,"Unable to Add Patient. Your Fileman Access Code is undefined." S DPTDFN=-1 G Q
  I $S($D(DLAYGO):2\1-(DLAYGO\1),1:1),DUZ(0)'="@",$D(^DIC(2,0,"LAYGO")) F I=1:1 I DUZ(0)[$E(^("LAYGO"),I) Q:I'>$L(^("LAYGO"))  S DPTDFN=-1 W:DIC(0)["Q" *7," ??" G Q
- N DG20NAME S DG20NAME=DPTX,DPTX=$$FORMAT^XLFNAME7(.DG20NAME,3,30,,1)
+ N DG20NAME S DG20NAME=$G(DPTX),DPTX=$$FORMAT^XLFNAME7(.DG20NAME,3,30,,1)
  S DPTX=$S($E(DPTX)[""""&($E(DPTX,$L(DPTX))[""""):$P(DPTX,"""",2),$E(DPTX)["""":$P(DPTX,"""",2),$E(DPTX,$L(DPTX))["""":$P(DPTX,"""",1),1:DPTX)
  I $L(DPTX)<3!($L(DPTX)>30)!(DPTX?1P.E)!(DPTX'[",")!(DPTX'?1U.ANP) W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q
  ; DG*647
  I $P($G(XQY0),U)="DG COLLATERAL PATIENT" S DGCOL=1,DGCOL("DR")=$P(DIC("DR"),";",5,8)
+ ;**915 do enterprise search if register a patient option
+ I $P($G(XQY0),"^",2)="Register a Patient",$T(PATIENT^MPIFXMLP)'="" D  G Q
+ . N DGSAVDFN
+ . I '$G(DGSEARCH) S DGSAVDFN=$$SEARCH^DPTLK7(DPTX,DPTXX)
+ . I $G(DGSAVDFN)>0 S DPTDFN=DGSAVDFN Q
+ . S DPTDFN=-1 S:DPTDFN<1&('$D(DTOUT)) DUOUT=1
  K DPTLID I DIC(0)["E" D ASKADD D  G Q:DPTDFN<0 I ('$D(DIC("DR")))!(DGCOL) D CHKID G Q:DPTDFN<0 D ^DPTLK3 G Q:DPTDFN<0 W !!?3,"...adding new patient"
  .S:DPTDFN<1&('$D(DTOUT)) DUOUT=1
  S X=DPTX,DPT("NO^")=$G(DIE("NO^")) K DD,DO,DPTX N DPTZNV

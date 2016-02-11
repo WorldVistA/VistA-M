@@ -1,5 +1,5 @@
 RORUPR1 ;HCIOFO/SG - SELECTION RULES PREPARATION ;11/20/05 4:56pm
- ;;1.5;CLINICAL CASE REGISTRIES;**12,19,24**;Feb 17, 2006;Build 15
+ ;;1.5;CLINICAL CASE REGISTRIES;**12,19,24,26**;Feb 17, 2006;Build 53
  ;
  ;01/04/2011 BAY/KAM ROR*1.5*12 Remedy Call 421530 Populate a variable
  ;                              to assist with Lab Test Result Code
@@ -15,6 +15,7 @@ RORUPR1 ;HCIOFO/SG - SELECTION RULES PREPARATION ;11/20/05 4:56pm
  ;                                       longer than 30 characters
  ;                                      Added NEW of variable DIERR at FILETREE
  ;                                       and METADATA
+ ;ROR*1.5*26   APR  2015   T KOPP       Added code to support PTF procedure rule
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -216,6 +217,9 @@ METADATA() ;
  . . ;--- Store the field number (if necessary)
  . . I API=1  D  S RORUPD("SR",FILE,"F",API,DATELMT)=TMP
  . . . S TMP=$G(RORBUF("DILIST","ID",1,6))
+ . . I API=3,FILE=45 D  Q
+ . . . S RORUPD("SR",45,"F",3,DATELMT)=0
+ . . . S RORUPD("SR",45,"F",3,DATELMT,"I")="",RC=0
  . . ;--- Associate the data element with the API
  . . S VT=$G(RORBUF("DILIST","ID",1,4)),RC=0
  . . F I="E","I"  I $D(@PIF@("F",DATELMT,I))  D  Q:RC<0

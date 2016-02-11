@@ -1,134 +1,126 @@
-IBDEI1XB ; ; 06-AUG-2015
+IBDEI1XB ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33798,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,33798,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,33799,0)
- ;;=W11.XXXD^^182^2011^40
- ;;^UTILITY(U,$J,358.3,33799,1,0)
+ ;;^UTILITY(U,$J,358.3,32206,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,32206,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,32206,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,32207,0)
+ ;;=F13.24^^141^1506^9
+ ;;^UTILITY(U,$J,358.3,32207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33799,1,3,0)
- ;;=3^Fall from Ladder,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33799,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,33799,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,33800,0)
- ;;=W13.0XXA^^182^2011^25
- ;;^UTILITY(U,$J,358.3,33800,1,0)
+ ;;^UTILITY(U,$J,358.3,32207,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
+ ;;^UTILITY(U,$J,358.3,32207,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,32207,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,32208,0)
+ ;;=F13.231^^141^1506^6
+ ;;^UTILITY(U,$J,358.3,32208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33800,1,3,0)
- ;;=3^Fall from Balcony,Init Encntr
- ;;^UTILITY(U,$J,358.3,33800,1,4,0)
- ;;=4^W13.0XXA
- ;;^UTILITY(U,$J,358.3,33800,2)
- ;;=^5059601
- ;;^UTILITY(U,$J,358.3,33801,0)
- ;;=W13.0XXD^^182^2011^26
- ;;^UTILITY(U,$J,358.3,33801,1,0)
+ ;;^UTILITY(U,$J,358.3,32208,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,32208,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,32208,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,32209,0)
+ ;;=F17.200^^141^1507^1
+ ;;^UTILITY(U,$J,358.3,32209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33801,1,3,0)
- ;;=3^Fall from Balcony,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33801,1,4,0)
- ;;=4^W13.0XXD
- ;;^UTILITY(U,$J,358.3,33801,2)
- ;;=^5059602
- ;;^UTILITY(U,$J,358.3,33802,0)
- ;;=W13.1XXA^^182^2011^29
- ;;^UTILITY(U,$J,358.3,33802,1,0)
+ ;;^UTILITY(U,$J,358.3,32209,1,3,0)
+ ;;=3^Tobacco Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,32209,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,32209,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,32210,0)
+ ;;=F17.201^^141^1507^2
+ ;;^UTILITY(U,$J,358.3,32210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33802,1,3,0)
- ;;=3^Fall from Bridge,Init Encntr
- ;;^UTILITY(U,$J,358.3,33802,1,4,0)
- ;;=4^W13.1XXA
- ;;^UTILITY(U,$J,358.3,33802,2)
- ;;=^5059604
- ;;^UTILITY(U,$J,358.3,33803,0)
- ;;=W13.1XXD^^182^2011^30
- ;;^UTILITY(U,$J,358.3,33803,1,0)
+ ;;^UTILITY(U,$J,358.3,32210,1,3,0)
+ ;;=3^Tobacco Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,32210,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,32210,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,32211,0)
+ ;;=F17.203^^141^1507^3
+ ;;^UTILITY(U,$J,358.3,32211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33803,1,3,0)
- ;;=3^Fall from Bridge,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33803,1,4,0)
- ;;=4^W13.1XXD
- ;;^UTILITY(U,$J,358.3,33803,2)
- ;;=^5059605
- ;;^UTILITY(U,$J,358.3,33804,0)
- ;;=W13.2XXA^^182^2011^57
- ;;^UTILITY(U,$J,358.3,33804,1,0)
+ ;;^UTILITY(U,$J,358.3,32211,1,3,0)
+ ;;=3^Tobacco Withdrawal
+ ;;^UTILITY(U,$J,358.3,32211,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,32211,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,32212,0)
+ ;;=F17.210^^141^1507^4
+ ;;^UTILITY(U,$J,358.3,32212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33804,1,3,0)
- ;;=3^Fall from Roof,Init Encntr
- ;;^UTILITY(U,$J,358.3,33804,1,4,0)
- ;;=4^W13.2XXA
- ;;^UTILITY(U,$J,358.3,33804,2)
- ;;=^5059607
- ;;^UTILITY(U,$J,358.3,33805,0)
- ;;=W13.2XXD^^182^2011^58
- ;;^UTILITY(U,$J,358.3,33805,1,0)
+ ;;^UTILITY(U,$J,358.3,32212,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,32212,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,32212,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,32213,0)
+ ;;=F17.211^^141^1507^5
+ ;;^UTILITY(U,$J,358.3,32213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33805,1,3,0)
- ;;=3^Fall from Roof,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33805,1,4,0)
- ;;=4^W13.2XXD
- ;;^UTILITY(U,$J,358.3,33805,2)
- ;;=^5059608
- ;;^UTILITY(U,$J,358.3,33806,0)
- ;;=W13.3XXA^^182^2011^79
- ;;^UTILITY(U,$J,358.3,33806,1,0)
+ ;;^UTILITY(U,$J,358.3,32213,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,32213,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,32213,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,32214,0)
+ ;;=F17.220^^141^1507^6
+ ;;^UTILITY(U,$J,358.3,32214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33806,1,3,0)
- ;;=3^Fall through Floor,Init Encntr
- ;;^UTILITY(U,$J,358.3,33806,1,4,0)
- ;;=4^W13.3XXA
- ;;^UTILITY(U,$J,358.3,33806,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,33807,0)
- ;;=W13.3XXD^^182^2011^80
- ;;^UTILITY(U,$J,358.3,33807,1,0)
+ ;;^UTILITY(U,$J,358.3,32214,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,32214,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,32214,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,32215,0)
+ ;;=F17.221^^141^1507^7
+ ;;^UTILITY(U,$J,358.3,32215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33807,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33807,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,33807,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,33808,0)
- ;;=W13.4XXA^^182^2011^67
- ;;^UTILITY(U,$J,358.3,33808,1,0)
+ ;;^UTILITY(U,$J,358.3,32215,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,32215,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,32215,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,32216,0)
+ ;;=F17.290^^141^1507^8
+ ;;^UTILITY(U,$J,358.3,32216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33808,1,3,0)
- ;;=3^Fall from Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,33808,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,33808,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,33809,0)
- ;;=W13.4XXD^^182^2011^68
- ;;^UTILITY(U,$J,358.3,33809,1,0)
+ ;;^UTILITY(U,$J,358.3,32216,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,32216,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,32216,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,32217,0)
+ ;;=F17.291^^141^1507^9
+ ;;^UTILITY(U,$J,358.3,32217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33809,1,3,0)
- ;;=3^Fall from Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33809,1,4,0)
- ;;=4^W13.4XXD
- ;;^UTILITY(U,$J,358.3,33809,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,33810,0)
- ;;=W13.8XXA^^182^2011^33
- ;;^UTILITY(U,$J,358.3,33810,1,0)
+ ;;^UTILITY(U,$J,358.3,32217,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,32217,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,32217,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,32218,0)
+ ;;=F14.10^^141^1508^1
+ ;;^UTILITY(U,$J,358.3,32218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33810,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,33810,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,33810,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,33811,0)
- ;;=W13.8XXD^^182^2011^34
- ;;^UTILITY(U,$J,358.3,33811,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33811,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32218,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild

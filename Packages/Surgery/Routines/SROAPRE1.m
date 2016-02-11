@@ -1,5 +1,5 @@
 SROAPRE1 ;BIR/MAM - EDIT PAGE 1 PREOP ;08/11/2011
- ;;3.0;Surgery;**38,47,125,135,141,166,174,176,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**38,47,125,135,141,166,174,176,182,184**;24 Jun 93;Build 35
  K DA D @EMILY Q
 1 ; edit general information
  W ! K DIR S X=$P(SRAO(1),"^") I X'="" S DIR("B")=X
@@ -23,21 +23,27 @@ SROAPRE1 ;BIR/MAM - EDIT PAGE 1 PREOP ;08/11/2011
  I Y["Y" D HEP
  Q
 GEN ; general
- N SRUP S SRUP=""
- W ! K DR,DIE S DA=SRTN,DIE=130,DR="236T;237T;519T;520T;517T;518T;246T;618T;325T;237.1T;238T" D ^DIE K DIE,DR I $D(Y) Q
+ N SRUP,SRUP1 S SRUP=""
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="236T;237T;519T;520T;517T;518T;246T;618T;325T;237.1T" D ^DIE K DIE,DR I $D(Y) Q
+ S SRUP1="238T" S SRUP1=$S($P($G(^SRF(SRTN,200.1)),"^",8)=3:"667T;"_SRUP1,1:SRUP1) D
+ .I SRUP1="238T" S $P(^SRF(SRTN,200.1),"^",15)=""
+ .K DR,DIE S DA=SRTN,DIE=130,DR=SRUP1 D ^DIE K DIE,DR I $D(Y) Q
  K DIR S DA=SRTN,DIR(0)="130,492",DIR("A")="Functional Health Status at Evaluation for Surgery" D ^DIR K DIR D
  .I $D(DTOUT)!$D(DUOUT) Q
  .I X="@" K DIE,DR S DIE=130,DR="492///@" D ^DIE K DA,DIE,DR Q
  .K DIE,DR S DIE=130,DR="492////"_Y D ^DIE K DA,DIE,DR
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="670T;671T" D ^DIE K DIE,DR I $D(Y) Q
  S SRACLR=0
  Q
 NOGEN ; no general problems
  S $P(^SRF(SRTN,200),"^",6)=$S(X="":"",1:1) F I=2,4,7 S $P(^SRF(SRTN,200),"^",I)=SRAX
  S $P(^SRF(SRTN,200.1),"^",2)=$S(X="":"",X="NS":"NS",1:1)
  S $P(^SRF(SRTN,200.1),"^",8)=$S(X="":"",X="NS":"NS",1:1)
+ S $P(^SRF(SRTN,200.1),"^",15)=$S(X="":"",1:4)
  S $P(^SRF(SRTN,200),"^",55)=$S(X="":"",1:1)
  F I=9,11,12 S $P(^SRF(SRTN,200.1),"^",I)=$S(SRAX="N":1,1:"")
  S $P(^SRF(SRTN,200.1),"^",10)=$S(SRAX="N":"NA",1:"")
+ S $P(^SRF(SRTN,210),"^",5)=1,$P(^SRF(SRTN,210),"^",6)=1
  Q
 PULM ; pulmonary
  W ! K DR,DIE S DA=SRTN,DIE=130,DR="204T;203T;326T" D ^DIE K DR

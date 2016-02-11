@@ -1,126 +1,136 @@
-IBDEI1RM ; ; 06-AUG-2015
+IBDEI1RM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31181,0)
- ;;=S02.19XS^^180^1947^10
- ;;^UTILITY(U,$J,358.3,31181,1,0)
+ ;;^UTILITY(U,$J,358.3,29552,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,29552,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,29553,0)
+ ;;=H55.09^^135^1362^30
+ ;;^UTILITY(U,$J,358.3,29553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31181,1,3,0)
- ;;=3^Fracture of base of skull NEC sequela
- ;;^UTILITY(U,$J,358.3,31181,1,4,0)
- ;;=4^S02.19XS
- ;;^UTILITY(U,$J,358.3,31181,2)
- ;;=^5020305
- ;;^UTILITY(U,$J,358.3,31182,0)
- ;;=S02.118S^^180^1947^18
- ;;^UTILITY(U,$J,358.3,31182,1,0)
+ ;;^UTILITY(U,$J,358.3,29553,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,29553,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,29553,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,29554,0)
+ ;;=H60.01^^135^1362^2
+ ;;^UTILITY(U,$J,358.3,29554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31182,1,3,0)
- ;;=3^Fracture of occiput NEC, sequela
- ;;^UTILITY(U,$J,358.3,31182,1,4,0)
- ;;=4^S02.118S
- ;;^UTILITY(U,$J,358.3,31182,2)
- ;;=^5020293
- ;;^UTILITY(U,$J,358.3,31183,0)
- ;;=S58.922S^^180^1947^46
- ;;^UTILITY(U,$J,358.3,31183,1,0)
+ ;;^UTILITY(U,$J,358.3,29554,1,3,0)
+ ;;=3^Abscess External Ear,Right
+ ;;^UTILITY(U,$J,358.3,29554,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,29554,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,29555,0)
+ ;;=H60.02^^135^1362^1
+ ;;^UTILITY(U,$J,358.3,29555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31183,1,3,0)
- ;;=3^Partial traumatic amp of l forearm, level unsp, sequela
- ;;^UTILITY(U,$J,358.3,31183,1,4,0)
- ;;=4^S58.922S
- ;;^UTILITY(U,$J,358.3,31183,2)
- ;;=^5031957
- ;;^UTILITY(U,$J,358.3,31184,0)
- ;;=T65.91XS^^180^1947^47
- ;;^UTILITY(U,$J,358.3,31184,1,0)
+ ;;^UTILITY(U,$J,358.3,29555,1,3,0)
+ ;;=3^Abscess External Ear,Left
+ ;;^UTILITY(U,$J,358.3,29555,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,29555,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,29556,0)
+ ;;=H60.12^^135^1362^13
+ ;;^UTILITY(U,$J,358.3,29556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31184,1,3,0)
- ;;=3^Toxic effect of unsp substance, accidental, sequela
- ;;^UTILITY(U,$J,358.3,31184,1,4,0)
- ;;=4^T65.91XS
- ;;^UTILITY(U,$J,358.3,31184,2)
- ;;=^5053908
- ;;^UTILITY(U,$J,358.3,31185,0)
- ;;=T65.93XS^^180^1947^49
- ;;^UTILITY(U,$J,358.3,31185,1,0)
+ ;;^UTILITY(U,$J,358.3,29556,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,29556,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,29556,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,29557,0)
+ ;;=H60.11^^135^1362^14
+ ;;^UTILITY(U,$J,358.3,29557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31185,1,3,0)
- ;;=3^Toxic effect of unspecified substance, assault, sequela
- ;;^UTILITY(U,$J,358.3,31185,1,4,0)
- ;;=4^T65.93XS
- ;;^UTILITY(U,$J,358.3,31185,2)
- ;;=^5053914
- ;;^UTILITY(U,$J,358.3,31186,0)
- ;;=T65.92XS^^180^1947^48
- ;;^UTILITY(U,$J,358.3,31186,1,0)
+ ;;^UTILITY(U,$J,358.3,29557,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,29557,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,29557,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,29558,0)
+ ;;=H61.21^^135^1362^26
+ ;;^UTILITY(U,$J,358.3,29558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31186,1,3,0)
- ;;=3^Toxic effect of unsp substance, self-harm, sequela
- ;;^UTILITY(U,$J,358.3,31186,1,4,0)
- ;;=4^T65.92XS
- ;;^UTILITY(U,$J,358.3,31186,2)
- ;;=^5053911
- ;;^UTILITY(U,$J,358.3,31187,0)
- ;;=T65.94XS^^180^1947^50
- ;;^UTILITY(U,$J,358.3,31187,1,0)
+ ;;^UTILITY(U,$J,358.3,29558,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,29558,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,29558,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,29559,0)
+ ;;=H61.22^^135^1362^25
+ ;;^UTILITY(U,$J,358.3,29559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31187,1,3,0)
- ;;=3^Toxic effect of unspecified substance, undetermined, sequela
- ;;^UTILITY(U,$J,358.3,31187,1,4,0)
- ;;=4^T65.94XS
- ;;^UTILITY(U,$J,358.3,31187,2)
- ;;=^5053917
- ;;^UTILITY(U,$J,358.3,31188,0)
- ;;=S02.110S^^180^1947^51
- ;;^UTILITY(U,$J,358.3,31188,1,0)
+ ;;^UTILITY(U,$J,358.3,29559,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,29559,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,29559,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,29560,0)
+ ;;=H61.23^^135^1362^24
+ ;;^UTILITY(U,$J,358.3,29560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31188,1,3,0)
- ;;=3^Type I occipital condyle fracture, sequela
- ;;^UTILITY(U,$J,358.3,31188,1,4,0)
- ;;=4^S02.110S
- ;;^UTILITY(U,$J,358.3,31188,2)
- ;;=^5020269
- ;;^UTILITY(U,$J,358.3,31189,0)
- ;;=S02.111S^^180^1947^52
- ;;^UTILITY(U,$J,358.3,31189,1,0)
+ ;;^UTILITY(U,$J,358.3,29560,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,29560,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,29560,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,29561,0)
+ ;;=H81.01^^135^1362^29
+ ;;^UTILITY(U,$J,358.3,29561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31189,1,3,0)
- ;;=3^Type II occipital condyle fracture, sequela
- ;;^UTILITY(U,$J,358.3,31189,1,4,0)
- ;;=4^S02.111S
- ;;^UTILITY(U,$J,358.3,31189,2)
- ;;=^5020275
- ;;^UTILITY(U,$J,358.3,31190,0)
- ;;=S02.112S^^180^1947^53
- ;;^UTILITY(U,$J,358.3,31190,1,0)
+ ;;^UTILITY(U,$J,358.3,29561,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,29561,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,29561,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,29562,0)
+ ;;=H81.02^^135^1362^28
+ ;;^UTILITY(U,$J,358.3,29562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31190,1,3,0)
- ;;=3^Type III occipital condyle fracture, sequela
- ;;^UTILITY(U,$J,358.3,31190,1,4,0)
- ;;=4^S02.112S
- ;;^UTILITY(U,$J,358.3,31190,2)
- ;;=^5020281
- ;;^UTILITY(U,$J,358.3,31191,0)
- ;;=S02.10XS^^180^1947^11
- ;;^UTILITY(U,$J,358.3,31191,1,0)
+ ;;^UTILITY(U,$J,358.3,29562,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,29562,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,29562,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,29563,0)
+ ;;=H81.03^^135^1362^27
+ ;;^UTILITY(U,$J,358.3,29563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31191,1,3,0)
- ;;=3^Fracture of base of skull, sequela
- ;;^UTILITY(U,$J,358.3,31191,1,4,0)
- ;;=4^S02.10XS
- ;;^UTILITY(U,$J,358.3,31191,2)
- ;;=^5020263
- ;;^UTILITY(U,$J,358.3,31192,0)
- ;;=S02.92XS^^180^1947^14
- ;;^UTILITY(U,$J,358.3,31192,1,0)
+ ;;^UTILITY(U,$J,358.3,29563,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,29563,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,29563,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,29564,0)
+ ;;=H81.12^^135^1362^9
+ ;;^UTILITY(U,$J,358.3,29564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31192,1,3,0)
- ;;=3^Fracture of facial bones, sequela
- ;;^UTILITY(U,$J,358.3,31192,1,4,0)
- ;;=4^S02.92XS
- ;;^UTILITY(U,$J,358.3,31192,2)
- ;;=^5020443
- ;;^UTILITY(U,$J,358.3,31193,0)
- ;;=S02.119S^^180^1947^19
+ ;;^UTILITY(U,$J,358.3,29564,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,29564,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,29564,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,29565,0)
+ ;;=H81.11^^135^1362^10
+ ;;^UTILITY(U,$J,358.3,29565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29565,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,29565,1,4,0)
+ ;;=4^H81.11

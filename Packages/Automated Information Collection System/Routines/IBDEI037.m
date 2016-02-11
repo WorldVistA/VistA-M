@@ -1,144 +1,144 @@
-IBDEI037 ; ; 06-AUG-2015
+IBDEI037 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,955,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,955,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,956,0)
- ;;=J00.^^3^35^7
- ;;^UTILITY(U,$J,358.3,956,1,0)
+ ;;^UTILITY(U,$J,358.3,754,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,755,0)
+ ;;=B00.9^^9^88^87
+ ;;^UTILITY(U,$J,358.3,755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,956,1,3,0)
- ;;=3^Acute nasopharyngitis [common cold]
- ;;^UTILITY(U,$J,358.3,956,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,956,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,957,0)
- ;;=J01.00^^3^35^6
- ;;^UTILITY(U,$J,358.3,957,1,0)
+ ;;^UTILITY(U,$J,358.3,755,1,3,0)
+ ;;=3^Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,755,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,755,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,756,0)
+ ;;=R49.0^^9^88^88
+ ;;^UTILITY(U,$J,358.3,756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,957,1,3,0)
- ;;=3^Acute maxillary sinusitis, unspecified
- ;;^UTILITY(U,$J,358.3,957,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,957,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,958,0)
- ;;=J01.10^^3^35^2
- ;;^UTILITY(U,$J,358.3,958,1,0)
+ ;;^UTILITY(U,$J,358.3,756,1,3,0)
+ ;;=3^Hoarseness
+ ;;^UTILITY(U,$J,358.3,756,1,4,0)
+ ;;=4^R49.0
+ ;;^UTILITY(U,$J,358.3,756,2)
+ ;;=^5019501
+ ;;^UTILITY(U,$J,358.3,757,0)
+ ;;=R06.4^^9^88^89
+ ;;^UTILITY(U,$J,358.3,757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,958,1,3,0)
- ;;=3^Acute frontal sinusitis, unspecified
- ;;^UTILITY(U,$J,358.3,958,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,958,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,959,0)
- ;;=J01.90^^3^35^12
- ;;^UTILITY(U,$J,358.3,959,1,0)
+ ;;^UTILITY(U,$J,358.3,757,1,3,0)
+ ;;=3^Hyperventilation
+ ;;^UTILITY(U,$J,358.3,757,1,4,0)
+ ;;=4^R06.4
+ ;;^UTILITY(U,$J,358.3,757,2)
+ ;;=^5019186
+ ;;^UTILITY(U,$J,358.3,758,0)
+ ;;=R68.0^^9^88^90
+ ;;^UTILITY(U,$J,358.3,758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,959,1,3,0)
- ;;=3^Acute sinusitis, unspecified
- ;;^UTILITY(U,$J,358.3,959,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,959,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,960,0)
- ;;=J02.9^^3^35^8
- ;;^UTILITY(U,$J,358.3,960,1,0)
+ ;;^UTILITY(U,$J,358.3,758,1,3,0)
+ ;;=3^Hypothermia,Not Associated w/ Low Environmental Temperature
+ ;;^UTILITY(U,$J,358.3,758,1,4,0)
+ ;;=4^R68.0
+ ;;^UTILITY(U,$J,358.3,758,2)
+ ;;=^5019549
+ ;;^UTILITY(U,$J,358.3,759,0)
+ ;;=L50.1^^9^88^91
+ ;;^UTILITY(U,$J,358.3,759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,960,1,3,0)
- ;;=3^Acute pharyngitis, unspecified
- ;;^UTILITY(U,$J,358.3,960,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,960,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,961,0)
- ;;=J03.90^^3^35^17
- ;;^UTILITY(U,$J,358.3,961,1,0)
+ ;;^UTILITY(U,$J,358.3,759,1,3,0)
+ ;;=3^Idiopathic Urticaria
+ ;;^UTILITY(U,$J,358.3,759,1,4,0)
+ ;;=4^L50.1
+ ;;^UTILITY(U,$J,358.3,759,2)
+ ;;=^271936
+ ;;^UTILITY(U,$J,358.3,760,0)
+ ;;=R53.81^^9^88^101
+ ;;^UTILITY(U,$J,358.3,760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,961,1,3,0)
- ;;=3^Acute tonsillitis, unspecified
- ;;^UTILITY(U,$J,358.3,961,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,961,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,962,0)
- ;;=J04.0^^3^35^4
- ;;^UTILITY(U,$J,358.3,962,1,0)
+ ;;^UTILITY(U,$J,358.3,760,1,3,0)
+ ;;=3^Malaise,Other
+ ;;^UTILITY(U,$J,358.3,760,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,760,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,761,0)
+ ;;=G43.809^^9^88^102
+ ;;^UTILITY(U,$J,358.3,761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,962,1,3,0)
- ;;=3^Acute laryngitis
- ;;^UTILITY(U,$J,358.3,962,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,962,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,963,0)
- ;;=J06.0^^3^35^5
- ;;^UTILITY(U,$J,358.3,963,1,0)
+ ;;^UTILITY(U,$J,358.3,761,1,3,0)
+ ;;=3^Migraine,Not Intractable,w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,761,1,4,0)
+ ;;=4^G43.809
+ ;;^UTILITY(U,$J,358.3,761,2)
+ ;;=^5003901
+ ;;^UTILITY(U,$J,358.3,762,0)
+ ;;=G43.909^^9^88^103
+ ;;^UTILITY(U,$J,358.3,762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,963,1,3,0)
- ;;=3^Acute laryngopharyngitis
- ;;^UTILITY(U,$J,358.3,963,1,4,0)
- ;;=4^J06.0
- ;;^UTILITY(U,$J,358.3,963,2)
- ;;=^269876
- ;;^UTILITY(U,$J,358.3,964,0)
- ;;=J06.9^^3^35^18
- ;;^UTILITY(U,$J,358.3,964,1,0)
+ ;;^UTILITY(U,$J,358.3,762,1,3,0)
+ ;;=3^Migraine,Unspec,Not Intractable w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,762,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,762,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,763,0)
+ ;;=J45.20^^9^88^104
+ ;;^UTILITY(U,$J,358.3,763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,964,1,3,0)
- ;;=3^Acute upper respiratory infection, unspecified
- ;;^UTILITY(U,$J,358.3,964,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,964,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,965,0)
- ;;=J34.2^^3^35^57
- ;;^UTILITY(U,$J,358.3,965,1,0)
+ ;;^UTILITY(U,$J,358.3,763,1,3,0)
+ ;;=3^Mild Intermittent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,763,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,763,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,764,0)
+ ;;=I88.9^^9^88^105
+ ;;^UTILITY(U,$J,358.3,764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,965,1,3,0)
- ;;=3^Deviated nasal septum
- ;;^UTILITY(U,$J,358.3,965,1,4,0)
- ;;=4^J34.2
- ;;^UTILITY(U,$J,358.3,965,2)
- ;;=^259087
- ;;^UTILITY(U,$J,358.3,966,0)
- ;;=J33.9^^3^35^96
- ;;^UTILITY(U,$J,358.3,966,1,0)
+ ;;^UTILITY(U,$J,358.3,764,1,3,0)
+ ;;=3^Nonspec Lymphadenitis,Unspec
+ ;;^UTILITY(U,$J,358.3,764,1,4,0)
+ ;;=4^I88.9
+ ;;^UTILITY(U,$J,358.3,764,2)
+ ;;=^5008072
+ ;;^UTILITY(U,$J,358.3,765,0)
+ ;;=L29.9^^9^88^106
+ ;;^UTILITY(U,$J,358.3,765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,966,1,3,0)
- ;;=3^Nasal polyp, unspecified
- ;;^UTILITY(U,$J,358.3,966,1,4,0)
- ;;=4^J33.9
- ;;^UTILITY(U,$J,358.3,966,2)
- ;;=^5008208
- ;;^UTILITY(U,$J,358.3,967,0)
- ;;=J31.0^^3^35^45
- ;;^UTILITY(U,$J,358.3,967,1,0)
+ ;;^UTILITY(U,$J,358.3,765,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,765,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,765,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,766,0)
+ ;;=L71.9^^9^88^108
+ ;;^UTILITY(U,$J,358.3,766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,967,1,3,0)
- ;;=3^Chronic rhinitis
- ;;^UTILITY(U,$J,358.3,967,1,4,0)
- ;;=4^J31.0
- ;;^UTILITY(U,$J,358.3,967,2)
- ;;=^24434
- ;;^UTILITY(U,$J,358.3,968,0)
- ;;=J32.0^^3^35^44
- ;;^UTILITY(U,$J,358.3,968,1,0)
+ ;;^UTILITY(U,$J,358.3,766,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,766,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,766,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,767,0)
+ ;;=R55.^^9^88^111
+ ;;^UTILITY(U,$J,358.3,767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,968,1,3,0)
- ;;=3^Chronic maxillary sinusitis
- ;;^UTILITY(U,$J,358.3,968,1,4,0)
- ;;=4^J32.0
- ;;^UTILITY(U,$J,358.3,968,2)
- ;;=^24407
- ;;^UTILITY(U,$J,358.3,969,0)
- ;;=J32.1^^3^35^41
- ;;^UTILITY(U,$J,358.3,969,1,0)
+ ;;^UTILITY(U,$J,358.3,767,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,767,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,767,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,768,0)
+ ;;=L50.2^^9^88^112
+ ;;^UTILITY(U,$J,358.3,768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,969,1,3,0)
- ;;=3^Chronic frontal sinusitis
+ ;;^UTILITY(U,$J,358.3,768,1,3,0)
+ ;;=3^Urticaria d/t Cold & Heat
+ ;;^UTILITY(U,$J,358.3,768,1,4,0)
+ ;;=4^L50.2

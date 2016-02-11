@@ -1,140 +1,120 @@
-IBDEI1BC ; ; 06-AUG-2015
+IBDEI1BC ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23257,2)
- ;;=^336668
- ;;^UTILITY(U,$J,358.3,23258,0)
- ;;=780.63^^125^1402^74
- ;;^UTILITY(U,$J,358.3,23258,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23258,1,4,0)
- ;;=4^780.63
- ;;^UTILITY(U,$J,358.3,23258,1,5,0)
- ;;=5^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,23258,2)
- ;;=^336669
- ;;^UTILITY(U,$J,358.3,23259,0)
- ;;=780.64^^125^1402^38
- ;;^UTILITY(U,$J,358.3,23259,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23259,1,4,0)
- ;;=4^780.64
- ;;^UTILITY(U,$J,358.3,23259,1,5,0)
- ;;=5^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,23259,2)
- ;;=^336670
- ;;^UTILITY(U,$J,358.3,23260,0)
- ;;=780.65^^125^1402^89
- ;;^UTILITY(U,$J,358.3,23260,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23260,1,4,0)
- ;;=4^780.65
- ;;^UTILITY(U,$J,358.3,23260,1,5,0)
- ;;=5^Hypothermia w/o Low Env Temp
- ;;^UTILITY(U,$J,358.3,23260,2)
- ;;=^336671
- ;;^UTILITY(U,$J,358.3,23261,0)
- ;;=780.99^^125^1402^41
- ;;^UTILITY(U,$J,358.3,23261,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23261,1,4,0)
- ;;=4^780.99
- ;;^UTILITY(U,$J,358.3,23261,1,5,0)
- ;;=5^Cold Intolerence
- ;;^UTILITY(U,$J,358.3,23261,2)
- ;;=^328568
- ;;^UTILITY(U,$J,358.3,23262,0)
- ;;=787.21^^125^1402^56
- ;;^UTILITY(U,$J,358.3,23262,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23262,1,4,0)
- ;;=4^787.21
- ;;^UTILITY(U,$J,358.3,23262,1,5,0)
- ;;=5^Dysphagia, Oral Phase
- ;;^UTILITY(U,$J,358.3,23262,2)
- ;;=^335276
- ;;^UTILITY(U,$J,358.3,23263,0)
- ;;=787.22^^125^1402^57
- ;;^UTILITY(U,$J,358.3,23263,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23263,1,4,0)
- ;;=4^787.22
- ;;^UTILITY(U,$J,358.3,23263,1,5,0)
- ;;=5^Dysphagia, Oropharyngeal
- ;;^UTILITY(U,$J,358.3,23263,2)
- ;;=^335277
- ;;^UTILITY(U,$J,358.3,23264,0)
- ;;=787.23^^125^1402^58
- ;;^UTILITY(U,$J,358.3,23264,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23264,1,4,0)
- ;;=4^787.23
- ;;^UTILITY(U,$J,358.3,23264,1,5,0)
- ;;=5^Dysphagia, Pharyngeal
- ;;^UTILITY(U,$J,358.3,23264,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,23265,0)
- ;;=787.24^^125^1402^59
- ;;^UTILITY(U,$J,358.3,23265,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23265,1,4,0)
- ;;=4^787.24
- ;;^UTILITY(U,$J,358.3,23265,1,5,0)
- ;;=5^Dysphagia, Pharyngoesoph
- ;;^UTILITY(U,$J,358.3,23265,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,23266,0)
- ;;=995.83^^125^1403^2
- ;;^UTILITY(U,$J,358.3,23266,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23266,1,4,0)
- ;;=4^995.83
- ;;^UTILITY(U,$J,358.3,23266,1,5,0)
- ;;=5^Non-Military Sexual Trauma
- ;;^UTILITY(U,$J,358.3,23266,2)
- ;;=^1
- ;;^UTILITY(U,$J,358.3,23267,0)
- ;;=E967.9^^125^1403^1
- ;;^UTILITY(U,$J,358.3,23267,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23267,1,4,0)
- ;;=4^E967.9
- ;;^UTILITY(U,$J,358.3,23267,1,5,0)
- ;;=5^Child & Adult Abuse by Unspec Person
- ;;^UTILITY(U,$J,358.3,23267,2)
- ;;=^22623
- ;;^UTILITY(U,$J,358.3,23268,0)
- ;;=784.0^^125^1404^18
- ;;^UTILITY(U,$J,358.3,23268,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23268,1,4,0)
- ;;=4^784.0
- ;;^UTILITY(U,$J,358.3,23268,1,5,0)
- ;;=5^Headache
- ;;^UTILITY(U,$J,358.3,23268,2)
- ;;=Headache^54133
- ;;^UTILITY(U,$J,358.3,23269,0)
- ;;=729.5^^125^1404^16
- ;;^UTILITY(U,$J,358.3,23269,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23269,1,4,0)
- ;;=4^729.5
- ;;^UTILITY(U,$J,358.3,23269,1,5,0)
- ;;=5^Foot Pain
- ;;^UTILITY(U,$J,358.3,23269,2)
- ;;=Foot Pain^89086
- ;;^UTILITY(U,$J,358.3,23270,0)
- ;;=723.1^^125^1404^24
- ;;^UTILITY(U,$J,358.3,23270,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23270,1,4,0)
- ;;=4^723.1
- ;;^UTILITY(U,$J,358.3,23270,1,5,0)
- ;;=5^Neck Pain
- ;;^UTILITY(U,$J,358.3,23270,2)
- ;;=Neck Pain^21917
- ;;^UTILITY(U,$J,358.3,23271,0)
- ;;=719.41^^125^1404^33
- ;;^UTILITY(U,$J,358.3,23271,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,21912,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21912,1,4,0)
+ ;;=4^S62.614S
+ ;;^UTILITY(U,$J,358.3,21912,2)
+ ;;=^5034486
+ ;;^UTILITY(U,$J,358.3,21913,0)
+ ;;=S62.661S^^101^1035^69
+ ;;^UTILITY(U,$J,358.3,21913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21913,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21913,1,4,0)
+ ;;=4^S62.661S
+ ;;^UTILITY(U,$J,358.3,21913,2)
+ ;;=^5034815
+ ;;^UTILITY(U,$J,358.3,21914,0)
+ ;;=S62.667S^^101^1035^70
+ ;;^UTILITY(U,$J,358.3,21914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21914,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21914,1,4,0)
+ ;;=4^S62.667S
+ ;;^UTILITY(U,$J,358.3,21914,2)
+ ;;=^5034857
+ ;;^UTILITY(U,$J,358.3,21915,0)
+ ;;=S62.663S^^101^1035^71
+ ;;^UTILITY(U,$J,358.3,21915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21915,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21915,1,4,0)
+ ;;=4^S62.663S
+ ;;^UTILITY(U,$J,358.3,21915,2)
+ ;;=^5034829
+ ;;^UTILITY(U,$J,358.3,21916,0)
+ ;;=S62.665S^^101^1035^72
+ ;;^UTILITY(U,$J,358.3,21916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21916,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21916,1,4,0)
+ ;;=4^S62.665S
+ ;;^UTILITY(U,$J,358.3,21916,2)
+ ;;=^5034843
+ ;;^UTILITY(U,$J,358.3,21917,0)
+ ;;=S62.660S^^101^1035^74
+ ;;^UTILITY(U,$J,358.3,21917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21917,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21917,1,4,0)
+ ;;=4^S62.660S
+ ;;^UTILITY(U,$J,358.3,21917,2)
+ ;;=^5034808
+ ;;^UTILITY(U,$J,358.3,21918,0)
+ ;;=S62.666S^^101^1035^75
+ ;;^UTILITY(U,$J,358.3,21918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21918,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21918,1,4,0)
+ ;;=4^S62.666S
+ ;;^UTILITY(U,$J,358.3,21918,2)
+ ;;=^5034850
+ ;;^UTILITY(U,$J,358.3,21919,0)
+ ;;=S62.662S^^101^1035^76
+ ;;^UTILITY(U,$J,358.3,21919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21919,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21919,1,4,0)
+ ;;=4^S62.662S
+ ;;^UTILITY(U,$J,358.3,21919,2)
+ ;;=^5034822
+ ;;^UTILITY(U,$J,358.3,21920,0)
+ ;;=S62.664S^^101^1035^77
+ ;;^UTILITY(U,$J,358.3,21920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21920,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21920,1,4,0)
+ ;;=4^S62.664S
+ ;;^UTILITY(U,$J,358.3,21920,2)
+ ;;=^5034836
+ ;;^UTILITY(U,$J,358.3,21921,0)
+ ;;=S62.651S^^101^1035^79
+ ;;^UTILITY(U,$J,358.3,21921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21921,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21921,1,4,0)
+ ;;=4^S62.651S
+ ;;^UTILITY(U,$J,358.3,21921,2)
+ ;;=^5034745
+ ;;^UTILITY(U,$J,358.3,21922,0)
+ ;;=S62.657S^^101^1035^80
+ ;;^UTILITY(U,$J,358.3,21922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21922,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21922,1,4,0)
+ ;;=4^S62.657S
+ ;;^UTILITY(U,$J,358.3,21922,2)
+ ;;=^5034787
+ ;;^UTILITY(U,$J,358.3,21923,0)
+ ;;=S62.653S^^101^1035^81
+ ;;^UTILITY(U,$J,358.3,21923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21923,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21923,1,4,0)
+ ;;=4^S62.653S
+ ;;^UTILITY(U,$J,358.3,21923,2)
+ ;;=^5034759

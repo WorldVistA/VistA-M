@@ -1,134 +1,132 @@
-IBDEI1V2 ; ; 06-AUG-2015
+IBDEI1V2 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32755,1,3,0)
- ;;=3^Malig Neop Left Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,32755,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,32755,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,32756,0)
- ;;=C50.911^^182^1992^146
- ;;^UTILITY(U,$J,358.3,32756,1,0)
+ ;;^UTILITY(U,$J,358.3,31149,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,31150,0)
+ ;;=W13.3XXD^^135^1391^84
+ ;;^UTILITY(U,$J,358.3,31150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32756,1,3,0)
- ;;=3^Malig Neop Right Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,32756,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,32756,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,32757,0)
- ;;=C50.919^^182^1992^118
- ;;^UTILITY(U,$J,358.3,32757,1,0)
+ ;;^UTILITY(U,$J,358.3,31150,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31150,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,31150,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,31151,0)
+ ;;=W13.4XXA^^135^1391^71
+ ;;^UTILITY(U,$J,358.3,31151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32757,1,3,0)
- ;;=3^Malig Neop Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,32757,1,4,0)
- ;;=4^C50.919
- ;;^UTILITY(U,$J,358.3,32757,2)
- ;;=^5001197
- ;;^UTILITY(U,$J,358.3,32758,0)
- ;;=C62.90^^182^1992^153
- ;;^UTILITY(U,$J,358.3,32758,1,0)
+ ;;^UTILITY(U,$J,358.3,31151,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31151,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,31151,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,31152,0)
+ ;;=W13.4XXD^^135^1391^72
+ ;;^UTILITY(U,$J,358.3,31152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32758,1,3,0)
- ;;=3^Malig Neop Testis,Unspec
- ;;^UTILITY(U,$J,358.3,32758,1,4,0)
- ;;=4^C62.90
- ;;^UTILITY(U,$J,358.3,32758,2)
- ;;=^5001236
- ;;^UTILITY(U,$J,358.3,32759,0)
- ;;=D03.9^^182^1992^155
- ;;^UTILITY(U,$J,358.3,32759,1,0)
+ ;;^UTILITY(U,$J,358.3,31152,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31152,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,31152,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,31153,0)
+ ;;=W13.8XXA^^135^1391^35
+ ;;^UTILITY(U,$J,358.3,31153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32759,1,3,0)
- ;;=3^Melanoma in Situ,Unspec
- ;;^UTILITY(U,$J,358.3,32759,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,32759,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,32760,0)
- ;;=C45.0^^182^1992^156
- ;;^UTILITY(U,$J,358.3,32760,1,0)
+ ;;^UTILITY(U,$J,358.3,31153,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31153,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,31153,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,31154,0)
+ ;;=W13.8XXD^^135^1391^36
+ ;;^UTILITY(U,$J,358.3,31154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32760,1,3,0)
- ;;=3^Mesothelioma of Pleura
- ;;^UTILITY(U,$J,358.3,32760,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,32760,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,32761,0)
- ;;=C90.01^^182^1992^157
- ;;^UTILITY(U,$J,358.3,32761,1,0)
+ ;;^UTILITY(U,$J,358.3,31154,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31154,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,31154,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,31155,0)
+ ;;=W13.9XXA^^135^1391^33
+ ;;^UTILITY(U,$J,358.3,31155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32761,1,3,0)
- ;;=3^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,32761,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,32761,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,32762,0)
- ;;=C90.00^^182^1992^158
- ;;^UTILITY(U,$J,358.3,32762,1,0)
+ ;;^UTILITY(U,$J,358.3,31155,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31155,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,31155,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,31156,0)
+ ;;=W13.9XXD^^135^1391^34
+ ;;^UTILITY(U,$J,358.3,31156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32762,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,32762,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,32762,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,32763,0)
- ;;=C94.6^^182^1992^159
- ;;^UTILITY(U,$J,358.3,32763,1,0)
+ ;;^UTILITY(U,$J,358.3,31156,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31156,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,31156,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,31157,0)
+ ;;=W14.XXXA^^135^1391^65
+ ;;^UTILITY(U,$J,358.3,31157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32763,1,3,0)
- ;;=3^Myelodysplastic Disease NEC
- ;;^UTILITY(U,$J,358.3,32763,1,4,0)
- ;;=4^C94.6
- ;;^UTILITY(U,$J,358.3,32763,2)
- ;;=^5001846
- ;;^UTILITY(U,$J,358.3,32764,0)
- ;;=D61.82^^182^1992^160
- ;;^UTILITY(U,$J,358.3,32764,1,0)
+ ;;^UTILITY(U,$J,358.3,31157,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31157,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,31157,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,31158,0)
+ ;;=W14.XXXD^^135^1391^66
+ ;;^UTILITY(U,$J,358.3,31158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32764,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,32764,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,32764,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,32765,0)
- ;;=D47.9^^182^1992^161
- ;;^UTILITY(U,$J,358.3,32765,1,0)
+ ;;^UTILITY(U,$J,358.3,31158,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31158,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,31158,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,31159,0)
+ ;;=W17.2XXA^^135^1391^77
+ ;;^UTILITY(U,$J,358.3,31159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32765,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,32765,1,4,0)
- ;;=4^D47.9
- ;;^UTILITY(U,$J,358.3,32765,2)
- ;;=^5002260
- ;;^UTILITY(U,$J,358.3,32766,0)
- ;;=D53.9^^182^1992^165
- ;;^UTILITY(U,$J,358.3,32766,1,0)
+ ;;^UTILITY(U,$J,358.3,31159,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31159,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,31159,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,31160,0)
+ ;;=W17.2XXD^^135^1391^78
+ ;;^UTILITY(U,$J,358.3,31160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32766,1,3,0)
- ;;=3^Nutritional Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,32766,1,4,0)
- ;;=4^D53.9
- ;;^UTILITY(U,$J,358.3,32766,2)
- ;;=^5002298
- ;;^UTILITY(U,$J,358.3,32767,0)
- ;;=D47.4^^182^1992^166
- ;;^UTILITY(U,$J,358.3,32767,1,0)
+ ;;^UTILITY(U,$J,358.3,31160,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31160,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,31160,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,31161,0)
+ ;;=W17.3XXA^^135^1391^75
+ ;;^UTILITY(U,$J,358.3,31161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32767,1,3,0)
- ;;=3^Osteomyelofibrosis
- ;;^UTILITY(U,$J,358.3,32767,1,4,0)
- ;;=4^D47.4
- ;;^UTILITY(U,$J,358.3,32767,2)
- ;;=^5002259
- ;;^UTILITY(U,$J,358.3,32768,0)
- ;;=D59.1^^182^1992^25
- ;;^UTILITY(U,$J,358.3,32768,1,0)
+ ;;^UTILITY(U,$J,358.3,31161,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31161,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,31161,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,31162,0)
+ ;;=W17.3XXD^^135^1391^76
+ ;;^UTILITY(U,$J,358.3,31162,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31162,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr

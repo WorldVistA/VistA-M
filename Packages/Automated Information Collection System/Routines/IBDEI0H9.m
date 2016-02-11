@@ -1,142 +1,126 @@
-IBDEI0H9 ; ; 06-AUG-2015
+IBDEI0H9 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8035,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,8036,0)
- ;;=787.24^^35^479^24
- ;;^UTILITY(U,$J,358.3,8036,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8036,1,4,0)
- ;;=4^787.24
- ;;^UTILITY(U,$J,358.3,8036,1,5,0)
- ;;=5^Dysphagia,Pharyngoesoph
- ;;^UTILITY(U,$J,358.3,8036,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,8037,0)
- ;;=787.29^^35^479^20
- ;;^UTILITY(U,$J,358.3,8037,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8037,1,4,0)
- ;;=4^787.29
- ;;^UTILITY(U,$J,358.3,8037,1,5,0)
- ;;=5^Dysphagia NEC
- ;;^UTILITY(U,$J,358.3,8037,2)
- ;;=^335280
- ;;^UTILITY(U,$J,358.3,8038,0)
- ;;=584.9^^35^480^2
- ;;^UTILITY(U,$J,358.3,8038,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8038,1,4,0)
- ;;=4^584.9
- ;;^UTILITY(U,$J,358.3,8038,1,5,0)
- ;;=5^Acute Renal Failure
- ;;^UTILITY(U,$J,358.3,8038,2)
- ;;=^67114
- ;;^UTILITY(U,$J,358.3,8039,0)
- ;;=583.9^^35^480^19
- ;;^UTILITY(U,$J,358.3,8039,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8039,1,4,0)
- ;;=4^583.9
- ;;^UTILITY(U,$J,358.3,8039,1,5,0)
- ;;=5^Glomerulonephritis
- ;;^UTILITY(U,$J,358.3,8039,2)
- ;;=^83446
- ;;^UTILITY(U,$J,358.3,8040,0)
- ;;=403.90^^35^480^51
- ;;^UTILITY(U,$J,358.3,8040,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8040,1,4,0)
- ;;=4^403.90
- ;;^UTILITY(U,$J,358.3,8040,1,5,0)
- ;;=5^Renal Insufficiency with Hypertension (CRI and HTN)
- ;;^UTILITY(U,$J,358.3,8040,2)
- ;;=Renal Insufficiency with Hypertension (CRI and HTN)^269609
- ;;^UTILITY(U,$J,358.3,8041,0)
- ;;=593.9^^35^480^9
- ;;^UTILITY(U,$J,358.3,8041,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8041,1,4,0)
- ;;=4^593.9
- ;;^UTILITY(U,$J,358.3,8041,1,5,0)
- ;;=5^Chronic Renal Insufficiency
- ;;^UTILITY(U,$J,358.3,8041,2)
- ;;=Chronic Renal Insufficiency^123849
- ;;^UTILITY(U,$J,358.3,8042,0)
- ;;=581.9^^35^480^37
- ;;^UTILITY(U,$J,358.3,8042,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8042,1,4,0)
- ;;=4^581.9
- ;;^UTILITY(U,$J,358.3,8042,1,5,0)
- ;;=5^Nephrotic Syndrome
- ;;^UTILITY(U,$J,358.3,8042,2)
- ;;=^82357
- ;;^UTILITY(U,$J,358.3,8043,0)
- ;;=753.12^^35^480^43
- ;;^UTILITY(U,$J,358.3,8043,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8043,1,4,0)
- ;;=4^753.12
- ;;^UTILITY(U,$J,358.3,8043,1,5,0)
- ;;=5^Polycystic Kidney Disease
- ;;^UTILITY(U,$J,358.3,8043,2)
- ;;=^67295
- ;;^UTILITY(U,$J,358.3,8044,0)
- ;;=791.0^^35^480^45
- ;;^UTILITY(U,$J,358.3,8044,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8044,1,4,0)
- ;;=4^791.0
- ;;^UTILITY(U,$J,358.3,8044,1,5,0)
- ;;=5^Proteinuria
- ;;^UTILITY(U,$J,358.3,8044,2)
- ;;=Proteinuria^99873
- ;;^UTILITY(U,$J,358.3,8045,0)
- ;;=791.9^^35^480^48
- ;;^UTILITY(U,$J,358.3,8045,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8045,1,4,0)
- ;;=4^791.9
- ;;^UTILITY(U,$J,358.3,8045,1,5,0)
- ;;=5^Pyuria
- ;;^UTILITY(U,$J,358.3,8045,2)
- ;;=^273408
- ;;^UTILITY(U,$J,358.3,8046,0)
- ;;=592.0^^35^480^49
- ;;^UTILITY(U,$J,358.3,8046,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8046,1,4,0)
- ;;=4^592.0
- ;;^UTILITY(U,$J,358.3,8046,1,5,0)
- ;;=5^Renal Calculi
- ;;^UTILITY(U,$J,358.3,8046,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,8047,0)
- ;;=403.91^^35^480^50
- ;;^UTILITY(U,$J,358.3,8047,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8047,1,4,0)
- ;;=4^403.91
- ;;^UTILITY(U,$J,358.3,8047,1,5,0)
- ;;=5^Renal Failure, Chronic Hypertensive
- ;;^UTILITY(U,$J,358.3,8047,2)
- ;;=^269610
- ;;^UTILITY(U,$J,358.3,8048,0)
- ;;=586.^^35^480^53
- ;;^UTILITY(U,$J,358.3,8048,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8048,1,4,0)
- ;;=4^586.
- ;;^UTILITY(U,$J,358.3,8048,1,5,0)
- ;;=5^Uremia
- ;;^UTILITY(U,$J,358.3,8048,2)
- ;;=Uremia^104733
- ;;^UTILITY(U,$J,358.3,8049,0)
- ;;=599.0^^35^480^65
- ;;^UTILITY(U,$J,358.3,8049,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8049,1,4,0)
- ;;=4^599.0
+ ;;^UTILITY(U,$J,358.3,7717,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,7717,1,4,0)
+ ;;=4^N05.1
+ ;;^UTILITY(U,$J,358.3,7717,2)
+ ;;=^5015542
+ ;;^UTILITY(U,$J,358.3,7718,0)
+ ;;=N05.2^^52^518^46
+ ;;^UTILITY(U,$J,358.3,7718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7718,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,7718,1,4,0)
+ ;;=4^N05.2
+ ;;^UTILITY(U,$J,358.3,7718,2)
+ ;;=^5015543
+ ;;^UTILITY(U,$J,358.3,7719,0)
+ ;;=N05.3^^52^518^47
+ ;;^UTILITY(U,$J,358.3,7719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7719,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,7719,1,4,0)
+ ;;=4^N05.3
+ ;;^UTILITY(U,$J,358.3,7719,2)
+ ;;=^5015544
+ ;;^UTILITY(U,$J,358.3,7720,0)
+ ;;=N05.4^^52^518^45
+ ;;^UTILITY(U,$J,358.3,7720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7720,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,7720,1,4,0)
+ ;;=4^N05.4
+ ;;^UTILITY(U,$J,358.3,7720,2)
+ ;;=^5015545
+ ;;^UTILITY(U,$J,358.3,7721,0)
+ ;;=N05.5^^52^518^48
+ ;;^UTILITY(U,$J,358.3,7721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7721,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,7721,1,4,0)
+ ;;=4^N05.5
+ ;;^UTILITY(U,$J,358.3,7721,2)
+ ;;=^5015546
+ ;;^UTILITY(U,$J,358.3,7722,0)
+ ;;=N05.6^^52^518^43
+ ;;^UTILITY(U,$J,358.3,7722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7722,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,7722,1,4,0)
+ ;;=4^N05.6
+ ;;^UTILITY(U,$J,358.3,7722,2)
+ ;;=^5015547
+ ;;^UTILITY(U,$J,358.3,7723,0)
+ ;;=N05.7^^52^518^44
+ ;;^UTILITY(U,$J,358.3,7723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7723,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,7723,1,4,0)
+ ;;=4^N05.7
+ ;;^UTILITY(U,$J,358.3,7723,2)
+ ;;=^5015548
+ ;;^UTILITY(U,$J,358.3,7724,0)
+ ;;=N05.8^^52^518^51
+ ;;^UTILITY(U,$J,358.3,7724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7724,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,7724,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,7724,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,7725,0)
+ ;;=N05.9^^52^518^52
+ ;;^UTILITY(U,$J,358.3,7725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7725,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ unspec morphologic changes
+ ;;^UTILITY(U,$J,358.3,7725,1,4,0)
+ ;;=4^N05.9
+ ;;^UTILITY(U,$J,358.3,7725,2)
+ ;;=^5134086
+ ;;^UTILITY(U,$J,358.3,7726,0)
+ ;;=N06.0^^52^518^40
+ ;;^UTILITY(U,$J,358.3,7726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7726,1,3,0)
+ ;;=3^Isolated proteinuria w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,7726,1,4,0)
+ ;;=4^N06.0
+ ;;^UTILITY(U,$J,358.3,7726,2)
+ ;;=^5015549
+ ;;^UTILITY(U,$J,358.3,7727,0)
+ ;;=N06.1^^52^518^39
+ ;;^UTILITY(U,$J,358.3,7727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7727,1,3,0)
+ ;;=3^Isolated proteinuria w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,7727,1,4,0)
+ ;;=4^N06.1
+ ;;^UTILITY(U,$J,358.3,7727,2)
+ ;;=^5015550
+ ;;^UTILITY(U,$J,358.3,7728,0)
+ ;;=N06.2^^52^518^36
+ ;;^UTILITY(U,$J,358.3,7728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7728,1,3,0)
+ ;;=3^Isolated proteinuria w/ diffuse membranous glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,7728,1,4,0)
+ ;;=4^N06.2
+ ;;^UTILITY(U,$J,358.3,7728,2)
+ ;;=^5015551
+ ;;^UTILITY(U,$J,358.3,7729,0)
+ ;;=N06.3^^52^518^37
+ ;;^UTILITY(U,$J,358.3,7729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7729,1,3,0)
+ ;;=3^Isolated proteinuria w/ diffuse mesangial prolif glomrlneph

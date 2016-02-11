@@ -1,0 +1,132 @@
+IBDEI2QO ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45964,1,4,0)
+ ;;=4^S43.004S
+ ;;^UTILITY(U,$J,358.3,45964,2)
+ ;;=^5027665
+ ;;^UTILITY(U,$J,358.3,45965,0)
+ ;;=S43.005S^^203^2269^6
+ ;;^UTILITY(U,$J,358.3,45965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45965,1,3,0)
+ ;;=3^Dislocation,Left Shoulder,Sequela
+ ;;^UTILITY(U,$J,358.3,45965,1,4,0)
+ ;;=4^S43.005S
+ ;;^UTILITY(U,$J,358.3,45965,2)
+ ;;=^5027668
+ ;;^UTILITY(U,$J,358.3,45966,0)
+ ;;=S43.011S^^203^2269^17
+ ;;^UTILITY(U,$J,358.3,45966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45966,1,3,0)
+ ;;=3^Subluxation,Right Elbow,Sequela
+ ;;^UTILITY(U,$J,358.3,45966,1,4,0)
+ ;;=4^S43.011S
+ ;;^UTILITY(U,$J,358.3,45966,2)
+ ;;=^5027671
+ ;;^UTILITY(U,$J,358.3,45967,0)
+ ;;=S43.012S^^203^2269^13
+ ;;^UTILITY(U,$J,358.3,45967,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45967,1,3,0)
+ ;;=3^Subluxation,Left Elbow,Sequela
+ ;;^UTILITY(U,$J,358.3,45967,1,4,0)
+ ;;=4^S43.012S
+ ;;^UTILITY(U,$J,358.3,45967,2)
+ ;;=^5027674
+ ;;^UTILITY(U,$J,358.3,45968,0)
+ ;;=S43.014S^^203^2269^7
+ ;;^UTILITY(U,$J,358.3,45968,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45968,1,3,0)
+ ;;=3^Dislocation,Right Elbow,Anterior,Sequela
+ ;;^UTILITY(U,$J,358.3,45968,1,4,0)
+ ;;=4^S43.014S
+ ;;^UTILITY(U,$J,358.3,45968,2)
+ ;;=^5027680
+ ;;^UTILITY(U,$J,358.3,45969,0)
+ ;;=S43.015S^^203^2269^1
+ ;;^UTILITY(U,$J,358.3,45969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45969,1,3,0)
+ ;;=3^Dislocation,Left Elbow,Anterior,Sequela
+ ;;^UTILITY(U,$J,358.3,45969,1,4,0)
+ ;;=4^S43.015S
+ ;;^UTILITY(U,$J,358.3,45969,2)
+ ;;=^5027683
+ ;;^UTILITY(U,$J,358.3,45970,0)
+ ;;=S43.024S^^203^2269^9
+ ;;^UTILITY(U,$J,358.3,45970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45970,1,3,0)
+ ;;=3^Dislocation,Right Elbow,Posterior,Sequela
+ ;;^UTILITY(U,$J,358.3,45970,1,4,0)
+ ;;=4^S43.024S
+ ;;^UTILITY(U,$J,358.3,45970,2)
+ ;;=^5027698
+ ;;^UTILITY(U,$J,358.3,45971,0)
+ ;;=S43.025S^^203^2269^3
+ ;;^UTILITY(U,$J,358.3,45971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45971,1,3,0)
+ ;;=3^Dislocation,Left Elbow,Posterior,Sequela
+ ;;^UTILITY(U,$J,358.3,45971,1,4,0)
+ ;;=4^S43.025S
+ ;;^UTILITY(U,$J,358.3,45971,2)
+ ;;=^5027701
+ ;;^UTILITY(U,$J,358.3,45972,0)
+ ;;=S43.034S^^203^2269^8
+ ;;^UTILITY(U,$J,358.3,45972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45972,1,3,0)
+ ;;=3^Dislocation,Right Elbow,Inferior,Sequela
+ ;;^UTILITY(U,$J,358.3,45972,1,4,0)
+ ;;=4^S43.034S
+ ;;^UTILITY(U,$J,358.3,45972,2)
+ ;;=^5027716
+ ;;^UTILITY(U,$J,358.3,45973,0)
+ ;;=S43.035S^^203^2269^2
+ ;;^UTILITY(U,$J,358.3,45973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45973,1,3,0)
+ ;;=3^Dislocation,Left Elbow,Inferior,Sequela
+ ;;^UTILITY(U,$J,358.3,45973,1,4,0)
+ ;;=4^S43.035S
+ ;;^UTILITY(U,$J,358.3,45973,2)
+ ;;=^5027719
+ ;;^UTILITY(U,$J,358.3,45974,0)
+ ;;=S83.095S^^203^2269^5
+ ;;^UTILITY(U,$J,358.3,45974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45974,1,3,0)
+ ;;=3^Dislocation,Left Knee,Sequela
+ ;;^UTILITY(U,$J,358.3,45974,1,4,0)
+ ;;=4^S83.095S
+ ;;^UTILITY(U,$J,358.3,45974,2)
+ ;;=^5137021
+ ;;^UTILITY(U,$J,358.3,45975,0)
+ ;;=S83.094S^^203^2269^11
+ ;;^UTILITY(U,$J,358.3,45975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45975,1,3,0)
+ ;;=3^Dislocation,Right Knee,Sequela
+ ;;^UTILITY(U,$J,358.3,45975,1,4,0)
+ ;;=4^S83.094S
+ ;;^UTILITY(U,$J,358.3,45975,2)
+ ;;=^5042934
+ ;;^UTILITY(U,$J,358.3,45976,0)
+ ;;=S83.091S^^203^2269^19
+ ;;^UTILITY(U,$J,358.3,45976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45976,1,3,0)
+ ;;=3^Subluxation,Right Knee,Sequela
+ ;;^UTILITY(U,$J,358.3,45976,1,4,0)
+ ;;=4^S83.091S
+ ;;^UTILITY(U,$J,358.3,45976,2)
+ ;;=^5042931
+ ;;^UTILITY(U,$J,358.3,45977,0)
+ ;;=S83.092S^^203^2269^15
+ ;;^UTILITY(U,$J,358.3,45977,1,0)
+ ;;=^358.31IA^4^2

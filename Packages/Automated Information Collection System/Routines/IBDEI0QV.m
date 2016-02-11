@@ -1,144 +1,124 @@
-IBDEI0QV ; ; 06-AUG-2015
+IBDEI0QV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12930,1,4,0)
- ;;=4^716.11
- ;;^UTILITY(U,$J,358.3,12930,2)
- ;;=^272180
- ;;^UTILITY(U,$J,358.3,12931,0)
- ;;=840.8^^65^771^21
- ;;^UTILITY(U,$J,358.3,12931,1,0)
+ ;;^UTILITY(U,$J,358.3,12304,1,4,0)
+ ;;=4^S63.615A
+ ;;^UTILITY(U,$J,358.3,12304,2)
+ ;;=^5035637
+ ;;^UTILITY(U,$J,358.3,12305,0)
+ ;;=S63.616A^^71^708^227
+ ;;^UTILITY(U,$J,358.3,12305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12931,1,3,0)
- ;;=3^Sprain, Other
- ;;^UTILITY(U,$J,358.3,12931,1,4,0)
- ;;=4^840.8
- ;;^UTILITY(U,$J,358.3,12931,2)
- ;;=^274472
- ;;^UTILITY(U,$J,358.3,12932,0)
- ;;=726.10^^65^771^25
- ;;^UTILITY(U,$J,358.3,12932,1,0)
+ ;;^UTILITY(U,$J,358.3,12305,1,3,0)
+ ;;=3^Sprain of right little finger unspec, initial enco
+ ;;^UTILITY(U,$J,358.3,12305,1,4,0)
+ ;;=4^S63.616A
+ ;;^UTILITY(U,$J,358.3,12305,2)
+ ;;=^5035640
+ ;;^UTILITY(U,$J,358.3,12306,0)
+ ;;=S63.617A^^71^708^208
+ ;;^UTILITY(U,$J,358.3,12306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12932,1,3,0)
- ;;=3^Tendonitis, Unspecified
- ;;^UTILITY(U,$J,358.3,12932,1,4,0)
- ;;=4^726.10
- ;;^UTILITY(U,$J,358.3,12932,2)
- ;;=^272523
- ;;^UTILITY(U,$J,358.3,12933,0)
- ;;=726.13^^65^771^17
- ;;^UTILITY(U,$J,358.3,12933,1,0)
+ ;;^UTILITY(U,$J,358.3,12306,1,3,0)
+ ;;=3^Sprain of left little finger unspec, initial encou
+ ;;^UTILITY(U,$J,358.3,12306,1,4,0)
+ ;;=4^S63.617A
+ ;;^UTILITY(U,$J,358.3,12306,2)
+ ;;=^5035643
+ ;;^UTILITY(U,$J,358.3,12307,0)
+ ;;=S93.601A^^71^708^223
+ ;;^UTILITY(U,$J,358.3,12307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12933,1,3,0)
- ;;=3^Rotator Cuff Tear, Partial
- ;;^UTILITY(U,$J,358.3,12933,1,4,0)
- ;;=4^726.13
- ;;^UTILITY(U,$J,358.3,12933,2)
- ;;=^340566
- ;;^UTILITY(U,$J,358.3,12934,0)
- ;;=922.31^^65^772^1
- ;;^UTILITY(U,$J,358.3,12934,1,0)
+ ;;^UTILITY(U,$J,358.3,12307,1,3,0)
+ ;;=3^Sprain of right foot unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,12307,1,4,0)
+ ;;=4^S93.601A
+ ;;^UTILITY(U,$J,358.3,12307,2)
+ ;;=^5045867
+ ;;^UTILITY(U,$J,358.3,12308,0)
+ ;;=S93.602A^^71^708^204
+ ;;^UTILITY(U,$J,358.3,12308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12934,1,3,0)
- ;;=3^Contusion
- ;;^UTILITY(U,$J,358.3,12934,1,4,0)
- ;;=4^922.31
- ;;^UTILITY(U,$J,358.3,12934,2)
- ;;=^275379
- ;;^UTILITY(U,$J,358.3,12935,0)
- ;;=733.00^^65^772^3
- ;;^UTILITY(U,$J,358.3,12935,1,0)
+ ;;^UTILITY(U,$J,358.3,12308,1,3,0)
+ ;;=3^Sprain of left foot unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,12308,1,4,0)
+ ;;=4^S93.602A
+ ;;^UTILITY(U,$J,358.3,12308,2)
+ ;;=^5045870
+ ;;^UTILITY(U,$J,358.3,12309,0)
+ ;;=S63.91XA^^71^708^238
+ ;;^UTILITY(U,$J,358.3,12309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12935,1,3,0)
- ;;=3^Osteoporosis
- ;;^UTILITY(U,$J,358.3,12935,1,4,0)
- ;;=4^733.00
- ;;^UTILITY(U,$J,358.3,12935,2)
- ;;=^87159
- ;;^UTILITY(U,$J,358.3,12936,0)
- ;;=754.2^^65^772^6
- ;;^UTILITY(U,$J,358.3,12936,1,0)
+ ;;^UTILITY(U,$J,358.3,12309,1,3,0)
+ ;;=3^Sprain of unsp part of right wrist and hand, init encntr
+ ;;^UTILITY(U,$J,358.3,12309,1,4,0)
+ ;;=4^S63.91XA
+ ;;^UTILITY(U,$J,358.3,12309,2)
+ ;;=^5136046
+ ;;^UTILITY(U,$J,358.3,12310,0)
+ ;;=S63.92XA^^71^708^237
+ ;;^UTILITY(U,$J,358.3,12310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12936,1,3,0)
- ;;=3^Scoliosis, Congenital
- ;;^UTILITY(U,$J,358.3,12936,1,4,0)
- ;;=4^754.2
- ;;^UTILITY(U,$J,358.3,12936,2)
- ;;=^272994
- ;;^UTILITY(U,$J,358.3,12937,0)
- ;;=737.39^^65^772^5
- ;;^UTILITY(U,$J,358.3,12937,1,0)
+ ;;^UTILITY(U,$J,358.3,12310,1,3,0)
+ ;;=3^Sprain of unsp part of left wrist and hand, init encntr
+ ;;^UTILITY(U,$J,358.3,12310,1,4,0)
+ ;;=4^S63.92XA
+ ;;^UTILITY(U,$J,358.3,12310,2)
+ ;;=^5136047
+ ;;^UTILITY(U,$J,358.3,12311,0)
+ ;;=S83.401A^^71^708^234
+ ;;^UTILITY(U,$J,358.3,12311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12937,1,3,0)
- ;;=3^Scoliosis Neuromuscular
- ;;^UTILITY(U,$J,358.3,12937,1,4,0)
- ;;=4^737.39
- ;;^UTILITY(U,$J,358.3,12937,2)
- ;;=^87678
- ;;^UTILITY(U,$J,358.3,12938,0)
- ;;=737.30^^65^772^4
- ;;^UTILITY(U,$J,358.3,12938,1,0)
+ ;;^UTILITY(U,$J,358.3,12311,1,3,0)
+ ;;=3^Sprain of unsp collateral ligament of right knee, init
+ ;;^UTILITY(U,$J,358.3,12311,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,12311,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,12312,0)
+ ;;=S83.402A^^71^708^233
+ ;;^UTILITY(U,$J,358.3,12312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12938,1,3,0)
- ;;=3^Scoliosis Idiopathic
- ;;^UTILITY(U,$J,358.3,12938,1,4,0)
- ;;=4^737.30
- ;;^UTILITY(U,$J,358.3,12938,2)
- ;;=^108664
- ;;^UTILITY(U,$J,358.3,12939,0)
- ;;=724.00^^65^772^9
- ;;^UTILITY(U,$J,358.3,12939,1,0)
+ ;;^UTILITY(U,$J,358.3,12312,1,3,0)
+ ;;=3^Sprain of unsp collateral ligament of left knee, init encntr
+ ;;^UTILITY(U,$J,358.3,12312,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,12312,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,12313,0)
+ ;;=S83.411A^^71^708^217
+ ;;^UTILITY(U,$J,358.3,12313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12939,1,3,0)
- ;;=3^Stenosis
- ;;^UTILITY(U,$J,358.3,12939,1,4,0)
- ;;=4^724.00
- ;;^UTILITY(U,$J,358.3,12939,2)
- ;;=^113279
- ;;^UTILITY(U,$J,358.3,12940,0)
- ;;=721.90^^65^772^8
- ;;^UTILITY(U,$J,358.3,12940,1,0)
+ ;;^UTILITY(U,$J,358.3,12313,1,3,0)
+ ;;=3^Sprain of medial collateral ligament of right knee, init
+ ;;^UTILITY(U,$J,358.3,12313,1,4,0)
+ ;;=4^S83.411A
+ ;;^UTILITY(U,$J,358.3,12313,2)
+ ;;=^5043109
+ ;;^UTILITY(U,$J,358.3,12314,0)
+ ;;=S83.412A^^71^708^218
+ ;;^UTILITY(U,$J,358.3,12314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12940,1,3,0)
- ;;=3^Spondylosis
- ;;^UTILITY(U,$J,358.3,12940,1,4,0)
- ;;=4^721.90
- ;;^UTILITY(U,$J,358.3,12940,2)
- ;;=^272463
- ;;^UTILITY(U,$J,358.3,12941,0)
- ;;=738.4^^65^772^7
- ;;^UTILITY(U,$J,358.3,12941,1,0)
+ ;;^UTILITY(U,$J,358.3,12314,1,3,0)
+ ;;=3^Sprain of medial collateral ligament of left knee, init
+ ;;^UTILITY(U,$J,358.3,12314,1,4,0)
+ ;;=4^S83.412A
+ ;;^UTILITY(U,$J,358.3,12314,2)
+ ;;=^5043112
+ ;;^UTILITY(U,$J,358.3,12315,0)
+ ;;=S83.421A^^71^708^200
+ ;;^UTILITY(U,$J,358.3,12315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12941,1,3,0)
- ;;=3^Spondylolisthesis
- ;;^UTILITY(U,$J,358.3,12941,1,4,0)
- ;;=4^738.4
- ;;^UTILITY(U,$J,358.3,12941,2)
- ;;=^272771
- ;;^UTILITY(U,$J,358.3,12942,0)
- ;;=724.8^^65^772^2
- ;;^UTILITY(U,$J,358.3,12942,1,0)
+ ;;^UTILITY(U,$J,358.3,12315,1,3,0)
+ ;;=3^Sprain of lateral collateral ligament of right knee, init
+ ;;^UTILITY(U,$J,358.3,12315,1,4,0)
+ ;;=4^S83.421A
+ ;;^UTILITY(U,$J,358.3,12315,2)
+ ;;=^5043118
+ ;;^UTILITY(U,$J,358.3,12316,0)
+ ;;=S83.422A^^71^708^201
+ ;;^UTILITY(U,$J,358.3,12316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12942,1,3,0)
- ;;=3^Facet Syndrome
- ;;^UTILITY(U,$J,358.3,12942,1,4,0)
- ;;=4^724.8
- ;;^UTILITY(U,$J,358.3,12942,2)
- ;;=^272517
- ;;^UTILITY(U,$J,358.3,12943,0)
- ;;=722.90^^65^772^1.1
- ;;^UTILITY(U,$J,358.3,12943,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12943,1,3,0)
- ;;=3^Discitis
- ;;^UTILITY(U,$J,358.3,12943,1,4,0)
- ;;=4^722.90
- ;;^UTILITY(U,$J,358.3,12943,2)
- ;;=^87270
- ;;^UTILITY(U,$J,358.3,12944,0)
- ;;=730.28^^65^772^2.1
- ;;^UTILITY(U,$J,358.3,12944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12944,1,3,0)
- ;;=3^Osteomyelitis
+ ;;^UTILITY(U,$J,358.3,12316,1,3,0)
+ ;;=3^Sprain of lateral collateral ligament of left knee, init

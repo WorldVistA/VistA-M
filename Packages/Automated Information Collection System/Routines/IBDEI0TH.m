@@ -1,118 +1,136 @@
-IBDEI0TH ; ; 06-AUG-2015
+IBDEI0TH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14270,1,3,0)
- ;;=3^12020
- ;;^UTILITY(U,$J,358.3,14271,0)
- ;;=12021^^75^879^11^^^^1
- ;;^UTILITY(U,$J,358.3,14271,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14271,1,2,0)
- ;;=2^TX of Superficial Wound Dehiscence; simple closure with packing
- ;;^UTILITY(U,$J,358.3,14271,1,3,0)
- ;;=3^12021
- ;;^UTILITY(U,$J,358.3,14272,0)
- ;;=13160^^75^879^7^^^^1
- ;;^UTILITY(U,$J,358.3,14272,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14272,1,2,0)
- ;;=2^Secondary Closure of Surgical Wound or Dehiscence, extensive or complicated 
- ;;^UTILITY(U,$J,358.3,14272,1,3,0)
- ;;=3^13160
- ;;^UTILITY(U,$J,358.3,14273,0)
- ;;=27650^^75^879^6^^^^1
- ;;^UTILITY(U,$J,358.3,14273,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14273,1,2,0)
- ;;=2^Repair Primary Ruptured Achilles Tendon
- ;;^UTILITY(U,$J,358.3,14273,1,3,0)
- ;;=3^27650
- ;;^UTILITY(U,$J,358.3,14274,0)
- ;;=28406^^75^879^5^^^^1
- ;;^UTILITY(U,$J,358.3,14274,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14274,1,2,0)
- ;;=2^Perc Fixation Calcaneous Fx
- ;;^UTILITY(U,$J,358.3,14274,1,3,0)
- ;;=3^28406
- ;;^UTILITY(U,$J,358.3,14275,0)
- ;;=16020^^75^880^2^^^^1
- ;;^UTILITY(U,$J,358.3,14275,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14275,1,2,0)
- ;;=2^Dressings and/or Debridement, initial or subsequent; without anesthesia, office or hospital, small
- ;;^UTILITY(U,$J,358.3,14275,1,3,0)
- ;;=3^16020
- ;;^UTILITY(U,$J,358.3,14276,0)
- ;;=11100^^75^881^1^^^^1
- ;;^UTILITY(U,$J,358.3,14276,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14276,1,2,0)
- ;;=2^Biopsy of skin,subq tissue single lesion
- ;;^UTILITY(U,$J,358.3,14276,1,3,0)
- ;;=3^11100
- ;;^UTILITY(U,$J,358.3,14277,0)
- ;;=11101^^75^881^2^^^^1
- ;;^UTILITY(U,$J,358.3,14277,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14277,1,2,0)
- ;;=2^Biopsy of skin,subq tissue ea addl lesion
- ;;^UTILITY(U,$J,358.3,14277,1,3,0)
- ;;=3^11101
- ;;^UTILITY(U,$J,358.3,14278,0)
- ;;=20605^^75^882^1^^^^1
- ;;^UTILITY(U,$J,358.3,14278,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14278,1,2,0)
- ;;=2^Arthroc,Aspir/Inj Int Joint/Bursa
- ;;^UTILITY(U,$J,358.3,14278,1,3,0)
- ;;=3^20605
- ;;^UTILITY(U,$J,358.3,14279,0)
- ;;=20615^^75^882^6^^^^1
- ;;^UTILITY(U,$J,358.3,14279,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14279,1,2,0)
- ;;=2^Aspiration and injection for tx of bone cyst
- ;;^UTILITY(U,$J,358.3,14279,1,3,0)
- ;;=3^20615
- ;;^UTILITY(U,$J,358.3,14280,0)
- ;;=20600^^75^882^3^^^^1
- ;;^UTILITY(U,$J,358.3,14280,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14280,1,2,0)
- ;;=2^Arthroc,Aspir/Inj Sm Joint/Bursa
- ;;^UTILITY(U,$J,358.3,14280,1,3,0)
- ;;=3^20600
- ;;^UTILITY(U,$J,358.3,14281,0)
- ;;=11900^^75^882^15^^^^1
- ;;^UTILITY(U,$J,358.3,14281,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14281,1,2,0)
- ;;=2^Injection, intralesional; up to and including seven lesion 
- ;;^UTILITY(U,$J,358.3,14281,1,3,0)
- ;;=3^11900
- ;;^UTILITY(U,$J,358.3,14282,0)
- ;;=11901^^75^882^14^^^^1
- ;;^UTILITY(U,$J,358.3,14282,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14282,1,2,0)
- ;;=2^Injection, intralesional; more than seven lesions
- ;;^UTILITY(U,$J,358.3,14282,1,3,0)
- ;;=3^11901
- ;;^UTILITY(U,$J,358.3,14283,0)
- ;;=64450^^75^882^13^^^^1
- ;;^UTILITY(U,$J,358.3,14283,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14283,1,2,0)
- ;;=2^Injection, anesthetic agent; other peripheral nerve or branch
- ;;^UTILITY(U,$J,358.3,14283,1,3,0)
- ;;=3^64450
- ;;^UTILITY(U,$J,358.3,14284,0)
- ;;=20550^^75^882^16^^^^1
- ;;^UTILITY(U,$J,358.3,14284,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14284,1,2,0)
- ;;=2^Injection; tendon sheath, ligament, ganglion cyst
- ;;^UTILITY(U,$J,358.3,14284,1,3,0)
- ;;=3^20550
+ ;;^UTILITY(U,$J,358.3,13558,1,3,0)
+ ;;=3^Entropion Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,13558,1,4,0)
+ ;;=4^H02.002
+ ;;^UTILITY(U,$J,358.3,13558,2)
+ ;;=^5133394
+ ;;^UTILITY(U,$J,358.3,13559,0)
+ ;;=H02.001^^80^761^40
+ ;;^UTILITY(U,$J,358.3,13559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13559,1,3,0)
+ ;;=3^Entropion Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,13559,1,4,0)
+ ;;=4^H02.001
+ ;;^UTILITY(U,$J,358.3,13559,2)
+ ;;=^5004274
+ ;;^UTILITY(U,$J,358.3,13560,0)
+ ;;=H04.202^^80^761^41
+ ;;^UTILITY(U,$J,358.3,13560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13560,1,3,0)
+ ;;=3^Epiphora Left Lacrimal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,13560,1,4,0)
+ ;;=4^H04.202
+ ;;^UTILITY(U,$J,358.3,13560,2)
+ ;;=^5004485
+ ;;^UTILITY(U,$J,358.3,13561,0)
+ ;;=H04.201^^80^761^42
+ ;;^UTILITY(U,$J,358.3,13561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13561,1,3,0)
+ ;;=3^Epiphora Right Lacrimal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,13561,1,4,0)
+ ;;=4^H04.201
+ ;;^UTILITY(U,$J,358.3,13561,2)
+ ;;=^5004484
+ ;;^UTILITY(U,$J,358.3,13562,0)
+ ;;=H52.01^^80^762^13
+ ;;^UTILITY(U,$J,358.3,13562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13562,1,3,0)
+ ;;=3^Hypermetropia,Right Eye
+ ;;^UTILITY(U,$J,358.3,13562,1,4,0)
+ ;;=4^H52.01
+ ;;^UTILITY(U,$J,358.3,13562,2)
+ ;;=^5006260
+ ;;^UTILITY(U,$J,358.3,13563,0)
+ ;;=H52.02^^80^762^12
+ ;;^UTILITY(U,$J,358.3,13563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13563,1,3,0)
+ ;;=3^Hypermetropia,Left Eye
+ ;;^UTILITY(U,$J,358.3,13563,1,4,0)
+ ;;=4^H52.02
+ ;;^UTILITY(U,$J,358.3,13563,2)
+ ;;=^5006261
+ ;;^UTILITY(U,$J,358.3,13564,0)
+ ;;=H52.13^^80^762^15
+ ;;^UTILITY(U,$J,358.3,13564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13564,1,3,0)
+ ;;=3^Myopia,Bilateral
+ ;;^UTILITY(U,$J,358.3,13564,1,4,0)
+ ;;=4^H52.13
+ ;;^UTILITY(U,$J,358.3,13564,2)
+ ;;=^5006266
+ ;;^UTILITY(U,$J,358.3,13565,0)
+ ;;=H52.11^^80^762^17
+ ;;^UTILITY(U,$J,358.3,13565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13565,1,3,0)
+ ;;=3^Myopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,13565,1,4,0)
+ ;;=4^H52.11
+ ;;^UTILITY(U,$J,358.3,13565,2)
+ ;;=^5006264
+ ;;^UTILITY(U,$J,358.3,13566,0)
+ ;;=H52.12^^80^762^16
+ ;;^UTILITY(U,$J,358.3,13566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13566,1,3,0)
+ ;;=3^Myopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,13566,1,4,0)
+ ;;=4^H52.12
+ ;;^UTILITY(U,$J,358.3,13566,2)
+ ;;=^5006265
+ ;;^UTILITY(U,$J,358.3,13567,0)
+ ;;=H52.201^^80^762^4
+ ;;^UTILITY(U,$J,358.3,13567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13567,1,3,0)
+ ;;=3^Astigmatism,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13567,1,4,0)
+ ;;=4^H52.201
+ ;;^UTILITY(U,$J,358.3,13567,2)
+ ;;=^5006267
+ ;;^UTILITY(U,$J,358.3,13568,0)
+ ;;=H52.202^^80^762^3
+ ;;^UTILITY(U,$J,358.3,13568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13568,1,3,0)
+ ;;=3^Astigmatism,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13568,1,4,0)
+ ;;=4^H52.202
+ ;;^UTILITY(U,$J,358.3,13568,2)
+ ;;=^5006268
+ ;;^UTILITY(U,$J,358.3,13569,0)
+ ;;=H52.31^^80^762^2
+ ;;^UTILITY(U,$J,358.3,13569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13569,1,3,0)
+ ;;=3^Anisometropia
+ ;;^UTILITY(U,$J,358.3,13569,1,4,0)
+ ;;=4^H52.31
+ ;;^UTILITY(U,$J,358.3,13569,2)
+ ;;=^7839
+ ;;^UTILITY(U,$J,358.3,13570,0)
+ ;;=H53.021^^80^762^26
+ ;;^UTILITY(U,$J,358.3,13570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13570,1,3,0)
+ ;;=3^Refractive Amblyopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,13570,1,4,0)
+ ;;=4^H53.021
+ ;;^UTILITY(U,$J,358.3,13570,2)
+ ;;=^5006299
+ ;;^UTILITY(U,$J,358.3,13571,0)
+ ;;=H53.022^^80^762^25
+ ;;^UTILITY(U,$J,358.3,13571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13571,1,3,0)
+ ;;=3^Refractive Amblyopia,Left Eye

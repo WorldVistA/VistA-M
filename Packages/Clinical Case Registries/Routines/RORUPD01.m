@@ -1,5 +1,5 @@
 RORUPD01 ;HCIOFO/SG - PROCESSING OF THE FILES ;7/21/03 10:19am
- ;;1.5;CLINICAL CASE REGISTRIES;**14**;Feb 17, 2006;Build 24
+ ;;1.5;CLINICAL CASE REGISTRIES;**14,26**;Feb 17, 2006;Build 53
  ;
  ; This routine uses the following IA's:
  ;
@@ -15,6 +15,11 @@ RORUPD01 ;HCIOFO/SG - PROCESSING OF THE FILES ;7/21/03 10:19am
  ;ROR*1.5*14   APR  2011   A SAUNDERS   Tags HCVLOAD and HCVLIST added for auto-
  ;                                      confirm functionality.  PROCESS: call
  ;                                      to tag HCVLOAD is added.
+ ;ROR*1.5*26   APR 2015    T KOPP       Added check that if the job is scheduled
+ ;                                      to start within the SUSPEND start-stop
+ ;                                      timeframe, it will immediately suspend
+ ;                                      until the suspend stop time has been
+ ;                                      reached.  (SUSPEND tag)
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -250,9 +255,12 @@ SUSPEND(DTNEXT) ;
  S NOW=$$NOW^XLFDT,DATE=NOW\1
  ;--- A working day
  I $$WDCHK^RORUTL01(DATE)  D  Q SUSPEND
- . S TIME=NOW-DATE,SUSPEND=0
- . I TIME<TS   S DTNEXT=DATE+TS  Q
- . I TIME'<TR  S DTNEXT=$$WDNEXT^RORUTL01(DATE)+TS  Q
+ . S TIME=NOW#1,SUSPEND=0
+ . I '$D(DTNEXT) D  Q:SUSPEND=1
+ .. ; Check that first start time is not within a suspend period
+ .. I TIME'<TS,TIME<TR S DTNEXT=DATE+TR,SUSPEND=1
+ . I TIME<TS S DTNEXT=DATE+TS  Q
+ . I TIME'<TR S DTNEXT=$$WDNEXT^RORUTL01(DATE)+TS  Q
  . S DTNEXT=DATE+TR,SUSPEND=1
  ;--- Saturday, Sunday or Holiday
  S DTNEXT=$$WDNEXT^RORUTL01(DATE)+TS
@@ -268,7 +276,7 @@ SUSPEND(DTNEXT) ;
  ;        0  Ok
  ;
 TMSTMP(REGLST) ;
- N DATE,RC,REGIEN,REGIENS,REGNAME,RORFDA,RORMSG,TMP
+ N DATE,DIERR,RC,REGIEN,REGIENS,REGNAME,RORFDA,RORMSG,TMP
  S REGNAME="",RC=0
  F  S REGNAME=$O(REGLST(REGNAME))  Q:REGNAME=""  D  Q:RC<0
  . S REGIEN=+$G(REGLST(REGNAME))

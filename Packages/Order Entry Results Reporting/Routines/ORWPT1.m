@@ -1,5 +1,5 @@
-ORWPT1 ; SLC/KCM - Patient Lookup Functions (cont) ;05/09/12  07:23
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,280,340,306**;Dec 17, 1997;Build 43
+ORWPT1 ; SLC/KCM/ALB/ART - Patient Lookup Functions (cont) ;09/11/2014
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,280,340,306,387**;Dec 17, 1997;Build 19
  ;
 SAVDFLT ; continued from ORWPT, save new default patient list
  N DAY,HOLDX S OK=1
@@ -31,19 +31,48 @@ SAVDFLT ; continued from ORWPT, save new default patient list
  . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT WARD",1,"`"_$P(X,U,2))
  I $P(X,U)="A" D DEL^XPAR(DUZ_";VA(200,","ORLP DEFAULT LIST SOURCE",1)
  Q
-PRCARE(VAL,PATIENT)        ; return Primary Care info
- ; VAL=Primary Care Team^Primary Care Provider^Attending^MH Treatment Coordinator^Inpatient Provider
- N PCT,PCP,ATT,ASS,MHTC,INPROV
- S MHTC=""
- S PCT=$P($$OUTPTTM^SDUTL3(PATIENT,DT),U,2)
- S PCP=$P($$OUTPTPR^SDUTL3(PATIENT,DT),U,2)
+ ;
+PRCARE(VAL,PATIENT) ; return Primary Care info for CPRS Header
+ ;Input - PATIENT = Patient DFN
+ ;Output - VAL = Primary Care Team^PCP^Attending^AP^MH Treatment Coordinator/MH Team^Inpatient Provider
+ ; for PCMM Web VAL = Primary Care Team/PCP/AP^^Attending^^MH Treatment Coordinator/MH Team^Inpatient Provider
+ ;
+ ; Source of PACT/PCP data for CPRS is 404.41/.06 - 387
+ ; Other callers will get original data format
+ ; ICR #6042 - SCMC PCMM/R GET PRIMARY CARE SUMMARY 
+ ;
+ N PCT,PCP,ATT,ASS,MHTC,INPROV,MHSTR
+ S (PCT,PCP,ATT,ASS,MHTC,INPROV,MHSTR)=""
+ ;
+ ;RPC Broker sets XQCY0 to the caller's context
+ IF $GET(XQCY0)["CPRSChart" DO  ;check calling source
+ . S PCT=$$CPRSHEAD^SCMCWSUT(PATIENT) ;387
+ ELSE  DO
+ . S PCT=$P($$OUTPTTM^SDUTL3(PATIENT,DT),U,2)
+ . S PCP=$P($$OUTPTPR^SDUTL3(PATIENT,DT),U,2)
+ . S ASS=$P($$OUTPTAP^SDUTL3(PATIENT,DT),U,2)
+ ;
  S ATT=$G(^DPT(PATIENT,.1041)) I ATT S ATT=$P($G(^VA(200,ATT,0)),U)
- S ASS=$P($$OUTPTAP^SDUTL3(PATIENT,DT),U,2)
- S MHTC=$P($$START^SCMCMHTC(PATIENT),U,2)
+ S MHSTR=$$START^SCMCMHTC(PATIENT) ;387
+ S MHTC=$S($P(MHSTR,U,2)'="":$P(MHSTR,U,2)_" / "_$P(MHSTR,U,5),1:"") ;387 - mhtc/mh team
  S INPROV=$G(^DPT(PATIENT,.104)) I INPROV S INPROV=$P($G(^VA(200,INPROV,0)),U)
  S VAL=PCT_U_PCP_U_ATT_U_ASS_U_MHTC_U_INPROV
  Q
+ ;
 PCDETAIL(LST,PATIENT)   ; return Primary Care Detail information
+ ;Input - PATIENT = Patient DFN
+ ;Output - LST = Array of Patient Team Assignment Details
+ ;
+ ; Source of data for CPRS is now a web service call to PCMM Web - 387
+ ; Other callers will get original data format
+ ; ICR #6027 - SCMC PCMM/R GET PRIMARY CARE DETAILS
+ ;
+ ;new for PCMM Web requirements
+ ;RPC Broker sets XQCY0 to the caller's context
+ IF $GET(XQCY0)["CPRSChart" DO  QUIT
+ . DO PCDETAIL^SCMCWS1(.LST,PATIENT)
+ ;
+ ;original code
  N ILST,X S ILST=0
  S X=$$OUTPTTM^SDUTL3(PATIENT,DT)
  I +X>0 D
@@ -94,7 +123,9 @@ PCDETAIL(LST,PATIENT)   ; return Primary Care Detail information
  . S ILST=ILST+1,LST(ILST)="             Office Phone:  "_$P($G(^VA(200,+X,.13)),U,2)
  ;E  S ILST=ILST+1,LST(ILST)="No MH Treatment Coordinator Assigned."
  Q
+ ;
 INPT(ORDFN) ;check if the patient is an inpatient
  N RET S RET=0
  I $D(^DPT(ORDFN,.1)) S RET=1
  Q RET
+ ;

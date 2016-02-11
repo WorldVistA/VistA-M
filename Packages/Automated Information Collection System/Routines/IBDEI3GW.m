@@ -1,0 +1,126 @@
+IBDEI3GW ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58319,1,4,0)
+ ;;=4^E11.321
+ ;;^UTILITY(U,$J,358.3,58319,2)
+ ;;=^5002634
+ ;;^UTILITY(U,$J,358.3,58320,0)
+ ;;=E11.329^^272^2906^67
+ ;;^UTILITY(U,$J,358.3,58320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58320,1,3,0)
+ ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,58320,1,4,0)
+ ;;=4^E11.329
+ ;;^UTILITY(U,$J,358.3,58320,2)
+ ;;=^5002635
+ ;;^UTILITY(U,$J,358.3,58321,0)
+ ;;=E11.331^^272^2906^68
+ ;;^UTILITY(U,$J,358.3,58321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58321,1,3,0)
+ ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,58321,1,4,0)
+ ;;=4^E11.331
+ ;;^UTILITY(U,$J,358.3,58321,2)
+ ;;=^5002636
+ ;;^UTILITY(U,$J,358.3,58322,0)
+ ;;=E11.339^^272^2906^69
+ ;;^UTILITY(U,$J,358.3,58322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58322,1,3,0)
+ ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,58322,1,4,0)
+ ;;=4^E11.339
+ ;;^UTILITY(U,$J,358.3,58322,2)
+ ;;=^5002637
+ ;;^UTILITY(U,$J,358.3,58323,0)
+ ;;=E11.351^^272^2906^70
+ ;;^UTILITY(U,$J,358.3,58323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58323,1,3,0)
+ ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,58323,1,4,0)
+ ;;=4^E11.351
+ ;;^UTILITY(U,$J,358.3,58323,2)
+ ;;=^5002640
+ ;;^UTILITY(U,$J,358.3,58324,0)
+ ;;=E11.359^^272^2906^71
+ ;;^UTILITY(U,$J,358.3,58324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58324,1,3,0)
+ ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,58324,1,4,0)
+ ;;=4^E11.359
+ ;;^UTILITY(U,$J,358.3,58324,2)
+ ;;=^5002641
+ ;;^UTILITY(U,$J,358.3,58325,0)
+ ;;=E11.341^^272^2906^72
+ ;;^UTILITY(U,$J,358.3,58325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58325,1,3,0)
+ ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,58325,1,4,0)
+ ;;=4^E11.341
+ ;;^UTILITY(U,$J,358.3,58325,2)
+ ;;=^5002638
+ ;;^UTILITY(U,$J,358.3,58326,0)
+ ;;=E11.349^^272^2906^73
+ ;;^UTILITY(U,$J,358.3,58326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58326,1,3,0)
+ ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,58326,1,4,0)
+ ;;=4^E11.349
+ ;;^UTILITY(U,$J,358.3,58326,2)
+ ;;=^5002639
+ ;;^UTILITY(U,$J,358.3,58327,0)
+ ;;=E11.9^^272^2906^74
+ ;;^UTILITY(U,$J,358.3,58327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58327,1,3,0)
+ ;;=3^Type 2 DM w/o Complications
+ ;;^UTILITY(U,$J,358.3,58327,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,58327,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,58328,0)
+ ;;=H35.363^^272^2906^18
+ ;;^UTILITY(U,$J,358.3,58328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58328,1,3,0)
+ ;;=3^Drusen of Macular,Bilateral
+ ;;^UTILITY(U,$J,358.3,58328,1,4,0)
+ ;;=4^H35.363
+ ;;^UTILITY(U,$J,358.3,58328,2)
+ ;;=^5005660
+ ;;^UTILITY(U,$J,358.3,58329,0)
+ ;;=H35.362^^272^2906^19
+ ;;^UTILITY(U,$J,358.3,58329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58329,1,3,0)
+ ;;=3^Drusen of Macular,Left Eye
+ ;;^UTILITY(U,$J,358.3,58329,1,4,0)
+ ;;=4^H35.362
+ ;;^UTILITY(U,$J,358.3,58329,2)
+ ;;=^5005659
+ ;;^UTILITY(U,$J,358.3,58330,0)
+ ;;=H35.361^^272^2906^20
+ ;;^UTILITY(U,$J,358.3,58330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58330,1,3,0)
+ ;;=3^Drusen of Macular,Right Eye
+ ;;^UTILITY(U,$J,358.3,58330,1,4,0)
+ ;;=4^H35.361
+ ;;^UTILITY(U,$J,358.3,58330,2)
+ ;;=^5005658
+ ;;^UTILITY(U,$J,358.3,58331,0)
+ ;;=H04.123^^272^2906^21
+ ;;^UTILITY(U,$J,358.3,58331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58331,1,3,0)
+ ;;=3^Dry Eye Syndrome,Bilateral Lacrimal Glands
+ ;;^UTILITY(U,$J,358.3,58331,1,4,0)
+ ;;=4^H04.123

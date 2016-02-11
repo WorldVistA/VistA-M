@@ -1,5 +1,5 @@
 SRONRPT0 ;BIR/ADM - NURSE INTRAOP REPORT ;05/31/06
- ;;3.0;Surgery;**100,129,147,153,157,175,176,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**100,129,147,153,157,175,176,182,184**;24 Jun 93;Build 35
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -35,7 +35,7 @@ VER N II,SROIM,SROUT,SROIN,SRHRM
  S Y=$P(SR("VER"),"^",18),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Availability of Special Equipment: "_SROIN
  S Y=$P(SR("VER"),"^",15),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",Y="NI":"NOT INDICATED",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Appropriate Antibiotic Prophylaxis: "_SROIN
  S Y=$P(SR("VER"),"^",16),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",Y="NI":"NOT INDICATED",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Appropriate Deep Vein Thrombosis Prophylaxis: "_SROIN
- S Y=$P(SR("VER"),"^",17),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Blood Availability: "_SROIN
+ S Y=$P(SR("VER"),"^",17),SROIN=$S(Y="Y":"YES",Y="N":"NO",Y="NA":"NOT APPLICABLE",Y="NI":"NOT INDICATED",1:"* NOT ENTERED *") D LINE(1) S @SRG@(SRI)="Blood Availability: "_SROIN
  S II=51 D ENSC
  S SRLF=1,Y=$P(SR(.6),"^",9),C=$P(^DD(130,.69,0),"^",2) D:Y'="" Y^DIQ S SRUSER=$S(Y="":"N/A",1:Y)
  I 'SRALL,SRUSER="N/A" G TIME

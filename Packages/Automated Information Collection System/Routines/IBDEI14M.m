@@ -1,140 +1,128 @@
-IBDEI14M ; ; 06-AUG-2015
+IBDEI14M ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19873,1,4,0)
- ;;=4^786.06
- ;;^UTILITY(U,$J,358.3,19873,1,5,0)
- ;;=5^Tachypnea
- ;;^UTILITY(U,$J,358.3,19873,2)
- ;;=Tachypnea^321213
- ;;^UTILITY(U,$J,358.3,19874,0)
- ;;=305.1^^105^1237^150
- ;;^UTILITY(U,$J,358.3,19874,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19874,1,4,0)
- ;;=4^305.1
- ;;^UTILITY(U,$J,358.3,19874,1,5,0)
- ;;=5^Tobacco Use
- ;;^UTILITY(U,$J,358.3,19874,2)
- ;;=Tobacco Use^119899
- ;;^UTILITY(U,$J,358.3,19875,0)
- ;;=786.07^^105^1237^158
- ;;^UTILITY(U,$J,358.3,19875,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19875,1,4,0)
- ;;=4^786.07
- ;;^UTILITY(U,$J,358.3,19875,1,5,0)
- ;;=5^Wheezing
- ;;^UTILITY(U,$J,358.3,19875,2)
- ;;=Wheezing^127848
- ;;^UTILITY(U,$J,358.3,19876,0)
- ;;=787.7^^105^1237^11
- ;;^UTILITY(U,$J,358.3,19876,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19876,1,4,0)
- ;;=4^787.7
- ;;^UTILITY(U,$J,358.3,19876,1,5,0)
- ;;=5^Abnormal Feces
- ;;^UTILITY(U,$J,358.3,19876,2)
- ;;=Abdominal Feces^276857
- ;;^UTILITY(U,$J,358.3,19877,0)
- ;;=787.99^^105^1237^147
- ;;^UTILITY(U,$J,358.3,19877,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19877,1,4,0)
- ;;=4^787.99
- ;;^UTILITY(U,$J,358.3,19877,1,5,0)
- ;;=5^Tenesmus
- ;;^UTILITY(U,$J,358.3,19877,2)
- ;;=Tenesmus^273388
- ;;^UTILITY(U,$J,358.3,19878,0)
- ;;=787.91^^105^1237^49
- ;;^UTILITY(U,$J,358.3,19878,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19878,1,4,0)
- ;;=4^787.91
- ;;^UTILITY(U,$J,358.3,19878,1,5,0)
- ;;=5^Diarrhea
- ;;^UTILITY(U,$J,358.3,19878,2)
- ;;=Diarrhea^33921
- ;;^UTILITY(U,$J,358.3,19879,0)
- ;;=787.3^^105^1237^75
- ;;^UTILITY(U,$J,358.3,19879,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19879,1,4,0)
- ;;=4^787.3
- ;;^UTILITY(U,$J,358.3,19879,1,5,0)
- ;;=5^Flatulence/Eructation/Gas pain
- ;;^UTILITY(U,$J,358.3,19879,2)
- ;;=^46766
- ;;^UTILITY(U,$J,358.3,19880,0)
- ;;=787.1^^105^1237^81
- ;;^UTILITY(U,$J,358.3,19880,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19880,1,4,0)
- ;;=4^787.1
- ;;^UTILITY(U,$J,358.3,19880,1,5,0)
- ;;=5^Heartburn
- ;;^UTILITY(U,$J,358.3,19880,2)
- ;;=Heartburn^54996
- ;;^UTILITY(U,$J,358.3,19881,0)
- ;;=786.59^^105^1237^36
- ;;^UTILITY(U,$J,358.3,19881,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19881,1,4,0)
- ;;=4^786.59
- ;;^UTILITY(U,$J,358.3,19881,1,5,0)
- ;;=5^Chest Pain
- ;;^UTILITY(U,$J,358.3,19881,2)
- ;;=Chest Pain^87384
- ;;^UTILITY(U,$J,358.3,19882,0)
- ;;=787.02^^105^1237^114
- ;;^UTILITY(U,$J,358.3,19882,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19882,1,4,0)
- ;;=4^787.02
- ;;^UTILITY(U,$J,358.3,19882,1,5,0)
- ;;=5^Nausea Alone
- ;;^UTILITY(U,$J,358.3,19882,2)
- ;;=Nausea Alone^81639
- ;;^UTILITY(U,$J,358.3,19883,0)
- ;;=787.01^^105^1237^113
- ;;^UTILITY(U,$J,358.3,19883,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19883,1,4,0)
- ;;=4^787.01
- ;;^UTILITY(U,$J,358.3,19883,1,5,0)
- ;;=5^Nausea & vomiting
- ;;^UTILITY(U,$J,358.3,19883,2)
- ;;=nausea and vomiting^81644
- ;;^UTILITY(U,$J,358.3,19884,0)
- ;;=787.03^^105^1237^155
- ;;^UTILITY(U,$J,358.3,19884,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19884,1,4,0)
- ;;=4^787.03
- ;;^UTILITY(U,$J,358.3,19884,1,5,0)
- ;;=5^Vomiting Alone
- ;;^UTILITY(U,$J,358.3,19884,2)
- ;;=Vomiting Alone^127237
- ;;^UTILITY(U,$J,358.3,19885,0)
- ;;=784.8^^105^1237^29
- ;;^UTILITY(U,$J,358.3,19885,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19885,1,4,0)
- ;;=4^784.8
- ;;^UTILITY(U,$J,358.3,19885,1,5,0)
- ;;=5^Bleeding from throat
- ;;^UTILITY(U,$J,358.3,19885,2)
- ;;=^273371
- ;;^UTILITY(U,$J,358.3,19886,0)
- ;;=525.9^^105^1237^47
- ;;^UTILITY(U,$J,358.3,19886,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19886,1,4,0)
- ;;=4^525.9
- ;;^UTILITY(U,$J,358.3,19886,1,5,0)
- ;;=5^Dental Pain
- ;;^UTILITY(U,$J,358.3,19886,2)
- ;;=Dental Pain^123871
+ ;;^UTILITY(U,$J,358.3,18813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18813,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18813,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,18813,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,18814,0)
+ ;;=C92.61^^94^916^9
+ ;;^UTILITY(U,$J,358.3,18814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18814,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,18814,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,18814,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,18815,0)
+ ;;=C92.60^^94^916^10
+ ;;^UTILITY(U,$J,358.3,18815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18815,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18815,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,18815,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,18816,0)
+ ;;=C92.A1^^94^916^11
+ ;;^UTILITY(U,$J,358.3,18816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18816,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,18816,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,18816,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,18817,0)
+ ;;=C92.A0^^94^916^12
+ ;;^UTILITY(U,$J,358.3,18817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18817,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18817,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,18817,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,18818,0)
+ ;;=C92.51^^94^916^13
+ ;;^UTILITY(U,$J,358.3,18818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18818,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,18818,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,18818,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,18819,0)
+ ;;=C92.50^^94^916^14
+ ;;^UTILITY(U,$J,358.3,18819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18819,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18819,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,18819,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,18820,0)
+ ;;=C94.40^^94^916^17
+ ;;^UTILITY(U,$J,358.3,18820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18820,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18820,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,18820,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,18821,0)
+ ;;=C94.42^^94^916^15
+ ;;^UTILITY(U,$J,358.3,18821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18821,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,18821,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,18821,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,18822,0)
+ ;;=C94.41^^94^916^16
+ ;;^UTILITY(U,$J,358.3,18822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18822,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,18822,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,18822,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,18823,0)
+ ;;=D62.^^94^916^18
+ ;;^UTILITY(U,$J,358.3,18823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18823,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,18823,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,18823,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,18824,0)
+ ;;=C92.41^^94^916^19
+ ;;^UTILITY(U,$J,358.3,18824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18824,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,18824,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,18824,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,18825,0)
+ ;;=C92.40^^94^916^20
+ ;;^UTILITY(U,$J,358.3,18825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18825,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission

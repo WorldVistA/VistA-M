@@ -1,136 +1,124 @@
-IBDEI1TK ; ; 06-AUG-2015
+IBDEI1TK ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32058,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,32058,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,32059,0)
- ;;=K12.1^^182^1981^272
- ;;^UTILITY(U,$J,358.3,32059,1,0)
+ ;;^UTILITY(U,$J,358.3,30457,0)
+ ;;=M47.24^^135^1378^157
+ ;;^UTILITY(U,$J,358.3,30457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32059,1,3,0)
- ;;=3^Stomatitis NEC
- ;;^UTILITY(U,$J,358.3,32059,1,4,0)
- ;;=4^K12.1
- ;;^UTILITY(U,$J,358.3,32059,2)
- ;;=^5008484
- ;;^UTILITY(U,$J,358.3,32060,0)
- ;;=K12.2^^182^1981^94
- ;;^UTILITY(U,$J,358.3,32060,1,0)
+ ;;^UTILITY(U,$J,358.3,30457,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
+ ;;^UTILITY(U,$J,358.3,30457,1,4,0)
+ ;;=4^M47.24
+ ;;^UTILITY(U,$J,358.3,30457,2)
+ ;;=^5012063
+ ;;^UTILITY(U,$J,358.3,30458,0)
+ ;;=M47.27^^135^1378^156
+ ;;^UTILITY(U,$J,358.3,30458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32060,1,3,0)
- ;;=3^Cellulitis & Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,32060,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,32060,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,32061,0)
- ;;=L02.01^^182^1981^120
- ;;^UTILITY(U,$J,358.3,32061,1,0)
+ ;;^UTILITY(U,$J,358.3,30458,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
+ ;;^UTILITY(U,$J,358.3,30458,1,4,0)
+ ;;=4^M47.27
+ ;;^UTILITY(U,$J,358.3,30458,2)
+ ;;=^5012066
+ ;;^UTILITY(U,$J,358.3,30459,0)
+ ;;=M47.812^^135^1378^152
+ ;;^UTILITY(U,$J,358.3,30459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32061,1,3,0)
- ;;=3^Cutaneous Abscess of Face
- ;;^UTILITY(U,$J,358.3,32061,1,4,0)
- ;;=4^L02.01
- ;;^UTILITY(U,$J,358.3,32061,2)
- ;;=^5008944
- ;;^UTILITY(U,$J,358.3,32062,0)
- ;;=L02.11^^182^1981^125
- ;;^UTILITY(U,$J,358.3,32062,1,0)
+ ;;^UTILITY(U,$J,358.3,30459,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,30459,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,30459,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,30460,0)
+ ;;=M47.814^^135^1378^153
+ ;;^UTILITY(U,$J,358.3,30460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32062,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,32062,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,32062,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,32063,0)
- ;;=L02.211^^182^1981^117
- ;;^UTILITY(U,$J,358.3,32063,1,0)
+ ;;^UTILITY(U,$J,358.3,30460,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,30460,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,30460,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,30461,0)
+ ;;=M47.817^^135^1378^154
+ ;;^UTILITY(U,$J,358.3,30461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32063,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,32063,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,32063,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,32064,0)
- ;;=L02.212^^182^1981^118
- ;;^UTILITY(U,$J,358.3,32064,1,0)
+ ;;^UTILITY(U,$J,358.3,30461,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,30461,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,30461,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,30462,0)
+ ;;=M48.50XA^^135^1378^21
+ ;;^UTILITY(U,$J,358.3,30462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32064,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,32064,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,32064,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,32065,0)
- ;;=L02.213^^182^1981^119
- ;;^UTILITY(U,$J,358.3,32065,1,0)
+ ;;^UTILITY(U,$J,358.3,30462,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30462,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,30462,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,30463,0)
+ ;;=M48.50XD^^135^1378^22
+ ;;^UTILITY(U,$J,358.3,30463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32065,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,32065,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,32065,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,32066,0)
- ;;=L02.214^^182^1981^121
- ;;^UTILITY(U,$J,358.3,32066,1,0)
+ ;;^UTILITY(U,$J,358.3,30463,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30463,1,4,0)
+ ;;=4^M48.50XD
+ ;;^UTILITY(U,$J,358.3,30463,2)
+ ;;=^5012160
+ ;;^UTILITY(U,$J,358.3,30464,0)
+ ;;=M48.52XA^^135^1378^23
+ ;;^UTILITY(U,$J,358.3,30464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32066,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,32066,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,32066,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,32067,0)
- ;;=L02.215^^182^1981^126
- ;;^UTILITY(U,$J,358.3,32067,1,0)
+ ;;^UTILITY(U,$J,358.3,30464,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30464,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,30464,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,30465,0)
+ ;;=M48.52XD^^135^1378^24
+ ;;^UTILITY(U,$J,358.3,30465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32067,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,32067,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,32067,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,32068,0)
- ;;=L02.216^^182^1981^131
- ;;^UTILITY(U,$J,358.3,32068,1,0)
+ ;;^UTILITY(U,$J,358.3,30465,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,30465,1,4,0)
+ ;;=4^M48.52XD
+ ;;^UTILITY(U,$J,358.3,30465,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,30466,0)
+ ;;=M48.54XA^^135^1378^32
+ ;;^UTILITY(U,$J,358.3,30466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32068,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,32068,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,32068,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,32069,0)
- ;;=L02.219^^182^1981^130
- ;;^UTILITY(U,$J,358.3,32069,1,0)
+ ;;^UTILITY(U,$J,358.3,30466,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30466,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,30466,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,30467,0)
+ ;;=M48.54XD^^135^1378^33
+ ;;^UTILITY(U,$J,358.3,30467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32069,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,32069,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,32069,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,32070,0)
- ;;=L02.32^^182^1981^154
- ;;^UTILITY(U,$J,358.3,32070,1,0)
+ ;;^UTILITY(U,$J,358.3,30467,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30467,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,30467,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,30468,0)
+ ;;=M48.57XA^^135^1378^25
+ ;;^UTILITY(U,$J,358.3,30468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32070,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,32070,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,32070,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,32071,0)
- ;;=L02.33^^182^1981^92
- ;;^UTILITY(U,$J,358.3,32071,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32071,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,32071,1,4,0)
- ;;=4^L02.33
+ ;;^UTILITY(U,$J,358.3,30468,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30468,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,30468,2)
+ ;;=^5012187

@@ -1,130 +1,132 @@
-IBDEI1K8 ; ; 06-AUG-2015
+IBDEI1K8 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27694,1,4,0)
- ;;=4^438.20
- ;;^UTILITY(U,$J,358.3,27694,1,5,0)
- ;;=5^CVA w/ Hemiplegia (Late Effect)
- ;;^UTILITY(U,$J,358.3,27694,2)
- ;;=CVA w/Hemiplegia^317910
- ;;^UTILITY(U,$J,358.3,27695,0)
- ;;=438.12^^162^1786^5
- ;;^UTILITY(U,$J,358.3,27695,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27695,1,4,0)
- ;;=4^438.12
- ;;^UTILITY(U,$J,358.3,27695,1,5,0)
- ;;=5^CVA w/ Dysphasia (Late Effect)
- ;;^UTILITY(U,$J,358.3,27695,2)
- ;;=Stroke w/Dysphasia^317908
- ;;^UTILITY(U,$J,358.3,27696,0)
- ;;=356.8^^162^1786^51
- ;;^UTILITY(U,$J,358.3,27696,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27696,1,4,0)
- ;;=4^356.8
- ;;^UTILITY(U,$J,358.3,27696,1,5,0)
- ;;=5^Peripheral Neuropathy, Idiopathic
- ;;^UTILITY(U,$J,358.3,27696,2)
- ;;=Peripheral Neuropathy, Idio^268525
- ;;^UTILITY(U,$J,358.3,27697,0)
- ;;=337.20^^162^1786^58
- ;;^UTILITY(U,$J,358.3,27697,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27697,1,4,0)
- ;;=4^337.20
- ;;^UTILITY(U,$J,358.3,27697,1,5,0)
- ;;=5^Reflexive Sympathetic Dystrophy
- ;;^UTILITY(U,$J,358.3,27697,2)
- ;;=Reflexive Sympathetic Dystrophy^295799
- ;;^UTILITY(U,$J,358.3,27698,0)
- ;;=294.8^^162^1786^19
- ;;^UTILITY(U,$J,358.3,27698,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27698,1,4,0)
- ;;=4^294.8
- ;;^UTILITY(U,$J,358.3,27698,1,5,0)
- ;;=5^Dementia, Other
- ;;^UTILITY(U,$J,358.3,27698,2)
- ;;=^268044
- ;;^UTILITY(U,$J,358.3,27699,0)
- ;;=438.6^^162^1786^4
- ;;^UTILITY(U,$J,358.3,27699,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27699,1,4,0)
- ;;=4^438.6
- ;;^UTILITY(U,$J,358.3,27699,1,5,0)
- ;;=5^CVA w/ Dysesthesia (Late Effect)
- ;;^UTILITY(U,$J,358.3,27699,2)
- ;;=CVA w/Dysesthesia (late effect)^328503
- ;;^UTILITY(U,$J,358.3,27700,0)
- ;;=438.7^^162^1786^7
- ;;^UTILITY(U,$J,358.3,27700,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27700,1,4,0)
- ;;=4^438.7
- ;;^UTILITY(U,$J,358.3,27700,1,5,0)
- ;;=5^CVA w/ Vision Changes (Late Effect)
- ;;^UTILITY(U,$J,358.3,27700,2)
- ;;=CVA w/Vision Changes (late effect)^328504
- ;;^UTILITY(U,$J,358.3,27701,0)
- ;;=438.84^^162^1786^3
- ;;^UTILITY(U,$J,358.3,27701,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27701,1,4,0)
- ;;=4^438.84
- ;;^UTILITY(U,$J,358.3,27701,1,5,0)
- ;;=5^CVA w/ Ataxia (Late Effect)
- ;;^UTILITY(U,$J,358.3,27701,2)
- ;;=CVA w/Ataxia (late effect)^328507
- ;;^UTILITY(U,$J,358.3,27702,0)
- ;;=434.91^^162^1786^8
- ;;^UTILITY(U,$J,358.3,27702,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27702,1,4,0)
- ;;=4^434.91
- ;;^UTILITY(U,$J,358.3,27702,1,5,0)
- ;;=5^CVA,Acute Onset
- ;;^UTILITY(U,$J,358.3,27702,2)
- ;;=^295738
- ;;^UTILITY(U,$J,358.3,27703,0)
- ;;=V12.54^^162^1786^22
- ;;^UTILITY(U,$J,358.3,27703,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27703,1,4,0)
- ;;=4^V12.54
- ;;^UTILITY(U,$J,358.3,27703,1,5,0)
- ;;=5^HX Stroke w/o Residuals
- ;;^UTILITY(U,$J,358.3,27703,2)
- ;;=^335309
- ;;^UTILITY(U,$J,358.3,27704,0)
- ;;=333.94^^162^1786^59
- ;;^UTILITY(U,$J,358.3,27704,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27704,1,4,0)
- ;;=4^333.94
- ;;^UTILITY(U,$J,358.3,27704,1,5,0)
- ;;=5^Restless Leg Syndrome
- ;;^UTILITY(U,$J,358.3,27704,2)
- ;;=^105368
- ;;^UTILITY(U,$J,358.3,27705,0)
- ;;=345.90^^162^1786^62
- ;;^UTILITY(U,$J,358.3,27705,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27705,1,4,0)
- ;;=4^345.90
- ;;^UTILITY(U,$J,358.3,27705,1,5,0)
- ;;=5^Seizure Disorder NOS
- ;;^UTILITY(U,$J,358.3,27705,2)
- ;;=^268477
- ;;^UTILITY(U,$J,358.3,27706,0)
- ;;=339.00^^162^1786^10
- ;;^UTILITY(U,$J,358.3,27706,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27706,1,4,0)
- ;;=4^339.00
- ;;^UTILITY(U,$J,358.3,27706,1,5,0)
- ;;=5^Cluster Headache NOS
- ;;^UTILITY(U,$J,358.3,27706,2)
- ;;=^336741
+ ;;^UTILITY(U,$J,358.3,26082,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,26082,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,26083,0)
+ ;;=C83.59^^127^1271^44
+ ;;^UTILITY(U,$J,358.3,26083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26083,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,26083,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,26083,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,26084,0)
+ ;;=C83.70^^127^1271^45
+ ;;^UTILITY(U,$J,358.3,26084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26084,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,26084,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,26084,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,26085,0)
+ ;;=C83.79^^127^1271^46
+ ;;^UTILITY(U,$J,358.3,26085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26085,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,26085,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,26085,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,26086,0)
+ ;;=C81.90^^127^1271^47
+ ;;^UTILITY(U,$J,358.3,26086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26086,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,26086,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,26086,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,26087,0)
+ ;;=C81.99^^127^1271^48
+ ;;^UTILITY(U,$J,358.3,26087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26087,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,26087,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,26087,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,26088,0)
+ ;;=C82.90^^127^1271^49
+ ;;^UTILITY(U,$J,358.3,26088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26088,1,3,0)
+ ;;=3^Follicular Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,26088,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,26088,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,26089,0)
+ ;;=C82.99^^127^1271^50
+ ;;^UTILITY(U,$J,358.3,26089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26089,1,3,0)
+ ;;=3^Folicular Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,26089,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,26089,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,26090,0)
+ ;;=C91.40^^127^1271^51
+ ;;^UTILITY(U,$J,358.3,26090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26090,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,26090,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,26090,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,26091,0)
+ ;;=C90.00^^127^1271^52
+ ;;^UTILITY(U,$J,358.3,26091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26091,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,26091,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,26091,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,26092,0)
+ ;;=C90.01^^127^1271^53
+ ;;^UTILITY(U,$J,358.3,26092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26092,1,3,0)
+ ;;=3^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,26092,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,26092,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,26093,0)
+ ;;=C91.00^^127^1271^54
+ ;;^UTILITY(U,$J,358.3,26093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26093,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,26093,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,26093,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,26094,0)
+ ;;=C91.01^^127^1271^55
+ ;;^UTILITY(U,$J,358.3,26094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26094,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,26094,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,26094,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,26095,0)
+ ;;=C91.10^^127^1271^56
+ ;;^UTILITY(U,$J,358.3,26095,1,0)
+ ;;=^358.31IA^4^2

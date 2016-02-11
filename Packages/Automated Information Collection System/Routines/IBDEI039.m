@@ -1,142 +1,136 @@
-IBDEI039 ; ; 06-AUG-2015
+IBDEI039 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,983,1,3,0)
- ;;=3^Paralysis of vocal cords and larynx, unspecified
- ;;^UTILITY(U,$J,358.3,983,1,4,0)
- ;;=4^J38.00
- ;;^UTILITY(U,$J,358.3,983,2)
- ;;=^5008219
- ;;^UTILITY(U,$J,358.3,984,0)
- ;;=J38.1^^3^35^111
- ;;^UTILITY(U,$J,358.3,984,1,0)
+ ;;^UTILITY(U,$J,358.3,783,0)
+ ;;=Z88.8^^9^88^34
+ ;;^UTILITY(U,$J,358.3,783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,984,1,3,0)
- ;;=3^Polyp of vocal cord and larynx
- ;;^UTILITY(U,$J,358.3,984,1,4,0)
- ;;=4^J38.1
- ;;^UTILITY(U,$J,358.3,984,2)
- ;;=^5008222
- ;;^UTILITY(U,$J,358.3,985,0)
- ;;=J38.6^^3^35^114
- ;;^UTILITY(U,$J,358.3,985,1,0)
+ ;;^UTILITY(U,$J,358.3,783,1,3,0)
+ ;;=3^Allergy to Oth Drugs/Meds/Biol Substances
+ ;;^UTILITY(U,$J,358.3,783,1,4,0)
+ ;;=4^Z88.8
+ ;;^UTILITY(U,$J,358.3,783,2)
+ ;;=^5063529
+ ;;^UTILITY(U,$J,358.3,784,0)
+ ;;=J30.81^^9^88^22
+ ;;^UTILITY(U,$J,358.3,784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,985,1,3,0)
- ;;=3^Stenosis of larynx
- ;;^UTILITY(U,$J,358.3,985,1,4,0)
- ;;=4^J38.6
- ;;^UTILITY(U,$J,358.3,985,2)
- ;;=^5008226
- ;;^UTILITY(U,$J,358.3,986,0)
- ;;=K04.7^^3^35^109
- ;;^UTILITY(U,$J,358.3,986,1,0)
+ ;;^UTILITY(U,$J,358.3,784,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Animal Dander
+ ;;^UTILITY(U,$J,358.3,784,1,4,0)
+ ;;=4^J30.81
+ ;;^UTILITY(U,$J,358.3,784,2)
+ ;;=^5008203
+ ;;^UTILITY(U,$J,358.3,785,0)
+ ;;=L20.84^^9^88^92
+ ;;^UTILITY(U,$J,358.3,785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,986,1,3,0)
- ;;=3^Periapical abscess without sinus
- ;;^UTILITY(U,$J,358.3,986,1,4,0)
- ;;=4^K04.7
- ;;^UTILITY(U,$J,358.3,986,2)
- ;;=^91817
- ;;^UTILITY(U,$J,358.3,987,0)
- ;;=K05.00^^3^35^3
- ;;^UTILITY(U,$J,358.3,987,1,0)
+ ;;^UTILITY(U,$J,358.3,785,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,785,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,785,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,786,0)
+ ;;=L23.0^^9^88^19
+ ;;^UTILITY(U,$J,358.3,786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,987,1,3,0)
- ;;=3^Acute gingivitis, plaque induced
- ;;^UTILITY(U,$J,358.3,987,1,4,0)
- ;;=4^K05.00
- ;;^UTILITY(U,$J,358.3,987,2)
- ;;=^334192
- ;;^UTILITY(U,$J,358.3,988,0)
- ;;=K05.10^^3^35^42
- ;;^UTILITY(U,$J,358.3,988,1,0)
+ ;;^UTILITY(U,$J,358.3,786,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Metals
+ ;;^UTILITY(U,$J,358.3,786,1,4,0)
+ ;;=4^L23.0
+ ;;^UTILITY(U,$J,358.3,786,2)
+ ;;=^5009115
+ ;;^UTILITY(U,$J,358.3,787,0)
+ ;;=L23.1^^9^88^13
+ ;;^UTILITY(U,$J,358.3,787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,988,1,3,0)
- ;;=3^Chronic gingivitis, plaque induced
- ;;^UTILITY(U,$J,358.3,988,1,4,0)
- ;;=4^K05.10
- ;;^UTILITY(U,$J,358.3,988,2)
- ;;=^334193
- ;;^UTILITY(U,$J,358.3,989,0)
- ;;=K12.2^^3^35^35
- ;;^UTILITY(U,$J,358.3,989,1,0)
+ ;;^UTILITY(U,$J,358.3,787,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Adhesives
+ ;;^UTILITY(U,$J,358.3,787,1,4,0)
+ ;;=4^L23.1
+ ;;^UTILITY(U,$J,358.3,787,2)
+ ;;=^5009116
+ ;;^UTILITY(U,$J,358.3,788,0)
+ ;;=L23.2^^9^88^15
+ ;;^UTILITY(U,$J,358.3,788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,989,1,3,0)
- ;;=3^Cellulitis and abscess of mouth
- ;;^UTILITY(U,$J,358.3,989,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,989,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,990,0)
- ;;=K12.30^^3^35^101
- ;;^UTILITY(U,$J,358.3,990,1,0)
+ ;;^UTILITY(U,$J,358.3,788,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Cosmetics
+ ;;^UTILITY(U,$J,358.3,788,1,4,0)
+ ;;=4^L23.2
+ ;;^UTILITY(U,$J,358.3,788,2)
+ ;;=^5009117
+ ;;^UTILITY(U,$J,358.3,789,0)
+ ;;=L23.3^^9^88^16
+ ;;^UTILITY(U,$J,358.3,789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,990,1,3,0)
- ;;=3^Oral mucositis (ulcerative), unspecified
- ;;^UTILITY(U,$J,358.3,990,1,4,0)
- ;;=4^K12.30
- ;;^UTILITY(U,$J,358.3,990,2)
- ;;=^5008486
- ;;^UTILITY(U,$J,358.3,991,0)
- ;;=K12.0^^3^35^113
- ;;^UTILITY(U,$J,358.3,991,1,0)
+ ;;^UTILITY(U,$J,358.3,789,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Drugs in Contact w/ Skin
+ ;;^UTILITY(U,$J,358.3,789,1,4,0)
+ ;;=4^L23.3
+ ;;^UTILITY(U,$J,358.3,789,2)
+ ;;=^5009118
+ ;;^UTILITY(U,$J,358.3,790,0)
+ ;;=L23.4^^9^88^17
+ ;;^UTILITY(U,$J,358.3,790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,991,1,3,0)
- ;;=3^Recurrent oral aphthae
- ;;^UTILITY(U,$J,358.3,991,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,991,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,992,0)
- ;;=K22.2^^3^35^70
- ;;^UTILITY(U,$J,358.3,992,1,0)
+ ;;^UTILITY(U,$J,358.3,790,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Dyes
+ ;;^UTILITY(U,$J,358.3,790,1,4,0)
+ ;;=4^L23.4
+ ;;^UTILITY(U,$J,358.3,790,2)
+ ;;=^5009119
+ ;;^UTILITY(U,$J,358.3,791,0)
+ ;;=L23.5^^9^88^20
+ ;;^UTILITY(U,$J,358.3,791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,992,1,3,0)
- ;;=3^Esophageal obstruction
- ;;^UTILITY(U,$J,358.3,992,1,4,0)
- ;;=4^K22.2
- ;;^UTILITY(U,$J,358.3,992,2)
- ;;=^5008507
- ;;^UTILITY(U,$J,358.3,993,0)
- ;;=Q30.0^^3^35^39
- ;;^UTILITY(U,$J,358.3,993,1,0)
+ ;;^UTILITY(U,$J,358.3,791,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Oth Chemical Products
+ ;;^UTILITY(U,$J,358.3,791,1,4,0)
+ ;;=4^L23.5
+ ;;^UTILITY(U,$J,358.3,791,2)
+ ;;=^5009120
+ ;;^UTILITY(U,$J,358.3,792,0)
+ ;;=L23.6^^9^88^18
+ ;;^UTILITY(U,$J,358.3,792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,993,1,3,0)
- ;;=3^Choanal atresia
- ;;^UTILITY(U,$J,358.3,993,1,4,0)
- ;;=4^Q30.0
- ;;^UTILITY(U,$J,358.3,993,2)
- ;;=^5018599
- ;;^UTILITY(U,$J,358.3,994,0)
- ;;=Q30.2^^3^35^71
- ;;^UTILITY(U,$J,358.3,994,1,0)
+ ;;^UTILITY(U,$J,358.3,792,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Food in Contact w/ Skin
+ ;;^UTILITY(U,$J,358.3,792,1,4,0)
+ ;;=4^L23.6
+ ;;^UTILITY(U,$J,358.3,792,2)
+ ;;=^5009121
+ ;;^UTILITY(U,$J,358.3,793,0)
+ ;;=L23.7^^9^88^21
+ ;;^UTILITY(U,$J,358.3,793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,994,1,3,0)
- ;;=3^Fissured, notched and cleft nose
- ;;^UTILITY(U,$J,358.3,994,1,4,0)
- ;;=4^Q30.2
- ;;^UTILITY(U,$J,358.3,994,2)
- ;;=^5018601
- ;;^UTILITY(U,$J,358.3,995,0)
- ;;=Q30.1^^3^35^19
- ;;^UTILITY(U,$J,358.3,995,1,0)
+ ;;^UTILITY(U,$J,358.3,793,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,793,1,4,0)
+ ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,793,2)
+ ;;=^5009122
+ ;;^UTILITY(U,$J,358.3,794,0)
+ ;;=L23.81^^9^88^14
+ ;;^UTILITY(U,$J,358.3,794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,995,1,3,0)
- ;;=3^Agenesis and underdevelopment of nose
- ;;^UTILITY(U,$J,358.3,995,1,4,0)
- ;;=4^Q30.1
- ;;^UTILITY(U,$J,358.3,995,2)
- ;;=^5018600
- ;;^UTILITY(U,$J,358.3,996,0)
- ;;=Q35.9^^3^35^51
- ;;^UTILITY(U,$J,358.3,996,1,0)
+ ;;^UTILITY(U,$J,358.3,794,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Animal Dander
+ ;;^UTILITY(U,$J,358.3,794,1,4,0)
+ ;;=4^L23.81
+ ;;^UTILITY(U,$J,358.3,794,2)
+ ;;=^5009123
+ ;;^UTILITY(U,$J,358.3,795,0)
+ ;;=L24.0^^9^88^94
+ ;;^UTILITY(U,$J,358.3,795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,996,1,3,0)
- ;;=3^Cleft palate, unspecified
- ;;^UTILITY(U,$J,358.3,996,1,4,0)
- ;;=4^Q35.9
- ;;^UTILITY(U,$J,358.3,996,2)
- ;;=^5018634
- ;;^UTILITY(U,$J,358.3,997,0)
- ;;=R42.^^3^35^61
+ ;;^UTILITY(U,$J,358.3,795,1,3,0)
+ ;;=3^Irritant Contact Dermatitis d/t Detergents
+ ;;^UTILITY(U,$J,358.3,795,1,4,0)
+ ;;=4^L24.0
+ ;;^UTILITY(U,$J,358.3,795,2)
+ ;;=^5009126
+ ;;^UTILITY(U,$J,358.3,796,0)
+ ;;=L24.1^^9^88^97

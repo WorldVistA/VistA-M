@@ -1,0 +1,132 @@
+IBDEI2ZD ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,49967,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,49967,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,49968,0)
+ ;;=J32.9^^219^2434^106
+ ;;^UTILITY(U,$J,358.3,49968,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49968,1,3,0)
+ ;;=3^Sinusitis,Chr,Unspec
+ ;;^UTILITY(U,$J,358.3,49968,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,49968,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,49969,0)
+ ;;=G47.9^^219^2434^107
+ ;;^UTILITY(U,$J,358.3,49969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49969,1,3,0)
+ ;;=3^Sleep Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,49969,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,49969,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,49970,0)
+ ;;=F17.200^^219^2434^68
+ ;;^UTILITY(U,$J,358.3,49970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49970,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec
+ ;;^UTILITY(U,$J,358.3,49970,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,49970,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,49971,0)
+ ;;=F17.201^^219^2434^60
+ ;;^UTILITY(U,$J,358.3,49971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49971,1,3,0)
+ ;;=3^Nicotine Dependence In Remission
+ ;;^UTILITY(U,$J,358.3,49971,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,49971,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,49972,0)
+ ;;=F17.203^^219^2434^62
+ ;;^UTILITY(U,$J,358.3,49972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49972,1,3,0)
+ ;;=3^Nicotine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,49972,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,49972,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,49973,0)
+ ;;=F17.208^^219^2434^61
+ ;;^UTILITY(U,$J,358.3,49973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49973,1,3,0)
+ ;;=3^Nicotine Dependence w/ Nicotine-Induced Disorders
+ ;;^UTILITY(U,$J,358.3,49973,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,49973,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,49974,0)
+ ;;=F17.210^^219^2434^63
+ ;;^UTILITY(U,$J,358.3,49974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49974,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,49974,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,49974,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,49975,0)
+ ;;=F17.211^^219^2434^64
+ ;;^UTILITY(U,$J,358.3,49975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49975,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes in Remission
+ ;;^UTILITY(U,$J,358.3,49975,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,49975,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,49976,0)
+ ;;=F17.213^^219^2434^67
+ ;;^UTILITY(U,$J,358.3,49976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49976,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,49976,1,4,0)
+ ;;=4^F17.213
+ ;;^UTILITY(U,$J,358.3,49976,2)
+ ;;=^5003367
+ ;;^UTILITY(U,$J,358.3,49977,0)
+ ;;=F17.218^^219^2434^66
+ ;;^UTILITY(U,$J,358.3,49977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49977,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Other Disorders
+ ;;^UTILITY(U,$J,358.3,49977,1,4,0)
+ ;;=4^F17.218
+ ;;^UTILITY(U,$J,358.3,49977,2)
+ ;;=^5003368
+ ;;^UTILITY(U,$J,358.3,49978,0)
+ ;;=F17.219^^219^2434^65
+ ;;^UTILITY(U,$J,358.3,49978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49978,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Nicotine-Induced Disorders
+ ;;^UTILITY(U,$J,358.3,49978,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,49978,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,49979,0)
+ ;;=J39.8^^219^2434^97
+ ;;^UTILITY(U,$J,358.3,49979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49979,1,3,0)
+ ;;=3^Respiratory Tract Diseases,Upper
+ ;;^UTILITY(U,$J,358.3,49979,1,4,0)
+ ;;=4^J39.8
+ ;;^UTILITY(U,$J,358.3,49979,2)
+ ;;=^5008231
+ ;;^UTILITY(U,$J,358.3,49980,0)
+ ;;=J98.09^^219^2434^22
+ ;;^UTILITY(U,$J,358.3,49980,1,0)
+ ;;=^358.31IA^4^2

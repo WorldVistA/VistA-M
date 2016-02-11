@@ -1,134 +1,144 @@
-IBDEI028 ; ; 06-AUG-2015
+IBDEI028 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,492,1,4,0)
- ;;=4^C77.4
- ;;^UTILITY(U,$J,358.3,492,2)
- ;;=^5001331
- ;;^UTILITY(U,$J,358.3,493,0)
- ;;=C77.8^^2^22^14
- ;;^UTILITY(U,$J,358.3,493,1,0)
+ ;;^UTILITY(U,$J,358.3,270,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,270,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,271,0)
+ ;;=G24.01^^3^34^7
+ ;;^UTILITY(U,$J,358.3,271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,493,1,3,0)
- ;;=3^Secondary malignant neoplasm of nodes of multiple regions
- ;;^UTILITY(U,$J,358.3,493,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,493,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,494,0)
- ;;=C77.9^^2^22^12
- ;;^UTILITY(U,$J,358.3,494,1,0)
+ ;;^UTILITY(U,$J,358.3,271,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,271,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,271,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,272,0)
+ ;;=G24.09^^3^34^8
+ ;;^UTILITY(U,$J,358.3,272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,494,1,3,0)
- ;;=3^Secondary malignant neoplasm of lymph node, unsp
- ;;^UTILITY(U,$J,358.3,494,1,4,0)
- ;;=4^C77.9
- ;;^UTILITY(U,$J,358.3,494,2)
- ;;=^5001333
- ;;^UTILITY(U,$J,358.3,495,0)
- ;;=C78.01^^2^22^17
- ;;^UTILITY(U,$J,358.3,495,1,0)
+ ;;^UTILITY(U,$J,358.3,272,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,272,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,272,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,273,0)
+ ;;=G25.1^^3^34^4
+ ;;^UTILITY(U,$J,358.3,273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,495,1,3,0)
- ;;=3^Secondary malignant neoplasm of right lung
- ;;^UTILITY(U,$J,358.3,495,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,495,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,496,0)
- ;;=C78.02^^2^22^10
- ;;^UTILITY(U,$J,358.3,496,1,0)
+ ;;^UTILITY(U,$J,358.3,273,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,273,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,273,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,274,0)
+ ;;=G25.71^^3^34^6
+ ;;^UTILITY(U,$J,358.3,274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,496,1,3,0)
- ;;=3^Secondary malignant neoplasm of left lung
- ;;^UTILITY(U,$J,358.3,496,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,496,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,497,0)
- ;;=C78.7^^2^22^11
- ;;^UTILITY(U,$J,358.3,497,1,0)
+ ;;^UTILITY(U,$J,358.3,274,1,3,0)
+ ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
+ ;;^UTILITY(U,$J,358.3,274,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,274,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,275,0)
+ ;;=G25.79^^3^34^2
+ ;;^UTILITY(U,$J,358.3,275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,497,1,3,0)
- ;;=3^Secondary malignant neoplasm of liver and intrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,497,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,497,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,498,0)
- ;;=C79.2^^2^22^18
- ;;^UTILITY(U,$J,358.3,498,1,0)
+ ;;^UTILITY(U,$J,358.3,275,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder NEC
+ ;;^UTILITY(U,$J,358.3,275,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,275,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,276,0)
+ ;;=F42.^^3^35^6
+ ;;^UTILITY(U,$J,358.3,276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,498,1,3,0)
- ;;=3^Secondary malignant neoplasm of skin
- ;;^UTILITY(U,$J,358.3,498,1,4,0)
- ;;=4^C79.2
- ;;^UTILITY(U,$J,358.3,498,2)
- ;;=^267333
- ;;^UTILITY(U,$J,358.3,499,0)
- ;;=C79.31^^2^22^4
- ;;^UTILITY(U,$J,358.3,499,1,0)
+ ;;^UTILITY(U,$J,358.3,276,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,276,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,276,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,277,0)
+ ;;=F45.22^^3^35^1
+ ;;^UTILITY(U,$J,358.3,277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,499,1,3,0)
- ;;=3^Secondary malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,499,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,499,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,500,0)
- ;;=C79.32^^2^22^5
- ;;^UTILITY(U,$J,358.3,500,1,0)
+ ;;^UTILITY(U,$J,358.3,277,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,277,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,277,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,278,0)
+ ;;=F63.3^^3^35^7
+ ;;^UTILITY(U,$J,358.3,278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,500,1,3,0)
- ;;=3^Secondary malignant neoplasm of cerebral meninges
- ;;^UTILITY(U,$J,358.3,500,1,4,0)
- ;;=4^C79.32
- ;;^UTILITY(U,$J,358.3,500,2)
- ;;=^5001348
- ;;^UTILITY(U,$J,358.3,501,0)
- ;;=C79.49^^2^22^15
- ;;^UTILITY(U,$J,358.3,501,1,0)
+ ;;^UTILITY(U,$J,358.3,278,1,3,0)
+ ;;=3^Trichotillomania
+ ;;^UTILITY(U,$J,358.3,278,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,278,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,279,0)
+ ;;=L98.1^^3^35^2
+ ;;^UTILITY(U,$J,358.3,279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,501,1,3,0)
- ;;=3^Secondary malignant neoplasm of oth parts of nervous system
- ;;^UTILITY(U,$J,358.3,501,1,4,0)
- ;;=4^C79.49
- ;;^UTILITY(U,$J,358.3,501,2)
- ;;=^267335
- ;;^UTILITY(U,$J,358.3,502,0)
- ;;=C79.51^^2^22^2
- ;;^UTILITY(U,$J,358.3,502,1,0)
+ ;;^UTILITY(U,$J,358.3,279,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) Disorder
+ ;;^UTILITY(U,$J,358.3,279,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,279,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,280,0)
+ ;;=F63.0^^3^35^4
+ ;;^UTILITY(U,$J,358.3,280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,502,1,3,0)
- ;;=3^Secondary malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,502,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,502,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,503,0)
- ;;=C79.52^^2^22^3
- ;;^UTILITY(U,$J,358.3,503,1,0)
+ ;;^UTILITY(U,$J,358.3,280,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,280,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,280,2)
+ ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,281,0)
+ ;;=F68.10^^3^35^3
+ ;;^UTILITY(U,$J,358.3,281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,503,1,3,0)
- ;;=3^Secondary malignant neoplasm of bone marrow
- ;;^UTILITY(U,$J,358.3,503,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,503,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,504,0)
- ;;=C79.71^^2^22^16
- ;;^UTILITY(U,$J,358.3,504,1,0)
+ ;;^UTILITY(U,$J,358.3,281,1,3,0)
+ ;;=3^Factitious Disorder
+ ;;^UTILITY(U,$J,358.3,281,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,281,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,282,0)
+ ;;=F63.9^^3^35^5
+ ;;^UTILITY(U,$J,358.3,282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,504,1,3,0)
- ;;=3^Secondary malignant neoplasm of right adrenal gland
- ;;^UTILITY(U,$J,358.3,504,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,504,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,505,0)
- ;;=C79.72^^2^22^9
- ;;^UTILITY(U,$J,358.3,505,1,0)
+ ;;^UTILITY(U,$J,358.3,282,1,3,0)
+ ;;=3^Impulse Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,282,1,4,0)
+ ;;=4^F63.9
+ ;;^UTILITY(U,$J,358.3,282,2)
+ ;;=^5003646
+ ;;^UTILITY(U,$J,358.3,283,0)
+ ;;=F06.2^^3^36^5
+ ;;^UTILITY(U,$J,358.3,283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,505,1,3,0)
- ;;=3^Secondary malignant neoplasm of left adrenal gland
+ ;;^UTILITY(U,$J,358.3,283,1,3,0)
+ ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,283,1,4,0)
+ ;;=4^F06.2
+ ;;^UTILITY(U,$J,358.3,283,2)
+ ;;=^5003055
+ ;;^UTILITY(U,$J,358.3,284,0)
+ ;;=F06.0^^3^36^6
+ ;;^UTILITY(U,$J,358.3,284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,284,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition

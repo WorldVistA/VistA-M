@@ -1,114 +1,126 @@
-IBDEI0TE ; ; 06-AUG-2015
+IBDEI0TE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14229,1,2,0)
- ;;=2^Repair of Nail Bed
- ;;^UTILITY(U,$J,358.3,14229,1,3,0)
- ;;=3^11760
- ;;^UTILITY(U,$J,358.3,14230,0)
- ;;=11765^^75^874^11^^^^1
- ;;^UTILITY(U,$J,358.3,14230,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14230,1,2,0)
- ;;=2^Wedge Excision of Skin Nail Fold
- ;;^UTILITY(U,$J,358.3,14230,1,3,0)
- ;;=3^11765
- ;;^UTILITY(U,$J,358.3,14231,0)
- ;;=11055^^75^875^1^^^^1
- ;;^UTILITY(U,$J,358.3,14231,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14231,1,2,0)
- ;;=2^Trim Skin Lesion, Single Lesion
- ;;^UTILITY(U,$J,358.3,14231,1,3,0)
- ;;=3^11055
- ;;^UTILITY(U,$J,358.3,14232,0)
- ;;=11056^^75^875^2^^^^1
- ;;^UTILITY(U,$J,358.3,14232,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14232,1,2,0)
- ;;=2^Trim Skin Lesion,2-4 Lesions
- ;;^UTILITY(U,$J,358.3,14232,1,3,0)
- ;;=3^11056
- ;;^UTILITY(U,$J,358.3,14233,0)
- ;;=11057^^75^875^3^^^^1
- ;;^UTILITY(U,$J,358.3,14233,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14233,1,2,0)
- ;;=2^Trim Skin Lesions, Over 4
- ;;^UTILITY(U,$J,358.3,14233,1,3,0)
- ;;=3^11057
- ;;^UTILITY(U,$J,358.3,14234,0)
- ;;=17000^^75^876^1^^^^1
- ;;^UTILITY(U,$J,358.3,14234,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14234,1,2,0)
- ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesion; 1st lesion
- ;;^UTILITY(U,$J,358.3,14234,1,3,0)
- ;;=3^17000
- ;;^UTILITY(U,$J,358.3,14235,0)
- ;;=17003^^75^876^2^^^^1
- ;;^UTILITY(U,$J,358.3,14235,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14235,1,2,0)
- ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesions; 2nd-14th lesion, each
- ;;^UTILITY(U,$J,358.3,14235,1,3,0)
- ;;=3^17003
- ;;^UTILITY(U,$J,358.3,14236,0)
- ;;=17004^^75^876^3^^^^1
- ;;^UTILITY(U,$J,358.3,14236,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14236,1,2,0)
- ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesions; 15 or more lesions
- ;;^UTILITY(U,$J,358.3,14236,1,3,0)
- ;;=3^17004
- ;;^UTILITY(U,$J,358.3,14237,0)
- ;;=17110^^75^876^4^^^^1
- ;;^UTILITY(U,$J,358.3,14237,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14237,1,2,0)
- ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; up to 14 lesions
- ;;^UTILITY(U,$J,358.3,14237,1,3,0)
- ;;=3^17110
- ;;^UTILITY(U,$J,358.3,14238,0)
- ;;=17111^^75^876^5^^^^1
- ;;^UTILITY(U,$J,358.3,14238,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14238,1,2,0)
- ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; 15 or more lesions
- ;;^UTILITY(U,$J,358.3,14238,1,3,0)
- ;;=3^17111
- ;;^UTILITY(U,$J,358.3,14239,0)
- ;;=17250^^75^876^6^^^^1
- ;;^UTILITY(U,$J,358.3,14239,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14239,1,2,0)
- ;;=2^Chemical cauterization of granulation tissue
- ;;^UTILITY(U,$J,358.3,14239,1,3,0)
- ;;=3^17250
- ;;^UTILITY(U,$J,358.3,14240,0)
- ;;=11400^^75^877^1^^^^1
- ;;^UTILITY(U,$J,358.3,14240,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14240,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;0.5cm or less
- ;;^UTILITY(U,$J,358.3,14240,1,3,0)
- ;;=3^11400
- ;;^UTILITY(U,$J,358.3,14241,0)
- ;;=11401^^75^877^2^^^^1
- ;;^UTILITY(U,$J,358.3,14241,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14241,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;0.6cm-1.0cm
- ;;^UTILITY(U,$J,358.3,14241,1,3,0)
- ;;=3^11401
- ;;^UTILITY(U,$J,358.3,14242,0)
- ;;=11402^^75^877^3^^^^1
- ;;^UTILITY(U,$J,358.3,14242,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14242,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;1.1cm-2.0cm
- ;;^UTILITY(U,$J,358.3,14242,1,3,0)
- ;;=3^11402
- ;;^UTILITY(U,$J,358.3,14243,0)
- ;;=11403^^75^877^4^^^^1
+ ;;^UTILITY(U,$J,358.3,13520,1,3,0)
+ ;;=3^Malig Neop Skin Right Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,13520,1,4,0)
+ ;;=4^C44.192
+ ;;^UTILITY(U,$J,358.3,13520,2)
+ ;;=^5001026
+ ;;^UTILITY(U,$J,358.3,13521,0)
+ ;;=S05.42XA^^80^761^79
+ ;;^UTILITY(U,$J,358.3,13521,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13521,1,3,0)
+ ;;=3^Penetrating Wound of Orbit,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13521,1,4,0)
+ ;;=4^S05.42XA
+ ;;^UTILITY(U,$J,358.3,13521,2)
+ ;;=^5020618
+ ;;^UTILITY(U,$J,358.3,13522,0)
+ ;;=S05.41XA^^80^761^80
+ ;;^UTILITY(U,$J,358.3,13522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13522,1,3,0)
+ ;;=3^Penetrating Wound of Orbit,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13522,1,4,0)
+ ;;=4^S05.41XA
+ ;;^UTILITY(U,$J,358.3,13522,2)
+ ;;=^5020615
+ ;;^UTILITY(U,$J,358.3,13523,0)
+ ;;=S01.142A^^80^761^81
+ ;;^UTILITY(U,$J,358.3,13523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13523,1,3,0)
+ ;;=3^Puncture Wound w/ FB,Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13523,1,4,0)
+ ;;=4^S01.142A
+ ;;^UTILITY(U,$J,358.3,13523,2)
+ ;;=^5134196
+ ;;^UTILITY(U,$J,358.3,13524,0)
+ ;;=S01.141A^^80^761^82
+ ;;^UTILITY(U,$J,358.3,13524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13524,1,3,0)
+ ;;=3^Puncture Wound w/ FB,Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13524,1,4,0)
+ ;;=4^S01.141A
+ ;;^UTILITY(U,$J,358.3,13524,2)
+ ;;=^5020078
+ ;;^UTILITY(U,$J,358.3,13525,0)
+ ;;=S01.132A^^80^761^83
+ ;;^UTILITY(U,$J,358.3,13525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13525,1,3,0)
+ ;;=3^Puncture Wound w/o FB,Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13525,1,4,0)
+ ;;=4^S01.132A
+ ;;^UTILITY(U,$J,358.3,13525,2)
+ ;;=^5020072
+ ;;^UTILITY(U,$J,358.3,13526,0)
+ ;;=S01.131A^^80^761^84
+ ;;^UTILITY(U,$J,358.3,13526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13526,1,3,0)
+ ;;=3^Puncture Wound w/o FB,Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13526,1,4,0)
+ ;;=4^S01.131A
+ ;;^UTILITY(U,$J,358.3,13526,2)
+ ;;=^5020069
+ ;;^UTILITY(U,$J,358.3,13527,0)
+ ;;=H02.135^^80^761^87
+ ;;^UTILITY(U,$J,358.3,13527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13527,1,3,0)
+ ;;=3^Senile Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13527,1,4,0)
+ ;;=4^H02.135
+ ;;^UTILITY(U,$J,358.3,13527,2)
+ ;;=^5133414
+ ;;^UTILITY(U,$J,358.3,13528,0)
+ ;;=H02.134^^80^761^88
+ ;;^UTILITY(U,$J,358.3,13528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13528,1,3,0)
+ ;;=3^Senile Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13528,1,4,0)
+ ;;=4^H02.134
+ ;;^UTILITY(U,$J,358.3,13528,2)
+ ;;=^5004320
+ ;;^UTILITY(U,$J,358.3,13529,0)
+ ;;=H02.132^^80^761^89
+ ;;^UTILITY(U,$J,358.3,13529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13529,1,3,0)
+ ;;=3^Senile Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13529,1,4,0)
+ ;;=4^H02.132
+ ;;^UTILITY(U,$J,358.3,13529,2)
+ ;;=^5004318
+ ;;^UTILITY(U,$J,358.3,13530,0)
+ ;;=H02.131^^80^761^90
+ ;;^UTILITY(U,$J,358.3,13530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13530,1,3,0)
+ ;;=3^Senile Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13530,1,4,0)
+ ;;=4^H02.131
+ ;;^UTILITY(U,$J,358.3,13530,2)
+ ;;=^5004317
+ ;;^UTILITY(U,$J,358.3,13531,0)
+ ;;=H02.035^^80^761^91
+ ;;^UTILITY(U,$J,358.3,13531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13531,1,3,0)
+ ;;=3^Senile Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13531,1,4,0)
+ ;;=4^H02.035
+ ;;^UTILITY(U,$J,358.3,13531,2)
+ ;;=^5133401
+ ;;^UTILITY(U,$J,358.3,13532,0)
+ ;;=H02.034^^80^761^92
+ ;;^UTILITY(U,$J,358.3,13532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13532,1,3,0)
+ ;;=3^Senile Entropion Left Upper Eyelid

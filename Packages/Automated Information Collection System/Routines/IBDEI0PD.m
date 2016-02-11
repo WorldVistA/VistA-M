@@ -1,130 +1,130 @@
-IBDEI0PD ; ; 06-AUG-2015
+IBDEI0PD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12121,0)
- ;;=95910^^59^714^26^^^^1
- ;;^UTILITY(U,$J,358.3,12121,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12121,1,2,0)
- ;;=2^95910
- ;;^UTILITY(U,$J,358.3,12121,1,3,0)
- ;;=3^NCS,7-8 Studies
- ;;^UTILITY(U,$J,358.3,12122,0)
- ;;=95911^^59^714^27^^^^1
- ;;^UTILITY(U,$J,358.3,12122,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12122,1,2,0)
- ;;=2^95911
- ;;^UTILITY(U,$J,358.3,12122,1,3,0)
- ;;=3^NCS,9-10 Studies
- ;;^UTILITY(U,$J,358.3,12123,0)
- ;;=95912^^59^714^22^^^^1
- ;;^UTILITY(U,$J,358.3,12123,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12123,1,2,0)
- ;;=2^95912
- ;;^UTILITY(U,$J,358.3,12123,1,3,0)
- ;;=3^NCS,11-12 Studies
- ;;^UTILITY(U,$J,358.3,12124,0)
- ;;=95913^^59^714^23^^^^1
- ;;^UTILITY(U,$J,358.3,12124,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12124,1,2,0)
- ;;=2^95913
- ;;^UTILITY(U,$J,358.3,12124,1,3,0)
- ;;=3^NCS,13 or More Studies
- ;;^UTILITY(U,$J,358.3,12125,0)
- ;;=95937^^59^714^29^^^^1
- ;;^UTILITY(U,$J,358.3,12125,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12125,1,2,0)
- ;;=2^95937
- ;;^UTILITY(U,$J,358.3,12125,1,3,0)
- ;;=3^Neuromuscular Junction Test
- ;;^UTILITY(U,$J,358.3,12126,0)
- ;;=95860^^59^714^20^^^^1
- ;;^UTILITY(U,$J,358.3,12126,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12126,1,2,0)
- ;;=2^95860
- ;;^UTILITY(U,$J,358.3,12126,1,3,0)
- ;;=3^Muscle Test,One Limb
- ;;^UTILITY(U,$J,358.3,12127,0)
- ;;=95869^^59^714^19^^^^1
- ;;^UTILITY(U,$J,358.3,12127,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12127,1,2,0)
- ;;=2^95869
- ;;^UTILITY(U,$J,358.3,12127,1,3,0)
- ;;=3^Muscle Test Thor Paraspinal
- ;;^UTILITY(U,$J,358.3,12128,0)
- ;;=95925^^59^715^7^^^^1
- ;;^UTILITY(U,$J,358.3,12128,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12128,1,2,0)
- ;;=2^95925
- ;;^UTILITY(U,$J,358.3,12128,1,3,0)
- ;;=3^Short Latency SSEP, Periph Nerve, Upper Ext
- ;;^UTILITY(U,$J,358.3,12129,0)
- ;;=95926^^59^715^5^^^^1
- ;;^UTILITY(U,$J,358.3,12129,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12129,1,2,0)
- ;;=2^95926
- ;;^UTILITY(U,$J,358.3,12129,1,3,0)
- ;;=3^Short Latency SSEP, Periph Nerve, Lower Ext
- ;;^UTILITY(U,$J,358.3,12130,0)
- ;;=95927^^59^715^6^^^^1
- ;;^UTILITY(U,$J,358.3,12130,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12130,1,2,0)
- ;;=2^95927
- ;;^UTILITY(U,$J,358.3,12130,1,3,0)
- ;;=3^Short Latency SSEP, Periph Nerve, Trunk/Head
- ;;^UTILITY(U,$J,358.3,12131,0)
- ;;=95930^^59^715^9^^^^1
- ;;^UTILITY(U,$J,358.3,12131,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12131,1,2,0)
- ;;=2^95930
- ;;^UTILITY(U,$J,358.3,12131,1,3,0)
- ;;=3^Visual Evoked Potential
- ;;^UTILITY(U,$J,358.3,12132,0)
- ;;=95933^^59^715^1^^^^1
- ;;^UTILITY(U,$J,358.3,12132,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12132,1,2,0)
- ;;=2^95933
- ;;^UTILITY(U,$J,358.3,12132,1,3,0)
- ;;=3^Blink Reflex Test
- ;;^UTILITY(U,$J,358.3,12133,0)
- ;;=95937^^59^715^4^^^^1
- ;;^UTILITY(U,$J,358.3,12133,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12133,1,2,0)
- ;;=2^95937
- ;;^UTILITY(U,$J,358.3,12133,1,3,0)
- ;;=3^Neuromuscular Junction Test
- ;;^UTILITY(U,$J,358.3,12134,0)
- ;;=95938^^59^715^8^^^^1
- ;;^UTILITY(U,$J,358.3,12134,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12134,1,2,0)
- ;;=2^95938
- ;;^UTILITY(U,$J,358.3,12134,1,3,0)
- ;;=3^Short Latency SSEP,Periph Nerve,Upper&Lower
- ;;^UTILITY(U,$J,358.3,12135,0)
- ;;=20206^^59^716^4^^^^1
- ;;^UTILITY(U,$J,358.3,12135,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12135,1,2,0)
- ;;=2^20206
- ;;^UTILITY(U,$J,358.3,12135,1,3,0)
- ;;=3^Needle Biopsy of Muscle
- ;;^UTILITY(U,$J,358.3,12136,0)
- ;;=64795^^59^716^1^^^^1
- ;;^UTILITY(U,$J,358.3,12136,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12136,1,2,0)
- ;;=2^64795
+ ;;^UTILITY(U,$J,358.3,11622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11622,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,11622,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,11622,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,11623,0)
+ ;;=R82.8^^68^687^23
+ ;;^UTILITY(U,$J,358.3,11623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11623,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,11623,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,11623,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,11624,0)
+ ;;=R82.90^^68^687^25
+ ;;^UTILITY(U,$J,358.3,11624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11624,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,11624,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,11624,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,11625,0)
+ ;;=R82.91^^68^687^49
+ ;;^UTILITY(U,$J,358.3,11625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11625,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,11625,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,11625,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,11626,0)
+ ;;=R82.99^^68^687^24
+ ;;^UTILITY(U,$J,358.3,11626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11626,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,11626,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,11626,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,11627,0)
+ ;;=R89.9^^68^687^19
+ ;;^UTILITY(U,$J,358.3,11627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11627,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,11627,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,11627,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,11628,0)
+ ;;=R90.0^^68^687^98
+ ;;^UTILITY(U,$J,358.3,11628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11628,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,11628,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,11628,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,11629,0)
+ ;;=R90.89^^68^687^13
+ ;;^UTILITY(U,$J,358.3,11629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11629,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,11629,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,11629,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,11630,0)
+ ;;=R91.8^^68^687^18
+ ;;^UTILITY(U,$J,358.3,11630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11630,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,11630,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,11630,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,11631,0)
+ ;;=R92.0^^68^687^117
+ ;;^UTILITY(U,$J,358.3,11631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11631,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,11631,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,11631,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,11632,0)
+ ;;=R92.1^^68^687^116
+ ;;^UTILITY(U,$J,358.3,11632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11632,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,11632,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,11632,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,11633,0)
+ ;;=R92.2^^68^687^91
+ ;;^UTILITY(U,$J,358.3,11633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11633,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,11633,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,11633,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,11634,0)
+ ;;=R93.0^^68^687^10
+ ;;^UTILITY(U,$J,358.3,11634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11634,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,11634,1,4,0)
+ ;;=4^R93.0

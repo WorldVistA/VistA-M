@@ -1,0 +1,130 @@
+IBDEI3FK ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,57714,1,3,0)
+ ;;=3^Complications of Procedures NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57714,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,57714,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,57715,0)
+ ;;=L12.8^^270^2894^45
+ ;;^UTILITY(U,$J,358.3,57715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57715,1,3,0)
+ ;;=3^Pemphigoid,Other
+ ;;^UTILITY(U,$J,358.3,57715,1,4,0)
+ ;;=4^L12.8
+ ;;^UTILITY(U,$J,358.3,57715,2)
+ ;;=^5009101
+ ;;^UTILITY(U,$J,358.3,57716,0)
+ ;;=L88.^^270^2894^46
+ ;;^UTILITY(U,$J,358.3,57716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57716,1,3,0)
+ ;;=3^Pyoderma Gangrenosum
+ ;;^UTILITY(U,$J,358.3,57716,1,4,0)
+ ;;=4^L88.
+ ;;^UTILITY(U,$J,358.3,57716,2)
+ ;;=^186812
+ ;;^UTILITY(U,$J,358.3,57717,0)
+ ;;=S91.002A^^270^2894^29
+ ;;^UTILITY(U,$J,358.3,57717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57717,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57717,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,57717,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,57718,0)
+ ;;=S91.302A^^270^2894^31
+ ;;^UTILITY(U,$J,358.3,57718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57718,1,3,0)
+ ;;=3^Open Wound,Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57718,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,57718,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,57719,0)
+ ;;=S81.002A^^270^2894^33
+ ;;^UTILITY(U,$J,358.3,57719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57719,1,3,0)
+ ;;=3^Open Wound,Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57719,1,4,0)
+ ;;=4^S81.002A
+ ;;^UTILITY(U,$J,358.3,57719,2)
+ ;;=^5040029
+ ;;^UTILITY(U,$J,358.3,57720,0)
+ ;;=S81.802A^^270^2894^35
+ ;;^UTILITY(U,$J,358.3,57720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57720,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57720,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,57720,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,57721,0)
+ ;;=S91.001A^^270^2894^37
+ ;;^UTILITY(U,$J,358.3,57721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57721,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57721,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,57721,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,57722,0)
+ ;;=S91.301A^^270^2894^39
+ ;;^UTILITY(U,$J,358.3,57722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57722,1,3,0)
+ ;;=3^Open Wound,Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57722,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,57722,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,57723,0)
+ ;;=S81.001A^^270^2894^41
+ ;;^UTILITY(U,$J,358.3,57723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57723,1,3,0)
+ ;;=3^Open Wound,Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57723,1,4,0)
+ ;;=4^S81.001A
+ ;;^UTILITY(U,$J,358.3,57723,2)
+ ;;=^5040026
+ ;;^UTILITY(U,$J,358.3,57724,0)
+ ;;=S81.801A^^270^2894^43
+ ;;^UTILITY(U,$J,358.3,57724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57724,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,57724,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,57724,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,57725,0)
+ ;;=I83.892^^270^2894^48
+ ;;^UTILITY(U,$J,358.3,57725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57725,1,3,0)
+ ;;=3^Varicose Veins,Left Lower Extrem w/ Oth Complications
+ ;;^UTILITY(U,$J,358.3,57725,1,4,0)
+ ;;=4^I83.892
+ ;;^UTILITY(U,$J,358.3,57725,2)
+ ;;=^5008016
+ ;;^UTILITY(U,$J,358.3,57726,0)
+ ;;=I83.229^^270^2894^49
+ ;;^UTILITY(U,$J,358.3,57726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57726,1,3,0)
+ ;;=3^Varicose Veins,Left Lower Extrem w/ Ulcer & Inflam Unspec Site
+ ;;^UTILITY(U,$J,358.3,57726,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,57726,2)
+ ;;=^5008010

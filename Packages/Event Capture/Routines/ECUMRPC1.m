@@ -1,5 +1,5 @@
-ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;4/9/15  17:02
- ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126**;8 May 96;Build 8
+ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;7/30/15  15:43
+ ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130**;8 May 96;Build 1
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -186,7 +186,7 @@ ASCLN ;Search for active associated clinics (file #44)
  F  Q:CNT=ECNUM  S ECSTR=$O(^SC("B",ECSTR),ECDIR) Q:ECSTR=""  S CLN="" D
  .F  S CLN=$O(^SC("B",ECSTR,CLN),ECDIR) Q:CLN=""  S NOD=$G(^SC(CLN,0)) D
  ..Q:NOD=""  Q:$P(NOD,U,3)'="C"  ;Q:+$G(^SC(CLN,"OOS"))
- ..I $G(ECLOC) I ECLOC'=$P(NOD,U,4) Q  ;126 Clinic must be assoicated with the selected location, if one was selected
+ ..I $G(ECLOC) I ECLOC'=$$GET1^DIQ(44,CLN,"3.5:.07","I") Q  ;126,130 Clinic must be assoicated with the selected location, if one was selected
  ..S ERR=0 I $D(^SC(CLN,"I")) D  I ERR Q
  ...S INACT=$P(^SC(CLN,"I"),U),REACT=$P(^SC(CLN,"I"),U,2)
  ...I INACT D  I ERR Q

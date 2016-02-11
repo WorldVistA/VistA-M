@@ -1,5 +1,5 @@
 ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;03/29/13  09:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311**;Dec 17, 1997;Build 30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402**;Dec 17, 1997;Build 3
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
  ;ORPROSP = pharmacy orderable item ien [file #50.7] ^ drug ien [file #50]
@@ -38,7 +38,12 @@ PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check AP
  ..K VADMVT
  D DD(.TDATA,$S(+ORPROSP>0:0,1:1))
  Q:'$L($G(TDATA("NEW","PROSP")))
- D DI(.TDATA),DT(.TDATA)
+ D DI(.TDATA)
+ I $G(TDATA("NEW","OTYPE"))="UD" D  ;p402 Set OTYPE to C to distinguish the prospect as an IMO or clinical order if outpatient
+ .D ADM^VADPT2 S TDATA("NEW","PTYPE")=$S(+$G(VADMVT)>0:"I",1:"O")
+ .I $G(TDATA("NEW","PTYPE"))="O" S TDATA("NEW","OTYPE")="C"
+ .K VADMVT
+ D DT(.TDATA)
  Q
  ;
 DI(TDATA) ;add drug interaction checks
@@ -133,6 +138,7 @@ DT(TDATA) ;add duplicate therapy checks
  ....I $L($P($G(@GL@(I,"DRUGS",J)),U,4))>0,(+$P($G(@GL@(I,"DRUGS",J)),U,4)=$P($G(^OR(100,+$G(ORIFN),3)),U,5)) Q
  ....I $L($P($G(@GL@(I,"DRUGS",J)),U,4))>0,(+$P($G(@GL@(I,"DRUGS",J)),U,4)=+$G(ORIFN)) Q
  ....I $E($G(@GL@(I,"DRUGS",J)),1)="R" S $P(@GL@(I,"DRUGS",J),U,5)="O"
+ ....I $E($G(@GL@(I,"DRUGS",J)),1)="C" S $P(@GL@(I,"DRUGS",J),U,5)="O" ; p402 IMO or CLINIC ORDER
  ....I $G(TDATA("NEW","PTYPE"))'=$P($G(@GL@(I,"DRUGS",J)),U,5) Q
  ....S ORNUM=$P($P($G(@GL@(I,"DRUGS",J)),U),";",1,2)
  ....I $$INDD($P($G(@GL@(I,"DRUGS",J)),U,3))=0 D

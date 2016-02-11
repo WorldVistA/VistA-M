@@ -1,146 +1,126 @@
-IBDEI0DM ; ; 06-AUG-2015
+IBDEI0DM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6172,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6172,1,4,0)
- ;;=4^787.20
- ;;^UTILITY(U,$J,358.3,6172,1,5,0)
- ;;=5^Dysphagia NOS
- ;;^UTILITY(U,$J,358.3,6172,2)
- ;;=^335307
- ;;^UTILITY(U,$J,358.3,6173,0)
- ;;=787.21^^31^406^30
- ;;^UTILITY(U,$J,358.3,6173,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6173,1,4,0)
- ;;=4^787.21
- ;;^UTILITY(U,$J,358.3,6173,1,5,0)
- ;;=5^Dysphagia,Oral Phase
- ;;^UTILITY(U,$J,358.3,6173,2)
- ;;=^335276
- ;;^UTILITY(U,$J,358.3,6174,0)
- ;;=787.22^^31^406^31
- ;;^UTILITY(U,$J,358.3,6174,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6174,1,4,0)
- ;;=4^787.22
- ;;^UTILITY(U,$J,358.3,6174,1,5,0)
- ;;=5^Dysphagia,Oropharyngeal
- ;;^UTILITY(U,$J,358.3,6174,2)
- ;;=^335277
- ;;^UTILITY(U,$J,358.3,6175,0)
- ;;=787.23^^31^406^32
- ;;^UTILITY(U,$J,358.3,6175,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6175,1,4,0)
- ;;=4^787.23
- ;;^UTILITY(U,$J,358.3,6175,1,5,0)
- ;;=5^Dysphagia,Pharyngeal
- ;;^UTILITY(U,$J,358.3,6175,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,6176,0)
- ;;=787.24^^31^406^33
- ;;^UTILITY(U,$J,358.3,6176,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6176,1,4,0)
- ;;=4^787.24
- ;;^UTILITY(U,$J,358.3,6176,1,5,0)
- ;;=5^Dysphagia,Pharyngoesoph
- ;;^UTILITY(U,$J,358.3,6176,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,6177,0)
- ;;=787.29^^31^406^28
- ;;^UTILITY(U,$J,358.3,6177,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6177,1,4,0)
- ;;=4^787.29
- ;;^UTILITY(U,$J,358.3,6177,1,5,0)
- ;;=5^Dysphagia NEC
- ;;^UTILITY(U,$J,358.3,6177,2)
- ;;=^335280
- ;;^UTILITY(U,$J,358.3,6178,0)
- ;;=802.0^^31^406^37
- ;;^UTILITY(U,$J,358.3,6178,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6178,1,4,0)
- ;;=4^802.0
- ;;^UTILITY(U,$J,358.3,6178,1,5,0)
- ;;=5^FX,Nasal,Closed
- ;;^UTILITY(U,$J,358.3,6178,2)
- ;;=^273654
- ;;^UTILITY(U,$J,358.3,6179,0)
- ;;=932.^^31^406^38
- ;;^UTILITY(U,$J,358.3,6179,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6179,1,4,0)
- ;;=4^932.
- ;;^UTILITY(U,$J,358.3,6179,1,5,0)
- ;;=5^Foreign Body,Nose
- ;;^UTILITY(U,$J,358.3,6179,2)
- ;;=^275491
- ;;^UTILITY(U,$J,358.3,6180,0)
- ;;=369.4^^31^406^10
- ;;^UTILITY(U,$J,358.3,6180,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6180,1,4,0)
- ;;=4^369.4
- ;;^UTILITY(U,$J,358.3,6180,1,5,0)
- ;;=5^Blind,Legally
- ;;^UTILITY(U,$J,358.3,6180,2)
- ;;=^268887
- ;;^UTILITY(U,$J,358.3,6181,0)
- ;;=719.47^^31^407^2
- ;;^UTILITY(U,$J,358.3,6181,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6181,1,4,0)
- ;;=4^719.47
- ;;^UTILITY(U,$J,358.3,6181,1,5,0)
- ;;=5^Ankle Pain
- ;;^UTILITY(U,$J,358.3,6181,2)
- ;;=^272404
- ;;^UTILITY(U,$J,358.3,6182,0)
- ;;=719.40^^31^407^86
- ;;^UTILITY(U,$J,358.3,6182,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6182,1,4,0)
- ;;=4^719.40
- ;;^UTILITY(U,$J,358.3,6182,1,5,0)
- ;;=5^Unspecified Joint Pain
- ;;^UTILITY(U,$J,358.3,6182,2)
- ;;=^66375
- ;;^UTILITY(U,$J,358.3,6183,0)
- ;;=724.5^^31^407^9
- ;;^UTILITY(U,$J,358.3,6183,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6183,1,4,0)
- ;;=4^724.5
- ;;^UTILITY(U,$J,358.3,6183,1,5,0)
- ;;=5^Back Pain, Thoracic
- ;;^UTILITY(U,$J,358.3,6183,2)
- ;;=^12250
- ;;^UTILITY(U,$J,358.3,6184,0)
- ;;=724.2^^31^407^8
- ;;^UTILITY(U,$J,358.3,6184,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6184,1,4,0)
- ;;=4^724.2
- ;;^UTILITY(U,$J,358.3,6184,1,5,0)
- ;;=5^Back Pain, Low
- ;;^UTILITY(U,$J,358.3,6184,2)
- ;;=^71885
- ;;^UTILITY(U,$J,358.3,6185,0)
- ;;=719.42^^31^407^37
- ;;^UTILITY(U,$J,358.3,6185,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6185,1,4,0)
- ;;=4^719.42
- ;;^UTILITY(U,$J,358.3,6185,1,5,0)
- ;;=5^Elbow Pain
- ;;^UTILITY(U,$J,358.3,6185,2)
- ;;=^272399
- ;;^UTILITY(U,$J,358.3,6186,0)
- ;;=729.5^^31^407^59
- ;;^UTILITY(U,$J,358.3,6186,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,5933,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Ear/Mastoid
+ ;;^UTILITY(U,$J,358.3,5933,1,4,0)
+ ;;=4^H95.42
+ ;;^UTILITY(U,$J,358.3,5933,2)
+ ;;=^5007031
+ ;;^UTILITY(U,$J,358.3,5934,0)
+ ;;=I97.611^^40^380^10
+ ;;^UTILITY(U,$J,358.3,5934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5934,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Circ System Following Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,5934,1,4,0)
+ ;;=4^I97.611
+ ;;^UTILITY(U,$J,358.3,5934,2)
+ ;;=^5008100
+ ;;^UTILITY(U,$J,358.3,5935,0)
+ ;;=I97.62^^40^380^11
+ ;;^UTILITY(U,$J,358.3,5935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5935,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Circ System
+ ;;^UTILITY(U,$J,358.3,5935,1,4,0)
+ ;;=4^I97.62
+ ;;^UTILITY(U,$J,358.3,5935,2)
+ ;;=^5008102
+ ;;^UTILITY(U,$J,358.3,5936,0)
+ ;;=K91.841^^40^380^12
+ ;;^UTILITY(U,$J,358.3,5936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5936,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Digestive System
+ ;;^UTILITY(U,$J,358.3,5936,1,4,0)
+ ;;=4^K91.841
+ ;;^UTILITY(U,$J,358.3,5936,2)
+ ;;=^5008911
+ ;;^UTILITY(U,$J,358.3,5937,0)
+ ;;=N99.821^^40^380^15
+ ;;^UTILITY(U,$J,358.3,5937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5937,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of GU System
+ ;;^UTILITY(U,$J,358.3,5937,1,4,0)
+ ;;=4^N99.821
+ ;;^UTILITY(U,$J,358.3,5937,2)
+ ;;=^5015969
+ ;;^UTILITY(U,$J,358.3,5938,0)
+ ;;=G97.52^^40^380^17
+ ;;^UTILITY(U,$J,358.3,5938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5938,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Nervous System
+ ;;^UTILITY(U,$J,358.3,5938,1,4,0)
+ ;;=4^G97.52
+ ;;^UTILITY(U,$J,358.3,5938,2)
+ ;;=^5004210
+ ;;^UTILITY(U,$J,358.3,5939,0)
+ ;;=J95.831^^40^380^18
+ ;;^UTILITY(U,$J,358.3,5939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5939,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Respiratory System
+ ;;^UTILITY(U,$J,358.3,5939,1,4,0)
+ ;;=4^J95.831
+ ;;^UTILITY(U,$J,358.3,5939,2)
+ ;;=^5008341
+ ;;^UTILITY(U,$J,358.3,5940,0)
+ ;;=H95.42^^40^380^14
+ ;;^UTILITY(U,$J,358.3,5940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5940,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Ear/Mastoid
+ ;;^UTILITY(U,$J,358.3,5940,1,4,0)
+ ;;=4^H95.42
+ ;;^UTILITY(U,$J,358.3,5940,2)
+ ;;=^5007031
+ ;;^UTILITY(U,$J,358.3,5941,0)
+ ;;=H59.323^^40^380^8
+ ;;^UTILITY(U,$J,358.3,5941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5941,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Bilateral Eye/Adnexa
+ ;;^UTILITY(U,$J,358.3,5941,1,4,0)
+ ;;=4^H59.323
+ ;;^UTILITY(U,$J,358.3,5941,2)
+ ;;=^5006423
+ ;;^UTILITY(U,$J,358.3,5942,0)
+ ;;=H59.322^^40^380^16
+ ;;^UTILITY(U,$J,358.3,5942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5942,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Left Eye/Adnexa
+ ;;^UTILITY(U,$J,358.3,5942,1,4,0)
+ ;;=4^H59.322
+ ;;^UTILITY(U,$J,358.3,5942,2)
+ ;;=^5006422
+ ;;^UTILITY(U,$J,358.3,5943,0)
+ ;;=H59.321^^40^380^19
+ ;;^UTILITY(U,$J,358.3,5943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5943,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Right Eye/Adnexa
+ ;;^UTILITY(U,$J,358.3,5943,1,4,0)
+ ;;=4^H59.321
+ ;;^UTILITY(U,$J,358.3,5943,2)
+ ;;=^5006421
+ ;;^UTILITY(U,$J,358.3,5944,0)
+ ;;=L76.22^^40^380^20
+ ;;^UTILITY(U,$J,358.3,5944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5944,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Skin
+ ;;^UTILITY(U,$J,358.3,5944,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,5944,2)
+ ;;=^5009307
+ ;;^UTILITY(U,$J,358.3,5945,0)
+ ;;=D78.22^^40^380^21
+ ;;^UTILITY(U,$J,358.3,5945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5945,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Spleen

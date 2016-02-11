@@ -1,122 +1,130 @@
-IBDEI20K ; ; 06-AUG-2015
+IBDEI20K ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35211,1,4,0)
- ;;=4^S52.271S
- ;;^UTILITY(U,$J,358.3,35211,2)
- ;;=^5029810
- ;;^UTILITY(U,$J,358.3,35212,0)
- ;;=S52.255S^^183^2026^79
- ;;^UTILITY(U,$J,358.3,35212,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35212,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,35212,1,4,0)
- ;;=4^S52.255S
- ;;^UTILITY(U,$J,358.3,35212,2)
- ;;=^5029682
- ;;^UTILITY(U,$J,358.3,35213,0)
- ;;=S52.254S^^183^2026^80
- ;;^UTILITY(U,$J,358.3,35213,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35213,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,35213,1,4,0)
- ;;=4^S52.254S
- ;;^UTILITY(U,$J,358.3,35213,2)
- ;;=^5029666
- ;;^UTILITY(U,$J,358.3,35214,0)
- ;;=S52.045S^^183^2026^81
- ;;^UTILITY(U,$J,358.3,35214,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35214,1,3,0)
- ;;=3^Nondisp fx of coronoid process of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,35214,1,4,0)
- ;;=4^S52.045S
- ;;^UTILITY(U,$J,358.3,35214,2)
- ;;=^5028954
- ;;^UTILITY(U,$J,358.3,35215,0)
- ;;=S52.044S^^183^2026^82
- ;;^UTILITY(U,$J,358.3,35215,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35215,1,3,0)
- ;;=3^Nondisp fx of coronoid process of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,35215,1,4,0)
- ;;=4^S52.044S
- ;;^UTILITY(U,$J,358.3,35215,2)
- ;;=^5028938
- ;;^UTILITY(U,$J,358.3,35216,0)
- ;;=S52.615S^^183^2026^90
- ;;^UTILITY(U,$J,358.3,35216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35216,1,3,0)
- ;;=3^Nondisp fx of left ulna styloid process, sequela
- ;;^UTILITY(U,$J,358.3,35216,1,4,0)
- ;;=4^S52.615S
- ;;^UTILITY(U,$J,358.3,35216,2)
- ;;=^5031114
- ;;^UTILITY(U,$J,358.3,35217,0)
- ;;=S52.035S^^183^2026^101
- ;;^UTILITY(U,$J,358.3,35217,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35217,1,3,0)
- ;;=3^Nondisp fx of olecran pro w intartic extn left ulna, sequela
- ;;^UTILITY(U,$J,358.3,35217,1,4,0)
- ;;=4^S52.035S
- ;;^UTILITY(U,$J,358.3,35217,2)
- ;;=^5135140
- ;;^UTILITY(U,$J,358.3,35218,0)
- ;;=S52.034S^^183^2026^102
- ;;^UTILITY(U,$J,358.3,35218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35218,1,3,0)
- ;;=3^Nondisp fx of olecran pro w intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,35218,1,4,0)
- ;;=4^S52.034S
- ;;^UTILITY(U,$J,358.3,35218,2)
- ;;=^5028869
- ;;^UTILITY(U,$J,358.3,35219,0)
- ;;=S52.025S^^183^2026^103
- ;;^UTILITY(U,$J,358.3,35219,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35219,1,3,0)
- ;;=3^Nondisp fx of olecran pro w/o intartic extn left ulna, sequela
- ;;^UTILITY(U,$J,358.3,35219,1,4,0)
- ;;=4^S52.025S
- ;;^UTILITY(U,$J,358.3,35219,2)
- ;;=^5028832
- ;;^UTILITY(U,$J,358.3,35220,0)
- ;;=S52.024S^^183^2026^104
- ;;^UTILITY(U,$J,358.3,35220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35220,1,3,0)
- ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
- ;;^UTILITY(U,$J,358.3,35220,1,4,0)
- ;;=4^S52.024S
- ;;^UTILITY(U,$J,358.3,35220,2)
- ;;=^5028816
- ;;^UTILITY(U,$J,358.3,35221,0)
- ;;=S52.614S^^183^2026^110
- ;;^UTILITY(U,$J,358.3,35221,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35221,1,3,0)
- ;;=3^Nondisp fx of right ulna styloid process, sequela
- ;;^UTILITY(U,$J,358.3,35221,1,4,0)
- ;;=4^S52.614S
- ;;^UTILITY(U,$J,358.3,35221,2)
- ;;=^5031098
- ;;^UTILITY(U,$J,358.3,35222,0)
- ;;=S52.235S^^183^2026^98
- ;;^UTILITY(U,$J,358.3,35222,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35222,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,35222,1,4,0)
- ;;=4^S52.235S
- ;;^UTILITY(U,$J,358.3,35222,2)
- ;;=^5029490
- ;;^UTILITY(U,$J,358.3,35223,0)
- ;;=S52.234S^^183^2026^100
- ;;^UTILITY(U,$J,358.3,35223,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33738,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33738,1,2,0)
+ ;;=2^Amb BP Review,Intrp & Rpt
+ ;;^UTILITY(U,$J,358.3,33738,1,3,0)
+ ;;=3^93790
+ ;;^UTILITY(U,$J,358.3,33739,0)
+ ;;=93770^^153^1698^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33739,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33739,1,2,0)
+ ;;=2^Measure Venous Pressure
+ ;;^UTILITY(U,$J,358.3,33739,1,3,0)
+ ;;=3^93770
+ ;;^UTILITY(U,$J,358.3,33740,0)
+ ;;=J0636^^153^1699^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33740,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33740,1,2,0)
+ ;;=2^Calcitriol per 0.1 MCG
+ ;;^UTILITY(U,$J,358.3,33740,1,3,0)
+ ;;=3^J0636
+ ;;^UTILITY(U,$J,358.3,33741,0)
+ ;;=J0713^^153^1699^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33741,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33741,1,2,0)
+ ;;=2^Ceftazidime per 500 MG
+ ;;^UTILITY(U,$J,358.3,33741,1,3,0)
+ ;;=3^J0713
+ ;;^UTILITY(U,$J,358.3,33742,0)
+ ;;=J1160^^153^1699^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33742,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33742,1,2,0)
+ ;;=2^Digoxin up to 0.5 MG
+ ;;^UTILITY(U,$J,358.3,33742,1,3,0)
+ ;;=3^J1160
+ ;;^UTILITY(U,$J,358.3,33743,0)
+ ;;=Q0138^^153^1699^9^^^^1
+ ;;^UTILITY(U,$J,358.3,33743,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33743,1,2,0)
+ ;;=2^Ferumoxytol,Non-ESRD,1 MG
+ ;;^UTILITY(U,$J,358.3,33743,1,3,0)
+ ;;=3^Q0138
+ ;;^UTILITY(U,$J,358.3,33744,0)
+ ;;=Q0139^^153^1699^8^^^^1
+ ;;^UTILITY(U,$J,358.3,33744,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33744,1,2,0)
+ ;;=2^Ferumoxytol,ESRD Use,1 MG
+ ;;^UTILITY(U,$J,358.3,33744,1,3,0)
+ ;;=3^Q0139
+ ;;^UTILITY(U,$J,358.3,33745,0)
+ ;;=J1580^^153^1699^10^^^^1
+ ;;^UTILITY(U,$J,358.3,33745,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33745,1,2,0)
+ ;;=2^Garamycin Gentamicin up to 80 MG
+ ;;^UTILITY(U,$J,358.3,33745,1,3,0)
+ ;;=3^J1580
+ ;;^UTILITY(U,$J,358.3,33746,0)
+ ;;=J1644^^153^1699^12^^^^1
+ ;;^UTILITY(U,$J,358.3,33746,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33746,1,2,0)
+ ;;=2^Heparin Sodium per 1000 Units
+ ;;^UTILITY(U,$J,358.3,33746,1,3,0)
+ ;;=3^J1644
+ ;;^UTILITY(U,$J,358.3,33747,0)
+ ;;=96374^^153^1699^13^^^^1
+ ;;^UTILITY(U,$J,358.3,33747,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33747,1,2,0)
+ ;;=2^IV Push,Ther/Proph/Diag
+ ;;^UTILITY(U,$J,358.3,33747,1,3,0)
+ ;;=3^96374
+ ;;^UTILITY(U,$J,358.3,33748,0)
+ ;;=J1750^^153^1699^14^^^^1
+ ;;^UTILITY(U,$J,358.3,33748,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33748,1,2,0)
+ ;;=2^Iron Dextran 50 MG
+ ;;^UTILITY(U,$J,358.3,33748,1,3,0)
+ ;;=3^J1750
+ ;;^UTILITY(U,$J,358.3,33749,0)
+ ;;=B4189^^153^1699^15^^^^1
+ ;;^UTILITY(U,$J,358.3,33749,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33749,1,2,0)
+ ;;=2^Parenteral NutrSol 10-15 g Protein
+ ;;^UTILITY(U,$J,358.3,33749,1,3,0)
+ ;;=3^B4189
+ ;;^UTILITY(U,$J,358.3,33750,0)
+ ;;=J3370^^153^1699^16^^^^1
+ ;;^UTILITY(U,$J,358.3,33750,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33750,1,2,0)
+ ;;=2^Vancomycin HCL 500 MG
+ ;;^UTILITY(U,$J,358.3,33750,1,3,0)
+ ;;=3^J3370
+ ;;^UTILITY(U,$J,358.3,33751,0)
+ ;;=J0882^^153^1699^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33751,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33751,1,2,0)
+ ;;=2^Darbepoetin Alfa,ESRD Use,1 MCG
+ ;;^UTILITY(U,$J,358.3,33751,1,3,0)
+ ;;=3^J0882
+ ;;^UTILITY(U,$J,358.3,33752,0)
+ ;;=J0881^^153^1699^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33752,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33752,1,2,0)
+ ;;=2^Darbepoetin Alfa,Non-ESRD,1 MCG
+ ;;^UTILITY(U,$J,358.3,33752,1,3,0)
+ ;;=3^J0881
+ ;;^UTILITY(U,$J,358.3,33753,0)
+ ;;=J0885^^153^1699^7^^^^1
+ ;;^UTILITY(U,$J,358.3,33753,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33753,1,2,0)
+ ;;=2^Epoetin Alfa,Non-ESRD,1000 Units
+ ;;^UTILITY(U,$J,358.3,33753,1,3,0)
+ ;;=3^J0885

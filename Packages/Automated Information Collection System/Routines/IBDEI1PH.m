@@ -1,120 +1,136 @@
-IBDEI1PH ; ; 06-AUG-2015
+IBDEI1PH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30233,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts5
- ;;^UTILITY(U,$J,358.3,30233,1,4,0)
- ;;=4^O35.3XX5
- ;;^UTILITY(U,$J,358.3,30233,2)
- ;;=^5016801
- ;;^UTILITY(U,$J,358.3,30234,0)
- ;;=O35.4XX0^^178^1916^86
- ;;^UTILITY(U,$J,358.3,30234,1,0)
+ ;;^UTILITY(U,$J,358.3,28548,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,28548,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,28549,0)
+ ;;=R97.1^^132^1332^66
+ ;;^UTILITY(U,$J,358.3,28549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30234,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, unsp
- ;;^UTILITY(U,$J,358.3,30234,1,4,0)
- ;;=4^O35.4XX0
- ;;^UTILITY(U,$J,358.3,30234,2)
- ;;=^5016803
- ;;^UTILITY(U,$J,358.3,30235,0)
- ;;=O35.4XX1^^178^1916^87
- ;;^UTILITY(U,$J,358.3,30235,1,0)
+ ;;^UTILITY(U,$J,358.3,28549,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,28549,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,28549,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,28550,0)
+ ;;=R97.2^^132^1332^68
+ ;;^UTILITY(U,$J,358.3,28550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30235,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 1
- ;;^UTILITY(U,$J,358.3,30235,1,4,0)
- ;;=4^O35.4XX1
- ;;^UTILITY(U,$J,358.3,30235,2)
- ;;=^5016804
- ;;^UTILITY(U,$J,358.3,30236,0)
- ;;=O35.4XX2^^178^1916^88
- ;;^UTILITY(U,$J,358.3,30236,1,0)
+ ;;^UTILITY(U,$J,358.3,28550,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,28550,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,28550,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,28551,0)
+ ;;=R97.8^^132^1332^22
+ ;;^UTILITY(U,$J,358.3,28551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30236,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 2
- ;;^UTILITY(U,$J,358.3,30236,1,4,0)
- ;;=4^O35.4XX2
- ;;^UTILITY(U,$J,358.3,30236,2)
- ;;=^5016805
- ;;^UTILITY(U,$J,358.3,30237,0)
- ;;=O35.4XX3^^178^1916^89
- ;;^UTILITY(U,$J,358.3,30237,1,0)
+ ;;^UTILITY(U,$J,358.3,28551,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,28551,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,28551,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,28552,0)
+ ;;=R93.8^^132^1332^12
+ ;;^UTILITY(U,$J,358.3,28552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30237,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 3
- ;;^UTILITY(U,$J,358.3,30237,1,4,0)
- ;;=4^O35.4XX3
- ;;^UTILITY(U,$J,358.3,30237,2)
- ;;=^5016806
- ;;^UTILITY(U,$J,358.3,30238,0)
- ;;=O35.4XX4^^178^1916^90
- ;;^UTILITY(U,$J,358.3,30238,1,0)
+ ;;^UTILITY(U,$J,358.3,28552,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Body Structures
+ ;;^UTILITY(U,$J,358.3,28552,1,4,0)
+ ;;=4^R93.8
+ ;;^UTILITY(U,$J,358.3,28552,2)
+ ;;=^5019721
+ ;;^UTILITY(U,$J,358.3,28553,0)
+ ;;=R93.1^^132^1332^14
+ ;;^UTILITY(U,$J,358.3,28553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30238,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 4
- ;;^UTILITY(U,$J,358.3,30238,1,4,0)
- ;;=4^O35.4XX4
- ;;^UTILITY(U,$J,358.3,30238,2)
- ;;=^5016807
- ;;^UTILITY(U,$J,358.3,30239,0)
- ;;=O35.4XX5^^178^1916^91
- ;;^UTILITY(U,$J,358.3,30239,1,0)
+ ;;^UTILITY(U,$J,358.3,28553,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,28553,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,28553,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,28554,0)
+ ;;=R68.83^^132^1332^48
+ ;;^UTILITY(U,$J,358.3,28554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30239,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 5
- ;;^UTILITY(U,$J,358.3,30239,1,4,0)
- ;;=4^O35.4XX5
- ;;^UTILITY(U,$J,358.3,30239,2)
- ;;=^5016808
- ;;^UTILITY(U,$J,358.3,30240,0)
- ;;=O35.8XX0^^178^1916^140
- ;;^UTILITY(U,$J,358.3,30240,1,0)
+ ;;^UTILITY(U,$J,358.3,28554,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,28554,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,28554,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,28555,0)
+ ;;=R68.2^^132^1332^62
+ ;;^UTILITY(U,$J,358.3,28555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30240,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, unsp
- ;;^UTILITY(U,$J,358.3,30240,1,4,0)
- ;;=4^O35.8XX0
- ;;^UTILITY(U,$J,358.3,30240,2)
- ;;=^5016830
- ;;^UTILITY(U,$J,358.3,30241,0)
- ;;=O35.8XX1^^178^1916^141
- ;;^UTILITY(U,$J,358.3,30241,1,0)
+ ;;^UTILITY(U,$J,358.3,28555,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,28555,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,28555,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,28556,0)
+ ;;=R09.02^^132^1332^88
+ ;;^UTILITY(U,$J,358.3,28556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30241,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 1
- ;;^UTILITY(U,$J,358.3,30241,1,4,0)
- ;;=4^O35.8XX1
- ;;^UTILITY(U,$J,358.3,30241,2)
- ;;=^5016831
- ;;^UTILITY(U,$J,358.3,30242,0)
- ;;=O35.8XX2^^178^1916^142
- ;;^UTILITY(U,$J,358.3,30242,1,0)
+ ;;^UTILITY(U,$J,358.3,28556,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,28556,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,28556,2)
+ ;;=^332831
+ ;;^UTILITY(U,$J,358.3,28557,0)
+ ;;=R39.81^^132^1332^92
+ ;;^UTILITY(U,$J,358.3,28557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30242,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 2
- ;;^UTILITY(U,$J,358.3,30242,1,4,0)
- ;;=4^O35.8XX2
- ;;^UTILITY(U,$J,358.3,30242,2)
- ;;=^5016832
- ;;^UTILITY(U,$J,358.3,30243,0)
- ;;=O35.8XX3^^178^1916^143
- ;;^UTILITY(U,$J,358.3,30243,1,0)
+ ;;^UTILITY(U,$J,358.3,28557,1,3,0)
+ ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
+ ;;^UTILITY(U,$J,358.3,28557,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,28557,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,28558,0)
+ ;;=R29.6^^132^1332^146
+ ;;^UTILITY(U,$J,358.3,28558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30243,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 3
- ;;^UTILITY(U,$J,358.3,30243,1,4,0)
- ;;=4^O35.8XX3
- ;;^UTILITY(U,$J,358.3,30243,2)
- ;;=^5016833
- ;;^UTILITY(U,$J,358.3,30244,0)
- ;;=O35.8XX4^^178^1916^144
- ;;^UTILITY(U,$J,358.3,30244,1,0)
+ ;;^UTILITY(U,$J,358.3,28558,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,28558,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,28558,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,28559,0)
+ ;;=R44.1^^132^1332^160
+ ;;^UTILITY(U,$J,358.3,28559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30244,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 4
- ;;^UTILITY(U,$J,358.3,30244,1,4,0)
- ;;=4^O35.8XX4
- ;;^UTILITY(U,$J,358.3,30244,2)
- ;;=^5016834
+ ;;^UTILITY(U,$J,358.3,28559,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,28559,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,28559,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,28560,0)
+ ;;=S43.51XA^^132^1333^12
+ ;;^UTILITY(U,$J,358.3,28560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28560,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,28560,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,28560,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,28561,0)
+ ;;=S43.52XA^^132^1333^1
+ ;;^UTILITY(U,$J,358.3,28561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28561,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,28561,1,4,0)
+ ;;=4^S43.52XA

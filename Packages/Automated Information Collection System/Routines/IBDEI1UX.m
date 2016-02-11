@@ -1,132 +1,126 @@
-IBDEI1UX ; ; 06-AUG-2015
+IBDEI1UX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32690,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,32690,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,32690,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,32691,0)
- ;;=R59.1^^182^1992^55
- ;;^UTILITY(U,$J,358.3,32691,1,0)
+ ;;^UTILITY(U,$J,358.3,31088,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,31088,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,31089,0)
+ ;;=R40.2323^^135^1390^4
+ ;;^UTILITY(U,$J,358.3,31089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32691,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,32691,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,32691,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,32692,0)
- ;;=C91.40^^182^1992^74
- ;;^UTILITY(U,$J,358.3,32692,1,0)
+ ;;^UTILITY(U,$J,358.3,31089,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,31089,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,31089,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,31090,0)
+ ;;=R40.2322^^135^1390^2
+ ;;^UTILITY(U,$J,358.3,31090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32692,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,32692,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,32692,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,32693,0)
- ;;=C91.42^^182^1992^72
- ;;^UTILITY(U,$J,358.3,32693,1,0)
+ ;;^UTILITY(U,$J,358.3,31090,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,31090,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,31090,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,31091,0)
+ ;;=R40.2321^^135^1390^5
+ ;;^UTILITY(U,$J,358.3,31091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32693,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,32693,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,32693,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,32694,0)
- ;;=C91.41^^182^1992^73
- ;;^UTILITY(U,$J,358.3,32694,1,0)
+ ;;^UTILITY(U,$J,358.3,31091,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,31091,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,31091,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,31092,0)
+ ;;=R40.2320^^135^1390^3
+ ;;^UTILITY(U,$J,358.3,31092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32694,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,32694,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,32694,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,32695,0)
- ;;=D57.01^^182^1992^75
- ;;^UTILITY(U,$J,358.3,32695,1,0)
+ ;;^UTILITY(U,$J,358.3,31092,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,31092,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,31092,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,31093,0)
+ ;;=R40.2314^^135^1390^11
+ ;;^UTILITY(U,$J,358.3,31093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32695,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,32695,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,32695,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,32696,0)
- ;;=D57.00^^182^1992^76
- ;;^UTILITY(U,$J,358.3,32696,1,0)
+ ;;^UTILITY(U,$J,358.3,31093,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,31093,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,31093,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,31094,0)
+ ;;=R40.2313^^135^1390^14
+ ;;^UTILITY(U,$J,358.3,31094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32696,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,32696,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,32696,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,32697,0)
- ;;=D57.02^^182^1992^77
- ;;^UTILITY(U,$J,358.3,32697,1,0)
+ ;;^UTILITY(U,$J,358.3,31094,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,31094,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,31094,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,31095,0)
+ ;;=R40.2312^^135^1390^12
+ ;;^UTILITY(U,$J,358.3,31095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32697,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,32697,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,32697,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,32698,0)
- ;;=D68.32^^182^1992^79
- ;;^UTILITY(U,$J,358.3,32698,1,0)
+ ;;^UTILITY(U,$J,358.3,31095,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,31095,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,31095,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,31096,0)
+ ;;=R40.2311^^135^1390^15
+ ;;^UTILITY(U,$J,358.3,31096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32698,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,32698,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,32698,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,32699,0)
- ;;=C22.2^^182^1992^80
- ;;^UTILITY(U,$J,358.3,32699,1,0)
+ ;;^UTILITY(U,$J,358.3,31096,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,31096,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,31096,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,31097,0)
+ ;;=R40.2310^^135^1390^13
+ ;;^UTILITY(U,$J,358.3,31097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32699,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,32699,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,32699,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,32700,0)
- ;;=D58.9^^182^1992^82
- ;;^UTILITY(U,$J,358.3,32700,1,0)
+ ;;^UTILITY(U,$J,358.3,31097,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,31097,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,31097,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,31098,0)
+ ;;=R40.4^^135^1390^38
+ ;;^UTILITY(U,$J,358.3,31098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32700,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,32700,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,32700,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,32701,0)
- ;;=D56.4^^182^1992^81
- ;;^UTILITY(U,$J,358.3,32701,1,0)
+ ;;^UTILITY(U,$J,358.3,31098,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,31098,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,31098,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,31099,0)
+ ;;=V00.811A^^135^1391^45
+ ;;^UTILITY(U,$J,358.3,31099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32701,1,3,0)
- ;;=3^Herediatary Persistence of Fetal Hemoglobin
- ;;^UTILITY(U,$J,358.3,32701,1,4,0)
- ;;=4^D56.4
- ;;^UTILITY(U,$J,358.3,32701,2)
- ;;=^293655
- ;;^UTILITY(U,$J,358.3,32702,0)
- ;;=C81.99^^182^1992^83
- ;;^UTILITY(U,$J,358.3,32702,1,0)
+ ;;^UTILITY(U,$J,358.3,31099,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,31099,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,31099,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,31100,0)
+ ;;=V00.811D^^135^1391^46
+ ;;^UTILITY(U,$J,358.3,31100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32702,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32702,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,32702,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,32703,0)
- ;;=C81.90^^182^1992^84
+ ;;^UTILITY(U,$J,358.3,31100,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31100,1,4,0)
+ ;;=4^V00.811D

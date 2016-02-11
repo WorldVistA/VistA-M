@@ -1,96 +1,134 @@
-IBDEI0TT ; ; 06-AUG-2015
+IBDEI0TT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14438,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14438,1,2,0)
- ;;=2^Open TX of bimalleolar ankle fracture, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,14438,1,3,0)
- ;;=3^27814
- ;;^UTILITY(U,$J,358.3,14439,0)
- ;;=27816^^75^888^18^^^^1
- ;;^UTILITY(U,$J,358.3,14439,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14439,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,14439,1,3,0)
- ;;=3^27816
- ;;^UTILITY(U,$J,358.3,14440,0)
- ;;=27818^^75^888^19^^^^1
- ;;^UTILITY(U,$J,358.3,14440,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14440,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; with manipulation
- ;;^UTILITY(U,$J,358.3,14440,1,3,0)
- ;;=3^27818
- ;;^UTILITY(U,$J,358.3,14441,0)
- ;;=27822^^75^888^51^^^^1
- ;;^UTILITY(U,$J,358.3,14441,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14441,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation of, medial and/or lateral malleolus; w/o fixation of posterior lip
- ;;^UTILITY(U,$J,358.3,14441,1,3,0)
- ;;=3^27822
- ;;^UTILITY(U,$J,358.3,14442,0)
- ;;=27823^^75^888^52^^^^1
- ;;^UTILITY(U,$J,358.3,14442,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14442,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation, medial and/or lateral malleolus; with fixation of posterior lip  
- ;;^UTILITY(U,$J,358.3,14442,1,3,0)
- ;;=3^27823
- ;;^UTILITY(U,$J,358.3,14443,0)
- ;;=27824^^75^888^22^^^^1
- ;;^UTILITY(U,$J,358.3,14443,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14443,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; w/o manipulation 
- ;;^UTILITY(U,$J,358.3,14443,1,3,0)
- ;;=3^27824
- ;;^UTILITY(U,$J,358.3,14444,0)
- ;;=27825^^75^888^23^^^^1
- ;;^UTILITY(U,$J,358.3,14444,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14444,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; with skeletal traction &/or requiring manipulation
- ;;^UTILITY(U,$J,358.3,14444,1,3,0)
- ;;=3^27825
- ;;^UTILITY(U,$J,358.3,14445,0)
- ;;=27826^^75^888^44^^^^1
- ;;^UTILITY(U,$J,358.3,14445,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14445,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of fibula only
- ;;^UTILITY(U,$J,358.3,14445,1,3,0)
- ;;=3^27826
- ;;^UTILITY(U,$J,358.3,14446,0)
- ;;=27827^^75^888^45^^^^1
- ;;^UTILITY(U,$J,358.3,14446,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14446,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of tibia only
- ;;^UTILITY(U,$J,358.3,14446,1,3,0)
- ;;=3^27827
- ;;^UTILITY(U,$J,358.3,14447,0)
- ;;=27828^^75^888^46^^^^1
- ;;^UTILITY(U,$J,358.3,14447,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14447,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portionof distal tibia, w/ internal or external fixation; of both tibia & fibula
- ;;^UTILITY(U,$J,358.3,14447,1,3,0)
- ;;=3^27828
- ;;^UTILITY(U,$J,358.3,14448,0)
- ;;=27829^^75^888^43^^^^1
- ;;^UTILITY(U,$J,358.3,14448,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14448,1,2,0)
- ;;=2^Open Tx of distal tibiofibular joint disruption, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,14448,1,3,0)
- ;;=3^27829
- ;;^UTILITY(U,$J,358.3,14449,0)
- ;;=28540^^75^888^30^^^^1
- ;;^UTILITY(U,$J,358.3,14449,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14449,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; w/o anesthesia
+ ;;^UTILITY(U,$J,358.3,13712,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,13713,0)
+ ;;=H43.23^^80^763^28
+ ;;^UTILITY(U,$J,358.3,13713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13713,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,13713,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,13713,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,13714,0)
+ ;;=H43.11^^80^763^117
+ ;;^UTILITY(U,$J,358.3,13714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13714,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,13714,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,13714,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,13715,0)
+ ;;=H43.12^^80^763^116
+ ;;^UTILITY(U,$J,358.3,13715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13715,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,13715,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,13715,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,13716,0)
+ ;;=H43.391^^80^763^120
+ ;;^UTILITY(U,$J,358.3,13716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13716,1,3,0)
+ ;;=3^Vitreous Opacities,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,13716,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,13716,2)
+ ;;=^5005949
+ ;;^UTILITY(U,$J,358.3,13717,0)
+ ;;=H43.392^^80^763^119
+ ;;^UTILITY(U,$J,358.3,13717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13717,1,3,0)
+ ;;=3^Vitreous Opacities,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,13717,1,4,0)
+ ;;=4^H43.392
+ ;;^UTILITY(U,$J,358.3,13717,2)
+ ;;=^5005950
+ ;;^UTILITY(U,$J,358.3,13718,0)
+ ;;=H43.393^^80^763^118
+ ;;^UTILITY(U,$J,358.3,13718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13718,1,3,0)
+ ;;=3^Vitreous Opacities,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,13718,1,4,0)
+ ;;=4^H43.393
+ ;;^UTILITY(U,$J,358.3,13718,2)
+ ;;=^5005951
+ ;;^UTILITY(U,$J,358.3,13719,0)
+ ;;=H43.01^^80^763^123
+ ;;^UTILITY(U,$J,358.3,13719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13719,1,3,0)
+ ;;=3^Vitreous Prolapse,Right Eye
+ ;;^UTILITY(U,$J,358.3,13719,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,13719,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,13720,0)
+ ;;=H43.02^^80^763^122
+ ;;^UTILITY(U,$J,358.3,13720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13720,1,3,0)
+ ;;=3^Vitreous Prolapse,Left Eye
+ ;;^UTILITY(U,$J,358.3,13720,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,13720,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,13721,0)
+ ;;=H43.03^^80^763^121
+ ;;^UTILITY(U,$J,358.3,13721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13721,1,3,0)
+ ;;=3^Vitreous Prolapse,Bilateral
+ ;;^UTILITY(U,$J,358.3,13721,1,4,0)
+ ;;=4^H43.03
+ ;;^UTILITY(U,$J,358.3,13721,2)
+ ;;=^5005936
+ ;;^UTILITY(U,$J,358.3,13722,0)
+ ;;=H43.821^^80^763^115
+ ;;^UTILITY(U,$J,358.3,13722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13722,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Right Eye
+ ;;^UTILITY(U,$J,358.3,13722,1,4,0)
+ ;;=4^H43.821
+ ;;^UTILITY(U,$J,358.3,13722,2)
+ ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,13723,0)
+ ;;=H43.822^^80^763^114
+ ;;^UTILITY(U,$J,358.3,13723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13723,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Left Eye
+ ;;^UTILITY(U,$J,358.3,13723,1,4,0)
+ ;;=4^H43.822
+ ;;^UTILITY(U,$J,358.3,13723,2)
+ ;;=^5005958
+ ;;^UTILITY(U,$J,358.3,13724,0)
+ ;;=H43.823^^80^763^113
+ ;;^UTILITY(U,$J,358.3,13724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13724,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Bilateral
+ ;;^UTILITY(U,$J,358.3,13724,1,4,0)
+ ;;=4^H43.823
+ ;;^UTILITY(U,$J,358.3,13724,2)
+ ;;=^5005959
+ ;;^UTILITY(U,$J,358.3,13725,0)
+ ;;=H35.31^^80^763^63
+ ;;^UTILITY(U,$J,358.3,13725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13725,1,3,0)
+ ;;=3^Nonexudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,13725,1,4,0)
+ ;;=4^H35.31

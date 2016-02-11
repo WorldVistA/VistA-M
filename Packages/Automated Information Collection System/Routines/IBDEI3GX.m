@@ -1,0 +1,130 @@
+IBDEI3GX ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58331,2)
+ ;;=^5004465
+ ;;^UTILITY(U,$J,358.3,58332,0)
+ ;;=H35.32^^272^2906^28
+ ;;^UTILITY(U,$J,358.3,58332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58332,1,3,0)
+ ;;=3^Exudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,58332,1,4,0)
+ ;;=4^H35.32
+ ;;^UTILITY(U,$J,358.3,58332,2)
+ ;;=^5005648
+ ;;^UTILITY(U,$J,358.3,58333,0)
+ ;;=H35.023^^272^2906^29
+ ;;^UTILITY(U,$J,358.3,58333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58333,1,3,0)
+ ;;=3^Exudative Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,58333,1,4,0)
+ ;;=4^H35.023
+ ;;^UTILITY(U,$J,358.3,58333,2)
+ ;;=^5005588
+ ;;^UTILITY(U,$J,358.3,58334,0)
+ ;;=H35.022^^272^2906^30
+ ;;^UTILITY(U,$J,358.3,58334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58334,1,3,0)
+ ;;=3^Exudative Retinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,58334,1,4,0)
+ ;;=4^H35.022
+ ;;^UTILITY(U,$J,358.3,58334,2)
+ ;;=^5005587
+ ;;^UTILITY(U,$J,358.3,58335,0)
+ ;;=H35.021^^272^2906^31
+ ;;^UTILITY(U,$J,358.3,58335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58335,1,3,0)
+ ;;=3^Exudative Retinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,58335,1,4,0)
+ ;;=4^H35.021
+ ;;^UTILITY(U,$J,358.3,58335,2)
+ ;;=^5005586
+ ;;^UTILITY(U,$J,358.3,58336,0)
+ ;;=H40.013^^272^2906^32
+ ;;^UTILITY(U,$J,358.3,58336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58336,1,3,0)
+ ;;=3^Glaucoma Suspect,Open Angle w/ Borderline Findings,Low Risk,Bilateral
+ ;;^UTILITY(U,$J,358.3,58336,1,4,0)
+ ;;=4^H40.013
+ ;;^UTILITY(U,$J,358.3,58336,2)
+ ;;=^5005726
+ ;;^UTILITY(U,$J,358.3,58337,0)
+ ;;=H40.012^^272^2906^33
+ ;;^UTILITY(U,$J,358.3,58337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58337,1,3,0)
+ ;;=3^Glaucoma Suspect,Open Angle w/ Borderline Findings,Low Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,58337,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,58337,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,58338,0)
+ ;;=H40.011^^272^2906^34
+ ;;^UTILITY(U,$J,358.3,58338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58338,1,3,0)
+ ;;=3^Glaucoma Suspect,Open Angle w/ Borderline Findings,Low Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,58338,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,58338,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,58339,0)
+ ;;=H52.03^^272^2906^41
+ ;;^UTILITY(U,$J,358.3,58339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58339,1,3,0)
+ ;;=3^Hypermetropia,Bilateral
+ ;;^UTILITY(U,$J,358.3,58339,1,4,0)
+ ;;=4^H52.03
+ ;;^UTILITY(U,$J,358.3,58339,2)
+ ;;=^5006262
+ ;;^UTILITY(U,$J,358.3,58340,0)
+ ;;=H52.02^^272^2906^42
+ ;;^UTILITY(U,$J,358.3,58340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58340,1,3,0)
+ ;;=3^Hypermetropia,Left Eye
+ ;;^UTILITY(U,$J,358.3,58340,1,4,0)
+ ;;=4^H52.02
+ ;;^UTILITY(U,$J,358.3,58340,2)
+ ;;=^5006261
+ ;;^UTILITY(U,$J,358.3,58341,0)
+ ;;=H52.01^^272^2906^43
+ ;;^UTILITY(U,$J,358.3,58341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58341,1,3,0)
+ ;;=3^Hypermetropia,Right Eye
+ ;;^UTILITY(U,$J,358.3,58341,1,4,0)
+ ;;=4^H52.01
+ ;;^UTILITY(U,$J,358.3,58341,2)
+ ;;=^5006260
+ ;;^UTILITY(U,$J,358.3,58342,0)
+ ;;=H59.41^^272^2906^44
+ ;;^UTILITY(U,$J,358.3,58342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58342,1,3,0)
+ ;;=3^Inflammation of Postprocedural Bleb,Stage 1
+ ;;^UTILITY(U,$J,358.3,58342,1,4,0)
+ ;;=4^H59.41
+ ;;^UTILITY(U,$J,358.3,58342,2)
+ ;;=^5006426
+ ;;^UTILITY(U,$J,358.3,58343,0)
+ ;;=H59.42^^272^2906^45
+ ;;^UTILITY(U,$J,358.3,58343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58343,1,3,0)
+ ;;=3^Inflammation of Postprocedural Bleb,Stage 2
+ ;;^UTILITY(U,$J,358.3,58343,1,4,0)
+ ;;=4^H59.42
+ ;;^UTILITY(U,$J,358.3,58343,2)
+ ;;=^5006427
+ ;;^UTILITY(U,$J,358.3,58344,0)
+ ;;=H59.43^^272^2906^46
+ ;;^UTILITY(U,$J,358.3,58344,1,0)
+ ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
 LR7OR2 ;DALOI/dcm - Get Lab results (cont.) ;02/11/11  14:39
- ;;5.2;LAB SERVICE;**121,187,219,285,286,372,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**121,187,219,285,286,372,350,453**;Sep 27, 1994;Build 4
  ;
  ;
 CH(SDATE,EDATE,TEST,COUNT,SPEC,UNVER) ;Get CH subscript data
@@ -21,7 +21,8 @@ CH(SDATE,EDATE,TEST,COUNT,SPEC,UNVER) ;Get CH subscript data
  . I '$D(TSTY) S ITST=1 F  S ITST=$O(^LR(LRDFN,"CH",IVDT,ITST)) Q:ITST<1  S X=^(ITST) D SETTST(ITST,X)
  . S IST=0 F  S IST=$O(TSTY(IST)) Q:IST<1  I $D(^LR(LRDFN,"CH",IVDT,IST)) S X=^(IST) D SETTST(IST,X)
  . I $O(^TMP("LRRR",$J,DFN,"CH",IVDT,0)) D NOTE(LRDFN,IVDT)
- . I GOTIT S CT1=CT1+1
+ . Q:'GOTIT
+ . S CT1=CT1+1
  . ; Display ordering provider
  . D ORDP($P($G(^LR(LRDFN,"CH",IVDT,0)),"^",10))
  . ; Display report released date/time

@@ -1,5 +1,5 @@
 SROESNR ;BIR/ADM - NURSE INTRAOP REPORT E-SIG UTILITY ; [ 02/20/02  6:57 AM ]
- ;;3.0; Surgery ;**100**;24 Jun 93
+ ;;3.0;Surgery;**100,184**;24 Jun 93;Build 35
  ;
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
@@ -15,7 +15,7 @@ GET K ^TMP("SRNRAD"_SRS,$J,SRTN) D VIEW^SROESNR0,MULT
  Q
 MULT ; get data from multiples
  N SRK
- F SRK=130.23,130.28,130.36,130.24,130.065,130.31,130.028,130.16,130.02,130.32,130.01,130.33,130.08,130.04,130.0129,130.013,130.18 D MULT^SROESNR1
+ F SRK=130.23,130.28,130.36,130.24,130.065,130.31,130.028,130.16,130.02,130.32,130.01,130.33,130.08,130.04,130.11,130.013,130.18,130.0647,130.0664 D MULT^SROESNR1
  S SRK=130.06 D MULT^SROESNR3
  Q
 COMP ; compare before and after view

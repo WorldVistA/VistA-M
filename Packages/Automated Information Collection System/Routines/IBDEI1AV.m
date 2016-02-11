@@ -1,138 +1,122 @@
-IBDEI1AV ; ; 06-AUG-2015
+IBDEI1AV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23028,2)
- ;;=^295311
- ;;^UTILITY(U,$J,358.3,23029,0)
- ;;=V16.0^^125^1400^7
- ;;^UTILITY(U,$J,358.3,23029,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23029,1,4,0)
- ;;=4^V16.0
- ;;^UTILITY(U,$J,358.3,23029,1,5,0)
- ;;=5^Family h/o Cancer of GI Tract
- ;;^UTILITY(U,$J,358.3,23029,2)
- ;;=^295292
- ;;^UTILITY(U,$J,358.3,23030,0)
- ;;=V16.1^^125^1400^8
- ;;^UTILITY(U,$J,358.3,23030,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23030,1,4,0)
- ;;=4^V16.1
- ;;^UTILITY(U,$J,358.3,23030,1,5,0)
- ;;=5^Family h/o Cancer of Lung
- ;;^UTILITY(U,$J,358.3,23030,2)
- ;;=^295293
- ;;^UTILITY(U,$J,358.3,23031,0)
- ;;=V19.6^^125^1400^1
- ;;^UTILITY(U,$J,358.3,23031,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23031,1,4,0)
- ;;=4^V19.6
- ;;^UTILITY(U,$J,358.3,23031,1,5,0)
- ;;=5^Family h/o Allergic Disorder
- ;;^UTILITY(U,$J,358.3,23031,2)
- ;;=^295326
- ;;^UTILITY(U,$J,358.3,23032,0)
- ;;=V18.2^^125^1400^2
- ;;^UTILITY(U,$J,358.3,23032,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23032,1,4,0)
- ;;=4^V18.2
- ;;^UTILITY(U,$J,358.3,23032,1,5,0)
- ;;=5^Family h/o Anemia
- ;;^UTILITY(U,$J,358.3,23032,2)
- ;;=^295313
- ;;^UTILITY(U,$J,358.3,23033,0)
- ;;=V17.5^^125^1400^4
- ;;^UTILITY(U,$J,358.3,23033,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23033,1,4,0)
- ;;=4^V17.5
- ;;^UTILITY(U,$J,358.3,23033,1,5,0)
- ;;=5^Family h/o Asthma
- ;;^UTILITY(U,$J,358.3,23033,2)
- ;;=^295307
- ;;^UTILITY(U,$J,358.3,23034,0)
- ;;=V17.7^^125^1400^3
- ;;^UTILITY(U,$J,358.3,23034,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23034,1,4,0)
- ;;=4^V17.7
- ;;^UTILITY(U,$J,358.3,23034,1,5,0)
- ;;=5^Family h/o Arthritis
- ;;^UTILITY(U,$J,358.3,23034,2)
- ;;=^295309
- ;;^UTILITY(U,$J,358.3,23035,0)
- ;;=V19.0^^125^1400^5
- ;;^UTILITY(U,$J,358.3,23035,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23035,1,4,0)
- ;;=4^V19.0
- ;;^UTILITY(U,$J,358.3,23035,1,5,0)
- ;;=5^Family h/o Blindness
- ;;^UTILITY(U,$J,358.3,23035,2)
- ;;=^295320
- ;;^UTILITY(U,$J,358.3,23036,0)
- ;;=V16.3^^125^1400^6
- ;;^UTILITY(U,$J,358.3,23036,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23036,1,4,0)
- ;;=4^V16.3
- ;;^UTILITY(U,$J,358.3,23036,1,5,0)
- ;;=5^Family h/o Cancer of Breast
- ;;^UTILITY(U,$J,358.3,23036,2)
- ;;=^295295
- ;;^UTILITY(U,$J,358.3,23037,0)
- ;;=V16.41^^125^1400^9
- ;;^UTILITY(U,$J,358.3,23037,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23037,1,4,0)
- ;;=4^V16.41
- ;;^UTILITY(U,$J,358.3,23037,1,5,0)
- ;;=5^Family h/o Cancer of Ovary
- ;;^UTILITY(U,$J,358.3,23037,2)
- ;;=^317951
- ;;^UTILITY(U,$J,358.3,23038,0)
- ;;=V16.42^^125^1400^10
- ;;^UTILITY(U,$J,358.3,23038,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23038,1,4,0)
- ;;=4^V16.42
- ;;^UTILITY(U,$J,358.3,23038,1,5,0)
- ;;=5^Family h/o Cancer of Prostate
- ;;^UTILITY(U,$J,358.3,23038,2)
- ;;=^317952
- ;;^UTILITY(U,$J,358.3,23039,0)
- ;;=V16.43^^125^1400^11
- ;;^UTILITY(U,$J,358.3,23039,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23039,1,4,0)
- ;;=4^V16.43
- ;;^UTILITY(U,$J,358.3,23039,1,5,0)
- ;;=5^Family h/o Cancer of Testis
- ;;^UTILITY(U,$J,358.3,23039,2)
- ;;=^317953
- ;;^UTILITY(U,$J,358.3,23040,0)
- ;;=V19.5^^125^1400^13
- ;;^UTILITY(U,$J,358.3,23040,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23040,1,4,0)
- ;;=4^V19.5
- ;;^UTILITY(U,$J,358.3,23040,1,5,0)
- ;;=5^Family h/o Congenital Anomalies
- ;;^UTILITY(U,$J,358.3,23040,2)
- ;;=^295325
- ;;^UTILITY(U,$J,358.3,23041,0)
- ;;=V19.2^^125^1400^14
- ;;^UTILITY(U,$J,358.3,23041,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23041,1,4,0)
- ;;=4^V19.2
- ;;^UTILITY(U,$J,358.3,23041,1,5,0)
- ;;=5^Family h/o Deafness Or Hearing Loss
- ;;^UTILITY(U,$J,358.3,23041,2)
- ;;=^295322
- ;;^UTILITY(U,$J,358.3,23042,0)
- ;;=V17.3^^125^1400^16
+ ;;^UTILITY(U,$J,358.3,21707,1,4,0)
+ ;;=4^S92.531S
+ ;;^UTILITY(U,$J,358.3,21707,2)
+ ;;=^5045521
+ ;;^UTILITY(U,$J,358.3,21708,0)
+ ;;=S92.522S^^101^1034^40
+ ;;^UTILITY(U,$J,358.3,21708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21708,1,3,0)
+ ;;=3^Disp medial cuneiform fx of left lesser toe(s),sequela
+ ;;^UTILITY(U,$J,358.3,21708,1,4,0)
+ ;;=4^S92.522S
+ ;;^UTILITY(U,$J,358.3,21708,2)
+ ;;=^5045486
+ ;;^UTILITY(U,$J,358.3,21709,0)
+ ;;=S92.521S^^101^1034^43
+ ;;^UTILITY(U,$J,358.3,21709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21709,1,3,0)
+ ;;=3^Disp medial phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,21709,1,4,0)
+ ;;=4^S92.521S
+ ;;^UTILITY(U,$J,358.3,21709,2)
+ ;;=^5045479
+ ;;^UTILITY(U,$J,358.3,21710,0)
+ ;;=S92.412S^^101^1034^50
+ ;;^UTILITY(U,$J,358.3,21710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21710,1,3,0)
+ ;;=3^Disp proximal phalanx fx of left great toe, sequela
+ ;;^UTILITY(U,$J,358.3,21710,1,4,0)
+ ;;=4^S92.412S
+ ;;^UTILITY(U,$J,358.3,21710,2)
+ ;;=^5045311
+ ;;^UTILITY(U,$J,358.3,21711,0)
+ ;;=S92.512S^^101^1034^51
+ ;;^UTILITY(U,$J,358.3,21711,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21711,1,3,0)
+ ;;=3^Disp proximal phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,21711,1,4,0)
+ ;;=4^S92.512S
+ ;;^UTILITY(U,$J,358.3,21711,2)
+ ;;=s92411s^5045444
+ ;;^UTILITY(U,$J,358.3,21712,0)
+ ;;=S92.411S^^101^1034^52
+ ;;^UTILITY(U,$J,358.3,21712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21712,1,3,0)
+ ;;=3^Disp proximal phalanx fx of right great toe, sequela
+ ;;^UTILITY(U,$J,358.3,21712,1,4,0)
+ ;;=4^S92.411S
+ ;;^UTILITY(U,$J,358.3,21712,2)
+ ;;=^5045304
+ ;;^UTILITY(U,$J,358.3,21713,0)
+ ;;=S92.511S^^101^1034^53
+ ;;^UTILITY(U,$J,358.3,21713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21713,1,3,0)
+ ;;=3^Disp proximal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,21713,1,4,0)
+ ;;=4^S92.511S
+ ;;^UTILITY(U,$J,358.3,21713,2)
+ ;;=s92425s^5045437
+ ;;^UTILITY(U,$J,358.3,21714,0)
+ ;;=S92.425S^^101^1034^80
+ ;;^UTILITY(U,$J,358.3,21714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21714,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of left great toe, sequela
+ ;;^UTILITY(U,$J,358.3,21714,1,4,0)
+ ;;=4^S92.425S
+ ;;^UTILITY(U,$J,358.3,21714,2)
+ ;;=^5045374
+ ;;^UTILITY(U,$J,358.3,21715,0)
+ ;;=S92.535S^^101^1034^81
+ ;;^UTILITY(U,$J,358.3,21715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21715,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,21715,1,4,0)
+ ;;=4^S92.535S
+ ;;^UTILITY(U,$J,358.3,21715,2)
+ ;;=^5045549
+ ;;^UTILITY(U,$J,358.3,21716,0)
+ ;;=S92.424S^^101^1034^82
+ ;;^UTILITY(U,$J,358.3,21716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21716,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of right great toe, sequela
+ ;;^UTILITY(U,$J,358.3,21716,1,4,0)
+ ;;=4^S92.424S
+ ;;^UTILITY(U,$J,358.3,21716,2)
+ ;;=^5045367
+ ;;^UTILITY(U,$J,358.3,21717,0)
+ ;;=S92.534S^^101^1034^83
+ ;;^UTILITY(U,$J,358.3,21717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21717,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,21717,1,4,0)
+ ;;=4^S92.534S
+ ;;^UTILITY(U,$J,358.3,21717,2)
+ ;;=^5045542
+ ;;^UTILITY(U,$J,358.3,21718,0)
+ ;;=S92.525S^^101^1034^94
+ ;;^UTILITY(U,$J,358.3,21718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21718,1,3,0)
+ ;;=3^Nondisp medial phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,21718,1,4,0)
+ ;;=4^S92.525S
+ ;;^UTILITY(U,$J,358.3,21718,2)
+ ;;=^5045507
+ ;;^UTILITY(U,$J,358.3,21719,0)
+ ;;=S92.524S^^101^1034^95
+ ;;^UTILITY(U,$J,358.3,21719,1,0)
+ ;;=^358.31IA^4^2

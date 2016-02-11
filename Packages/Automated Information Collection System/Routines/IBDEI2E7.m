@@ -1,0 +1,132 @@
+IBDEI2E7 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40195,1,3,0)
+ ;;=3^Lesion Radial Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40195,1,4,0)
+ ;;=4^G56.32
+ ;;^UTILITY(U,$J,358.3,40195,2)
+ ;;=^5004028
+ ;;^UTILITY(U,$J,358.3,40196,0)
+ ;;=G56.31^^186^2076^297
+ ;;^UTILITY(U,$J,358.3,40196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40196,1,3,0)
+ ;;=3^Lesion Radial Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40196,1,4,0)
+ ;;=4^G56.31
+ ;;^UTILITY(U,$J,358.3,40196,2)
+ ;;=^5004027
+ ;;^UTILITY(U,$J,358.3,40197,0)
+ ;;=E88.1^^186^2076^301
+ ;;^UTILITY(U,$J,358.3,40197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40197,1,3,0)
+ ;;=3^Lipodystrophy NEC
+ ;;^UTILITY(U,$J,358.3,40197,1,4,0)
+ ;;=4^E88.1
+ ;;^UTILITY(U,$J,358.3,40197,2)
+ ;;=^5003028
+ ;;^UTILITY(U,$J,358.3,40198,0)
+ ;;=G56.22^^186^2076^298
+ ;;^UTILITY(U,$J,358.3,40198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40198,1,3,0)
+ ;;=3^Lesion Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40198,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,40198,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,40199,0)
+ ;;=G56.21^^186^2076^299
+ ;;^UTILITY(U,$J,358.3,40199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40199,1,3,0)
+ ;;=3^Lesion Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40199,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,40199,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,40200,0)
+ ;;=S02.400A^^186^2076^173
+ ;;^UTILITY(U,$J,358.3,40200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40200,1,3,0)
+ ;;=3^Fx Malar Unspec,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40200,1,4,0)
+ ;;=4^S02.400A
+ ;;^UTILITY(U,$J,358.3,40200,2)
+ ;;=^5020318
+ ;;^UTILITY(U,$J,358.3,40201,0)
+ ;;=C41.0^^186^2076^336
+ ;;^UTILITY(U,$J,358.3,40201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40201,1,3,0)
+ ;;=3^Malig Neop Skull/Face Bones
+ ;;^UTILITY(U,$J,358.3,40201,1,4,0)
+ ;;=4^C41.0
+ ;;^UTILITY(U,$J,358.3,40201,2)
+ ;;=^5000989
+ ;;^UTILITY(U,$J,358.3,40202,0)
+ ;;=C49.12^^186^2076^316
+ ;;^UTILITY(U,$J,358.3,40202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40202,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40202,1,4,0)
+ ;;=4^C49.12
+ ;;^UTILITY(U,$J,358.3,40202,2)
+ ;;=^5001127
+ ;;^UTILITY(U,$J,358.3,40203,0)
+ ;;=C49.11^^186^2076^317
+ ;;^UTILITY(U,$J,358.3,40203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40203,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40203,1,4,0)
+ ;;=4^C49.11
+ ;;^UTILITY(U,$J,358.3,40203,2)
+ ;;=^5001126
+ ;;^UTILITY(U,$J,358.3,40204,0)
+ ;;=C49.9^^186^2076^318
+ ;;^UTILITY(U,$J,358.3,40204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40204,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,40204,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,40204,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,40205,0)
+ ;;=C00.2^^186^2076^319
+ ;;^UTILITY(U,$J,358.3,40205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40205,1,3,0)
+ ;;=3^Malig Neop External Lip,Unspec
+ ;;^UTILITY(U,$J,358.3,40205,1,4,0)
+ ;;=4^C00.2
+ ;;^UTILITY(U,$J,358.3,40205,2)
+ ;;=^5000884
+ ;;^UTILITY(U,$J,358.3,40206,0)
+ ;;=C06.9^^186^2076^320
+ ;;^UTILITY(U,$J,358.3,40206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40206,1,3,0)
+ ;;=3^Malig Neop Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,40206,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,40206,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,40207,0)
+ ;;=C05.9^^186^2076^321
+ ;;^UTILITY(U,$J,358.3,40207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40207,1,3,0)
+ ;;=3^Malig Neop Palate,Unspec
+ ;;^UTILITY(U,$J,358.3,40207,1,4,0)
+ ;;=4^C05.9
+ ;;^UTILITY(U,$J,358.3,40207,2)
+ ;;=^5000898

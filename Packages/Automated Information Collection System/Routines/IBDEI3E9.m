@@ -1,0 +1,132 @@
+IBDEI3E9 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,57072,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,57073,0)
+ ;;=I70.241^^264^2849^50
+ ;;^UTILITY(U,$J,358.3,57073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57073,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Ulceration of Thigh
+ ;;^UTILITY(U,$J,358.3,57073,1,4,0)
+ ;;=4^I70.241
+ ;;^UTILITY(U,$J,358.3,57073,2)
+ ;;=^5007595
+ ;;^UTILITY(U,$J,358.3,57074,0)
+ ;;=I70.242^^264^2849^47
+ ;;^UTILITY(U,$J,358.3,57074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57074,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Ulceration of Calf
+ ;;^UTILITY(U,$J,358.3,57074,1,4,0)
+ ;;=4^I70.242
+ ;;^UTILITY(U,$J,358.3,57074,2)
+ ;;=^5007596
+ ;;^UTILITY(U,$J,358.3,57075,0)
+ ;;=I70.243^^264^2849^46
+ ;;^UTILITY(U,$J,358.3,57075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57075,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Ulceration of Ankle
+ ;;^UTILITY(U,$J,358.3,57075,1,4,0)
+ ;;=4^I70.243
+ ;;^UTILITY(U,$J,358.3,57075,2)
+ ;;=^5007597
+ ;;^UTILITY(U,$J,358.3,57076,0)
+ ;;=I70.244^^264^2849^48
+ ;;^UTILITY(U,$J,358.3,57076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57076,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Ulceration of Heel & Midfoot
+ ;;^UTILITY(U,$J,358.3,57076,1,4,0)
+ ;;=4^I70.244
+ ;;^UTILITY(U,$J,358.3,57076,2)
+ ;;=^5007598
+ ;;^UTILITY(U,$J,358.3,57077,0)
+ ;;=I70.245^^264^2849^49
+ ;;^UTILITY(U,$J,358.3,57077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57077,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Ulceration of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,57077,1,4,0)
+ ;;=4^I70.245
+ ;;^UTILITY(U,$J,358.3,57077,2)
+ ;;=^5007599
+ ;;^UTILITY(U,$J,358.3,57078,0)
+ ;;=I70.262^^264^2849^44
+ ;;^UTILITY(U,$J,358.3,57078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57078,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,57078,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,57078,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,57079,0)
+ ;;=I70.263^^264^2849^43
+ ;;^UTILITY(U,$J,358.3,57079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57079,1,3,0)
+ ;;=3^Athscl of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,57079,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,57079,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,57080,0)
+ ;;=I71.2^^264^2849^137
+ ;;^UTILITY(U,$J,358.3,57080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57080,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,57080,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,57080,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,57081,0)
+ ;;=I71.3^^264^2849^33
+ ;;^UTILITY(U,$J,358.3,57081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57081,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,57081,1,4,0)
+ ;;=4^I71.3
+ ;;^UTILITY(U,$J,358.3,57081,2)
+ ;;=^5007788
+ ;;^UTILITY(U,$J,358.3,57082,0)
+ ;;=I71.4^^264^2849^34
+ ;;^UTILITY(U,$J,358.3,57082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57082,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,57082,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,57082,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,57083,0)
+ ;;=I71.5^^264^2849^138
+ ;;^UTILITY(U,$J,358.3,57083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57083,1,3,0)
+ ;;=3^Thoracoabd Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,57083,1,4,0)
+ ;;=4^I71.5
+ ;;^UTILITY(U,$J,358.3,57083,2)
+ ;;=^5007790
+ ;;^UTILITY(U,$J,358.3,57084,0)
+ ;;=I71.6^^264^2849^139
+ ;;^UTILITY(U,$J,358.3,57084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57084,1,3,0)
+ ;;=3^Thoracoabd Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,57084,1,4,0)
+ ;;=4^I71.6
+ ;;^UTILITY(U,$J,358.3,57084,2)
+ ;;=^5007791
+ ;;^UTILITY(U,$J,358.3,57085,0)
+ ;;=I72.2^^264^2849^38
+ ;;^UTILITY(U,$J,358.3,57085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57085,1,3,0)
+ ;;=3^Aneurysm of Renal Artery

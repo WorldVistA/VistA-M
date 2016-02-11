@@ -1,0 +1,132 @@
+IBDEI24B ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,35563,1,4,0)
+ ;;=4^O14.03
+ ;;^UTILITY(U,$J,358.3,35563,2)
+ ;;=^5016164
+ ;;^UTILITY(U,$J,358.3,35564,0)
+ ;;=O14.90^^166^1821^16
+ ;;^UTILITY(U,$J,358.3,35564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35564,1,3,0)
+ ;;=3^Pre-eclampsia, unspecified trimester NEC
+ ;;^UTILITY(U,$J,358.3,35564,1,4,0)
+ ;;=4^O14.90
+ ;;^UTILITY(U,$J,358.3,35564,2)
+ ;;=^5016171
+ ;;^UTILITY(U,$J,358.3,35565,0)
+ ;;=O14.92^^166^1821^14
+ ;;^UTILITY(U,$J,358.3,35565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35565,1,3,0)
+ ;;=3^Pre-eclampsia, second trimester NEC
+ ;;^UTILITY(U,$J,358.3,35565,1,4,0)
+ ;;=4^O14.92
+ ;;^UTILITY(U,$J,358.3,35565,2)
+ ;;=^5016172
+ ;;^UTILITY(U,$J,358.3,35566,0)
+ ;;=O14.93^^166^1821^15
+ ;;^UTILITY(U,$J,358.3,35566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35566,1,3,0)
+ ;;=3^Pre-eclampsia, third trimester NEC
+ ;;^UTILITY(U,$J,358.3,35566,1,4,0)
+ ;;=4^O14.93
+ ;;^UTILITY(U,$J,358.3,35566,2)
+ ;;=^5016173
+ ;;^UTILITY(U,$J,358.3,35567,0)
+ ;;=O15.2^^166^1821^3
+ ;;^UTILITY(U,$J,358.3,35567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35567,1,3,0)
+ ;;=3^Eclampsia in the puerperium
+ ;;^UTILITY(U,$J,358.3,35567,1,4,0)
+ ;;=4^O15.2
+ ;;^UTILITY(U,$J,358.3,35567,2)
+ ;;=^5016178
+ ;;^UTILITY(U,$J,358.3,35568,0)
+ ;;=O14.12^^166^1821^38
+ ;;^UTILITY(U,$J,358.3,35568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35568,1,3,0)
+ ;;=3^Severe pre-eclampsia, second trimester
+ ;;^UTILITY(U,$J,358.3,35568,1,4,0)
+ ;;=4^O14.12
+ ;;^UTILITY(U,$J,358.3,35568,2)
+ ;;=^5016166
+ ;;^UTILITY(U,$J,358.3,35569,0)
+ ;;=O14.13^^166^1821^39
+ ;;^UTILITY(U,$J,358.3,35569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35569,1,3,0)
+ ;;=3^Severe pre-eclampsia, third trimester
+ ;;^UTILITY(U,$J,358.3,35569,1,4,0)
+ ;;=4^O14.13
+ ;;^UTILITY(U,$J,358.3,35569,2)
+ ;;=^5016167
+ ;;^UTILITY(U,$J,358.3,35570,0)
+ ;;=O14.22^^166^1821^7
+ ;;^UTILITY(U,$J,358.3,35570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35570,1,3,0)
+ ;;=3^HELLP syndrome (HELLP), second trimester
+ ;;^UTILITY(U,$J,358.3,35570,1,4,0)
+ ;;=4^O14.22
+ ;;^UTILITY(U,$J,358.3,35570,2)
+ ;;=^5016169
+ ;;^UTILITY(U,$J,358.3,35571,0)
+ ;;=O14.23^^166^1821^8
+ ;;^UTILITY(U,$J,358.3,35571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35571,1,3,0)
+ ;;=3^HELLP syndrome (HELLP), third trimester
+ ;;^UTILITY(U,$J,358.3,35571,1,4,0)
+ ;;=4^O14.23
+ ;;^UTILITY(U,$J,358.3,35571,2)
+ ;;=^5016170
+ ;;^UTILITY(U,$J,358.3,35572,0)
+ ;;=O15.02^^166^1821^1
+ ;;^UTILITY(U,$J,358.3,35572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35572,1,3,0)
+ ;;=3^Eclampsia in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,35572,1,4,0)
+ ;;=4^O15.02
+ ;;^UTILITY(U,$J,358.3,35572,2)
+ ;;=^5016175
+ ;;^UTILITY(U,$J,358.3,35573,0)
+ ;;=O15.03^^166^1821^2
+ ;;^UTILITY(U,$J,358.3,35573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35573,1,3,0)
+ ;;=3^Eclampsia in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,35573,1,4,0)
+ ;;=4^O15.03
+ ;;^UTILITY(U,$J,358.3,35573,2)
+ ;;=^5016176
+ ;;^UTILITY(U,$J,358.3,35574,0)
+ ;;=O21.0^^166^1822^3
+ ;;^UTILITY(U,$J,358.3,35574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35574,1,3,0)
+ ;;=3^Mild hyperemesis gravidarum
+ ;;^UTILITY(U,$J,358.3,35574,1,4,0)
+ ;;=4^O21.0
+ ;;^UTILITY(U,$J,358.3,35574,2)
+ ;;=^5016185
+ ;;^UTILITY(U,$J,358.3,35575,0)
+ ;;=O21.1^^166^1822^1
+ ;;^UTILITY(U,$J,358.3,35575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35575,1,3,0)
+ ;;=3^Hyperemesis gravidarum with metabolic disturbance
+ ;;^UTILITY(U,$J,358.3,35575,1,4,0)
+ ;;=4^O21.1
+ ;;^UTILITY(U,$J,358.3,35575,2)
+ ;;=^270869
+ ;;^UTILITY(U,$J,358.3,35576,0)
+ ;;=O21.2^^166^1822^2
+ ;;^UTILITY(U,$J,358.3,35576,1,0)
+ ;;=^358.31IA^4^2

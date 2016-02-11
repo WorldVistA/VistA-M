@@ -1,144 +1,130 @@
-IBDEI0JT ; ; 06-AUG-2015
+IBDEI0JT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9338,2)
- ;;=^267583
- ;;^UTILITY(U,$J,358.3,9339,0)
- ;;=146.0^^41^535^82
- ;;^UTILITY(U,$J,358.3,9339,1,0)
+ ;;^UTILITY(U,$J,358.3,8930,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,8930,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,8931,0)
+ ;;=E08.9^^55^555^31
+ ;;^UTILITY(U,$J,358.3,8931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9339,1,3,0)
- ;;=3^MALIGNANT NEOP TONSIL
- ;;^UTILITY(U,$J,358.3,9339,1,4,0)
- ;;=4^146.0
- ;;^UTILITY(U,$J,358.3,9339,2)
- ;;=^267029
- ;;^UTILITY(U,$J,358.3,9340,0)
- ;;=210.5^^41^535^38
- ;;^UTILITY(U,$J,358.3,9340,1,0)
+ ;;^UTILITY(U,$J,358.3,8931,1,3,0)
+ ;;=3^Diabetes due to underlying condition w/o complications
+ ;;^UTILITY(U,$J,358.3,8931,1,4,0)
+ ;;=4^E08.9
+ ;;^UTILITY(U,$J,358.3,8931,2)
+ ;;=^5002544
+ ;;^UTILITY(U,$J,358.3,8932,0)
+ ;;=E09.9^^55^555^61
+ ;;^UTILITY(U,$J,358.3,8932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9340,1,3,0)
- ;;=3^BENIGN NEOP TONSIL
- ;;^UTILITY(U,$J,358.3,9340,1,4,0)
- ;;=4^210.5
- ;;^UTILITY(U,$J,358.3,9340,2)
- ;;=^267582
- ;;^UTILITY(U,$J,358.3,9341,0)
- ;;=142.9^^41^535^71
- ;;^UTILITY(U,$J,358.3,9341,1,0)
+ ;;^UTILITY(U,$J,358.3,8932,1,3,0)
+ ;;=3^Drug/chem induced diabetes mellitus w/o complications
+ ;;^UTILITY(U,$J,358.3,8932,1,4,0)
+ ;;=4^E09.9
+ ;;^UTILITY(U,$J,358.3,8932,2)
+ ;;=^5002586
+ ;;^UTILITY(U,$J,358.3,8933,0)
+ ;;=E08.65^^55^555^1
+ ;;^UTILITY(U,$J,358.3,8933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9341,1,3,0)
- ;;=3^MALIGNANT NEOP SALIVARY GLAND
- ;;^UTILITY(U,$J,358.3,9341,1,4,0)
- ;;=4^142.9
- ;;^UTILITY(U,$J,358.3,9341,2)
- ;;=^267009
- ;;^UTILITY(U,$J,358.3,9342,0)
- ;;=210.2^^41^535^28
- ;;^UTILITY(U,$J,358.3,9342,1,0)
+ ;;^UTILITY(U,$J,358.3,8933,1,3,0)
+ ;;=3^Diabetes due to underlying condition w hyperglycemia
+ ;;^UTILITY(U,$J,358.3,8933,1,4,0)
+ ;;=4^E08.65
+ ;;^UTILITY(U,$J,358.3,8933,2)
+ ;;=^5002541
+ ;;^UTILITY(U,$J,358.3,8934,0)
+ ;;=E09.65^^55^555^58
+ ;;^UTILITY(U,$J,358.3,8934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9342,1,3,0)
- ;;=3^BENIGN NEOP SALIVARY GLAND
- ;;^UTILITY(U,$J,358.3,9342,1,4,0)
- ;;=4^210.2
- ;;^UTILITY(U,$J,358.3,9342,2)
- ;;=^13306
- ;;^UTILITY(U,$J,358.3,9343,0)
- ;;=142.0^^41^535^69
- ;;^UTILITY(U,$J,358.3,9343,1,0)
+ ;;^UTILITY(U,$J,358.3,8934,1,3,0)
+ ;;=3^Drug/chem induced diabetes mellitus w hyperglycemia
+ ;;^UTILITY(U,$J,358.3,8934,1,4,0)
+ ;;=4^E09.65
+ ;;^UTILITY(U,$J,358.3,8934,2)
+ ;;=^5002583
+ ;;^UTILITY(U,$J,358.3,8935,0)
+ ;;=E08.10^^55^555^2
+ ;;^UTILITY(U,$J,358.3,8935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9343,1,3,0)
- ;;=3^MALIGNANT NEOP PAROTID
- ;;^UTILITY(U,$J,358.3,9343,1,4,0)
- ;;=4^142.0
- ;;^UTILITY(U,$J,358.3,9343,2)
- ;;=^267005
- ;;^UTILITY(U,$J,358.3,9344,0)
- ;;=210.2^^41^535^26
- ;;^UTILITY(U,$J,358.3,9344,1,0)
+ ;;^UTILITY(U,$J,358.3,8935,1,3,0)
+ ;;=3^Diabetes due to underlying condition w ketoacidosis w/o coma
+ ;;^UTILITY(U,$J,358.3,8935,1,4,0)
+ ;;=4^E08.10
+ ;;^UTILITY(U,$J,358.3,8935,2)
+ ;;=^5002505
+ ;;^UTILITY(U,$J,358.3,8936,0)
+ ;;=E09.10^^55^555^41
+ ;;^UTILITY(U,$J,358.3,8936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9344,1,3,0)
- ;;=3^BENIGN NEOP PAROTID
- ;;^UTILITY(U,$J,358.3,9344,1,4,0)
- ;;=4^210.2
- ;;^UTILITY(U,$J,358.3,9344,2)
- ;;=^13306
- ;;^UTILITY(U,$J,358.3,9345,0)
- ;;=142.1^^41^535^77
- ;;^UTILITY(U,$J,358.3,9345,1,0)
+ ;;^UTILITY(U,$J,358.3,8936,1,3,0)
+ ;;=3^Drug/chem diabetes w ketoacidosis w/o coma
+ ;;^UTILITY(U,$J,358.3,8936,1,4,0)
+ ;;=4^E09.10
+ ;;^UTILITY(U,$J,358.3,8936,2)
+ ;;=^5002547
+ ;;^UTILITY(U,$J,358.3,8937,0)
+ ;;=E08.01^^55^555^3
+ ;;^UTILITY(U,$J,358.3,8937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9345,1,3,0)
- ;;=3^MALIGNANT NEOP SUBMAXILLARY
- ;;^UTILITY(U,$J,358.3,9345,1,4,0)
- ;;=4^142.1
- ;;^UTILITY(U,$J,358.3,9345,2)
- ;;=^267006
- ;;^UTILITY(U,$J,358.3,9346,0)
- ;;=210.2^^41^535^34
- ;;^UTILITY(U,$J,358.3,9346,1,0)
+ ;;^UTILITY(U,$J,358.3,8937,1,3,0)
+ ;;=3^Diabetes due to underlying condition w hyprosm w coma
+ ;;^UTILITY(U,$J,358.3,8937,1,4,0)
+ ;;=4^E08.01
+ ;;^UTILITY(U,$J,358.3,8937,2)
+ ;;=^5002504
+ ;;^UTILITY(U,$J,358.3,8938,0)
+ ;;=E09.01^^55^555^37
+ ;;^UTILITY(U,$J,358.3,8938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9346,1,3,0)
- ;;=3^BENIGN NEOP SUBMAXILLARY
- ;;^UTILITY(U,$J,358.3,9346,1,4,0)
- ;;=4^210.2
- ;;^UTILITY(U,$J,358.3,9346,2)
- ;;=^13306
- ;;^UTILITY(U,$J,358.3,9347,0)
- ;;=212.1^^41^535^18
- ;;^UTILITY(U,$J,358.3,9347,1,0)
+ ;;^UTILITY(U,$J,358.3,8938,1,3,0)
+ ;;=3^Drug/chem diabetes w hyperosmolarity w coma
+ ;;^UTILITY(U,$J,358.3,8938,1,4,0)
+ ;;=4^E09.01
+ ;;^UTILITY(U,$J,358.3,8938,2)
+ ;;=^5002546
+ ;;^UTILITY(U,$J,358.3,8939,0)
+ ;;=E08.11^^55^555^4
+ ;;^UTILITY(U,$J,358.3,8939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9347,1,3,0)
- ;;=3^BENIGN NEOP LARYNX
- ;;^UTILITY(U,$J,358.3,9347,1,4,0)
- ;;=4^212.1
- ;;^UTILITY(U,$J,358.3,9347,2)
- ;;=^267598
- ;;^UTILITY(U,$J,358.3,9348,0)
- ;;=216.4^^41^535^32
- ;;^UTILITY(U,$J,358.3,9348,1,0)
+ ;;^UTILITY(U,$J,358.3,8939,1,3,0)
+ ;;=3^Diabetes due to underlying condition w ketoacidosis w coma
+ ;;^UTILITY(U,$J,358.3,8939,1,4,0)
+ ;;=4^E08.11
+ ;;^UTILITY(U,$J,358.3,8939,2)
+ ;;=^5002506
+ ;;^UTILITY(U,$J,358.3,8940,0)
+ ;;=E08.641^^55^555^5
+ ;;^UTILITY(U,$J,358.3,8940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9348,1,3,0)
- ;;=3^BENIGN NEOP SKIN-SCALP
- ;;^UTILITY(U,$J,358.3,9348,1,4,0)
- ;;=4^216.4
- ;;^UTILITY(U,$J,358.3,9348,2)
- ;;=^267633
- ;;^UTILITY(U,$J,358.3,9349,0)
- ;;=170.0^^41^535^75
- ;;^UTILITY(U,$J,358.3,9349,1,0)
+ ;;^UTILITY(U,$J,358.3,8940,1,3,0)
+ ;;=3^Diabetes due to underlying condition w hypoglycemia w coma
+ ;;^UTILITY(U,$J,358.3,8940,1,4,0)
+ ;;=4^E08.641
+ ;;^UTILITY(U,$J,358.3,8940,2)
+ ;;=^5002539
+ ;;^UTILITY(U,$J,358.3,8941,0)
+ ;;=E09.11^^55^555^40
+ ;;^UTILITY(U,$J,358.3,8941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9349,1,3,0)
- ;;=3^MALIGNANT NEOP SKULL
- ;;^UTILITY(U,$J,358.3,9349,1,4,0)
- ;;=4^170.0
- ;;^UTILITY(U,$J,358.3,9349,2)
- ;;=^267156
- ;;^UTILITY(U,$J,358.3,9350,0)
- ;;=213.0^^41^535^33
- ;;^UTILITY(U,$J,358.3,9350,1,0)
+ ;;^UTILITY(U,$J,358.3,8941,1,3,0)
+ ;;=3^Drug/chem diabetes w ketoacidosis w coma
+ ;;^UTILITY(U,$J,358.3,8941,1,4,0)
+ ;;=4^E09.11
+ ;;^UTILITY(U,$J,358.3,8941,2)
+ ;;=^5002548
+ ;;^UTILITY(U,$J,358.3,8942,0)
+ ;;=E09.641^^55^555^38
+ ;;^UTILITY(U,$J,358.3,8942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9350,1,3,0)
- ;;=3^BENIGN NEOP SKULL
- ;;^UTILITY(U,$J,358.3,9350,1,4,0)
- ;;=4^213.0
- ;;^UTILITY(U,$J,358.3,9350,2)
- ;;=^267606
- ;;^UTILITY(U,$J,358.3,9351,0)
- ;;=193.^^41^535^80
- ;;^UTILITY(U,$J,358.3,9351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9351,1,3,0)
- ;;=3^MALIGNANT NEOP THYROID
- ;;^UTILITY(U,$J,358.3,9351,1,4,0)
- ;;=4^193.
- ;;^UTILITY(U,$J,358.3,9351,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,9352,0)
- ;;=226.^^41^535^36
- ;;^UTILITY(U,$J,358.3,9352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9352,1,3,0)
- ;;=3^BENIGN NEOP THYROID
- ;;^UTILITY(U,$J,358.3,9352,1,4,0)
- ;;=4^226.
+ ;;^UTILITY(U,$J,358.3,8942,1,3,0)
+ ;;=3^Drug/chem diabetes w hypoglycemia w coma
+ ;;^UTILITY(U,$J,358.3,8942,1,4,0)
+ ;;=4^E09.641
+ ;;^UTILITY(U,$J,358.3,8942,2)
+ ;;=^5002581
+ ;;^UTILITY(U,$J,358.3,8943,0)
+ ;;=E08.21^^55^555^6

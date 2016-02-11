@@ -1,0 +1,132 @@
+IBDEI3BN ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,55821,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,55822,0)
+ ;;=R73.09^^256^2787^15
+ ;;^UTILITY(U,$J,358.3,55822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55822,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,55822,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,55822,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,55823,0)
+ ;;=R73.9^^256^2787^84
+ ;;^UTILITY(U,$J,358.3,55823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55823,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,55823,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,55823,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,55824,0)
+ ;;=R76.11^^256^2787^142
+ ;;^UTILITY(U,$J,358.3,55824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55824,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,55824,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,55824,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,55825,0)
+ ;;=R79.1^^256^2787^3
+ ;;^UTILITY(U,$J,358.3,55825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55825,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,55825,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,55825,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,55826,0)
+ ;;=R82.5^^256^2787^69
+ ;;^UTILITY(U,$J,358.3,55826,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55826,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,55826,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,55826,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,55827,0)
+ ;;=R82.6^^256^2787^26
+ ;;^UTILITY(U,$J,358.3,55827,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55827,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,55827,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,55827,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,55828,0)
+ ;;=R82.7^^256^2787^27
+ ;;^UTILITY(U,$J,358.3,55828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55828,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,55828,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,55828,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,55829,0)
+ ;;=R82.8^^256^2787^23
+ ;;^UTILITY(U,$J,358.3,55829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55829,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,55829,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,55829,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,55830,0)
+ ;;=R82.90^^256^2787^25
+ ;;^UTILITY(U,$J,358.3,55830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55830,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,55830,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,55830,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,55831,0)
+ ;;=R82.91^^256^2787^49
+ ;;^UTILITY(U,$J,358.3,55831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55831,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,55831,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,55831,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,55832,0)
+ ;;=R82.99^^256^2787^24
+ ;;^UTILITY(U,$J,358.3,55832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55832,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,55832,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,55832,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,55833,0)
+ ;;=R89.9^^256^2787^19
+ ;;^UTILITY(U,$J,358.3,55833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55833,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,55833,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,55833,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,55834,0)
+ ;;=R90.0^^256^2787^98
+ ;;^UTILITY(U,$J,358.3,55834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55834,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System

@@ -1,128 +1,132 @@
-IBDEI1SQ ; ; 06-AUG-2015
+IBDEI1SQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31680,1,4,0)
- ;;=4^M66.331
- ;;^UTILITY(U,$J,358.3,31680,2)
- ;;=^5012878
- ;;^UTILITY(U,$J,358.3,31681,0)
- ;;=M66.332^^180^1962^136
- ;;^UTILITY(U,$J,358.3,31681,1,0)
+ ;;^UTILITY(U,$J,358.3,30070,0)
+ ;;=D56.3^^135^1372^180
+ ;;^UTILITY(U,$J,358.3,30070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31681,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left forearm
- ;;^UTILITY(U,$J,358.3,31681,1,4,0)
- ;;=4^M66.332
- ;;^UTILITY(U,$J,358.3,31681,2)
- ;;=^5012879
- ;;^UTILITY(U,$J,358.3,31682,0)
- ;;=M66.342^^180^1962^137
- ;;^UTILITY(U,$J,358.3,31682,1,0)
+ ;;^UTILITY(U,$J,358.3,30070,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,30070,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,30070,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,30071,0)
+ ;;=D56.9^^135^1372^181
+ ;;^UTILITY(U,$J,358.3,30071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31682,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left hand
- ;;^UTILITY(U,$J,358.3,31682,1,4,0)
- ;;=4^M66.342
- ;;^UTILITY(U,$J,358.3,31682,2)
- ;;=^5012882
- ;;^UTILITY(U,$J,358.3,31683,0)
- ;;=M66.341^^180^1962^138
- ;;^UTILITY(U,$J,358.3,31683,1,0)
+ ;;^UTILITY(U,$J,358.3,30071,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,30071,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,30071,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,30072,0)
+ ;;=M31.1^^135^1372^183
+ ;;^UTILITY(U,$J,358.3,30072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31683,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, right hand
- ;;^UTILITY(U,$J,358.3,31683,1,4,0)
- ;;=4^M66.341
- ;;^UTILITY(U,$J,358.3,31683,2)
- ;;=^5012881
- ;;^UTILITY(U,$J,358.3,31684,0)
- ;;=G44.209^^180^1962^139
- ;;^UTILITY(U,$J,358.3,31684,1,0)
+ ;;^UTILITY(U,$J,358.3,30072,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,30072,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,30072,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,30073,0)
+ ;;=D51.2^^135^1372^184
+ ;;^UTILITY(U,$J,358.3,30073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31684,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,31684,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,31684,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,31685,0)
- ;;=M70.62^^180^1962^140
- ;;^UTILITY(U,$J,358.3,31685,1,0)
+ ;;^UTILITY(U,$J,358.3,30073,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,30073,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,30073,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,30074,0)
+ ;;=D05.92^^135^1372^33
+ ;;^UTILITY(U,$J,358.3,30074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31685,1,3,0)
- ;;=3^Trochanteric bursitis, left hip
- ;;^UTILITY(U,$J,358.3,31685,1,4,0)
- ;;=4^M70.62
- ;;^UTILITY(U,$J,358.3,31685,2)
- ;;=^5013060
- ;;^UTILITY(U,$J,358.3,31686,0)
- ;;=M70.61^^180^1962^141
- ;;^UTILITY(U,$J,358.3,31686,1,0)
+ ;;^UTILITY(U,$J,358.3,30074,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,30074,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,30074,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,30075,0)
+ ;;=D05.91^^135^1372^35
+ ;;^UTILITY(U,$J,358.3,30075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31686,1,3,0)
- ;;=3^Trochanteric bursitis, right hip
- ;;^UTILITY(U,$J,358.3,31686,1,4,0)
- ;;=4^M70.61
- ;;^UTILITY(U,$J,358.3,31686,2)
- ;;=^5013059
- ;;^UTILITY(U,$J,358.3,31687,0)
- ;;=M21.752^^180^1962^142
- ;;^UTILITY(U,$J,358.3,31687,1,0)
+ ;;^UTILITY(U,$J,358.3,30075,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,30075,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,30075,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,30076,0)
+ ;;=D05.90^^135^1372^31
+ ;;^UTILITY(U,$J,358.3,30076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31687,1,3,0)
- ;;=3^Unequal limb length (acquired), left femur
- ;;^UTILITY(U,$J,358.3,31687,1,4,0)
- ;;=4^M21.752
- ;;^UTILITY(U,$J,358.3,31687,2)
- ;;=^5011141
- ;;^UTILITY(U,$J,358.3,31688,0)
- ;;=M21.762^^180^1962^143
- ;;^UTILITY(U,$J,358.3,31688,1,0)
+ ;;^UTILITY(U,$J,358.3,30076,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,30076,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,30076,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,30077,0)
+ ;;=D51.0^^135^1372^185
+ ;;^UTILITY(U,$J,358.3,30077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31688,1,3,0)
- ;;=3^Unequal limb length (acquired), left tibia
- ;;^UTILITY(U,$J,358.3,31688,1,4,0)
- ;;=4^M21.762
- ;;^UTILITY(U,$J,358.3,31688,2)
- ;;=^5011144
- ;;^UTILITY(U,$J,358.3,31689,0)
- ;;=M21.751^^180^1962^144
- ;;^UTILITY(U,$J,358.3,31689,1,0)
+ ;;^UTILITY(U,$J,358.3,30077,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,30077,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,30077,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,30078,0)
+ ;;=D51.1^^135^1372^186
+ ;;^UTILITY(U,$J,358.3,30078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31689,1,3,0)
- ;;=3^Unequal limb length (acquired), right femur
- ;;^UTILITY(U,$J,358.3,31689,1,4,0)
- ;;=4^M21.751
- ;;^UTILITY(U,$J,358.3,31689,2)
- ;;=^5011140
- ;;^UTILITY(U,$J,358.3,31690,0)
- ;;=M21.761^^180^1962^145
- ;;^UTILITY(U,$J,358.3,31690,1,0)
+ ;;^UTILITY(U,$J,358.3,30078,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
+ ;;^UTILITY(U,$J,358.3,30078,1,4,0)
+ ;;=4^D51.1
+ ;;^UTILITY(U,$J,358.3,30078,2)
+ ;;=^5002285
+ ;;^UTILITY(U,$J,358.3,30079,0)
+ ;;=D51.9^^135^1372^188
+ ;;^UTILITY(U,$J,358.3,30079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31690,1,3,0)
- ;;=3^Unequal limb length (acquired), right tibia
- ;;^UTILITY(U,$J,358.3,31690,1,4,0)
- ;;=4^M21.761
- ;;^UTILITY(U,$J,358.3,31690,2)
- ;;=^5011143
- ;;^UTILITY(U,$J,358.3,31691,0)
- ;;=R20.9^^180^1962^1
- ;;^UTILITY(U,$J,358.3,31691,1,0)
+ ;;^UTILITY(U,$J,358.3,30079,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,30079,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,30079,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,30080,0)
+ ;;=D68.0^^135^1372^190
+ ;;^UTILITY(U,$J,358.3,30080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31691,1,3,0)
- ;;=3^Disturbances of skin sensation
- ;;^UTILITY(U,$J,358.3,31691,1,4,0)
- ;;=4^R20.9
- ;;^UTILITY(U,$J,358.3,31691,2)
- ;;=^5019282
- ;;^UTILITY(U,$J,358.3,31692,0)
- ;;=S15.002A^^180^1962^2
- ;;^UTILITY(U,$J,358.3,31692,1,0)
+ ;;^UTILITY(U,$J,358.3,30080,1,3,0)
+ ;;=3^Von Willebrand's Disease
+ ;;^UTILITY(U,$J,358.3,30080,1,4,0)
+ ;;=4^D68.0
+ ;;^UTILITY(U,$J,358.3,30080,2)
+ ;;=^127267
+ ;;^UTILITY(U,$J,358.3,30081,0)
+ ;;=C88.0^^135^1372^191
+ ;;^UTILITY(U,$J,358.3,30081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31692,1,3,0)
- ;;=3^Injury of left carotid artery, initial encounter
- ;;^UTILITY(U,$J,358.3,31692,1,4,0)
- ;;=4^S15.002A
- ;;^UTILITY(U,$J,358.3,31692,2)
- ;;=^5022223
+ ;;^UTILITY(U,$J,358.3,30081,1,3,0)
+ ;;=3^Waldenstrom Macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,30081,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,30081,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,30082,0)
+ ;;=C91.02^^135^1372^3
+ ;;^UTILITY(U,$J,358.3,30082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30082,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,30082,1,4,0)
+ ;;=4^C91.02

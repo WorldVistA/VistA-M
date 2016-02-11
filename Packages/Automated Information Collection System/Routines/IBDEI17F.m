@@ -1,130 +1,122 @@
-IBDEI17F ; ; 06-AUG-2015
+IBDEI17F ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21307,1,3,0)
- ;;=3^Vein X-Ray,Arm/Leg,Unilat
- ;;^UTILITY(U,$J,358.3,21308,0)
- ;;=75822^^117^1326^64^^^^1
- ;;^UTILITY(U,$J,358.3,21308,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21308,1,2,0)
- ;;=2^75822
- ;;^UTILITY(U,$J,358.3,21308,1,3,0)
- ;;=3^Vein X-Ray,Arms/Legs,Bilat
- ;;^UTILITY(U,$J,358.3,21309,0)
- ;;=75827^^117^1326^65^^^^1
- ;;^UTILITY(U,$J,358.3,21309,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21309,1,2,0)
- ;;=2^75827
- ;;^UTILITY(U,$J,358.3,21309,1,3,0)
- ;;=3^Vein X-Ray,Chest
- ;;^UTILITY(U,$J,358.3,21310,0)
- ;;=36005^^117^1327^1^^^^1
- ;;^UTILITY(U,$J,358.3,21310,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21310,1,2,0)
- ;;=2^36005
- ;;^UTILITY(U,$J,358.3,21310,1,3,0)
- ;;=3^Contrast Venography
- ;;^UTILITY(U,$J,358.3,21311,0)
- ;;=92950^^117^1328^1^^^^1
- ;;^UTILITY(U,$J,358.3,21311,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21311,1,2,0)
- ;;=2^92950
- ;;^UTILITY(U,$J,358.3,21311,1,3,0)
- ;;=3^CPR
- ;;^UTILITY(U,$J,358.3,21312,0)
- ;;=33010^^117^1328^4^^^^1
- ;;^UTILITY(U,$J,358.3,21312,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21312,1,2,0)
- ;;=2^33010
- ;;^UTILITY(U,$J,358.3,21312,1,3,0)
- ;;=3^Pericardiocentesis
- ;;^UTILITY(U,$J,358.3,21313,0)
- ;;=92970^^117^1328^2^^^^1
- ;;^UTILITY(U,$J,358.3,21313,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21313,1,2,0)
- ;;=2^92970
- ;;^UTILITY(U,$J,358.3,21313,1,3,0)
- ;;=3^Cardio Assist Dev Insert
- ;;^UTILITY(U,$J,358.3,21314,0)
- ;;=94760^^117^1328^3^^^^1
- ;;^UTILITY(U,$J,358.3,21314,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21314,1,2,0)
- ;;=2^94760
- ;;^UTILITY(U,$J,358.3,21314,1,3,0)
- ;;=3^MEASURE BLOOD OXYGEN LEVEL
- ;;^UTILITY(U,$J,358.3,21315,0)
- ;;=93503^^117^1329^23^^^^1
- ;;^UTILITY(U,$J,358.3,21315,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21315,1,2,0)
- ;;=2^93503
- ;;^UTILITY(U,$J,358.3,21315,1,3,0)
- ;;=3^Swan Ganz Placement
- ;;^UTILITY(U,$J,358.3,21316,0)
- ;;=93451^^117^1329^20^^^^1
- ;;^UTILITY(U,$J,358.3,21316,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21316,1,2,0)
- ;;=2^93451
- ;;^UTILITY(U,$J,358.3,21316,1,3,0)
- ;;=3^Right Hrt Cath incl O2 & Cardiac Outpt
- ;;^UTILITY(U,$J,358.3,21317,0)
- ;;=93452^^117^1329^12^^^^1
- ;;^UTILITY(U,$J,358.3,21317,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21317,1,2,0)
- ;;=2^93452
- ;;^UTILITY(U,$J,358.3,21317,1,3,0)
- ;;=3^LHC w/V-Gram, incl S&I
- ;;^UTILITY(U,$J,358.3,21318,0)
- ;;=93453^^117^1329^18^^^^1
- ;;^UTILITY(U,$J,358.3,21318,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21318,1,2,0)
- ;;=2^93453
- ;;^UTILITY(U,$J,358.3,21318,1,3,0)
- ;;=3^R&L HC w/V-Gram, incl S&I
- ;;^UTILITY(U,$J,358.3,21319,0)
- ;;=93454^^117^1329^5^^^^1
- ;;^UTILITY(U,$J,358.3,21319,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21319,1,2,0)
- ;;=2^93454
- ;;^UTILITY(U,$J,358.3,21319,1,3,0)
- ;;=3^Coronary Angiography, incl inj & S&I
- ;;^UTILITY(U,$J,358.3,21320,0)
- ;;=93455^^117^1329^1^^^^1
- ;;^UTILITY(U,$J,358.3,21320,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21320,1,2,0)
- ;;=2^93455
- ;;^UTILITY(U,$J,358.3,21320,1,3,0)
- ;;=3^Cor Angio incl inj & S&I, and Bypass angio
- ;;^UTILITY(U,$J,358.3,21321,0)
- ;;=93456^^117^1329^2^^^^1
- ;;^UTILITY(U,$J,358.3,21321,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21321,1,2,0)
- ;;=2^93456
- ;;^UTILITY(U,$J,358.3,21321,1,3,0)
- ;;=3^Cor Angio incl inj & S&I, and R Heart Cath
- ;;^UTILITY(U,$J,358.3,21322,0)
- ;;=93457^^117^1329^21^^^^1
- ;;^UTILITY(U,$J,358.3,21322,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21322,1,2,0)
- ;;=2^93457
- ;;^UTILITY(U,$J,358.3,21322,1,3,0)
- ;;=3^Rt Hrt Angio,Bypass Grft,incl inj & S&I
- ;;^UTILITY(U,$J,358.3,21323,0)
- ;;=93458^^117^1329^3^^^^1
- ;;^UTILITY(U,$J,358.3,21323,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20119,0)
+ ;;=Y36.6X0A^^94^935^113
+ ;;^UTILITY(U,$J,358.3,20119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20119,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20119,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,20119,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,20120,0)
+ ;;=Y36.6X0D^^94^935^115
+ ;;^UTILITY(U,$J,358.3,20120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20120,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20120,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,20120,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,20121,0)
+ ;;=Y36.7X0A^^94^935^128
+ ;;^UTILITY(U,$J,358.3,20121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20121,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20121,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,20121,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,20122,0)
+ ;;=Y36.7X0D^^94^935^129
+ ;;^UTILITY(U,$J,358.3,20122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20122,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20122,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,20122,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,20123,0)
+ ;;=Y36.810A^^94^935^22
+ ;;^UTILITY(U,$J,358.3,20123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20123,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20123,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,20123,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,20124,0)
+ ;;=Y36.810D^^94^935^23
+ ;;^UTILITY(U,$J,358.3,20124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20124,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20124,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,20124,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,20125,0)
+ ;;=Y36.820A^^94^935^19
+ ;;^UTILITY(U,$J,358.3,20125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20125,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20125,1,4,0)
+ ;;=4^Y36.820A
+ ;;^UTILITY(U,$J,358.3,20125,2)
+ ;;=^5061793
+ ;;^UTILITY(U,$J,358.3,20126,0)
+ ;;=Y36.820D^^94^935^20
+ ;;^UTILITY(U,$J,358.3,20126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20126,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20126,1,4,0)
+ ;;=4^Y36.820D
+ ;;^UTILITY(U,$J,358.3,20126,2)
+ ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,20127,0)
+ ;;=Y37.200A^^94^935^91
+ ;;^UTILITY(U,$J,358.3,20127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20127,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20127,1,4,0)
+ ;;=4^Y37.200A
+ ;;^UTILITY(U,$J,358.3,20127,2)
+ ;;=^5137997
+ ;;^UTILITY(U,$J,358.3,20128,0)
+ ;;=Y37.200D^^94^935^92
+ ;;^UTILITY(U,$J,358.3,20128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20128,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20128,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,20128,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,20129,0)
+ ;;=X00.1XXA^^94^935^13
+ ;;^UTILITY(U,$J,358.3,20129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20129,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20129,1,4,0)
+ ;;=4^X00.1XXA
+ ;;^UTILITY(U,$J,358.3,20129,2)
+ ;;=^5060664
+ ;;^UTILITY(U,$J,358.3,20130,0)
+ ;;=X00.1XXD^^94^935^14
+ ;;^UTILITY(U,$J,358.3,20130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20130,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20130,1,4,0)
+ ;;=4^X00.1XXD

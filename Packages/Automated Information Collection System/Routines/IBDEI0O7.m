@@ -1,128 +1,130 @@
-IBDEI0O7 ; ; 06-AUG-2015
+IBDEI0O7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11537,1,2,0)
- ;;=2^297.9
- ;;^UTILITY(U,$J,358.3,11537,1,5,0)
- ;;=5^Paranoia
- ;;^UTILITY(U,$J,358.3,11537,2)
- ;;=^123970
- ;;^UTILITY(U,$J,358.3,11538,0)
- ;;=297.1^^53^663^1
- ;;^UTILITY(U,$J,358.3,11538,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11538,1,2,0)
- ;;=2^297.1
- ;;^UTILITY(U,$J,358.3,11538,1,5,0)
- ;;=5^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,11538,2)
- ;;=^331896
- ;;^UTILITY(U,$J,358.3,11539,0)
- ;;=301.7^^53^664^1
- ;;^UTILITY(U,$J,358.3,11539,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11539,1,2,0)
- ;;=2^301.7
- ;;^UTILITY(U,$J,358.3,11539,1,5,0)
- ;;=5^Antisocial Personality Dis
- ;;^UTILITY(U,$J,358.3,11539,2)
- ;;=Antisocial Personality Dis^9066
- ;;^UTILITY(U,$J,358.3,11540,0)
- ;;=301.82^^53^664^2
- ;;^UTILITY(U,$J,358.3,11540,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11540,1,2,0)
- ;;=2^301.82
- ;;^UTILITY(U,$J,358.3,11540,1,5,0)
- ;;=5^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,11540,2)
- ;;=Avoidant Personality Disorder^265347
- ;;^UTILITY(U,$J,358.3,11541,0)
- ;;=301.83^^53^664^3
- ;;^UTILITY(U,$J,358.3,11541,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11541,1,2,0)
- ;;=2^301.83
- ;;^UTILITY(U,$J,358.3,11541,1,5,0)
- ;;=5^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,11541,2)
- ;;=Borderline Personality Disorder^16372
- ;;^UTILITY(U,$J,358.3,11542,0)
- ;;=301.6^^53^664^6
- ;;^UTILITY(U,$J,358.3,11542,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11542,1,2,0)
- ;;=2^301.6
- ;;^UTILITY(U,$J,358.3,11542,1,5,0)
- ;;=5^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,11542,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,11543,0)
- ;;=301.50^^53^664^8
- ;;^UTILITY(U,$J,358.3,11543,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11543,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,11543,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,11543,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,11544,0)
- ;;=301.81^^53^664^11
- ;;^UTILITY(U,$J,358.3,11544,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11544,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,11544,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,11544,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,11545,0)
- ;;=301.0^^53^664^12
- ;;^UTILITY(U,$J,358.3,11545,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11545,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,11545,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,11545,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,11546,0)
- ;;=301.9^^53^664^16
- ;;^UTILITY(U,$J,358.3,11546,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11546,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,11546,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,11546,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,11547,0)
- ;;=301.20^^53^664^14
- ;;^UTILITY(U,$J,358.3,11547,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11547,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,11547,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,11547,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,11548,0)
- ;;=301.22^^53^664^15
- ;;^UTILITY(U,$J,358.3,11548,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11548,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,11548,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,11548,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,11549,0)
- ;;=301.4^^53^664^4
- ;;^UTILITY(U,$J,358.3,11549,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11549,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,11549,1,5,0)
- ;;=5^Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,11068,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,11068,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,11068,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,11069,0)
+ ;;=J20.5^^68^677^14
+ ;;^UTILITY(U,$J,358.3,11069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11069,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,11069,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,11069,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,11070,0)
+ ;;=J20.7^^68^677^9
+ ;;^UTILITY(U,$J,358.3,11070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11070,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,11070,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,11070,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,11071,0)
+ ;;=J20.6^^68^677^15
+ ;;^UTILITY(U,$J,358.3,11071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11071,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,11071,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,11071,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,11072,0)
+ ;;=J18.9^^68^677^67
+ ;;^UTILITY(U,$J,358.3,11072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11072,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,11072,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,11072,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,11073,0)
+ ;;=J18.8^^68^677^68
+ ;;^UTILITY(U,$J,358.3,11073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11073,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,11073,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,11073,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,11074,0)
+ ;;=J11.00^^68^677^28
+ ;;^UTILITY(U,$J,358.3,11074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11074,1,3,0)
+ ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,11074,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,11074,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,11075,0)
+ ;;=J12.9^^68^677^69
+ ;;^UTILITY(U,$J,358.3,11075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11075,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,11075,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,11075,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,11076,0)
+ ;;=J10.08^^68^677^41
+ ;;^UTILITY(U,$J,358.3,11076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11076,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,11076,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,11076,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,11077,0)
+ ;;=J10.00^^68^677^40
+ ;;^UTILITY(U,$J,358.3,11077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11077,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,11077,1,4,0)
+ ;;=4^J10.00
+ ;;^UTILITY(U,$J,358.3,11077,2)
+ ;;=^5008148
+ ;;^UTILITY(U,$J,358.3,11078,0)
+ ;;=J11.08^^68^677^43
+ ;;^UTILITY(U,$J,358.3,11078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11078,1,3,0)
+ ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
+ ;;^UTILITY(U,$J,358.3,11078,1,4,0)
+ ;;=4^J11.08
+ ;;^UTILITY(U,$J,358.3,11078,2)
+ ;;=^5008157
+ ;;^UTILITY(U,$J,358.3,11079,0)
+ ;;=J10.1^^68^677^42
+ ;;^UTILITY(U,$J,358.3,11079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11079,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,11079,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,11079,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,11080,0)
+ ;;=J10.01^^68^677^39
+ ;;^UTILITY(U,$J,358.3,11080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11080,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,11080,1,4,0)
+ ;;=4^J10.01
+ ;;^UTILITY(U,$J,358.3,11080,2)
+ ;;=^5008149

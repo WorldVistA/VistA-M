@@ -1,5 +1,5 @@
-DGMTOFA ;ALB/CAW/AEG/PWC - Future Appointments who will require MT ; 4/21/11 10:57am
- ;;5.3;Registration;**3,50,182,326,426,568,725,830**;Aug 13, 1993;Build 4
+DGMTOFA ;ALB/CAW/AEG/PWC/DHS - Future Appointments who will require MT ; 4/21/11 10:57am
+ ;;5.3;Registration;**3,50,182,326,426,568,725,830,891**;Aug 13, 1993;Build 14
  ;
 EN ; 
  I '$$RANGE^DGMTUTL("F") G ENQ
@@ -61,7 +61,7 @@ CLN1 ; Loop through appointments
  ...D MT
  Q
 MT ; Is patient going to need to complete a MT/Copay by appt?
- S DGMT=$$LST^DGMTU(DGDFN,$P(DGDATE,"."),DGMTYPT),DGMT1=$P($G(^DGMT(408.31,+DGMT,0)),U,3) I DGMT1,"^3^10^"'[("^"_DGMT1_"^") D
+  S DGMT=$$LST^DGMTU(DGDFN,$P(DGDATE,"."),DGMTYPT),DGMT1=$P($G(^DGMT(408.31,+DGMT,0)),U,3) I DGMT1,"^3^10^"'[("^"_DGMT1_"^") D
  . N MTQ,X S MTQ=0  ; only do the following for RX Co-pay tests
  .I DGMTYPT=2 D  Q:MTQ=1
  .. ;Exclude from report the following:
@@ -79,6 +79,12 @@ MT ; Is patient going to need to complete a MT/Copay by appt?
  .;pay -- no date restrictions on these types.
  .I $G(DGMT1)=6,+$P($G(^DGMT(408.31,+DGMT,0)),U,14),+$P($G(^DGMT(408.31,+DGMT,0)),U,11) Q
  .; checking for future means test based on DT
+ .;
+ .; DG*5.3*891 - test whether patient is current
+ .I $P(DGMT,U,2)>3120101&($P(DGMT,U,2)<3130101) Q  ; test effective date range   1 or 9 value
+ .I $P(DGMT,U,2)>3121231,"^4^11^16^"[("^"_DGMT1_"^") Q  ; MT status = Copay exempt,GMT Copay requred,Pending Adjudication
+ .I DGMT1=6!(DGMT1=3) Q  ;MT Copay required and and No longer required
+ .;
  .N DGNXTMT
  .S DGNXTMT=$O(^IVM(301.5,"AE",DGDFN,DT))
  .I 'DGNXTMT S DGNXTMT=""

@@ -1,134 +1,124 @@
-IBDEI1UZ ; ; 06-AUG-2015
+IBDEI1UZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32716,1,0)
+ ;;^UTILITY(U,$J,358.3,31113,0)
+ ;;=V00.892A^^135^1391^99
+ ;;^UTILITY(U,$J,358.3,31113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32716,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32716,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,32716,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,32717,0)
- ;;=C83.50^^182^1992^97
- ;;^UTILITY(U,$J,358.3,32717,1,0)
+ ;;^UTILITY(U,$J,358.3,31113,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31113,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,31113,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,31114,0)
+ ;;=V00.892D^^135^1391^100
+ ;;^UTILITY(U,$J,358.3,31114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32717,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,32717,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,32717,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,32718,0)
- ;;=C43.9^^182^1992^99
- ;;^UTILITY(U,$J,358.3,32718,1,0)
+ ;;^UTILITY(U,$J,358.3,31114,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31114,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,31114,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,31115,0)
+ ;;=V00.898A^^135^1391^97
+ ;;^UTILITY(U,$J,358.3,31115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32718,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,32718,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,32718,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,32719,0)
- ;;=C31.9^^182^1992^100
- ;;^UTILITY(U,$J,358.3,32719,1,0)
+ ;;^UTILITY(U,$J,358.3,31115,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31115,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,31115,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,31116,0)
+ ;;=V00.898D^^135^1391^98
+ ;;^UTILITY(U,$J,358.3,31116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32719,1,3,0)
- ;;=3^Malig Neop Accessory Sinus,Unspec
- ;;^UTILITY(U,$J,358.3,32719,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,32719,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,32720,0)
- ;;=C24.1^^182^1992^102
- ;;^UTILITY(U,$J,358.3,32720,1,0)
+ ;;^UTILITY(U,$J,358.3,31116,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31116,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,31116,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,31117,0)
+ ;;=W00.0XXA^^135^1391^79
+ ;;^UTILITY(U,$J,358.3,31117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32720,1,3,0)
- ;;=3^Malig Neop Ampulla of Vater
- ;;^UTILITY(U,$J,358.3,32720,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,32720,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,32721,0)
- ;;=C21.0^^182^1992^103
- ;;^UTILITY(U,$J,358.3,32721,1,0)
+ ;;^UTILITY(U,$J,358.3,31117,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31117,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,31117,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,31118,0)
+ ;;=W00.0XXD^^135^1391^80
+ ;;^UTILITY(U,$J,358.3,31118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32721,1,3,0)
- ;;=3^Malig Neop Anus,Unspec
- ;;^UTILITY(U,$J,358.3,32721,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,32721,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,32722,0)
- ;;=C67.9^^182^1992^105
- ;;^UTILITY(U,$J,358.3,32722,1,0)
+ ;;^UTILITY(U,$J,358.3,31118,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31118,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,31118,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,31119,0)
+ ;;=W00.1XXA^^135^1391^59
+ ;;^UTILITY(U,$J,358.3,31119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32722,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,32722,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,32722,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,32723,0)
- ;;=C71.9^^182^1992^109
- ;;^UTILITY(U,$J,358.3,32723,1,0)
+ ;;^UTILITY(U,$J,358.3,31119,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31119,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,31119,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,31120,0)
+ ;;=W00.1XXD^^135^1391^60
+ ;;^UTILITY(U,$J,358.3,31120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32723,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,32723,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,32723,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,32724,0)
- ;;=C18.9^^182^1992^111
- ;;^UTILITY(U,$J,358.3,32724,1,0)
+ ;;^UTILITY(U,$J,358.3,31120,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31120,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,31120,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,31121,0)
+ ;;=W00.2XXA^^135^1391^53
+ ;;^UTILITY(U,$J,358.3,31121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32724,1,3,0)
- ;;=3^Malig Neop Colon,Unspec
- ;;^UTILITY(U,$J,358.3,32724,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,32724,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,32725,0)
- ;;=C49.9^^182^1992^112
- ;;^UTILITY(U,$J,358.3,32725,1,0)
+ ;;^UTILITY(U,$J,358.3,31121,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31121,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,31121,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,31122,0)
+ ;;=W00.2XXD^^135^1391^54
+ ;;^UTILITY(U,$J,358.3,31122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32725,1,3,0)
- ;;=3^Malig Neop Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,32725,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,32725,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,32726,0)
- ;;=C62.12^^182^1992^113
- ;;^UTILITY(U,$J,358.3,32726,1,0)
+ ;;^UTILITY(U,$J,358.3,31122,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31122,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,31122,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,31123,0)
+ ;;=W00.9XXA^^135^1391^25
+ ;;^UTILITY(U,$J,358.3,31123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32726,1,3,0)
- ;;=3^Malig Neop Descended Left Testis
- ;;^UTILITY(U,$J,358.3,32726,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,32726,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,32727,0)
- ;;=C62.11^^182^1992^114
- ;;^UTILITY(U,$J,358.3,32727,1,0)
+ ;;^UTILITY(U,$J,358.3,31123,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31123,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,31123,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,31124,0)
+ ;;=W00.9XXD^^135^1391^26
+ ;;^UTILITY(U,$J,358.3,31124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32727,1,3,0)
- ;;=3^Malig Neop Descended Right Testis
- ;;^UTILITY(U,$J,358.3,32727,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,32727,2)
- ;;=^5001234
- ;;^UTILITY(U,$J,358.3,32728,0)
- ;;=C15.9^^182^1992^116
- ;;^UTILITY(U,$J,358.3,32728,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32728,1,3,0)
- ;;=3^Malig Neop Esophagus,Unspec
- ;;^UTILITY(U,$J,358.3,32728,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,32728,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,32729,0)
- ;;=C24.0^^182^1992^117
+ ;;^UTILITY(U,$J,358.3,31124,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31124,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,31124,2)
+ ;;=^5059520

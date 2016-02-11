@@ -1,0 +1,132 @@
+IBDEI298 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,37868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37868,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,37868,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,37868,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,37869,0)
+ ;;=I46.9^^175^1904^3
+ ;;^UTILITY(U,$J,358.3,37869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37869,1,3,0)
+ ;;=3^Cardiac Arrest,Unspec Cause
+ ;;^UTILITY(U,$J,358.3,37869,1,4,0)
+ ;;=4^I46.9
+ ;;^UTILITY(U,$J,358.3,37869,2)
+ ;;=^5007221
+ ;;^UTILITY(U,$J,358.3,37870,0)
+ ;;=I49.9^^175^1904^4
+ ;;^UTILITY(U,$J,358.3,37870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37870,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,37870,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,37870,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,37871,0)
+ ;;=I50.9^^175^1904^10
+ ;;^UTILITY(U,$J,358.3,37871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37871,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,37871,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,37871,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,37872,0)
+ ;;=I65.21^^175^1904^14
+ ;;^UTILITY(U,$J,358.3,37872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37872,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,37872,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,37872,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,37873,0)
+ ;;=I65.22^^175^1904^13
+ ;;^UTILITY(U,$J,358.3,37873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37873,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,37873,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,37873,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,37874,0)
+ ;;=I65.23^^175^1904^12
+ ;;^UTILITY(U,$J,358.3,37874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37874,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,37874,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,37874,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,37875,0)
+ ;;=I63.131^^175^1904^9
+ ;;^UTILITY(U,$J,358.3,37875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37875,1,3,0)
+ ;;=3^Cerebral Infarction d/t Embolism Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,37875,1,4,0)
+ ;;=4^I63.131
+ ;;^UTILITY(U,$J,358.3,37875,2)
+ ;;=^5007308
+ ;;^UTILITY(U,$J,358.3,37876,0)
+ ;;=I63.132^^175^1904^8
+ ;;^UTILITY(U,$J,358.3,37876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37876,1,3,0)
+ ;;=3^Cerebral Infarction d/t Embolism Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,37876,1,4,0)
+ ;;=4^I63.132
+ ;;^UTILITY(U,$J,358.3,37876,2)
+ ;;=^5007309
+ ;;^UTILITY(U,$J,358.3,37877,0)
+ ;;=I63.231^^175^1904^7
+ ;;^UTILITY(U,$J,358.3,37877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37877,1,3,0)
+ ;;=3^Cereb Infrc d/t Unspec Occls/Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,37877,1,4,0)
+ ;;=4^I63.231
+ ;;^UTILITY(U,$J,358.3,37877,2)
+ ;;=^5007316
+ ;;^UTILITY(U,$J,358.3,37878,0)
+ ;;=I63.232^^175^1904^6
+ ;;^UTILITY(U,$J,358.3,37878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37878,1,3,0)
+ ;;=3^Cereb Infrc d/t Unspec Occls/Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,37878,1,4,0)
+ ;;=4^I63.232
+ ;;^UTILITY(U,$J,358.3,37878,2)
+ ;;=^5007317
+ ;;^UTILITY(U,$J,358.3,37879,0)
+ ;;=K63.9^^175^1905^4
+ ;;^UTILITY(U,$J,358.3,37879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37879,1,3,0)
+ ;;=3^Intestinal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,37879,1,4,0)
+ ;;=4^K63.9
+ ;;^UTILITY(U,$J,358.3,37879,2)
+ ;;=^5008768
+ ;;^UTILITY(U,$J,358.3,37880,0)
+ ;;=K76.6^^175^1905^7
+ ;;^UTILITY(U,$J,358.3,37880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37880,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,37880,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,37880,2)
+ ;;=^5008834

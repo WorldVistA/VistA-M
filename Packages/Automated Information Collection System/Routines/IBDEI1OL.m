@@ -1,138 +1,128 @@
-IBDEI1OL ; ; 06-AUG-2015
+IBDEI1OL ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29840,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 3
- ;;^UTILITY(U,$J,358.3,29840,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,29840,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,29841,0)
- ;;=N18.4^^177^1900^7
- ;;^UTILITY(U,$J,358.3,29841,1,0)
+ ;;^UTILITY(U,$J,358.3,28129,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,28129,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,28129,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,28130,0)
+ ;;=M16.12^^132^1326^110
+ ;;^UTILITY(U,$J,358.3,28130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29841,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 4
- ;;^UTILITY(U,$J,358.3,29841,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,29841,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,29842,0)
- ;;=N18.5^^177^1900^8
- ;;^UTILITY(U,$J,358.3,29842,1,0)
+ ;;^UTILITY(U,$J,358.3,28130,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,28130,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,28130,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,28131,0)
+ ;;=M17.0^^132^1326^106
+ ;;^UTILITY(U,$J,358.3,28131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29842,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,29842,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,29842,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,29843,0)
- ;;=N18.6^^177^1900^10
- ;;^UTILITY(U,$J,358.3,29843,1,0)
+ ;;^UTILITY(U,$J,358.3,28131,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,28131,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,28131,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,28132,0)
+ ;;=M17.11^^132^1326^117
+ ;;^UTILITY(U,$J,358.3,28132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29843,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,29843,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,29843,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,29844,0)
- ;;=N18.9^^177^1900^9
- ;;^UTILITY(U,$J,358.3,29844,1,0)
+ ;;^UTILITY(U,$J,358.3,28132,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,28132,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,28132,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,28133,0)
+ ;;=M17.12^^132^1326^111
+ ;;^UTILITY(U,$J,358.3,28133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29844,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,29844,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,29844,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,29845,0)
- ;;=N17.8^^177^1900^1
- ;;^UTILITY(U,$J,358.3,29845,1,0)
+ ;;^UTILITY(U,$J,358.3,28133,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,28133,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,28133,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,28134,0)
+ ;;=M18.0^^132^1326^105
+ ;;^UTILITY(U,$J,358.3,28134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29845,1,3,0)
- ;;=3^Acute Kidney Failure NEC
- ;;^UTILITY(U,$J,358.3,29845,1,4,0)
- ;;=4^N17.8
- ;;^UTILITY(U,$J,358.3,29845,2)
- ;;=^5015601
- ;;^UTILITY(U,$J,358.3,29846,0)
- ;;=N25.89^^177^1900^17
- ;;^UTILITY(U,$J,358.3,29846,1,0)
+ ;;^UTILITY(U,$J,358.3,28134,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,28134,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,28134,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,28135,0)
+ ;;=M18.11^^132^1326^115
+ ;;^UTILITY(U,$J,358.3,28135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29846,1,3,0)
- ;;=3^Impaired Renal Tubular Function Disorder NEC
- ;;^UTILITY(U,$J,358.3,29846,1,4,0)
- ;;=4^N25.89
- ;;^UTILITY(U,$J,358.3,29846,2)
- ;;=^5015618
- ;;^UTILITY(U,$J,358.3,29847,0)
- ;;=N27.1^^177^1900^27
- ;;^UTILITY(U,$J,358.3,29847,1,0)
+ ;;^UTILITY(U,$J,358.3,28135,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,28135,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,28135,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,28136,0)
+ ;;=M18.12^^132^1326^109
+ ;;^UTILITY(U,$J,358.3,28136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29847,1,3,0)
- ;;=3^Small Kidney,Bilateral
- ;;^UTILITY(U,$J,358.3,29847,1,4,0)
- ;;=4^N27.1
- ;;^UTILITY(U,$J,358.3,29847,2)
- ;;=^5015624
- ;;^UTILITY(U,$J,358.3,29848,0)
- ;;=N20.1^^177^1900^3
- ;;^UTILITY(U,$J,358.3,29848,1,0)
+ ;;^UTILITY(U,$J,358.3,28136,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,28136,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,28136,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,28137,0)
+ ;;=M19.011^^132^1326^118
+ ;;^UTILITY(U,$J,358.3,28137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29848,1,3,0)
- ;;=3^Calculus of Ureter
- ;;^UTILITY(U,$J,358.3,29848,1,4,0)
- ;;=4^N20.1
- ;;^UTILITY(U,$J,358.3,29848,2)
- ;;=^5015608
- ;;^UTILITY(U,$J,358.3,29849,0)
- ;;=N28.1^^177^1900^19
- ;;^UTILITY(U,$J,358.3,29849,1,0)
+ ;;^UTILITY(U,$J,358.3,28137,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,28137,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,28137,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,28138,0)
+ ;;=M19.012^^132^1326^112
+ ;;^UTILITY(U,$J,358.3,28138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29849,1,3,0)
- ;;=3^Kidney Cyst,Acquired
- ;;^UTILITY(U,$J,358.3,29849,1,4,0)
- ;;=4^N28.1
- ;;^UTILITY(U,$J,358.3,29849,2)
- ;;=^270380
- ;;^UTILITY(U,$J,358.3,29850,0)
- ;;=N28.0^^177^1900^18
- ;;^UTILITY(U,$J,358.3,29850,1,0)
+ ;;^UTILITY(U,$J,358.3,28138,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,28138,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,28138,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,28139,0)
+ ;;=M19.031^^132^1326^119
+ ;;^UTILITY(U,$J,358.3,28139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29850,1,3,0)
- ;;=3^Ischemia and Infarction of Kidney
- ;;^UTILITY(U,$J,358.3,29850,1,4,0)
- ;;=4^N28.0
- ;;^UTILITY(U,$J,358.3,29850,2)
- ;;=^5015626
- ;;^UTILITY(U,$J,358.3,29851,0)
- ;;=Q61.3^^177^1900^25
- ;;^UTILITY(U,$J,358.3,29851,1,0)
+ ;;^UTILITY(U,$J,358.3,28139,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,28139,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,28139,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,28140,0)
+ ;;=M19.032^^132^1326^113
+ ;;^UTILITY(U,$J,358.3,28140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29851,1,3,0)
- ;;=3^Polycystic Kidney,Unspec
- ;;^UTILITY(U,$J,358.3,29851,1,4,0)
- ;;=4^Q61.3
- ;;^UTILITY(U,$J,358.3,29851,2)
- ;;=^5018797
- ;;^UTILITY(U,$J,358.3,29852,0)
- ;;=C64.1^^177^1900^22
- ;;^UTILITY(U,$J,358.3,29852,1,0)
+ ;;^UTILITY(U,$J,358.3,28140,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,28140,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,28140,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,28141,0)
+ ;;=M19.041^^132^1326^114
+ ;;^UTILITY(U,$J,358.3,28141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29852,1,3,0)
- ;;=3^Malig Neop of Right Kidney
- ;;^UTILITY(U,$J,358.3,29852,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,29852,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,29853,0)
- ;;=C64.2^^177^1900^20
- ;;^UTILITY(U,$J,358.3,29853,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29853,1,3,0)
- ;;=3^Malig Neop of Left Kidney
- ;;^UTILITY(U,$J,358.3,29853,1,4,0)
- ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,28141,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,28141,1,4,0)
+ ;;=4^M19.041

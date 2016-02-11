@@ -1,0 +1,130 @@
+IBDEI2PM ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45474,0)
+ ;;=S71.002A^^200^2245^11
+ ;;^UTILITY(U,$J,358.3,45474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45474,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,45474,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,45474,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,45475,0)
+ ;;=S91.104A^^200^2245^22
+ ;;^UTILITY(U,$J,358.3,45475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45475,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,45475,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,45475,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,45476,0)
+ ;;=S81.802A^^200^2245^13
+ ;;^UTILITY(U,$J,358.3,45476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45476,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,45476,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,45476,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,45477,0)
+ ;;=S41.102A^^200^2245^15
+ ;;^UTILITY(U,$J,358.3,45477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45477,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,45477,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,45477,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,45478,0)
+ ;;=S91.001A^^200^2245^16
+ ;;^UTILITY(U,$J,358.3,45478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45478,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,45478,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,45478,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,45479,0)
+ ;;=S91.301A^^200^2245^17
+ ;;^UTILITY(U,$J,358.3,45479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45479,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,45479,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,45479,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,45480,0)
+ ;;=S51.801A^^200^2245^18
+ ;;^UTILITY(U,$J,358.3,45480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45480,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,45480,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,45480,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,45481,0)
+ ;;=S91.101A^^200^2245^19
+ ;;^UTILITY(U,$J,358.3,45481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45481,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,45481,1,4,0)
+ ;;=4^S91.101A
+ ;;^UTILITY(U,$J,358.3,45481,2)
+ ;;=^5044168
+ ;;^UTILITY(U,$J,358.3,45482,0)
+ ;;=S61.401A^^200^2245^20
+ ;;^UTILITY(U,$J,358.3,45482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45482,1,3,0)
+ ;;=3^Open Wound,Right Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,45482,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,45482,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,45483,0)
+ ;;=S71.001A^^200^2245^21
+ ;;^UTILITY(U,$J,358.3,45483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45483,1,3,0)
+ ;;=3^Open Wound,Right Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,45483,1,4,0)
+ ;;=4^S71.001A
+ ;;^UTILITY(U,$J,358.3,45483,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,45484,0)
+ ;;=S91.105A^^200^2245^12
+ ;;^UTILITY(U,$J,358.3,45484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45484,1,3,0)
+ ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,45484,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,45484,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,45485,0)
+ ;;=S81.801A^^200^2245^23
+ ;;^UTILITY(U,$J,358.3,45485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45485,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,45485,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,45485,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,45486,0)
+ ;;=S71.102A^^200^2245^14
+ ;;^UTILITY(U,$J,358.3,45486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45486,1,3,0)
+ ;;=3^Open Wound,Left Thigh,Unspec

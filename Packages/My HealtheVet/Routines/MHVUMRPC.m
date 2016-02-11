@@ -1,5 +1,5 @@
-MHVUMRPC ;KUM - myHealtheVet Management Utilities ; 6/18/2013
- ;;1.0;My HealtheVet;**11**;June 18, 2013;Build 61
+MHVUMRPC ;KUM/LB - myHealtheVet Management Utilities ; 6/18/2013
+ ;;1.0;My HealtheVet;**11,22**;Mar 05, 2014;Build 19
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
@@ -40,7 +40,8 @@ DSSUNT(RESULTS,MHVSTRING) ;
  ;                 5     Inactive flag (1-Yes/0-No)
  ;                 6     Send to PCE flag
  ;
- N MHVLIEN,MHVLNAM,MHVCIEN,MHVDIEN,MHVDNAM,MHVCNT,MHVDIACT,MHVCHKF,MHVDPCE,MHVR1,MHVR1E,MHVR1C,MHVDIV,MHVDIVN
+ N MHVLIEN,MHVLNAM,MHVCIEN,MHVDIEN,MHVDNAM,MHVCNT,MHVDIACT,MHVCHKF,MHVDPCE,MHVR1
+ N MHVR1E,MHVR1C,MHVDIV,MHVDIVN,MHVPDUZ
  S MHVCNT=0
  S MHVDPCE=0
  S MHVCIEN=+$P(MHVSTRING,"^",1)
@@ -82,6 +83,7 @@ MHVCHK ;Check if DSS Unit is already populated in results array
  . I MHVDIEN=$P(^TMP($J,"MHVDUNT",MHVI),"^",3) S MHVCHKF=1
  Q
 PRINTRES ; Print Results
+ N I
  S I="" F  S I=$O(@RESULTS@(I)) Q:I=""  D
  . W !,"LOCATIONIEN LOCATIONNAME DSSUNITIEN DSSUNITNAME INACTIVE"
  . W !,@RESULTS@(I)
@@ -112,7 +114,7 @@ PATECLS(RESULTS,MHVSTRING) ; Get Patient eligibility and Classification data
  ; MHVSTRING IS PATIENT ICN, DSS UNIT IEN, PROCEDURE DATE AND TIME IN FILEMAN FORMAT
  ; RESULTS = PATIENT STATUS ^CLASSIFICATION DATA (AGENT ORANCE, IONIZING RADIATION, SC CONDITION, ENVIRONMENTAL CONTAMINANTS, MILITARY SEXUAL TRUMA
  ; RESULTS(1,2...)=PRIMARY/SECONDARY FLAG (1-PRIMARY,0-SECONDARY)^ELIGIBILITY IEN^ELIGIBILITY DESCRIPTION
- N MHVPIEN,MHVECD,MHVPDT,MHVI,MHVCNT,MHVPICN
+ N MHVPIEN,MHVECD,MHVPDT,MHVI,MHVCNT,MHVPICN,ECARY
  ; Get Patient IEN from Patient ICN
  S MHVPICN=+$P(MHVSTRING,"^",1)
  I $G(MHVPICN)'>0 S RESULTS(1)="0^No Patient ICN" Q
@@ -141,7 +143,7 @@ PATECLS(RESULTS,MHVSTRING) ; Get Patient eligibility and Classification data
 DIAGPL(RESULTS,MHVSTRING) ; Get Patient Diagnosis codes from Patient Probelm list
  ; MHVSTRING IS PATIENT ICN
  ; RESULTS = DIAGNOSIS CODE IEN^DIAGNOSIS CODE^DESCRIPTION
- N MHVPIEN,MHVPICN,MHVCNT
+ N MHVPIEN,MHVPICN,MHVCNT,MHVDCOD
  ; Get Patient IEN from Patient ICN
  S MHVPICN=+$P(MHVSTRING,"^",1)
  I $G(MHVPICN)'>0 S RESULTS(1)="0^No Patient ICN" Q
@@ -153,10 +155,12 @@ DIAGPL(RESULTS,MHVSTRING) ; Get Patient Diagnosis codes from Patient Probelm lis
  D LIST^GMPLUTL2(.MHVROOT,MHVPIEN,"A")
  I $G(MHVROOT(0))<1 S RESULTS(1)="0^No Diagnosis codes found in Patient Problem List" Q
  S MHVCNT=0
+ ;Fix for ICD 10 PRODUCTION ISSUE on date switch
+ ;Item#2.Story 223914: SM WLC - ICD10 - SNOMED CT Problem List and Encounter Completion and Workload 
  F  S MHVCNT=MHVCNT+1 Q:MHVCNT>$G(MHVROOT(0))  D
  . S MHVDCOD=$P($P(MHVROOT(MHVCNT),"^",4),"/",1)
  . S MHVDIEN=$P($$CODEN^ICDCODE(MHVDCOD,80),"~",1)
- . S RESULTS(MHVCNT)=$G(MHVDIEN)_"^"_$G(MHVDCOD)_"^"_$P(MHVROOT(MHVCNT),"^",3)
+ . S RESULTS(MHVCNT)=$G(MHVDIEN)_"^"_$G(MHVDCOD)_"^"_$P(MHVROOT(MHVCNT),"^",3)_"^"_$P(MHVROOT(MHVCNT),"^",13)
  Q
 DIAGSRCH(RESULTS,MHVSTRING) ; Get Diagnosis codes and description from Search string
  ; MHVSTRING IS SEARCH STRING AND FILE TO SEARCH
@@ -164,13 +168,20 @@ DIAGSRCH(RESULTS,MHVSTRING) ; Get Diagnosis codes and description from Search st
  N MHVSTR,MHVCNT
  K MHVROOT
  ; FILENAME^ICD
- S MHVSTR=$P(MHVSTRING,U)_"^ICD|"_$P(MHVSTRING,U,2)_"|DT^"
+ ;S MHVSTR=$P(MHVSTRING,U)_"^ICD|"_$P(MHVSTRING,U,2)_"|DT^"
+ ;Fix for ICD 10 PRODUCTION ISSUE on date switch
+ ;Item#1.Story 26244 SM WLC - ICD10 - SNOMED CT Problem List and Encounter Completion and Workload 
+ S MHVSTR=$P(MHVSTRING,U)_"^ICD|"_$P(MHVSTRING,U,2)_"|"_DT_"^"
  D SRCLST^ECUMRPC1(.MHVROOT,.MHVSTR)
  I $G(MHVROOT)="" S RESULTS(1)="^0^No results found" Q
  S MHVCNT=0
- S I="" F  S I=$O(@MHVROOT@(I)) Q:I=""  D
+ ;Per Secure Messaging (SM) Change Request (CR)Release 12.15
+ ;User Story:  Problem List ICD-10 enhancement:
+ ;restrict the number of records returned from VistA to 199 or less
+ ;S I="" F  S I=$O(@MHVROOT@(I)) Q:I=""  D
+ S I="" F  S I=$O(@MHVROOT@(I)) Q:(I="")!(MHVCNT>199)  D
  . S MHVCNT=MHVCNT+1
  . S RESULTS(I)=@MHVROOT@(I)
- . S RESULTS(I)=$P(RESULTS(I),"^",3)_"^"_$P(RESULTS(I),"^",1)_"^"_$P(RESULTS(I),"^",2)
+ . S RESULTS(I)=$P(RESULTS(I),"^",3)_"^"_$P(RESULTS(I),"^",1)_"^"_$P(RESULTS(I),"^",2)_"^"_$P($P(RESULTS(I),"(",2),")",1)
  I MHVCNT=0 S RESULTS(1)="^0^No results found" Q
  Q

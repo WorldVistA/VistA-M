@@ -1,0 +1,130 @@
+IBDEI2UQ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47853,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,47854,0)
+ ;;=Z85.29^^209^2357^22
+ ;;^UTILITY(U,$J,358.3,47854,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47854,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Resp/Intrathoracic Organs
+ ;;^UTILITY(U,$J,358.3,47854,1,4,0)
+ ;;=4^Z85.29
+ ;;^UTILITY(U,$J,358.3,47854,2)
+ ;;=^5063415
+ ;;^UTILITY(U,$J,358.3,47855,0)
+ ;;=Z85.068^^209^2357^23
+ ;;^UTILITY(U,$J,358.3,47855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47855,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Small Intestine
+ ;;^UTILITY(U,$J,358.3,47855,1,4,0)
+ ;;=4^Z85.068
+ ;;^UTILITY(U,$J,358.3,47855,2)
+ ;;=^5063404
+ ;;^UTILITY(U,$J,358.3,47856,0)
+ ;;=Z85.831^^209^2357^24
+ ;;^UTILITY(U,$J,358.3,47856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47856,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Soft Tissue
+ ;;^UTILITY(U,$J,358.3,47856,1,4,0)
+ ;;=4^Z85.831
+ ;;^UTILITY(U,$J,358.3,47856,2)
+ ;;=^5063445
+ ;;^UTILITY(U,$J,358.3,47857,0)
+ ;;=Z85.028^^209^2357^25
+ ;;^UTILITY(U,$J,358.3,47857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47857,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Stomach
+ ;;^UTILITY(U,$J,358.3,47857,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,47857,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,47858,0)
+ ;;=Z85.47^^209^2357^26
+ ;;^UTILITY(U,$J,358.3,47858,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47858,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Testis
+ ;;^UTILITY(U,$J,358.3,47858,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,47858,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,47859,0)
+ ;;=Z85.810^^209^2357^27
+ ;;^UTILITY(U,$J,358.3,47859,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47859,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Tongue
+ ;;^UTILITY(U,$J,358.3,47859,1,4,0)
+ ;;=4^Z85.810
+ ;;^UTILITY(U,$J,358.3,47859,2)
+ ;;=^5063438
+ ;;^UTILITY(U,$J,358.3,47860,0)
+ ;;=Z85.12^^209^2357^28
+ ;;^UTILITY(U,$J,358.3,47860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47860,1,3,0)
+ ;;=3^Personal Hx of Malig Neo of Trachea
+ ;;^UTILITY(U,$J,358.3,47860,1,4,0)
+ ;;=4^Z85.12
+ ;;^UTILITY(U,$J,358.3,47860,2)
+ ;;=^5063409
+ ;;^UTILITY(U,$J,358.3,47861,0)
+ ;;=Z85.821^^209^2357^29
+ ;;^UTILITY(U,$J,358.3,47861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47861,1,3,0)
+ ;;=3^Personal Hx of Merkel Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,47861,1,4,0)
+ ;;=4^Z85.821
+ ;;^UTILITY(U,$J,358.3,47861,2)
+ ;;=^5063442
+ ;;^UTILITY(U,$J,358.3,47862,0)
+ ;;=C4A.0^^209^2358^9
+ ;;^UTILITY(U,$J,358.3,47862,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47862,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Lip
+ ;;^UTILITY(U,$J,358.3,47862,1,4,0)
+ ;;=4^C4A.0
+ ;;^UTILITY(U,$J,358.3,47862,2)
+ ;;=^5001137
+ ;;^UTILITY(U,$J,358.3,47863,0)
+ ;;=C4A.11^^209^2358^12
+ ;;^UTILITY(U,$J,358.3,47863,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47863,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,47863,1,4,0)
+ ;;=4^C4A.11
+ ;;^UTILITY(U,$J,358.3,47863,2)
+ ;;=^5001139
+ ;;^UTILITY(U,$J,358.3,47864,0)
+ ;;=C4A.12^^209^2358^6
+ ;;^UTILITY(U,$J,358.3,47864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47864,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,47864,1,4,0)
+ ;;=4^C4A.12
+ ;;^UTILITY(U,$J,358.3,47864,2)
+ ;;=^5001140
+ ;;^UTILITY(U,$J,358.3,47865,0)
+ ;;=C4A.21^^209^2358^11
+ ;;^UTILITY(U,$J,358.3,47865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47865,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,47865,1,4,0)
+ ;;=4^C4A.21
+ ;;^UTILITY(U,$J,358.3,47865,2)
+ ;;=^5001142
+ ;;^UTILITY(U,$J,358.3,47866,0)
+ ;;=C4A.22^^209^2358^5
+ ;;^UTILITY(U,$J,358.3,47866,1,0)
+ ;;=^358.31IA^4^2

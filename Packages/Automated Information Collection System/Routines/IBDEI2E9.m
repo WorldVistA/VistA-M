@@ -1,0 +1,132 @@
+IBDEI2E9 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40220,2)
+ ;;=^5002076
+ ;;^UTILITY(U,$J,358.3,40221,0)
+ ;;=Q67.4^^186^2076^133
+ ;;^UTILITY(U,$J,358.3,40221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40221,1,3,0)
+ ;;=3^Congenital Skull/Face/Jaw Deformities
+ ;;^UTILITY(U,$J,358.3,40221,1,4,0)
+ ;;=4^Q67.4
+ ;;^UTILITY(U,$J,358.3,40221,2)
+ ;;=^5018880
+ ;;^UTILITY(U,$J,358.3,40222,0)
+ ;;=Q83.8^^186^2076^127
+ ;;^UTILITY(U,$J,358.3,40222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40222,1,3,0)
+ ;;=3^Congenital Breast Malformations
+ ;;^UTILITY(U,$J,358.3,40222,1,4,0)
+ ;;=4^Q83.8
+ ;;^UTILITY(U,$J,358.3,40222,2)
+ ;;=^5019058
+ ;;^UTILITY(U,$J,358.3,40223,0)
+ ;;=Q30.8^^186^2076^132
+ ;;^UTILITY(U,$J,358.3,40223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40223,1,3,0)
+ ;;=3^Congenital Nose Malformations
+ ;;^UTILITY(U,$J,358.3,40223,1,4,0)
+ ;;=4^Q30.8
+ ;;^UTILITY(U,$J,358.3,40223,2)
+ ;;=^5018603
+ ;;^UTILITY(U,$J,358.3,40224,0)
+ ;;=L91.8^^186^2076^209
+ ;;^UTILITY(U,$J,358.3,40224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40224,1,3,0)
+ ;;=3^Hypertrophic Skin Disorders NEC
+ ;;^UTILITY(U,$J,358.3,40224,1,4,0)
+ ;;=4^L91.8
+ ;;^UTILITY(U,$J,358.3,40224,2)
+ ;;=^5009460
+ ;;^UTILITY(U,$J,358.3,40225,0)
+ ;;=S69.82XA^^186^2076^238
+ ;;^UTILITY(U,$J,358.3,40225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40225,1,3,0)
+ ;;=3^Injury Left Wrist/Hand/Finger,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,40225,1,4,0)
+ ;;=4^S69.82XA
+ ;;^UTILITY(U,$J,358.3,40225,2)
+ ;;=^5036819
+ ;;^UTILITY(U,$J,358.3,40226,0)
+ ;;=S69.81XA^^186^2076^251
+ ;;^UTILITY(U,$J,358.3,40226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40226,1,3,0)
+ ;;=3^Injury Right Wrist/Hand/Finger,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,40226,1,4,0)
+ ;;=4^S69.81XA
+ ;;^UTILITY(U,$J,358.3,40226,2)
+ ;;=^5036816
+ ;;^UTILITY(U,$J,358.3,40227,0)
+ ;;=C44.49^^186^2076^326
+ ;;^UTILITY(U,$J,358.3,40227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40227,1,3,0)
+ ;;=3^Malig Neop Skin Scalp/Neck NEC
+ ;;^UTILITY(U,$J,358.3,40227,1,4,0)
+ ;;=4^C44.49
+ ;;^UTILITY(U,$J,358.3,40227,2)
+ ;;=^340478
+ ;;^UTILITY(U,$J,358.3,40228,0)
+ ;;=Q17.3^^186^2076^159
+ ;;^UTILITY(U,$J,358.3,40228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40228,1,3,0)
+ ;;=3^Ear Misshape NEC
+ ;;^UTILITY(U,$J,358.3,40228,1,4,0)
+ ;;=4^Q17.3
+ ;;^UTILITY(U,$J,358.3,40228,2)
+ ;;=^5018512
+ ;;^UTILITY(U,$J,358.3,40229,0)
+ ;;=C44.192^^186^2076^325
+ ;;^UTILITY(U,$J,358.3,40229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40229,1,3,0)
+ ;;=3^Malig Neop Skin Right Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,40229,1,4,0)
+ ;;=4^C44.192
+ ;;^UTILITY(U,$J,358.3,40229,2)
+ ;;=^5001026
+ ;;^UTILITY(U,$J,358.3,40230,0)
+ ;;=C44.199^^186^2076^329
+ ;;^UTILITY(U,$J,358.3,40230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40230,1,3,0)
+ ;;=3^Malig Neop Skin,Oth,Left Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,40230,1,4,0)
+ ;;=4^C44.199
+ ;;^UTILITY(U,$J,358.3,40230,2)
+ ;;=^5001027
+ ;;^UTILITY(U,$J,358.3,40231,0)
+ ;;=C44.299^^186^2076^328
+ ;;^UTILITY(U,$J,358.3,40231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40231,1,3,0)
+ ;;=3^Malig Neop Skin,Oth,Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,40231,1,4,0)
+ ;;=4^C44.299
+ ;;^UTILITY(U,$J,358.3,40231,2)
+ ;;=^5001039
+ ;;^UTILITY(U,$J,358.3,40232,0)
+ ;;=C44.292^^186^2076^324
+ ;;^UTILITY(U,$J,358.3,40232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40232,1,3,0)
+ ;;=3^Malig Neop Skin Right Ear/External Auric Canal NEC
+ ;;^UTILITY(U,$J,358.3,40232,1,4,0)
+ ;;=4^C44.292
+ ;;^UTILITY(U,$J,358.3,40232,2)
+ ;;=^5001038
+ ;;^UTILITY(U,$J,358.3,40233,0)
+ ;;=Q17.8^^186^2076^128
+ ;;^UTILITY(U,$J,358.3,40233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40233,1,3,0)
+ ;;=3^Congenital Ear Malformations NEC

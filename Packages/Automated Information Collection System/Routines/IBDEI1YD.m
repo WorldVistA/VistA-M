@@ -1,122 +1,126 @@
-IBDEI1YD ; ; 06-AUG-2015
+IBDEI1YD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34269,0)
- ;;=S06.384S^^183^2018^34
- ;;^UTILITY(U,$J,358.3,34269,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34269,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,34269,1,4,0)
- ;;=4^S06.384S
- ;;^UTILITY(U,$J,358.3,34269,2)
- ;;=^5021010
- ;;^UTILITY(U,$J,358.3,34270,0)
- ;;=S06.389S^^183^2018^35
- ;;^UTILITY(U,$J,358.3,34270,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34270,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,34270,1,4,0)
- ;;=4^S06.389S
- ;;^UTILITY(U,$J,358.3,34270,2)
- ;;=^5021025
- ;;^UTILITY(U,$J,358.3,34271,0)
- ;;=S06.380S^^183^2018^36
- ;;^UTILITY(U,$J,358.3,34271,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34271,1,3,0)
- ;;=3^Contus/lac/hem brnst w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,34271,1,4,0)
- ;;=4^S06.380S
- ;;^UTILITY(U,$J,358.3,34271,2)
- ;;=^5020998
- ;;^UTILITY(U,$J,358.3,34272,0)
- ;;=S06.375S^^183^2018^37
- ;;^UTILITY(U,$J,358.3,34272,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34272,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,34272,1,4,0)
- ;;=4^S06.375S
- ;;^UTILITY(U,$J,358.3,34272,2)
- ;;=^5020983
- ;;^UTILITY(U,$J,358.3,34273,0)
- ;;=S06.376S^^183^2018^38
- ;;^UTILITY(U,$J,358.3,34273,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34273,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,34273,1,4,0)
- ;;=4^S06.376S
- ;;^UTILITY(U,$J,358.3,34273,2)
- ;;=^5020986
- ;;^UTILITY(U,$J,358.3,34274,0)
- ;;=S06.373S^^183^2018^39
- ;;^UTILITY(U,$J,358.3,34274,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34274,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,34274,1,4,0)
- ;;=4^S06.373S
- ;;^UTILITY(U,$J,358.3,34274,2)
- ;;=^5020977
- ;;^UTILITY(U,$J,358.3,34275,0)
- ;;=S06.371S^^183^2018^40
- ;;^UTILITY(U,$J,358.3,34275,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34275,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,34275,1,4,0)
- ;;=4^S06.371S
- ;;^UTILITY(U,$J,358.3,34275,2)
- ;;=^5020971
- ;;^UTILITY(U,$J,358.3,34276,0)
- ;;=S06.372S^^183^2018^41
- ;;^UTILITY(U,$J,358.3,34276,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34276,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,34276,1,4,0)
- ;;=4^S06.372S
- ;;^UTILITY(U,$J,358.3,34276,2)
- ;;=^5020974
- ;;^UTILITY(U,$J,358.3,34277,0)
- ;;=S06.374S^^183^2018^42
- ;;^UTILITY(U,$J,358.3,34277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34277,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,34277,1,4,0)
- ;;=4^S06.374S
- ;;^UTILITY(U,$J,358.3,34277,2)
- ;;=^5020980
- ;;^UTILITY(U,$J,358.3,34278,0)
- ;;=S06.377S^^183^2018^44
- ;;^UTILITY(U,$J,358.3,34278,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34278,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC w dth d/t brain inj bf consc,sqla
- ;;^UTILITY(U,$J,358.3,34278,1,4,0)
- ;;=4^S06.377S
- ;;^UTILITY(U,$J,358.3,34278,2)
- ;;=^5020989
- ;;^UTILITY(U,$J,358.3,34279,0)
- ;;=S06.378S^^183^2018^45
- ;;^UTILITY(U,$J,358.3,34279,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34279,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC w dth d/t oth cause bf consc,sqla
- ;;^UTILITY(U,$J,358.3,34279,1,4,0)
- ;;=4^S06.378S
- ;;^UTILITY(U,$J,358.3,34279,2)
- ;;=^5020992
- ;;^UTILITY(U,$J,358.3,34280,0)
- ;;=S06.379S^^183^2018^43
- ;;^UTILITY(U,$J,358.3,34280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34280,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,34280,1,4,0)
- ;;=4^S06.379S
+ ;;^UTILITY(U,$J,358.3,32695,0)
+ ;;=90869^^144^1559^23^^^^1
+ ;;^UTILITY(U,$J,358.3,32695,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32695,1,2,0)
+ ;;=2^90869
+ ;;^UTILITY(U,$J,358.3,32695,1,3,0)
+ ;;=3^TMS Sub Motor Threshold Redetermination
+ ;;^UTILITY(U,$J,358.3,32696,0)
+ ;;=90899^^144^1559^28^^^^1
+ ;;^UTILITY(U,$J,358.3,32696,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32696,1,2,0)
+ ;;=2^90899
+ ;;^UTILITY(U,$J,358.3,32696,1,3,0)
+ ;;=3^Unlisted Psychiatric Service
+ ;;^UTILITY(U,$J,358.3,32697,0)
+ ;;=96150^^144^1560^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32697,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32697,1,2,0)
+ ;;=2^96150
+ ;;^UTILITY(U,$J,358.3,32697,1,3,0)
+ ;;=3^Behavior Assessm,Initial,ea 15min
+ ;;^UTILITY(U,$J,358.3,32698,0)
+ ;;=96151^^144^1560^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32698,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32698,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,32698,1,3,0)
+ ;;=3^Behavior Reassessm,ea 15min
+ ;;^UTILITY(U,$J,358.3,32699,0)
+ ;;=96152^^144^1560^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32699,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32699,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,32699,1,3,0)
+ ;;=3^Behavior Intervent,Ind,ea 15min
+ ;;^UTILITY(U,$J,358.3,32700,0)
+ ;;=96153^^144^1560^4^^^^1
+ ;;^UTILITY(U,$J,358.3,32700,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32700,1,2,0)
+ ;;=2^96153
+ ;;^UTILITY(U,$J,358.3,32700,1,3,0)
+ ;;=3^Behavior Intervent,Grp,ea 15min
+ ;;^UTILITY(U,$J,358.3,32701,0)
+ ;;=96154^^144^1560^5^^^^1
+ ;;^UTILITY(U,$J,358.3,32701,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32701,1,2,0)
+ ;;=2^96154
+ ;;^UTILITY(U,$J,358.3,32701,1,3,0)
+ ;;=3^Behavior Intervent,Fam w/Pt,ea 15min
+ ;;^UTILITY(U,$J,358.3,32702,0)
+ ;;=96155^^144^1560^6^^^^1
+ ;;^UTILITY(U,$J,358.3,32702,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32702,1,2,0)
+ ;;=2^96155
+ ;;^UTILITY(U,$J,358.3,32702,1,3,0)
+ ;;=3^Behavior Intervent,Fam w/o Pt,ea 15min
+ ;;^UTILITY(U,$J,358.3,32703,0)
+ ;;=99367^^144^1561^68^^^^1
+ ;;^UTILITY(U,$J,358.3,32703,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32703,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,32703,1,3,0)
+ ;;=3^Team Conf w/o Pt &/or Family By Phys 30+ min
+ ;;^UTILITY(U,$J,358.3,32704,0)
+ ;;=90785^^144^1562^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32704,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32704,1,2,0)
+ ;;=2^90785
+ ;;^UTILITY(U,$J,358.3,32704,1,3,0)
+ ;;=3^Psytx Interactive Complexity
+ ;;^UTILITY(U,$J,358.3,32705,0)
+ ;;=90791^^144^1563^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32705,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32705,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,32705,1,3,0)
+ ;;=3^PSYCH DIAGNOSTIC EVALUATION
+ ;;^UTILITY(U,$J,358.3,32706,0)
+ ;;=90792^^144^1563^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32706,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32706,1,2,0)
+ ;;=2^90792
+ ;;^UTILITY(U,$J,358.3,32706,1,3,0)
+ ;;=3^PSYCH DIAG EVAL W/MEDICAL SERVICES
+ ;;^UTILITY(U,$J,358.3,32707,0)
+ ;;=90839^^144^1564^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32707,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32707,1,2,0)
+ ;;=2^90839
+ ;;^UTILITY(U,$J,358.3,32707,1,3,0)
+ ;;=3^PSYTX CRISIS INITIAL 30-74 MIN
+ ;;^UTILITY(U,$J,358.3,32708,0)
+ ;;=90840^^144^1564^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32708,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32708,1,2,0)
+ ;;=2^90840
+ ;;^UTILITY(U,$J,358.3,32708,1,3,0)
+ ;;=3^PSYTX CRISIS EA ADDL 30 MIN
+ ;;^UTILITY(U,$J,358.3,32709,0)
+ ;;=99354^^144^1565^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32709,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32709,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,32709,1,3,0)
+ ;;=3^PROLONGED SVC,OTPT,1ST HR
+ ;;^UTILITY(U,$J,358.3,32710,0)
+ ;;=99355^^144^1565^2^^^^1

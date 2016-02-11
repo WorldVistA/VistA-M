@@ -1,128 +1,136 @@
-IBDEI1WX ; ; 06-AUG-2015
+IBDEI1WX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33621,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,33622,0)
- ;;=F14.221^^182^2006^16
- ;;^UTILITY(U,$J,358.3,33622,1,0)
+ ;;^UTILITY(U,$J,358.3,32027,0)
+ ;;=F64.9^^141^1483^3
+ ;;^UTILITY(U,$J,358.3,32027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33622,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,33622,1,4,0)
- ;;=4^F14.221
- ;;^UTILITY(U,$J,358.3,33622,2)
- ;;=^5003256
- ;;^UTILITY(U,$J,358.3,33623,0)
- ;;=F14.220^^182^2006^18
- ;;^UTILITY(U,$J,358.3,33623,1,0)
+ ;;^UTILITY(U,$J,358.3,32027,1,3,0)
+ ;;=3^Gender Dysphoria,Unspec
+ ;;^UTILITY(U,$J,358.3,32027,1,4,0)
+ ;;=4^F64.9
+ ;;^UTILITY(U,$J,358.3,32027,2)
+ ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,32028,0)
+ ;;=Z59.2^^141^1484^1
+ ;;^UTILITY(U,$J,358.3,32028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33623,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33623,1,4,0)
- ;;=4^F14.220
- ;;^UTILITY(U,$J,358.3,33623,2)
- ;;=^5003255
- ;;^UTILITY(U,$J,358.3,33624,0)
- ;;=F14.20^^182^2006^23
- ;;^UTILITY(U,$J,358.3,33624,1,0)
+ ;;^UTILITY(U,$J,358.3,32028,1,3,0)
+ ;;=3^Discord w/ Neighbors,Lodgers or Landlord
+ ;;^UTILITY(U,$J,358.3,32028,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,32028,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,32029,0)
+ ;;=Z59.0^^141^1484^3
+ ;;^UTILITY(U,$J,358.3,32029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33624,1,3,0)
- ;;=3^Cocaine Dependence,Uncompicated
- ;;^UTILITY(U,$J,358.3,33624,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,33624,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,33625,0)
- ;;=F10.120^^182^2006^1
- ;;^UTILITY(U,$J,358.3,33625,1,0)
+ ;;^UTILITY(U,$J,358.3,32029,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,32029,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,32029,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,32030,0)
+ ;;=Z59.1^^141^1484^5
+ ;;^UTILITY(U,$J,358.3,32030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33625,1,3,0)
- ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33625,1,4,0)
- ;;=4^F10.120
- ;;^UTILITY(U,$J,358.3,33625,2)
- ;;=^5003069
- ;;^UTILITY(U,$J,358.3,33626,0)
- ;;=F10.10^^182^2006^2
- ;;^UTILITY(U,$J,358.3,33626,1,0)
+ ;;^UTILITY(U,$J,358.3,32030,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,32030,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,32030,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,32031,0)
+ ;;=Z59.3^^141^1484^9
+ ;;^UTILITY(U,$J,358.3,32031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33626,1,3,0)
- ;;=3^Alcohol Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33626,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,33626,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,33627,0)
- ;;=F17.201^^182^2006^28
- ;;^UTILITY(U,$J,358.3,33627,1,0)
+ ;;^UTILITY(U,$J,358.3,32031,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,32031,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,32031,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,32032,0)
+ ;;=Z59.4^^141^1484^7
+ ;;^UTILITY(U,$J,358.3,32032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33627,1,3,0)
- ;;=3^Nicotine Dependence In Remission,Unspec
- ;;^UTILITY(U,$J,358.3,33627,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,33627,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,33628,0)
- ;;=F17.210^^182^2006^27
- ;;^UTILITY(U,$J,358.3,33628,1,0)
+ ;;^UTILITY(U,$J,358.3,32032,1,3,0)
+ ;;=3^Lack of Adequate Food or Safe Drinking Water
+ ;;^UTILITY(U,$J,358.3,32032,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,32032,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,32033,0)
+ ;;=Z59.5^^141^1484^2
+ ;;^UTILITY(U,$J,358.3,32033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33628,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33628,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,33628,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,33629,0)
- ;;=F17.291^^182^2006^29
- ;;^UTILITY(U,$J,358.3,33629,1,0)
+ ;;^UTILITY(U,$J,358.3,32033,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,32033,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,32033,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,32034,0)
+ ;;=Z59.6^^141^1484^8
+ ;;^UTILITY(U,$J,358.3,32034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33629,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,33629,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,33629,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,33630,0)
- ;;=F17.290^^182^2006^30
- ;;^UTILITY(U,$J,358.3,33630,1,0)
+ ;;^UTILITY(U,$J,358.3,32034,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,32034,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,32034,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,32035,0)
+ ;;=Z59.7^^141^1484^6
+ ;;^UTILITY(U,$J,358.3,32035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33630,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33630,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,33630,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,33631,0)
- ;;=F17.221^^182^2006^24
- ;;^UTILITY(U,$J,358.3,33631,1,0)
+ ;;^UTILITY(U,$J,358.3,32035,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,32035,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,32035,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,32036,0)
+ ;;=Z59.9^^141^1484^4
+ ;;^UTILITY(U,$J,358.3,32036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33631,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,33631,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,33631,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,33632,0)
- ;;=F17.220^^182^2006^25
- ;;^UTILITY(U,$J,358.3,33632,1,0)
+ ;;^UTILITY(U,$J,358.3,32036,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,32036,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,32036,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,32037,0)
+ ;;=G21.19^^141^1485^3
+ ;;^UTILITY(U,$J,358.3,32037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33632,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33632,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,33632,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,33633,0)
- ;;=F17.211^^182^2006^26
- ;;^UTILITY(U,$J,358.3,33633,1,0)
+ ;;^UTILITY(U,$J,358.3,32037,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism NEC
+ ;;^UTILITY(U,$J,358.3,32037,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,32037,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,32038,0)
+ ;;=G21.11^^141^1485^5
+ ;;^UTILITY(U,$J,358.3,32038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33633,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,33633,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,33633,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,33634,0)
- ;;=F17.200^^182^2006^31
+ ;;^UTILITY(U,$J,358.3,32038,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,32038,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,32038,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,32039,0)
+ ;;=G24.02^^141^1485^1
+ ;;^UTILITY(U,$J,358.3,32039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32039,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,32039,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,32039,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,32040,0)
+ ;;=G24.01^^141^1485^7

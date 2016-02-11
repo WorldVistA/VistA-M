@@ -1,124 +1,130 @@
-IBDEI1Q8 ; ; 06-AUG-2015
+IBDEI1Q8 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30555,1,4,0)
- ;;=4^O91.111
- ;;^UTILITY(U,$J,358.3,30555,2)
- ;;=^5017828
- ;;^UTILITY(U,$J,358.3,30556,0)
- ;;=O91.112^^178^1922^1
- ;;^UTILITY(U,$J,358.3,30556,1,0)
+ ;;^UTILITY(U,$J,358.3,28885,0)
+ ;;=W55.03XA^^132^1339^101
+ ;;^UTILITY(U,$J,358.3,28885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30556,1,3,0)
- ;;=3^Abscess of breast associated w pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30556,1,4,0)
- ;;=4^O91.112
- ;;^UTILITY(U,$J,358.3,30556,2)
- ;;=^5017829
- ;;^UTILITY(U,$J,358.3,30557,0)
- ;;=O91.113^^178^1922^3
- ;;^UTILITY(U,$J,358.3,30557,1,0)
+ ;;^UTILITY(U,$J,358.3,28885,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28885,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,28885,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,28886,0)
+ ;;=W55.03XD^^132^1339^102
+ ;;^UTILITY(U,$J,358.3,28886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30557,1,3,0)
- ;;=3^Abscess of breast associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30557,1,4,0)
- ;;=4^O91.113
- ;;^UTILITY(U,$J,358.3,30557,2)
- ;;=^5017830
- ;;^UTILITY(U,$J,358.3,30558,0)
- ;;=O91.12^^178^1922^4
- ;;^UTILITY(U,$J,358.3,30558,1,0)
+ ;;^UTILITY(U,$J,358.3,28886,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28886,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,28886,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,28887,0)
+ ;;=X00.8XXA^^132^1339^17
+ ;;^UTILITY(U,$J,358.3,28887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30558,1,3,0)
- ;;=3^Abscess of breast associated with the puerperium
- ;;^UTILITY(U,$J,358.3,30558,1,4,0)
- ;;=4^O91.12
- ;;^UTILITY(U,$J,358.3,30558,2)
- ;;=^5017832
- ;;^UTILITY(U,$J,358.3,30559,0)
- ;;=O91.211^^178^1922^17
- ;;^UTILITY(U,$J,358.3,30559,1,0)
+ ;;^UTILITY(U,$J,358.3,28887,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28887,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,28887,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,28888,0)
+ ;;=X00.8XXD^^132^1339^18
+ ;;^UTILITY(U,$J,358.3,28888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30559,1,3,0)
- ;;=3^Nonpurulent mastitis associated w pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30559,1,4,0)
- ;;=4^O91.211
- ;;^UTILITY(U,$J,358.3,30559,2)
- ;;=^5017834
- ;;^UTILITY(U,$J,358.3,30560,0)
- ;;=O91.212^^178^1922^16
- ;;^UTILITY(U,$J,358.3,30560,1,0)
+ ;;^UTILITY(U,$J,358.3,28888,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28888,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,28888,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,28889,0)
+ ;;=X32.XXXA^^132^1339^15
+ ;;^UTILITY(U,$J,358.3,28889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30560,1,3,0)
- ;;=3^Nonpurulent mastitis assoc w pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30560,1,4,0)
- ;;=4^O91.212
- ;;^UTILITY(U,$J,358.3,30560,2)
- ;;=^5017835
- ;;^UTILITY(U,$J,358.3,30561,0)
- ;;=O91.213^^178^1922^18
- ;;^UTILITY(U,$J,358.3,30561,1,0)
+ ;;^UTILITY(U,$J,358.3,28889,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28889,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,28889,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,28890,0)
+ ;;=X32.XXXD^^132^1339^16
+ ;;^UTILITY(U,$J,358.3,28890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30561,1,3,0)
- ;;=3^Nonpurulent mastitis associated w pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30561,1,4,0)
- ;;=4^O91.213
- ;;^UTILITY(U,$J,358.3,30561,2)
- ;;=^5017836
- ;;^UTILITY(U,$J,358.3,30562,0)
- ;;=O91.22^^178^1922^19
- ;;^UTILITY(U,$J,358.3,30562,1,0)
+ ;;^UTILITY(U,$J,358.3,28890,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28890,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,28890,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,28891,0)
+ ;;=Y04.0XXA^^132^1339^7
+ ;;^UTILITY(U,$J,358.3,28891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30562,1,3,0)
- ;;=3^Nonpurulent mastitis associated with the puerperium
- ;;^UTILITY(U,$J,358.3,30562,1,4,0)
- ;;=4^O91.22
- ;;^UTILITY(U,$J,358.3,30562,2)
- ;;=^5017838
- ;;^UTILITY(U,$J,358.3,30563,0)
- ;;=O92.011^^178^1922^21
- ;;^UTILITY(U,$J,358.3,30563,1,0)
+ ;;^UTILITY(U,$J,358.3,28891,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28891,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,28891,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,28892,0)
+ ;;=Y04.0XXD^^132^1339^8
+ ;;^UTILITY(U,$J,358.3,28892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30563,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30563,1,4,0)
- ;;=4^O92.011
- ;;^UTILITY(U,$J,358.3,30563,2)
- ;;=^5017840
- ;;^UTILITY(U,$J,358.3,30564,0)
- ;;=O92.012^^178^1922^22
- ;;^UTILITY(U,$J,358.3,30564,1,0)
+ ;;^UTILITY(U,$J,358.3,28892,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28892,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,28892,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,28893,0)
+ ;;=Y04.1XXA^^132^1339^1
+ ;;^UTILITY(U,$J,358.3,28893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30564,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30564,1,4,0)
- ;;=4^O92.012
- ;;^UTILITY(U,$J,358.3,30564,2)
- ;;=^5017841
- ;;^UTILITY(U,$J,358.3,30565,0)
- ;;=O92.013^^178^1922^23
- ;;^UTILITY(U,$J,358.3,30565,1,0)
+ ;;^UTILITY(U,$J,358.3,28893,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28893,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,28893,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,28894,0)
+ ;;=Y04.1XXD^^132^1339^2
+ ;;^UTILITY(U,$J,358.3,28894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30565,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30565,1,4,0)
- ;;=4^O92.013
- ;;^UTILITY(U,$J,358.3,30565,2)
- ;;=^5017842
- ;;^UTILITY(U,$J,358.3,30566,0)
- ;;=O92.03^^178^1922^20
- ;;^UTILITY(U,$J,358.3,30566,1,0)
+ ;;^UTILITY(U,$J,358.3,28894,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28894,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,28894,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,28895,0)
+ ;;=Y04.2XXA^^132^1339^5
+ ;;^UTILITY(U,$J,358.3,28895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30566,1,3,0)
- ;;=3^Retracted nipple associated with lactation
- ;;^UTILITY(U,$J,358.3,30566,1,4,0)
- ;;=4^O92.03
- ;;^UTILITY(U,$J,358.3,30566,2)
- ;;=^5017845
- ;;^UTILITY(U,$J,358.3,30567,0)
- ;;=O92.111^^178^1922^7
- ;;^UTILITY(U,$J,358.3,30567,1,0)
+ ;;^UTILITY(U,$J,358.3,28895,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28895,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,28895,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,28896,0)
+ ;;=Y04.8XXA^^132^1339^3
+ ;;^UTILITY(U,$J,358.3,28896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30567,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28896,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28896,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,28896,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,28897,0)
+ ;;=Y04.2XXD^^132^1339^6
+ ;;^UTILITY(U,$J,358.3,28897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28897,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr

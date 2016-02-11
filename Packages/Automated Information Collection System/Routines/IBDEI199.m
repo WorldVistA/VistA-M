@@ -1,138 +1,124 @@
-IBDEI199 ; ; 06-AUG-2015
+IBDEI199 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22241,1,4,0)
- ;;=4^382.01
- ;;^UTILITY(U,$J,358.3,22241,1,5,0)
- ;;=5^Otitis Media W/Tympanic Membrane Rupture
- ;;^UTILITY(U,$J,358.3,22241,2)
- ;;=^269396
- ;;^UTILITY(U,$J,358.3,22242,0)
- ;;=381.10^^125^1390^29
- ;;^UTILITY(U,$J,358.3,22242,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22242,1,4,0)
- ;;=4^381.10
- ;;^UTILITY(U,$J,358.3,22242,1,5,0)
- ;;=5^Otitis Med, Serous Chronic
- ;;^UTILITY(U,$J,358.3,22242,2)
- ;;=Otitis Med,serous chroinic^269376
- ;;^UTILITY(U,$J,358.3,22243,0)
- ;;=379.91^^125^1390^32
- ;;^UTILITY(U,$J,358.3,22243,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22243,1,4,0)
- ;;=4^379.91
- ;;^UTILITY(U,$J,358.3,22243,1,5,0)
- ;;=5^Pain In Or Around Eye
- ;;^UTILITY(U,$J,358.3,22243,2)
- ;;=^89093
- ;;^UTILITY(U,$J,358.3,22244,0)
- ;;=462.^^125^1390^33
- ;;^UTILITY(U,$J,358.3,22244,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22244,1,4,0)
- ;;=4^462.
- ;;^UTILITY(U,$J,358.3,22244,1,5,0)
- ;;=5^Pharyngitis, Acute
- ;;^UTILITY(U,$J,358.3,22244,2)
- ;;=Pharyngitis, Acute^2653
- ;;^UTILITY(U,$J,358.3,22245,0)
- ;;=460.^^125^1390^21
- ;;^UTILITY(U,$J,358.3,22245,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22245,1,4,0)
- ;;=4^460.
- ;;^UTILITY(U,$J,358.3,22245,1,5,0)
- ;;=5^Nasopharyngitis, Acute
- ;;^UTILITY(U,$J,358.3,22245,2)
- ;;=^26543
- ;;^UTILITY(U,$J,358.3,22246,0)
- ;;=477.9^^125^1390^3
- ;;^UTILITY(U,$J,358.3,22246,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22246,1,4,0)
- ;;=4^477.9
- ;;^UTILITY(U,$J,358.3,22246,1,5,0)
- ;;=5^Allergic Rhinitis
- ;;^UTILITY(U,$J,358.3,22246,2)
- ;;=^4955
- ;;^UTILITY(U,$J,358.3,22247,0)
- ;;=473.9^^125^1390^37
- ;;^UTILITY(U,$J,358.3,22247,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22247,1,4,0)
- ;;=4^473.9
- ;;^UTILITY(U,$J,358.3,22247,1,5,0)
- ;;=5^Sinusitis, Chronic
- ;;^UTILITY(U,$J,358.3,22247,2)
- ;;=^123985
- ;;^UTILITY(U,$J,358.3,22248,0)
- ;;=461.1^^125^1390^38
- ;;^UTILITY(U,$J,358.3,22248,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22248,1,4,0)
- ;;=4^461.1
- ;;^UTILITY(U,$J,358.3,22248,1,5,0)
- ;;=5^Sinusitis, Frontal Acute
- ;;^UTILITY(U,$J,358.3,22248,2)
- ;;=^269856
- ;;^UTILITY(U,$J,358.3,22249,0)
- ;;=473.1^^125^1390^39
- ;;^UTILITY(U,$J,358.3,22249,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22249,1,4,0)
- ;;=4^473.1
- ;;^UTILITY(U,$J,358.3,22249,1,5,0)
- ;;=5^Sinusitis, Frontal Chronic
- ;;^UTILITY(U,$J,358.3,22249,2)
- ;;=^24380
- ;;^UTILITY(U,$J,358.3,22250,0)
- ;;=461.0^^125^1390^40
- ;;^UTILITY(U,$J,358.3,22250,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22250,1,4,0)
- ;;=4^461.0
- ;;^UTILITY(U,$J,358.3,22250,1,5,0)
- ;;=5^Sinusitis, Maxillary Acute
- ;;^UTILITY(U,$J,358.3,22250,2)
- ;;=^269853
- ;;^UTILITY(U,$J,358.3,22251,0)
- ;;=473.0^^125^1390^41
- ;;^UTILITY(U,$J,358.3,22251,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22251,1,4,0)
- ;;=4^473.0
- ;;^UTILITY(U,$J,358.3,22251,1,5,0)
- ;;=5^Sinusitis, Maxillary Chronic
- ;;^UTILITY(U,$J,358.3,22251,2)
- ;;=^24407
- ;;^UTILITY(U,$J,358.3,22252,0)
- ;;=388.31^^125^1390^43
- ;;^UTILITY(U,$J,358.3,22252,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22252,1,4,0)
- ;;=4^388.31
- ;;^UTILITY(U,$J,358.3,22252,1,5,0)
- ;;=5^Tinnitus, Subjective
- ;;^UTILITY(U,$J,358.3,22252,2)
- ;;=^269527
- ;;^UTILITY(U,$J,358.3,22253,0)
- ;;=463.^^125^1390^44
- ;;^UTILITY(U,$J,358.3,22253,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22253,1,4,0)
- ;;=4^463.
- ;;^UTILITY(U,$J,358.3,22253,1,5,0)
- ;;=5^Tonsillitis, Acute
- ;;^UTILITY(U,$J,358.3,22253,2)
- ;;=Tonsillitis, Acute^2695
- ;;^UTILITY(U,$J,358.3,22254,0)
- ;;=465.9^^125^1390^46
- ;;^UTILITY(U,$J,358.3,22254,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22254,1,4,0)
- ;;=4^465.9
- ;;^UTILITY(U,$J,358.3,22254,1,5,0)
- ;;=5^URI
+ ;;^UTILITY(U,$J,358.3,20991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20991,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,20991,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,20991,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,20992,0)
+ ;;=F10.230^^99^1007^4
+ ;;^UTILITY(U,$J,358.3,20992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20992,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,20992,1,4,0)
+ ;;=4^F10.230
+ ;;^UTILITY(U,$J,358.3,20992,2)
+ ;;=^5003086
+ ;;^UTILITY(U,$J,358.3,20993,0)
+ ;;=F10.231^^99^1007^5
+ ;;^UTILITY(U,$J,358.3,20993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20993,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,20993,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,20993,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,20994,0)
+ ;;=F10.232^^99^1007^6
+ ;;^UTILITY(U,$J,358.3,20994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20994,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,20994,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,20994,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,20995,0)
+ ;;=F10.239^^99^1007^7
+ ;;^UTILITY(U,$J,358.3,20995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20995,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,20995,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,20995,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,20996,0)
+ ;;=F10.24^^99^1007^9
+ ;;^UTILITY(U,$J,358.3,20996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20996,1,3,0)
+ ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,20996,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,20996,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,20997,0)
+ ;;=F10.29^^99^1007^11
+ ;;^UTILITY(U,$J,358.3,20997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20997,1,3,0)
+ ;;=3^Alcohol-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,20997,1,4,0)
+ ;;=4^F10.29
+ ;;^UTILITY(U,$J,358.3,20997,2)
+ ;;=^5003100
+ ;;^UTILITY(U,$J,358.3,20998,0)
+ ;;=F15.10^^99^1008^4
+ ;;^UTILITY(U,$J,358.3,20998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20998,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,20998,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,20998,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,20999,0)
+ ;;=F15.14^^99^1008^2
+ ;;^UTILITY(U,$J,358.3,20999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20999,1,3,0)
+ ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,20999,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,20999,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,21000,0)
+ ;;=F15.182^^99^1008^3
+ ;;^UTILITY(U,$J,358.3,21000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21000,1,3,0)
+ ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21000,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,21000,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,21001,0)
+ ;;=F15.20^^99^1008^5
+ ;;^UTILITY(U,$J,358.3,21001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21001,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,21001,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,21001,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,21002,0)
+ ;;=F15.21^^99^1008^6
+ ;;^UTILITY(U,$J,358.3,21002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21002,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,21002,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,21002,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,21003,0)
+ ;;=F15.23^^99^1008^1

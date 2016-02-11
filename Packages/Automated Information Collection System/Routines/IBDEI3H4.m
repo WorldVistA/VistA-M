@@ -1,0 +1,130 @@
+IBDEI3H4 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58423,0)
+ ;;=H51.9^^272^2907^7
+ ;;^UTILITY(U,$J,358.3,58423,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58423,1,3,0)
+ ;;=3^Binocular Movement Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,58423,1,4,0)
+ ;;=4^H51.9
+ ;;^UTILITY(U,$J,358.3,58423,2)
+ ;;=^5006258
+ ;;^UTILITY(U,$J,358.3,58424,0)
+ ;;=H49.13^^272^2907^19
+ ;;^UTILITY(U,$J,358.3,58424,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58424,1,3,0)
+ ;;=3^Fourth Trochlear Nerve Palsy,Bilateral
+ ;;^UTILITY(U,$J,358.3,58424,1,4,0)
+ ;;=4^H49.13
+ ;;^UTILITY(U,$J,358.3,58424,2)
+ ;;=^5006186
+ ;;^UTILITY(U,$J,358.3,58425,0)
+ ;;=H47.013^^272^2907^26
+ ;;^UTILITY(U,$J,358.3,58425,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58425,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,58425,1,4,0)
+ ;;=4^H47.013
+ ;;^UTILITY(U,$J,358.3,58425,2)
+ ;;=^5006107
+ ;;^UTILITY(U,$J,358.3,58426,0)
+ ;;=D86.82^^272^2907^33
+ ;;^UTILITY(U,$J,358.3,58426,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58426,1,3,0)
+ ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
+ ;;^UTILITY(U,$J,358.3,58426,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,58426,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,58427,0)
+ ;;=H49.883^^272^2907^38
+ ;;^UTILITY(U,$J,358.3,58427,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58427,1,3,0)
+ ;;=3^Paralytic Strabismus,Bilateral
+ ;;^UTILITY(U,$J,358.3,58427,1,4,0)
+ ;;=4^H49.883
+ ;;^UTILITY(U,$J,358.3,58427,2)
+ ;;=^5006205
+ ;;^UTILITY(U,$J,358.3,58428,0)
+ ;;=H49.23^^272^2907^44
+ ;;^UTILITY(U,$J,358.3,58428,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58428,1,3,0)
+ ;;=3^Sixth Abducent Nerve Palsy,Bilateral
+ ;;^UTILITY(U,$J,358.3,58428,1,4,0)
+ ;;=4^H49.23
+ ;;^UTILITY(U,$J,358.3,58428,2)
+ ;;=^5006190
+ ;;^UTILITY(U,$J,358.3,58429,0)
+ ;;=H49.03^^272^2907^48
+ ;;^UTILITY(U,$J,358.3,58429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58429,1,3,0)
+ ;;=3^Third Oculomotor Nerve Palsy,Bilateral
+ ;;^UTILITY(U,$J,358.3,58429,1,4,0)
+ ;;=4^H49.03
+ ;;^UTILITY(U,$J,358.3,58429,2)
+ ;;=^5006182
+ ;;^UTILITY(U,$J,358.3,58430,0)
+ ;;=H34.03^^272^2907^51
+ ;;^UTILITY(U,$J,358.3,58430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58430,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,58430,1,4,0)
+ ;;=4^H34.03
+ ;;^UTILITY(U,$J,358.3,58430,2)
+ ;;=^5005555
+ ;;^UTILITY(U,$J,358.3,58431,0)
+ ;;=Z90.01^^272^2908^1
+ ;;^UTILITY(U,$J,358.3,58431,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58431,1,3,0)
+ ;;=3^Acquired Absence of Eye
+ ;;^UTILITY(U,$J,358.3,58431,1,4,0)
+ ;;=4^Z90.01
+ ;;^UTILITY(U,$J,358.3,58431,2)
+ ;;=^322068
+ ;;^UTILITY(U,$J,358.3,58432,0)
+ ;;=H04.552^^272^2908^2
+ ;;^UTILITY(U,$J,358.3,58432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58432,1,3,0)
+ ;;=3^Acquired Stenosis of Left Nasolacrimal Duct
+ ;;^UTILITY(U,$J,358.3,58432,1,4,0)
+ ;;=4^H04.552
+ ;;^UTILITY(U,$J,358.3,58432,2)
+ ;;=^5004539
+ ;;^UTILITY(U,$J,358.3,58433,0)
+ ;;=H04.551^^272^2908^3
+ ;;^UTILITY(U,$J,358.3,58433,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58433,1,3,0)
+ ;;=3^Acquired Stenosis of Right Nasolacrimal Duct
+ ;;^UTILITY(U,$J,358.3,58433,1,4,0)
+ ;;=4^H04.551
+ ;;^UTILITY(U,$J,358.3,58433,2)
+ ;;=^5004538
+ ;;^UTILITY(U,$J,358.3,58434,0)
+ ;;=H01.115^^272^2908^4
+ ;;^UTILITY(U,$J,358.3,58434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58434,1,3,0)
+ ;;=3^Allergic Dermatitis of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58434,1,4,0)
+ ;;=4^H01.115
+ ;;^UTILITY(U,$J,358.3,58434,2)
+ ;;=^5133386
+ ;;^UTILITY(U,$J,358.3,58435,0)
+ ;;=H01.114^^272^2908^5
+ ;;^UTILITY(U,$J,358.3,58435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58435,1,3,0)
+ ;;=3^Allergic Dermatitis of Left Upper Eyelid

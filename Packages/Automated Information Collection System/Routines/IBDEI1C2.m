@@ -1,140 +1,122 @@
-IBDEI1C2 ; ; 06-AUG-2015
+IBDEI1C2 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23616,1,5,0)
- ;;=5^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,23616,2)
- ;;=^30028
- ;;^UTILITY(U,$J,358.3,23617,0)
- ;;=301.21^^127^1427^10
- ;;^UTILITY(U,$J,358.3,23617,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23617,1,2,0)
- ;;=2^301.21
- ;;^UTILITY(U,$J,358.3,23617,1,5,0)
- ;;=5^Introverted Personality
- ;;^UTILITY(U,$J,358.3,23617,2)
- ;;=^268174
- ;;^UTILITY(U,$J,358.3,23618,0)
- ;;=302.2^^127^1428^7
- ;;^UTILITY(U,$J,358.3,23618,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23618,1,2,0)
- ;;=2^302.2
- ;;^UTILITY(U,$J,358.3,23618,1,5,0)
- ;;=5^Pedophilia
- ;;^UTILITY(U,$J,358.3,23618,2)
- ;;=^91008
- ;;^UTILITY(U,$J,358.3,23619,0)
- ;;=302.4^^127^1428^2
- ;;^UTILITY(U,$J,358.3,23619,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23619,1,2,0)
- ;;=2^302.4
- ;;^UTILITY(U,$J,358.3,23619,1,5,0)
- ;;=5^Exhibitionism
- ;;^UTILITY(U,$J,358.3,23619,2)
- ;;=^43610
- ;;^UTILITY(U,$J,358.3,23620,0)
- ;;=302.72^^127^1428^6
- ;;^UTILITY(U,$J,358.3,23620,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23620,1,2,0)
- ;;=2^302.72
- ;;^UTILITY(U,$J,358.3,23620,1,5,0)
- ;;=5^Inhibited Sex Excite
- ;;^UTILITY(U,$J,358.3,23620,2)
- ;;=^100632
- ;;^UTILITY(U,$J,358.3,23621,0)
- ;;=302.73^^127^1428^4
- ;;^UTILITY(U,$J,358.3,23621,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23621,1,2,0)
- ;;=2^302.73
- ;;^UTILITY(U,$J,358.3,23621,1,5,0)
- ;;=5^Inhibited Female Orgasm
- ;;^UTILITY(U,$J,358.3,23621,2)
- ;;=^100628
- ;;^UTILITY(U,$J,358.3,23622,0)
- ;;=302.74^^127^1428^5
- ;;^UTILITY(U,$J,358.3,23622,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23622,1,2,0)
- ;;=2^302.74
- ;;^UTILITY(U,$J,358.3,23622,1,5,0)
- ;;=5^Inhibited Male Orgasm
- ;;^UTILITY(U,$J,358.3,23622,2)
- ;;=^100630
- ;;^UTILITY(U,$J,358.3,23623,0)
- ;;=302.75^^127^1428^8
- ;;^UTILITY(U,$J,358.3,23623,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23623,1,2,0)
- ;;=2^302.75
- ;;^UTILITY(U,$J,358.3,23623,1,5,0)
- ;;=5^Premature Ejaculation
- ;;^UTILITY(U,$J,358.3,23623,2)
- ;;=^100637
- ;;^UTILITY(U,$J,358.3,23624,0)
- ;;=302.85^^127^1428^3
- ;;^UTILITY(U,$J,358.3,23624,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23624,1,2,0)
- ;;=2^302.85
- ;;^UTILITY(U,$J,358.3,23624,1,5,0)
- ;;=5^Gender Dysphoria in Adults/Adolescents
- ;;^UTILITY(U,$J,358.3,23624,2)
- ;;=^268180
- ;;^UTILITY(U,$J,358.3,23625,0)
- ;;=302.0^^127^1428^1
- ;;^UTILITY(U,$J,358.3,23625,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23625,1,2,0)
- ;;=2^302.0
- ;;^UTILITY(U,$J,358.3,23625,1,5,0)
- ;;=5^Ego-Dystonic Sexual Orient
- ;;^UTILITY(U,$J,358.3,23625,2)
- ;;=^331922
- ;;^UTILITY(U,$J,358.3,23626,0)
- ;;=302.1^^127^1428^14
- ;;^UTILITY(U,$J,358.3,23626,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23626,1,2,0)
- ;;=2^302.1
- ;;^UTILITY(U,$J,358.3,23626,1,5,0)
- ;;=5^Zoophilia
- ;;^UTILITY(U,$J,358.3,23626,2)
- ;;=^265356
- ;;^UTILITY(U,$J,358.3,23627,0)
- ;;=302.3^^127^1428^13
- ;;^UTILITY(U,$J,358.3,23627,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23627,1,2,0)
- ;;=2^302.3
- ;;^UTILITY(U,$J,358.3,23627,1,5,0)
- ;;=5^Transvestic Fetishism
- ;;^UTILITY(U,$J,358.3,23627,2)
- ;;=^331923
- ;;^UTILITY(U,$J,358.3,23628,0)
- ;;=302.50^^127^1428^9
- ;;^UTILITY(U,$J,358.3,23628,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23628,1,2,0)
- ;;=2^302.50
- ;;^UTILITY(U,$J,358.3,23628,1,5,0)
- ;;=5^Trans-sexualism NOS
- ;;^UTILITY(U,$J,358.3,23628,2)
- ;;=^120949
- ;;^UTILITY(U,$J,358.3,23629,0)
- ;;=302.51^^127^1428^10
- ;;^UTILITY(U,$J,358.3,23629,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23629,1,2,0)
- ;;=2^302.51
- ;;^UTILITY(U,$J,358.3,23629,1,5,0)
- ;;=5^Trans-sexualism w/ Asexual Hx
- ;;^UTILITY(U,$J,358.3,23629,2)
- ;;=^268175
- ;;^UTILITY(U,$J,358.3,23630,0)
- ;;=302.52^^127^1428^12
+ ;;^UTILITY(U,$J,358.3,22220,2)
+ ;;=^5013955
+ ;;^UTILITY(U,$J,358.3,22221,0)
+ ;;=M84.463S^^101^1038^77
+ ;;^UTILITY(U,$J,358.3,22221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22221,1,3,0)
+ ;;=3^Pathological fracture, right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22221,1,4,0)
+ ;;=4^M84.463S
+ ;;^UTILITY(U,$J,358.3,22221,2)
+ ;;=^5013949
+ ;;^UTILITY(U,$J,358.3,22222,0)
+ ;;=S89.312S^^101^1038^81
+ ;;^UTILITY(U,$J,358.3,22222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22222,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22222,1,4,0)
+ ;;=4^S89.312S
+ ;;^UTILITY(U,$J,358.3,22222,2)
+ ;;=^5137372
+ ;;^UTILITY(U,$J,358.3,22223,0)
+ ;;=S89.311S^^101^1038^82
+ ;;^UTILITY(U,$J,358.3,22223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22223,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22223,1,4,0)
+ ;;=4^S89.311S
+ ;;^UTILITY(U,$J,358.3,22223,2)
+ ;;=^5043822
+ ;;^UTILITY(U,$J,358.3,22224,0)
+ ;;=S89.212S^^101^1038^85
+ ;;^UTILITY(U,$J,358.3,22224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22224,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22224,1,4,0)
+ ;;=4^S89.212S
+ ;;^UTILITY(U,$J,358.3,22224,2)
+ ;;=^5043780
+ ;;^UTILITY(U,$J,358.3,22225,0)
+ ;;=S89.211S^^101^1038^86
+ ;;^UTILITY(U,$J,358.3,22225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22225,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22225,1,4,0)
+ ;;=4^S89.211S
+ ;;^UTILITY(U,$J,358.3,22225,2)
+ ;;=^5043774
+ ;;^UTILITY(U,$J,358.3,22226,0)
+ ;;=S89.322S^^101^1038^89
+ ;;^UTILITY(U,$J,358.3,22226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22226,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22226,1,4,0)
+ ;;=4^S89.322S
+ ;;^UTILITY(U,$J,358.3,22226,2)
+ ;;=^5137378
+ ;;^UTILITY(U,$J,358.3,22227,0)
+ ;;=S89.221S^^101^1038^93
+ ;;^UTILITY(U,$J,358.3,22227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22227,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22227,1,4,0)
+ ;;=4^S89.221S
+ ;;^UTILITY(U,$J,358.3,22227,2)
+ ;;=^5043792
+ ;;^UTILITY(U,$J,358.3,22228,0)
+ ;;=S89.321S^^101^1038^90
+ ;;^UTILITY(U,$J,358.3,22228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22228,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22228,1,4,0)
+ ;;=4^S89.321S
+ ;;^UTILITY(U,$J,358.3,22228,2)
+ ;;=^5043834
+ ;;^UTILITY(U,$J,358.3,22229,0)
+ ;;=S89.222S^^101^1038^94
+ ;;^UTILITY(U,$J,358.3,22229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22229,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22229,1,4,0)
+ ;;=4^S89.222S
+ ;;^UTILITY(U,$J,358.3,22229,2)
+ ;;=^5043798
+ ;;^UTILITY(U,$J,358.3,22230,0)
+ ;;=M84.364S^^101^1038^103
+ ;;^UTILITY(U,$J,358.3,22230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22230,1,3,0)
+ ;;=3^Stress fracture, left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22230,1,4,0)
+ ;;=4^M84.364S
+ ;;^UTILITY(U,$J,358.3,22230,2)
+ ;;=^5013727
+ ;;^UTILITY(U,$J,358.3,22231,0)
+ ;;=M84.363S^^101^1038^105
+ ;;^UTILITY(U,$J,358.3,22231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22231,1,3,0)
+ ;;=3^Stress fracture, right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22231,1,4,0)
+ ;;=4^M84.363S
+ ;;^UTILITY(U,$J,358.3,22231,2)
+ ;;=^5013721
+ ;;^UTILITY(U,$J,358.3,22232,0)
+ ;;=S82.822S^^101^1038^107
+ ;;^UTILITY(U,$J,358.3,22232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22232,1,3,0)
+ ;;=3^Torus fracture of lower end of left fibula, sequela

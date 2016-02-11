@@ -1,5 +1,5 @@
 SROCMPED ;BIR/MAM - ENTER/EDIT OCCURRENCES ;08/16/2011
- ;;3.0;Surgery;**26,38,47,125,153,170,176,177,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**26,38,47,125,153,170,176,177,182,184**;24 Jun 93;Build 35
  I '$P(^SRF(SRTN,SRTYPE,SRENTRY,0),"^",2) D NOCAT I SRSOUT S SRSOUT=0 Q
  I '$D(^SRF(SRTN,SRTYPE,SRENTRY,0)) K SRENTRY S SRSOUT=0 Q
 START I '$D(^SRF(SRTN,SRTYPE,SRENTRY)) K SRENTRY S SRSOUT=0 Q
@@ -24,18 +24,18 @@ START I '$D(^SRF(SRTN,SRTYPE,SRENTRY)) K SRENTRY S SRSOUT=0 Q
  S X=$P(SR,"^",6),SHEMP=$S(X="U":"UNRESOLVED",X="I":"IMPROVED",X="D":"DEATH",X="W":"WORSE",1:""),SRO(5)=SHEMP_"^.05"
  K SRO(6) I SRTYPE=16 S X=$P(SR,"^",7) S:X X=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3) S SRO(6)=X_"^2"
 DISP N SRSYS S SRSYS=$$ICD910^SROICD(SRTN)
- W !,"1. Occurrence: ",?32,$P(SRO(1),"^"),!,"2. Occurrence Category: ",?32,$P(SRO(2),"^")
+ W !,"1. Occurrence: ",?30,$P(SRO(1),"^"),!,"2. Occurrence Category: ",?30,$P(SRO(2),"^")
  I $P(SR,"^",2)=40 D
  .W !,"3. UTI Signs/Symptoms Urg/Freq/Dys: ",$P(SRO(3),"^")
- .W !,"4. UTI Signs/Symptoms Fever: ",$P(SRO(4),"^"),!,"5. UTI Signs/Symptoms Tenderness: ",$P(SRO(5),"^")
- .W !,"6. UTI Culture: ",$P(SRO(6),"^"),!,"7. Indwelling Urethral Catheter > 2 Calendar Days: ",$P(SRO(7),"^")
+ .W !,"4. UTI Signs/Symptoms Fever:",?30,$P(SRO(4),"^"),!,"5. UTI Signs/Symptoms Tenderness: ",$P(SRO(5),"^")
+ .W !,"6. UTI Culture:",?30,$P(SRO(6),"^"),!,"7. Indwelling Urethral Catheter > 2 Calendar Days: ",$P(SRO(7),"^")
  I $P(SR,"^",2)'=40 S X=$P(SR,"^",2) D
- .W !,"3. "_$S(X=3:"Sepsis Type",X=12:"Stroke/CVA Duration",X=34:$S(SRTYPE=16:"Postop",1:"Intraop")_" Device Type",X=27&($P($G(^SRF(SRTN,"RA")),"^",2)="C"):"CPB Status",1:"ICD Diagnosis Code "_$$ICDSTR^SROICD(SRTN))_":",?32,$P(SRO(3),"^")
- S II=$S($P(SR,"^",2)=40:8,1:4) W !,II_". Treatment Instituted:",?26,$P(SRO(II),"^"),!,(II+1)_". Outcome to Date:",?26,$P(SRO(II+1),"^")
- S II=$S($P(SR,"^",2)=40:10,1:6) I $D(SRO(II)) W !,II_". Date Noted: ",?26,$P(SRO(II),"^")
+ .W !,"3. "_$S(X=3:"Sepsis Type",X=12:"Stroke/CVA Duration",X=34:$S(SRTYPE=16:"Postop",1:"Intraop")_" Device Type",X=27&($P($G(^SRF(SRTN,"RA")),"^",2)="C"):"CPB Status",1:"ICD Diagnosis Code "_$$ICDSTR^SROICD(SRTN))_":",?30,$P(SRO(3),"^")
+ S II=$S($P(SR,"^",2)=40:8,1:4) W !,II_". Treatment Instituted:",?30,$P(SRO(II),"^"),!,(II+1)_". Outcome to Date:",?30,$P(SRO(II+1),"^")
+ S II=$S($P(SR,"^",2)=40:10,1:6) I $D(SRO(II)) W !,II_". Date Noted: ",?30,$P(SRO(II),"^")
  S SRX=$S($P(SR,"^",2)=40:11,SRTYPE=10:6,1:7),SRO(SRX)="^" I $O(^SRF(SRTN,SRTYPE,SRENTRY,1,0)) S SRO(SRX)="*** INFORMATION ENTERED ***"_SRO(SRX)
  S X=$S(SRTYPE=10:1,1:4),SRO(SRX)=SRO(SRX)_X,SRMAX=SRX
- W !,SRX_". Occurrence Comments: ",?31,$P(SRO(SRX),"^")
+ W !,SRX_". Occurrence Comments: ",?30,$P(SRO(SRX),"^")
  W !!,SRLINE
  W !!,"Select Occurrence Information: " R X:DTIME I '$T!("^"[X) S:X["^" SRSOUT=1 G END
  I "Aa"[X S X="1:"_SRMAX

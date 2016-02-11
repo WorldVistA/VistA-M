@@ -1,142 +1,124 @@
-IBDEI0YH ; ; 06-AUG-2015
+IBDEI0YH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16805,1,0)
+ ;;^UTILITY(U,$J,358.3,15882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16805,1,3,0)
- ;;=3^786.39
- ;;^UTILITY(U,$J,358.3,16805,1,4,0)
- ;;=4^Hemoptysis NEC
- ;;^UTILITY(U,$J,358.3,16805,2)
- ;;=^339640
- ;;^UTILITY(U,$J,358.3,16806,0)
- ;;=793.19^^87^1016^3
- ;;^UTILITY(U,$J,358.3,16806,1,0)
+ ;;^UTILITY(U,$J,358.3,15882,1,3,0)
+ ;;=3^Intraoperative Complication of the Spleen
+ ;;^UTILITY(U,$J,358.3,15882,1,4,0)
+ ;;=4^D78.81
+ ;;^UTILITY(U,$J,358.3,15882,2)
+ ;;=^5002403
+ ;;^UTILITY(U,$J,358.3,15883,0)
+ ;;=H59.229^^85^828^3
+ ;;^UTILITY(U,$J,358.3,15883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16806,1,3,0)
- ;;=3^793.19
- ;;^UTILITY(U,$J,358.3,16806,1,4,0)
- ;;=4^Abnormal Chest Xray
- ;;^UTILITY(U,$J,358.3,16806,2)
- ;;=^340571
- ;;^UTILITY(U,$J,358.3,16807,0)
- ;;=786.05^^87^1016^27
- ;;^UTILITY(U,$J,358.3,16807,1,0)
+ ;;^UTILITY(U,$J,358.3,15883,1,3,0)
+ ;;=3^Accidental Puncture/Laceration of Eye/Adnexa,Unspec,During Surgery
+ ;;^UTILITY(U,$J,358.3,15883,1,4,0)
+ ;;=4^H59.229
+ ;;^UTILITY(U,$J,358.3,15883,2)
+ ;;=^5006416
+ ;;^UTILITY(U,$J,358.3,15884,0)
+ ;;=D78.12^^85^828^11
+ ;;^UTILITY(U,$J,358.3,15884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16807,1,3,0)
- ;;=3^786.05
- ;;^UTILITY(U,$J,358.3,16807,1,4,0)
- ;;=4^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,16807,2)
- ;;=^37632
- ;;^UTILITY(U,$J,358.3,16808,0)
- ;;=250.00^^87^1017^2
- ;;^UTILITY(U,$J,358.3,16808,1,0)
+ ;;^UTILITY(U,$J,358.3,15884,1,3,0)
+ ;;=3^Accidental Puncture/Laceration of Spleen During Surgery
+ ;;^UTILITY(U,$J,358.3,15884,1,4,0)
+ ;;=4^D78.12
+ ;;^UTILITY(U,$J,358.3,15884,2)
+ ;;=^5002400
+ ;;^UTILITY(U,$J,358.3,15885,0)
+ ;;=I97.811^^85^828^14
+ ;;^UTILITY(U,$J,358.3,15885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16808,1,3,0)
- ;;=3^250.00
- ;;^UTILITY(U,$J,358.3,16808,1,4,0)
- ;;=4^DM,Type II
- ;;^UTILITY(U,$J,358.3,16808,2)
- ;;=^33605
- ;;^UTILITY(U,$J,358.3,16809,0)
- ;;=276.9^^87^1017^3
- ;;^UTILITY(U,$J,358.3,16809,1,0)
+ ;;^UTILITY(U,$J,358.3,15885,1,3,0)
+ ;;=3^Intraoperative Cerebrovascular Infarction During Surgery
+ ;;^UTILITY(U,$J,358.3,15885,1,4,0)
+ ;;=4^I97.811
+ ;;^UTILITY(U,$J,358.3,15885,2)
+ ;;=^5008108
+ ;;^UTILITY(U,$J,358.3,15886,0)
+ ;;=S31.154A^^85^829^3
+ ;;^UTILITY(U,$J,358.3,15886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16809,1,3,0)
- ;;=3^276.9
- ;;^UTILITY(U,$J,358.3,16809,1,4,0)
- ;;=4^Fluid/Electrolyte Abnormality
- ;;^UTILITY(U,$J,358.3,16809,2)
- ;;=^267949
- ;;^UTILITY(U,$J,358.3,16810,0)
- ;;=250.01^^87^1017^1
- ;;^UTILITY(U,$J,358.3,16810,1,0)
+ ;;^UTILITY(U,$J,358.3,15886,1,3,0)
+ ;;=3^Open Bite of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15886,1,4,0)
+ ;;=4^S31.154A
+ ;;^UTILITY(U,$J,358.3,15886,2)
+ ;;=^5134487
+ ;;^UTILITY(U,$J,358.3,15887,0)
+ ;;=S31.151A^^85^829^4
+ ;;^UTILITY(U,$J,358.3,15887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16810,1,3,0)
- ;;=3^250.01
- ;;^UTILITY(U,$J,358.3,16810,1,4,0)
- ;;=4^DM,Type I
- ;;^UTILITY(U,$J,358.3,16810,2)
- ;;=^331780
- ;;^UTILITY(U,$J,358.3,16811,0)
- ;;=285.9^^87^1018^1
- ;;^UTILITY(U,$J,358.3,16811,1,0)
+ ;;^UTILITY(U,$J,358.3,15887,1,3,0)
+ ;;=3^Open Bite of LUQ of Abd Wall w/o Penet Perit Cav,Init Cav
+ ;;^UTILITY(U,$J,358.3,15887,1,4,0)
+ ;;=4^S31.151A
+ ;;^UTILITY(U,$J,358.3,15887,2)
+ ;;=^5024104
+ ;;^UTILITY(U,$J,358.3,15888,0)
+ ;;=S31.153A^^85^829^35
+ ;;^UTILITY(U,$J,358.3,15888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16811,1,3,0)
- ;;=3^285.9
- ;;^UTILITY(U,$J,358.3,16811,1,4,0)
- ;;=4^Anemia
- ;;^UTILITY(U,$J,358.3,16812,0)
- ;;=785.6^^87^1018^3
- ;;^UTILITY(U,$J,358.3,16812,1,0)
+ ;;^UTILITY(U,$J,358.3,15888,1,3,0)
+ ;;=3^Open Bite of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15888,1,4,0)
+ ;;=4^S31.153A
+ ;;^UTILITY(U,$J,358.3,15888,2)
+ ;;=^5024110
+ ;;^UTILITY(U,$J,358.3,15889,0)
+ ;;=S31.150A^^85^829^36
+ ;;^UTILITY(U,$J,358.3,15889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16812,1,3,0)
- ;;=3^785.6
- ;;^UTILITY(U,$J,358.3,16812,1,4,0)
- ;;=4^Lymphadenopathy
- ;;^UTILITY(U,$J,358.3,16813,0)
- ;;=V58.61^^87^1018^2
- ;;^UTILITY(U,$J,358.3,16813,1,0)
+ ;;^UTILITY(U,$J,358.3,15889,1,3,0)
+ ;;=3^Open Bite of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15889,1,4,0)
+ ;;=4^S31.150A
+ ;;^UTILITY(U,$J,358.3,15889,2)
+ ;;=^5024101
+ ;;^UTILITY(U,$J,358.3,15890,0)
+ ;;=S91.052A^^85^829^5
+ ;;^UTILITY(U,$J,358.3,15890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16813,1,3,0)
- ;;=3^V58.61
- ;;^UTILITY(U,$J,358.3,16813,1,4,0)
- ;;=4^Anti-coagulation use
- ;;^UTILITY(U,$J,358.3,16813,2)
- ;;=Anti-coagulation use^303459
- ;;^UTILITY(U,$J,358.3,16814,0)
- ;;=380.10^^87^1019^1
- ;;^UTILITY(U,$J,358.3,16814,1,0)
+ ;;^UTILITY(U,$J,358.3,15890,1,3,0)
+ ;;=3^Open Bite of Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15890,1,4,0)
+ ;;=4^S91.052A
+ ;;^UTILITY(U,$J,358.3,15890,2)
+ ;;=^5044162
+ ;;^UTILITY(U,$J,358.3,15891,0)
+ ;;=S31.825A^^85^829^6
+ ;;^UTILITY(U,$J,358.3,15891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16814,1,3,0)
- ;;=3^380.10
- ;;^UTILITY(U,$J,358.3,16814,1,4,0)
- ;;=4^Otitis Externa
- ;;^UTILITY(U,$J,358.3,16815,0)
- ;;=382.9^^87^1019^2
- ;;^UTILITY(U,$J,358.3,16815,1,0)
+ ;;^UTILITY(U,$J,358.3,15891,1,3,0)
+ ;;=3^Open Bite of Left Buttock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15891,1,4,0)
+ ;;=4^S31.825A
+ ;;^UTILITY(U,$J,358.3,15891,2)
+ ;;=^5024317
+ ;;^UTILITY(U,$J,358.3,15892,0)
+ ;;=S01.452A^^85^829^7
+ ;;^UTILITY(U,$J,358.3,15892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16815,1,3,0)
- ;;=3^382.9
- ;;^UTILITY(U,$J,358.3,16815,1,4,0)
- ;;=4^Otitis Media
- ;;^UTILITY(U,$J,358.3,16816,0)
- ;;=465.9^^87^1019^3
- ;;^UTILITY(U,$J,358.3,16816,1,0)
+ ;;^UTILITY(U,$J,358.3,15892,1,3,0)
+ ;;=3^Open Bite of Left Cheek/Temporomandibular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15892,1,4,0)
+ ;;=4^S01.452A
+ ;;^UTILITY(U,$J,358.3,15892,2)
+ ;;=^5020180
+ ;;^UTILITY(U,$J,358.3,15893,0)
+ ;;=S01.352A^^85^829^8
+ ;;^UTILITY(U,$J,358.3,15893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16816,1,3,0)
- ;;=3^465.9
- ;;^UTILITY(U,$J,358.3,16816,1,4,0)
- ;;=4^URI
- ;;^UTILITY(U,$J,358.3,16816,2)
- ;;=URI^269878
- ;;^UTILITY(U,$J,358.3,16817,0)
- ;;=401.9^^87^1020^1
- ;;^UTILITY(U,$J,358.3,16817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16817,1,3,0)
- ;;=3^401.9
- ;;^UTILITY(U,$J,358.3,16817,1,4,0)
- ;;=4^Hypertension
- ;;^UTILITY(U,$J,358.3,16818,0)
- ;;=458.0^^87^1020^2
- ;;^UTILITY(U,$J,358.3,16818,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16818,1,3,0)
- ;;=3^458.0
- ;;^UTILITY(U,$J,358.3,16818,1,4,0)
- ;;=4^Orthostatic Hypotension
- ;;^UTILITY(U,$J,358.3,16819,0)
- ;;=443.9^^87^1020^3
- ;;^UTILITY(U,$J,358.3,16819,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16819,1,3,0)
- ;;=3^443.9
- ;;^UTILITY(U,$J,358.3,16819,1,4,0)
- ;;=4^Periph Vascular Dis 
- ;;^UTILITY(U,$J,358.3,16820,0)
- ;;=451.11^^87^1020^4
- ;;^UTILITY(U,$J,358.3,16820,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15893,1,3,0)
+ ;;=3^Open Bite of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15893,1,4,0)
+ ;;=4^S01.352A
+ ;;^UTILITY(U,$J,358.3,15893,2)
+ ;;=^5020141
+ ;;^UTILITY(U,$J,358.3,15894,0)
+ ;;=S51.052A^^85^829^9

@@ -1,130 +1,128 @@
-IBDEI0C6 ; ; 06-AUG-2015
+IBDEI0C6 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5400,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5400,1,2,0)
- ;;=2^11771
- ;;^UTILITY(U,$J,358.3,5400,1,3,0)
- ;;=3^Exc Pilonidal Cyst/Sinus;Extensive
- ;;^UTILITY(U,$J,358.3,5401,0)
- ;;=11772^^26^331^1^^^^1
- ;;^UTILITY(U,$J,358.3,5401,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5401,1,2,0)
- ;;=2^11772
- ;;^UTILITY(U,$J,358.3,5401,1,3,0)
- ;;=3^Exc Pilonidal Cyst/Sinus;Compl
- ;;^UTILITY(U,$J,358.3,5402,0)
- ;;=11719^^26^332^1^^^^1
- ;;^UTILITY(U,$J,358.3,5402,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5402,1,2,0)
- ;;=2^11719
- ;;^UTILITY(U,$J,358.3,5402,1,3,0)
- ;;=3^Trim nondystrophic nails, any number
- ;;^UTILITY(U,$J,358.3,5403,0)
- ;;=11720^^26^332^2^^^^1
- ;;^UTILITY(U,$J,358.3,5403,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5403,1,2,0)
- ;;=2^11720
- ;;^UTILITY(U,$J,358.3,5403,1,3,0)
- ;;=3^Debride of nail(s) any method;1-5
- ;;^UTILITY(U,$J,358.3,5404,0)
- ;;=11721^^26^332^3^^^^1
- ;;^UTILITY(U,$J,358.3,5404,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5404,1,2,0)
- ;;=2^11721
- ;;^UTILITY(U,$J,358.3,5404,1,3,0)
- ;;=3^Debride of nail(s) any method;6+
- ;;^UTILITY(U,$J,358.3,5405,0)
- ;;=11730^^26^332^4^^^^1
- ;;^UTILITY(U,$J,358.3,5405,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5405,1,2,0)
- ;;=2^11730
- ;;^UTILITY(U,$J,358.3,5405,1,3,0)
- ;;=3^Avulsion of nail plate,simple;single
- ;;^UTILITY(U,$J,358.3,5406,0)
- ;;=11732^^26^332^5^^^^1
- ;;^UTILITY(U,$J,358.3,5406,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5406,1,2,0)
- ;;=2^11732
- ;;^UTILITY(U,$J,358.3,5406,1,3,0)
- ;;=3^Avulsion of nail plate,Ea Add nail plate
- ;;^UTILITY(U,$J,358.3,5407,0)
- ;;=11740^^26^332^6^^^^1
- ;;^UTILITY(U,$J,358.3,5407,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5407,1,2,0)
- ;;=2^11740
- ;;^UTILITY(U,$J,358.3,5407,1,3,0)
- ;;=3^Evacuation of subungual hematoma
- ;;^UTILITY(U,$J,358.3,5408,0)
- ;;=11750^^26^332^7^^^^1
- ;;^UTILITY(U,$J,358.3,5408,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5408,1,2,0)
- ;;=2^11750
- ;;^UTILITY(U,$J,358.3,5408,1,3,0)
- ;;=3^Exc of nail&nail matrix,perm removal
- ;;^UTILITY(U,$J,358.3,5409,0)
- ;;=11752^^26^332^8^^^^1
- ;;^UTILITY(U,$J,358.3,5409,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5409,1,2,0)
- ;;=2^11752
- ;;^UTILITY(U,$J,358.3,5409,1,3,0)
- ;;=3^Exc of nail&nail matrix,w/amp of tuft
- ;;^UTILITY(U,$J,358.3,5410,0)
- ;;=11760^^26^332^9^^^^1
- ;;^UTILITY(U,$J,358.3,5410,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5410,1,2,0)
- ;;=2^11760
- ;;^UTILITY(U,$J,358.3,5410,1,3,0)
- ;;=3^Repair of nail bed
- ;;^UTILITY(U,$J,358.3,5411,0)
- ;;=11765^^26^332^10^^^^1
- ;;^UTILITY(U,$J,358.3,5411,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5411,1,2,0)
- ;;=2^11765
- ;;^UTILITY(U,$J,358.3,5411,1,3,0)
- ;;=3^Wedge excision of skin of nail fold
- ;;^UTILITY(U,$J,358.3,5412,0)
- ;;=11300^^26^333^1^^^^1
- ;;^UTILITY(U,$J,358.3,5412,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5412,1,2,0)
- ;;=2^11300
- ;;^UTILITY(U,$J,358.3,5412,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 0.5cm or less
- ;;^UTILITY(U,$J,358.3,5413,0)
- ;;=11301^^26^333^2^^^^1
- ;;^UTILITY(U,$J,358.3,5413,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5413,1,2,0)
- ;;=2^11301
- ;;^UTILITY(U,$J,358.3,5413,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,5414,0)
- ;;=11302^^26^333^3^^^^1
- ;;^UTILITY(U,$J,358.3,5414,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5414,1,2,0)
- ;;=2^11302
- ;;^UTILITY(U,$J,358.3,5414,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,5415,0)
- ;;=11303^^26^333^4^^^^1
- ;;^UTILITY(U,$J,358.3,5415,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5415,1,2,0)
- ;;=2^11303
- ;;^UTILITY(U,$J,358.3,5415,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg > 2.0cm
+ ;;^UTILITY(U,$J,358.3,5250,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,5251,0)
+ ;;=K51.914^^40^359^3
+ ;;^UTILITY(U,$J,358.3,5251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5251,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,5251,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,5251,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,5252,0)
+ ;;=K51.918^^40^359^6
+ ;;^UTILITY(U,$J,358.3,5252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5252,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,5252,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,5252,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,5253,0)
+ ;;=K51.911^^40^359^7
+ ;;^UTILITY(U,$J,358.3,5253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5253,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,5253,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,5253,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,5254,0)
+ ;;=K50.00^^40^360^11
+ ;;^UTILITY(U,$J,358.3,5254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5254,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/o Complications
+ ;;^UTILITY(U,$J,358.3,5254,1,4,0)
+ ;;=4^K50.00
+ ;;^UTILITY(U,$J,358.3,5254,2)
+ ;;=^5008624
+ ;;^UTILITY(U,$J,358.3,5255,0)
+ ;;=K50.011^^40^360^9
+ ;;^UTILITY(U,$J,358.3,5255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5255,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Rectal Bleeding
+ ;;^UTILITY(U,$J,358.3,5255,1,4,0)
+ ;;=4^K50.011
+ ;;^UTILITY(U,$J,358.3,5255,2)
+ ;;=^5008625
+ ;;^UTILITY(U,$J,358.3,5256,0)
+ ;;=K50.012^^40^360^7
+ ;;^UTILITY(U,$J,358.3,5256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5256,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Intestinal Obstruction
+ ;;^UTILITY(U,$J,358.3,5256,1,4,0)
+ ;;=4^K50.012
+ ;;^UTILITY(U,$J,358.3,5256,2)
+ ;;=^5008626
+ ;;^UTILITY(U,$J,358.3,5257,0)
+ ;;=K50.013^^40^360^6
+ ;;^UTILITY(U,$J,358.3,5257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5257,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Fistula
+ ;;^UTILITY(U,$J,358.3,5257,1,4,0)
+ ;;=4^K50.013
+ ;;^UTILITY(U,$J,358.3,5257,2)
+ ;;=^5008627
+ ;;^UTILITY(U,$J,358.3,5258,0)
+ ;;=K50.014^^40^360^5
+ ;;^UTILITY(U,$J,358.3,5258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5258,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,5258,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,5258,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,5259,0)
+ ;;=K50.018^^40^360^8
+ ;;^UTILITY(U,$J,358.3,5259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5259,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Oth Complications
+ ;;^UTILITY(U,$J,358.3,5259,1,4,0)
+ ;;=4^K50.018
+ ;;^UTILITY(U,$J,358.3,5259,2)
+ ;;=^5008629
+ ;;^UTILITY(U,$J,358.3,5260,0)
+ ;;=K50.019^^40^360^10
+ ;;^UTILITY(U,$J,358.3,5260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5260,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,5260,1,4,0)
+ ;;=4^K50.019
+ ;;^UTILITY(U,$J,358.3,5260,2)
+ ;;=^5008630
+ ;;^UTILITY(U,$J,358.3,5261,0)
+ ;;=K50.10^^40^360^4
+ ;;^UTILITY(U,$J,358.3,5261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5261,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/o Complications
+ ;;^UTILITY(U,$J,358.3,5261,1,4,0)
+ ;;=4^K50.10
+ ;;^UTILITY(U,$J,358.3,5261,2)
+ ;;=^5008631
+ ;;^UTILITY(U,$J,358.3,5262,0)
+ ;;=K50.818^^40^360^12
+ ;;^UTILITY(U,$J,358.3,5262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5262,1,3,0)
+ ;;=3^Crohn's Disease of Small/Large Intestine w/ Oth Complication
+ ;;^UTILITY(U,$J,358.3,5262,1,4,0)
+ ;;=4^K50.818
+ ;;^UTILITY(U,$J,358.3,5262,2)
+ ;;=^5008643
+ ;;^UTILITY(U,$J,358.3,5263,0)
+ ;;=K50.819^^40^360^13

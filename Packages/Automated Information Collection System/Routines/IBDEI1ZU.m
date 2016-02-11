@@ -1,124 +1,136 @@
-IBDEI1ZU ; ; 06-AUG-2015
+IBDEI1ZU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34901,1,4,0)
- ;;=4^S82.262S
- ;;^UTILITY(U,$J,358.3,34901,2)
- ;;=^5041554
- ;;^UTILITY(U,$J,358.3,34902,0)
- ;;=S82.261S^^183^2024^28
- ;;^UTILITY(U,$J,358.3,34902,1,0)
+ ;;^UTILITY(U,$J,358.3,33383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34902,1,3,0)
- ;;=3^Disp fx of segmental shaft of right tibia, sequela     
- ;;^UTILITY(U,$J,358.3,34902,1,4,0)
- ;;=4^S82.261S
- ;;^UTILITY(U,$J,358.3,34902,2)
- ;;=^5041538
- ;;^UTILITY(U,$J,358.3,34903,0)
- ;;=S82.242S^^183^2024^30
- ;;^UTILITY(U,$J,358.3,34903,1,0)
+ ;;^UTILITY(U,$J,358.3,33383,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,33383,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,33383,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,33384,0)
+ ;;=G24.09^^148^1642^8
+ ;;^UTILITY(U,$J,358.3,33384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34903,1,3,0)
- ;;=3^Disp fx of spiral shaft of left tibia, sequela  
- ;;^UTILITY(U,$J,358.3,34903,1,4,0)
- ;;=4^S82.242S
- ;;^UTILITY(U,$J,358.3,34903,2)
- ;;=^5041362
- ;;^UTILITY(U,$J,358.3,34904,0)
- ;;=S82.241S^^183^2024^32
- ;;^UTILITY(U,$J,358.3,34904,1,0)
+ ;;^UTILITY(U,$J,358.3,33384,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,33384,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,33384,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,33385,0)
+ ;;=G25.1^^148^1642^4
+ ;;^UTILITY(U,$J,358.3,33385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34904,1,3,0)
- ;;=3^Disp fx of spiral shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,34904,1,4,0)
- ;;=4^S82.241S
- ;;^UTILITY(U,$J,358.3,34904,2)
- ;;=^5041346
- ;;^UTILITY(U,$J,358.3,34905,0)
- ;;=S82.222S^^183^2024^34
- ;;^UTILITY(U,$J,358.3,34905,1,0)
+ ;;^UTILITY(U,$J,358.3,33385,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,33385,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,33385,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,33386,0)
+ ;;=G25.71^^148^1642^6
+ ;;^UTILITY(U,$J,358.3,33386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34905,1,3,0)
- ;;=3^Disp fx of transverse shaft of left tibia, sequela     
- ;;^UTILITY(U,$J,358.3,34905,1,4,0)
- ;;=4^S82.222S
- ;;^UTILITY(U,$J,358.3,34905,2)
- ;;=^5041170
- ;;^UTILITY(U,$J,358.3,34906,0)
- ;;=S82.221S^^183^2024^36
- ;;^UTILITY(U,$J,358.3,34906,1,0)
+ ;;^UTILITY(U,$J,358.3,33386,1,3,0)
+ ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
+ ;;^UTILITY(U,$J,358.3,33386,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,33386,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,33387,0)
+ ;;=G25.79^^148^1642^2
+ ;;^UTILITY(U,$J,358.3,33387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34906,1,3,0)
- ;;=3^Disp fx of transverse shaft of right tibia, sequela   
- ;;^UTILITY(U,$J,358.3,34906,1,4,0)
- ;;=4^S82.221S
- ;;^UTILITY(U,$J,358.3,34906,2)
- ;;=^5041154
- ;;^UTILITY(U,$J,358.3,34907,0)
- ;;=S82.145S^^183^2024^39
- ;;^UTILITY(U,$J,358.3,34907,1,0)
+ ;;^UTILITY(U,$J,358.3,33387,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder NEC
+ ;;^UTILITY(U,$J,358.3,33387,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,33387,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,33388,0)
+ ;;=F42.^^148^1643^6
+ ;;^UTILITY(U,$J,358.3,33388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34907,1,3,0)
- ;;=3^Nondisp fx of bicondylar of left tibia, sequela   
- ;;^UTILITY(U,$J,358.3,34907,1,4,0)
- ;;=4^S82.145S
- ;;^UTILITY(U,$J,358.3,34907,2)
- ;;=^5040950
- ;;^UTILITY(U,$J,358.3,34908,0)
- ;;=S82.144S^^183^2024^40
- ;;^UTILITY(U,$J,358.3,34908,1,0)
+ ;;^UTILITY(U,$J,358.3,33388,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,33388,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,33388,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,33389,0)
+ ;;=F45.22^^148^1643^1
+ ;;^UTILITY(U,$J,358.3,33389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34908,1,3,0)
- ;;=3^Nondisp fx of bicondylar of right tibia, sequela  
- ;;^UTILITY(U,$J,358.3,34908,1,4,0)
- ;;=4^S82.144S
- ;;^UTILITY(U,$J,358.3,34908,2)
- ;;=^5040934
- ;;^UTILITY(U,$J,358.3,34909,0)
- ;;=S82.255S^^183^2024^41
- ;;^UTILITY(U,$J,358.3,34909,1,0)
+ ;;^UTILITY(U,$J,358.3,33389,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,33389,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,33389,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,33390,0)
+ ;;=F63.3^^148^1643^7
+ ;;^UTILITY(U,$J,358.3,33390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34909,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,34909,1,4,0)
- ;;=4^S82.255S
- ;;^UTILITY(U,$J,358.3,34909,2)
- ;;=^5041506
- ;;^UTILITY(U,$J,358.3,34910,0)
- ;;=S82.254S^^183^2024^43
- ;;^UTILITY(U,$J,358.3,34910,1,0)
+ ;;^UTILITY(U,$J,358.3,33390,1,3,0)
+ ;;=3^Trichotillomania
+ ;;^UTILITY(U,$J,358.3,33390,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,33390,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,33391,0)
+ ;;=L98.1^^148^1643^2
+ ;;^UTILITY(U,$J,358.3,33391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34910,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,34910,1,4,0)
- ;;=4^S82.254S
- ;;^UTILITY(U,$J,358.3,34910,2)
- ;;=^5041490
- ;;^UTILITY(U,$J,358.3,34911,0)
- ;;=S82.125S^^183^2024^45
- ;;^UTILITY(U,$J,358.3,34911,1,0)
+ ;;^UTILITY(U,$J,358.3,33391,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) Disorder
+ ;;^UTILITY(U,$J,358.3,33391,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,33391,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,33392,0)
+ ;;=F63.0^^148^1643^4
+ ;;^UTILITY(U,$J,358.3,33392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34911,1,3,0)
- ;;=3^Nondisp fx of lateral condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,34911,1,4,0)
- ;;=4^S82.125S
- ;;^UTILITY(U,$J,358.3,34911,2)
- ;;=^5040758
- ;;^UTILITY(U,$J,358.3,34912,0)
- ;;=S82.124S^^183^2024^46
- ;;^UTILITY(U,$J,358.3,34912,1,0)
+ ;;^UTILITY(U,$J,358.3,33392,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,33392,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,33392,2)
+ ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,33393,0)
+ ;;=F68.10^^148^1643^3
+ ;;^UTILITY(U,$J,358.3,33393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34912,1,3,0)
- ;;=3^Nondisp fx of lateral condyle of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,34912,1,4,0)
- ;;=4^S82.124S
- ;;^UTILITY(U,$J,358.3,34912,2)
- ;;=^5040742
- ;;^UTILITY(U,$J,358.3,34913,0)
- ;;=S82.115S^^183^2024^49
- ;;^UTILITY(U,$J,358.3,34913,1,0)
+ ;;^UTILITY(U,$J,358.3,33393,1,3,0)
+ ;;=3^Factitious Disorder
+ ;;^UTILITY(U,$J,358.3,33393,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,33393,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,33394,0)
+ ;;=F63.9^^148^1643^5
+ ;;^UTILITY(U,$J,358.3,33394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34913,1,3,0)
- ;;=3^Nondisp fx of left tibial spine, sequela       
+ ;;^UTILITY(U,$J,358.3,33394,1,3,0)
+ ;;=3^Impulse Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,33394,1,4,0)
+ ;;=4^F63.9
+ ;;^UTILITY(U,$J,358.3,33394,2)
+ ;;=^5003646
+ ;;^UTILITY(U,$J,358.3,33395,0)
+ ;;=F06.2^^148^1644^5
+ ;;^UTILITY(U,$J,358.3,33395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33395,1,3,0)
+ ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,33395,1,4,0)
+ ;;=4^F06.2
+ ;;^UTILITY(U,$J,358.3,33395,2)
+ ;;=^5003055
+ ;;^UTILITY(U,$J,358.3,33396,0)
+ ;;=F06.0^^148^1644^6
+ ;;^UTILITY(U,$J,358.3,33396,1,0)
+ ;;=^358.31IA^4^2

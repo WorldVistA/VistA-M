@@ -1,124 +1,140 @@
-IBDEI1S7 ; ; 06-AUG-2015
+IBDEI1S7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31444,1,3,0)
- ;;=3^Stiffness of right elbow, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31444,1,4,0)
- ;;=4^M25.621
- ;;^UTILITY(U,$J,358.3,31444,2)
- ;;=^5011624
- ;;^UTILITY(U,$J,358.3,31445,0)
- ;;=M25.674^^180^1956^60
- ;;^UTILITY(U,$J,358.3,31445,1,0)
+ ;;^UTILITY(U,$J,358.3,29824,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,29825,0)
+ ;;=N39.41^^135^1368^101
+ ;;^UTILITY(U,$J,358.3,29825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31445,1,3,0)
- ;;=3^Stiffness of right foot, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31445,1,4,0)
- ;;=4^M25.674
- ;;^UTILITY(U,$J,358.3,31445,2)
- ;;=^5011642
- ;;^UTILITY(U,$J,358.3,31446,0)
- ;;=M25.641^^180^1956^61
- ;;^UTILITY(U,$J,358.3,31446,1,0)
+ ;;^UTILITY(U,$J,358.3,29825,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,29825,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,29825,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,29826,0)
+ ;;=R35.0^^135^1368^63
+ ;;^UTILITY(U,$J,358.3,29826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31446,1,3,0)
- ;;=3^Stiffness of right hand, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31446,1,4,0)
- ;;=4^M25.641
- ;;^UTILITY(U,$J,358.3,31446,2)
- ;;=^5011630
- ;;^UTILITY(U,$J,358.3,31447,0)
- ;;=M25.651^^180^1956^62
- ;;^UTILITY(U,$J,358.3,31447,1,0)
+ ;;^UTILITY(U,$J,358.3,29826,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,29826,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,29826,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,29827,0)
+ ;;=R35.1^^135^1368^73
+ ;;^UTILITY(U,$J,358.3,29827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31447,1,3,0)
- ;;=3^Stiffness of right hip, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31447,1,4,0)
- ;;=4^M25.651
- ;;^UTILITY(U,$J,358.3,31447,2)
- ;;=^5011633
- ;;^UTILITY(U,$J,358.3,31448,0)
- ;;=M25.661^^180^1956^63
- ;;^UTILITY(U,$J,358.3,31448,1,0)
+ ;;^UTILITY(U,$J,358.3,29827,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,29827,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,29827,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,29828,0)
+ ;;=R39.11^^135^1368^64
+ ;;^UTILITY(U,$J,358.3,29828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31448,1,3,0)
- ;;=3^Stiffness of right knee, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31448,1,4,0)
- ;;=4^M25.661
- ;;^UTILITY(U,$J,358.3,31448,2)
- ;;=^5011636
- ;;^UTILITY(U,$J,358.3,31449,0)
- ;;=M25.611^^180^1956^64
- ;;^UTILITY(U,$J,358.3,31449,1,0)
+ ;;^UTILITY(U,$J,358.3,29828,1,3,0)
+ ;;=3^Micturition Hesitancy
+ ;;^UTILITY(U,$J,358.3,29828,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,29828,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,29829,0)
+ ;;=R39.16^^135^1368^95
+ ;;^UTILITY(U,$J,358.3,29829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31449,1,3,0)
- ;;=3^Stiffness of right shoulder, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31449,1,4,0)
- ;;=4^M25.611
- ;;^UTILITY(U,$J,358.3,31449,2)
- ;;=^5011621
- ;;^UTILITY(U,$J,358.3,31450,0)
- ;;=M25.631^^180^1956^65
- ;;^UTILITY(U,$J,358.3,31450,1,0)
+ ;;^UTILITY(U,$J,358.3,29829,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,29829,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,29829,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,29830,0)
+ ;;=R36.0^^135^1368^97
+ ;;^UTILITY(U,$J,358.3,29830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31450,1,3,0)
- ;;=3^Stiffness of right wrist, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,31450,1,4,0)
- ;;=4^M25.631
- ;;^UTILITY(U,$J,358.3,31450,2)
- ;;=^5011627
- ;;^UTILITY(U,$J,358.3,31451,0)
- ;;=S96.912A^^180^1956^66
- ;;^UTILITY(U,$J,358.3,31451,1,0)
+ ;;^UTILITY(U,$J,358.3,29830,1,3,0)
+ ;;=3^Urethral Discharge w/o Blood
+ ;;^UTILITY(U,$J,358.3,29830,1,4,0)
+ ;;=4^R36.0
+ ;;^UTILITY(U,$J,358.3,29830,2)
+ ;;=^5019337
+ ;;^UTILITY(U,$J,358.3,29831,0)
+ ;;=R36.9^^135^1368^98
+ ;;^UTILITY(U,$J,358.3,29831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31451,1,3,0)
- ;;=3^Strain of unsp msl/tnd at ank/ft level, left foot, init
- ;;^UTILITY(U,$J,358.3,31451,1,4,0)
- ;;=4^S96.912A
- ;;^UTILITY(U,$J,358.3,31451,2)
- ;;=^5137751
- ;;^UTILITY(U,$J,358.3,31452,0)
- ;;=S96.911A^^180^1956^67
- ;;^UTILITY(U,$J,358.3,31452,1,0)
+ ;;^UTILITY(U,$J,358.3,29831,1,3,0)
+ ;;=3^Urethral Discharge,Unspec
+ ;;^UTILITY(U,$J,358.3,29831,1,4,0)
+ ;;=4^R36.9
+ ;;^UTILITY(U,$J,358.3,29831,2)
+ ;;=^5019338
+ ;;^UTILITY(U,$J,358.3,29832,0)
+ ;;=R97.2^^135^1368^27
+ ;;^UTILITY(U,$J,358.3,29832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31452,1,3,0)
- ;;=3^Strain of unsp msl/tnd at ank/ft level, right foot, init
- ;;^UTILITY(U,$J,358.3,31452,1,4,0)
- ;;=4^S96.911A
- ;;^UTILITY(U,$J,358.3,31452,2)
- ;;=^5137750
- ;;^UTILITY(U,$J,358.3,31453,0)
- ;;=S56.912A^^180^1956^68
- ;;^UTILITY(U,$J,358.3,31453,1,0)
+ ;;^UTILITY(U,$J,358.3,29832,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,29832,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,29832,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,29833,0)
+ ;;=R80.1^^135^1368^87
+ ;;^UTILITY(U,$J,358.3,29833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31453,1,3,0)
- ;;=3^Strain of unsp musc/fasc/tend at forarm lv, left arm, init
- ;;^UTILITY(U,$J,358.3,31453,1,4,0)
- ;;=4^S56.912A
- ;;^UTILITY(U,$J,358.3,31453,2)
- ;;=^5135514
- ;;^UTILITY(U,$J,358.3,31454,0)
- ;;=S56.911A^^180^1956^69
- ;;^UTILITY(U,$J,358.3,31454,1,0)
+ ;;^UTILITY(U,$J,358.3,29833,1,3,0)
+ ;;=3^Proteinuria Persistent,Unspec
+ ;;^UTILITY(U,$J,358.3,29833,1,4,0)
+ ;;=4^R80.1
+ ;;^UTILITY(U,$J,358.3,29833,2)
+ ;;=^5019596
+ ;;^UTILITY(U,$J,358.3,29834,0)
+ ;;=R80.0^^135^1368^85
+ ;;^UTILITY(U,$J,358.3,29834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31454,1,3,0)
- ;;=3^Strain of unsp musc/fasc/tend at forarm lv, right arm, init
- ;;^UTILITY(U,$J,358.3,31454,1,4,0)
- ;;=4^S56.911A
- ;;^UTILITY(U,$J,358.3,31454,2)
- ;;=^5135513
- ;;^UTILITY(U,$J,358.3,31455,0)
- ;;=S22.9XXS^^180^1957^1
- ;;^UTILITY(U,$J,358.3,31455,1,0)
+ ;;^UTILITY(U,$J,358.3,29834,1,3,0)
+ ;;=3^Proteinuria Isolated
+ ;;^UTILITY(U,$J,358.3,29834,1,4,0)
+ ;;=4^R80.0
+ ;;^UTILITY(U,$J,358.3,29834,2)
+ ;;=^5019595
+ ;;^UTILITY(U,$J,358.3,29835,0)
+ ;;=R80.8^^135^1368^88
+ ;;^UTILITY(U,$J,358.3,29835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31455,1,3,0)
- ;;=3^Fracture of bony thorax, part unspecified, sequela
- ;;^UTILITY(U,$J,358.3,31455,1,4,0)
- ;;=4^S22.9XXS
- ;;^UTILITY(U,$J,358.3,31455,2)
- ;;=^5023158
- ;;^UTILITY(U,$J,358.3,31456,0)
- ;;=S42.92XS^^180^1957^6
- ;;^UTILITY(U,$J,358.3,31456,1,0)
+ ;;^UTILITY(U,$J,358.3,29835,1,3,0)
+ ;;=3^Proteinuria,Other
+ ;;^UTILITY(U,$J,358.3,29835,1,4,0)
+ ;;=4^R80.8
+ ;;^UTILITY(U,$J,358.3,29835,2)
+ ;;=^5019598
+ ;;^UTILITY(U,$J,358.3,29836,0)
+ ;;=R80.3^^135^1368^84
+ ;;^UTILITY(U,$J,358.3,29836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29836,1,3,0)
+ ;;=3^Proteinuria Bence Jones
+ ;;^UTILITY(U,$J,358.3,29836,1,4,0)
+ ;;=4^R80.3
+ ;;^UTILITY(U,$J,358.3,29836,2)
+ ;;=^13272
+ ;;^UTILITY(U,$J,358.3,29837,0)
+ ;;=R80.9^^135^1368^89
+ ;;^UTILITY(U,$J,358.3,29837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29837,1,3,0)
+ ;;=3^Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,29837,1,4,0)
+ ;;=4^R80.9
+ ;;^UTILITY(U,$J,358.3,29837,2)
+ ;;=^5019599
+ ;;^UTILITY(U,$J,358.3,29838,0)
+ ;;=Z87.442^^135^1368^77
+ ;;^UTILITY(U,$J,358.3,29838,1,0)
  ;;=^358.31IA^4^2

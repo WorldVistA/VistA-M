@@ -1,0 +1,130 @@
+IBDEI2CH ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,39379,0)
+ ;;=G20.^^183^2019^28
+ ;;^UTILITY(U,$J,358.3,39379,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39379,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,39379,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,39379,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,39380,0)
+ ;;=R56.9^^183^2019^4
+ ;;^UTILITY(U,$J,358.3,39380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39380,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,39380,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,39380,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,39381,0)
+ ;;=S06.9X5S^^183^2019^15
+ ;;^UTILITY(U,$J,358.3,39381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39381,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,39381,1,4,0)
+ ;;=4^S06.9X5S
+ ;;^UTILITY(U,$J,358.3,39381,2)
+ ;;=^5021223
+ ;;^UTILITY(U,$J,358.3,39382,0)
+ ;;=S06.9X6S^^183^2019^16
+ ;;^UTILITY(U,$J,358.3,39382,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39382,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,39382,1,4,0)
+ ;;=4^S06.9X6S
+ ;;^UTILITY(U,$J,358.3,39382,2)
+ ;;=^5021226
+ ;;^UTILITY(U,$J,358.3,39383,0)
+ ;;=S06.9X3S^^183^2019^17
+ ;;^UTILITY(U,$J,358.3,39383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39383,1,3,0)
+ ;;=3^Intcrn injury w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,39383,1,4,0)
+ ;;=4^S06.9X3S
+ ;;^UTILITY(U,$J,358.3,39383,2)
+ ;;=^5021217
+ ;;^UTILITY(U,$J,358.3,39384,0)
+ ;;=S06.9X1S^^183^2019^18
+ ;;^UTILITY(U,$J,358.3,39384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39384,1,3,0)
+ ;;=3^Intcrn injury w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,39384,1,4,0)
+ ;;=4^S06.9X1S
+ ;;^UTILITY(U,$J,358.3,39384,2)
+ ;;=^5021211
+ ;;^UTILITY(U,$J,358.3,39385,0)
+ ;;=S06.9X2S^^183^2019^19
+ ;;^UTILITY(U,$J,358.3,39385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39385,1,3,0)
+ ;;=3^Intcrn injury w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,39385,1,4,0)
+ ;;=4^S06.9X2S
+ ;;^UTILITY(U,$J,358.3,39385,2)
+ ;;=^5021214
+ ;;^UTILITY(U,$J,358.3,39386,0)
+ ;;=S06.9X4S^^183^2019^20
+ ;;^UTILITY(U,$J,358.3,39386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39386,1,3,0)
+ ;;=3^Intcrn injury w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,39386,1,4,0)
+ ;;=4^S06.9X4S
+ ;;^UTILITY(U,$J,358.3,39386,2)
+ ;;=^5021220
+ ;;^UTILITY(U,$J,358.3,39387,0)
+ ;;=S06.9X9S^^183^2019^21
+ ;;^UTILITY(U,$J,358.3,39387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39387,1,3,0)
+ ;;=3^Intcrn injury w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,39387,1,4,0)
+ ;;=4^S06.9X9S
+ ;;^UTILITY(U,$J,358.3,39387,2)
+ ;;=^5021235
+ ;;^UTILITY(U,$J,358.3,39388,0)
+ ;;=S06.9X0S^^183^2019^22
+ ;;^UTILITY(U,$J,358.3,39388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39388,1,3,0)
+ ;;=3^Intcrn injury w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,39388,1,4,0)
+ ;;=4^S06.9X0S
+ ;;^UTILITY(U,$J,358.3,39388,2)
+ ;;=^5021208
+ ;;^UTILITY(U,$J,358.3,39389,0)
+ ;;=I25.10^^183^2020^1
+ ;;^UTILITY(U,$J,358.3,39389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39389,1,3,0)
+ ;;=3^Athscl heart disease of native coronary artery w/o ang pctrs
+ ;;^UTILITY(U,$J,358.3,39389,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,39389,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,39390,0)
+ ;;=J44.1^^183^2020^3
+ ;;^UTILITY(U,$J,358.3,39390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39390,1,3,0)
+ ;;=3^COPD w acute exacerbation
+ ;;^UTILITY(U,$J,358.3,39390,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,39390,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,39391,0)
+ ;;=J44.9^^183^2020^4
+ ;;^UTILITY(U,$J,358.3,39391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39391,1,3,0)
+ ;;=3^COPD, unspecified

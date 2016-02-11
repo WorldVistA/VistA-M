@@ -1,134 +1,132 @@
-IBDEI1NW ; ; 06-AUG-2015
+IBDEI1NW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29518,1,3,0)
- ;;=3^Carpal tunnel syndrome, right upper limb
- ;;^UTILITY(U,$J,358.3,29518,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,29518,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,29519,0)
- ;;=G56.02^^176^1887^3
- ;;^UTILITY(U,$J,358.3,29519,1,0)
+ ;;^UTILITY(U,$J,358.3,27804,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,27805,0)
+ ;;=Z85.71^^132^1321^78
+ ;;^UTILITY(U,$J,358.3,27805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29519,1,3,0)
- ;;=3^Carpal tunnel syndrome, left upper limb
- ;;^UTILITY(U,$J,358.3,29519,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,29519,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,29520,0)
- ;;=R26.1^^176^1887^7
- ;;^UTILITY(U,$J,358.3,29520,1,0)
+ ;;^UTILITY(U,$J,358.3,27805,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,27805,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,27805,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,27806,0)
+ ;;=Z65.8^^132^1321^138
+ ;;^UTILITY(U,$J,358.3,27806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29520,1,3,0)
- ;;=3^Paralytic gait
- ;;^UTILITY(U,$J,358.3,29520,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,29520,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,29521,0)
- ;;=R26.0^^176^1887^2
- ;;^UTILITY(U,$J,358.3,29521,1,0)
+ ;;^UTILITY(U,$J,358.3,27806,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,27806,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,27806,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,27807,0)
+ ;;=Z86.11^^132^1321^115
+ ;;^UTILITY(U,$J,358.3,27807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29521,1,3,0)
- ;;=3^Ataxic gait
- ;;^UTILITY(U,$J,358.3,29521,1,4,0)
- ;;=4^R26.0
- ;;^UTILITY(U,$J,358.3,29521,2)
- ;;=^5019304
- ;;^UTILITY(U,$J,358.3,29522,0)
- ;;=R26.89^^176^1887^1
- ;;^UTILITY(U,$J,358.3,29522,1,0)
+ ;;^UTILITY(U,$J,358.3,27807,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,27807,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,27807,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,27808,0)
+ ;;=Z86.13^^132^1321^82
+ ;;^UTILITY(U,$J,358.3,27808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29522,1,3,0)
- ;;=3^Abnormalities of gait and mobility NEC
- ;;^UTILITY(U,$J,358.3,29522,1,4,0)
- ;;=4^R26.89
- ;;^UTILITY(U,$J,358.3,29522,2)
- ;;=^5019308
- ;;^UTILITY(U,$J,358.3,29523,0)
- ;;=G57.71^^176^1887^6
- ;;^UTILITY(U,$J,358.3,29523,1,0)
+ ;;^UTILITY(U,$J,358.3,27808,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,27808,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,27808,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,27809,0)
+ ;;=Z86.73^^132^1321^112
+ ;;^UTILITY(U,$J,358.3,27809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29523,1,3,0)
- ;;=3^Causalgia of right lower limb
- ;;^UTILITY(U,$J,358.3,29523,1,4,0)
- ;;=4^G57.71
- ;;^UTILITY(U,$J,358.3,29523,2)
- ;;=^5133365
- ;;^UTILITY(U,$J,358.3,29524,0)
- ;;=G57.72^^176^1887^5
- ;;^UTILITY(U,$J,358.3,29524,1,0)
+ ;;^UTILITY(U,$J,358.3,27809,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,27809,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,27809,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,27810,0)
+ ;;=Z86.79^^132^1321^75
+ ;;^UTILITY(U,$J,358.3,27810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29524,1,3,0)
- ;;=3^Causalgia of left lower limb
- ;;^UTILITY(U,$J,358.3,29524,1,4,0)
- ;;=4^G57.72
- ;;^UTILITY(U,$J,358.3,29524,2)
- ;;=^5133366
- ;;^UTILITY(U,$J,358.3,29525,0)
- ;;=G54.6^^176^1887^9
- ;;^UTILITY(U,$J,358.3,29525,1,0)
+ ;;^UTILITY(U,$J,358.3,27810,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,27810,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,27810,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,27811,0)
+ ;;=Z91.040^^132^1321^64
+ ;;^UTILITY(U,$J,358.3,27811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29525,1,3,0)
- ;;=3^Phantom limb syndrome with pain
- ;;^UTILITY(U,$J,358.3,29525,1,4,0)
- ;;=4^G54.6
- ;;^UTILITY(U,$J,358.3,29525,2)
- ;;=^5004013
- ;;^UTILITY(U,$J,358.3,29526,0)
- ;;=G54.7^^176^1887^10
- ;;^UTILITY(U,$J,358.3,29526,1,0)
+ ;;^UTILITY(U,$J,358.3,27811,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,27811,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,27811,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,27812,0)
+ ;;=Z98.89^^132^1321^120
+ ;;^UTILITY(U,$J,358.3,27812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29526,1,3,0)
- ;;=3^Phantom limb syndrome without pain
- ;;^UTILITY(U,$J,358.3,29526,1,4,0)
- ;;=4^G54.7
- ;;^UTILITY(U,$J,358.3,29526,2)
- ;;=^5004014
- ;;^UTILITY(U,$J,358.3,29527,0)
- ;;=G56.01^^176^1888^3
- ;;^UTILITY(U,$J,358.3,29527,1,0)
+ ;;^UTILITY(U,$J,358.3,27812,1,3,0)
+ ;;=3^Postprocedural States/Hx of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,27812,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,27812,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,27813,0)
+ ;;=Z92.3^^132^1321^79
+ ;;^UTILITY(U,$J,358.3,27813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29527,1,3,0)
- ;;=3^Carpal tunnel syndrome, right upper limb
- ;;^UTILITY(U,$J,358.3,29527,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,29527,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,29528,0)
- ;;=G56.02^^176^1888^2
- ;;^UTILITY(U,$J,358.3,29528,1,0)
+ ;;^UTILITY(U,$J,358.3,27813,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,27813,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,27813,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,27814,0)
+ ;;=Z91.120^^132^1321^60
+ ;;^UTILITY(U,$J,358.3,27814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29528,1,3,0)
- ;;=3^Carpal tunnel syndrome, left upper limb
- ;;^UTILITY(U,$J,358.3,29528,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,29528,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,29529,0)
- ;;=S14.3XXA^^176^1888^5
- ;;^UTILITY(U,$J,358.3,29529,1,0)
+ ;;^UTILITY(U,$J,358.3,27814,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,27814,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,27814,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,27815,0)
+ ;;=Z91.11^^132^1321^69
+ ;;^UTILITY(U,$J,358.3,27815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29529,1,3,0)
- ;;=3^Injury of brachial plexus, initial encounter
- ;;^UTILITY(U,$J,358.3,29529,1,4,0)
- ;;=4^S14.3XXA
- ;;^UTILITY(U,$J,358.3,29529,2)
- ;;=^5022205
- ;;^UTILITY(U,$J,358.3,29530,0)
- ;;=G54.0^^176^1888^1
- ;;^UTILITY(U,$J,358.3,29530,1,0)
+ ;;^UTILITY(U,$J,358.3,27815,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,27815,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,27815,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,27816,0)
+ ;;=Z87.891^^132^1321^103
+ ;;^UTILITY(U,$J,358.3,27816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29530,1,3,0)
- ;;=3^Brachial plexus disorders
- ;;^UTILITY(U,$J,358.3,29530,1,4,0)
- ;;=4^G54.0
- ;;^UTILITY(U,$J,358.3,29530,2)
- ;;=^5004007
- ;;^UTILITY(U,$J,358.3,29531,0)
- ;;=G54.1^^176^1888^21
- ;;^UTILITY(U,$J,358.3,29531,1,0)
+ ;;^UTILITY(U,$J,358.3,27816,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,27816,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,27816,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,27817,0)
+ ;;=Z77.090^^132^1321^11
+ ;;^UTILITY(U,$J,358.3,27817,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27817,1,3,0)
+ ;;=3^Asbestos Contact/Exposure

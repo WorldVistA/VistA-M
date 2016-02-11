@@ -1,144 +1,130 @@
-IBDEI0A9 ; ; 06-AUG-2015
+IBDEI0A9 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4408,2)
- ;;=^272154
- ;;^UTILITY(U,$J,358.3,4409,0)
- ;;=715.31^^23^228^17
- ;;^UTILITY(U,$J,358.3,4409,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4409,1,4,0)
- ;;=4^715.31
- ;;^UTILITY(U,$J,358.3,4409,1,5,0)
- ;;=5^Loc Osteoar NOS,Shoulder
- ;;^UTILITY(U,$J,358.3,4409,2)
- ;;=^272150
- ;;^UTILITY(U,$J,358.3,4410,0)
- ;;=715.30^^23^228^19
- ;;^UTILITY(U,$J,358.3,4410,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4410,1,4,0)
- ;;=4^715.30
- ;;^UTILITY(U,$J,358.3,4410,1,5,0)
- ;;=5^Loc Osteoar NOS,Unspec
- ;;^UTILITY(U,$J,358.3,4410,2)
- ;;=^272149
- ;;^UTILITY(U,$J,358.3,4411,0)
- ;;=715.32^^23^228^20
- ;;^UTILITY(U,$J,358.3,4411,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4411,1,4,0)
- ;;=4^715.32
- ;;^UTILITY(U,$J,358.3,4411,1,5,0)
- ;;=5^Loc Osteoar NOS,Upper Arm
- ;;^UTILITY(U,$J,358.3,4411,2)
- ;;=^272151
- ;;^UTILITY(U,$J,358.3,4412,0)
- ;;=724.2^^23^228^21
- ;;^UTILITY(U,$J,358.3,4412,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4412,1,4,0)
- ;;=4^724.2
- ;;^UTILITY(U,$J,358.3,4412,1,5,0)
- ;;=5^Low Back Pain
- ;;^UTILITY(U,$J,358.3,4412,2)
- ;;=^71885
- ;;^UTILITY(U,$J,358.3,4413,0)
- ;;=721.90^^23^228^32
- ;;^UTILITY(U,$J,358.3,4413,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4413,1,4,0)
- ;;=4^721.90
- ;;^UTILITY(U,$J,358.3,4413,1,5,0)
- ;;=5^Osteoarthritis,Spine
- ;;^UTILITY(U,$J,358.3,4413,2)
- ;;=^272463
- ;;^UTILITY(U,$J,358.3,4414,0)
- ;;=715.98^^23^228^28
- ;;^UTILITY(U,$J,358.3,4414,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4414,1,4,0)
- ;;=4^715.98
- ;;^UTILITY(U,$J,358.3,4414,1,5,0)
- ;;=5^Osteoarthos NOS,Oth Site
- ;;^UTILITY(U,$J,358.3,4414,2)
- ;;=^272169
- ;;^UTILITY(U,$J,358.3,4415,0)
- ;;=715.97^^23^228^24
- ;;^UTILITY(U,$J,358.3,4415,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4415,1,4,0)
- ;;=4^715.97
- ;;^UTILITY(U,$J,358.3,4415,1,5,0)
- ;;=5^Osteoarthos NOS,Ankle
- ;;^UTILITY(U,$J,358.3,4415,2)
- ;;=^272168
- ;;^UTILITY(U,$J,358.3,4416,0)
- ;;=715.93^^23^228^25
- ;;^UTILITY(U,$J,358.3,4416,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4416,1,4,0)
- ;;=4^715.93
- ;;^UTILITY(U,$J,358.3,4416,1,5,0)
- ;;=5^Osteoarthos NOS,Forearm
- ;;^UTILITY(U,$J,358.3,4416,2)
- ;;=^272164
- ;;^UTILITY(U,$J,358.3,4417,0)
- ;;=715.94^^23^228^26
- ;;^UTILITY(U,$J,358.3,4417,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4417,1,4,0)
- ;;=4^715.94
- ;;^UTILITY(U,$J,358.3,4417,1,5,0)
- ;;=5^Osteoarthos NOS,Hand
- ;;^UTILITY(U,$J,358.3,4417,2)
- ;;=^272165
- ;;^UTILITY(U,$J,358.3,4418,0)
- ;;=715.96^^23^228^27
- ;;^UTILITY(U,$J,358.3,4418,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4418,1,4,0)
- ;;=4^715.96
- ;;^UTILITY(U,$J,358.3,4418,1,5,0)
- ;;=5^Osteoarthos NOS,Lower Leg
- ;;^UTILITY(U,$J,358.3,4418,2)
- ;;=^272167
- ;;^UTILITY(U,$J,358.3,4419,0)
- ;;=715.95^^23^228^29
- ;;^UTILITY(U,$J,358.3,4419,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4419,1,4,0)
- ;;=4^715.95
- ;;^UTILITY(U,$J,358.3,4419,1,5,0)
- ;;=5^Osteoarthos NOS,Pelvis
- ;;^UTILITY(U,$J,358.3,4419,2)
- ;;=^272166
- ;;^UTILITY(U,$J,358.3,4420,0)
- ;;=715.91^^23^228^30
- ;;^UTILITY(U,$J,358.3,4420,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4420,1,4,0)
- ;;=4^715.91
- ;;^UTILITY(U,$J,358.3,4420,1,5,0)
- ;;=5^Osteoarthos NOS,Shoulder
- ;;^UTILITY(U,$J,358.3,4420,2)
- ;;=^272162
- ;;^UTILITY(U,$J,358.3,4421,0)
- ;;=715.92^^23^228^31
- ;;^UTILITY(U,$J,358.3,4421,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4421,1,4,0)
- ;;=4^715.92
- ;;^UTILITY(U,$J,358.3,4421,1,5,0)
- ;;=5^Osteoarthos NOS,Upper Arm
- ;;^UTILITY(U,$J,358.3,4421,2)
- ;;=^272163
- ;;^UTILITY(U,$J,358.3,4422,0)
- ;;=733.10^^23^228^36
- ;;^UTILITY(U,$J,358.3,4422,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4422,1,4,0)
- ;;=4^733.10
- ;;^UTILITY(U,$J,358.3,4422,1,5,0)
- ;;=5^Pathologic Fracture
+ ;;^UTILITY(U,$J,358.3,4271,1,3,0)
+ ;;=3^Problems Related to Need for Continuous Supervision
+ ;;^UTILITY(U,$J,358.3,4271,1,4,0)
+ ;;=4^Z74.3
+ ;;^UTILITY(U,$J,358.3,4271,2)
+ ;;=^5063286
+ ;;^UTILITY(U,$J,358.3,4272,0)
+ ;;=Z75.1^^28^263^126
+ ;;^UTILITY(U,$J,358.3,4272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4272,1,3,0)
+ ;;=3^Problems Related to Awaiting Facility Admission
+ ;;^UTILITY(U,$J,358.3,4272,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,4272,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,4273,0)
+ ;;=Z63.9^^28^263^152
+ ;;^UTILITY(U,$J,358.3,4273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4273,1,3,0)
+ ;;=3^Problems Related to Primary Support Group
+ ;;^UTILITY(U,$J,358.3,4273,1,4,0)
+ ;;=4^Z63.9
+ ;;^UTILITY(U,$J,358.3,4273,2)
+ ;;=^5063175
+ ;;^UTILITY(U,$J,358.3,4274,0)
+ ;;=Z74.09^^28^263^154
+ ;;^UTILITY(U,$J,358.3,4274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4274,1,3,0)
+ ;;=3^Problems Related to Reduced Mobility
+ ;;^UTILITY(U,$J,358.3,4274,1,4,0)
+ ;;=4^Z74.09
+ ;;^UTILITY(U,$J,358.3,4274,2)
+ ;;=^5063283
+ ;;^UTILITY(U,$J,358.3,4275,0)
+ ;;=Z60.9^^28^263^156
+ ;;^UTILITY(U,$J,358.3,4275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4275,1,3,0)
+ ;;=3^Problems Related to Social Environment
+ ;;^UTILITY(U,$J,358.3,4275,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,4275,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,4276,0)
+ ;;=Z60.4^^28^263^157
+ ;;^UTILITY(U,$J,358.3,4276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4276,1,3,0)
+ ;;=3^Problems Related to Social Exclusion/Rejection
+ ;;^UTILITY(U,$J,358.3,4276,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,4276,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,4277,0)
+ ;;=Z60.5^^28^263^125
+ ;;^UTILITY(U,$J,358.3,4277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4277,1,3,0)
+ ;;=3^Problems Related to Adverse Discrimination/Persecution
+ ;;^UTILITY(U,$J,358.3,4277,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,4277,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,4278,0)
+ ;;=Z75.3^^28^263^158
+ ;;^UTILITY(U,$J,358.3,4278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4278,1,3,0)
+ ;;=3^Problems Related to Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,4278,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,4278,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,4279,0)
+ ;;=Z75.4^^28^263^159
+ ;;^UTILITY(U,$J,358.3,4279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4279,1,3,0)
+ ;;=3^Problems Related to Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,4279,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,4279,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,4280,0)
+ ;;=Z65.9^^28^263^153
+ ;;^UTILITY(U,$J,358.3,4280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4280,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,4280,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,4280,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,4281,0)
+ ;;=Z75.2^^28^263^160
+ ;;^UTILITY(U,$J,358.3,4281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4281,1,3,0)
+ ;;=3^Problems Related to Waiting Period for Investigation/Treatment
+ ;;^UTILITY(U,$J,358.3,4281,1,4,0)
+ ;;=4^Z75.2
+ ;;^UTILITY(U,$J,358.3,4281,2)
+ ;;=^5063291
+ ;;^UTILITY(U,$J,358.3,4282,0)
+ ;;=Z75.5^^28^263^161
+ ;;^UTILITY(U,$J,358.3,4282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4282,1,3,0)
+ ;;=3^Respite/Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,4282,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,4282,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,4283,0)
+ ;;=R68.89^^28^263^165
+ ;;^UTILITY(U,$J,358.3,4283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4283,1,3,0)
+ ;;=3^Symptoms/Signs,General,Other
+ ;;^UTILITY(U,$J,358.3,4283,1,4,0)
+ ;;=4^R68.89
+ ;;^UTILITY(U,$J,358.3,4283,2)
+ ;;=^5019557

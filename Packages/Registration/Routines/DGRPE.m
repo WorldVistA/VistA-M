@@ -1,5 +1,5 @@
-DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ - REGISTRATIONS EDITS ; 6/24/09 3:03pm
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842**;Aug 13, 1993;Build 33
+DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC - REGISTRATIONS EDITS ;6/24/09 3:03pm
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871**;Aug 13, 1993;Build 84
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -23,6 +23,7 @@ DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ - REGISTRATIONS EDITS ; 6/24/09 3:03pm
  . I DGDR["602," D EN^DGRP6CL(DFN,.QUIT)  Q:QUIT  ; Conflicts
  . I DGDR["603," D EN^DGRP6EF(DFN,.QUIT)  Q:QUIT  ; Exposures
  I DGRPS=7,(DGDR["702,") D EN^DGRP7CP(DFN,.QUIT) I QUIT D Q Q  ;DG*5.3*842 screen 7 cp subscreen
+ I DGRPS=11,(DGDR["1105,") D EN^DGR111(DFN) ;DG*5.3*871 screen 11 HBP subscreen
  ;-- Tricare screen #15
  I DGRPS=15 D EDIT^DGRP15,Q Q
  ;
@@ -66,7 +67,7 @@ SETFLDS(DGDR) ; Set up fields to edit
 109 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);.02;D DR109^DGRPE;6;2;K DR(2,2.02),DR(2,2.06);.05;.08;K DIE("NO^");
 111 ;;.14105//NO;S:X="N" Y="@111" S:X="Y" DIE("NO^")="";.1417;I X']"" W !?4,$C(7),"But I need a Start Date." S Y=.14105;.1418;D DR111^DGRPE;.141;I '$P($$CAACT^DGRPCADD(DFN),U,2) W !?4,"But I need at least one active category." S Y=.14105;
 111000 ;;K DR(2,2.141);N RET S RET=1 D EN^DGREGTED(DFN,"CONF",.RET) S:'RET Y=.14105;@111;K DIE("NO^");
-112 ;;.134;.135;.133
+112 ;;.134;.135;@21;S X=$$YN1316^DGRPE(DFN);S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;
 201 ;;.05;.08;.092;.093;.2401:.2403;57.4//NOT APPLICABLE;
 202 ;;1010.15//NO;S:X'="Y" Y="@22";S DIE("NO^")="";1010.152;I X']"" W !?4,*7,"But I need to know where you were treated most recently." S Y=1010.15;1010.151;1010.154;S:X']"" Y="@22";1010.153;@22;K DIE("NO^");
 203 ;;D DR203^DGRPE;6ETHNICITY;2RACE;K DR(2,2.02),DR(2,2.06);
@@ -144,3 +145,18 @@ CMP(X) ; Function to determine if service component is valid for
  ; Component only valid for ARMY/AIR FORCE/MARINES/COAST GUARD/NOAA/USPHS
  Q $S('$G(X):0,X'>5!(X=9)!(X=10):1,1:0)
  ;
+YN1316(DFN) ;Email address indicator - DG*5.3*865
+ N %,RSLT
+ S DIE("NO^")=""
+P1316 ;
+ S %=0
+ W !,"DOES THE PATIENT HAVE AN EMAIL ADDRESS? Y/N"
+ D YN^DICN
+ I %=0 W !,"    If the patient has a valid Email Address, please answer with 'Yes'.",!,"    If no Email Address please answer with 'No'." G P1316
+ I %=-1 W !,"    EXIT NOT ALLOWED ??" G P1316
+ S RSLT=$S(%=1:"Y",%=2:"N")
+ N FDA,IENS
+ Q:'$G(DFN)
+ S IENS=DFN_",",FDA(2,IENS,.1316)=RSLT
+ D FILE^DIE("","FDA")
+ Q RSLT

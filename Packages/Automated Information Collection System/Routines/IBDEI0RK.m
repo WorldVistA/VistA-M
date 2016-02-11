@@ -1,132 +1,136 @@
-IBDEI0RK ; ; 06-AUG-2015
+IBDEI0RK ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13295,1,4,0)
- ;;=4^V67.09
- ;;^UTILITY(U,$J,358.3,13295,2)
- ;;=F/U Exam Following Oth Surg^322080
- ;;^UTILITY(U,$J,358.3,13296,0)
- ;;=V54.10^^66^787^1
- ;;^UTILITY(U,$J,358.3,13296,1,0)
- ;;=^358.31IA^1^3
- ;;^UTILITY(U,$J,358.3,13296,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13296,1,3,0)
- ;;=3^Aftercare for Healing Arm Fx
- ;;^UTILITY(U,$J,358.3,13296,1,4,0)
- ;;=4^V54.10
- ;;^UTILITY(U,$J,358.3,13296,2)
- ;;=Aftercare for Healing Arm Fx^295514
- ;;^UTILITY(U,$J,358.3,13297,0)
- ;;=V54.13^^66^787^3
- ;;^UTILITY(U,$J,358.3,13297,1,0)
- ;;=^358.31IA^1^3
- ;;^UTILITY(U,$J,358.3,13297,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13297,1,3,0)
- ;;=3^Aftercare for Healing Hip Fx
- ;;^UTILITY(U,$J,358.3,13297,1,4,0)
- ;;=4^V54.13
- ;;^UTILITY(U,$J,358.3,13297,2)
- ;;=Aftercare for Healing Fx of Hip^295514
- ;;^UTILITY(U,$J,358.3,13298,0)
- ;;=V54.15^^66^787^2
- ;;^UTILITY(U,$J,358.3,13298,1,0)
- ;;=^358.31IA^1^3
- ;;^UTILITY(U,$J,358.3,13298,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13298,1,3,0)
- ;;=3^Aftercare for Healing Femur Fx
- ;;^UTILITY(U,$J,358.3,13298,1,4,0)
- ;;=4^V54.15
- ;;^UTILITY(U,$J,358.3,13298,2)
- ;;=Aftercare for Healing Fx of Femur^295514
- ;;^UTILITY(U,$J,358.3,13299,0)
- ;;=V54.16^^66^787^4
- ;;^UTILITY(U,$J,358.3,13299,1,0)
- ;;=^358.31IA^1^3
- ;;^UTILITY(U,$J,358.3,13299,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13299,1,3,0)
- ;;=3^Aftercare for Healing Lower Leg/Foot Fx
- ;;^UTILITY(U,$J,358.3,13299,1,4,0)
- ;;=4^V54.16
- ;;^UTILITY(U,$J,358.3,13299,2)
- ;;=Aftercare, Heal Fx of Low Leg/Foot^295514
- ;;^UTILITY(U,$J,358.3,13300,0)
- ;;=V54.81^^66^787^6
- ;;^UTILITY(U,$J,358.3,13300,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13300,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13300,1,3,0)
- ;;=3^Aftercare S/P Knee Replacement
- ;;^UTILITY(U,$J,358.3,13300,1,4,0)
- ;;=4^V54.81
- ;;^UTILITY(U,$J,358.3,13300,2)
- ;;=Aftercare, S/P Knee Replacement^295514^V43.65
- ;;^UTILITY(U,$J,358.3,13301,0)
- ;;=V54.89^^66^787^5
- ;;^UTILITY(U,$J,358.3,13301,1,0)
+ ;;^UTILITY(U,$J,358.3,12647,1,4,0)
+ ;;=4^C44.212
+ ;;^UTILITY(U,$J,358.3,12647,2)
+ ;;=^5001032
+ ;;^UTILITY(U,$J,358.3,12648,0)
+ ;;=C44.219^^77^735^2
+ ;;^UTILITY(U,$J,358.3,12648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13301,1,3,0)
- ;;=3^Aftercare, Other Ortho
- ;;^UTILITY(U,$J,358.3,13301,1,4,0)
- ;;=4^V54.89
- ;;^UTILITY(U,$J,358.3,13301,2)
- ;;=Aftercare, Other Ortho^295514
- ;;^UTILITY(U,$J,358.3,13302,0)
- ;;=V54.01^^66^787^16
- ;;^UTILITY(U,$J,358.3,13302,1,0)
+ ;;^UTILITY(U,$J,358.3,12648,1,3,0)
+ ;;=3^BC CA Skin LEFT Ear and EAC
+ ;;^UTILITY(U,$J,358.3,12648,1,4,0)
+ ;;=4^C44.219
+ ;;^UTILITY(U,$J,358.3,12648,2)
+ ;;=^5001033
+ ;;^UTILITY(U,$J,358.3,12649,0)
+ ;;=C44.222^^77^735^35
+ ;;^UTILITY(U,$J,358.3,12649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13302,1,3,0)
- ;;=3^Removal of Int Fixation Dev
- ;;^UTILITY(U,$J,358.3,13302,1,4,0)
- ;;=4^V54.01
- ;;^UTILITY(U,$J,358.3,13302,2)
- ;;=^329975
- ;;^UTILITY(U,$J,358.3,13303,0)
- ;;=V58.41^^66^787^14
- ;;^UTILITY(U,$J,358.3,13303,1,0)
+ ;;^UTILITY(U,$J,358.3,12649,1,3,0)
+ ;;=3^SC CA Skin RIGHT Ear and EAC
+ ;;^UTILITY(U,$J,358.3,12649,1,4,0)
+ ;;=4^C44.222
+ ;;^UTILITY(U,$J,358.3,12649,2)
+ ;;=^5001035
+ ;;^UTILITY(U,$J,358.3,12650,0)
+ ;;=C44.229^^77^735^34
+ ;;^UTILITY(U,$J,358.3,12650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13303,1,3,0)
- ;;=3^Planned Post-Op Wound Closure
- ;;^UTILITY(U,$J,358.3,13303,1,4,0)
- ;;=4^V58.41
- ;;^UTILITY(U,$J,358.3,13303,2)
- ;;=^303458
- ;;^UTILITY(U,$J,358.3,13304,0)
- ;;=V67.00^^66^787^11
- ;;^UTILITY(U,$J,358.3,13304,1,0)
- ;;=^358.31IA^1^3
- ;;^UTILITY(U,$J,358.3,13304,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13304,1,3,0)
- ;;=3^F/U Exam Following Unspec Surgery
- ;;^UTILITY(U,$J,358.3,13304,1,4,0)
- ;;=4^V67.00
- ;;^UTILITY(U,$J,358.3,13304,2)
- ;;=^322077
- ;;^UTILITY(U,$J,358.3,13305,0)
- ;;=V58.49^^66^787^7
- ;;^UTILITY(U,$J,358.3,13305,1,0)
- ;;=^358.31IA^1^3
- ;;^UTILITY(U,$J,358.3,13305,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13305,1,3,0)
- ;;=3^Aftercare Post Surgery NEC
- ;;^UTILITY(U,$J,358.3,13305,1,4,0)
- ;;=4^V58.49
- ;;^UTILITY(U,$J,358.3,13305,2)
- ;;=^295530
- ;;^UTILITY(U,$J,358.3,13306,0)
- ;;=998.31^^66^787^9
- ;;^UTILITY(U,$J,358.3,13306,1,0)
+ ;;^UTILITY(U,$J,358.3,12650,1,3,0)
+ ;;=3^SC CA Skin LEFT Ear and EAC
+ ;;^UTILITY(U,$J,358.3,12650,1,4,0)
+ ;;=4^C44.229
+ ;;^UTILITY(U,$J,358.3,12650,2)
+ ;;=^5001036
+ ;;^UTILITY(U,$J,358.3,12651,0)
+ ;;=C44.310^^77^735^4
+ ;;^UTILITY(U,$J,358.3,12651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13306,1,3,0)
- ;;=3^Disrup Internal Op Wound
- ;;^UTILITY(U,$J,358.3,13306,1,4,0)
- ;;=4^998.31
- ;;^UTILITY(U,$J,358.3,13306,2)
- ;;=^336843
+ ;;^UTILITY(U,$J,358.3,12651,1,3,0)
+ ;;=3^BC CA Skin UNSPEC Parts of Face
+ ;;^UTILITY(U,$J,358.3,12651,1,4,0)
+ ;;=4^C44.310
+ ;;^UTILITY(U,$J,358.3,12651,2)
+ ;;=^5001043
+ ;;^UTILITY(U,$J,358.3,12652,0)
+ ;;=C44.320^^77^735^36
+ ;;^UTILITY(U,$J,358.3,12652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12652,1,3,0)
+ ;;=3^SC CA Skin UNSPEC Parts of Face
+ ;;^UTILITY(U,$J,358.3,12652,1,4,0)
+ ;;=4^C44.320
+ ;;^UTILITY(U,$J,358.3,12652,2)
+ ;;=^5001046
+ ;;^UTILITY(U,$J,358.3,12653,0)
+ ;;=C44.41^^77^735^1
+ ;;^UTILITY(U,$J,358.3,12653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12653,1,3,0)
+ ;;=3^BC CA SCALP and Skin of Neck
+ ;;^UTILITY(U,$J,358.3,12653,1,4,0)
+ ;;=4^C44.41
+ ;;^UTILITY(U,$J,358.3,12653,2)
+ ;;=^340476
+ ;;^UTILITY(U,$J,358.3,12654,0)
+ ;;=C44.42^^77^735^33
+ ;;^UTILITY(U,$J,358.3,12654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12654,1,3,0)
+ ;;=3^SC CA SCALP and Skin of Neck
+ ;;^UTILITY(U,$J,358.3,12654,1,4,0)
+ ;;=4^C44.42
+ ;;^UTILITY(U,$J,358.3,12654,2)
+ ;;=^340477
+ ;;^UTILITY(U,$J,358.3,12655,0)
+ ;;=C44.91^^77^735^5
+ ;;^UTILITY(U,$J,358.3,12655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12655,1,3,0)
+ ;;=3^BC CA Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,12655,1,4,0)
+ ;;=4^C44.91
+ ;;^UTILITY(U,$J,358.3,12655,2)
+ ;;=^5001092
+ ;;^UTILITY(U,$J,358.3,12656,0)
+ ;;=C44.92^^77^735^37
+ ;;^UTILITY(U,$J,358.3,12656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12656,1,3,0)
+ ;;=3^SC CA Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,12656,1,4,0)
+ ;;=4^C44.92
+ ;;^UTILITY(U,$J,358.3,12656,2)
+ ;;=^5001093
+ ;;^UTILITY(U,$J,358.3,12657,0)
+ ;;=C73.^^77^735^29
+ ;;^UTILITY(U,$J,358.3,12657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12657,1,3,0)
+ ;;=3^Malignant neoplasm of thyroid gland
+ ;;^UTILITY(U,$J,358.3,12657,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,12657,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,12658,0)
+ ;;=C76.0^^77^735^17
+ ;;^UTILITY(U,$J,358.3,12658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12658,1,3,0)
+ ;;=3^Malignant neoplasm of head, face and neck
+ ;;^UTILITY(U,$J,358.3,12658,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,12658,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,12659,0)
+ ;;=C96.9^^77^735^19
+ ;;^UTILITY(U,$J,358.3,12659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12659,1,3,0)
+ ;;=3^Malignant neoplasm of lymphoid, hematpoetc and rel tissue, unsp
+ ;;^UTILITY(U,$J,358.3,12659,1,4,0)
+ ;;=4^C96.9
+ ;;^UTILITY(U,$J,358.3,12659,2)
+ ;;=^5001864
+ ;;^UTILITY(U,$J,358.3,12660,0)
+ ;;=D10.0^^77^735^7
+ ;;^UTILITY(U,$J,358.3,12660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12660,1,3,0)
+ ;;=3^Benign neoplasm of lip
+ ;;^UTILITY(U,$J,358.3,12660,1,4,0)
+ ;;=4^D10.0

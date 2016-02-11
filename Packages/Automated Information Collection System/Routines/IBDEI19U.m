@@ -1,140 +1,122 @@
-IBDEI19U ; ; 06-AUG-2015
+IBDEI19U ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22525,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22525,1,4,0)
- ;;=4^789.03
- ;;^UTILITY(U,$J,358.3,22525,1,5,0)
- ;;=5^RLQ Abdominal Pain
- ;;^UTILITY(U,$J,358.3,22525,2)
- ;;=^303320
- ;;^UTILITY(U,$J,358.3,22526,0)
- ;;=789.04^^125^1394^69
- ;;^UTILITY(U,$J,358.3,22526,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22526,1,4,0)
- ;;=4^789.04
- ;;^UTILITY(U,$J,358.3,22526,1,5,0)
- ;;=5^LLQ Abdominal Pain
- ;;^UTILITY(U,$J,358.3,22526,2)
- ;;=^303321
- ;;^UTILITY(U,$J,358.3,22527,0)
- ;;=789.05^^125^1394^82
- ;;^UTILITY(U,$J,358.3,22527,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22527,1,4,0)
- ;;=4^789.05
- ;;^UTILITY(U,$J,358.3,22527,1,5,0)
- ;;=5^Periumbilical Pain
- ;;^UTILITY(U,$J,358.3,22527,2)
- ;;=^303322
- ;;^UTILITY(U,$J,358.3,22528,0)
- ;;=789.06^^125^1394^29
- ;;^UTILITY(U,$J,358.3,22528,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22528,1,4,0)
- ;;=4^789.06
- ;;^UTILITY(U,$J,358.3,22528,1,5,0)
- ;;=5^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,22528,2)
- ;;=^303323
- ;;^UTILITY(U,$J,358.3,22529,0)
- ;;=789.61^^125^1394^88
- ;;^UTILITY(U,$J,358.3,22529,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22529,1,4,0)
- ;;=4^789.61
- ;;^UTILITY(U,$J,358.3,22529,1,5,0)
- ;;=5^RUQ Abdominal Tenderness
- ;;^UTILITY(U,$J,358.3,22529,2)
- ;;=^303343
- ;;^UTILITY(U,$J,358.3,22530,0)
- ;;=789.62^^125^1394^72
- ;;^UTILITY(U,$J,358.3,22530,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22530,1,4,0)
- ;;=4^789.62
- ;;^UTILITY(U,$J,358.3,22530,1,5,0)
- ;;=5^LUQ Abdominal Tenderness
- ;;^UTILITY(U,$J,358.3,22530,2)
- ;;=^303344
- ;;^UTILITY(U,$J,358.3,22531,0)
- ;;=789.63^^125^1394^86
- ;;^UTILITY(U,$J,358.3,22531,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22531,1,4,0)
- ;;=4^789.63
- ;;^UTILITY(U,$J,358.3,22531,1,5,0)
- ;;=5^RLQ Abdominal Tenderness
- ;;^UTILITY(U,$J,358.3,22531,2)
- ;;=^303345
- ;;^UTILITY(U,$J,358.3,22532,0)
- ;;=789.64^^125^1394^70
- ;;^UTILITY(U,$J,358.3,22532,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22532,1,4,0)
- ;;=4^789.64
- ;;^UTILITY(U,$J,358.3,22532,1,5,0)
- ;;=5^LLQ Abdominal Tenderness
- ;;^UTILITY(U,$J,358.3,22532,2)
- ;;=^303346
- ;;^UTILITY(U,$J,358.3,22533,0)
- ;;=789.65^^125^1394^83
- ;;^UTILITY(U,$J,358.3,22533,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22533,1,4,0)
- ;;=4^789.65
- ;;^UTILITY(U,$J,358.3,22533,1,5,0)
- ;;=5^Periumbilical Tenderness
- ;;^UTILITY(U,$J,358.3,22533,2)
- ;;=^303347
- ;;^UTILITY(U,$J,358.3,22534,0)
- ;;=789.66^^125^1394^30
- ;;^UTILITY(U,$J,358.3,22534,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22534,1,4,0)
- ;;=4^789.66
- ;;^UTILITY(U,$J,358.3,22534,1,5,0)
- ;;=5^Epigastric Tenderness
- ;;^UTILITY(U,$J,358.3,22534,2)
- ;;=^303348
- ;;^UTILITY(U,$J,358.3,22535,0)
- ;;=070.1^^125^1394^50
- ;;^UTILITY(U,$J,358.3,22535,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22535,1,4,0)
- ;;=4^070.1
- ;;^UTILITY(U,$J,358.3,22535,1,5,0)
- ;;=5^Hepatitis A
- ;;^UTILITY(U,$J,358.3,22535,2)
- ;;=^126486
- ;;^UTILITY(U,$J,358.3,22536,0)
- ;;=070.30^^125^1394^51
- ;;^UTILITY(U,$J,358.3,22536,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22536,1,4,0)
- ;;=4^070.30
- ;;^UTILITY(U,$J,358.3,22536,1,5,0)
- ;;=5^Hepatitis B, Acute
- ;;^UTILITY(U,$J,358.3,22536,2)
- ;;=^266626
- ;;^UTILITY(U,$J,358.3,22537,0)
- ;;=070.32^^125^1394^52
- ;;^UTILITY(U,$J,358.3,22537,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22537,1,4,0)
- ;;=4^070.32
- ;;^UTILITY(U,$J,358.3,22537,1,5,0)
- ;;=5^Hepatitis B, Chronic
- ;;^UTILITY(U,$J,358.3,22537,2)
- ;;=^303249
- ;;^UTILITY(U,$J,358.3,22538,0)
- ;;=070.51^^125^1394^53
- ;;^UTILITY(U,$J,358.3,22538,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22538,1,4,0)
- ;;=4^070.51
- ;;^UTILITY(U,$J,358.3,22538,1,5,0)
- ;;=5^Hepatitis C, Acute
+ ;;^UTILITY(U,$J,358.3,21257,0)
+ ;;=I21.3^^101^1028^33
+ ;;^UTILITY(U,$J,358.3,21257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21257,1,3,0)
+ ;;=3^ST elevation (STEMI) myocardial infarction of unsp site
+ ;;^UTILITY(U,$J,358.3,21257,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,21257,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,21258,0)
+ ;;=J43.0^^101^1028^35
+ ;;^UTILITY(U,$J,358.3,21258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21258,1,3,0)
+ ;;=3^Unilateral pulmonary emphysema [MacLeod's syndrome]
+ ;;^UTILITY(U,$J,358.3,21258,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,21258,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,21259,0)
+ ;;=I50.40^^101^1028^19
+ ;;^UTILITY(U,$J,358.3,21259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21259,1,3,0)
+ ;;=3^Combined systolic and diastolic (congestive) hrt fail,Unspec
+ ;;^UTILITY(U,$J,358.3,21259,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,21259,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,21260,0)
+ ;;=I50.30^^101^1028^21
+ ;;^UTILITY(U,$J,358.3,21260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21260,1,3,0)
+ ;;=3^Diastolic (congestive) heart failure,Unspec
+ ;;^UTILITY(U,$J,358.3,21260,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,21260,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,21261,0)
+ ;;=I50.20^^101^1028^34
+ ;;^UTILITY(U,$J,358.3,21261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21261,1,3,0)
+ ;;=3^Systolic (congestive) heart failure,Unspec
+ ;;^UTILITY(U,$J,358.3,21261,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,21261,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,21262,0)
+ ;;=T84.81XA^^101^1029^4
+ ;;^UTILITY(U,$J,358.3,21262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21262,1,3,0)
+ ;;=3^Embolism due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,21262,1,4,0)
+ ;;=4^T84.81XA
+ ;;^UTILITY(U,$J,358.3,21262,2)
+ ;;=^5055454
+ ;;^UTILITY(U,$J,358.3,21263,0)
+ ;;=T84.81XS^^101^1029^5
+ ;;^UTILITY(U,$J,358.3,21263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21263,1,3,0)
+ ;;=3^Embolism due to internal orthopedic prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,21263,1,4,0)
+ ;;=4^T84.81XS
+ ;;^UTILITY(U,$J,358.3,21263,2)
+ ;;=^5055456
+ ;;^UTILITY(U,$J,358.3,21264,0)
+ ;;=T84.81XD^^101^1029^6
+ ;;^UTILITY(U,$J,358.3,21264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21264,1,3,0)
+ ;;=3^Embolism due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,21264,1,4,0)
+ ;;=4^T84.81XD
+ ;;^UTILITY(U,$J,358.3,21264,2)
+ ;;=^5055455
+ ;;^UTILITY(U,$J,358.3,21265,0)
+ ;;=T84.82XA^^101^1029^7
+ ;;^UTILITY(U,$J,358.3,21265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21265,1,3,0)
+ ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,21265,1,4,0)
+ ;;=4^T84.82XA
+ ;;^UTILITY(U,$J,358.3,21265,2)
+ ;;=^5055457
+ ;;^UTILITY(U,$J,358.3,21266,0)
+ ;;=T84.82XD^^101^1029^8
+ ;;^UTILITY(U,$J,358.3,21266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21266,1,3,0)
+ ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,21266,1,4,0)
+ ;;=4^T84.82XD
+ ;;^UTILITY(U,$J,358.3,21266,2)
+ ;;=^5055458
+ ;;^UTILITY(U,$J,358.3,21267,0)
+ ;;=T84.82XS^^101^1029^9
+ ;;^UTILITY(U,$J,358.3,21267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21267,1,3,0)
+ ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,21267,1,4,0)
+ ;;=4^T84.82XS
+ ;;^UTILITY(U,$J,358.3,21267,2)
+ ;;=^5055459
+ ;;^UTILITY(U,$J,358.3,21268,0)
+ ;;=T84.83XA^^101^1029^10
+ ;;^UTILITY(U,$J,358.3,21268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21268,1,3,0)
+ ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,21268,1,4,0)
+ ;;=4^T84.83XA

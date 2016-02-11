@@ -1,106 +1,132 @@
-IBDEI0TS ; ; 06-AUG-2015
+IBDEI0TS ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14425,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; without manipulation, each
- ;;^UTILITY(U,$J,358.3,14425,1,3,0)
- ;;=3^28510
- ;;^UTILITY(U,$J,358.3,14426,0)
- ;;=28515^^75^888^10^^^^1
- ;;^UTILITY(U,$J,358.3,14426,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14426,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; with manipulation, each
- ;;^UTILITY(U,$J,358.3,14426,1,3,0)
- ;;=3^28515
- ;;^UTILITY(U,$J,358.3,14427,0)
- ;;=28525^^75^888^38^^^^1
- ;;^UTILITY(U,$J,358.3,14427,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14427,1,2,0)
- ;;=2^Open TX of fracture, phalanx or phalanges, other than great toe, with or without internal or external fixation, each
- ;;^UTILITY(U,$J,358.3,14427,1,3,0)
- ;;=3^28525
- ;;^UTILITY(U,$J,358.3,14428,0)
- ;;=28530^^75^888^15^^^^1
- ;;^UTILITY(U,$J,358.3,14428,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14428,1,2,0)
- ;;=2^Closed TX of sesamiod fracture 
- ;;^UTILITY(U,$J,358.3,14428,1,3,0)
- ;;=3^28530
- ;;^UTILITY(U,$J,358.3,14429,0)
- ;;=28531^^75^888^39^^^^1
- ;;^UTILITY(U,$J,358.3,14429,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14429,1,2,0)
- ;;=2^Open TX of sesamiod fracture, with or without internal fixation
- ;;^UTILITY(U,$J,358.3,14429,1,3,0)
- ;;=3^28531
- ;;^UTILITY(U,$J,358.3,14430,0)
- ;;=27760^^75^888^11^^^^1
- ;;^UTILITY(U,$J,358.3,14430,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14430,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; without manipulation 
- ;;^UTILITY(U,$J,358.3,14430,1,3,0)
- ;;=3^27760
- ;;^UTILITY(U,$J,358.3,14431,0)
- ;;=27762^^75^888^12^^^^1
- ;;^UTILITY(U,$J,358.3,14431,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14431,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; with manipulation, with or without skin or skeletal traction
- ;;^UTILITY(U,$J,358.3,14431,1,3,0)
- ;;=3^27762
- ;;^UTILITY(U,$J,358.3,14432,0)
- ;;=27766^^75^888^55^^^^1
- ;;^UTILITY(U,$J,358.3,14432,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14432,1,2,0)
- ;;=2^Open/Closed TX of medial matteolus FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,14432,1,3,0)
- ;;=3^27766
- ;;^UTILITY(U,$J,358.3,14433,0)
- ;;=27786^^75^888^6^^^^1
- ;;^UTILITY(U,$J,358.3,14433,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14433,1,2,0)
- ;;=2^Closed TX of distal fibular fracture (lateral malleolus); without manipulation
- ;;^UTILITY(U,$J,358.3,14433,1,3,0)
- ;;=3^27786
- ;;^UTILITY(U,$J,358.3,14434,0)
- ;;=27788^^75^888^5^^^^1
- ;;^UTILITY(U,$J,358.3,14434,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14434,1,2,0)
- ;;=2^Closed TX of distal fibular (lateral malleolus); with manipulation
- ;;^UTILITY(U,$J,358.3,14434,1,3,0)
- ;;=3^27788
- ;;^UTILITY(U,$J,358.3,14435,0)
- ;;=27792^^75^888^36^^^^1
- ;;^UTILITY(U,$J,358.3,14435,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14435,1,2,0)
- ;;=2^Open TX of distal fibular fracture (lateral malleolus), with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,14435,1,3,0)
- ;;=3^27792
- ;;^UTILITY(U,$J,358.3,14436,0)
- ;;=27808^^75^888^1^^^^1
- ;;^UTILITY(U,$J,358.3,14436,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14436,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); without manipulation
- ;;^UTILITY(U,$J,358.3,14436,1,3,0)
- ;;=3^27808
- ;;^UTILITY(U,$J,358.3,14437,0)
- ;;=27810^^75^888^2^^^^1
- ;;^UTILITY(U,$J,358.3,14437,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14437,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); with manipulation
- ;;^UTILITY(U,$J,358.3,14437,1,3,0)
- ;;=3^27810
- ;;^UTILITY(U,$J,358.3,14438,0)
- ;;=27814^^75^888^33^^^^1
+ ;;^UTILITY(U,$J,358.3,13700,0)
+ ;;=H30.893^^80^763^16
+ ;;^UTILITY(U,$J,358.3,13700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13700,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,13700,1,4,0)
+ ;;=4^H30.893
+ ;;^UTILITY(U,$J,358.3,13700,2)
+ ;;=^5005432
+ ;;^UTILITY(U,$J,358.3,13701,0)
+ ;;=H31.001^^80^763^23
+ ;;^UTILITY(U,$J,358.3,13701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13701,1,3,0)
+ ;;=3^Chorioretinal Scars,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13701,1,4,0)
+ ;;=4^H31.001
+ ;;^UTILITY(U,$J,358.3,13701,2)
+ ;;=^5005436
+ ;;^UTILITY(U,$J,358.3,13702,0)
+ ;;=H31.002^^80^763^22
+ ;;^UTILITY(U,$J,358.3,13702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13702,1,3,0)
+ ;;=3^Chorioretinal Scars,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13702,1,4,0)
+ ;;=4^H31.002
+ ;;^UTILITY(U,$J,358.3,13702,2)
+ ;;=^5005437
+ ;;^UTILITY(U,$J,358.3,13703,0)
+ ;;=H31.003^^80^763^21
+ ;;^UTILITY(U,$J,358.3,13703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13703,1,3,0)
+ ;;=3^Chorioretinal Scars,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,13703,1,4,0)
+ ;;=4^H31.003
+ ;;^UTILITY(U,$J,358.3,13703,2)
+ ;;=^5005438
+ ;;^UTILITY(U,$J,358.3,13704,0)
+ ;;=H31.021^^80^763^95
+ ;;^UTILITY(U,$J,358.3,13704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13704,1,3,0)
+ ;;=3^Retinopathy,Solar,Right Eye
+ ;;^UTILITY(U,$J,358.3,13704,1,4,0)
+ ;;=4^H31.021
+ ;;^UTILITY(U,$J,358.3,13704,2)
+ ;;=^5005443
+ ;;^UTILITY(U,$J,358.3,13705,0)
+ ;;=H31.022^^80^763^94
+ ;;^UTILITY(U,$J,358.3,13705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13705,1,3,0)
+ ;;=3^Retinopathy,Solar,Left Eye
+ ;;^UTILITY(U,$J,358.3,13705,1,4,0)
+ ;;=4^H31.022
+ ;;^UTILITY(U,$J,358.3,13705,2)
+ ;;=^5005444
+ ;;^UTILITY(U,$J,358.3,13706,0)
+ ;;=H31.023^^80^763^93
+ ;;^UTILITY(U,$J,358.3,13706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13706,1,3,0)
+ ;;=3^Retinopathy,Solar,Bilateral
+ ;;^UTILITY(U,$J,358.3,13706,1,4,0)
+ ;;=4^H31.023
+ ;;^UTILITY(U,$J,358.3,13706,2)
+ ;;=^5005445
+ ;;^UTILITY(U,$J,358.3,13707,0)
+ ;;=H31.011^^80^763^57
+ ;;^UTILITY(U,$J,358.3,13707,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13707,1,3,0)
+ ;;=3^Macula Scars of Posterior Pole,Right Eye
+ ;;^UTILITY(U,$J,358.3,13707,1,4,0)
+ ;;=4^H31.011
+ ;;^UTILITY(U,$J,358.3,13707,2)
+ ;;=^5005439
+ ;;^UTILITY(U,$J,358.3,13708,0)
+ ;;=H31.012^^80^763^56
+ ;;^UTILITY(U,$J,358.3,13708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13708,1,3,0)
+ ;;=3^Macula Scars of Posterior Pole,Left Eye
+ ;;^UTILITY(U,$J,358.3,13708,1,4,0)
+ ;;=4^H31.012
+ ;;^UTILITY(U,$J,358.3,13708,2)
+ ;;=^5005440
+ ;;^UTILITY(U,$J,358.3,13709,0)
+ ;;=H31.321^^80^763^27
+ ;;^UTILITY(U,$J,358.3,13709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13709,1,3,0)
+ ;;=3^Choroidal Rupture,Right Eye
+ ;;^UTILITY(U,$J,358.3,13709,1,4,0)
+ ;;=4^H31.321
+ ;;^UTILITY(U,$J,358.3,13709,2)
+ ;;=^5005472
+ ;;^UTILITY(U,$J,358.3,13710,0)
+ ;;=H31.322^^80^763^26
+ ;;^UTILITY(U,$J,358.3,13710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13710,1,3,0)
+ ;;=3^Choroidal Rupture,Left Eye
+ ;;^UTILITY(U,$J,358.3,13710,1,4,0)
+ ;;=4^H31.322
+ ;;^UTILITY(U,$J,358.3,13710,2)
+ ;;=^5005473
+ ;;^UTILITY(U,$J,358.3,13711,0)
+ ;;=H43.21^^80^763^30
+ ;;^UTILITY(U,$J,358.3,13711,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13711,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,13711,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,13711,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,13712,0)
+ ;;=H43.22^^80^763^29
+ ;;^UTILITY(U,$J,358.3,13712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13712,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,13712,1,4,0)
+ ;;=4^H43.22

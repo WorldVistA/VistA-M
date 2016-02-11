@@ -1,0 +1,132 @@
+IBDEI3DU ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,56863,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,56863,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,56864,0)
+ ;;=C79.72^^261^2835^15
+ ;;^UTILITY(U,$J,358.3,56864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56864,1,3,0)
+ ;;=3^Met Malig Neop Lt Adrenal Gland
+ ;;^UTILITY(U,$J,358.3,56864,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,56864,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,56865,0)
+ ;;=K91.3^^261^2836^6
+ ;;^UTILITY(U,$J,358.3,56865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56865,1,3,0)
+ ;;=3^Postprocedural Intestinal Obstruction
+ ;;^UTILITY(U,$J,358.3,56865,1,4,0)
+ ;;=4^K91.3
+ ;;^UTILITY(U,$J,358.3,56865,2)
+ ;;=^5008902
+ ;;^UTILITY(U,$J,358.3,56866,0)
+ ;;=T88.8XXA^^261^2836^2
+ ;;^UTILITY(U,$J,358.3,56866,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56866,1,3,0)
+ ;;=3^Compl of Surg/Med Care,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56866,1,4,0)
+ ;;=4^T88.8XXA
+ ;;^UTILITY(U,$J,358.3,56866,2)
+ ;;=^5055814
+ ;;^UTILITY(U,$J,358.3,56867,0)
+ ;;=T81.31XA^^261^2836^3
+ ;;^UTILITY(U,$J,358.3,56867,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56867,1,3,0)
+ ;;=3^Disruption of External Surg Wound,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56867,1,4,0)
+ ;;=4^T81.31XA
+ ;;^UTILITY(U,$J,358.3,56867,2)
+ ;;=^5054470
+ ;;^UTILITY(U,$J,358.3,56868,0)
+ ;;=T81.4XXA^^261^2836^4
+ ;;^UTILITY(U,$J,358.3,56868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56868,1,3,0)
+ ;;=3^Infection Following Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56868,1,4,0)
+ ;;=4^T81.4XXA
+ ;;^UTILITY(U,$J,358.3,56868,2)
+ ;;=^5054479
+ ;;^UTILITY(U,$J,358.3,56869,0)
+ ;;=T81.83XA^^261^2836^5
+ ;;^UTILITY(U,$J,358.3,56869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56869,1,3,0)
+ ;;=3^Persistent Postprocedural Fistual,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56869,1,4,0)
+ ;;=4^T81.83XA
+ ;;^UTILITY(U,$J,358.3,56869,2)
+ ;;=^5054659
+ ;;^UTILITY(U,$J,358.3,56870,0)
+ ;;=T81.89XA^^261^2836^1
+ ;;^UTILITY(U,$J,358.3,56870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56870,1,3,0)
+ ;;=3^Compl of Procedure NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56870,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,56870,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,56871,0)
+ ;;=C34.11^^261^2837^13
+ ;;^UTILITY(U,$J,358.3,56871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56871,1,3,0)
+ ;;=3^Malig Neop,Upper Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,56871,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,56871,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,56872,0)
+ ;;=C34.12^^261^2837^12
+ ;;^UTILITY(U,$J,358.3,56872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56872,1,3,0)
+ ;;=3^Malig Neop,Upper Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,56872,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,56872,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,56873,0)
+ ;;=C34.2^^261^2837^7
+ ;;^UTILITY(U,$J,358.3,56873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56873,1,3,0)
+ ;;=3^Malig Neop,Middle Lobe,Lung
+ ;;^UTILITY(U,$J,358.3,56873,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,56873,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,56874,0)
+ ;;=C34.31^^261^2837^6
+ ;;^UTILITY(U,$J,358.3,56874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56874,1,3,0)
+ ;;=3^Malig Neop,Lower Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,56874,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,56874,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,56875,0)
+ ;;=C34.32^^261^2837^5
+ ;;^UTILITY(U,$J,358.3,56875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56875,1,3,0)
+ ;;=3^Malig Neop,Lower Lobe,Lt Bronch/Lung
+ ;;^UTILITY(U,$J,358.3,56875,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,56875,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,56876,0)
+ ;;=C34.81^^261^2837^9
+ ;;^UTILITY(U,$J,358.3,56876,1,0)
+ ;;=^358.31IA^4^2

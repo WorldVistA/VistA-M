@@ -1,5 +1,5 @@
 DPTLK1 ;ALB/RMO,EG - MAS Patient Look-up Check Cross-References ; 08/15/2006
- ;;5.3;Registration;**32,50,197,249,317,391,244,532,574,620,641,680,538,657**;Aug 13, 1993;Build 19
+ ;;5.3;Registration;**32,50,197,249,317,391,244,532,574,620,641,680,538,657,915**;Aug 13, 1993;Build 6
 FIND ;Cross reference patient lookup
  ;Optional input: DPTNOFZY='1' to suppress fuzzy lookups implemented
  ;                by patch DG*5.3*244
@@ -35,6 +35,16 @@ SET I 'DPTDFN S:DPTCNT=1&($D(DPTIFNS(DPTCNT))) DPTDFN=+DPTIFNS(DPTCNT) S DPT("NO
  .F DPTLP=1:1 S DPTREF=$P(DPTREFS,",",DPTLP) Q:DPTREF=""!(DPTDFN)  D  Q:DPTDFN!DPTOUT
  ..S DPTVAL=DPTX
  ..D LOOK(DPTVAL)
+ ;**915 enterprise search
+YN I DPTCNT=1,$P($G(XQY0),"^",2)="Register a Patient",DPTDFN,$T(PATIENT^MPIFXMLP)'="" D  I 'DPTDFN S DPTX="",DPTDFN=-1
+ . N %,%Y
+ . W !,"Found: ",$P(^DPT(DPTDFN,0),"^")," ",$$FMTE^XLFDT($P(^DPT(DPTDFN,0),"^",3),"2D")," ",$P(^DPT(DPTDFN,0),"^",9)," ",$$GET1^DIQ(2,DPTDFN_",",.301)," ",$$GET1^DIQ(2,DPTDFN_",",391)
+ . W !," Ok" D YN^DICN
+ . I %=2 S DPTDFN=$$SEARCH^DPTLK7(DPTX,DPTXX) S:DPTDFN<1 DPTCNT=0 D:DPTDFN>1  Q
+ .. S DPTS(DPTDFN)=$P(^DPT(DPTDFN,0),"^")_"^"_$P(^DPT(DPTDFN,0),"^")
+ . I %=1 Q
+ . S DPTDFN=0 G Q
+ ;**915 end
  I DGLASTLK=0,$G(DPTCNT) S DGLASTLK=1 G SET
  I DGLASTLK=0,'$G(DPTCNT),$L($G(DPTXOLD)) S DPTX=DPTXOLD
  ; end of DG*641 change

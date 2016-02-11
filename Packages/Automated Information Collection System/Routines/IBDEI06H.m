@@ -1,130 +1,132 @@
-IBDEI06H ; ; 06-AUG-2015
+IBDEI06H ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2508,2)
- ;;=^5008661
- ;;^UTILITY(U,$J,358.3,2509,0)
- ;;=K51.213^^6^75^51
- ;;^UTILITY(U,$J,358.3,2509,1,0)
+ ;;^UTILITY(U,$J,358.3,2431,1,4,0)
+ ;;=4^I70.561
+ ;;^UTILITY(U,$J,358.3,2431,2)
+ ;;=^5007717
+ ;;^UTILITY(U,$J,358.3,2432,0)
+ ;;=I70.562^^19^203^44
+ ;;^UTILITY(U,$J,358.3,2432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2509,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with fistula
- ;;^UTILITY(U,$J,358.3,2509,1,4,0)
- ;;=4^K51.213
- ;;^UTILITY(U,$J,358.3,2509,2)
- ;;=^5008662
- ;;^UTILITY(U,$J,358.3,2510,0)
- ;;=K51.214^^6^75^50
- ;;^UTILITY(U,$J,358.3,2510,1,0)
+ ;;^UTILITY(U,$J,358.3,2432,1,3,0)
+ ;;=3^Athscl Nonautologous Bio Bypass of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,2432,1,4,0)
+ ;;=4^I70.562
+ ;;^UTILITY(U,$J,358.3,2432,2)
+ ;;=^5007718
+ ;;^UTILITY(U,$J,358.3,2433,0)
+ ;;=I70.563^^19^203^42
+ ;;^UTILITY(U,$J,358.3,2433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2510,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with abscess
- ;;^UTILITY(U,$J,358.3,2510,1,4,0)
- ;;=4^K51.214
- ;;^UTILITY(U,$J,358.3,2510,2)
- ;;=^5008663
- ;;^UTILITY(U,$J,358.3,2511,0)
- ;;=K51.218^^6^75^53
- ;;^UTILITY(U,$J,358.3,2511,1,0)
+ ;;^UTILITY(U,$J,358.3,2433,1,3,0)
+ ;;=3^Athscl Nonautologous Bio Bypass of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,2433,1,4,0)
+ ;;=4^I70.563
+ ;;^UTILITY(U,$J,358.3,2433,2)
+ ;;=^5007719
+ ;;^UTILITY(U,$J,358.3,2434,0)
+ ;;=I70.511^^19^203^47
+ ;;^UTILITY(U,$J,358.3,2434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2511,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with other complication
- ;;^UTILITY(U,$J,358.3,2511,1,4,0)
- ;;=4^K51.218
- ;;^UTILITY(U,$J,358.3,2511,2)
- ;;=^5008664
- ;;^UTILITY(U,$J,358.3,2512,0)
- ;;=K51.219^^6^75^55
- ;;^UTILITY(U,$J,358.3,2512,1,0)
+ ;;^UTILITY(U,$J,358.3,2434,1,3,0)
+ ;;=3^Athscl Nonautologous Bio Bypass of Right Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,2434,1,4,0)
+ ;;=4^I70.511
+ ;;^UTILITY(U,$J,358.3,2434,2)
+ ;;=^5007692
+ ;;^UTILITY(U,$J,358.3,2435,0)
+ ;;=I70.512^^19^203^45
+ ;;^UTILITY(U,$J,358.3,2435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2512,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with unsp complications
- ;;^UTILITY(U,$J,358.3,2512,1,4,0)
- ;;=4^K51.219
- ;;^UTILITY(U,$J,358.3,2512,2)
- ;;=^5008665
- ;;^UTILITY(U,$J,358.3,2513,0)
- ;;=K51.90^^6^75^63
- ;;^UTILITY(U,$J,358.3,2513,1,0)
+ ;;^UTILITY(U,$J,358.3,2435,1,3,0)
+ ;;=3^Athscl Nonautologous Bio Bypass of Left Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,2435,1,4,0)
+ ;;=4^I70.512
+ ;;^UTILITY(U,$J,358.3,2435,2)
+ ;;=^5007693
+ ;;^UTILITY(U,$J,358.3,2436,0)
+ ;;=I70.513^^19^203^43
+ ;;^UTILITY(U,$J,358.3,2436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2513,1,3,0)
- ;;=3^Ulcerative colitis, unspecified, without complications
- ;;^UTILITY(U,$J,358.3,2513,1,4,0)
- ;;=4^K51.90
- ;;^UTILITY(U,$J,358.3,2513,2)
- ;;=^5008694
- ;;^UTILITY(U,$J,358.3,2514,0)
- ;;=K51.919^^6^75^57
- ;;^UTILITY(U,$J,358.3,2514,1,0)
+ ;;^UTILITY(U,$J,358.3,2436,1,3,0)
+ ;;=3^Athscl Nonautologous Bio Bypass of Bilateral Legs w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,2436,1,4,0)
+ ;;=4^I70.513
+ ;;^UTILITY(U,$J,358.3,2436,2)
+ ;;=^5007694
+ ;;^UTILITY(U,$J,358.3,2437,0)
+ ;;=I70.8^^19^203^15
+ ;;^UTILITY(U,$J,358.3,2437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2514,1,3,0)
- ;;=3^Ulcerative colitis, unsp with unspecified complications
- ;;^UTILITY(U,$J,358.3,2514,1,4,0)
- ;;=4^K51.919
- ;;^UTILITY(U,$J,358.3,2514,2)
- ;;=^5008700
- ;;^UTILITY(U,$J,358.3,2515,0)
- ;;=K51.918^^6^75^61
- ;;^UTILITY(U,$J,358.3,2515,1,0)
+ ;;^UTILITY(U,$J,358.3,2437,1,3,0)
+ ;;=3^Atherosclerosis of Oth Arteries
+ ;;^UTILITY(U,$J,358.3,2437,1,4,0)
+ ;;=4^I70.8
+ ;;^UTILITY(U,$J,358.3,2437,2)
+ ;;=^5007783
+ ;;^UTILITY(U,$J,358.3,2438,0)
+ ;;=I71.00^^19^203^62
+ ;;^UTILITY(U,$J,358.3,2438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2515,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with other complication
- ;;^UTILITY(U,$J,358.3,2515,1,4,0)
- ;;=4^K51.918
- ;;^UTILITY(U,$J,358.3,2515,2)
- ;;=^5008699
- ;;^UTILITY(U,$J,358.3,2516,0)
- ;;=K51.914^^6^75^58
- ;;^UTILITY(U,$J,358.3,2516,1,0)
+ ;;^UTILITY(U,$J,358.3,2438,1,3,0)
+ ;;=3^Dissection of Aorta,Unspec Site
+ ;;^UTILITY(U,$J,358.3,2438,1,4,0)
+ ;;=4^I71.00
+ ;;^UTILITY(U,$J,358.3,2438,2)
+ ;;=^35660
+ ;;^UTILITY(U,$J,358.3,2439,0)
+ ;;=I71.01^^19^203^63
+ ;;^UTILITY(U,$J,358.3,2439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2516,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with abscess
- ;;^UTILITY(U,$J,358.3,2516,1,4,0)
- ;;=4^K51.914
- ;;^UTILITY(U,$J,358.3,2516,2)
- ;;=^5008698
- ;;^UTILITY(U,$J,358.3,2517,0)
- ;;=K51.913^^6^75^59
- ;;^UTILITY(U,$J,358.3,2517,1,0)
+ ;;^UTILITY(U,$J,358.3,2439,1,3,0)
+ ;;=3^Dissection of Thoracic Aorta
+ ;;^UTILITY(U,$J,358.3,2439,1,4,0)
+ ;;=4^I71.01
+ ;;^UTILITY(U,$J,358.3,2439,2)
+ ;;=^303289
+ ;;^UTILITY(U,$J,358.3,2440,0)
+ ;;=I71.02^^19^203^61
+ ;;^UTILITY(U,$J,358.3,2440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2517,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with fistula
- ;;^UTILITY(U,$J,358.3,2517,1,4,0)
- ;;=4^K51.913
- ;;^UTILITY(U,$J,358.3,2517,2)
- ;;=^5008697
- ;;^UTILITY(U,$J,358.3,2518,0)
- ;;=K51.912^^6^75^60
- ;;^UTILITY(U,$J,358.3,2518,1,0)
+ ;;^UTILITY(U,$J,358.3,2440,1,3,0)
+ ;;=3^Dissection of Abdominal Aorta
+ ;;^UTILITY(U,$J,358.3,2440,1,4,0)
+ ;;=4^I71.02
+ ;;^UTILITY(U,$J,358.3,2440,2)
+ ;;=^303290
+ ;;^UTILITY(U,$J,358.3,2441,0)
+ ;;=I71.03^^19^203^64
+ ;;^UTILITY(U,$J,358.3,2441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2518,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with intestinal obstruction
- ;;^UTILITY(U,$J,358.3,2518,1,4,0)
- ;;=4^K51.912
- ;;^UTILITY(U,$J,358.3,2518,2)
- ;;=^5008696
- ;;^UTILITY(U,$J,358.3,2519,0)
- ;;=K51.911^^6^75^62
- ;;^UTILITY(U,$J,358.3,2519,1,0)
+ ;;^UTILITY(U,$J,358.3,2441,1,3,0)
+ ;;=3^Dissection of Thoracoabdominal Aorta
+ ;;^UTILITY(U,$J,358.3,2441,1,4,0)
+ ;;=4^I71.03
+ ;;^UTILITY(U,$J,358.3,2441,2)
+ ;;=^303291
+ ;;^UTILITY(U,$J,358.3,2442,0)
+ ;;=I71.1^^19^203^87
+ ;;^UTILITY(U,$J,358.3,2442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2519,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with rectal bleeding
- ;;^UTILITY(U,$J,358.3,2519,1,4,0)
- ;;=4^K51.911
- ;;^UTILITY(U,$J,358.3,2519,2)
- ;;=^5008695
- ;;^UTILITY(U,$J,358.3,2520,0)
- ;;=K52.81^^6^75^33
- ;;^UTILITY(U,$J,358.3,2520,1,0)
+ ;;^UTILITY(U,$J,358.3,2442,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,2442,1,4,0)
+ ;;=4^I71.1
+ ;;^UTILITY(U,$J,358.3,2442,2)
+ ;;=^5007786
+ ;;^UTILITY(U,$J,358.3,2443,0)
+ ;;=I71.2^^19^203^88
+ ;;^UTILITY(U,$J,358.3,2443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2520,1,3,0)
- ;;=3^Eosinophilic gastritis or gastroenteritis
- ;;^UTILITY(U,$J,358.3,2520,1,4,0)
- ;;=4^K52.81
- ;;^UTILITY(U,$J,358.3,2520,2)
- ;;=^5008702
- ;;^UTILITY(U,$J,358.3,2521,0)
- ;;=K57.90^^6^75^28
- ;;^UTILITY(U,$J,358.3,2521,1,0)
+ ;;^UTILITY(U,$J,358.3,2443,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,2443,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,2443,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,2444,0)
+ ;;=I71.3^^19^203^1
+ ;;^UTILITY(U,$J,358.3,2444,1,0)
  ;;=^358.31IA^4^2

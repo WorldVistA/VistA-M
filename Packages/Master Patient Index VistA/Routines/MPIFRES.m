@@ -1,5 +1,5 @@
-MPIFRES ;SF/CMC-LOCAL AND MISSING ICN RESOLUTION ;JUL 13, 1998
- ;;1.0;MASTER PATIENT INDEX VISTA;**1,7,10,15,17,21,26,28,33,35,43,39,52,54**;30 Apr 99;Build 2
+MPIFRES ;SF/CMC-LOCAL AND MISSING ICN RESOLUTION ; 7/22/15 1:22pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,7,10,15,17,21,26,28,33,35,43,39,52,54,61**;30 Apr 99;Build 3
  ;
  ; Integration Agreements Utilized:
  ;  EXC, START and STOP^RGHLLOG - #2796
@@ -29,6 +29,9 @@ GO ;ENTRY POINT
  D LOOP
  I $D(^TMP("HLS",$J)) D SEND
  D STOP^RGHLLOG(0)
+ ;**61 Story 173992 (ckn)
+ ;Process MPIF EXPLICIT QUEUE
+ D PEXQUE
  K MPIIT,MPITOT,HLDT,HLDT1,MPICNT,MPIDNUM,MPIEROR,MPIMIDT,MPIMSH
  K MPIOUT,MPIQRYNM,MPISEQ,QCNT,MPIMCNT,MPIMTX,ENDT,MPIFRES
  L -^XTMP("MPIF RESOLUTION")
@@ -60,6 +63,10 @@ MAKE ;
  D NOW^%DTC S TODAY=X
  ;local ICNs
  F  S MPIIT=$O(^DPT("AICNL",1,MPIIT)) Q:MPIIT=""  D
+ .;**61 - Story 173992 (ckn)
+ .;If DFN entry exist in new MPIF EXPLICIT ADD QUEUE, Don't process
+ .;this DFN as it will be processed by PEXQUE code
+ .I $D(^XTMP("MPIF EXPLICIT QUEUE",MPIIT)) Q
  .; LINE BELOW ADDED FOR PATCH 26 TO CLEANUP AICNL X-REF WHEN LEFT AROUND
  .I $E($$GETICN^MPIF001(MPIIT),1,3)'=SITE S XX=$$SETLOC^MPIF001(MPIIT,0) K ^DPT("AICNL",1,MPIIT) Q
  .;Q:+$G(^DPT("AICNL",1,MPIIT))=1 **39 changing check
@@ -122,4 +129,62 @@ MAKE3 ;
  .D SEND
  .S (MPICNT,MPIDNUM)=1
  .D HLRDF
+ Q
+PEXQUE ;Process MPIF EXPLICIT QUEUE for pending DFNs from Register A Patient option
+ N DFN,PATARR,MPIDATA,STNUM
+ S STNUM=$P($$SITE^VASITE(),"^",3)
+ I '$D(^XTMP("MPIF EXPLICIT QUEUE")) Q
+ S $P(^XTMP("MPIF EXPLICIT QUEUE",0),"^",1)=$$FMADD^XLFDT(DT,5)
+ S DFN=0 F  S DFN=$O(^XTMP("MPIF EXPLICIT QUEUE",DFN)) Q:+DFN=0  D
+ . K PATARR
+ . I $P($G(^DPT(DFN,"MPI")),"^")'="",($E($P($G(^DPT(DFN,"MPI")),"^"),1,3)'=STNUM) D  Q
+ .. K ^XTMP("MPIF EXPLICIT QUEUE",DFN)
+ . D GETPAT(DFN,.PATARR)
+ . ;Call webservice for explicit Add
+ . D GETICN^MPIFXMLI(.MPIDATA,.PATARR)
+ . I $G(MPIDATA("ICN"))<1 D  Q  ;No ICN returned - keep this record in queue
+ ..S ^XTMP("MPIF EXPLICIT QUEUE",DFN)=DT_"^"_PATARR("AddType")_"^"_PATARR("mcid")_"^"_$G(MPIDATA("ERRTXT"))
+ ..K MPIDATA,PATARR
+ . ;Store ICN into Patient file
+ . D VIC40^MPIFAPI(DFN,MPIDATA("ICN"))
+ . ;cleanup the queue
+ . K ^XTMP("MPIF EXPLICIT QUEUE",DFN),MPIDATA,PATARR
+ Q
+GETPAT(DFN,PATARR) ;Get patient data for DFN
+ N NAME,DNM,VAROOT,COUNTRY,STATE,DGDEM,DGOPD,DGADDR,ADDTYP,STOKEN
+ S ADDTYP=$P($G(^XTMP("MPIF EXPLICIT QUEUE",DFN)),"^",2) ; Add type
+ S STOKEN=$P($G(^XTMP("MPIF EXPLICIT QUEUE",DFN)),"^",3) ;search token
+ S VAROOT="DGDEM" D DEM^VADPT ;Patient Demographic data
+ S VAROOT="DGOPD" D OPD^VADPT ;Patient Other Pertinent Data
+ S VAROOT="DGADDR" D ADD^VADPT ;Patient Address data
+ S PATARR("AddType")=$G(ADDTYP),PATARR("mcid")=STOKEN
+ ;NAME
+ S DNM=$G(DGDEM(1)) I DNM'="" D
+ .D STDNAME^XLFNAME(.DNM,"C")
+ .S PATARR(1,"FirstName")=DNM("GIVEN"),PATARR(1,"Surname")=DNM("FAMILY")
+ .S PATARR(1,"MiddleName")=DNM("MIDDLE"),PATARR(1,"Suffix")=DNM("SUFFIX")
+ S PATARR(1,"SSN")=$P($G(DGDEM(2)),"^") ;SSN
+ S PATARR(1,"DOB")=$P($G(DGDEM(3)),"^") ;DOB
+ S PATARR(1,"Gender")=$P($G(DGDEM(5)),"^") ;Gender
+ S PATARR(1,"MMN")=$G(DGOPD(5)) ;Mother's maiden Name
+ S PATARR(1,"POBCity")=$G(DGOPD(1)) ;POB City
+ S PATARR(1,"POBState")=$P($G(DGOPD(2)),"^") I PATARR(1,"POBState")'="" S PATARR(1,"POBState")=$P($G(^DIC(5,PATARR(1,"POBState"),0)),"^",2) ;POB State
+ S PATARR(1,"MBI")=$P($G(^DPT(DFN,"MPIMB")),"^") ;Multiple Birth Indicator
+ S PATARR(1,"DOD")=$P($G(DGDEM(6)),"^") ;Date of Death
+ ;Address Fields
+ S COUNTRY=$P($G(DGADDR(25)),"^")
+ I COUNTRY'="",($D(^HL(779.004,COUNTRY,0))) D
+ . S PATARR(1,"ResAddL1")=$G(DGADDR(1)),PATARR(1,"ResAddL2")=$G(DGADDR(2))
+ . S PATARR(1,"ResAddL3")=$G(DGADDR(3)),PATARR(1,"ResAddCity")=$G(DGADDR(4))
+ . S COUNTRY=$P($G(DGADDR(25)),"^"),COUNTRY=$P($G(^HL(779.004,COUNTRY,0)),"^")
+ . S PATARR(1,"ResAddCountry")=COUNTRY
+ . I COUNTRY="USA" D
+ .. S STATE=$P($G(DGADDR(5)),"^") I STATE'="" S PATARR(1,"ResAddState")=$P($G(^DIC(5,STATE,0)),"^",2)
+ .. S PATARR(1,"ResAddZip4")=$G(DGADDR(6))
+ .I COUNTRY'="USA" D
+ .. S PATARR(1,"ResAddProvince")=$G(DGADDR(23))
+ .. S PATARR(1,"ResAddPostalCode")=$G(DGADDR(24))
+ ; Phone
+ S PATARR(1,"ResPhone")=$G(DGADDR(8))
+ S PATARR(1,"DFN")=DFN ;DFN of Patient
  Q

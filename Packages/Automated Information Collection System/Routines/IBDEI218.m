@@ -1,128 +1,122 @@
-IBDEI218 ; ; 06-AUG-2015
+IBDEI218 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35518,1,0)
+ ;;^UTILITY(U,$J,358.3,34053,0)
+ ;;=N05.0^^154^1722^50
+ ;;^UTILITY(U,$J,358.3,34053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35518,1,3,0)
- ;;=3^Disruption of external operation (surgical) wound, NEC, init
- ;;^UTILITY(U,$J,358.3,35518,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,35518,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,35519,0)
- ;;=T81.4XXA^^188^2047^4
- ;;^UTILITY(U,$J,358.3,35519,1,0)
+ ;;^UTILITY(U,$J,358.3,34053,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,34053,1,4,0)
+ ;;=4^N05.0
+ ;;^UTILITY(U,$J,358.3,34053,2)
+ ;;=^5015541
+ ;;^UTILITY(U,$J,358.3,34054,0)
+ ;;=N05.1^^154^1722^49
+ ;;^UTILITY(U,$J,358.3,34054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35519,1,3,0)
- ;;=3^Infection following a procedure, initial encounter
- ;;^UTILITY(U,$J,358.3,35519,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,35519,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,35520,0)
- ;;=T81.89XA^^188^2047^1
- ;;^UTILITY(U,$J,358.3,35520,1,0)
+ ;;^UTILITY(U,$J,358.3,34054,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,34054,1,4,0)
+ ;;=4^N05.1
+ ;;^UTILITY(U,$J,358.3,34054,2)
+ ;;=^5015542
+ ;;^UTILITY(U,$J,358.3,34055,0)
+ ;;=N05.2^^154^1722^46
+ ;;^UTILITY(U,$J,358.3,34055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35520,1,3,0)
- ;;=3^Complications of procedures, NEC, init
- ;;^UTILITY(U,$J,358.3,35520,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,35520,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,35521,0)
- ;;=I25.10^^188^2048^1
- ;;^UTILITY(U,$J,358.3,35521,1,0)
+ ;;^UTILITY(U,$J,358.3,34055,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,34055,1,4,0)
+ ;;=4^N05.2
+ ;;^UTILITY(U,$J,358.3,34055,2)
+ ;;=^5015543
+ ;;^UTILITY(U,$J,358.3,34056,0)
+ ;;=N05.3^^154^1722^47
+ ;;^UTILITY(U,$J,358.3,34056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35521,1,3,0)
- ;;=3^Athscl heart disease of native coronary artery w/o ang pctrs
- ;;^UTILITY(U,$J,358.3,35521,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,35521,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,35522,0)
- ;;=I50.9^^188^2048^3
- ;;^UTILITY(U,$J,358.3,35522,1,0)
+ ;;^UTILITY(U,$J,358.3,34056,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34056,1,4,0)
+ ;;=4^N05.3
+ ;;^UTILITY(U,$J,358.3,34056,2)
+ ;;=^5015544
+ ;;^UTILITY(U,$J,358.3,34057,0)
+ ;;=N05.4^^154^1722^45
+ ;;^UTILITY(U,$J,358.3,34057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35522,1,3,0)
- ;;=3^Heart failure, unspecified
- ;;^UTILITY(U,$J,358.3,35522,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,35522,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,35523,0)
- ;;=I65.21^^188^2048^7
- ;;^UTILITY(U,$J,358.3,35523,1,0)
+ ;;^UTILITY(U,$J,358.3,34057,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34057,1,4,0)
+ ;;=4^N05.4
+ ;;^UTILITY(U,$J,358.3,34057,2)
+ ;;=^5015545
+ ;;^UTILITY(U,$J,358.3,34058,0)
+ ;;=N05.5^^154^1722^48
+ ;;^UTILITY(U,$J,358.3,34058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35523,1,3,0)
- ;;=3^Occlusion and stenosis of right carotid artery
- ;;^UTILITY(U,$J,358.3,35523,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,35523,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,35524,0)
- ;;=I65.22^^188^2048^5
- ;;^UTILITY(U,$J,358.3,35524,1,0)
+ ;;^UTILITY(U,$J,358.3,34058,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,34058,1,4,0)
+ ;;=4^N05.5
+ ;;^UTILITY(U,$J,358.3,34058,2)
+ ;;=^5015546
+ ;;^UTILITY(U,$J,358.3,34059,0)
+ ;;=N05.6^^154^1722^43
+ ;;^UTILITY(U,$J,358.3,34059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35524,1,3,0)
- ;;=3^Occlusion and stenosis of left carotid artery
- ;;^UTILITY(U,$J,358.3,35524,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,35524,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,35525,0)
- ;;=I70.219^^188^2048^2
- ;;^UTILITY(U,$J,358.3,35525,1,0)
+ ;;^UTILITY(U,$J,358.3,34059,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,34059,1,4,0)
+ ;;=4^N05.6
+ ;;^UTILITY(U,$J,358.3,34059,2)
+ ;;=^5015547
+ ;;^UTILITY(U,$J,358.3,34060,0)
+ ;;=N05.7^^154^1722^44
+ ;;^UTILITY(U,$J,358.3,34060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35525,1,3,0)
- ;;=3^Athscl native arteries of extrm w intrmt claud, unsp extrm
- ;;^UTILITY(U,$J,358.3,35525,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,35525,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,35526,0)
- ;;=I73.9^^188^2048^8
- ;;^UTILITY(U,$J,358.3,35526,1,0)
+ ;;^UTILITY(U,$J,358.3,34060,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,34060,1,4,0)
+ ;;=4^N05.7
+ ;;^UTILITY(U,$J,358.3,34060,2)
+ ;;=^5015548
+ ;;^UTILITY(U,$J,358.3,34061,0)
+ ;;=N05.8^^154^1722^51
+ ;;^UTILITY(U,$J,358.3,34061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35526,1,3,0)
- ;;=3^Peripheral vascular disease, unspecified
- ;;^UTILITY(U,$J,358.3,35526,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,35526,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,35527,0)
- ;;=I65.23^^188^2048^4
- ;;^UTILITY(U,$J,358.3,35527,1,0)
+ ;;^UTILITY(U,$J,358.3,34061,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,34061,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,34061,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,34062,0)
+ ;;=N05.9^^154^1722^52
+ ;;^UTILITY(U,$J,358.3,34062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35527,1,3,0)
- ;;=3^Occlusion and stenosis of bilateral carotid arteries
- ;;^UTILITY(U,$J,358.3,35527,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,35527,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,35528,0)
- ;;=I65.8^^188^2048^6
- ;;^UTILITY(U,$J,358.3,35528,1,0)
+ ;;^UTILITY(U,$J,358.3,34062,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ unspec morphologic changes
+ ;;^UTILITY(U,$J,358.3,34062,1,4,0)
+ ;;=4^N05.9
+ ;;^UTILITY(U,$J,358.3,34062,2)
+ ;;=^5134086
+ ;;^UTILITY(U,$J,358.3,34063,0)
+ ;;=N06.0^^154^1722^40
+ ;;^UTILITY(U,$J,358.3,34063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35528,1,3,0)
- ;;=3^Occlusion and stenosis of other precerebral arteries
- ;;^UTILITY(U,$J,358.3,35528,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,35528,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,35529,0)
- ;;=Z13.6^^188^2048^9
- ;;^UTILITY(U,$J,358.3,35529,1,0)
+ ;;^UTILITY(U,$J,358.3,34063,1,3,0)
+ ;;=3^Isolated proteinuria w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,34063,1,4,0)
+ ;;=4^N06.0
+ ;;^UTILITY(U,$J,358.3,34063,2)
+ ;;=^5015549
+ ;;^UTILITY(U,$J,358.3,34064,0)
+ ;;=N06.1^^154^1722^39
+ ;;^UTILITY(U,$J,358.3,34064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35529,1,3,0)
- ;;=3^Screening for cardiovascular disorders
- ;;^UTILITY(U,$J,358.3,35529,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,35529,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,35530,0)
- ;;=I26.99^^188^2049^9
- ;;^UTILITY(U,$J,358.3,35530,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35530,1,3,0)
- ;;=3^Pulmonary embolism w/o acute cor pulmonale NEC
+ ;;^UTILITY(U,$J,358.3,34064,1,3,0)
+ ;;=3^Isolated proteinuria w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,34064,1,4,0)
+ ;;=4^N06.1

@@ -1,128 +1,130 @@
-IBDEI1S2 ; ; 06-AUG-2015
+IBDEI1S2 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31381,1,0)
+ ;;^UTILITY(U,$J,358.3,29759,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,29760,0)
+ ;;=F52.22^^135^1368^93
+ ;;^UTILITY(U,$J,358.3,29760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31381,1,3,0)
- ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,31381,1,4,0)
- ;;=4^T84.82XA
- ;;^UTILITY(U,$J,358.3,31381,2)
- ;;=^5055457
- ;;^UTILITY(U,$J,358.3,31382,0)
- ;;=T84.83XA^^180^1955^3
- ;;^UTILITY(U,$J,358.3,31382,1,0)
+ ;;^UTILITY(U,$J,358.3,29760,1,3,0)
+ ;;=3^Sexual Arousal Disorder,Female
+ ;;^UTILITY(U,$J,358.3,29760,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,29760,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,29761,0)
+ ;;=F52.8^^135^1368^94
+ ;;^UTILITY(U,$J,358.3,29761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31382,1,3,0)
- ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,31382,1,4,0)
- ;;=4^T84.83XA
- ;;^UTILITY(U,$J,358.3,31382,2)
- ;;=^5055460
- ;;^UTILITY(U,$J,358.3,31383,0)
- ;;=T84.84XA^^180^1955^4
- ;;^UTILITY(U,$J,358.3,31383,1,0)
+ ;;^UTILITY(U,$J,358.3,29761,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
+ ;;^UTILITY(U,$J,358.3,29761,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,29761,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,29762,0)
+ ;;=F52.21^^135^1368^33
+ ;;^UTILITY(U,$J,358.3,29762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31383,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,31383,1,4,0)
- ;;=4^T84.84XA
- ;;^UTILITY(U,$J,358.3,31383,2)
- ;;=^5055463
- ;;^UTILITY(U,$J,358.3,31384,0)
- ;;=T84.85XA^^180^1955^5
- ;;^UTILITY(U,$J,358.3,31384,1,0)
+ ;;^UTILITY(U,$J,358.3,29762,1,3,0)
+ ;;=3^Erectile Disorder,Male (Psychogenic)
+ ;;^UTILITY(U,$J,358.3,29762,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,29762,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,29763,0)
+ ;;=I12.9^^135^1368^55
+ ;;^UTILITY(U,$J,358.3,29763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31384,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,31384,1,4,0)
- ;;=4^T84.85XA
- ;;^UTILITY(U,$J,358.3,31384,2)
- ;;=^5055466
- ;;^UTILITY(U,$J,358.3,31385,0)
- ;;=T84.86XA^^180^1955^6
- ;;^UTILITY(U,$J,358.3,31385,1,0)
+ ;;^UTILITY(U,$J,358.3,29763,1,3,0)
+ ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
+ ;;^UTILITY(U,$J,358.3,29763,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,29763,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,29764,0)
+ ;;=N04.9^^135^1368^69
+ ;;^UTILITY(U,$J,358.3,29764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31385,1,3,0)
- ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,31385,1,4,0)
- ;;=4^T84.86XA
- ;;^UTILITY(U,$J,358.3,31385,2)
- ;;=^5055469
- ;;^UTILITY(U,$J,358.3,31386,0)
- ;;=Z89.442^^180^1956^1
- ;;^UTILITY(U,$J,358.3,31386,1,0)
+ ;;^UTILITY(U,$J,358.3,29764,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,29764,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,29764,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,29765,0)
+ ;;=N02.9^^135^1368^50
+ ;;^UTILITY(U,$J,358.3,29765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31386,1,3,0)
- ;;=3^Acquired absence of left ankle
- ;;^UTILITY(U,$J,358.3,31386,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,31386,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,31387,0)
- ;;=Z89.622^^180^1956^2
- ;;^UTILITY(U,$J,358.3,31387,1,0)
+ ;;^UTILITY(U,$J,358.3,29765,1,3,0)
+ ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
+ ;;^UTILITY(U,$J,358.3,29765,1,4,0)
+ ;;=4^N02.9
+ ;;^UTILITY(U,$J,358.3,29765,2)
+ ;;=^5015520
+ ;;^UTILITY(U,$J,358.3,29766,0)
+ ;;=N06.9^^135^1368^86
+ ;;^UTILITY(U,$J,358.3,29766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31387,1,3,0)
- ;;=3^Acquired absence of left hip joint
- ;;^UTILITY(U,$J,358.3,31387,1,4,0)
- ;;=4^Z89.622
- ;;^UTILITY(U,$J,358.3,31387,2)
- ;;=^5063576
- ;;^UTILITY(U,$J,358.3,31388,0)
- ;;=Z89.612^^180^1956^3
- ;;^UTILITY(U,$J,358.3,31388,1,0)
+ ;;^UTILITY(U,$J,358.3,29766,1,3,0)
+ ;;=3^Proteinuria Isolated w/ Unspec Morphologic Lesion
+ ;;^UTILITY(U,$J,358.3,29766,1,4,0)
+ ;;=4^N06.9
+ ;;^UTILITY(U,$J,358.3,29766,2)
+ ;;=^5015558
+ ;;^UTILITY(U,$J,358.3,29767,0)
+ ;;=N05.9^^135^1368^66
+ ;;^UTILITY(U,$J,358.3,29767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31388,1,3,0)
- ;;=3^Acquired absence of left leg above knee
- ;;^UTILITY(U,$J,358.3,31388,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,31388,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,31389,0)
- ;;=Z89.512^^180^1956^4
- ;;^UTILITY(U,$J,358.3,31389,1,0)
+ ;;^UTILITY(U,$J,358.3,29767,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,29767,1,4,0)
+ ;;=4^N05.9
+ ;;^UTILITY(U,$J,358.3,29767,2)
+ ;;=^5134086
+ ;;^UTILITY(U,$J,358.3,29768,0)
+ ;;=N07.9^^135^1368^68
+ ;;^UTILITY(U,$J,358.3,29768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31389,1,3,0)
- ;;=3^Acquired absence of left leg below knee
- ;;^UTILITY(U,$J,358.3,31389,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,31389,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,31390,0)
- ;;=Z89.441^^180^1956^5
- ;;^UTILITY(U,$J,358.3,31390,1,0)
+ ;;^UTILITY(U,$J,358.3,29768,1,3,0)
+ ;;=3^Nephropathy Hereditary w/ Unspec Morphologic Lesions
+ ;;^UTILITY(U,$J,358.3,29768,1,4,0)
+ ;;=4^N07.9
+ ;;^UTILITY(U,$J,358.3,29768,2)
+ ;;=^5015568
+ ;;^UTILITY(U,$J,358.3,29769,0)
+ ;;=N15.9^^135^1368^92
+ ;;^UTILITY(U,$J,358.3,29769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31390,1,3,0)
- ;;=3^Acquired absence of right ankle
- ;;^UTILITY(U,$J,358.3,31390,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,31390,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,31391,0)
- ;;=Z89.621^^180^1956^6
- ;;^UTILITY(U,$J,358.3,31391,1,0)
+ ;;^UTILITY(U,$J,358.3,29769,1,3,0)
+ ;;=3^Renal Tubulo-Interstitial Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,29769,1,4,0)
+ ;;=4^N15.9
+ ;;^UTILITY(U,$J,358.3,29769,2)
+ ;;=^5015596
+ ;;^UTILITY(U,$J,358.3,29770,0)
+ ;;=N17.9^^135^1368^61
+ ;;^UTILITY(U,$J,358.3,29770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31391,1,3,0)
- ;;=3^Acquired absence of right hip joint
- ;;^UTILITY(U,$J,358.3,31391,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,31391,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,31392,0)
- ;;=Z89.611^^180^1956^7
- ;;^UTILITY(U,$J,358.3,31392,1,0)
+ ;;^UTILITY(U,$J,358.3,29770,1,3,0)
+ ;;=3^Kidney Failure,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,29770,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,29770,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,29771,0)
+ ;;=N19.^^135^1368^62
+ ;;^UTILITY(U,$J,358.3,29771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31392,1,3,0)
- ;;=3^Acquired absence of right leg above knee
- ;;^UTILITY(U,$J,358.3,31392,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,31392,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,31393,0)
- ;;=Z89.511^^180^1956^8
- ;;^UTILITY(U,$J,358.3,31393,1,0)
+ ;;^UTILITY(U,$J,358.3,29771,1,3,0)
+ ;;=3^Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,29771,1,4,0)
+ ;;=4^N19.
+ ;;^UTILITY(U,$J,358.3,29771,2)
+ ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,29772,0)
+ ;;=N11.0^^135^1368^90
+ ;;^UTILITY(U,$J,358.3,29772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31393,1,3,0)
- ;;=3^Acquired absence of right leg below knee

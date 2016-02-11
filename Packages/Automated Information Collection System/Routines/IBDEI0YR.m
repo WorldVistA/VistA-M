@@ -1,138 +1,126 @@
-IBDEI0YR ; ; 06-AUG-2015
+IBDEI0YR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16942,2)
- ;;=^336833
- ;;^UTILITY(U,$J,358.3,16943,0)
- ;;=482.42^^87^1028^26
- ;;^UTILITY(U,$J,358.3,16943,1,0)
+ ;;^UTILITY(U,$J,358.3,16001,1,4,0)
+ ;;=4^S91.032A
+ ;;^UTILITY(U,$J,358.3,16001,2)
+ ;;=^5044150
+ ;;^UTILITY(U,$J,358.3,16002,0)
+ ;;=S91.332A^^85^830^10
+ ;;^UTILITY(U,$J,358.3,16002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16943,1,3,0)
- ;;=3^482.42
- ;;^UTILITY(U,$J,358.3,16943,1,4,0)
- ;;=4^Meth Resistant Pneum d/t Staph Aureus
- ;;^UTILITY(U,$J,358.3,16943,2)
- ;;=^336602
- ;;^UTILITY(U,$J,358.3,16944,0)
- ;;=482.49^^87^1028^65
- ;;^UTILITY(U,$J,358.3,16944,1,0)
+ ;;^UTILITY(U,$J,358.3,16002,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16002,1,4,0)
+ ;;=4^S91.332A
+ ;;^UTILITY(U,$J,358.3,16002,2)
+ ;;=^5044335
+ ;;^UTILITY(U,$J,358.3,16003,0)
+ ;;=S71.032A^^85^830^14
+ ;;^UTILITY(U,$J,358.3,16003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16944,1,3,0)
- ;;=3^482.49
- ;;^UTILITY(U,$J,358.3,16944,1,4,0)
- ;;=4^Staph Pneumonia NEC
- ;;^UTILITY(U,$J,358.3,16944,2)
- ;;=^321181
- ;;^UTILITY(U,$J,358.3,16945,0)
- ;;=482.81^^87^1028^38
- ;;^UTILITY(U,$J,358.3,16945,1,0)
+ ;;^UTILITY(U,$J,358.3,16003,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16003,1,4,0)
+ ;;=4^S71.032A
+ ;;^UTILITY(U,$J,358.3,16003,2)
+ ;;=^5036990
+ ;;^UTILITY(U,$J,358.3,16004,0)
+ ;;=S81.032A^^85^830^17
+ ;;^UTILITY(U,$J,358.3,16004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16945,1,3,0)
- ;;=3^482.81
- ;;^UTILITY(U,$J,358.3,16945,1,4,0)
- ;;=4^Pneumonia d/t Anaerobes
- ;;^UTILITY(U,$J,358.3,16945,2)
- ;;=^293890
- ;;^UTILITY(U,$J,358.3,16946,0)
- ;;=482.82^^87^1028^40
- ;;^UTILITY(U,$J,358.3,16946,1,0)
+ ;;^UTILITY(U,$J,358.3,16004,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16004,1,4,0)
+ ;;=4^S81.032A
+ ;;^UTILITY(U,$J,358.3,16004,2)
+ ;;=^5040047
+ ;;^UTILITY(U,$J,358.3,16005,0)
+ ;;=S81.832A^^85^830^22
+ ;;^UTILITY(U,$J,358.3,16005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16946,1,3,0)
- ;;=3^482.82
- ;;^UTILITY(U,$J,358.3,16946,1,4,0)
- ;;=4^Pneumonia d/t E. Coli
- ;;^UTILITY(U,$J,358.3,16946,2)
- ;;=^293891
- ;;^UTILITY(U,$J,358.3,16947,0)
- ;;=482.83^^87^1028^19
- ;;^UTILITY(U,$J,358.3,16947,1,0)
+ ;;^UTILITY(U,$J,358.3,16005,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16005,1,4,0)
+ ;;=4^S81.832A
+ ;;^UTILITY(U,$J,358.3,16005,2)
+ ;;=^5040086
+ ;;^UTILITY(U,$J,358.3,16006,0)
+ ;;=S71.132A^^85^830^28
+ ;;^UTILITY(U,$J,358.3,16006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16947,1,3,0)
- ;;=3^482.83
- ;;^UTILITY(U,$J,358.3,16947,1,4,0)
- ;;=4^Gram-Negative Pneumonia NOS
- ;;^UTILITY(U,$J,358.3,16947,2)
- ;;=^293893
- ;;^UTILITY(U,$J,358.3,16948,0)
- ;;=482.84^^87^1028^45
- ;;^UTILITY(U,$J,358.3,16948,1,0)
+ ;;^UTILITY(U,$J,358.3,16006,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16006,1,4,0)
+ ;;=4^S71.132A
+ ;;^UTILITY(U,$J,358.3,16006,2)
+ ;;=^5037029
+ ;;^UTILITY(U,$J,358.3,16007,0)
+ ;;=S91.031A^^85^830^37
+ ;;^UTILITY(U,$J,358.3,16007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16948,1,3,0)
- ;;=3^482.84
- ;;^UTILITY(U,$J,358.3,16948,1,4,0)
- ;;=4^Pneumonia d/t Legionnaires'
- ;;^UTILITY(U,$J,358.3,16948,2)
- ;;=^68817
- ;;^UTILITY(U,$J,358.3,16949,0)
- ;;=482.89^^87^1028^46
- ;;^UTILITY(U,$J,358.3,16949,1,0)
+ ;;^UTILITY(U,$J,358.3,16007,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16007,1,4,0)
+ ;;=4^S91.031A
+ ;;^UTILITY(U,$J,358.3,16007,2)
+ ;;=^5044147
+ ;;^UTILITY(U,$J,358.3,16008,0)
+ ;;=S91.331A^^85^830^42
+ ;;^UTILITY(U,$J,358.3,16008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16949,1,3,0)
- ;;=3^482.89
- ;;^UTILITY(U,$J,358.3,16949,1,4,0)
- ;;=4^Pneumonia d/t Oth Spec Bacteria
- ;;^UTILITY(U,$J,358.3,16949,2)
- ;;=^95571
- ;;^UTILITY(U,$J,358.3,16950,0)
- ;;=483.0^^87^1028^29
- ;;^UTILITY(U,$J,358.3,16950,1,0)
+ ;;^UTILITY(U,$J,358.3,16008,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16008,1,4,0)
+ ;;=4^S91.331A
+ ;;^UTILITY(U,$J,358.3,16008,2)
+ ;;=^5044332
+ ;;^UTILITY(U,$J,358.3,16009,0)
+ ;;=S71.031A^^85^830^46
+ ;;^UTILITY(U,$J,358.3,16009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16950,1,3,0)
- ;;=3^483.0
- ;;^UTILITY(U,$J,358.3,16950,1,4,0)
- ;;=4^Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,16950,2)
- ;;=^294067
- ;;^UTILITY(U,$J,358.3,16951,0)
- ;;=483.1^^87^1028^39
- ;;^UTILITY(U,$J,358.3,16951,1,0)
+ ;;^UTILITY(U,$J,358.3,16009,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16009,1,4,0)
+ ;;=4^S71.031A
+ ;;^UTILITY(U,$J,358.3,16009,2)
+ ;;=^5036987
+ ;;^UTILITY(U,$J,358.3,16010,0)
+ ;;=S81.031A^^85^830^49
+ ;;^UTILITY(U,$J,358.3,16010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16951,1,3,0)
- ;;=3^483.1
- ;;^UTILITY(U,$J,358.3,16951,1,4,0)
- ;;=4^Pneumonia d/t Chlamydia
- ;;^UTILITY(U,$J,358.3,16951,2)
- ;;=^304311
- ;;^UTILITY(U,$J,358.3,16952,0)
- ;;=483.8^^87^1028^47
- ;;^UTILITY(U,$J,358.3,16952,1,0)
+ ;;^UTILITY(U,$J,358.3,16010,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16010,1,4,0)
+ ;;=4^S81.031A
+ ;;^UTILITY(U,$J,358.3,16010,2)
+ ;;=^5040044
+ ;;^UTILITY(U,$J,358.3,16011,0)
+ ;;=S81.831A^^85^830^54
+ ;;^UTILITY(U,$J,358.3,16011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16952,1,3,0)
- ;;=3^483.8
- ;;^UTILITY(U,$J,358.3,16952,1,4,0)
- ;;=4^Pneumonia d/t Oth Spec Organism
- ;;^UTILITY(U,$J,358.3,16952,2)
- ;;=^95573
- ;;^UTILITY(U,$J,358.3,16953,0)
- ;;=485.^^87^1028^9
- ;;^UTILITY(U,$J,358.3,16953,1,0)
+ ;;^UTILITY(U,$J,358.3,16011,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16011,1,4,0)
+ ;;=4^S81.831A
+ ;;^UTILITY(U,$J,358.3,16011,2)
+ ;;=^5040083
+ ;;^UTILITY(U,$J,358.3,16012,0)
+ ;;=S71.131A^^85^830^60
+ ;;^UTILITY(U,$J,358.3,16012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16953,1,3,0)
- ;;=3^485.
- ;;^UTILITY(U,$J,358.3,16953,1,4,0)
- ;;=4^Bronchopneumonia,Organism Unspec
- ;;^UTILITY(U,$J,358.3,16953,2)
- ;;=^17194
- ;;^UTILITY(U,$J,358.3,16954,0)
- ;;=487.0^^87^1028^23
- ;;^UTILITY(U,$J,358.3,16954,1,0)
+ ;;^UTILITY(U,$J,358.3,16012,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16012,1,4,0)
+ ;;=4^S71.131A
+ ;;^UTILITY(U,$J,358.3,16012,2)
+ ;;=^5037026
+ ;;^UTILITY(U,$J,358.3,16013,0)
+ ;;=Z01.83^^85^831^1
+ ;;^UTILITY(U,$J,358.3,16013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16954,1,3,0)
- ;;=3^487.0
- ;;^UTILITY(U,$J,358.3,16954,1,4,0)
- ;;=4^Influenza w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,16954,2)
- ;;=^269942
- ;;^UTILITY(U,$J,358.3,16955,0)
- ;;=487.1^^87^1028^22
- ;;^UTILITY(U,$J,358.3,16955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16955,1,3,0)
- ;;=3^487.1
- ;;^UTILITY(U,$J,358.3,16955,1,4,0)
- ;;=4^Influenza w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,16955,2)
- ;;=^63125
- ;;^UTILITY(U,$J,358.3,16956,0)
- ;;=487.8^^87^1028^21
+ ;;^UTILITY(U,$J,358.3,16013,1,3,0)
+ ;;=3^Encounter for Blood Typing
+ ;;^UTILITY(U,$J,358.3,16013,1,4,0)
+ ;;=4^Z01.83

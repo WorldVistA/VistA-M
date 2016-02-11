@@ -1,12 +1,14 @@
 ONCPL ;Hines OIFO/GWB - ONCOLOGY PROBLEM LIST ;07/14/04
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,7**;Jul 31, 2013;Build 5
  ;
  K ONCPL,PL
  N DIR,DPTIEN,ICD,ONS,ONSDT,SAVEY,SUB,X
  S SAVEY=Y
  W !
  W !," Would you like to see a PROBLEM LIST for this patient to assist"
- S DIR("A")=" you in entering the COMORBIDITY/COMPLICATION #1-10 prompts"
+ W !," you in entering the COMORBIDITY/COMPLICATION #1-10"
+ W !," Secondary Diagnosis #1-10 prompts"
+ W !
  S DIR(0)="Y",DIR("B")="Yes" D ^DIR
  I (Y=0)!(Y="") W ! S Y=SAVEY Q
  I Y[U S Y=SAVEY Q
@@ -16,9 +18,8 @@ ONCPL ;Hines OIFO/GWB - ONCOLOGY PROBLEM LIST ;07/14/04
  D ACTIVE^GMPLUTL(DPTIEN,.ONCPL)
  I ONCPL(0)=0 W !!," No PROBLEM LIST for this patient." W ! S Y=SAVEY Q
  S SUB=0 F  S SUB=$O(ONCPL(SUB)) Q:SUB'>0  D
- .S ICD=$$ICDDX^ICDCODE($P(ONCPL(SUB,2),U,1)) Q:+ICD=-1
  .S ONS=$P(ONCPL(SUB,3),U,1) S:ONS="" ONS="UNKNOWN"_SUB
- .S PL(ONS)=$P(ICD,U,2)_U_$P(ICD,U,4)
+ .S PL(ONS)=$P(ONCPL(SUB,2),U,2)_U_$P(ONCPL(SUB,1),U,2)
  I '$D(PL) W !!," No PROBLEM LIST for this patient." W ! S Y=SAVEY Q
  W !
  W !,"DATE OF ONSET","  ","ICD DIAGNOSIS"

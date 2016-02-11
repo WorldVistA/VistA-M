@@ -1,140 +1,138 @@
-IBDEI0IX ; ; 06-AUG-2015
+IBDEI0IX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8873,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,8873,2)
- ;;=^268872
- ;;^UTILITY(U,$J,358.3,8874,0)
- ;;=369.13^^35^495^21
- ;;^UTILITY(U,$J,358.3,8874,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8874,1,4,0)
- ;;=4^369.13
- ;;^UTILITY(U,$J,358.3,8874,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Near Total
- ;;^UTILITY(U,$J,358.3,8874,2)
- ;;=^268873
- ;;^UTILITY(U,$J,358.3,8875,0)
- ;;=369.14^^35^495^22
- ;;^UTILITY(U,$J,358.3,8875,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8875,1,4,0)
- ;;=4^369.14
- ;;^UTILITY(U,$J,358.3,8875,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Profound
- ;;^UTILITY(U,$J,358.3,8875,2)
- ;;=^268874
- ;;^UTILITY(U,$J,358.3,8876,0)
- ;;=369.15^^35^495^8
- ;;^UTILITY(U,$J,358.3,8876,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8876,1,4,0)
- ;;=4^369.15
- ;;^UTILITY(U,$J,358.3,8876,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Blind
- ;;^UTILITY(U,$J,358.3,8876,2)
- ;;=^268875
- ;;^UTILITY(U,$J,358.3,8877,0)
- ;;=369.16^^35^495^13
- ;;^UTILITY(U,$J,358.3,8877,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8877,1,4,0)
- ;;=4^369.16
- ;;^UTILITY(U,$J,358.3,8877,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,8877,2)
- ;;=^268876
- ;;^UTILITY(U,$J,358.3,8878,0)
- ;;=369.17^^35^495^10
- ;;^UTILITY(U,$J,358.3,8878,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8878,1,4,0)
- ;;=4^369.17
- ;;^UTILITY(U,$J,358.3,8878,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Near Total
- ;;^UTILITY(U,$J,358.3,8878,2)
- ;;=^268877
- ;;^UTILITY(U,$J,358.3,8879,0)
- ;;=369.18^^35^495^11
- ;;^UTILITY(U,$J,358.3,8879,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8879,1,4,0)
- ;;=4^369.18
- ;;^UTILITY(U,$J,358.3,8879,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Profound
- ;;^UTILITY(U,$J,358.3,8879,2)
- ;;=^268878
- ;;^UTILITY(U,$J,358.3,8880,0)
- ;;=369.20^^35^495^4
- ;;^UTILITY(U,$J,358.3,8880,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8880,1,4,0)
- ;;=4^369.20
- ;;^UTILITY(U,$J,358.3,8880,1,5,0)
- ;;=5^Low Vision,Both Eyes NOS
- ;;^UTILITY(U,$J,358.3,8880,2)
- ;;=^71924
- ;;^UTILITY(U,$J,358.3,8881,0)
- ;;=369.21^^35^495^20
- ;;^UTILITY(U,$J,358.3,8881,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8881,1,4,0)
- ;;=4^369.21
- ;;^UTILITY(U,$J,358.3,8881,1,5,0)
- ;;=5^One Eye Severe/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,8881,2)
- ;;=^268881
- ;;^UTILITY(U,$J,358.3,8882,0)
- ;;=369.22^^35^495^25
- ;;^UTILITY(U,$J,358.3,8882,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8882,1,4,0)
- ;;=4^369.22
- ;;^UTILITY(U,$J,358.3,8882,1,5,0)
- ;;=5^Severe Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,8882,2)
- ;;=^268882
- ;;^UTILITY(U,$J,358.3,8883,0)
- ;;=369.23^^35^495^9
- ;;^UTILITY(U,$J,358.3,8883,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8883,1,4,0)
- ;;=4^369.23
- ;;^UTILITY(U,$J,358.3,8883,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,8883,2)
- ;;=^268883
- ;;^UTILITY(U,$J,358.3,8884,0)
- ;;=369.24^^35^495^12
- ;;^UTILITY(U,$J,358.3,8884,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8884,1,4,0)
- ;;=4^369.24
- ;;^UTILITY(U,$J,358.3,8884,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Severe
- ;;^UTILITY(U,$J,358.3,8884,2)
- ;;=^268884
- ;;^UTILITY(U,$J,358.3,8885,0)
- ;;=369.25^^35^495^5
- ;;^UTILITY(U,$J,358.3,8885,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8885,1,4,0)
- ;;=4^369.25
- ;;^UTILITY(U,$J,358.3,8885,1,5,0)
- ;;=5^Moderate Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,8885,2)
- ;;=^268885
- ;;^UTILITY(U,$J,358.3,8886,0)
- ;;=369.3^^35^495^1
- ;;^UTILITY(U,$J,358.3,8886,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8886,1,4,0)
- ;;=4^369.3
- ;;^UTILITY(U,$J,358.3,8886,1,5,0)
- ;;=5^Blindness NOS,Both Eyes
- ;;^UTILITY(U,$J,358.3,8886,2)
- ;;=^268886
- ;;^UTILITY(U,$J,358.3,8887,0)
- ;;=369.4^^35^495^3
+ ;;^UTILITY(U,$J,358.3,8508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8508,1,3,0)
+ ;;=3^Endocarditis, valve unspecified
+ ;;^UTILITY(U,$J,358.3,8508,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,8508,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,8509,0)
+ ;;=J00.^^55^540^19
+ ;;^UTILITY(U,$J,358.3,8509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8509,1,3,0)
+ ;;=3^Acute nasopharyngitis [common cold]
+ ;;^UTILITY(U,$J,358.3,8509,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,8509,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,8510,0)
+ ;;=J01.90^^55^540^21
+ ;;^UTILITY(U,$J,358.3,8510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8510,1,3,0)
+ ;;=3^Acute sinusitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8510,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,8510,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,8511,0)
+ ;;=J02.9^^55^540^20
+ ;;^UTILITY(U,$J,358.3,8511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8511,1,3,0)
+ ;;=3^Acute pharyngitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8511,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,8511,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,8512,0)
+ ;;=J03.90^^55^540^22
+ ;;^UTILITY(U,$J,358.3,8512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8512,1,3,0)
+ ;;=3^Acute tonsillitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8512,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,8512,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,8513,0)
+ ;;=J04.0^^55^540^7
+ ;;^UTILITY(U,$J,358.3,8513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8513,1,3,0)
+ ;;=3^Acute laryngitis
+ ;;^UTILITY(U,$J,358.3,8513,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,8513,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,8514,0)
+ ;;=J06.9^^55^540^23
+ ;;^UTILITY(U,$J,358.3,8514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8514,1,3,0)
+ ;;=3^Acute upper respiratory infection, unspecified
+ ;;^UTILITY(U,$J,358.3,8514,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,8514,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,8515,0)
+ ;;=J20.9^^55^540^4
+ ;;^UTILITY(U,$J,358.3,8515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8515,1,3,0)
+ ;;=3^Acute bronchitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8515,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,8515,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,8516,0)
+ ;;=J32.9^^55^540^46
+ ;;^UTILITY(U,$J,358.3,8516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8516,1,3,0)
+ ;;=3^Chronic sinusitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8516,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,8516,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,8517,0)
+ ;;=J18.9^^55^540^90
+ ;;^UTILITY(U,$J,358.3,8517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8517,1,3,0)
+ ;;=3^Pneumonia, unspecified organism
+ ;;^UTILITY(U,$J,358.3,8517,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,8517,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,8518,0)
+ ;;=J12.9^^55^540^109
+ ;;^UTILITY(U,$J,358.3,8518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8518,1,3,0)
+ ;;=3^Viral pneumonia, unspecified
+ ;;^UTILITY(U,$J,358.3,8518,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,8518,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,8519,0)
+ ;;=J11.00^^55^540^62
+ ;;^UTILITY(U,$J,358.3,8519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8519,1,3,0)
+ ;;=3^Flu d/t unidentified flu virus w unsp type of pneumonia
+ ;;^UTILITY(U,$J,358.3,8519,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,8519,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,8520,0)
+ ;;=J10.1^^55^540^61
+ ;;^UTILITY(U,$J,358.3,8520,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8520,1,3,0)
+ ;;=3^Flu d/t oth ident influenza virus w oth resp manifest
+ ;;^UTILITY(U,$J,358.3,8520,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,8520,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,8521,0)
+ ;;=J11.1^^55^540^63
+ ;;^UTILITY(U,$J,358.3,8521,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8521,1,3,0)
+ ;;=3^Flu d/t unidentified influenza virus w oth resp manifest

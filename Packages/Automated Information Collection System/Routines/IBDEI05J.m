@@ -1,128 +1,132 @@
-IBDEI05J ; ; 06-AUG-2015
+IBDEI05J ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2069,2)
- ;;=^5047734
- ;;^UTILITY(U,$J,358.3,2070,0)
- ;;=T23.202A^^4^62^36
- ;;^UTILITY(U,$J,358.3,2070,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2070,1,3,0)
- ;;=3^Burn second degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,2070,1,4,0)
- ;;=4^T23.202A
- ;;^UTILITY(U,$J,358.3,2070,2)
- ;;=^5047737
- ;;^UTILITY(U,$J,358.3,2071,0)
- ;;=T23.301A^^4^62^41
- ;;^UTILITY(U,$J,358.3,2071,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2071,1,3,0)
- ;;=3^Burn third degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,2071,1,4,0)
- ;;=4^T23.301A
- ;;^UTILITY(U,$J,358.3,2071,2)
- ;;=^5047812
- ;;^UTILITY(U,$J,358.3,2072,0)
- ;;=T23.302A^^4^62^40
- ;;^UTILITY(U,$J,358.3,2072,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2072,1,3,0)
- ;;=3^Burn third degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,2072,1,4,0)
- ;;=4^T23.302A
- ;;^UTILITY(U,$J,358.3,2072,2)
- ;;=^5047815
- ;;^UTILITY(U,$J,358.3,2073,0)
- ;;=T79.A11A^^4^62^248
- ;;^UTILITY(U,$J,358.3,2073,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2073,1,3,0)
- ;;=3^Traumatic compartment syndrome of right upper extrem, init
- ;;^UTILITY(U,$J,358.3,2073,1,4,0)
- ;;=4^T79.A11A
- ;;^UTILITY(U,$J,358.3,2073,2)
- ;;=^5054326
- ;;^UTILITY(U,$J,358.3,2074,0)
- ;;=T79.A12A^^4^62^247
- ;;^UTILITY(U,$J,358.3,2074,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2074,1,3,0)
- ;;=3^Traumatic compartment syndrome of left upper extremity, init
- ;;^UTILITY(U,$J,358.3,2074,1,4,0)
- ;;=4^T79.A12A
- ;;^UTILITY(U,$J,358.3,2074,2)
- ;;=^5054329
- ;;^UTILITY(U,$J,358.3,2075,0)
- ;;=S06.0X9A^^4^62^44
- ;;^UTILITY(U,$J,358.3,2075,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2075,1,3,0)
- ;;=3^Concussion w loss of consciousness of unsp duration, init
- ;;^UTILITY(U,$J,358.3,2075,1,4,0)
- ;;=4^S06.0X9A
- ;;^UTILITY(U,$J,358.3,2075,2)
- ;;=^5020693
- ;;^UTILITY(U,$J,358.3,2076,0)
- ;;=S60.152A^^4^62^50
- ;;^UTILITY(U,$J,358.3,2076,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2076,1,3,0)
- ;;=3^Contusion of left little finger w damage to nail, init
- ;;^UTILITY(U,$J,358.3,2076,1,4,0)
- ;;=4^S60.152A
- ;;^UTILITY(U,$J,358.3,2076,2)
- ;;=^5135669
- ;;^UTILITY(U,$J,358.3,2077,0)
- ;;=S50.11XA^^4^62^52
- ;;^UTILITY(U,$J,358.3,2077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2077,1,3,0)
- ;;=3^Contusion of right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,2077,1,4,0)
- ;;=4^S50.11XA
- ;;^UTILITY(U,$J,358.3,2077,2)
- ;;=^5028494
- ;;^UTILITY(U,$J,358.3,2078,0)
- ;;=S50.12XA^^4^62^47
- ;;^UTILITY(U,$J,358.3,2078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2078,1,3,0)
- ;;=3^Contusion of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,2078,1,4,0)
- ;;=4^S50.12XA
- ;;^UTILITY(U,$J,358.3,2078,2)
- ;;=^5028497
- ;;^UTILITY(U,$J,358.3,2079,0)
- ;;=S60.221A^^4^62^53
- ;;^UTILITY(U,$J,358.3,2079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2079,1,3,0)
- ;;=3^Contusion of right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,2079,1,4,0)
- ;;=4^S60.221A
- ;;^UTILITY(U,$J,358.3,2079,2)
- ;;=^5032276
- ;;^UTILITY(U,$J,358.3,2080,0)
- ;;=S60.222A^^4^62^48
- ;;^UTILITY(U,$J,358.3,2080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2080,1,3,0)
- ;;=3^Contusion of left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,2080,1,4,0)
- ;;=4^S60.222A
- ;;^UTILITY(U,$J,358.3,2080,2)
- ;;=^5032279
- ;;^UTILITY(U,$J,358.3,2081,0)
- ;;=S80.01XA^^4^62^54
- ;;^UTILITY(U,$J,358.3,2081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2081,1,3,0)
- ;;=3^Contusion of right knee, initial encounter
- ;;^UTILITY(U,$J,358.3,2081,1,4,0)
- ;;=4^S80.01XA
- ;;^UTILITY(U,$J,358.3,2081,2)
- ;;=^5039891
- ;;^UTILITY(U,$J,358.3,2082,0)
- ;;=S80.02XA^^4^62^49
+ ;;^UTILITY(U,$J,358.3,1951,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1951,1,2,0)
+ ;;=2^36216
+ ;;^UTILITY(U,$J,358.3,1951,1,3,0)
+ ;;=3^Select Cath 2nd Order Thor/Ue/Head
+ ;;^UTILITY(U,$J,358.3,1952,0)
+ ;;=36217^^17^176^39^^^^1
+ ;;^UTILITY(U,$J,358.3,1952,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1952,1,2,0)
+ ;;=2^36217
+ ;;^UTILITY(U,$J,358.3,1952,1,3,0)
+ ;;=3^Select Cath 3rd Order Thor/Ue/Head
+ ;;^UTILITY(U,$J,358.3,1953,0)
+ ;;=36218^^17^176^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1953,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1953,1,2,0)
+ ;;=2^36218
+ ;;^UTILITY(U,$J,358.3,1953,1,3,0)
+ ;;=3^Each Addl 2nd/3rd Order Thor/Ue/Head
+ ;;^UTILITY(U,$J,358.3,1954,0)
+ ;;=36248^^17^176^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1954,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1954,1,2,0)
+ ;;=2^36248
+ ;;^UTILITY(U,$J,358.3,1954,1,3,0)
+ ;;=3^Each Addl 2nd/3rd Order Pelvic/Le
+ ;;^UTILITY(U,$J,358.3,1955,0)
+ ;;=36200^^17^176^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1955,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1955,1,2,0)
+ ;;=2^36200
+ ;;^UTILITY(U,$J,358.3,1955,1,3,0)
+ ;;=3^Non-Select Cath, Aorta
+ ;;^UTILITY(U,$J,358.3,1956,0)
+ ;;=33010^^17^176^56^^^^1
+ ;;^UTILITY(U,$J,358.3,1956,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1956,1,2,0)
+ ;;=2^33010
+ ;;^UTILITY(U,$J,358.3,1956,1,3,0)
+ ;;=3^Visceral Selective
+ ;;^UTILITY(U,$J,358.3,1957,0)
+ ;;=35471^^17^176^31^^^^1
+ ;;^UTILITY(U,$J,358.3,1957,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1957,1,2,0)
+ ;;=2^35471
+ ;;^UTILITY(U,$J,358.3,1957,1,3,0)
+ ;;=3^Repair Arterial Blockage
+ ;;^UTILITY(U,$J,358.3,1958,0)
+ ;;=35475^^17^176^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1958,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1958,1,2,0)
+ ;;=2^35475
+ ;;^UTILITY(U,$J,358.3,1958,1,3,0)
+ ;;=3^Pelvic Selective
+ ;;^UTILITY(U,$J,358.3,1959,0)
+ ;;=36005^^17^176^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1959,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1959,1,2,0)
+ ;;=2^36005
+ ;;^UTILITY(U,$J,358.3,1959,1,3,0)
+ ;;=3^Injection Ext Venography
+ ;;^UTILITY(U,$J,358.3,1960,0)
+ ;;=36147^^17^176^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1960,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1960,1,2,0)
+ ;;=2^36147
+ ;;^UTILITY(U,$J,358.3,1960,1,3,0)
+ ;;=3^Access AV Dial Grft for Eval
+ ;;^UTILITY(U,$J,358.3,1961,0)
+ ;;=36148^^17^176^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1961,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1961,1,2,0)
+ ;;=2^36148
+ ;;^UTILITY(U,$J,358.3,1961,1,3,0)
+ ;;=3^Access AV Dial Grft for Eval,Ea Addl
+ ;;^UTILITY(U,$J,358.3,1962,0)
+ ;;=36251^^17^176^33^^^^1
+ ;;^UTILITY(U,$J,358.3,1962,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1962,1,2,0)
+ ;;=2^36251
+ ;;^UTILITY(U,$J,358.3,1962,1,3,0)
+ ;;=3^Select Cath 1st Main Ren&Acc Art
+ ;;^UTILITY(U,$J,358.3,1963,0)
+ ;;=36252^^17^176^34^^^^1
+ ;;^UTILITY(U,$J,358.3,1963,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1963,1,2,0)
+ ;;=2^36252
+ ;;^UTILITY(U,$J,358.3,1963,1,3,0)
+ ;;=3^Select Cath 1st Main Ren&Acc Art Bilat
+ ;;^UTILITY(U,$J,358.3,1964,0)
+ ;;=36254^^17^176^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1964,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1964,1,2,0)
+ ;;=2^36254
+ ;;^UTILITY(U,$J,358.3,1964,1,3,0)
+ ;;=3^Ins Cath Ren Art 2nd+ Bilat
+ ;;^UTILITY(U,$J,358.3,1965,0)
+ ;;=36253^^17^176^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1965,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1965,1,2,0)
+ ;;=2^36253
+ ;;^UTILITY(U,$J,358.3,1965,1,3,0)
+ ;;=3^Ins Cath Ren Art 2nd+ Unilat
+ ;;^UTILITY(U,$J,358.3,1966,0)
+ ;;=37191^^17^176^9^^^^1
+ ;;^UTILITY(U,$J,358.3,1966,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1966,1,2,0)
+ ;;=2^37191
+ ;;^UTILITY(U,$J,358.3,1966,1,3,0)
+ ;;=3^Ins Intravas Vena Cava Filter,Endovas
+ ;;^UTILITY(U,$J,358.3,1967,0)
+ ;;=36222^^17^176^18^^^^1

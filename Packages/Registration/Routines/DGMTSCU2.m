@@ -1,5 +1,5 @@
-DGMTSCU2 ;ALB/RMO,CAW,LBD,CKN - Means Test Screen Variable Utilities ;6 FEB 1992 7:45 am
- ;;5.3;Registration;**45,130,433,460,456,490**;Aug 13, 1993
+DGMTSCU2 ;ALB/RMO,CAW,LBD,CKN,LMD - Means Test Screen Variable Utilities ;6 FEB 1992 7:45 am
+ ;;5.3;Registration;**45,130,433,460,456,490,890**;Aug 13, 1993;Build 40
  ;
 SET ;Set required means test variables
  ; Input  -- DFN      Patient file IEN
@@ -24,7 +24,7 @@ DEP ;Determine dependent data
  ;           DGND    Total number of dependents
  N DGCNT,DGDEP,DGINR,DGREL,Y
  S DGVIR0=$G(^DGMT(408.22,DGVIRI,0)) D ALL^DGMTU21(DFN,"SC",DGMTDT,"PR",$S($G(DGMTI):DGMTI,1:""))
- S DGSP=$S('$P(DGVIR0,"^",5)!('$G(DGREL("S"))):0,$P(DGVIR0,"^",6):1,$P(DGVIR0,"^",7)>599:1,1:0)
+ S DGSP=$S('$P(DGVIR0,"^",5)!('$G(DGREL("S"))):0,$P(DGVIR0,"^",6):1,$P(DGVIR0,"^",20)=1:1,1:0)   ;DG*5.3*890 Field change to a Y/N response
  S DGDC=+$P(DGVIR0,"^",8) I DGDC S (DGDC,DGCNT)=0 F  S DGCNT=$O(DGINR("C",DGCNT)) Q:'DGCNT!(DGDC)  D CHK S:Y DGDC=1
  S DGNC=+$P(DGVIR0,"^",13)
  S DGND=DGSP+DGNC

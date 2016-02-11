@@ -1,10 +1,10 @@
 XMCDNT ;(HINES ISC)/EEJ-NT Communications Diagnostics (shareware) ;08/28/2002  09:40
- ;;8.0;MailMan;**3**;Jun 28, 2002
+ ;;8.0;MailMan;**3,48**;Jun 28, 2002;Build 5
  ;EEJ,hines ISC.  Will test mailers in other domains for TCP/IP
  N XMHOST,XMRG,DIR,X,Y
  D HOME^%ZIS
  W !,"TCP/IP Tester",!
- S DIR(0)="F^3:30"
+ S DIR(0)="F^3:39" ;XM*8.0*48 updated for IPv6 compatibility
  S DIR("A")="Enter the TCP/IP address of remote site"
  D ^DIR Q:$D(DIRUT)
  S XMHOST=Y

@@ -1,13 +1,14 @@
-DGMTU23 ;ALB/CAW/LD,LBD - Display means test information 12/20/01
- ;;5.3;Registration;**33,182,254,272,420,435,456,624**;Aug 13, 1993
+DGMTU23 ;ALB/CAW,LD,LBD,LMD - Display means test information ;12/20/01
+ ;;5.3;Registration;**33,182,254,272,420,435,456,624,904**;Aug 13, 1993;Build 26
  ;
  ;
 DISPLAY(DGMTI,DGMTYPT) ;Display means test data
  ;          Input:  DGMTI - IEN of MT
  ;                  DGMTYPT - Type of Test
  ;         Output:  None
- N DGFCOL,DGSCOL,DGMTDIS,DGMTDI2,DGMTWP,WP,X,X1,Y,Y1,Z,DGSOURCE
+ N DGFCOL,DGSCOL,DGMTDIS,DGMTDI2,DGMTWP,WP,X,X1,Y,Y1,Z,DGSOURCE,DGMTI4    ;DG*503*904
  S (DGMTWP,WP)=0,DGFCOL=24,DGSCOL=65
+ I $D(^DGMT(408.31,DGMTI,4)) S DGMTI4=^DGMT(408.31,DGMTI,4)    ;DG*503*904
  S DGMTDIS=^DGMT(408.31,DGMTI,0) I $D(^("C")) F  S DGMTWP=$O(^DGMT(408.31,DGMTI,"C",DGMTWP)) Q:'DGMTWP  S DGMTDIS(DGMTWP)=^(DGMTWP,0)
  S X="",X=$$SETSTR^VALM1("Patient:",X,15,8)
  S X=$$SETSTR^VALM1($P(^DPT($P(DGMTDIS,U,2),0),U),X,DGFCOL,25)
@@ -76,6 +77,8 @@ DISPLAY(DGMTI,DGMTYPT) ;Display means test data
  S X=""
  S X=$$SETSTR^VALM1("GMT Threshold:",X,9,14)
  S X=$$SETSTR^VALM1($S($P(DGMTDIS,U,27)'="":"$"_$P(DGMTDIS,U,27),1:""),X,DGFCOL,25)
+ S X=$$SETSTR^VALM1("BT Financial Indicator:",X,41,23)      ;DG*5.3*904
+ I $D(DGMTI4) S X=$$SETSTR^VALM1($S($P(DGMTI4,U,1)=1:"YES",$P(DGMTI4,U,1)=0:"NO",1:""),X,DGSCOL,3)   ;DG*503*904
  W !,X
  ;
  S X=""

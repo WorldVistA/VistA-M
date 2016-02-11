@@ -1,124 +1,138 @@
-IBDEI21M ; ; 06-AUG-2015
+IBDEI21M ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35696,1,3,0)
- ;;=3^Disruption of wound, unspecified, subsequent encounter
- ;;^UTILITY(U,$J,358.3,35696,1,4,0)
- ;;=4^T81.30XD
- ;;^UTILITY(U,$J,358.3,35696,2)
- ;;=^5054468
- ;;^UTILITY(U,$J,358.3,35697,0)
- ;;=T81.30XS^^189^2061^13
- ;;^UTILITY(U,$J,358.3,35697,1,0)
+ ;;^UTILITY(U,$J,358.3,34249,1,4,0)
+ ;;=4^G40.919
+ ;;^UTILITY(U,$J,358.3,34249,2)
+ ;;=^5003867
+ ;;^UTILITY(U,$J,358.3,34250,0)
+ ;;=G93.81^^157^1739^24
+ ;;^UTILITY(U,$J,358.3,34250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35697,1,3,0)
- ;;=3^Disruption of wound, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,35697,1,4,0)
- ;;=4^T81.30XS
- ;;^UTILITY(U,$J,358.3,35697,2)
- ;;=^5054469
- ;;^UTILITY(U,$J,358.3,35698,0)
- ;;=T81.31XA^^189^2061^3
- ;;^UTILITY(U,$J,358.3,35698,1,0)
+ ;;^UTILITY(U,$J,358.3,34250,1,3,0)
+ ;;=3^Mesial Temporal Sclerosis
+ ;;^UTILITY(U,$J,358.3,34250,1,4,0)
+ ;;=4^G93.81
+ ;;^UTILITY(U,$J,358.3,34250,2)
+ ;;=^338233
+ ;;^UTILITY(U,$J,358.3,34251,0)
+ ;;=F44.5^^157^1739^8
+ ;;^UTILITY(U,$J,358.3,34251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35698,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, init
- ;;^UTILITY(U,$J,358.3,35698,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,35698,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,35699,0)
- ;;=T81.31XD^^189^2061^4
- ;;^UTILITY(U,$J,358.3,35699,1,0)
+ ;;^UTILITY(U,$J,358.3,34251,1,3,0)
+ ;;=3^Conversion Disorder w/ Seizures/Convulsions
+ ;;^UTILITY(U,$J,358.3,34251,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,34251,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,34252,0)
+ ;;=R40.4^^157^1739^31
+ ;;^UTILITY(U,$J,358.3,34252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35699,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, subs
- ;;^UTILITY(U,$J,358.3,35699,1,4,0)
- ;;=4^T81.31XD
- ;;^UTILITY(U,$J,358.3,35699,2)
- ;;=^5054471
- ;;^UTILITY(U,$J,358.3,35700,0)
- ;;=T81.31XS^^189^2061^5
- ;;^UTILITY(U,$J,358.3,35700,1,0)
+ ;;^UTILITY(U,$J,358.3,34252,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,34252,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,34252,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,34253,0)
+ ;;=R40.1^^157^1739^30
+ ;;^UTILITY(U,$J,358.3,34253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35700,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, sequela
- ;;^UTILITY(U,$J,358.3,35700,1,4,0)
- ;;=4^T81.31XS
- ;;^UTILITY(U,$J,358.3,35700,2)
- ;;=^5054472
- ;;^UTILITY(U,$J,358.3,35701,0)
- ;;=T81.32XA^^189^2061^6
- ;;^UTILITY(U,$J,358.3,35701,1,0)
+ ;;^UTILITY(U,$J,358.3,34253,1,3,0)
+ ;;=3^Stupor
+ ;;^UTILITY(U,$J,358.3,34253,1,4,0)
+ ;;=4^R40.1
+ ;;^UTILITY(U,$J,358.3,34253,2)
+ ;;=^5019353
+ ;;^UTILITY(U,$J,358.3,34254,0)
+ ;;=R40.0^^157^1739^29
+ ;;^UTILITY(U,$J,358.3,34254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35701,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, init
- ;;^UTILITY(U,$J,358.3,35701,1,4,0)
- ;;=4^T81.32XA
- ;;^UTILITY(U,$J,358.3,35701,2)
- ;;=^5054473
- ;;^UTILITY(U,$J,358.3,35702,0)
- ;;=T81.32XD^^189^2061^7
- ;;^UTILITY(U,$J,358.3,35702,1,0)
+ ;;^UTILITY(U,$J,358.3,34254,1,3,0)
+ ;;=3^Somnolence
+ ;;^UTILITY(U,$J,358.3,34254,1,4,0)
+ ;;=4^R40.0
+ ;;^UTILITY(U,$J,358.3,34254,2)
+ ;;=^5019352
+ ;;^UTILITY(U,$J,358.3,34255,0)
+ ;;=R56.9^^157^1739^9
+ ;;^UTILITY(U,$J,358.3,34255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35702,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, subs
- ;;^UTILITY(U,$J,358.3,35702,1,4,0)
- ;;=4^T81.32XD
- ;;^UTILITY(U,$J,358.3,35702,2)
- ;;=^5054474
- ;;^UTILITY(U,$J,358.3,35703,0)
- ;;=T81.32XS^^189^2061^8
- ;;^UTILITY(U,$J,358.3,35703,1,0)
+ ;;^UTILITY(U,$J,358.3,34255,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,34255,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,34255,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,34256,0)
+ ;;=R56.1^^157^1739^25
+ ;;^UTILITY(U,$J,358.3,34256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35703,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, sequela
- ;;^UTILITY(U,$J,358.3,35703,1,4,0)
- ;;=4^T81.32XS
- ;;^UTILITY(U,$J,358.3,35703,2)
- ;;=^5054475
- ;;^UTILITY(U,$J,358.3,35704,0)
- ;;=T81.33XA^^189^2061^9
- ;;^UTILITY(U,$J,358.3,35704,1,0)
+ ;;^UTILITY(U,$J,358.3,34256,1,3,0)
+ ;;=3^Post Traumatic Seizures
+ ;;^UTILITY(U,$J,358.3,34256,1,4,0)
+ ;;=4^R56.1
+ ;;^UTILITY(U,$J,358.3,34256,2)
+ ;;=^5019523
+ ;;^UTILITY(U,$J,358.3,34257,0)
+ ;;=G40.901^^157^1739^12
+ ;;^UTILITY(U,$J,358.3,34257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35704,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, init encntr
- ;;^UTILITY(U,$J,358.3,35704,1,4,0)
- ;;=4^T81.33XA
- ;;^UTILITY(U,$J,358.3,35704,2)
- ;;=^5054476
- ;;^UTILITY(U,$J,358.3,35705,0)
- ;;=T81.33XD^^189^2061^10
- ;;^UTILITY(U,$J,358.3,35705,1,0)
+ ;;^UTILITY(U,$J,358.3,34257,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,34257,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,34257,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,34258,0)
+ ;;=G45.0^^157^1740^18
+ ;;^UTILITY(U,$J,358.3,34258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35705,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, subs encntr
- ;;^UTILITY(U,$J,358.3,35705,1,4,0)
- ;;=4^T81.33XD
- ;;^UTILITY(U,$J,358.3,35705,2)
- ;;=^5054477
- ;;^UTILITY(U,$J,358.3,35706,0)
- ;;=T81.33XS^^189^2061^11
- ;;^UTILITY(U,$J,358.3,35706,1,0)
+ ;;^UTILITY(U,$J,358.3,34258,1,3,0)
+ ;;=3^Vertebro-Basilar Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,34258,1,4,0)
+ ;;=4^G45.0
+ ;;^UTILITY(U,$J,358.3,34258,2)
+ ;;=^5003955
+ ;;^UTILITY(U,$J,358.3,34259,0)
+ ;;=G45.1^^157^1740^4
+ ;;^UTILITY(U,$J,358.3,34259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35706,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, sequela
- ;;^UTILITY(U,$J,358.3,35706,1,4,0)
- ;;=4^T81.33XS
- ;;^UTILITY(U,$J,358.3,35706,2)
- ;;=^5054478
- ;;^UTILITY(U,$J,358.3,35707,0)
- ;;=T81.4XXA^^189^2061^15
- ;;^UTILITY(U,$J,358.3,35707,1,0)
+ ;;^UTILITY(U,$J,358.3,34259,1,3,0)
+ ;;=3^Carotid Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,34259,1,4,0)
+ ;;=4^G45.1
+ ;;^UTILITY(U,$J,358.3,34259,2)
+ ;;=^5003956
+ ;;^UTILITY(U,$J,358.3,34260,0)
+ ;;=G45.3^^157^1740^1
+ ;;^UTILITY(U,$J,358.3,34260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35707,1,3,0)
- ;;=3^Infection following a procedure, initial encounter
- ;;^UTILITY(U,$J,358.3,35707,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,35707,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,35708,0)
- ;;=K68.11^^189^2061^17
- ;;^UTILITY(U,$J,358.3,35708,1,0)
+ ;;^UTILITY(U,$J,358.3,34260,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,34260,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,34260,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,34261,0)
+ ;;=G45.4^^157^1740^16
+ ;;^UTILITY(U,$J,358.3,34261,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34261,1,3,0)
+ ;;=3^Transient Global Amnesia
+ ;;^UTILITY(U,$J,358.3,34261,1,4,0)
+ ;;=4^G45.4
+ ;;^UTILITY(U,$J,358.3,34261,2)
+ ;;=^293883
+ ;;^UTILITY(U,$J,358.3,34262,0)
+ ;;=G45.8^^157^1740^14
+ ;;^UTILITY(U,$J,358.3,34262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34262,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attacks,Other
+ ;;^UTILITY(U,$J,358.3,34262,1,4,0)
+ ;;=4^G45.8
+ ;;^UTILITY(U,$J,358.3,34262,2)
+ ;;=^5003958

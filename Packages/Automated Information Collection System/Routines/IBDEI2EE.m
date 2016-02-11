@@ -1,0 +1,130 @@
+IBDEI2EE ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40281,1,3,0)
+ ;;=3^SCC Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,40281,1,4,0)
+ ;;=4^C44.122
+ ;;^UTILITY(U,$J,358.3,40281,2)
+ ;;=^5001023
+ ;;^UTILITY(U,$J,358.3,40282,0)
+ ;;=C44.42^^186^2076^379
+ ;;^UTILITY(U,$J,358.3,40282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40282,1,3,0)
+ ;;=3^SCC Skin Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,40282,1,4,0)
+ ;;=4^C44.42
+ ;;^UTILITY(U,$J,358.3,40282,2)
+ ;;=^340477
+ ;;^UTILITY(U,$J,358.3,40283,0)
+ ;;=C44.229^^186^2076^373
+ ;;^UTILITY(U,$J,358.3,40283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40283,1,3,0)
+ ;;=3^SCC Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,40283,1,4,0)
+ ;;=4^C44.229
+ ;;^UTILITY(U,$J,358.3,40283,2)
+ ;;=^5001036
+ ;;^UTILITY(U,$J,358.3,40284,0)
+ ;;=C44.222^^186^2076^377
+ ;;^UTILITY(U,$J,358.3,40284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40284,1,3,0)
+ ;;=3^SCC Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,40284,1,4,0)
+ ;;=4^C44.222
+ ;;^UTILITY(U,$J,358.3,40284,2)
+ ;;=^5001035
+ ;;^UTILITY(U,$J,358.3,40285,0)
+ ;;=L90.5^^186^2076^382
+ ;;^UTILITY(U,$J,358.3,40285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40285,1,3,0)
+ ;;=3^Scar Conditions/Fibrosis of Skin
+ ;;^UTILITY(U,$J,358.3,40285,1,4,0)
+ ;;=4^L90.5
+ ;;^UTILITY(U,$J,358.3,40285,2)
+ ;;=^5009455
+ ;;^UTILITY(U,$J,358.3,40286,0)
+ ;;=L72.3^^186^2076^383
+ ;;^UTILITY(U,$J,358.3,40286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40286,1,3,0)
+ ;;=3^Sebaceous Cyst
+ ;;^UTILITY(U,$J,358.3,40286,1,4,0)
+ ;;=4^L72.3
+ ;;^UTILITY(U,$J,358.3,40286,2)
+ ;;=^5009281
+ ;;^UTILITY(U,$J,358.3,40287,0)
+ ;;=M66.242^^186^2076^388
+ ;;^UTILITY(U,$J,358.3,40287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40287,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Left Hand
+ ;;^UTILITY(U,$J,358.3,40287,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,40287,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,40288,0)
+ ;;=M66.241^^186^2076^389
+ ;;^UTILITY(U,$J,358.3,40288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40288,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Right Hand
+ ;;^UTILITY(U,$J,358.3,40288,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,40288,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,40289,0)
+ ;;=M66.342^^186^2076^390
+ ;;^UTILITY(U,$J,358.3,40289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40289,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Left Hand
+ ;;^UTILITY(U,$J,358.3,40289,1,4,0)
+ ;;=4^M66.342
+ ;;^UTILITY(U,$J,358.3,40289,2)
+ ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,40290,0)
+ ;;=M66.341^^186^2076^391
+ ;;^UTILITY(U,$J,358.3,40290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40290,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Right Hand
+ ;;^UTILITY(U,$J,358.3,40290,1,4,0)
+ ;;=4^M66.341
+ ;;^UTILITY(U,$J,358.3,40290,2)
+ ;;=^5012881
+ ;;^UTILITY(U,$J,358.3,40291,0)
+ ;;=S93.402A^^186^2076^392
+ ;;^UTILITY(U,$J,358.3,40291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40291,1,3,0)
+ ;;=3^Sprain Left Ankle Ligament Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40291,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,40291,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,40292,0)
+ ;;=S63.92XA^^186^2076^394
+ ;;^UTILITY(U,$J,358.3,40292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40292,1,3,0)
+ ;;=3^Sprain Left Wrist/Hand Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40292,1,4,0)
+ ;;=4^S63.92XA
+ ;;^UTILITY(U,$J,358.3,40292,2)
+ ;;=^5136047
+ ;;^UTILITY(U,$J,358.3,40293,0)
+ ;;=S93.401A^^186^2076^395
+ ;;^UTILITY(U,$J,358.3,40293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40293,1,3,0)
+ ;;=3^Sprain Right Ankle Ligament Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40293,1,4,0)
+ ;;=4^S93.401A

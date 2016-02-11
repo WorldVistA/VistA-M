@@ -1,0 +1,132 @@
+IBDEI3D7 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,56561,0)
+ ;;=T83.498A^^259^2820^23
+ ;;^UTILITY(U,$J,358.3,56561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56561,1,3,0)
+ ;;=3^Mech compl prosth dvc/implnt/grft of genitl trct,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56561,1,4,0)
+ ;;=4^T83.498A
+ ;;^UTILITY(U,$J,358.3,56561,2)
+ ;;=^5055055
+ ;;^UTILITY(U,$J,358.3,56562,0)
+ ;;=N99.820^^259^2820^27
+ ;;^UTILITY(U,$J,358.3,56562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56562,1,3,0)
+ ;;=3^Postproc hemor/hemtom of GU sys org fol GU sys procedure
+ ;;^UTILITY(U,$J,358.3,56562,1,4,0)
+ ;;=4^N99.820
+ ;;^UTILITY(U,$J,358.3,56562,2)
+ ;;=^5015968
+ ;;^UTILITY(U,$J,358.3,56563,0)
+ ;;=T81.4XXA^^259^2820^18
+ ;;^UTILITY(U,$J,358.3,56563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56563,1,3,0)
+ ;;=3^Infection following a procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56563,1,4,0)
+ ;;=4^T81.4XXA
+ ;;^UTILITY(U,$J,358.3,56563,2)
+ ;;=^5054479
+ ;;^UTILITY(U,$J,358.3,56564,0)
+ ;;=K68.11^^259^2820^28
+ ;;^UTILITY(U,$J,358.3,56564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56564,1,3,0)
+ ;;=3^Postproc retroperitoneal abscess
+ ;;^UTILITY(U,$J,358.3,56564,1,4,0)
+ ;;=4^K68.11
+ ;;^UTILITY(U,$J,358.3,56564,2)
+ ;;=^5008782
+ ;;^UTILITY(U,$J,358.3,56565,0)
+ ;;=Z48.00^^259^2820^10
+ ;;^UTILITY(U,$J,358.3,56565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56565,1,3,0)
+ ;;=3^Change/Removal of Nonsurg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,56565,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,56565,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,56566,0)
+ ;;=Z48.01^^259^2820^11
+ ;;^UTILITY(U,$J,358.3,56566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56566,1,3,0)
+ ;;=3^Change/Removal of Surg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,56566,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,56566,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,56567,0)
+ ;;=Z48.02^^259^2820^29
+ ;;^UTILITY(U,$J,358.3,56567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56567,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,56567,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,56567,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,56568,0)
+ ;;=Z48.89^^259^2820^30
+ ;;^UTILITY(U,$J,358.3,56568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56568,1,3,0)
+ ;;=3^Surg Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,56568,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,56568,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,56569,0)
+ ;;=Z48.03^^259^2820^9
+ ;;^UTILITY(U,$J,358.3,56569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56569,1,3,0)
+ ;;=3^Change/Removal of Drains
+ ;;^UTILITY(U,$J,358.3,56569,1,4,0)
+ ;;=4^Z48.03
+ ;;^UTILITY(U,$J,358.3,56569,2)
+ ;;=^5063036
+ ;;^UTILITY(U,$J,358.3,56570,0)
+ ;;=Z48.816^^259^2820^1
+ ;;^UTILITY(U,$J,358.3,56570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56570,1,3,0)
+ ;;=3^Aftercare Following GU System Surg
+ ;;^UTILITY(U,$J,358.3,56570,1,4,0)
+ ;;=4^Z48.816
+ ;;^UTILITY(U,$J,358.3,56570,2)
+ ;;=^5063053
+ ;;^UTILITY(U,$J,358.3,56571,0)
+ ;;=D29.1^^259^2821^4
+ ;;^UTILITY(U,$J,358.3,56571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56571,1,3,0)
+ ;;=3^Benign neoplasm of prostate
+ ;;^UTILITY(U,$J,358.3,56571,1,4,0)
+ ;;=4^D29.1
+ ;;^UTILITY(U,$J,358.3,56571,2)
+ ;;=^267657
+ ;;^UTILITY(U,$J,358.3,56572,0)
+ ;;=N40.0^^259^2821^8
+ ;;^UTILITY(U,$J,358.3,56572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56572,1,3,0)
+ ;;=3^Enlarged prostate w/o LUTS
+ ;;^UTILITY(U,$J,358.3,56572,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,56572,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,56573,0)
+ ;;=N41.0^^259^2821^2
+ ;;^UTILITY(U,$J,358.3,56573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56573,1,3,0)
+ ;;=3^Acute prostatitis
+ ;;^UTILITY(U,$J,358.3,56573,1,4,0)
+ ;;=4^N41.0

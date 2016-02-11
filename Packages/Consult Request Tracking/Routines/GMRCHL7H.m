@@ -1,5 +1,5 @@
-GMRCHL7H ;DSS/KC - Receive HL7 Message for HCP ;2/12/15
- ;;3.0;CONSULT/REQUEST TRACKING;**75**;DEC 27, 1997;Build 22
+GMRCHL7H ;DSS/KC - Receive HL7 Message for HCP ;10/29/15  16:55
+ ;;3.0;CONSULT/REQUEST TRACKING;**75,85**;DEC 27, 1997;Build 3
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -12,6 +12,7 @@ GMRCHL7H ;DSS/KC - Receive HL7 Message for HCP ;2/12/15
  ;10103 FMTE^XLFDT, FMTHL7^XLFDT
  ;10104 UP^XLFSTR
  ;10106 FMDATE^HLFNC
+ ;;Patch 85 fix for CA SDM ticket R6063960FY16
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO HCP protocol attached or GMRC EVSEND OR
  ;MSG = local array which contains the HL7 segments
@@ -38,7 +39,7 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO HCP protocol attached or G
  S GMRCHL("EID")=$$FIND1^DIC(101,,"X",SNAME)
  Q:'GMRCHL("EID")  D INIT^HLFNC2(GMRCHL("EID"),.GMRCHL)
  S ZERR="",ZCNT=0,ECH=$E(GMRCHL("ECH")) ;component separator
- ;start creating the segments. 
+ ;start creating the segments.
  S DATA=$NA(^TMP("GMRCHL7H",$J)) K @DATA D GETS^DIQ(123,GMRCDA,"*","IE",DATA)
  S GDATA=$NA(^TMP("GMRCHL7H",$J,123,+GMRCDA_",")) ;File 123 data
  ;RF1 segment
@@ -59,12 +60,11 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO HCP protocol attached or G
  .I I=1 S ZCNT=ZCNT+1,GMRCM(ZCNT)=$TR(GMRCP(I),"""") Q
  .S GMRCM(ZCNT,I)=$TR(GMRCP(I),"""")
  K GMRCP
- ;DG1 segment
- S DX=$G(@GDATA@(30,"E")) I DX]"" D
- .I DX["(" S DXCODE=$TR($P(DX,"(",2),")",""),DX=$P(DX,"(")
- .E  S DXCODE=DX,DX=""
- .S ZCNT=ZCNT+1,GMRCM(ZCNT)="DG1|1||"_DXCODE_ECH_DX_"|||W"
- .Q
+ ;DG1 segment ;Patch 85 modified
+ S DX=$G(@GDATA@(30,"E"))
+ S DXCODE=$G(@GDATA@(30.1,"E"))
+ I $G(DX)["(" S DX=$P(DX,"(")
+ S ZCNT=ZCNT+1,GMRCM(ZCNT)="DG1|1||"_$G(DXCODE)_ECH_$G(DX)_"|||W"
  ;OBR segment
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="OBR|1|"_$P(ORC,FS,3)_"|"_$P(ORC,FS,4)_"|ZZ||"_$$FMTHL7^XLFDT($G(@GDATA@(17,"I")))
  ;PV1 segment

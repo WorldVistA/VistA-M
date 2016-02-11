@@ -1,138 +1,128 @@
-IBDEI0NE ; ; 06-AUG-2015
+IBDEI0NE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11147,1,5,0)
- ;;=5^Affective Syndrome
- ;;^UTILITY(U,$J,358.3,11147,2)
- ;;=^331840
- ;;^UTILITY(U,$J,358.3,11148,0)
- ;;=310.89^^50^632^6
- ;;^UTILITY(U,$J,358.3,11148,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11148,1,2,0)
- ;;=2^310.89
- ;;^UTILITY(U,$J,358.3,11148,1,5,0)
- ;;=5^Oth Non Psychotic Mental Disord NEC
- ;;^UTILITY(U,$J,358.3,11148,2)
- ;;=^268320
- ;;^UTILITY(U,$J,358.3,11149,0)
- ;;=293.82^^50^632^5
- ;;^UTILITY(U,$J,358.3,11149,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11149,1,2,0)
- ;;=2^293.82
- ;;^UTILITY(U,$J,358.3,11149,1,5,0)
- ;;=5^Hallucinosis
- ;;^UTILITY(U,$J,358.3,11149,2)
- ;;=^331837
- ;;^UTILITY(U,$J,358.3,11150,0)
- ;;=290.20^^50^633^16
- ;;^UTILITY(U,$J,358.3,11150,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11150,1,2,0)
- ;;=2^290.20
- ;;^UTILITY(U,$J,358.3,11150,1,5,0)
- ;;=5^Senile Dementia w/ Delusion
- ;;^UTILITY(U,$J,358.3,11150,2)
- ;;=^303486
- ;;^UTILITY(U,$J,358.3,11151,0)
- ;;=290.40^^50^633^18
- ;;^UTILITY(U,$J,358.3,11151,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11151,1,2,0)
- ;;=2^290.40
- ;;^UTILITY(U,$J,358.3,11151,1,5,0)
- ;;=5^Vascular Dementia
- ;;^UTILITY(U,$J,358.3,11151,2)
- ;;=^303487
- ;;^UTILITY(U,$J,358.3,11152,0)
- ;;=291.2^^50^633^1
- ;;^UTILITY(U,$J,358.3,11152,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11152,1,2,0)
- ;;=2^291.2
- ;;^UTILITY(U,$J,358.3,11152,1,5,0)
- ;;=5^Alcoholic Dementia
- ;;^UTILITY(U,$J,358.3,11152,2)
- ;;=Alcoholic Dementia^268015
- ;;^UTILITY(U,$J,358.3,11153,0)
- ;;=290.0^^50^633^17
- ;;^UTILITY(U,$J,358.3,11153,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11153,1,2,0)
- ;;=2^290.0
- ;;^UTILITY(U,$J,358.3,11153,1,5,0)
- ;;=5^Senile Dementia, Uncomplicated
- ;;^UTILITY(U,$J,358.3,11153,2)
- ;;=^31700
- ;;^UTILITY(U,$J,358.3,11154,0)
- ;;=290.3^^50^633^15
- ;;^UTILITY(U,$J,358.3,11154,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11154,1,2,0)
- ;;=2^290.3
- ;;^UTILITY(U,$J,358.3,11154,1,5,0)
- ;;=5^Senile Dementia w/ Delirium
- ;;^UTILITY(U,$J,358.3,11154,2)
- ;;=^268009
- ;;^UTILITY(U,$J,358.3,11155,0)
- ;;=294.8^^50^633^13
- ;;^UTILITY(U,$J,358.3,11155,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11155,1,2,0)
- ;;=2^294.8
- ;;^UTILITY(U,$J,358.3,11155,1,5,0)
- ;;=5^Mental D/O d/t Oth Spec Condition
- ;;^UTILITY(U,$J,358.3,11155,2)
- ;;=^331843
- ;;^UTILITY(U,$J,358.3,11156,0)
- ;;=294.11^^50^633^7
- ;;^UTILITY(U,$J,358.3,11156,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11156,1,2,0)
- ;;=2^294.11
- ;;^UTILITY(U,$J,358.3,11156,1,5,0)
- ;;=5^Dementia d/t HIV w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,11156,2)
- ;;=^321982^042.
- ;;^UTILITY(U,$J,358.3,11157,0)
- ;;=294.20^^50^633^5
- ;;^UTILITY(U,$J,358.3,11157,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11157,1,2,0)
- ;;=2^294.20
- ;;^UTILITY(U,$J,358.3,11157,1,5,0)
- ;;=5^Dementia NOS w/o Behv Dstrb
- ;;^UTILITY(U,$J,358.3,11157,2)
- ;;=^340607
- ;;^UTILITY(U,$J,358.3,11158,0)
- ;;=294.21^^50^633^4
- ;;^UTILITY(U,$J,358.3,11158,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11158,1,2,0)
- ;;=2^294.21
- ;;^UTILITY(U,$J,358.3,11158,1,5,0)
- ;;=5^Dementia NOS w/ Behav Distrb
- ;;^UTILITY(U,$J,358.3,11158,2)
- ;;=^340505
- ;;^UTILITY(U,$J,358.3,11159,0)
- ;;=331.83^^50^633^14
- ;;^UTILITY(U,$J,358.3,11159,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11159,1,2,0)
- ;;=2^331.83
- ;;^UTILITY(U,$J,358.3,11159,1,5,0)
- ;;=5^Mild Cognitive Impairment
- ;;^UTILITY(U,$J,358.3,11159,2)
- ;;=^334065
- ;;^UTILITY(U,$J,358.3,11160,0)
- ;;=294.8^^50^633^6
- ;;^UTILITY(U,$J,358.3,11160,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11160,1,2,0)
- ;;=2^294.8
- ;;^UTILITY(U,$J,358.3,11160,1,5,0)
- ;;=5^Dementia d/t Brain Tumor
- ;;^UTILITY(U,$J,358.3,11160,2)
- ;;=^331843
+ ;;^UTILITY(U,$J,358.3,10692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10692,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,10692,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,10692,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,10693,0)
+ ;;=C91.00^^68^675^5
+ ;;^UTILITY(U,$J,358.3,10693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10693,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10693,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,10693,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,10694,0)
+ ;;=C91.01^^68^675^4
+ ;;^UTILITY(U,$J,358.3,10694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10694,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,10694,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,10694,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,10695,0)
+ ;;=C92.01^^68^675^7
+ ;;^UTILITY(U,$J,358.3,10695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10695,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,10695,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,10695,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,10696,0)
+ ;;=C92.00^^68^675^8
+ ;;^UTILITY(U,$J,358.3,10696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10696,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10696,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,10696,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,10697,0)
+ ;;=C92.61^^68^675^9
+ ;;^UTILITY(U,$J,358.3,10697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10697,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,10697,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,10697,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,10698,0)
+ ;;=C92.60^^68^675^10
+ ;;^UTILITY(U,$J,358.3,10698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10698,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10698,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,10698,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,10699,0)
+ ;;=C92.A1^^68^675^11
+ ;;^UTILITY(U,$J,358.3,10699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10699,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,10699,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,10699,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,10700,0)
+ ;;=C92.A0^^68^675^12
+ ;;^UTILITY(U,$J,358.3,10700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10700,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10700,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,10700,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,10701,0)
+ ;;=C92.51^^68^675^13
+ ;;^UTILITY(U,$J,358.3,10701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10701,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,10701,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,10701,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,10702,0)
+ ;;=C92.50^^68^675^14
+ ;;^UTILITY(U,$J,358.3,10702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10702,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10702,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,10702,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,10703,0)
+ ;;=C94.40^^68^675^17
+ ;;^UTILITY(U,$J,358.3,10703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10703,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10703,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,10703,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,10704,0)
+ ;;=C94.42^^68^675^15
+ ;;^UTILITY(U,$J,358.3,10704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10704,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse

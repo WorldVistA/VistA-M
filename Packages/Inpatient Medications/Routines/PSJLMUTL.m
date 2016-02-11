@@ -1,5 +1,5 @@
-PSJLMUTL ;BIR/MLM-INPATIENT LISTMAN UTILITIES ; 9/12/07 10:28am
- ;;5.0; INPATIENT MEDICATIONS ;**7,67,58,85,111,160,198**;16 DEC 97;Build 7
+PSJLMUTL ;BIR/MLM - INPATIENT LISTMAN UTILITIES ; 9/12/07 10:28am
+ ;;5.0;INPATIENT MEDICATIONS ;**7,67,58,85,111,160,198,320**;16 DEC 97;Build 7
  ;
  ; Reference to ^ORD(101 is supported by DBIA #872.
  ; Reference to ^PS(50.606 is supported by DBIA #2174.
@@ -17,8 +17,8 @@ NEWALL(DFN) ; Enter Allergy info.
 DISALL(DFN) ; Display brief patient info list.
  K ^TMP("PSJALL",$J) N PSJLN,X,Y,PSGALG,PSGRALG,PSGLDR,PSJGMRAL,PSJWHERE S PSJWHERE="PSJLMUTL"
  D ATS^PSJMUTL(57,57,2)
- I (PSJGMRAL=0) S ^TMP("PSJALL",$J,1,0)=" Allergies/Reactions: "_"NKA",PSJLN=2 G NARRATIV
- I (PSJGMRAL="") S ^TMP("PSJALL",$J,1,0)=" Allergies/Reactions: No Allergy Assessment",PSJLN=2 G NARRATIV
+ I (PSJGMRAL=0) S ^TMP("PSJALL",$J,1,0)=" Allergies/Reactions: "_"NKA",PSJLN=2 G RAD
+ I (PSJGMRAL="") S ^TMP("PSJALL",$J,1,0)=" Allergies/Reactions: No Allergy Assessment",PSJLN=2 G RAD
  I ($G(PSGVALG(1))="NKA")!((PSGVALG=0)&(PSGALG=0)) D
  .S ^TMP("PSJALL",$J,1,0)="           Allergies: "_$G(PSGVALG(1)),PSJLN=2,X=1
  I ($G(PSGVALG(1))'="NKA")&((PSGVALG>0)!(PSGALG>0)) D
@@ -26,7 +26,7 @@ DISALL(DFN) ; Display brief patient info list.
  .F  S X=$O(PSGVALG(X)) Q:'X  S ^TMP("PSJALL",$J,PSJLN,0)="                        "_PSGVALG(X),PSJLN=PSJLN+1
  .S ^TMP("PSJALL",$J,PSJLN,0)="        Non-Verified: "_$S($G(PSGALG(1))=0:"",1:$G(PSGALG(1))),PSJLN=PSJLN+1,X=1
  .F  S X=$O(PSGALG(X)) Q:'X  S ^TMP("PSJALL",$J,PSJLN,0)="                        "_PSGALG(X),PSJLN=PSJLN+1
- D RAD^PSJMUTL
+RAD D RAD^PSJMUTL
  I ($G(PSGVADR(1))="NKA")!((PSGVADR=0)&(PSGADR=0)) D
  .S ^TMP("PSJALL",$J,PSJLN,0)="",^TMP("PSJALL",$J,PSJLN+1,0)="   Adverse Reactions: "_$G(PSGADR(1)),PSJLN=PSJLN+2,X=1
  I ($G(PSGVADR(1))'="NKA")&((PSGVADR>0)!(PSGADR>0)) D

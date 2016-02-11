@@ -1,130 +1,124 @@
-IBDEI1QV ; ; 06-AUG-2015
+IBDEI1QV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30844,1,4,0)
- ;;=4^G57.51
- ;;^UTILITY(U,$J,358.3,30844,2)
- ;;=^5004054
- ;;^UTILITY(U,$J,358.3,30845,0)
- ;;=M12.572^^179^1930^26
- ;;^UTILITY(U,$J,358.3,30845,1,0)
+ ;;^UTILITY(U,$J,358.3,29210,0)
+ ;;=I70.219^^135^1359^3
+ ;;^UTILITY(U,$J,358.3,29210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30845,1,3,0)
- ;;=3^Traumatic arthropathy, left ankle and foot
- ;;^UTILITY(U,$J,358.3,30845,1,4,0)
- ;;=4^M12.572
- ;;^UTILITY(U,$J,358.3,30845,2)
- ;;=^5010638
- ;;^UTILITY(U,$J,358.3,30846,0)
- ;;=M12.571^^179^1930^27
- ;;^UTILITY(U,$J,358.3,30846,1,0)
+ ;;^UTILITY(U,$J,358.3,29210,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,29210,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,29210,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,29211,0)
+ ;;=I70.213^^135^1359^4
+ ;;^UTILITY(U,$J,358.3,29211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30846,1,3,0)
- ;;=3^Traumatic arthropathy, right ankle and foot
- ;;^UTILITY(U,$J,358.3,30846,1,4,0)
- ;;=4^M12.571
- ;;^UTILITY(U,$J,358.3,30846,2)
- ;;=^5010637
- ;;^UTILITY(U,$J,358.3,30847,0)
- ;;=M19.031^^179^1931^8
- ;;^UTILITY(U,$J,358.3,30847,1,0)
+ ;;^UTILITY(U,$J,358.3,29211,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,29211,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,29211,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,29212,0)
+ ;;=I70.212^^135^1359^5
+ ;;^UTILITY(U,$J,358.3,29212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30847,1,3,0)
- ;;=3^Primary osteoarthritis, right wrist
- ;;^UTILITY(U,$J,358.3,30847,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,30847,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,30848,0)
- ;;=M19.032^^179^1931^7
- ;;^UTILITY(U,$J,358.3,30848,1,0)
+ ;;^UTILITY(U,$J,358.3,29212,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,29212,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,29212,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,29213,0)
+ ;;=I70.211^^135^1359^6
+ ;;^UTILITY(U,$J,358.3,29213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30848,1,3,0)
- ;;=3^Primary osteoarthritis, left wrist
- ;;^UTILITY(U,$J,358.3,30848,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,30848,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,30849,0)
- ;;=S50.11XA^^179^1931^4
- ;;^UTILITY(U,$J,358.3,30849,1,0)
+ ;;^UTILITY(U,$J,358.3,29213,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,29213,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,29213,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,29214,0)
+ ;;=I70.25^^135^1359^2
+ ;;^UTILITY(U,$J,358.3,29214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30849,1,3,0)
- ;;=3^Contusion of right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,30849,1,4,0)
- ;;=4^S50.11XA
- ;;^UTILITY(U,$J,358.3,30849,2)
- ;;=^5028494
- ;;^UTILITY(U,$J,358.3,30850,0)
- ;;=S50.12XA^^179^1931^1
- ;;^UTILITY(U,$J,358.3,30850,1,0)
+ ;;^UTILITY(U,$J,358.3,29214,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,29214,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,29214,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,29215,0)
+ ;;=I70.249^^135^1359^7
+ ;;^UTILITY(U,$J,358.3,29215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30850,1,3,0)
- ;;=3^Contusion of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,30850,1,4,0)
- ;;=4^S50.12XA
- ;;^UTILITY(U,$J,358.3,30850,2)
- ;;=^5028497
- ;;^UTILITY(U,$J,358.3,30851,0)
- ;;=S50.11XD^^179^1931^6
- ;;^UTILITY(U,$J,358.3,30851,1,0)
+ ;;^UTILITY(U,$J,358.3,29215,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,29215,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,29215,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,29216,0)
+ ;;=I70.239^^135^1359^8
+ ;;^UTILITY(U,$J,358.3,29216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30851,1,3,0)
- ;;=3^Contusion of right forearm, subsequent encounter
- ;;^UTILITY(U,$J,358.3,30851,1,4,0)
- ;;=4^S50.11XD
- ;;^UTILITY(U,$J,358.3,30851,2)
- ;;=^5028495
- ;;^UTILITY(U,$J,358.3,30852,0)
- ;;=S50.11XS^^179^1931^5
- ;;^UTILITY(U,$J,358.3,30852,1,0)
+ ;;^UTILITY(U,$J,358.3,29216,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,29216,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,29216,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,29217,0)
+ ;;=I70.269^^135^1359^9
+ ;;^UTILITY(U,$J,358.3,29217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30852,1,3,0)
- ;;=3^Contusion of right forearm, sequela
- ;;^UTILITY(U,$J,358.3,30852,1,4,0)
- ;;=4^S50.11XS
- ;;^UTILITY(U,$J,358.3,30852,2)
- ;;=^5028496
- ;;^UTILITY(U,$J,358.3,30853,0)
- ;;=S50.12XD^^179^1931^3
- ;;^UTILITY(U,$J,358.3,30853,1,0)
+ ;;^UTILITY(U,$J,358.3,29217,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,29217,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,29217,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,29218,0)
+ ;;=I70.263^^135^1359^10
+ ;;^UTILITY(U,$J,358.3,29218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30853,1,3,0)
- ;;=3^Contusion of left forearm, subsequent encounter
- ;;^UTILITY(U,$J,358.3,30853,1,4,0)
- ;;=4^S50.12XD
- ;;^UTILITY(U,$J,358.3,30853,2)
- ;;=^5028498
- ;;^UTILITY(U,$J,358.3,30854,0)
- ;;=S50.12XS^^179^1931^2
- ;;^UTILITY(U,$J,358.3,30854,1,0)
+ ;;^UTILITY(U,$J,358.3,29218,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,29218,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,29218,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,29219,0)
+ ;;=I70.262^^135^1359^11
+ ;;^UTILITY(U,$J,358.3,29219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30854,1,3,0)
- ;;=3^Contusion of left forearm, sequela
- ;;^UTILITY(U,$J,358.3,30854,1,4,0)
- ;;=4^S50.12XS
- ;;^UTILITY(U,$J,358.3,30854,2)
- ;;=^5028499
- ;;^UTILITY(U,$J,358.3,30855,0)
- ;;=M00.842^^179^1932^1
- ;;^UTILITY(U,$J,358.3,30855,1,0)
+ ;;^UTILITY(U,$J,358.3,29219,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
+ ;;^UTILITY(U,$J,358.3,29219,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,29219,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,29220,0)
+ ;;=I70.261^^135^1359^12
+ ;;^UTILITY(U,$J,358.3,29220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30855,1,3,0)
- ;;=3^Arthritis due to other bacteria, left hand
- ;;^UTILITY(U,$J,358.3,30855,1,4,0)
- ;;=4^M00.842
- ;;^UTILITY(U,$J,358.3,30855,2)
- ;;=^5009680
- ;;^UTILITY(U,$J,358.3,30856,0)
- ;;=M00.841^^179^1932^2
- ;;^UTILITY(U,$J,358.3,30856,1,0)
+ ;;^UTILITY(U,$J,358.3,29220,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
+ ;;^UTILITY(U,$J,358.3,29220,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,29220,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,29221,0)
+ ;;=I71.2^^135^1359^20
+ ;;^UTILITY(U,$J,358.3,29221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30856,1,3,0)
- ;;=3^Arthritis due to other bacteria, right hand
- ;;^UTILITY(U,$J,358.3,30856,1,4,0)
- ;;=4^M00.841
- ;;^UTILITY(U,$J,358.3,30856,2)
- ;;=^5009679
- ;;^UTILITY(U,$J,358.3,30857,0)
- ;;=M24.542^^179^1932^3
+ ;;^UTILITY(U,$J,358.3,29221,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,29221,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,29221,2)
+ ;;=^5007787

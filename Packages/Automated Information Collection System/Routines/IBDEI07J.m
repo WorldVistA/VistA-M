@@ -1,126 +1,138 @@
-IBDEI07J ; ; 06-AUG-2015
+IBDEI07J ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3026,1,4,0)
- ;;=4^F40.241
- ;;^UTILITY(U,$J,358.3,3026,2)
- ;;=^5003555
- ;;^UTILITY(U,$J,358.3,3027,0)
- ;;=F40.248^^8^86^14
- ;;^UTILITY(U,$J,358.3,3027,1,0)
+ ;;^UTILITY(U,$J,358.3,2952,2)
+ ;;=^5008928
+ ;;^UTILITY(U,$J,358.3,2953,0)
+ ;;=K59.00^^28^245^17
+ ;;^UTILITY(U,$J,358.3,2953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3027,1,3,0)
- ;;=3^Situational Type Phobia NEC
- ;;^UTILITY(U,$J,358.3,3027,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,3027,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,3028,0)
- ;;=F06.33^^8^87^1
- ;;^UTILITY(U,$J,358.3,3028,1,0)
+ ;;^UTILITY(U,$J,358.3,2953,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,2953,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,2953,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,2954,0)
+ ;;=K50.00^^28^245^18
+ ;;^UTILITY(U,$J,358.3,2954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3028,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,3028,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,3028,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,3029,0)
- ;;=F06.34^^8^87^2
- ;;^UTILITY(U,$J,358.3,3029,1,0)
+ ;;^UTILITY(U,$J,358.3,2954,1,3,0)
+ ;;=3^Crohn's Disease,Small Intestine w/o Complications
+ ;;^UTILITY(U,$J,358.3,2954,1,4,0)
+ ;;=4^K50.00
+ ;;^UTILITY(U,$J,358.3,2954,2)
+ ;;=^5008624
+ ;;^UTILITY(U,$J,358.3,2955,0)
+ ;;=K92.9^^28^245^19
+ ;;^UTILITY(U,$J,358.3,2955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3029,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,3029,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,3029,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,3030,0)
- ;;=F31.11^^8^87^4
- ;;^UTILITY(U,$J,358.3,3030,1,0)
+ ;;^UTILITY(U,$J,358.3,2955,1,3,0)
+ ;;=3^Digestive System Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2955,1,4,0)
+ ;;=4^K92.9
+ ;;^UTILITY(U,$J,358.3,2955,2)
+ ;;=^5008917
+ ;;^UTILITY(U,$J,358.3,2956,0)
+ ;;=K57.93^^28^245^22
+ ;;^UTILITY(U,$J,358.3,2956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3030,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,3030,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,3030,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,3031,0)
- ;;=F31.12^^8^87^5
- ;;^UTILITY(U,$J,358.3,3031,1,0)
+ ;;^UTILITY(U,$J,358.3,2956,1,3,0)
+ ;;=3^Dvtrcli of Intest w/o Perf/Abscess w/ Bleeding
+ ;;^UTILITY(U,$J,358.3,2956,1,4,0)
+ ;;=4^K57.93
+ ;;^UTILITY(U,$J,358.3,2956,2)
+ ;;=^5008738
+ ;;^UTILITY(U,$J,358.3,2957,0)
+ ;;=K57.92^^28^245^23
+ ;;^UTILITY(U,$J,358.3,2957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3031,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,3031,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,3031,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,3032,0)
- ;;=F31.13^^8^87^6
- ;;^UTILITY(U,$J,358.3,3032,1,0)
+ ;;^UTILITY(U,$J,358.3,2957,1,3,0)
+ ;;=3^Dvtrcli of Intest w/o Perf/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,2957,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,2957,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,2958,0)
+ ;;=K57.91^^28^245^20
+ ;;^UTILITY(U,$J,358.3,2958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3032,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,3032,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,3032,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,3033,0)
- ;;=F31.2^^8^87^7
- ;;^UTILITY(U,$J,358.3,3033,1,0)
+ ;;^UTILITY(U,$J,358.3,2958,1,3,0)
+ ;;=3^Dvrtclos of Intest w/o Perf/Abscess w/ Bleed
+ ;;^UTILITY(U,$J,358.3,2958,1,4,0)
+ ;;=4^K57.91
+ ;;^UTILITY(U,$J,358.3,2958,2)
+ ;;=^5008736
+ ;;^UTILITY(U,$J,358.3,2959,0)
+ ;;=K57.90^^28^245^21
+ ;;^UTILITY(U,$J,358.3,2959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3033,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,3033,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,3033,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,3034,0)
- ;;=F31.73^^8^87^8
- ;;^UTILITY(U,$J,358.3,3034,1,0)
+ ;;^UTILITY(U,$J,358.3,2959,1,3,0)
+ ;;=3^Dvrtclos of Intest w/o Perf/Abscess w/o Bleed
+ ;;^UTILITY(U,$J,358.3,2959,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,2959,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,2960,0)
+ ;;=K30.^^28^245^24
+ ;;^UTILITY(U,$J,358.3,2960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3034,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,3034,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,3034,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,3035,0)
- ;;=F31.74^^8^87^9
- ;;^UTILITY(U,$J,358.3,3035,1,0)
+ ;;^UTILITY(U,$J,358.3,2960,1,3,0)
+ ;;=3^Dyspepsia,Functional
+ ;;^UTILITY(U,$J,358.3,2960,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,2960,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,2961,0)
+ ;;=K08.109^^28^245^25
+ ;;^UTILITY(U,$J,358.3,2961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3035,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,3035,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,3035,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,3036,0)
- ;;=F31.30^^8^87^10
- ;;^UTILITY(U,$J,358.3,3036,1,0)
+ ;;^UTILITY(U,$J,358.3,2961,1,3,0)
+ ;;=3^Edentulous
+ ;;^UTILITY(U,$J,358.3,2961,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,2961,2)
+ ;;=^5008410
+ ;;^UTILITY(U,$J,358.3,2962,0)
+ ;;=K22.9^^28^245^26
+ ;;^UTILITY(U,$J,358.3,2962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3036,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Unspec
- ;;^UTILITY(U,$J,358.3,3036,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,3036,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,3037,0)
- ;;=F31.31^^8^87^11
- ;;^UTILITY(U,$J,358.3,3037,1,0)
+ ;;^UTILITY(U,$J,358.3,2962,1,3,0)
+ ;;=3^Esophagus Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2962,1,4,0)
+ ;;=4^K22.9
+ ;;^UTILITY(U,$J,358.3,2962,2)
+ ;;=^5008516
+ ;;^UTILITY(U,$J,358.3,2963,0)
+ ;;=R14.3^^28^245^27
+ ;;^UTILITY(U,$J,358.3,2963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3037,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,3037,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,3037,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,3038,0)
- ;;=F31.32^^8^87^12
- ;;^UTILITY(U,$J,358.3,3038,1,0)
+ ;;^UTILITY(U,$J,358.3,2963,1,3,0)
+ ;;=3^Flatulence
+ ;;^UTILITY(U,$J,358.3,2963,1,4,0)
+ ;;=4^R14.3
+ ;;^UTILITY(U,$J,358.3,2963,2)
+ ;;=^5019243
+ ;;^UTILITY(U,$J,358.3,2964,0)
+ ;;=K81.9^^28^245^11
+ ;;^UTILITY(U,$J,358.3,2964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3038,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,3038,1,4,0)
- ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,2964,1,3,0)
+ ;;=3^Cholecystitis,Unspec
+ ;;^UTILITY(U,$J,358.3,2964,1,4,0)
+ ;;=4^K81.9
+ ;;^UTILITY(U,$J,358.3,2964,2)
+ ;;=^87388
+ ;;^UTILITY(U,$J,358.3,2965,0)
+ ;;=K80.70^^28^245^28
+ ;;^UTILITY(U,$J,358.3,2965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2965,1,3,0)
+ ;;=3^GB & Bile Duct Calculus w/o Cholecyst or Obstruction
+ ;;^UTILITY(U,$J,358.3,2965,1,4,0)
+ ;;=4^K80.70
+ ;;^UTILITY(U,$J,358.3,2965,2)
+ ;;=^5008870
+ ;;^UTILITY(U,$J,358.3,2966,0)
+ ;;=K80.71^^28^245^29

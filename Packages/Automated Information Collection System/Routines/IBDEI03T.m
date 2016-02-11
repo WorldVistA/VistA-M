@@ -1,130 +1,140 @@
-IBDEI03T ; ; 06-AUG-2015
+IBDEI03T ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1252,0)
- ;;=C73.^^3^39^79
- ;;^UTILITY(U,$J,358.3,1252,1,0)
+ ;;^UTILITY(U,$J,358.3,1076,1,3,0)
+ ;;=3^Hepatitis,Chr Unspec
+ ;;^UTILITY(U,$J,358.3,1076,1,4,0)
+ ;;=4^K73.9
+ ;;^UTILITY(U,$J,358.3,1076,2)
+ ;;=^5008815
+ ;;^UTILITY(U,$J,358.3,1077,0)
+ ;;=R31.9^^12^126^7
+ ;;^UTILITY(U,$J,358.3,1077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1252,1,3,0)
- ;;=3^Malignant neoplasm of thyroid gland
- ;;^UTILITY(U,$J,358.3,1252,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,1252,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,1253,0)
- ;;=C76.0^^3^39^61
- ;;^UTILITY(U,$J,358.3,1253,1,0)
+ ;;^UTILITY(U,$J,358.3,1077,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,1077,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,1077,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,1078,0)
+ ;;=N43.3^^12^126^20
+ ;;^UTILITY(U,$J,358.3,1078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1253,1,3,0)
- ;;=3^Malignant neoplasm of head, face and neck
- ;;^UTILITY(U,$J,358.3,1253,1,4,0)
- ;;=4^C76.0
- ;;^UTILITY(U,$J,358.3,1253,2)
- ;;=^5001324
- ;;^UTILITY(U,$J,358.3,1254,0)
- ;;=C77.0^^3^39^115
- ;;^UTILITY(U,$J,358.3,1254,1,0)
+ ;;^UTILITY(U,$J,358.3,1078,1,3,0)
+ ;;=3^Hydrocele,Unspec
+ ;;^UTILITY(U,$J,358.3,1078,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,1078,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,1079,0)
+ ;;=R51.^^12^126^3
+ ;;^UTILITY(U,$J,358.3,1079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1254,1,3,0)
- ;;=3^Secondary and unsp malig neoplasm of nodes of head, face and neck
- ;;^UTILITY(U,$J,358.3,1254,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,1254,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,1255,0)
- ;;=C77.1^^3^39^117
- ;;^UTILITY(U,$J,358.3,1255,1,0)
+ ;;^UTILITY(U,$J,358.3,1079,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,1079,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,1079,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,1080,0)
+ ;;=Z22.52^^12^126^16
+ ;;^UTILITY(U,$J,358.3,1080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1255,1,3,0)
- ;;=3^Secondary and unsp malignant neoplasm of intrathorac nodes
- ;;^UTILITY(U,$J,358.3,1255,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,1255,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,1256,0)
- ;;=C77.2^^3^39^118
- ;;^UTILITY(U,$J,358.3,1256,1,0)
+ ;;^UTILITY(U,$J,358.3,1080,1,3,0)
+ ;;=3^Hepatitis C Carrier
+ ;;^UTILITY(U,$J,358.3,1080,1,4,0)
+ ;;=4^Z22.52
+ ;;^UTILITY(U,$J,358.3,1080,2)
+ ;;=^5062790
+ ;;^UTILITY(U,$J,358.3,1081,0)
+ ;;=Z21.^^12^126^1
+ ;;^UTILITY(U,$J,358.3,1081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1256,1,3,0)
- ;;=3^Secondary and unsp malignant neoplasm of intra-abd nodes
- ;;^UTILITY(U,$J,358.3,1256,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,1256,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,1257,0)
- ;;=C77.3^^3^39^114
- ;;^UTILITY(U,$J,358.3,1257,1,0)
+ ;;^UTILITY(U,$J,358.3,1081,1,3,0)
+ ;;=3^HIV Status,Asymptomatic
+ ;;^UTILITY(U,$J,358.3,1081,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,1081,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,1082,0)
+ ;;=K62.5^^12^126^12
+ ;;^UTILITY(U,$J,358.3,1082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1257,1,3,0)
- ;;=3^Secondary and unsp malig neoplasm of axilla and upper limb nodes
- ;;^UTILITY(U,$J,358.3,1257,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,1257,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,1258,0)
- ;;=C77.8^^3^39^116
- ;;^UTILITY(U,$J,358.3,1258,1,0)
+ ;;^UTILITY(U,$J,358.3,1082,1,3,0)
+ ;;=3^Hemorrhage Anus & Rectum
+ ;;^UTILITY(U,$J,358.3,1082,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,1082,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,1083,0)
+ ;;=E74.39^^12^127^15
+ ;;^UTILITY(U,$J,358.3,1083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1258,1,3,0)
- ;;=3^Secondary and unsp malig neoplasm of nodes of multiple regions
- ;;^UTILITY(U,$J,358.3,1258,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,1258,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,1259,0)
- ;;=C78.01^^3^39^126
- ;;^UTILITY(U,$J,358.3,1259,1,0)
+ ;;^UTILITY(U,$J,358.3,1083,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder,Other
+ ;;^UTILITY(U,$J,358.3,1083,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,1083,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,1084,0)
+ ;;=H61.23^^12^127^3
+ ;;^UTILITY(U,$J,358.3,1084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1259,1,3,0)
- ;;=3^Secondary malignant neoplasm of right lung
- ;;^UTILITY(U,$J,358.3,1259,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,1259,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,1260,0)
- ;;=C78.02^^3^39^123
- ;;^UTILITY(U,$J,358.3,1260,1,0)
+ ;;^UTILITY(U,$J,358.3,1084,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,1084,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,1084,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,1085,0)
+ ;;=H61.21^^12^127^5
+ ;;^UTILITY(U,$J,358.3,1085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1260,1,3,0)
- ;;=3^Secondary malignant neoplasm of left lung
- ;;^UTILITY(U,$J,358.3,1260,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,1260,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,1261,0)
- ;;=C78.7^^3^39^124
- ;;^UTILITY(U,$J,358.3,1261,1,0)
+ ;;^UTILITY(U,$J,358.3,1085,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,1085,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,1085,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,1086,0)
+ ;;=H61.22^^12^127^4
+ ;;^UTILITY(U,$J,358.3,1086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1261,1,3,0)
- ;;=3^Secondary malignant neoplasm of liver/intrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,1261,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,1261,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,1262,0)
- ;;=C79.31^^3^39^121
- ;;^UTILITY(U,$J,358.3,1262,1,0)
+ ;;^UTILITY(U,$J,358.3,1086,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,1086,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,1086,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,1087,0)
+ ;;=J11.1^^12^127^10
+ ;;^UTILITY(U,$J,358.3,1087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1262,1,3,0)
- ;;=3^Secondary malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,1262,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,1262,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,1263,0)
- ;;=C79.51^^3^39^119
- ;;^UTILITY(U,$J,358.3,1263,1,0)
+ ;;^UTILITY(U,$J,358.3,1087,1,3,0)
+ ;;=3^Influenza d/t Unident Influ Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,1087,1,4,0)
+ ;;=4^J11.1
+ ;;^UTILITY(U,$J,358.3,1087,2)
+ ;;=^5008158
+ ;;^UTILITY(U,$J,358.3,1088,0)
+ ;;=J10.1^^12^127^9
+ ;;^UTILITY(U,$J,358.3,1088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1263,1,3,0)
- ;;=3^Secondary malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,1263,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,1263,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,1264,0)
- ;;=C79.52^^3^39^120
- ;;^UTILITY(U,$J,358.3,1264,1,0)
+ ;;^UTILITY(U,$J,358.3,1088,1,3,0)
+ ;;=3^Influenza d/t  Indent Influ Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,1088,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,1088,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,1089,0)
+ ;;=K58.9^^12^127^1
+ ;;^UTILITY(U,$J,358.3,1089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1264,1,3,0)
- ;;=3^Secondary malignant neoplasm of bone marrow
+ ;;^UTILITY(U,$J,358.3,1089,1,3,0)
+ ;;=3^IBS w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,1089,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,1089,2)
+ ;;=^5008740

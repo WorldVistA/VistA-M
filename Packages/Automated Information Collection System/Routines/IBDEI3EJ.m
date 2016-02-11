@@ -1,0 +1,130 @@
+IBDEI3EJ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,57201,1,3,0)
+ ;;=3^F/U Exam Aftr Tx for Cond Oth Than Malig Neop
+ ;;^UTILITY(U,$J,358.3,57201,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,57201,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,57202,0)
+ ;;=I25.10^^264^2852^2
+ ;;^UTILITY(U,$J,358.3,57202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57202,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,57202,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,57202,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,57203,0)
+ ;;=I25.110^^264^2852^3
+ ;;^UTILITY(U,$J,358.3,57203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57203,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,57203,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,57203,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,57204,0)
+ ;;=I25.111^^264^2852^4
+ ;;^UTILITY(U,$J,358.3,57204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57204,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Ang Pctrs w/ Spasm
+ ;;^UTILITY(U,$J,358.3,57204,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,57204,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,57205,0)
+ ;;=I25.118^^264^2852^5
+ ;;^UTILITY(U,$J,358.3,57205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57205,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Oth Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,57205,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,57205,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,57206,0)
+ ;;=I25.119^^264^2852^6
+ ;;^UTILITY(U,$J,358.3,57206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57206,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unspec Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,57206,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,57206,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,57207,0)
+ ;;=I50.9^^264^2852^12
+ ;;^UTILITY(U,$J,358.3,57207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57207,1,3,0)
+ ;;=3^Heart Failure,Comp/Uncomp
+ ;;^UTILITY(U,$J,358.3,57207,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,57207,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,57208,0)
+ ;;=I65.21^^264^2852^16
+ ;;^UTILITY(U,$J,358.3,57208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57208,1,3,0)
+ ;;=3^Occl & Sten,Rt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,57208,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,57208,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,57209,0)
+ ;;=I65.22^^264^2852^14
+ ;;^UTILITY(U,$J,358.3,57209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57209,1,3,0)
+ ;;=3^Occl & Sten,Lt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,57209,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,57209,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,57210,0)
+ ;;=I65.23^^264^2852^13
+ ;;^UTILITY(U,$J,358.3,57210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57210,1,3,0)
+ ;;=3^Occl & Sten,Bil Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,57210,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,57210,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,57211,0)
+ ;;=I65.8^^264^2852^15
+ ;;^UTILITY(U,$J,358.3,57211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57211,1,3,0)
+ ;;=3^Occl & Sten,Precerb Arteries
+ ;;^UTILITY(U,$J,358.3,57211,1,4,0)
+ ;;=4^I65.8
+ ;;^UTILITY(U,$J,358.3,57211,2)
+ ;;=^5007364
+ ;;^UTILITY(U,$J,358.3,57212,0)
+ ;;=I70.211^^264^2852^9
+ ;;^UTILITY(U,$J,358.3,57212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57212,1,3,0)
+ ;;=3^Athscl Ntv Art,Rt Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,57212,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,57212,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,57213,0)
+ ;;=I70.212^^264^2852^8
+ ;;^UTILITY(U,$J,358.3,57213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57213,1,3,0)
+ ;;=3^Athscl Ntv Art,Lt Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,57213,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,57213,2)
+ ;;=^5007579

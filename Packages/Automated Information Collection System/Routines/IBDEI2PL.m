@@ -1,0 +1,132 @@
+IBDEI2PL ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45461,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,45461,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,45461,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,45462,0)
+ ;;=R92.2^^200^2244^27
+ ;;^UTILITY(U,$J,358.3,45462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45462,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,45462,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,45462,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,45463,0)
+ ;;=Z30.432^^200^2244^53
+ ;;^UTILITY(U,$J,358.3,45463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45463,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,45463,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,45463,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,45464,0)
+ ;;=S31.000A^^200^2245^5
+ ;;^UTILITY(U,$J,358.3,45464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45464,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,45464,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,45464,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,45465,0)
+ ;;=S31.010A^^200^2245^2
+ ;;^UTILITY(U,$J,358.3,45465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45465,1,3,0)
+ ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,45465,1,4,0)
+ ;;=4^S31.010A
+ ;;^UTILITY(U,$J,358.3,45465,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,45466,0)
+ ;;=T07.^^200^2245^4
+ ;;^UTILITY(U,$J,358.3,45466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45466,1,3,0)
+ ;;=3^Multiple Injuries,Unspec
+ ;;^UTILITY(U,$J,358.3,45466,1,4,0)
+ ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,45466,2)
+ ;;=^5046377
+ ;;^UTILITY(U,$J,358.3,45467,0)
+ ;;=L08.89^^200^2245^3
+ ;;^UTILITY(U,$J,358.3,45467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45467,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,45467,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,45467,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,45468,0)
+ ;;=T14.90^^200^2245^1
+ ;;^UTILITY(U,$J,358.3,45468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45468,1,3,0)
+ ;;=3^Injury,Unspec
+ ;;^UTILITY(U,$J,358.3,45468,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,45468,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,45469,0)
+ ;;=S91.002A^^200^2245^6
+ ;;^UTILITY(U,$J,358.3,45469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45469,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,45469,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,45469,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,45470,0)
+ ;;=S91.302A^^200^2245^7
+ ;;^UTILITY(U,$J,358.3,45470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45470,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,45470,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,45470,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,45471,0)
+ ;;=S51.802A^^200^2245^8
+ ;;^UTILITY(U,$J,358.3,45471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45471,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,45471,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,45471,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,45472,0)
+ ;;=S91.102A^^200^2245^9
+ ;;^UTILITY(U,$J,358.3,45472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45472,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,45472,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,45472,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,45473,0)
+ ;;=S61.402A^^200^2245^10
+ ;;^UTILITY(U,$J,358.3,45473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45473,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,45473,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,45473,2)
+ ;;=^5032984

@@ -1,140 +1,120 @@
-IBDEI1BD ; ; 06-AUG-2015
+IBDEI1BD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23271,1,4,0)
- ;;=4^719.41
- ;;^UTILITY(U,$J,358.3,23271,1,5,0)
- ;;=5^Shoulder Pain
- ;;^UTILITY(U,$J,358.3,23271,2)
- ;;=^272398
- ;;^UTILITY(U,$J,358.3,23272,0)
- ;;=719.45^^125^1404^19
- ;;^UTILITY(U,$J,358.3,23272,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23272,1,4,0)
- ;;=4^719.45
- ;;^UTILITY(U,$J,358.3,23272,1,5,0)
- ;;=5^Hip Pain
- ;;^UTILITY(U,$J,358.3,23272,2)
- ;;=Hip Pain^272402
- ;;^UTILITY(U,$J,358.3,23273,0)
- ;;=786.52^^125^1404^10
- ;;^UTILITY(U,$J,358.3,23273,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23273,1,4,0)
- ;;=4^786.52
- ;;^UTILITY(U,$J,358.3,23273,1,5,0)
- ;;=5^Chest Wall Pain
- ;;^UTILITY(U,$J,358.3,23273,2)
- ;;=^89126
- ;;^UTILITY(U,$J,358.3,23274,0)
- ;;=719.46^^125^1404^22
- ;;^UTILITY(U,$J,358.3,23274,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23274,1,4,0)
- ;;=4^719.46
- ;;^UTILITY(U,$J,358.3,23274,1,5,0)
- ;;=5^Knee Pain
- ;;^UTILITY(U,$J,358.3,23274,2)
- ;;=^272403
- ;;^UTILITY(U,$J,358.3,23275,0)
- ;;=346.90^^125^1404^23
- ;;^UTILITY(U,$J,358.3,23275,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23275,1,4,0)
- ;;=4^346.90
- ;;^UTILITY(U,$J,358.3,23275,1,5,0)
- ;;=5^Migraine
- ;;^UTILITY(U,$J,358.3,23275,2)
- ;;=^293880
- ;;^UTILITY(U,$J,358.3,23276,0)
- ;;=729.1^^125^1404^25
- ;;^UTILITY(U,$J,358.3,23276,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23276,1,4,0)
- ;;=4^729.1
- ;;^UTILITY(U,$J,358.3,23276,1,5,0)
- ;;=5^Neuropathic Pain
- ;;^UTILITY(U,$J,358.3,23276,2)
- ;;=Neuropathic Pain^80160
- ;;^UTILITY(U,$J,358.3,23277,0)
- ;;=625.9^^125^1404^29
- ;;^UTILITY(U,$J,358.3,23277,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23277,1,4,0)
- ;;=4^625.9
- ;;^UTILITY(U,$J,358.3,23277,1,5,0)
- ;;=5^Pelvic Pain (Female)
- ;;^UTILITY(U,$J,358.3,23277,2)
- ;;=^123993
- ;;^UTILITY(U,$J,358.3,23278,0)
- ;;=388.70^^125^1404^14
- ;;^UTILITY(U,$J,358.3,23278,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23278,1,4,0)
- ;;=4^388.70
- ;;^UTILITY(U,$J,358.3,23278,1,5,0)
- ;;=5^Ear Pain
- ;;^UTILITY(U,$J,358.3,23278,2)
- ;;=Ear Pain^37811
- ;;^UTILITY(U,$J,358.3,23279,0)
- ;;=526.9^^125^1404^20
- ;;^UTILITY(U,$J,358.3,23279,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23279,1,4,0)
- ;;=4^526.9
- ;;^UTILITY(U,$J,358.3,23279,1,5,0)
- ;;=5^Jaw Pain
- ;;^UTILITY(U,$J,358.3,23279,2)
- ;;=Jaw Pain^66177
- ;;^UTILITY(U,$J,358.3,23280,0)
- ;;=789.01^^125^1404^5
- ;;^UTILITY(U,$J,358.3,23280,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23280,1,4,0)
- ;;=4^789.01
- ;;^UTILITY(U,$J,358.3,23280,1,5,0)
- ;;=5^Abdominal Pain, RUQ
- ;;^UTILITY(U,$J,358.3,23280,2)
- ;;=Abdominal Pain, RUQ^303318
- ;;^UTILITY(U,$J,358.3,23281,0)
- ;;=789.02^^125^1404^3
- ;;^UTILITY(U,$J,358.3,23281,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23281,1,4,0)
- ;;=4^789.02
- ;;^UTILITY(U,$J,358.3,23281,1,5,0)
- ;;=5^Abdominal Pain, LUQ
- ;;^UTILITY(U,$J,358.3,23281,2)
- ;;=Abdominal Pain, LUQ^303319
- ;;^UTILITY(U,$J,358.3,23282,0)
- ;;=789.03^^125^1404^4
- ;;^UTILITY(U,$J,358.3,23282,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23282,1,4,0)
- ;;=4^789.03
- ;;^UTILITY(U,$J,358.3,23282,1,5,0)
- ;;=5^Abdominal Pain, RLQ
- ;;^UTILITY(U,$J,358.3,23282,2)
- ;;=Abdominal PainLLQ^303320
- ;;^UTILITY(U,$J,358.3,23283,0)
- ;;=789.04^^125^1404^2
- ;;^UTILITY(U,$J,358.3,23283,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23283,1,4,0)
- ;;=4^789.04
- ;;^UTILITY(U,$J,358.3,23283,1,5,0)
- ;;=5^Abdominal Pain, LLQ
- ;;^UTILITY(U,$J,358.3,23283,2)
- ;;=^303321
- ;;^UTILITY(U,$J,358.3,23284,0)
- ;;=789.06^^125^1404^15
- ;;^UTILITY(U,$J,358.3,23284,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23284,1,4,0)
- ;;=4^789.06
- ;;^UTILITY(U,$J,358.3,23284,1,5,0)
- ;;=5^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,23284,2)
- ;;=Epigastric Pain^303323
+ ;;^UTILITY(U,$J,358.3,21924,0)
+ ;;=S62.655S^^101^1035^82
+ ;;^UTILITY(U,$J,358.3,21924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21924,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21924,1,4,0)
+ ;;=4^S62.655S
+ ;;^UTILITY(U,$J,358.3,21924,2)
+ ;;=^5034773
+ ;;^UTILITY(U,$J,358.3,21925,0)
+ ;;=S62.650S^^101^1035^83
+ ;;^UTILITY(U,$J,358.3,21925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21925,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21925,1,4,0)
+ ;;=4^S62.650S
+ ;;^UTILITY(U,$J,358.3,21925,2)
+ ;;=^5034738
+ ;;^UTILITY(U,$J,358.3,21926,0)
+ ;;=S62.656S^^101^1035^84
+ ;;^UTILITY(U,$J,358.3,21926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21926,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21926,1,4,0)
+ ;;=4^S62.656S
+ ;;^UTILITY(U,$J,358.3,21926,2)
+ ;;=^5034780
+ ;;^UTILITY(U,$J,358.3,21927,0)
+ ;;=S62.652S^^101^1035^85
+ ;;^UTILITY(U,$J,358.3,21927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21927,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21927,1,4,0)
+ ;;=4^S62.652S
+ ;;^UTILITY(U,$J,358.3,21927,2)
+ ;;=^5034752
+ ;;^UTILITY(U,$J,358.3,21928,0)
+ ;;=S62.654S^^101^1035^86
+ ;;^UTILITY(U,$J,358.3,21928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21928,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21928,1,4,0)
+ ;;=4^S62.654S
+ ;;^UTILITY(U,$J,358.3,21928,2)
+ ;;=^5034766
+ ;;^UTILITY(U,$J,358.3,21929,0)
+ ;;=S62.641S^^101^1035^99
+ ;;^UTILITY(U,$J,358.3,21929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21929,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21929,1,4,0)
+ ;;=4^S62.641S
+ ;;^UTILITY(U,$J,358.3,21929,2)
+ ;;=^5034675
+ ;;^UTILITY(U,$J,358.3,21930,0)
+ ;;=S62.647S^^101^1035^97
+ ;;^UTILITY(U,$J,358.3,21930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21930,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of l little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21930,1,4,0)
+ ;;=4^S62.647S
+ ;;^UTILITY(U,$J,358.3,21930,2)
+ ;;=^5034717
+ ;;^UTILITY(U,$J,358.3,21931,0)
+ ;;=S62.643S^^101^1035^98
+ ;;^UTILITY(U,$J,358.3,21931,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21931,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of l mid finger, sequela
+ ;;^UTILITY(U,$J,358.3,21931,1,4,0)
+ ;;=4^S62.643S
+ ;;^UTILITY(U,$J,358.3,21931,2)
+ ;;=^5034689
+ ;;^UTILITY(U,$J,358.3,21932,0)
+ ;;=S62.645S^^101^1035^100
+ ;;^UTILITY(U,$J,358.3,21932,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21932,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21932,1,4,0)
+ ;;=4^S62.645S
+ ;;^UTILITY(U,$J,358.3,21932,2)
+ ;;=^5034703
+ ;;^UTILITY(U,$J,358.3,21933,0)
+ ;;=S62.640S^^101^1035^102
+ ;;^UTILITY(U,$J,358.3,21933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21933,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
+ ;;^UTILITY(U,$J,358.3,21933,1,4,0)
+ ;;=4^S62.640S
+ ;;^UTILITY(U,$J,358.3,21933,2)
+ ;;=^5034668
+ ;;^UTILITY(U,$J,358.3,21934,0)
+ ;;=S62.646S^^101^1035^103
+ ;;^UTILITY(U,$J,358.3,21934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21934,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21934,1,4,0)
+ ;;=4^S62.646S
+ ;;^UTILITY(U,$J,358.3,21934,2)
+ ;;=^5034710
+ ;;^UTILITY(U,$J,358.3,21935,0)
+ ;;=S62.642S^^101^1035^104
+ ;;^UTILITY(U,$J,358.3,21935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21935,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela

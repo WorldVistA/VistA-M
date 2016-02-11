@@ -1,5 +1,5 @@
 MPIFAPI ;CMC/BP-APIS FOR MPI ;DEC 21, 1998
- ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,14,16,17,21,27,28,33,35,37,43,45,44,46,48,55,56,60**;30 Apr 99;Build 2
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,14,16,17,21,27,28,33,35,37,43,45,44,46,48,55,56,60,61**;30 Apr 99;Build 3
  ; Integration Agreements Utilized:
  ;   ^DPT( - #2070 and #4079
  ;   ^DPT("AICN", ^DPT("AMPIMIS", ^DPT("ASCN2" - #2070
@@ -197,13 +197,13 @@ VALDT(VAL) ;**37 Validate value passed in.
  I $E($$UP^XLFSTR(VAL),1,2)="DC" Q 1
  Q 0
  ;
-VIC40(DFN,ICN,CHK) ; -- only allowed for approved package use
- ; this will file the icn/chk for a patient and update correlations
+VIC40(DFN,ICN) ; -- only allowed for approved package use
+ ; this will file the FULL icn for a patient and update correlations
  ; so the local site is now a subscribing package.  This is used with the
  ; VIC 4.0 card registration where PV data was obtained from MVI.  
  ;*56 (elz)
  N MPIX,TIME,LIST
  S TIME=$$NOW^XLFDT
  S INDEX=1
- D UPDATE^MPIFQ0(DFN,ICN_"V"_CHK,"")
+ D UPDATE^MPIFQ0(DFN,ICN,"")
  Q

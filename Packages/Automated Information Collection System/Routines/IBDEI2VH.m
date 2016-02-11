@@ -1,0 +1,134 @@
+IBDEI2VH ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,48211,2)
+ ;;=^5003495
+ ;;^UTILITY(U,$J,358.3,48212,0)
+ ;;=F31.30^^213^2389^12
+ ;;^UTILITY(U,$J,358.3,48212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48212,1,3,0)
+ ;;=3^Bipolar Disorder,Depressed,Mild/Moderate Severity,Unspec
+ ;;^UTILITY(U,$J,358.3,48212,1,4,0)
+ ;;=4^F31.30
+ ;;^UTILITY(U,$J,358.3,48212,2)
+ ;;=^5003500
+ ;;^UTILITY(U,$J,358.3,48213,0)
+ ;;=F31.60^^213^2389^14
+ ;;^UTILITY(U,$J,358.3,48213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48213,1,3,0)
+ ;;=3^Bipolar Disorder,Mixed,Unspec
+ ;;^UTILITY(U,$J,358.3,48213,1,4,0)
+ ;;=4^F31.60
+ ;;^UTILITY(U,$J,358.3,48213,2)
+ ;;=^5003505
+ ;;^UTILITY(U,$J,358.3,48214,0)
+ ;;=F31.9^^213^2389^15
+ ;;^UTILITY(U,$J,358.3,48214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48214,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48214,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,48214,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,48215,0)
+ ;;=F22.^^213^2389^21
+ ;;^UTILITY(U,$J,358.3,48215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48215,1,3,0)
+ ;;=3^Delusional Disorders
+ ;;^UTILITY(U,$J,358.3,48215,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,48215,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,48216,0)
+ ;;=F41.0^^213^2389^40
+ ;;^UTILITY(U,$J,358.3,48216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48216,1,3,0)
+ ;;=3^Panic Disorder w/o Agoraphobia
+ ;;^UTILITY(U,$J,358.3,48216,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,48216,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,48217,0)
+ ;;=F40.01^^213^2389^2
+ ;;^UTILITY(U,$J,358.3,48217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48217,1,3,0)
+ ;;=3^Agoraphobia w/ Panic Disorder
+ ;;^UTILITY(U,$J,358.3,48217,1,4,0)
+ ;;=4^F40.01
+ ;;^UTILITY(U,$J,358.3,48217,2)
+ ;;=^331911
+ ;;^UTILITY(U,$J,358.3,48218,0)
+ ;;=F41.9^^213^2389^9
+ ;;^UTILITY(U,$J,358.3,48218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48218,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48218,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,48218,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,48219,0)
+ ;;=F60.5^^213^2389^36
+ ;;^UTILITY(U,$J,358.3,48219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48219,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,48219,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,48219,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,48220,0)
+ ;;=F60.7^^213^2389^23
+ ;;^UTILITY(U,$J,358.3,48220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48220,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,48220,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,48220,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,48221,0)
+ ;;=F60.2^^213^2389^8
+ ;;^UTILITY(U,$J,358.3,48221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48221,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,48221,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,48221,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,48222,0)
+ ;;=F60.6^^213^2389^11
+ ;;^UTILITY(U,$J,358.3,48222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48222,1,3,0)
+ ;;=3^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,48222,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,48222,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,48223,0)
+ ;;=F60.3^^213^2389^16
+ ;;^UTILITY(U,$J,358.3,48223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48223,1,3,0)
+ ;;=3^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,48223,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,48223,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,48224,0)
+ ;;=F10.229^^213^2389^4
+ ;;^UTILITY(U,$J,358.3,48224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48224,1,3,0)
+ ;;=3^Alcohol Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,48224,1,4,0)
+ ;;=4^F10.229

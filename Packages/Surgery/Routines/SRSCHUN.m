@@ -1,5 +1,5 @@
 SRSCHUN ;BIR/ADM - MAKE UNREQUESTED OPERATION ; 31 Jul 2014  2:41 PM
- ;;3.0;Surgery;**3,67,68,88,103,100,144,158,175,177,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**3,67,68,88,103,100,144,158,175,177,182,184**;24 Jun 93;Build 35
 MUST S SRLINE="" F I=1:1:80 S SRLINE=SRLINE_"="
  W @IOF W:$D(SRCC) !,?29,$S(SRSCON=1:"FIRST",1:"SECOND")_" CONCURRENT CASE" W !,?14,"SCHEDULE UNREQUESTED OPERATION: REQUIRED INFORMATION",!!,SRNM_" ("_$G(SRSSN)_")",?65,SREQDT,!,SRLINE,!
 ODP N SRSODP K DIR S DIR(0)="130,616",DIR("A")="Desired Procedure Date" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G END
@@ -36,8 +36,15 @@ OPD ; Principal Preoperative Diagnosis
  S SRSOPD=Y
  W !!,"The information entered into the Principal Preoperative Diagnosis field",!,"has been transferred into the Indications for Operation field.",!,"The Indications for Operation field can be updated later if necessary.",!
  W !!,"Press RETURN to continue  " R X:DTIME
+ ;
+PCPT ; Planned Principal Procedure Code (CPT)
+ K DIR S DIR(0)="130,27",DIR("A")="Planned Principal Procedure Code" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
+ I Y=""!(X["^") W !!,"To make an operation request, Planned Principal Procedure Code field MUST be entered. Enter '^' to exit.",! G PCPT
+ S SRCPT=$P(Y,"^")
+ ;
 UPDATE ; update case in SURGERY file
- S DA=SRTN,DIE=130,DR="26////"_SRSOP_";68////"_SRSOP_";36////0;Q;.04////"_SRSS_";32////"_SRSOPD D ^DIE
+ S DA=SRTN,DIE=130,DR="26////"_SRSOP_";68////"_SRSOP_";36////0;Q;.04////"_SRSS_";32////"_SRSOPD_";27////"_SRCPT D ^DIE
+ D SPIN
  K DR,DA S DR="[SRO-NOCOMP]",DA=SRTN,DIE=130 D ^DIE K DR
  D ^SROXRET K SRNOCON
 OTHER ; other required fields
@@ -70,4 +77,11 @@ ASK K DIR S DIR(0)="Y",DIR("A")="Do you want to continue with this option ",DIR(
  Q
 END D:$G(SRLCK) UNLOCK^SROUTL(SRTN)
  I '$D(SRCC),SRSOUT W !!,"No surgical case has been scheduled.",! S SRTN("OR")=SRSOR,SRTN("START")=SRSDT1,SRTN("END")=SRSDT2,SRSEDT=$E(SRSDT2,1,7) D ^SRSCG
+ Q
+SPIN ; spinal level free-text
+ I '$$SPIN^SRTOVRF(SRCPT) Q
+ N SL
+ K DIR S DIR(0)="130,136",DIR("A")="Spinal Level Comment" D ^DIR K DIR
+ S SL=$P(Y,"^") I Y=""!$D(DTOUT)!$D(DUOUT) S SL=""
+ S $P(^SRF(SRTN,1.1),"^",4)=SL
  Q

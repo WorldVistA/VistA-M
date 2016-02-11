@@ -1,136 +1,126 @@
-IBDEI1JJ ; ; 06-AUG-2015
+IBDEI1JJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27358,0)
- ;;=99397^^161^1779^3^^^^1
- ;;^UTILITY(U,$J,358.3,27358,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27358,1,2,0)
- ;;=2^99397
- ;;^UTILITY(U,$J,358.3,27358,1,3,0)
- ;;=3^Preventive Hlth Visit,Est Pt > 64
- ;;^UTILITY(U,$J,358.3,27359,0)
- ;;=99385^^161^1780^1^^^^1
- ;;^UTILITY(U,$J,358.3,27359,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27359,1,2,0)
- ;;=2^99385
- ;;^UTILITY(U,$J,358.3,27359,1,3,0)
- ;;=3^Preventive Hlth Visit,New Pt 18-39
- ;;^UTILITY(U,$J,358.3,27360,0)
- ;;=99386^^161^1780^2^^^^1
- ;;^UTILITY(U,$J,358.3,27360,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27360,1,2,0)
- ;;=2^99386
- ;;^UTILITY(U,$J,358.3,27360,1,3,0)
- ;;=3^Preventive Hlth Visit,New Pt 40-64
- ;;^UTILITY(U,$J,358.3,27361,0)
- ;;=99387^^161^1780^3^^^^1
- ;;^UTILITY(U,$J,358.3,27361,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27361,1,2,0)
- ;;=2^99387
- ;;^UTILITY(U,$J,358.3,27361,1,3,0)
- ;;=3^Preventive Hlth Visit,New Pt > 64
- ;;^UTILITY(U,$J,358.3,27362,0)
- ;;=414.01^^162^1781^11
- ;;^UTILITY(U,$J,358.3,27362,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27362,1,4,0)
- ;;=4^414.01
- ;;^UTILITY(U,$J,358.3,27362,1,5,0)
- ;;=5^Atherosclerosis, Native Coronary
- ;;^UTILITY(U,$J,358.3,27362,2)
- ;;=CAD, Native Vessel^303281
- ;;^UTILITY(U,$J,358.3,27363,0)
- ;;=413.9^^162^1781^2
- ;;^UTILITY(U,$J,358.3,27363,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27363,1,4,0)
- ;;=4^413.9
- ;;^UTILITY(U,$J,358.3,27363,1,5,0)
- ;;=5^Angina Pectoris
- ;;^UTILITY(U,$J,358.3,27363,2)
- ;;=Angina Pectoris^87258
- ;;^UTILITY(U,$J,358.3,27364,0)
- ;;=413.0^^162^1781^1
- ;;^UTILITY(U,$J,358.3,27364,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27364,1,4,0)
- ;;=4^413.0
- ;;^UTILITY(U,$J,358.3,27364,1,5,0)
- ;;=5^Angina At Rest
- ;;^UTILITY(U,$J,358.3,27364,2)
- ;;=Angina at Rest^265313
- ;;^UTILITY(U,$J,358.3,27365,0)
- ;;=411.1^^162^1781^4
- ;;^UTILITY(U,$J,358.3,27365,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27365,1,4,0)
- ;;=4^411.1
- ;;^UTILITY(U,$J,358.3,27365,1,5,0)
- ;;=5^Angina, Unstable
- ;;^UTILITY(U,$J,358.3,27365,2)
- ;;=Angina, Unstable^7455
- ;;^UTILITY(U,$J,358.3,27366,0)
- ;;=413.1^^162^1781^3
- ;;^UTILITY(U,$J,358.3,27366,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27366,1,4,0)
- ;;=4^413.1
- ;;^UTILITY(U,$J,358.3,27366,1,5,0)
- ;;=5^Angina, Prinzmetal
- ;;^UTILITY(U,$J,358.3,27366,2)
- ;;=^7448
- ;;^UTILITY(U,$J,358.3,27367,0)
- ;;=V58.61^^162^1781^5
- ;;^UTILITY(U,$J,358.3,27367,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27367,1,4,0)
- ;;=4^V58.61
- ;;^UTILITY(U,$J,358.3,27367,1,5,0)
- ;;=5^Anticoag Rx, Chronic
- ;;^UTILITY(U,$J,358.3,27367,2)
- ;;=^303459
- ;;^UTILITY(U,$J,358.3,27368,0)
- ;;=441.4^^162^1781^8
- ;;^UTILITY(U,$J,358.3,27368,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27368,1,4,0)
- ;;=4^441.4
- ;;^UTILITY(U,$J,358.3,27368,1,5,0)
- ;;=5^Aortic Aneursym, Abdominal
- ;;^UTILITY(U,$J,358.3,27368,2)
- ;;=^269769
- ;;^UTILITY(U,$J,358.3,27369,0)
- ;;=441.2^^162^1781^9
- ;;^UTILITY(U,$J,358.3,27369,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27369,1,4,0)
- ;;=4^441.2
- ;;^UTILITY(U,$J,358.3,27369,1,5,0)
- ;;=5^Aortic Aneursym, Thoracic
- ;;^UTILITY(U,$J,358.3,27369,2)
- ;;=^269765
- ;;^UTILITY(U,$J,358.3,27370,0)
- ;;=786.59^^162^1781^26
- ;;^UTILITY(U,$J,358.3,27370,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27370,1,4,0)
- ;;=4^786.59
- ;;^UTILITY(U,$J,358.3,27370,1,5,0)
- ;;=5^Chest Pain,Atypical
- ;;^UTILITY(U,$J,358.3,27370,2)
- ;;=^87384
- ;;^UTILITY(U,$J,358.3,27371,0)
- ;;=428.0^^162^1781^17
- ;;^UTILITY(U,$J,358.3,27371,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27371,1,4,0)
- ;;=4^428.0
- ;;^UTILITY(U,$J,358.3,27371,1,5,0)
- ;;=5^CHF
- ;;^UTILITY(U,$J,358.3,27371,2)
- ;;=^54758
+ ;;^UTILITY(U,$J,358.3,25764,2)
+ ;;=^5007952
+ ;;^UTILITY(U,$J,358.3,25765,0)
+ ;;=I82.623^^127^1266^82
+ ;;^UTILITY(U,$J,358.3,25765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25765,1,3,0)
+ ;;=3^Embolism/Thrombosis of Deep Veins of Bilateral Upper Extremities
+ ;;^UTILITY(U,$J,358.3,25765,1,4,0)
+ ;;=4^I82.623
+ ;;^UTILITY(U,$J,358.3,25765,2)
+ ;;=^5007921
+ ;;^UTILITY(U,$J,358.3,25766,0)
+ ;;=I82.622^^127^1266^84
+ ;;^UTILITY(U,$J,358.3,25766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25766,1,3,0)
+ ;;=3^Embolism/Thrombosis of Deep Veins of Left Upper Extremity
+ ;;^UTILITY(U,$J,358.3,25766,1,4,0)
+ ;;=4^I82.622
+ ;;^UTILITY(U,$J,358.3,25766,2)
+ ;;=^5007920
+ ;;^UTILITY(U,$J,358.3,25767,0)
+ ;;=I82.621^^127^1266^86
+ ;;^UTILITY(U,$J,358.3,25767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25767,1,3,0)
+ ;;=3^Embolism/Thrombosis of Deep Veins of Right Upper Extremity
+ ;;^UTILITY(U,$J,358.3,25767,1,4,0)
+ ;;=4^I82.621
+ ;;^UTILITY(U,$J,358.3,25767,2)
+ ;;=^5007919
+ ;;^UTILITY(U,$J,358.3,25768,0)
+ ;;=I82.A12^^127^1266^88
+ ;;^UTILITY(U,$J,358.3,25768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25768,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Axillary Vein
+ ;;^UTILITY(U,$J,358.3,25768,1,4,0)
+ ;;=4^I82.A12
+ ;;^UTILITY(U,$J,358.3,25768,2)
+ ;;=^5007943
+ ;;^UTILITY(U,$J,358.3,25769,0)
+ ;;=I82.412^^127^1266^89
+ ;;^UTILITY(U,$J,358.3,25769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25769,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Femoral Vein
+ ;;^UTILITY(U,$J,358.3,25769,1,4,0)
+ ;;=4^I82.412
+ ;;^UTILITY(U,$J,358.3,25769,2)
+ ;;=^5007858
+ ;;^UTILITY(U,$J,358.3,25770,0)
+ ;;=I82.422^^127^1266^90
+ ;;^UTILITY(U,$J,358.3,25770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25770,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Iliac Vein
+ ;;^UTILITY(U,$J,358.3,25770,1,4,0)
+ ;;=4^I82.422
+ ;;^UTILITY(U,$J,358.3,25770,2)
+ ;;=^5007862
+ ;;^UTILITY(U,$J,358.3,25771,0)
+ ;;=I82.C12^^127^1266^91
+ ;;^UTILITY(U,$J,358.3,25771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25771,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Internal Jugular Vein
+ ;;^UTILITY(U,$J,358.3,25771,1,4,0)
+ ;;=4^I82.C12
+ ;;^UTILITY(U,$J,358.3,25771,2)
+ ;;=^5007959
+ ;;^UTILITY(U,$J,358.3,25772,0)
+ ;;=I82.432^^127^1266^92
+ ;;^UTILITY(U,$J,358.3,25772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25772,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,25772,1,4,0)
+ ;;=4^I82.432
+ ;;^UTILITY(U,$J,358.3,25772,2)
+ ;;=^5007866
+ ;;^UTILITY(U,$J,358.3,25773,0)
+ ;;=I82.B12^^127^1266^93
+ ;;^UTILITY(U,$J,358.3,25773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25773,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Subclavian Vein
+ ;;^UTILITY(U,$J,358.3,25773,1,4,0)
+ ;;=4^I82.B12
+ ;;^UTILITY(U,$J,358.3,25773,2)
+ ;;=^5007951
+ ;;^UTILITY(U,$J,358.3,25774,0)
+ ;;=I82.890^^127^1266^97
+ ;;^UTILITY(U,$J,358.3,25774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25774,1,3,0)
+ ;;=3^Embolism/Thrombosis of Oth Specified Veins
+ ;;^UTILITY(U,$J,358.3,25774,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,25774,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,25775,0)
+ ;;=I82.A11^^127^1266^98
+ ;;^UTILITY(U,$J,358.3,25775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25775,1,3,0)
+ ;;=3^Embolism/Thrombosis of Right Axillary Vein
+ ;;^UTILITY(U,$J,358.3,25775,1,4,0)
+ ;;=4^I82.A11
+ ;;^UTILITY(U,$J,358.3,25775,2)
+ ;;=^5007942
+ ;;^UTILITY(U,$J,358.3,25776,0)
+ ;;=I82.411^^127^1266^99
+ ;;^UTILITY(U,$J,358.3,25776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25776,1,3,0)
+ ;;=3^Embolism/Thrombosis of Right Femoral Vein
+ ;;^UTILITY(U,$J,358.3,25776,1,4,0)
+ ;;=4^I82.411
+ ;;^UTILITY(U,$J,358.3,25776,2)
+ ;;=^5007857

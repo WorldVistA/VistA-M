@@ -1,0 +1,128 @@
+IBDEI3BT ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,55895,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,55895,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,55896,0)
+ ;;=S63.502A^^256^2788^7
+ ;;^UTILITY(U,$J,358.3,55896,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55896,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,55896,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,55896,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,55897,0)
+ ;;=S83.8X1A^^256^2788^16
+ ;;^UTILITY(U,$J,358.3,55897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55897,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,55897,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,55897,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,55898,0)
+ ;;=S83.8X2A^^256^2788^5
+ ;;^UTILITY(U,$J,358.3,55898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55898,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,55898,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,55898,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,55899,0)
+ ;;=S86.211A^^256^2788^47
+ ;;^UTILITY(U,$J,358.3,55899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55899,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,55899,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,55899,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,55900,0)
+ ;;=S86.212A^^256^2788^27
+ ;;^UTILITY(U,$J,358.3,55900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55900,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,55900,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,55900,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,55901,0)
+ ;;=S86.311A^^256^2788^49
+ ;;^UTILITY(U,$J,358.3,55901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55901,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,55901,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,55901,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,55902,0)
+ ;;=S86.312A^^256^2788^29
+ ;;^UTILITY(U,$J,358.3,55902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55902,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,55902,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,55902,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,55903,0)
+ ;;=S86.811A^^256^2788^48
+ ;;^UTILITY(U,$J,358.3,55903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55903,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,55903,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,55903,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,55904,0)
+ ;;=S86.812A^^256^2788^28
+ ;;^UTILITY(U,$J,358.3,55904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55904,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,55904,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,55904,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,55905,0)
+ ;;=S86.111A^^256^2788^50
+ ;;^UTILITY(U,$J,358.3,55905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55905,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,55905,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,55905,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,55906,0)
+ ;;=S86.112A^^256^2788^30
+ ;;^UTILITY(U,$J,358.3,55906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55906,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,55906,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,55906,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,55907,0)
+ ;;=S83.401A^^256^2788^15
+ ;;^UTILITY(U,$J,358.3,55907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55907,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,55907,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,55907,2)
+ ;;=^5043103

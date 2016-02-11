@@ -1,0 +1,128 @@
+IBDEI2N9 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44375,2)
+ ;;=^5001461
+ ;;^UTILITY(U,$J,358.3,44376,0)
+ ;;=C82.19^^200^2228^64
+ ;;^UTILITY(U,$J,358.3,44376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44376,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,44376,1,4,0)
+ ;;=4^C82.19
+ ;;^UTILITY(U,$J,358.3,44376,2)
+ ;;=^5001480
+ ;;^UTILITY(U,$J,358.3,44377,0)
+ ;;=C82.10^^200^2228^65
+ ;;^UTILITY(U,$J,358.3,44377,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44377,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Unspec Site
+ ;;^UTILITY(U,$J,358.3,44377,1,4,0)
+ ;;=4^C82.10
+ ;;^UTILITY(U,$J,358.3,44377,2)
+ ;;=^5001471
+ ;;^UTILITY(U,$J,358.3,44378,0)
+ ;;=C82.29^^200^2228^66
+ ;;^UTILITY(U,$J,358.3,44378,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44378,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,44378,1,4,0)
+ ;;=4^C82.29
+ ;;^UTILITY(U,$J,358.3,44378,2)
+ ;;=^5001490
+ ;;^UTILITY(U,$J,358.3,44379,0)
+ ;;=C82.20^^200^2228^67
+ ;;^UTILITY(U,$J,358.3,44379,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44379,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Unspec Site
+ ;;^UTILITY(U,$J,358.3,44379,1,4,0)
+ ;;=4^C82.20
+ ;;^UTILITY(U,$J,358.3,44379,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,44380,0)
+ ;;=C82.39^^200^2228^68
+ ;;^UTILITY(U,$J,358.3,44380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44380,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,44380,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,44380,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,44381,0)
+ ;;=C82.30^^200^2228^69
+ ;;^UTILITY(U,$J,358.3,44381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44381,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,44381,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,44381,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,44382,0)
+ ;;=C82.49^^200^2228^70
+ ;;^UTILITY(U,$J,358.3,44382,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44382,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,44382,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,44382,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,44383,0)
+ ;;=C82.40^^200^2228^71
+ ;;^UTILITY(U,$J,358.3,44383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44383,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,44383,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,44383,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,44384,0)
+ ;;=C82.99^^200^2228^72
+ ;;^UTILITY(U,$J,358.3,44384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44384,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,44384,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,44384,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,44385,0)
+ ;;=C82.90^^200^2228^73
+ ;;^UTILITY(U,$J,358.3,44385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44385,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,44385,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,44385,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,44386,0)
+ ;;=R59.1^^200^2228^58
+ ;;^UTILITY(U,$J,358.3,44386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44386,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,44386,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,44386,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,44387,0)
+ ;;=C91.40^^200^2228^77
+ ;;^UTILITY(U,$J,358.3,44387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44387,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,44387,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,44387,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,44388,0)
+ ;;=C91.42^^200^2228^75

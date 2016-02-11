@@ -1,130 +1,132 @@
-IBDEI1O0 ; ; 06-AUG-2015
+IBDEI1O0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29569,0)
- ;;=G97.51^^176^1890^12
- ;;^UTILITY(U,$J,358.3,29569,1,0)
+ ;;^UTILITY(U,$J,358.3,27856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29569,1,3,0)
- ;;=3^Postproc hemor/hemtom of a nrv sys org fol a nrv sys proc
- ;;^UTILITY(U,$J,358.3,29569,1,4,0)
- ;;=4^G97.51
- ;;^UTILITY(U,$J,358.3,29569,2)
- ;;=^5004209
- ;;^UTILITY(U,$J,358.3,29570,0)
- ;;=G97.52^^176^1890^13
- ;;^UTILITY(U,$J,358.3,29570,1,0)
+ ;;^UTILITY(U,$J,358.3,27856,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,27856,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,27856,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,27857,0)
+ ;;=Z84.81^^132^1321^29
+ ;;^UTILITY(U,$J,358.3,27857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29570,1,3,0)
- ;;=3^Postproc hemor/hemtom of a nrv sys org fol oth procedure
- ;;^UTILITY(U,$J,358.3,29570,1,4,0)
- ;;=4^G97.52
- ;;^UTILITY(U,$J,358.3,29570,2)
- ;;=^5004210
- ;;^UTILITY(U,$J,358.3,29571,0)
- ;;=G97.81^^176^1890^8
- ;;^UTILITY(U,$J,358.3,29571,1,0)
+ ;;^UTILITY(U,$J,358.3,27857,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,27857,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,27857,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,27858,0)
+ ;;=Z86.010^^132^1321^76
+ ;;^UTILITY(U,$J,358.3,27858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29571,1,3,0)
- ;;=3^Intraoperative complications of nervous system NEC
- ;;^UTILITY(U,$J,358.3,29571,1,4,0)
- ;;=4^G97.81
- ;;^UTILITY(U,$J,358.3,29571,2)
- ;;=^5004211
- ;;^UTILITY(U,$J,358.3,29572,0)
- ;;=G97.82^^176^1890^11
- ;;^UTILITY(U,$J,358.3,29572,1,0)
+ ;;^UTILITY(U,$J,358.3,27858,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,27858,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,27858,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,27859,0)
+ ;;=Z86.14^^132^1321^81
+ ;;^UTILITY(U,$J,358.3,27859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29572,1,3,0)
- ;;=3^Postproc complications and disorders of nervous sys NEC
- ;;^UTILITY(U,$J,358.3,29572,1,4,0)
- ;;=4^G97.82
- ;;^UTILITY(U,$J,358.3,29572,2)
- ;;=^5004212
- ;;^UTILITY(U,$J,358.3,29573,0)
- ;;=G71.9^^176^1890^14
- ;;^UTILITY(U,$J,358.3,29573,1,0)
+ ;;^UTILITY(U,$J,358.3,27859,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,27859,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,27859,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,27860,0)
+ ;;=Z86.31^^132^1321^77
+ ;;^UTILITY(U,$J,358.3,27860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29573,1,3,0)
- ;;=3^Primary disorder of muscle, unspecified
- ;;^UTILITY(U,$J,358.3,29573,1,4,0)
- ;;=4^G71.9
- ;;^UTILITY(U,$J,358.3,29573,2)
- ;;=^5004094
- ;;^UTILITY(U,$J,358.3,29574,0)
- ;;=G83.5^^176^1890^9
- ;;^UTILITY(U,$J,358.3,29574,1,0)
+ ;;^UTILITY(U,$J,358.3,27860,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,27860,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,27860,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,27861,0)
+ ;;=Z86.711^^132^1321^107
+ ;;^UTILITY(U,$J,358.3,27861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29574,1,3,0)
- ;;=3^Locked-in state
- ;;^UTILITY(U,$J,358.3,29574,1,4,0)
- ;;=4^G83.5
- ;;^UTILITY(U,$J,358.3,29574,2)
- ;;=^5004146
- ;;^UTILITY(U,$J,358.3,29575,0)
- ;;=G83.81^^176^1890^4
- ;;^UTILITY(U,$J,358.3,29575,1,0)
+ ;;^UTILITY(U,$J,358.3,27861,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,27861,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,27861,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,27862,0)
+ ;;=Z86.72^^132^1321^113
+ ;;^UTILITY(U,$J,358.3,27862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29575,1,3,0)
- ;;=3^Brown-Sequard syndrome
- ;;^UTILITY(U,$J,358.3,29575,1,4,0)
- ;;=4^G83.81
- ;;^UTILITY(U,$J,358.3,29575,2)
- ;;=^5004147
- ;;^UTILITY(U,$J,358.3,29576,0)
- ;;=G83.82^^176^1890^3
- ;;^UTILITY(U,$J,358.3,29576,1,0)
+ ;;^UTILITY(U,$J,358.3,27862,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,27862,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,27862,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,27863,0)
+ ;;=Z87.310^^132^1321^105
+ ;;^UTILITY(U,$J,358.3,27863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29576,1,3,0)
- ;;=3^Anterior cord syndrome
- ;;^UTILITY(U,$J,358.3,29576,1,4,0)
- ;;=4^G83.82
- ;;^UTILITY(U,$J,358.3,29576,2)
- ;;=^5004148
- ;;^UTILITY(U,$J,358.3,29577,0)
- ;;=G83.83^^176^1890^10
- ;;^UTILITY(U,$J,358.3,29577,1,0)
+ ;;^UTILITY(U,$J,358.3,27863,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,27863,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,27863,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,27864,0)
+ ;;=Z87.442^^132^1321^116
+ ;;^UTILITY(U,$J,358.3,27864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29577,1,3,0)
- ;;=3^Posterior cord syndrome
- ;;^UTILITY(U,$J,358.3,29577,1,4,0)
- ;;=4^G83.83
- ;;^UTILITY(U,$J,358.3,29577,2)
- ;;=^5004149
- ;;^UTILITY(U,$J,358.3,29578,0)
- ;;=G83.84^^176^1890^15
- ;;^UTILITY(U,$J,358.3,29578,1,0)
+ ;;^UTILITY(U,$J,358.3,27864,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,27864,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,27864,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,27865,0)
+ ;;=Z87.81^^132^1321^114
+ ;;^UTILITY(U,$J,358.3,27865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29578,1,3,0)
- ;;=3^Todd's paralysis (postepileptic)
- ;;^UTILITY(U,$J,358.3,29578,1,4,0)
- ;;=4^G83.84
- ;;^UTILITY(U,$J,358.3,29578,2)
- ;;=^5004150
- ;;^UTILITY(U,$J,358.3,29579,0)
- ;;=D33.0^^176^1891^2
- ;;^UTILITY(U,$J,358.3,29579,1,0)
+ ;;^UTILITY(U,$J,358.3,27865,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,27865,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,27865,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,27866,0)
+ ;;=Z87.890^^132^1321^109
+ ;;^UTILITY(U,$J,358.3,27866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29579,1,3,0)
- ;;=3^Benign neoplasm of brain, supratentorial
- ;;^UTILITY(U,$J,358.3,29579,1,4,0)
- ;;=4^D33.0
- ;;^UTILITY(U,$J,358.3,29579,2)
- ;;=^5002136
- ;;^UTILITY(U,$J,358.3,29580,0)
- ;;=D33.1^^176^1891^1
- ;;^UTILITY(U,$J,358.3,29580,1,0)
+ ;;^UTILITY(U,$J,358.3,27866,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,27866,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,27866,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,27867,0)
+ ;;=Z87.892^^132^1321^74
+ ;;^UTILITY(U,$J,358.3,27867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29580,1,3,0)
- ;;=3^Benign neoplasm of brain, infratentorial
- ;;^UTILITY(U,$J,358.3,29580,1,4,0)
- ;;=4^D33.1
- ;;^UTILITY(U,$J,358.3,29580,2)
- ;;=^5002137
- ;;^UTILITY(U,$J,358.3,29581,0)
- ;;=C71.9^^176^1891^6
- ;;^UTILITY(U,$J,358.3,29581,1,0)
+ ;;^UTILITY(U,$J,358.3,27867,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,27867,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,27867,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,27868,0)
+ ;;=Z87.39^^132^1321^102
+ ;;^UTILITY(U,$J,358.3,27868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29581,1,3,0)
- ;;=3^Malignant neoplasm of brain, unspecified
+ ;;^UTILITY(U,$J,358.3,27868,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease
+ ;;^UTILITY(U,$J,358.3,27868,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,27868,2)
+ ;;=^5063488

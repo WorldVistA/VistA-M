@@ -1,124 +1,140 @@
-IBDEI1RA ; ; 06-AUG-2015
+IBDEI1RA ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31032,1,4,0)
- ;;=4^M12.511
- ;;^UTILITY(U,$J,358.3,31032,2)
- ;;=^5010619
- ;;^UTILITY(U,$J,358.3,31033,0)
- ;;=S43.102A^^179^1938^15
- ;;^UTILITY(U,$J,358.3,31033,1,0)
+ ;;^UTILITY(U,$J,358.3,29402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31033,1,3,0)
- ;;=3^Dislocation of left acromioclavicular joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31033,1,4,0)
- ;;=4^S43.102A
- ;;^UTILITY(U,$J,358.3,31033,2)
- ;;=^5027732
- ;;^UTILITY(U,$J,358.3,31034,0)
- ;;=S43.005A^^179^1938^16
- ;;^UTILITY(U,$J,358.3,31034,1,0)
+ ;;^UTILITY(U,$J,358.3,29402,1,3,0)
+ ;;=3^Photocontact Dermatitis
+ ;;^UTILITY(U,$J,358.3,29402,1,4,0)
+ ;;=4^L56.2
+ ;;^UTILITY(U,$J,358.3,29402,2)
+ ;;=^5009216
+ ;;^UTILITY(U,$J,358.3,29403,0)
+ ;;=L56.3^^135^1361^268
+ ;;^UTILITY(U,$J,358.3,29403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31034,1,3,0)
- ;;=3^Dislocation of left shoulder joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31034,1,4,0)
- ;;=4^S43.005A
- ;;^UTILITY(U,$J,358.3,31034,2)
- ;;=^5027666
- ;;^UTILITY(U,$J,358.3,31035,0)
- ;;=S43.101A^^179^1938^17
- ;;^UTILITY(U,$J,358.3,31035,1,0)
+ ;;^UTILITY(U,$J,358.3,29403,1,3,0)
+ ;;=3^Solar Urticaria
+ ;;^UTILITY(U,$J,358.3,29403,1,4,0)
+ ;;=4^L56.3
+ ;;^UTILITY(U,$J,358.3,29403,2)
+ ;;=^5009217
+ ;;^UTILITY(U,$J,358.3,29404,0)
+ ;;=L57.0^^135^1361^12
+ ;;^UTILITY(U,$J,358.3,29404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31035,1,3,0)
- ;;=3^Dislocation of right acromioclavicular joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31035,1,4,0)
- ;;=4^S43.101A
- ;;^UTILITY(U,$J,358.3,31035,2)
- ;;=^5027729
- ;;^UTILITY(U,$J,358.3,31036,0)
- ;;=S43.004A^^179^1938^18
- ;;^UTILITY(U,$J,358.3,31036,1,0)
+ ;;^UTILITY(U,$J,358.3,29404,1,3,0)
+ ;;=3^Actinic Keratosis
+ ;;^UTILITY(U,$J,358.3,29404,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,29404,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,29405,0)
+ ;;=L60.0^^135^1361^161
+ ;;^UTILITY(U,$J,358.3,29405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31036,1,3,0)
- ;;=3^Dislocation of right shoulder joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31036,1,4,0)
- ;;=4^S43.004A
- ;;^UTILITY(U,$J,358.3,31036,2)
- ;;=^5027663
- ;;^UTILITY(U,$J,358.3,31037,0)
- ;;=M80.072A^^179^1939^1
- ;;^UTILITY(U,$J,358.3,31037,1,0)
+ ;;^UTILITY(U,$J,358.3,29405,1,3,0)
+ ;;=3^Ingrowing Nail
+ ;;^UTILITY(U,$J,358.3,29405,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,29405,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,29406,0)
+ ;;=L60.1^^135^1361^234
+ ;;^UTILITY(U,$J,358.3,29406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31037,1,3,0)
- ;;=3^Age-rel osteopor w current path fracture, left ank/ft, init
- ;;^UTILITY(U,$J,358.3,31037,1,4,0)
- ;;=4^M80.072A
- ;;^UTILITY(U,$J,358.3,31037,2)
- ;;=^5013483
- ;;^UTILITY(U,$J,358.3,31038,0)
- ;;=M80.071A^^179^1939^2
- ;;^UTILITY(U,$J,358.3,31038,1,0)
+ ;;^UTILITY(U,$J,358.3,29406,1,3,0)
+ ;;=3^Onycholysis
+ ;;^UTILITY(U,$J,358.3,29406,1,4,0)
+ ;;=4^L60.1
+ ;;^UTILITY(U,$J,358.3,29406,2)
+ ;;=^186837
+ ;;^UTILITY(U,$J,358.3,29407,0)
+ ;;=L60.2^^135^1361^233
+ ;;^UTILITY(U,$J,358.3,29407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31038,1,3,0)
- ;;=3^Age-rel osteopor w current path fracture, right ank/ft, init
- ;;^UTILITY(U,$J,358.3,31038,1,4,0)
- ;;=4^M80.071A
- ;;^UTILITY(U,$J,358.3,31038,2)
- ;;=^5013477
- ;;^UTILITY(U,$J,358.3,31039,0)
- ;;=S80.12XA^^179^1939^3
- ;;^UTILITY(U,$J,358.3,31039,1,0)
+ ;;^UTILITY(U,$J,358.3,29407,1,3,0)
+ ;;=3^Onychogryphosis
+ ;;^UTILITY(U,$J,358.3,29407,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,29407,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,29408,0)
+ ;;=L60.3^^135^1361^170
+ ;;^UTILITY(U,$J,358.3,29408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31039,1,3,0)
- ;;=3^Contusion of left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,31039,1,4,0)
- ;;=4^S80.12XA
- ;;^UTILITY(U,$J,358.3,31039,2)
- ;;=^5039903
- ;;^UTILITY(U,$J,358.3,31040,0)
- ;;=S80.11XA^^179^1939^4
- ;;^UTILITY(U,$J,358.3,31040,1,0)
+ ;;^UTILITY(U,$J,358.3,29408,1,3,0)
+ ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,29408,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,29408,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,29409,0)
+ ;;=L60.4^^135^1361^88
+ ;;^UTILITY(U,$J,358.3,29409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31040,1,3,0)
- ;;=3^Contusion of right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,31040,1,4,0)
- ;;=4^S80.11XA
- ;;^UTILITY(U,$J,358.3,31040,2)
- ;;=^5039900
- ;;^UTILITY(U,$J,358.3,31041,0)
- ;;=S82.425A^^179^1939^9
- ;;^UTILITY(U,$J,358.3,31041,1,0)
+ ;;^UTILITY(U,$J,358.3,29409,1,3,0)
+ ;;=3^Beau's Lines
+ ;;^UTILITY(U,$J,358.3,29409,1,4,0)
+ ;;=4^L60.4
+ ;;^UTILITY(U,$J,358.3,29409,2)
+ ;;=^5009237
+ ;;^UTILITY(U,$J,358.3,29410,0)
+ ;;=L60.5^^135^1361^290
+ ;;^UTILITY(U,$J,358.3,29410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31041,1,3,0)
- ;;=3^Nondisp transverse fracture of shaft of left fibula, init
- ;;^UTILITY(U,$J,358.3,31041,1,4,0)
- ;;=4^S82.425A
- ;;^UTILITY(U,$J,358.3,31041,2)
- ;;=^5041778
- ;;^UTILITY(U,$J,358.3,31042,0)
- ;;=S82.424A^^179^1939^10
- ;;^UTILITY(U,$J,358.3,31042,1,0)
+ ;;^UTILITY(U,$J,358.3,29410,1,3,0)
+ ;;=3^Yellow Nail Syndrome
+ ;;^UTILITY(U,$J,358.3,29410,1,4,0)
+ ;;=4^L60.5
+ ;;^UTILITY(U,$J,358.3,29410,2)
+ ;;=^5009238
+ ;;^UTILITY(U,$J,358.3,29411,0)
+ ;;=L60.8^^135^1361^168
+ ;;^UTILITY(U,$J,358.3,29411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31042,1,3,0)
- ;;=3^Nondisp transverse fracture of shaft of right fibula, init
- ;;^UTILITY(U,$J,358.3,31042,1,4,0)
- ;;=4^S82.424A
- ;;^UTILITY(U,$J,358.3,31042,2)
- ;;=^5041762
- ;;^UTILITY(U,$J,358.3,31043,0)
- ;;=S82.292A^^179^1939^5
- ;;^UTILITY(U,$J,358.3,31043,1,0)
+ ;;^UTILITY(U,$J,358.3,29411,1,3,0)
+ ;;=3^Nail Disorders NEC
+ ;;^UTILITY(U,$J,358.3,29411,1,4,0)
+ ;;=4^L60.8
+ ;;^UTILITY(U,$J,358.3,29411,2)
+ ;;=^5009239
+ ;;^UTILITY(U,$J,358.3,29412,0)
+ ;;=L62.^^135^1361^169
+ ;;^UTILITY(U,$J,358.3,29412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31043,1,3,0)
- ;;=3^Fracture of shaft of left tibia, init for clos fx NEC
- ;;^UTILITY(U,$J,358.3,31043,1,4,0)
- ;;=4^S82.292A
- ;;^UTILITY(U,$J,358.3,31043,2)
- ;;=^5136798
- ;;^UTILITY(U,$J,358.3,31044,0)
- ;;=S82.291A^^179^1939^6
- ;;^UTILITY(U,$J,358.3,31044,1,0)
+ ;;^UTILITY(U,$J,358.3,29412,1,3,0)
+ ;;=3^Nail Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,29412,1,4,0)
+ ;;=4^L62.
+ ;;^UTILITY(U,$J,358.3,29412,2)
+ ;;=^5009241
+ ;;^UTILITY(U,$J,358.3,29413,0)
+ ;;=L64.9^^135^1361^33
+ ;;^UTILITY(U,$J,358.3,29413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31044,1,3,0)
- ;;=3^Fracture of shaft of right tibia, init for clos fx NEC
+ ;;^UTILITY(U,$J,358.3,29413,1,3,0)
+ ;;=3^Androgenic Alopecia,Unspec
+ ;;^UTILITY(U,$J,358.3,29413,1,4,0)
+ ;;=4^L64.9
+ ;;^UTILITY(U,$J,358.3,29413,2)
+ ;;=^5009249
+ ;;^UTILITY(U,$J,358.3,29414,0)
+ ;;=L65.9^^135^1361^231
+ ;;^UTILITY(U,$J,358.3,29414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29414,1,3,0)
+ ;;=3^Nonscarring Hair Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,29414,1,4,0)
+ ;;=4^L65.9
+ ;;^UTILITY(U,$J,358.3,29414,2)
+ ;;=^5009252
+ ;;^UTILITY(U,$J,358.3,29415,0)
+ ;;=L70.0^^135^1361^6
+ ;;^UTILITY(U,$J,358.3,29415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29415,1,3,0)
+ ;;=3^Acne Vulgaris
+ ;;^UTILITY(U,$J,358.3,29415,1,4,0)
+ ;;=4^L70.0

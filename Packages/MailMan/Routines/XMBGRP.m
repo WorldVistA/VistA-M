@@ -1,5 +1,5 @@
-XMBGRP ;ISC-SF/GMB-Mail Group APIs ;04/17/2002  07:44
- ;;8.0;MailMan;;Jun 28, 2002
+XMBGRP ;ISC-SF/GMB - Mail Group APIs ;04/17/2002  07:44
+ ;;8.0;MailMan;**47**;Jun 28, 2002;Build 6
  ; Was (WASH ISC)/JL,CAP
  ;
  ; Entry points (DBIA 1146):
@@ -82,7 +82,8 @@ CREATE(XMGNAME,XMGIEN,XMTYPE,XMORG,XMSELF,XMDESC,XMQUIET,XMABORT) ;
  N DIC,Y,DA,DO,DD,X
  S X=XMGNAME
  S DIC="^XMB(3.8,",DIC(0)="FZMN"_$S(XMQUIET:"",1:"E")
- S DIC("DR")="4///"_$S(XMTYPE=0:"PU",1:"PR")_";5///"_XMORG_";10///0;7///"_$S(XMSELF:"y",1:"n")
+ ;** XM*8.0*47 Modified the DIR("DR") array to use a four slash stuff for the organizer field to prevent Fileman from reading four digit DUZ's as last four of SSN **
+ S DIC("DR")="4///"_$S(XMTYPE=0:"PU",1:"PR")_";5////"_XMORG_";10///0;7///"_$S(XMSELF:"y",1:"n")
  D FILE^DICN
  I Y<0 D  Q
  . D NOTIFY("Mail Group ("_XMGNAME_") creation failed!",XMQUIET)

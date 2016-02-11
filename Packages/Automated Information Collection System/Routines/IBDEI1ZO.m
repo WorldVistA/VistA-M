@@ -1,120 +1,126 @@
-IBDEI1ZO ; ; 06-AUG-2015
+IBDEI1ZO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34830,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,34830,1,4,0)
- ;;=4^S49.011S
- ;;^UTILITY(U,$J,358.3,34830,2)
- ;;=^5028358
- ;;^UTILITY(U,$J,358.3,34831,0)
- ;;=S49.122S^^183^2023^111
- ;;^UTILITY(U,$J,358.3,34831,1,0)
+ ;;^UTILITY(U,$J,358.3,33306,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,33306,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,33307,0)
+ ;;=G10.^^148^1635^20
+ ;;^UTILITY(U,$J,358.3,33307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34831,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,34831,1,4,0)
- ;;=4^S49.122S
- ;;^UTILITY(U,$J,358.3,34831,2)
- ;;=^5134986
- ;;^UTILITY(U,$J,358.3,34832,0)
- ;;=S49.121S^^183^2023^112
- ;;^UTILITY(U,$J,358.3,34832,1,0)
+ ;;^UTILITY(U,$J,358.3,33307,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,33307,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,33307,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,33308,0)
+ ;;=G10.^^148^1635^21
+ ;;^UTILITY(U,$J,358.3,33308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34832,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,34832,1,4,0)
- ;;=4^S49.121S
- ;;^UTILITY(U,$J,358.3,34832,2)
- ;;=^5028454
- ;;^UTILITY(U,$J,358.3,34833,0)
- ;;=S49.022S^^183^2023^113
- ;;^UTILITY(U,$J,358.3,34833,1,0)
+ ;;^UTILITY(U,$J,358.3,33308,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,33308,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,33308,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,33309,0)
+ ;;=G90.3^^148^1635^25
+ ;;^UTILITY(U,$J,358.3,33309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34833,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,34833,1,4,0)
- ;;=4^S49.022S
- ;;^UTILITY(U,$J,358.3,34833,2)
- ;;=^5028382
- ;;^UTILITY(U,$J,358.3,34834,0)
- ;;=S49.021S^^183^2023^114
- ;;^UTILITY(U,$J,358.3,34834,1,0)
+ ;;^UTILITY(U,$J,358.3,33309,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,33309,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,33309,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,33310,0)
+ ;;=G91.2^^148^1635^26
+ ;;^UTILITY(U,$J,358.3,33310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34834,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,34834,1,4,0)
- ;;=4^S49.021S
- ;;^UTILITY(U,$J,358.3,34834,2)
- ;;=^5028376
- ;;^UTILITY(U,$J,358.3,34835,0)
- ;;=S49.142S^^183^2023^119
- ;;^UTILITY(U,$J,358.3,34835,1,0)
+ ;;^UTILITY(U,$J,358.3,33310,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,33310,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,33310,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,33311,0)
+ ;;=G91.2^^148^1635^27
+ ;;^UTILITY(U,$J,358.3,33311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34835,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,34835,1,4,0)
- ;;=4^S49.142S
- ;;^UTILITY(U,$J,358.3,34835,2)
- ;;=^5134998
- ;;^UTILITY(U,$J,358.3,34836,0)
- ;;=S49.141S^^183^2023^120
- ;;^UTILITY(U,$J,358.3,34836,1,0)
+ ;;^UTILITY(U,$J,358.3,33311,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavorial Disturbances
+ ;;^UTILITY(U,$J,358.3,33311,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,33311,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,33312,0)
+ ;;=G30.8^^148^1635^2
+ ;;^UTILITY(U,$J,358.3,33312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34836,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,34836,1,4,0)
- ;;=4^S49.141S
- ;;^UTILITY(U,$J,358.3,34836,2)
- ;;=^5028466
- ;;^UTILITY(U,$J,358.3,34837,0)
- ;;=S49.042S^^183^2023^121
- ;;^UTILITY(U,$J,358.3,34837,1,0)
+ ;;^UTILITY(U,$J,358.3,33312,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,33312,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,33312,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,33313,0)
+ ;;=A81.89^^148^1635^6
+ ;;^UTILITY(U,$J,358.3,33313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34837,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,34837,1,4,0)
- ;;=4^S49.042S
- ;;^UTILITY(U,$J,358.3,34837,2)
- ;;=^5028418
- ;;^UTILITY(U,$J,358.3,34838,0)
- ;;=S49.041S^^183^2023^122
- ;;^UTILITY(U,$J,358.3,34838,1,0)
+ ;;^UTILITY(U,$J,358.3,33313,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,33313,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,33313,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,33314,0)
+ ;;=F19.97^^148^1635^35
+ ;;^UTILITY(U,$J,358.3,33314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34838,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,34838,1,4,0)
- ;;=4^S49.041S
- ;;^UTILITY(U,$J,358.3,34838,2)
- ;;=^5028412
- ;;^UTILITY(U,$J,358.3,34839,0)
- ;;=M84.322S^^183^2023^123
- ;;^UTILITY(U,$J,358.3,34839,1,0)
+ ;;^UTILITY(U,$J,358.3,33314,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,33314,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,33314,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,33315,0)
+ ;;=G20.^^148^1635^28
+ ;;^UTILITY(U,$J,358.3,33315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34839,1,3,0)
- ;;=3^Stress fracture, left humerus, sequela
- ;;^UTILITY(U,$J,358.3,34839,1,4,0)
- ;;=4^M84.322S
- ;;^UTILITY(U,$J,358.3,34839,2)
- ;;=^5013601
- ;;^UTILITY(U,$J,358.3,34840,0)
- ;;=M84.321S^^183^2023^125
- ;;^UTILITY(U,$J,358.3,34840,1,0)
+ ;;^UTILITY(U,$J,358.3,33315,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,33315,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,33315,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,33316,0)
+ ;;=G20.^^148^1635^29
+ ;;^UTILITY(U,$J,358.3,33316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34840,1,3,0)
- ;;=3^Stress fracture, right humerus, sequela
- ;;^UTILITY(U,$J,358.3,34840,1,4,0)
- ;;=4^M84.321S
- ;;^UTILITY(U,$J,358.3,34840,2)
- ;;=^5013595
- ;;^UTILITY(U,$J,358.3,34841,0)
- ;;=S42.482S^^183^2023^127
- ;;^UTILITY(U,$J,358.3,34841,1,0)
+ ;;^UTILITY(U,$J,358.3,33316,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,33316,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,33316,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,33317,0)
+ ;;=G23.1^^148^1635^34
+ ;;^UTILITY(U,$J,358.3,33317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34841,1,3,0)
- ;;=3^Torus fracture of lower end of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,34841,1,4,0)
- ;;=4^S42.482S
- ;;^UTILITY(U,$J,358.3,34841,2)
- ;;=^5134732
+ ;;^UTILITY(U,$J,358.3,33317,1,3,0)
+ ;;=3^Progressive Supranuclear Palsy
+ ;;^UTILITY(U,$J,358.3,33317,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,33317,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,33318,0)
+ ;;=F03.91^^148^1635^15
+ ;;^UTILITY(U,$J,358.3,33318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33318,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,33318,1,4,0)
+ ;;=4^F03.91

@@ -1,130 +1,130 @@
-IBDEI1RX ; ; 06-AUG-2015
+IBDEI1RX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31318,0)
- ;;=M12.521^^180^1951^63
- ;;^UTILITY(U,$J,358.3,31318,1,0)
+ ;;^UTILITY(U,$J,358.3,29696,1,3,0)
+ ;;=3^Gastroduodenitis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,29696,1,4,0)
+ ;;=4^K29.90
+ ;;^UTILITY(U,$J,358.3,29696,2)
+ ;;=^5008556
+ ;;^UTILITY(U,$J,358.3,29697,0)
+ ;;=K30.^^135^1367^45
+ ;;^UTILITY(U,$J,358.3,29697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31318,1,3,0)
- ;;=3^Traumatic arthropathy, right elbow
- ;;^UTILITY(U,$J,358.3,31318,1,4,0)
- ;;=4^M12.521
- ;;^UTILITY(U,$J,358.3,31318,2)
- ;;=^5010622
- ;;^UTILITY(U,$J,358.3,31319,0)
- ;;=M12.541^^180^1951^64
- ;;^UTILITY(U,$J,358.3,31319,1,0)
+ ;;^UTILITY(U,$J,358.3,29697,1,3,0)
+ ;;=3^Dyspepsia,Functional
+ ;;^UTILITY(U,$J,358.3,29697,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,29697,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,29698,0)
+ ;;=K31.89^^135^1367^34
+ ;;^UTILITY(U,$J,358.3,29698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31319,1,3,0)
- ;;=3^Traumatic arthropathy, right hand
- ;;^UTILITY(U,$J,358.3,31319,1,4,0)
- ;;=4^M12.541
- ;;^UTILITY(U,$J,358.3,31319,2)
- ;;=^5010628
- ;;^UTILITY(U,$J,358.3,31320,0)
- ;;=M12.551^^180^1951^65
- ;;^UTILITY(U,$J,358.3,31320,1,0)
+ ;;^UTILITY(U,$J,358.3,29698,1,3,0)
+ ;;=3^Diseases of Stomach & Duodenum,Other
+ ;;^UTILITY(U,$J,358.3,29698,1,4,0)
+ ;;=4^K31.89
+ ;;^UTILITY(U,$J,358.3,29698,2)
+ ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,29699,0)
+ ;;=K31.9^^135^1367^33
+ ;;^UTILITY(U,$J,358.3,29699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31320,1,3,0)
- ;;=3^Traumatic arthropathy, right hip
- ;;^UTILITY(U,$J,358.3,31320,1,4,0)
- ;;=4^M12.551
- ;;^UTILITY(U,$J,358.3,31320,2)
- ;;=^5010631
- ;;^UTILITY(U,$J,358.3,31321,0)
- ;;=M12.561^^180^1951^66
- ;;^UTILITY(U,$J,358.3,31321,1,0)
+ ;;^UTILITY(U,$J,358.3,29699,1,3,0)
+ ;;=3^Disease of Stomach & Duodenum,Unspec
+ ;;^UTILITY(U,$J,358.3,29699,1,4,0)
+ ;;=4^K31.9
+ ;;^UTILITY(U,$J,358.3,29699,2)
+ ;;=^5008570
+ ;;^UTILITY(U,$J,358.3,29700,0)
+ ;;=K40.90^^135^1367^68
+ ;;^UTILITY(U,$J,358.3,29700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31321,1,3,0)
- ;;=3^Traumatic arthropathy, right knee
- ;;^UTILITY(U,$J,358.3,31321,1,4,0)
- ;;=4^M12.561
- ;;^UTILITY(U,$J,358.3,31321,2)
- ;;=^5010634
- ;;^UTILITY(U,$J,358.3,31322,0)
- ;;=M12.511^^180^1951^67
- ;;^UTILITY(U,$J,358.3,31322,1,0)
+ ;;^UTILITY(U,$J,358.3,29700,1,3,0)
+ ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,29700,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,29700,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,29701,0)
+ ;;=K40.20^^135^1367^67
+ ;;^UTILITY(U,$J,358.3,29701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31322,1,3,0)
- ;;=3^Traumatic arthropathy, right shoulder
- ;;^UTILITY(U,$J,358.3,31322,1,4,0)
- ;;=4^M12.511
- ;;^UTILITY(U,$J,358.3,31322,2)
- ;;=^5010619
- ;;^UTILITY(U,$J,358.3,31323,0)
- ;;=M12.531^^180^1951^68
- ;;^UTILITY(U,$J,358.3,31323,1,0)
+ ;;^UTILITY(U,$J,358.3,29701,1,3,0)
+ ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,29701,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,29701,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,29702,0)
+ ;;=K44.9^^135^1367^31
+ ;;^UTILITY(U,$J,358.3,29702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31323,1,3,0)
- ;;=3^Traumatic arthropathy, right wrist
- ;;^UTILITY(U,$J,358.3,31323,1,4,0)
- ;;=4^M12.531
- ;;^UTILITY(U,$J,358.3,31323,2)
- ;;=^5010625
- ;;^UTILITY(U,$J,358.3,31324,0)
- ;;=M48.32^^180^1951^69
- ;;^UTILITY(U,$J,358.3,31324,1,0)
+ ;;^UTILITY(U,$J,358.3,29702,1,3,0)
+ ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,29702,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,29702,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,29703,0)
+ ;;=K46.9^^135^1367^1
+ ;;^UTILITY(U,$J,358.3,29703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31324,1,3,0)
- ;;=3^Traumatic spondylopathy, cervical region
- ;;^UTILITY(U,$J,358.3,31324,1,4,0)
- ;;=4^M48.32
- ;;^UTILITY(U,$J,358.3,31324,2)
- ;;=^5012116
- ;;^UTILITY(U,$J,358.3,31325,0)
- ;;=M48.36^^180^1951^71
- ;;^UTILITY(U,$J,358.3,31325,1,0)
+ ;;^UTILITY(U,$J,358.3,29703,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,29703,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,29703,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,29704,0)
+ ;;=K50.90^^135^1367^29
+ ;;^UTILITY(U,$J,358.3,29704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31325,1,3,0)
- ;;=3^Traumatic spondylopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,31325,1,4,0)
- ;;=4^M48.36
- ;;^UTILITY(U,$J,358.3,31325,2)
- ;;=^5012120
- ;;^UTILITY(U,$J,358.3,31326,0)
- ;;=M48.37^^180^1951^72
- ;;^UTILITY(U,$J,358.3,31326,1,0)
+ ;;^UTILITY(U,$J,358.3,29704,1,3,0)
+ ;;=3^Crohn's Disease w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,29704,1,4,0)
+ ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,29704,2)
+ ;;=^5008645
+ ;;^UTILITY(U,$J,358.3,29705,0)
+ ;;=K50.911^^135^1367^27
+ ;;^UTILITY(U,$J,358.3,29705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31326,1,3,0)
- ;;=3^Traumatic spondylopathy, lumbosacral region
- ;;^UTILITY(U,$J,358.3,31326,1,4,0)
- ;;=4^M48.37
- ;;^UTILITY(U,$J,358.3,31326,2)
- ;;=^5012121
- ;;^UTILITY(U,$J,358.3,31327,0)
- ;;=M48.31^^180^1951^73
- ;;^UTILITY(U,$J,358.3,31327,1,0)
+ ;;^UTILITY(U,$J,358.3,29705,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,29705,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,29705,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,29706,0)
+ ;;=K50.912^^135^1367^25
+ ;;^UTILITY(U,$J,358.3,29706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31327,1,3,0)
- ;;=3^Traumatic spondylopathy, occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,31327,1,4,0)
- ;;=4^M48.31
- ;;^UTILITY(U,$J,358.3,31327,2)
- ;;=^5012115
- ;;^UTILITY(U,$J,358.3,31328,0)
- ;;=M48.38^^180^1951^74
- ;;^UTILITY(U,$J,358.3,31328,1,0)
+ ;;^UTILITY(U,$J,358.3,29706,1,3,0)
+ ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,29706,1,4,0)
+ ;;=4^K50.912
+ ;;^UTILITY(U,$J,358.3,29706,2)
+ ;;=^5008647
+ ;;^UTILITY(U,$J,358.3,29707,0)
+ ;;=K50.919^^135^1367^28
+ ;;^UTILITY(U,$J,358.3,29707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31328,1,3,0)
- ;;=3^Traumatic spondylopathy, sacral and sacrococcygeal region
- ;;^UTILITY(U,$J,358.3,31328,1,4,0)
- ;;=4^M48.38
- ;;^UTILITY(U,$J,358.3,31328,2)
- ;;=^5012122
- ;;^UTILITY(U,$J,358.3,31329,0)
- ;;=M48.35^^180^1951^76
- ;;^UTILITY(U,$J,358.3,31329,1,0)
+ ;;^UTILITY(U,$J,358.3,29707,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,29707,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,29707,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,29708,0)
+ ;;=K50.914^^135^1367^23
+ ;;^UTILITY(U,$J,358.3,29708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31329,1,3,0)
- ;;=3^Traumatic spondylopathy, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,31329,1,4,0)
- ;;=4^M48.35
- ;;^UTILITY(U,$J,358.3,31329,2)
- ;;=^5012119
- ;;^UTILITY(U,$J,358.3,31330,0)
- ;;=M48.33^^180^1951^70
- ;;^UTILITY(U,$J,358.3,31330,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31330,1,3,0)
- ;;=3^Traumatic spondylopathy, cervicothoracic region
+ ;;^UTILITY(U,$J,358.3,29708,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,29708,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,29708,2)
+ ;;=^5008649

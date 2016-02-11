@@ -1,0 +1,128 @@
+IBDEI2KI ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,43070,2)
+ ;;=^5020437
+ ;;^UTILITY(U,$J,358.3,43071,0)
+ ;;=S02.92XS^^195^2166^5
+ ;;^UTILITY(U,$J,358.3,43071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43071,1,3,0)
+ ;;=3^Fracture of facial bones unspec, sequela
+ ;;^UTILITY(U,$J,358.3,43071,1,4,0)
+ ;;=4^S02.92XS
+ ;;^UTILITY(U,$J,358.3,43071,2)
+ ;;=^5020443
+ ;;^UTILITY(U,$J,358.3,43072,0)
+ ;;=S06.0X0A^^195^2167^19
+ ;;^UTILITY(U,$J,358.3,43072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43072,1,3,0)
+ ;;=3^Concussion w/o LOC, initial encounter
+ ;;^UTILITY(U,$J,358.3,43072,1,4,0)
+ ;;=4^S06.0X0A
+ ;;^UTILITY(U,$J,358.3,43072,2)
+ ;;=^5020666
+ ;;^UTILITY(U,$J,358.3,43073,0)
+ ;;=S06.0X1A^^195^2167^10
+ ;;^UTILITY(U,$J,358.3,43073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43073,1,3,0)
+ ;;=3^Concussion w LOC of 30 minutes or less, init
+ ;;^UTILITY(U,$J,358.3,43073,1,4,0)
+ ;;=4^S06.0X1A
+ ;;^UTILITY(U,$J,358.3,43073,2)
+ ;;=^5020669
+ ;;^UTILITY(U,$J,358.3,43074,0)
+ ;;=S06.0X2A^^195^2167^13
+ ;;^UTILITY(U,$J,358.3,43074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43074,1,3,0)
+ ;;=3^Concussion w LOC of 31-59 min, init
+ ;;^UTILITY(U,$J,358.3,43074,1,4,0)
+ ;;=4^S06.0X2A
+ ;;^UTILITY(U,$J,358.3,43074,2)
+ ;;=^5020672
+ ;;^UTILITY(U,$J,358.3,43075,0)
+ ;;=S06.0X3A^^195^2167^7
+ ;;^UTILITY(U,$J,358.3,43075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43075,1,3,0)
+ ;;=3^Concussion w LOC of 1-5 hrs 59 min, init
+ ;;^UTILITY(U,$J,358.3,43075,1,4,0)
+ ;;=4^S06.0X3A
+ ;;^UTILITY(U,$J,358.3,43075,2)
+ ;;=^5020675
+ ;;^UTILITY(U,$J,358.3,43076,0)
+ ;;=S06.0X4A^^195^2167^16
+ ;;^UTILITY(U,$J,358.3,43076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43076,1,3,0)
+ ;;=3^Concussion w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,43076,1,4,0)
+ ;;=4^S06.0X4A
+ ;;^UTILITY(U,$J,358.3,43076,2)
+ ;;=^5020678
+ ;;^UTILITY(U,$J,358.3,43077,0)
+ ;;=S06.0X5A^^195^2167^1
+ ;;^UTILITY(U,$J,358.3,43077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43077,1,3,0)
+ ;;=3^Concussion w LOC >24 hr w ret consc lev, init
+ ;;^UTILITY(U,$J,358.3,43077,1,4,0)
+ ;;=4^S06.0X5A
+ ;;^UTILITY(U,$J,358.3,43077,2)
+ ;;=^5020681
+ ;;^UTILITY(U,$J,358.3,43078,0)
+ ;;=S06.0X6A^^195^2167^4
+ ;;^UTILITY(U,$J,358.3,43078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43078,1,3,0)
+ ;;=3^Concussion w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,43078,1,4,0)
+ ;;=4^S06.0X6A
+ ;;^UTILITY(U,$J,358.3,43078,2)
+ ;;=^5020684
+ ;;^UTILITY(U,$J,358.3,43079,0)
+ ;;=S06.0X0D^^195^2167^21
+ ;;^UTILITY(U,$J,358.3,43079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43079,1,3,0)
+ ;;=3^Concussion w/o LOC, subs encntr
+ ;;^UTILITY(U,$J,358.3,43079,1,4,0)
+ ;;=4^S06.0X0D
+ ;;^UTILITY(U,$J,358.3,43079,2)
+ ;;=^5020667
+ ;;^UTILITY(U,$J,358.3,43080,0)
+ ;;=S06.0X1D^^195^2167^11
+ ;;^UTILITY(U,$J,358.3,43080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43080,1,3,0)
+ ;;=3^Concussion w LOC of 30 minutes or less, subs
+ ;;^UTILITY(U,$J,358.3,43080,1,4,0)
+ ;;=4^S06.0X1D
+ ;;^UTILITY(U,$J,358.3,43080,2)
+ ;;=^5020670
+ ;;^UTILITY(U,$J,358.3,43081,0)
+ ;;=S06.0X2D^^195^2167^15
+ ;;^UTILITY(U,$J,358.3,43081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43081,1,3,0)
+ ;;=3^Concussion w LOC of 31-59 min, subs
+ ;;^UTILITY(U,$J,358.3,43081,1,4,0)
+ ;;=4^S06.0X2D
+ ;;^UTILITY(U,$J,358.3,43081,2)
+ ;;=^5020673
+ ;;^UTILITY(U,$J,358.3,43082,0)
+ ;;=S06.0X3D^^195^2167^9
+ ;;^UTILITY(U,$J,358.3,43082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43082,1,3,0)
+ ;;=3^Concussion w LOC of 1-5 hrs 59 min, subs
+ ;;^UTILITY(U,$J,358.3,43082,1,4,0)
+ ;;=4^S06.0X3D
+ ;;^UTILITY(U,$J,358.3,43082,2)
+ ;;=^5020676
+ ;;^UTILITY(U,$J,358.3,43083,0)
+ ;;=S06.0X4D^^195^2167^17

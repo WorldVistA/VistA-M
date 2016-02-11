@@ -1,112 +1,130 @@
-IBDEI0TO ; ; 06-AUG-2015
+IBDEI0TO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14368,1,3,0)
- ;;=3^28111
- ;;^UTILITY(U,$J,358.3,14369,0)
- ;;=28112^^75^886^29^^^^1
- ;;^UTILITY(U,$J,358.3,14369,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14369,1,2,0)
- ;;=2^Ostectomy, complete excision; other metatarsal head (2nd, 3rd, 4th)
- ;;^UTILITY(U,$J,358.3,14369,1,3,0)
- ;;=3^28112
- ;;^UTILITY(U,$J,358.3,14370,0)
- ;;=28113^^75^886^27^^^^1
- ;;^UTILITY(U,$J,358.3,14370,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14370,1,2,0)
- ;;=2^Ostectomy, complete excision; 5th metatarsal head
- ;;^UTILITY(U,$J,358.3,14370,1,3,0)
- ;;=3^28113
- ;;^UTILITY(U,$J,358.3,14371,0)
- ;;=28114^^75^886^28^^^^1
- ;;^UTILITY(U,$J,358.3,14371,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14371,1,2,0)
- ;;=2^Ostectomy, complete excision; all metatarsal heads, with partial proximal phalangectomy, excluding first metatarsal 
- ;;^UTILITY(U,$J,358.3,14371,1,3,0)
- ;;=3^28114
- ;;^UTILITY(U,$J,358.3,14372,0)
- ;;=28140^^75^886^24^^^^1
- ;;^UTILITY(U,$J,358.3,14372,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14372,1,2,0)
- ;;=2^Metatarsectomy
- ;;^UTILITY(U,$J,358.3,14372,1,3,0)
- ;;=3^28140
- ;;^UTILITY(U,$J,358.3,14373,0)
- ;;=28119^^75^886^25^^^^1
- ;;^UTILITY(U,$J,358.3,14373,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14373,1,2,0)
- ;;=2^Ostectomy, calcaneus; for spur, with or without plantar fascial release
- ;;^UTILITY(U,$J,358.3,14373,1,3,0)
- ;;=3^28119
- ;;^UTILITY(U,$J,358.3,14374,0)
- ;;=28120^^75^886^32^^^^1
- ;;^UTILITY(U,$J,358.3,14374,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14374,1,2,0)
- ;;=2^Partial excision bone; talus or calcaneus
- ;;^UTILITY(U,$J,358.3,14374,1,3,0)
- ;;=3^28120
- ;;^UTILITY(U,$J,358.3,14375,0)
- ;;=28122^^75^886^33^^^^1
- ;;^UTILITY(U,$J,358.3,14375,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14375,1,2,0)
- ;;=2^Partial excision bone; tarsal or metatarsal bone, except talus or calcaneus
- ;;^UTILITY(U,$J,358.3,14375,1,3,0)
- ;;=3^28122
- ;;^UTILITY(U,$J,358.3,14376,0)
- ;;=28124^^75^886^31^^^^1
- ;;^UTILITY(U,$J,358.3,14376,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14376,1,2,0)
- ;;=2^Partial excision bone; phalanx of toe
- ;;^UTILITY(U,$J,358.3,14376,1,3,0)
- ;;=3^28124
- ;;^UTILITY(U,$J,358.3,14377,0)
- ;;=28153^^75^886^34^^^^1
- ;;^UTILITY(U,$J,358.3,14377,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14377,1,2,0)
- ;;=2^Resection, condyle(s), distal end of phalanx, each toe
- ;;^UTILITY(U,$J,358.3,14377,1,3,0)
- ;;=3^28153
- ;;^UTILITY(U,$J,358.3,14378,0)
- ;;=28160^^75^886^23^^^^1
- ;;^UTILITY(U,$J,358.3,14378,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14378,1,2,0)
- ;;=2^Hemiphalangectomy or interphalangeal joint excision, toe, proximal end of phalanx, each
- ;;^UTILITY(U,$J,358.3,14378,1,3,0)
- ;;=3^28160
- ;;^UTILITY(U,$J,358.3,14379,0)
- ;;=64774^^75^886^8^^^^1
- ;;^UTILITY(U,$J,358.3,14379,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14379,1,2,0)
- ;;=2^Excision of neuroma; cutaneous nerve, surgically identifiable
- ;;^UTILITY(U,$J,358.3,14379,1,3,0)
- ;;=3^64774
- ;;^UTILITY(U,$J,358.3,14380,0)
- ;;=64776^^75^886^9^^^^1
- ;;^UTILITY(U,$J,358.3,14380,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14380,1,2,0)
- ;;=2^Excision of neuroma; digital nerve, one or both, same digit
- ;;^UTILITY(U,$J,358.3,14380,1,3,0)
- ;;=3^64776
- ;;^UTILITY(U,$J,358.3,14381,0)
- ;;=64778^^75^886^10^^^^1
- ;;^UTILITY(U,$J,358.3,14381,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14381,1,2,0)
- ;;=2^Excision of neuroma; digital nerve, each additional digit (list separately in addition to code for primary procedure)
- ;;^UTILITY(U,$J,358.3,14381,1,3,0)
- ;;=3^64778
- ;;^UTILITY(U,$J,358.3,14382,0)
- ;;=64782^^75^886^11^^^^1
+ ;;^UTILITY(U,$J,358.3,13649,1,4,0)
+ ;;=4^H34.13
+ ;;^UTILITY(U,$J,358.3,13649,2)
+ ;;=^5005559
+ ;;^UTILITY(U,$J,358.3,13650,0)
+ ;;=H34.11^^80^763^8
+ ;;^UTILITY(U,$J,358.3,13650,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13650,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,13650,1,4,0)
+ ;;=4^H34.11
+ ;;^UTILITY(U,$J,358.3,13650,2)
+ ;;=^5005557
+ ;;^UTILITY(U,$J,358.3,13651,0)
+ ;;=H34.12^^80^763^7
+ ;;^UTILITY(U,$J,358.3,13651,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13651,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,13651,1,4,0)
+ ;;=4^H34.12
+ ;;^UTILITY(U,$J,358.3,13651,2)
+ ;;=^5005558
+ ;;^UTILITY(U,$J,358.3,13652,0)
+ ;;=H34.231^^80^763^76
+ ;;^UTILITY(U,$J,358.3,13652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13652,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,13652,1,4,0)
+ ;;=4^H34.231
+ ;;^UTILITY(U,$J,358.3,13652,2)
+ ;;=^5005564
+ ;;^UTILITY(U,$J,358.3,13653,0)
+ ;;=H34.232^^80^763^75
+ ;;^UTILITY(U,$J,358.3,13653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13653,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,13653,1,4,0)
+ ;;=4^H34.232
+ ;;^UTILITY(U,$J,358.3,13653,2)
+ ;;=^5005565
+ ;;^UTILITY(U,$J,358.3,13654,0)
+ ;;=H34.233^^80^763^74
+ ;;^UTILITY(U,$J,358.3,13654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13654,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,13654,1,4,0)
+ ;;=4^H34.233
+ ;;^UTILITY(U,$J,358.3,13654,2)
+ ;;=^5005566
+ ;;^UTILITY(U,$J,358.3,13655,0)
+ ;;=H34.211^^80^763^67
+ ;;^UTILITY(U,$J,358.3,13655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13655,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,13655,1,4,0)
+ ;;=4^H34.211
+ ;;^UTILITY(U,$J,358.3,13655,2)
+ ;;=^5005560
+ ;;^UTILITY(U,$J,358.3,13656,0)
+ ;;=H34.212^^80^763^66
+ ;;^UTILITY(U,$J,358.3,13656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13656,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,13656,1,4,0)
+ ;;=4^H34.212
+ ;;^UTILITY(U,$J,358.3,13656,2)
+ ;;=^5005561
+ ;;^UTILITY(U,$J,358.3,13657,0)
+ ;;=H34.213^^80^763^65
+ ;;^UTILITY(U,$J,358.3,13657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13657,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,13657,1,4,0)
+ ;;=4^H34.213
+ ;;^UTILITY(U,$J,358.3,13657,2)
+ ;;=^5005562
+ ;;^UTILITY(U,$J,358.3,13658,0)
+ ;;=H34.811^^80^763^11
+ ;;^UTILITY(U,$J,358.3,13658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13658,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,13658,1,4,0)
+ ;;=4^H34.811
+ ;;^UTILITY(U,$J,358.3,13658,2)
+ ;;=^5005568
+ ;;^UTILITY(U,$J,358.3,13659,0)
+ ;;=H34.812^^80^763^10
+ ;;^UTILITY(U,$J,358.3,13659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13659,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,13659,1,4,0)
+ ;;=4^H34.812
+ ;;^UTILITY(U,$J,358.3,13659,2)
+ ;;=^5005569
+ ;;^UTILITY(U,$J,358.3,13660,0)
+ ;;=H34.813^^80^763^9
+ ;;^UTILITY(U,$J,358.3,13660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13660,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,13660,1,4,0)
+ ;;=4^H34.813
+ ;;^UTILITY(U,$J,358.3,13660,2)
+ ;;=^5005570
+ ;;^UTILITY(U,$J,358.3,13661,0)
+ ;;=H34.831^^80^763^112
+ ;;^UTILITY(U,$J,358.3,13661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13661,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,13661,1,4,0)
+ ;;=4^H34.831
+ ;;^UTILITY(U,$J,358.3,13661,2)
+ ;;=^5005576
+ ;;^UTILITY(U,$J,358.3,13662,0)
+ ;;=H34.832^^80^763^111

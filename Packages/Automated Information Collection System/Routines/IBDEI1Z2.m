@@ -1,126 +1,136 @@
-IBDEI1Z2 ; ; 06-AUG-2015
+IBDEI1Z2 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34568,1,4,0)
- ;;=4^M84.471S
- ;;^UTILITY(U,$J,358.3,34568,2)
- ;;=^5013967
- ;;^UTILITY(U,$J,358.3,34569,0)
- ;;=M84.372S^^183^2020^114
- ;;^UTILITY(U,$J,358.3,34569,1,0)
+ ;;^UTILITY(U,$J,358.3,33023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34569,1,3,0)
- ;;=3^Stress fracture, left ankle, sequela
- ;;^UTILITY(U,$J,358.3,34569,1,4,0)
- ;;=4^M84.372S
- ;;^UTILITY(U,$J,358.3,34569,2)
- ;;=^5013745
- ;;^UTILITY(U,$J,358.3,34570,0)
- ;;=M84.371S^^183^2020^117
- ;;^UTILITY(U,$J,358.3,34570,1,0)
+ ;;^UTILITY(U,$J,358.3,33023,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,33023,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,33023,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,33024,0)
+ ;;=F52.32^^146^1605^1
+ ;;^UTILITY(U,$J,358.3,33024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34570,1,3,0)
- ;;=3^Stress fracture, right ankle, sequela
- ;;^UTILITY(U,$J,358.3,34570,1,4,0)
- ;;=4^M84.371S
- ;;^UTILITY(U,$J,358.3,34570,2)
- ;;=^5013739
- ;;^UTILITY(U,$J,358.3,34571,0)
- ;;=S82.855S^^183^2020^106
- ;;^UTILITY(U,$J,358.3,34571,1,0)
+ ;;^UTILITY(U,$J,358.3,33024,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,33024,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,33024,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,33025,0)
+ ;;=F52.21^^146^1605^2
+ ;;^UTILITY(U,$J,358.3,33025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34571,1,3,0)
- ;;=3^Nondisp trimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34571,1,4,0)
- ;;=4^S82.855S
- ;;^UTILITY(U,$J,358.3,34571,2)
- ;;=^5042654
- ;;^UTILITY(U,$J,358.3,34572,0)
- ;;=S82.854S^^183^2020^107
- ;;^UTILITY(U,$J,358.3,34572,1,0)
+ ;;^UTILITY(U,$J,358.3,33025,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,33025,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,33025,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,33026,0)
+ ;;=F52.31^^146^1605^3
+ ;;^UTILITY(U,$J,358.3,33026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34572,1,3,0)
- ;;=3^Nondisp trimalleolar fx of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34572,1,4,0)
- ;;=4^S82.854S
- ;;^UTILITY(U,$J,358.3,34572,2)
- ;;=^5042638
- ;;^UTILITY(U,$J,358.3,34573,0)
- ;;=S82.842S^^183^2020^17
- ;;^UTILITY(U,$J,358.3,34573,1,0)
+ ;;^UTILITY(U,$J,358.3,33026,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,33026,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,33026,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,33027,0)
+ ;;=F52.22^^146^1605^4
+ ;;^UTILITY(U,$J,358.3,33027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34573,1,3,0)
- ;;=3^Disp bimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34573,1,4,0)
- ;;=4^S82.842S
- ;;^UTILITY(U,$J,358.3,34573,2)
- ;;=^5042510
- ;;^UTILITY(U,$J,358.3,34574,0)
- ;;=S82.841S^^183^2020^18
- ;;^UTILITY(U,$J,358.3,34574,1,0)
+ ;;^UTILITY(U,$J,358.3,33027,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,33027,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,33027,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,33028,0)
+ ;;=F52.6^^146^1605^5
+ ;;^UTILITY(U,$J,358.3,33028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34574,1,3,0)
- ;;=3^Disp bimalleolar fx of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34574,1,4,0)
- ;;=4^S82.841S
- ;;^UTILITY(U,$J,358.3,34574,2)
- ;;=^5042494
- ;;^UTILITY(U,$J,358.3,34575,0)
- ;;=S82.862S^^183^2020^37
- ;;^UTILITY(U,$J,358.3,34575,1,0)
+ ;;^UTILITY(U,$J,358.3,33028,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,33028,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,33028,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,33029,0)
+ ;;=F52.0^^146^1605^6
+ ;;^UTILITY(U,$J,358.3,33029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34575,1,3,0)
- ;;=3^Disp maisonneuve's fx of left leg, sequela
- ;;^UTILITY(U,$J,358.3,34575,1,4,0)
- ;;=4^S82.862S
- ;;^UTILITY(U,$J,358.3,34575,2)
- ;;=^5042702
- ;;^UTILITY(U,$J,358.3,34576,0)
- ;;=S82.861S^^183^2020^38
- ;;^UTILITY(U,$J,358.3,34576,1,0)
+ ;;^UTILITY(U,$J,358.3,33029,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,33029,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,33029,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,33030,0)
+ ;;=F52.4^^146^1605^7
+ ;;^UTILITY(U,$J,358.3,33030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34576,1,3,0)
- ;;=3^Disp maisonneuve's fx of right leg, sequela
- ;;^UTILITY(U,$J,358.3,34576,1,4,0)
- ;;=4^S82.861S
- ;;^UTILITY(U,$J,358.3,34576,2)
- ;;=^5042686
- ;;^UTILITY(U,$J,358.3,34577,0)
- ;;=S82.852S^^183^2020^54
- ;;^UTILITY(U,$J,358.3,34577,1,0)
+ ;;^UTILITY(U,$J,358.3,33030,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,33030,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,33030,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,33031,0)
+ ;;=F52.8^^146^1605^9
+ ;;^UTILITY(U,$J,358.3,33031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34577,1,3,0)
- ;;=3^Disp trimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34577,1,4,0)
- ;;=4^S82.852S
- ;;^UTILITY(U,$J,358.3,34577,2)
- ;;=^5042606
- ;;^UTILITY(U,$J,358.3,34578,0)
- ;;=S82.851S^^183^2020^55
- ;;^UTILITY(U,$J,358.3,34578,1,0)
+ ;;^UTILITY(U,$J,358.3,33031,1,3,0)
+ ;;=3^Sexual Dysfuntion NEC
+ ;;^UTILITY(U,$J,358.3,33031,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,33031,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,33032,0)
+ ;;=F52.9^^146^1605^8
+ ;;^UTILITY(U,$J,358.3,33032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34578,1,3,0)
- ;;=3^Disp trimalleolar fx of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34578,1,4,0)
- ;;=4^S82.851S
- ;;^UTILITY(U,$J,358.3,34578,2)
- ;;=^5042590
- ;;^UTILITY(U,$J,358.3,34579,0)
- ;;=S82.845S^^183^2020^72
- ;;^UTILITY(U,$J,358.3,34579,1,0)
+ ;;^UTILITY(U,$J,358.3,33032,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,33032,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,33032,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,33033,0)
+ ;;=G47.09^^146^1606^11
+ ;;^UTILITY(U,$J,358.3,33033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34579,1,3,0)
- ;;=3^Nondisp bimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34579,1,4,0)
- ;;=4^S82.845S
- ;;^UTILITY(U,$J,358.3,34579,2)
- ;;=^5042558
- ;;^UTILITY(U,$J,358.3,34580,0)
- ;;=S82.844S^^183^2020^73
- ;;^UTILITY(U,$J,358.3,34580,1,0)
+ ;;^UTILITY(U,$J,358.3,33033,1,3,0)
+ ;;=3^Insomnia Disorder NEC
+ ;;^UTILITY(U,$J,358.3,33033,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,33033,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,33034,0)
+ ;;=G47.00^^146^1606^10
+ ;;^UTILITY(U,$J,358.3,33034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34580,1,3,0)
- ;;=3^Nondisp bimalleolar fx of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,34580,1,4,0)
- ;;=4^S82.844S
+ ;;^UTILITY(U,$J,358.3,33034,1,3,0)
+ ;;=3^Insomnia Disorder
+ ;;^UTILITY(U,$J,358.3,33034,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,33034,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,33035,0)
+ ;;=G47.10^^146^1606^9
+ ;;^UTILITY(U,$J,358.3,33035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33035,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,33035,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,33035,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,33036,0)
+ ;;=G47.419^^146^1606^12
+ ;;^UTILITY(U,$J,358.3,33036,1,0)
+ ;;=^358.31IA^4^2

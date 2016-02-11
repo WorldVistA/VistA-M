@@ -1,136 +1,120 @@
-IBDEI1BP ; ; 06-AUG-2015
+IBDEI1BP ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23436,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23436,1,4,0)
- ;;=4^369.10
- ;;^UTILITY(U,$J,358.3,23436,1,5,0)
- ;;=5^One Eye Blindness/Oth Eye Low Vision
- ;;^UTILITY(U,$J,358.3,23436,2)
- ;;=^268870
- ;;^UTILITY(U,$J,358.3,23437,0)
- ;;=369.11^^125^1410^19
- ;;^UTILITY(U,$J,358.3,23437,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23437,1,4,0)
- ;;=4^369.11
- ;;^UTILITY(U,$J,358.3,23437,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Blind NOS
- ;;^UTILITY(U,$J,358.3,23437,2)
- ;;=^268871
- ;;^UTILITY(U,$J,358.3,23438,0)
- ;;=369.12^^125^1410^23
- ;;^UTILITY(U,$J,358.3,23438,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23438,1,4,0)
- ;;=4^369.12
- ;;^UTILITY(U,$J,358.3,23438,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,23438,2)
- ;;=^268872
- ;;^UTILITY(U,$J,358.3,23439,0)
- ;;=369.13^^125^1410^21
- ;;^UTILITY(U,$J,358.3,23439,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23439,1,4,0)
- ;;=4^369.13
- ;;^UTILITY(U,$J,358.3,23439,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Near Total
- ;;^UTILITY(U,$J,358.3,23439,2)
- ;;=^268873
- ;;^UTILITY(U,$J,358.3,23440,0)
- ;;=369.14^^125^1410^22
- ;;^UTILITY(U,$J,358.3,23440,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23440,1,4,0)
- ;;=4^369.14
- ;;^UTILITY(U,$J,358.3,23440,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Profound
- ;;^UTILITY(U,$J,358.3,23440,2)
- ;;=^268874
- ;;^UTILITY(U,$J,358.3,23441,0)
- ;;=369.15^^125^1410^8
- ;;^UTILITY(U,$J,358.3,23441,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23441,1,4,0)
- ;;=4^369.15
- ;;^UTILITY(U,$J,358.3,23441,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Blind
- ;;^UTILITY(U,$J,358.3,23441,2)
- ;;=^268875
- ;;^UTILITY(U,$J,358.3,23442,0)
- ;;=369.16^^125^1410^13
- ;;^UTILITY(U,$J,358.3,23442,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23442,1,4,0)
- ;;=4^369.16
- ;;^UTILITY(U,$J,358.3,23442,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,23442,2)
- ;;=^268876
- ;;^UTILITY(U,$J,358.3,23443,0)
- ;;=369.17^^125^1410^10
- ;;^UTILITY(U,$J,358.3,23443,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23443,1,4,0)
- ;;=4^369.17
- ;;^UTILITY(U,$J,358.3,23443,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Near Total
- ;;^UTILITY(U,$J,358.3,23443,2)
- ;;=^268877
- ;;^UTILITY(U,$J,358.3,23444,0)
- ;;=369.18^^125^1410^11
- ;;^UTILITY(U,$J,358.3,23444,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23444,1,4,0)
- ;;=4^369.18
- ;;^UTILITY(U,$J,358.3,23444,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye Profound
- ;;^UTILITY(U,$J,358.3,23444,2)
- ;;=^268878
- ;;^UTILITY(U,$J,358.3,23445,0)
- ;;=369.20^^125^1410^4
- ;;^UTILITY(U,$J,358.3,23445,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23445,1,4,0)
- ;;=4^369.20
- ;;^UTILITY(U,$J,358.3,23445,1,5,0)
- ;;=5^Low Vision,Both Eyes NOS
- ;;^UTILITY(U,$J,358.3,23445,2)
- ;;=^71924
- ;;^UTILITY(U,$J,358.3,23446,0)
- ;;=369.21^^125^1410^20
- ;;^UTILITY(U,$J,358.3,23446,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23446,1,4,0)
- ;;=4^369.21
- ;;^UTILITY(U,$J,358.3,23446,1,5,0)
- ;;=5^One Eye Severe/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,23446,2)
- ;;=^268881
- ;;^UTILITY(U,$J,358.3,23447,0)
- ;;=369.22^^125^1410^25
- ;;^UTILITY(U,$J,358.3,23447,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23447,1,4,0)
- ;;=4^369.22
- ;;^UTILITY(U,$J,358.3,23447,1,5,0)
- ;;=5^Severe Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,23447,2)
- ;;=^268882
- ;;^UTILITY(U,$J,358.3,23448,0)
- ;;=369.23^^125^1410^9
- ;;^UTILITY(U,$J,358.3,23448,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23448,1,4,0)
- ;;=4^369.23
- ;;^UTILITY(U,$J,358.3,23448,1,5,0)
- ;;=5^One Eye Moderate/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,23448,2)
- ;;=^268883
- ;;^UTILITY(U,$J,358.3,23449,0)
- ;;=369.24^^125^1410^12
- ;;^UTILITY(U,$J,358.3,23449,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22066,0)
+ ;;=S49.032S^^101^1037^117
+ ;;^UTILITY(U,$J,358.3,22066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22066,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22066,1,4,0)
+ ;;=4^S49.032S
+ ;;^UTILITY(U,$J,358.3,22066,2)
+ ;;=^5028400
+ ;;^UTILITY(U,$J,358.3,22067,0)
+ ;;=S49.031S^^101^1037^118
+ ;;^UTILITY(U,$J,358.3,22067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22067,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end humer, r arm, sqla
+ ;;^UTILITY(U,$J,358.3,22067,1,4,0)
+ ;;=4^S49.031S
+ ;;^UTILITY(U,$J,358.3,22067,2)
+ ;;=^5028394
+ ;;^UTILITY(U,$J,358.3,22068,0)
+ ;;=S49.112S^^101^1037^107
+ ;;^UTILITY(U,$J,358.3,22068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22068,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22068,1,4,0)
+ ;;=4^S49.112S
+ ;;^UTILITY(U,$J,358.3,22068,2)
+ ;;=^5134980
+ ;;^UTILITY(U,$J,358.3,22069,0)
+ ;;=S49.111S^^101^1037^108
+ ;;^UTILITY(U,$J,358.3,22069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22069,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,22069,1,4,0)
+ ;;=4^S49.111S
+ ;;^UTILITY(U,$J,358.3,22069,2)
+ ;;=^5028442
+ ;;^UTILITY(U,$J,358.3,22070,0)
+ ;;=S49.012S^^101^1037^109
+ ;;^UTILITY(U,$J,358.3,22070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22070,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22070,1,4,0)
+ ;;=4^S49.012S
+ ;;^UTILITY(U,$J,358.3,22070,2)
+ ;;=^5028364
+ ;;^UTILITY(U,$J,358.3,22071,0)
+ ;;=S49.011S^^101^1037^110
+ ;;^UTILITY(U,$J,358.3,22071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22071,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,22071,1,4,0)
+ ;;=4^S49.011S
+ ;;^UTILITY(U,$J,358.3,22071,2)
+ ;;=^5028358
+ ;;^UTILITY(U,$J,358.3,22072,0)
+ ;;=S49.122S^^101^1037^111
+ ;;^UTILITY(U,$J,358.3,22072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22072,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22072,1,4,0)
+ ;;=4^S49.122S
+ ;;^UTILITY(U,$J,358.3,22072,2)
+ ;;=^5134986
+ ;;^UTILITY(U,$J,358.3,22073,0)
+ ;;=S49.121S^^101^1037^112
+ ;;^UTILITY(U,$J,358.3,22073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22073,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,22073,1,4,0)
+ ;;=4^S49.121S
+ ;;^UTILITY(U,$J,358.3,22073,2)
+ ;;=^5028454
+ ;;^UTILITY(U,$J,358.3,22074,0)
+ ;;=S49.022S^^101^1037^113
+ ;;^UTILITY(U,$J,358.3,22074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22074,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22074,1,4,0)
+ ;;=4^S49.022S
+ ;;^UTILITY(U,$J,358.3,22074,2)
+ ;;=^5028382
+ ;;^UTILITY(U,$J,358.3,22075,0)
+ ;;=S49.021S^^101^1037^114
+ ;;^UTILITY(U,$J,358.3,22075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22075,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx upper end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,22075,1,4,0)
+ ;;=4^S49.021S
+ ;;^UTILITY(U,$J,358.3,22075,2)
+ ;;=^5028376
+ ;;^UTILITY(U,$J,358.3,22076,0)
+ ;;=S49.142S^^101^1037^119
+ ;;^UTILITY(U,$J,358.3,22076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22076,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22076,1,4,0)
+ ;;=4^S49.142S
+ ;;^UTILITY(U,$J,358.3,22076,2)
+ ;;=^5134998
+ ;;^UTILITY(U,$J,358.3,22077,0)
+ ;;=S49.141S^^101^1037^120
+ ;;^UTILITY(U,$J,358.3,22077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22077,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end humer, right arm, sqla

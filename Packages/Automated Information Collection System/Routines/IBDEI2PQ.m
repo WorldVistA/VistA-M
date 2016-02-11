@@ -1,0 +1,128 @@
+IBDEI2PQ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45523,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,45523,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,45523,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,45524,0)
+ ;;=R40.2311^^200^2246^15
+ ;;^UTILITY(U,$J,358.3,45524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45524,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,45524,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,45524,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,45525,0)
+ ;;=R40.2310^^200^2246^13
+ ;;^UTILITY(U,$J,358.3,45525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45525,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,45525,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,45525,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,45526,0)
+ ;;=R40.4^^200^2246^38
+ ;;^UTILITY(U,$J,358.3,45526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45526,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,45526,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,45526,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,45527,0)
+ ;;=V00.811A^^200^2247^45
+ ;;^UTILITY(U,$J,358.3,45527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45527,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,45527,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,45527,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,45528,0)
+ ;;=V00.811D^^200^2247^46
+ ;;^UTILITY(U,$J,358.3,45528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45528,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45528,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,45528,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,45529,0)
+ ;;=V00.812A^^200^2247^133
+ ;;^UTILITY(U,$J,358.3,45529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45529,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45529,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,45529,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,45530,0)
+ ;;=V00.812D^^200^2247^134
+ ;;^UTILITY(U,$J,358.3,45530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45530,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45530,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,45530,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,45531,0)
+ ;;=V00.818A^^200^2247^131
+ ;;^UTILITY(U,$J,358.3,45531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45531,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45531,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,45531,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,45532,0)
+ ;;=V00.818D^^200^2247^132
+ ;;^UTILITY(U,$J,358.3,45532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45532,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45532,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,45532,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,45533,0)
+ ;;=V00.831A^^200^2247^43
+ ;;^UTILITY(U,$J,358.3,45533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45533,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45533,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,45533,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,45534,0)
+ ;;=V00.831D^^200^2247^44
+ ;;^UTILITY(U,$J,358.3,45534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45534,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45534,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,45534,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,45535,0)
+ ;;=V00.832A^^200^2247^95
+ ;;^UTILITY(U,$J,358.3,45535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45535,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr

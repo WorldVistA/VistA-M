@@ -1,144 +1,126 @@
-IBDEI0DU ; ; 06-AUG-2015
+IBDEI0DU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6284,1,5,0)
- ;;=5^Senile Dementia 
- ;;^UTILITY(U,$J,358.3,6284,2)
- ;;=^31703
- ;;^UTILITY(U,$J,358.3,6285,0)
- ;;=780.4^^31^408^54
- ;;^UTILITY(U,$J,358.3,6285,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6285,1,4,0)
- ;;=4^780.4
- ;;^UTILITY(U,$J,358.3,6285,1,5,0)
- ;;=5^Vertigo
- ;;^UTILITY(U,$J,358.3,6285,2)
- ;;=^35946
- ;;^UTILITY(U,$J,358.3,6286,0)
- ;;=345.90^^31^408^22
- ;;^UTILITY(U,$J,358.3,6286,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6286,1,4,0)
- ;;=4^345.90
- ;;^UTILITY(U,$J,358.3,6286,1,5,0)
- ;;=5^Epilepsy
- ;;^UTILITY(U,$J,358.3,6286,2)
- ;;=^268477
- ;;^UTILITY(U,$J,358.3,6287,0)
- ;;=355.1^^31^408^27
- ;;^UTILITY(U,$J,358.3,6287,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6287,1,4,0)
- ;;=4^355.1
- ;;^UTILITY(U,$J,358.3,6287,1,5,0)
- ;;=5^Meralgia Paresthetica
- ;;^UTILITY(U,$J,358.3,6287,2)
- ;;=^265141
- ;;^UTILITY(U,$J,358.3,6288,0)
- ;;=340.^^31^408^30
- ;;^UTILITY(U,$J,358.3,6288,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6288,1,4,0)
- ;;=4^340.
- ;;^UTILITY(U,$J,358.3,6288,1,5,0)
- ;;=5^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,6288,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,6289,0)
- ;;=729.2^^31^408^31
- ;;^UTILITY(U,$J,358.3,6289,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6289,1,4,0)
- ;;=4^729.2
- ;;^UTILITY(U,$J,358.3,6289,1,5,0)
- ;;=5^Neuropathic Pain
- ;;^UTILITY(U,$J,358.3,6289,2)
- ;;=Neuropathic Pain^82605
- ;;^UTILITY(U,$J,358.3,6290,0)
- ;;=053.19^^31^408^41
- ;;^UTILITY(U,$J,358.3,6290,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6290,1,4,0)
- ;;=4^053.19
- ;;^UTILITY(U,$J,358.3,6290,1,5,0)
- ;;=5^Post-Herpetic Neuralgia
- ;;^UTILITY(U,$J,358.3,6290,2)
- ;;=^266544
- ;;^UTILITY(U,$J,358.3,6291,0)
- ;;=310.9^^31^408^33
- ;;^UTILITY(U,$J,358.3,6291,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6291,1,4,0)
- ;;=4^310.9
- ;;^UTILITY(U,$J,358.3,6291,1,5,0)
- ;;=5^Organic Brain Syndrome
- ;;^UTILITY(U,$J,358.3,6291,2)
- ;;=^123952
- ;;^UTILITY(U,$J,358.3,6292,0)
- ;;=332.0^^31^408^37
- ;;^UTILITY(U,$J,358.3,6292,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6292,1,4,0)
- ;;=4^332.0
- ;;^UTILITY(U,$J,358.3,6292,1,5,0)
- ;;=5^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,6292,2)
- ;;=Parkinson's Disease^304847
- ;;^UTILITY(U,$J,358.3,6293,0)
- ;;=250.60^^31^408^38
- ;;^UTILITY(U,$J,358.3,6293,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6293,1,4,0)
- ;;=4^250.60
- ;;^UTILITY(U,$J,358.3,6293,1,5,0)
- ;;=5^Peripheral Neuropathy,DM
- ;;^UTILITY(U,$J,358.3,6293,2)
- ;;=^267841^357.2
- ;;^UTILITY(U,$J,358.3,6294,0)
- ;;=356.9^^31^408^40
- ;;^UTILITY(U,$J,358.3,6294,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6294,1,4,0)
- ;;=4^356.9
- ;;^UTILITY(U,$J,358.3,6294,1,5,0)
- ;;=5^Peripheral Neuropathy, Unsp
- ;;^UTILITY(U,$J,358.3,6294,2)
- ;;=^123931
- ;;^UTILITY(U,$J,358.3,6295,0)
- ;;=780.2^^31^408^49
- ;;^UTILITY(U,$J,358.3,6295,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6295,1,4,0)
- ;;=4^780.2
- ;;^UTILITY(U,$J,358.3,6295,1,5,0)
- ;;=5^Syncope Or Presyncope
- ;;^UTILITY(U,$J,358.3,6295,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,6296,0)
- ;;=724.3^^31^408^44
- ;;^UTILITY(U,$J,358.3,6296,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6296,1,4,0)
- ;;=4^724.3
- ;;^UTILITY(U,$J,358.3,6296,1,5,0)
- ;;=5^Sciatica
- ;;^UTILITY(U,$J,358.3,6296,2)
- ;;=^108484
- ;;^UTILITY(U,$J,358.3,6297,0)
- ;;=780.39^^31^408^46
- ;;^UTILITY(U,$J,358.3,6297,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6297,1,4,0)
- ;;=4^780.39
- ;;^UTILITY(U,$J,358.3,6297,1,5,0)
- ;;=5^Seizure NOS,Single Episode
- ;;^UTILITY(U,$J,358.3,6297,2)
- ;;=^28162
- ;;^UTILITY(U,$J,358.3,6298,0)
- ;;=782.0^^31^408^36
- ;;^UTILITY(U,$J,358.3,6298,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6298,1,4,0)
- ;;=4^782.0
+ ;;^UTILITY(U,$J,358.3,6035,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,6036,0)
+ ;;=I70.532^^40^383^37
+ ;;^UTILITY(U,$J,358.3,6036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6036,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6036,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,6036,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,6037,0)
+ ;;=I70.533^^40^383^38
+ ;;^UTILITY(U,$J,358.3,6037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6037,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6037,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,6037,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,6038,0)
+ ;;=I70.534^^40^383^39
+ ;;^UTILITY(U,$J,358.3,6038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6038,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6038,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,6038,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,6039,0)
+ ;;=I70.535^^40^383^40
+ ;;^UTILITY(U,$J,358.3,6039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6039,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6039,1,4,0)
+ ;;=4^I70.535
+ ;;^UTILITY(U,$J,358.3,6039,2)
+ ;;=^5007706
+ ;;^UTILITY(U,$J,358.3,6040,0)
+ ;;=I70.538^^40^383^41
+ ;;^UTILITY(U,$J,358.3,6040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6040,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,6040,1,4,0)
+ ;;=4^I70.538
+ ;;^UTILITY(U,$J,358.3,6040,2)
+ ;;=^5007707
+ ;;^UTILITY(U,$J,358.3,6041,0)
+ ;;=I70.539^^40^383^42
+ ;;^UTILITY(U,$J,358.3,6041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6041,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6041,1,4,0)
+ ;;=4^I70.539
+ ;;^UTILITY(U,$J,358.3,6041,2)
+ ;;=^5007708
+ ;;^UTILITY(U,$J,358.3,6042,0)
+ ;;=I70.541^^40^383^29
+ ;;^UTILITY(U,$J,358.3,6042,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6042,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6042,1,4,0)
+ ;;=4^I70.541
+ ;;^UTILITY(U,$J,358.3,6042,2)
+ ;;=^5007709
+ ;;^UTILITY(U,$J,358.3,6043,0)
+ ;;=I70.542^^40^383^30
+ ;;^UTILITY(U,$J,358.3,6043,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6043,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6043,1,4,0)
+ ;;=4^I70.542
+ ;;^UTILITY(U,$J,358.3,6043,2)
+ ;;=^5007710
+ ;;^UTILITY(U,$J,358.3,6044,0)
+ ;;=I70.543^^40^383^31
+ ;;^UTILITY(U,$J,358.3,6044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6044,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6044,1,4,0)
+ ;;=4^I70.543
+ ;;^UTILITY(U,$J,358.3,6044,2)
+ ;;=^5007711
+ ;;^UTILITY(U,$J,358.3,6045,0)
+ ;;=I70.544^^40^383^32
+ ;;^UTILITY(U,$J,358.3,6045,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6045,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6045,1,4,0)
+ ;;=4^I70.544
+ ;;^UTILITY(U,$J,358.3,6045,2)
+ ;;=^5007712
+ ;;^UTILITY(U,$J,358.3,6046,0)
+ ;;=I70.545^^40^383^33
+ ;;^UTILITY(U,$J,358.3,6046,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6046,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6046,1,4,0)
+ ;;=4^I70.545
+ ;;^UTILITY(U,$J,358.3,6046,2)
+ ;;=^5007713
+ ;;^UTILITY(U,$J,358.3,6047,0)
+ ;;=I70.548^^40^383^34
+ ;;^UTILITY(U,$J,358.3,6047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6047,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,6047,1,4,0)
+ ;;=4^I70.548
+ ;;^UTILITY(U,$J,358.3,6047,2)
+ ;;=^5007714

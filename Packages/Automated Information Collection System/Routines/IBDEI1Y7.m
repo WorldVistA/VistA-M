@@ -1,126 +1,128 @@
-IBDEI1Y7 ; ; 06-AUG-2015
+IBDEI1Y7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34195,2)
- ;;=^5010850
- ;;^UTILITY(U,$J,358.3,34196,0)
- ;;=M19.242^^183^2016^154
- ;;^UTILITY(U,$J,358.3,34196,1,0)
+ ;;^UTILITY(U,$J,358.3,32611,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,32611,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,32611,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,32612,0)
+ ;;=F14.10^^143^1551^1
+ ;;^UTILITY(U,$J,358.3,32612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34196,1,3,0)
- ;;=3^Secondary osteoarthritis, left hand
- ;;^UTILITY(U,$J,358.3,34196,1,4,0)
- ;;=4^M19.242
- ;;^UTILITY(U,$J,358.3,34196,2)
- ;;=^5010848
- ;;^UTILITY(U,$J,358.3,34197,0)
- ;;=M19.212^^183^2016^155
- ;;^UTILITY(U,$J,358.3,34197,1,0)
+ ;;^UTILITY(U,$J,358.3,32612,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,32612,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,32612,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,32613,0)
+ ;;=F14.14^^143^1551^5
+ ;;^UTILITY(U,$J,358.3,32613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34197,1,3,0)
- ;;=3^Secondary osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,34197,1,4,0)
- ;;=4^M19.212
- ;;^UTILITY(U,$J,358.3,34197,2)
- ;;=^5010839
- ;;^UTILITY(U,$J,358.3,34198,0)
- ;;=M19.241^^183^2016^157
- ;;^UTILITY(U,$J,358.3,34198,1,0)
+ ;;^UTILITY(U,$J,358.3,32613,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,32613,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,32613,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,32614,0)
+ ;;=F14.182^^143^1551^6
+ ;;^UTILITY(U,$J,358.3,32614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34198,1,3,0)
- ;;=3^Secondary osteoarthritis, right hand
- ;;^UTILITY(U,$J,358.3,34198,1,4,0)
- ;;=4^M19.241
- ;;^UTILITY(U,$J,358.3,34198,2)
- ;;=^5010847
- ;;^UTILITY(U,$J,358.3,34199,0)
- ;;=M19.211^^183^2016^158
- ;;^UTILITY(U,$J,358.3,34199,1,0)
+ ;;^UTILITY(U,$J,358.3,32614,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,32614,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,32614,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,32615,0)
+ ;;=F14.20^^143^1551^3
+ ;;^UTILITY(U,$J,358.3,32615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34199,1,3,0)
- ;;=3^Secondary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,34199,1,4,0)
- ;;=4^M19.211
- ;;^UTILITY(U,$J,358.3,34199,2)
- ;;=^5010838
- ;;^UTILITY(U,$J,358.3,34200,0)
- ;;=M67.02^^183^2016^159
- ;;^UTILITY(U,$J,358.3,34200,1,0)
+ ;;^UTILITY(U,$J,358.3,32615,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,32615,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,32615,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,32616,0)
+ ;;=F14.21^^143^1551^2
+ ;;^UTILITY(U,$J,358.3,32616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34200,1,3,0)
- ;;=3^Short Achilles tendon (acquired), left ankle
- ;;^UTILITY(U,$J,358.3,34200,1,4,0)
- ;;=4^M67.02
- ;;^UTILITY(U,$J,358.3,34200,2)
- ;;=^5012907
- ;;^UTILITY(U,$J,358.3,34201,0)
- ;;=M67.01^^183^2016^160
- ;;^UTILITY(U,$J,358.3,34201,1,0)
+ ;;^UTILITY(U,$J,358.3,32616,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,32616,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,32616,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,32617,0)
+ ;;=F14.23^^143^1551^4
+ ;;^UTILITY(U,$J,358.3,32617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34201,1,3,0)
- ;;=3^Short Achilles tendon (acquired), right ankle
- ;;^UTILITY(U,$J,358.3,34201,1,4,0)
- ;;=4^M67.01
- ;;^UTILITY(U,$J,358.3,34201,2)
- ;;=^5012906
- ;;^UTILITY(U,$J,358.3,34202,0)
- ;;=M66.232^^183^2016^161
- ;;^UTILITY(U,$J,358.3,34202,1,0)
+ ;;^UTILITY(U,$J,358.3,32617,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,32617,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,32617,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,32618,0)
+ ;;=F43.0^^143^1552^1
+ ;;^UTILITY(U,$J,358.3,32618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34202,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, left forearm
- ;;^UTILITY(U,$J,358.3,34202,1,4,0)
- ;;=4^M66.232
- ;;^UTILITY(U,$J,358.3,34202,2)
- ;;=^5012855
- ;;^UTILITY(U,$J,358.3,34203,0)
- ;;=M66.242^^183^2016^162
- ;;^UTILITY(U,$J,358.3,34203,1,0)
+ ;;^UTILITY(U,$J,358.3,32618,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,32618,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,32618,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,32619,0)
+ ;;=F43.21^^143^1552^3
+ ;;^UTILITY(U,$J,358.3,32619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34203,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, left hand
- ;;^UTILITY(U,$J,358.3,34203,1,4,0)
- ;;=4^M66.242
- ;;^UTILITY(U,$J,358.3,34203,2)
- ;;=^5012858
- ;;^UTILITY(U,$J,358.3,34204,0)
- ;;=M66.231^^183^2016^163
- ;;^UTILITY(U,$J,358.3,34204,1,0)
+ ;;^UTILITY(U,$J,358.3,32619,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,32619,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,32619,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,32620,0)
+ ;;=F43.22^^143^1552^2
+ ;;^UTILITY(U,$J,358.3,32620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34204,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, right forearm
- ;;^UTILITY(U,$J,358.3,34204,1,4,0)
- ;;=4^M66.231
- ;;^UTILITY(U,$J,358.3,34204,2)
- ;;=^5012854
- ;;^UTILITY(U,$J,358.3,34205,0)
- ;;=M66.241^^183^2016^164
- ;;^UTILITY(U,$J,358.3,34205,1,0)
+ ;;^UTILITY(U,$J,358.3,32620,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,32620,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,32620,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,32621,0)
+ ;;=F43.23^^143^1552^5
+ ;;^UTILITY(U,$J,358.3,32621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34205,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, right hand
- ;;^UTILITY(U,$J,358.3,34205,1,4,0)
- ;;=4^M66.241
- ;;^UTILITY(U,$J,358.3,34205,2)
- ;;=^5012857
- ;;^UTILITY(U,$J,358.3,34206,0)
- ;;=M66.332^^183^2016^165
- ;;^UTILITY(U,$J,358.3,34206,1,0)
+ ;;^UTILITY(U,$J,358.3,32621,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,32621,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,32621,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,32622,0)
+ ;;=F43.24^^143^1552^4
+ ;;^UTILITY(U,$J,358.3,32622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34206,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left forearm
- ;;^UTILITY(U,$J,358.3,34206,1,4,0)
- ;;=4^M66.332
- ;;^UTILITY(U,$J,358.3,34206,2)
- ;;=^5012879
- ;;^UTILITY(U,$J,358.3,34207,0)
- ;;=M66.342^^183^2016^166
- ;;^UTILITY(U,$J,358.3,34207,1,0)
+ ;;^UTILITY(U,$J,358.3,32622,1,3,0)
+ ;;=3^Adjustment Disorder w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,32622,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,32622,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,32623,0)
+ ;;=F43.25^^143^1552^6
+ ;;^UTILITY(U,$J,358.3,32623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34207,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left hand
- ;;^UTILITY(U,$J,358.3,34207,1,4,0)
- ;;=4^M66.342
- ;;^UTILITY(U,$J,358.3,34207,2)
- ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,32623,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,32623,1,4,0)
+ ;;=4^F43.25

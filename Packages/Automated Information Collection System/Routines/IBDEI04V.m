@@ -1,130 +1,130 @@
-IBDEI04V ; ; 06-AUG-2015
+IBDEI04V ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1754,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,1754,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,1755,0)
- ;;=Z85.830^^3^51^20
- ;;^UTILITY(U,$J,358.3,1755,1,0)
+ ;;^UTILITY(U,$J,358.3,1589,0)
+ ;;=Z53.09^^14^157^21
+ ;;^UTILITY(U,$J,358.3,1589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1755,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,1755,1,4,0)
- ;;=4^Z85.830
- ;;^UTILITY(U,$J,358.3,1755,2)
- ;;=^5063444
- ;;^UTILITY(U,$J,358.3,1756,0)
- ;;=Z85.828^^3^51^21
- ;;^UTILITY(U,$J,358.3,1756,1,0)
+ ;;^UTILITY(U,$J,358.3,1589,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec of contraindication
+ ;;^UTILITY(U,$J,358.3,1589,1,4,0)
+ ;;=4^Z53.09
+ ;;^UTILITY(U,$J,358.3,1589,2)
+ ;;=^5063093
+ ;;^UTILITY(U,$J,358.3,1590,0)
+ ;;=Z53.29^^14^157^23
+ ;;^UTILITY(U,$J,358.3,1590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1756,1,3,0)
- ;;=3^Personal history of malignant neoplasm of skin NEC
- ;;^UTILITY(U,$J,358.3,1756,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,1756,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,1757,0)
- ;;=Z85.841^^3^51^22
- ;;^UTILITY(U,$J,358.3,1757,1,0)
+ ;;^UTILITY(U,$J,358.3,1590,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec pt decision for oth reasons
+ ;;^UTILITY(U,$J,358.3,1590,1,4,0)
+ ;;=4^Z53.29
+ ;;^UTILITY(U,$J,358.3,1590,2)
+ ;;=^5063097
+ ;;^UTILITY(U,$J,358.3,1591,0)
+ ;;=Z53.1^^14^157^22
+ ;;^UTILITY(U,$J,358.3,1591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1757,1,3,0)
- ;;=3^Personal history of malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,1757,1,4,0)
- ;;=4^Z85.841
- ;;^UTILITY(U,$J,358.3,1757,2)
- ;;=^5063447
- ;;^UTILITY(U,$J,358.3,1758,0)
- ;;=Z85.848^^3^51^23
- ;;^UTILITY(U,$J,358.3,1758,1,0)
+ ;;^UTILITY(U,$J,358.3,1591,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec pt belief and group pressure
+ ;;^UTILITY(U,$J,358.3,1591,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,1591,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,1592,0)
+ ;;=Z53.21^^14^157^25
+ ;;^UTILITY(U,$J,358.3,1592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1758,1,3,0)
- ;;=3^Personal history of malignant neoplasm of prt nervous tissue
- ;;^UTILITY(U,$J,358.3,1758,1,4,0)
- ;;=4^Z85.848
- ;;^UTILITY(U,$J,358.3,1758,2)
- ;;=^5063448
- ;;^UTILITY(U,$J,358.3,1759,0)
- ;;=Z85.850^^3^51^24
- ;;^UTILITY(U,$J,358.3,1759,1,0)
+ ;;^UTILITY(U,$J,358.3,1592,1,3,0)
+ ;;=3^Proc/trtmt not crd out d/t pt lv bef seen by hlth care prov
+ ;;^UTILITY(U,$J,358.3,1592,1,4,0)
+ ;;=4^Z53.21
+ ;;^UTILITY(U,$J,358.3,1592,2)
+ ;;=^5063096
+ ;;^UTILITY(U,$J,358.3,1593,0)
+ ;;=Z53.8^^14^157^24
+ ;;^UTILITY(U,$J,358.3,1593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1759,1,3,0)
- ;;=3^Personal history of malignant neoplasm of thyroid
- ;;^UTILITY(U,$J,358.3,1759,1,4,0)
- ;;=4^Z85.850
- ;;^UTILITY(U,$J,358.3,1759,2)
- ;;=^5063449
- ;;^UTILITY(U,$J,358.3,1760,0)
- ;;=Z85.858^^3^51^25
- ;;^UTILITY(U,$J,358.3,1760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1760,1,3,0)
- ;;=3^Personal history of malignant neoplasm of endocrine glands
- ;;^UTILITY(U,$J,358.3,1760,1,4,0)
- ;;=4^Z85.858
- ;;^UTILITY(U,$J,358.3,1760,2)
- ;;=^5063450
- ;;^UTILITY(U,$J,358.3,1761,0)
- ;;=Z86.61^^3^51^5
- ;;^UTILITY(U,$J,358.3,1761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1761,1,3,0)
- ;;=3^Personal history of infections of the central nervous system
- ;;^UTILITY(U,$J,358.3,1761,1,4,0)
- ;;=4^Z86.61
- ;;^UTILITY(U,$J,358.3,1761,2)
- ;;=^5063472
- ;;^UTILITY(U,$J,358.3,1762,0)
- ;;=Z87.09^^3^51^4
- ;;^UTILITY(U,$J,358.3,1762,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1762,1,3,0)
- ;;=3^Personal history of diseases of the respiratory system NEC
- ;;^UTILITY(U,$J,358.3,1762,1,4,0)
- ;;=4^Z87.09
- ;;^UTILITY(U,$J,358.3,1762,2)
- ;;=^5063481
- ;;^UTILITY(U,$J,358.3,1763,0)
- ;;=Z87.01^^3^51^27
- ;;^UTILITY(U,$J,358.3,1763,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1763,1,3,0)
- ;;=3^Personal history of pneumonia (recurrent)
- ;;^UTILITY(U,$J,358.3,1763,1,4,0)
- ;;=4^Z87.01
- ;;^UTILITY(U,$J,358.3,1763,2)
- ;;=^5063480
- ;;^UTILITY(U,$J,358.3,1764,0)
- ;;=Z86.010^^3^51^3
- ;;^UTILITY(U,$J,358.3,1764,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1764,1,3,0)
- ;;=3^Personal history of colonic polyps
- ;;^UTILITY(U,$J,358.3,1764,1,4,0)
- ;;=4^Z86.010
- ;;^UTILITY(U,$J,358.3,1764,2)
- ;;=^5063456
- ;;^UTILITY(U,$J,358.3,1765,0)
- ;;=Z87.440^^3^51^28
- ;;^UTILITY(U,$J,358.3,1765,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1765,1,3,0)
- ;;=3^Personal history of urinary (tract) infections
- ;;^UTILITY(U,$J,358.3,1765,1,4,0)
- ;;=4^Z87.440
- ;;^UTILITY(U,$J,358.3,1765,2)
- ;;=^5063495
- ;;^UTILITY(U,$J,358.3,1766,0)
- ;;=Z87.441^^3^51^26
- ;;^UTILITY(U,$J,358.3,1766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1766,1,3,0)
- ;;=3^Personal history of nephrotic syndrome
- ;;^UTILITY(U,$J,358.3,1766,1,4,0)
- ;;=4^Z87.441
- ;;^UTILITY(U,$J,358.3,1766,2)
- ;;=^5063496
- ;;^UTILITY(U,$J,358.3,1767,0)
- ;;=Z91.81^^3^51^1
+ ;;^UTILITY(U,$J,358.3,1593,1,3,0)
+ ;;=3^Proc/trtmt not crd out d/t other reasons
+ ;;^UTILITY(U,$J,358.3,1593,1,4,0)
+ ;;=4^Z53.8
+ ;;^UTILITY(U,$J,358.3,1593,2)
+ ;;=^5063098
+ ;;^UTILITY(U,$J,358.3,1594,0)
+ ;;=96150^^15^158^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1594,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1594,1,2,0)
+ ;;=2^96150
+ ;;^UTILITY(U,$J,358.3,1594,1,3,0)
+ ;;=3^Initial Assess,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,1595,0)
+ ;;=96151^^15^158^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1595,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1595,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,1595,1,3,0)
+ ;;=3^Re-Assess, Ea 15 min
+ ;;^UTILITY(U,$J,358.3,1596,0)
+ ;;=97755^^15^158^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1596,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1596,1,2,0)
+ ;;=2^97755
+ ;;^UTILITY(U,$J,358.3,1596,1,3,0)
+ ;;=3^Assistive Technology Assess,ea 15min
+ ;;^UTILITY(U,$J,358.3,1597,0)
+ ;;=96152^^15^158^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1597,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1597,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,1597,1,3,0)
+ ;;=3^Adjustment Counseling, Ea 15min
+ ;;^UTILITY(U,$J,358.3,1598,0)
+ ;;=G9012^^15^158^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1598,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1598,1,2,0)
+ ;;=2^G9012
+ ;;^UTILITY(U,$J,358.3,1598,1,3,0)
+ ;;=3^Case Management NEC,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,1599,0)
+ ;;=97799^^15^158^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1599,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1599,1,2,0)
+ ;;=2^97799
+ ;;^UTILITY(U,$J,358.3,1599,1,3,0)
+ ;;=3^Physical Medicine Procedure
+ ;;^UTILITY(U,$J,358.3,1600,0)
+ ;;=97750^^15^158^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1600,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1600,1,2,0)
+ ;;=2^97750
+ ;;^UTILITY(U,$J,358.3,1600,1,3,0)
+ ;;=3^Physical Performance Test
+ ;;^UTILITY(U,$J,358.3,1601,0)
+ ;;=T1016^^15^158^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1601,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1601,1,2,0)
+ ;;=2^T1016
+ ;;^UTILITY(U,$J,358.3,1601,1,3,0)
+ ;;=3^Case Management,Ea 15 Min
+ ;;^UTILITY(U,$J,358.3,1602,0)
+ ;;=97110^^15^159^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1602,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1602,1,2,0)
+ ;;=2^97110
+ ;;^UTILITY(U,$J,358.3,1602,1,3,0)
+ ;;=3^Therapeutic Exercise,1> areas,ea 15min
+ ;;^UTILITY(U,$J,358.3,1603,0)
+ ;;=97116^^15^159^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1603,1,0)
+ ;;=^358.31IA^3^2

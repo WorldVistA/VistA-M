@@ -1,134 +1,138 @@
-IBDEI06B ; ; 06-AUG-2015
+IBDEI06B ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2429,1,3,0)
- ;;=3^Acute/subacute allergic otitis media, r ear
- ;;^UTILITY(U,$J,358.3,2429,1,4,0)
- ;;=4^H65.111
- ;;^UTILITY(U,$J,358.3,2429,2)
- ;;=^5006577
- ;;^UTILITY(U,$J,358.3,2430,0)
- ;;=H65.112^^5^71^7
- ;;^UTILITY(U,$J,358.3,2430,1,0)
+ ;;^UTILITY(U,$J,358.3,2356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2430,1,3,0)
- ;;=3^Acute/subacute allergic otitis media, left ear
- ;;^UTILITY(U,$J,358.3,2430,1,4,0)
- ;;=4^H65.112
- ;;^UTILITY(U,$J,358.3,2430,2)
- ;;=^5006578
- ;;^UTILITY(U,$J,358.3,2431,0)
- ;;=H66.001^^5^71^5
- ;;^UTILITY(U,$J,358.3,2431,1,0)
+ ;;^UTILITY(U,$J,358.3,2356,1,3,0)
+ ;;=3^Hyperlipidemia NEC
+ ;;^UTILITY(U,$J,358.3,2356,1,4,0)
+ ;;=4^E78.4
+ ;;^UTILITY(U,$J,358.3,2356,2)
+ ;;=^5002968
+ ;;^UTILITY(U,$J,358.3,2357,0)
+ ;;=E78.5^^19^198^2
+ ;;^UTILITY(U,$J,358.3,2357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2431,1,3,0)
- ;;=3^Acute suppr otitis media w/o spon rupt ear drum, right
- ;;^UTILITY(U,$J,358.3,2431,1,4,0)
- ;;=4^H66.001
- ;;^UTILITY(U,$J,358.3,2431,2)
- ;;=^5006613
- ;;^UTILITY(U,$J,358.3,2432,0)
- ;;=H66.002^^5^71^6
- ;;^UTILITY(U,$J,358.3,2432,1,0)
+ ;;^UTILITY(U,$J,358.3,2357,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,2357,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,2357,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,2358,0)
+ ;;=E78.6^^19^198^3
+ ;;^UTILITY(U,$J,358.3,2358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2432,1,3,0)
- ;;=3^Acute suppr otitis media w/o spon rupt ear drum, left e
- ;;^UTILITY(U,$J,358.3,2432,1,4,0)
- ;;=4^H66.002
- ;;^UTILITY(U,$J,358.3,2432,2)
- ;;=^5006614
- ;;^UTILITY(U,$J,358.3,2433,0)
- ;;=H66.3X1^^5^71^18
- ;;^UTILITY(U,$J,358.3,2433,1,0)
+ ;;^UTILITY(U,$J,358.3,2358,1,3,0)
+ ;;=3^Lipoprotein Deficiency
+ ;;^UTILITY(U,$J,358.3,2358,1,4,0)
+ ;;=4^E78.6
+ ;;^UTILITY(U,$J,358.3,2358,2)
+ ;;=^5002970
+ ;;^UTILITY(U,$J,358.3,2359,0)
+ ;;=I22.0^^19^199^7
+ ;;^UTILITY(U,$J,358.3,2359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2433,1,3,0)
- ;;=3^Chronic suppurative otitis media, right ear NEC
- ;;^UTILITY(U,$J,358.3,2433,1,4,0)
- ;;=4^H66.3X1
- ;;^UTILITY(U,$J,358.3,2433,2)
- ;;=^5006633
- ;;^UTILITY(U,$J,358.3,2434,0)
- ;;=H66.3X2^^5^71^17
- ;;^UTILITY(U,$J,358.3,2434,1,0)
+ ;;^UTILITY(U,$J,358.3,2359,1,3,0)
+ ;;=3^Subsequent STEMI of Anterior Wall
+ ;;^UTILITY(U,$J,358.3,2359,1,4,0)
+ ;;=4^I22.0
+ ;;^UTILITY(U,$J,358.3,2359,2)
+ ;;=^5007089
+ ;;^UTILITY(U,$J,358.3,2360,0)
+ ;;=I21.09^^19^199^2
+ ;;^UTILITY(U,$J,358.3,2360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2434,1,3,0)
- ;;=3^Chronic suppurative otitis media, left ear NEC
- ;;^UTILITY(U,$J,358.3,2434,1,4,0)
- ;;=4^H66.3X2
- ;;^UTILITY(U,$J,358.3,2434,2)
- ;;=^5133538
- ;;^UTILITY(U,$J,358.3,2435,0)
- ;;=H74.01^^5^71^57
- ;;^UTILITY(U,$J,358.3,2435,1,0)
+ ;;^UTILITY(U,$J,358.3,2360,1,3,0)
+ ;;=3^STEMI Involving Coronary Artery of Anterior Wall
+ ;;^UTILITY(U,$J,358.3,2360,1,4,0)
+ ;;=4^I21.09
+ ;;^UTILITY(U,$J,358.3,2360,2)
+ ;;=^5007082
+ ;;^UTILITY(U,$J,358.3,2361,0)
+ ;;=I21.02^^19^199^4
+ ;;^UTILITY(U,$J,358.3,2361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2435,1,3,0)
- ;;=3^Tympanosclerosis, right ear
- ;;^UTILITY(U,$J,358.3,2435,1,4,0)
- ;;=4^H74.01
- ;;^UTILITY(U,$J,358.3,2435,2)
- ;;=^5006796
- ;;^UTILITY(U,$J,358.3,2436,0)
- ;;=H74.02^^5^71^56
- ;;^UTILITY(U,$J,358.3,2436,1,0)
+ ;;^UTILITY(U,$J,358.3,2361,1,3,0)
+ ;;=3^STEMI Involving Left Anterior Descending Coronary Artery
+ ;;^UTILITY(U,$J,358.3,2361,1,4,0)
+ ;;=4^I21.02
+ ;;^UTILITY(U,$J,358.3,2361,2)
+ ;;=^5007081
+ ;;^UTILITY(U,$J,358.3,2362,0)
+ ;;=I21.01^^19^199^5
+ ;;^UTILITY(U,$J,358.3,2362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2436,1,3,0)
- ;;=3^Tympanosclerosis, left ear
- ;;^UTILITY(U,$J,358.3,2436,1,4,0)
- ;;=4^H74.02
- ;;^UTILITY(U,$J,358.3,2436,2)
- ;;=^5006797
- ;;^UTILITY(U,$J,358.3,2437,0)
- ;;=H74.11^^5^71^10
- ;;^UTILITY(U,$J,358.3,2437,1,0)
+ ;;^UTILITY(U,$J,358.3,2362,1,3,0)
+ ;;=3^STEMI Involving Left Main Coronary Artery
+ ;;^UTILITY(U,$J,358.3,2362,1,4,0)
+ ;;=4^I21.01
+ ;;^UTILITY(U,$J,358.3,2362,2)
+ ;;=^5007080
+ ;;^UTILITY(U,$J,358.3,2363,0)
+ ;;=I21.19^^19^199^3
+ ;;^UTILITY(U,$J,358.3,2363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2437,1,3,0)
- ;;=3^Adhesive right middle ear disease
- ;;^UTILITY(U,$J,358.3,2437,1,4,0)
- ;;=4^H74.11
- ;;^UTILITY(U,$J,358.3,2437,2)
- ;;=^5006800
- ;;^UTILITY(U,$J,358.3,2438,0)
- ;;=H74.12^^5^71^9
- ;;^UTILITY(U,$J,358.3,2438,1,0)
+ ;;^UTILITY(U,$J,358.3,2363,1,3,0)
+ ;;=3^STEMI Involving Coronary Artery of Inferior Wall
+ ;;^UTILITY(U,$J,358.3,2363,1,4,0)
+ ;;=4^I21.19
+ ;;^UTILITY(U,$J,358.3,2363,2)
+ ;;=^5007084
+ ;;^UTILITY(U,$J,358.3,2364,0)
+ ;;=I22.1^^19^199^8
+ ;;^UTILITY(U,$J,358.3,2364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2438,1,3,0)
- ;;=3^Adhesive left middle ear disease
- ;;^UTILITY(U,$J,358.3,2438,1,4,0)
- ;;=4^H74.12
- ;;^UTILITY(U,$J,358.3,2438,2)
- ;;=^5006801
- ;;^UTILITY(U,$J,358.3,2439,0)
- ;;=H81.01^^5^71^38
- ;;^UTILITY(U,$J,358.3,2439,1,0)
+ ;;^UTILITY(U,$J,358.3,2364,1,3,0)
+ ;;=3^Subsequent STEMI of Inferior Wall
+ ;;^UTILITY(U,$J,358.3,2364,1,4,0)
+ ;;=4^I22.1
+ ;;^UTILITY(U,$J,358.3,2364,2)
+ ;;=^5007090
+ ;;^UTILITY(U,$J,358.3,2365,0)
+ ;;=I21.4^^19^199^1
+ ;;^UTILITY(U,$J,358.3,2365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2439,1,3,0)
- ;;=3^Meniere's disease, right ear
- ;;^UTILITY(U,$J,358.3,2439,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,2439,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,2440,0)
- ;;=H81.02^^5^71^37
- ;;^UTILITY(U,$J,358.3,2440,1,0)
+ ;;^UTILITY(U,$J,358.3,2365,1,3,0)
+ ;;=3^NSTEMI
+ ;;^UTILITY(U,$J,358.3,2365,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,2365,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,2366,0)
+ ;;=I21.3^^19^199^6
+ ;;^UTILITY(U,$J,358.3,2366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2440,1,3,0)
- ;;=3^Meniere's disease, left ear
- ;;^UTILITY(U,$J,358.3,2440,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,2440,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,2441,0)
- ;;=H81.391^^5^71^49
- ;;^UTILITY(U,$J,358.3,2441,1,0)
+ ;;^UTILITY(U,$J,358.3,2366,1,3,0)
+ ;;=3^STEMI of Unspec Site
+ ;;^UTILITY(U,$J,358.3,2366,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,2366,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,2367,0)
+ ;;=I34.2^^19^200^2
+ ;;^UTILITY(U,$J,358.3,2367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2441,1,3,0)
- ;;=3^Peripheral vertigo, right ear NEC
- ;;^UTILITY(U,$J,358.3,2441,1,4,0)
- ;;=4^H81.391
- ;;^UTILITY(U,$J,358.3,2441,2)
- ;;=^5006876
- ;;^UTILITY(U,$J,358.3,2442,0)
- ;;=H81.392^^5^71^48
- ;;^UTILITY(U,$J,358.3,2442,1,0)
+ ;;^UTILITY(U,$J,358.3,2367,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,2367,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,2367,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,2368,0)
+ ;;=I35.0^^19^200^1
+ ;;^UTILITY(U,$J,358.3,2368,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2368,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,2368,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,2368,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,2369,0)
+ ;;=I36.1^^19^200^4
+ ;;^UTILITY(U,$J,358.3,2369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2369,1,3,0)
+ ;;=3^Nonrheumatic Tricuspid Valve Insufficiency

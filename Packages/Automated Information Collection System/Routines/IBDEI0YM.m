@@ -1,142 +1,128 @@
-IBDEI0YM ; ; 06-AUG-2015
+IBDEI0YM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16876,1,3,0)
- ;;=3^V55.0
- ;;^UTILITY(U,$J,358.3,16876,1,4,0)
- ;;=4^Perc Tracheostomy
- ;;^UTILITY(U,$J,358.3,16876,2)
- ;;=^295516
- ;;^UTILITY(U,$J,358.3,16877,0)
- ;;=V65.3^^87^1026^4
- ;;^UTILITY(U,$J,358.3,16877,1,0)
+ ;;^UTILITY(U,$J,358.3,15943,0)
+ ;;=S61.151A^^85^829^60
+ ;;^UTILITY(U,$J,358.3,15943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16877,1,3,0)
- ;;=3^V65.3
- ;;^UTILITY(U,$J,358.3,16877,1,4,0)
- ;;=4^Dietary Counseling
- ;;^UTILITY(U,$J,358.3,16877,2)
- ;;=^295563
- ;;^UTILITY(U,$J,358.3,16878,0)
- ;;=V65.41^^87^1026^6
- ;;^UTILITY(U,$J,358.3,16878,1,0)
+ ;;^UTILITY(U,$J,358.3,15943,1,3,0)
+ ;;=3^Open Bite of Right Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15943,1,4,0)
+ ;;=4^S61.151A
+ ;;^UTILITY(U,$J,358.3,15943,2)
+ ;;=^5032738
+ ;;^UTILITY(U,$J,358.3,15944,0)
+ ;;=S61.051A^^85^829^61
+ ;;^UTILITY(U,$J,358.3,15944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16878,1,3,0)
- ;;=3^V65.41
- ;;^UTILITY(U,$J,358.3,16878,1,4,0)
- ;;=4^Exercise Counseling
- ;;^UTILITY(U,$J,358.3,16878,2)
- ;;=^303466
- ;;^UTILITY(U,$J,358.3,16879,0)
- ;;=V65.49^^87^1026^3
- ;;^UTILITY(U,$J,358.3,16879,1,0)
+ ;;^UTILITY(U,$J,358.3,15944,1,3,0)
+ ;;=3^Open Bite of Right Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15944,1,4,0)
+ ;;=4^S61.051A
+ ;;^UTILITY(U,$J,358.3,15944,2)
+ ;;=^5032714
+ ;;^UTILITY(U,$J,358.3,15945,0)
+ ;;=S61.551A^^85^829^62
+ ;;^UTILITY(U,$J,358.3,15945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16879,1,3,0)
- ;;=3^V65.49
- ;;^UTILITY(U,$J,358.3,16879,1,4,0)
- ;;=4^Counseling,Other Specified
- ;;^UTILITY(U,$J,358.3,16879,2)
- ;;=^303471
- ;;^UTILITY(U,$J,358.3,16880,0)
- ;;=V70.5^^87^1026^7
- ;;^UTILITY(U,$J,358.3,16880,1,0)
+ ;;^UTILITY(U,$J,358.3,15945,1,3,0)
+ ;;=3^Open Bite of Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15945,1,4,0)
+ ;;=4^S61.551A
+ ;;^UTILITY(U,$J,358.3,15945,2)
+ ;;=^5033050
+ ;;^UTILITY(U,$J,358.3,15946,0)
+ ;;=S01.05XA^^85^829^63
+ ;;^UTILITY(U,$J,358.3,15946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16880,1,3,0)
- ;;=3^V70.5
- ;;^UTILITY(U,$J,358.3,16880,1,4,0)
- ;;=4^Health Exam,Group Survey
- ;;^UTILITY(U,$J,358.3,16880,2)
- ;;=^295595
- ;;^UTILITY(U,$J,358.3,16881,0)
- ;;=V81.4^^87^1026^14
- ;;^UTILITY(U,$J,358.3,16881,1,0)
+ ;;^UTILITY(U,$J,358.3,15946,1,3,0)
+ ;;=3^Open Bite of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15946,1,4,0)
+ ;;=4^S01.05XA
+ ;;^UTILITY(U,$J,358.3,15946,2)
+ ;;=^5020048
+ ;;^UTILITY(U,$J,358.3,15947,0)
+ ;;=S01.95XA^^85^829^2
+ ;;^UTILITY(U,$J,358.3,15947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16881,1,3,0)
- ;;=3^V81.4
- ;;^UTILITY(U,$J,358.3,16881,1,4,0)
- ;;=4^Screen for Respiratory Conditions
- ;;^UTILITY(U,$J,358.3,16881,2)
- ;;=^295691
- ;;^UTILITY(U,$J,358.3,16882,0)
- ;;=V46.11^^87^1026^17
- ;;^UTILITY(U,$J,358.3,16882,1,0)
+ ;;^UTILITY(U,$J,358.3,15947,1,3,0)
+ ;;=3^Open Bite of Head,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15947,1,4,0)
+ ;;=4^S01.95XA
+ ;;^UTILITY(U,$J,358.3,15947,2)
+ ;;=^5020249
+ ;;^UTILITY(U,$J,358.3,15948,0)
+ ;;=S11.95XA^^85^829^33
+ ;;^UTILITY(U,$J,358.3,15948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16882,1,3,0)
- ;;=3^V46.11
- ;;^UTILITY(U,$J,358.3,16882,1,4,0)
- ;;=4^Vent Dependence
- ;;^UTILITY(U,$J,358.3,16882,2)
- ;;=^331580
- ;;^UTILITY(U,$J,358.3,16883,0)
- ;;=V44.0^^87^1026^16
- ;;^UTILITY(U,$J,358.3,16883,1,0)
+ ;;^UTILITY(U,$J,358.3,15948,1,3,0)
+ ;;=3^Open Bite of Neck,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15948,1,4,0)
+ ;;=4^S11.95XA
+ ;;^UTILITY(U,$J,358.3,15948,2)
+ ;;=^5021542
+ ;;^UTILITY(U,$J,358.3,15949,0)
+ ;;=S01.03XA^^85^830^64
+ ;;^UTILITY(U,$J,358.3,15949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16883,1,3,0)
- ;;=3^V44.0
- ;;^UTILITY(U,$J,358.3,16883,1,4,0)
- ;;=4^Tracheostomy Status
- ;;^UTILITY(U,$J,358.3,16883,2)
- ;;=^295446
- ;;^UTILITY(U,$J,358.3,16884,0)
- ;;=V60.0^^87^1026^8
- ;;^UTILITY(U,$J,358.3,16884,1,0)
+ ;;^UTILITY(U,$J,358.3,15949,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15949,1,4,0)
+ ;;=4^S01.03XA
+ ;;^UTILITY(U,$J,358.3,15949,2)
+ ;;=^5020042
+ ;;^UTILITY(U,$J,358.3,15950,0)
+ ;;=S01.331A^^85^830^40
+ ;;^UTILITY(U,$J,358.3,15950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16884,1,3,0)
- ;;=3^V60.0
- ;;^UTILITY(U,$J,358.3,16884,1,4,0)
- ;;=4^Homelessness
- ;;^UTILITY(U,$J,358.3,16884,2)
- ;;=^295539
- ;;^UTILITY(U,$J,358.3,16885,0)
- ;;=511.0^^87^1027^7
- ;;^UTILITY(U,$J,358.3,16885,1,0)
+ ;;^UTILITY(U,$J,358.3,15950,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15950,1,4,0)
+ ;;=4^S01.331A
+ ;;^UTILITY(U,$J,358.3,15950,2)
+ ;;=^5020126
+ ;;^UTILITY(U,$J,358.3,15951,0)
+ ;;=S01.332A^^85^830^8
+ ;;^UTILITY(U,$J,358.3,15951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16885,1,3,0)
- ;;=3^511.0
- ;;^UTILITY(U,$J,358.3,16885,1,4,0)
- ;;=4^Pleurisy
- ;;^UTILITY(U,$J,358.3,16886,0)
- ;;=501.^^87^1027^1
- ;;^UTILITY(U,$J,358.3,16886,1,0)
+ ;;^UTILITY(U,$J,358.3,15951,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15951,1,4,0)
+ ;;=4^S01.332A
+ ;;^UTILITY(U,$J,358.3,15951,2)
+ ;;=^5020129
+ ;;^UTILITY(U,$J,358.3,15952,0)
+ ;;=S01.23XA^^85^830^34
+ ;;^UTILITY(U,$J,358.3,15952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16886,1,3,0)
- ;;=3^501.
- ;;^UTILITY(U,$J,358.3,16886,1,4,0)
- ;;=4^Asbestos Plaques/Pleural Thickening
- ;;^UTILITY(U,$J,358.3,16886,2)
- ;;=Asbestos Plaques^10704
- ;;^UTILITY(U,$J,358.3,16887,0)
- ;;=510.9^^87^1027^3
- ;;^UTILITY(U,$J,358.3,16887,1,0)
+ ;;^UTILITY(U,$J,358.3,15952,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Nose,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15952,1,4,0)
+ ;;=4^S01.23XA
+ ;;^UTILITY(U,$J,358.3,15952,2)
+ ;;=^5020099
+ ;;^UTILITY(U,$J,358.3,15953,0)
+ ;;=S01.432A^^85^830^7
+ ;;^UTILITY(U,$J,358.3,15953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16887,1,3,0)
- ;;=3^510.9
- ;;^UTILITY(U,$J,358.3,16887,1,4,0)
- ;;=4^Empyema
- ;;^UTILITY(U,$J,358.3,16887,2)
- ;;=^39810
- ;;^UTILITY(U,$J,358.3,16888,0)
- ;;=511.9^^87^1027^6
- ;;^UTILITY(U,$J,358.3,16888,1,0)
+ ;;^UTILITY(U,$J,358.3,15953,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15953,1,4,0)
+ ;;=4^S01.432A
+ ;;^UTILITY(U,$J,358.3,15953,2)
+ ;;=^5020168
+ ;;^UTILITY(U,$J,358.3,15954,0)
+ ;;=S01.431A^^85^830^39
+ ;;^UTILITY(U,$J,358.3,15954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16888,1,3,0)
- ;;=3^511.9
- ;;^UTILITY(U,$J,358.3,16888,1,4,0)
- ;;=4^Pleural Effusion
- ;;^UTILITY(U,$J,358.3,16888,2)
- ;;=Pleural Effusion^123973
- ;;^UTILITY(U,$J,358.3,16889,0)
- ;;=510.0^^87^1027^4
- ;;^UTILITY(U,$J,358.3,16889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16889,1,3,0)
- ;;=3^510.0
- ;;^UTILITY(U,$J,358.3,16889,1,4,0)
- ;;=4^Empyema w/ Fistula
- ;;^UTILITY(U,$J,358.3,16889,2)
- ;;=^39807
- ;;^UTILITY(U,$J,358.3,16890,0)
- ;;=511.81^^87^1027^5
- ;;^UTILITY(U,$J,358.3,16890,1,0)
+ ;;^UTILITY(U,$J,358.3,15954,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15954,1,4,0)
+ ;;=4^S01.431A
+ ;;^UTILITY(U,$J,358.3,15954,2)
+ ;;=^5020165
+ ;;^UTILITY(U,$J,358.3,15955,0)
+ ;;=S01.83XA^^85^830^1
+ ;;^UTILITY(U,$J,358.3,15955,1,0)
  ;;=^358.31IA^4^2

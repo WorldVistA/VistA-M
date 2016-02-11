@@ -1,5 +1,5 @@
 SROAPAS ;BIR/MAM - PRINT A COMPLETE ASSESSMENT ;05/28/10
- ;;3.0;Surgery;**38,47,81,88,111,112,100,125,153,166,174,175,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**38,47,81,88,111,112,100,125,153,166,174,175,182,184**;24 Jun 93;Build 35
  S SRSOUT=0,SRPG=0,SR("RA")=$G(^SRF(SRTN,"RA")),SRATYPE=$P(SR("RA"),"^",2) F I=200:1:208,200.1 S SRA(I)=$G(^SRF(SRTN,I))
  S SRA("OP")=^SRF(SRTN,"OP"),SRA("CON")=$G(^SRF(SRTN,"CON"))
  S SR(0)=^SRF(SRTN,0),DFN=$P(SR(0),"^"),SRSDATE=$P(SR(0),"^",9) D DEM^VADPT S SRANM=VADM(1)_"  "_VA("PID"),Z=$P(VADM(3),"^"),Y=$E(SRSDATE,1,7),AGE=$E(Y,1,3)-$E(Z,1,3)-($E(Y,4,7)<$E(Z,4,7))
@@ -27,28 +27,29 @@ SROAPAS ;BIR/MAM - PRINT A COMPLETE ASSESSMENT ;05/28/10
  I $L(SROLINE)=29!$L(SROLINE)<29 S SROL(N)=SROLINE,SRNUM1=2
  I $L(SROLINE)>29 D WRAP
  ;
- W !,"Sex: ",?16,$P(VADM(5),"^",2),?40,"Ethnicity:",?51,SROETH
+ W !,"Sex: ",?16,$P(VADM(5),"^",2),?40,"Ethnicity:",?59,SROETH
  W !,?40,"Race:"
  I $G(VADM(12)) F D=1:1:SRNUM1-1 D
- .W:D=1 ?51,SROL(D)
- .W:D'=1 !,?51,SROL(D)
- I '$G(VADM(12)) W ?51,"UNANSWERED"
+ .W:D=1 ?59,SROL(D)
+ .W:D'=1 !,?59,SROL(D)
+ I '$G(VADM(12)) W ?59,"UNANSWERED"
  ;
  K SROL,SROLINE,SRORC,SRORACE,SROLN,SROLN1,SROWRAP,SRNUM1
  ;
- S Y=$P($G(^SRF(SRTN,208)),"^",11),C=$P(^DD(130,413,0),"^",2) D Y^DIQ S X=$S(Y'="":Y,1:"NOT ENTERED") W !,"Transfer Status: ",X
+ S Y=$P($G(^SRF(SRTN,208)),"^",11),C=$P(^DD(130,413,0),"^",2) D Y^DIQ S X=$S(Y'="":Y,1:"NOT ENTERED") W !,"Transfer Status:",?44,X
  F J=1,2,3 S Y=$P($G(^SRF(SRTN,208.1)),"^",J) D
  .I J'=3 X:Y ^DD("DD") S Z=$P(Y,"@")_"  "_$E($P(Y,"@",2),1,5)
  .I J=3 S C=$P(^DD(130,454,0),"^",2) D Y^DIQ S Z=Y
- .W !,"Observation "_$S(J=1:"Admission Date:",J=2:"Discharge Date:",1:"Treating Specialty:"),?47,Z
+ .W !,"Observation "_$S(J=1:"Admission Date:",J=2:"Discharge Date:",1:"Treating Specialty:"),?44,Z
  F J=14:1:17 S Y=$P($G(^SRF(SRTN,208)),"^",J) X ^DD("DD") S SRPTMODT(J)=Y
- S (X,Z)=SRPTMODT(14) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Hospital Admission Date:",?47,Z
- S (X,Z)=SRPTMODT(15) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Hospital Discharge Date:",?47,Z
- S (X,Z)=SRPTMODT(16) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Admitted/Transferred to Surgical Service:",?47,Z
- S (X,Z)=SRPTMODT(17) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Discharged/Transferred to Chronic Care:",?47,Z
+ S (X,Z)=SRPTMODT(14) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Hospital Admission Date:",?44,Z
+ S (X,Z)=SRPTMODT(15) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Hospital Discharge Date:",?44,Z
+ S (X,Z)=SRPTMODT(16) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Admitted/Transferred to Surgical Service:",?44,Z
+ S (X,Z)=SRPTMODT(17) S:X'="" Z=$P(X,"@")_"  "_$E($P(X,"@",2),1,5) W !,"Discharged/Transferred to Chronic Care:",?44,Z
+ S Y=$P($G(^SRF(SRTN,210)),"^",14),C=$P(^DD(130,685,0),"^",2) D Y^DIQ S X=$S(Y'="":Y,1:"NOT ENTERED") W !,"DC/REL Destination:",?44,$E(X,1,35)
  S X=$P($G(^SRF(SRTN,0)),"^",12)
- W !,"Hospital Admission Status:",?47,$S(X="I":"INPATIENT",X="O":"OUTPATIENT",X=1:"OUTPATIENT",X=2:"OUTPATIENT",X=3:"OUTPATIENT",1:"")
- S X=$P(SR("RA"),"^",9) W !,"Assessment Completed by:" I $G(X) W ?47,$P($G(^VA(200,X,0)),"^")
+ W !,"Hospital Admission Status:",?44,$S(X="I":"INPATIENT",X="O":"OUTPATIENT",X=1:"OUTPATIENT",X=2:"INPATIENT",X=3:"INPATIENT",1:"")
+ S X=$P(SR("RA"),"^",9) W !,"Assessment Completed by:" I $G(X) W ?44,$P($G(^VA(200,X,0)),"^")
  I $E(IOST)="P" W ! F MOE=1:1:80 W "-"
  I $E(IOST)'="P" D PAGE I SRSOUT G END
  D ^SROAPRT1 G:SRSOUT END I $Y+20>IOSL D PAGE I SRSOUT G END

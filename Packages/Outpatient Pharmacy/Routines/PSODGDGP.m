@@ -1,5 +1,5 @@
 PSODGDGP ;BIR/SAB - drug drug interaction checker ;4/14/93
- ;;7.0;OUTPATIENT PHARMACY;**251,387,379,391,372,416**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**251,387,379,391,372,416,370**;DEC 1997;Build 14
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references PSOUL^PSSLOCK supported by DBIA 2789
  ;External references to ^ORRDI1 supported by DBIA 4659
@@ -67,7 +67,7 @@ T3 ;
  I $D(PSOX("NOPSDRPH")) S PSOTLBL=2
  Q PSOTLBL
  ;
-BLD I $D(^XUSEC("PSORPH",DUZ)) S PSORX("PHARM")=DUZ D PHARM Q
+BLD I $D(^XUSEC("PSORPH",DUZ)) D PHARM Q  ;*370
 BLD2 ;
  Q:$P(ON,";")'="O"
  S LSI=$P(^PSRX($P(ON,";",2),0),"^")_"/"_$P(^PSDRUG($P(^PSRX($P(ON,";",2),0),"^",6),0),"^")_","_LSI

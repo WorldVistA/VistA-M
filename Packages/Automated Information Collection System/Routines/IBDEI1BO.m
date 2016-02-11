@@ -1,138 +1,120 @@
-IBDEI1BO ; ; 06-AUG-2015
+IBDEI1BO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23422,2)
- ;;=^322105
- ;;^UTILITY(U,$J,358.3,23423,0)
- ;;=E886.0^^125^1409^16
- ;;^UTILITY(U,$J,358.3,23423,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23423,1,4,0)
- ;;=4^E886.0
- ;;^UTILITY(U,$J,358.3,23423,1,5,0)
- ;;=5^Fall in Sports
- ;;^UTILITY(U,$J,358.3,23423,2)
- ;;=^294656
- ;;^UTILITY(U,$J,358.3,23424,0)
- ;;=E886.9^^125^1409^7
- ;;^UTILITY(U,$J,358.3,23424,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23424,1,4,0)
- ;;=4^E886.9
- ;;^UTILITY(U,$J,358.3,23424,1,5,0)
- ;;=5^Fall from Collision with Another Person
- ;;^UTILITY(U,$J,358.3,23424,2)
- ;;=^294657
- ;;^UTILITY(U,$J,358.3,23425,0)
- ;;=E888.9^^125^1409^1
- ;;^UTILITY(U,$J,358.3,23425,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23425,1,4,0)
- ;;=4^E888.9
- ;;^UTILITY(U,$J,358.3,23425,1,5,0)
- ;;=5^Fall NOS
- ;;^UTILITY(U,$J,358.3,23425,2)
- ;;=^323639
- ;;^UTILITY(U,$J,358.3,23426,0)
- ;;=E891.9^^125^1409^18
- ;;^UTILITY(U,$J,358.3,23426,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23426,1,4,0)
- ;;=4^E891.9
- ;;^UTILITY(U,$J,358.3,23426,1,5,0)
- ;;=5^Fire in Building
- ;;^UTILITY(U,$J,358.3,23426,2)
- ;;=^294669
- ;;^UTILITY(U,$J,358.3,23427,0)
- ;;=369.00^^125^1410^2
- ;;^UTILITY(U,$J,358.3,23427,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23427,1,4,0)
- ;;=4^369.00
- ;;^UTILITY(U,$J,358.3,23427,1,5,0)
- ;;=5^Both Eyes Blind-WHO Def
- ;;^UTILITY(U,$J,358.3,23427,2)
- ;;=^15310
- ;;^UTILITY(U,$J,358.3,23428,0)
- ;;=369.01^^125^1410^26
- ;;^UTILITY(U,$J,358.3,23428,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23428,1,4,0)
- ;;=4^369.01
- ;;^UTILITY(U,$J,358.3,23428,1,5,0)
- ;;=5^Tot Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,23428,2)
- ;;=^268861
- ;;^UTILITY(U,$J,358.3,23429,0)
- ;;=369.02^^125^1410^14
- ;;^UTILITY(U,$J,358.3,23429,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23429,1,4,0)
- ;;=4^369.02
- ;;^UTILITY(U,$J,358.3,23429,1,5,0)
- ;;=5^One Eye Nr Total/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,23429,2)
- ;;=^268862
- ;;^UTILITY(U,$J,358.3,23430,0)
- ;;=369.03^^125^1410^15
- ;;^UTILITY(U,$J,358.3,23430,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23430,1,4,0)
- ;;=4^369.03
- ;;^UTILITY(U,$J,358.3,23430,1,5,0)
- ;;=5^One Eye Nr Total/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,23430,2)
- ;;=^268863
- ;;^UTILITY(U,$J,358.3,23431,0)
- ;;=369.04^^125^1410^6
- ;;^UTILITY(U,$J,358.3,23431,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23431,1,4,0)
- ;;=4^369.04
- ;;^UTILITY(U,$J,358.3,23431,1,5,0)
- ;;=5^Near Total Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,23431,2)
- ;;=^268864
- ;;^UTILITY(U,$J,358.3,23432,0)
- ;;=369.05^^125^1410^16
- ;;^UTILITY(U,$J,358.3,23432,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23432,1,4,0)
- ;;=4^369.05
- ;;^UTILITY(U,$J,358.3,23432,1,5,0)
- ;;=5^One Eye Profound/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,23432,2)
- ;;=^268865
- ;;^UTILITY(U,$J,358.3,23433,0)
- ;;=369.06^^125^1410^18
- ;;^UTILITY(U,$J,358.3,23433,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23433,1,4,0)
- ;;=4^369.06
- ;;^UTILITY(U,$J,358.3,23433,1,5,0)
- ;;=5^One Eye Profound/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,23433,2)
- ;;=^268866
- ;;^UTILITY(U,$J,358.3,23434,0)
- ;;=369.07^^125^1410^17
- ;;^UTILITY(U,$J,358.3,23434,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23434,1,4,0)
- ;;=4^369.07
- ;;^UTILITY(U,$J,358.3,23434,1,5,0)
- ;;=5^One Eye Profound/Oth Eye Near Total
- ;;^UTILITY(U,$J,358.3,23434,2)
- ;;=^268867
- ;;^UTILITY(U,$J,358.3,23435,0)
- ;;=369.08^^125^1410^24
- ;;^UTILITY(U,$J,358.3,23435,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23435,1,4,0)
- ;;=4^369.08
- ;;^UTILITY(U,$J,358.3,23435,1,5,0)
- ;;=5^Profound Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,23435,2)
- ;;=^268868
- ;;^UTILITY(U,$J,358.3,23436,0)
- ;;=369.10^^125^1410^7
+ ;;^UTILITY(U,$J,358.3,22054,1,3,0)
+ ;;=3^Nondisp fx of simple suprcndl w/o intrcndl fx left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22054,1,4,0)
+ ;;=4^S42.415S
+ ;;^UTILITY(U,$J,358.3,22054,2)
+ ;;=^5027335
+ ;;^UTILITY(U,$J,358.3,22055,0)
+ ;;=S42.414S^^101^1037^92
+ ;;^UTILITY(U,$J,358.3,22055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22055,1,3,0)
+ ;;=3^Nondisp fx of simple suprcndl w/o intrcndl fx right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22055,1,4,0)
+ ;;=4^S42.414S
+ ;;^UTILITY(U,$J,358.3,22055,2)
+ ;;=^5027328
+ ;;^UTILITY(U,$J,358.3,22056,0)
+ ;;=S42.345S^^101^1037^93
+ ;;^UTILITY(U,$J,358.3,22056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22056,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of humerus, left arm, sequela   
+ ;;^UTILITY(U,$J,358.3,22056,1,4,0)
+ ;;=4^S42.345S
+ ;;^UTILITY(U,$J,358.3,22056,2)
+ ;;=^5027181
+ ;;^UTILITY(U,$J,358.3,22057,0)
+ ;;=S42.344S^^101^1037^94
+ ;;^UTILITY(U,$J,358.3,22057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22057,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of humerus, right arm, sequela  
+ ;;^UTILITY(U,$J,358.3,22057,1,4,0)
+ ;;=4^S42.344S
+ ;;^UTILITY(U,$J,358.3,22057,2)
+ ;;=^5027174
+ ;;^UTILITY(U,$J,358.3,22058,0)
+ ;;=S42.475S^^101^1037^97
+ ;;^UTILITY(U,$J,358.3,22058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22058,1,3,0)
+ ;;=3^Nondisp fx of transcondylar of left humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,22058,1,4,0)
+ ;;=4^S42.475S
+ ;;^UTILITY(U,$J,358.3,22058,2)
+ ;;=^5027608
+ ;;^UTILITY(U,$J,358.3,22059,0)
+ ;;=S42.474S^^101^1037^98
+ ;;^UTILITY(U,$J,358.3,22059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22059,1,3,0)
+ ;;=3^Nondisp fx of transcondylar of right humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,22059,1,4,0)
+ ;;=4^S42.474S
+ ;;^UTILITY(U,$J,358.3,22059,2)
+ ;;=^5027601
+ ;;^UTILITY(U,$J,358.3,22060,0)
+ ;;=S42.325S^^101^1037^99
+ ;;^UTILITY(U,$J,358.3,22060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22060,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,22060,1,4,0)
+ ;;=4^S42.325S
+ ;;^UTILITY(U,$J,358.3,22060,2)
+ ;;=^5027097
+ ;;^UTILITY(U,$J,358.3,22061,0)
+ ;;=S42.324S^^101^1037^100
+ ;;^UTILITY(U,$J,358.3,22061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22061,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of humerus, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,22061,1,4,0)
+ ;;=4^S42.324S
+ ;;^UTILITY(U,$J,358.3,22061,2)
+ ;;=^5027090
+ ;;^UTILITY(U,$J,358.3,22062,0)
+ ;;=M84.422S^^101^1037^101
+ ;;^UTILITY(U,$J,358.3,22062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22062,1,3,0)
+ ;;=3^Pathological fracture, left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22062,1,4,0)
+ ;;=4^M84.422S
+ ;;^UTILITY(U,$J,358.3,22062,2)
+ ;;=^5013829
+ ;;^UTILITY(U,$J,358.3,22063,0)
+ ;;=M84.421S^^101^1037^103
+ ;;^UTILITY(U,$J,358.3,22063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22063,1,3,0)
+ ;;=3^Pathological fracture, right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22063,1,4,0)
+ ;;=4^M84.421S
+ ;;^UTILITY(U,$J,358.3,22063,2)
+ ;;=^5013823
+ ;;^UTILITY(U,$J,358.3,22064,0)
+ ;;=S49.132S^^101^1037^116
+ ;;^UTILITY(U,$J,358.3,22064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22064,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22064,1,4,0)
+ ;;=4^S49.132S
+ ;;^UTILITY(U,$J,358.3,22064,2)
+ ;;=^5134992
+ ;;^UTILITY(U,$J,358.3,22065,0)
+ ;;=S49.131S^^101^1037^115
+ ;;^UTILITY(U,$J,358.3,22065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22065,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx low end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,22065,1,4,0)
+ ;;=4^S49.131S
+ ;;^UTILITY(U,$J,358.3,22065,2)
+ ;;=^5028460

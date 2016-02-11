@@ -1,0 +1,132 @@
+IBDEI3GN ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58207,1,3,0)
+ ;;=3^Mycotic Corneal Ulcer,Bilateral
+ ;;^UTILITY(U,$J,358.3,58207,1,4,0)
+ ;;=4^H16.063
+ ;;^UTILITY(U,$J,358.3,58207,2)
+ ;;=^5004892
+ ;;^UTILITY(U,$J,358.3,58208,0)
+ ;;=H16.301^^272^2902^15
+ ;;^UTILITY(U,$J,358.3,58208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58208,1,3,0)
+ ;;=3^Interstitial Keratitis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,58208,1,4,0)
+ ;;=4^H16.301
+ ;;^UTILITY(U,$J,358.3,58208,2)
+ ;;=^5004946
+ ;;^UTILITY(U,$J,358.3,58209,0)
+ ;;=H16.302^^272^2902^14
+ ;;^UTILITY(U,$J,358.3,58209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58209,1,3,0)
+ ;;=3^Interstitial Keratitis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,58209,1,4,0)
+ ;;=4^H16.302
+ ;;^UTILITY(U,$J,358.3,58209,2)
+ ;;=^5004947
+ ;;^UTILITY(U,$J,358.3,58210,0)
+ ;;=H16.303^^272^2902^13
+ ;;^UTILITY(U,$J,358.3,58210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58210,1,3,0)
+ ;;=3^Interstitial Keratitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,58210,1,4,0)
+ ;;=4^H16.303
+ ;;^UTILITY(U,$J,358.3,58210,2)
+ ;;=^5004948
+ ;;^UTILITY(U,$J,358.3,58211,0)
+ ;;=H05.011^^272^2902^4
+ ;;^UTILITY(U,$J,358.3,58211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58211,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,58211,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,58211,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,58212,0)
+ ;;=H05.012^^272^2902^3
+ ;;^UTILITY(U,$J,358.3,58212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58212,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,58212,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,58212,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,58213,0)
+ ;;=J32.9^^272^2902^23
+ ;;^UTILITY(U,$J,358.3,58213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58213,1,3,0)
+ ;;=3^Sinusitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,58213,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,58213,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,58214,0)
+ ;;=L03.212^^272^2902^16
+ ;;^UTILITY(U,$J,358.3,58214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58214,1,3,0)
+ ;;=3^Lymphangitis of Face,Acute
+ ;;^UTILITY(U,$J,358.3,58214,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,58214,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,58215,0)
+ ;;=L03.211^^272^2902^2
+ ;;^UTILITY(U,$J,358.3,58215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58215,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,58215,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,58215,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,58216,0)
+ ;;=K12.2^^272^2902^5
+ ;;^UTILITY(U,$J,358.3,58216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58216,1,3,0)
+ ;;=3^Cellulitis/Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,58216,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,58216,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,58217,0)
+ ;;=T85.79XA^^272^2902^12
+ ;;^UTILITY(U,$J,358.3,58217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58217,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58217,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,58217,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,58218,0)
+ ;;=T86.842^^272^2902^7
+ ;;^UTILITY(U,$J,358.3,58218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58218,1,3,0)
+ ;;=3^Corneal Transplant Infection
+ ;;^UTILITY(U,$J,358.3,58218,1,4,0)
+ ;;=4^T86.842
+ ;;^UTILITY(U,$J,358.3,58218,2)
+ ;;=^5055746
+ ;;^UTILITY(U,$J,358.3,58219,0)
+ ;;=H05.013^^272^2902^1
+ ;;^UTILITY(U,$J,358.3,58219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58219,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,58219,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,58219,2)
+ ;;=^5004562

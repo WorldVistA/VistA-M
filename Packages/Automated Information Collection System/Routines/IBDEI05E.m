@@ -1,130 +1,130 @@
-IBDEI05E ; ; 06-AUG-2015
+IBDEI05E ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2007,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2007,1,3,0)
- ;;=3^Abrasion,Right ankle, initial encounter
- ;;^UTILITY(U,$J,358.3,2007,1,4,0)
- ;;=4^S90.511A
- ;;^UTILITY(U,$J,358.3,2007,2)
- ;;=^5043997
- ;;^UTILITY(U,$J,358.3,2008,0)
- ;;=S90.512A^^4^62^1
- ;;^UTILITY(U,$J,358.3,2008,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2008,1,3,0)
- ;;=3^Abrasion,Left ankle, initial encounter
- ;;^UTILITY(U,$J,358.3,2008,1,4,0)
- ;;=4^S90.512A
- ;;^UTILITY(U,$J,358.3,2008,2)
- ;;=^5044000
- ;;^UTILITY(U,$J,358.3,2009,0)
- ;;=S40.811A^^4^62^28
- ;;^UTILITY(U,$J,358.3,2009,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2009,1,3,0)
- ;;=3^Abrasion,Right upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,2009,1,4,0)
- ;;=4^S40.811A
- ;;^UTILITY(U,$J,358.3,2009,2)
- ;;=^5026225
- ;;^UTILITY(U,$J,358.3,2010,0)
- ;;=S40.812A^^4^62^13
- ;;^UTILITY(U,$J,358.3,2010,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2010,1,3,0)
- ;;=3^Abrasion,Left upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,2010,1,4,0)
- ;;=4^S40.812A
- ;;^UTILITY(U,$J,358.3,2010,2)
- ;;=^5026228
- ;;^UTILITY(U,$J,358.3,2011,0)
- ;;=S05.01XA^^4^62^46
- ;;^UTILITY(U,$J,358.3,2011,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2011,1,3,0)
- ;;=3^Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init Enctr
- ;;^UTILITY(U,$J,358.3,2011,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,2011,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,2012,0)
- ;;=S05.02XA^^4^62^45
- ;;^UTILITY(U,$J,358.3,2012,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2012,1,3,0)
- ;;=3^Conjuctiva/Corneal Abrasion w/o FB,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,2012,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,2012,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,2013,0)
- ;;=S50.311A^^4^62^17
- ;;^UTILITY(U,$J,358.3,2013,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2013,1,3,0)
- ;;=3^Abrasion,Right elbow, initial encounter
- ;;^UTILITY(U,$J,358.3,2013,1,4,0)
- ;;=4^S50.311A
- ;;^UTILITY(U,$J,358.3,2013,2)
- ;;=^5028500
- ;;^UTILITY(U,$J,358.3,2014,0)
- ;;=S50.312A^^4^62^2
- ;;^UTILITY(U,$J,358.3,2014,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2014,1,3,0)
- ;;=3^Abrasion,Left elbow, initial encounter
- ;;^UTILITY(U,$J,358.3,2014,1,4,0)
- ;;=4^S50.312A
- ;;^UTILITY(U,$J,358.3,2014,2)
- ;;=^5028503
- ;;^UTILITY(U,$J,358.3,2015,0)
- ;;=S00.81XA^^4^62^15
- ;;^UTILITY(U,$J,358.3,2015,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2015,1,3,0)
- ;;=3^Abrasion,Other part of head, initial encounter
- ;;^UTILITY(U,$J,358.3,2015,1,4,0)
- ;;=4^S00.81XA
- ;;^UTILITY(U,$J,358.3,2015,2)
- ;;=^5019988
- ;;^UTILITY(U,$J,358.3,2016,0)
- ;;=S90.811A^^4^62^18
- ;;^UTILITY(U,$J,358.3,2016,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2016,1,3,0)
- ;;=3^Abrasion,Right foot, initial encounter
- ;;^UTILITY(U,$J,358.3,2016,1,4,0)
- ;;=4^S90.811A
- ;;^UTILITY(U,$J,358.3,2016,2)
- ;;=^5044051
- ;;^UTILITY(U,$J,358.3,2017,0)
- ;;=S90.812A^^4^62^3
- ;;^UTILITY(U,$J,358.3,2017,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2017,1,3,0)
- ;;=3^Abrasion,Left foot, initial encounter
- ;;^UTILITY(U,$J,358.3,2017,1,4,0)
- ;;=4^S90.812A
- ;;^UTILITY(U,$J,358.3,2017,2)
- ;;=^5044054
- ;;^UTILITY(U,$J,358.3,2018,0)
- ;;=S90.411A^^4^62^20
- ;;^UTILITY(U,$J,358.3,2018,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2018,1,3,0)
- ;;=3^Abrasion,Right great toe, initial encounter
- ;;^UTILITY(U,$J,358.3,2018,1,4,0)
- ;;=4^S90.411A
- ;;^UTILITY(U,$J,358.3,2018,2)
- ;;=^5043889
- ;;^UTILITY(U,$J,358.3,2019,0)
- ;;=S90.412A^^4^62^5
- ;;^UTILITY(U,$J,358.3,2019,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2019,1,3,0)
- ;;=3^Abrasion,Left great toe, initial encounter
- ;;^UTILITY(U,$J,358.3,2019,1,4,0)
- ;;=4^S90.412A
+ ;;^UTILITY(U,$J,358.3,1872,1,3,0)
+ ;;=3^Tranlum Ball Angio,Periph Art,Rad S&I
+ ;;^UTILITY(U,$J,358.3,1873,0)
+ ;;=75964^^17^172^53^^^^1
+ ;;^UTILITY(U,$J,358.3,1873,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1873,1,2,0)
+ ;;=2^75964
+ ;;^UTILITY(U,$J,358.3,1873,1,3,0)
+ ;;=3^Tranlum Ball Angio,Venous Art,Rad S&I,Ea Addl Artery
+ ;;^UTILITY(U,$J,358.3,1874,0)
+ ;;=75791^^17^172^9^^^^1
+ ;;^UTILITY(U,$J,358.3,1874,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1874,1,2,0)
+ ;;=2^75791
+ ;;^UTILITY(U,$J,358.3,1874,1,3,0)
+ ;;=3^Arteriovenous Shunt
+ ;;^UTILITY(U,$J,358.3,1875,0)
+ ;;=37220^^17^172^20^^^^1
+ ;;^UTILITY(U,$J,358.3,1875,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1875,1,2,0)
+ ;;=2^37220
+ ;;^UTILITY(U,$J,358.3,1875,1,3,0)
+ ;;=3^Iliac Revasc,Unilat,1st Vessel
+ ;;^UTILITY(U,$J,358.3,1876,0)
+ ;;=37221^^17^172^18^^^^1
+ ;;^UTILITY(U,$J,358.3,1876,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1876,1,2,0)
+ ;;=2^37221
+ ;;^UTILITY(U,$J,358.3,1876,1,3,0)
+ ;;=3^Iliac Revasc w/ Stent
+ ;;^UTILITY(U,$J,358.3,1877,0)
+ ;;=37222^^17^172^21^^^^1
+ ;;^UTILITY(U,$J,358.3,1877,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1877,1,2,0)
+ ;;=2^37222
+ ;;^UTILITY(U,$J,358.3,1877,1,3,0)
+ ;;=3^Iliac Revasc,ea add Vessel
+ ;;^UTILITY(U,$J,358.3,1878,0)
+ ;;=37223^^17^172^19^^^^1
+ ;;^UTILITY(U,$J,358.3,1878,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1878,1,2,0)
+ ;;=2^37223
+ ;;^UTILITY(U,$J,358.3,1878,1,3,0)
+ ;;=3^Iliac Revasc w/ Stent,Add-on
+ ;;^UTILITY(U,$J,358.3,1879,0)
+ ;;=37224^^17^172^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1879,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1879,1,2,0)
+ ;;=2^37224
+ ;;^UTILITY(U,$J,358.3,1879,1,3,0)
+ ;;=3^Fem/Popl Revas w/ TLA 1st Vessel
+ ;;^UTILITY(U,$J,358.3,1880,0)
+ ;;=37225^^17^172^14^^^^1
+ ;;^UTILITY(U,$J,358.3,1880,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1880,1,2,0)
+ ;;=2^37225
+ ;;^UTILITY(U,$J,358.3,1880,1,3,0)
+ ;;=3^Fem/Popl Revas w/ Ather
+ ;;^UTILITY(U,$J,358.3,1881,0)
+ ;;=37226^^17^172^16^^^^1
+ ;;^UTILITY(U,$J,358.3,1881,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1881,1,2,0)
+ ;;=2^37226
+ ;;^UTILITY(U,$J,358.3,1881,1,3,0)
+ ;;=3^Fem/Popl Revasc w/ Stent
+ ;;^UTILITY(U,$J,358.3,1882,0)
+ ;;=37227^^17^172^17^^^^1
+ ;;^UTILITY(U,$J,358.3,1882,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1882,1,2,0)
+ ;;=2^37227
+ ;;^UTILITY(U,$J,358.3,1882,1,3,0)
+ ;;=3^Fem/Popl Revasc w/ Stent & Ather
+ ;;^UTILITY(U,$J,358.3,1883,0)
+ ;;=37228^^17^172^49^^^^1
+ ;;^UTILITY(U,$J,358.3,1883,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1883,1,2,0)
+ ;;=2^37228
+ ;;^UTILITY(U,$J,358.3,1883,1,3,0)
+ ;;=3^TIB/Per Revasc w/ TLA,1st Vessel
+ ;;^UTILITY(U,$J,358.3,1884,0)
+ ;;=37229^^17^172^44^^^^1
+ ;;^UTILITY(U,$J,358.3,1884,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1884,1,2,0)
+ ;;=2^37229
+ ;;^UTILITY(U,$J,358.3,1884,1,3,0)
+ ;;=3^TIB/Per Revasc w/ Ather
+ ;;^UTILITY(U,$J,358.3,1885,0)
+ ;;=37230^^17^172^46^^^^1
+ ;;^UTILITY(U,$J,358.3,1885,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1885,1,2,0)
+ ;;=2^37230
+ ;;^UTILITY(U,$J,358.3,1885,1,3,0)
+ ;;=3^TIB/Per Revasc w/ Stent
+ ;;^UTILITY(U,$J,358.3,1886,0)
+ ;;=37231^^17^172^43^^^^1
+ ;;^UTILITY(U,$J,358.3,1886,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1886,1,2,0)
+ ;;=2^37231
+ ;;^UTILITY(U,$J,358.3,1886,1,3,0)
+ ;;=3^TIB/Per Revasc Stent & Ather
+ ;;^UTILITY(U,$J,358.3,1887,0)
+ ;;=37232^^17^172^50^^^^1
+ ;;^UTILITY(U,$J,358.3,1887,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1887,1,2,0)
+ ;;=2^37232
+ ;;^UTILITY(U,$J,358.3,1887,1,3,0)
+ ;;=3^TIB/Per Revasc,ea addl Vessel
+ ;;^UTILITY(U,$J,358.3,1888,0)
+ ;;=37233^^17^172^45^^^^1
+ ;;^UTILITY(U,$J,358.3,1888,1,0)
+ ;;=^358.31IA^3^2

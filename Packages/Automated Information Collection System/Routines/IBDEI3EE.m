@@ -1,0 +1,128 @@
+IBDEI3EE ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,57137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57137,1,3,0)
+ ;;=3^Varic Veins Rt LE w/ Ulc of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,57137,1,4,0)
+ ;;=4^I83.015
+ ;;^UTILITY(U,$J,358.3,57137,2)
+ ;;=^5007977
+ ;;^UTILITY(U,$J,358.3,57138,0)
+ ;;=I83.023^^264^2849^141
+ ;;^UTILITY(U,$J,358.3,57138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57138,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Ulc of Ankle
+ ;;^UTILITY(U,$J,358.3,57138,1,4,0)
+ ;;=4^I83.023
+ ;;^UTILITY(U,$J,358.3,57138,2)
+ ;;=^5007982
+ ;;^UTILITY(U,$J,358.3,57139,0)
+ ;;=I83.024^^264^2849^145
+ ;;^UTILITY(U,$J,358.3,57139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57139,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Ulc of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,57139,1,4,0)
+ ;;=4^I83.024
+ ;;^UTILITY(U,$J,358.3,57139,2)
+ ;;=^5007983
+ ;;^UTILITY(U,$J,358.3,57140,0)
+ ;;=I83.025^^264^2849^149
+ ;;^UTILITY(U,$J,358.3,57140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57140,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Ulc of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,57140,1,4,0)
+ ;;=4^I83.025
+ ;;^UTILITY(U,$J,358.3,57140,2)
+ ;;=^5007984
+ ;;^UTILITY(U,$J,358.3,57141,0)
+ ;;=I83.021^^264^2849^151
+ ;;^UTILITY(U,$J,358.3,57141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57141,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Ulc of Thigh
+ ;;^UTILITY(U,$J,358.3,57141,1,4,0)
+ ;;=4^I83.021
+ ;;^UTILITY(U,$J,358.3,57141,2)
+ ;;=^5007980
+ ;;^UTILITY(U,$J,358.3,57142,0)
+ ;;=I83.022^^264^2849^143
+ ;;^UTILITY(U,$J,358.3,57142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57142,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Ulc of Calf
+ ;;^UTILITY(U,$J,358.3,57142,1,4,0)
+ ;;=4^I83.022
+ ;;^UTILITY(U,$J,358.3,57142,2)
+ ;;=^5007981
+ ;;^UTILITY(U,$J,358.3,57143,0)
+ ;;=I83.028^^264^2849^148
+ ;;^UTILITY(U,$J,358.3,57143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57143,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Ulc of Oth Part LL
+ ;;^UTILITY(U,$J,358.3,57143,1,4,0)
+ ;;=4^I83.028
+ ;;^UTILITY(U,$J,358.3,57143,2)
+ ;;=^5007985
+ ;;^UTILITY(U,$J,358.3,57144,0)
+ ;;=I83.11^^264^2849^153
+ ;;^UTILITY(U,$J,358.3,57144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57144,1,3,0)
+ ;;=3^Varic Veins Rt LE w/ Inflam
+ ;;^UTILITY(U,$J,358.3,57144,1,4,0)
+ ;;=4^I83.11
+ ;;^UTILITY(U,$J,358.3,57144,2)
+ ;;=^5007988
+ ;;^UTILITY(U,$J,358.3,57145,0)
+ ;;=I83.12^^264^2849^140
+ ;;^UTILITY(U,$J,358.3,57145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57145,1,3,0)
+ ;;=3^Varic Veins Lt LE w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,57145,1,4,0)
+ ;;=4^I83.12
+ ;;^UTILITY(U,$J,358.3,57145,2)
+ ;;=^5007989
+ ;;^UTILITY(U,$J,358.3,57146,0)
+ ;;=I83.213^^264^2849^157
+ ;;^UTILITY(U,$J,358.3,57146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57146,1,3,0)
+ ;;=3^Varic Veins Rt LE w/ Ulc of Ankle & Inflam
+ ;;^UTILITY(U,$J,358.3,57146,1,4,0)
+ ;;=4^I83.213
+ ;;^UTILITY(U,$J,358.3,57146,2)
+ ;;=^5007999
+ ;;^UTILITY(U,$J,358.3,57147,0)
+ ;;=I83.214^^264^2849^160
+ ;;^UTILITY(U,$J,358.3,57147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57147,1,3,0)
+ ;;=3^Varic Veins Rt LE w/ Ulc of Heel/Midfoot & Inflam
+ ;;^UTILITY(U,$J,358.3,57147,1,4,0)
+ ;;=4^I83.214
+ ;;^UTILITY(U,$J,358.3,57147,2)
+ ;;=^5008000
+ ;;^UTILITY(U,$J,358.3,57148,0)
+ ;;=I83.215^^264^2849^155
+ ;;^UTILITY(U,$J,358.3,57148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57148,1,3,0)
+ ;;=3^Varic Veins Rt LE w/ Ulc Oth Part of Ft & Inflam
+ ;;^UTILITY(U,$J,358.3,57148,1,4,0)
+ ;;=4^I83.215
+ ;;^UTILITY(U,$J,358.3,57148,2)
+ ;;=^5008001
+ ;;^UTILITY(U,$J,358.3,57149,0)
+ ;;=I83.218^^264^2849^154
+ ;;^UTILITY(U,$J,358.3,57149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57149,1,3,0)
+ ;;=3^Varic Veins Rt LE w/ Ulc Oth Part LE & Inflam

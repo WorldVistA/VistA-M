@@ -1,5 +1,5 @@
-XMXSEC2 ;ISC-SF/GMB-Message security and restrictions (cont.) ;04/18/2002  08:01
- ;;8.0;MailMan;;Jun 28, 2002
+XMXSEC2 ;ISC-SF/GMB - Message security and restrictions (cont.) ;04/18/2002  08:01
+ ;;8.0;MailMan;**47**;Jun 28, 2002;Build 6
  ; All entry points covered by DBIA 2733.
 EDIT(XMDUZ,XMZ,XMZREC) ; May the user edit the message? (1=may, 0=may not)
  I '$$ORIGIN8R^XMXSEC(XMDUZ,.XMZREC) D ERRSET^XMXUTIL(37405.1) Q 0  ; Only the originator may Edit a message.
@@ -30,6 +30,11 @@ OPTEDIT(XMINSTR,XMOPT,XMOX,XMQDNUM) ; We know the user may edit the message.
  I $D(^TMP("XMY",$J,.6)) D
  . D Q("C",37301.6) ; Messages addressed to SHARED,MAIL may not be 'Confidential'.
  . D Q("X",37320.6) ; Messages addressed to SHARED,MAIL may not be 'Closed'.
+ ; **XM*8*47 Adds conditionals to check if the subject line and message portion can be edited similar to OPTMSG.**
+ N XMFROM,XMFLAG
+ S XMFROM=$P(^XMB(3.9,XMZ,0),U,2),XMFLAG=0
+ I $P($G(^XMB(3.9,XMZ,1,0)),U,4)>1!(XMFROM'=$O(^XMB(3.9,XMZ,1,"C",0))) S XMFLAG=1 D Q("ES",37405.2),Q("ET",37405.2)
+ I $O(^XMB(3.9,XMZ,3,0)),'XMFLAG D Q("ES",37405.3),Q("ET",37405.3)
  Q
 SET(XMCD,XMDN,XMOPT,XMOX) ;
  N XMDREC

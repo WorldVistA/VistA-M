@@ -1,0 +1,130 @@
+IBDEI2YM ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,49616,1,4,0)
+ ;;=4^S32.14XS
+ ;;^UTILITY(U,$J,358.3,49616,2)
+ ;;=^5024604
+ ;;^UTILITY(U,$J,358.3,49617,0)
+ ;;=S32.15XS^^216^2419^48
+ ;;^UTILITY(U,$J,358.3,49617,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49617,1,3,0)
+ ;;=3^Type 2 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,49617,1,4,0)
+ ;;=4^S32.15XS
+ ;;^UTILITY(U,$J,358.3,49617,2)
+ ;;=^5024610
+ ;;^UTILITY(U,$J,358.3,49618,0)
+ ;;=S32.16XS^^216^2419^49
+ ;;^UTILITY(U,$J,358.3,49618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49618,1,3,0)
+ ;;=3^Type 3 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,49618,1,4,0)
+ ;;=4^S32.16XS
+ ;;^UTILITY(U,$J,358.3,49618,2)
+ ;;=^5024616
+ ;;^UTILITY(U,$J,358.3,49619,0)
+ ;;=S32.17XS^^216^2419^56
+ ;;^UTILITY(U,$J,358.3,49619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49619,1,3,0)
+ ;;=3^Type 4 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,49619,1,4,0)
+ ;;=4^S32.17XS
+ ;;^UTILITY(U,$J,358.3,49619,2)
+ ;;=^5024622
+ ;;^UTILITY(U,$J,358.3,49620,0)
+ ;;=S32.2XXS^^216^2419^19
+ ;;^UTILITY(U,$J,358.3,49620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49620,1,3,0)
+ ;;=3^Fracture of coccyx, sequela
+ ;;^UTILITY(U,$J,358.3,49620,1,4,0)
+ ;;=4^S32.2XXS
+ ;;^UTILITY(U,$J,358.3,49620,2)
+ ;;=^5024634
+ ;;^UTILITY(U,$J,358.3,49621,0)
+ ;;=S12.110S^^216^2419^1
+ ;;^UTILITY(U,$J,358.3,49621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49621,1,3,0)
+ ;;=3^Anterior displaced Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,49621,1,4,0)
+ ;;=4^S12.110S
+ ;;^UTILITY(U,$J,358.3,49621,2)
+ ;;=^5021622
+ ;;^UTILITY(U,$J,358.3,49622,0)
+ ;;=S12.112S^^216^2419^23
+ ;;^UTILITY(U,$J,358.3,49622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49622,1,3,0)
+ ;;=3^Nondisp Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,49622,1,4,0)
+ ;;=4^S12.112S
+ ;;^UTILITY(U,$J,358.3,49622,2)
+ ;;=^5021634
+ ;;^UTILITY(U,$J,358.3,49623,0)
+ ;;=S12.111S^^216^2419^29
+ ;;^UTILITY(U,$J,358.3,49623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49623,1,3,0)
+ ;;=3^Posterior displaced Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,49623,1,4,0)
+ ;;=4^S12.111S
+ ;;^UTILITY(U,$J,358.3,49623,2)
+ ;;=^5021628
+ ;;^UTILITY(U,$J,358.3,49624,0)
+ ;;=S52.562S^^216^2420^1
+ ;;^UTILITY(U,$J,358.3,49624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49624,1,3,0)
+ ;;=3^Barton's fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,49624,1,4,0)
+ ;;=4^S52.562S
+ ;;^UTILITY(U,$J,358.3,49624,2)
+ ;;=^5030896
+ ;;^UTILITY(U,$J,358.3,49625,0)
+ ;;=S52.561S^^216^2420^2
+ ;;^UTILITY(U,$J,358.3,49625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49625,1,3,0)
+ ;;=3^Barton's fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,49625,1,4,0)
+ ;;=4^S52.561S
+ ;;^UTILITY(U,$J,358.3,49625,2)
+ ;;=^5030880
+ ;;^UTILITY(U,$J,358.3,49626,0)
+ ;;=S52.382S^^216^2420^3
+ ;;^UTILITY(U,$J,358.3,49626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49626,1,3,0)
+ ;;=3^Bent bone of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,49626,1,4,0)
+ ;;=4^S52.382S
+ ;;^UTILITY(U,$J,358.3,49626,2)
+ ;;=^5030526
+ ;;^UTILITY(U,$J,358.3,49627,0)
+ ;;=S52.381S^^216^2420^5
+ ;;^UTILITY(U,$J,358.3,49627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49627,1,3,0)
+ ;;=3^Bent bone of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,49627,1,4,0)
+ ;;=4^S52.381S
+ ;;^UTILITY(U,$J,358.3,49627,2)
+ ;;=^5030510
+ ;;^UTILITY(U,$J,358.3,49628,0)
+ ;;=S52.532S^^216^2420^7
+ ;;^UTILITY(U,$J,358.3,49628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49628,1,3,0)
+ ;;=3^Colles' fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,49628,1,4,0)
+ ;;=4^S52.532S
+ ;;^UTILITY(U,$J,358.3,49628,2)
+ ;;=^5030752
+ ;;^UTILITY(U,$J,358.3,49629,0)
+ ;;=S52.531S^^216^2420^8

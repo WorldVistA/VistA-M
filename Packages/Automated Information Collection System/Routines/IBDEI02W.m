@@ -1,130 +1,146 @@
-IBDEI02W ; ; 06-AUG-2015
+IBDEI02W ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,811,1,3,0)
- ;;=3^Non-prs chr ulcer of right thigh w necrosis of bone
- ;;^UTILITY(U,$J,358.3,811,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,811,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,812,0)
- ;;=L97.119^^3^32^105
- ;;^UTILITY(U,$J,358.3,812,1,0)
+ ;;^UTILITY(U,$J,358.3,593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,812,1,3,0)
- ;;=3^Non-prs chr ulcer of right thigh with unsp severity
- ;;^UTILITY(U,$J,358.3,812,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,812,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,813,0)
- ;;=L97.121^^3^32^81
- ;;^UTILITY(U,$J,358.3,813,1,0)
+ ;;^UTILITY(U,$J,358.3,593,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,593,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,593,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,594,0)
+ ;;=F43.10^^6^71^8
+ ;;^UTILITY(U,$J,358.3,594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,813,1,3,0)
- ;;=3^Non-prs chr ulcer of left thigh limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,813,1,4,0)
- ;;=4^L97.121
- ;;^UTILITY(U,$J,358.3,813,2)
- ;;=^5009490
- ;;^UTILITY(U,$J,358.3,814,0)
- ;;=L97.122^^3^32^82
- ;;^UTILITY(U,$J,358.3,814,1,0)
+ ;;^UTILITY(U,$J,358.3,594,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,594,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,594,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,595,0)
+ ;;=F43.12^^6^71^7
+ ;;^UTILITY(U,$J,358.3,595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,814,1,3,0)
- ;;=3^Non-prs chr ulcer of left thigh w fat layer exposed
- ;;^UTILITY(U,$J,358.3,814,1,4,0)
- ;;=4^L97.122
- ;;^UTILITY(U,$J,358.3,814,2)
- ;;=^5009491
- ;;^UTILITY(U,$J,358.3,815,0)
- ;;=L97.223^^3^32^73
- ;;^UTILITY(U,$J,358.3,815,1,0)
+ ;;^UTILITY(U,$J,358.3,595,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,595,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,595,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,596,0)
+ ;;=C34.90^^6^72^1
+ ;;^UTILITY(U,$J,358.3,596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,815,1,3,0)
- ;;=3^Non-prs chr ulcer of left calf w necrosis of muscle
- ;;^UTILITY(U,$J,358.3,815,1,4,0)
- ;;=4^L97.223
- ;;^UTILITY(U,$J,358.3,815,2)
- ;;=^5009507
- ;;^UTILITY(U,$J,358.3,816,0)
- ;;=L97.222^^3^32^72
- ;;^UTILITY(U,$J,358.3,816,1,0)
+ ;;^UTILITY(U,$J,358.3,596,1,3,0)
+ ;;=3^Malig Neop Bronchus/Lung Unspec Part
+ ;;^UTILITY(U,$J,358.3,596,1,4,0)
+ ;;=4^C34.90
+ ;;^UTILITY(U,$J,358.3,596,2)
+ ;;=^5000966
+ ;;^UTILITY(U,$J,358.3,597,0)
+ ;;=G20.^^6^73^12
+ ;;^UTILITY(U,$J,358.3,597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,816,1,3,0)
- ;;=3^Non-prs chr ulcer of left calf w fat layer exposed
- ;;^UTILITY(U,$J,358.3,816,1,4,0)
- ;;=4^L97.222
- ;;^UTILITY(U,$J,358.3,816,2)
- ;;=^5009506
- ;;^UTILITY(U,$J,358.3,817,0)
- ;;=L97.221^^3^32^71
- ;;^UTILITY(U,$J,358.3,817,1,0)
+ ;;^UTILITY(U,$J,358.3,597,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,597,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,597,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,598,0)
+ ;;=G30.9^^6^73^1
+ ;;^UTILITY(U,$J,358.3,598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,817,1,3,0)
- ;;=3^Non-prs chr ulcer of left calf limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,817,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,817,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,818,0)
- ;;=L97.219^^3^32^95
- ;;^UTILITY(U,$J,358.3,818,1,0)
+ ;;^UTILITY(U,$J,358.3,598,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,598,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,598,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,599,0)
+ ;;=G35.^^6^73^10
+ ;;^UTILITY(U,$J,358.3,599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,818,1,3,0)
- ;;=3^Non-prs chr ulcer of right calf with unsp severity
- ;;^UTILITY(U,$J,358.3,818,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,818,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,819,0)
- ;;=L97.214^^3^32^93
- ;;^UTILITY(U,$J,358.3,819,1,0)
+ ;;^UTILITY(U,$J,358.3,599,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,599,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,599,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,600,0)
+ ;;=G82.20^^6^73^11
+ ;;^UTILITY(U,$J,358.3,600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,819,1,3,0)
- ;;=3^Non-prs chr ulcer of right calf w necrosis of bone
- ;;^UTILITY(U,$J,358.3,819,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,819,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,820,0)
- ;;=L97.211^^3^32^91
- ;;^UTILITY(U,$J,358.3,820,1,0)
+ ;;^UTILITY(U,$J,358.3,600,1,3,0)
+ ;;=3^Paraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,600,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,600,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,601,0)
+ ;;=R53.81^^6^73^9
+ ;;^UTILITY(U,$J,358.3,601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,820,1,3,0)
- ;;=3^Non-prs chr ulcer of right calf limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,820,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,820,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,821,0)
- ;;=L97.213^^3^32^94
- ;;^UTILITY(U,$J,358.3,821,1,0)
+ ;;^UTILITY(U,$J,358.3,601,1,3,0)
+ ;;=3^Malaise
+ ;;^UTILITY(U,$J,358.3,601,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,601,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,602,0)
+ ;;=I69.91^^6^73^3
+ ;;^UTILITY(U,$J,358.3,602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,821,1,3,0)
- ;;=3^Non-prs chr ulcer of right calf w necrosis of muscle
- ;;^UTILITY(U,$J,358.3,821,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,821,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,822,0)
- ;;=L97.212^^3^32^92
- ;;^UTILITY(U,$J,358.3,822,1,0)
+ ;;^UTILITY(U,$J,358.3,602,1,3,0)
+ ;;=3^Cognitive Deficits Following CVD
+ ;;^UTILITY(U,$J,358.3,602,1,4,0)
+ ;;=4^I69.91
+ ;;^UTILITY(U,$J,358.3,602,2)
+ ;;=^5007552
+ ;;^UTILITY(U,$J,358.3,603,0)
+ ;;=I69.920^^6^73^2
+ ;;^UTILITY(U,$J,358.3,603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,822,1,3,0)
- ;;=3^Non-prs chr ulcer of right calf w fat layer exposed
- ;;^UTILITY(U,$J,358.3,822,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,822,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,823,0)
- ;;=L97.229^^3^32^75
- ;;^UTILITY(U,$J,358.3,823,1,0)
+ ;;^UTILITY(U,$J,358.3,603,1,3,0)
+ ;;=3^Aphasia Following CVD
+ ;;^UTILITY(U,$J,358.3,603,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,603,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,604,0)
+ ;;=I69.921^^6^73^4
+ ;;^UTILITY(U,$J,358.3,604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,823,1,3,0)
- ;;=3^Non-prs chr ulcer of left calf with unsp severity
- ;;^UTILITY(U,$J,358.3,823,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,823,2)
- ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,604,1,3,0)
+ ;;=3^Dysphasia Following CVD
+ ;;^UTILITY(U,$J,358.3,604,1,4,0)
+ ;;=4^I69.921
+ ;;^UTILITY(U,$J,358.3,604,2)
+ ;;=^5007554
+ ;;^UTILITY(U,$J,358.3,605,0)
+ ;;=I69.928^^6^73^13
+ ;;^UTILITY(U,$J,358.3,605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,605,1,3,0)
+ ;;=3^Speech/Lang Deficits Following CVD
+ ;;^UTILITY(U,$J,358.3,605,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,605,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,606,0)
+ ;;=I69.951^^6^73^7
+ ;;^UTILITY(U,$J,358.3,606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,606,1,3,0)
+ ;;=3^Hemiplegia Following CVD,Right Dominant Side
+ ;;^UTILITY(U,$J,358.3,606,1,4,0)
+ ;;=4^I69.951
+ ;;^UTILITY(U,$J,358.3,606,2)
+ ;;=^5007561
+ ;;^UTILITY(U,$J,358.3,607,0)
+ ;;=I69.952^^6^73^5
+ ;;^UTILITY(U,$J,358.3,607,1,0)
+ ;;=^358.31IA^4^2

@@ -1,140 +1,134 @@
-IBDEI0RJ ; ; 06-AUG-2015
+IBDEI0RJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13283,0)
- ;;=337.1^^66^786^9
- ;;^UTILITY(U,$J,358.3,13283,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13283,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13283,1,3,0)
- ;;=3^Peripheral Neuropathy In Dm
- ;;^UTILITY(U,$J,358.3,13283,1,4,0)
- ;;=4^337.1
- ;;^UTILITY(U,$J,358.3,13283,2)
- ;;=^268435
- ;;^UTILITY(U,$J,358.3,13284,0)
- ;;=443.81^^66^786^10
- ;;^UTILITY(U,$J,358.3,13284,1,0)
+ ;;^UTILITY(U,$J,358.3,12634,1,4,0)
+ ;;=4^C04.9
+ ;;^UTILITY(U,$J,358.3,12634,2)
+ ;;=^5000896
+ ;;^UTILITY(U,$J,358.3,12635,0)
+ ;;=C05.2^^77^735^32
+ ;;^UTILITY(U,$J,358.3,12635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13284,1,3,0)
- ;;=3^Peripheral Vascular Dis In Dm
- ;;^UTILITY(U,$J,358.3,13284,1,4,0)
- ;;=4^443.81
- ;;^UTILITY(U,$J,358.3,13284,2)
- ;;=^92164
- ;;^UTILITY(U,$J,358.3,13285,0)
- ;;=V43.61^^66^786^6
- ;;^UTILITY(U,$J,358.3,13285,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13285,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13285,1,3,0)
- ;;=3^Joint Replacement - Shoulder
- ;;^UTILITY(U,$J,358.3,13285,1,4,0)
- ;;=4^V43.61
- ;;^UTILITY(U,$J,358.3,13285,2)
- ;;=^303410
- ;;^UTILITY(U,$J,358.3,13286,0)
- ;;=V43.62^^66^786^3
- ;;^UTILITY(U,$J,358.3,13286,1,0)
+ ;;^UTILITY(U,$J,358.3,12635,1,3,0)
+ ;;=3^Malignant neoplasm of uvula
+ ;;^UTILITY(U,$J,358.3,12635,1,4,0)
+ ;;=4^C05.2
+ ;;^UTILITY(U,$J,358.3,12635,2)
+ ;;=^267023
+ ;;^UTILITY(U,$J,358.3,12636,0)
+ ;;=C06.9^^77^735^20
+ ;;^UTILITY(U,$J,358.3,12636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13286,1,3,0)
- ;;=3^Joint Replacement - Elbow
- ;;^UTILITY(U,$J,358.3,13286,1,4,0)
- ;;=4^V43.62
- ;;^UTILITY(U,$J,358.3,13286,2)
- ;;=^303411
- ;;^UTILITY(U,$J,358.3,13287,0)
- ;;=V43.63^^66^786^7
- ;;^UTILITY(U,$J,358.3,13287,1,0)
+ ;;^UTILITY(U,$J,358.3,12636,1,3,0)
+ ;;=3^Malignant neoplasm of mouth, unspecified
+ ;;^UTILITY(U,$J,358.3,12636,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,12636,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,12637,0)
+ ;;=C09.9^^77^735^31
+ ;;^UTILITY(U,$J,358.3,12637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13287,1,3,0)
- ;;=3^Joint Replacement - Wrist
- ;;^UTILITY(U,$J,358.3,13287,1,4,0)
- ;;=4^V43.63
- ;;^UTILITY(U,$J,358.3,13287,2)
- ;;=^303412
- ;;^UTILITY(U,$J,358.3,13288,0)
- ;;=V43.64^^66^786^4
- ;;^UTILITY(U,$J,358.3,13288,1,0)
+ ;;^UTILITY(U,$J,358.3,12637,1,3,0)
+ ;;=3^Malignant neoplasm of tonsil, unspecified
+ ;;^UTILITY(U,$J,358.3,12637,1,4,0)
+ ;;=4^C09.9
+ ;;^UTILITY(U,$J,358.3,12637,2)
+ ;;=^5000905
+ ;;^UTILITY(U,$J,358.3,12638,0)
+ ;;=C10.9^^77^735^23
+ ;;^UTILITY(U,$J,358.3,12638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13288,1,3,0)
- ;;=3^Joint Replacement - Hip
- ;;^UTILITY(U,$J,358.3,13288,1,4,0)
- ;;=4^V43.64
- ;;^UTILITY(U,$J,358.3,13288,2)
- ;;=^303413
- ;;^UTILITY(U,$J,358.3,13289,0)
- ;;=V43.65^^66^786^5
- ;;^UTILITY(U,$J,358.3,13289,1,0)
+ ;;^UTILITY(U,$J,358.3,12638,1,3,0)
+ ;;=3^Malignant neoplasm of oropharynx, unspecified
+ ;;^UTILITY(U,$J,358.3,12638,1,4,0)
+ ;;=4^C10.9
+ ;;^UTILITY(U,$J,358.3,12638,2)
+ ;;=^5000909
+ ;;^UTILITY(U,$J,358.3,12639,0)
+ ;;=C11.9^^77^735^22
+ ;;^UTILITY(U,$J,358.3,12639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13289,1,3,0)
- ;;=3^Joint Replacement - Knee
- ;;^UTILITY(U,$J,358.3,13289,1,4,0)
- ;;=4^V43.65
- ;;^UTILITY(U,$J,358.3,13289,2)
- ;;=^303414
- ;;^UTILITY(U,$J,358.3,13290,0)
- ;;=V43.66^^66^786^2
- ;;^UTILITY(U,$J,358.3,13290,1,0)
+ ;;^UTILITY(U,$J,358.3,12639,1,3,0)
+ ;;=3^Malignant neoplasm of nasopharynx, unspecified
+ ;;^UTILITY(U,$J,358.3,12639,1,4,0)
+ ;;=4^C11.9
+ ;;^UTILITY(U,$J,358.3,12639,2)
+ ;;=^5000911
+ ;;^UTILITY(U,$J,358.3,12640,0)
+ ;;=C12.^^77^735^25
+ ;;^UTILITY(U,$J,358.3,12640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13290,1,3,0)
- ;;=3^Joint Replacement - Ankle
- ;;^UTILITY(U,$J,358.3,13290,1,4,0)
- ;;=4^V43.66
- ;;^UTILITY(U,$J,358.3,13290,2)
- ;;=^303415
- ;;^UTILITY(U,$J,358.3,13291,0)
- ;;=V43.60^^66^786^11
- ;;^UTILITY(U,$J,358.3,13291,1,0)
+ ;;^UTILITY(U,$J,358.3,12640,1,3,0)
+ ;;=3^Malignant neoplasm of pyriform sinus
+ ;;^UTILITY(U,$J,358.3,12640,1,4,0)
+ ;;=4^C12.
+ ;;^UTILITY(U,$J,358.3,12640,2)
+ ;;=^267046
+ ;;^UTILITY(U,$J,358.3,12641,0)
+ ;;=C13.9^^77^735^18
+ ;;^UTILITY(U,$J,358.3,12641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13291,1,3,0)
- ;;=3^Unspecified Joint Replaced
- ;;^UTILITY(U,$J,358.3,13291,1,4,0)
- ;;=4^V43.60
- ;;^UTILITY(U,$J,358.3,13291,2)
- ;;=^295443
- ;;^UTILITY(U,$J,358.3,13292,0)
- ;;=V43.7^^66^786^8
- ;;^UTILITY(U,$J,358.3,13292,1,0)
+ ;;^UTILITY(U,$J,358.3,12641,1,3,0)
+ ;;=3^Malignant neoplasm of hypopharynx, unspecified
+ ;;^UTILITY(U,$J,358.3,12641,1,4,0)
+ ;;=4^C13.9
+ ;;^UTILITY(U,$J,358.3,12641,2)
+ ;;=^5000915
+ ;;^UTILITY(U,$J,358.3,12642,0)
+ ;;=C30.0^^77^735^21
+ ;;^UTILITY(U,$J,358.3,12642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13292,1,3,0)
- ;;=3^Limb Replacement 
- ;;^UTILITY(U,$J,358.3,13292,1,4,0)
- ;;=4^V43.7
- ;;^UTILITY(U,$J,358.3,13292,2)
- ;;=^295444
- ;;^UTILITY(U,$J,358.3,13293,0)
- ;;=V53.7^^66^787^13
- ;;^UTILITY(U,$J,358.3,13293,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13293,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13293,1,3,0)
- ;;=3^Fitting/Adjustment Ortho Device
- ;;^UTILITY(U,$J,358.3,13293,1,4,0)
- ;;=4^V53.7
- ;;^UTILITY(U,$J,358.3,13293,2)
- ;;=^295510
- ;;^UTILITY(U,$J,358.3,13294,0)
- ;;=V67.4^^66^787^12
- ;;^UTILITY(U,$J,358.3,13294,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13294,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13294,1,3,0)
- ;;=3^F/U Exam of Healed Fx
- ;;^UTILITY(U,$J,358.3,13294,1,4,0)
- ;;=4^V67.4
- ;;^UTILITY(U,$J,358.3,13294,2)
- ;;=F/U for Healed Fx^295576
- ;;^UTILITY(U,$J,358.3,13295,0)
- ;;=V67.09^^66^787^10
- ;;^UTILITY(U,$J,358.3,13295,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,13295,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.3,13295,1,3,0)
- ;;=3^F/U Exam Following Oth Surg
+ ;;^UTILITY(U,$J,358.3,12642,1,3,0)
+ ;;=3^Malignant neoplasm of nasal cavity
+ ;;^UTILITY(U,$J,358.3,12642,1,4,0)
+ ;;=4^C30.0
+ ;;^UTILITY(U,$J,358.3,12642,2)
+ ;;=^5000949
+ ;;^UTILITY(U,$J,358.3,12643,0)
+ ;;=C31.9^^77^735^12
+ ;;^UTILITY(U,$J,358.3,12643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12643,1,3,0)
+ ;;=3^Malignant neoplasm of accessory sinus, unspecified
+ ;;^UTILITY(U,$J,358.3,12643,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,12643,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,12644,0)
+ ;;=C32.0^^77^735^15
+ ;;^UTILITY(U,$J,358.3,12644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12644,1,3,0)
+ ;;=3^Malignant neoplasm of glottis
+ ;;^UTILITY(U,$J,358.3,12644,1,4,0)
+ ;;=4^C32.0
+ ;;^UTILITY(U,$J,358.3,12644,2)
+ ;;=^267129
+ ;;^UTILITY(U,$J,358.3,12645,0)
+ ;;=C32.1^^77^735^28
+ ;;^UTILITY(U,$J,358.3,12645,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12645,1,3,0)
+ ;;=3^Malignant neoplasm of supraglottis
+ ;;^UTILITY(U,$J,358.3,12645,1,4,0)
+ ;;=4^C32.1
+ ;;^UTILITY(U,$J,358.3,12645,2)
+ ;;=^267130
+ ;;^UTILITY(U,$J,358.3,12646,0)
+ ;;=C32.2^^77^735^26
+ ;;^UTILITY(U,$J,358.3,12646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12646,1,3,0)
+ ;;=3^Malignant neoplasm of subglottis
+ ;;^UTILITY(U,$J,358.3,12646,1,4,0)
+ ;;=4^C32.2
+ ;;^UTILITY(U,$J,358.3,12646,2)
+ ;;=^267131
+ ;;^UTILITY(U,$J,358.3,12647,0)
+ ;;=C44.212^^77^735^3
+ ;;^UTILITY(U,$J,358.3,12647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12647,1,3,0)
+ ;;=3^BC CA Skin RIGHT Ear and EAC

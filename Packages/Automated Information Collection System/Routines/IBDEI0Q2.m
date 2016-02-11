@@ -1,138 +1,132 @@
-IBDEI0Q2 ; ; 06-AUG-2015
+IBDEI0Q2 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12484,1,4,0)
- ;;=4^Renal Dis NOS w/o HTN-Postpartum
- ;;^UTILITY(U,$J,358.3,12484,2)
- ;;=^270917
- ;;^UTILITY(U,$J,358.3,12485,0)
- ;;=646.33^^62^747^33
- ;;^UTILITY(U,$J,358.3,12485,1,0)
+ ;;^UTILITY(U,$J,358.3,11936,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,11936,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,11937,0)
+ ;;=W13.1XXD^^68^694^32
+ ;;^UTILITY(U,$J,358.3,11937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12485,1,3,0)
- ;;=3^646.33
- ;;^UTILITY(U,$J,358.3,12485,1,4,0)
- ;;=4^Recurnt pregnan loss-Antepartum
- ;;^UTILITY(U,$J,358.3,12485,2)
- ;;=^339731
- ;;^UTILITY(U,$J,358.3,12486,0)
- ;;=646.43^^62^747^26
- ;;^UTILITY(U,$J,358.3,12486,1,0)
+ ;;^UTILITY(U,$J,358.3,11937,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11937,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,11937,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,11938,0)
+ ;;=W13.2XXA^^68^694^69
+ ;;^UTILITY(U,$J,358.3,11938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12486,1,3,0)
- ;;=3^646.43
- ;;^UTILITY(U,$J,358.3,12486,1,4,0)
- ;;=4^Neuritis in pregnan-Antepartum
- ;;^UTILITY(U,$J,358.3,12486,2)
- ;;=^270926
- ;;^UTILITY(U,$J,358.3,12487,0)
- ;;=646.44^^62^747^27
- ;;^UTILITY(U,$J,358.3,12487,1,0)
+ ;;^UTILITY(U,$J,358.3,11938,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11938,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,11938,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,11939,0)
+ ;;=W13.2XXD^^68^694^70
+ ;;^UTILITY(U,$J,358.3,11939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12487,1,3,0)
- ;;=3^646.44
- ;;^UTILITY(U,$J,358.3,12487,1,4,0)
- ;;=4^Neuritis in pregnan-Postpartum
- ;;^UTILITY(U,$J,358.3,12487,2)
- ;;=^270927
- ;;^UTILITY(U,$J,358.3,12488,0)
- ;;=646.53^^62^747^5
- ;;^UTILITY(U,$J,358.3,12488,1,0)
+ ;;^UTILITY(U,$J,358.3,11939,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11939,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,11939,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,11940,0)
+ ;;=W13.3XXA^^68^694^83
+ ;;^UTILITY(U,$J,358.3,11940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12488,1,3,0)
- ;;=3^646.53
- ;;^UTILITY(U,$J,358.3,12488,1,4,0)
- ;;=4^Asympt bacteriuria-Antepartum
- ;;^UTILITY(U,$J,358.3,12488,2)
- ;;=^270932
- ;;^UTILITY(U,$J,358.3,12489,0)
- ;;=646.54^^62^747^6
- ;;^UTILITY(U,$J,358.3,12489,1,0)
+ ;;^UTILITY(U,$J,358.3,11940,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11940,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,11940,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,11941,0)
+ ;;=W13.3XXD^^68^694^84
+ ;;^UTILITY(U,$J,358.3,11941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12489,1,3,0)
- ;;=3^646.54
- ;;^UTILITY(U,$J,358.3,12489,1,4,0)
- ;;=4^Asympt bacteriuria-Postpartum
- ;;^UTILITY(U,$J,358.3,12489,2)
- ;;=^270933
- ;;^UTILITY(U,$J,358.3,12490,0)
- ;;=646.63^^62^747^17
- ;;^UTILITY(U,$J,358.3,12490,1,0)
+ ;;^UTILITY(U,$J,358.3,11941,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11941,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,11941,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,11942,0)
+ ;;=W13.4XXA^^68^694^71
+ ;;^UTILITY(U,$J,358.3,11942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12490,1,3,0)
- ;;=3^646.63
- ;;^UTILITY(U,$J,358.3,12490,1,4,0)
- ;;=4^GU tract Infection-Antepartum
- ;;^UTILITY(U,$J,358.3,12490,2)
- ;;=^270938
- ;;^UTILITY(U,$J,358.3,12491,0)
- ;;=646.64^^62^747^18
- ;;^UTILITY(U,$J,358.3,12491,1,0)
+ ;;^UTILITY(U,$J,358.3,11942,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11942,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,11942,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,11943,0)
+ ;;=W13.4XXD^^68^694^72
+ ;;^UTILITY(U,$J,358.3,11943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12491,1,3,0)
- ;;=3^646.64
- ;;^UTILITY(U,$J,358.3,12491,1,4,0)
- ;;=4^GU tract Infection-Postpartum
- ;;^UTILITY(U,$J,358.3,12491,2)
- ;;=^270939
- ;;^UTILITY(U,$J,358.3,12492,0)
- ;;=646.73^^62^747^21
- ;;^UTILITY(U,$J,358.3,12492,1,0)
+ ;;^UTILITY(U,$J,358.3,11943,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11943,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,11943,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,11944,0)
+ ;;=W13.8XXA^^68^694^35
+ ;;^UTILITY(U,$J,358.3,11944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12492,1,3,0)
- ;;=3^646.73
- ;;^UTILITY(U,$J,358.3,12492,1,4,0)
- ;;=4^Liver/Bil tract d/o-Antepartum
- ;;^UTILITY(U,$J,358.3,12492,2)
- ;;=^340638
- ;;^UTILITY(U,$J,358.3,12493,0)
- ;;=647.03^^62^747^38
- ;;^UTILITY(U,$J,358.3,12493,1,0)
+ ;;^UTILITY(U,$J,358.3,11944,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11944,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,11944,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,11945,0)
+ ;;=W13.8XXD^^68^694^36
+ ;;^UTILITY(U,$J,358.3,11945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12493,1,3,0)
- ;;=3^647.03
- ;;^UTILITY(U,$J,358.3,12493,1,4,0)
- ;;=4^Syphillis-Antepartum
- ;;^UTILITY(U,$J,358.3,12493,2)
- ;;=^270957
- ;;^UTILITY(U,$J,358.3,12494,0)
- ;;=647.04^^62^747^39
- ;;^UTILITY(U,$J,358.3,12494,1,0)
+ ;;^UTILITY(U,$J,358.3,11945,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11945,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,11945,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,11946,0)
+ ;;=W13.9XXA^^68^694^33
+ ;;^UTILITY(U,$J,358.3,11946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12494,1,3,0)
- ;;=3^647.04
- ;;^UTILITY(U,$J,358.3,12494,1,4,0)
- ;;=4^Syphillis-Postpartum
- ;;^UTILITY(U,$J,358.3,12494,2)
- ;;=^270958
- ;;^UTILITY(U,$J,358.3,12495,0)
- ;;=647.13^^62^747^19
- ;;^UTILITY(U,$J,358.3,12495,1,0)
+ ;;^UTILITY(U,$J,358.3,11946,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11946,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,11946,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,11947,0)
+ ;;=W13.9XXD^^68^694^34
+ ;;^UTILITY(U,$J,358.3,11947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12495,1,3,0)
- ;;=3^647.13
- ;;^UTILITY(U,$J,358.3,12495,1,4,0)
- ;;=4^Gonorrhea-Antepartum
- ;;^UTILITY(U,$J,358.3,12495,2)
- ;;=^270963
- ;;^UTILITY(U,$J,358.3,12496,0)
- ;;=647.14^^62^747^20
- ;;^UTILITY(U,$J,358.3,12496,1,0)
+ ;;^UTILITY(U,$J,358.3,11947,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11947,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,11947,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,11948,0)
+ ;;=W14.XXXA^^68^694^65
+ ;;^UTILITY(U,$J,358.3,11948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12496,1,3,0)
- ;;=3^647.14
- ;;^UTILITY(U,$J,358.3,12496,1,4,0)
- ;;=4^Gonorrhea-Postpartum
- ;;^UTILITY(U,$J,358.3,12496,2)
- ;;=^270964
- ;;^UTILITY(U,$J,358.3,12497,0)
- ;;=647.23^^62^747^28
- ;;^UTILITY(U,$J,358.3,12497,1,0)
+ ;;^UTILITY(U,$J,358.3,11948,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11948,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,11948,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,11949,0)
+ ;;=W14.XXXD^^68^694^66
+ ;;^UTILITY(U,$J,358.3,11949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12497,1,3,0)
- ;;=3^647.23
- ;;^UTILITY(U,$J,358.3,12497,1,4,0)
- ;;=4^Oth Veneral Disease-Antepartum
- ;;^UTILITY(U,$J,358.3,12497,2)
- ;;=^270969

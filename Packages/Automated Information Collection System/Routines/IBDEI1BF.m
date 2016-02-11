@@ -1,136 +1,124 @@
-IBDEI1BF ; ; 06-AUG-2015
+IBDEI1BF ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23298,1,5,0)
- ;;=5^Generalized Pain
- ;;^UTILITY(U,$J,358.3,23298,2)
- ;;=^334163
- ;;^UTILITY(U,$J,358.3,23299,0)
- ;;=607.9^^125^1404^30
- ;;^UTILITY(U,$J,358.3,23299,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23299,1,4,0)
- ;;=4^607.9
- ;;^UTILITY(U,$J,358.3,23299,1,5,0)
- ;;=5^Penile Pain
- ;;^UTILITY(U,$J,358.3,23299,2)
- ;;=^270442
- ;;^UTILITY(U,$J,358.3,23300,0)
- ;;=608.9^^125^1404^32
- ;;^UTILITY(U,$J,358.3,23300,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23300,1,4,0)
- ;;=4^608.9
- ;;^UTILITY(U,$J,358.3,23300,1,5,0)
- ;;=5^Scrotal Pain
- ;;^UTILITY(U,$J,358.3,23300,2)
- ;;=^123856
- ;;^UTILITY(U,$J,358.3,23301,0)
- ;;=V68.1^^125^1405^4
- ;;^UTILITY(U,$J,358.3,23301,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23301,1,4,0)
- ;;=4^V68.1
- ;;^UTILITY(U,$J,358.3,23301,1,5,0)
- ;;=5^Rx Refill (Also mark Condition)
- ;;^UTILITY(U,$J,358.3,23301,2)
- ;;=RX Refill (also mark Condition)^295585
- ;;^UTILITY(U,$J,358.3,23302,0)
- ;;=V68.81^^125^1405^6
- ;;^UTILITY(U,$J,358.3,23302,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23302,1,4,0)
- ;;=4^V68.81
- ;;^UTILITY(U,$J,358.3,23302,1,5,0)
- ;;=5^Transfer of Care (Also Mark Dx)
- ;;^UTILITY(U,$J,358.3,23302,2)
- ;;=Transfer of Care ^295587
- ;;^UTILITY(U,$J,358.3,23303,0)
- ;;=V58.83^^125^1405^5
- ;;^UTILITY(U,$J,358.3,23303,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23303,1,4,0)
- ;;=4^V58.83
- ;;^UTILITY(U,$J,358.3,23303,1,5,0)
- ;;=5^Therapeutic Drug Monitoring
- ;;^UTILITY(U,$J,358.3,23303,2)
- ;;=Encounter for Therapeutic Drug Monitoring^322076
- ;;^UTILITY(U,$J,358.3,23304,0)
- ;;=V65.19^^125^1405^3
- ;;^UTILITY(U,$J,358.3,23304,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23304,1,4,0)
- ;;=4^V65.19
- ;;^UTILITY(U,$J,358.3,23304,1,5,0)
- ;;=5^Person Consulting on Behalf of Pt
- ;;^UTILITY(U,$J,358.3,23304,2)
- ;;=^329985
- ;;^UTILITY(U,$J,358.3,23305,0)
- ;;=V60.89^^125^1405^1
- ;;^UTILITY(U,$J,358.3,23305,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23305,1,4,0)
- ;;=4^V60.89
- ;;^UTILITY(U,$J,358.3,23305,1,5,0)
- ;;=5^Housing/Economic Circumstances
- ;;^UTILITY(U,$J,358.3,23305,2)
- ;;=^295545
- ;;^UTILITY(U,$J,358.3,23306,0)
- ;;=V68.09^^125^1405^2
- ;;^UTILITY(U,$J,358.3,23306,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23306,1,4,0)
- ;;=4^V68.09
- ;;^UTILITY(U,$J,358.3,23306,1,5,0)
- ;;=5^Issue of Medical Certificate
- ;;^UTILITY(U,$J,358.3,23306,2)
- ;;=^335321
- ;;^UTILITY(U,$J,358.3,23307,0)
- ;;=309.0^^125^1406^1
- ;;^UTILITY(U,$J,358.3,23307,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23307,1,4,0)
- ;;=4^309.0
- ;;^UTILITY(U,$J,358.3,23307,1,5,0)
- ;;=5^Adjustment Disorder
- ;;^UTILITY(U,$J,358.3,23307,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,23308,0)
- ;;=305.00^^125^1406^3
- ;;^UTILITY(U,$J,358.3,23308,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23308,1,4,0)
- ;;=4^305.00
- ;;^UTILITY(U,$J,358.3,23308,1,5,0)
- ;;=5^Alcohol Abuse-Unspec
- ;;^UTILITY(U,$J,358.3,23308,2)
- ;;=^268227
- ;;^UTILITY(U,$J,358.3,23309,0)
- ;;=305.03^^125^1406^2
- ;;^UTILITY(U,$J,358.3,23309,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23309,1,4,0)
- ;;=4^305.03
- ;;^UTILITY(U,$J,358.3,23309,1,5,0)
- ;;=5^Alcohol Abuse-In Remission
- ;;^UTILITY(U,$J,358.3,23309,2)
- ;;=^268230
- ;;^UTILITY(U,$J,358.3,23310,0)
- ;;=477.9^^125^1406^4
- ;;^UTILITY(U,$J,358.3,23310,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23310,1,4,0)
- ;;=4^477.9
- ;;^UTILITY(U,$J,358.3,23310,1,5,0)
- ;;=5^Allergic Rhinitis NOS
- ;;^UTILITY(U,$J,358.3,23310,2)
- ;;=^4955
- ;;^UTILITY(U,$J,358.3,23311,0)
- ;;=285.9^^125^1406^5
- ;;^UTILITY(U,$J,358.3,23311,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23311,1,4,0)
- ;;=4^285.9
- ;;^UTILITY(U,$J,358.3,23311,1,5,0)
- ;;=5^Anemia NOS
+ ;;^UTILITY(U,$J,358.3,21947,1,4,0)
+ ;;=4^S62.515S
+ ;;^UTILITY(U,$J,358.3,21947,2)
+ ;;=^5034332
+ ;;^UTILITY(U,$J,358.3,21948,0)
+ ;;=S62.514S^^101^1035^106
+ ;;^UTILITY(U,$J,358.3,21948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21948,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,21948,1,4,0)
+ ;;=4^S62.514S
+ ;;^UTILITY(U,$J,358.3,21948,2)
+ ;;=^5034325
+ ;;^UTILITY(U,$J,358.3,21949,0)
+ ;;=S32.462S^^101^1036^5
+ ;;^UTILITY(U,$J,358.3,21949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21949,1,3,0)
+ ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,21949,1,4,0)
+ ;;=4^S32.462S
+ ;;^UTILITY(U,$J,358.3,21949,2)
+ ;;=^5024892
+ ;;^UTILITY(U,$J,358.3,21950,0)
+ ;;=S32.461S^^101^1036^6
+ ;;^UTILITY(U,$J,358.3,21950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21950,1,3,0)
+ ;;=3^Disp fx of associated transv/post of right acetab, sequela
+ ;;^UTILITY(U,$J,358.3,21950,1,4,0)
+ ;;=4^S32.461S
+ ;;^UTILITY(U,$J,358.3,21950,2)
+ ;;=^5024886
+ ;;^UTILITY(U,$J,358.3,21951,0)
+ ;;=S32.312S^^101^1036^7
+ ;;^UTILITY(U,$J,358.3,21951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21951,1,3,0)
+ ;;=3^Disp fx of avulsion of left ilium, sequela
+ ;;^UTILITY(U,$J,358.3,21951,1,4,0)
+ ;;=4^S32.312S
+ ;;^UTILITY(U,$J,358.3,21951,2)
+ ;;=^5024658
+ ;;^UTILITY(U,$J,358.3,21952,0)
+ ;;=S32.311S^^101^1036^9
+ ;;^UTILITY(U,$J,358.3,21952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21952,1,3,0)
+ ;;=3^Disp fx of avulsion of right ilium, sequela
+ ;;^UTILITY(U,$J,358.3,21952,1,4,0)
+ ;;=4^S32.311S
+ ;;^UTILITY(U,$J,358.3,21952,2)
+ ;;=^5024652
+ ;;^UTILITY(U,$J,358.3,21953,0)
+ ;;=S32.612S^^101^1036^8
+ ;;^UTILITY(U,$J,358.3,21953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21953,1,3,0)
+ ;;=3^Disp fx of avulsion of left ischium, sequela
+ ;;^UTILITY(U,$J,358.3,21953,1,4,0)
+ ;;=4^S32.612S
+ ;;^UTILITY(U,$J,358.3,21953,2)
+ ;;=^5025066
+ ;;^UTILITY(U,$J,358.3,21954,0)
+ ;;=S32.611S^^101^1036^10
+ ;;^UTILITY(U,$J,358.3,21954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21954,1,3,0)
+ ;;=3^Disp fx of avulsion of right ischium, sequela
+ ;;^UTILITY(U,$J,358.3,21954,1,4,0)
+ ;;=4^S32.611S
+ ;;^UTILITY(U,$J,358.3,21954,2)
+ ;;=^5025060
+ ;;^UTILITY(U,$J,358.3,21955,0)
+ ;;=S32.482S^^101^1036^11
+ ;;^UTILITY(U,$J,358.3,21955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21955,1,3,0)
+ ;;=3^Disp fx of dome of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,21955,1,4,0)
+ ;;=4^S32.482S
+ ;;^UTILITY(U,$J,358.3,21955,2)
+ ;;=^5024964
+ ;;^UTILITY(U,$J,358.3,21956,0)
+ ;;=S32.481S^^101^1036^12
+ ;;^UTILITY(U,$J,358.3,21956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21956,1,3,0)
+ ;;=3^Disp fx of dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,21956,1,4,0)
+ ;;=4^S32.481S
+ ;;^UTILITY(U,$J,358.3,21956,2)
+ ;;=^5024958
+ ;;^UTILITY(U,$J,358.3,21957,0)
+ ;;=S32.432S^^101^1036^1
+ ;;^UTILITY(U,$J,358.3,21957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21957,1,3,0)
+ ;;=3^Disp fx of anterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,21957,1,4,0)
+ ;;=4^S32.432S
+ ;;^UTILITY(U,$J,358.3,21957,2)
+ ;;=^5024784
+ ;;^UTILITY(U,$J,358.3,21958,0)
+ ;;=S32.431S^^101^1036^2
+ ;;^UTILITY(U,$J,358.3,21958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21958,1,3,0)
+ ;;=3^Disp fx of anterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,21958,1,4,0)
+ ;;=4^S32.431S
+ ;;^UTILITY(U,$J,358.3,21958,2)
+ ;;=^5024778
+ ;;^UTILITY(U,$J,358.3,21959,0)
+ ;;=S32.412S^^101^1036^3
+ ;;^UTILITY(U,$J,358.3,21959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21959,1,3,0)
+ ;;=3^Disp fx of anterior wall of left acetabulum, sequela

@@ -1,130 +1,142 @@
-IBDEI06A ; ; 06-AUG-2015
+IBDEI06A ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2416,2)
- ;;=^5006937
- ;;^UTILITY(U,$J,358.3,2417,0)
- ;;=H91.22^^5^71^53
- ;;^UTILITY(U,$J,358.3,2417,1,0)
+ ;;^UTILITY(U,$J,358.3,2342,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,2342,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,2342,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,2343,0)
+ ;;=I95.2^^19^196^8
+ ;;^UTILITY(U,$J,358.3,2343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2417,1,3,0)
- ;;=3^Sudden idiopathic hearing loss, left ear
- ;;^UTILITY(U,$J,358.3,2417,1,4,0)
- ;;=4^H91.22
- ;;^UTILITY(U,$J,358.3,2417,2)
- ;;=^5006938
- ;;^UTILITY(U,$J,358.3,2418,0)
- ;;=H90.0^^5^71^21
- ;;^UTILITY(U,$J,358.3,2418,1,0)
+ ;;^UTILITY(U,$J,358.3,2343,1,3,0)
+ ;;=3^Hypotension d/t Drugs
+ ;;^UTILITY(U,$J,358.3,2343,1,4,0)
+ ;;=4^I95.2
+ ;;^UTILITY(U,$J,358.3,2343,2)
+ ;;=^5008077
+ ;;^UTILITY(U,$J,358.3,2344,0)
+ ;;=I95.81^^19^196^11
+ ;;^UTILITY(U,$J,358.3,2344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2418,1,3,0)
- ;;=3^Conductive hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,2418,1,4,0)
- ;;=4^H90.0
- ;;^UTILITY(U,$J,358.3,2418,2)
- ;;=^335257
- ;;^UTILITY(U,$J,358.3,2419,0)
- ;;=H90.11^^5^71^20
- ;;^UTILITY(U,$J,358.3,2419,1,0)
+ ;;^UTILITY(U,$J,358.3,2344,1,3,0)
+ ;;=3^Postprocedural Hypotension
+ ;;^UTILITY(U,$J,358.3,2344,1,4,0)
+ ;;=4^I95.81
+ ;;^UTILITY(U,$J,358.3,2344,2)
+ ;;=^5008078
+ ;;^UTILITY(U,$J,358.3,2345,0)
+ ;;=I95.9^^19^196^9
+ ;;^UTILITY(U,$J,358.3,2345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2419,1,3,0)
- ;;=3^Condctv hear loss, uni, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2419,1,4,0)
- ;;=4^H90.11
- ;;^UTILITY(U,$J,358.3,2419,2)
- ;;=^5006918
- ;;^UTILITY(U,$J,358.3,2420,0)
- ;;=H90.12^^5^71^19
- ;;^UTILITY(U,$J,358.3,2420,1,0)
+ ;;^UTILITY(U,$J,358.3,2345,1,3,0)
+ ;;=3^Hypotension,Unspec
+ ;;^UTILITY(U,$J,358.3,2345,1,4,0)
+ ;;=4^I95.9
+ ;;^UTILITY(U,$J,358.3,2345,2)
+ ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,2346,0)
+ ;;=B25.9^^19^197^5
+ ;;^UTILITY(U,$J,358.3,2346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2420,1,3,0)
- ;;=3^Condctv hear loss, uni, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2420,1,4,0)
- ;;=4^H90.12
- ;;^UTILITY(U,$J,358.3,2420,2)
- ;;=^5006919
- ;;^UTILITY(U,$J,358.3,2421,0)
- ;;=H90.3^^5^71^50
- ;;^UTILITY(U,$J,358.3,2421,1,0)
+ ;;^UTILITY(U,$J,358.3,2346,1,3,0)
+ ;;=3^CMV Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2346,1,4,0)
+ ;;=4^B25.9
+ ;;^UTILITY(U,$J,358.3,2346,2)
+ ;;=^5000560
+ ;;^UTILITY(U,$J,358.3,2347,0)
+ ;;=I30.1^^19^197^7
+ ;;^UTILITY(U,$J,358.3,2347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2421,1,3,0)
- ;;=3^Sensorineural hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,2421,1,4,0)
- ;;=4^H90.3
- ;;^UTILITY(U,$J,358.3,2421,2)
- ;;=^335328
- ;;^UTILITY(U,$J,358.3,2422,0)
- ;;=H90.41^^5^71^52
- ;;^UTILITY(U,$J,358.3,2422,1,0)
+ ;;^UTILITY(U,$J,358.3,2347,1,3,0)
+ ;;=3^Infective Pericarditis
+ ;;^UTILITY(U,$J,358.3,2347,1,4,0)
+ ;;=4^I30.1
+ ;;^UTILITY(U,$J,358.3,2347,2)
+ ;;=^5007158
+ ;;^UTILITY(U,$J,358.3,2348,0)
+ ;;=I30.0^^19^197^1
+ ;;^UTILITY(U,$J,358.3,2348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2422,1,3,0)
- ;;=3^Snsrnrl hear loss, uni, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2422,1,4,0)
- ;;=4^H90.41
- ;;^UTILITY(U,$J,358.3,2422,2)
- ;;=^5006921
- ;;^UTILITY(U,$J,358.3,2423,0)
- ;;=H90.42^^5^71^51
- ;;^UTILITY(U,$J,358.3,2423,1,0)
+ ;;^UTILITY(U,$J,358.3,2348,1,3,0)
+ ;;=3^Acute Nonspecific Idiopathic Pericarditis
+ ;;^UTILITY(U,$J,358.3,2348,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,2348,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,2349,0)
+ ;;=I33.0^^19^197^3
+ ;;^UTILITY(U,$J,358.3,2349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2423,1,3,0)
- ;;=3^Snsrnrl hear loss, uni, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2423,1,4,0)
- ;;=4^H90.42
- ;;^UTILITY(U,$J,358.3,2423,2)
- ;;=^5006922
- ;;^UTILITY(U,$J,358.3,2424,0)
- ;;=H90.6^^5^71^41
- ;;^UTILITY(U,$J,358.3,2424,1,0)
+ ;;^UTILITY(U,$J,358.3,2349,1,3,0)
+ ;;=3^Acute/Subacute Infective Endocarditis
+ ;;^UTILITY(U,$J,358.3,2349,1,4,0)
+ ;;=4^I33.0
+ ;;^UTILITY(U,$J,358.3,2349,2)
+ ;;=^5007167
+ ;;^UTILITY(U,$J,358.3,2350,0)
+ ;;=I33.9^^19^197^2
+ ;;^UTILITY(U,$J,358.3,2350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2424,1,3,0)
- ;;=3^Mixed conductive and sensorineural hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,2424,1,4,0)
- ;;=4^H90.6
- ;;^UTILITY(U,$J,358.3,2424,2)
- ;;=^5006924
- ;;^UTILITY(U,$J,358.3,2425,0)
- ;;=H90.71^^5^71^40
- ;;^UTILITY(U,$J,358.3,2425,1,0)
+ ;;^UTILITY(U,$J,358.3,2350,1,3,0)
+ ;;=3^Acute/Subacute Endocarditis,Unspec
+ ;;^UTILITY(U,$J,358.3,2350,1,4,0)
+ ;;=4^I33.9
+ ;;^UTILITY(U,$J,358.3,2350,2)
+ ;;=^5007168
+ ;;^UTILITY(U,$J,358.3,2351,0)
+ ;;=I31.0^^19^197^4
+ ;;^UTILITY(U,$J,358.3,2351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2425,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,uni,r ear,w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2425,1,4,0)
- ;;=4^H90.71
- ;;^UTILITY(U,$J,358.3,2425,2)
- ;;=^5006925
- ;;^UTILITY(U,$J,358.3,2426,0)
- ;;=H90.72^^5^71^39
- ;;^UTILITY(U,$J,358.3,2426,1,0)
+ ;;^UTILITY(U,$J,358.3,2351,1,3,0)
+ ;;=3^Adhesive Pericarditis,Chronic
+ ;;^UTILITY(U,$J,358.3,2351,1,4,0)
+ ;;=4^I31.0
+ ;;^UTILITY(U,$J,358.3,2351,2)
+ ;;=^5007161
+ ;;^UTILITY(U,$J,358.3,2352,0)
+ ;;=I31.1^^19^197^6
+ ;;^UTILITY(U,$J,358.3,2352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2426,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,uni,l ear,w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2426,1,4,0)
- ;;=4^H90.72
- ;;^UTILITY(U,$J,358.3,2426,2)
- ;;=^5006926
- ;;^UTILITY(U,$J,358.3,2427,0)
- ;;=H61.001^^5^71^47
- ;;^UTILITY(U,$J,358.3,2427,1,0)
+ ;;^UTILITY(U,$J,358.3,2352,1,3,0)
+ ;;=3^Constrictive Pericarditis,Chronic
+ ;;^UTILITY(U,$J,358.3,2352,1,4,0)
+ ;;=4^I31.1
+ ;;^UTILITY(U,$J,358.3,2352,2)
+ ;;=^5007162
+ ;;^UTILITY(U,$J,358.3,2353,0)
+ ;;=E78.0^^19^198^5
+ ;;^UTILITY(U,$J,358.3,2353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2427,1,3,0)
- ;;=3^Perichondritis of right external ear
- ;;^UTILITY(U,$J,358.3,2427,1,4,0)
- ;;=4^H61.001
- ;;^UTILITY(U,$J,358.3,2427,2)
- ;;=^5006499
- ;;^UTILITY(U,$J,358.3,2428,0)
- ;;=H61.002^^5^71^46
- ;;^UTILITY(U,$J,358.3,2428,1,0)
+ ;;^UTILITY(U,$J,358.3,2353,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,2353,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,2353,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,2354,0)
+ ;;=E78.1^^19^198^6
+ ;;^UTILITY(U,$J,358.3,2354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2428,1,3,0)
- ;;=3^Perichondritis of left external ear
- ;;^UTILITY(U,$J,358.3,2428,1,4,0)
- ;;=4^H61.002
- ;;^UTILITY(U,$J,358.3,2428,2)
- ;;=^5006500
- ;;^UTILITY(U,$J,358.3,2429,0)
- ;;=H65.111^^5^71^8
- ;;^UTILITY(U,$J,358.3,2429,1,0)
+ ;;^UTILITY(U,$J,358.3,2354,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,2354,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,2354,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,2355,0)
+ ;;=E78.2^^19^198^4
+ ;;^UTILITY(U,$J,358.3,2355,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2355,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,2355,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,2355,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,2356,0)
+ ;;=E78.4^^19^198^1

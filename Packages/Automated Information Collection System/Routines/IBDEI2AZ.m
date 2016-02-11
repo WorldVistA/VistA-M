@@ -1,0 +1,130 @@
+IBDEI2AZ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,38682,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,38683,0)
+ ;;=R56.9^^180^1981^4
+ ;;^UTILITY(U,$J,358.3,38683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38683,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,38683,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,38683,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,38684,0)
+ ;;=S06.9X5S^^180^1981^15
+ ;;^UTILITY(U,$J,358.3,38684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38684,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,38684,1,4,0)
+ ;;=4^S06.9X5S
+ ;;^UTILITY(U,$J,358.3,38684,2)
+ ;;=^5021223
+ ;;^UTILITY(U,$J,358.3,38685,0)
+ ;;=S06.9X6S^^180^1981^16
+ ;;^UTILITY(U,$J,358.3,38685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38685,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,38685,1,4,0)
+ ;;=4^S06.9X6S
+ ;;^UTILITY(U,$J,358.3,38685,2)
+ ;;=^5021226
+ ;;^UTILITY(U,$J,358.3,38686,0)
+ ;;=S06.9X3S^^180^1981^17
+ ;;^UTILITY(U,$J,358.3,38686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38686,1,3,0)
+ ;;=3^Intcrn injury w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,38686,1,4,0)
+ ;;=4^S06.9X3S
+ ;;^UTILITY(U,$J,358.3,38686,2)
+ ;;=^5021217
+ ;;^UTILITY(U,$J,358.3,38687,0)
+ ;;=S06.9X1S^^180^1981^18
+ ;;^UTILITY(U,$J,358.3,38687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38687,1,3,0)
+ ;;=3^Intcrn injury w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,38687,1,4,0)
+ ;;=4^S06.9X1S
+ ;;^UTILITY(U,$J,358.3,38687,2)
+ ;;=^5021211
+ ;;^UTILITY(U,$J,358.3,38688,0)
+ ;;=S06.9X2S^^180^1981^19
+ ;;^UTILITY(U,$J,358.3,38688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38688,1,3,0)
+ ;;=3^Intcrn injury w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,38688,1,4,0)
+ ;;=4^S06.9X2S
+ ;;^UTILITY(U,$J,358.3,38688,2)
+ ;;=^5021214
+ ;;^UTILITY(U,$J,358.3,38689,0)
+ ;;=S06.9X4S^^180^1981^20
+ ;;^UTILITY(U,$J,358.3,38689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38689,1,3,0)
+ ;;=3^Intcrn injury w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,38689,1,4,0)
+ ;;=4^S06.9X4S
+ ;;^UTILITY(U,$J,358.3,38689,2)
+ ;;=^5021220
+ ;;^UTILITY(U,$J,358.3,38690,0)
+ ;;=S06.9X9S^^180^1981^21
+ ;;^UTILITY(U,$J,358.3,38690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38690,1,3,0)
+ ;;=3^Intcrn injury w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,38690,1,4,0)
+ ;;=4^S06.9X9S
+ ;;^UTILITY(U,$J,358.3,38690,2)
+ ;;=^5021235
+ ;;^UTILITY(U,$J,358.3,38691,0)
+ ;;=S06.9X0S^^180^1981^22
+ ;;^UTILITY(U,$J,358.3,38691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38691,1,3,0)
+ ;;=3^Intcrn injury w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,38691,1,4,0)
+ ;;=4^S06.9X0S
+ ;;^UTILITY(U,$J,358.3,38691,2)
+ ;;=^5021208
+ ;;^UTILITY(U,$J,358.3,38692,0)
+ ;;=I25.10^^180^1982^1
+ ;;^UTILITY(U,$J,358.3,38692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38692,1,3,0)
+ ;;=3^Athscl heart disease of native coronary artery w/o ang pctrs
+ ;;^UTILITY(U,$J,358.3,38692,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,38692,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,38693,0)
+ ;;=J44.1^^180^1982^3
+ ;;^UTILITY(U,$J,358.3,38693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38693,1,3,0)
+ ;;=3^COPD w acute exacerbation
+ ;;^UTILITY(U,$J,358.3,38693,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,38693,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,38694,0)
+ ;;=J44.9^^180^1982^4
+ ;;^UTILITY(U,$J,358.3,38694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38694,1,3,0)
+ ;;=3^COPD, unspecified
+ ;;^UTILITY(U,$J,358.3,38694,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,38694,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,38695,0)
+ ;;=Z98.61^^180^1982^6
+ ;;^UTILITY(U,$J,358.3,38695,1,0)
+ ;;=^358.31IA^4^2

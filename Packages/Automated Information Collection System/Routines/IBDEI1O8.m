@@ -1,126 +1,134 @@
-IBDEI1O8 ; ; 06-AUG-2015
+IBDEI1O8 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29670,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29670,1,4,0)
- ;;=4^L89.329
- ;;^UTILITY(U,$J,358.3,29670,2)
- ;;=^5133671
- ;;^UTILITY(U,$J,358.3,29671,0)
- ;;=L89.40^^177^1892^1
- ;;^UTILITY(U,$J,358.3,29671,1,0)
+ ;;^UTILITY(U,$J,358.3,27960,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,27960,2)
+ ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,27961,0)
+ ;;=H83.02^^132^1322^46
+ ;;^UTILITY(U,$J,358.3,27961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29671,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29671,1,4,0)
- ;;=4^L89.40
- ;;^UTILITY(U,$J,358.3,29671,2)
- ;;=^5009404
- ;;^UTILITY(U,$J,358.3,29672,0)
- ;;=L89.41^^177^1892^2
- ;;^UTILITY(U,$J,358.3,29672,1,0)
+ ;;^UTILITY(U,$J,358.3,27961,1,3,0)
+ ;;=3^Labyrinthitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,27961,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,27961,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,27962,0)
+ ;;=J01.91^^132^1322^76
+ ;;^UTILITY(U,$J,358.3,27962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29672,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 1
- ;;^UTILITY(U,$J,358.3,29672,1,4,0)
- ;;=4^L89.41
- ;;^UTILITY(U,$J,358.3,29672,2)
- ;;=^5009405
- ;;^UTILITY(U,$J,358.3,29673,0)
- ;;=L89.42^^177^1892^3
- ;;^UTILITY(U,$J,358.3,29673,1,0)
+ ;;^UTILITY(U,$J,358.3,27962,1,3,0)
+ ;;=3^Sinusitis,Acute Recurrent Unspec
+ ;;^UTILITY(U,$J,358.3,27962,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,27962,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,27963,0)
+ ;;=J03.90^^132^1322^81
+ ;;^UTILITY(U,$J,358.3,27963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29673,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 2
- ;;^UTILITY(U,$J,358.3,29673,1,4,0)
- ;;=4^L89.42
- ;;^UTILITY(U,$J,358.3,29673,2)
- ;;=^5009406
- ;;^UTILITY(U,$J,358.3,29674,0)
- ;;=L89.43^^177^1892^4
- ;;^UTILITY(U,$J,358.3,29674,1,0)
+ ;;^UTILITY(U,$J,358.3,27963,1,3,0)
+ ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,27963,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,27963,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,27964,0)
+ ;;=J01.90^^132^1322^77
+ ;;^UTILITY(U,$J,358.3,27964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29674,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 3
- ;;^UTILITY(U,$J,358.3,29674,1,4,0)
- ;;=4^L89.43
- ;;^UTILITY(U,$J,358.3,29674,2)
- ;;=^5009407
- ;;^UTILITY(U,$J,358.3,29675,0)
- ;;=L89.44^^177^1892^5
- ;;^UTILITY(U,$J,358.3,29675,1,0)
+ ;;^UTILITY(U,$J,358.3,27964,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,27964,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,27964,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,27965,0)
+ ;;=J20.1^^132^1322^10
+ ;;^UTILITY(U,$J,358.3,27965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29675,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 4
- ;;^UTILITY(U,$J,358.3,29675,1,4,0)
- ;;=4^L89.44
- ;;^UTILITY(U,$J,358.3,29675,2)
- ;;=^5009408
- ;;^UTILITY(U,$J,358.3,29676,0)
- ;;=L89.45^^177^1892^6
- ;;^UTILITY(U,$J,358.3,29676,1,0)
+ ;;^UTILITY(U,$J,358.3,27965,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,27965,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,27965,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,27966,0)
+ ;;=J20.0^^132^1322^11
+ ;;^UTILITY(U,$J,358.3,27966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29676,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Unstageable
- ;;^UTILITY(U,$J,358.3,29676,1,4,0)
- ;;=4^L89.45
- ;;^UTILITY(U,$J,358.3,29676,2)
- ;;=^5009409
- ;;^UTILITY(U,$J,358.3,29677,0)
- ;;=L89.510^^177^1892^66
- ;;^UTILITY(U,$J,358.3,29677,1,0)
+ ;;^UTILITY(U,$J,358.3,27966,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,27966,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,27966,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,27967,0)
+ ;;=J20.2^^132^1322^6
+ ;;^UTILITY(U,$J,358.3,27967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29677,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Unstageable
- ;;^UTILITY(U,$J,358.3,29677,1,4,0)
- ;;=4^L89.510
- ;;^UTILITY(U,$J,358.3,29677,2)
- ;;=^5009415
- ;;^UTILITY(U,$J,358.3,29678,0)
- ;;=L89.511^^177^1892^61
- ;;^UTILITY(U,$J,358.3,29678,1,0)
+ ;;^UTILITY(U,$J,358.3,27967,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,27967,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,27967,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,27968,0)
+ ;;=J20.4^^132^1322^13
+ ;;^UTILITY(U,$J,358.3,27968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29678,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 1
- ;;^UTILITY(U,$J,358.3,29678,1,4,0)
- ;;=4^L89.511
- ;;^UTILITY(U,$J,358.3,29678,2)
- ;;=^5009416
- ;;^UTILITY(U,$J,358.3,29679,0)
- ;;=L89.512^^177^1892^62
- ;;^UTILITY(U,$J,358.3,29679,1,0)
+ ;;^UTILITY(U,$J,358.3,27968,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,27968,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,27968,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,27969,0)
+ ;;=J20.3^^132^1322^8
+ ;;^UTILITY(U,$J,358.3,27969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29679,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 2
- ;;^UTILITY(U,$J,358.3,29679,1,4,0)
- ;;=4^L89.512
- ;;^UTILITY(U,$J,358.3,29679,2)
- ;;=^5009417
- ;;^UTILITY(U,$J,358.3,29680,0)
- ;;=L89.513^^177^1892^63
- ;;^UTILITY(U,$J,358.3,29680,1,0)
+ ;;^UTILITY(U,$J,358.3,27969,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,27969,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,27969,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,27970,0)
+ ;;=J20.9^^132^1322^7
+ ;;^UTILITY(U,$J,358.3,27970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29680,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 3
- ;;^UTILITY(U,$J,358.3,29680,1,4,0)
- ;;=4^L89.513
- ;;^UTILITY(U,$J,358.3,29680,2)
- ;;=^5009418
- ;;^UTILITY(U,$J,358.3,29681,0)
- ;;=L89.514^^177^1892^64
- ;;^UTILITY(U,$J,358.3,29681,1,0)
+ ;;^UTILITY(U,$J,358.3,27970,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,27970,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,27970,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,27971,0)
+ ;;=J20.8^^132^1322^12
+ ;;^UTILITY(U,$J,358.3,27971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29681,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 4
- ;;^UTILITY(U,$J,358.3,29681,1,4,0)
- ;;=4^L89.514
- ;;^UTILITY(U,$J,358.3,29681,2)
- ;;=^5009419
- ;;^UTILITY(U,$J,358.3,29682,0)
- ;;=L89.519^^177^1892^65
- ;;^UTILITY(U,$J,358.3,29682,1,0)
+ ;;^UTILITY(U,$J,358.3,27971,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,27971,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,27971,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,27972,0)
+ ;;=J20.5^^132^1322^14
+ ;;^UTILITY(U,$J,358.3,27972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29682,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,27972,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,27972,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,27972,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,27973,0)
+ ;;=J20.7^^132^1322^9
+ ;;^UTILITY(U,$J,358.3,27973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27973,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus

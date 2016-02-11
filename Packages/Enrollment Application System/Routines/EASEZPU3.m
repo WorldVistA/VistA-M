@@ -1,5 +1,5 @@
-EASEZPU3 ;ALB/AMA - Print utility for 10-10EZ, Version 6 or greater; 10/23/00
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57**;Mar 15, 2001
+EASEZPU3 ;ALB/AMA,LBD - Print utility for 10-10EZ, Version 6 or greater; 10/23/00 ; 1/31/13 2:52pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,107**;Mar 15, 2001;Build 32
  ;
  Q
  ;Split from EASEZP6U
@@ -32,11 +32,11 @@ PAGE1 ;This function retrieves and formats the page 1 application data from
  S @ZDATA@("17C")=$$PROCESS("17C.")           ;Policy number
  S @ZDATA@("17D")=$$PROCESS("17D.")           ;Group code
  ;
- S EACT="",EACT=$$PROCESS("17F.")             ;Insurance company's city
- I EACT]"" S EACT=EACT_", "   ;if there's a city, add comma & space
- ;Insurance company's street^city, state zip
- S @ZDATA@("17E")=$$PROCESS("17E.")_U_EACT_$$PROCESS("17G.")_" "_$$PROCESS("17H.")
- S @ZDATA@("17I")=$$PROCESS("17I.")           ;Insurance company's phone
+ S @ZDATA@("17E")=$$PROCESS("17E.")           ;Insurance company's street
+ S @ZDATA@("17F")=$$PROCESS("17F.")           ;Insurance company's city
+ S @ZDATA@("17G")=$$PROCESS("17G.")           ;Insurance company's state
+ S @ZDATA@("17H")=$$PROCESS("17H.")           ;Insurance company's zip
+ S @ZDATA@("17J")=$$PROCESS("17J.")           ;Insurance company's phone (Changed KEY to 17J - EAS*1*107)
  ;
  S EACT="",EACT=$E($$PROCESS("19A.4"),1,30)   ;Next-of-kin's city
  I EACT]"" S EACT=EACT_", "   ;if there's a city, add comma & space
@@ -76,12 +76,11 @@ PAGEI(EAINS) ;  Additional Insurance pages
  S @ZDATA@("17B")=$E($$PROCESS("17B."),1,30)  ;Name of policy holder
  S @ZDATA@("17C")=$$PROCESS("17C.")           ;Policy number
  S @ZDATA@("17D")=$$PROCESS("17D.")           ;Group code
- S EACT="",EACT=$$PROCESS("17F.")             ;Insurance company's city
- I EACT]"" S EACT=EACT_", "   ;if there's a street, add comma & space
- ;Health insurance company's street^city, state zip
- S @ZDATA@("17E")=$$PROCESS("17E.")_U_EACT_$$PROCESS("17G.")_" "_$$PROCESS("17H.")
- S @ZDATA@("17I")=$$PROCESS("17I.")           ;Insurance company's phone
- ;
+ S @ZDATA@("17E")=$$PROCESS("17E.")           ;Insurance company's street
+ S @ZDATA@("17F")=$$PROCESS("17F.")           ;Insurance company's city
+ S @ZDATA@("17G")=$$PROCESS("17G.")           ;Insurance company's state
+ S @ZDATA@("17H")=$$PROCESS("17H.")           ;Insurance company's zip
+ S @ZDATA@("17J")=$$PROCESS("17J.")           ;Insurance company's phone
  Q
  ;
 PAGEN(EADEP) ;  Additional dependent page(s)

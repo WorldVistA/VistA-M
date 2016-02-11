@@ -1,128 +1,130 @@
-IBDEI1O5 ; ; 06-AUG-2015
+IBDEI1O5 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29632,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 3
- ;;^UTILITY(U,$J,358.3,29632,1,4,0)
- ;;=4^L89.133
- ;;^UTILITY(U,$J,358.3,29632,2)
- ;;=^5009366
- ;;^UTILITY(U,$J,358.3,29633,0)
- ;;=L89.134^^177^1892^94
- ;;^UTILITY(U,$J,358.3,29633,1,0)
+ ;;^UTILITY(U,$J,358.3,27921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29633,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 4
- ;;^UTILITY(U,$J,358.3,29633,1,4,0)
- ;;=4^L89.134
- ;;^UTILITY(U,$J,358.3,29633,2)
- ;;=^5009367
- ;;^UTILITY(U,$J,358.3,29634,0)
- ;;=L89.139^^177^1892^95
- ;;^UTILITY(U,$J,358.3,29634,1,0)
+ ;;^UTILITY(U,$J,358.3,27921,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,27921,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,27921,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,27922,0)
+ ;;=Z81.8^^132^1321^50
+ ;;^UTILITY(U,$J,358.3,27922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29634,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29634,1,4,0)
- ;;=4^L89.139
- ;;^UTILITY(U,$J,358.3,29634,2)
- ;;=^5133653
- ;;^UTILITY(U,$J,358.3,29635,0)
- ;;=L89.140^^177^1892^48
- ;;^UTILITY(U,$J,358.3,29635,1,0)
+ ;;^UTILITY(U,$J,358.3,27922,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,27922,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,27922,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,27923,0)
+ ;;=Z81.4^^132^1321^51
+ ;;^UTILITY(U,$J,358.3,27923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29635,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,29635,1,4,0)
- ;;=4^L89.140
- ;;^UTILITY(U,$J,358.3,29635,2)
- ;;=^5133655
- ;;^UTILITY(U,$J,358.3,29636,0)
- ;;=L89.141^^177^1892^43
- ;;^UTILITY(U,$J,358.3,29636,1,0)
+ ;;^UTILITY(U,$J,358.3,27923,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,27923,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,27923,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,27924,0)
+ ;;=Z98.0^^132^1321^62
+ ;;^UTILITY(U,$J,358.3,27924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29636,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,29636,1,4,0)
- ;;=4^L89.141
- ;;^UTILITY(U,$J,358.3,29636,2)
- ;;=^5133656
- ;;^UTILITY(U,$J,358.3,29637,0)
- ;;=L89.142^^177^1892^44
- ;;^UTILITY(U,$J,358.3,29637,1,0)
+ ;;^UTILITY(U,$J,358.3,27924,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,27924,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,27924,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,27925,0)
+ ;;=Z91.128^^132^1321^61
+ ;;^UTILITY(U,$J,358.3,27925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29637,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 2
- ;;^UTILITY(U,$J,358.3,29637,1,4,0)
- ;;=4^L89.142
- ;;^UTILITY(U,$J,358.3,29637,2)
- ;;=^5133657
- ;;^UTILITY(U,$J,358.3,29638,0)
- ;;=L89.143^^177^1892^45
- ;;^UTILITY(U,$J,358.3,29638,1,0)
+ ;;^UTILITY(U,$J,358.3,27925,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,27925,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,27925,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,27926,0)
+ ;;=Z77.120^^132^1321^67
+ ;;^UTILITY(U,$J,358.3,27926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29638,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 3
- ;;^UTILITY(U,$J,358.3,29638,1,4,0)
- ;;=4^L89.143
- ;;^UTILITY(U,$J,358.3,29638,2)
- ;;=^5133658
- ;;^UTILITY(U,$J,358.3,29639,0)
- ;;=L89.144^^177^1892^46
- ;;^UTILITY(U,$J,358.3,29639,1,0)
+ ;;^UTILITY(U,$J,358.3,27926,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27926,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,27926,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,27927,0)
+ ;;=Z86.74^^132^1321^110
+ ;;^UTILITY(U,$J,358.3,27927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29639,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 4
- ;;^UTILITY(U,$J,358.3,29639,1,4,0)
- ;;=4^L89.144
- ;;^UTILITY(U,$J,358.3,29639,2)
- ;;=^5133659
- ;;^UTILITY(U,$J,358.3,29640,0)
- ;;=L89.149^^177^1892^47
- ;;^UTILITY(U,$J,358.3,29640,1,0)
+ ;;^UTILITY(U,$J,358.3,27927,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,27927,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,27927,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,27928,0)
+ ;;=Z86.718^^132^1321^117
+ ;;^UTILITY(U,$J,358.3,27928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29640,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29640,1,4,0)
- ;;=4^L89.149
- ;;^UTILITY(U,$J,358.3,29640,2)
- ;;=^5133654
- ;;^UTILITY(U,$J,358.3,29641,0)
- ;;=L89.150^^177^1892^108
- ;;^UTILITY(U,$J,358.3,29641,1,0)
+ ;;^UTILITY(U,$J,358.3,27928,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,27928,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,27928,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,27929,0)
+ ;;=Z96.1^^132^1321^127
+ ;;^UTILITY(U,$J,358.3,27929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29641,1,3,0)
- ;;=3^Pressure Ulcer Sacral Region,Unstageable
- ;;^UTILITY(U,$J,358.3,29641,1,4,0)
- ;;=4^L89.150
- ;;^UTILITY(U,$J,358.3,29641,2)
- ;;=^5009368
- ;;^UTILITY(U,$J,358.3,29642,0)
- ;;=L89.151^^177^1892^103
- ;;^UTILITY(U,$J,358.3,29642,1,0)
+ ;;^UTILITY(U,$J,358.3,27929,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,27929,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,27929,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,27930,0)
+ ;;=Z96.612^^132^1321^132
+ ;;^UTILITY(U,$J,358.3,27930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29642,1,3,0)
- ;;=3^Pressure Ulcer Sacral Region,Stage 1
- ;;^UTILITY(U,$J,358.3,29642,1,4,0)
- ;;=4^L89.151
- ;;^UTILITY(U,$J,358.3,29642,2)
- ;;=^5009369
- ;;^UTILITY(U,$J,358.3,29643,0)
- ;;=L89.152^^177^1892^104
- ;;^UTILITY(U,$J,358.3,29643,1,0)
+ ;;^UTILITY(U,$J,358.3,27930,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,27930,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,27930,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,27931,0)
+ ;;=Z96.611^^132^1321^137
+ ;;^UTILITY(U,$J,358.3,27931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29643,1,3,0)
- ;;=3^Pressure Ulcer Sacral Region,Stage 2
- ;;^UTILITY(U,$J,358.3,29643,1,4,0)
- ;;=4^L89.152
- ;;^UTILITY(U,$J,358.3,29643,2)
- ;;=^5009370
- ;;^UTILITY(U,$J,358.3,29644,0)
- ;;=L89.153^^177^1892^105
- ;;^UTILITY(U,$J,358.3,29644,1,0)
+ ;;^UTILITY(U,$J,358.3,27931,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,27931,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,27931,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,27932,0)
+ ;;=Z93.0^^132^1321^145
+ ;;^UTILITY(U,$J,358.3,27932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29644,1,3,0)
- ;;=3^Pressure Ulcer Sacral Region,Stage 3
- ;;^UTILITY(U,$J,358.3,29644,1,4,0)
- ;;=4^L89.153
+ ;;^UTILITY(U,$J,358.3,27932,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,27932,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,27932,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,27933,0)
+ ;;=Z99.3^^132^1321^149
+ ;;^UTILITY(U,$J,358.3,27933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27933,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,27933,1,4,0)
+ ;;=4^Z99.3

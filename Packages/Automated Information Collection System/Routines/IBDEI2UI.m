@@ -1,0 +1,134 @@
+IBDEI2UI ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47750,1,4,0)
+ ;;=4^C11.3
+ ;;^UTILITY(U,$J,358.3,47750,2)
+ ;;=^267042
+ ;;^UTILITY(U,$J,358.3,47751,0)
+ ;;=C11.8^^209^2349^4
+ ;;^UTILITY(U,$J,358.3,47751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47751,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Nasopharynx
+ ;;^UTILITY(U,$J,358.3,47751,1,4,0)
+ ;;=4^C11.8
+ ;;^UTILITY(U,$J,358.3,47751,2)
+ ;;=^5000910
+ ;;^UTILITY(U,$J,358.3,47752,0)
+ ;;=C11.9^^209^2349^3
+ ;;^UTILITY(U,$J,358.3,47752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47752,1,3,0)
+ ;;=3^Malig Neop of Nasopharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,47752,1,4,0)
+ ;;=4^C11.9
+ ;;^UTILITY(U,$J,358.3,47752,2)
+ ;;=^5000911
+ ;;^UTILITY(U,$J,358.3,47753,0)
+ ;;=C12.^^209^2349^6
+ ;;^UTILITY(U,$J,358.3,47753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47753,1,3,0)
+ ;;=3^Malig Neop of Pyriform Sinus
+ ;;^UTILITY(U,$J,358.3,47753,1,4,0)
+ ;;=4^C12.
+ ;;^UTILITY(U,$J,358.3,47753,2)
+ ;;=^267046
+ ;;^UTILITY(U,$J,358.3,47754,0)
+ ;;=C10.1^^209^2350^1
+ ;;^UTILITY(U,$J,358.3,47754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47754,1,3,0)
+ ;;=3^Malig Neop of Anterior Surface of Epiglottis
+ ;;^UTILITY(U,$J,358.3,47754,1,4,0)
+ ;;=4^C10.1
+ ;;^UTILITY(U,$J,358.3,47754,2)
+ ;;=^5000906
+ ;;^UTILITY(U,$J,358.3,47755,0)
+ ;;=C10.0^^209^2350^7
+ ;;^UTILITY(U,$J,358.3,47755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47755,1,3,0)
+ ;;=3^Malig Neop of Vallecula
+ ;;^UTILITY(U,$J,358.3,47755,1,4,0)
+ ;;=4^C10.0
+ ;;^UTILITY(U,$J,358.3,47755,2)
+ ;;=^267032
+ ;;^UTILITY(U,$J,358.3,47756,0)
+ ;;=C10.2^^209^2350^3
+ ;;^UTILITY(U,$J,358.3,47756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47756,1,3,0)
+ ;;=3^Malig Neop of Lateral Wall of Oropharynx
+ ;;^UTILITY(U,$J,358.3,47756,1,4,0)
+ ;;=4^C10.2
+ ;;^UTILITY(U,$J,358.3,47756,2)
+ ;;=^267035
+ ;;^UTILITY(U,$J,358.3,47757,0)
+ ;;=C10.3^^209^2350^6
+ ;;^UTILITY(U,$J,358.3,47757,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47757,1,3,0)
+ ;;=3^Malig Neop of Posterior Wall of Oropharynx
+ ;;^UTILITY(U,$J,358.3,47757,1,4,0)
+ ;;=4^C10.3
+ ;;^UTILITY(U,$J,358.3,47757,2)
+ ;;=^267036
+ ;;^UTILITY(U,$J,358.3,47758,0)
+ ;;=C10.4^^209^2350^2
+ ;;^UTILITY(U,$J,358.3,47758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47758,1,3,0)
+ ;;=3^Malig Neop of Branchial Cleft
+ ;;^UTILITY(U,$J,358.3,47758,1,4,0)
+ ;;=4^C10.4
+ ;;^UTILITY(U,$J,358.3,47758,2)
+ ;;=^5000907
+ ;;^UTILITY(U,$J,358.3,47759,0)
+ ;;=C10.8^^209^2350^5
+ ;;^UTILITY(U,$J,358.3,47759,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47759,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Oropharynx
+ ;;^UTILITY(U,$J,358.3,47759,1,4,0)
+ ;;=4^C10.8
+ ;;^UTILITY(U,$J,358.3,47759,2)
+ ;;=^5000908
+ ;;^UTILITY(U,$J,358.3,47760,0)
+ ;;=C10.9^^209^2350^4
+ ;;^UTILITY(U,$J,358.3,47760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47760,1,3,0)
+ ;;=3^Malig Neop of Oropharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,47760,1,4,0)
+ ;;=4^C10.9
+ ;;^UTILITY(U,$J,358.3,47760,2)
+ ;;=^5000909
+ ;;^UTILITY(U,$J,358.3,47761,0)
+ ;;=C25.0^^209^2351^3
+ ;;^UTILITY(U,$J,358.3,47761,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47761,1,3,0)
+ ;;=3^Malig Neop of Head of Pancreas
+ ;;^UTILITY(U,$J,358.3,47761,1,4,0)
+ ;;=4^C25.0
+ ;;^UTILITY(U,$J,358.3,47761,2)
+ ;;=^267104
+ ;;^UTILITY(U,$J,358.3,47762,0)
+ ;;=C25.1^^209^2351^1
+ ;;^UTILITY(U,$J,358.3,47762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47762,1,3,0)
+ ;;=3^Malig Neop of Body of Pancreas
+ ;;^UTILITY(U,$J,358.3,47762,1,4,0)
+ ;;=4^C25.1
+ ;;^UTILITY(U,$J,358.3,47762,2)
+ ;;=^267105
+ ;;^UTILITY(U,$J,358.3,47763,0)
+ ;;=C25.2^^209^2351^8
+ ;;^UTILITY(U,$J,358.3,47763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47763,1,3,0)
+ ;;=3^Malig Neop of Tail of Pancreas

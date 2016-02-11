@@ -1,132 +1,128 @@
-IBDEI1UI ; ; 06-AUG-2015
+IBDEI1UI ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32496,1,0)
+ ;;^UTILITY(U,$J,358.3,30898,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,30898,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,30899,0)
+ ;;=S63.502A^^135^1385^7
+ ;;^UTILITY(U,$J,358.3,30899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32496,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
- ;;^UTILITY(U,$J,358.3,32496,1,4,0)
- ;;=4^A54.09
- ;;^UTILITY(U,$J,358.3,32496,2)
- ;;=^5000315
- ;;^UTILITY(U,$J,358.3,32497,0)
- ;;=A54.02^^182^1988^45
- ;;^UTILITY(U,$J,358.3,32497,1,0)
+ ;;^UTILITY(U,$J,358.3,30899,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,30899,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,30899,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,30900,0)
+ ;;=S83.8X1A^^135^1385^16
+ ;;^UTILITY(U,$J,358.3,30900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32497,1,3,0)
- ;;=3^Gonococcal Vulvovaginitis,Unspec
- ;;^UTILITY(U,$J,358.3,32497,1,4,0)
- ;;=4^A54.02
- ;;^UTILITY(U,$J,358.3,32497,2)
- ;;=^5000313
- ;;^UTILITY(U,$J,358.3,32498,0)
- ;;=A54.1^^182^1988^42
- ;;^UTILITY(U,$J,358.3,32498,1,0)
+ ;;^UTILITY(U,$J,358.3,30900,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,30900,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,30900,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,30901,0)
+ ;;=S83.8X2A^^135^1385^5
+ ;;^UTILITY(U,$J,358.3,30901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32498,1,3,0)
- ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
- ;;^UTILITY(U,$J,358.3,32498,1,4,0)
- ;;=4^A54.1
- ;;^UTILITY(U,$J,358.3,32498,2)
- ;;=^5000316
- ;;^UTILITY(U,$J,358.3,32499,0)
- ;;=A54.01^^182^1988^41
- ;;^UTILITY(U,$J,358.3,32499,1,0)
+ ;;^UTILITY(U,$J,358.3,30901,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,30901,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,30901,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,30902,0)
+ ;;=S86.211A^^135^1385^47
+ ;;^UTILITY(U,$J,358.3,30902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32499,1,3,0)
- ;;=3^Gonococcal Cystitis & Urethritis,Unspec
- ;;^UTILITY(U,$J,358.3,32499,1,4,0)
- ;;=4^A54.01
- ;;^UTILITY(U,$J,358.3,32499,2)
- ;;=^5000312
- ;;^UTILITY(U,$J,358.3,32500,0)
- ;;=B37.49^^182^1988^11
- ;;^UTILITY(U,$J,358.3,32500,1,0)
+ ;;^UTILITY(U,$J,358.3,30902,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,30902,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,30902,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,30903,0)
+ ;;=S86.212A^^135^1385^27
+ ;;^UTILITY(U,$J,358.3,30903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32500,1,3,0)
- ;;=3^Candidiasis Urogenital,Other
- ;;^UTILITY(U,$J,358.3,32500,1,4,0)
- ;;=4^B37.49
- ;;^UTILITY(U,$J,358.3,32500,2)
- ;;=^5000618
- ;;^UTILITY(U,$J,358.3,32501,0)
- ;;=B37.41^^182^1988^10
- ;;^UTILITY(U,$J,358.3,32501,1,0)
+ ;;^UTILITY(U,$J,358.3,30903,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,30903,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,30903,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,30904,0)
+ ;;=S86.311A^^135^1385^49
+ ;;^UTILITY(U,$J,358.3,30904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32501,1,3,0)
- ;;=3^Candidal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,32501,1,4,0)
- ;;=4^B37.41
- ;;^UTILITY(U,$J,358.3,32501,2)
- ;;=^5000616
- ;;^UTILITY(U,$J,358.3,32502,0)
- ;;=B37.42^^182^1988^9
- ;;^UTILITY(U,$J,358.3,32502,1,0)
+ ;;^UTILITY(U,$J,358.3,30904,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,30904,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,30904,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,30905,0)
+ ;;=S86.312A^^135^1385^29
+ ;;^UTILITY(U,$J,358.3,30905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32502,1,3,0)
- ;;=3^Candidal Balanitis
- ;;^UTILITY(U,$J,358.3,32502,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,32502,2)
- ;;=^5000617
- ;;^UTILITY(U,$J,358.3,32503,0)
- ;;=A59.03^^182^1988^92
- ;;^UTILITY(U,$J,358.3,32503,1,0)
+ ;;^UTILITY(U,$J,358.3,30905,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,30905,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,30905,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,30906,0)
+ ;;=S86.811A^^135^1385^48
+ ;;^UTILITY(U,$J,358.3,30906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32503,1,3,0)
- ;;=3^Trichomonal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,32503,1,4,0)
- ;;=4^A59.03
- ;;^UTILITY(U,$J,358.3,32503,2)
- ;;=^5000349
- ;;^UTILITY(U,$J,358.3,32504,0)
- ;;=E87.6^^182^1988^53
- ;;^UTILITY(U,$J,358.3,32504,1,0)
+ ;;^UTILITY(U,$J,358.3,30906,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,30906,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,30906,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,30907,0)
+ ;;=S86.812A^^135^1385^28
+ ;;^UTILITY(U,$J,358.3,30907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32504,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,32504,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,32504,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,32505,0)
- ;;=F52.0^^182^1988^52
- ;;^UTILITY(U,$J,358.3,32505,1,0)
+ ;;^UTILITY(U,$J,358.3,30907,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,30907,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,30907,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,30908,0)
+ ;;=S86.111A^^135^1385^50
+ ;;^UTILITY(U,$J,358.3,30908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32505,1,3,0)
- ;;=3^Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,32505,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,32505,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,32506,0)
- ;;=F52.22^^182^1988^89
- ;;^UTILITY(U,$J,358.3,32506,1,0)
+ ;;^UTILITY(U,$J,358.3,30908,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,30908,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,30908,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,30909,0)
+ ;;=S86.112A^^135^1385^30
+ ;;^UTILITY(U,$J,358.3,30909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32506,1,3,0)
- ;;=3^Sexual Arousal Disorder,Female
- ;;^UTILITY(U,$J,358.3,32506,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,32506,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,32507,0)
- ;;=F52.8^^182^1988^90
- ;;^UTILITY(U,$J,358.3,32507,1,0)
+ ;;^UTILITY(U,$J,358.3,30909,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,30909,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,30909,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,30910,0)
+ ;;=S83.401A^^135^1385^15
+ ;;^UTILITY(U,$J,358.3,30910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32507,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
- ;;^UTILITY(U,$J,358.3,32507,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,32507,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,32508,0)
- ;;=F52.21^^182^1988^30
- ;;^UTILITY(U,$J,358.3,32508,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32508,1,3,0)
- ;;=3^Erectile Disorder,Male
- ;;^UTILITY(U,$J,358.3,32508,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,32508,2)
- ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,30910,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,30910,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,30910,2)
+ ;;=^5043103

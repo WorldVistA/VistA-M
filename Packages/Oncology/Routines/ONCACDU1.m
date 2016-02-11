@@ -1,5 +1,5 @@
 ONCACDU1 ;Hines OIFO/GWB - NAACCR extract utilities #1 ;05/08/12
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,7**;Jul 31, 2013;Build 5
  ;
 BDATE(ACD160) ;Date of Birth [240] 196-203
  N D0,X,Y
@@ -16,10 +16,9 @@ BEHAV(IEN) ;Behavior Code (called by extract RULES)
 ICD9(ACD160,ONIEN) ;COMOR/COMP 1-10 for ICD9 and Secondary Diagnosis for ICD10
  N ONCDANS
  S ONCDANS=$$GET1^DIQ(160,ACD160,ONIEN,"I")
- S:ONCDANS'="" ONCDANS=$$ICDDX^ICDCODE(ONCDANS)
- S ONCDANS=$P(ONCDANS,U,2)
+ S:ONCDANS'="" ONCDANS=$$GET1^DIQ(80,ONCDANS,.01,"I")
  ;ICD10 invalid code
- I $E(ONCDANS,1,7)="Invalid" S ONCDANS=""
+ I ($E(ONCDANS,1,7)="Invalid")!($E(ONCDANS,1,3)="-1") S ONCDANS=""
  S ONCDANS=$P(ONCDANS,".",1)_$P(ONCDANS,".",2)
  Q ONCDANS
  ;
@@ -103,8 +102,8 @@ OCCUP(ACD160) ;Text--Usual Occupation [310] 143-182
  I OCCUP'<1 D
  .N OCC
  .S OCC=$P($G(^ONCO(160,ACD160,7,OCCUP,0)),U,1)
- .Q:OCC<1
- .S X=$$GET1^DIQ(61.6,OCC,.01,"I")
+ .Q:OCC=""
+ .S X=OCC
  Q X
  ;
 IND(ACD160) ;Text--Usual Industry [320] 183-222

@@ -1,124 +1,124 @@
-IBDEI1XL ; ; 06-AUG-2015
+IBDEI1XL ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33923,1,4,0)
- ;;=4^I69.31
- ;;^UTILITY(U,$J,358.3,33923,2)
- ;;=^5007490
- ;;^UTILITY(U,$J,358.3,33924,0)
- ;;=I69.11^^183^2013^18
- ;;^UTILITY(U,$J,358.3,33924,1,0)
+ ;;^UTILITY(U,$J,358.3,32331,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,32332,0)
+ ;;=F05.^^143^1520^5
+ ;;^UTILITY(U,$J,358.3,32332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33924,1,3,0)
- ;;=3^Cognitive deficits following nontraumatic intcrbl hemorrhage
- ;;^UTILITY(U,$J,358.3,33924,1,4,0)
- ;;=4^I69.11
- ;;^UTILITY(U,$J,358.3,33924,2)
- ;;=^5007426
- ;;^UTILITY(U,$J,358.3,33925,0)
- ;;=I69.01^^183^2013^19
- ;;^UTILITY(U,$J,358.3,33925,1,0)
+ ;;^UTILITY(U,$J,358.3,32332,1,3,0)
+ ;;=3^Delirium d/t Multiple Etiologies
+ ;;^UTILITY(U,$J,358.3,32332,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,32332,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,32333,0)
+ ;;=A81.00^^143^1521^9
+ ;;^UTILITY(U,$J,358.3,32333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33925,1,3,0)
- ;;=3^Cognitive deficits following ntrm subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,33925,1,4,0)
- ;;=4^I69.01
- ;;^UTILITY(U,$J,358.3,33925,2)
- ;;=^5007394
- ;;^UTILITY(U,$J,358.3,33926,0)
- ;;=I69.81^^183^2013^21
- ;;^UTILITY(U,$J,358.3,33926,1,0)
+ ;;^UTILITY(U,$J,358.3,32333,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,32333,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,32333,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,32334,0)
+ ;;=A81.01^^143^1521^38
+ ;;^UTILITY(U,$J,358.3,32334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33926,1,3,0)
- ;;=3^Cognitive deficits following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,33926,1,4,0)
- ;;=4^I69.81
- ;;^UTILITY(U,$J,358.3,33926,2)
- ;;=^5007521
- ;;^UTILITY(U,$J,358.3,33927,0)
- ;;=I69.21^^183^2013^20
- ;;^UTILITY(U,$J,358.3,33927,1,0)
+ ;;^UTILITY(U,$J,358.3,32334,1,3,0)
+ ;;=3^Variant Creutzfeldt-Jakob Disease
+ ;;^UTILITY(U,$J,358.3,32334,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,32334,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,32335,0)
+ ;;=A81.09^^143^1521^8
+ ;;^UTILITY(U,$J,358.3,32335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33927,1,3,0)
- ;;=3^Cognitive deficits following oth ntrm intcrn hemorrhage
- ;;^UTILITY(U,$J,358.3,33927,1,4,0)
- ;;=4^I69.21
- ;;^UTILITY(U,$J,358.3,33927,2)
- ;;=^5007458
- ;;^UTILITY(U,$J,358.3,33928,0)
- ;;=I69.391^^183^2013^22
- ;;^UTILITY(U,$J,358.3,33928,1,0)
+ ;;^UTILITY(U,$J,358.3,32335,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,32335,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,32335,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,32336,0)
+ ;;=A81.2^^143^1521^33
+ ;;^UTILITY(U,$J,358.3,32336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33928,1,3,0)
- ;;=3^Dysphagia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,33928,1,4,0)
- ;;=4^I69.391
- ;;^UTILITY(U,$J,358.3,33928,2)
- ;;=^5007516
- ;;^UTILITY(U,$J,358.3,33929,0)
- ;;=I69.191^^183^2013^23
- ;;^UTILITY(U,$J,358.3,33929,1,0)
+ ;;^UTILITY(U,$J,358.3,32336,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,32336,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,32336,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,32337,0)
+ ;;=F01.50^^143^1521^31
+ ;;^UTILITY(U,$J,358.3,32337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33929,1,3,0)
- ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,33929,1,4,0)
- ;;=4^I69.191
- ;;^UTILITY(U,$J,358.3,33929,2)
- ;;=^5007453
- ;;^UTILITY(U,$J,358.3,33930,0)
- ;;=I69.291^^183^2013^25
- ;;^UTILITY(U,$J,358.3,33930,1,0)
+ ;;^UTILITY(U,$J,358.3,32337,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,32337,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,32337,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,32338,0)
+ ;;=F01.51^^143^1521^32
+ ;;^UTILITY(U,$J,358.3,32338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33930,1,3,0)
- ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,33930,1,4,0)
- ;;=4^I69.291
- ;;^UTILITY(U,$J,358.3,33930,2)
- ;;=^5007485
- ;;^UTILITY(U,$J,358.3,33931,0)
- ;;=I69.091^^183^2013^24
- ;;^UTILITY(U,$J,358.3,33931,1,0)
+ ;;^UTILITY(U,$J,358.3,32338,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,32338,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,32338,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,32339,0)
+ ;;=F10.27^^143^1521^1
+ ;;^UTILITY(U,$J,358.3,32339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33931,1,3,0)
- ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,33931,1,4,0)
- ;;=4^I69.091
- ;;^UTILITY(U,$J,358.3,33931,2)
- ;;=^5007421
- ;;^UTILITY(U,$J,358.3,33932,0)
- ;;=I69.891^^183^2013^26
- ;;^UTILITY(U,$J,358.3,33932,1,0)
+ ;;^UTILITY(U,$J,358.3,32339,1,3,0)
+ ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
+ ;;^UTILITY(U,$J,358.3,32339,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,32339,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,32340,0)
+ ;;=F19.97^^143^1521^37
+ ;;^UTILITY(U,$J,358.3,32340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33932,1,3,0)
- ;;=3^Dysphagia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,33932,1,4,0)
- ;;=4^I69.891
- ;;^UTILITY(U,$J,358.3,33932,2)
- ;;=^5007547
- ;;^UTILITY(U,$J,358.3,33933,0)
- ;;=I69.321^^183^2013^27
- ;;^UTILITY(U,$J,358.3,33933,1,0)
+ ;;^UTILITY(U,$J,358.3,32340,1,3,0)
+ ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,32340,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,32340,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,32341,0)
+ ;;=F02.80^^143^1521^13
+ ;;^UTILITY(U,$J,358.3,32341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33933,1,3,0)
- ;;=3^Dysphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,33933,1,4,0)
- ;;=4^I69.321
- ;;^UTILITY(U,$J,358.3,33933,2)
- ;;=^5007492
- ;;^UTILITY(U,$J,358.3,33934,0)
- ;;=I69.121^^183^2013^28
- ;;^UTILITY(U,$J,358.3,33934,1,0)
+ ;;^UTILITY(U,$J,358.3,32341,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
+ ;;^UTILITY(U,$J,358.3,32341,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,32341,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,32342,0)
+ ;;=F02.81^^143^1521^14
+ ;;^UTILITY(U,$J,358.3,32342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33934,1,3,0)
- ;;=3^Dysphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,33934,1,4,0)
- ;;=4^I69.121
- ;;^UTILITY(U,$J,358.3,33934,2)
- ;;=^5007428
- ;;^UTILITY(U,$J,358.3,33935,0)
- ;;=I69.021^^183^2013^29
- ;;^UTILITY(U,$J,358.3,33935,1,0)
+ ;;^UTILITY(U,$J,358.3,32342,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,32342,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,32342,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,32343,0)
+ ;;=F06.8^^143^1521^24
+ ;;^UTILITY(U,$J,358.3,32343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33935,1,3,0)
- ;;=3^Dysphasia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,32343,1,3,0)
+ ;;=3^Mental Disorder d/t Another Medical Condition NEC
+ ;;^UTILITY(U,$J,358.3,32343,1,4,0)
+ ;;=4^F06.8

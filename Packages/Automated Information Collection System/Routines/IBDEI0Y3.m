@@ -1,140 +1,126 @@
-IBDEI0Y3 ; ; 06-AUG-2015
+IBDEI0Y3 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16599,1,0)
+ ;;^UTILITY(U,$J,358.3,15710,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,15710,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,15710,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,15711,0)
+ ;;=I70.644^^85^825^46
+ ;;^UTILITY(U,$J,358.3,15711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16599,1,3,0)
- ;;=3^682.9
- ;;^UTILITY(U,$J,358.3,16599,1,4,0)
- ;;=4^Cellulitis/Abscess
- ;;^UTILITY(U,$J,358.3,16600,0)
- ;;=053.9^^84^992^3
- ;;^UTILITY(U,$J,358.3,16600,1,0)
+ ;;^UTILITY(U,$J,358.3,15711,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,15711,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,15711,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,15712,0)
+ ;;=I70.645^^85^825^45
+ ;;^UTILITY(U,$J,358.3,15712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16600,1,3,0)
- ;;=3^053.9
- ;;^UTILITY(U,$J,358.3,16600,1,4,0)
- ;;=4^Herpes Zoster
- ;;^UTILITY(U,$J,358.3,16601,0)
- ;;=696.1^^84^992^4
- ;;^UTILITY(U,$J,358.3,16601,1,0)
+ ;;^UTILITY(U,$J,358.3,15712,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,15712,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,15712,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,15713,0)
+ ;;=I70.648^^85^825^47
+ ;;^UTILITY(U,$J,358.3,15713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16601,1,3,0)
- ;;=3^696.1
- ;;^UTILITY(U,$J,358.3,16601,1,4,0)
- ;;=4^Psoriasis
- ;;^UTILITY(U,$J,358.3,16602,0)
- ;;=782.1^^84^992^5
- ;;^UTILITY(U,$J,358.3,16602,1,0)
+ ;;^UTILITY(U,$J,358.3,15713,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,15713,1,4,0)
+ ;;=4^I70.648
+ ;;^UTILITY(U,$J,358.3,15713,2)
+ ;;=^5007752
+ ;;^UTILITY(U,$J,358.3,15714,0)
+ ;;=I70.649^^85^825^49
+ ;;^UTILITY(U,$J,358.3,15714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16602,1,3,0)
- ;;=3^782.1
- ;;^UTILITY(U,$J,358.3,16602,1,4,0)
- ;;=4^Rash
- ;;^UTILITY(U,$J,358.3,16603,0)
- ;;=303.90^^84^993^1
- ;;^UTILITY(U,$J,358.3,16603,1,0)
+ ;;^UTILITY(U,$J,358.3,15714,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,15714,1,4,0)
+ ;;=4^I70.649
+ ;;^UTILITY(U,$J,358.3,15714,2)
+ ;;=^5007753
+ ;;^UTILITY(U,$J,358.3,15715,0)
+ ;;=I70.731^^85^825^83
+ ;;^UTILITY(U,$J,358.3,15715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16603,1,3,0)
- ;;=3^303.90
- ;;^UTILITY(U,$J,358.3,16603,1,4,0)
- ;;=4^Alcoholism
- ;;^UTILITY(U,$J,358.3,16604,0)
- ;;=300.00^^84^993^2
- ;;^UTILITY(U,$J,358.3,16604,1,0)
+ ;;^UTILITY(U,$J,358.3,15715,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,15715,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,15715,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,15716,0)
+ ;;=I70.732^^85^825^79
+ ;;^UTILITY(U,$J,358.3,15716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16604,1,3,0)
- ;;=3^300.00
- ;;^UTILITY(U,$J,358.3,16604,1,4,0)
- ;;=4^Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,16605,0)
- ;;=311.^^84^993^4
- ;;^UTILITY(U,$J,358.3,16605,1,0)
+ ;;^UTILITY(U,$J,358.3,15716,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,15716,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,15716,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,15717,0)
+ ;;=I70.733^^85^825^78
+ ;;^UTILITY(U,$J,358.3,15717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16605,1,3,0)
- ;;=3^311.
- ;;^UTILITY(U,$J,358.3,16605,1,4,0)
- ;;=4^Depressive Disorder
- ;;^UTILITY(U,$J,358.3,16606,0)
- ;;=304.90^^84^993^5
- ;;^UTILITY(U,$J,358.3,16606,1,0)
+ ;;^UTILITY(U,$J,358.3,15717,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,15717,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,15717,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,15718,0)
+ ;;=I70.734^^85^825^81
+ ;;^UTILITY(U,$J,358.3,15718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16606,1,3,0)
- ;;=3^304.90
- ;;^UTILITY(U,$J,358.3,16606,1,4,0)
- ;;=4^Drug Abuse
- ;;^UTILITY(U,$J,358.3,16607,0)
- ;;=309.81^^84^993^8
- ;;^UTILITY(U,$J,358.3,16607,1,0)
+ ;;^UTILITY(U,$J,358.3,15718,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,15718,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,15718,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,15719,0)
+ ;;=I70.735^^85^825^80
+ ;;^UTILITY(U,$J,358.3,15719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16607,1,3,0)
- ;;=3^309.81
- ;;^UTILITY(U,$J,358.3,16607,1,4,0)
- ;;=4^PTSD
- ;;^UTILITY(U,$J,358.3,16608,0)
- ;;=305.1^^84^993^12
- ;;^UTILITY(U,$J,358.3,16608,1,0)
+ ;;^UTILITY(U,$J,358.3,15719,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,15719,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,15719,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,15720,0)
+ ;;=I70.738^^85^825^82
+ ;;^UTILITY(U,$J,358.3,15720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16608,1,3,0)
- ;;=3^305.1
- ;;^UTILITY(U,$J,358.3,16608,1,4,0)
- ;;=4^Tobacco Abuse
- ;;^UTILITY(U,$J,358.3,16608,2)
- ;;=Tobacco Abuse^119899
- ;;^UTILITY(U,$J,358.3,16609,0)
- ;;=295.30^^84^993^9
- ;;^UTILITY(U,$J,358.3,16609,1,0)
+ ;;^UTILITY(U,$J,358.3,15720,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,15720,1,4,0)
+ ;;=4^I70.738
+ ;;^UTILITY(U,$J,358.3,15720,2)
+ ;;=^5007774
+ ;;^UTILITY(U,$J,358.3,15721,0)
+ ;;=I70.739^^85^825^84
+ ;;^UTILITY(U,$J,358.3,15721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16609,1,3,0)
- ;;=3^295.30
- ;;^UTILITY(U,$J,358.3,16609,1,4,0)
- ;;=4^Paranoid Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,16609,2)
- ;;=^108330
- ;;^UTILITY(U,$J,358.3,16610,0)
- ;;=295.70^^84^993^10
- ;;^UTILITY(U,$J,358.3,16610,1,0)
+ ;;^UTILITY(U,$J,358.3,15721,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,15721,1,4,0)
+ ;;=4^I70.739
+ ;;^UTILITY(U,$J,358.3,15721,2)
+ ;;=^5007775
+ ;;^UTILITY(U,$J,358.3,15722,0)
+ ;;=I70.741^^85^825^76
+ ;;^UTILITY(U,$J,358.3,15722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16610,1,3,0)
- ;;=3^295.70
- ;;^UTILITY(U,$J,358.3,16610,1,4,0)
- ;;=4^Schizoaffective Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,16610,2)
- ;;=^331857
- ;;^UTILITY(U,$J,358.3,16611,0)
- ;;=295.90^^84^993^11
- ;;^UTILITY(U,$J,358.3,16611,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16611,1,3,0)
- ;;=3^295.90
- ;;^UTILITY(U,$J,358.3,16611,1,4,0)
- ;;=4^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,16611,2)
- ;;=^108287
- ;;^UTILITY(U,$J,358.3,16612,0)
- ;;=296.20^^84^993^7
- ;;^UTILITY(U,$J,358.3,16612,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16612,1,3,0)
- ;;=3^296.20
- ;;^UTILITY(U,$J,358.3,16612,1,4,0)
- ;;=4^Major Depressive Disorder,Single
- ;;^UTILITY(U,$J,358.3,16612,2)
- ;;=^303598
- ;;^UTILITY(U,$J,358.3,16613,0)
- ;;=296.30^^84^993^6
- ;;^UTILITY(U,$J,358.3,16613,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16613,1,3,0)
- ;;=3^296.30
- ;;^UTILITY(U,$J,358.3,16613,1,4,0)
- ;;=4^Major Depressive Disorder,Recurrent
- ;;^UTILITY(U,$J,358.3,16613,2)
- ;;=^303614
- ;;^UTILITY(U,$J,358.3,16614,0)
- ;;=296.80^^84^993^3
- ;;^UTILITY(U,$J,358.3,16614,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16614,1,3,0)
- ;;=3^296.80
+ ;;^UTILITY(U,$J,358.3,15722,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Left Leg w/ Thigh Ulcer

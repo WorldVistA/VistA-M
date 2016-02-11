@@ -1,0 +1,132 @@
+IBDEI33V ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,52123,0)
+ ;;=Z60.3^^235^2567^1
+ ;;^UTILITY(U,$J,358.3,52123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52123,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,52123,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,52123,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,52124,0)
+ ;;=Z65.3^^235^2567^8
+ ;;^UTILITY(U,$J,358.3,52124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52124,1,3,0)
+ ;;=3^Legal Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,52124,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,52124,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,52125,0)
+ ;;=Z53.1^^235^2567^11
+ ;;^UTILITY(U,$J,358.3,52125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52125,1,3,0)
+ ;;=3^Procedure/Treatment not Done d/t Pt Belief/Group Pressure
+ ;;^UTILITY(U,$J,358.3,52125,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,52125,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,52126,0)
+ ;;=Z63.4^^235^2567^3
+ ;;^UTILITY(U,$J,358.3,52126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52126,1,3,0)
+ ;;=3^Disappearance/Death of Family Member
+ ;;^UTILITY(U,$J,358.3,52126,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,52126,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,52127,0)
+ ;;=Z69.021^^235^2567^10
+ ;;^UTILITY(U,$J,358.3,52127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52127,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Non-Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,52127,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,52127,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,52128,0)
+ ;;=Z69.82^^235^2567^9
+ ;;^UTILITY(U,$J,358.3,52128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52128,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Abuse
+ ;;^UTILITY(U,$J,358.3,52128,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,52128,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,52129,0)
+ ;;=R45.851^^235^2567^13
+ ;;^UTILITY(U,$J,358.3,52129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52129,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,52129,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,52129,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,52130,0)
+ ;;=Z65.9^^235^2567^12
+ ;;^UTILITY(U,$J,358.3,52130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52130,1,3,0)
+ ;;=3^Psychosocial Circumstance Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,52130,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,52130,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,52131,0)
+ ;;=Z56.9^^235^2567^6
+ ;;^UTILITY(U,$J,358.3,52131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52131,1,3,0)
+ ;;=3^Employment Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,52131,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,52131,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,52132,0)
+ ;;=R45.850^^235^2567^7
+ ;;^UTILITY(U,$J,358.3,52132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52132,1,3,0)
+ ;;=3^Homicidal Ideations
+ ;;^UTILITY(U,$J,358.3,52132,1,4,0)
+ ;;=4^R45.850
+ ;;^UTILITY(U,$J,358.3,52132,2)
+ ;;=^5019473
+ ;;^UTILITY(U,$J,358.3,52133,0)
+ ;;=Z98.89^^235^2568^13
+ ;;^UTILITY(U,$J,358.3,52133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52133,1,3,0)
+ ;;=3^Postprocedural States,Oth Spec
+ ;;^UTILITY(U,$J,358.3,52133,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,52133,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,52134,0)
+ ;;=Z92.3^^235^2568^9
+ ;;^UTILITY(U,$J,358.3,52134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52134,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,52134,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,52134,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,52135,0)
+ ;;=Z91.410^^235^2568^7
+ ;;^UTILITY(U,$J,358.3,52135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52135,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,52135,1,4,0)
+ ;;=4^Z91.410

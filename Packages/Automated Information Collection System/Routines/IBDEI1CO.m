@@ -1,138 +1,126 @@
-IBDEI1CO ; ; 06-AUG-2015
+IBDEI1CO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23916,1,3,0)
- ;;=3^Unspec Late Eff Cerebro Diseas
- ;;^UTILITY(U,$J,358.3,23916,1,4,0)
- ;;=4^438.9
- ;;^UTILITY(U,$J,358.3,23916,2)
- ;;=^269757
- ;;^UTILITY(U,$J,358.3,23917,0)
- ;;=907.0^^130^1450^9
- ;;^UTILITY(U,$J,358.3,23917,1,0)
+ ;;^UTILITY(U,$J,358.3,22483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23917,1,3,0)
- ;;=3^Lt Eff Intracranial Inj w/o skull frac
- ;;^UTILITY(U,$J,358.3,23917,1,4,0)
- ;;=4^907.0
- ;;^UTILITY(U,$J,358.3,23917,2)
- ;;=^68489
- ;;^UTILITY(U,$J,358.3,23918,0)
- ;;=340.^^130^1450^13
- ;;^UTILITY(U,$J,358.3,23918,1,0)
+ ;;^UTILITY(U,$J,358.3,22483,1,3,0)
+ ;;=3^Torus fracture of lower end of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22483,1,4,0)
+ ;;=4^S52.622S
+ ;;^UTILITY(U,$J,358.3,22483,2)
+ ;;=^5135339
+ ;;^UTILITY(U,$J,358.3,22484,0)
+ ;;=S52.621S^^101^1040^166
+ ;;^UTILITY(U,$J,358.3,22484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23918,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,23918,1,4,0)
- ;;=4^340.
- ;;^UTILITY(U,$J,358.3,23918,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,23919,0)
- ;;=332.0^^130^1450^15
- ;;^UTILITY(U,$J,358.3,23919,1,0)
+ ;;^UTILITY(U,$J,358.3,22484,1,3,0)
+ ;;=3^Torus fracture of lower end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22484,1,4,0)
+ ;;=4^S52.621S
+ ;;^UTILITY(U,$J,358.3,22484,2)
+ ;;=^5031136
+ ;;^UTILITY(U,$J,358.3,22485,0)
+ ;;=S52.012S^^101^1040^168
+ ;;^UTILITY(U,$J,358.3,22485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23919,1,3,0)
- ;;=3^Paralysis Agitans
- ;;^UTILITY(U,$J,358.3,23919,1,4,0)
- ;;=4^332.0
- ;;^UTILITY(U,$J,358.3,23919,2)
- ;;=^304847
- ;;^UTILITY(U,$J,358.3,23920,0)
- ;;=780.39^^130^1450^14
- ;;^UTILITY(U,$J,358.3,23920,1,0)
+ ;;^UTILITY(U,$J,358.3,22485,1,3,0)
+ ;;=3^Torus fracture of upper end of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22485,1,4,0)
+ ;;=4^S52.012S
+ ;;^UTILITY(U,$J,358.3,22485,2)
+ ;;=^5028746
+ ;;^UTILITY(U,$J,358.3,22486,0)
+ ;;=S52.011S^^101^1040^170
+ ;;^UTILITY(U,$J,358.3,22486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23920,1,3,0)
- ;;=3^Other Convulsions
- ;;^UTILITY(U,$J,358.3,23920,1,4,0)
- ;;=4^780.39
- ;;^UTILITY(U,$J,358.3,23920,2)
- ;;=^28162
- ;;^UTILITY(U,$J,358.3,23921,0)
- ;;=438.12^^130^1450^5
- ;;^UTILITY(U,$J,358.3,23921,1,0)
+ ;;^UTILITY(U,$J,358.3,22486,1,3,0)
+ ;;=3^Torus fracture of upper end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22486,1,4,0)
+ ;;=4^S52.011S
+ ;;^UTILITY(U,$J,358.3,22486,2)
+ ;;=^5028740
+ ;;^UTILITY(U,$J,358.3,22487,0)
+ ;;=S52.512S^^101^1040^26
+ ;;^UTILITY(U,$J,358.3,22487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23921,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Dysphasia
- ;;^UTILITY(U,$J,358.3,23921,1,4,0)
- ;;=4^438.12
- ;;^UTILITY(U,$J,358.3,23921,2)
- ;;=^317908
- ;;^UTILITY(U,$J,358.3,23922,0)
- ;;=438.21^^130^1450^6
- ;;^UTILITY(U,$J,358.3,23922,1,0)
+ ;;^UTILITY(U,$J,358.3,22487,1,3,0)
+ ;;=3^Disp fx of left radial styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,22487,1,4,0)
+ ;;=4^S52.512S
+ ;;^UTILITY(U,$J,358.3,22487,2)
+ ;;=^5030650
+ ;;^UTILITY(U,$J,358.3,22488,0)
+ ;;=S52.515S^^101^1040^89
+ ;;^UTILITY(U,$J,358.3,22488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23922,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Hemipl,Dom
- ;;^UTILITY(U,$J,358.3,23922,1,4,0)
- ;;=4^438.21
- ;;^UTILITY(U,$J,358.3,23922,2)
- ;;=^317911
- ;;^UTILITY(U,$J,358.3,23923,0)
- ;;=438.22^^130^1450^7
- ;;^UTILITY(U,$J,358.3,23923,1,0)
+ ;;^UTILITY(U,$J,358.3,22488,1,3,0)
+ ;;=3^Nondisp fx of left radial styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,22488,1,4,0)
+ ;;=4^S52.515S
+ ;;^UTILITY(U,$J,358.3,22488,2)
+ ;;=^5030698
+ ;;^UTILITY(U,$J,358.3,22489,0)
+ ;;=S52.511S^^101^1040^45
+ ;;^UTILITY(U,$J,358.3,22489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23923,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Hemipl,NonDom
- ;;^UTILITY(U,$J,358.3,23923,1,4,0)
- ;;=4^438.22
- ;;^UTILITY(U,$J,358.3,23923,2)
- ;;=^317912
- ;;^UTILITY(U,$J,358.3,23924,0)
- ;;=438.41^^130^1450^10
- ;;^UTILITY(U,$J,358.3,23924,1,0)
+ ;;^UTILITY(U,$J,358.3,22489,1,3,0)
+ ;;=3^Disp fx of right radial styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,22489,1,4,0)
+ ;;=4^S52.511S
+ ;;^UTILITY(U,$J,358.3,22489,2)
+ ;;=^5030634
+ ;;^UTILITY(U,$J,358.3,22490,0)
+ ;;=S52.514S^^101^1040^109
+ ;;^UTILITY(U,$J,358.3,22490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23924,1,3,0)
- ;;=3^Monoplegia of LL, Dom Side
- ;;^UTILITY(U,$J,358.3,23924,1,4,0)
- ;;=4^438.41
- ;;^UTILITY(U,$J,358.3,23924,2)
- ;;=^317917
- ;;^UTILITY(U,$J,358.3,23925,0)
- ;;=438.42^^130^1450^11
- ;;^UTILITY(U,$J,358.3,23925,1,0)
+ ;;^UTILITY(U,$J,358.3,22490,1,3,0)
+ ;;=3^Nondisp fx of right radial styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,22490,1,4,0)
+ ;;=4^S52.514S
+ ;;^UTILITY(U,$J,358.3,22490,2)
+ ;;=^5030682
+ ;;^UTILITY(U,$J,358.3,22491,0)
+ ;;=S22.22XS^^101^1041^5
+ ;;^UTILITY(U,$J,358.3,22491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23925,1,3,0)
- ;;=3^Monoplegia of LL, NonDom Side
- ;;^UTILITY(U,$J,358.3,23925,1,4,0)
- ;;=4^438.42
- ;;^UTILITY(U,$J,358.3,23925,2)
- ;;=^317918
- ;;^UTILITY(U,$J,358.3,23926,0)
- ;;=427.31^^130^1451^3
- ;;^UTILITY(U,$J,358.3,23926,1,0)
+ ;;^UTILITY(U,$J,358.3,22491,1,3,0)
+ ;;=3^Fracture of body of sternum, sequela
+ ;;^UTILITY(U,$J,358.3,22491,1,4,0)
+ ;;=4^S22.22XS
+ ;;^UTILITY(U,$J,358.3,22491,2)
+ ;;=^5023092
+ ;;^UTILITY(U,$J,358.3,22492,0)
+ ;;=S22.21XS^^101^1041^8
+ ;;^UTILITY(U,$J,358.3,22492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23926,1,3,0)
- ;;=3^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,23926,1,4,0)
- ;;=4^427.31
- ;;^UTILITY(U,$J,358.3,23926,2)
- ;;=^11378
- ;;^UTILITY(U,$J,358.3,23927,0)
- ;;=V45.81^^130^1451^2
- ;;^UTILITY(U,$J,358.3,23927,1,0)
+ ;;^UTILITY(U,$J,358.3,22492,1,3,0)
+ ;;=3^Fracture of manubrium, sequela
+ ;;^UTILITY(U,$J,358.3,22492,1,4,0)
+ ;;=4^S22.21XS
+ ;;^UTILITY(U,$J,358.3,22492,2)
+ ;;=^5023086
+ ;;^UTILITY(U,$J,358.3,22493,0)
+ ;;=S22.32XS^^101^1041^10
+ ;;^UTILITY(U,$J,358.3,22493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23927,1,3,0)
- ;;=3^Aortocoronary Bypass
- ;;^UTILITY(U,$J,358.3,23927,1,4,0)
- ;;=4^V45.81
- ;;^UTILITY(U,$J,358.3,23927,2)
- ;;=^97129
- ;;^UTILITY(U,$J,358.3,23928,0)
- ;;=414.00^^130^1451^9
- ;;^UTILITY(U,$J,358.3,23928,1,0)
+ ;;^UTILITY(U,$J,358.3,22493,1,3,0)
+ ;;=3^Fracture of one rib, left side, sequela
+ ;;^UTILITY(U,$J,358.3,22493,1,4,0)
+ ;;=4^S22.32XS
+ ;;^UTILITY(U,$J,358.3,22493,2)
+ ;;=^5023116
+ ;;^UTILITY(U,$J,358.3,22494,0)
+ ;;=S22.31XS^^101^1041^11
+ ;;^UTILITY(U,$J,358.3,22494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23928,1,3,0)
- ;;=3^Cor Atheroscl Unsp Typ-Ves
- ;;^UTILITY(U,$J,358.3,23928,1,4,0)
- ;;=4^414.00
- ;;^UTILITY(U,$J,358.3,23928,2)
- ;;=^28512
- ;;^UTILITY(U,$J,358.3,23929,0)
- ;;=414.01^^130^1451^8
- ;;^UTILITY(U,$J,358.3,23929,1,0)
+ ;;^UTILITY(U,$J,358.3,22494,1,3,0)
+ ;;=3^Fracture of one rib, right side, sequela
+ ;;^UTILITY(U,$J,358.3,22494,1,4,0)
+ ;;=4^S22.31XS
+ ;;^UTILITY(U,$J,358.3,22494,2)
+ ;;=^5023110
+ ;;^UTILITY(U,$J,358.3,22495,0)
+ ;;=S22.24XS^^101^1041^16
+ ;;^UTILITY(U,$J,358.3,22495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23929,1,3,0)
- ;;=3^Cor Atheroscl Native Coronary Artery
- ;;^UTILITY(U,$J,358.3,23929,1,4,0)
- ;;=4^414.01

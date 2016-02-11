@@ -1,126 +1,126 @@
-IBDEI17E ; ; 06-AUG-2015
+IBDEI17E ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21292,1,2,0)
- ;;=2^75635
- ;;^UTILITY(U,$J,358.3,21292,1,3,0)
- ;;=3^CT Angio Abd Art w/Contrast
- ;;^UTILITY(U,$J,358.3,21293,0)
- ;;=75658^^117^1326^4^^^^1
- ;;^UTILITY(U,$J,358.3,21293,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21293,1,2,0)
- ;;=2^75658
- ;;^UTILITY(U,$J,358.3,21293,1,3,0)
- ;;=3^Angiography,Brachial,Retrograd,Rad S&I
- ;;^UTILITY(U,$J,358.3,21294,0)
- ;;=76506^^117^1326^15^^^^1
- ;;^UTILITY(U,$J,358.3,21294,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21294,1,2,0)
- ;;=2^76506
- ;;^UTILITY(U,$J,358.3,21294,1,3,0)
- ;;=3^Echoencephalography,Real Time w/Image Doc
- ;;^UTILITY(U,$J,358.3,21295,0)
- ;;=76000^^117^1326^13^^^^1
- ;;^UTILITY(U,$J,358.3,21295,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21295,1,2,0)
- ;;=2^76000
- ;;^UTILITY(U,$J,358.3,21295,1,3,0)
- ;;=3^Cardiac Fluoro<1hr(No Cath Proc)
- ;;^UTILITY(U,$J,358.3,21296,0)
- ;;=35472^^117^1326^31^^^^1
- ;;^UTILITY(U,$J,358.3,21296,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21296,1,2,0)
- ;;=2^35472
- ;;^UTILITY(U,$J,358.3,21296,1,3,0)
- ;;=3^Perc Angioplasty,Aortic
- ;;^UTILITY(U,$J,358.3,21297,0)
- ;;=35476^^117^1326^32^^^^1
- ;;^UTILITY(U,$J,358.3,21297,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21297,1,2,0)
- ;;=2^35476
- ;;^UTILITY(U,$J,358.3,21297,1,3,0)
- ;;=3^Perc Angioplasty,Venous
- ;;^UTILITY(U,$J,358.3,21298,0)
- ;;=37236^^117^1326^57^^^^1
- ;;^UTILITY(U,$J,358.3,21298,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21298,1,2,0)
- ;;=2^37236
- ;;^UTILITY(U,$J,358.3,21298,1,3,0)
- ;;=3^Transcath Plcmt of Intravas Stent,Init Art
- ;;^UTILITY(U,$J,358.3,21299,0)
- ;;=37237^^117^1326^55^^^^1
- ;;^UTILITY(U,$J,358.3,21299,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21299,1,2,0)
- ;;=2^37237
- ;;^UTILITY(U,$J,358.3,21299,1,3,0)
- ;;=3^Transcath Plcmt Intravas Stnt,Ea Addl Art
- ;;^UTILITY(U,$J,358.3,21300,0)
- ;;=37238^^117^1326^54^^^^1
- ;;^UTILITY(U,$J,358.3,21300,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21300,1,2,0)
- ;;=2^37238
- ;;^UTILITY(U,$J,358.3,21300,1,3,0)
- ;;=3^Transcath Plcmt Intravas Stent,Init Vein
- ;;^UTILITY(U,$J,358.3,21301,0)
- ;;=37239^^117^1326^56^^^^1
- ;;^UTILITY(U,$J,358.3,21301,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21301,1,2,0)
- ;;=2^37239
- ;;^UTILITY(U,$J,358.3,21301,1,3,0)
- ;;=3^Transcath Plcmt Intravas Stnt,Ea Addl Vein
- ;;^UTILITY(U,$J,358.3,21302,0)
- ;;=75978^^117^1326^36^^^^1
- ;;^UTILITY(U,$J,358.3,21302,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21302,1,2,0)
- ;;=2^75978
- ;;^UTILITY(U,$J,358.3,21302,1,3,0)
- ;;=3^Repair Venous Blockage
- ;;^UTILITY(U,$J,358.3,21303,0)
- ;;=75894^^117^1326^58^^^^1
- ;;^UTILITY(U,$J,358.3,21303,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21303,1,2,0)
- ;;=2^75894
- ;;^UTILITY(U,$J,358.3,21303,1,3,0)
- ;;=3^Transcath Rpr Iliac Art Aneur,AV,Rad S&I
- ;;^UTILITY(U,$J,358.3,21304,0)
- ;;=75962^^117^1326^53^^^^1
- ;;^UTILITY(U,$J,358.3,21304,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21304,1,2,0)
- ;;=2^75962
- ;;^UTILITY(U,$J,358.3,21304,1,3,0)
- ;;=3^Tranlum Ball Angiopl,Venous Art,Rad S&I
- ;;^UTILITY(U,$J,358.3,21305,0)
- ;;=0237T^^117^1326^60^^^^1
- ;;^UTILITY(U,$J,358.3,21305,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21305,1,2,0)
- ;;=2^0237T
- ;;^UTILITY(U,$J,358.3,21305,1,3,0)
- ;;=3^Trluml Perip Athrc Brchiocph
- ;;^UTILITY(U,$J,358.3,21306,0)
- ;;=0238T^^117^1326^61^^^^1
- ;;^UTILITY(U,$J,358.3,21306,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21306,1,2,0)
- ;;=2^0238T
- ;;^UTILITY(U,$J,358.3,21306,1,3,0)
- ;;=3^Trluml Perip Athrc Iliac Art
- ;;^UTILITY(U,$J,358.3,21307,0)
- ;;=75820^^117^1326^63^^^^1
- ;;^UTILITY(U,$J,358.3,21307,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21307,1,2,0)
- ;;=2^75820
+ ;;^UTILITY(U,$J,358.3,20106,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,20107,0)
+ ;;=Y04.1XXA^^94^935^1
+ ;;^UTILITY(U,$J,358.3,20107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20107,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20107,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,20107,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,20108,0)
+ ;;=Y04.1XXD^^94^935^2
+ ;;^UTILITY(U,$J,358.3,20108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20108,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20108,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,20108,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,20109,0)
+ ;;=Y04.2XXA^^94^935^5
+ ;;^UTILITY(U,$J,358.3,20109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20109,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20109,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,20109,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,20110,0)
+ ;;=Y04.8XXA^^94^935^3
+ ;;^UTILITY(U,$J,358.3,20110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20110,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20110,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,20110,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,20111,0)
+ ;;=Y04.2XXD^^94^935^6
+ ;;^UTILITY(U,$J,358.3,20111,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20111,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20111,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,20111,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,20112,0)
+ ;;=Y04.8XXD^^94^935^4
+ ;;^UTILITY(U,$J,358.3,20112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20112,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20112,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,20112,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,20113,0)
+ ;;=Y36.200A^^94^935^124
+ ;;^UTILITY(U,$J,358.3,20113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20113,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20113,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,20113,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,20114,0)
+ ;;=Y36.200D^^94^935^125
+ ;;^UTILITY(U,$J,358.3,20114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20114,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20114,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,20114,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,20115,0)
+ ;;=Y36.300A^^94^935^126
+ ;;^UTILITY(U,$J,358.3,20115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20115,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20115,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,20115,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,20116,0)
+ ;;=Y36.300D^^94^935^127
+ ;;^UTILITY(U,$J,358.3,20116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20116,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20116,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,20116,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,20117,0)
+ ;;=Y36.410A^^94^935^121
+ ;;^UTILITY(U,$J,358.3,20117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20117,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20117,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,20117,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,20118,0)
+ ;;=Y36.410D^^94^935^123
+ ;;^UTILITY(U,$J,358.3,20118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20118,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20118,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,20118,2)
+ ;;=^5061692

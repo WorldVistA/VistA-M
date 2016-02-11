@@ -1,0 +1,132 @@
+IBDEI2UD ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47686,1,4,0)
+ ;;=4^C93.90
+ ;;^UTILITY(U,$J,358.3,47686,2)
+ ;;=^5001828
+ ;;^UTILITY(U,$J,358.3,47687,0)
+ ;;=C93.91^^209^2346^345
+ ;;^UTILITY(U,$J,358.3,47687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47687,1,3,0)
+ ;;=3^Monocytic Leukemia,Unspec,In Remission
+ ;;^UTILITY(U,$J,358.3,47687,1,4,0)
+ ;;=4^C93.91
+ ;;^UTILITY(U,$J,358.3,47687,2)
+ ;;=^5001829
+ ;;^UTILITY(U,$J,358.3,47688,0)
+ ;;=C93.92^^209^2346^344
+ ;;^UTILITY(U,$J,358.3,47688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47688,1,3,0)
+ ;;=3^Monocytic Leukemia,Unspec,In Relapse
+ ;;^UTILITY(U,$J,358.3,47688,1,4,0)
+ ;;=4^C93.92
+ ;;^UTILITY(U,$J,358.3,47688,2)
+ ;;=^5001830
+ ;;^UTILITY(U,$J,358.3,47689,0)
+ ;;=C94.00^^209^2346^3
+ ;;^UTILITY(U,$J,358.3,47689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47689,1,3,0)
+ ;;=3^Acute Erythroid Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47689,1,4,0)
+ ;;=4^C94.00
+ ;;^UTILITY(U,$J,358.3,47689,2)
+ ;;=^5001834
+ ;;^UTILITY(U,$J,358.3,47690,0)
+ ;;=C94.01^^209^2346^2
+ ;;^UTILITY(U,$J,358.3,47690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47690,1,3,0)
+ ;;=3^Acute Erythroid Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,47690,1,4,0)
+ ;;=4^C94.01
+ ;;^UTILITY(U,$J,358.3,47690,2)
+ ;;=^5001835
+ ;;^UTILITY(U,$J,358.3,47691,0)
+ ;;=C94.02^^209^2346^1
+ ;;^UTILITY(U,$J,358.3,47691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47691,1,3,0)
+ ;;=3^Acute Erythroid Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,47691,1,4,0)
+ ;;=4^C94.02
+ ;;^UTILITY(U,$J,358.3,47691,2)
+ ;;=^5001836
+ ;;^UTILITY(U,$J,358.3,47692,0)
+ ;;=C94.20^^209^2346^12
+ ;;^UTILITY(U,$J,358.3,47692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47692,1,3,0)
+ ;;=3^Acute Megakaryoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47692,1,4,0)
+ ;;=4^C94.20
+ ;;^UTILITY(U,$J,358.3,47692,2)
+ ;;=^5001837
+ ;;^UTILITY(U,$J,358.3,47693,0)
+ ;;=C94.21^^209^2346^11
+ ;;^UTILITY(U,$J,358.3,47693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47693,1,3,0)
+ ;;=3^Acute Megakaryoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,47693,1,4,0)
+ ;;=4^C94.21
+ ;;^UTILITY(U,$J,358.3,47693,2)
+ ;;=^5001838
+ ;;^UTILITY(U,$J,358.3,47694,0)
+ ;;=C94.22^^209^2346^10
+ ;;^UTILITY(U,$J,358.3,47694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47694,1,3,0)
+ ;;=3^Acute Megakaryoblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,47694,1,4,0)
+ ;;=4^C94.22
+ ;;^UTILITY(U,$J,358.3,47694,2)
+ ;;=^5001839
+ ;;^UTILITY(U,$J,358.3,47695,0)
+ ;;=C94.30^^209^2346^298
+ ;;^UTILITY(U,$J,358.3,47695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47695,1,3,0)
+ ;;=3^Mast Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47695,1,4,0)
+ ;;=4^C94.30
+ ;;^UTILITY(U,$J,358.3,47695,2)
+ ;;=^5001840
+ ;;^UTILITY(U,$J,358.3,47696,0)
+ ;;=C94.31^^209^2346^297
+ ;;^UTILITY(U,$J,358.3,47696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47696,1,3,0)
+ ;;=3^Mast Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,47696,1,4,0)
+ ;;=4^C94.31
+ ;;^UTILITY(U,$J,358.3,47696,2)
+ ;;=^5001841
+ ;;^UTILITY(U,$J,358.3,47697,0)
+ ;;=C94.32^^209^2346^296
+ ;;^UTILITY(U,$J,358.3,47697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47697,1,3,0)
+ ;;=3^Mast Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,47697,1,4,0)
+ ;;=4^C94.32
+ ;;^UTILITY(U,$J,358.3,47697,2)
+ ;;=^5001842
+ ;;^UTILITY(U,$J,358.3,47698,0)
+ ;;=C94.40^^209^2346^30
+ ;;^UTILITY(U,$J,358.3,47698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47698,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47698,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,47698,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,47699,0)
+ ;;=C94.41^^209^2346^28
+ ;;^UTILITY(U,$J,358.3,47699,1,0)
+ ;;=^358.31IA^4^2

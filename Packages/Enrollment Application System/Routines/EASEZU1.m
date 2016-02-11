@@ -1,5 +1,5 @@
-EASEZU1 ;ALB/jap - Utilities for 1010EZ Processing ;10/12/00  13:08
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;;Mar 15, 2001
+EASEZU1 ;ALB/jap,LBD - Utilities for 1010EZ Processing ; 9/19/12 11:28am
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**107**;Mar 15, 2001;Build 32
  ;
 KEY711(EASKEY) ;get file #711 record associated with key
  ;input  EASKEY = character string equal to a 1010EZ Assigned Data Name OR Data Key
@@ -16,6 +16,10 @@ KEY711(EASKEY) ;get file #711 record associated with key
  .S KEYIEN=KEYIEN_U_X_U_EASKEY
  ;key passed in is Assigned Data Name
  I KEYIEN="" D
+ .I $L(EASKEY)>50 D
+ ..;Fix problem when data passed in EASKEY is > 50 chars. (EAS*1*107)
+ ..S EASKEY=$E(EASKEY,1,50)
+ ..I $E(EASKEY,50)=" " S EASKEY=$E(EASKEY,1,49)
  .S KEYIEN=$O(^EAS(711,"AB",EASKEY,0)) Q:'KEYIEN
  .S X=$P(^EAS(711,KEYIEN,0),U,2)
  .S KEYIEN=KEYIEN_U_EASKEY_U_X

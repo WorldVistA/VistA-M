@@ -1,0 +1,132 @@
+IBDEI2KY ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,43278,1,4,0)
+ ;;=4^Z01.419
+ ;;^UTILITY(U,$J,358.3,43278,2)
+ ;;=^5062623
+ ;;^UTILITY(U,$J,358.3,43279,0)
+ ;;=Z01.411^^197^2184^7
+ ;;^UTILITY(U,$J,358.3,43279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43279,1,3,0)
+ ;;=3^Gyn Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,43279,1,4,0)
+ ;;=4^Z01.411
+ ;;^UTILITY(U,$J,358.3,43279,2)
+ ;;=^5062622
+ ;;^UTILITY(U,$J,358.3,43280,0)
+ ;;=Z00.01^^197^2184^5
+ ;;^UTILITY(U,$J,358.3,43280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43280,1,3,0)
+ ;;=3^General Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,43280,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,43280,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,43281,0)
+ ;;=Z02.0^^197^2184^2
+ ;;^UTILITY(U,$J,358.3,43281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43281,1,3,0)
+ ;;=3^Exam for Admission to Educational Institution
+ ;;^UTILITY(U,$J,358.3,43281,1,4,0)
+ ;;=4^Z02.0
+ ;;^UTILITY(U,$J,358.3,43281,2)
+ ;;=^5062633
+ ;;^UTILITY(U,$J,358.3,43282,0)
+ ;;=Z02.2^^197^2184^3
+ ;;^UTILITY(U,$J,358.3,43282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43282,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,43282,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,43282,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,43283,0)
+ ;;=Z85.43^^197^2185^51
+ ;;^UTILITY(U,$J,358.3,43283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43283,1,3,0)
+ ;;=3^Personal Hx of Malig Neop Ovary
+ ;;^UTILITY(U,$J,358.3,43283,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,43283,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,43284,0)
+ ;;=Z85.46^^197^2185^52
+ ;;^UTILITY(U,$J,358.3,43284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43284,1,3,0)
+ ;;=3^Personal Hx of Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,43284,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,43284,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,43285,0)
+ ;;=Z85.6^^197^2185^49
+ ;;^UTILITY(U,$J,358.3,43285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43285,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,43285,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,43285,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,43286,0)
+ ;;=Z85.71^^197^2185^47
+ ;;^UTILITY(U,$J,358.3,43286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43286,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,43286,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,43286,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,43287,0)
+ ;;=Z85.820^^197^2185^50
+ ;;^UTILITY(U,$J,358.3,43287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43287,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of SKin
+ ;;^UTILITY(U,$J,358.3,43287,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,43287,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,43288,0)
+ ;;=Z85.828^^197^2185^53
+ ;;^UTILITY(U,$J,358.3,43288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43288,1,3,0)
+ ;;=3^Personal Hx of Malig Neop Skin
+ ;;^UTILITY(U,$J,358.3,43288,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,43288,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,43289,0)
+ ;;=Z65.8^^197^2185^58
+ ;;^UTILITY(U,$J,358.3,43289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43289,1,3,0)
+ ;;=3^Personal Hx of Psychosocial Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,43289,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,43289,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,43290,0)
+ ;;=Z86.718^^197^2185^61
+ ;;^UTILITY(U,$J,358.3,43290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43290,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis & Embolism
+ ;;^UTILITY(U,$J,358.3,43290,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,43290,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,43291,0)
+ ;;=Z86.73^^197^2185^60
+ ;;^UTILITY(U,$J,358.3,43291,1,0)
+ ;;=^358.31IA^4^2

@@ -1,140 +1,120 @@
-IBDEI16P ; ; 06-AUG-2015
+IBDEI16P ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20913,1,3,0)
- ;;=3^V06.3
- ;;^UTILITY(U,$J,358.3,20913,1,4,0)
- ;;=4^DTP & Polio Vaccine
- ;;^UTILITY(U,$J,358.3,20913,2)
- ;;=^295193
- ;;^UTILITY(U,$J,358.3,20914,0)
- ;;=V06.4^^112^1295^10
- ;;^UTILITY(U,$J,358.3,20914,1,0)
+ ;;^UTILITY(U,$J,358.3,19792,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,19792,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,19793,0)
+ ;;=S56.118A^^94^929^26
+ ;;^UTILITY(U,$J,358.3,19793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20914,1,3,0)
- ;;=3^V06.4
- ;;^UTILITY(U,$J,358.3,20914,1,4,0)
- ;;=4^MMR Vaccine
- ;;^UTILITY(U,$J,358.3,20914,2)
- ;;=^295194
- ;;^UTILITY(U,$J,358.3,20915,0)
- ;;=V06.5^^112^1295^21
- ;;^UTILITY(U,$J,358.3,20915,1,0)
+ ;;^UTILITY(U,$J,358.3,19793,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19793,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,19793,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,19794,0)
+ ;;=S56.211A^^94^929^40
+ ;;^UTILITY(U,$J,358.3,19794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20915,1,3,0)
- ;;=3^V06.5
- ;;^UTILITY(U,$J,358.3,20915,1,4,0)
- ;;=4^TD/DT Vaccine
- ;;^UTILITY(U,$J,358.3,20915,2)
- ;;=^330094
- ;;^UTILITY(U,$J,358.3,20916,0)
- ;;=V06.6^^112^1295^14
- ;;^UTILITY(U,$J,358.3,20916,1,0)
+ ;;^UTILITY(U,$J,358.3,19794,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19794,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,19794,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,19795,0)
+ ;;=S56.212A^^94^929^20
+ ;;^UTILITY(U,$J,358.3,19795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20916,1,3,0)
- ;;=3^V06.6
- ;;^UTILITY(U,$J,358.3,20916,1,4,0)
- ;;=4^Pneum & Flu Vaccine
- ;;^UTILITY(U,$J,358.3,20916,2)
- ;;=^303390
- ;;^UTILITY(U,$J,358.3,20917,0)
- ;;=V70.0^^112^1296^3
- ;;^UTILITY(U,$J,358.3,20917,1,0)
+ ;;^UTILITY(U,$J,358.3,19795,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19795,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,19795,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,19796,0)
+ ;;=S56.311A^^94^929^56
+ ;;^UTILITY(U,$J,358.3,19796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20917,1,3,0)
- ;;=3^V70.0
- ;;^UTILITY(U,$J,358.3,20917,1,4,0)
- ;;=4^Routine Medicine Exam (Not GYN)
- ;;^UTILITY(U,$J,358.3,20917,2)
- ;;=^295590
- ;;^UTILITY(U,$J,358.3,20918,0)
- ;;=V80.2^^112^1296^1
- ;;^UTILITY(U,$J,358.3,20918,1,0)
+ ;;^UTILITY(U,$J,358.3,19796,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19796,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,19796,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,19797,0)
+ ;;=S56.312A^^94^929^35
+ ;;^UTILITY(U,$J,358.3,19797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20918,1,3,0)
- ;;=3^V80.2
- ;;^UTILITY(U,$J,358.3,20918,1,4,0)
- ;;=4^Diabetic Eye Exam
- ;;^UTILITY(U,$J,358.3,20918,2)
- ;;=^295685
- ;;^UTILITY(U,$J,358.3,20919,0)
- ;;=V72.85^^112^1296^2
- ;;^UTILITY(U,$J,358.3,20919,1,0)
+ ;;^UTILITY(U,$J,358.3,19797,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19797,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,19797,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,19798,0)
+ ;;=S56.411A^^94^929^44
+ ;;^UTILITY(U,$J,358.3,19798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20919,1,3,0)
- ;;=3^V72.85
- ;;^UTILITY(U,$J,358.3,20919,1,4,0)
- ;;=4^Diabetic Foot Exam
- ;;^UTILITY(U,$J,358.3,20919,2)
- ;;=^295831
- ;;^UTILITY(U,$J,358.3,20920,0)
- ;;=V73.89^^112^1296^7
- ;;^UTILITY(U,$J,358.3,20920,1,0)
+ ;;^UTILITY(U,$J,358.3,19798,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19798,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,19798,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,19799,0)
+ ;;=S56.412A^^94^929^24
+ ;;^UTILITY(U,$J,358.3,19799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20920,1,3,0)
- ;;=3^V73.89
- ;;^UTILITY(U,$J,358.3,20920,1,4,0)
- ;;=4^Screening for Hepatitis C
- ;;^UTILITY(U,$J,358.3,20920,2)
- ;;=^295833
- ;;^UTILITY(U,$J,358.3,20921,0)
- ;;=V77.91^^112^1296^8
- ;;^UTILITY(U,$J,358.3,20921,1,0)
+ ;;^UTILITY(U,$J,358.3,19799,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19799,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,19799,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,19800,0)
+ ;;=S56.413A^^94^929^52
+ ;;^UTILITY(U,$J,358.3,19800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20921,1,3,0)
- ;;=3^V77.91
- ;;^UTILITY(U,$J,358.3,20921,1,4,0)
- ;;=4^Screening for High Cholesterol
- ;;^UTILITY(U,$J,358.3,20921,2)
- ;;=^322093
- ;;^UTILITY(U,$J,358.3,20922,0)
- ;;=V81.1^^112^1296^9
- ;;^UTILITY(U,$J,358.3,20922,1,0)
+ ;;^UTILITY(U,$J,358.3,19800,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19800,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,19800,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,19801,0)
+ ;;=S56.414A^^94^929^32
+ ;;^UTILITY(U,$J,358.3,19801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20922,1,3,0)
- ;;=3^V81.1
- ;;^UTILITY(U,$J,358.3,20922,1,4,0)
- ;;=4^Screening for Hypertension
- ;;^UTILITY(U,$J,358.3,20922,2)
- ;;=^295688
- ;;^UTILITY(U,$J,358.3,20923,0)
- ;;=V73.89^^112^1296^6
- ;;^UTILITY(U,$J,358.3,20923,1,0)
+ ;;^UTILITY(U,$J,358.3,19801,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19801,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,19801,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,19802,0)
+ ;;=S56.415A^^94^929^54
+ ;;^UTILITY(U,$J,358.3,19802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20923,1,3,0)
- ;;=3^V73.89
- ;;^UTILITY(U,$J,358.3,20923,1,4,0)
- ;;=4^Screening for HIV
- ;;^UTILITY(U,$J,358.3,20923,2)
- ;;=^295833
- ;;^UTILITY(U,$J,358.3,20924,0)
- ;;=V74.5^^112^1296^11
- ;;^UTILITY(U,$J,358.3,20924,1,0)
+ ;;^UTILITY(U,$J,358.3,19802,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19802,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,19802,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,19803,0)
+ ;;=S56.416A^^94^929^34
+ ;;^UTILITY(U,$J,358.3,19803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20924,1,3,0)
- ;;=3^V74.5
- ;;^UTILITY(U,$J,358.3,20924,1,4,0)
- ;;=4^Screening for STDs
- ;;^UTILITY(U,$J,358.3,20924,2)
- ;;=^295637
- ;;^UTILITY(U,$J,358.3,20925,0)
- ;;=V79.1^^112^1296^4
- ;;^UTILITY(U,$J,358.3,20925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20925,1,3,0)
- ;;=3^V79.1
- ;;^UTILITY(U,$J,358.3,20925,1,4,0)
- ;;=4^Screening for Alcohol Use
- ;;^UTILITY(U,$J,358.3,20925,2)
- ;;=^295678
- ;;^UTILITY(U,$J,358.3,20926,0)
- ;;=V79.0^^112^1296^5
- ;;^UTILITY(U,$J,358.3,20926,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20926,1,3,0)
- ;;=3^V79.0
- ;;^UTILITY(U,$J,358.3,20926,1,4,0)
- ;;=4^Screening for Depression
- ;;^UTILITY(U,$J,358.3,20926,2)
- ;;=^295677
+ ;;^UTILITY(U,$J,358.3,19803,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19803,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,19803,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,19804,0)
+ ;;=S66.912A^^94^929^22

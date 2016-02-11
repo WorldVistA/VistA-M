@@ -1,124 +1,130 @@
-IBDEI05O ; ; 06-AUG-2015
+IBDEI05O ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2132,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2132,1,3,0)
- ;;=3^Fx of right ulna shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2132,1,4,0)
- ;;=4^S52.201A
- ;;^UTILITY(U,$J,358.3,2132,2)
- ;;=^5029260
- ;;^UTILITY(U,$J,358.3,2133,0)
- ;;=S52.202A^^4^62^74
- ;;^UTILITY(U,$J,358.3,2133,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2133,1,3,0)
- ;;=3^Fx of left ulna shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2133,1,4,0)
- ;;=4^S52.202A
- ;;^UTILITY(U,$J,358.3,2133,2)
- ;;=^5029276
- ;;^UTILITY(U,$J,358.3,2134,0)
- ;;=T59.91XA^^4^62^245
- ;;^UTILITY(U,$J,358.3,2134,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2134,1,3,0)
- ;;=3^Toxic effect of unsp gases, fumes and vapors, acc, init
- ;;^UTILITY(U,$J,358.3,2134,1,4,0)
- ;;=4^T59.91XA
- ;;^UTILITY(U,$J,358.3,2134,2)
- ;;=^5053042
- ;;^UTILITY(U,$J,358.3,2135,0)
- ;;=S41.111A^^4^62^135
- ;;^UTILITY(U,$J,358.3,2135,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2135,1,3,0)
- ;;=3^Laceration w/o fb of right upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,2135,1,4,0)
- ;;=4^S41.111A
- ;;^UTILITY(U,$J,358.3,2135,2)
- ;;=^5026336
- ;;^UTILITY(U,$J,358.3,2136,0)
- ;;=S41.112A^^4^62^123
- ;;^UTILITY(U,$J,358.3,2136,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2136,1,3,0)
- ;;=3^Laceration w/o fb of left upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,2136,1,4,0)
- ;;=4^S41.112A
- ;;^UTILITY(U,$J,358.3,2136,2)
- ;;=^5026339
- ;;^UTILITY(U,$J,358.3,2137,0)
- ;;=S61.210A^^4^62^128
- ;;^UTILITY(U,$J,358.3,2137,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2137,1,3,0)
- ;;=3^Laceration w/o fb of right indx fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2137,1,4,0)
- ;;=4^S61.210A
- ;;^UTILITY(U,$J,358.3,2137,2)
- ;;=^5032771
- ;;^UTILITY(U,$J,358.3,2138,0)
- ;;=S61.211A^^4^62^116
- ;;^UTILITY(U,$J,358.3,2138,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2138,1,3,0)
- ;;=3^Laceration w/o fb of left indx fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2138,1,4,0)
- ;;=4^S61.211A
- ;;^UTILITY(U,$J,358.3,2138,2)
- ;;=^5032774
- ;;^UTILITY(U,$J,358.3,2139,0)
- ;;=S61.212A^^4^62^132
- ;;^UTILITY(U,$J,358.3,2139,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2139,1,3,0)
- ;;=3^Laceration w/o fb of right mid finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2139,1,4,0)
- ;;=4^S61.212A
- ;;^UTILITY(U,$J,358.3,2139,2)
- ;;=^5032777
- ;;^UTILITY(U,$J,358.3,2140,0)
- ;;=S61.213A^^4^62^120
- ;;^UTILITY(U,$J,358.3,2140,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2140,1,3,0)
- ;;=3^Laceration w/o fb of left mid finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2140,1,4,0)
- ;;=4^S61.213A
- ;;^UTILITY(U,$J,358.3,2140,2)
- ;;=^5032780
- ;;^UTILITY(U,$J,358.3,2141,0)
- ;;=S61.214A^^4^62^133
- ;;^UTILITY(U,$J,358.3,2141,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2141,1,3,0)
- ;;=3^Laceration w/o fb of right rng fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2141,1,4,0)
- ;;=4^S61.214A
- ;;^UTILITY(U,$J,358.3,2141,2)
- ;;=^5032783
- ;;^UTILITY(U,$J,358.3,2142,0)
- ;;=S61.215A^^4^62^121
- ;;^UTILITY(U,$J,358.3,2142,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2142,1,3,0)
- ;;=3^Laceration w/o fb of left rng fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2142,1,4,0)
- ;;=4^S61.215A
- ;;^UTILITY(U,$J,358.3,2142,2)
- ;;=^5032786
- ;;^UTILITY(U,$J,358.3,2143,0)
- ;;=S61.216A^^4^62^130
- ;;^UTILITY(U,$J,358.3,2143,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2143,1,3,0)
- ;;=3^Laceration w/o fb of right litttle finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,2143,1,4,0)
- ;;=4^S61.216A
- ;;^UTILITY(U,$J,358.3,2143,2)
- ;;=^5032789
- ;;^UTILITY(U,$J,358.3,2144,0)
- ;;=S61.217A^^4^62^118
+ ;;^UTILITY(U,$J,358.3,2031,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2031,1,2,0)
+ ;;=2^93306
+ ;;^UTILITY(U,$J,358.3,2031,1,3,0)
+ ;;=3^Echo,TT,2D,M Mode w/ Color Doppler
+ ;;^UTILITY(U,$J,358.3,2032,0)
+ ;;=93321^^17^180^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2032,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2032,1,2,0)
+ ;;=2^93321
+ ;;^UTILITY(U,$J,358.3,2032,1,3,0)
+ ;;=3^Doppler Echo, Heart
+ ;;^UTILITY(U,$J,358.3,2033,0)
+ ;;=93351^^17^180^20^^^^1
+ ;;^UTILITY(U,$J,358.3,2033,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2033,1,2,0)
+ ;;=2^93351
+ ;;^UTILITY(U,$J,358.3,2033,1,3,0)
+ ;;=3^Stress TTE Complete
+ ;;^UTILITY(U,$J,358.3,2034,0)
+ ;;=93352^^17^180^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2034,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2034,1,2,0)
+ ;;=2^93352
+ ;;^UTILITY(U,$J,358.3,2034,1,3,0)
+ ;;=3^Admin ECG Contrast Agent
+ ;;^UTILITY(U,$J,358.3,2035,0)
+ ;;=93312^^17^180^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2035,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2035,1,2,0)
+ ;;=2^93312
+ ;;^UTILITY(U,$J,358.3,2035,1,3,0)
+ ;;=3^Echo Transesophageal w/wo M-mode record
+ ;;^UTILITY(U,$J,358.3,2036,0)
+ ;;=93313^^17^180^10^^^^1
+ ;;^UTILITY(U,$J,358.3,2036,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2036,1,2,0)
+ ;;=2^93313
+ ;;^UTILITY(U,$J,358.3,2036,1,3,0)
+ ;;=3^Echo Transesophageal w/ placement of probe
+ ;;^UTILITY(U,$J,358.3,2037,0)
+ ;;=93314^^17^180^9^^^^1
+ ;;^UTILITY(U,$J,358.3,2037,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2037,1,2,0)
+ ;;=2^93314
+ ;;^UTILITY(U,$J,358.3,2037,1,3,0)
+ ;;=3^Echo Transesophageal image interp and rpt
+ ;;^UTILITY(U,$J,358.3,2038,0)
+ ;;=93318^^17^180^18^^^^1
+ ;;^UTILITY(U,$J,358.3,2038,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2038,1,2,0)
+ ;;=2^93318
+ ;;^UTILITY(U,$J,358.3,2038,1,3,0)
+ ;;=3^Echo,Transesophageal Intraop
+ ;;^UTILITY(U,$J,358.3,2039,0)
+ ;;=93315^^17^180^12^^^^1
+ ;;^UTILITY(U,$J,358.3,2039,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2039,1,2,0)
+ ;;=2^93315
+ ;;^UTILITY(U,$J,358.3,2039,1,3,0)
+ ;;=3^Echo Transesophageal,Complete
+ ;;^UTILITY(U,$J,358.3,2040,0)
+ ;;=93316^^17^180^7^^^^1
+ ;;^UTILITY(U,$J,358.3,2040,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2040,1,2,0)
+ ;;=2^93316
+ ;;^UTILITY(U,$J,358.3,2040,1,3,0)
+ ;;=3^Echo Tranesophageal Placement Only
+ ;;^UTILITY(U,$J,358.3,2041,0)
+ ;;=93317^^17^180^6^^^^1
+ ;;^UTILITY(U,$J,358.3,2041,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2041,1,2,0)
+ ;;=2^93317
+ ;;^UTILITY(U,$J,358.3,2041,1,3,0)
+ ;;=3^Echo Image,Inerpretation and Report Only
+ ;;^UTILITY(U,$J,358.3,2042,0)
+ ;;=93318^^17^180^8^^^^1
+ ;;^UTILITY(U,$J,358.3,2042,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2042,1,2,0)
+ ;;=2^93318
+ ;;^UTILITY(U,$J,358.3,2042,1,3,0)
+ ;;=3^Echo Transesophageal Intraop
+ ;;^UTILITY(U,$J,358.3,2043,0)
+ ;;=93303^^17^180^19^^^^1
+ ;;^UTILITY(U,$J,358.3,2043,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2043,1,2,0)
+ ;;=2^93303
+ ;;^UTILITY(U,$J,358.3,2043,1,3,0)
+ ;;=3^Ecoh Transthoracic,Complete
+ ;;^UTILITY(U,$J,358.3,2044,0)
+ ;;=93304^^17^180^15^^^^1
+ ;;^UTILITY(U,$J,358.3,2044,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2044,1,2,0)
+ ;;=2^93304
+ ;;^UTILITY(U,$J,358.3,2044,1,3,0)
+ ;;=3^Echo Transthroacic F/U
+ ;;^UTILITY(U,$J,358.3,2045,0)
+ ;;=93308^^17^180^13^^^^1
+ ;;^UTILITY(U,$J,358.3,2045,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2045,1,2,0)
+ ;;=2^93308
+ ;;^UTILITY(U,$J,358.3,2045,1,3,0)
+ ;;=3^Echo Transthoracic,2D Image,Limited
+ ;;^UTILITY(U,$J,358.3,2046,0)
+ ;;=93000^^17^181^9
+ ;;^UTILITY(U,$J,358.3,2046,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2046,1,2,0)
+ ;;=2^93000
+ ;;^UTILITY(U,$J,358.3,2046,1,3,0)
+ ;;=3^EKG 12 Lead W/ Interp & Report

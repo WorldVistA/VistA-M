@@ -1,132 +1,136 @@
-IBDEI1NN ; ; 06-AUG-2015
+IBDEI1NN ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29405,1,0)
+ ;;^UTILITY(U,$J,358.3,27689,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,27690,0)
+ ;;=C23.^^132^1320^122
+ ;;^UTILITY(U,$J,358.3,27690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29405,1,3,0)
- ;;=3^Cerebral cysts
- ;;^UTILITY(U,$J,358.3,29405,1,4,0)
- ;;=4^G93.0
- ;;^UTILITY(U,$J,358.3,29405,2)
- ;;=^268481
- ;;^UTILITY(U,$J,358.3,29406,0)
- ;;=G04.90^^176^1883^10
- ;;^UTILITY(U,$J,358.3,29406,1,0)
+ ;;^UTILITY(U,$J,358.3,27690,1,3,0)
+ ;;=3^Malig Neop Gallbladder
+ ;;^UTILITY(U,$J,358.3,27690,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,27690,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,27691,0)
+ ;;=C32.9^^132^1320^126
+ ;;^UTILITY(U,$J,358.3,27691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29406,1,3,0)
- ;;=3^Encephalitis and encephalomyelitis, unspecified
- ;;^UTILITY(U,$J,358.3,29406,1,4,0)
- ;;=4^G04.90
- ;;^UTILITY(U,$J,358.3,29406,2)
- ;;=^5003741
- ;;^UTILITY(U,$J,358.3,29407,0)
- ;;=G04.91^^176^1883^19
- ;;^UTILITY(U,$J,358.3,29407,1,0)
+ ;;^UTILITY(U,$J,358.3,27691,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,27691,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,27691,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,27692,0)
+ ;;=C64.2^^132^1320^130
+ ;;^UTILITY(U,$J,358.3,27692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29407,1,3,0)
- ;;=3^Myelitis, unspecified
- ;;^UTILITY(U,$J,358.3,29407,1,4,0)
- ;;=4^G04.91
- ;;^UTILITY(U,$J,358.3,29407,2)
- ;;=^5003742
- ;;^UTILITY(U,$J,358.3,29408,0)
- ;;=G93.40^^176^1883^11
- ;;^UTILITY(U,$J,358.3,29408,1,0)
+ ;;^UTILITY(U,$J,358.3,27692,1,3,0)
+ ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,27692,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,27692,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,27693,0)
+ ;;=C65.2^^132^1320^133
+ ;;^UTILITY(U,$J,358.3,27693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29408,1,3,0)
- ;;=3^Encephalopathy, unspecified
- ;;^UTILITY(U,$J,358.3,29408,1,4,0)
- ;;=4^G93.40
- ;;^UTILITY(U,$J,358.3,29408,2)
- ;;=^329917
- ;;^UTILITY(U,$J,358.3,29409,0)
- ;;=G91.0^^176^1883^9
- ;;^UTILITY(U,$J,358.3,29409,1,0)
+ ;;^UTILITY(U,$J,358.3,27693,1,3,0)
+ ;;=3^Malig Neop Left Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,27693,1,4,0)
+ ;;=4^C65.2
+ ;;^UTILITY(U,$J,358.3,27693,2)
+ ;;=^5001252
+ ;;^UTILITY(U,$J,358.3,27694,0)
+ ;;=C62.92^^132^1320^134
+ ;;^UTILITY(U,$J,358.3,27694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29409,1,3,0)
- ;;=3^Communicating hydrocephalus
- ;;^UTILITY(U,$J,358.3,29409,1,4,0)
- ;;=4^G91.0
- ;;^UTILITY(U,$J,358.3,29409,2)
- ;;=^26586
- ;;^UTILITY(U,$J,358.3,29410,0)
- ;;=G91.1^^176^1883^27
- ;;^UTILITY(U,$J,358.3,29410,1,0)
+ ;;^UTILITY(U,$J,358.3,27694,1,3,0)
+ ;;=3^Malig Neop Left Testis,Unspec
+ ;;^UTILITY(U,$J,358.3,27694,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,27694,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,27695,0)
+ ;;=C22.8^^132^1320^135
+ ;;^UTILITY(U,$J,358.3,27695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29410,1,3,0)
- ;;=3^Obstructive hydrocephalus
- ;;^UTILITY(U,$J,358.3,29410,1,4,0)
- ;;=4^G91.1
- ;;^UTILITY(U,$J,358.3,29410,2)
- ;;=^84947
- ;;^UTILITY(U,$J,358.3,29411,0)
- ;;=I61.9^^176^1883^20
- ;;^UTILITY(U,$J,358.3,29411,1,0)
+ ;;^UTILITY(U,$J,358.3,27695,1,3,0)
+ ;;=3^Malig Neop Liver,Primary
+ ;;^UTILITY(U,$J,358.3,27695,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,27695,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,27696,0)
+ ;;=C06.9^^132^1320^138
+ ;;^UTILITY(U,$J,358.3,27696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29411,1,3,0)
- ;;=3^Nontraumatic intracerebral hemorrhage, unspecified
- ;;^UTILITY(U,$J,358.3,29411,1,4,0)
- ;;=4^I61.9
- ;;^UTILITY(U,$J,358.3,29411,2)
- ;;=^5007288
- ;;^UTILITY(U,$J,358.3,29412,0)
- ;;=I61.3^^176^1883^21
- ;;^UTILITY(U,$J,358.3,29412,1,0)
+ ;;^UTILITY(U,$J,358.3,27696,1,3,0)
+ ;;=3^Malig Neop Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,27696,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,27696,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,27697,0)
+ ;;=C11.9^^132^1320^139
+ ;;^UTILITY(U,$J,358.3,27697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29412,1,3,0)
- ;;=3^Nontraumatic intracerebral hemorrhage, brainstem
- ;;^UTILITY(U,$J,358.3,29412,1,4,0)
- ;;=4^I61.3
- ;;^UTILITY(U,$J,358.3,29412,2)
- ;;=^5007283
- ;;^UTILITY(U,$J,358.3,29413,0)
- ;;=I61.4^^176^1883^22
- ;;^UTILITY(U,$J,358.3,29413,1,0)
+ ;;^UTILITY(U,$J,358.3,27697,1,3,0)
+ ;;=3^Malig Neop Nasopharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,27697,1,4,0)
+ ;;=4^C11.9
+ ;;^UTILITY(U,$J,358.3,27697,2)
+ ;;=^5000911
+ ;;^UTILITY(U,$J,358.3,27698,0)
+ ;;=C10.9^^132^1320^142
+ ;;^UTILITY(U,$J,358.3,27698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29413,1,3,0)
- ;;=3^Nontraumatic intracerebral hemorrhage, cerebellum
- ;;^UTILITY(U,$J,358.3,29413,1,4,0)
- ;;=4^I61.4
- ;;^UTILITY(U,$J,358.3,29413,2)
- ;;=^5007284
- ;;^UTILITY(U,$J,358.3,29414,0)
- ;;=I61.5^^176^1883^23
- ;;^UTILITY(U,$J,358.3,29414,1,0)
+ ;;^UTILITY(U,$J,358.3,27698,1,3,0)
+ ;;=3^Malig Neop Oropharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,27698,1,4,0)
+ ;;=4^C10.9
+ ;;^UTILITY(U,$J,358.3,27698,2)
+ ;;=^5000909
+ ;;^UTILITY(U,$J,358.3,27699,0)
+ ;;=C25.9^^132^1320^143
+ ;;^UTILITY(U,$J,358.3,27699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29414,1,3,0)
- ;;=3^Nontraumatic intracerebral hemorrhage, intraventricular
- ;;^UTILITY(U,$J,358.3,29414,1,4,0)
- ;;=4^I61.5
- ;;^UTILITY(U,$J,358.3,29414,2)
- ;;=^5007285
- ;;^UTILITY(U,$J,358.3,29415,0)
- ;;=I61.6^^176^1883^24
- ;;^UTILITY(U,$J,358.3,29415,1,0)
+ ;;^UTILITY(U,$J,358.3,27699,1,3,0)
+ ;;=3^Malig Neop Pancreas,Unspec
+ ;;^UTILITY(U,$J,358.3,27699,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,27699,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,27700,0)
+ ;;=C47.9^^132^1320^144
+ ;;^UTILITY(U,$J,358.3,27700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29415,1,3,0)
- ;;=3^Nontraumatic intracerebral hemorrhage, multiple localized
- ;;^UTILITY(U,$J,358.3,29415,1,4,0)
- ;;=4^I61.6
- ;;^UTILITY(U,$J,358.3,29415,2)
- ;;=^5007286
- ;;^UTILITY(U,$J,358.3,29416,0)
- ;;=G44.1^^176^1883^69
- ;;^UTILITY(U,$J,358.3,29416,1,0)
+ ;;^UTILITY(U,$J,358.3,27700,1,3,0)
+ ;;=3^Malig Neop Peripheral Nerves/Autonomic Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,27700,1,4,0)
+ ;;=4^C47.9
+ ;;^UTILITY(U,$J,358.3,27700,2)
+ ;;=^5001121
+ ;;^UTILITY(U,$J,358.3,27701,0)
+ ;;=C38.4^^132^1320^145
+ ;;^UTILITY(U,$J,358.3,27701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29416,1,3,0)
- ;;=3^Vascular headache, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,29416,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,29416,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,29417,0)
- ;;=R51.^^176^1883^12
- ;;^UTILITY(U,$J,358.3,29417,1,0)
+ ;;^UTILITY(U,$J,358.3,27701,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,27701,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,27701,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,27702,0)
+ ;;=C61.^^132^1320^146
+ ;;^UTILITY(U,$J,358.3,27702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29417,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,29417,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,29417,2)
- ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,27702,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,27702,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,27702,2)
+ ;;=^267239

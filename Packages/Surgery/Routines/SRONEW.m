@@ -1,5 +1,5 @@
 SRONEW ;BIR/MAM - ENTER A NEW CASE ;11/01/2011
- ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175,176,177,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**3,23,26,30,47,58,48,67,107,100,144,175,176,177,182,184**;24 Jun 93;Build 35
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -41,8 +41,15 @@ ASURG ; attending surgeon
 SPEC W ! K DIC S DIC=137.45,DIC(0)="QEAMZ",DIC("A")="Select Surgical Specialty: ",DIC("S")="I '$P(^(0),""^"",3)" D ^DIC I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
  I Y<0!(X["^") W !!,"To create a surgical case, a Surgical Specialty MUST be selected.  Enter '^'",!,"to exit.",! G SPEC
  S SRSS=+Y
+ ;
+PCPT ; Planned Principal Procedure Code (CPT)
+ K DIR S DIR(0)="130,27",DIR("A")="Planned Principal Procedure Code" D ^DIR K DIR I $D(DTOUT)!(X="^") S SRSOUT=1 G DEL
+ I Y=""!(X["^") W !!,"To make an operation request, Planned Principal Procedure Code field MUST be entered. Enter '^' to exit.",! G PCPT
+ S SRCPT=$P(Y,"^")
+ ;
 UPDATE ; update case in SURGERY file
- S DA=SRTN,DIE=130,DR=".04////"_SRSS_";.164////"_SRATTND_";32////"_SRSOPD D ^DIE K DR
+ S DA=SRTN,DIE=130,DR=".04////"_SRSS_";.164////"_SRATTND_";32////"_SRSOPD_";27////"_SRCPT D ^DIE K DR
+ D SPIN
  S SRSOPD(1)=SRSOPD D WP^DIE(130,SRTN_",",55,"A","SRSOPD")
  ; Brief Clinical History
  K DR S DR="60T",DA=SRTN,DIE=130 W ! D ^DIE
@@ -52,7 +59,7 @@ DIE D ^SROBLOD K DR,DIE,DA S DR="38////"_BLOOD_";40////"_CROSSM,DA=SRTN,DIE=130 
  N SRICDV S SRICDV=$$ICDSTR^SROICD(SRTN)
  S DR="[SRSRES1]",DIE=130,DA=SRTN D ^DIE,RT S ST="NEW SURGERY" D EN2^SROVAR
  S SPD=$$CHKS^SRSCOR(SRTN)
- K DR S DR="[SRSRES-ENTRY]",DIE=130,DA=SRTN D ^SRCUSS,RISK^SROAUTL3,^SROPCE1
+ K DR S DR=$S($$SPIN^SRTOVRF():"[SRSRES-ENTRY1]",1:"[SRSRES-ENTRY]"),DIE=130,DA=SRTN D ^SRCUSS,RISK^SROAUTL3,^SROPCE1
  I SPD'=$$CHKS^SRSCOR(SRTN) S ^TMP("CSLSUR1",$J)=""
  I $D(SRCTN) D
  .S SRCTN(.02)=$P(^SRF(SRCTN,0),"^",2),SRCTN(10)=$P($G(^SRF(SRCTN,31)),"^",4),SRCTN(11)=$P($G(^SRF(SRCTN,31)),"^",5)
@@ -75,3 +82,10 @@ CON ; check for concurrent case
  .I ^(SRSCC)=SRSDPT,'$P($G(^SRF(SRSCC,"CON")),"^"),$P($G(^SRF(SRSCC,"NON")),"^")'="Y",'$P($G(^SRF(SRSCC,30)),"^"),'$P($G(^SRF(SRSCC,.2)),"^",12),'$P($G(^SRF(SRSCC,"LOCK")),"^") S SRSCON=1
  .I SRSCON D CC^SRSREQ I '$D(SRCTN) S SRSCON=0
  Q
+SPIN ; spinal level free-text
+ I '$$SPIN^SRTOVRF(SRCPT) Q
+ N SL
+ K DIR S DIR(0)="130,136",DIR("A")="Spinal Level Comment" D ^DIR K DIR
+ S SL=$P(Y,"^") I Y=""!$D(DTOUT)!$D(DUOUT) S SL=""
+ S $P(^SRF(SRTN,1.1),"^",4)=SL
+ Q 

@@ -1,130 +1,132 @@
-IBDEI05L ; ; 06-AUG-2015
+IBDEI05L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2094,1,4,0)
- ;;=4^S42.401A
- ;;^UTILITY(U,$J,358.3,2094,2)
- ;;=^5027294
- ;;^UTILITY(U,$J,358.3,2095,0)
- ;;=S42.402A^^4^62^69
- ;;^UTILITY(U,$J,358.3,2095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2095,1,3,0)
- ;;=3^Fx of left lower end of humerus unspec, init for cl
- ;;^UTILITY(U,$J,358.3,2095,1,4,0)
- ;;=4^S42.402A
- ;;^UTILITY(U,$J,358.3,2095,2)
- ;;=^5134713
- ;;^UTILITY(U,$J,358.3,2096,0)
- ;;=S72.91XA^^4^62^77
- ;;^UTILITY(U,$J,358.3,2096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2096,1,3,0)
- ;;=3^Fx of right femur unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2096,1,4,0)
- ;;=4^S72.91XA
- ;;^UTILITY(U,$J,358.3,2096,2)
- ;;=^5136471
- ;;^UTILITY(U,$J,358.3,2097,0)
- ;;=S72.92XA^^4^62^64
- ;;^UTILITY(U,$J,358.3,2097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2097,1,3,0)
- ;;=3^Fx of left femur unspec, init encntr for closed fx
- ;;^UTILITY(U,$J,358.3,2097,1,4,0)
- ;;=4^S72.92XA
- ;;^UTILITY(U,$J,358.3,2097,2)
- ;;=^5136472
- ;;^UTILITY(U,$J,358.3,2098,0)
- ;;=S82.401A^^4^62^78
- ;;^UTILITY(U,$J,358.3,2098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2098,1,3,0)
- ;;=3^Fx of right fibula shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2098,1,4,0)
- ;;=4^S82.401A
- ;;^UTILITY(U,$J,358.3,2098,2)
- ;;=^5041677
- ;;^UTILITY(U,$J,358.3,2099,0)
- ;;=S82.402A^^4^62^65
- ;;^UTILITY(U,$J,358.3,2099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2099,1,3,0)
- ;;=3^Fx of left fibula shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2099,1,4,0)
- ;;=4^S82.402A
- ;;^UTILITY(U,$J,358.3,2099,2)
- ;;=^5041693
- ;;^UTILITY(U,$J,358.3,2100,0)
- ;;=S62.600A^^4^62^101
- ;;^UTILITY(U,$J,358.3,2100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2100,1,3,0)
- ;;=3^Fx of unsp phalanx of right index finger, init
- ;;^UTILITY(U,$J,358.3,2100,1,4,0)
- ;;=4^S62.600A
- ;;^UTILITY(U,$J,358.3,2100,2)
- ;;=^5034382
- ;;^UTILITY(U,$J,358.3,2101,0)
- ;;=S62.601A^^4^62^96
- ;;^UTILITY(U,$J,358.3,2101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2101,1,3,0)
- ;;=3^Fx of unsp phalanx of left index finger, init
- ;;^UTILITY(U,$J,358.3,2101,1,4,0)
- ;;=4^S62.601A
- ;;^UTILITY(U,$J,358.3,2101,2)
- ;;=^5034389
- ;;^UTILITY(U,$J,358.3,2102,0)
- ;;=S62.602A^^4^62^103
- ;;^UTILITY(U,$J,358.3,2102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2102,1,3,0)
- ;;=3^Fx of unsp phalanx of right middle finger, init
- ;;^UTILITY(U,$J,358.3,2102,1,4,0)
- ;;=4^S62.602A
- ;;^UTILITY(U,$J,358.3,2102,2)
- ;;=^5034396
- ;;^UTILITY(U,$J,358.3,2103,0)
- ;;=S62.603A^^4^62^98
- ;;^UTILITY(U,$J,358.3,2103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2103,1,3,0)
- ;;=3^Fx of unsp phalanx of left middle finger, init
- ;;^UTILITY(U,$J,358.3,2103,1,4,0)
- ;;=4^S62.603A
- ;;^UTILITY(U,$J,358.3,2103,2)
- ;;=^5034403
- ;;^UTILITY(U,$J,358.3,2104,0)
- ;;=S62.604A^^4^62^104
- ;;^UTILITY(U,$J,358.3,2104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2104,1,3,0)
- ;;=3^Fx of unsp phalanx of right ring finger, init
- ;;^UTILITY(U,$J,358.3,2104,1,4,0)
- ;;=4^S62.604A
- ;;^UTILITY(U,$J,358.3,2104,2)
- ;;=^5034410
- ;;^UTILITY(U,$J,358.3,2105,0)
- ;;=S62.605A^^4^62^99
- ;;^UTILITY(U,$J,358.3,2105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2105,1,3,0)
- ;;=3^Fx of unsp phalanx of left ring finger, init
- ;;^UTILITY(U,$J,358.3,2105,1,4,0)
- ;;=4^S62.605A
- ;;^UTILITY(U,$J,358.3,2105,2)
- ;;=^5034417
- ;;^UTILITY(U,$J,358.3,2106,0)
- ;;=S62.606A^^4^62^102
- ;;^UTILITY(U,$J,358.3,2106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2106,1,3,0)
- ;;=3^Fx of unsp phalanx of right little finger, init
- ;;^UTILITY(U,$J,358.3,2106,1,4,0)
- ;;=4^S62.606A
- ;;^UTILITY(U,$J,358.3,2106,2)
- ;;=^5034424
- ;;^UTILITY(U,$J,358.3,2107,0)
- ;;=S62.607A^^4^62^97
+ ;;^UTILITY(U,$J,358.3,1983,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1983,1,2,0)
+ ;;=2^37185
+ ;;^UTILITY(U,$J,358.3,1983,1,3,0)
+ ;;=3^Prim Art Mech Thrombectomy,Add-On
+ ;;^UTILITY(U,$J,358.3,1984,0)
+ ;;=36002^^17^176^28^^^^1
+ ;;^UTILITY(U,$J,358.3,1984,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1984,1,2,0)
+ ;;=2^36002
+ ;;^UTILITY(U,$J,358.3,1984,1,3,0)
+ ;;=3^Pseudoaneurysm Injection Trt
+ ;;^UTILITY(U,$J,358.3,1985,0)
+ ;;=33011^^17^176^32^^^^1
+ ;;^UTILITY(U,$J,358.3,1985,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1985,1,2,0)
+ ;;=2^33011
+ ;;^UTILITY(U,$J,358.3,1985,1,3,0)
+ ;;=3^Repeat Drainage of Heart Sac
+ ;;^UTILITY(U,$J,358.3,1986,0)
+ ;;=37193^^17^176^29^^^^1
+ ;;^UTILITY(U,$J,358.3,1986,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1986,1,2,0)
+ ;;=2^37193
+ ;;^UTILITY(U,$J,358.3,1986,1,3,0)
+ ;;=3^Remove Endovas Vena Cava Filter
+ ;;^UTILITY(U,$J,358.3,1987,0)
+ ;;=37212^^17^176^43^^^^1
+ ;;^UTILITY(U,$J,358.3,1987,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1987,1,2,0)
+ ;;=2^37212
+ ;;^UTILITY(U,$J,358.3,1987,1,3,0)
+ ;;=3^Thrombolytic Venous Therapy
+ ;;^UTILITY(U,$J,358.3,1988,0)
+ ;;=37213^^17^176^42^^^^1
+ ;;^UTILITY(U,$J,358.3,1988,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1988,1,2,0)
+ ;;=2^37213
+ ;;^UTILITY(U,$J,358.3,1988,1,3,0)
+ ;;=3^Thrombolytic Art/Ven Therapy
+ ;;^UTILITY(U,$J,358.3,1989,0)
+ ;;=37229^^17^176^44^^^^1
+ ;;^UTILITY(U,$J,358.3,1989,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1989,1,2,0)
+ ;;=2^37229
+ ;;^UTILITY(U,$J,358.3,1989,1,3,0)
+ ;;=3^Tib/Per Revasc w/ Ather
+ ;;^UTILITY(U,$J,358.3,1990,0)
+ ;;=37230^^17^176^46^^^^1
+ ;;^UTILITY(U,$J,358.3,1990,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1990,1,2,0)
+ ;;=2^37230
+ ;;^UTILITY(U,$J,358.3,1990,1,3,0)
+ ;;=3^Tib/Per Revasc w/ Stent
+ ;;^UTILITY(U,$J,358.3,1991,0)
+ ;;=37231^^17^176^47^^^^1
+ ;;^UTILITY(U,$J,358.3,1991,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1991,1,2,0)
+ ;;=2^37231
+ ;;^UTILITY(U,$J,358.3,1991,1,3,0)
+ ;;=3^Tib/Per Revasc w/ Stent & Ather
+ ;;^UTILITY(U,$J,358.3,1992,0)
+ ;;=37232^^17^176^50^^^^1
+ ;;^UTILITY(U,$J,358.3,1992,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1992,1,2,0)
+ ;;=2^37232
+ ;;^UTILITY(U,$J,358.3,1992,1,3,0)
+ ;;=3^Tib/Per Revasc,Add-on
+ ;;^UTILITY(U,$J,358.3,1993,0)
+ ;;=37233^^17^176^45^^^^1
+ ;;^UTILITY(U,$J,358.3,1993,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1993,1,2,0)
+ ;;=2^37233
+ ;;^UTILITY(U,$J,358.3,1993,1,3,0)
+ ;;=3^Tib/Per Revasc w/ Ather,Add-On
+ ;;^UTILITY(U,$J,358.3,1994,0)
+ ;;=37234^^17^176^49^^^^1
+ ;;^UTILITY(U,$J,358.3,1994,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1994,1,2,0)
+ ;;=2^37234
+ ;;^UTILITY(U,$J,358.3,1994,1,3,0)
+ ;;=3^Tib/Per Revasc w/ Stent,Add-On
+ ;;^UTILITY(U,$J,358.3,1995,0)
+ ;;=37235^^17^176^48^^^^1
+ ;;^UTILITY(U,$J,358.3,1995,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1995,1,2,0)
+ ;;=2^37235
+ ;;^UTILITY(U,$J,358.3,1995,1,3,0)
+ ;;=3^Tib/Per Revasc w/ Stent & Ather,Add-On
+ ;;^UTILITY(U,$J,358.3,1996,0)
+ ;;=37215^^17^176^53^^^^1
+ ;;^UTILITY(U,$J,358.3,1996,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1996,1,2,0)
+ ;;=2^37215
+ ;;^UTILITY(U,$J,358.3,1996,1,3,0)
+ ;;=3^Transcath Stent CCA w/ EPS
+ ;;^UTILITY(U,$J,358.3,1997,0)
+ ;;=37216^^17^176^54^^^^1
+ ;;^UTILITY(U,$J,358.3,1997,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1997,1,2,0)
+ ;;=2^37216
+ ;;^UTILITY(U,$J,358.3,1997,1,3,0)
+ ;;=3^Transcath Stent CCA w/o EPS
+ ;;^UTILITY(U,$J,358.3,1998,0)
+ ;;=37188^^17^176^55^^^^1
+ ;;^UTILITY(U,$J,358.3,1998,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1998,1,2,0)
+ ;;=2^37188
+ ;;^UTILITY(U,$J,358.3,1998,1,3,0)
+ ;;=3^Venous Mech Thrombectomy,Add-On
+ ;;^UTILITY(U,$J,358.3,1999,0)
+ ;;=93561^^17^177^15^^^^1

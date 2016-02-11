@@ -1,5 +1,5 @@
 SROACPM ;BIR/ADM - CARDIAC RESOURCE INFO ;12/04/07
- ;;3.0;Surgery;**71,93,95,99,100,125,142,160,164,166,174,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**71,93,95,99,100,125,142,160,164,166,174,182,184**;24 Jun 93;Build 35
  ;
  ; Reference to ^DGPM("APTT1" supported by DBIA #565
  ;
@@ -11,15 +11,15 @@ START G:SRSOUT END D HDR^SROAUTL
  S DIR("A")="Select Number",DIR(0)="NO^1:2" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y S SRSOUT=1 G END
  I Y=1 D PIMS G START
 EDIT N DAYS,HOURS,MINS
- S SRR=0 S SRPAGE="PAGE: 1" D HDR^SROAUTL K DR S SRQ=0,(DR,SRDR)="418;419;440;.205;.22;.23;.232;470;471;473;431;442"
+ S SRPAGE="PAGE: 1 OF 2" D HDR^SROAUTL K DR S SRQ=0,(DR,SRDR)="413;418;419;685;440;.205;.22;.23;.232;470;471;473;442;342;342.1"
  K DA,DIC,DIQ,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="IE",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  K SRZ S SRZ=0 F M=1:1 S I=$P(SRDR,";",M)  Q:'I  D
  .D TR,GET
  .S SRZ=SRZ+1,Y=$P(X,";;",2),SRFLD=$P(Y,"^"),(Z,SRZ(SRZ))=$P(Y,"^",2)_"^"_SRFLD,SREXT=SRY(130,SRTN,SRFLD,"E")
  .W:M>1 ! W $J(SRZ,2)_". "_$P(Z,"^")_": " D EXT
- D CHCK W ! F K=1:1:80 W "-"
- D SEL G:SRR=1 EDIT
- G START
+ D CHCK F K=1:1:80 W "-"
+ D SEL
+ W @IOF D ^SRSKILL
  Q
 CHCK ; compare admission and discharge dates to each other
  N SRADM,SRDIS,SROUT,SRDICU,SREXT
@@ -34,21 +34,19 @@ CHCK ; compare admission and discharge dates to each other
 EXT I SRFLD=440&(SREXT="NS") S SREXT=SREXT_"-"_$S(SREXT="NS":"No Study",1:SREXT)
  I SRFLD=470,(SREXT="NS"!(SREXT="RI")) S SREXT=SREXT_"-"_$S(SREXT="NS":"Unable to determine",SREXT="RI":"Remains intubated at 30 days",1:SREXT)
  I SRFLD=470,$G(SRY(130,SRTN,470,"I")) D  Q
- .S X=$$FMDIFF^XLFDT(SRY(130,SRTN,470,"I"),SRY(130,SRTN,.232,"I"),2) W ?39,SREXT,!,?10,"Postop Intubation Hrs: "_$FN((X/3600),"+",1)
+ .S X=$$FMDIFF^XLFDT(SRY(130,SRTN,470,"I"),SRY(130,SRTN,.232,"I"),2) W ?39,SREXT,!,?10,"Postop Intubation Hrs: ",?39,$FN((X/3600),"+",1)
  I SRFLD=471,(SREXT="NS"!(SREXT="RI")) S SREXT=SREXT_"-"_$S(SREXT="NS":"Unable to determine",SREXT="RI":"Remains in ICU at 30 days",1:SREXT)
- I $L(SREXT)<41 W ?39,SREXT W:SRFLD=247 $S(SREXT="":"",SREXT=1:" Day",SREXT=0:" Days",SREXT>1:" Days",1:"") Q
- I SRFLD=431 D
- .I $L(SREXT)<52 W ?28,SREXT Q 
- .N I,J,X,Y S X=SREXT F  D  W:$L(X) ! I $L(X)<52!($L(X)>51&(X'[" ")) W ?28,X Q
- ..F I=0:1:50 S J=51-I,Y=$E(X,J) I Y=" " W ?28,$E(X,1,J-1) S X=$E(X,J+1,$L(X)) Q
+ W ?39,$E(SREXT,1,40)
  Q
-SEL S SRSOUT=0 W !!,"Select Resource Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 Q
- Q:X=""  S:X="a" X="A" I '$D(SRFLG),'$D(SRZ(X)),(X'?1.2N1":"1.2N),X'="A" D HELP S SRR=1 Q
- I X?1.2N1":"1.2N S Y=$P(X,":"),Z=$P(X,":",2) I Y<1!(Z>SRZ)!(Y>Z) D HELP S SRR=1 Q
+SEL S SRSOUT=0 W !,"Select Resource Information to Edit: " R X:DTIME I '$T!("^"[X) G END
+ Q:X=""  S:X="a" X="A" I '$D(SRFLG),'$D(SRZ(X)),(X'?1.2N1":"1.2N),X'="A" D HELP G:SRSOUT END G EDIT
+ I X?1.2N1":"1.2N S Y=$P(X,":"),Z=$P(X,":",2) I Y<1!(Z>SRZ)!(Y>Z) D HELP G:SRSOUT END G EDIT
  I X="A" S X="1:"_SRZ
- I X?1.2N1":"1.2N D RANGE S SRR=1 Q
- I $D(SRZ(X)),+X=X S EMILY=X D  S SRR=1
+ I X?1.2N1":"1.2N D RANGE G EDIT
+ I $D(SRZ(X)),+X=X S EMILY=X D  G EDIT
  .I $$LOCK^SROUTL(SRTN) D ONE,UNLOCK^SROUTL(SRTN)
+END I 'SRSOUT D ^SROACPM0
+ W @IOF D ^SRSKILL
  Q
 PIMS ; get update from PIMS records
  W ! K DIR S DIR("A")="Are you sure you want to retrieve information from PIMS records ? ",DIR("B")="YES",DIR(0)="YOA" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y Q
@@ -65,8 +63,8 @@ RANGE ; range of numbers
  .S SHEMP=$P(X,":"),CURLEY=$P(X,":",2) F EMILY=SHEMP:1:CURLEY Q:SRSOUT  D ONE
  Q
 ONE ; edit one item
- I EMILY=9 D LIST
- I EMILY'=9 K DR,DA,DIE S DR=$P(SRZ(EMILY),"^",2)_"T",DA=SRTN,DIE=130,SRDT=$P(SRZ(EMILY),"^",3) S:SRDT DR=DR_";"_SRDT_"T" D ^DIE K DR,DA I $D(Y) S SRSOUT=1
+ I EMILY=11 D LIST
+ I EMILY'=11 K DR,DA,DIE S DR=$P(SRZ(EMILY),"^",2)_"T",DA=SRTN,DIE=130,SRDT=$P(SRZ(EMILY),"^",3) S:SRDT DR=DR_";"_SRDT_"T" D ^DIE K DR,DA I $D(Y) S SRSOUT=1
  I 'SRSOUT,EMILY=1!(EMILY=2) D OK
  Q
 OK ; compare admission date to discharge date
@@ -104,10 +102,10 @@ TR S J=I,J=$TR(J,"1234567890.","ABCDEFGHIJP")
  Q
 GET S X=$T(@J)
  Q
-END W @IOF D ^SRSKILL
- Q
+DAC ;;413^Transfer Status
 DAH ;;418^Hospital Admission Date
 DAI ;;419^Hospital Discharge Date
+FHE ;;685^DC/REL Destination
 DDJ ;;440^Cardiac Catheterization Date
 PBJE ;;.205^Time Patient In OR
 PBB ;;.22^Date/Time Operation Began
@@ -115,6 +113,7 @@ PBC ;;.23^Date/Time Operation Ended
 PBCB ;;.232^Time Patient Out OR
 DGJ ;;470^Date/Time Patient Extubated
 DGA ;;471^Date/Time Discharged from ICU
-DDB ;;442^Employment Status Preoperatively
-DCA ;;431^Resource Data Comments
 DGC ;;473^Homeless
+DDB ;;442^Employment Status Preoperatively
+CDB ;;342^Date of Death
+CDBPA ;;342.1^30-Day Death

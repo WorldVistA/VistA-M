@@ -1,124 +1,136 @@
-IBDEI1ZJ ; ; 06-AUG-2015
+IBDEI1ZJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34771,1,4,0)
- ;;=4^S42.452S
- ;;^UTILITY(U,$J,358.3,34771,2)
- ;;=^5027503
- ;;^UTILITY(U,$J,358.3,34772,0)
- ;;=S42.451S^^183^2023^25
- ;;^UTILITY(U,$J,358.3,34772,1,0)
+ ;;^UTILITY(U,$J,358.3,33244,1,3,0)
+ ;;=3^Anxiety Disorder NOS
+ ;;^UTILITY(U,$J,358.3,33244,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,33244,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,33245,0)
+ ;;=F40.02^^148^1632^2
+ ;;^UTILITY(U,$J,358.3,33245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34772,1,3,0)
- ;;=3^Disp fx of lateral condyle of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,34772,1,4,0)
- ;;=4^S42.451S
- ;;^UTILITY(U,$J,358.3,34772,2)
- ;;=^5027496
- ;;^UTILITY(U,$J,358.3,34773,0)
- ;;=S42.262S^^183^2023^30
- ;;^UTILITY(U,$J,358.3,34773,1,0)
+ ;;^UTILITY(U,$J,358.3,33245,1,3,0)
+ ;;=3^Agoraphobia
+ ;;^UTILITY(U,$J,358.3,33245,1,4,0)
+ ;;=4^F40.02
+ ;;^UTILITY(U,$J,358.3,33245,2)
+ ;;=^5003543
+ ;;^UTILITY(U,$J,358.3,33246,0)
+ ;;=F40.10^^148^1632^16
+ ;;^UTILITY(U,$J,358.3,33246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34773,1,3,0)
- ;;=3^Disp fx of lesser tuberosity of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,34773,1,4,0)
- ;;=4^S42.262S
- ;;^UTILITY(U,$J,358.3,34773,2)
- ;;=^5026942
- ;;^UTILITY(U,$J,358.3,34774,0)
- ;;=S42.261S^^183^2023^31
- ;;^UTILITY(U,$J,358.3,34774,1,0)
+ ;;^UTILITY(U,$J,358.3,33246,1,3,0)
+ ;;=3^Social Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,33246,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,33246,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,33247,0)
+ ;;=F40.218^^148^1632^4
+ ;;^UTILITY(U,$J,358.3,33247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34774,1,3,0)
- ;;=3^Disp fx of lesser tuberosity of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,34774,1,4,0)
- ;;=4^S42.261S
- ;;^UTILITY(U,$J,358.3,34774,2)
- ;;=^5026935
- ;;^UTILITY(U,$J,358.3,34775,0)
- ;;=S42.462S^^183^2023^32
- ;;^UTILITY(U,$J,358.3,34775,1,0)
+ ;;^UTILITY(U,$J,358.3,33247,1,3,0)
+ ;;=3^Animal Type Phobias
+ ;;^UTILITY(U,$J,358.3,33247,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,33247,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,33248,0)
+ ;;=F40.228^^148^1632^13
+ ;;^UTILITY(U,$J,358.3,33248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34775,1,3,0)
- ;;=3^Disp fx of medial condyle of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,34775,1,4,0)
- ;;=4^S42.462S
- ;;^UTILITY(U,$J,358.3,34775,2)
- ;;=^5027545
- ;;^UTILITY(U,$J,358.3,34776,0)
- ;;=S42.461S^^183^2023^33
- ;;^UTILITY(U,$J,358.3,34776,1,0)
+ ;;^UTILITY(U,$J,358.3,33248,1,3,0)
+ ;;=3^Natural Environment Type Phobia
+ ;;^UTILITY(U,$J,358.3,33248,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,33248,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,33249,0)
+ ;;=F40.230^^148^1632^8
+ ;;^UTILITY(U,$J,358.3,33249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34776,1,3,0)
- ;;=3^Disp fx of medial condyle of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,34776,1,4,0)
- ;;=4^S42.461S
- ;;^UTILITY(U,$J,358.3,34776,2)
- ;;=^5027538
- ;;^UTILITY(U,$J,358.3,34777,0)
- ;;=S42.332S^^183^2023^38
- ;;^UTILITY(U,$J,358.3,34777,1,0)
+ ;;^UTILITY(U,$J,358.3,33249,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,33249,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,33249,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,33250,0)
+ ;;=F40.231^^148^1632^9
+ ;;^UTILITY(U,$J,358.3,33250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34777,1,3,0)
- ;;=3^Disp fx of oblique shaft of humerus, left arm, sequela  
- ;;^UTILITY(U,$J,358.3,34777,1,4,0)
- ;;=4^S42.332S
- ;;^UTILITY(U,$J,358.3,34777,2)
- ;;=^5027118
- ;;^UTILITY(U,$J,358.3,34778,0)
- ;;=S42.331S^^183^2023^40
- ;;^UTILITY(U,$J,358.3,34778,1,0)
+ ;;^UTILITY(U,$J,358.3,33250,1,3,0)
+ ;;=3^Fear of Injections & Transfusions
+ ;;^UTILITY(U,$J,358.3,33250,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,33250,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,33251,0)
+ ;;=F40.232^^148^1632^11
+ ;;^UTILITY(U,$J,358.3,33251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34778,1,3,0)
- ;;=3^Disp fx of oblique shaft of humerus, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,34778,1,4,0)
- ;;=4^S42.331S
- ;;^UTILITY(U,$J,358.3,34778,2)
- ;;=^5027111
- ;;^UTILITY(U,$J,358.3,34779,0)
- ;;=S42.362S^^183^2023^41
- ;;^UTILITY(U,$J,358.3,34779,1,0)
+ ;;^UTILITY(U,$J,358.3,33251,1,3,0)
+ ;;=3^Fear of Oth Medical Care
+ ;;^UTILITY(U,$J,358.3,33251,1,4,0)
+ ;;=4^F40.232
+ ;;^UTILITY(U,$J,358.3,33251,2)
+ ;;=^5003552
+ ;;^UTILITY(U,$J,358.3,33252,0)
+ ;;=F40.233^^148^1632^10
+ ;;^UTILITY(U,$J,358.3,33252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34779,1,3,0)
- ;;=3^Disp fx of segmental shaft of humerus, left arm, sequela
- ;;^UTILITY(U,$J,358.3,34779,1,4,0)
- ;;=4^S42.362S
- ;;^UTILITY(U,$J,358.3,34779,2)
- ;;=^5027244
- ;;^UTILITY(U,$J,358.3,34780,0)
- ;;=S42.361S^^183^2023^42
- ;;^UTILITY(U,$J,358.3,34780,1,0)
+ ;;^UTILITY(U,$J,358.3,33252,1,3,0)
+ ;;=3^Fear of Injury
+ ;;^UTILITY(U,$J,358.3,33252,1,4,0)
+ ;;=4^F40.233
+ ;;^UTILITY(U,$J,358.3,33252,2)
+ ;;=^5003553
+ ;;^UTILITY(U,$J,358.3,33253,0)
+ ;;=F40.240^^148^1632^7
+ ;;^UTILITY(U,$J,358.3,33253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34780,1,3,0)
- ;;=3^Disp fx of segmental shaft of humerus, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,34780,1,4,0)
- ;;=4^S42.361S
- ;;^UTILITY(U,$J,358.3,34780,2)
- ;;=^5027237
- ;;^UTILITY(U,$J,358.3,34781,0)
- ;;=S42.412S^^183^2023^45
- ;;^UTILITY(U,$J,358.3,34781,1,0)
+ ;;^UTILITY(U,$J,358.3,33253,1,3,0)
+ ;;=3^Claustrophobia
+ ;;^UTILITY(U,$J,358.3,33253,1,4,0)
+ ;;=4^F40.240
+ ;;^UTILITY(U,$J,358.3,33253,2)
+ ;;=^5003554
+ ;;^UTILITY(U,$J,358.3,33254,0)
+ ;;=F40.241^^148^1632^1
+ ;;^UTILITY(U,$J,358.3,33254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34781,1,3,0)
- ;;=3^Disp fx of simple suprcndl w/o intrcndl fx l humerus, sequela
- ;;^UTILITY(U,$J,358.3,34781,1,4,0)
- ;;=4^S42.412S
- ;;^UTILITY(U,$J,358.3,34781,2)
- ;;=^5027314
- ;;^UTILITY(U,$J,358.3,34782,0)
- ;;=S42.411S^^183^2023^46
- ;;^UTILITY(U,$J,358.3,34782,1,0)
+ ;;^UTILITY(U,$J,358.3,33254,1,3,0)
+ ;;=3^Acrophobia
+ ;;^UTILITY(U,$J,358.3,33254,1,4,0)
+ ;;=4^F40.241
+ ;;^UTILITY(U,$J,358.3,33254,2)
+ ;;=^5003555
+ ;;^UTILITY(U,$J,358.3,33255,0)
+ ;;=F40.248^^148^1632^15
+ ;;^UTILITY(U,$J,358.3,33255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34782,1,3,0)
- ;;=3^Disp fx of simple suprcndl w/o intrcndl fx r humerus, sequela
- ;;^UTILITY(U,$J,358.3,34782,1,4,0)
- ;;=4^S42.411S
- ;;^UTILITY(U,$J,358.3,34782,2)
- ;;=^5027307
- ;;^UTILITY(U,$J,358.3,34783,0)
- ;;=S42.342S^^183^2023^47
- ;;^UTILITY(U,$J,358.3,34783,1,0)
+ ;;^UTILITY(U,$J,358.3,33255,1,3,0)
+ ;;=3^Situational Type Phobia NEC
+ ;;^UTILITY(U,$J,358.3,33255,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,33255,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,33256,0)
+ ;;=F40.01^^148^1632^3
+ ;;^UTILITY(U,$J,358.3,33256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34783,1,3,0)
- ;;=3^Disp fx of spiral shaft of humerus, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,33256,1,3,0)
+ ;;=3^Agoraphobia w/ Panic Disorder
+ ;;^UTILITY(U,$J,358.3,33256,1,4,0)
+ ;;=4^F40.01
+ ;;^UTILITY(U,$J,358.3,33256,2)
+ ;;=^331911
+ ;;^UTILITY(U,$J,358.3,33257,0)
+ ;;=F06.33^^148^1633^1
+ ;;^UTILITY(U,$J,358.3,33257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33257,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features

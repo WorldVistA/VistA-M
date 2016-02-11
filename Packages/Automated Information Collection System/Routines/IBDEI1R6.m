@@ -1,130 +1,136 @@
-IBDEI1R6 ; ; 06-AUG-2015
+IBDEI1R6 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30982,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,30983,0)
- ;;=M87.051^^179^1937^26
- ;;^UTILITY(U,$J,358.3,30983,1,0)
+ ;;^UTILITY(U,$J,358.3,29349,0)
+ ;;=L03.222^^135^1361^22
+ ;;^UTILITY(U,$J,358.3,29349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30983,1,3,0)
- ;;=3^Idiopathic aseptic necrosis of right femur
- ;;^UTILITY(U,$J,358.3,30983,1,4,0)
- ;;=4^M87.051
- ;;^UTILITY(U,$J,358.3,30983,2)
- ;;=^5014680
- ;;^UTILITY(U,$J,358.3,30984,0)
- ;;=M76.32^^179^1937^27
- ;;^UTILITY(U,$J,358.3,30984,1,0)
+ ;;^UTILITY(U,$J,358.3,29349,1,3,0)
+ ;;=3^Acute Lymphangitis of Neck
+ ;;^UTILITY(U,$J,358.3,29349,1,4,0)
+ ;;=4^L03.222
+ ;;^UTILITY(U,$J,358.3,29349,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,29350,0)
+ ;;=L03.311^^135^1361^95
+ ;;^UTILITY(U,$J,358.3,29350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30984,1,3,0)
- ;;=3^Iliotibial band syndrome, left leg
- ;;^UTILITY(U,$J,358.3,30984,1,4,0)
- ;;=4^M76.32
- ;;^UTILITY(U,$J,358.3,30984,2)
- ;;=^5013277
- ;;^UTILITY(U,$J,358.3,30985,0)
- ;;=M76.31^^179^1937^28
- ;;^UTILITY(U,$J,358.3,30985,1,0)
+ ;;^UTILITY(U,$J,358.3,29350,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,29350,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,29350,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,29351,0)
+ ;;=L03.312^^135^1361^96
+ ;;^UTILITY(U,$J,358.3,29351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30985,1,3,0)
- ;;=3^Iliotibial band syndrome, right leg
- ;;^UTILITY(U,$J,358.3,30985,1,4,0)
- ;;=4^M76.31
- ;;^UTILITY(U,$J,358.3,30985,2)
- ;;=^5013276
- ;;^UTILITY(U,$J,358.3,30986,0)
- ;;=S72.145A^^179^1937^29
- ;;^UTILITY(U,$J,358.3,30986,1,0)
+ ;;^UTILITY(U,$J,358.3,29351,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,29351,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,29351,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,29352,0)
+ ;;=L03.313^^135^1361^98
+ ;;^UTILITY(U,$J,358.3,29352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30986,1,3,0)
- ;;=3^Nondisplaced intertrochanteric fracture of left femur, init
- ;;^UTILITY(U,$J,358.3,30986,1,4,0)
- ;;=4^S72.145A
- ;;^UTILITY(U,$J,358.3,30986,2)
- ;;=^5037979
- ;;^UTILITY(U,$J,358.3,30987,0)
- ;;=S72.144A^^179^1937^30
- ;;^UTILITY(U,$J,358.3,30987,1,0)
+ ;;^UTILITY(U,$J,358.3,29352,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,29352,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,29352,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,29353,0)
+ ;;=L03.314^^135^1361^100
+ ;;^UTILITY(U,$J,358.3,29353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30987,1,3,0)
- ;;=3^Nondisplaced intertrochanteric fracture of right femur, init
- ;;^UTILITY(U,$J,358.3,30987,1,4,0)
- ;;=4^S72.144A
- ;;^UTILITY(U,$J,358.3,30987,2)
- ;;=^5037963
- ;;^UTILITY(U,$J,358.3,30988,0)
- ;;=M16.12^^179^1937^31
- ;;^UTILITY(U,$J,358.3,30988,1,0)
+ ;;^UTILITY(U,$J,358.3,29353,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,29353,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,29353,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,29354,0)
+ ;;=L03.315^^135^1361^107
+ ;;^UTILITY(U,$J,358.3,29354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30988,1,3,0)
- ;;=3^Osteoarthritis, primary, left hip unilateral
- ;;^UTILITY(U,$J,358.3,30988,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,30988,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,30989,0)
- ;;=M16.11^^179^1937^32
- ;;^UTILITY(U,$J,358.3,30989,1,0)
+ ;;^UTILITY(U,$J,358.3,29354,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,29354,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,29354,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,29355,0)
+ ;;=L03.316^^135^1361^114
+ ;;^UTILITY(U,$J,358.3,29355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30989,1,3,0)
- ;;=3^Osteoarthritis, primary, right hip unilateral
- ;;^UTILITY(U,$J,358.3,30989,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,30989,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,30990,0)
- ;;=M16.0^^179^1937^33
- ;;^UTILITY(U,$J,358.3,30990,1,0)
+ ;;^UTILITY(U,$J,358.3,29355,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,29355,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,29355,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,29356,0)
+ ;;=L03.319^^135^1361^113
+ ;;^UTILITY(U,$J,358.3,29356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30990,1,3,0)
- ;;=3^Osteoarthritis, primary bilateral hip
- ;;^UTILITY(U,$J,358.3,30990,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,30990,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,30991,0)
- ;;=M25.552^^179^1937^34
- ;;^UTILITY(U,$J,358.3,30991,1,0)
+ ;;^UTILITY(U,$J,358.3,29356,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,29356,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,29356,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,29357,0)
+ ;;=L03.321^^135^1361^13
+ ;;^UTILITY(U,$J,358.3,29357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30991,1,3,0)
- ;;=3^Pain in left hip
- ;;^UTILITY(U,$J,358.3,30991,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,30991,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,30992,0)
- ;;=M25.551^^179^1937^35
- ;;^UTILITY(U,$J,358.3,30992,1,0)
+ ;;^UTILITY(U,$J,358.3,29357,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,29357,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,29357,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,29358,0)
+ ;;=L03.322^^135^1361^14
+ ;;^UTILITY(U,$J,358.3,29358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30992,1,3,0)
- ;;=3^Pain in right hip
- ;;^UTILITY(U,$J,358.3,30992,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,30992,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,30993,0)
- ;;=S73.015A^^179^1937^36
- ;;^UTILITY(U,$J,358.3,30993,1,0)
+ ;;^UTILITY(U,$J,358.3,29358,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,29358,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,29358,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,29359,0)
+ ;;=L03.323^^135^1361^15
+ ;;^UTILITY(U,$J,358.3,29359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30993,1,3,0)
- ;;=3^Posterior dislocation of left hip, initial encounter
- ;;^UTILITY(U,$J,358.3,30993,1,4,0)
- ;;=4^S73.015A
- ;;^UTILITY(U,$J,358.3,30993,2)
- ;;=^5039249
- ;;^UTILITY(U,$J,358.3,30994,0)
- ;;=S73.014A^^179^1937^37
- ;;^UTILITY(U,$J,358.3,30994,1,0)
+ ;;^UTILITY(U,$J,358.3,29359,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,29359,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,29359,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,29360,0)
+ ;;=L03.324^^135^1361^17
+ ;;^UTILITY(U,$J,358.3,29360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30994,1,3,0)
- ;;=3^Posterior dislocation of right hip, initial encounter
- ;;^UTILITY(U,$J,358.3,30994,1,4,0)
- ;;=4^S73.014A
- ;;^UTILITY(U,$J,358.3,30994,2)
- ;;=^5039246
- ;;^UTILITY(U,$J,358.3,30995,0)
- ;;=M00.052^^179^1937^38
- ;;^UTILITY(U,$J,358.3,30995,1,0)
+ ;;^UTILITY(U,$J,358.3,29360,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,29360,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,29360,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,29361,0)
+ ;;=L03.325^^135^1361^23
+ ;;^UTILITY(U,$J,358.3,29361,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29361,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,29361,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,29361,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,29362,0)
+ ;;=L03.326^^135^1361^29

@@ -1,126 +1,130 @@
-IBDEI1PW ; ; 06-AUG-2015
+IBDEI1PW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30409,0)
- ;;=O40.1XX0^^178^1916^205
- ;;^UTILITY(U,$J,358.3,30409,1,0)
+ ;;^UTILITY(U,$J,358.3,28737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30409,1,3,0)
- ;;=3^Polyhydramnios, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,30409,1,4,0)
- ;;=4^O40.1XX0
- ;;^UTILITY(U,$J,358.3,30409,2)
- ;;=^5017187
- ;;^UTILITY(U,$J,358.3,30410,0)
- ;;=O40.1XX1^^178^1916^200
- ;;^UTILITY(U,$J,358.3,30410,1,0)
+ ;;^UTILITY(U,$J,358.3,28737,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,28737,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,28737,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,28738,0)
+ ;;=S91.102A^^132^1337^9
+ ;;^UTILITY(U,$J,358.3,28738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30410,1,3,0)
- ;;=3^Polyhydramnios, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30410,1,4,0)
- ;;=4^O40.1XX1
- ;;^UTILITY(U,$J,358.3,30410,2)
- ;;=^5017188
- ;;^UTILITY(U,$J,358.3,30411,0)
- ;;=O40.1XX2^^178^1916^201
- ;;^UTILITY(U,$J,358.3,30411,1,0)
+ ;;^UTILITY(U,$J,358.3,28738,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,28738,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,28738,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,28739,0)
+ ;;=S61.402A^^132^1337^10
+ ;;^UTILITY(U,$J,358.3,28739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30411,1,3,0)
- ;;=3^Polyhydramnios, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30411,1,4,0)
- ;;=4^O40.1XX2
- ;;^UTILITY(U,$J,358.3,30411,2)
- ;;=^5017189
- ;;^UTILITY(U,$J,358.3,30412,0)
- ;;=O40.1XX3^^178^1916^202
- ;;^UTILITY(U,$J,358.3,30412,1,0)
+ ;;^UTILITY(U,$J,358.3,28739,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,28739,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,28739,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,28740,0)
+ ;;=S71.002A^^132^1337^11
+ ;;^UTILITY(U,$J,358.3,28740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30412,1,3,0)
- ;;=3^Polyhydramnios, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30412,1,4,0)
- ;;=4^O40.1XX3
- ;;^UTILITY(U,$J,358.3,30412,2)
- ;;=^5017190
- ;;^UTILITY(U,$J,358.3,30413,0)
- ;;=O40.1XX4^^178^1916^203
- ;;^UTILITY(U,$J,358.3,30413,1,0)
+ ;;^UTILITY(U,$J,358.3,28740,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,28740,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,28740,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,28741,0)
+ ;;=S91.104A^^132^1337^22
+ ;;^UTILITY(U,$J,358.3,28741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30413,1,3,0)
- ;;=3^Polyhydramnios, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30413,1,4,0)
- ;;=4^O40.1XX4
- ;;^UTILITY(U,$J,358.3,30413,2)
- ;;=^5017191
- ;;^UTILITY(U,$J,358.3,30414,0)
- ;;=O40.1XX5^^178^1916^204
- ;;^UTILITY(U,$J,358.3,30414,1,0)
+ ;;^UTILITY(U,$J,358.3,28741,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,28741,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,28741,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,28742,0)
+ ;;=S81.802A^^132^1337^13
+ ;;^UTILITY(U,$J,358.3,28742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30414,1,3,0)
- ;;=3^Polyhydramnios, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30414,1,4,0)
- ;;=4^O40.1XX5
- ;;^UTILITY(U,$J,358.3,30414,2)
- ;;=^5017192
- ;;^UTILITY(U,$J,358.3,30415,0)
- ;;=O40.2XX0^^178^1916^211
- ;;^UTILITY(U,$J,358.3,30415,1,0)
+ ;;^UTILITY(U,$J,358.3,28742,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,28742,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,28742,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,28743,0)
+ ;;=S41.102A^^132^1337^15
+ ;;^UTILITY(U,$J,358.3,28743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30415,1,3,0)
- ;;=3^Polyhydramnios, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,30415,1,4,0)
- ;;=4^O40.2XX0
- ;;^UTILITY(U,$J,358.3,30415,2)
- ;;=^5017194
- ;;^UTILITY(U,$J,358.3,30416,0)
- ;;=O40.2XX1^^178^1916^206
- ;;^UTILITY(U,$J,358.3,30416,1,0)
+ ;;^UTILITY(U,$J,358.3,28743,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,28743,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,28743,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,28744,0)
+ ;;=S91.001A^^132^1337^16
+ ;;^UTILITY(U,$J,358.3,28744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30416,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30416,1,4,0)
- ;;=4^O40.2XX1
- ;;^UTILITY(U,$J,358.3,30416,2)
- ;;=^5017195
- ;;^UTILITY(U,$J,358.3,30417,0)
- ;;=O40.2XX2^^178^1916^207
- ;;^UTILITY(U,$J,358.3,30417,1,0)
+ ;;^UTILITY(U,$J,358.3,28744,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,28744,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,28744,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,28745,0)
+ ;;=S91.301A^^132^1337^17
+ ;;^UTILITY(U,$J,358.3,28745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30417,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30417,1,4,0)
- ;;=4^O40.2XX2
- ;;^UTILITY(U,$J,358.3,30417,2)
- ;;=^5017196
- ;;^UTILITY(U,$J,358.3,30418,0)
- ;;=O40.2XX3^^178^1916^208
- ;;^UTILITY(U,$J,358.3,30418,1,0)
+ ;;^UTILITY(U,$J,358.3,28745,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,28745,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,28745,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,28746,0)
+ ;;=S51.801A^^132^1337^18
+ ;;^UTILITY(U,$J,358.3,28746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30418,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30418,1,4,0)
- ;;=4^O40.2XX3
- ;;^UTILITY(U,$J,358.3,30418,2)
- ;;=^5017197
- ;;^UTILITY(U,$J,358.3,30419,0)
- ;;=O40.2XX4^^178^1916^209
- ;;^UTILITY(U,$J,358.3,30419,1,0)
+ ;;^UTILITY(U,$J,358.3,28746,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,28746,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,28746,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,28747,0)
+ ;;=S91.101A^^132^1337^19
+ ;;^UTILITY(U,$J,358.3,28747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30419,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30419,1,4,0)
- ;;=4^O40.2XX4
- ;;^UTILITY(U,$J,358.3,30419,2)
- ;;=^5017198
- ;;^UTILITY(U,$J,358.3,30420,0)
- ;;=O40.2XX5^^178^1916^210
- ;;^UTILITY(U,$J,358.3,30420,1,0)
+ ;;^UTILITY(U,$J,358.3,28747,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,28747,1,4,0)
+ ;;=4^S91.101A
+ ;;^UTILITY(U,$J,358.3,28747,2)
+ ;;=^5044168
+ ;;^UTILITY(U,$J,358.3,28748,0)
+ ;;=S61.401A^^132^1337^20
+ ;;^UTILITY(U,$J,358.3,28748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30420,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30420,1,4,0)
- ;;=4^O40.2XX5
- ;;^UTILITY(U,$J,358.3,30420,2)
- ;;=^5017199
- ;;^UTILITY(U,$J,358.3,30421,0)
- ;;=O40.3XX0^^178^1916^217
+ ;;^UTILITY(U,$J,358.3,28748,1,3,0)
+ ;;=3^Open Wound,Right Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,28748,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,28748,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,28749,0)
+ ;;=S71.001A^^132^1337^21
+ ;;^UTILITY(U,$J,358.3,28749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28749,1,3,0)
+ ;;=3^Open Wound,Right Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,28749,1,4,0)
+ ;;=4^S71.001A

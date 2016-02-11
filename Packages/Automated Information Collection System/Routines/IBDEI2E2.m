@@ -1,0 +1,124 @@
+IBDEI2E2 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40135,1,3,0)
+ ;;=3^Injury Digital Nerve Left Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40135,1,4,0)
+ ;;=4^S64.493A
+ ;;^UTILITY(U,$J,358.3,40135,2)
+ ;;=^5035808
+ ;;^UTILITY(U,$J,358.3,40136,0)
+ ;;=S64.495A^^186^2076^231
+ ;;^UTILITY(U,$J,358.3,40136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40136,1,3,0)
+ ;;=3^Injury Digital Nerve Left Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40136,1,4,0)
+ ;;=4^S64.495A
+ ;;^UTILITY(U,$J,358.3,40136,2)
+ ;;=^5035814
+ ;;^UTILITY(U,$J,358.3,40137,0)
+ ;;=S64.32XA^^186^2076^232
+ ;;^UTILITY(U,$J,358.3,40137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40137,1,3,0)
+ ;;=3^Injury Digital Nerve Left Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40137,1,4,0)
+ ;;=4^S64.32XA
+ ;;^UTILITY(U,$J,358.3,40137,2)
+ ;;=^5035793
+ ;;^UTILITY(U,$J,358.3,40138,0)
+ ;;=S64.490A^^186^2076^233
+ ;;^UTILITY(U,$J,358.3,40138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40138,1,3,0)
+ ;;=3^Injury Digital Nerve Right Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40138,1,4,0)
+ ;;=4^S64.490A
+ ;;^UTILITY(U,$J,358.3,40138,2)
+ ;;=^5035799
+ ;;^UTILITY(U,$J,358.3,40139,0)
+ ;;=S64.496A^^186^2076^234
+ ;;^UTILITY(U,$J,358.3,40139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40139,1,3,0)
+ ;;=3^Injury Digital Nerve Right Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40139,1,4,0)
+ ;;=4^S64.496A
+ ;;^UTILITY(U,$J,358.3,40139,2)
+ ;;=^5035817
+ ;;^UTILITY(U,$J,358.3,40140,0)
+ ;;=S64.492A^^186^2076^235
+ ;;^UTILITY(U,$J,358.3,40140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40140,1,3,0)
+ ;;=3^Injury Digital Nerve Right Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40140,1,4,0)
+ ;;=4^S64.492A
+ ;;^UTILITY(U,$J,358.3,40140,2)
+ ;;=^5035805
+ ;;^UTILITY(U,$J,358.3,40141,0)
+ ;;=S64.494A^^186^2076^236
+ ;;^UTILITY(U,$J,358.3,40141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40141,1,3,0)
+ ;;=3^Injury Digital Nerve Right Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40141,1,4,0)
+ ;;=4^S64.494A
+ ;;^UTILITY(U,$J,358.3,40141,2)
+ ;;=^5035811
+ ;;^UTILITY(U,$J,358.3,40142,0)
+ ;;=S64.31XA^^186^2076^237
+ ;;^UTILITY(U,$J,358.3,40142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40142,1,3,0)
+ ;;=3^Injury Digital Nerve Right Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40142,1,4,0)
+ ;;=4^S64.31XA
+ ;;^UTILITY(U,$J,358.3,40142,2)
+ ;;=^5035790
+ ;;^UTILITY(U,$J,358.3,40143,0)
+ ;;=S54.12XA^^186^2076^239
+ ;;^UTILITY(U,$J,358.3,40143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40143,1,3,0)
+ ;;=3^Injury Median Nerve Left Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40143,1,4,0)
+ ;;=4^S54.12XA
+ ;;^UTILITY(U,$J,358.3,40143,2)
+ ;;=^5031421
+ ;;^UTILITY(U,$J,358.3,40144,0)
+ ;;=S54.11XA^^186^2076^242
+ ;;^UTILITY(U,$J,358.3,40144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40144,1,3,0)
+ ;;=3^Injury Median Nerve Right Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40144,1,4,0)
+ ;;=4^S54.11XA
+ ;;^UTILITY(U,$J,358.3,40144,2)
+ ;;=^5031418
+ ;;^UTILITY(U,$J,358.3,40145,0)
+ ;;=S44.12XA^^186^2076^240
+ ;;^UTILITY(U,$J,358.3,40145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40145,1,3,0)
+ ;;=3^Injury Median Nerve Left Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40145,1,4,0)
+ ;;=4^S44.12XA
+ ;;^UTILITY(U,$J,358.3,40145,2)
+ ;;=^5027951
+ ;;^UTILITY(U,$J,358.3,40146,0)
+ ;;=S44.11XA^^186^2076^243
+ ;;^UTILITY(U,$J,358.3,40146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40146,1,3,0)
+ ;;=3^Injury Median Nerve Right Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40146,1,4,0)
+ ;;=4^S44.11XA
+ ;;^UTILITY(U,$J,358.3,40146,2)
+ ;;=^5027948
+ ;;^UTILITY(U,$J,358.3,40147,0)
+ ;;=S64.12XA^^186^2076^241

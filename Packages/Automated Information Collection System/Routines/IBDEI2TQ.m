@@ -1,0 +1,128 @@
+IBDEI2TQ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47402,1,4,0)
+ ;;=4^C82.98
+ ;;^UTILITY(U,$J,358.3,47402,2)
+ ;;=^5001549
+ ;;^UTILITY(U,$J,358.3,47403,0)
+ ;;=C82.99^^209^2346^201
+ ;;^UTILITY(U,$J,358.3,47403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47403,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47403,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,47403,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,47404,0)
+ ;;=C83.00^^209^2346^472
+ ;;^UTILITY(U,$J,358.3,47404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47404,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47404,1,4,0)
+ ;;=4^C83.00
+ ;;^UTILITY(U,$J,358.3,47404,2)
+ ;;=^5001551
+ ;;^UTILITY(U,$J,358.3,47405,0)
+ ;;=C83.01^^209^2346^465
+ ;;^UTILITY(U,$J,358.3,47405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47405,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Head/Face/Neck Nodes
+ ;;^UTILITY(U,$J,358.3,47405,1,4,0)
+ ;;=4^C83.01
+ ;;^UTILITY(U,$J,358.3,47405,2)
+ ;;=^5001552
+ ;;^UTILITY(U,$J,358.3,47406,0)
+ ;;=C83.02^^209^2346^469
+ ;;^UTILITY(U,$J,358.3,47406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47406,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Intrathoracic Nodes
+ ;;^UTILITY(U,$J,358.3,47406,1,4,0)
+ ;;=4^C83.02
+ ;;^UTILITY(U,$J,358.3,47406,2)
+ ;;=^5001553
+ ;;^UTILITY(U,$J,358.3,47407,0)
+ ;;=C83.03^^209^2346^467
+ ;;^UTILITY(U,$J,358.3,47407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47407,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47407,1,4,0)
+ ;;=4^C83.03
+ ;;^UTILITY(U,$J,358.3,47407,2)
+ ;;=^5001554
+ ;;^UTILITY(U,$J,358.3,47408,0)
+ ;;=C83.04^^209^2346^463
+ ;;^UTILITY(U,$J,358.3,47408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47408,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Axilla/Upper Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47408,1,4,0)
+ ;;=4^C83.04
+ ;;^UTILITY(U,$J,358.3,47408,2)
+ ;;=^5001555
+ ;;^UTILITY(U,$J,358.3,47409,0)
+ ;;=C83.05^^209^2346^466
+ ;;^UTILITY(U,$J,358.3,47409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47409,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Ing Region/Lower Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47409,1,4,0)
+ ;;=4^C83.05
+ ;;^UTILITY(U,$J,358.3,47409,2)
+ ;;=^5001556
+ ;;^UTILITY(U,$J,358.3,47410,0)
+ ;;=C83.06^^209^2346^468
+ ;;^UTILITY(U,$J,358.3,47410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47410,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Intrapelvic Nodes
+ ;;^UTILITY(U,$J,358.3,47410,1,4,0)
+ ;;=4^C83.06
+ ;;^UTILITY(U,$J,358.3,47410,2)
+ ;;=^5001557
+ ;;^UTILITY(U,$J,358.3,47411,0)
+ ;;=C83.07^^209^2346^471
+ ;;^UTILITY(U,$J,358.3,47411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47411,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Spleen
+ ;;^UTILITY(U,$J,358.3,47411,1,4,0)
+ ;;=4^C83.07
+ ;;^UTILITY(U,$J,358.3,47411,2)
+ ;;=^5001558
+ ;;^UTILITY(U,$J,358.3,47412,0)
+ ;;=C83.08^^209^2346^470
+ ;;^UTILITY(U,$J,358.3,47412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47412,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Mult Site Nodes
+ ;;^UTILITY(U,$J,358.3,47412,1,4,0)
+ ;;=4^C83.08
+ ;;^UTILITY(U,$J,358.3,47412,2)
+ ;;=^5001559
+ ;;^UTILITY(U,$J,358.3,47413,0)
+ ;;=C83.09^^209^2346^464
+ ;;^UTILITY(U,$J,358.3,47413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47413,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47413,1,4,0)
+ ;;=4^C83.09
+ ;;^UTILITY(U,$J,358.3,47413,2)
+ ;;=^5001560
+ ;;^UTILITY(U,$J,358.3,47414,0)
+ ;;=C83.10^^209^2346^295
+ ;;^UTILITY(U,$J,358.3,47414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47414,1,3,0)
+ ;;=3^Mantle Cell Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47414,1,4,0)
+ ;;=4^C83.10
+ ;;^UTILITY(U,$J,358.3,47414,2)
+ ;;=^5001561

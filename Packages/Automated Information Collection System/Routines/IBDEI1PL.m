@@ -1,122 +1,128 @@
-IBDEI1PL ; ; 06-AUG-2015
+IBDEI1PL ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30280,1,4,0)
- ;;=4^O36.0120
- ;;^UTILITY(U,$J,358.3,30280,2)
- ;;=^5016849
- ;;^UTILITY(U,$J,358.3,30281,0)
- ;;=O36.0121^^178^1916^50
- ;;^UTILITY(U,$J,358.3,30281,1,0)
+ ;;^UTILITY(U,$J,358.3,28597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30281,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30281,1,4,0)
- ;;=4^O36.0121
- ;;^UTILITY(U,$J,358.3,30281,2)
- ;;=^5016850
- ;;^UTILITY(U,$J,358.3,30282,0)
- ;;=O36.0122^^178^1916^51
- ;;^UTILITY(U,$J,358.3,30282,1,0)
+ ;;^UTILITY(U,$J,358.3,28597,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,28597,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,28597,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,28598,0)
+ ;;=S86.311A^^132^1333^49
+ ;;^UTILITY(U,$J,358.3,28598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30282,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30282,1,4,0)
- ;;=4^O36.0122
- ;;^UTILITY(U,$J,358.3,30282,2)
- ;;=^5016851
- ;;^UTILITY(U,$J,358.3,30283,0)
- ;;=O36.0123^^178^1916^52
- ;;^UTILITY(U,$J,358.3,30283,1,0)
+ ;;^UTILITY(U,$J,358.3,28598,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,28598,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,28598,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,28599,0)
+ ;;=S86.312A^^132^1333^29
+ ;;^UTILITY(U,$J,358.3,28599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30283,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30283,1,4,0)
- ;;=4^O36.0123
- ;;^UTILITY(U,$J,358.3,30283,2)
- ;;=^5016852
- ;;^UTILITY(U,$J,358.3,30284,0)
- ;;=O36.0124^^178^1916^53
- ;;^UTILITY(U,$J,358.3,30284,1,0)
+ ;;^UTILITY(U,$J,358.3,28599,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,28599,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,28599,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,28600,0)
+ ;;=S86.811A^^132^1333^48
+ ;;^UTILITY(U,$J,358.3,28600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30284,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30284,1,4,0)
- ;;=4^O36.0124
- ;;^UTILITY(U,$J,358.3,30284,2)
- ;;=^5016853
- ;;^UTILITY(U,$J,358.3,30285,0)
- ;;=O36.0125^^178^1916^54
- ;;^UTILITY(U,$J,358.3,30285,1,0)
+ ;;^UTILITY(U,$J,358.3,28600,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,28600,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,28600,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,28601,0)
+ ;;=S86.812A^^132^1333^28
+ ;;^UTILITY(U,$J,358.3,28601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30285,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30285,1,4,0)
- ;;=4^O36.0125
- ;;^UTILITY(U,$J,358.3,30285,2)
- ;;=^5016854
- ;;^UTILITY(U,$J,358.3,30286,0)
- ;;=O36.0130^^178^1916^55
- ;;^UTILITY(U,$J,358.3,30286,1,0)
+ ;;^UTILITY(U,$J,358.3,28601,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,28601,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,28601,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,28602,0)
+ ;;=S86.111A^^132^1333^50
+ ;;^UTILITY(U,$J,358.3,28602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30286,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third trimester, unsp
- ;;^UTILITY(U,$J,358.3,30286,1,4,0)
- ;;=4^O36.0130
- ;;^UTILITY(U,$J,358.3,30286,2)
- ;;=^5016856
- ;;^UTILITY(U,$J,358.3,30287,0)
- ;;=O36.0131^^178^1916^56
- ;;^UTILITY(U,$J,358.3,30287,1,0)
+ ;;^UTILITY(U,$J,358.3,28602,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,28602,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,28602,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,28603,0)
+ ;;=S86.112A^^132^1333^30
+ ;;^UTILITY(U,$J,358.3,28603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30287,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30287,1,4,0)
- ;;=4^O36.0131
- ;;^UTILITY(U,$J,358.3,30287,2)
- ;;=^5016857
- ;;^UTILITY(U,$J,358.3,30288,0)
- ;;=O36.0132^^178^1916^57
- ;;^UTILITY(U,$J,358.3,30288,1,0)
+ ;;^UTILITY(U,$J,358.3,28603,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,28603,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,28603,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,28604,0)
+ ;;=S83.401A^^132^1333^15
+ ;;^UTILITY(U,$J,358.3,28604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30288,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30288,1,4,0)
- ;;=4^O36.0132
- ;;^UTILITY(U,$J,358.3,30288,2)
- ;;=^5016858
- ;;^UTILITY(U,$J,358.3,30289,0)
- ;;=O36.0133^^178^1916^58
- ;;^UTILITY(U,$J,358.3,30289,1,0)
+ ;;^UTILITY(U,$J,358.3,28604,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,28604,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,28604,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,28605,0)
+ ;;=S83.402A^^132^1333^4
+ ;;^UTILITY(U,$J,358.3,28605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30289,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30289,1,4,0)
- ;;=4^O36.0133
- ;;^UTILITY(U,$J,358.3,30289,2)
- ;;=^5016859
- ;;^UTILITY(U,$J,358.3,30290,0)
- ;;=O36.0134^^178^1916^59
- ;;^UTILITY(U,$J,358.3,30290,1,0)
+ ;;^UTILITY(U,$J,358.3,28605,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,28605,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,28605,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,28606,0)
+ ;;=S93.402A^^132^1333^2
+ ;;^UTILITY(U,$J,358.3,28606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30290,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30290,1,4,0)
- ;;=4^O36.0134
- ;;^UTILITY(U,$J,358.3,30290,2)
- ;;=^5016860
- ;;^UTILITY(U,$J,358.3,30291,0)
- ;;=O36.0135^^178^1916^60
- ;;^UTILITY(U,$J,358.3,30291,1,0)
+ ;;^UTILITY(U,$J,358.3,28606,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,28606,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,28606,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,28607,0)
+ ;;=S93.401A^^132^1333^13
+ ;;^UTILITY(U,$J,358.3,28607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30291,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30291,1,4,0)
- ;;=4^O36.0135
- ;;^UTILITY(U,$J,358.3,30291,2)
- ;;=^5016861
- ;;^UTILITY(U,$J,358.3,30292,0)
- ;;=O36.0910^^178^1916^182
- ;;^UTILITY(U,$J,358.3,30292,1,0)
+ ;;^UTILITY(U,$J,358.3,28607,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,28607,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,28607,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,28608,0)
+ ;;=S56.511A^^132^1333^39
+ ;;^UTILITY(U,$J,358.3,28608,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28608,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,28608,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,28608,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,28609,0)
+ ;;=S56.512A^^132^1333^19
+ ;;^UTILITY(U,$J,358.3,28609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28609,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend

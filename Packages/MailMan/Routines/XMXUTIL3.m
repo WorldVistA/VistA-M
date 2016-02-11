@@ -1,5 +1,5 @@
-XMXUTIL3 ;ISC-SF/GMB-List addressees, recipients, message network header ;03/05/2001  15:23
- ;;8.0;MailMan;**34**;Jun 28, 2002
+XMXUTIL3 ;ISC-SF/GMB - List addressees, recipients, message network header ;03/05/2001  15:23
+ ;;8.0;MailMan;**34,47**;Jun 28, 2002;Build 6
  ; All entry points covered by DBIA 2737.
  ; Common Parameters for Q, QD, QL, QN, QX:
  ; XMZ     message number in message file
@@ -101,9 +101,10 @@ QX(XMZ,XMFLAGS,XMAMT,XMSTART,XMTROOT) ; Local Recipient Xtract
  I $L($G(XMFLAGS))'=1,"CNT"'[XMFLAGS Q
  D QINIT(.XMFLAGS,.XMAMT,.XMFIND,.XMTROOT)
  S XMRESPS=+$P($G(^XMB(3.9,XMZ,3,0)),U,4)
- S XMCNT=0,XMTO=+$G(XMSTART("IEN"))
- F  S XMTO=$O(^XMB(3.9,XMZ,1,"C",XMTO)) Q:+XMTO'='XMTO  D  Q:XMCNT=XMAMT
- . S XMIEN=$O(^XMB(3.9,XMZ,1,"C",XMTO)) Q:'XMIEN
+ ; **XM*8.0*47 Fixes quit logic in both FOR loops and adds a subscript level when setting the XMIEN variable.
+ S XMCNT=0,XMTO=+$G(XMSTART("IEN")),XMIEN=""
+ F  S XMTO=$O(^XMB(3.9,XMZ,1,"C",XMTO)) Q:+XMTO'=XMTO  D  Q:XMCNT=XMAMT
+ . S XMIEN=$O(^XMB(3.9,XMZ,1,"C",XMTO,XMIEN)) Q:'XMIEN
  . S XMREC=$G(^XMB(3.9,XMZ,1,XMIEN,0))
  . I XMFLAGS="C",$P(XMREC,U,2)'=XMRESPS Q  ; not current
  . I XMFLAGS="N",$P(XMREC,U,2)=XMRESPS Q  ; current
@@ -114,8 +115,8 @@ QX(XMZ,XMFLAGS,XMAMT,XMSTART,XMTROOT) ; Local Recipient Xtract
  S XMSTART("IEN")=XMTO
  I XMAMT'="*" D
  . S XMMORE=0 ; any more?
- . F  S XMTO=$O(^XMB(3.9,XMZ,1,"C",XMTO)) Q:+XMTO'='XMTO  D  Q:XMMORE
- . . S XMIEN=$O(^XMB(3.9,XMZ,1,"C",XMTO)) Q:'XMIEN
+ . F  S XMTO=$O(^XMB(3.9,XMZ,1,"C",XMTO)) Q:+XMTO'=XMTO  D  Q:XMMORE
+ . . S XMIEN=$O(^XMB(3.9,XMZ,1,"C",XMTO,XMIEN)) Q:'XMIEN
  . . S XMREC=$G(^XMB(3.9,XMZ,1,XMIEN,0))
  . . I XMFLAGS="C",$P(XMREC,U,2)'=XMRESPS Q  ; not current
  . . I XMFLAGS="N",$P(XMREC,U,2)=XMRESPS Q  ; current

@@ -1,5 +1,5 @@
-EASEZP6F ;ALB/AMA - Print 1010EZ, Version 6 or greater ; 10/19/2000
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**51,60,57**;Mar 15, 2001
+EASEZP6F ;ALB/AMA,LBD - Print 1010EZ, Version 6 or greater ; 9/19/12 11:42am
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**51,60,57,107**;Mar 15, 2001;Build 32
  ;
  ; These routines print a version of the OMB approved VA10-10EZ form.
  ; No local modifications to these routines will be made.  Any changes
@@ -106,7 +106,8 @@ HDRMAIN(EALNE) ; PRINT THE FIRST PAGE HEADER INFORMATION
  W @IOF
  W ?106,"OMB APPROVED NO. 2900-0091"
  W !?103,"Estimated Burden Avg. 45 min."
- W !?107,"Expiration Date 6/30/2007",!,EALNE("DD")
+ ; Remove expiration date (EAS*1*107)
+ ; W !?107,"Expiration Date 6/30/2007",!,EALNE("DD")
  W !,"D E P A R T M E N T   O F   V E T E R A N S   A F F A I R S",?80,"APPLICATION FOR HEALTH BENEFITS",!,EALNE("DD")
  Q
  ;
@@ -119,7 +120,8 @@ HDR(EALNE,EAINFO) ; PRINT THE PAGE HEADER INFO FOR PAGES GREATER THAN 1
  ;
 FT(EALNE,EAINFO) ; PRINT THE PAGE FOOTER INFORMATION
  W !,EALNE("DD")
- W !,"VA FORM 10-10EZ FEB 2005",?40,"PRINTED: ",EAINFO("PD")
+ ; Change form date to 2011 (EAS*1*107)
+ W !,"VA FORM 10-10EZ FEB 2011",?40,"PRINTED: ",EAINFO("PD")
  W ?80,"Clerk: ",EAINFO("CLRK"),"/",EAINFO("ID")
  W ?120,"PAGE " S EAINFO("PGE")=EAINFO("PGE")+1 W EAINFO("PGE")
  Q

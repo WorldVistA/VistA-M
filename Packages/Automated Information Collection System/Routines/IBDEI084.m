@@ -1,134 +1,142 @@
-IBDEI084 ; ; 06-AUG-2015
+IBDEI084 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3299,1,0)
+ ;;^UTILITY(U,$J,358.3,3238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3299,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,3299,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,3299,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,3300,0)
- ;;=F17.291^^8^119^9
- ;;^UTILITY(U,$J,358.3,3300,1,0)
+ ;;^UTILITY(U,$J,358.3,3238,1,3,0)
+ ;;=3^Hypertension,Secondary
+ ;;^UTILITY(U,$J,358.3,3238,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,3238,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,3239,0)
+ ;;=I15.0^^28^249^45
+ ;;^UTILITY(U,$J,358.3,3239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3300,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,3300,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,3300,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,3301,0)
- ;;=F14.10^^8^120^1
- ;;^UTILITY(U,$J,358.3,3301,1,0)
+ ;;^UTILITY(U,$J,358.3,3239,1,3,0)
+ ;;=3^Hypertension,Renovascular
+ ;;^UTILITY(U,$J,358.3,3239,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,3239,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,3240,0)
+ ;;=I95.1^^28^249^47
+ ;;^UTILITY(U,$J,358.3,3240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3301,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,3301,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,3301,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,3302,0)
- ;;=F14.14^^8^120^5
- ;;^UTILITY(U,$J,358.3,3302,1,0)
+ ;;^UTILITY(U,$J,358.3,3240,1,3,0)
+ ;;=3^Hypotension,Orthostatic
+ ;;^UTILITY(U,$J,358.3,3240,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,3240,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,3241,0)
+ ;;=I95.89^^28^249^48
+ ;;^UTILITY(U,$J,358.3,3241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3302,1,3,0)
- ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,3302,1,4,0)
- ;;=4^F14.14
- ;;^UTILITY(U,$J,358.3,3302,2)
- ;;=^5003244
- ;;^UTILITY(U,$J,358.3,3303,0)
- ;;=F14.182^^8^120^6
- ;;^UTILITY(U,$J,358.3,3303,1,0)
+ ;;^UTILITY(U,$J,358.3,3241,1,3,0)
+ ;;=3^Hypotension,Other
+ ;;^UTILITY(U,$J,358.3,3241,1,4,0)
+ ;;=4^I95.89
+ ;;^UTILITY(U,$J,358.3,3241,2)
+ ;;=^5008079
+ ;;^UTILITY(U,$J,358.3,3242,0)
+ ;;=I25.9^^28^249^49
+ ;;^UTILITY(U,$J,358.3,3242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3303,1,3,0)
- ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,3303,1,4,0)
- ;;=4^F14.182
- ;;^UTILITY(U,$J,358.3,3303,2)
- ;;=^5003250
- ;;^UTILITY(U,$J,358.3,3304,0)
- ;;=F14.20^^8^120^3
- ;;^UTILITY(U,$J,358.3,3304,1,0)
+ ;;^UTILITY(U,$J,358.3,3242,1,3,0)
+ ;;=3^Ischemic Heart Disease,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,3242,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,3242,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,3243,0)
+ ;;=I89.0^^28^249^50
+ ;;^UTILITY(U,$J,358.3,3243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3304,1,3,0)
- ;;=3^Cocaine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,3304,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,3304,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,3305,0)
- ;;=F14.21^^8^120^2
- ;;^UTILITY(U,$J,358.3,3305,1,0)
+ ;;^UTILITY(U,$J,358.3,3243,1,3,0)
+ ;;=3^Lymphedema NEC
+ ;;^UTILITY(U,$J,358.3,3243,1,4,0)
+ ;;=4^I89.0
+ ;;^UTILITY(U,$J,358.3,3243,2)
+ ;;=^5008073
+ ;;^UTILITY(U,$J,358.3,3244,0)
+ ;;=R01.1^^28^249^51
+ ;;^UTILITY(U,$J,358.3,3244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3305,1,3,0)
- ;;=3^Cocaine Use Disorder,Mod-Sev,In Remission
- ;;^UTILITY(U,$J,358.3,3305,1,4,0)
- ;;=4^F14.21
- ;;^UTILITY(U,$J,358.3,3305,2)
- ;;=^5003254
- ;;^UTILITY(U,$J,358.3,3306,0)
- ;;=F14.23^^8^120^4
- ;;^UTILITY(U,$J,358.3,3306,1,0)
+ ;;^UTILITY(U,$J,358.3,3244,1,3,0)
+ ;;=3^Murmur,Cardia,Unspec
+ ;;^UTILITY(U,$J,358.3,3244,1,4,0)
+ ;;=4^R01.1
+ ;;^UTILITY(U,$J,358.3,3244,2)
+ ;;=^5019169
+ ;;^UTILITY(U,$J,358.3,3245,0)
+ ;;=I21.3^^28^249^52
+ ;;^UTILITY(U,$J,358.3,3245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3306,1,3,0)
- ;;=3^Cocaine Withdrawal
- ;;^UTILITY(U,$J,358.3,3306,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,3306,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,3307,0)
- ;;=F43.0^^8^121^1
- ;;^UTILITY(U,$J,358.3,3307,1,0)
+ ;;^UTILITY(U,$J,358.3,3245,1,3,0)
+ ;;=3^Myocardial Infarction,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3245,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,3245,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,3246,0)
+ ;;=I25.2^^28^249^53
+ ;;^UTILITY(U,$J,358.3,3246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3307,1,3,0)
- ;;=3^Acute Stress Disorder
- ;;^UTILITY(U,$J,358.3,3307,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,3307,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,3308,0)
- ;;=F43.21^^8^121^3
- ;;^UTILITY(U,$J,358.3,3308,1,0)
+ ;;^UTILITY(U,$J,358.3,3246,1,3,0)
+ ;;=3^Myocardial Infarction,Old
+ ;;^UTILITY(U,$J,358.3,3246,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,3246,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,3247,0)
+ ;;=I78.1^^28^249^54
+ ;;^UTILITY(U,$J,358.3,3247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3308,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,3308,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,3308,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,3309,0)
- ;;=F43.22^^8^121^2
- ;;^UTILITY(U,$J,358.3,3309,1,0)
+ ;;^UTILITY(U,$J,358.3,3247,1,3,0)
+ ;;=3^Nevus,Non-Neoplastic
+ ;;^UTILITY(U,$J,358.3,3247,1,4,0)
+ ;;=4^I78.1
+ ;;^UTILITY(U,$J,358.3,3247,2)
+ ;;=^269807
+ ;;^UTILITY(U,$J,358.3,3248,0)
+ ;;=Z95.0^^28^249^61
+ ;;^UTILITY(U,$J,358.3,3248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3309,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,3309,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,3309,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,3310,0)
- ;;=F43.23^^8^121^5
- ;;^UTILITY(U,$J,358.3,3310,1,0)
+ ;;^UTILITY(U,$J,358.3,3248,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,3248,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,3248,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,3249,0)
+ ;;=I73.9^^28^249^55
+ ;;^UTILITY(U,$J,358.3,3249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3310,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,3310,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,3310,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,3311,0)
- ;;=F43.24^^8^121^4
- ;;^UTILITY(U,$J,358.3,3311,1,0)
+ ;;^UTILITY(U,$J,358.3,3249,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,3249,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,3249,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,3250,0)
+ ;;=I80.9^^28^249^56
+ ;;^UTILITY(U,$J,358.3,3250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3311,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,3311,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,3311,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,3312,0)
- ;;=F43.25^^8^121^6
+ ;;^UTILITY(U,$J,358.3,3250,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3250,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,3250,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,3251,0)
+ ;;=Z98.61^^28^249^57
+ ;;^UTILITY(U,$J,358.3,3251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3251,1,3,0)
+ ;;=3^Postprocedural State,Coronary Angioplasty
+ ;;^UTILITY(U,$J,358.3,3251,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,3251,2)
+ ;;=^5063742

@@ -1,0 +1,128 @@
+IBDEI3H8 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58473,1,4,0)
+ ;;=4^S02.8XXA
+ ;;^UTILITY(U,$J,358.3,58473,2)
+ ;;=^5020426
+ ;;^UTILITY(U,$J,358.3,58474,0)
+ ;;=H00.015^^272^2908^53
+ ;;^UTILITY(U,$J,358.3,58474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58474,1,3,0)
+ ;;=3^Hordeolum Externum Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58474,1,4,0)
+ ;;=4^H00.015
+ ;;^UTILITY(U,$J,358.3,58474,2)
+ ;;=^5133372
+ ;;^UTILITY(U,$J,358.3,58475,0)
+ ;;=H00.014^^272^2908^54
+ ;;^UTILITY(U,$J,358.3,58475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58475,1,3,0)
+ ;;=3^Hordeolum Externum Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58475,1,4,0)
+ ;;=4^H00.014
+ ;;^UTILITY(U,$J,358.3,58475,2)
+ ;;=^5004221
+ ;;^UTILITY(U,$J,358.3,58476,0)
+ ;;=H00.012^^272^2908^55
+ ;;^UTILITY(U,$J,358.3,58476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58476,1,3,0)
+ ;;=3^Hordeolum Externum Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58476,1,4,0)
+ ;;=4^H00.012
+ ;;^UTILITY(U,$J,358.3,58476,2)
+ ;;=^5004219
+ ;;^UTILITY(U,$J,358.3,58477,0)
+ ;;=H00.011^^272^2908^56
+ ;;^UTILITY(U,$J,358.3,58477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58477,1,3,0)
+ ;;=3^Hordeolum Externum Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58477,1,4,0)
+ ;;=4^H00.011
+ ;;^UTILITY(U,$J,358.3,58477,2)
+ ;;=^5004218
+ ;;^UTILITY(U,$J,358.3,58478,0)
+ ;;=H00.025^^272^2908^57
+ ;;^UTILITY(U,$J,358.3,58478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58478,1,3,0)
+ ;;=3^Hordeolum Internum Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58478,1,4,0)
+ ;;=4^H00.025
+ ;;^UTILITY(U,$J,358.3,58478,2)
+ ;;=^5133374
+ ;;^UTILITY(U,$J,358.3,58479,0)
+ ;;=H00.024^^272^2908^58
+ ;;^UTILITY(U,$J,358.3,58479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58479,1,3,0)
+ ;;=3^Hordeolum Internum Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58479,1,4,0)
+ ;;=4^H00.024
+ ;;^UTILITY(U,$J,358.3,58479,2)
+ ;;=^5004226
+ ;;^UTILITY(U,$J,358.3,58480,0)
+ ;;=H00.022^^272^2908^59
+ ;;^UTILITY(U,$J,358.3,58480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58480,1,3,0)
+ ;;=3^Hordeolum Internum Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58480,1,4,0)
+ ;;=4^H00.022
+ ;;^UTILITY(U,$J,358.3,58480,2)
+ ;;=^5004224
+ ;;^UTILITY(U,$J,358.3,58481,0)
+ ;;=H00.021^^272^2908^60
+ ;;^UTILITY(U,$J,358.3,58481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58481,1,3,0)
+ ;;=3^Hordeolum Internum Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58481,1,4,0)
+ ;;=4^H00.021
+ ;;^UTILITY(U,$J,358.3,58481,2)
+ ;;=^5004223
+ ;;^UTILITY(U,$J,358.3,58482,0)
+ ;;=S01.122A^^272^2908^61
+ ;;^UTILITY(U,$J,358.3,58482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58482,1,3,0)
+ ;;=3^Laceration w/ FB Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58482,1,4,0)
+ ;;=4^S01.122A
+ ;;^UTILITY(U,$J,358.3,58482,2)
+ ;;=^5134190
+ ;;^UTILITY(U,$J,358.3,58483,0)
+ ;;=S01.121A^^272^2908^62
+ ;;^UTILITY(U,$J,358.3,58483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58483,1,3,0)
+ ;;=3^Laceration w/ FB Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58483,1,4,0)
+ ;;=4^S01.121A
+ ;;^UTILITY(U,$J,358.3,58483,2)
+ ;;=^5020066
+ ;;^UTILITY(U,$J,358.3,58484,0)
+ ;;=S01.112A^^272^2908^63
+ ;;^UTILITY(U,$J,358.3,58484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58484,1,3,0)
+ ;;=3^Laceration w/o FB Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58484,1,4,0)
+ ;;=4^S01.112A
+ ;;^UTILITY(U,$J,358.3,58484,2)
+ ;;=^5020060
+ ;;^UTILITY(U,$J,358.3,58485,0)
+ ;;=S01.111A^^272^2908^64
+ ;;^UTILITY(U,$J,358.3,58485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58485,1,3,0)
+ ;;=3^Laceration w/o FB Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58485,1,4,0)
+ ;;=4^S01.111A
+ ;;^UTILITY(U,$J,358.3,58485,2)
+ ;;=^5020057

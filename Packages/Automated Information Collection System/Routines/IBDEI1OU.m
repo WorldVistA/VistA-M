@@ -1,120 +1,128 @@
-IBDEI1OU ; ; 06-AUG-2015
+IBDEI1OU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29957,1,0)
+ ;;^UTILITY(U,$J,358.3,28245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29957,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, third trimester
- ;;^UTILITY(U,$J,358.3,29957,1,4,0)
- ;;=4^O45.093
- ;;^UTILITY(U,$J,358.3,29957,2)
- ;;=^5017458
- ;;^UTILITY(U,$J,358.3,29958,0)
- ;;=O46.001^^178^1909^4
- ;;^UTILITY(U,$J,358.3,29958,1,0)
+ ;;^UTILITY(U,$J,358.3,28245,1,3,0)
+ ;;=3^Pain in Left Foot
+ ;;^UTILITY(U,$J,358.3,28245,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,28245,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,28246,0)
+ ;;=M54.9^^132^1326^8
+ ;;^UTILITY(U,$J,358.3,28246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29958,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, first trimester
- ;;^UTILITY(U,$J,358.3,29958,1,4,0)
- ;;=4^O46.001
- ;;^UTILITY(U,$J,358.3,29958,2)
- ;;=^5017467
- ;;^UTILITY(U,$J,358.3,29959,0)
- ;;=O46.002^^178^1909^5
- ;;^UTILITY(U,$J,358.3,29959,1,0)
+ ;;^UTILITY(U,$J,358.3,28246,1,3,0)
+ ;;=3^Backache/Dorsalgia
+ ;;^UTILITY(U,$J,358.3,28246,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,28246,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,28247,0)
+ ;;=M48.52XG^^132^1326^19
+ ;;^UTILITY(U,$J,358.3,28247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29959,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, second trimester
- ;;^UTILITY(U,$J,358.3,29959,1,4,0)
- ;;=4^O46.002
- ;;^UTILITY(U,$J,358.3,29959,2)
- ;;=^5017468
- ;;^UTILITY(U,$J,358.3,29960,0)
- ;;=O46.003^^178^1909^6
- ;;^UTILITY(U,$J,358.3,29960,1,0)
+ ;;^UTILITY(U,$J,358.3,28247,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,28247,1,4,0)
+ ;;=4^M48.52XG
+ ;;^UTILITY(U,$J,358.3,28247,2)
+ ;;=^5012169
+ ;;^UTILITY(U,$J,358.3,28248,0)
+ ;;=M48.52XS^^132^1326^20
+ ;;^UTILITY(U,$J,358.3,28248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29960,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, third trimester
- ;;^UTILITY(U,$J,358.3,29960,1,4,0)
- ;;=4^O46.003
- ;;^UTILITY(U,$J,358.3,29960,2)
- ;;=^5017469
- ;;^UTILITY(U,$J,358.3,29961,0)
- ;;=O46.011^^178^1909^1
- ;;^UTILITY(U,$J,358.3,29961,1,0)
+ ;;^UTILITY(U,$J,358.3,28248,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,28248,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,28248,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,28249,0)
+ ;;=M48.57XG^^132^1326^27
+ ;;^UTILITY(U,$J,358.3,28249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29961,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, first trimester
- ;;^UTILITY(U,$J,358.3,29961,1,4,0)
- ;;=4^O46.011
- ;;^UTILITY(U,$J,358.3,29961,2)
- ;;=^5017471
- ;;^UTILITY(U,$J,358.3,29962,0)
- ;;=O46.012^^178^1909^2
- ;;^UTILITY(U,$J,358.3,29962,1,0)
+ ;;^UTILITY(U,$J,358.3,28249,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,28249,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,28249,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,28250,0)
+ ;;=M48.57XS^^132^1326^28
+ ;;^UTILITY(U,$J,358.3,28250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29962,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, second trimester
- ;;^UTILITY(U,$J,358.3,29962,1,4,0)
- ;;=4^O46.012
- ;;^UTILITY(U,$J,358.3,29962,2)
- ;;=^5017472
- ;;^UTILITY(U,$J,358.3,29963,0)
- ;;=O46.013^^178^1909^3
- ;;^UTILITY(U,$J,358.3,29963,1,0)
+ ;;^UTILITY(U,$J,358.3,28250,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,28250,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,28250,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,28251,0)
+ ;;=M48.54XD^^132^1326^29
+ ;;^UTILITY(U,$J,358.3,28251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29963,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, third trimester
- ;;^UTILITY(U,$J,358.3,29963,1,4,0)
- ;;=4^O46.013
- ;;^UTILITY(U,$J,358.3,29963,2)
- ;;=^5017473
- ;;^UTILITY(U,$J,358.3,29964,0)
- ;;=O46.021^^178^1909^7
- ;;^UTILITY(U,$J,358.3,29964,1,0)
+ ;;^UTILITY(U,$J,358.3,28251,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,28251,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,28251,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,28252,0)
+ ;;=M48.57XG^^132^1326^30
+ ;;^UTILITY(U,$J,358.3,28252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29964,1,3,0)
- ;;=3^Antepartum hemorrhage w dissem intravasc coag, first trimester
- ;;^UTILITY(U,$J,358.3,29964,1,4,0)
- ;;=4^O46.021
- ;;^UTILITY(U,$J,358.3,29964,2)
- ;;=^5017475
- ;;^UTILITY(U,$J,358.3,29965,0)
- ;;=O46.022^^178^1909^8
- ;;^UTILITY(U,$J,358.3,29965,1,0)
+ ;;^UTILITY(U,$J,358.3,28252,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,28252,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,28252,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,28253,0)
+ ;;=M48.54XS^^132^1326^31
+ ;;^UTILITY(U,$J,358.3,28253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29965,1,3,0)
- ;;=3^Antepartum hemorrhage w dissem intravasc coag, second trimester
- ;;^UTILITY(U,$J,358.3,29965,1,4,0)
- ;;=4^O46.022
- ;;^UTILITY(U,$J,358.3,29965,2)
- ;;=^5017476
- ;;^UTILITY(U,$J,358.3,29966,0)
- ;;=O46.023^^178^1909^9
- ;;^UTILITY(U,$J,358.3,29966,1,0)
+ ;;^UTILITY(U,$J,358.3,28253,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,28253,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,28253,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,28254,0)
+ ;;=M62.830^^132^1326^59
+ ;;^UTILITY(U,$J,358.3,28254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29966,1,3,0)
- ;;=3^Antepartum hemorrhage w dissem intravasc coag, third trimester
- ;;^UTILITY(U,$J,358.3,29966,1,4,0)
- ;;=4^O46.023
- ;;^UTILITY(U,$J,358.3,29966,2)
- ;;=^5017477
- ;;^UTILITY(U,$J,358.3,29967,0)
- ;;=O46.091^^178^1909^10
- ;;^UTILITY(U,$J,358.3,29967,1,0)
+ ;;^UTILITY(U,$J,358.3,28254,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,28254,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,28254,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,28255,0)
+ ;;=M19.92^^132^1326^103
+ ;;^UTILITY(U,$J,358.3,28255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29967,1,3,0)
- ;;=3^Antepartum hemorrhage w oth coag defect, first trimester
- ;;^UTILITY(U,$J,358.3,29967,1,4,0)
- ;;=4^O46.091
- ;;^UTILITY(U,$J,358.3,29967,2)
- ;;=^5017479
- ;;^UTILITY(U,$J,358.3,29968,0)
- ;;=O46.092^^178^1909^11
- ;;^UTILITY(U,$J,358.3,29968,1,0)
+ ;;^UTILITY(U,$J,358.3,28255,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,28255,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,28255,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,28256,0)
+ ;;=B02.0^^132^1327^41
+ ;;^UTILITY(U,$J,358.3,28256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29968,1,3,0)
- ;;=3^Antepartum hemorrhage w oth coag defect, second trimester
- ;;^UTILITY(U,$J,358.3,29968,1,4,0)
- ;;=4^O46.092
+ ;;^UTILITY(U,$J,358.3,28256,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,28256,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,28256,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,28257,0)
+ ;;=B02.29^^132^1327^34
+ ;;^UTILITY(U,$J,358.3,28257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28257,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other

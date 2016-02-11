@@ -1,128 +1,132 @@
-IBDEI1NY ; ; 06-AUG-2015
+IBDEI1NY ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29544,0)
- ;;=G57.22^^176^1888^7
- ;;^UTILITY(U,$J,358.3,29544,1,0)
+ ;;^UTILITY(U,$J,358.3,27830,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,27830,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,27831,0)
+ ;;=Z77.22^^132^1321^18
+ ;;^UTILITY(U,$J,358.3,27831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29544,1,3,0)
- ;;=3^Lesion of femoral nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,29544,1,4,0)
- ;;=4^G57.22
- ;;^UTILITY(U,$J,358.3,29544,2)
- ;;=^5004046
- ;;^UTILITY(U,$J,358.3,29545,0)
- ;;=G57.31^^176^1888^10
- ;;^UTILITY(U,$J,358.3,29545,1,0)
+ ;;^UTILITY(U,$J,358.3,27831,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,27831,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,27831,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,27832,0)
+ ;;=Z80.0^^132^1321^35
+ ;;^UTILITY(U,$J,358.3,27832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29545,1,3,0)
- ;;=3^Lesion of lateral popliteal nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,29545,1,4,0)
- ;;=4^G57.31
- ;;^UTILITY(U,$J,358.3,29545,2)
- ;;=^5004048
- ;;^UTILITY(U,$J,358.3,29546,0)
- ;;=G57.32^^176^1888^9
- ;;^UTILITY(U,$J,358.3,29546,1,0)
+ ;;^UTILITY(U,$J,358.3,27832,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,27832,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,27832,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,27833,0)
+ ;;=Z80.1^^132^1321^41
+ ;;^UTILITY(U,$J,358.3,27833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29546,1,3,0)
- ;;=3^Lesion of lateral popliteal nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,29546,1,4,0)
- ;;=4^G57.32
- ;;^UTILITY(U,$J,358.3,29546,2)
- ;;=^5004049
- ;;^UTILITY(U,$J,358.3,29547,0)
- ;;=G57.41^^176^1888^12
- ;;^UTILITY(U,$J,358.3,29547,1,0)
+ ;;^UTILITY(U,$J,358.3,27833,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,27833,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,27833,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,27834,0)
+ ;;=Z80.3^^132^1321^34
+ ;;^UTILITY(U,$J,358.3,27834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29547,1,3,0)
- ;;=3^Lesion of medial popliteal nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,29547,1,4,0)
- ;;=4^G57.41
- ;;^UTILITY(U,$J,358.3,29547,2)
- ;;=^5004051
- ;;^UTILITY(U,$J,358.3,29548,0)
- ;;=G57.42^^176^1888^11
- ;;^UTILITY(U,$J,358.3,29548,1,0)
+ ;;^UTILITY(U,$J,358.3,27834,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,27834,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,27834,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,27835,0)
+ ;;=Z80.41^^132^1321^38
+ ;;^UTILITY(U,$J,358.3,27835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29548,1,3,0)
- ;;=3^Lesion of medial popliteal nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,29548,1,4,0)
- ;;=4^G57.42
- ;;^UTILITY(U,$J,358.3,29548,2)
- ;;=^5004052
- ;;^UTILITY(U,$J,358.3,29549,0)
- ;;=G57.51^^176^1888^32
- ;;^UTILITY(U,$J,358.3,29549,1,0)
+ ;;^UTILITY(U,$J,358.3,27835,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,27835,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,27835,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,27836,0)
+ ;;=Z80.42^^132^1321^39
+ ;;^UTILITY(U,$J,358.3,27836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29549,1,3,0)
- ;;=3^Tarsal tunnel syndrome, right lower limb
- ;;^UTILITY(U,$J,358.3,29549,1,4,0)
- ;;=4^G57.51
- ;;^UTILITY(U,$J,358.3,29549,2)
- ;;=^5004054
- ;;^UTILITY(U,$J,358.3,29550,0)
- ;;=G57.52^^176^1888^31
- ;;^UTILITY(U,$J,358.3,29550,1,0)
+ ;;^UTILITY(U,$J,358.3,27836,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,27836,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,27836,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,27837,0)
+ ;;=Z80.43^^132^1321^40
+ ;;^UTILITY(U,$J,358.3,27837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29550,1,3,0)
- ;;=3^Tarsal tunnel syndrome, left lower limb
- ;;^UTILITY(U,$J,358.3,29550,1,4,0)
- ;;=4^G57.52
- ;;^UTILITY(U,$J,358.3,29550,2)
- ;;=^5004055
- ;;^UTILITY(U,$J,358.3,29551,0)
- ;;=G57.61^^176^1888^14
- ;;^UTILITY(U,$J,358.3,29551,1,0)
+ ;;^UTILITY(U,$J,358.3,27837,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,27837,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,27837,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,27838,0)
+ ;;=Z80.6^^132^1321^32
+ ;;^UTILITY(U,$J,358.3,27838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29551,1,3,0)
- ;;=3^Lesion of plantar nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,29551,1,4,0)
- ;;=4^G57.61
- ;;^UTILITY(U,$J,358.3,29551,2)
- ;;=^5004057
- ;;^UTILITY(U,$J,358.3,29552,0)
- ;;=G57.62^^176^1888^13
- ;;^UTILITY(U,$J,358.3,29552,1,0)
+ ;;^UTILITY(U,$J,358.3,27838,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,27838,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,27838,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,27839,0)
+ ;;=Z80.8^^132^1321^37
+ ;;^UTILITY(U,$J,358.3,27839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29552,1,3,0)
- ;;=3^Lesion of plantar nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,29552,1,4,0)
- ;;=4^G57.62
- ;;^UTILITY(U,$J,358.3,29552,2)
- ;;=^5004058
- ;;^UTILITY(U,$J,358.3,29553,0)
- ;;=G57.81^^176^1888^26
- ;;^UTILITY(U,$J,358.3,29553,1,0)
+ ;;^UTILITY(U,$J,358.3,27839,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,27839,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,27839,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,27840,0)
+ ;;=Z81.8^^132^1321^42
+ ;;^UTILITY(U,$J,358.3,27840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29553,1,3,0)
- ;;=3^Mononeuropathies of right lower limb NEC
- ;;^UTILITY(U,$J,358.3,29553,1,4,0)
- ;;=4^G57.81
- ;;^UTILITY(U,$J,358.3,29553,2)
- ;;=^5133367
- ;;^UTILITY(U,$J,358.3,29554,0)
- ;;=G57.82^^176^1888^24
- ;;^UTILITY(U,$J,358.3,29554,1,0)
+ ;;^UTILITY(U,$J,358.3,27840,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,27840,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,27840,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,27841,0)
+ ;;=Z82.3^^132^1321^49
+ ;;^UTILITY(U,$J,358.3,27841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29554,1,3,0)
- ;;=3^Mononeuropathies of left lower limb NEC
- ;;^UTILITY(U,$J,358.3,29554,1,4,0)
- ;;=4^G57.82
- ;;^UTILITY(U,$J,358.3,29554,2)
- ;;=^5133368
- ;;^UTILITY(U,$J,358.3,29555,0)
- ;;=G57.91^^176^1888^29
- ;;^UTILITY(U,$J,358.3,29555,1,0)
+ ;;^UTILITY(U,$J,358.3,27841,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,27841,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,27841,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,27842,0)
+ ;;=Z82.49^^132^1321^31
+ ;;^UTILITY(U,$J,358.3,27842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29555,1,3,0)
- ;;=3^Mononeuropathy of right lower limb,Unspec
- ;;^UTILITY(U,$J,358.3,29555,1,4,0)
- ;;=4^G57.91
- ;;^UTILITY(U,$J,358.3,29555,2)
- ;;=^5133369
- ;;^UTILITY(U,$J,358.3,29556,0)
- ;;=G57.92^^176^1888^28
- ;;^UTILITY(U,$J,358.3,29556,1,0)
+ ;;^UTILITY(U,$J,358.3,27842,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,27842,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,27842,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,27843,0)
+ ;;=Z82.5^^132^1321^22
+ ;;^UTILITY(U,$J,358.3,27843,1,0)
  ;;=^358.31IA^4^2

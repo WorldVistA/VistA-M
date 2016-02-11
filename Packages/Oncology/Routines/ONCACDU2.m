@@ -1,5 +1,5 @@
 ONCACDU2 ;Hines OIFO/GWB - Utility routine ;05/03/12
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,7**;Jul 31, 2013;Build 5
  ;
 VAFLD(ACDANS) ;Convert data to NAACCR format
  I ACDANS="N" S ACDANS=0
@@ -291,7 +291,7 @@ DPTLRT(ACD160) ;check if pt from Patient or Referral file
 ICD(ICD) ;ICD Code
  ;Use ICD API (IA #3990) instead of direct global read.
  N X
- S ICD=$S(ICD'="":$P($$ICDDX^ICDCODE(ICD),U,2),1:"0000")
+ S ICD=$S(ICD'="":$$GET1^DIQ(80,ICD,.01),1:"0000")
  I ICD["." S ICD=$P(ICD,".")_$P(ICD,".",2)
  S:$L(ICD)=3 ICD=ICD_9
  S:$L(ICD)<4 ICD=$E("0000",1,4-$L(ICD))_ICD

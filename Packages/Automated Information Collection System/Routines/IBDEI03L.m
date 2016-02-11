@@ -1,142 +1,142 @@
-IBDEI03L ; ; 06-AUG-2015
+IBDEI03L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1144,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,1144,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,1145,0)
- ;;=E83.41^^3^38^29
- ;;^UTILITY(U,$J,358.3,1145,1,0)
+ ;;^UTILITY(U,$J,358.3,967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1145,1,3,0)
- ;;=3^Hypermagnesemia
- ;;^UTILITY(U,$J,358.3,1145,1,4,0)
- ;;=4^E83.41
- ;;^UTILITY(U,$J,358.3,1145,2)
- ;;=^5003002
- ;;^UTILITY(U,$J,358.3,1146,0)
- ;;=E83.42^^3^38^35
- ;;^UTILITY(U,$J,358.3,1146,1,0)
+ ;;^UTILITY(U,$J,358.3,967,1,3,0)
+ ;;=3^Bursitis NEC,Unspec Site
+ ;;^UTILITY(U,$J,358.3,967,1,4,0)
+ ;;=4^M71.50
+ ;;^UTILITY(U,$J,358.3,967,2)
+ ;;=^5013190
+ ;;^UTILITY(U,$J,358.3,968,0)
+ ;;=D75.89^^12^120^4
+ ;;^UTILITY(U,$J,358.3,968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1146,1,3,0)
- ;;=3^Hypomagnesemia
- ;;^UTILITY(U,$J,358.3,1146,1,4,0)
- ;;=4^E83.42
- ;;^UTILITY(U,$J,358.3,1146,2)
- ;;=^5003003
- ;;^UTILITY(U,$J,358.3,1147,0)
- ;;=E83.51^^3^38^33
- ;;^UTILITY(U,$J,358.3,1147,1,0)
+ ;;^UTILITY(U,$J,358.3,968,1,3,0)
+ ;;=3^Blood & Blood-Forming Organ Diseases,Oth Spec
+ ;;^UTILITY(U,$J,358.3,968,1,4,0)
+ ;;=4^D75.89
+ ;;^UTILITY(U,$J,358.3,968,2)
+ ;;=^5002392
+ ;;^UTILITY(U,$J,358.3,969,0)
+ ;;=K63.5^^12^121^16
+ ;;^UTILITY(U,$J,358.3,969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1147,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,1147,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,1147,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,1148,0)
- ;;=E83.52^^3^38^27
- ;;^UTILITY(U,$J,358.3,1148,1,0)
+ ;;^UTILITY(U,$J,358.3,969,1,3,0)
+ ;;=3^Colon Polyp
+ ;;^UTILITY(U,$J,358.3,969,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,969,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,970,0)
+ ;;=G56.01^^12^121^7
+ ;;^UTILITY(U,$J,358.3,970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1148,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,1148,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,1148,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,1149,0)
- ;;=E87.0^^3^38^30
- ;;^UTILITY(U,$J,358.3,1149,1,0)
+ ;;^UTILITY(U,$J,358.3,970,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,970,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,970,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,971,0)
+ ;;=G56.02^^12^121^6
+ ;;^UTILITY(U,$J,358.3,971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1149,1,3,0)
- ;;=3^Hyperosmolality and hypernatremia
- ;;^UTILITY(U,$J,358.3,1149,1,4,0)
- ;;=4^E87.0
- ;;^UTILITY(U,$J,358.3,1149,2)
- ;;=^5003018
- ;;^UTILITY(U,$J,358.3,1150,0)
- ;;=E87.1^^3^38^31
- ;;^UTILITY(U,$J,358.3,1150,1,0)
+ ;;^UTILITY(U,$J,358.3,971,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,971,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,971,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,972,0)
+ ;;=H26.9^^12^121^8
+ ;;^UTILITY(U,$J,358.3,972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1150,1,3,0)
- ;;=3^Hypo-osmolality and hyponatremia
- ;;^UTILITY(U,$J,358.3,1150,1,4,0)
- ;;=4^E87.1
- ;;^UTILITY(U,$J,358.3,1150,2)
- ;;=^5003019
- ;;^UTILITY(U,$J,358.3,1151,0)
- ;;=E87.5^^3^38^28
- ;;^UTILITY(U,$J,358.3,1151,1,0)
+ ;;^UTILITY(U,$J,358.3,972,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,972,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,972,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,973,0)
+ ;;=I42.8^^12^121^5
+ ;;^UTILITY(U,$J,358.3,973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1151,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,1151,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,1151,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,1152,0)
- ;;=E87.6^^3^38^34
- ;;^UTILITY(U,$J,358.3,1152,1,0)
+ ;;^UTILITY(U,$J,358.3,973,1,3,0)
+ ;;=3^Cardiomyopathies,Other
+ ;;^UTILITY(U,$J,358.3,973,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,973,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,974,0)
+ ;;=I50.9^^12^121^1
+ ;;^UTILITY(U,$J,358.3,974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1152,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,1152,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,1152,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,1153,0)
- ;;=F52.0^^3^38^32
- ;;^UTILITY(U,$J,358.3,1153,1,0)
+ ;;^UTILITY(U,$J,358.3,974,1,3,0)
+ ;;=3^CHF
+ ;;^UTILITY(U,$J,358.3,974,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,974,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,975,0)
+ ;;=I69.91^^12^121^15
+ ;;^UTILITY(U,$J,358.3,975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1153,1,3,0)
- ;;=3^Hypoactive sexual desire disorder
- ;;^UTILITY(U,$J,358.3,1153,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,1153,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,1154,0)
- ;;=F52.21^^3^38^39
- ;;^UTILITY(U,$J,358.3,1154,1,0)
+ ;;^UTILITY(U,$J,358.3,975,1,3,0)
+ ;;=3^Cognitive Deficits Following Unspec Cerebrovascular Disease
+ ;;^UTILITY(U,$J,358.3,975,1,4,0)
+ ;;=4^I69.91
+ ;;^UTILITY(U,$J,358.3,975,2)
+ ;;=^5007552
+ ;;^UTILITY(U,$J,358.3,976,0)
+ ;;=J44.9^^12^121^2
+ ;;^UTILITY(U,$J,358.3,976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1154,1,3,0)
- ;;=3^Male erectile disorder
- ;;^UTILITY(U,$J,358.3,1154,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,1154,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,1155,0)
- ;;=I12.9^^3^38^25
- ;;^UTILITY(U,$J,358.3,1155,1,0)
+ ;;^UTILITY(U,$J,358.3,976,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,976,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,976,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,977,0)
+ ;;=K59.09^^12^121^17
+ ;;^UTILITY(U,$J,358.3,977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1155,1,3,0)
- ;;=3^Hyp chr kidney disease w stage 1-4/unsp chr kdny
- ;;^UTILITY(U,$J,358.3,1155,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,1155,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,1156,0)
- ;;=I12.0^^3^38^26
- ;;^UTILITY(U,$J,358.3,1156,1,0)
+ ;;^UTILITY(U,$J,358.3,977,1,3,0)
+ ;;=3^Constipation,Other
+ ;;^UTILITY(U,$J,358.3,977,1,4,0)
+ ;;=4^K59.09
+ ;;^UTILITY(U,$J,358.3,977,2)
+ ;;=^323540
+ ;;^UTILITY(U,$J,358.3,978,0)
+ ;;=K74.60^^12^121^14
+ ;;^UTILITY(U,$J,358.3,978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1156,1,3,0)
- ;;=3^Hyp chr kidney disease w stage 5 chr kidney disease or ESRD
- ;;^UTILITY(U,$J,358.3,1156,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,1156,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,1157,0)
- ;;=K40.90^^3^38^62
- ;;^UTILITY(U,$J,358.3,1157,1,0)
+ ;;^UTILITY(U,$J,358.3,978,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,978,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,978,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,979,0)
+ ;;=K80.20^^12^121^3
+ ;;^UTILITY(U,$J,358.3,979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1157,1,3,0)
- ;;=3^Unil inguinal hernia, w/o obst or gangr, not spcf as recur
- ;;^UTILITY(U,$J,358.3,1157,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,1157,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,1158,0)
- ;;=K40.20^^3^38^8
- ;;^UTILITY(U,$J,358.3,1158,1,0)
+ ;;^UTILITY(U,$J,358.3,979,1,3,0)
+ ;;=3^Calculus of Gallbladder w/o Cholecystitis w/o Obstruction
+ ;;^UTILITY(U,$J,358.3,979,1,4,0)
+ ;;=4^K80.20
+ ;;^UTILITY(U,$J,358.3,979,2)
+ ;;=^5008846
+ ;;^UTILITY(U,$J,358.3,980,0)
+ ;;=L03.90^^12^121^11
+ ;;^UTILITY(U,$J,358.3,980,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,980,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,980,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,980,2)
+ ;;=^5009067

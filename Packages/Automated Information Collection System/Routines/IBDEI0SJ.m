@@ -1,124 +1,126 @@
-IBDEI0SJ ; ; 06-AUG-2015
+IBDEI0SJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13799,0)
- ;;=11305^^72^824^1^^^^1
- ;;^UTILITY(U,$J,358.3,13799,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13799,1,2,0)
- ;;=2^11305
- ;;^UTILITY(U,$J,358.3,13799,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 0.5cm or less
- ;;^UTILITY(U,$J,358.3,13800,0)
- ;;=11306^^72^824^2^^^^1
- ;;^UTILITY(U,$J,358.3,13800,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13800,1,2,0)
- ;;=2^11306
- ;;^UTILITY(U,$J,358.3,13800,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,13801,0)
- ;;=11307^^72^824^3^^^^1
- ;;^UTILITY(U,$J,358.3,13801,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13801,1,2,0)
- ;;=2^11307
- ;;^UTILITY(U,$J,358.3,13801,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,13802,0)
- ;;=11308^^72^824^4^^^^1
- ;;^UTILITY(U,$J,358.3,13802,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13802,1,2,0)
- ;;=2^11308
- ;;^UTILITY(U,$J,358.3,13802,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk > 2.0cm
- ;;^UTILITY(U,$J,358.3,13803,0)
- ;;=11310^^72^825^1^^^^1
- ;;^UTILITY(U,$J,358.3,13803,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13803,1,2,0)
- ;;=2^11310
- ;;^UTILITY(U,$J,358.3,13803,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous:0.5cm or less
- ;;^UTILITY(U,$J,358.3,13804,0)
- ;;=11311^^72^825^2^^^^1
- ;;^UTILITY(U,$J,358.3,13804,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13804,1,2,0)
- ;;=2^11311
- ;;^UTILITY(U,$J,358.3,13804,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,13805,0)
- ;;=11312^^72^825^3^^^^1
- ;;^UTILITY(U,$J,358.3,13805,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13805,1,2,0)
- ;;=2^11312
- ;;^UTILITY(U,$J,358.3,13805,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,13806,0)
- ;;=11313^^72^825^4^^^^1
- ;;^UTILITY(U,$J,358.3,13806,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13806,1,2,0)
- ;;=2^11313
- ;;^UTILITY(U,$J,358.3,13806,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous > 2.0cm
- ;;^UTILITY(U,$J,358.3,13807,0)
- ;;=12011^^72^826^1^^^^1
- ;;^UTILITY(U,$J,358.3,13807,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13807,1,2,0)
- ;;=2^12011
- ;;^UTILITY(U,$J,358.3,13807,1,3,0)
- ;;=3^Simple repair Face/Mucous; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,13808,0)
- ;;=12013^^72^826^2^^^^1
- ;;^UTILITY(U,$J,358.3,13808,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13808,1,2,0)
- ;;=2^12013
- ;;^UTILITY(U,$J,358.3,13808,1,3,0)
- ;;=3^Simple repair Face/Mucous; 2.6 cm to 5.0 cm
- ;;^UTILITY(U,$J,358.3,13809,0)
- ;;=12014^^72^826^3^^^^1
- ;;^UTILITY(U,$J,358.3,13809,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13809,1,2,0)
- ;;=2^12014
- ;;^UTILITY(U,$J,358.3,13809,1,3,0)
- ;;=3^Simple repair Face/Mucous; 5.1 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,13810,0)
- ;;=12015^^72^826^4^^^^1
- ;;^UTILITY(U,$J,358.3,13810,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13810,1,2,0)
- ;;=2^12015
- ;;^UTILITY(U,$J,358.3,13810,1,3,0)
- ;;=3^Simple repair Face/Mucous; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,13811,0)
- ;;=12016^^72^826^5^^^^1
- ;;^UTILITY(U,$J,358.3,13811,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13811,1,2,0)
- ;;=2^12016
- ;;^UTILITY(U,$J,358.3,13811,1,3,0)
- ;;=3^Simple repair Face/Mucous; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,13812,0)
- ;;=12017^^72^826^6^^^^1
- ;;^UTILITY(U,$J,358.3,13812,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13812,1,2,0)
- ;;=2^12017
- ;;^UTILITY(U,$J,358.3,13812,1,3,0)
- ;;=3^Simple repair Face/Mucous; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,13813,0)
- ;;=12018^^72^826^7^^^^1
- ;;^UTILITY(U,$J,358.3,13813,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13813,1,2,0)
- ;;=2^12018
- ;;^UTILITY(U,$J,358.3,13813,1,3,0)
- ;;=3^Simple repair Face/Mucous; over 30 cm
+ ;;^UTILITY(U,$J,358.3,13129,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,13129,1,4,0)
+ ;;=4^H40.1330
+ ;;^UTILITY(U,$J,358.3,13129,2)
+ ;;=^5005784
+ ;;^UTILITY(U,$J,358.3,13130,0)
+ ;;=H40.1331^^80^754^88
+ ;;^UTILITY(U,$J,358.3,13130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13130,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13130,1,4,0)
+ ;;=4^H40.1331
+ ;;^UTILITY(U,$J,358.3,13130,2)
+ ;;=^5005785
+ ;;^UTILITY(U,$J,358.3,13131,0)
+ ;;=H40.1332^^80^754^89
+ ;;^UTILITY(U,$J,358.3,13131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13131,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13131,1,4,0)
+ ;;=4^H40.1332
+ ;;^UTILITY(U,$J,358.3,13131,2)
+ ;;=^5005786
+ ;;^UTILITY(U,$J,358.3,13132,0)
+ ;;=H40.1333^^80^754^90
+ ;;^UTILITY(U,$J,358.3,13132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13132,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,13132,1,4,0)
+ ;;=4^H40.1333
+ ;;^UTILITY(U,$J,358.3,13132,2)
+ ;;=^5005787
+ ;;^UTILITY(U,$J,358.3,13133,0)
+ ;;=H40.1334^^80^754^87
+ ;;^UTILITY(U,$J,358.3,13133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13133,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13133,1,4,0)
+ ;;=4^H40.1334
+ ;;^UTILITY(U,$J,358.3,13133,2)
+ ;;=^5005788
+ ;;^UTILITY(U,$J,358.3,13134,0)
+ ;;=H40.151^^80^754^118
+ ;;^UTILITY(U,$J,358.3,13134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13134,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Right Eye
+ ;;^UTILITY(U,$J,358.3,13134,1,4,0)
+ ;;=4^H40.151
+ ;;^UTILITY(U,$J,358.3,13134,2)
+ ;;=^5138037
+ ;;^UTILITY(U,$J,358.3,13135,0)
+ ;;=H40.152^^80^754^117
+ ;;^UTILITY(U,$J,358.3,13135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13135,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Left Eye
+ ;;^UTILITY(U,$J,358.3,13135,1,4,0)
+ ;;=4^H40.152
+ ;;^UTILITY(U,$J,358.3,13135,2)
+ ;;=^5138038
+ ;;^UTILITY(U,$J,358.3,13136,0)
+ ;;=H40.153^^80^754^116
+ ;;^UTILITY(U,$J,358.3,13136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13136,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Bilateral
+ ;;^UTILITY(U,$J,358.3,13136,1,4,0)
+ ;;=4^H40.153
+ ;;^UTILITY(U,$J,358.3,13136,2)
+ ;;=^5138039
+ ;;^UTILITY(U,$J,358.3,13137,0)
+ ;;=H40.20X1^^80^754^103
+ ;;^UTILITY(U,$J,358.3,13137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13137,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13137,1,4,0)
+ ;;=4^H40.20X1
+ ;;^UTILITY(U,$J,358.3,13137,2)
+ ;;=^5005814
+ ;;^UTILITY(U,$J,358.3,13138,0)
+ ;;=H40.20X2^^80^754^104
+ ;;^UTILITY(U,$J,358.3,13138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13138,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13138,1,4,0)
+ ;;=4^H40.20X2
+ ;;^UTILITY(U,$J,358.3,13138,2)
+ ;;=^5005815
+ ;;^UTILITY(U,$J,358.3,13139,0)
+ ;;=H40.20X3^^80^754^105
+ ;;^UTILITY(U,$J,358.3,13139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13139,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Severe Stage
+ ;;^UTILITY(U,$J,358.3,13139,1,4,0)
+ ;;=4^H40.20X3
+ ;;^UTILITY(U,$J,358.3,13139,2)
+ ;;=^5005816
+ ;;^UTILITY(U,$J,358.3,13140,0)
+ ;;=H40.20X4^^80^754^102
+ ;;^UTILITY(U,$J,358.3,13140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13140,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13140,1,4,0)
+ ;;=4^H40.20X4
+ ;;^UTILITY(U,$J,358.3,13140,2)
+ ;;=^5005817
+ ;;^UTILITY(U,$J,358.3,13141,0)
+ ;;=H40.2211^^80^754^23
+ ;;^UTILITY(U,$J,358.3,13141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13141,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Mild Stage

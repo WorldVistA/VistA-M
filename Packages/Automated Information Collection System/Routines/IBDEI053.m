@@ -1,128 +1,136 @@
-IBDEI053 ; ; 06-AUG-2015
+IBDEI053 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1857,2)
- ;;=^5002532
- ;;^UTILITY(U,$J,358.3,1858,0)
- ;;=E08.620^^3^56^21
- ;;^UTILITY(U,$J,358.3,1858,1,0)
+ ;;^UTILITY(U,$J,358.3,1701,1,3,0)
+ ;;=3^Optic Nerve Injury,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1701,1,4,0)
+ ;;=4^S04.012A
+ ;;^UTILITY(U,$J,358.3,1701,2)
+ ;;=^5020465
+ ;;^UTILITY(U,$J,358.3,1702,0)
+ ;;=H57.8^^16^167^13
+ ;;^UTILITY(U,$J,358.3,1702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1858,1,3,0)
- ;;=3^Diabetes due to underlying condition w diabetic dermatitis
- ;;^UTILITY(U,$J,358.3,1858,1,4,0)
- ;;=4^E08.620
- ;;^UTILITY(U,$J,358.3,1858,2)
- ;;=^5002533
- ;;^UTILITY(U,$J,358.3,1859,0)
- ;;=E08.621^^3^56^22
- ;;^UTILITY(U,$J,358.3,1859,1,0)
+ ;;^UTILITY(U,$J,358.3,1702,1,3,0)
+ ;;=3^Eye & Adnexa Disorders
+ ;;^UTILITY(U,$J,358.3,1702,1,4,0)
+ ;;=4^H57.8
+ ;;^UTILITY(U,$J,358.3,1702,2)
+ ;;=^269332
+ ;;^UTILITY(U,$J,358.3,1703,0)
+ ;;=H33.001^^16^167^32
+ ;;^UTILITY(U,$J,358.3,1703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1859,1,3,0)
- ;;=3^Diabetes due to underlying condition w foot ulcer
- ;;^UTILITY(U,$J,358.3,1859,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,1859,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,1860,0)
- ;;=E08.622^^3^56^23
- ;;^UTILITY(U,$J,358.3,1860,1,0)
+ ;;^UTILITY(U,$J,358.3,1703,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
+ ;;^UTILITY(U,$J,358.3,1703,1,4,0)
+ ;;=4^H33.001
+ ;;^UTILITY(U,$J,358.3,1703,2)
+ ;;=^5005490
+ ;;^UTILITY(U,$J,358.3,1704,0)
+ ;;=H33.002^^16^167^31
+ ;;^UTILITY(U,$J,358.3,1704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1860,1,3,0)
- ;;=3^Diabetes due to underlying condition w oth skin ulcer
- ;;^UTILITY(U,$J,358.3,1860,1,4,0)
- ;;=4^E08.622
- ;;^UTILITY(U,$J,358.3,1860,2)
- ;;=^5002535
- ;;^UTILITY(U,$J,358.3,1861,0)
- ;;=E08.628^^3^56^24
- ;;^UTILITY(U,$J,358.3,1861,1,0)
+ ;;^UTILITY(U,$J,358.3,1704,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
+ ;;^UTILITY(U,$J,358.3,1704,1,4,0)
+ ;;=4^H33.002
+ ;;^UTILITY(U,$J,358.3,1704,2)
+ ;;=^5005491
+ ;;^UTILITY(U,$J,358.3,1705,0)
+ ;;=H33.003^^16^167^30
+ ;;^UTILITY(U,$J,358.3,1705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1861,1,3,0)
- ;;=3^Diabetes due to underlying condition w oth skin comp
- ;;^UTILITY(U,$J,358.3,1861,1,4,0)
- ;;=4^E08.628
- ;;^UTILITY(U,$J,358.3,1861,2)
- ;;=^5002536
- ;;^UTILITY(U,$J,358.3,1862,0)
- ;;=E08.630^^3^56^25
- ;;^UTILITY(U,$J,358.3,1862,1,0)
+ ;;^UTILITY(U,$J,358.3,1705,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break,Bilateral 
+ ;;^UTILITY(U,$J,358.3,1705,1,4,0)
+ ;;=4^H33.003
+ ;;^UTILITY(U,$J,358.3,1705,2)
+ ;;=^5005492
+ ;;^UTILITY(U,$J,358.3,1706,0)
+ ;;=H34.9^^16^167^33
+ ;;^UTILITY(U,$J,358.3,1706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1862,1,3,0)
- ;;=3^Diabetes due to underlying condition w periodontal disease
- ;;^UTILITY(U,$J,358.3,1862,1,4,0)
- ;;=4^E08.630
- ;;^UTILITY(U,$J,358.3,1862,2)
- ;;=^5002537
- ;;^UTILITY(U,$J,358.3,1863,0)
- ;;=E08.638^^3^56^26
- ;;^UTILITY(U,$J,358.3,1863,1,0)
+ ;;^UTILITY(U,$J,358.3,1706,1,3,0)
+ ;;=3^Retinal Vascular Occlusion,Unspec
+ ;;^UTILITY(U,$J,358.3,1706,1,4,0)
+ ;;=4^H34.9
+ ;;^UTILITY(U,$J,358.3,1706,2)
+ ;;=^5005580
+ ;;^UTILITY(U,$J,358.3,1707,0)
+ ;;=H31.021^^16^167^37
+ ;;^UTILITY(U,$J,358.3,1707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1863,1,3,0)
- ;;=3^Diabetes due to underlying condition w oth oral comp
- ;;^UTILITY(U,$J,358.3,1863,1,4,0)
- ;;=4^E08.638
- ;;^UTILITY(U,$J,358.3,1863,2)
- ;;=^5002538
- ;;^UTILITY(U,$J,358.3,1864,0)
- ;;=E08.649^^3^56^27
- ;;^UTILITY(U,$J,358.3,1864,1,0)
+ ;;^UTILITY(U,$J,358.3,1707,1,3,0)
+ ;;=3^Solar Retinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,1707,1,4,0)
+ ;;=4^H31.021
+ ;;^UTILITY(U,$J,358.3,1707,2)
+ ;;=^5005443
+ ;;^UTILITY(U,$J,358.3,1708,0)
+ ;;=H31.022^^16^167^36
+ ;;^UTILITY(U,$J,358.3,1708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1864,1,3,0)
- ;;=3^Diabetes due to underlying condition w hypoglycemia w/o coma
- ;;^UTILITY(U,$J,358.3,1864,1,4,0)
- ;;=4^E08.649
- ;;^UTILITY(U,$J,358.3,1864,2)
- ;;=^5002540
- ;;^UTILITY(U,$J,358.3,1865,0)
- ;;=E08.65^^3^56^28
- ;;^UTILITY(U,$J,358.3,1865,1,0)
+ ;;^UTILITY(U,$J,358.3,1708,1,3,0)
+ ;;=3^Solar Retinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,1708,1,4,0)
+ ;;=4^H31.022
+ ;;^UTILITY(U,$J,358.3,1708,2)
+ ;;=^5005444
+ ;;^UTILITY(U,$J,358.3,1709,0)
+ ;;=H31.023^^16^167^35
+ ;;^UTILITY(U,$J,358.3,1709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1865,1,3,0)
- ;;=3^Diabetes due to underlying condition w hyperglycemia
- ;;^UTILITY(U,$J,358.3,1865,1,4,0)
- ;;=4^E08.65
- ;;^UTILITY(U,$J,358.3,1865,2)
- ;;=^5002541
- ;;^UTILITY(U,$J,358.3,1866,0)
- ;;=E08.69^^3^56^29
- ;;^UTILITY(U,$J,358.3,1866,1,0)
+ ;;^UTILITY(U,$J,358.3,1709,1,3,0)
+ ;;=3^Solar Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,1709,1,4,0)
+ ;;=4^H31.023
+ ;;^UTILITY(U,$J,358.3,1709,2)
+ ;;=^5005445
+ ;;^UTILITY(U,$J,358.3,1710,0)
+ ;;=H47.9^^16^167^38
+ ;;^UTILITY(U,$J,358.3,1710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1866,1,3,0)
- ;;=3^Diabetes due to underlying condition w oth complication
- ;;^UTILITY(U,$J,358.3,1866,1,4,0)
- ;;=4^E08.69
- ;;^UTILITY(U,$J,358.3,1866,2)
- ;;=^5002542
- ;;^UTILITY(U,$J,358.3,1867,0)
- ;;=E09.618^^3^56^50
- ;;^UTILITY(U,$J,358.3,1867,1,0)
+ ;;^UTILITY(U,$J,358.3,1710,1,3,0)
+ ;;=3^Visual Pathway Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,1710,1,4,0)
+ ;;=4^H47.9
+ ;;^UTILITY(U,$J,358.3,1710,2)
+ ;;=^5006178
+ ;;^UTILITY(U,$J,358.3,1711,0)
+ ;;=Z51.89^^16^167^12
+ ;;^UTILITY(U,$J,358.3,1711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1867,1,3,0)
- ;;=3^Drug/chem diabetes w oth diabetic arthropathy
- ;;^UTILITY(U,$J,358.3,1867,1,4,0)
- ;;=4^E09.618
- ;;^UTILITY(U,$J,358.3,1867,2)
- ;;=^5002574
- ;;^UTILITY(U,$J,358.3,1868,0)
- ;;=E09.620^^3^56^33
- ;;^UTILITY(U,$J,358.3,1868,1,0)
+ ;;^UTILITY(U,$J,358.3,1711,1,3,0)
+ ;;=3^Encounter for Other Specified Aftercare
+ ;;^UTILITY(U,$J,358.3,1711,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,1711,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,1712,0)
+ ;;=S04.011D^^16^167^28
+ ;;^UTILITY(U,$J,358.3,1712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1868,1,3,0)
- ;;=3^Drug/chem diabetes w diabetic dermatitis
- ;;^UTILITY(U,$J,358.3,1868,1,4,0)
- ;;=4^E09.620
- ;;^UTILITY(U,$J,358.3,1868,2)
- ;;=^5002575
- ;;^UTILITY(U,$J,358.3,1869,0)
- ;;=E09.622^^3^56^60
- ;;^UTILITY(U,$J,358.3,1869,1,0)
+ ;;^UTILITY(U,$J,358.3,1712,1,3,0)
+ ;;=3^Optic Nerve Injury,Right Eye,Subseq
+ ;;^UTILITY(U,$J,358.3,1712,1,4,0)
+ ;;=4^S04.011D
+ ;;^UTILITY(U,$J,358.3,1712,2)
+ ;;=^5020463
+ ;;^UTILITY(U,$J,358.3,1713,0)
+ ;;=S04.012D^^16^167^25
+ ;;^UTILITY(U,$J,358.3,1713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1869,1,3,0)
- ;;=3^Drug/chem induced diabetes mellitus w oth skin ulcer
- ;;^UTILITY(U,$J,358.3,1869,1,4,0)
- ;;=4^E09.622
- ;;^UTILITY(U,$J,358.3,1869,2)
- ;;=^5002577
- ;;^UTILITY(U,$J,358.3,1870,0)
- ;;=E09.621^^3^56^62
+ ;;^UTILITY(U,$J,358.3,1713,1,3,0)
+ ;;=3^Optic Nerve Injury,Left Eye,Subseq
+ ;;^UTILITY(U,$J,358.3,1713,1,4,0)
+ ;;=4^S04.012D
+ ;;^UTILITY(U,$J,358.3,1713,2)
+ ;;=^5020466
+ ;;^UTILITY(U,$J,358.3,1714,0)
+ ;;=S04.011S^^16^167^27
+ ;;^UTILITY(U,$J,358.3,1714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1714,1,3,0)
+ ;;=3^Optic Nerve Injury,Right Eye,Sequela

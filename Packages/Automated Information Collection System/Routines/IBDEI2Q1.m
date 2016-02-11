@@ -1,0 +1,128 @@
+IBDEI2Q1 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45658,0)
+ ;;=Y36.230D^^200^2247^117
+ ;;^UTILITY(U,$J,358.3,45658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45658,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45658,1,4,0)
+ ;;=4^Y36.230D
+ ;;^UTILITY(U,$J,358.3,45658,2)
+ ;;=^5061626
+ ;;^UTILITY(U,$J,358.3,45659,0)
+ ;;=Y36.230S^^200^2247^118
+ ;;^UTILITY(U,$J,358.3,45659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45659,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
+ ;;^UTILITY(U,$J,358.3,45659,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,45659,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,45660,0)
+ ;;=Y36.7X0S^^200^2247^130
+ ;;^UTILITY(U,$J,358.3,45660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45660,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,45660,1,4,0)
+ ;;=4^Y36.7X0S
+ ;;^UTILITY(U,$J,358.3,45660,2)
+ ;;=^5061783
+ ;;^UTILITY(U,$J,358.3,45661,0)
+ ;;=F02.81^^200^2248^11
+ ;;^UTILITY(U,$J,358.3,45661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45661,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,45661,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,45661,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,45662,0)
+ ;;=F02.80^^200^2248^12
+ ;;^UTILITY(U,$J,358.3,45662,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45662,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,45662,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,45662,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,45663,0)
+ ;;=F03.91^^200^2248^13
+ ;;^UTILITY(U,$J,358.3,45663,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45663,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,45663,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,45663,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,45664,0)
+ ;;=G31.83^^200^2248^14
+ ;;^UTILITY(U,$J,358.3,45664,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45664,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,45664,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,45664,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,45665,0)
+ ;;=F01.51^^200^2248^30
+ ;;^UTILITY(U,$J,358.3,45665,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45665,1,3,0)
+ ;;=3^Vascular Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,45665,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,45665,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,45666,0)
+ ;;=F01.50^^200^2248^31
+ ;;^UTILITY(U,$J,358.3,45666,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45666,1,3,0)
+ ;;=3^Vascular Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,45666,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,45666,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,45667,0)
+ ;;=A81.9^^200^2248^6
+ ;;^UTILITY(U,$J,358.3,45667,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45667,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,45667,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,45667,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,45668,0)
+ ;;=A81.09^^200^2248^8
+ ;;^UTILITY(U,$J,358.3,45668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45668,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease NEC
+ ;;^UTILITY(U,$J,358.3,45668,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,45668,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,45669,0)
+ ;;=A81.00^^200^2248^9
+ ;;^UTILITY(U,$J,358.3,45669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45669,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45669,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,45669,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,45670,0)
+ ;;=A81.01^^200^2248^10
+ ;;^UTILITY(U,$J,358.3,45670,1,0)
+ ;;=^358.31IA^4^2

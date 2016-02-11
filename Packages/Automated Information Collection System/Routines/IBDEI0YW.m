@@ -1,138 +1,128 @@
-IBDEI0YW ; ; 06-AUG-2015
+IBDEI0YW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17014,0)
- ;;=508.0^^87^1036^2
- ;;^UTILITY(U,$J,358.3,17014,1,0)
+ ;;^UTILITY(U,$J,358.3,16072,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,16072,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,16072,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,16073,0)
+ ;;=G31.9^^88^841^28
+ ;;^UTILITY(U,$J,358.3,16073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17014,1,3,0)
- ;;=3^508.0
- ;;^UTILITY(U,$J,358.3,17014,1,4,0)
- ;;=4^Radiation Pneumonitis
- ;;^UTILITY(U,$J,358.3,17014,2)
- ;;=Radiation Pneumonitis^269982
- ;;^UTILITY(U,$J,358.3,17015,0)
- ;;=733.40^^87^1037^1
- ;;^UTILITY(U,$J,358.3,17015,1,0)
+ ;;^UTILITY(U,$J,358.3,16073,1,3,0)
+ ;;=3^Dementia,Degenerative Disease Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,16073,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,16073,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,16074,0)
+ ;;=G10.^^88^841^45
+ ;;^UTILITY(U,$J,358.3,16074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17015,1,3,0)
- ;;=3^733.40
- ;;^UTILITY(U,$J,358.3,17015,1,4,0)
- ;;=4^Aseptic Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,17015,2)
- ;;=Aseptic Necrosis of Bone^276833
- ;;^UTILITY(U,$J,358.3,17016,0)
- ;;=737.34^^87^1037^2
- ;;^UTILITY(U,$J,358.3,17016,1,0)
+ ;;^UTILITY(U,$J,358.3,16074,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,16074,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,16074,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,16075,0)
+ ;;=G94.^^88^841^24
+ ;;^UTILITY(U,$J,358.3,16075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17016,1,3,0)
- ;;=3^737.34
- ;;^UTILITY(U,$J,358.3,17016,1,4,0)
- ;;=4^Kyphoscoliosis, Thorax
- ;;^UTILITY(U,$J,358.3,17016,2)
- ;;=Kyphoscoliosis, Thorax^272762
- ;;^UTILITY(U,$J,358.3,17017,0)
- ;;=733.00^^87^1037^4
- ;;^UTILITY(U,$J,358.3,17017,1,0)
+ ;;^UTILITY(U,$J,358.3,16075,1,3,0)
+ ;;=3^Dementia,Brain Disorder in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,16075,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,16075,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,16076,0)
+ ;;=G31.09^^88^841^29
+ ;;^UTILITY(U,$J,358.3,16076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17017,1,3,0)
- ;;=3^733.00
- ;;^UTILITY(U,$J,358.3,17017,1,4,0)
- ;;=4^Osteoporosis
- ;;^UTILITY(U,$J,358.3,17017,2)
- ;;=Osteoporosis^87159
- ;;^UTILITY(U,$J,358.3,17018,0)
- ;;=733.90^^87^1037^3
- ;;^UTILITY(U,$J,358.3,17018,1,0)
+ ;;^UTILITY(U,$J,358.3,16076,1,3,0)
+ ;;=3^Dementia,Frontotemporal,Other
+ ;;^UTILITY(U,$J,358.3,16076,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,16076,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,16077,0)
+ ;;=G23.8^^88^841^23
+ ;;^UTILITY(U,$J,358.3,16077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17018,1,3,0)
- ;;=3^733.90
- ;;^UTILITY(U,$J,358.3,17018,1,4,0)
- ;;=4^Osteopenia
- ;;^UTILITY(U,$J,358.3,17018,2)
- ;;=Osteopenia^35593
- ;;^UTILITY(U,$J,358.3,17019,0)
- ;;=807.00^^87^1037^5
- ;;^UTILITY(U,$J,358.3,17019,1,0)
+ ;;^UTILITY(U,$J,358.3,16077,1,3,0)
+ ;;=3^Dementia,Basal Ganglia Degenerative Diseases
+ ;;^UTILITY(U,$J,358.3,16077,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,16077,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,16078,0)
+ ;;=G31.89^^88^841^31
+ ;;^UTILITY(U,$J,358.3,16078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17019,1,3,0)
- ;;=3^807.00
- ;;^UTILITY(U,$J,358.3,17019,1,4,0)
- ;;=4^Rib Fracture
- ;;^UTILITY(U,$J,358.3,17019,2)
- ;;=Rib Fracture^25317
- ;;^UTILITY(U,$J,358.3,17020,0)
- ;;=733.13^^87^1037^6
- ;;^UTILITY(U,$J,358.3,17020,1,0)
+ ;;^UTILITY(U,$J,358.3,16078,1,3,0)
+ ;;=3^Dementia,Nervous System Degenerative Diseases
+ ;;^UTILITY(U,$J,358.3,16078,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,16078,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,16079,0)
+ ;;=F06.8^^88^841^30
+ ;;^UTILITY(U,$J,358.3,16079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17020,1,3,0)
- ;;=3^733.13
- ;;^UTILITY(U,$J,358.3,17020,1,4,0)
- ;;=4^Vertebral Compression Fracture
- ;;^UTILITY(U,$J,358.3,17020,2)
- ;;=^295754
- ;;^UTILITY(U,$J,358.3,17021,0)
- ;;=338.12^^87^1038^1
- ;;^UTILITY(U,$J,358.3,17021,1,0)
+ ;;^UTILITY(U,$J,358.3,16079,1,3,0)
+ ;;=3^Dementia,Mental Disorders d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,16079,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,16079,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,16080,0)
+ ;;=F10.27^^88^841^32
+ ;;^UTILITY(U,$J,358.3,16080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17021,1,3,0)
- ;;=3^338.12
- ;;^UTILITY(U,$J,358.3,17021,1,4,0)
- ;;=4^Acute Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,17021,2)
- ;;=^334071
- ;;^UTILITY(U,$J,358.3,17022,0)
- ;;=338.18^^87^1038^4
- ;;^UTILITY(U,$J,358.3,17022,1,0)
+ ;;^UTILITY(U,$J,358.3,16080,1,3,0)
+ ;;=3^Dementia,Persisting,Alcohol-Induced
+ ;;^UTILITY(U,$J,358.3,16080,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,16080,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,16081,0)
+ ;;=F19.97^^88^841^33
+ ;;^UTILITY(U,$J,358.3,16081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17022,1,3,0)
- ;;=3^338.18
- ;;^UTILITY(U,$J,358.3,17022,1,4,0)
- ;;=4^Post-Op Pain,Acute NEC
- ;;^UTILITY(U,$J,358.3,17022,2)
- ;;=^334072
- ;;^UTILITY(U,$J,358.3,17023,0)
- ;;=338.22^^87^1038^2
- ;;^UTILITY(U,$J,358.3,17023,1,0)
+ ;;^UTILITY(U,$J,358.3,16081,1,3,0)
+ ;;=3^Dementia,Persisting,Psychoactive Subst Use
+ ;;^UTILITY(U,$J,358.3,16081,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,16081,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,16082,0)
+ ;;=G31.01^^88^841^34
+ ;;^UTILITY(U,$J,358.3,16082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17023,1,3,0)
- ;;=3^338.22
- ;;^UTILITY(U,$J,358.3,17023,1,4,0)
- ;;=4^Chronic Post-Thoractomy Pain
- ;;^UTILITY(U,$J,358.3,17023,2)
- ;;=^334075
- ;;^UTILITY(U,$J,358.3,17024,0)
- ;;=338.28^^87^1038^5
- ;;^UTILITY(U,$J,358.3,17024,1,0)
+ ;;^UTILITY(U,$J,358.3,16082,1,3,0)
+ ;;=3^Dementia,Pick's Disease
+ ;;^UTILITY(U,$J,358.3,16082,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,16082,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,16083,0)
+ ;;=A81.2^^88^841^35
+ ;;^UTILITY(U,$J,358.3,16083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17024,1,3,0)
- ;;=3^338.28
- ;;^UTILITY(U,$J,358.3,17024,1,4,0)
- ;;=4^Post-Op Pain,Chronic NEC
- ;;^UTILITY(U,$J,358.3,17024,2)
- ;;=^334076
- ;;^UTILITY(U,$J,358.3,17025,0)
- ;;=338.3^^87^1038^3
- ;;^UTILITY(U,$J,358.3,17025,1,0)
+ ;;^UTILITY(U,$J,358.3,16083,1,3,0)
+ ;;=3^Dementia,Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,16083,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,16083,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,16084,0)
+ ;;=G31.1^^88^841^36
+ ;;^UTILITY(U,$J,358.3,16084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17025,1,3,0)
- ;;=3^338.3
- ;;^UTILITY(U,$J,358.3,17025,1,4,0)
- ;;=4^Neoplasm Related Pain
- ;;^UTILITY(U,$J,358.3,17025,2)
- ;;=^334078
- ;;^UTILITY(U,$J,358.3,17026,0)
- ;;=V58.32^^87^1039^1
- ;;^UTILITY(U,$J,358.3,17026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17026,1,3,0)
- ;;=3^V58.32
- ;;^UTILITY(U,$J,358.3,17026,1,4,0)
- ;;=4^Removal of Sutures
- ;;^UTILITY(U,$J,358.3,17026,2)
- ;;=^334217
- ;;^UTILITY(U,$J,358.3,17027,0)
- ;;=V58.31^^87^1039^2
- ;;^UTILITY(U,$J,358.3,17027,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16084,1,3,0)
+ ;;=3^Dementia,Senile Degeneration of Brain NEC
+ ;;^UTILITY(U,$J,358.3,16084,1,4,0)
+ ;;=4^G31.1

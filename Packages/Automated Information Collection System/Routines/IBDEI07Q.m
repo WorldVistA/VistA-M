@@ -1,140 +1,142 @@
-IBDEI07Q ; ; 06-AUG-2015
+IBDEI07Q ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3116,0)
- ;;=F64.9^^8^94^3
- ;;^UTILITY(U,$J,358.3,3116,1,0)
+ ;;^UTILITY(U,$J,358.3,3046,2)
+ ;;=^5002379
+ ;;^UTILITY(U,$J,358.3,3047,0)
+ ;;=D72.9^^28^246^37
+ ;;^UTILITY(U,$J,358.3,3047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3116,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,3116,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,3116,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,3117,0)
- ;;=Z59.2^^8^95^1
- ;;^UTILITY(U,$J,358.3,3117,1,0)
+ ;;^UTILITY(U,$J,358.3,3047,1,3,0)
+ ;;=3^White Blood Cells Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3047,1,4,0)
+ ;;=4^D72.9
+ ;;^UTILITY(U,$J,358.3,3047,2)
+ ;;=^5002381
+ ;;^UTILITY(U,$J,358.3,3048,0)
+ ;;=L02.91^^28^247^1
+ ;;^UTILITY(U,$J,358.3,3048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3117,1,3,0)
- ;;=3^Discord w/ Neighbors,Lodgers or Landlord
- ;;^UTILITY(U,$J,358.3,3117,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,3117,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,3118,0)
- ;;=Z59.0^^8^95^3
- ;;^UTILITY(U,$J,358.3,3118,1,0)
+ ;;^UTILITY(U,$J,358.3,3048,1,3,0)
+ ;;=3^Abcess,Cutaneous,Unspec
+ ;;^UTILITY(U,$J,358.3,3048,1,4,0)
+ ;;=4^L02.91
+ ;;^UTILITY(U,$J,358.3,3048,2)
+ ;;=^5009016
+ ;;^UTILITY(U,$J,358.3,3049,0)
+ ;;=L11.9^^28^247^2
+ ;;^UTILITY(U,$J,358.3,3049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3118,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,3118,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,3118,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,3119,0)
- ;;=Z59.1^^8^95^5
- ;;^UTILITY(U,$J,358.3,3119,1,0)
+ ;;^UTILITY(U,$J,358.3,3049,1,3,0)
+ ;;=3^Acantholytic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3049,1,4,0)
+ ;;=4^L11.9
+ ;;^UTILITY(U,$J,358.3,3049,2)
+ ;;=^5009094
+ ;;^UTILITY(U,$J,358.3,3050,0)
+ ;;=L83.^^28^247^3
+ ;;^UTILITY(U,$J,358.3,3050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3119,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,3119,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,3119,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,3120,0)
- ;;=Z59.3^^8^95^9
- ;;^UTILITY(U,$J,358.3,3120,1,0)
+ ;;^UTILITY(U,$J,358.3,3050,1,3,0)
+ ;;=3^Acanthosis Nigricans
+ ;;^UTILITY(U,$J,358.3,3050,1,4,0)
+ ;;=4^L83.
+ ;;^UTILITY(U,$J,358.3,3050,2)
+ ;;=^1451
+ ;;^UTILITY(U,$J,358.3,3051,0)
+ ;;=L70.9^^28^247^4
+ ;;^UTILITY(U,$J,358.3,3051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3120,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,3120,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,3120,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,3121,0)
- ;;=Z59.4^^8^95^7
- ;;^UTILITY(U,$J,358.3,3121,1,0)
+ ;;^UTILITY(U,$J,358.3,3051,1,3,0)
+ ;;=3^Acne,Unspec
+ ;;^UTILITY(U,$J,358.3,3051,1,4,0)
+ ;;=4^L70.9
+ ;;^UTILITY(U,$J,358.3,3051,2)
+ ;;=^5009273
+ ;;^UTILITY(U,$J,358.3,3052,0)
+ ;;=L57.0^^28^247^5
+ ;;^UTILITY(U,$J,358.3,3052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3121,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,3121,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,3121,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,3122,0)
- ;;=Z59.5^^8^95^2
- ;;^UTILITY(U,$J,358.3,3122,1,0)
+ ;;^UTILITY(U,$J,358.3,3052,1,3,0)
+ ;;=3^Actinic Keratosis
+ ;;^UTILITY(U,$J,358.3,3052,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,3052,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,3053,0)
+ ;;=N65.0^^28^247^16
+ ;;^UTILITY(U,$J,358.3,3053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3122,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,3122,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,3122,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,3123,0)
- ;;=Z59.6^^8^95^8
- ;;^UTILITY(U,$J,358.3,3123,1,0)
+ ;;^UTILITY(U,$J,358.3,3053,1,3,0)
+ ;;=3^Breast,Reconstructed Deformity
+ ;;^UTILITY(U,$J,358.3,3053,1,4,0)
+ ;;=4^N65.0
+ ;;^UTILITY(U,$J,358.3,3053,2)
+ ;;=^5015800
+ ;;^UTILITY(U,$J,358.3,3054,0)
+ ;;=N64.9^^28^247^9
+ ;;^UTILITY(U,$J,358.3,3054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3123,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,3123,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,3123,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,3124,0)
- ;;=Z59.7^^8^95^6
- ;;^UTILITY(U,$J,358.3,3124,1,0)
+ ;;^UTILITY(U,$J,358.3,3054,1,3,0)
+ ;;=3^Breast Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3054,1,4,0)
+ ;;=4^N64.9
+ ;;^UTILITY(U,$J,358.3,3054,2)
+ ;;=^5015799
+ ;;^UTILITY(U,$J,358.3,3055,0)
+ ;;=N65.1^^28^247^15
+ ;;^UTILITY(U,$J,358.3,3055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3124,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,3124,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,3124,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,3125,0)
- ;;=Z59.9^^8^95^4
- ;;^UTILITY(U,$J,358.3,3125,1,0)
+ ;;^UTILITY(U,$J,358.3,3055,1,3,0)
+ ;;=3^Breast Reconstructed Disproportion
+ ;;^UTILITY(U,$J,358.3,3055,1,4,0)
+ ;;=4^N65.1
+ ;;^UTILITY(U,$J,358.3,3055,2)
+ ;;=^5015801
+ ;;^UTILITY(U,$J,358.3,3056,0)
+ ;;=N60.92^^28^247^10
+ ;;^UTILITY(U,$J,358.3,3056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3125,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,3125,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,3125,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,3126,0)
- ;;=G21.19^^8^96^3
- ;;^UTILITY(U,$J,358.3,3126,1,0)
+ ;;^UTILITY(U,$J,358.3,3056,1,3,0)
+ ;;=3^Breast Dysplasia,Benign Mammary,Left
+ ;;^UTILITY(U,$J,358.3,3056,1,4,0)
+ ;;=4^N60.92
+ ;;^UTILITY(U,$J,358.3,3056,2)
+ ;;=^5134091
+ ;;^UTILITY(U,$J,358.3,3057,0)
+ ;;=N60.91^^28^247^11
+ ;;^UTILITY(U,$J,358.3,3057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3126,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,3126,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,3126,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,3127,0)
- ;;=G21.11^^8^96^5
- ;;^UTILITY(U,$J,358.3,3127,1,0)
+ ;;^UTILITY(U,$J,358.3,3057,1,3,0)
+ ;;=3^Breast Dysplasia,Benign Mammary,Right
+ ;;^UTILITY(U,$J,358.3,3057,1,4,0)
+ ;;=4^N60.91
+ ;;^UTILITY(U,$J,358.3,3057,2)
+ ;;=^5015788
+ ;;^UTILITY(U,$J,358.3,3058,0)
+ ;;=N62.^^28^247^12
+ ;;^UTILITY(U,$J,358.3,3058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3127,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,3127,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,3127,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,3128,0)
- ;;=G24.02^^8^96^1
- ;;^UTILITY(U,$J,358.3,3128,1,0)
+ ;;^UTILITY(U,$J,358.3,3058,1,3,0)
+ ;;=3^Breast Hypertrophy
+ ;;^UTILITY(U,$J,358.3,3058,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,3058,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,3059,0)
+ ;;=N61.^^28^247^13
+ ;;^UTILITY(U,$J,358.3,3059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3128,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,3128,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,3128,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,3129,0)
- ;;=G24.01^^8^96^7
- ;;^UTILITY(U,$J,358.3,3129,1,0)
+ ;;^UTILITY(U,$J,358.3,3059,1,3,0)
+ ;;=3^Breast Inflammatory Disorders
+ ;;^UTILITY(U,$J,358.3,3059,1,4,0)
+ ;;=4^N61.
+ ;;^UTILITY(U,$J,358.3,3059,2)
+ ;;=^5015789
+ ;;^UTILITY(U,$J,358.3,3060,0)
+ ;;=N63.^^28^247^14
+ ;;^UTILITY(U,$J,358.3,3060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3129,1,3,0)
- ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,3060,1,3,0)
+ ;;=3^Breast Lump,Unspec

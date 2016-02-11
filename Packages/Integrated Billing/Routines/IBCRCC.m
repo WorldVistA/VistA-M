@@ -1,6 +1,6 @@
 IBCRCC ;ALB/ARH - RATES: CALCULATION OF ITEM CHARGE ;22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,80,106,138,245,223,309,347,370,383,427,455,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,106,138,245,223,309,347,370,383,427,455,447,482**;21-MAR-94;Build 39
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ITMCHG and RATECHG are basic item/set/rate charge functions, IBCRCI contains more standard callable functions
  ;
@@ -18,7 +18,7 @@ ITMCHG(CS,ITEM,EVDT,MOD,ARR) ; get the base unit charges for a specific item, gi
  ; va cost
  I $P(IBCSBR,U,5)=2 D  Q  ; va cost
  . I $P(IBCSBR,U,1)["PROSTHETICS" S IBCHRG=$$PICOST(IBITEM)  I +IBCHRG D SETARR(0,0,+IBCHRG,.ARR) Q
- . I $P(IBCSBR,U,1)["PRESCRIPTION" S IBCHRG=$$RXCOST(IBITEM) I +IBCHRG D SETARR(0,0,+IBCHRG,.ARR) Q
+ . I $P(IBCSBR,U,1)["PRESCRIPTION" S IBCHRG=$$RXIBCNR(.IBD,IBITEM) S:'+IBCHRG IBCHRG=$$RXCOST(IBITEM) I +IBCHRG D SETARR(0,0,+IBCHRG,.ARR) Q
  ;
  ; all others - have Charge Item entries
  ;
@@ -67,6 +67,31 @@ RATECHG(RS,CHG,EVDT,FEE) ; returns modifed item charge based on rate schedule:  
  I +IBX,IBRS10'="" S X=IBX X IBRS10 S IBX=X,IBRTY="^Rate Schedule Adjustment ("_$J(CHG,"",2)_")"
  S FEE=$P($G(^IBE(363,+$G(RS),1)),"^",1,2)
  Q IBX_IBRTY
+ ;
+RXIBCNR(IBD,IBITEM) ; returns the unit cost for the drug
+ ; input: IBD array, RX#
+ ; output: unit cost (.304/366.141) ^ bill's IEN in (.02/362.4)
+ ;
+ N IBDA,IBDB,IBDAR,IBDRX,IBDRC,IBDCT,IBIFN
+ S (IBDCT,IBIFN,IBDRX)=0
+ I +$G(IBITEM) S IBDA=$G(^IBA(362.4,+IBITEM,0)),IBIFN=$P(IBDA,U,2),IBDRX=$P(IBDA,U,5)
+ S:'IBDRX IBDRX=$G(IBD("PRESCRIPTION"))
+ S:'IBDRX IBDRX=$G(IBD("CLAIMID")) Q:'IBDRX 0
+ S IBDA=0 F  S IBDA=$O(^IBCNR(366.14,"I",IBDRX,IBDA)) Q:'IBDA  D
+ . S IBDB=0 F  S IBDB=$O(^IBCNR(366.14,"I",IBDRX,IBDA,IBDB)) Q:'IBDB  D
+ .. S IBDRC=$G(^IBCNR(366.14,IBDA,1,IBDB,2))
+ .. ; event type 1 = billable status check
+ .. Q:+$G(^IBCNR(366.14,IBDA,1,IBDB,0))'=1
+ .. Q:$G(IBD("NDC"))'=$P(IBDRC,U,5)
+ .. Q:$G(IBD("FILL NUMBER"))'=$P(IBDRC,U,3)
+ .. Q:+$G(IBD("RXCOB"))'=+$G(^IBCNR(366.14,IBDA,1,IBDB,7))
+ .. S IBDAR(IBDA,IBDB)=$P($G(^IBCNR(366.14,IBDA,1,IBDB,3)),U,4)
+ ; latest one
+ S IBDA=$O(IBDAR(""),-1)
+ I IBDA'="" S IBDB=$O(IBDAR(IBDA,""),-1) S IBDCT=IBDAR(IBDA,IBDB)
+ ;
+ S IBDA=$S(IBDCT:IBDCT_U_IBIFN,1:0)
+ Q IBDA
  ;
 RXCOST(RX) ; returns (RX=ptr 362.4): VA Cost of an Rx - Per Unit Cost ^ bill IFN
  ; w/ Per Unit Cost = Refill (Current Unit Price of Drug - 52.1,1.2) or RX (Unit Price of Drug - 52,17) or Drug (Price Per Dispense Unit - 50,16)

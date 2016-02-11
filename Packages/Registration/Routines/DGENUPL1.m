@@ -1,5 +1,5 @@
 DGENUPL1 ;ALB/CJM,ISA,KWP,CKN,LBD,LMD,TDM,TGH - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;13 Nov 2014  4:47 PM
- ;;5.3;REGISTRATION;**147,222,232,314,397,379,407,363,673,653,688,797,842,894**;Aug 13,1993;Build 48
+ ;;5.3;REGISTRATION;**147,222,232,314,397,379,407,363,673,653,688,797,842,894,871**;Aug 13,1993;Build 84
  ;
 PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,DGMST,DGNMSE,DGHBP) ;
  ;
@@ -28,6 +28,7 @@ PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,
  ;  DGNTR - array defined for NTR data.
  ;  DGMST - array defined for MST data.
  ;  DGNMSE - array define for MILITARY SERVICE EPISODE data (pass by ref)
+ ;  DGHBP - array define for HEALTH BENEFIT PLAN data (pass by ref) DG*5.3*871
  N SEG,ERROR,COUNT,QFLG,NFLG
  ;
  K DGEN,DGPAT,DGELG,DGCDIS,DGNTR,DGMST
@@ -57,6 +58,15 @@ PARSE(MSGIEN,MSGID,CURLINE,ERRCOUNT,DGPAT,DGELG,DGENR,DGCDIS,DGOEIF,DGSEC,DGNTR,
  ..Q:$$GET1^DIQ(2,DFN,.3852,"I")=$O(^DG(27.18,"C","00",""))
  ..N PSUB
  ..F PSUB="PENAEFDT","PENTRMDT","PENAREAS","PENTRMR1","PENTRMR2","PENTRMR3","PENTRMR4" S DGPAT(PSUB)="@"
+ ;
+ ;ZHP is optional & can repeat. DG*5.3*871
+ K DGHBP
+ I 'ERROR D  Q:ERROR $S(ERROR:0,1:1)
+ . D NXTSEG^DGENUPL(MSGIEN,.CURLINE,.SEG)
+ . S QFLG=0 F  D  Q:QFLG
+ . . I SEG("TYPE")'="ZHP" S QFLG=1,CURLINE=CURLINE-1 Q
+ . . D ZHP^DGENUPLB
+ . . D NXTSEG^DGENUPL(MSGIEN,.CURLINE,.SEG)
  ;
  ;Phase II Add the capability to accept more than 1 ZCD
  I 'ERROR F SEG="ZEN","ZMT","ZCD" D  Q:ERROR
@@ -133,6 +143,7 @@ CONVERT(VAL,DATATYPE,ERROR) ;
  ;       "POS" convert from Period of Service code to a point to Period of Service file
  ;       "AGENCY" convert Agency/Allied Country code from file 35
  ;       "PENSIONCD" convert Pension Award/Termination Reason code from file 27.18
+ ;       "HBP" convert from code to file 25.11 ien DG*5.3*871
  ;OUTPUT:
  ;  Function Value - the result of the conversion
  ;  ERROR - set to 1 if an error is detected, 0 otherwise (optional,pass by ref)
@@ -189,6 +200,11 @@ CONVERT(VAL,DATATYPE,ERROR) ;
  ..N OLDVAL
  ..S OLDVAL=VAL
  ..S VAL=$O(^DG(27.18,"C",OLDVAL,0))
+ ..I 'VAL S ERROR=1
+ .I ($G(DATATYPE)="HBP") D  Q    ; DG*5.3*871
+ ..N OLDVAL
+ ..S OLDVAL=VAL
+ ..S VAL=$O(^DGHBP(25.11,"C",OLDVAL,0))
  ..I 'VAL S ERROR=1
  Q VAL
  ;

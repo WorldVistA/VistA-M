@@ -1,138 +1,122 @@
-IBDEI1B8 ; ; 06-AUG-2015
+IBDEI1B8 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23203,1,4,0)
- ;;=4^797.
- ;;^UTILITY(U,$J,358.3,23203,1,5,0)
- ;;=5^Senility w/o psychosis
- ;;^UTILITY(U,$J,358.3,23203,2)
- ;;=^109215
- ;;^UTILITY(U,$J,358.3,23204,0)
- ;;=305.90^^125^1402^143
- ;;^UTILITY(U,$J,358.3,23204,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23204,1,4,0)
- ;;=4^305.90
- ;;^UTILITY(U,$J,358.3,23204,1,5,0)
- ;;=5^Substance Abuse
- ;;^UTILITY(U,$J,358.3,23204,2)
- ;;=Substance Abuse^268258
- ;;^UTILITY(U,$J,358.3,23205,0)
- ;;=781.7^^125^1402^148
- ;;^UTILITY(U,$J,358.3,23205,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23205,1,4,0)
- ;;=4^781.7
- ;;^UTILITY(U,$J,358.3,23205,1,5,0)
- ;;=5^Tetany/Carpopedl spasm
- ;;^UTILITY(U,$J,358.3,23205,2)
- ;;=^118032
- ;;^UTILITY(U,$J,358.3,23206,0)
- ;;=781.4^^125^1402^151
- ;;^UTILITY(U,$J,358.3,23206,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23206,1,4,0)
- ;;=4^781.4
- ;;^UTILITY(U,$J,358.3,23206,1,5,0)
- ;;=5^Transient Limb Paralysis
- ;;^UTILITY(U,$J,358.3,23206,2)
- ;;=^273353
- ;;^UTILITY(U,$J,358.3,23207,0)
- ;;=368.9^^125^1402^154
- ;;^UTILITY(U,$J,358.3,23207,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23207,1,4,0)
- ;;=4^368.9
- ;;^UTILITY(U,$J,358.3,23207,1,5,0)
- ;;=5^Visual disturbance
- ;;^UTILITY(U,$J,358.3,23207,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,23208,0)
- ;;=782.8^^125^1402^35
- ;;^UTILITY(U,$J,358.3,23208,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23208,1,4,0)
- ;;=4^782.8
- ;;^UTILITY(U,$J,358.3,23208,1,5,0)
- ;;=5^Change in skin texture
- ;;^UTILITY(U,$J,358.3,23208,2)
- ;;=^273360
- ;;^UTILITY(U,$J,358.3,23209,0)
- ;;=782.5^^125^1402^46
- ;;^UTILITY(U,$J,358.3,23209,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23209,1,4,0)
- ;;=4^782.5
- ;;^UTILITY(U,$J,358.3,23209,1,5,0)
- ;;=5^Cyanosis
- ;;^UTILITY(U,$J,358.3,23209,2)
- ;;=Cyanosis^29863
- ;;^UTILITY(U,$J,358.3,23210,0)
- ;;=782.7^^125^1402^62
- ;;^UTILITY(U,$J,358.3,23210,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23210,1,4,0)
- ;;=4^782.7
- ;;^UTILITY(U,$J,358.3,23210,1,5,0)
- ;;=5^Ecchymoses, spontaneous
- ;;^UTILITY(U,$J,358.3,23210,2)
- ;;=^273359
- ;;^UTILITY(U,$J,358.3,23211,0)
- ;;=782.62^^125^1402^76
- ;;^UTILITY(U,$J,358.3,23211,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23211,1,4,0)
- ;;=4^782.62
- ;;^UTILITY(U,$J,358.3,23211,1,5,0)
- ;;=5^Flushing
- ;;^UTILITY(U,$J,358.3,23211,2)
- ;;=Flushing^47184
- ;;^UTILITY(U,$J,358.3,23212,0)
- ;;=703.0^^125^1402^120
- ;;^UTILITY(U,$J,358.3,23212,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23212,1,4,0)
- ;;=4^703.0
- ;;^UTILITY(U,$J,358.3,23212,1,5,0)
- ;;=5^Onychocryptosis
- ;;^UTILITY(U,$J,358.3,23212,2)
- ;;=Onychocryptosis^81221
- ;;^UTILITY(U,$J,358.3,23213,0)
- ;;=782.4^^125^1402^101
- ;;^UTILITY(U,$J,358.3,23213,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23213,1,4,0)
- ;;=4^782.4
- ;;^UTILITY(U,$J,358.3,23213,1,5,0)
- ;;=5^Jaundice
- ;;^UTILITY(U,$J,358.3,23213,2)
- ;;=Jaundice^66155
- ;;^UTILITY(U,$J,358.3,23214,0)
- ;;=782.2^^125^1402^110
- ;;^UTILITY(U,$J,358.3,23214,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23214,1,4,0)
- ;;=4^782.2
- ;;^UTILITY(U,$J,358.3,23214,1,5,0)
- ;;=5^Mass, Lump of skin
- ;;^UTILITY(U,$J,358.3,23214,2)
- ;;=^71690
- ;;^UTILITY(U,$J,358.3,23215,0)
- ;;=703.8^^125^1402^121
- ;;^UTILITY(U,$J,358.3,23215,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23215,1,4,0)
- ;;=4^703.8
- ;;^UTILITY(U,$J,358.3,23215,1,5,0)
- ;;=5^Onychodystrophy/Onycholysis
- ;;^UTILITY(U,$J,358.3,23215,2)
- ;;=Onychodystrophy/Onycholysis^271926
- ;;^UTILITY(U,$J,358.3,23216,0)
- ;;=110.1^^125^1402^122
- ;;^UTILITY(U,$J,358.3,23216,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23216,1,4,0)
- ;;=4^110.1
- ;;^UTILITY(U,$J,358.3,23216,1,5,0)
- ;;=5^Onychomycosis finger or toe
+ ;;^UTILITY(U,$J,358.3,21865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21865,1,3,0)
+ ;;=3^Nondisp fx of neck of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,21865,1,4,0)
+ ;;=4^S62.255S
+ ;;^UTILITY(U,$J,358.3,21865,2)
+ ;;=^5033744
+ ;;^UTILITY(U,$J,358.3,21866,0)
+ ;;=S62.254S^^101^1035^88
+ ;;^UTILITY(U,$J,358.3,21866,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21866,1,3,0)
+ ;;=3^Nondisp fx of neck of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,21866,1,4,0)
+ ;;=4^S62.254S
+ ;;^UTILITY(U,$J,358.3,21866,2)
+ ;;=^5033737
+ ;;^UTILITY(U,$J,358.3,21867,0)
+ ;;=S62.365S^^101^1035^93
+ ;;^UTILITY(U,$J,358.3,21867,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21867,1,3,0)
+ ;;=3^Nondisp fx of neck of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,21867,1,4,0)
+ ;;=4^S62.365S
+ ;;^UTILITY(U,$J,358.3,21867,2)
+ ;;=^5034220
+ ;;^UTILITY(U,$J,358.3,21868,0)
+ ;;=S62.364S^^101^1035^94
+ ;;^UTILITY(U,$J,358.3,21868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21868,1,3,0)
+ ;;=3^Nondisp fx of neck of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,21868,1,4,0)
+ ;;=4^S62.364S
+ ;;^UTILITY(U,$J,358.3,21868,2)
+ ;;=^5034213
+ ;;^UTILITY(U,$J,358.3,21869,0)
+ ;;=S62.361S^^101^1035^89
+ ;;^UTILITY(U,$J,358.3,21869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21869,1,3,0)
+ ;;=3^Nondisp fx of neck of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,21869,1,4,0)
+ ;;=4^S62.361S
+ ;;^UTILITY(U,$J,358.3,21869,2)
+ ;;=^5034192
+ ;;^UTILITY(U,$J,358.3,21870,0)
+ ;;=S62.360S^^101^1035^90
+ ;;^UTILITY(U,$J,358.3,21870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21870,1,3,0)
+ ;;=3^Nondisp fx of neck of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,21870,1,4,0)
+ ;;=4^S62.360S
+ ;;^UTILITY(U,$J,358.3,21870,2)
+ ;;=^5034185
+ ;;^UTILITY(U,$J,358.3,21871,0)
+ ;;=S62.363S^^101^1035^91
+ ;;^UTILITY(U,$J,358.3,21871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21871,1,3,0)
+ ;;=3^Nondisp fx of neck of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,21871,1,4,0)
+ ;;=4^S62.363S
+ ;;^UTILITY(U,$J,358.3,21871,2)
+ ;;=^5034206
+ ;;^UTILITY(U,$J,358.3,21872,0)
+ ;;=S62.362S^^101^1035^92
+ ;;^UTILITY(U,$J,358.3,21872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21872,1,3,0)
+ ;;=3^Nondisp fx of neck of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,21872,1,4,0)
+ ;;=4^S62.362S
+ ;;^UTILITY(U,$J,358.3,21872,2)
+ ;;=^5034199
+ ;;^UTILITY(U,$J,358.3,21873,0)
+ ;;=S62.357S^^101^1035^115
+ ;;^UTILITY(U,$J,358.3,21873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21873,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,21873,1,4,0)
+ ;;=4^S62.357S
+ ;;^UTILITY(U,$J,358.3,21873,2)
+ ;;=^5034164
+ ;;^UTILITY(U,$J,358.3,21874,0)
+ ;;=S62.356S^^101^1035^116
+ ;;^UTILITY(U,$J,358.3,21874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21874,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,21874,1,4,0)
+ ;;=4^S62.356S
+ ;;^UTILITY(U,$J,358.3,21874,2)
+ ;;=^5034157
+ ;;^UTILITY(U,$J,358.3,21875,0)
+ ;;=S62.245S^^101^1035^107
+ ;;^UTILITY(U,$J,358.3,21875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21875,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,21875,1,4,0)
+ ;;=4^S62.245S
+ ;;^UTILITY(U,$J,358.3,21875,2)
+ ;;=^5033702
+ ;;^UTILITY(U,$J,358.3,21876,0)
+ ;;=S62.244S^^101^1035^108
+ ;;^UTILITY(U,$J,358.3,21876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21876,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,21876,1,4,0)
+ ;;=4^S62.244S
+ ;;^UTILITY(U,$J,358.3,21876,2)
+ ;;=^5033695

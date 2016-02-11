@@ -1,120 +1,128 @@
-IBDEI1PP ; ; 06-AUG-2015
+IBDEI1PP ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30327,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30327,1,4,0)
- ;;=4^O36.1135
- ;;^UTILITY(U,$J,358.3,30327,2)
- ;;=^5016912
- ;;^UTILITY(U,$J,358.3,30328,0)
- ;;=O36.1910^^178^1916^146
- ;;^UTILITY(U,$J,358.3,30328,1,0)
+ ;;^UTILITY(U,$J,358.3,28646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30328,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, unsp
- ;;^UTILITY(U,$J,358.3,30328,1,4,0)
- ;;=4^O36.1910
- ;;^UTILITY(U,$J,358.3,30328,2)
- ;;=^5016919
- ;;^UTILITY(U,$J,358.3,30329,0)
- ;;=O36.1911^^178^1916^147
- ;;^UTILITY(U,$J,358.3,30329,1,0)
+ ;;^UTILITY(U,$J,358.3,28646,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28646,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,28646,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,28647,0)
+ ;;=F17.291^^132^1334^29
+ ;;^UTILITY(U,$J,358.3,28647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30329,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30329,1,4,0)
- ;;=4^O36.1911
- ;;^UTILITY(U,$J,358.3,30329,2)
- ;;=^5016920
- ;;^UTILITY(U,$J,358.3,30330,0)
- ;;=O36.1912^^178^1916^148
- ;;^UTILITY(U,$J,358.3,30330,1,0)
+ ;;^UTILITY(U,$J,358.3,28647,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,28647,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,28647,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,28648,0)
+ ;;=F17.290^^132^1334^30
+ ;;^UTILITY(U,$J,358.3,28648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30330,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30330,1,4,0)
- ;;=4^O36.1912
- ;;^UTILITY(U,$J,358.3,30330,2)
- ;;=^5016921
- ;;^UTILITY(U,$J,358.3,30331,0)
- ;;=O36.1913^^178^1916^149
- ;;^UTILITY(U,$J,358.3,30331,1,0)
+ ;;^UTILITY(U,$J,358.3,28648,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28648,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,28648,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,28649,0)
+ ;;=F17.221^^132^1334^24
+ ;;^UTILITY(U,$J,358.3,28649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30331,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30331,1,4,0)
- ;;=4^O36.1913
- ;;^UTILITY(U,$J,358.3,30331,2)
- ;;=^5016922
- ;;^UTILITY(U,$J,358.3,30332,0)
- ;;=O36.1914^^178^1916^150
- ;;^UTILITY(U,$J,358.3,30332,1,0)
+ ;;^UTILITY(U,$J,358.3,28649,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,28649,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,28649,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,28650,0)
+ ;;=F17.220^^132^1334^25
+ ;;^UTILITY(U,$J,358.3,28650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30332,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30332,1,4,0)
- ;;=4^O36.1914
- ;;^UTILITY(U,$J,358.3,30332,2)
- ;;=^5016923
- ;;^UTILITY(U,$J,358.3,30333,0)
- ;;=O36.1915^^178^1916^151
- ;;^UTILITY(U,$J,358.3,30333,1,0)
+ ;;^UTILITY(U,$J,358.3,28650,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28650,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,28650,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,28651,0)
+ ;;=F17.211^^132^1334^26
+ ;;^UTILITY(U,$J,358.3,28651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30333,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30333,1,4,0)
- ;;=4^O36.1915
- ;;^UTILITY(U,$J,358.3,30333,2)
- ;;=^5016924
- ;;^UTILITY(U,$J,358.3,30334,0)
- ;;=O36.1920^^178^1916^152
- ;;^UTILITY(U,$J,358.3,30334,1,0)
+ ;;^UTILITY(U,$J,358.3,28651,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,28651,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,28651,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,28652,0)
+ ;;=F17.200^^132^1334^31
+ ;;^UTILITY(U,$J,358.3,28652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30334,1,3,0)
- ;;=3^Maternal care for oth isoimmun, second trimester, unsp
- ;;^UTILITY(U,$J,358.3,30334,1,4,0)
- ;;=4^O36.1920
- ;;^UTILITY(U,$J,358.3,30334,2)
- ;;=^5016925
- ;;^UTILITY(U,$J,358.3,30335,0)
- ;;=O36.1921^^178^1916^153
- ;;^UTILITY(U,$J,358.3,30335,1,0)
+ ;;^UTILITY(U,$J,358.3,28652,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28652,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,28652,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,28653,0)
+ ;;=F11.120^^132^1334^32
+ ;;^UTILITY(U,$J,358.3,28653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30335,1,3,0)
- ;;=3^Maternal care for oth isoimmun, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30335,1,4,0)
- ;;=4^O36.1921
- ;;^UTILITY(U,$J,358.3,30335,2)
- ;;=^5016926
- ;;^UTILITY(U,$J,358.3,30336,0)
- ;;=O36.1922^^178^1916^154
- ;;^UTILITY(U,$J,358.3,30336,1,0)
+ ;;^UTILITY(U,$J,358.3,28653,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28653,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,28653,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,28654,0)
+ ;;=F11.10^^132^1334^34
+ ;;^UTILITY(U,$J,358.3,28654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30336,1,3,0)
- ;;=3^Maternal care for oth isoimmun, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30336,1,4,0)
- ;;=4^O36.1922
- ;;^UTILITY(U,$J,358.3,30336,2)
- ;;=^5016927
- ;;^UTILITY(U,$J,358.3,30337,0)
- ;;=O36.1923^^178^1916^155
- ;;^UTILITY(U,$J,358.3,30337,1,0)
+ ;;^UTILITY(U,$J,358.3,28654,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28654,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,28654,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,28655,0)
+ ;;=F11.129^^132^1334^33
+ ;;^UTILITY(U,$J,358.3,28655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30337,1,3,0)
- ;;=3^Maternal care for oth isoimmun, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30337,1,4,0)
- ;;=4^O36.1923
- ;;^UTILITY(U,$J,358.3,30337,2)
- ;;=^5016928
- ;;^UTILITY(U,$J,358.3,30338,0)
- ;;=O36.1924^^178^1916^156
- ;;^UTILITY(U,$J,358.3,30338,1,0)
+ ;;^UTILITY(U,$J,358.3,28655,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,28655,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,28655,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,28656,0)
+ ;;=F10.21^^132^1334^3
+ ;;^UTILITY(U,$J,358.3,28656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30338,1,3,0)
- ;;=3^Maternal care for oth isoimmun, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30338,1,4,0)
- ;;=4^O36.1924
- ;;^UTILITY(U,$J,358.3,30338,2)
- ;;=^5016929
+ ;;^UTILITY(U,$J,358.3,28656,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,28656,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,28656,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,28657,0)
+ ;;=F12.10^^132^1334^5
+ ;;^UTILITY(U,$J,358.3,28657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28657,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28657,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,28657,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,28658,0)
+ ;;=F12.20^^132^1334^7
+ ;;^UTILITY(U,$J,358.3,28658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28658,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated

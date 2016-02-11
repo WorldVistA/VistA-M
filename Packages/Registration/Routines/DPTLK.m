@@ -1,5 +1,5 @@
 DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915**;Aug 13, 1993;Build 6
  ;
  ; mods made for magstripe read 12/96 - JFP
  ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
@@ -8,7 +8,7 @@ DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
  ;                by patch DG*5.3*244
  ;
 EN ; -- Entry point
- N DIE,DR
+ N DIE,DR,DGSEARCH,DPTXX
  K DPTX,DPTDFN,DPTSAVX I $D(DIC(0)) G QK:DIC(0)["I"!(DIC(0)'["A"&('$D(X)))
  I '$D(^DD("VERSION")) W !!?3,"Unable to proceed. Fileman version node ^DD(""VERSION"") is undefined." G QK
  I '$D(^DPT(0))!(^DD("VERSION")<17.2) W !!?3,"Unable to proceed. ",$S('$D(^DPT(0)):"0th node of ^DPT missing",^DD("VERSION")<17.2:"Fileman version must be at least 17.2",1:""),"." G QK
@@ -17,10 +17,10 @@ EN2 K DO,DUOUT,DTOUT S U="^",DIC="^DPT(",DIC(0)=$S($D(DIC(0)):DIC(0),1:"AELMQ") 
  ;
 ASKPAT ; -- Prompt for patient
  I DIC(0)["A" D   G QK:'$T!($E(DPTX)["^")!(DPTX="")
- .K DTOUT,DUOUT,DGNEW
+ .K DTOUT,DUOUT,DGNEW,DGSEARCH
  .W !,$S($D(DIC("A")):DIC("A"),1:"Select PATIENT NAME: ") W:$D(DIC("B")) DIC("B"),"// "
  .R X:DTIME
- .S DPTX=X S:'$T DTOUT=1 S:$T&(DPTX="")&($D(DIC("B"))) DPTX=DIC("B") S:DPTX["^"&($E(DPTX)'="%") DUOUT=1
+ .S (DPTX,DPTXX)=X S:'$T DTOUT=1 S:$T&(DPTX="")&($D(DIC("B"))) DPTX=DIC("B") S:DPTX["^"&($E(DPTX)'="%") DUOUT=1
  ; -- Check for the IATA magnetic stripe input
  N MAG,GCHK,BARCODE,DGVIC40,DGCAC
  S (MAG,BARCODE,DGVIC40,DGCAC)=0
@@ -77,7 +77,12 @@ CHKPAT1 .S X=DPTX
  .D SETDPT^DPTLK1:Y>0
  .S DPTDFN=$S($D(DPTS(Y)):Y,1:-1)
  ; -- Check for index lookups
- I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1 G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
+ I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
+ . I DPTDFN<1,$P($G(XQY0),"^",2)="Register a Patient",$T(PATIENT^MPIFXMLP)'="" D
+ .. S DPTDFN=$$SEARCH^DPTLK7(DPTX,$G(DPTXX))
+ .. I DPTDFN<1 K DO,D,DIC("W"),DPTCNT,DPTS,DPTSEL,DPTSZ S DPTDFN=-1,Y=-1,(DPTX,DPTXX)=""
+ .. S DPTSZ=1000 I $D(^DD("OS"))#2 S DPTSZ=$S(+$P(^DD("OS",^("OS"),0),U,2):$P(^(0),U,2),1:DPTSZ)
+ .. S:DPTDFN>0 DPTS(DPTDFN)=$P(^DPT(DPTDFN,0),"^")_"^"_$P(^DPT(DPTDFN,0),"^")
 MAG ; -- No patient found, check for mag stripe input, create stub
  I 'MAG,'BARCODE,'DGCAC G NOPAT
  ; -- Check for ADT option(s) only
@@ -115,7 +120,7 @@ CHKDFN ; --
  ;
  ; check for other patients in "BS5" xref on Patient file
  ;I '$G(DICR),DPTDFN>0,DIC(0)["E",$$BS5^DPTLK5(+DPTDFN) D  G ASKPAT:DIC(0)["A"&(%'=1),QK:DPTDFN<0
- I DPTDFN>0,DIC(0)["E",$$BS5^DPTLK5(+DPTDFN) D  G ASKPAT:DIC(0)["A"&(%'=1),QK:DPTDFN<0  ;*TEST*
+ I DPTDFN>0,DIC(0)["E",$$BS5^DPTLK5(+DPTDFN),'$D(DGSEARCH) D  G ASKPAT:DIC(0)["A"&(%'=1),QK:DPTDFN<0  ;*TEST*
  .N DPTZERO,DPTLSNME,DPTSSN S DPTZERO=$G(^DPT(+DPTDFN,0)),DPTLSNME=$P($P(DPTZERO,U),","),DPTSSN=$E($P(DPTZERO,U,9),6,9)
  .W $C(7),!!,"There is more than one patient whose last name is '",DPTLSNME,"' and"
  .W !,"whose social security number ends with '",DPTSSN,"'."
@@ -130,7 +135,6 @@ Q ; --
  S Y=$S('$D(DPTDFN):-1,'$D(DPTS(+DPTDFN)):-1,1:DPTDFN),X=$S($D(DPTX)&(+Y>0):DPTX,$D(DPTSAVX):DPTSAVX,$D(DPTX):DPTX,1:"")
  I Y>0 S:DIC(0)'["F" ^DISV($S($D(DUZ)#2:DUZ,1:0),"^DPT(")=+Y S:DIC(0)["Z" Y(0)=^DPT(+Y,0),Y(0,0)=$P(^(0),U,1)
  ;DG*600
- ;I DIC(0)["E",$P($G(^DPT(+Y,0)),U,21) W *7,!,"Warning : You have selected a test patient."
  I DIC(0)["E",$$TESTPAT^VADPT(+Y) W *7,!,"WARNING : You may have selected a test patient."
  I DIC(0)["E",$$BADADR^DGUTL3(+Y) W *7,!,"WARNING : ** This patient has been flagged with a Bad Address Indicator."
  I DIC(0)["E",$$VAADV^DPTLK3(+Y) W *7,!,"** Patient is VA ADVANTAGE."

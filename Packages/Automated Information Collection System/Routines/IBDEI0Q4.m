@@ -1,136 +1,120 @@
-IBDEI0Q4 ; ; 06-AUG-2015
+IBDEI0Q4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12511,1,4,0)
- ;;=4^Drug dependance-Antepartum
- ;;^UTILITY(U,$J,358.3,12511,2)
- ;;=^271030
- ;;^UTILITY(U,$J,358.3,12512,0)
- ;;=648.34^^62^747^14
- ;;^UTILITY(U,$J,358.3,12512,1,0)
+ ;;^UTILITY(U,$J,358.3,11962,0)
+ ;;=W18.12XA^^68^694^61
+ ;;^UTILITY(U,$J,358.3,11962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12512,1,3,0)
- ;;=3^648.34
- ;;^UTILITY(U,$J,358.3,12512,1,4,0)
- ;;=4^Drug dependance-Postpartum
- ;;^UTILITY(U,$J,358.3,12512,2)
- ;;=^271031
- ;;^UTILITY(U,$J,358.3,12513,0)
- ;;=648.43^^62^747^24
- ;;^UTILITY(U,$J,358.3,12513,1,0)
+ ;;^UTILITY(U,$J,358.3,11962,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11962,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,11962,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,11963,0)
+ ;;=W18.12XD^^68^694^62
+ ;;^UTILITY(U,$J,358.3,11963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12513,1,3,0)
- ;;=3^648.43
- ;;^UTILITY(U,$J,358.3,12513,1,4,0)
- ;;=4^Mental Disorder-Antepartum
- ;;^UTILITY(U,$J,358.3,12513,2)
- ;;=^271036
- ;;^UTILITY(U,$J,358.3,12514,0)
- ;;=648.44^^62^747^25
- ;;^UTILITY(U,$J,358.3,12514,1,0)
+ ;;^UTILITY(U,$J,358.3,11963,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11963,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,11963,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,11964,0)
+ ;;=W18.2XXA^^68^694^73
+ ;;^UTILITY(U,$J,358.3,11964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12514,1,3,0)
- ;;=3^648.44
- ;;^UTILITY(U,$J,358.3,12514,1,4,0)
- ;;=4^Mental Disorder-Postpartum
- ;;^UTILITY(U,$J,358.3,12514,2)
- ;;=^271037
- ;;^UTILITY(U,$J,358.3,12515,0)
- ;;=648.53^^62^747^10
- ;;^UTILITY(U,$J,358.3,12515,1,0)
+ ;;^UTILITY(U,$J,358.3,11964,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11964,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,11964,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,11965,0)
+ ;;=W18.2XXD^^68^694^74
+ ;;^UTILITY(U,$J,358.3,11965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12515,1,3,0)
- ;;=3^648.53
- ;;^UTILITY(U,$J,358.3,12515,1,4,0)
- ;;=4^Congen cardiovasc d/o-Antepartum
- ;;^UTILITY(U,$J,358.3,12515,2)
- ;;=^271042
- ;;^UTILITY(U,$J,358.3,12516,0)
- ;;=648.54^^62^747^9
- ;;^UTILITY(U,$J,358.3,12516,1,0)
+ ;;^UTILITY(U,$J,358.3,11965,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11965,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,11965,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,11966,0)
+ ;;=W18.40XA^^68^694^105
+ ;;^UTILITY(U,$J,358.3,11966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12516,1,3,0)
- ;;=3^648.54
- ;;^UTILITY(U,$J,358.3,12516,1,4,0)
- ;;=4^Conge cardiovasc d/o-Postpartum
- ;;^UTILITY(U,$J,358.3,12516,2)
- ;;=^271043
- ;;^UTILITY(U,$J,358.3,12517,0)
- ;;=648.63^^62^747^30
- ;;^UTILITY(U,$J,358.3,12517,1,0)
+ ;;^UTILITY(U,$J,358.3,11966,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11966,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,11966,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,11967,0)
+ ;;=W18.40XD^^68^694^106
+ ;;^UTILITY(U,$J,358.3,11967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12517,1,3,0)
- ;;=3^648.63
- ;;^UTILITY(U,$J,358.3,12517,1,4,0)
- ;;=4^Oth cardiovasc disease-Antepartum
- ;;^UTILITY(U,$J,358.3,12517,2)
- ;;=^271048
- ;;^UTILITY(U,$J,358.3,12518,0)
- ;;=648.64^^62^747^31
- ;;^UTILITY(U,$J,358.3,12518,1,0)
+ ;;^UTILITY(U,$J,358.3,11967,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11967,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,11967,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,11968,0)
+ ;;=W18.41XA^^68^694^107
+ ;;^UTILITY(U,$J,358.3,11968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12518,1,3,0)
- ;;=3^648.64
- ;;^UTILITY(U,$J,358.3,12518,1,4,0)
- ;;=4^Oth cardiovasc disease-Postpartum
- ;;^UTILITY(U,$J,358.3,12518,2)
- ;;=^271049
- ;;^UTILITY(U,$J,358.3,12519,0)
- ;;=648.73^^62^747^7
- ;;^UTILITY(U,$J,358.3,12519,1,0)
+ ;;^UTILITY(U,$J,358.3,11968,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11968,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,11968,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,11969,0)
+ ;;=W18.41XD^^68^694^108
+ ;;^UTILITY(U,$J,358.3,11969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12519,1,3,0)
- ;;=3^648.73
- ;;^UTILITY(U,$J,358.3,12519,1,4,0)
- ;;=4^Bone & Joint d/o-Antepartum
- ;;^UTILITY(U,$J,358.3,12519,2)
- ;;=^271054
- ;;^UTILITY(U,$J,358.3,12520,0)
- ;;=648.74^^62^747^8
- ;;^UTILITY(U,$J,358.3,12520,1,0)
+ ;;^UTILITY(U,$J,358.3,11969,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11969,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,11969,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,11970,0)
+ ;;=W18.42XA^^68^694^109
+ ;;^UTILITY(U,$J,358.3,11970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12520,1,3,0)
- ;;=3^648.74
- ;;^UTILITY(U,$J,358.3,12520,1,4,0)
- ;;=4^Bone & Joint d/o-Postpartum
- ;;^UTILITY(U,$J,358.3,12520,2)
- ;;=^271055
- ;;^UTILITY(U,$J,358.3,12521,0)
- ;;=648.83^^62^747^1
- ;;^UTILITY(U,$J,358.3,12521,1,0)
+ ;;^UTILITY(U,$J,358.3,11970,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11970,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,11970,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,11971,0)
+ ;;=W18.42XD^^68^694^110
+ ;;^UTILITY(U,$J,358.3,11971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12521,1,3,0)
- ;;=3^648.83
- ;;^UTILITY(U,$J,358.3,12521,1,4,0)
- ;;=4^ABN Glucose tolerance-Antepartum
- ;;^UTILITY(U,$J,358.3,12521,2)
- ;;=^271060
- ;;^UTILITY(U,$J,358.3,12522,0)
- ;;=648.84^^62^747^2
- ;;^UTILITY(U,$J,358.3,12522,1,0)
+ ;;^UTILITY(U,$J,358.3,11971,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11971,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,11971,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,11972,0)
+ ;;=W18.43XA^^68^694^103
+ ;;^UTILITY(U,$J,358.3,11972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12522,1,3,0)
- ;;=3^648.84
- ;;^UTILITY(U,$J,358.3,12522,1,4,0)
- ;;=4^ABN Glucose tolerance-Postpartum
- ;;^UTILITY(U,$J,358.3,12522,2)
- ;;=^271061
- ;;^UTILITY(U,$J,358.3,12523,0)
- ;;=649.03^^62^748^11
- ;;^UTILITY(U,$J,358.3,12523,1,0)
+ ;;^UTILITY(U,$J,358.3,11972,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11972,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,11972,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,11973,0)
+ ;;=W18.43XD^^68^694^104
+ ;;^UTILITY(U,$J,358.3,11973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12523,1,3,0)
- ;;=3^649.03
- ;;^UTILITY(U,$J,358.3,12523,1,4,0)
- ;;=4^Tobacco use disorder-Antepartum
- ;;^UTILITY(U,$J,358.3,12523,2)
- ;;=^334127
- ;;^UTILITY(U,$J,358.3,12524,0)
- ;;=649.04^^62^748^12
- ;;^UTILITY(U,$J,358.3,12524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12524,1,3,0)
- ;;=3^649.04
- ;;^UTILITY(U,$J,358.3,12524,1,4,0)
- ;;=4^Tobacco use disorder-Postpartum
+ ;;^UTILITY(U,$J,358.3,11973,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr

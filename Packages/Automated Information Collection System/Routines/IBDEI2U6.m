@@ -1,0 +1,132 @@
+IBDEI2U6 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47599,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,47599,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,47600,0)
+ ;;=C88.2^^209^2346^213
+ ;;^UTILITY(U,$J,358.3,47600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47600,1,3,0)
+ ;;=3^Heavy Chain Disease
+ ;;^UTILITY(U,$J,358.3,47600,1,4,0)
+ ;;=4^C88.2
+ ;;^UTILITY(U,$J,358.3,47600,2)
+ ;;=^55078
+ ;;^UTILITY(U,$J,358.3,47601,0)
+ ;;=C88.3^^209^2346^235
+ ;;^UTILITY(U,$J,358.3,47601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47601,1,3,0)
+ ;;=3^Immunoproliferative Small Intestinal Disease
+ ;;^UTILITY(U,$J,358.3,47601,1,4,0)
+ ;;=4^C88.3
+ ;;^UTILITY(U,$J,358.3,47601,2)
+ ;;=^61964
+ ;;^UTILITY(U,$J,358.3,47602,0)
+ ;;=C88.4^^209^2346^138
+ ;;^UTILITY(U,$J,358.3,47602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47602,1,3,0)
+ ;;=3^Extranodal Marginal Zone B-Cell Lymphoma of Mucosa-Assoc Lymphoid Tissue
+ ;;^UTILITY(U,$J,358.3,47602,1,4,0)
+ ;;=4^C88.4
+ ;;^UTILITY(U,$J,358.3,47602,2)
+ ;;=^5001749
+ ;;^UTILITY(U,$J,358.3,47603,0)
+ ;;=C88.8^^209^2346^281
+ ;;^UTILITY(U,$J,358.3,47603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47603,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases NEC
+ ;;^UTILITY(U,$J,358.3,47603,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,47603,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,47604,0)
+ ;;=C88.9^^209^2346^282
+ ;;^UTILITY(U,$J,358.3,47604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47604,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases,Unspec
+ ;;^UTILITY(U,$J,358.3,47604,1,4,0)
+ ;;=4^C88.9
+ ;;^UTILITY(U,$J,358.3,47604,2)
+ ;;=^5001751
+ ;;^UTILITY(U,$J,358.3,47605,0)
+ ;;=C90.00^^209^2346^351
+ ;;^UTILITY(U,$J,358.3,47605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47605,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47605,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,47605,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,47606,0)
+ ;;=C90.01^^209^2346^350
+ ;;^UTILITY(U,$J,358.3,47606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47606,1,3,0)
+ ;;=3^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,47606,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,47606,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,47607,0)
+ ;;=C90.02^^209^2346^349
+ ;;^UTILITY(U,$J,358.3,47607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47607,1,3,0)
+ ;;=3^Multiple Myeloma,In Relapse
+ ;;^UTILITY(U,$J,358.3,47607,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,47607,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,47608,0)
+ ;;=C90.10^^209^2346^444
+ ;;^UTILITY(U,$J,358.3,47608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47608,1,3,0)
+ ;;=3^Plasma Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47608,1,4,0)
+ ;;=4^C90.10
+ ;;^UTILITY(U,$J,358.3,47608,2)
+ ;;=^5001754
+ ;;^UTILITY(U,$J,358.3,47609,0)
+ ;;=C90.11^^209^2346^443
+ ;;^UTILITY(U,$J,358.3,47609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47609,1,3,0)
+ ;;=3^Plasma Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,47609,1,4,0)
+ ;;=4^C90.11
+ ;;^UTILITY(U,$J,358.3,47609,2)
+ ;;=^267517
+ ;;^UTILITY(U,$J,358.3,47610,0)
+ ;;=C90.12^^209^2346^442
+ ;;^UTILITY(U,$J,358.3,47610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47610,1,3,0)
+ ;;=3^Plasma Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,47610,1,4,0)
+ ;;=4^C90.12
+ ;;^UTILITY(U,$J,358.3,47610,2)
+ ;;=^5001755
+ ;;^UTILITY(U,$J,358.3,47611,0)
+ ;;=C90.20^^209^2346^137
+ ;;^UTILITY(U,$J,358.3,47611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47611,1,3,0)
+ ;;=3^Extramedullary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47611,1,4,0)
+ ;;=4^C90.20
+ ;;^UTILITY(U,$J,358.3,47611,2)
+ ;;=^5001756
+ ;;^UTILITY(U,$J,358.3,47612,0)
+ ;;=C90.21^^209^2346^136
+ ;;^UTILITY(U,$J,358.3,47612,1,0)
+ ;;=^358.31IA^4^2

@@ -1,134 +1,142 @@
-IBDEI03B ; ; 06-AUG-2015
+IBDEI03B ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1011,1,4,0)
- ;;=4^R13.14
- ;;^UTILITY(U,$J,358.3,1011,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,1012,0)
- ;;=S02.2XXA^^3^35^73
- ;;^UTILITY(U,$J,358.3,1012,1,0)
+ ;;^UTILITY(U,$J,358.3,809,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,810,0)
+ ;;=Z91.018^^9^88^30
+ ;;^UTILITY(U,$J,358.3,810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1012,1,3,0)
- ;;=3^Fracture of nasal bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,1012,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,1012,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,1013,0)
- ;;=S05.01XA^^3^35^89
- ;;^UTILITY(U,$J,358.3,1013,1,0)
+ ;;^UTILITY(U,$J,358.3,810,1,3,0)
+ ;;=3^Allergy to Foods NEC
+ ;;^UTILITY(U,$J,358.3,810,1,4,0)
+ ;;=4^Z91.018
+ ;;^UTILITY(U,$J,358.3,810,2)
+ ;;=^5063603
+ ;;^UTILITY(U,$J,358.3,811,0)
+ ;;=Z91.038^^9^88^31
+ ;;^UTILITY(U,$J,358.3,811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1013,1,3,0)
- ;;=3^Inj conjunctiva and corneal abrasion w/o fb, right eye, init
- ;;^UTILITY(U,$J,358.3,1013,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,1013,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,1014,0)
- ;;=S05.02XA^^3^35^90
- ;;^UTILITY(U,$J,358.3,1014,1,0)
+ ;;^UTILITY(U,$J,358.3,811,1,3,0)
+ ;;=3^Allergy to Insects NEC
+ ;;^UTILITY(U,$J,358.3,811,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,811,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,812,0)
+ ;;=D83.9^^9^89^1
+ ;;^UTILITY(U,$J,358.3,812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1014,1,3,0)
- ;;=3^Inj conjunctiva and corneal abrasion w/o fb, left eye, init
- ;;^UTILITY(U,$J,358.3,1014,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,1014,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,1015,0)
- ;;=T17.1XXA^^3^35^72
- ;;^UTILITY(U,$J,358.3,1015,1,0)
+ ;;^UTILITY(U,$J,358.3,812,1,3,0)
+ ;;=3^Common Variable Immunodeficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,812,1,4,0)
+ ;;=4^D83.9
+ ;;^UTILITY(U,$J,358.3,812,2)
+ ;;=^5002437
+ ;;^UTILITY(U,$J,358.3,813,0)
+ ;;=D89.9^^9^89^2
+ ;;^UTILITY(U,$J,358.3,813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1015,1,3,0)
- ;;=3^Foreign body in nostril, initial encounter
- ;;^UTILITY(U,$J,358.3,1015,1,4,0)
- ;;=4^T17.1XXA
- ;;^UTILITY(U,$J,358.3,1015,2)
- ;;=^5046429
- ;;^UTILITY(U,$J,358.3,1016,0)
- ;;=E05.90^^3^36^20
- ;;^UTILITY(U,$J,358.3,1016,1,0)
+ ;;^UTILITY(U,$J,358.3,813,1,3,0)
+ ;;=3^Disorder Involving the Immune Mechanism,Unspec
+ ;;^UTILITY(U,$J,358.3,813,1,4,0)
+ ;;=4^D89.9
+ ;;^UTILITY(U,$J,358.3,813,2)
+ ;;=^5002459
+ ;;^UTILITY(U,$J,358.3,814,0)
+ ;;=D80.1^^9^89^3
+ ;;^UTILITY(U,$J,358.3,814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1016,1,3,0)
- ;;=3^Thyrotoxicosis, unsp without thyrotoxic crisis or storm
- ;;^UTILITY(U,$J,358.3,1016,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,1016,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,1017,0)
- ;;=E03.9^^3^36^11
- ;;^UTILITY(U,$J,358.3,1017,1,0)
+ ;;^UTILITY(U,$J,358.3,814,1,3,0)
+ ;;=3^Nonfamilial Hypogammaglobulinemia
+ ;;^UTILITY(U,$J,358.3,814,1,4,0)
+ ;;=4^D80.1
+ ;;^UTILITY(U,$J,358.3,814,2)
+ ;;=^5002406
+ ;;^UTILITY(U,$J,358.3,815,0)
+ ;;=D84.8^^9^89^4
+ ;;^UTILITY(U,$J,358.3,815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1017,1,3,0)
- ;;=3^Hypothyroidism, unspecified
- ;;^UTILITY(U,$J,358.3,1017,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,1017,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,1018,0)
- ;;=E07.9^^3^36^19
- ;;^UTILITY(U,$J,358.3,1018,1,0)
+ ;;^UTILITY(U,$J,358.3,815,1,3,0)
+ ;;=3^Other Spec Immunodeficiencies
+ ;;^UTILITY(U,$J,358.3,815,1,4,0)
+ ;;=4^D84.8
+ ;;^UTILITY(U,$J,358.3,815,2)
+ ;;=^5002440
+ ;;^UTILITY(U,$J,358.3,816,0)
+ ;;=Z01.82^^9^90^1
+ ;;^UTILITY(U,$J,358.3,816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1018,1,3,0)
- ;;=3^Thyroid Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1018,1,4,0)
- ;;=4^E07.9
- ;;^UTILITY(U,$J,358.3,1018,2)
- ;;=^5002502
- ;;^UTILITY(U,$J,358.3,1019,0)
- ;;=E21.3^^3^36^9
- ;;^UTILITY(U,$J,358.3,1019,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1019,1,3,0)
- ;;=3^Hyperparathyroidism, unspecified
- ;;^UTILITY(U,$J,358.3,1019,1,4,0)
- ;;=4^E21.3
- ;;^UTILITY(U,$J,358.3,1019,2)
- ;;=^331438
- ;;^UTILITY(U,$J,358.3,1020,0)
- ;;=E21.0^^3^36^15
- ;;^UTILITY(U,$J,358.3,1020,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1020,1,3,0)
- ;;=3^Primary hyperparathyroidism
- ;;^UTILITY(U,$J,358.3,1020,1,4,0)
- ;;=4^E21.0
- ;;^UTILITY(U,$J,358.3,1020,2)
- ;;=^331439
- ;;^UTILITY(U,$J,358.3,1021,0)
- ;;=E21.1^^3^36^17
- ;;^UTILITY(U,$J,358.3,1021,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1021,1,3,0)
- ;;=3^Secondary hyperparathyroidism, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,1021,1,4,0)
- ;;=4^E21.1
- ;;^UTILITY(U,$J,358.3,1021,2)
- ;;=^5002715
- ;;^UTILITY(U,$J,358.3,1022,0)
- ;;=E27.1^^3^36^14
- ;;^UTILITY(U,$J,358.3,1022,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1022,1,3,0)
- ;;=3^Primary adrenocortical insufficiency
- ;;^UTILITY(U,$J,358.3,1022,1,4,0)
- ;;=4^E27.1
- ;;^UTILITY(U,$J,358.3,1022,2)
- ;;=^5002740
- ;;^UTILITY(U,$J,358.3,1023,0)
- ;;=E27.2^^3^36^2
- ;;^UTILITY(U,$J,358.3,1023,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1023,1,3,0)
- ;;=3^Addisonian crisis
- ;;^UTILITY(U,$J,358.3,1023,1,4,0)
- ;;=4^E27.2
- ;;^UTILITY(U,$J,358.3,1023,2)
- ;;=^263725
- ;;^UTILITY(U,$J,358.3,1024,0)
- ;;=E27.40^^3^36^3
- ;;^UTILITY(U,$J,358.3,1024,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1024,1,3,0)
- ;;=3^Adrenocortical Insufficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,816,1,3,0)
+ ;;=3^Encounter for Allergy Testing
+ ;;^UTILITY(U,$J,358.3,816,1,4,0)
+ ;;=4^Z01.82
+ ;;^UTILITY(U,$J,358.3,816,2)
+ ;;=^5062629
+ ;;^UTILITY(U,$J,358.3,817,0)
+ ;;=99212^^10^91^2
+ ;;^UTILITY(U,$J,358.3,817,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,817,1,1,0)
+ ;;=1^Expanded Problem Focused
+ ;;^UTILITY(U,$J,358.3,817,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,818,0)
+ ;;=99213^^10^91^3
+ ;;^UTILITY(U,$J,358.3,818,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,818,1,1,0)
+ ;;=1^Detailed Visit
+ ;;^UTILITY(U,$J,358.3,818,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,819,0)
+ ;;=99214^^10^91^4
+ ;;^UTILITY(U,$J,358.3,819,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,819,1,1,0)
+ ;;=1^Comprehensive,Mod Complexity
+ ;;^UTILITY(U,$J,358.3,819,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,820,0)
+ ;;=99211^^10^91^1
+ ;;^UTILITY(U,$J,358.3,820,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,820,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,820,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,821,0)
+ ;;=99242^^10^92^1
+ ;;^UTILITY(U,$J,358.3,821,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,821,1,1,0)
+ ;;=1^Expanded Problem Focused
+ ;;^UTILITY(U,$J,358.3,821,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,822,0)
+ ;;=99243^^10^92^2
+ ;;^UTILITY(U,$J,358.3,822,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,822,1,1,0)
+ ;;=1^Detailed Visit
+ ;;^UTILITY(U,$J,358.3,822,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,823,0)
+ ;;=99244^^10^92^3
+ ;;^UTILITY(U,$J,358.3,823,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,823,1,1,0)
+ ;;=1^Comprehensive,Mod Complexity
+ ;;^UTILITY(U,$J,358.3,823,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,824,0)
+ ;;=99024^^10^93^1
+ ;;^UTILITY(U,$J,358.3,824,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,824,1,1,0)
+ ;;=1^Post Op visit in Global
+ ;;^UTILITY(U,$J,358.3,824,1,2,0)
+ ;;=2^99024
+ ;;^UTILITY(U,$J,358.3,825,0)
+ ;;=64415^^11^94^4^^^^1

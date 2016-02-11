@@ -1,138 +1,124 @@
-IBDEI13P ; ; 06-AUG-2015
+IBDEI13P ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19425,2)
- ;;=^336753
- ;;^UTILITY(U,$J,358.3,19426,0)
- ;;=625.71^^105^1231^65
- ;;^UTILITY(U,$J,358.3,19426,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19426,1,4,0)
- ;;=4^625.71
- ;;^UTILITY(U,$J,358.3,19426,1,5,0)
- ;;=5^Vulvar Vestibulitis
- ;;^UTILITY(U,$J,358.3,19426,2)
- ;;=^336618
- ;;^UTILITY(U,$J,358.3,19427,0)
- ;;=625.79^^105^1231^66
- ;;^UTILITY(U,$J,358.3,19427,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19427,1,4,0)
- ;;=4^625.79
- ;;^UTILITY(U,$J,358.3,19427,1,5,0)
- ;;=5^Vulvodynia NEC
- ;;^UTILITY(U,$J,358.3,19427,2)
- ;;=^336619
- ;;^UTILITY(U,$J,358.3,19428,0)
- ;;=795.07^^105^1231^11
- ;;^UTILITY(U,$J,358.3,19428,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19428,1,4,0)
- ;;=4^795.07
- ;;^UTILITY(U,$J,358.3,19428,1,5,0)
- ;;=5^Cervical Smear w/o Transformation Zone
- ;;^UTILITY(U,$J,358.3,19428,2)
- ;;=^336674
- ;;^UTILITY(U,$J,358.3,19429,0)
- ;;=795.08^^105^1231^53
- ;;^UTILITY(U,$J,358.3,19429,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19429,1,4,0)
- ;;=4^795.08
- ;;^UTILITY(U,$J,358.3,19429,1,5,0)
- ;;=5^Unsatis Cerv Cytology Smear
- ;;^UTILITY(U,$J,358.3,19429,2)
- ;;=^336842
- ;;^UTILITY(U,$J,358.3,19430,0)
- ;;=796.70^^105^1231^3
- ;;^UTILITY(U,$J,358.3,19430,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19430,1,4,0)
- ;;=4^796.70
- ;;^UTILITY(U,$J,358.3,19430,1,5,0)
- ;;=5^Abnormal Pap Smear of Anus NOS
- ;;^UTILITY(U,$J,358.3,19430,2)
- ;;=^336766
- ;;^UTILITY(U,$J,358.3,19431,0)
- ;;=795.10^^105^1231^4
- ;;^UTILITY(U,$J,358.3,19431,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19431,1,4,0)
- ;;=4^795.10
- ;;^UTILITY(U,$J,358.3,19431,1,5,0)
- ;;=5^Abnormal Pap Smear of Vagina NOS
- ;;^UTILITY(U,$J,358.3,19431,2)
- ;;=^336765
- ;;^UTILITY(U,$J,358.3,19432,0)
- ;;=795.18^^105^1231^54
- ;;^UTILITY(U,$J,358.3,19432,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19432,1,4,0)
- ;;=4^795.18
- ;;^UTILITY(U,$J,358.3,19432,1,5,0)
- ;;=5^Unsatis Vaginal Cytology Smear
- ;;^UTILITY(U,$J,358.3,19432,2)
- ;;=^336681
- ;;^UTILITY(U,$J,358.3,19433,0)
- ;;=796.78^^105^1231^52
- ;;^UTILITY(U,$J,358.3,19433,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19433,1,4,0)
- ;;=4^796.78
- ;;^UTILITY(U,$J,358.3,19433,1,5,0)
- ;;=5^Unsatis Anus Cytology Smear
- ;;^UTILITY(U,$J,358.3,19433,2)
- ;;=^336690
- ;;^UTILITY(U,$J,358.3,19434,0)
- ;;=233.7^^105^1232^33
- ;;^UTILITY(U,$J,358.3,19434,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19434,1,4,0)
- ;;=4^233.7
- ;;^UTILITY(U,$J,358.3,19434,1,5,0)
- ;;=5^Ca In-Situ Bladder
- ;;^UTILITY(U,$J,358.3,19434,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,19435,0)
- ;;=233.0^^105^1232^34
- ;;^UTILITY(U,$J,358.3,19435,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19435,1,4,0)
- ;;=4^233.0
- ;;^UTILITY(U,$J,358.3,19435,1,5,0)
- ;;=5^Ca In-Situ Breast
- ;;^UTILITY(U,$J,358.3,19435,2)
- ;;=Ca In-Situ Breast^267735
- ;;^UTILITY(U,$J,358.3,19436,0)
- ;;=233.1^^105^1232^35
- ;;^UTILITY(U,$J,358.3,19436,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19436,1,4,0)
- ;;=4^233.1
- ;;^UTILITY(U,$J,358.3,19436,1,5,0)
- ;;=5^Ca In-Situ Cervix
- ;;^UTILITY(U,$J,358.3,19436,2)
- ;;=^267736
- ;;^UTILITY(U,$J,358.3,19437,0)
- ;;=232.9^^105^1232^36
- ;;^UTILITY(U,$J,358.3,19437,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19437,1,4,0)
- ;;=4^232.9
- ;;^UTILITY(U,$J,358.3,19437,1,5,0)
- ;;=5^Ca In-Situ Skin
- ;;^UTILITY(U,$J,358.3,19437,2)
- ;;=^267724
- ;;^UTILITY(U,$J,358.3,19438,0)
- ;;=156.2^^105^1232^23
- ;;^UTILITY(U,$J,358.3,19438,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19438,1,4,0)
- ;;=4^156.2
- ;;^UTILITY(U,$J,358.3,19438,1,5,0)
- ;;=5^Ca Ampulla Of Vater
- ;;^UTILITY(U,$J,358.3,19438,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,19439,0)
- ;;=154.3^^105^1232^24
+ ;;^UTILITY(U,$J,358.3,18384,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,18384,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,18385,0)
+ ;;=L97.311^^94^905^201
+ ;;^UTILITY(U,$J,358.3,18385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18385,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,18385,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,18385,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,18386,0)
+ ;;=L97.312^^94^905^202
+ ;;^UTILITY(U,$J,358.3,18386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18386,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,18386,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,18386,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,18387,0)
+ ;;=L97.313^^94^905^203
+ ;;^UTILITY(U,$J,358.3,18387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18387,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,18387,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,18387,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,18388,0)
+ ;;=L97.314^^94^905^204
+ ;;^UTILITY(U,$J,358.3,18388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18388,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,18388,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,18388,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,18389,0)
+ ;;=L97.319^^94^905^205
+ ;;^UTILITY(U,$J,358.3,18389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18389,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,18389,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,18389,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,18390,0)
+ ;;=L97.321^^94^905^171
+ ;;^UTILITY(U,$J,358.3,18390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18390,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,18390,1,4,0)
+ ;;=4^L97.321
+ ;;^UTILITY(U,$J,358.3,18390,2)
+ ;;=^5009520
+ ;;^UTILITY(U,$J,358.3,18391,0)
+ ;;=L97.322^^94^905^172
+ ;;^UTILITY(U,$J,358.3,18391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18391,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,18391,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,18391,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,18392,0)
+ ;;=L97.323^^94^905^173
+ ;;^UTILITY(U,$J,358.3,18392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18392,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,18392,1,4,0)
+ ;;=4^L97.323
+ ;;^UTILITY(U,$J,358.3,18392,2)
+ ;;=^5009522
+ ;;^UTILITY(U,$J,358.3,18393,0)
+ ;;=L97.324^^94^905^174
+ ;;^UTILITY(U,$J,358.3,18393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18393,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,18393,1,4,0)
+ ;;=4^L97.324
+ ;;^UTILITY(U,$J,358.3,18393,2)
+ ;;=^5009523
+ ;;^UTILITY(U,$J,358.3,18394,0)
+ ;;=L97.329^^94^905^175
+ ;;^UTILITY(U,$J,358.3,18394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18394,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,18394,1,4,0)
+ ;;=4^L97.329
+ ;;^UTILITY(U,$J,358.3,18394,2)
+ ;;=^5009524
+ ;;^UTILITY(U,$J,358.3,18395,0)
+ ;;=L97.411^^94^905^216
+ ;;^UTILITY(U,$J,358.3,18395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18395,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,18395,1,4,0)
+ ;;=4^L97.411
+ ;;^UTILITY(U,$J,358.3,18395,2)
+ ;;=^5009530
+ ;;^UTILITY(U,$J,358.3,18396,0)
+ ;;=L97.412^^94^905^217
+ ;;^UTILITY(U,$J,358.3,18396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18396,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed

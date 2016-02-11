@@ -1,134 +1,70 @@
-IBDEI00L ; ; 06-AUG-2015
+IBDEI00L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.2)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.2)
- ;;=^IBE(358.2,
- ;;^UTILITY(U,$J,358.2,0)
- ;;=IMP/EXP SELECTION LIST^358.2I^189^189
- ;;^UTILITY(U,$J,358.2,1,0)
- ;;=ICD-10 DIAGNOSES^1^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,1,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,1,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,1,2,2,0)
- ;;=3^DIAGNOSIS^64^1^2^^1
- ;;^UTILITY(U,$J,358.2,1,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,1,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,1,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,2,0)
- ;;=ICD-10 DIAGNOSES^2^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,2,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,2,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,2,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,2,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,2,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,2,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,3,0)
- ;;=ICD-10 DIAGNOSES^3^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,3,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,3,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,3,2,2,0)
- ;;=3^DIAGNOSIS^64^1^2^^1
- ;;^UTILITY(U,$J,358.2,3,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,3,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,3,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,4,0)
- ;;=ICD-10 DIAGNOSES^4^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,4,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,4,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,4,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,4,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,4,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,4,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,5,0)
- ;;=ICD-10 DIAGNOSES^5^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,5,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,5,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,5,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,5,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,5,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,5,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,6,0)
- ;;=ICD-10 DIAGNOSES^6^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,6,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,6,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,6,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,6,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,6,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,6,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,7,0)
- ;;=ICD-10 DIAGNOSES^7^^^^^4^0^SC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,7,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,7,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,7,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,7,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,7,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,7,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,8,0)
- ;;=ICD-10 DIAGNOSES^8^^^^^4^0^SC^^1^0^1^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,8,1,0)
- ;;=^358.21I^1^1
- ;;^UTILITY(U,$J,358.2,8,1,1,0)
- ;;=1^2^1
- ;;^UTILITY(U,$J,358.2,8,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,8,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,8,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,8,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,8,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,8,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,9,0)
- ;;=CPT CODES^9^^^^^1^0^UBC^^3^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,9,1,0)
- ;;=^358.21I^3^3
- ;;^UTILITY(U,$J,358.2,9,1,1,0)
- ;;=1^2^4
- ;;^UTILITY(U,$J,358.2,9,1,2,0)
- ;;=2^2
- ;;^UTILITY(U,$J,358.2,9,1,3,0)
- ;;=3^2
+ ;;^UTILITY(U,$J,358.1,296,0)
+ ;;=CPT CODES^62^^16^0^132^49^^^1^MARK PROCEDURE(S) PERFORMED THIS VISIT^RC^Selection list - CPT codes^0
+ ;;^UTILITY(U,$J,358.1,297,0)
+ ;;=HEADER^62^^1^49^13^1^^^2
+ ;;^UTILITY(U,$J,358.1,298,0)
+ ;;=PATIENT INFORMATION^62^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,299,0)
+ ;;=PAIN ICD-10^62^^66^0^132^174^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
+ ;;^UTILITY(U,$J,358.1,300,0)
+ ;;=CPT CODES (3 COL)^63^^7^0^132^8^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
+ ;;^UTILITY(U,$J,358.1,301,0)
+ ;;=HEADER^63^^1^58^23^1^^^2
+ ;;^UTILITY(U,$J,358.1,302,0)
+ ;;=PATIENT INFORMATION^63^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,303,0)
+ ;;=MENTAL HEALTH ICD-10^63^^16^0^132^434^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
+ ;;^UTILITY(U,$J,358.1,304,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^64^^6^0^132^14^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,305,0)
+ ;;=PROCEDURES (V2.1)^64^^21^0^133^54^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,306,0)
+ ;;=HEADER^64^^1^58^34^1^^^2
+ ;;^UTILITY(U,$J,358.1,307,0)
+ ;;=PATIENT INFORMATION^64^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,308,0)
+ ;;=ICD-10 DIAGNOSES (V1.0)^64^^81^0^132^642^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,309,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^65^^6^0^132^9^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,310,0)
+ ;;=HEADER^65^^1^58^24^1^^^2
+ ;;^UTILITY(U,$J,358.1,311,0)
+ ;;=PATIENT INFORMATION^65^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,312,0)
+ ;;=PROCEDURES (V2.1)^65^^16^0^133^59^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,313,0)
+ ;;=ICD-10 DIAGNOSES (V1.0)^65^^81^0^132^642^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
+ ;;^UTILITY(U,$J,358.1,314,0)
+ ;;=PATIENT INFORMATION^66^^5^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,315,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^66^^7^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,316,0)
+ ;;=HEADER^66^^1^49^24^1^^^2
+ ;;^UTILITY(U,$J,358.1,317,0)
+ ;;=CPT CODES (3 COL)^66^^18^0^132^253^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
+ ;;^UTILITY(U,$J,358.1,318,0)
+ ;;=PLASTIC SURGERY ICD-10^66^^272^0^132^423^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
+ ;;^UTILITY(U,$J,358.1,319,0)
+ ;;=PROCEDURES (V2.1)^67^^14^0^133^11^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,320,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^67^^6^0^132^7^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,321,0)
+ ;;=HEADER^67^^1^58^37^1^^^2
+ ;;^UTILITY(U,$J,358.1,322,0)
+ ;;=PATIENT INFORMATION^67^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,323,0)
+ ;;=PODIATRY ICD-10^67^^26^0^132^1118^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
+ ;;^UTILITY(U,$J,358.1,324,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^68^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,325,0)
+ ;;=HEADER^68^^1^58^17^1^^^2
+ ;;^UTILITY(U,$J,358.1,326,0)
+ ;;=PATIENT INFORMATION^68^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,327,0)
+ ;;=PROCEDURES (V2.1)^68^^17^0^133^193^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,328,0)
+ ;;=PODIATRY ICD-10^68^^211^0^132^1118^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0

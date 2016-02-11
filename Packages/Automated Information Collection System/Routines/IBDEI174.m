@@ -1,130 +1,122 @@
-IBDEI174 ; ; 06-AUG-2015
+IBDEI174 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21137,0)
- ;;=33235^^117^1323^42^^^^1
- ;;^UTILITY(U,$J,358.3,21137,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21137,1,2,0)
- ;;=2^33235
- ;;^UTILITY(U,$J,358.3,21137,1,3,0)
- ;;=3^Rem Transv Elec Atria/Vent(Dual)
- ;;^UTILITY(U,$J,358.3,21138,0)
- ;;=33240^^117^1323^22^^^^1
- ;;^UTILITY(U,$J,358.3,21138,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21138,1,2,0)
- ;;=2^33240
- ;;^UTILITY(U,$J,358.3,21138,1,3,0)
- ;;=3^Insert Single/Dual Pulse Gen
- ;;^UTILITY(U,$J,358.3,21139,0)
- ;;=33241^^117^1323^60^^^^1
- ;;^UTILITY(U,$J,358.3,21139,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21139,1,2,0)
- ;;=2^33241
- ;;^UTILITY(U,$J,358.3,21139,1,3,0)
- ;;=3^Subq Remove Sgl/Dual Pulse Gen
- ;;^UTILITY(U,$J,358.3,21140,0)
- ;;=33244^^117^1323^64^^^^1
- ;;^UTILITY(U,$J,358.3,21140,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21140,1,2,0)
- ;;=2^33244
- ;;^UTILITY(U,$J,358.3,21140,1,3,0)
- ;;=3^Transv Remove Sgl/Dual Elec
- ;;^UTILITY(U,$J,358.3,21141,0)
- ;;=33249^^117^1323^16^^^^1
- ;;^UTILITY(U,$J,358.3,21141,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21141,1,2,0)
- ;;=2^33249
- ;;^UTILITY(U,$J,358.3,21141,1,3,0)
- ;;=3^Ins/Reposit Lead, Insert Pulse Gen
- ;;^UTILITY(U,$J,358.3,21142,0)
- ;;=93285^^117^1323^13^^^^1
- ;;^UTILITY(U,$J,358.3,21142,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21142,1,2,0)
- ;;=2^93285
- ;;^UTILITY(U,$J,358.3,21142,1,3,0)
- ;;=3^ILR Device Eval Progr
- ;;^UTILITY(U,$J,358.3,21143,0)
- ;;=93291^^117^1323^15^^^^1
- ;;^UTILITY(U,$J,358.3,21143,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21143,1,2,0)
- ;;=2^93291
- ;;^UTILITY(U,$J,358.3,21143,1,3,0)
- ;;=3^ILR Device Interrogate
- ;;^UTILITY(U,$J,358.3,21144,0)
- ;;=93294^^117^1323^31^^^^1
- ;;^UTILITY(U,$J,358.3,21144,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21144,1,2,0)
- ;;=2^93294
- ;;^UTILITY(U,$J,358.3,21144,1,3,0)
- ;;=3^PM Device Interrogate Remote
- ;;^UTILITY(U,$J,358.3,21145,0)
- ;;=93280^^117^1323^32^^^^1
- ;;^UTILITY(U,$J,358.3,21145,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21145,1,2,0)
- ;;=2^93280
- ;;^UTILITY(U,$J,358.3,21145,1,3,0)
- ;;=3^PM Device Progr Eval,Dual
- ;;^UTILITY(U,$J,358.3,21146,0)
- ;;=93288^^117^1323^30^^^^1
- ;;^UTILITY(U,$J,358.3,21146,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21146,1,2,0)
- ;;=2^93288
- ;;^UTILITY(U,$J,358.3,21146,1,3,0)
- ;;=3^PM Device Eval in Person
- ;;^UTILITY(U,$J,358.3,21147,0)
- ;;=93279^^117^1323^34^^^^1
- ;;^UTILITY(U,$J,358.3,21147,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21147,1,2,0)
- ;;=2^93279
- ;;^UTILITY(U,$J,358.3,21147,1,3,0)
- ;;=3^PM Device Progr Eval,Sngl
- ;;^UTILITY(U,$J,358.3,21148,0)
- ;;=93282^^117^1323^9^^^^1
- ;;^UTILITY(U,$J,358.3,21148,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21148,1,2,0)
- ;;=2^93282
- ;;^UTILITY(U,$J,358.3,21148,1,3,0)
- ;;=3^ICD Device Prog Eval,1 Sngl
- ;;^UTILITY(U,$J,358.3,21149,0)
- ;;=93289^^117^1323^7^^^^1
- ;;^UTILITY(U,$J,358.3,21149,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21149,1,2,0)
- ;;=2^93289
- ;;^UTILITY(U,$J,358.3,21149,1,3,0)
- ;;=3^ICD Device Interrogatate
- ;;^UTILITY(U,$J,358.3,21150,0)
- ;;=93292^^117^1323^66^^^^1
- ;;^UTILITY(U,$J,358.3,21150,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21150,1,2,0)
- ;;=2^93292
- ;;^UTILITY(U,$J,358.3,21150,1,3,0)
- ;;=3^WCD Device Interrogate
- ;;^UTILITY(U,$J,358.3,21151,0)
- ;;=93295^^117^1323^8^^^^1
- ;;^UTILITY(U,$J,358.3,21151,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21151,1,2,0)
- ;;=2^93295
- ;;^UTILITY(U,$J,358.3,21151,1,3,0)
- ;;=3^ICD Device Interrogate Remote
- ;;^UTILITY(U,$J,358.3,21152,0)
- ;;=93283^^117^1323^10^^^^1
- ;;^UTILITY(U,$J,358.3,21152,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21152,1,2,0)
- ;;=2^93283
+ ;;^UTILITY(U,$J,358.3,19983,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,19983,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,19983,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,19984,0)
+ ;;=R40.2223^^94^934^19
+ ;;^UTILITY(U,$J,358.3,19984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19984,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,19984,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,19984,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,19985,0)
+ ;;=R40.2222^^94^934^20
+ ;;^UTILITY(U,$J,358.3,19985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19985,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,19985,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,19985,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,19986,0)
+ ;;=R40.2221^^94^934^21
+ ;;^UTILITY(U,$J,358.3,19986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19986,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,19986,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,19986,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,19987,0)
+ ;;=R40.2220^^94^934^22
+ ;;^UTILITY(U,$J,358.3,19987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19987,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,19987,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,19987,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,19988,0)
+ ;;=R40.2214^^94^934^23
+ ;;^UTILITY(U,$J,358.3,19988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19988,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,19988,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,19988,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,19989,0)
+ ;;=R40.2213^^94^934^25
+ ;;^UTILITY(U,$J,358.3,19989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19989,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,19989,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,19989,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,19990,0)
+ ;;=R40.2212^^94^934^24
+ ;;^UTILITY(U,$J,358.3,19990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19990,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,19990,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,19990,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,19991,0)
+ ;;=R40.2344^^94^934^6
+ ;;^UTILITY(U,$J,358.3,19991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19991,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,19991,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,19991,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,19992,0)
+ ;;=R40.2343^^94^934^7
+ ;;^UTILITY(U,$J,358.3,19992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19992,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,19992,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,19992,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,19993,0)
+ ;;=R40.2342^^94^934^8
+ ;;^UTILITY(U,$J,358.3,19993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19993,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,19993,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,19993,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,19994,0)
+ ;;=R40.2341^^94^934^9
+ ;;^UTILITY(U,$J,358.3,19994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19994,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,19994,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,19994,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,19995,0)
+ ;;=R40.2340^^94^934^10

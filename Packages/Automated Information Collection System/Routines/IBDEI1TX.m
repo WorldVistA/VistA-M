@@ -1,122 +1,136 @@
-IBDEI1TX ; ; 06-AUG-2015
+IBDEI1TX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32229,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,32229,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,32230,0)
- ;;=L97.213^^182^1981^209
- ;;^UTILITY(U,$J,358.3,32230,1,0)
+ ;;^UTILITY(U,$J,358.3,30624,1,3,0)
+ ;;=3^Cervix Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,30624,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,30624,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,30625,0)
+ ;;=Z13.5^^135^1381^8
+ ;;^UTILITY(U,$J,358.3,30625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32230,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32230,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,32230,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,32231,0)
- ;;=L97.214^^182^1981^210
- ;;^UTILITY(U,$J,358.3,32231,1,0)
+ ;;^UTILITY(U,$J,358.3,30625,1,3,0)
+ ;;=3^Eye and Ear Disorder Screen
+ ;;^UTILITY(U,$J,358.3,30625,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,30625,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,30626,0)
+ ;;=Z01.89^^135^1381^6
+ ;;^UTILITY(U,$J,358.3,30626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32231,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,32231,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,32231,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,32232,0)
- ;;=L97.219^^182^1981^211
- ;;^UTILITY(U,$J,358.3,32232,1,0)
+ ;;^UTILITY(U,$J,358.3,30626,1,3,0)
+ ;;=3^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,30626,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,30626,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,30627,0)
+ ;;=Z11.59^^135^1381^16
+ ;;^UTILITY(U,$J,358.3,30627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32232,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,32232,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,32232,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,32233,0)
- ;;=L97.221^^182^1981^177
- ;;^UTILITY(U,$J,358.3,32233,1,0)
+ ;;^UTILITY(U,$J,358.3,30627,1,3,0)
+ ;;=3^Viral Diseases Screen
+ ;;^UTILITY(U,$J,358.3,30627,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,30627,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,30628,0)
+ ;;=Z13.6^^135^1381^4
+ ;;^UTILITY(U,$J,358.3,30628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32233,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32233,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,32233,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,32234,0)
- ;;=L97.222^^182^1981^178
- ;;^UTILITY(U,$J,358.3,32234,1,0)
+ ;;^UTILITY(U,$J,358.3,30628,1,3,0)
+ ;;=3^Cardiovascular Disorder Screen
+ ;;^UTILITY(U,$J,358.3,30628,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,30628,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,30629,0)
+ ;;=Z12.12^^135^1381^14
+ ;;^UTILITY(U,$J,358.3,30629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32234,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,32234,1,4,0)
- ;;=4^L97.222
- ;;^UTILITY(U,$J,358.3,32234,2)
- ;;=^5009506
- ;;^UTILITY(U,$J,358.3,32235,0)
- ;;=L97.223^^182^1981^179
- ;;^UTILITY(U,$J,358.3,32235,1,0)
+ ;;^UTILITY(U,$J,358.3,30629,1,3,0)
+ ;;=3^Rectum Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,30629,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,30629,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,30630,0)
+ ;;=Z71.89^^135^1381^12
+ ;;^UTILITY(U,$J,358.3,30630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32235,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32235,1,4,0)
- ;;=4^L97.223
- ;;^UTILITY(U,$J,358.3,32235,2)
- ;;=^5009507
- ;;^UTILITY(U,$J,358.3,32236,0)
- ;;=L97.224^^182^1981^180
- ;;^UTILITY(U,$J,358.3,32236,1,0)
+ ;;^UTILITY(U,$J,358.3,30630,1,3,0)
+ ;;=3^Other Specified Counseling
+ ;;^UTILITY(U,$J,358.3,30630,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,30630,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,30631,0)
+ ;;=Z12.5^^135^1381^13
+ ;;^UTILITY(U,$J,358.3,30631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32236,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,32236,1,4,0)
- ;;=4^L97.224
- ;;^UTILITY(U,$J,358.3,32236,2)
- ;;=^5009508
- ;;^UTILITY(U,$J,358.3,32237,0)
- ;;=L97.229^^182^1981^181
- ;;^UTILITY(U,$J,358.3,32237,1,0)
+ ;;^UTILITY(U,$J,358.3,30631,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,30631,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,30631,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,30632,0)
+ ;;=Z00.00^^135^1381^9
+ ;;^UTILITY(U,$J,358.3,30632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32237,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,32237,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,32237,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,32238,0)
- ;;=L97.311^^182^1981^202
- ;;^UTILITY(U,$J,358.3,32238,1,0)
+ ;;^UTILITY(U,$J,358.3,30632,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,30632,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,30632,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,30633,0)
+ ;;=Z02.79^^135^1381^11
+ ;;^UTILITY(U,$J,358.3,30633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32238,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32238,1,4,0)
- ;;=4^L97.311
- ;;^UTILITY(U,$J,358.3,32238,2)
- ;;=^5009515
- ;;^UTILITY(U,$J,358.3,32239,0)
- ;;=L97.312^^182^1981^203
- ;;^UTILITY(U,$J,358.3,32239,1,0)
+ ;;^UTILITY(U,$J,358.3,30633,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,30633,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,30633,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,30634,0)
+ ;;=Z71.3^^135^1381^7
+ ;;^UTILITY(U,$J,358.3,30634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32239,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,32239,1,4,0)
- ;;=4^L97.312
- ;;^UTILITY(U,$J,358.3,32239,2)
- ;;=^5009516
- ;;^UTILITY(U,$J,358.3,32240,0)
- ;;=L97.313^^182^1981^204
- ;;^UTILITY(U,$J,358.3,32240,1,0)
+ ;;^UTILITY(U,$J,358.3,30634,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,30634,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,30634,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,30635,0)
+ ;;=Z71.7^^135^1381^10
+ ;;^UTILITY(U,$J,358.3,30635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32240,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32240,1,4,0)
- ;;=4^L97.313
- ;;^UTILITY(U,$J,358.3,32240,2)
- ;;=^5009517
- ;;^UTILITY(U,$J,358.3,32241,0)
- ;;=L97.314^^182^1981^205
- ;;^UTILITY(U,$J,358.3,32241,1,0)
+ ;;^UTILITY(U,$J,358.3,30635,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,30635,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,30635,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,30636,0)
+ ;;=Z71.6^^135^1381^15
+ ;;^UTILITY(U,$J,358.3,30636,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30636,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,30636,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,30636,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,30637,0)
+ ;;=D86.0^^135^1382^45
+ ;;^UTILITY(U,$J,358.3,30637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30637,1,3,0)
+ ;;=3^Sarcoidosis of Lung

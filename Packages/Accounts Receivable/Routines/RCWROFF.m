@@ -1,6 +1,6 @@
 RCWROFF ;WISC/RFJ-write off, terminated ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**168,204,309**;Mar 20, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -50,11 +50,31 @@ A10 ;  waived by rc/doj (use trantype=10) (menu option)
  N RCDRSTRG
  S RCDRSTRG="11SUSPENDED DATE;"
  S RCDRSTRG=RCDRSTRG_"90R;"  ;suspension type
- S RCDRSTRG=RCDRSTRG_"S RCX=$S('X:""NOT CO-PAY SUSPENSION"",X=1:""INITIAL CO-PAY WAIVER"",1:""APPEAL CO-PAY WAIVER"");"
+ S RCDRSTRG=RCDRSTRG_"S RCX=$$SUSTP^RCWROFF(X);"
  S RCDRSTRG=RCDRSTRG_"5.02////^S X=RCX;"  ;brief comment
  S RCDRSTRG=RCDRSTRG_"K RCX;"
  D MAIN("47^Suspension",RCDRSTRG)
  Q
+ ;
+SUSTP(X) ; suspension types for brief comment in *309
+ ; input-code between 0 to 11
+ ; output-text
+ N IBX
+ S IBX=$P($T(SUSTX+X),";;",2)
+ Q IBX
+ ;
+SUSTX ;;NOT CO-PAY SUSPENSION
+ ;;INITIAL CO-PAY WAIVER
+ ;;APPEAL CO-PAY WAIVER
+ ;;ADMINISTRATIVE SUSPENSION
+ ;;COMPROMISE
+ ;;TERMINATION
+ ;;BANKRUPTCY CHAP 7
+ ;;BANKRUPTCY CHAP 13
+ ;;BANKRUPTCY OTHER
+ ;;PROBATE
+ ;;CHOICE
+ ;;DISPUTE
  ;
  ;
 MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, suspended transaction

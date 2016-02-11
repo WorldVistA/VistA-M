@@ -1,142 +1,146 @@
-IBDEI038 ; ; 06-AUG-2015
+IBDEI038 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,969,1,4,0)
- ;;=4^J32.1
- ;;^UTILITY(U,$J,358.3,969,2)
- ;;=^24380
- ;;^UTILITY(U,$J,358.3,970,0)
- ;;=J32.9^^3^35^49
- ;;^UTILITY(U,$J,358.3,970,1,0)
+ ;;^UTILITY(U,$J,358.3,768,2)
+ ;;=^271938
+ ;;^UTILITY(U,$J,358.3,769,0)
+ ;;=L50.9^^9^88^113
+ ;;^UTILITY(U,$J,358.3,769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,970,1,3,0)
- ;;=3^Chronic sinusitis, unspecified
- ;;^UTILITY(U,$J,358.3,970,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,970,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,971,0)
- ;;=J35.01^^3^35^50
- ;;^UTILITY(U,$J,358.3,971,1,0)
+ ;;^UTILITY(U,$J,358.3,769,1,3,0)
+ ;;=3^Urticaria,Unspec
+ ;;^UTILITY(U,$J,358.3,769,1,4,0)
+ ;;=4^L50.9
+ ;;^UTILITY(U,$J,358.3,769,2)
+ ;;=^5009204
+ ;;^UTILITY(U,$J,358.3,770,0)
+ ;;=J30.0^^9^88^114
+ ;;^UTILITY(U,$J,358.3,770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,971,1,3,0)
- ;;=3^Chronic tonsillitis
- ;;^UTILITY(U,$J,358.3,971,1,4,0)
- ;;=4^J35.01
- ;;^UTILITY(U,$J,358.3,971,2)
- ;;=^259089
- ;;^UTILITY(U,$J,358.3,972,0)
- ;;=J35.3^^3^35^82
- ;;^UTILITY(U,$J,358.3,972,1,0)
+ ;;^UTILITY(U,$J,358.3,770,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,770,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,770,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,771,0)
+ ;;=R06.2^^9^88^116
+ ;;^UTILITY(U,$J,358.3,771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,972,1,3,0)
- ;;=3^Hypertrophy of tonsils with hypertrophy of adenoids
- ;;^UTILITY(U,$J,358.3,972,1,4,0)
- ;;=4^J35.3
- ;;^UTILITY(U,$J,358.3,972,2)
- ;;=^5008216
- ;;^UTILITY(U,$J,358.3,973,0)
- ;;=J35.1^^3^35^81
- ;;^UTILITY(U,$J,358.3,973,1,0)
+ ;;^UTILITY(U,$J,358.3,771,1,3,0)
+ ;;=3^Wheezing
+ ;;^UTILITY(U,$J,358.3,771,1,4,0)
+ ;;=4^R06.2
+ ;;^UTILITY(U,$J,358.3,771,2)
+ ;;=^5019184
+ ;;^UTILITY(U,$J,358.3,772,0)
+ ;;=D51.0^^9^88^115
+ ;;^UTILITY(U,$J,358.3,772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,973,1,3,0)
- ;;=3^Hypertrophy of tonsils
- ;;^UTILITY(U,$J,358.3,973,1,4,0)
- ;;=4^J35.1
- ;;^UTILITY(U,$J,358.3,973,2)
- ;;=^5008214
- ;;^UTILITY(U,$J,358.3,974,0)
- ;;=J35.2^^3^35^80
- ;;^UTILITY(U,$J,358.3,974,1,0)
+ ;;^UTILITY(U,$J,358.3,772,1,3,0)
+ ;;=3^Vitamin B12 Defic Anemia d/t Intrinsic Factor Defic
+ ;;^UTILITY(U,$J,358.3,772,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,772,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,773,0)
+ ;;=Z88.0^^9^88^36
+ ;;^UTILITY(U,$J,358.3,773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,974,1,3,0)
- ;;=3^Hypertrophy of adenoids
- ;;^UTILITY(U,$J,358.3,974,1,4,0)
- ;;=4^J35.2
- ;;^UTILITY(U,$J,358.3,974,2)
- ;;=^5008215
- ;;^UTILITY(U,$J,358.3,975,0)
- ;;=J35.9^^3^35^40
- ;;^UTILITY(U,$J,358.3,975,1,0)
+ ;;^UTILITY(U,$J,358.3,773,1,3,0)
+ ;;=3^Allergy to Penicillin
+ ;;^UTILITY(U,$J,358.3,773,1,4,0)
+ ;;=4^Z88.0
+ ;;^UTILITY(U,$J,358.3,773,2)
+ ;;=^5063521
+ ;;^UTILITY(U,$J,358.3,774,0)
+ ;;=L20.0^^9^88^53
+ ;;^UTILITY(U,$J,358.3,774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,975,1,3,0)
- ;;=3^Chronic disease of tonsils and adenoids, unspecified
- ;;^UTILITY(U,$J,358.3,975,1,4,0)
- ;;=4^J35.9
- ;;^UTILITY(U,$J,358.3,975,2)
- ;;=^5008218
- ;;^UTILITY(U,$J,358.3,976,0)
- ;;=J36.^^3^35^110
- ;;^UTILITY(U,$J,358.3,976,1,0)
+ ;;^UTILITY(U,$J,358.3,774,1,3,0)
+ ;;=3^Besnier's Prurigo
+ ;;^UTILITY(U,$J,358.3,774,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,774,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,775,0)
+ ;;=J30.2^^9^88^109
+ ;;^UTILITY(U,$J,358.3,775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,976,1,3,0)
- ;;=3^Peritonsillar abscess
- ;;^UTILITY(U,$J,358.3,976,1,4,0)
- ;;=4^J36.
- ;;^UTILITY(U,$J,358.3,976,2)
- ;;=^92333
- ;;^UTILITY(U,$J,358.3,977,0)
- ;;=J37.0^^3^35^43
- ;;^UTILITY(U,$J,358.3,977,1,0)
+ ;;^UTILITY(U,$J,358.3,775,1,3,0)
+ ;;=3^Seasonal Allergies
+ ;;^UTILITY(U,$J,358.3,775,1,4,0)
+ ;;=4^J30.2
+ ;;^UTILITY(U,$J,358.3,775,2)
+ ;;=^5008202
+ ;;^UTILITY(U,$J,358.3,776,0)
+ ;;=Z88.1^^9^88^28
+ ;;^UTILITY(U,$J,358.3,776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,977,1,3,0)
- ;;=3^Chronic laryngitis
- ;;^UTILITY(U,$J,358.3,977,1,4,0)
- ;;=4^J37.0
- ;;^UTILITY(U,$J,358.3,977,2)
- ;;=^269902
- ;;^UTILITY(U,$J,358.3,978,0)
- ;;=J30.81^^3^35^20
- ;;^UTILITY(U,$J,358.3,978,1,0)
+ ;;^UTILITY(U,$J,358.3,776,1,3,0)
+ ;;=3^Allergy to Antibiotic Agents NEC
+ ;;^UTILITY(U,$J,358.3,776,1,4,0)
+ ;;=4^Z88.1
+ ;;^UTILITY(U,$J,358.3,776,2)
+ ;;=^5063522
+ ;;^UTILITY(U,$J,358.3,777,0)
+ ;;=Z88.2^^9^88^39
+ ;;^UTILITY(U,$J,358.3,777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,978,1,3,0)
- ;;=3^Allergic rhinitis due to animal (cat) (dog) hair and dander
- ;;^UTILITY(U,$J,358.3,978,1,4,0)
- ;;=4^J30.81
- ;;^UTILITY(U,$J,358.3,978,2)
- ;;=^5008203
- ;;^UTILITY(U,$J,358.3,979,0)
- ;;=J30.9^^3^35^21
- ;;^UTILITY(U,$J,358.3,979,1,0)
+ ;;^UTILITY(U,$J,358.3,777,1,3,0)
+ ;;=3^Allergy to Sulfonamides
+ ;;^UTILITY(U,$J,358.3,777,1,4,0)
+ ;;=4^Z88.2
+ ;;^UTILITY(U,$J,358.3,777,2)
+ ;;=^5063523
+ ;;^UTILITY(U,$J,358.3,778,0)
+ ;;=Z88.3^^9^88^27
+ ;;^UTILITY(U,$J,358.3,778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,979,1,3,0)
- ;;=3^Allergic rhinitis, unspecified
- ;;^UTILITY(U,$J,358.3,979,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,979,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,980,0)
- ;;=J34.81^^3^35^95
- ;;^UTILITY(U,$J,358.3,980,1,0)
+ ;;^UTILITY(U,$J,358.3,778,1,3,0)
+ ;;=3^Allergy to Anti-Infective Agents NEC
+ ;;^UTILITY(U,$J,358.3,778,1,4,0)
+ ;;=4^Z88.3
+ ;;^UTILITY(U,$J,358.3,778,2)
+ ;;=^5063524
+ ;;^UTILITY(U,$J,358.3,779,0)
+ ;;=Z88.4^^9^88^26
+ ;;^UTILITY(U,$J,358.3,779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,980,1,3,0)
- ;;=3^Nasal mucositis (ulcerative)
- ;;^UTILITY(U,$J,358.3,980,1,4,0)
- ;;=4^J34.81
- ;;^UTILITY(U,$J,358.3,980,2)
- ;;=^334089
- ;;^UTILITY(U,$J,358.3,981,0)
- ;;=J34.0^^3^35^1
- ;;^UTILITY(U,$J,358.3,981,1,0)
+ ;;^UTILITY(U,$J,358.3,779,1,3,0)
+ ;;=3^Allergy to Anesthetic Agent
+ ;;^UTILITY(U,$J,358.3,779,1,4,0)
+ ;;=4^Z88.4
+ ;;^UTILITY(U,$J,358.3,779,2)
+ ;;=^5063525
+ ;;^UTILITY(U,$J,358.3,780,0)
+ ;;=Z88.5^^9^88^33
+ ;;^UTILITY(U,$J,358.3,780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,981,1,3,0)
- ;;=3^Abscess, furuncle and carbuncle of nose
- ;;^UTILITY(U,$J,358.3,981,1,4,0)
- ;;=4^J34.0
- ;;^UTILITY(U,$J,358.3,981,2)
- ;;=^5008209
- ;;^UTILITY(U,$J,358.3,982,0)
- ;;=J34.1^^3^35^56
- ;;^UTILITY(U,$J,358.3,982,1,0)
+ ;;^UTILITY(U,$J,358.3,780,1,3,0)
+ ;;=3^Allergy to Narcotic Agent
+ ;;^UTILITY(U,$J,358.3,780,1,4,0)
+ ;;=4^Z88.5
+ ;;^UTILITY(U,$J,358.3,780,2)
+ ;;=^5063526
+ ;;^UTILITY(U,$J,358.3,781,0)
+ ;;=Z88.6^^9^88^25
+ ;;^UTILITY(U,$J,358.3,781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,982,1,3,0)
- ;;=3^Cyst and mucocele of nose and nasal sinus
- ;;^UTILITY(U,$J,358.3,982,1,4,0)
- ;;=4^J34.1
- ;;^UTILITY(U,$J,358.3,982,2)
- ;;=^5008210
- ;;^UTILITY(U,$J,358.3,983,0)
- ;;=J38.00^^3^35^108
- ;;^UTILITY(U,$J,358.3,983,1,0)
+ ;;^UTILITY(U,$J,358.3,781,1,3,0)
+ ;;=3^Allergy to Analgesic Agent
+ ;;^UTILITY(U,$J,358.3,781,1,4,0)
+ ;;=4^Z88.6
+ ;;^UTILITY(U,$J,358.3,781,2)
+ ;;=^5063527
+ ;;^UTILITY(U,$J,358.3,782,0)
+ ;;=Z88.7^^9^88^38
+ ;;^UTILITY(U,$J,358.3,782,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,782,1,3,0)
+ ;;=3^Allergy to Serum and Vaccine
+ ;;^UTILITY(U,$J,358.3,782,1,4,0)
+ ;;=4^Z88.7
+ ;;^UTILITY(U,$J,358.3,782,2)
+ ;;=^5063528

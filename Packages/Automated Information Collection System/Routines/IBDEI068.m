@@ -1,134 +1,142 @@
-IBDEI068 ; ; 06-AUG-2015
+IBDEI068 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2390,1,3,0)
- ;;=3^Infective otitis externa, right ear NEC
- ;;^UTILITY(U,$J,358.3,2390,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,2390,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,2391,0)
- ;;=H60.392^^5^71^30
- ;;^UTILITY(U,$J,358.3,2391,1,0)
+ ;;^UTILITY(U,$J,358.3,2315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2391,1,3,0)
- ;;=3^Infective otitis externa, left ear NEC
- ;;^UTILITY(U,$J,358.3,2391,1,4,0)
- ;;=4^H60.392
- ;;^UTILITY(U,$J,358.3,2391,2)
- ;;=^5006460
- ;;^UTILITY(U,$J,358.3,2392,0)
- ;;=H60.393^^5^71^29
- ;;^UTILITY(U,$J,358.3,2392,1,0)
+ ;;^UTILITY(U,$J,358.3,2315,1,3,0)
+ ;;=3^Apnea NEC
+ ;;^UTILITY(U,$J,358.3,2315,1,4,0)
+ ;;=4^R06.81
+ ;;^UTILITY(U,$J,358.3,2315,2)
+ ;;=^5019190
+ ;;^UTILITY(U,$J,358.3,2316,0)
+ ;;=R06.02^^19^194^22
+ ;;^UTILITY(U,$J,358.3,2316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2392,1,3,0)
- ;;=3^Infective otitis externa, bilateral NEC
- ;;^UTILITY(U,$J,358.3,2392,1,4,0)
- ;;=4^H60.393
- ;;^UTILITY(U,$J,358.3,2392,2)
- ;;=^5006461
- ;;^UTILITY(U,$J,358.3,2393,0)
- ;;=H62.41^^5^71^43
- ;;^UTILITY(U,$J,358.3,2393,1,0)
+ ;;^UTILITY(U,$J,358.3,2316,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,2316,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,2316,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,2317,0)
+ ;;=R06.82^^19^194^25
+ ;;^UTILITY(U,$J,358.3,2317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2393,1,3,0)
- ;;=3^Otitis externa in oth diseases classd elswhr, right ear
- ;;^UTILITY(U,$J,358.3,2393,1,4,0)
- ;;=4^H62.41
- ;;^UTILITY(U,$J,358.3,2393,2)
- ;;=^5006562
- ;;^UTILITY(U,$J,358.3,2394,0)
- ;;=H62.42^^5^71^44
- ;;^UTILITY(U,$J,358.3,2394,1,0)
+ ;;^UTILITY(U,$J,358.3,2317,1,3,0)
+ ;;=3^Tachypnea NEC
+ ;;^UTILITY(U,$J,358.3,2317,1,4,0)
+ ;;=4^R06.82
+ ;;^UTILITY(U,$J,358.3,2317,2)
+ ;;=^5019191
+ ;;^UTILITY(U,$J,358.3,2318,0)
+ ;;=R94.30^^19^194^1
+ ;;^UTILITY(U,$J,358.3,2318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2394,1,3,0)
- ;;=3^Otitis externa in oth diseases classd elswhr, left ear
- ;;^UTILITY(U,$J,358.3,2394,1,4,0)
- ;;=4^H62.42
- ;;^UTILITY(U,$J,358.3,2394,2)
- ;;=^5006563
- ;;^UTILITY(U,$J,358.3,2395,0)
- ;;=H62.43^^5^71^45
- ;;^UTILITY(U,$J,358.3,2395,1,0)
+ ;;^UTILITY(U,$J,358.3,2318,1,3,0)
+ ;;=3^Abnormal Cardiovascular Function Study,Unspec
+ ;;^UTILITY(U,$J,358.3,2318,1,4,0)
+ ;;=4^R94.30
+ ;;^UTILITY(U,$J,358.3,2318,2)
+ ;;=^5019738
+ ;;^UTILITY(U,$J,358.3,2319,0)
+ ;;=R94.31^^19^194^2
+ ;;^UTILITY(U,$J,358.3,2319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2395,1,3,0)
- ;;=3^Otitis externa in oth diseases classd elswhr, bilateral
- ;;^UTILITY(U,$J,358.3,2395,1,4,0)
- ;;=4^H62.43
- ;;^UTILITY(U,$J,358.3,2395,2)
- ;;=^5006564
- ;;^UTILITY(U,$J,358.3,2396,0)
- ;;=B36.9^^5^71^55
- ;;^UTILITY(U,$J,358.3,2396,1,0)
+ ;;^UTILITY(U,$J,358.3,2319,1,3,0)
+ ;;=3^Abnormal Electrocardiogram
+ ;;^UTILITY(U,$J,358.3,2319,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,2319,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,2320,0)
+ ;;=G90.9^^19^194^4
+ ;;^UTILITY(U,$J,358.3,2320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2396,1,3,0)
- ;;=3^Superficial mycosis, unspecified
- ;;^UTILITY(U,$J,358.3,2396,1,4,0)
- ;;=4^B36.9
- ;;^UTILITY(U,$J,358.3,2396,2)
- ;;=^5000611
- ;;^UTILITY(U,$J,358.3,2397,0)
- ;;=H60.21^^5^71^36
- ;;^UTILITY(U,$J,358.3,2397,1,0)
+ ;;^UTILITY(U,$J,358.3,2320,1,3,0)
+ ;;=3^Autonomic Nervous System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2320,1,4,0)
+ ;;=4^G90.9
+ ;;^UTILITY(U,$J,358.3,2320,2)
+ ;;=^5004173
+ ;;^UTILITY(U,$J,358.3,2321,0)
+ ;;=R56.00^^19^194^23
+ ;;^UTILITY(U,$J,358.3,2321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2397,1,3,0)
- ;;=3^Malignant otitis externa, right ear
- ;;^UTILITY(U,$J,358.3,2397,1,4,0)
- ;;=4^H60.21
- ;;^UTILITY(U,$J,358.3,2397,2)
- ;;=^5006444
- ;;^UTILITY(U,$J,358.3,2398,0)
- ;;=H60.22^^5^71^35
- ;;^UTILITY(U,$J,358.3,2398,1,0)
+ ;;^UTILITY(U,$J,358.3,2321,1,3,0)
+ ;;=3^Simple Febrile Convulsions
+ ;;^UTILITY(U,$J,358.3,2321,1,4,0)
+ ;;=4^R56.00
+ ;;^UTILITY(U,$J,358.3,2321,2)
+ ;;=^5019522
+ ;;^UTILITY(U,$J,358.3,2322,0)
+ ;;=R56.9^^19^194^9
+ ;;^UTILITY(U,$J,358.3,2322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2398,1,3,0)
- ;;=3^Malignant otitis externa, left ear
- ;;^UTILITY(U,$J,358.3,2398,1,4,0)
- ;;=4^H60.22
- ;;^UTILITY(U,$J,358.3,2398,2)
- ;;=^5006445
- ;;^UTILITY(U,$J,358.3,2399,0)
- ;;=H60.23^^5^71^34
- ;;^UTILITY(U,$J,358.3,2399,1,0)
+ ;;^UTILITY(U,$J,358.3,2322,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,2322,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,2322,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,2323,0)
+ ;;=R42.^^19^194^10
+ ;;^UTILITY(U,$J,358.3,2323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2399,1,3,0)
- ;;=3^Malignant otitis externa, bilateral
- ;;^UTILITY(U,$J,358.3,2399,1,4,0)
- ;;=4^H60.23
- ;;^UTILITY(U,$J,358.3,2399,2)
- ;;=^5006446
- ;;^UTILITY(U,$J,358.3,2400,0)
- ;;=H60.511^^5^71^2
- ;;^UTILITY(U,$J,358.3,2400,1,0)
+ ;;^UTILITY(U,$J,358.3,2323,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,2323,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,2323,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,2324,0)
+ ;;=R50.81^^19^194^12
+ ;;^UTILITY(U,$J,358.3,2324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2400,1,3,0)
- ;;=3^Acute actinic otitis externa, right ear
- ;;^UTILITY(U,$J,358.3,2400,1,4,0)
- ;;=4^H60.511
- ;;^UTILITY(U,$J,358.3,2400,2)
- ;;=^5006470
- ;;^UTILITY(U,$J,358.3,2401,0)
- ;;=H60.512^^5^71^1
- ;;^UTILITY(U,$J,358.3,2401,1,0)
+ ;;^UTILITY(U,$J,358.3,2324,1,3,0)
+ ;;=3^Fever in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,2324,1,4,0)
+ ;;=4^R50.81
+ ;;^UTILITY(U,$J,358.3,2324,2)
+ ;;=^5019508
+ ;;^UTILITY(U,$J,358.3,2325,0)
+ ;;=R50.82^^19^194^20
+ ;;^UTILITY(U,$J,358.3,2325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2401,1,3,0)
- ;;=3^Acute actinic otitis externa, left ear
- ;;^UTILITY(U,$J,358.3,2401,1,4,0)
- ;;=4^H60.512
- ;;^UTILITY(U,$J,358.3,2401,2)
- ;;=^5006471
- ;;^UTILITY(U,$J,358.3,2402,0)
- ;;=H61.23^^5^71^26
- ;;^UTILITY(U,$J,358.3,2402,1,0)
+ ;;^UTILITY(U,$J,358.3,2325,1,3,0)
+ ;;=3^Postprocedural Fever
+ ;;^UTILITY(U,$J,358.3,2325,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,2325,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,2326,0)
+ ;;=Z13.6^^19^194^21
+ ;;^UTILITY(U,$J,358.3,2326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2402,1,3,0)
- ;;=3^Impacted cerumen, bilateral
- ;;^UTILITY(U,$J,358.3,2402,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,2402,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,2403,0)
- ;;=H61.21^^5^71^28
- ;;^UTILITY(U,$J,358.3,2403,1,0)
+ ;;^UTILITY(U,$J,358.3,2326,1,3,0)
+ ;;=3^Screening for Cardiovascular Disorders
+ ;;^UTILITY(U,$J,358.3,2326,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,2326,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,2327,0)
+ ;;=I25.2^^19^195^3
+ ;;^UTILITY(U,$J,358.3,2327,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2327,1,3,0)
+ ;;=3^Old MI
+ ;;^UTILITY(U,$J,358.3,2327,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,2327,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,2328,0)
+ ;;=Z95.2^^19^195^6
+ ;;^UTILITY(U,$J,358.3,2328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2328,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,2328,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,2328,2)
+ ;;=^5063670

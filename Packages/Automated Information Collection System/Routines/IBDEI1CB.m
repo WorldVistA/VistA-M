@@ -1,138 +1,124 @@
-IBDEI1CB ; ; 06-AUG-2015
+IBDEI1CB ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23738,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23738,1,2,0)
- ;;=2^V60.2
- ;;^UTILITY(U,$J,358.3,23738,1,5,0)
- ;;=5^Economic Problem
- ;;^UTILITY(U,$J,358.3,23738,2)
- ;;=^62174
- ;;^UTILITY(U,$J,358.3,23739,0)
- ;;=V62.89^^127^1432^47
- ;;^UTILITY(U,$J,358.3,23739,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23739,1,2,0)
- ;;=2^V62.89
- ;;^UTILITY(U,$J,358.3,23739,1,5,0)
- ;;=5^Psychological Stress NEC
- ;;^UTILITY(U,$J,358.3,23739,2)
- ;;=^87822
- ;;^UTILITY(U,$J,358.3,23740,0)
- ;;=V62.9^^127^1432^48
- ;;^UTILITY(U,$J,358.3,23740,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23740,1,2,0)
- ;;=2^V62.9
- ;;^UTILITY(U,$J,358.3,23740,1,5,0)
- ;;=5^Psychosocial Circum NOS
- ;;^UTILITY(U,$J,358.3,23740,2)
- ;;=^295551
- ;;^UTILITY(U,$J,358.3,23741,0)
- ;;=V60.0^^127^1432^33
- ;;^UTILITY(U,$J,358.3,23741,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23741,1,2,0)
- ;;=2^V60.0
- ;;^UTILITY(U,$J,358.3,23741,1,5,0)
- ;;=5^Lack Of Housing
- ;;^UTILITY(U,$J,358.3,23741,2)
- ;;=^295539
- ;;^UTILITY(U,$J,358.3,23742,0)
- ;;=V62.81^^127^1432^23
- ;;^UTILITY(U,$J,358.3,23742,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23742,1,2,0)
- ;;=2^V62.81
- ;;^UTILITY(U,$J,358.3,23742,1,5,0)
- ;;=5^Interpersonal Problem
- ;;^UTILITY(U,$J,358.3,23742,2)
- ;;=^276358
- ;;^UTILITY(U,$J,358.3,23743,0)
- ;;=V71.01^^127^1432^36
- ;;^UTILITY(U,$J,358.3,23743,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23743,1,2,0)
- ;;=2^V71.01
- ;;^UTILITY(U,$J,358.3,23743,1,5,0)
- ;;=5^Observ-Antisocial Behav
- ;;^UTILITY(U,$J,358.3,23743,2)
- ;;=^295603
- ;;^UTILITY(U,$J,358.3,23744,0)
- ;;=V71.09^^127^1432^37
- ;;^UTILITY(U,$J,358.3,23744,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23744,1,2,0)
- ;;=2^V71.09
- ;;^UTILITY(U,$J,358.3,23744,1,5,0)
- ;;=5^Observ-Mental Condition
- ;;^UTILITY(U,$J,358.3,23744,2)
- ;;=^295604
- ;;^UTILITY(U,$J,358.3,23745,0)
- ;;=V15.41^^127^1432^21
- ;;^UTILITY(U,$J,358.3,23745,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23745,1,2,0)
- ;;=2^V15.41
- ;;^UTILITY(U,$J,358.3,23745,1,5,0)
- ;;=5^Hx Of Sexual Abuse
- ;;^UTILITY(U,$J,358.3,23745,2)
- ;;=^304352
- ;;^UTILITY(U,$J,358.3,23746,0)
- ;;=V61.01^^127^1432^12
- ;;^UTILITY(U,$J,358.3,23746,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23746,1,2,0)
- ;;=2^V61.01
- ;;^UTILITY(U,$J,358.3,23746,1,5,0)
- ;;=5^Fmily Dsrpt-Military Deployment
- ;;^UTILITY(U,$J,358.3,23746,2)
- ;;=^336799
- ;;^UTILITY(U,$J,358.3,23747,0)
- ;;=V61.02^^127^1432^14
- ;;^UTILITY(U,$J,358.3,23747,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23747,1,2,0)
- ;;=2^V61.02
- ;;^UTILITY(U,$J,358.3,23747,1,5,0)
- ;;=5^Fmily Dsrpt-Ret from Military Deployment
- ;;^UTILITY(U,$J,358.3,23747,2)
- ;;=^336800
- ;;^UTILITY(U,$J,358.3,23748,0)
- ;;=V61.03^^127^1432^11
- ;;^UTILITY(U,$J,358.3,23748,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23748,1,2,0)
- ;;=2^V61.03
- ;;^UTILITY(U,$J,358.3,23748,1,5,0)
- ;;=5^Fmily Dsrpt-Divorce/Legal Sep
- ;;^UTILITY(U,$J,358.3,23748,2)
- ;;=^336801
- ;;^UTILITY(U,$J,358.3,23749,0)
- ;;=V61.04^^127^1432^13
- ;;^UTILITY(U,$J,358.3,23749,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23749,1,2,0)
- ;;=2^V61.04
- ;;^UTILITY(U,$J,358.3,23749,1,5,0)
- ;;=5^Fmily Dsrpt-Parent-Child Estrangment
- ;;^UTILITY(U,$J,358.3,23749,2)
- ;;=^336802
- ;;^UTILITY(U,$J,358.3,23750,0)
- ;;=V61.05^^127^1432^10
- ;;^UTILITY(U,$J,358.3,23750,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23750,1,2,0)
- ;;=2^V61.05
- ;;^UTILITY(U,$J,358.3,23750,1,5,0)
- ;;=5^Fmily Dsrpt-Chld Custody
- ;;^UTILITY(U,$J,358.3,23750,2)
- ;;=^336803
- ;;^UTILITY(U,$J,358.3,23751,0)
- ;;=V61.09^^127^1432^9
- ;;^UTILITY(U,$J,358.3,23751,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23751,1,2,0)
- ;;=2^V61.09
+ ;;^UTILITY(U,$J,358.3,22328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22328,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of ulna, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,22328,1,4,0)
+ ;;=4^S52.351S
+ ;;^UTILITY(U,$J,358.3,22328,2)
+ ;;=^5030270
+ ;;^UTILITY(U,$J,358.3,22329,0)
+ ;;=S52.122S^^101^1040^22
+ ;;^UTILITY(U,$J,358.3,22329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22329,1,3,0)
+ ;;=3^Disp fx of head of left radius, sequela      
+ ;;^UTILITY(U,$J,358.3,22329,1,4,0)
+ ;;=4^S52.122S
+ ;;^UTILITY(U,$J,358.3,22329,2)
+ ;;=^5029078
+ ;;^UTILITY(U,$J,358.3,22330,0)
+ ;;=S52.121S^^101^1040^23
+ ;;^UTILITY(U,$J,358.3,22330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22330,1,3,0)
+ ;;=3^Disp fx of head of right radius, sequela     
+ ;;^UTILITY(U,$J,358.3,22330,1,4,0)
+ ;;=4^S52.121S
+ ;;^UTILITY(U,$J,358.3,22330,2)
+ ;;=^5029062
+ ;;^UTILITY(U,$J,358.3,22331,0)
+ ;;=S52.132S^^101^1040^32
+ ;;^UTILITY(U,$J,358.3,22331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22331,1,3,0)
+ ;;=3^Disp fx of neck of left radius, sequela      
+ ;;^UTILITY(U,$J,358.3,22331,1,4,0)
+ ;;=4^S52.132S
+ ;;^UTILITY(U,$J,358.3,22331,2)
+ ;;=^5029174
+ ;;^UTILITY(U,$J,358.3,22332,0)
+ ;;=S52.131S^^101^1040^33
+ ;;^UTILITY(U,$J,358.3,22332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22332,1,3,0)
+ ;;=3^Disp fx of neck of right radius, sequela     
+ ;;^UTILITY(U,$J,358.3,22332,1,4,0)
+ ;;=4^S52.131S
+ ;;^UTILITY(U,$J,358.3,22332,2)
+ ;;=^5029158
+ ;;^UTILITY(U,$J,358.3,22333,0)
+ ;;=S52.332S^^101^1040^34
+ ;;^UTILITY(U,$J,358.3,22333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22333,1,3,0)
+ ;;=3^Disp fx of oblique shaft of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,22333,1,4,0)
+ ;;=4^S52.332S
+ ;;^UTILITY(U,$J,358.3,22333,2)
+ ;;=^5030094
+ ;;^UTILITY(U,$J,358.3,22334,0)
+ ;;=S52.331S^^101^1040^36
+ ;;^UTILITY(U,$J,358.3,22334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22334,1,3,0)
+ ;;=3^Disp fx of oblique shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,22334,1,4,0)
+ ;;=4^S52.331S
+ ;;^UTILITY(U,$J,358.3,22334,2)
+ ;;=^5030078
+ ;;^UTILITY(U,$J,358.3,22335,0)
+ ;;=S52.362S^^101^1040^47
+ ;;^UTILITY(U,$J,358.3,22335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22335,1,3,0)
+ ;;=3^Disp fx of segmental shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,22335,1,4,0)
+ ;;=4^S52.362S
+ ;;^UTILITY(U,$J,358.3,22335,2)
+ ;;=^5030382
+ ;;^UTILITY(U,$J,358.3,22336,0)
+ ;;=S52.361S^^101^1040^48
+ ;;^UTILITY(U,$J,358.3,22336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22336,1,3,0)
+ ;;=3^Disp fx of segmental shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,22336,1,4,0)
+ ;;=4^S52.361S
+ ;;^UTILITY(U,$J,358.3,22336,2)
+ ;;=^5030366
+ ;;^UTILITY(U,$J,358.3,22337,0)
+ ;;=S52.342S^^101^1040^51
+ ;;^UTILITY(U,$J,358.3,22337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22337,1,3,0)
+ ;;=3^Disp fx of spiral shaft of radius, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,22337,1,4,0)
+ ;;=4^S52.342S
+ ;;^UTILITY(U,$J,358.3,22337,2)
+ ;;=^5030190
+ ;;^UTILITY(U,$J,358.3,22338,0)
+ ;;=S52.341S^^101^1040^52
+ ;;^UTILITY(U,$J,358.3,22338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22338,1,3,0)
+ ;;=3^Disp fx of spiral shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,22338,1,4,0)
+ ;;=4^S52.341S
+ ;;^UTILITY(U,$J,358.3,22338,2)
+ ;;=^5030174
+ ;;^UTILITY(U,$J,358.3,22339,0)
+ ;;=S52.322S^^101^1040^55
+ ;;^UTILITY(U,$J,358.3,22339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22339,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left radius, sequela   
+ ;;^UTILITY(U,$J,358.3,22339,1,4,0)
+ ;;=4^S52.322S
+ ;;^UTILITY(U,$J,358.3,22339,2)
+ ;;=^5029998
+ ;;^UTILITY(U,$J,358.3,22340,0)
+ ;;=S52.321S^^101^1040^57

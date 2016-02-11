@@ -1,146 +1,124 @@
-IBDEI0DY ; ; 06-AUG-2015
+IBDEI0DY ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6339,2)
- ;;=^81364
- ;;^UTILITY(U,$J,358.3,6340,0)
- ;;=301.9^^31^409^25
- ;;^UTILITY(U,$J,358.3,6340,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6340,1,4,0)
- ;;=4^301.9
- ;;^UTILITY(U,$J,358.3,6340,1,5,0)
- ;;=5^Personality Disorder 
- ;;^UTILITY(U,$J,358.3,6340,2)
- ;;=^92451
- ;;^UTILITY(U,$J,358.3,6341,0)
- ;;=298.9^^31^409^26
- ;;^UTILITY(U,$J,358.3,6341,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6341,1,4,0)
- ;;=4^298.9
- ;;^UTILITY(U,$J,358.3,6341,1,5,0)
- ;;=5^Psychosis
- ;;^UTILITY(U,$J,358.3,6341,2)
- ;;=^1
- ;;^UTILITY(U,$J,358.3,6342,0)
- ;;=309.81^^31^409^24
- ;;^UTILITY(U,$J,358.3,6342,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6342,1,4,0)
- ;;=4^309.81
- ;;^UTILITY(U,$J,358.3,6342,1,5,0)
- ;;=5^PTSD (chronic)
- ;;^UTILITY(U,$J,358.3,6342,2)
- ;;=^114716
- ;;^UTILITY(U,$J,358.3,6343,0)
- ;;=295.90^^31^409^28
- ;;^UTILITY(U,$J,358.3,6343,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6343,1,4,0)
- ;;=4^295.90
- ;;^UTILITY(U,$J,358.3,6343,1,5,0)
- ;;=5^Schizophrenia 
- ;;^UTILITY(U,$J,358.3,6343,2)
- ;;=^108287
- ;;^UTILITY(U,$J,358.3,6344,0)
- ;;=300.81^^31^409^32
- ;;^UTILITY(U,$J,358.3,6344,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6344,1,4,0)
- ;;=4^300.81
- ;;^UTILITY(U,$J,358.3,6344,1,5,0)
- ;;=5^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,6344,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,6345,0)
- ;;=306.9^^31^409^33
- ;;^UTILITY(U,$J,358.3,6345,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6345,1,4,0)
- ;;=4^306.9
- ;;^UTILITY(U,$J,358.3,6345,1,5,0)
- ;;=5^Somatization Reaction
- ;;^UTILITY(U,$J,358.3,6345,2)
- ;;=^123979
- ;;^UTILITY(U,$J,358.3,6346,0)
- ;;=305.1^^31^409^34
- ;;^UTILITY(U,$J,358.3,6346,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6346,1,4,0)
- ;;=4^305.1
- ;;^UTILITY(U,$J,358.3,6346,1,5,0)
- ;;=5^Tobacco Dependence
- ;;^UTILITY(U,$J,358.3,6346,2)
- ;;=^119899
- ;;^UTILITY(U,$J,358.3,6347,0)
- ;;=290.0^^31^409^30
- ;;^UTILITY(U,$J,358.3,6347,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6347,1,4,0)
- ;;=4^290.0
- ;;^UTILITY(U,$J,358.3,6347,1,5,0)
- ;;=5^Senile Dementia
- ;;^UTILITY(U,$J,358.3,6347,2)
- ;;=^31703
- ;;^UTILITY(U,$J,358.3,6348,0)
- ;;=295.95^^31^409^29
- ;;^UTILITY(U,$J,358.3,6348,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6348,1,4,0)
- ;;=4^295.95
- ;;^UTILITY(U,$J,358.3,6348,1,5,0)
- ;;=5^Schizophrenia w/Remission
- ;;^UTILITY(U,$J,358.3,6348,2)
- ;;=^268096
- ;;^UTILITY(U,$J,358.3,6349,0)
- ;;=300.4^^31^409^14
- ;;^UTILITY(U,$J,358.3,6349,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6349,1,4,0)
- ;;=4^300.4
- ;;^UTILITY(U,$J,358.3,6349,1,5,0)
- ;;=5^Dysthymia
- ;;^UTILITY(U,$J,358.3,6349,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,6350,0)
- ;;=303.93^^31^409^4
- ;;^UTILITY(U,$J,358.3,6350,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6350,1,4,0)
- ;;=4^303.93
- ;;^UTILITY(U,$J,358.3,6350,1,5,0)
- ;;=5^Alcohol Dep-Remission
- ;;^UTILITY(U,$J,358.3,6350,2)
- ;;=^268190
- ;;^UTILITY(U,$J,358.3,6351,0)
- ;;=305.00^^31^409^1
- ;;^UTILITY(U,$J,358.3,6351,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6351,1,4,0)
- ;;=4^305.00
- ;;^UTILITY(U,$J,358.3,6351,1,5,0)
- ;;=5^Alcohol Abuse,Unspec
- ;;^UTILITY(U,$J,358.3,6351,2)
- ;;=^268227
- ;;^UTILITY(U,$J,358.3,6352,0)
- ;;=327.52^^31^409^31
- ;;^UTILITY(U,$J,358.3,6352,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6352,1,4,0)
- ;;=4^327.52
- ;;^UTILITY(U,$J,358.3,6352,1,5,0)
- ;;=5^Sleep Related Leg Cramps
- ;;^UTILITY(U,$J,358.3,6352,2)
- ;;=^332782
- ;;^UTILITY(U,$J,358.3,6353,0)
- ;;=331.0^^31^409^5
- ;;^UTILITY(U,$J,358.3,6353,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6353,1,4,0)
- ;;=4^331.0
- ;;^UTILITY(U,$J,358.3,6353,1,5,0)
- ;;=5^Alzheimer's Dementia
- ;;^UTILITY(U,$J,358.3,6353,2)
- ;;=^5679
+ ;;^UTILITY(U,$J,358.3,6084,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,6085,0)
+ ;;=L97.214^^40^383^125
+ ;;^UTILITY(U,$J,358.3,6085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6085,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Calf,Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,6085,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,6085,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,6086,0)
+ ;;=L97.219^^40^383^126
+ ;;^UTILITY(U,$J,358.3,6086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6086,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Calf,Unspec Severity
+ ;;^UTILITY(U,$J,358.3,6086,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,6086,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,6087,0)
+ ;;=L97.311^^40^383^117
+ ;;^UTILITY(U,$J,358.3,6087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6087,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Ankle,Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,6087,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,6087,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,6088,0)
+ ;;=L97.312^^40^383^118
+ ;;^UTILITY(U,$J,358.3,6088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6088,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Ankle,Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,6088,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,6088,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,6089,0)
+ ;;=L97.313^^40^383^119
+ ;;^UTILITY(U,$J,358.3,6089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6089,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Ankle,Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,6089,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,6089,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,6090,0)
+ ;;=L97.314^^40^383^120
+ ;;^UTILITY(U,$J,358.3,6090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6090,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Ankle,Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,6090,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,6090,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,6091,0)
+ ;;=L97.319^^40^383^121
+ ;;^UTILITY(U,$J,358.3,6091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6091,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Ankle,Unspec Severity
+ ;;^UTILITY(U,$J,358.3,6091,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,6091,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,6092,0)
+ ;;=L97.411^^40^383^132
+ ;;^UTILITY(U,$J,358.3,6092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6092,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,6092,1,4,0)
+ ;;=4^L97.411
+ ;;^UTILITY(U,$J,358.3,6092,2)
+ ;;=^5009530
+ ;;^UTILITY(U,$J,358.3,6093,0)
+ ;;=L97.412^^40^383^133
+ ;;^UTILITY(U,$J,358.3,6093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6093,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,6093,1,4,0)
+ ;;=4^L97.412
+ ;;^UTILITY(U,$J,358.3,6093,2)
+ ;;=^5009531
+ ;;^UTILITY(U,$J,358.3,6094,0)
+ ;;=L97.413^^40^383^134
+ ;;^UTILITY(U,$J,358.3,6094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6094,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,6094,1,4,0)
+ ;;=4^L97.413
+ ;;^UTILITY(U,$J,358.3,6094,2)
+ ;;=^5009532
+ ;;^UTILITY(U,$J,358.3,6095,0)
+ ;;=L97.414^^40^383^135
+ ;;^UTILITY(U,$J,358.3,6095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6095,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,6095,1,4,0)
+ ;;=4^L97.414
+ ;;^UTILITY(U,$J,358.3,6095,2)
+ ;;=^5009533
+ ;;^UTILITY(U,$J,358.3,6096,0)
+ ;;=L97.419^^40^383^136
+ ;;^UTILITY(U,$J,358.3,6096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6096,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Unspec Severity
+ ;;^UTILITY(U,$J,358.3,6096,1,4,0)
+ ;;=4^L97.419

@@ -1,48 +1,132 @@
-IBDEI237 ; ; 06-AUG-2015
+IBDEI237 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.91,0,"GL")
- ;;=^IBE(358.91,
- ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
- ;;=
- ;;^DIC(358.91,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.91,"%D",1,0)
- ;;= 
- ;;^DIC(358.91,"%D",2,0)
- ;;=This file is nearly identical to file #357.91. It is used by the
- ;;^DIC(358.91,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.91,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.91,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.91,0,"DDA")
- ;;=N
- ;;^DD(358.91,0,"DT")
- ;;=2960123
- ;;^DD(358.91,0,"IX","B",358.91,.01)
- ;;=
- ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
- ;;=
- ;;^DD(358.91,0,"PT",358.22,.06)
- ;;=
- ;;^DD(358.91,0,"VRPK")
- ;;=IBD
- ;;^DD(358.91,.01,0)
- ;;=NAME^RFX^^0;1^K:$L(X)>30 X
- ;;^DD(358.91,.01,1,0)
- ;;=^.1
- ;;^DD(358.91,.01,1,1,0)
- ;;=358.91^B
- ;;^DD(358.91,.01,1,1,1)
- ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
- ;;^DD(358.91,.01,1,1,2)
- ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
- ;;^DD(358.91,.01,3)
- ;;=NAME MUST BE UNDER 31 CHARACTERS
- ;;^DD(358.91,.01,21,0)
- ;;=^^1^1^2930608^
- ;;^DD(358.91,.01,21,1,0)
- ;;=The name should describe the appearance of the marking area on the form.
+ ;;^UTILITY(U,$J,358.3,35021,2)
+ ;;=^5009419
+ ;;^UTILITY(U,$J,358.3,35022,0)
+ ;;=L89.519^^163^1788^65
+ ;;^UTILITY(U,$J,358.3,35022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35022,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,35022,1,4,0)
+ ;;=4^L89.519
+ ;;^UTILITY(U,$J,358.3,35022,2)
+ ;;=^5133673
+ ;;^UTILITY(U,$J,358.3,35023,0)
+ ;;=L89.520^^163^1788^18
+ ;;^UTILITY(U,$J,358.3,35023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35023,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Unstageable
+ ;;^UTILITY(U,$J,358.3,35023,1,4,0)
+ ;;=4^L89.520
+ ;;^UTILITY(U,$J,358.3,35023,2)
+ ;;=^5009420
+ ;;^UTILITY(U,$J,358.3,35024,0)
+ ;;=L89.521^^163^1788^13
+ ;;^UTILITY(U,$J,358.3,35024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35024,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 1
+ ;;^UTILITY(U,$J,358.3,35024,1,4,0)
+ ;;=4^L89.521
+ ;;^UTILITY(U,$J,358.3,35024,2)
+ ;;=^5009421
+ ;;^UTILITY(U,$J,358.3,35025,0)
+ ;;=L89.522^^163^1788^14
+ ;;^UTILITY(U,$J,358.3,35025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35025,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 2
+ ;;^UTILITY(U,$J,358.3,35025,1,4,0)
+ ;;=4^L89.522
+ ;;^UTILITY(U,$J,358.3,35025,2)
+ ;;=^5009422
+ ;;^UTILITY(U,$J,358.3,35026,0)
+ ;;=L89.523^^163^1788^15
+ ;;^UTILITY(U,$J,358.3,35026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35026,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 3
+ ;;^UTILITY(U,$J,358.3,35026,1,4,0)
+ ;;=4^L89.523
+ ;;^UTILITY(U,$J,358.3,35026,2)
+ ;;=^5009423
+ ;;^UTILITY(U,$J,358.3,35027,0)
+ ;;=L89.524^^163^1788^16
+ ;;^UTILITY(U,$J,358.3,35027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35027,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 4
+ ;;^UTILITY(U,$J,358.3,35027,1,4,0)
+ ;;=4^L89.524
+ ;;^UTILITY(U,$J,358.3,35027,2)
+ ;;=^5009424
+ ;;^UTILITY(U,$J,358.3,35028,0)
+ ;;=L89.529^^163^1788^17
+ ;;^UTILITY(U,$J,358.3,35028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35028,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,35028,1,4,0)
+ ;;=4^L89.529
+ ;;^UTILITY(U,$J,358.3,35028,2)
+ ;;=^5133674
+ ;;^UTILITY(U,$J,358.3,35029,0)
+ ;;=L89.610^^163^1788^84
+ ;;^UTILITY(U,$J,358.3,35029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35029,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Unstageable
+ ;;^UTILITY(U,$J,358.3,35029,1,4,0)
+ ;;=4^L89.610
+ ;;^UTILITY(U,$J,358.3,35029,2)
+ ;;=^5009430
+ ;;^UTILITY(U,$J,358.3,35030,0)
+ ;;=L89.611^^163^1788^79
+ ;;^UTILITY(U,$J,358.3,35030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35030,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 1
+ ;;^UTILITY(U,$J,358.3,35030,1,4,0)
+ ;;=4^L89.611
+ ;;^UTILITY(U,$J,358.3,35030,2)
+ ;;=^5009431
+ ;;^UTILITY(U,$J,358.3,35031,0)
+ ;;=L89.612^^163^1788^80
+ ;;^UTILITY(U,$J,358.3,35031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35031,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 2
+ ;;^UTILITY(U,$J,358.3,35031,1,4,0)
+ ;;=4^L89.612
+ ;;^UTILITY(U,$J,358.3,35031,2)
+ ;;=^5009432
+ ;;^UTILITY(U,$J,358.3,35032,0)
+ ;;=L89.613^^163^1788^81
+ ;;^UTILITY(U,$J,358.3,35032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35032,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 3
+ ;;^UTILITY(U,$J,358.3,35032,1,4,0)
+ ;;=4^L89.613
+ ;;^UTILITY(U,$J,358.3,35032,2)
+ ;;=^5009433
+ ;;^UTILITY(U,$J,358.3,35033,0)
+ ;;=L89.614^^163^1788^82
+ ;;^UTILITY(U,$J,358.3,35033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35033,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 4
+ ;;^UTILITY(U,$J,358.3,35033,1,4,0)
+ ;;=4^L89.614
+ ;;^UTILITY(U,$J,358.3,35033,2)
+ ;;=^5009434
+ ;;^UTILITY(U,$J,358.3,35034,0)
+ ;;=L89.619^^163^1788^83
+ ;;^UTILITY(U,$J,358.3,35034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35034,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage Unspec

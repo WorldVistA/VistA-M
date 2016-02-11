@@ -1,5 +1,5 @@
 DGREG ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ; 3/28/14 12:38pm
- ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886**;Aug 13, 1993;Build 5
+ ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886,915**;Aug 13, 1993;Build 6
 START ;
 EN D LO^DGUTL S DGCLPR=""
  N DGDIV
@@ -99,12 +99,15 @@ WARN I $S('$D(^DPT(DFN,.1)):0,$P(^(.1),"^",1)']"":0,1:1) W !,$C(7),"***PATIENT I
 MSG W !,"Another user is editing, try later ..." G Q
  ;
 BEGINREG(DFN) ;
+ N DGQRY
  ;Description: This is called at the beginning of the registration process.
  ;Concurrent processes can check the lock to determine if the patient is
  ;currently being registered.
  ;
  Q:'$G(DFN) 0
- I $$QRY^DGENQRY(DFN) W !!,"Enrollment/Eligibility Query sent ...",!!
+ ; **915, check to see if a query was done within the last 5 minutes so we don't send again
+ S DGQRY=$$GET^DGENQRY($$FINDLAST^DGENQRY($G(DFN)),.DGQRY)
+ I $$FMDIFF^XLFDT($$NOW^XLFDT,$G(DGQRY("SENT")),2)>300,$$QRY^DGENQRY(DFN) W !!,"Enrollment/Eligibility Query sent ...",!!
  ;patch 886 changed lock to use dilocktm
  L +^TMP(DFN,"REGISTRATION IN PROGRESS"):$G(DILOCKTM,3)
  I $$LOCK^DGENPTA1(DFN) ;try to lock the patient record
@@ -141,6 +144,7 @@ CIRN ;MPI QUERY
  K MPIFRTN
  Q
 ROMQRY ;
+ Q  ;**915 all register once functionality no longer executed.
  I +$G(DGNEW) D
  . ; query LST for Patient Demographic Information if NEW patient and
  . ; file into patient's record.

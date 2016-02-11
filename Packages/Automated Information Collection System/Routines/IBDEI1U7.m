@@ -1,132 +1,134 @@
-IBDEI1U7 ; ; 06-AUG-2015
+IBDEI1U7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32354,1,0)
+ ;;^UTILITY(U,$J,358.3,30757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32354,1,3,0)
- ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
- ;;^UTILITY(U,$J,358.3,32354,1,4,0)
- ;;=4^E01.1
- ;;^UTILITY(U,$J,358.3,32354,2)
- ;;=^5002465
- ;;^UTILITY(U,$J,358.3,32355,0)
- ;;=E05.00^^182^1984^53
- ;;^UTILITY(U,$J,358.3,32355,1,0)
+ ;;^UTILITY(U,$J,358.3,30757,1,3,0)
+ ;;=3^Hypoesthesia of Skin
+ ;;^UTILITY(U,$J,358.3,30757,1,4,0)
+ ;;=4^R20.1
+ ;;^UTILITY(U,$J,358.3,30757,2)
+ ;;=^5019279
+ ;;^UTILITY(U,$J,358.3,30758,0)
+ ;;=R20.2^^135^1384^131
+ ;;^UTILITY(U,$J,358.3,30758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32355,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
- ;;^UTILITY(U,$J,358.3,32355,1,4,0)
- ;;=4^E05.00
- ;;^UTILITY(U,$J,358.3,32355,2)
- ;;=^5002481
- ;;^UTILITY(U,$J,358.3,32356,0)
- ;;=E05.01^^182^1984^52
- ;;^UTILITY(U,$J,358.3,32356,1,0)
+ ;;^UTILITY(U,$J,358.3,30758,1,3,0)
+ ;;=3^Paresthesia of Skin
+ ;;^UTILITY(U,$J,358.3,30758,1,4,0)
+ ;;=4^R20.2
+ ;;^UTILITY(U,$J,358.3,30758,2)
+ ;;=^5019280
+ ;;^UTILITY(U,$J,358.3,30759,0)
+ ;;=R20.3^^135^1384^83
+ ;;^UTILITY(U,$J,358.3,30759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32356,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,32356,1,4,0)
- ;;=4^E05.01
- ;;^UTILITY(U,$J,358.3,32356,2)
- ;;=^5002482
- ;;^UTILITY(U,$J,358.3,32357,0)
- ;;=E05.90^^182^1984^55
- ;;^UTILITY(U,$J,358.3,32357,1,0)
+ ;;^UTILITY(U,$J,358.3,30759,1,3,0)
+ ;;=3^Hyperesthesia
+ ;;^UTILITY(U,$J,358.3,30759,1,4,0)
+ ;;=4^R20.3
+ ;;^UTILITY(U,$J,358.3,30759,2)
+ ;;=^60011
+ ;;^UTILITY(U,$J,358.3,30760,0)
+ ;;=R21.^^135^1384^145
+ ;;^UTILITY(U,$J,358.3,30760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32357,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,32357,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,32357,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,32358,0)
- ;;=E05.91^^182^1984^54
- ;;^UTILITY(U,$J,358.3,32358,1,0)
+ ;;^UTILITY(U,$J,358.3,30760,1,3,0)
+ ;;=3^Rash
+ ;;^UTILITY(U,$J,358.3,30760,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,30760,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,30761,0)
+ ;;=R22.0^^135^1384^105
+ ;;^UTILITY(U,$J,358.3,30761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32358,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,32358,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,32358,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,32359,0)
- ;;=E89.0^^182^1984^47
- ;;^UTILITY(U,$J,358.3,32359,1,0)
+ ;;^UTILITY(U,$J,358.3,30761,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Head
+ ;;^UTILITY(U,$J,358.3,30761,1,4,0)
+ ;;=4^R22.0
+ ;;^UTILITY(U,$J,358.3,30761,2)
+ ;;=^5019284
+ ;;^UTILITY(U,$J,358.3,30762,0)
+ ;;=R22.1^^135^1384^108
+ ;;^UTILITY(U,$J,358.3,30762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32359,1,3,0)
- ;;=3^Postprocedural Hypothyroidism
- ;;^UTILITY(U,$J,358.3,32359,1,4,0)
- ;;=4^E89.0
- ;;^UTILITY(U,$J,358.3,32359,2)
- ;;=^5003035
- ;;^UTILITY(U,$J,358.3,32360,0)
- ;;=E03.2^^182^1984^31
- ;;^UTILITY(U,$J,358.3,32360,1,0)
+ ;;^UTILITY(U,$J,358.3,30762,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Neck
+ ;;^UTILITY(U,$J,358.3,30762,1,4,0)
+ ;;=4^R22.1
+ ;;^UTILITY(U,$J,358.3,30762,2)
+ ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,30763,0)
+ ;;=R22.2^^135^1384^111
+ ;;^UTILITY(U,$J,358.3,30763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32360,1,3,0)
- ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
- ;;^UTILITY(U,$J,358.3,32360,1,4,0)
- ;;=4^E03.2
- ;;^UTILITY(U,$J,358.3,32360,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,32361,0)
- ;;=E03.9^^182^1984^32
- ;;^UTILITY(U,$J,358.3,32361,1,0)
+ ;;^UTILITY(U,$J,358.3,30763,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,30763,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,30763,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,30764,0)
+ ;;=R22.31^^135^1384^110
+ ;;^UTILITY(U,$J,358.3,30764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32361,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,32361,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,32361,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,32362,0)
- ;;=E06.0^^182^1984^50
- ;;^UTILITY(U,$J,358.3,32362,1,0)
+ ;;^UTILITY(U,$J,358.3,30764,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30764,1,4,0)
+ ;;=4^R22.31
+ ;;^UTILITY(U,$J,358.3,30764,2)
+ ;;=^5019288
+ ;;^UTILITY(U,$J,358.3,30765,0)
+ ;;=R22.32^^135^1384^107
+ ;;^UTILITY(U,$J,358.3,30765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32362,1,3,0)
- ;;=3^Thyroiditis,Acute
- ;;^UTILITY(U,$J,358.3,32362,1,4,0)
- ;;=4^E06.0
- ;;^UTILITY(U,$J,358.3,32362,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,32363,0)
- ;;=E06.1^^182^1984^51
- ;;^UTILITY(U,$J,358.3,32363,1,0)
+ ;;^UTILITY(U,$J,358.3,30765,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30765,1,4,0)
+ ;;=4^R22.32
+ ;;^UTILITY(U,$J,358.3,30765,2)
+ ;;=^5019289
+ ;;^UTILITY(U,$J,358.3,30766,0)
+ ;;=R22.33^^135^1384^103
+ ;;^UTILITY(U,$J,358.3,30766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32363,1,3,0)
- ;;=3^Thyroiditis,Subacute
- ;;^UTILITY(U,$J,358.3,32363,1,4,0)
- ;;=4^E06.1
- ;;^UTILITY(U,$J,358.3,32363,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,32364,0)
- ;;=C73.^^182^1984^36
- ;;^UTILITY(U,$J,358.3,32364,1,0)
+ ;;^UTILITY(U,$J,358.3,30766,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,30766,1,4,0)
+ ;;=4^R22.33
+ ;;^UTILITY(U,$J,358.3,30766,2)
+ ;;=^5019290
+ ;;^UTILITY(U,$J,358.3,30767,0)
+ ;;=R22.42^^135^1384^106
+ ;;^UTILITY(U,$J,358.3,30767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32364,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,32364,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,32364,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,32365,0)
- ;;=E10.21^^182^1984^9
- ;;^UTILITY(U,$J,358.3,32365,1,0)
+ ;;^UTILITY(U,$J,358.3,30767,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,30767,1,4,0)
+ ;;=4^R22.42
+ ;;^UTILITY(U,$J,358.3,30767,2)
+ ;;=^5134179
+ ;;^UTILITY(U,$J,358.3,30768,0)
+ ;;=R22.41^^135^1384^109
+ ;;^UTILITY(U,$J,358.3,30768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32365,1,3,0)
- ;;=3^DM Type 1 w/ Nephropathy
- ;;^UTILITY(U,$J,358.3,32365,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,32365,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,32366,0)
- ;;=E10.9^^182^1984^11
- ;;^UTILITY(U,$J,358.3,32366,1,0)
+ ;;^UTILITY(U,$J,358.3,30768,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,30768,1,4,0)
+ ;;=4^R22.41
+ ;;^UTILITY(U,$J,358.3,30768,2)
+ ;;=^5134178
+ ;;^UTILITY(U,$J,358.3,30769,0)
+ ;;=R22.43^^135^1384^104
+ ;;^UTILITY(U,$J,358.3,30769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32366,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,32366,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,32366,2)
- ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,30769,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
+ ;;^UTILITY(U,$J,358.3,30769,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,30769,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,30770,0)
+ ;;=R22.9^^135^1384^112

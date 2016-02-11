@@ -1,138 +1,120 @@
-IBDEI1BA ; ; 06-AUG-2015
+IBDEI1BA ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23230,1,4,0)
- ;;=4^788.43
- ;;^UTILITY(U,$J,358.3,23230,1,5,0)
- ;;=5^Nocturia
- ;;^UTILITY(U,$J,358.3,23230,2)
- ;;=Nocturia^84740
- ;;^UTILITY(U,$J,358.3,23231,0)
- ;;=788.5^^125^1402^119
- ;;^UTILITY(U,$J,358.3,23231,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23231,1,4,0)
- ;;=4^788.5
- ;;^UTILITY(U,$J,358.3,23231,1,5,0)
- ;;=5^Oliguria/Anuria
- ;;^UTILITY(U,$J,358.3,23231,2)
- ;;=Oliguria/Anuria^85458
- ;;^UTILITY(U,$J,358.3,23232,0)
- ;;=788.42^^125^1402^129
- ;;^UTILITY(U,$J,358.3,23232,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23232,1,4,0)
- ;;=4^788.42
- ;;^UTILITY(U,$J,358.3,23232,1,5,0)
- ;;=5^Polyuria
- ;;^UTILITY(U,$J,358.3,23232,2)
- ;;=Polyuria^96503
- ;;^UTILITY(U,$J,358.3,23233,0)
- ;;=788.0^^125^1402^133
- ;;^UTILITY(U,$J,358.3,23233,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23233,1,4,0)
- ;;=4^788.0
- ;;^UTILITY(U,$J,358.3,23233,1,5,0)
- ;;=5^Renal Colic
- ;;^UTILITY(U,$J,358.3,23233,2)
- ;;=Renal Colic^265306
- ;;^UTILITY(U,$J,358.3,23234,0)
- ;;=788.20^^125^1402^134
- ;;^UTILITY(U,$J,358.3,23234,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23234,1,4,0)
- ;;=4^788.20
- ;;^UTILITY(U,$J,358.3,23234,1,5,0)
- ;;=5^Retention, urinary
- ;;^UTILITY(U,$J,358.3,23234,2)
- ;;=^295812
- ;;^UTILITY(U,$J,358.3,23235,0)
- ;;=788.62^^125^1402^138
- ;;^UTILITY(U,$J,358.3,23235,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23235,1,4,0)
- ;;=4^788.62
- ;;^UTILITY(U,$J,358.3,23235,1,5,0)
- ;;=5^Slowing, urine stream
- ;;^UTILITY(U,$J,358.3,23235,2)
- ;;=^295769
- ;;^UTILITY(U,$J,358.3,23236,0)
- ;;=788.7^^125^1402^152
- ;;^UTILITY(U,$J,358.3,23236,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23236,1,4,0)
- ;;=4^788.7
- ;;^UTILITY(U,$J,358.3,23236,1,5,0)
- ;;=5^Urethral Discharge
- ;;^UTILITY(U,$J,358.3,23236,2)
- ;;=^265872
- ;;^UTILITY(U,$J,358.3,23237,0)
- ;;=599.0^^125^1402^153
- ;;^UTILITY(U,$J,358.3,23237,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23237,1,4,0)
- ;;=4^599.0
- ;;^UTILITY(U,$J,358.3,23237,1,5,0)
- ;;=5^Urinary tract infection
- ;;^UTILITY(U,$J,358.3,23237,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,23238,0)
- ;;=784.49^^125^1402^85
- ;;^UTILITY(U,$J,358.3,23238,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23238,1,4,0)
- ;;=4^784.49
- ;;^UTILITY(U,$J,358.3,23238,1,5,0)
- ;;=5^Hoarseness
- ;;^UTILITY(U,$J,358.3,23238,2)
- ;;=Hoarseness^88244
- ;;^UTILITY(U,$J,358.3,23239,0)
- ;;=525.10^^125^1402^104
- ;;^UTILITY(U,$J,358.3,23239,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23239,1,4,0)
- ;;=4^525.10
- ;;^UTILITY(U,$J,358.3,23239,1,5,0)
- ;;=5^Loss of Teeth
- ;;^UTILITY(U,$J,358.3,23239,2)
- ;;=Loss of Teeth^323490
- ;;^UTILITY(U,$J,358.3,23240,0)
- ;;=795.39^^125^1402^130
- ;;^UTILITY(U,$J,358.3,23240,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23240,1,4,0)
- ;;=4^795.39
- ;;^UTILITY(U,$J,358.3,23240,1,5,0)
- ;;=5^Positive Culture findings
- ;;^UTILITY(U,$J,358.3,23240,2)
- ;;=Positive Culture findings^328582
- ;;^UTILITY(U,$J,358.3,23241,0)
- ;;=564.00^^125^1402^43
- ;;^UTILITY(U,$J,358.3,23241,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23241,1,4,0)
- ;;=4^564.00
- ;;^UTILITY(U,$J,358.3,23241,1,5,0)
- ;;=5^Constipation
- ;;^UTILITY(U,$J,358.3,23241,2)
- ;;=Constipation^323537
- ;;^UTILITY(U,$J,358.3,23242,0)
- ;;=790.22^^125^1402^90
- ;;^UTILITY(U,$J,358.3,23242,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23242,1,4,0)
- ;;=4^790.22
- ;;^UTILITY(U,$J,358.3,23242,1,5,0)
- ;;=5^Impaired Oral Glucse Tol
- ;;^UTILITY(U,$J,358.3,23242,2)
- ;;=^329896
- ;;^UTILITY(U,$J,358.3,23243,0)
- ;;=719.7^^125^1402^50
- ;;^UTILITY(U,$J,358.3,23243,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23243,1,4,0)
- ;;=4^719.7
- ;;^UTILITY(U,$J,358.3,23243,1,5,0)
- ;;=5^Difficulty In Walking
+ ;;^UTILITY(U,$J,358.3,21889,0)
+ ;;=S62.631S^^101^1035^11
+ ;;^UTILITY(U,$J,358.3,21889,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21889,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21889,1,4,0)
+ ;;=4^S62.631S
+ ;;^UTILITY(U,$J,358.3,21889,2)
+ ;;=^5034605
+ ;;^UTILITY(U,$J,358.3,21890,0)
+ ;;=S62.637S^^101^1035^12
+ ;;^UTILITY(U,$J,358.3,21890,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21890,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21890,1,4,0)
+ ;;=4^S62.637S
+ ;;^UTILITY(U,$J,358.3,21890,2)
+ ;;=^5034647
+ ;;^UTILITY(U,$J,358.3,21891,0)
+ ;;=S62.633S^^101^1035^13
+ ;;^UTILITY(U,$J,358.3,21891,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21891,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21891,1,4,0)
+ ;;=4^S62.633S
+ ;;^UTILITY(U,$J,358.3,21891,2)
+ ;;=^5034619
+ ;;^UTILITY(U,$J,358.3,21892,0)
+ ;;=S62.635S^^101^1035^14
+ ;;^UTILITY(U,$J,358.3,21892,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21892,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21892,1,4,0)
+ ;;=4^S62.635S
+ ;;^UTILITY(U,$J,358.3,21892,2)
+ ;;=^5034633
+ ;;^UTILITY(U,$J,358.3,21893,0)
+ ;;=S62.630S^^101^1035^16
+ ;;^UTILITY(U,$J,358.3,21893,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21893,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21893,1,4,0)
+ ;;=4^S62.630S
+ ;;^UTILITY(U,$J,358.3,21893,2)
+ ;;=^5034598
+ ;;^UTILITY(U,$J,358.3,21894,0)
+ ;;=S62.636S^^101^1035^17
+ ;;^UTILITY(U,$J,358.3,21894,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21894,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21894,1,4,0)
+ ;;=4^S62.636S
+ ;;^UTILITY(U,$J,358.3,21894,2)
+ ;;=^5034640
+ ;;^UTILITY(U,$J,358.3,21895,0)
+ ;;=S62.632S^^101^1035^18
+ ;;^UTILITY(U,$J,358.3,21895,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21895,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21895,1,4,0)
+ ;;=4^S62.632S
+ ;;^UTILITY(U,$J,358.3,21895,2)
+ ;;=^5034612
+ ;;^UTILITY(U,$J,358.3,21896,0)
+ ;;=S62.634S^^101^1035^19
+ ;;^UTILITY(U,$J,358.3,21896,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21896,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,21896,1,4,0)
+ ;;=4^S62.634S
+ ;;^UTILITY(U,$J,358.3,21896,2)
+ ;;=^5034626
+ ;;^UTILITY(U,$J,358.3,21897,0)
+ ;;=S62.621S^^101^1035^21
+ ;;^UTILITY(U,$J,358.3,21897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21897,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,21897,1,4,0)
+ ;;=4^S62.621S
+ ;;^UTILITY(U,$J,358.3,21897,2)
+ ;;=^5034535
+ ;;^UTILITY(U,$J,358.3,21898,0)
+ ;;=S62.627S^^101^1035^22
+ ;;^UTILITY(U,$J,358.3,21898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21898,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,21898,1,4,0)
+ ;;=4^S62.627S
+ ;;^UTILITY(U,$J,358.3,21898,2)
+ ;;=^5034577
+ ;;^UTILITY(U,$J,358.3,21899,0)
+ ;;=S62.623S^^101^1035^23
+ ;;^UTILITY(U,$J,358.3,21899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21899,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,21899,1,4,0)
+ ;;=4^S62.623S
+ ;;^UTILITY(U,$J,358.3,21899,2)
+ ;;=^5034549
+ ;;^UTILITY(U,$J,358.3,21900,0)
+ ;;=S62.625S^^101^1035^24
+ ;;^UTILITY(U,$J,358.3,21900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21900,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left ring finger, sequela

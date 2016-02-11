@@ -1,142 +1,124 @@
-IBDEI1I0 ; ; 06-AUG-2015
+IBDEI1I0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26591,1,4,0)
- ;;=4^V49.70
- ;;^UTILITY(U,$J,358.3,26591,2)
- ;;=^303438
- ;;^UTILITY(U,$J,358.3,26592,0)
- ;;=V49.71^^156^1714^7
- ;;^UTILITY(U,$J,358.3,26592,1,0)
+ ;;^UTILITY(U,$J,358.3,25047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26592,1,3,0)
- ;;=3^Great Toe Amputat Stat
- ;;^UTILITY(U,$J,358.3,26592,1,4,0)
- ;;=4^V49.71
- ;;^UTILITY(U,$J,358.3,26592,2)
- ;;=^303439
- ;;^UTILITY(U,$J,358.3,26593,0)
- ;;=V49.72^^156^1714^11
- ;;^UTILITY(U,$J,358.3,26593,1,0)
+ ;;^UTILITY(U,$J,358.3,25047,1,3,0)
+ ;;=3^Postprocedure Cardiac Functn Disturb Following Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,25047,1,4,0)
+ ;;=4^I97.190
+ ;;^UTILITY(U,$J,358.3,25047,2)
+ ;;=^5008089
+ ;;^UTILITY(U,$J,358.3,25048,0)
+ ;;=I97.191^^124^1239^199
+ ;;^UTILITY(U,$J,358.3,25048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26593,1,3,0)
- ;;=3^Oth Toe(S) Amputat Stat
- ;;^UTILITY(U,$J,358.3,26593,1,4,0)
- ;;=4^V49.72
- ;;^UTILITY(U,$J,358.3,26593,2)
- ;;=^303440
- ;;^UTILITY(U,$J,358.3,26594,0)
- ;;=V49.60^^156^1714^15
- ;;^UTILITY(U,$J,358.3,26594,1,0)
+ ;;^UTILITY(U,$J,358.3,25048,1,3,0)
+ ;;=3^Postprocedure Cardiac Functn Disturb Following Oth Surgery
+ ;;^UTILITY(U,$J,358.3,25048,1,4,0)
+ ;;=4^I97.191
+ ;;^UTILITY(U,$J,358.3,25048,2)
+ ;;=^5008090
+ ;;^UTILITY(U,$J,358.3,25049,0)
+ ;;=I97.710^^124^1239^92
+ ;;^UTILITY(U,$J,358.3,25049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26594,1,3,0)
- ;;=3^Unsp Lev U Limb Amput
- ;;^UTILITY(U,$J,358.3,26594,1,4,0)
- ;;=4^V49.60
- ;;^UTILITY(U,$J,358.3,26594,2)
- ;;=^303427
- ;;^UTILITY(U,$J,358.3,26595,0)
- ;;=V49.61^^156^1714^13
- ;;^UTILITY(U,$J,358.3,26595,1,0)
+ ;;^UTILITY(U,$J,358.3,25049,1,3,0)
+ ;;=3^Intraoperative Cardiac Arrensst During Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,25049,1,4,0)
+ ;;=4^I97.710
+ ;;^UTILITY(U,$J,358.3,25049,2)
+ ;;=^5008103
+ ;;^UTILITY(U,$J,358.3,25050,0)
+ ;;=I97.711^^124^1239^93
+ ;;^UTILITY(U,$J,358.3,25050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26595,1,3,0)
- ;;=3^Thumb Amput Status
- ;;^UTILITY(U,$J,358.3,26595,1,4,0)
- ;;=4^V49.61
- ;;^UTILITY(U,$J,358.3,26595,2)
- ;;=^303428
- ;;^UTILITY(U,$J,358.3,26596,0)
- ;;=V49.62^^156^1714^10
- ;;^UTILITY(U,$J,358.3,26596,1,0)
+ ;;^UTILITY(U,$J,358.3,25050,1,3,0)
+ ;;=3^Intraoperative Cardiac Arrest During Oth Surgery
+ ;;^UTILITY(U,$J,358.3,25050,1,4,0)
+ ;;=4^I97.711
+ ;;^UTILITY(U,$J,358.3,25050,2)
+ ;;=^5008104
+ ;;^UTILITY(U,$J,358.3,25051,0)
+ ;;=I97.790^^124^1239^94
+ ;;^UTILITY(U,$J,358.3,25051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26596,1,3,0)
- ;;=3^Oth Finger(s) Amput Status
- ;;^UTILITY(U,$J,358.3,26596,1,4,0)
- ;;=4^V49.62
- ;;^UTILITY(U,$J,358.3,26596,2)
- ;;=^303429
- ;;^UTILITY(U,$J,358.3,26597,0)
- ;;=V49.63^^156^1714^8
- ;;^UTILITY(U,$J,358.3,26597,1,0)
+ ;;^UTILITY(U,$J,358.3,25051,1,3,0)
+ ;;=3^Intraoperative Cardiac Functn Disturb During Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,25051,1,4,0)
+ ;;=4^I97.790
+ ;;^UTILITY(U,$J,358.3,25051,2)
+ ;;=^5008105
+ ;;^UTILITY(U,$J,358.3,25052,0)
+ ;;=I97.791^^124^1239^95
+ ;;^UTILITY(U,$J,358.3,25052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26597,1,3,0)
- ;;=3^Hand Amput Status
- ;;^UTILITY(U,$J,358.3,26597,1,4,0)
- ;;=4^V49.63
- ;;^UTILITY(U,$J,358.3,26597,2)
- ;;=^303430
- ;;^UTILITY(U,$J,358.3,26598,0)
- ;;=V49.64^^156^1714^16
- ;;^UTILITY(U,$J,358.3,26598,1,0)
+ ;;^UTILITY(U,$J,358.3,25052,1,3,0)
+ ;;=3^Intraoperative Cardiac Functn Disturb During Oth Surgery
+ ;;^UTILITY(U,$J,358.3,25052,1,4,0)
+ ;;=4^I97.791
+ ;;^UTILITY(U,$J,358.3,25052,2)
+ ;;=^5008106
+ ;;^UTILITY(U,$J,358.3,25053,0)
+ ;;=T81.72XA^^124^1239^25
+ ;;^UTILITY(U,$J,358.3,25053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26598,1,3,0)
- ;;=3^Wrist Amput Status
- ;;^UTILITY(U,$J,358.3,26598,1,4,0)
- ;;=4^V49.64
- ;;^UTILITY(U,$J,358.3,26598,2)
- ;;=^303431
- ;;^UTILITY(U,$J,358.3,26599,0)
- ;;=V49.65^^156^1714^4
- ;;^UTILITY(U,$J,358.3,26599,1,0)
+ ;;^UTILITY(U,$J,358.3,25053,1,3,0)
+ ;;=3^Complication of Vein Following Procedure NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25053,1,4,0)
+ ;;=4^T81.72XA
+ ;;^UTILITY(U,$J,358.3,25053,2)
+ ;;=^5054650
+ ;;^UTILITY(U,$J,358.3,25054,0)
+ ;;=J95.88^^124^1239^98
+ ;;^UTILITY(U,$J,358.3,25054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26599,1,3,0)
- ;;=3^Below Elbow Amput Status
- ;;^UTILITY(U,$J,358.3,26599,1,4,0)
- ;;=4^V49.65
- ;;^UTILITY(U,$J,358.3,26599,2)
- ;;=^303432
- ;;^UTILITY(U,$J,358.3,26600,0)
- ;;=V49.66^^156^1714^1
- ;;^UTILITY(U,$J,358.3,26600,1,0)
+ ;;^UTILITY(U,$J,358.3,25054,1,3,0)
+ ;;=3^Intraoperative Complications of Respiratory System NEC
+ ;;^UTILITY(U,$J,358.3,25054,1,4,0)
+ ;;=4^J95.88
+ ;;^UTILITY(U,$J,358.3,25054,2)
+ ;;=^5008345
+ ;;^UTILITY(U,$J,358.3,25055,0)
+ ;;=J95.89^^124^1239^202
+ ;;^UTILITY(U,$J,358.3,25055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26600,1,3,0)
- ;;=3^Above Elbow Amput Status
- ;;^UTILITY(U,$J,358.3,26600,1,4,0)
- ;;=4^V49.66
- ;;^UTILITY(U,$J,358.3,26600,2)
- ;;=^303433
- ;;^UTILITY(U,$J,358.3,26601,0)
- ;;=V49.67^^156^1714^12
- ;;^UTILITY(U,$J,358.3,26601,1,0)
+ ;;^UTILITY(U,$J,358.3,25055,1,3,0)
+ ;;=3^Postprocedure Complications/Disorders of Respiratory System NEC
+ ;;^UTILITY(U,$J,358.3,25055,1,4,0)
+ ;;=4^J95.89
+ ;;^UTILITY(U,$J,358.3,25055,2)
+ ;;=^5008346
+ ;;^UTILITY(U,$J,358.3,25056,0)
+ ;;=K91.3^^124^1239^194
+ ;;^UTILITY(U,$J,358.3,25056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26601,1,3,0)
- ;;=3^Shoulder Amput Status
- ;;^UTILITY(U,$J,358.3,26601,1,4,0)
- ;;=4^V49.67
- ;;^UTILITY(U,$J,358.3,26601,2)
- ;;=^303434
- ;;^UTILITY(U,$J,358.3,26602,0)
- ;;=V49.77^^156^1714^9
- ;;^UTILITY(U,$J,358.3,26602,1,0)
+ ;;^UTILITY(U,$J,358.3,25056,1,3,0)
+ ;;=3^Postprocedural Intestinal Obstruction
+ ;;^UTILITY(U,$J,358.3,25056,1,4,0)
+ ;;=4^K91.3
+ ;;^UTILITY(U,$J,358.3,25056,2)
+ ;;=^5008902
+ ;;^UTILITY(U,$J,358.3,25057,0)
+ ;;=K91.81^^124^1239^96
+ ;;^UTILITY(U,$J,358.3,25057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26602,1,3,0)
- ;;=3^Hip Amput Status
- ;;^UTILITY(U,$J,358.3,26602,1,4,0)
- ;;=4^V49.77
- ;;^UTILITY(U,$J,358.3,26602,2)
- ;;=^303445
- ;;^UTILITY(U,$J,358.3,26603,0)
- ;;=784.3^^156^1715^1
- ;;^UTILITY(U,$J,358.3,26603,1,0)
+ ;;^UTILITY(U,$J,358.3,25057,1,3,0)
+ ;;=3^Intraoperative Complications of Digestive System
+ ;;^UTILITY(U,$J,358.3,25057,1,4,0)
+ ;;=4^K91.81
+ ;;^UTILITY(U,$J,358.3,25057,2)
+ ;;=^5008907
+ ;;^UTILITY(U,$J,358.3,25058,0)
+ ;;=K91.82^^124^1239^192
+ ;;^UTILITY(U,$J,358.3,25058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26603,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,26603,1,4,0)
- ;;=4^784.3
- ;;^UTILITY(U,$J,358.3,26603,2)
- ;;=^9453
- ;;^UTILITY(U,$J,358.3,26604,0)
- ;;=334.3^^156^1715^2
- ;;^UTILITY(U,$J,358.3,26604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26604,1,3,0)
- ;;=3^Cerebellar Ataxia Nec
- ;;^UTILITY(U,$J,358.3,26604,1,4,0)
- ;;=4^334.3
- ;;^UTILITY(U,$J,358.3,26604,2)
- ;;=^87376
- ;;^UTILITY(U,$J,358.3,26605,0)
- ;;=438.11^^156^1715^9
- ;;^UTILITY(U,$J,358.3,26605,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25058,1,3,0)
+ ;;=3^Postprocedural Hepatic Failure
+ ;;^UTILITY(U,$J,358.3,25058,1,4,0)
+ ;;=4^K91.82
+ ;;^UTILITY(U,$J,358.3,25058,2)
+ ;;=^5008908
+ ;;^UTILITY(U,$J,358.3,25059,0)
+ ;;=K91.83^^124^1239^193

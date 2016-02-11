@@ -1,144 +1,130 @@
-IBDEI0DC ; ; 06-AUG-2015
+IBDEI0DC ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6030,2)
- ;;=^60611
- ;;^UTILITY(U,$J,358.3,6031,0)
- ;;=278.02^^31^404^17
- ;;^UTILITY(U,$J,358.3,6031,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6031,1,4,0)
- ;;=4^278.02
- ;;^UTILITY(U,$J,358.3,6031,1,5,0)
- ;;=5^Overweight
- ;;^UTILITY(U,$J,358.3,6031,2)
- ;;=^332745
- ;;^UTILITY(U,$J,358.3,6032,0)
- ;;=285.9^^31^404^3
- ;;^UTILITY(U,$J,358.3,6032,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6032,1,4,0)
- ;;=4^285.9
- ;;^UTILITY(U,$J,358.3,6032,1,5,0)
- ;;=5^Anemia NOS
- ;;^UTILITY(U,$J,358.3,6032,2)
- ;;=^7007
- ;;^UTILITY(U,$J,358.3,6033,0)
- ;;=790.29^^31^404^1
- ;;^UTILITY(U,$J,358.3,6033,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6033,1,4,0)
- ;;=4^790.29
- ;;^UTILITY(U,$J,358.3,6033,1,5,0)
- ;;=5^Abnormal Glucose NOS
- ;;^UTILITY(U,$J,358.3,6033,2)
- ;;=^329955
- ;;^UTILITY(U,$J,358.3,6034,0)
- ;;=252.00^^31^404^9
- ;;^UTILITY(U,$J,358.3,6034,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6034,1,4,0)
- ;;=4^252.00
- ;;^UTILITY(U,$J,358.3,6034,1,5,0)
- ;;=5^Hyperparathyroid NOS
- ;;^UTILITY(U,$J,358.3,6034,2)
- ;;=^331438
- ;;^UTILITY(U,$J,358.3,6035,0)
- ;;=252.01^^31^404^18
- ;;^UTILITY(U,$J,358.3,6035,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6035,1,4,0)
- ;;=4^252.01
- ;;^UTILITY(U,$J,358.3,6035,1,5,0)
- ;;=5^Primary Hyperparathyroid
- ;;^UTILITY(U,$J,358.3,6035,2)
- ;;=^331439
- ;;^UTILITY(U,$J,358.3,6036,0)
- ;;=252.02^^31^404^19
- ;;^UTILITY(U,$J,358.3,6036,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6036,1,4,0)
- ;;=4^252.02
- ;;^UTILITY(U,$J,358.3,6036,1,5,0)
- ;;=5^Sec Hyperparathyroid NonRenal
- ;;^UTILITY(U,$J,358.3,6036,2)
- ;;=^331440
- ;;^UTILITY(U,$J,358.3,6037,0)
- ;;=252.08^^31^404^10
- ;;^UTILITY(U,$J,358.3,6037,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6037,1,4,0)
- ;;=4^252.08
- ;;^UTILITY(U,$J,358.3,6037,1,5,0)
- ;;=5^Hyperparathyroidism Oth
- ;;^UTILITY(U,$J,358.3,6037,2)
- ;;=^331441
- ;;^UTILITY(U,$J,358.3,6038,0)
- ;;=793.2^^31^405^3
- ;;^UTILITY(U,$J,358.3,6038,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6038,1,4,0)
- ;;=4^793.2
- ;;^UTILITY(U,$J,358.3,6038,1,5,0)
- ;;=5^Abnormal Chest x-ray, other
- ;;^UTILITY(U,$J,358.3,6038,2)
- ;;=^273419
- ;;^UTILITY(U,$J,358.3,6039,0)
- ;;=493.92^^31^405^10
- ;;^UTILITY(U,$J,358.3,6039,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6039,1,4,0)
- ;;=4^493.92
- ;;^UTILITY(U,$J,358.3,6039,1,5,0)
- ;;=5^Asthma, Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,6039,2)
- ;;=^322001
- ;;^UTILITY(U,$J,358.3,6040,0)
- ;;=493.20^^31^405^17
- ;;^UTILITY(U,$J,358.3,6040,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6040,1,4,0)
- ;;=4^493.20
- ;;^UTILITY(U,$J,358.3,6040,1,5,0)
- ;;=5^COPD with Asthma
- ;;^UTILITY(U,$J,358.3,6040,2)
- ;;=COPD with Asthma^269964
- ;;^UTILITY(U,$J,358.3,6041,0)
- ;;=493.91^^31^405^11
- ;;^UTILITY(U,$J,358.3,6041,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6041,1,4,0)
- ;;=4^493.91
- ;;^UTILITY(U,$J,358.3,6041,1,5,0)
- ;;=5^Asthma, with Status Asthmat
- ;;^UTILITY(U,$J,358.3,6041,2)
- ;;=^269967
- ;;^UTILITY(U,$J,358.3,6042,0)
- ;;=491.21^^31^405^16
- ;;^UTILITY(U,$J,358.3,6042,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6042,1,4,0)
- ;;=4^491.21
- ;;^UTILITY(U,$J,358.3,6042,1,5,0)
- ;;=5^COPD Exacerbation
- ;;^UTILITY(U,$J,358.3,6042,2)
- ;;=COPD Exacerbation^269954
- ;;^UTILITY(U,$J,358.3,6043,0)
- ;;=494.0^^31^405^14
- ;;^UTILITY(U,$J,358.3,6043,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6043,1,4,0)
- ;;=4^494.0
- ;;^UTILITY(U,$J,358.3,6043,1,5,0)
- ;;=5^Bronchiectasis, chronic
- ;;^UTILITY(U,$J,358.3,6043,2)
- ;;=^321990
- ;;^UTILITY(U,$J,358.3,6044,0)
- ;;=494.1^^31^405^13
- ;;^UTILITY(U,$J,358.3,6044,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6044,1,4,0)
- ;;=4^494.1
- ;;^UTILITY(U,$J,358.3,6044,1,5,0)
- ;;=5^Bronchiectasis with exacerb
+ ;;^UTILITY(U,$J,358.3,5800,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,5800,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,5801,0)
+ ;;=M47.811^^40^376^32
+ ;;^UTILITY(U,$J,358.3,5801,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5801,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Occipito/Atlanto/Axial Region
+ ;;^UTILITY(U,$J,358.3,5801,1,4,0)
+ ;;=4^M47.811
+ ;;^UTILITY(U,$J,358.3,5801,2)
+ ;;=^5012068
+ ;;^UTILITY(U,$J,358.3,5802,0)
+ ;;=M47.818^^40^376^33
+ ;;^UTILITY(U,$J,358.3,5802,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5802,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,5802,1,4,0)
+ ;;=4^M47.818
+ ;;^UTILITY(U,$J,358.3,5802,2)
+ ;;=^5012075
+ ;;^UTILITY(U,$J,358.3,5803,0)
+ ;;=M47.814^^40^376^34
+ ;;^UTILITY(U,$J,358.3,5803,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5803,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,5803,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,5803,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,5804,0)
+ ;;=M47.815^^40^376^35
+ ;;^UTILITY(U,$J,358.3,5804,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5804,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,5804,1,4,0)
+ ;;=4^M47.815
+ ;;^UTILITY(U,$J,358.3,5804,2)
+ ;;=^5012072
+ ;;^UTILITY(U,$J,358.3,5805,0)
+ ;;=S08.111A^^40^377^3
+ ;;^UTILITY(U,$J,358.3,5805,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5805,1,3,0)
+ ;;=3^Complete Traumatic Amputation of Right Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5805,1,4,0)
+ ;;=4^S08.111A
+ ;;^UTILITY(U,$J,358.3,5805,2)
+ ;;=^5021251
+ ;;^UTILITY(U,$J,358.3,5806,0)
+ ;;=S08.112A^^40^377^2
+ ;;^UTILITY(U,$J,358.3,5806,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5806,1,3,0)
+ ;;=3^Complete Traumatic Amputation of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5806,1,4,0)
+ ;;=4^S08.112A
+ ;;^UTILITY(U,$J,358.3,5806,2)
+ ;;=^5021254
+ ;;^UTILITY(U,$J,358.3,5807,0)
+ ;;=S08.0XXA^^40^377^1
+ ;;^UTILITY(U,$J,358.3,5807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5807,1,3,0)
+ ;;=3^Avulsion of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5807,1,4,0)
+ ;;=4^S08.0XXA
+ ;;^UTILITY(U,$J,358.3,5807,2)
+ ;;=^5021248
+ ;;^UTILITY(U,$J,358.3,5808,0)
+ ;;=S09.90XA^^40^377^6
+ ;;^UTILITY(U,$J,358.3,5808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5808,1,3,0)
+ ;;=3^Injury of Head,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5808,1,4,0)
+ ;;=4^S09.90XA
+ ;;^UTILITY(U,$J,358.3,5808,2)
+ ;;=^5021332
+ ;;^UTILITY(U,$J,358.3,5809,0)
+ ;;=S09.8XXA^^40^377^5
+ ;;^UTILITY(U,$J,358.3,5809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5809,1,3,0)
+ ;;=3^Injury of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5809,1,4,0)
+ ;;=4^S09.8XXA
+ ;;^UTILITY(U,$J,358.3,5809,2)
+ ;;=^5021329
+ ;;^UTILITY(U,$J,358.3,5810,0)
+ ;;=S08.89XA^^40^377^7
+ ;;^UTILITY(U,$J,358.3,5810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5810,1,3,0)
+ ;;=3^Traumatic Amputation of Parts of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5810,1,4,0)
+ ;;=4^S08.89XA
+ ;;^UTILITY(U,$J,358.3,5810,2)
+ ;;=^5021275
+ ;;^UTILITY(U,$J,358.3,5811,0)
+ ;;=S09.93XA^^40^377^4
+ ;;^UTILITY(U,$J,358.3,5811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5811,1,3,0)
+ ;;=3^Injury of Face,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5811,1,4,0)
+ ;;=4^S09.93XA
+ ;;^UTILITY(U,$J,358.3,5811,2)
+ ;;=^5021341
+ ;;^UTILITY(U,$J,358.3,5812,0)
+ ;;=M79.671^^40^378^13
+ ;;^UTILITY(U,$J,358.3,5812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5812,1,3,0)
+ ;;=3^Right Foot Pain
+ ;;^UTILITY(U,$J,358.3,5812,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,5812,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,5813,0)
+ ;;=M79.675^^40^378^9

@@ -1,0 +1,132 @@
+IBDEI3HP ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58690,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,58690,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,58690,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,58691,0)
+ ;;=H43.22^^272^2910^29
+ ;;^UTILITY(U,$J,358.3,58691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58691,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,58691,1,4,0)
+ ;;=4^H43.22
+ ;;^UTILITY(U,$J,358.3,58691,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,58692,0)
+ ;;=H43.23^^272^2910^28
+ ;;^UTILITY(U,$J,358.3,58692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58692,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,58692,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,58692,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,58693,0)
+ ;;=H43.11^^272^2910^117
+ ;;^UTILITY(U,$J,358.3,58693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58693,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,58693,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,58693,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,58694,0)
+ ;;=H43.12^^272^2910^116
+ ;;^UTILITY(U,$J,358.3,58694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58694,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,58694,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,58694,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,58695,0)
+ ;;=H43.391^^272^2910^120
+ ;;^UTILITY(U,$J,358.3,58695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58695,1,3,0)
+ ;;=3^Vitreous Opacities,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,58695,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,58695,2)
+ ;;=^5005949
+ ;;^UTILITY(U,$J,358.3,58696,0)
+ ;;=H43.392^^272^2910^119
+ ;;^UTILITY(U,$J,358.3,58696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58696,1,3,0)
+ ;;=3^Vitreous Opacities,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,58696,1,4,0)
+ ;;=4^H43.392
+ ;;^UTILITY(U,$J,358.3,58696,2)
+ ;;=^5005950
+ ;;^UTILITY(U,$J,358.3,58697,0)
+ ;;=H43.393^^272^2910^118
+ ;;^UTILITY(U,$J,358.3,58697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58697,1,3,0)
+ ;;=3^Vitreous Opacities,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,58697,1,4,0)
+ ;;=4^H43.393
+ ;;^UTILITY(U,$J,358.3,58697,2)
+ ;;=^5005951
+ ;;^UTILITY(U,$J,358.3,58698,0)
+ ;;=H43.01^^272^2910^123
+ ;;^UTILITY(U,$J,358.3,58698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58698,1,3,0)
+ ;;=3^Vitreous Prolapse,Right Eye
+ ;;^UTILITY(U,$J,358.3,58698,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,58698,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,58699,0)
+ ;;=H43.02^^272^2910^122
+ ;;^UTILITY(U,$J,358.3,58699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58699,1,3,0)
+ ;;=3^Vitreous Prolapse,Left Eye
+ ;;^UTILITY(U,$J,358.3,58699,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,58699,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,58700,0)
+ ;;=H43.03^^272^2910^121
+ ;;^UTILITY(U,$J,358.3,58700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58700,1,3,0)
+ ;;=3^Vitreous Prolapse,Bilateral
+ ;;^UTILITY(U,$J,358.3,58700,1,4,0)
+ ;;=4^H43.03
+ ;;^UTILITY(U,$J,358.3,58700,2)
+ ;;=^5005936
+ ;;^UTILITY(U,$J,358.3,58701,0)
+ ;;=H43.821^^272^2910^115
+ ;;^UTILITY(U,$J,358.3,58701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58701,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Right Eye
+ ;;^UTILITY(U,$J,358.3,58701,1,4,0)
+ ;;=4^H43.821
+ ;;^UTILITY(U,$J,358.3,58701,2)
+ ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,58702,0)
+ ;;=H43.822^^272^2910^114
+ ;;^UTILITY(U,$J,358.3,58702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58702,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Left Eye
+ ;;^UTILITY(U,$J,358.3,58702,1,4,0)
+ ;;=4^H43.822
+ ;;^UTILITY(U,$J,358.3,58702,2)
+ ;;=^5005958

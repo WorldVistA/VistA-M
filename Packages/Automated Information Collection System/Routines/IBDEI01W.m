@@ -1,140 +1,118 @@
-IBDEI01W ; ; 06-AUG-2015
+IBDEI01W ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,333,1,3,0)
- ;;=3^Hereditary deficiency of other clotting factors
- ;;^UTILITY(U,$J,358.3,333,1,4,0)
- ;;=4^D68.2
- ;;^UTILITY(U,$J,358.3,333,2)
- ;;=^5002356
- ;;^UTILITY(U,$J,358.3,334,0)
- ;;=D68.0^^2^15^26
- ;;^UTILITY(U,$J,358.3,334,1,0)
+ ;;^UTILITY(U,$J,358.3,113,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,113,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,113,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,114,0)
+ ;;=T74.21XD^^3^23^13
+ ;;^UTILITY(U,$J,358.3,114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,334,1,3,0)
- ;;=3^Von Willebrand's disease
- ;;^UTILITY(U,$J,358.3,334,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,334,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,335,0)
- ;;=D68.311^^2^15^2
- ;;^UTILITY(U,$J,358.3,335,1,0)
+ ;;^UTILITY(U,$J,358.3,114,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,114,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,114,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,115,0)
+ ;;=T76.21XA^^3^23^14
+ ;;^UTILITY(U,$J,358.3,115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,335,1,3,0)
- ;;=3^Acquired hemophilia
- ;;^UTILITY(U,$J,358.3,335,1,4,0)
- ;;=4^D68.311
- ;;^UTILITY(U,$J,358.3,335,2)
- ;;=^340502
- ;;^UTILITY(U,$J,358.3,336,0)
- ;;=D68.312^^2^15^4
- ;;^UTILITY(U,$J,358.3,336,1,0)
+ ;;^UTILITY(U,$J,358.3,115,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,115,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,115,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,116,0)
+ ;;=T76.21XD^^3^23^15
+ ;;^UTILITY(U,$J,358.3,116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,336,1,3,0)
- ;;=3^Antiphospholipid antibody with hemorrhagic disorder
- ;;^UTILITY(U,$J,358.3,336,1,4,0)
- ;;=4^D68.312
- ;;^UTILITY(U,$J,358.3,336,2)
- ;;=^340503
- ;;^UTILITY(U,$J,358.3,337,0)
- ;;=D68.318^^2^15^13
- ;;^UTILITY(U,$J,358.3,337,1,0)
+ ;;^UTILITY(U,$J,358.3,116,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
+ ;;^UTILITY(U,$J,358.3,116,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,116,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,117,0)
+ ;;=Z69.81^^3^23^3
+ ;;^UTILITY(U,$J,358.3,117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,337,1,3,0)
- ;;=3^Hemorrhagic disord d/t intrns circ anticoag,antib,inhib NEC
- ;;^UTILITY(U,$J,358.3,337,1,4,0)
- ;;=4^D68.318
- ;;^UTILITY(U,$J,358.3,337,2)
- ;;=^340504
- ;;^UTILITY(U,$J,358.3,338,0)
- ;;=D65.^^2^15^7
- ;;^UTILITY(U,$J,358.3,338,1,0)
+ ;;^UTILITY(U,$J,358.3,117,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,117,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,117,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,118,0)
+ ;;=Z69.82^^3^23^1
+ ;;^UTILITY(U,$J,358.3,118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,338,1,3,0)
- ;;=3^Disseminated intravascular coagulation
- ;;^UTILITY(U,$J,358.3,338,1,4,0)
- ;;=4^D65.
- ;;^UTILITY(U,$J,358.3,338,2)
- ;;=^5002352
- ;;^UTILITY(U,$J,358.3,339,0)
- ;;=D68.32^^2^15^12
- ;;^UTILITY(U,$J,358.3,339,1,0)
+ ;;^UTILITY(U,$J,358.3,118,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,118,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,118,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,119,0)
+ ;;=T74.01XA^^3^23^16
+ ;;^UTILITY(U,$J,358.3,119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,339,1,3,0)
- ;;=3^Hemorrhagic disord d/t extrinsic circulating anticoagulants
- ;;^UTILITY(U,$J,358.3,339,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,339,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,340,0)
- ;;=D68.4^^2^15^1
- ;;^UTILITY(U,$J,358.3,340,1,0)
+ ;;^UTILITY(U,$J,358.3,119,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Initial Encnter
+ ;;^UTILITY(U,$J,358.3,119,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,119,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,120,0)
+ ;;=T74.01XD^^3^23^17
+ ;;^UTILITY(U,$J,358.3,120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,340,1,3,0)
- ;;=3^Acquired coagulation factor deficiency
- ;;^UTILITY(U,$J,358.3,340,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,340,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,341,0)
- ;;=D68.8^^2^15^5
- ;;^UTILITY(U,$J,358.3,341,1,0)
+ ;;^UTILITY(U,$J,358.3,120,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,120,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,120,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,121,0)
+ ;;=T76.01XA^^3^23^18
+ ;;^UTILITY(U,$J,358.3,121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,341,1,3,0)
- ;;=3^Coagulation Defects NEC
- ;;^UTILITY(U,$J,358.3,341,1,4,0)
- ;;=4^D68.8
- ;;^UTILITY(U,$J,358.3,341,2)
- ;;=^5002363
- ;;^UTILITY(U,$J,358.3,342,0)
- ;;=D68.9^^2^15^6
- ;;^UTILITY(U,$J,358.3,342,1,0)
+ ;;^UTILITY(U,$J,358.3,121,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
+ ;;^UTILITY(U,$J,358.3,121,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,121,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,122,0)
+ ;;=T76.01XD^^3^23^19
+ ;;^UTILITY(U,$J,358.3,122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,342,1,3,0)
- ;;=3^Coagulation Defects,Unspec
- ;;^UTILITY(U,$J,358.3,342,1,4,0)
- ;;=4^D68.9
- ;;^UTILITY(U,$J,358.3,342,2)
- ;;=^5002364
- ;;^UTILITY(U,$J,358.3,343,0)
- ;;=D69.1^^2^15^22
- ;;^UTILITY(U,$J,358.3,343,1,0)
+ ;;^UTILITY(U,$J,358.3,122,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,122,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,122,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,123,0)
+ ;;=Z91.412^^3^23^7
+ ;;^UTILITY(U,$J,358.3,123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,343,1,3,0)
- ;;=3^Qualitative platelet defects
- ;;^UTILITY(U,$J,358.3,343,1,4,0)
- ;;=4^D69.1
- ;;^UTILITY(U,$J,358.3,343,2)
- ;;=^101922
- ;;^UTILITY(U,$J,358.3,344,0)
- ;;=D47.3^^2^15^8
- ;;^UTILITY(U,$J,358.3,344,1,0)
+ ;;^UTILITY(U,$J,358.3,123,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,123,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,123,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,124,0)
+ ;;=T74.31XA^^3^23^20
+ ;;^UTILITY(U,$J,358.3,124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,344,1,3,0)
- ;;=3^Essential (hemorrhagic) thrombocythemia
- ;;^UTILITY(U,$J,358.3,344,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,344,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,345,0)
- ;;=D69.0^^2^15^3
- ;;^UTILITY(U,$J,358.3,345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,345,1,3,0)
- ;;=3^Allergic purpura
- ;;^UTILITY(U,$J,358.3,345,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,345,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,346,0)
- ;;=D69.2^^2^15^19
- ;;^UTILITY(U,$J,358.3,346,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,346,1,3,0)
- ;;=3^Nonthrombocytopenic purpura NEC
- ;;^UTILITY(U,$J,358.3,346,1,4,0)
- ;;=4^D69.2
- ;;^UTILITY(U,$J,358.3,346,2)
- ;;=^5002366
+ ;;^UTILITY(U,$J,358.3,124,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
+ ;;^UTILITY(U,$J,358.3,124,1,4,0)
+ ;;=4^T74.31XA

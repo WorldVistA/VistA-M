@@ -1,130 +1,124 @@
-IBDEI1HO ; ; 06-AUG-2015
+IBDEI1HO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26416,1,2,0)
- ;;=2^293.82
- ;;^UTILITY(U,$J,358.3,26416,1,5,0)
- ;;=5^Psychotic D/O,Transient,Hallucination
- ;;^UTILITY(U,$J,358.3,26416,2)
- ;;=^331837
- ;;^UTILITY(U,$J,358.3,26417,0)
- ;;=293.83^^152^1684^3
- ;;^UTILITY(U,$J,358.3,26417,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26417,1,2,0)
- ;;=2^293.83
- ;;^UTILITY(U,$J,358.3,26417,1,5,0)
- ;;=5^Mood D/O,Transient,Depressive
- ;;^UTILITY(U,$J,358.3,26417,2)
- ;;=^331838
- ;;^UTILITY(U,$J,358.3,26418,0)
- ;;=295.12^^152^1685^2
- ;;^UTILITY(U,$J,358.3,26418,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26418,1,2,0)
- ;;=2^295.12
- ;;^UTILITY(U,$J,358.3,26418,1,5,0)
- ;;=5^Disorganized Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,26418,2)
- ;;=^268051
- ;;^UTILITY(U,$J,358.3,26419,0)
- ;;=295.14^^152^1685^3
- ;;^UTILITY(U,$J,358.3,26419,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26419,1,2,0)
- ;;=2^295.14
- ;;^UTILITY(U,$J,358.3,26419,1,5,0)
- ;;=5^Disorganized Schizophrenia,Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,26419,2)
- ;;=^268053
- ;;^UTILITY(U,$J,358.3,26420,0)
- ;;=295.52^^152^1685^6
- ;;^UTILITY(U,$J,358.3,26420,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26420,1,2,0)
- ;;=2^295.52
- ;;^UTILITY(U,$J,358.3,26420,1,5,0)
- ;;=5^Latent Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,26420,2)
- ;;=Latent Schizophrenia, Chronic^268073
- ;;^UTILITY(U,$J,358.3,26421,0)
- ;;=295.54^^152^1685^5
- ;;^UTILITY(U,$J,358.3,26421,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26421,1,2,0)
- ;;=2^295.54
- ;;^UTILITY(U,$J,358.3,26421,1,5,0)
- ;;=5^Latent Schizophrenia, Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,26421,2)
- ;;=^268075
- ;;^UTILITY(U,$J,358.3,26422,0)
- ;;=295.32^^152^1685^8
- ;;^UTILITY(U,$J,358.3,26422,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26422,1,2,0)
- ;;=2^295.32
- ;;^UTILITY(U,$J,358.3,26422,1,5,0)
- ;;=5^Paranoid Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,26422,2)
- ;;=Paranoid Schizophrenia, Chronic^268061
- ;;^UTILITY(U,$J,358.3,26423,0)
- ;;=295.34^^152^1685^9
- ;;^UTILITY(U,$J,358.3,26423,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26423,1,2,0)
- ;;=2^295.34
- ;;^UTILITY(U,$J,358.3,26423,1,5,0)
- ;;=5^Paranoid, Schizophrenia Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,26423,2)
- ;;=^268063
- ;;^UTILITY(U,$J,358.3,26424,0)
- ;;=295.62^^152^1685^23
- ;;^UTILITY(U,$J,358.3,26424,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26424,1,2,0)
- ;;=2^295.62
- ;;^UTILITY(U,$J,358.3,26424,1,5,0)
- ;;=5^Undifferentiated Schizophrenia, Chr
- ;;^UTILITY(U,$J,358.3,26424,2)
- ;;=^268078
- ;;^UTILITY(U,$J,358.3,26425,0)
- ;;=295.72^^152^1685^11
- ;;^UTILITY(U,$J,358.3,26425,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26425,1,2,0)
- ;;=2^295.72
- ;;^UTILITY(U,$J,358.3,26425,1,5,0)
- ;;=5^Schizoaffective Disorder, Chr
- ;;^UTILITY(U,$J,358.3,26425,2)
- ;;=^268083
- ;;^UTILITY(U,$J,358.3,26426,0)
- ;;=295.74^^152^1685^12
- ;;^UTILITY(U,$J,358.3,26426,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26426,1,2,0)
- ;;=2^295.74
- ;;^UTILITY(U,$J,358.3,26426,1,5,0)
- ;;=5^Schizoaffective Disorder, w/Exacerb.
- ;;^UTILITY(U,$J,358.3,26426,2)
- ;;=^268085
- ;;^UTILITY(U,$J,358.3,26427,0)
- ;;=295.42^^152^1685^17
- ;;^UTILITY(U,$J,358.3,26427,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26427,1,2,0)
- ;;=2^295.42
- ;;^UTILITY(U,$J,358.3,26427,1,5,0)
- ;;=5^Schizophreniform Disorder, Chr
- ;;^UTILITY(U,$J,358.3,26427,2)
- ;;=^268068
- ;;^UTILITY(U,$J,358.3,26428,0)
- ;;=295.44^^152^1685^18
- ;;^UTILITY(U,$J,358.3,26428,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26428,1,2,0)
- ;;=2^295.44
- ;;^UTILITY(U,$J,358.3,26428,1,5,0)
- ;;=5^Schizophreniform Disorderw/Exacerb.
- ;;^UTILITY(U,$J,358.3,26428,2)
- ;;=^268070
+ ;;^UTILITY(U,$J,358.3,24907,2)
+ ;;=^5054917
+ ;;^UTILITY(U,$J,358.3,24908,0)
+ ;;=T81.72XA^^124^1239^24
+ ;;^UTILITY(U,$J,358.3,24908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24908,1,3,0)
+ ;;=3^Complication of Vein Following Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24908,1,4,0)
+ ;;=4^T81.72XA
+ ;;^UTILITY(U,$J,358.3,24908,2)
+ ;;=^5054650
+ ;;^UTILITY(U,$J,358.3,24909,0)
+ ;;=T82.817A^^124^1239^51
+ ;;^UTILITY(U,$J,358.3,24909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24909,1,3,0)
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24909,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,24909,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,24910,0)
+ ;;=T80.0XXA^^124^1239^1
+ ;;^UTILITY(U,$J,358.3,24910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24910,1,3,0)
+ ;;=3^Air Embolism Following Infusion/Transfusion/Therapeutic Inj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24910,1,4,0)
+ ;;=4^T80.0XXA
+ ;;^UTILITY(U,$J,358.3,24910,2)
+ ;;=^5054344
+ ;;^UTILITY(U,$J,358.3,24911,0)
+ ;;=T81.718A^^124^1239^20
+ ;;^UTILITY(U,$J,358.3,24911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24911,1,3,0)
+ ;;=3^Complication of Artery Following Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24911,1,4,0)
+ ;;=4^T81.718A
+ ;;^UTILITY(U,$J,358.3,24911,2)
+ ;;=^5054644
+ ;;^UTILITY(U,$J,358.3,24912,0)
+ ;;=J95.811^^124^1239^195
+ ;;^UTILITY(U,$J,358.3,24912,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24912,1,3,0)
+ ;;=3^Postprocedural Pneumothorax
+ ;;^UTILITY(U,$J,358.3,24912,1,4,0)
+ ;;=4^J95.811
+ ;;^UTILITY(U,$J,358.3,24912,2)
+ ;;=^5008336
+ ;;^UTILITY(U,$J,358.3,24913,0)
+ ;;=T82.110A^^124^1239^4
+ ;;^UTILITY(U,$J,358.3,24913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24913,1,3,0)
+ ;;=3^Breakdown of Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24913,1,4,0)
+ ;;=4^T82.110A
+ ;;^UTILITY(U,$J,358.3,24913,2)
+ ;;=^5054680
+ ;;^UTILITY(U,$J,358.3,24914,0)
+ ;;=T82.191A^^124^1239^139
+ ;;^UTILITY(U,$J,358.3,24914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24914,1,3,0)
+ ;;=3^Mechanical Compl of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24914,1,4,0)
+ ;;=4^T82.191A
+ ;;^UTILITY(U,$J,358.3,24914,2)
+ ;;=^5054707
+ ;;^UTILITY(U,$J,358.3,24915,0)
+ ;;=T82.111A^^124^1239^5
+ ;;^UTILITY(U,$J,358.3,24915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24915,1,3,0)
+ ;;=3^Breakdown of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24915,1,4,0)
+ ;;=4^T82.111A
+ ;;^UTILITY(U,$J,358.3,24915,2)
+ ;;=^5054683
+ ;;^UTILITY(U,$J,358.3,24916,0)
+ ;;=T82.120A^^124^1239^34
+ ;;^UTILITY(U,$J,358.3,24916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24916,1,3,0)
+ ;;=3^Displacement of Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24916,1,4,0)
+ ;;=4^T82.120A
+ ;;^UTILITY(U,$J,358.3,24916,2)
+ ;;=^5054692
+ ;;^UTILITY(U,$J,358.3,24917,0)
+ ;;=T82.121A^^124^1239^35
+ ;;^UTILITY(U,$J,358.3,24917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24917,1,3,0)
+ ;;=3^Displacement of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24917,1,4,0)
+ ;;=4^T82.121A
+ ;;^UTILITY(U,$J,358.3,24917,2)
+ ;;=^5054695
+ ;;^UTILITY(U,$J,358.3,24918,0)
+ ;;=T82.190A^^124^1239^141
+ ;;^UTILITY(U,$J,358.3,24918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24918,1,3,0)
+ ;;=3^Mechanical Compl of Cardiact Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24918,1,4,0)
+ ;;=4^T82.190A
+ ;;^UTILITY(U,$J,358.3,24918,2)
+ ;;=^5054704
+ ;;^UTILITY(U,$J,358.3,24919,0)
+ ;;=T82.310A^^124^1239^2
+ ;;^UTILITY(U,$J,358.3,24919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24919,1,3,0)
+ ;;=3^Breakdown of Aortic Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24919,1,4,0)
+ ;;=4^T82.310A

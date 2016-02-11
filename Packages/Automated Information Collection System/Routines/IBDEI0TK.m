@@ -1,108 +1,136 @@
-IBDEI0TK ; ; 06-AUG-2015
+IBDEI0TK ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14315,0)
- ;;=27698^^75^884^16^^^^1
- ;;^UTILITY(U,$J,358.3,14315,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14315,1,2,0)
- ;;=2^Repair, secondary, disrupted ligament ankle, collateral
- ;;^UTILITY(U,$J,358.3,14315,1,3,0)
- ;;=3^27698
- ;;^UTILITY(U,$J,358.3,14316,0)
- ;;=28200^^75^884^19^^^^1
- ;;^UTILITY(U,$J,358.3,14316,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14316,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; primary or secondary, without free graft, each tendon
- ;;^UTILITY(U,$J,358.3,14316,1,3,0)
- ;;=3^28200
- ;;^UTILITY(U,$J,358.3,14317,0)
- ;;=28202^^75^884^20^^^^1
- ;;^UTILITY(U,$J,358.3,14317,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14317,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; secondarywith free graft, each tendon (includes obtaining graft), 
- ;;^UTILITY(U,$J,358.3,14317,1,3,0)
- ;;=3^28202
- ;;^UTILITY(U,$J,358.3,14318,0)
- ;;=28210^^75^884^18^^^^1
- ;;^UTILITY(U,$J,358.3,14318,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14318,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; secondary with free graft, each tendon (includes obtaining graft) 
- ;;^UTILITY(U,$J,358.3,14318,1,3,0)
- ;;=3^28210
- ;;^UTILITY(U,$J,358.3,14319,0)
- ;;=28208^^75^884^17^^^^1
- ;;^UTILITY(U,$J,358.3,14319,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14319,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; primary or secondary, each tendon
- ;;^UTILITY(U,$J,358.3,14319,1,3,0)
- ;;=3^28208
- ;;^UTILITY(U,$J,358.3,14320,0)
- ;;=28230^^75^884^29^^^^1
- ;;^UTILITY(U,$J,358.3,14320,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14320,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; foot, single or multiple tendon(s)(separate procedure)
- ;;^UTILITY(U,$J,358.3,14320,1,3,0)
- ;;=3^28230
- ;;^UTILITY(U,$J,358.3,14321,0)
- ;;=28232^^75^884^30^^^^1
- ;;^UTILITY(U,$J,358.3,14321,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14321,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; toe, single tendon (separate procedure) 
- ;;^UTILITY(U,$J,358.3,14321,1,3,0)
- ;;=3^28232
- ;;^UTILITY(U,$J,358.3,14322,0)
- ;;=28234^^75^884^28^^^^1
- ;;^UTILITY(U,$J,358.3,14322,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14322,1,2,0)
- ;;=2^Tenotomy, open, extensor, foot or toe, each tendon
- ;;^UTILITY(U,$J,358.3,14322,1,3,0)
- ;;=3^28234
- ;;^UTILITY(U,$J,358.3,14323,0)
- ;;=28270^^75^884^4^^^^1
- ;;^UTILITY(U,$J,358.3,14323,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14323,1,2,0)
- ;;=2^Capsulotomy; metatarsophalangeal joint, with or without tenorrhaphy, each joint (separate procedure) 
- ;;^UTILITY(U,$J,358.3,14323,1,3,0)
- ;;=3^28270
- ;;^UTILITY(U,$J,358.3,14324,0)
- ;;=28272^^75^884^3^^^^1
- ;;^UTILITY(U,$J,358.3,14324,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14324,1,2,0)
- ;;=2^Capsulotomy; interphalangeal joint, each joint
- ;;^UTILITY(U,$J,358.3,14324,1,3,0)
- ;;=3^28272
- ;;^UTILITY(U,$J,358.3,14325,0)
- ;;=28285^^75^884^6^^^^1
- ;;^UTILITY(U,$J,358.3,14325,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14325,1,2,0)
- ;;=2^Correction, hammertoe
- ;;^UTILITY(U,$J,358.3,14325,1,3,0)
- ;;=3^28285
- ;;^UTILITY(U,$J,358.3,14326,0)
- ;;=28288^^75^884^9^^^^1
- ;;^UTILITY(U,$J,358.3,14326,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14326,1,2,0)
- ;;=2^Ostectomy, partial, exostectomy or condylectomy, metatarsal head, each metatarsal head
- ;;^UTILITY(U,$J,358.3,14326,1,3,0)
- ;;=3^28288
- ;;^UTILITY(U,$J,358.3,14327,0)
- ;;=28290^^75^884^5^^^^1
- ;;^UTILITY(U,$J,358.3,14327,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14327,1,2,0)
- ;;=2^Correction, hallux valgus, with or without sesamoidectomy; simple exostectomy
- ;;^UTILITY(U,$J,358.3,14327,1,3,0)
- ;;=3^28290
+ ;;^UTILITY(U,$J,358.3,13597,1,4,0)
+ ;;=4^H52.532
+ ;;^UTILITY(U,$J,358.3,13597,2)
+ ;;=^5006287
+ ;;^UTILITY(U,$J,358.3,13598,0)
+ ;;=H52.533^^80^762^35
+ ;;^UTILITY(U,$J,358.3,13598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13598,1,3,0)
+ ;;=3^Spasm of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,13598,1,4,0)
+ ;;=4^H52.533
+ ;;^UTILITY(U,$J,358.3,13598,2)
+ ;;=^5006288
+ ;;^UTILITY(U,$J,358.3,13599,0)
+ ;;=H53.033^^80^762^38
+ ;;^UTILITY(U,$J,358.3,13599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13599,1,3,0)
+ ;;=3^Strabismic Amblyopia,Bilateral
+ ;;^UTILITY(U,$J,358.3,13599,1,4,0)
+ ;;=4^H53.033
+ ;;^UTILITY(U,$J,358.3,13599,2)
+ ;;=^5006305
+ ;;^UTILITY(U,$J,358.3,13600,0)
+ ;;=H53.031^^80^762^40
+ ;;^UTILITY(U,$J,358.3,13600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13600,1,3,0)
+ ;;=3^Strabismic Amblyopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,13600,1,4,0)
+ ;;=4^H53.031
+ ;;^UTILITY(U,$J,358.3,13600,2)
+ ;;=^5006303
+ ;;^UTILITY(U,$J,358.3,13601,0)
+ ;;=H53.032^^80^762^39
+ ;;^UTILITY(U,$J,358.3,13601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13601,1,3,0)
+ ;;=3^Strabismic Amblyopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,13601,1,4,0)
+ ;;=4^H53.032
+ ;;^UTILITY(U,$J,358.3,13601,2)
+ ;;=^5006304
+ ;;^UTILITY(U,$J,358.3,13602,0)
+ ;;=H50.69^^80^762^41
+ ;;^UTILITY(U,$J,358.3,13602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13602,1,3,0)
+ ;;=3^Strabismus,Mechanical NEC
+ ;;^UTILITY(U,$J,358.3,13602,1,4,0)
+ ;;=4^H50.69
+ ;;^UTILITY(U,$J,358.3,13602,2)
+ ;;=^5006246
+ ;;^UTILITY(U,$J,358.3,13603,0)
+ ;;=H50.89^^80^762^42
+ ;;^UTILITY(U,$J,358.3,13603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13603,1,3,0)
+ ;;=3^Strabismus,Oth Specified
+ ;;^UTILITY(U,$J,358.3,13603,1,4,0)
+ ;;=4^H50.89
+ ;;^UTILITY(U,$J,358.3,13603,2)
+ ;;=^88142
+ ;;^UTILITY(U,$J,358.3,13604,0)
+ ;;=H49.883^^80^762^43
+ ;;^UTILITY(U,$J,358.3,13604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13604,1,3,0)
+ ;;=3^Strabismus,Paralytic,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,13604,1,4,0)
+ ;;=4^H49.883
+ ;;^UTILITY(U,$J,358.3,13604,2)
+ ;;=^5006205
+ ;;^UTILITY(U,$J,358.3,13605,0)
+ ;;=H49.881^^80^762^45
+ ;;^UTILITY(U,$J,358.3,13605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13605,1,3,0)
+ ;;=3^Strabismus,Paralytic,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,13605,1,4,0)
+ ;;=4^H49.881
+ ;;^UTILITY(U,$J,358.3,13605,2)
+ ;;=^5006203
+ ;;^UTILITY(U,$J,358.3,13606,0)
+ ;;=H49.882^^80^762^44
+ ;;^UTILITY(U,$J,358.3,13606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13606,1,3,0)
+ ;;=3^Strabismus,Paralytic,Left Eye
+ ;;^UTILITY(U,$J,358.3,13606,1,4,0)
+ ;;=4^H49.882
+ ;;^UTILITY(U,$J,358.3,13606,2)
+ ;;=^5006204
+ ;;^UTILITY(U,$J,358.3,13607,0)
+ ;;=H50.21^^80^762^47
+ ;;^UTILITY(U,$J,358.3,13607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13607,1,3,0)
+ ;;=3^Strabismus,Vertical,Right Eye
+ ;;^UTILITY(U,$J,358.3,13607,1,4,0)
+ ;;=4^H50.21
+ ;;^UTILITY(U,$J,358.3,13607,2)
+ ;;=^5006228
+ ;;^UTILITY(U,$J,358.3,13608,0)
+ ;;=H50.22^^80^762^46
+ ;;^UTILITY(U,$J,358.3,13608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13608,1,3,0)
+ ;;=3^Strabismus,Vertical,Left Eye
+ ;;^UTILITY(U,$J,358.3,13608,1,4,0)
+ ;;=4^H50.22
+ ;;^UTILITY(U,$J,358.3,13608,2)
+ ;;=^5006229
+ ;;^UTILITY(U,$J,358.3,13609,0)
+ ;;=H53.141^^80^762^50
+ ;;^UTILITY(U,$J,358.3,13609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13609,1,3,0)
+ ;;=3^Visual Discomfort,Right Eye
+ ;;^UTILITY(U,$J,358.3,13609,1,4,0)
+ ;;=4^H53.141
+ ;;^UTILITY(U,$J,358.3,13609,2)
+ ;;=^5006317
+ ;;^UTILITY(U,$J,358.3,13610,0)
+ ;;=H53.142^^80^762^49
+ ;;^UTILITY(U,$J,358.3,13610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13610,1,3,0)
+ ;;=3^Visual Discomfort,Left Eye
+ ;;^UTILITY(U,$J,358.3,13610,1,4,0)
+ ;;=4^H53.142

@@ -1,130 +1,120 @@
-IBDEI1XH ; ; 06-AUG-2015
+IBDEI1XH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33873,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,33873,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,33874,0)
- ;;=Y36.820A^^182^2011^17
- ;;^UTILITY(U,$J,358.3,33874,1,0)
+ ;;^UTILITY(U,$J,358.3,32282,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,32282,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,32283,0)
+ ;;=T74.01XD^^143^1517^17
+ ;;^UTILITY(U,$J,358.3,32283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33874,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33874,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,33874,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,33875,0)
- ;;=Y36.820D^^182^2011^18
- ;;^UTILITY(U,$J,358.3,33875,1,0)
+ ;;^UTILITY(U,$J,358.3,32283,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,32283,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,32283,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,32284,0)
+ ;;=T76.01XA^^143^1517^18
+ ;;^UTILITY(U,$J,358.3,32284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33875,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33875,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,33875,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,33876,0)
- ;;=Y37.200A^^182^2011^87
- ;;^UTILITY(U,$J,358.3,33876,1,0)
+ ;;^UTILITY(U,$J,358.3,32284,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
+ ;;^UTILITY(U,$J,358.3,32284,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,32284,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,32285,0)
+ ;;=T76.01XD^^143^1517^19
+ ;;^UTILITY(U,$J,358.3,32285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33876,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33876,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,33876,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,33877,0)
- ;;=Y37.200D^^182^2011^88
- ;;^UTILITY(U,$J,358.3,33877,1,0)
+ ;;^UTILITY(U,$J,358.3,32285,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,32285,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,32285,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,32286,0)
+ ;;=Z91.412^^143^1517^7
+ ;;^UTILITY(U,$J,358.3,32286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33877,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33877,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,33877,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,33878,0)
- ;;=Z89.012^^183^2012^10
- ;;^UTILITY(U,$J,358.3,33878,1,0)
+ ;;^UTILITY(U,$J,358.3,32286,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,32286,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,32286,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,32287,0)
+ ;;=T74.31XA^^143^1517^20
+ ;;^UTILITY(U,$J,358.3,32287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33878,1,3,0)
- ;;=3^Acquired absence of left thumb
- ;;^UTILITY(U,$J,358.3,33878,1,4,0)
- ;;=4^Z89.012
- ;;^UTILITY(U,$J,358.3,33878,2)
- ;;=^5063532
- ;;^UTILITY(U,$J,358.3,33879,0)
- ;;=Z89.011^^183^2012^25
- ;;^UTILITY(U,$J,358.3,33879,1,0)
+ ;;^UTILITY(U,$J,358.3,32287,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
+ ;;^UTILITY(U,$J,358.3,32287,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,32287,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,32288,0)
+ ;;=T74.31XD^^143^1517^21
+ ;;^UTILITY(U,$J,358.3,32288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33879,1,3,0)
- ;;=3^Acquired absence of right thumb
- ;;^UTILITY(U,$J,358.3,33879,1,4,0)
- ;;=4^Z89.011
- ;;^UTILITY(U,$J,358.3,33879,2)
- ;;=^5063531
- ;;^UTILITY(U,$J,358.3,33880,0)
- ;;=Z89.021^^183^2012^16
- ;;^UTILITY(U,$J,358.3,33880,1,0)
+ ;;^UTILITY(U,$J,358.3,32288,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,32288,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,32288,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,32289,0)
+ ;;=T76.31XA^^143^1517^22
+ ;;^UTILITY(U,$J,358.3,32289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33880,1,3,0)
- ;;=3^Acquired absence of right finger(s)
- ;;^UTILITY(U,$J,358.3,33880,1,4,0)
- ;;=4^Z89.021
- ;;^UTILITY(U,$J,358.3,33880,2)
- ;;=^5063534
- ;;^UTILITY(U,$J,358.3,33881,0)
- ;;=Z89.022^^183^2012^2
- ;;^UTILITY(U,$J,358.3,33881,1,0)
+ ;;^UTILITY(U,$J,358.3,32289,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
+ ;;^UTILITY(U,$J,358.3,32289,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,32289,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,32290,0)
+ ;;=T76.31XD^^143^1517^23
+ ;;^UTILITY(U,$J,358.3,32290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33881,1,3,0)
- ;;=3^Acquired absence of left finger(s)
- ;;^UTILITY(U,$J,358.3,33881,1,4,0)
- ;;=4^Z89.022
- ;;^UTILITY(U,$J,358.3,33881,2)
- ;;=^5063535
- ;;^UTILITY(U,$J,358.3,33882,0)
- ;;=Z89.112^^183^2012^5
- ;;^UTILITY(U,$J,358.3,33882,1,0)
+ ;;^UTILITY(U,$J,358.3,32290,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,32290,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,32290,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,32291,0)
+ ;;=Z91.411^^143^1517^6
+ ;;^UTILITY(U,$J,358.3,32291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33882,1,3,0)
- ;;=3^Acquired absence of left hand
- ;;^UTILITY(U,$J,358.3,33882,1,4,0)
- ;;=4^Z89.112
- ;;^UTILITY(U,$J,358.3,33882,2)
- ;;=^5063538
- ;;^UTILITY(U,$J,358.3,33883,0)
- ;;=Z89.111^^183^2012^19
- ;;^UTILITY(U,$J,358.3,33883,1,0)
+ ;;^UTILITY(U,$J,358.3,32291,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,32291,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,32291,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,32292,0)
+ ;;=F06.4^^143^1518^6
+ ;;^UTILITY(U,$J,358.3,32292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33883,1,3,0)
- ;;=3^Acquired absence of right hand
- ;;^UTILITY(U,$J,358.3,33883,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,33883,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,33884,0)
- ;;=Z89.122^^183^2012^14
- ;;^UTILITY(U,$J,358.3,33884,1,0)
+ ;;^UTILITY(U,$J,358.3,32292,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,32292,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,32292,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,32293,0)
+ ;;=F41.0^^143^1518^14
+ ;;^UTILITY(U,$J,358.3,32293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33884,1,3,0)
- ;;=3^Acquired absence of left wrist
- ;;^UTILITY(U,$J,358.3,33884,1,4,0)
- ;;=4^Z89.122
- ;;^UTILITY(U,$J,358.3,33884,2)
- ;;=^5063541
- ;;^UTILITY(U,$J,358.3,33885,0)
- ;;=Z89.121^^183^2012^29
- ;;^UTILITY(U,$J,358.3,33885,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33885,1,3,0)
- ;;=3^Acquired absence of right wrist
- ;;^UTILITY(U,$J,358.3,33885,1,4,0)
- ;;=4^Z89.121
- ;;^UTILITY(U,$J,358.3,33885,2)
- ;;=^5063540
- ;;^UTILITY(U,$J,358.3,33886,0)
- ;;=Z89.211^^183^2012^28
+ ;;^UTILITY(U,$J,358.3,32293,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,32293,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,32293,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,32294,0)
+ ;;=F41.1^^143^1518^12

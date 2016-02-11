@@ -1,134 +1,132 @@
-IBDEI20X ; ; 06-AUG-2015
+IBDEI20X ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35376,1,3,0)
- ;;=3^Slurred speech
- ;;^UTILITY(U,$J,358.3,35376,1,4,0)
- ;;=4^R47.81
- ;;^UTILITY(U,$J,358.3,35376,2)
- ;;=^5019491
- ;;^UTILITY(U,$J,358.3,35377,0)
- ;;=R48.9^^186^2036^13
- ;;^UTILITY(U,$J,358.3,35377,1,0)
+ ;;^UTILITY(U,$J,358.3,33913,0)
+ ;;=D51.8^^154^1711^2
+ ;;^UTILITY(U,$J,358.3,33913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35377,1,3,0)
- ;;=3^Symbolic Dysfunctions,Unspec
- ;;^UTILITY(U,$J,358.3,35377,1,4,0)
- ;;=4^R48.9
- ;;^UTILITY(U,$J,358.3,35377,2)
- ;;=^5019500
- ;;^UTILITY(U,$J,358.3,35378,0)
- ;;=Z90.02^^186^2037^1
- ;;^UTILITY(U,$J,358.3,35378,1,0)
+ ;;^UTILITY(U,$J,358.3,33913,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,33913,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,33913,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,33914,0)
+ ;;=D52.9^^154^1711^1
+ ;;^UTILITY(U,$J,358.3,33914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35378,1,3,0)
- ;;=3^Acquired absence of larynx
- ;;^UTILITY(U,$J,358.3,35378,1,4,0)
- ;;=4^Z90.02
- ;;^UTILITY(U,$J,358.3,35378,2)
- ;;=^5063579
- ;;^UTILITY(U,$J,358.3,35379,0)
- ;;=Z90.09^^186^2037^2
- ;;^UTILITY(U,$J,358.3,35379,1,0)
+ ;;^UTILITY(U,$J,358.3,33914,1,3,0)
+ ;;=3^Anemia,Folate Deficiency
+ ;;^UTILITY(U,$J,358.3,33914,1,4,0)
+ ;;=4^D52.9
+ ;;^UTILITY(U,$J,358.3,33914,2)
+ ;;=^5002293
+ ;;^UTILITY(U,$J,358.3,33915,0)
+ ;;=I10.^^154^1712^12
+ ;;^UTILITY(U,$J,358.3,33915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35379,1,3,0)
- ;;=3^Acquired absence of other part of head and neck
- ;;^UTILITY(U,$J,358.3,35379,1,4,0)
- ;;=4^Z90.09
- ;;^UTILITY(U,$J,358.3,35379,2)
- ;;=^5063580
- ;;^UTILITY(U,$J,358.3,35380,0)
- ;;=Z45.328^^186^2037^3
- ;;^UTILITY(U,$J,358.3,35380,1,0)
+ ;;^UTILITY(U,$J,358.3,33915,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,33915,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,33915,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,33916,0)
+ ;;=I15.0^^154^1712^13
+ ;;^UTILITY(U,$J,358.3,33916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35380,1,3,0)
- ;;=3^Adjust and management of implanted hear dev
- ;;^UTILITY(U,$J,358.3,35380,1,4,0)
- ;;=4^Z45.328
- ;;^UTILITY(U,$J,358.3,35380,2)
- ;;=^5063003
- ;;^UTILITY(U,$J,358.3,35381,0)
- ;;=Z45.49^^186^2037^4
- ;;^UTILITY(U,$J,358.3,35381,1,0)
+ ;;^UTILITY(U,$J,358.3,33916,1,3,0)
+ ;;=3^Hypertension,Renovascular
+ ;;^UTILITY(U,$J,358.3,33916,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,33916,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,33917,0)
+ ;;=I13.11^^154^1712^8
+ ;;^UTILITY(U,$J,358.3,33917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35381,1,3,0)
- ;;=3^Adjust and mgmt of implanted nervous sys device
- ;;^UTILITY(U,$J,358.3,35381,1,4,0)
- ;;=4^Z45.49
- ;;^UTILITY(U,$J,358.3,35381,2)
- ;;=^5063006
- ;;^UTILITY(U,$J,358.3,35382,0)
- ;;=Z43.3^^186^2037^5
- ;;^UTILITY(U,$J,358.3,35382,1,0)
+ ;;^UTILITY(U,$J,358.3,33917,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,33917,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,33917,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,33918,0)
+ ;;=I13.2^^154^1712^7
+ ;;^UTILITY(U,$J,358.3,33918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35382,1,3,0)
- ;;=3^Attention to colostomy
- ;;^UTILITY(U,$J,358.3,35382,1,4,0)
- ;;=4^Z43.3
- ;;^UTILITY(U,$J,358.3,35382,2)
- ;;=^5062961
- ;;^UTILITY(U,$J,358.3,35383,0)
- ;;=Z43.0^^186^2037^6
- ;;^UTILITY(U,$J,358.3,35383,1,0)
+ ;;^UTILITY(U,$J,358.3,33918,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,33918,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,33918,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,33919,0)
+ ;;=I70.1^^154^1712^3
+ ;;^UTILITY(U,$J,358.3,33919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35383,1,3,0)
- ;;=3^Attention to tracheostomy
- ;;^UTILITY(U,$J,358.3,35383,1,4,0)
- ;;=4^Z43.0
- ;;^UTILITY(U,$J,358.3,35383,2)
- ;;=^5062958
- ;;^UTILITY(U,$J,358.3,35384,0)
- ;;=Z02.71^^186^2037^7
- ;;^UTILITY(U,$J,358.3,35384,1,0)
+ ;;^UTILITY(U,$J,358.3,33919,1,3,0)
+ ;;=3^Atherosclerosis of Renal Artery
+ ;;^UTILITY(U,$J,358.3,33919,1,4,0)
+ ;;=4^I70.1
+ ;;^UTILITY(U,$J,358.3,33919,2)
+ ;;=^269760
+ ;;^UTILITY(U,$J,358.3,33920,0)
+ ;;=I77.3^^154^1712^2
+ ;;^UTILITY(U,$J,358.3,33920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35384,1,3,0)
- ;;=3^Disability determination
- ;;^UTILITY(U,$J,358.3,35384,1,4,0)
- ;;=4^Z02.71
- ;;^UTILITY(U,$J,358.3,35384,2)
- ;;=^5062640
- ;;^UTILITY(U,$J,358.3,35385,0)
- ;;=Z04.8^^186^2037^8
- ;;^UTILITY(U,$J,358.3,35385,1,0)
+ ;;^UTILITY(U,$J,358.3,33920,1,3,0)
+ ;;=3^Arterial Fibromuscular Dysplasia
+ ;;^UTILITY(U,$J,358.3,33920,1,4,0)
+ ;;=4^I77.3
+ ;;^UTILITY(U,$J,358.3,33920,2)
+ ;;=^5007812
+ ;;^UTILITY(U,$J,358.3,33921,0)
+ ;;=E26.02^^154^1712^5
+ ;;^UTILITY(U,$J,358.3,33921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35385,1,3,0)
- ;;=3^Exam and observation for oth reasons
- ;;^UTILITY(U,$J,358.3,35385,1,4,0)
- ;;=4^Z04.8
- ;;^UTILITY(U,$J,358.3,35385,2)
- ;;=^5062665
- ;;^UTILITY(U,$J,358.3,35386,0)
- ;;=Z02.0^^186^2037^9
- ;;^UTILITY(U,$J,358.3,35386,1,0)
+ ;;^UTILITY(U,$J,358.3,33921,1,3,0)
+ ;;=3^Glucocorticoid-Remediable Aldosteronism
+ ;;^UTILITY(U,$J,358.3,33921,1,4,0)
+ ;;=4^E26.02
+ ;;^UTILITY(U,$J,358.3,33921,2)
+ ;;=^329904
+ ;;^UTILITY(U,$J,358.3,33922,0)
+ ;;=I12.9^^154^1712^14
+ ;;^UTILITY(U,$J,358.3,33922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35386,1,3,0)
- ;;=3^Exam for admission to educational institution
- ;;^UTILITY(U,$J,358.3,35386,1,4,0)
- ;;=4^Z02.0
- ;;^UTILITY(U,$J,358.3,35386,2)
- ;;=^5062633
- ;;^UTILITY(U,$J,358.3,35387,0)
- ;;=Z02.2^^186^2037^10
- ;;^UTILITY(U,$J,358.3,35387,1,0)
+ ;;^UTILITY(U,$J,358.3,33922,1,3,0)
+ ;;=3^Hypertensive CKD Stage 1-4
+ ;;^UTILITY(U,$J,358.3,33922,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,33922,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,33923,0)
+ ;;=I12.0^^154^1712^15
+ ;;^UTILITY(U,$J,358.3,33923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35387,1,3,0)
- ;;=3^Exam for admission to residential institution
- ;;^UTILITY(U,$J,358.3,35387,1,4,0)
- ;;=4^Z02.2
- ;;^UTILITY(U,$J,358.3,35387,2)
- ;;=^5062635
- ;;^UTILITY(U,$J,358.3,35388,0)
- ;;=Z02.4^^186^2037^11
- ;;^UTILITY(U,$J,358.3,35388,1,0)
+ ;;^UTILITY(U,$J,358.3,33923,1,3,0)
+ ;;=3^Hypertensive CKD Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,33923,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,33923,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,33924,0)
+ ;;=I13.0^^154^1712^6
+ ;;^UTILITY(U,$J,358.3,33924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35388,1,3,0)
- ;;=3^Exam for driving license
- ;;^UTILITY(U,$J,358.3,35388,1,4,0)
- ;;=4^Z02.4
- ;;^UTILITY(U,$J,358.3,35388,2)
- ;;=^5062637
- ;;^UTILITY(U,$J,358.3,35389,0)
- ;;=Z02.6^^186^2037^12
- ;;^UTILITY(U,$J,358.3,35389,1,0)
+ ;;^UTILITY(U,$J,358.3,33924,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,33924,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,33924,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,33925,0)
+ ;;=I13.10^^154^1712^9
+ ;;^UTILITY(U,$J,358.3,33925,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33925,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,33925,1,4,0)
+ ;;=4^I13.10

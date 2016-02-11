@@ -1,0 +1,128 @@
+IBDEI2ZM ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,50083,0)
+ ;;=I25.731^^219^2439^39
+ ;;^UTILITY(U,$J,358.3,50083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50083,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,50083,1,4,0)
+ ;;=4^I25.731
+ ;;^UTILITY(U,$J,358.3,50083,2)
+ ;;=^5007128
+ ;;^UTILITY(U,$J,358.3,50084,0)
+ ;;=I25.738^^219^2439^38
+ ;;^UTILITY(U,$J,358.3,50084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50084,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,50084,1,4,0)
+ ;;=4^I25.738
+ ;;^UTILITY(U,$J,358.3,50084,2)
+ ;;=^5007129
+ ;;^UTILITY(U,$J,358.3,50085,0)
+ ;;=I25.739^^219^2439^40
+ ;;^UTILITY(U,$J,358.3,50085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50085,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,50085,1,4,0)
+ ;;=4^I25.739
+ ;;^UTILITY(U,$J,358.3,50085,2)
+ ;;=^5007130
+ ;;^UTILITY(U,$J,358.3,50086,0)
+ ;;=I25.730^^219^2439^41
+ ;;^UTILITY(U,$J,358.3,50086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50086,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,50086,1,4,0)
+ ;;=4^I25.730
+ ;;^UTILITY(U,$J,358.3,50086,2)
+ ;;=^5007127
+ ;;^UTILITY(U,$J,358.3,50087,0)
+ ;;=I25.791^^219^2439^24
+ ;;^UTILITY(U,$J,358.3,50087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50087,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,50087,1,4,0)
+ ;;=4^I25.791
+ ;;^UTILITY(U,$J,358.3,50087,2)
+ ;;=^5007140
+ ;;^UTILITY(U,$J,358.3,50088,0)
+ ;;=I25.798^^219^2439^22
+ ;;^UTILITY(U,$J,358.3,50088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50088,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,50088,1,4,0)
+ ;;=4^I25.798
+ ;;^UTILITY(U,$J,358.3,50088,2)
+ ;;=^5133558
+ ;;^UTILITY(U,$J,358.3,50089,0)
+ ;;=I25.799^^219^2439^26
+ ;;^UTILITY(U,$J,358.3,50089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50089,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,50089,1,4,0)
+ ;;=4^I25.799
+ ;;^UTILITY(U,$J,358.3,50089,2)
+ ;;=^5133559
+ ;;^UTILITY(U,$J,358.3,50090,0)
+ ;;=I25.790^^219^2439^28
+ ;;^UTILITY(U,$J,358.3,50090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50090,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,50090,1,4,0)
+ ;;=4^I25.790
+ ;;^UTILITY(U,$J,358.3,50090,2)
+ ;;=^5007139
+ ;;^UTILITY(U,$J,358.3,50091,0)
+ ;;=I25.111^^219^2439^29
+ ;;^UTILITY(U,$J,358.3,50091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50091,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,50091,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,50091,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,50092,0)
+ ;;=I25.118^^219^2439^30
+ ;;^UTILITY(U,$J,358.3,50092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50092,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,50092,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,50092,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,50093,0)
+ ;;=I25.119^^219^2439^31
+ ;;^UTILITY(U,$J,358.3,50093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50093,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,50093,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,50093,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,50094,0)
+ ;;=I25.110^^219^2439^32
+ ;;^UTILITY(U,$J,358.3,50094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50094,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,50094,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,50094,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,50095,0)
+ ;;=I25.10^^219^2439^33
+ ;;^UTILITY(U,$J,358.3,50095,1,0)
+ ;;=^358.31IA^4^2

@@ -1,0 +1,128 @@
+IBDEI2U0 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47525,1,4,0)
+ ;;=4^C84.A1
+ ;;^UTILITY(U,$J,358.3,47525,2)
+ ;;=^5001682
+ ;;^UTILITY(U,$J,358.3,47526,0)
+ ;;=C84.A2^^209^2346^110
+ ;;^UTILITY(U,$J,358.3,47526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47526,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Intrathoracic Nodes
+ ;;^UTILITY(U,$J,358.3,47526,1,4,0)
+ ;;=4^C84.A2
+ ;;^UTILITY(U,$J,358.3,47526,2)
+ ;;=^5001683
+ ;;^UTILITY(U,$J,358.3,47527,0)
+ ;;=C84.A3^^209^2346^108
+ ;;^UTILITY(U,$J,358.3,47527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47527,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47527,1,4,0)
+ ;;=4^C84.A3
+ ;;^UTILITY(U,$J,358.3,47527,2)
+ ;;=^5001684
+ ;;^UTILITY(U,$J,358.3,47528,0)
+ ;;=C84.A4^^209^2346^104
+ ;;^UTILITY(U,$J,358.3,47528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47528,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Axilla/Upper Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47528,1,4,0)
+ ;;=4^C84.A4
+ ;;^UTILITY(U,$J,358.3,47528,2)
+ ;;=^5001685
+ ;;^UTILITY(U,$J,358.3,47529,0)
+ ;;=C84.A5^^209^2346^107
+ ;;^UTILITY(U,$J,358.3,47529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47529,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Ing Region/Lower Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47529,1,4,0)
+ ;;=4^C84.A5
+ ;;^UTILITY(U,$J,358.3,47529,2)
+ ;;=^5001686
+ ;;^UTILITY(U,$J,358.3,47530,0)
+ ;;=C84.A6^^209^2346^109
+ ;;^UTILITY(U,$J,358.3,47530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47530,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Intrapelvic Nodes
+ ;;^UTILITY(U,$J,358.3,47530,1,4,0)
+ ;;=4^C84.A6
+ ;;^UTILITY(U,$J,358.3,47530,2)
+ ;;=^5001687
+ ;;^UTILITY(U,$J,358.3,47531,0)
+ ;;=C84.A7^^209^2346^112
+ ;;^UTILITY(U,$J,358.3,47531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47531,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Spleen
+ ;;^UTILITY(U,$J,358.3,47531,1,4,0)
+ ;;=4^C84.A7
+ ;;^UTILITY(U,$J,358.3,47531,2)
+ ;;=^5001688
+ ;;^UTILITY(U,$J,358.3,47532,0)
+ ;;=C84.A8^^209^2346^111
+ ;;^UTILITY(U,$J,358.3,47532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47532,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Mult Site Nodes
+ ;;^UTILITY(U,$J,358.3,47532,1,4,0)
+ ;;=4^C84.A8
+ ;;^UTILITY(U,$J,358.3,47532,2)
+ ;;=^5001689
+ ;;^UTILITY(U,$J,358.3,47533,0)
+ ;;=C84.A9^^209^2346^105
+ ;;^UTILITY(U,$J,358.3,47533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47533,1,3,0)
+ ;;=3^Cutaneous T-Cell Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47533,1,4,0)
+ ;;=4^C84.A9
+ ;;^UTILITY(U,$J,358.3,47533,2)
+ ;;=^5001690
+ ;;^UTILITY(U,$J,358.3,47534,0)
+ ;;=C84.Z0^^209^2346^320
+ ;;^UTILITY(U,$J,358.3,47534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47534,1,3,0)
+ ;;=3^Mature T/NK-Cell Lymphomas,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47534,1,4,0)
+ ;;=4^C84.Z0
+ ;;^UTILITY(U,$J,358.3,47534,2)
+ ;;=^5001691
+ ;;^UTILITY(U,$J,358.3,47535,0)
+ ;;=C84.Z1^^209^2346^314
+ ;;^UTILITY(U,$J,358.3,47535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47535,1,3,0)
+ ;;=3^Mature T/NK-Cell Lymphomas,Head/Face/Neck Nodes
+ ;;^UTILITY(U,$J,358.3,47535,1,4,0)
+ ;;=4^C84.Z1
+ ;;^UTILITY(U,$J,358.3,47535,2)
+ ;;=^5001692
+ ;;^UTILITY(U,$J,358.3,47536,0)
+ ;;=C84.Z2^^209^2346^318
+ ;;^UTILITY(U,$J,358.3,47536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47536,1,3,0)
+ ;;=3^Mature T/NK-Cell Lymphomas,Intrathoracic Nodes
+ ;;^UTILITY(U,$J,358.3,47536,1,4,0)
+ ;;=4^C84.Z2
+ ;;^UTILITY(U,$J,358.3,47536,2)
+ ;;=^5001693
+ ;;^UTILITY(U,$J,358.3,47537,0)
+ ;;=C84.Z3^^209^2346^316
+ ;;^UTILITY(U,$J,358.3,47537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47537,1,3,0)
+ ;;=3^Mature T/NK-Cell Lymphomas,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47537,1,4,0)
+ ;;=4^C84.Z3
+ ;;^UTILITY(U,$J,358.3,47537,2)
+ ;;=^5001694

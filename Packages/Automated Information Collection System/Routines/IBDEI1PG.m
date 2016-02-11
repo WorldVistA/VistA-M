@@ -1,122 +1,132 @@
-IBDEI1PG ; ; 06-AUG-2015
+IBDEI1PG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30221,1,4,0)
- ;;=4^O35.1XX5
- ;;^UTILITY(U,$J,358.3,30221,2)
- ;;=^5016787
- ;;^UTILITY(U,$J,358.3,30222,0)
- ;;=O35.2XX0^^178^1916^110
- ;;^UTILITY(U,$J,358.3,30222,1,0)
+ ;;^UTILITY(U,$J,358.3,28535,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,28536,0)
+ ;;=R92.2^^132^1332^91
+ ;;^UTILITY(U,$J,358.3,28536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30222,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, unsp
- ;;^UTILITY(U,$J,358.3,30222,1,4,0)
- ;;=4^O35.2XX0
- ;;^UTILITY(U,$J,358.3,30222,2)
- ;;=^5016789
- ;;^UTILITY(U,$J,358.3,30223,0)
- ;;=O35.2XX1^^178^1916^111
- ;;^UTILITY(U,$J,358.3,30223,1,0)
+ ;;^UTILITY(U,$J,358.3,28536,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,28536,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,28536,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,28537,0)
+ ;;=R93.0^^132^1332^10
+ ;;^UTILITY(U,$J,358.3,28537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30223,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 1
- ;;^UTILITY(U,$J,358.3,30223,1,4,0)
- ;;=4^O35.2XX1
- ;;^UTILITY(U,$J,358.3,30223,2)
- ;;=^5016790
- ;;^UTILITY(U,$J,358.3,30224,0)
- ;;=O35.2XX2^^178^1916^112
- ;;^UTILITY(U,$J,358.3,30224,1,0)
+ ;;^UTILITY(U,$J,358.3,28537,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,28537,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,28537,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,28538,0)
+ ;;=R93.2^^132^1332^9
+ ;;^UTILITY(U,$J,358.3,28538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30224,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 2
- ;;^UTILITY(U,$J,358.3,30224,1,4,0)
- ;;=4^O35.2XX2
- ;;^UTILITY(U,$J,358.3,30224,2)
- ;;=^5016791
- ;;^UTILITY(U,$J,358.3,30225,0)
- ;;=O35.2XX3^^178^1916^113
- ;;^UTILITY(U,$J,358.3,30225,1,0)
+ ;;^UTILITY(U,$J,358.3,28538,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,28538,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,28538,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,28539,0)
+ ;;=R93.3^^132^1332^7
+ ;;^UTILITY(U,$J,358.3,28539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30225,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 3
- ;;^UTILITY(U,$J,358.3,30225,1,4,0)
- ;;=4^O35.2XX3
- ;;^UTILITY(U,$J,358.3,30225,2)
- ;;=^5016792
- ;;^UTILITY(U,$J,358.3,30226,0)
- ;;=O35.2XX4^^178^1916^114
- ;;^UTILITY(U,$J,358.3,30226,1,0)
+ ;;^UTILITY(U,$J,358.3,28539,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,28539,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,28539,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,28540,0)
+ ;;=R93.4^^132^1332^11
+ ;;^UTILITY(U,$J,358.3,28540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30226,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 4
- ;;^UTILITY(U,$J,358.3,30226,1,4,0)
- ;;=4^O35.2XX4
- ;;^UTILITY(U,$J,358.3,30226,2)
- ;;=^5016793
- ;;^UTILITY(U,$J,358.3,30227,0)
- ;;=O35.2XX5^^178^1916^115
- ;;^UTILITY(U,$J,358.3,30227,1,0)
+ ;;^UTILITY(U,$J,358.3,28540,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Urinary Organs
+ ;;^UTILITY(U,$J,358.3,28540,1,4,0)
+ ;;=4^R93.4
+ ;;^UTILITY(U,$J,358.3,28540,2)
+ ;;=^5019717
+ ;;^UTILITY(U,$J,358.3,28541,0)
+ ;;=R93.5^^132^1332^6
+ ;;^UTILITY(U,$J,358.3,28541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30227,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 5
- ;;^UTILITY(U,$J,358.3,30227,1,4,0)
- ;;=4^O35.2XX5
- ;;^UTILITY(U,$J,358.3,30227,2)
- ;;=^5016794
- ;;^UTILITY(U,$J,358.3,30228,0)
- ;;=O35.3XX0^^178^1916^67
- ;;^UTILITY(U,$J,358.3,30228,1,0)
+ ;;^UTILITY(U,$J,358.3,28541,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,28541,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,28541,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,28542,0)
+ ;;=R93.6^^132^1332^8
+ ;;^UTILITY(U,$J,358.3,28542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30228,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, unsp
- ;;^UTILITY(U,$J,358.3,30228,1,4,0)
- ;;=4^O35.3XX0
- ;;^UTILITY(U,$J,358.3,30228,2)
- ;;=^5016796
- ;;^UTILITY(U,$J,358.3,30229,0)
- ;;=O35.3XX1^^178^1916^68
- ;;^UTILITY(U,$J,358.3,30229,1,0)
+ ;;^UTILITY(U,$J,358.3,28542,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,28542,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,28542,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,28543,0)
+ ;;=R94.4^^132^1332^16
+ ;;^UTILITY(U,$J,358.3,28543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30229,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts1
- ;;^UTILITY(U,$J,358.3,30229,1,4,0)
- ;;=4^O35.3XX1
- ;;^UTILITY(U,$J,358.3,30229,2)
- ;;=^5016797
- ;;^UTILITY(U,$J,358.3,30230,0)
- ;;=O35.3XX2^^178^1916^69
- ;;^UTILITY(U,$J,358.3,30230,1,0)
+ ;;^UTILITY(U,$J,358.3,28543,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,28543,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,28543,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,28544,0)
+ ;;=R94.5^^132^1332^17
+ ;;^UTILITY(U,$J,358.3,28544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30230,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts2
- ;;^UTILITY(U,$J,358.3,30230,1,4,0)
- ;;=4^O35.3XX2
- ;;^UTILITY(U,$J,358.3,30230,2)
- ;;=^5016798
- ;;^UTILITY(U,$J,358.3,30231,0)
- ;;=O35.3XX3^^178^1916^70
- ;;^UTILITY(U,$J,358.3,30231,1,0)
+ ;;^UTILITY(U,$J,358.3,28544,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,28544,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,28544,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,28545,0)
+ ;;=R94.6^^132^1332^21
+ ;;^UTILITY(U,$J,358.3,28545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30231,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts3
- ;;^UTILITY(U,$J,358.3,30231,1,4,0)
- ;;=4^O35.3XX3
- ;;^UTILITY(U,$J,358.3,30231,2)
- ;;=^5016799
- ;;^UTILITY(U,$J,358.3,30232,0)
- ;;=O35.3XX4^^178^1916^71
- ;;^UTILITY(U,$J,358.3,30232,1,0)
+ ;;^UTILITY(U,$J,358.3,28545,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,28545,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,28545,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,28546,0)
+ ;;=R94.7^^132^1332^5
+ ;;^UTILITY(U,$J,358.3,28546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30232,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts4
- ;;^UTILITY(U,$J,358.3,30232,1,4,0)
- ;;=4^O35.3XX4
- ;;^UTILITY(U,$J,358.3,30232,2)
- ;;=^5016800
- ;;^UTILITY(U,$J,358.3,30233,0)
- ;;=O35.3XX5^^178^1916^72
- ;;^UTILITY(U,$J,358.3,30233,1,0)
+ ;;^UTILITY(U,$J,358.3,28546,1,3,0)
+ ;;=3^Abnormal Endocrine Function Sutdies NEC
+ ;;^UTILITY(U,$J,358.3,28546,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,28546,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,28547,0)
+ ;;=R94.31^^132^1332^4
+ ;;^UTILITY(U,$J,358.3,28547,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28547,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,28547,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,28547,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,28548,0)
+ ;;=R97.0^^132^1332^67
+ ;;^UTILITY(U,$J,358.3,28548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28548,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 

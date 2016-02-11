@@ -1,136 +1,144 @@
-IBDEI03Z ; ; 06-AUG-2015
+IBDEI03Z ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1329,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of bronchus/lung
- ;;^UTILITY(U,$J,358.3,1329,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,1329,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,1330,0)
- ;;=Z85.21^^3^39^103
- ;;^UTILITY(U,$J,358.3,1330,1,0)
+ ;;^UTILITY(U,$J,358.3,1158,0)
+ ;;=R09.1^^12^131^30
+ ;;^UTILITY(U,$J,358.3,1158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1330,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of larynx
- ;;^UTILITY(U,$J,358.3,1330,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,1330,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,1331,0)
- ;;=Z85.3^^3^39^97
- ;;^UTILITY(U,$J,358.3,1331,1,0)
+ ;;^UTILITY(U,$J,358.3,1158,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,1158,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,1158,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,1159,0)
+ ;;=J91.8^^12^131^29
+ ;;^UTILITY(U,$J,358.3,1159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1331,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of breast
- ;;^UTILITY(U,$J,358.3,1331,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,1331,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,1332,0)
- ;;=Z85.41^^3^39^99
- ;;^UTILITY(U,$J,358.3,1332,1,0)
+ ;;^UTILITY(U,$J,358.3,1159,1,3,0)
+ ;;=3^Pleural Effusion in Conditions Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,1159,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,1159,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,1160,0)
+ ;;=K85.9^^12^131^18
+ ;;^UTILITY(U,$J,358.3,1160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1332,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of cervix uteri
- ;;^UTILITY(U,$J,358.3,1332,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,1332,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,1333,0)
- ;;=Z85.43^^3^39^105
- ;;^UTILITY(U,$J,358.3,1333,1,0)
+ ;;^UTILITY(U,$J,358.3,1160,1,3,0)
+ ;;=3^Pancreatitis Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,1160,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,1160,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,1161,0)
+ ;;=L40.0^^12^131^39
+ ;;^UTILITY(U,$J,358.3,1161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1333,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of ovary
- ;;^UTILITY(U,$J,358.3,1333,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,1333,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,1334,0)
- ;;=Z85.46^^3^39^106
- ;;^UTILITY(U,$J,358.3,1334,1,0)
+ ;;^UTILITY(U,$J,358.3,1161,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,1161,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,1161,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,1162,0)
+ ;;=L40.1^^12^131^41
+ ;;^UTILITY(U,$J,358.3,1162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1334,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of prostate
- ;;^UTILITY(U,$J,358.3,1334,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,1334,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,1335,0)
- ;;=Z85.47^^3^39^111
- ;;^UTILITY(U,$J,358.3,1335,1,0)
+ ;;^UTILITY(U,$J,358.3,1162,1,3,0)
+ ;;=3^Pustular Psoriasis,Generalized
+ ;;^UTILITY(U,$J,358.3,1162,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,1162,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,1163,0)
+ ;;=L40.3^^12^131^42
+ ;;^UTILITY(U,$J,358.3,1163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1335,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of testis
- ;;^UTILITY(U,$J,358.3,1335,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,1335,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,1336,0)
- ;;=Z85.51^^3^39^96
- ;;^UTILITY(U,$J,358.3,1336,1,0)
+ ;;^UTILITY(U,$J,358.3,1163,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,1163,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,1163,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,1164,0)
+ ;;=L40.4^^12^131^38
+ ;;^UTILITY(U,$J,358.3,1164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1336,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of bladder
- ;;^UTILITY(U,$J,358.3,1336,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,1336,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,1337,0)
- ;;=Z85.528^^3^39^101
- ;;^UTILITY(U,$J,358.3,1337,1,0)
+ ;;^UTILITY(U,$J,358.3,1164,1,3,0)
+ ;;=3^Psoriasis Guttate
+ ;;^UTILITY(U,$J,358.3,1164,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,1164,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,1165,0)
+ ;;=L40.8^^12^131^40
+ ;;^UTILITY(U,$J,358.3,1165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1337,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of kidney
- ;;^UTILITY(U,$J,358.3,1337,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,1337,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,1338,0)
- ;;=Z85.6^^3^39^94
- ;;^UTILITY(U,$J,358.3,1338,1,0)
+ ;;^UTILITY(U,$J,358.3,1165,1,3,0)
+ ;;=3^Psoriasis,Other
+ ;;^UTILITY(U,$J,358.3,1165,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,1165,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,1166,0)
+ ;;=L29.9^^12^131^37
+ ;;^UTILITY(U,$J,358.3,1166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1338,1,3,0)
- ;;=3^Prsnl hx of leukemia
- ;;^UTILITY(U,$J,358.3,1338,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,1338,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,1339,0)
- ;;=Z85.79^^3^39^104
- ;;^UTILITY(U,$J,358.3,1339,1,0)
+ ;;^UTILITY(U,$J,358.3,1166,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,1166,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,1166,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,1167,0)
+ ;;=M25.511^^12^131^15
+ ;;^UTILITY(U,$J,358.3,1167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1339,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of lymphoid, hematpoetc & rel tiss
- ;;^UTILITY(U,$J,358.3,1339,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,1339,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,1340,0)
- ;;=Z85.820^^3^39^95
- ;;^UTILITY(U,$J,358.3,1340,1,0)
+ ;;^UTILITY(U,$J,358.3,1167,1,3,0)
+ ;;=3^Pain Right Shoulder
+ ;;^UTILITY(U,$J,358.3,1167,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,1167,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,1168,0)
+ ;;=M25.512^^12^131^9
+ ;;^UTILITY(U,$J,358.3,1168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1340,1,3,0)
- ;;=3^Prsnl hx of malig melanoma of skin
- ;;^UTILITY(U,$J,358.3,1340,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,1340,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,1341,0)
- ;;=Z85.828^^3^39^109
- ;;^UTILITY(U,$J,358.3,1341,1,0)
+ ;;^UTILITY(U,$J,358.3,1168,1,3,0)
+ ;;=3^Pain Left Shoulder
+ ;;^UTILITY(U,$J,358.3,1168,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,1168,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,1169,0)
+ ;;=M25.521^^12^131^11
+ ;;^UTILITY(U,$J,358.3,1169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1341,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of skin NEC
- ;;^UTILITY(U,$J,358.3,1341,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,1341,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,1342,0)
- ;;=Z79.01^^3^39^45
- ;;^UTILITY(U,$J,358.3,1342,1,0)
+ ;;^UTILITY(U,$J,358.3,1169,1,3,0)
+ ;;=3^Pain Right Elbow
+ ;;^UTILITY(U,$J,358.3,1169,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,1169,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,1170,0)
+ ;;=M25.522^^12^131^5
+ ;;^UTILITY(U,$J,358.3,1170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1342,1,3,0)
- ;;=3^Long term (current) use of anticoagulants
+ ;;^UTILITY(U,$J,358.3,1170,1,3,0)
+ ;;=3^Pain Left Elbow
+ ;;^UTILITY(U,$J,358.3,1170,1,4,0)
+ ;;=4^M25.522
+ ;;^UTILITY(U,$J,358.3,1170,2)
+ ;;=^5011606
+ ;;^UTILITY(U,$J,358.3,1171,0)
+ ;;=M79.641^^12^131^12
+ ;;^UTILITY(U,$J,358.3,1171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1171,1,3,0)
+ ;;=3^Pain Right Hand
+ ;;^UTILITY(U,$J,358.3,1171,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,1171,2)
+ ;;=^5013338

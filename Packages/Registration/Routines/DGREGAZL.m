@@ -1,11 +1,12 @@
 DGREGAZL ;ALB/DW - ZIP LINKING UTILITY ; 5/27/04 10:54am
- ;;5.3;Registration;**522,560,581,730,760**;Aug 13, 1993;Build 11
+ ;;5.3;Registration;**522,560,581,730,760,915**;Aug 13, 1993;Build 6
  ;
 EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
+ ; DFN optional for defauls
  ; Output: RESULT(field#) = User Input External ^ Internal
  K RESULT
  N DGIND,DGTOT
- I $G(DFN)="" S RESULT=-1 Q
+ I $G(DFN)="" S DFN=0
  N DGR,DGDFLT,DGALW,DGZIP,DGN
  S DGN=""
  I $$FOREIGN() D  Q
@@ -33,7 +34,7 @@ EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
 ZIP(DFN) ;Let user input zip+4
 ZAGN N DIR,DTOUT,DUOUT,DIROUT,DGDATA
  S DIR(0)="2,.1112"
- S DA=DFN
+ S:DFN DA=DFN
  D ^DIR
  I $D(DTOUT) Q -1
  I $D(DUOUT)!$D(DIROUT) D UPCT^DGREGAED G ZAGN
@@ -51,6 +52,7 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
  ; Input:
  ;   ZIP - user input zip for the patient primary address
  ;   DFN - Interal entry number of Patient File (#2)
+ ;         (optional, used for default)
  ; Output:RESULT=-1 (input error or timed or ^ out) 
  ;        or    =user input city
  ;        Array index # of selected city.
@@ -67,7 +69,7 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
  D FIELD^DID(2,.114,"N","LABEL","DGCITY")
  S DGN=""
  I '$D(DGDATA("ERROR")) D
- . S DOLDCITY=$$GET1^DIQ(2,DFN_",",.114)
+ . S DOLDCITY=$S(DFN:$$GET1^DIQ(2,DFN_",",.114),1:"")
  . S DGSAME=0
  . F  S DGN=$O(DGDATA(DGN)) Q:DGN=""  D
  .. S DGCITI=$P($G(DGDATA(DGN,"CITY")),"*",1)
@@ -82,7 +84,7 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
  .. S DGECH=DGN_":"_DGCITI
  .. S DGSOC=$S($G(DGSOC)="":DGECH,1:DGSOC_";"_DGECH)
  .. S DGTOT=DGN
- .I 'DGSAME S DGELEVEN=$G(^DPT(DFN,.11)) D
+ .I 'DGSAME S DGELEVEN=$S(DFN:$G(^DPT(DFN,.11)),1:"") D
  ..Q:$P(DGELEVEN,U,6)'=$G(DGDATA(DGTOT,"POSTAL CODE"))
  ..Q:$P(DGELEVEN,U,14)'="VAMC"
  ..Q:$P(DGELEVEN,U,15)'=$$GETSITE^DGMTU4($G(DUZ))
@@ -94,7 +96,7 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
  . S DIR(0)="SO^"_$G(DGSOC)
  . ;if zip '= zip on file, default = ""; else default=city on file
  . ;I ($G(DFN)'="")&($E(ZIP,1,5)=$$GET1^DIQ(2,DFN_",",.116)) D
- . S DIR("B")=$$GET1^DIQ(2,DFN_",",.114)
+ . S:DFN DIR("B")=$$GET1^DIQ(2,DFN_",",.114)
  . S DIR("A")=$G(DGCITY("LABEL"))
 CAGN1 . D ^DIR
  . I $D(DTOUT) S RESULT=-1 Q
@@ -105,7 +107,7 @@ CAGN1 . D ^DIR
 CAGN2 . I '$D(^XUSEC("EAS GMT COUNTY EDIT",+DUZ)) Q
  . N DIR,X,Y
  . S DIR(0)="2,.114"
- . S DA=DFN
+ . S:DFN DA=DFN
  . D ^DIR
  . I $D(DTOUT) S RESULT=-1 Q
  . I $D(DUOUT)!$D(DIROUT) D UPCT^DGREGAED G CAGN2
@@ -134,6 +136,7 @@ LINK(RESULT,ZIP,DGN) ;From zip, get the linked state,county
  Q
  ;
 STCNTY(RESULT,ZIP,DFN,DGNUM) ;Based on zip,input state (#.115) and county (#.117)
+ ; DFN optional for default
  K RESULT
  S DGNUM=$G(DGNUM)
  N DGN,DGDFLT,DGST,POP,DIR,X,Y,DTOUT,DUOUT,DIROUT
@@ -167,6 +170,7 @@ FOREIGN() ;Manila (Philippines) doesn't need zip linking.
  ;;;I $$STA^XUAF4(+$$KSP^XUPARAM("INST"))=500 Q 1 ;;HERE TEST
  Q 0
 FRGNEDT(DGINPUT,DFN) ;Edit zip+4, city, state, county for no zip-linking area
+ ; DFN optional for default
  K DGINPUT
  N DGN,DIR,DTOUT,DUOUT,DIROUT,X,Y,POP,DGST
  S POP=0
@@ -175,17 +179,17 @@ FAGN . I ($G(DGST)="")&(DGN=.117) Q
  . S DIR(0)=2_","_DGN
  . I DGN=.117 D
  .. S DIR(0)="POA^DIC(5,DGST,1,:AEMQ"
- .. S DIR("B")=$$GET1^DIQ(2,DFN_",",.117)
- . I DGN'=.117 S DA=DFN
+ .. S:DFN DIR("B")=$$GET1^DIQ(2,DFN_",",.117)
+ . I DGN'=.117 S:DFN DA=DFN
  . D ^DIR
  . I $D(DTOUT) S POP=1 Q
  . I $D(DUOUT)!$D(DIROUT) D UPCT^DGREGAED G FAGN
  . I (DGN=.114)!(DGN=.1112) S DGINPUT(DGN)=$G(Y)
  . I (DGN=.115) D
  .. S DGST=$P($G(Y),U)
- .. I DGST=$$GET1^DIQ(2,DFN_",",.115,"I") D
+ .. I DFN,DGST=$$GET1^DIQ(2,DFN_",",.115,"I") D
  ... S DGINPUT(.115)=$$GET1^DIQ(2,DFN_",",.115)_U_DGST
- .. I DGST'=$$GET1^DIQ(2,DFN_",",.115,"I") D
+ .. I 'DFN!(DGST'=$$GET1^DIQ(2,DFN_",",.115,"I")) D
  ... S DGINPUT(.115)=$P($G(Y(0)),U)_U_DGST
  . I DGN=.117 S DGINPUT(DGN)=$P($G(Y),U,2)_U_$P($G(Y),U)
  I POP=1 S RESULT=-1

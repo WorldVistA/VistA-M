@@ -1,0 +1,134 @@
+IBDEI2IF ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,42124,1,4,0)
+ ;;=4^E10.69
+ ;;^UTILITY(U,$J,358.3,42124,2)
+ ;;=^5002624
+ ;;^UTILITY(U,$J,358.3,42125,0)
+ ;;=E10.8^^192^2135^3
+ ;;^UTILITY(U,$J,358.3,42125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42125,1,3,0)
+ ;;=3^DM Type 1 w/ Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,42125,1,4,0)
+ ;;=4^E10.8
+ ;;^UTILITY(U,$J,358.3,42125,2)
+ ;;=^5002625
+ ;;^UTILITY(U,$J,358.3,42126,0)
+ ;;=M21.6X1^^192^2135^41
+ ;;^UTILITY(U,$J,358.3,42126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42126,1,3,0)
+ ;;=3^Deformitis,Right Foot,Acquired
+ ;;^UTILITY(U,$J,358.3,42126,1,4,0)
+ ;;=4^M21.6X1
+ ;;^UTILITY(U,$J,358.3,42126,2)
+ ;;=^5011128
+ ;;^UTILITY(U,$J,358.3,42127,0)
+ ;;=M21.6X2^^192^2135^39
+ ;;^UTILITY(U,$J,358.3,42127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42127,1,3,0)
+ ;;=3^Deformitis,Left Foot,Acquired
+ ;;^UTILITY(U,$J,358.3,42127,1,4,0)
+ ;;=4^M21.6X2
+ ;;^UTILITY(U,$J,358.3,42127,2)
+ ;;=^5011129
+ ;;^UTILITY(U,$J,358.3,42128,0)
+ ;;=L25.9^^192^2135^53
+ ;;^UTILITY(U,$J,358.3,42128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42128,1,3,0)
+ ;;=3^Dermatitis,Contact,Unspec
+ ;;^UTILITY(U,$J,358.3,42128,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,42128,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,42129,0)
+ ;;=L23.9^^192^2135^52
+ ;;^UTILITY(U,$J,358.3,42129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42129,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact,Unspec Cause
+ ;;^UTILITY(U,$J,358.3,42129,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,42129,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,42130,0)
+ ;;=L24.9^^192^2135^54
+ ;;^UTILITY(U,$J,358.3,42130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42130,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact,Unspec Cause
+ ;;^UTILITY(U,$J,358.3,42130,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,42130,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,42131,0)
+ ;;=L30.0^^192^2135^55
+ ;;^UTILITY(U,$J,358.3,42131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42131,1,3,0)
+ ;;=3^Dermatitis,Nummular
+ ;;^UTILITY(U,$J,358.3,42131,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,42131,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,42132,0)
+ ;;=L30.8^^192^2135^51
+ ;;^UTILITY(U,$J,358.3,42132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42132,1,3,0)
+ ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,42132,1,4,0)
+ ;;=4^L30.8
+ ;;^UTILITY(U,$J,358.3,42132,2)
+ ;;=^5009158
+ ;;^UTILITY(U,$J,358.3,42133,0)
+ ;;=S93.305A^^192^2135^66
+ ;;^UTILITY(U,$J,358.3,42133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42133,1,3,0)
+ ;;=3^Dislocation of lft ft, unspec, init enc
+ ;;^UTILITY(U,$J,358.3,42133,1,4,0)
+ ;;=4^S93.305A
+ ;;^UTILITY(U,$J,358.3,42133,2)
+ ;;=^5045729
+ ;;^UTILITY(U,$J,358.3,42134,0)
+ ;;=S93.304A^^192^2135^69
+ ;;^UTILITY(U,$J,358.3,42134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42134,1,3,0)
+ ;;=3^Dislocation of rt ft, unspec, init enc
+ ;;^UTILITY(U,$J,358.3,42134,1,4,0)
+ ;;=4^S93.304A
+ ;;^UTILITY(U,$J,358.3,42134,2)
+ ;;=^5045726
+ ;;^UTILITY(U,$J,358.3,42135,0)
+ ;;=S93.325A^^192^2135^71
+ ;;^UTILITY(U,$J,358.3,42135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42135,1,3,0)
+ ;;=3^Dislocation of tarsometatarsal jnt of lft ft, init enc
+ ;;^UTILITY(U,$J,358.3,42135,1,4,0)
+ ;;=4^S93.325A
+ ;;^UTILITY(U,$J,358.3,42135,2)
+ ;;=^5045762
+ ;;^UTILITY(U,$J,358.3,42136,0)
+ ;;=S93.324A^^192^2135^72
+ ;;^UTILITY(U,$J,358.3,42136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42136,1,3,0)
+ ;;=3^Dislocation of tarsometatarsal jnt of rt ft, init enc
+ ;;^UTILITY(U,$J,358.3,42136,1,4,0)
+ ;;=4^S93.324A
+ ;;^UTILITY(U,$J,358.3,42136,2)
+ ;;=^5045759
+ ;;^UTILITY(U,$J,358.3,42137,0)
+ ;;=S93.334A^^192^2135^68
+ ;;^UTILITY(U,$J,358.3,42137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42137,1,3,0)
+ ;;=3^Dislocation of rt ft, oth, init enc

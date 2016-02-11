@@ -1,122 +1,132 @@
-IBDEI1ZQ ; ; 06-AUG-2015
+IBDEI1ZQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34853,2)
- ;;=^5026718
- ;;^UTILITY(U,$J,358.3,34854,0)
- ;;=S42.151S^^183^2023^37
- ;;^UTILITY(U,$J,358.3,34854,1,0)
+ ;;^UTILITY(U,$J,358.3,33330,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,33331,0)
+ ;;=F33.0^^148^1636^10
+ ;;^UTILITY(U,$J,358.3,33331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34854,1,3,0)
- ;;=3^Disp fx of neck of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34854,1,4,0)
- ;;=4^S42.151S
- ;;^UTILITY(U,$J,358.3,34854,2)
- ;;=^5026718
- ;;^UTILITY(U,$J,358.3,34855,0)
- ;;=S42.125S^^183^2023^57
- ;;^UTILITY(U,$J,358.3,34855,1,0)
+ ;;^UTILITY(U,$J,358.3,33331,1,3,0)
+ ;;=3^Major Depressive Disorder,Recurrent,Mild
+ ;;^UTILITY(U,$J,358.3,33331,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,33331,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,33332,0)
+ ;;=F33.1^^148^1636^11
+ ;;^UTILITY(U,$J,358.3,33332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34855,1,3,0)
- ;;=3^Nondisp fx of acromial process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34855,1,4,0)
- ;;=4^S42.125S
- ;;^UTILITY(U,$J,358.3,34855,2)
- ;;=^5026620
- ;;^UTILITY(U,$J,358.3,34856,0)
- ;;=S42.115S^^183^2023^58
- ;;^UTILITY(U,$J,358.3,34856,1,0)
+ ;;^UTILITY(U,$J,358.3,33332,1,3,0)
+ ;;=3^Major Depressive Disorder,Recurrent,Moderate
+ ;;^UTILITY(U,$J,358.3,33332,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,33332,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,33333,0)
+ ;;=F33.2^^148^1636^12
+ ;;^UTILITY(U,$J,358.3,33333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34856,1,3,0)
- ;;=3^Nondisp fx of body of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34856,1,4,0)
- ;;=4^S42.115S
- ;;^UTILITY(U,$J,358.3,34856,2)
- ;;=^5026578
- ;;^UTILITY(U,$J,358.3,34857,0)
- ;;=S42.114S^^183^2023^59
- ;;^UTILITY(U,$J,358.3,34857,1,0)
+ ;;^UTILITY(U,$J,358.3,33333,1,3,0)
+ ;;=3^Major Depressive Disorder,Recurrent,Severe
+ ;;^UTILITY(U,$J,358.3,33333,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,33333,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,33334,0)
+ ;;=F33.3^^148^1636^7
+ ;;^UTILITY(U,$J,358.3,33334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34857,1,3,0)
- ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34857,1,4,0)
- ;;=4^S42.114S
- ;;^UTILITY(U,$J,358.3,34857,2)
- ;;=^5026571
- ;;^UTILITY(U,$J,358.3,34858,0)
- ;;=S42.114S^^183^2023^60
- ;;^UTILITY(U,$J,358.3,34858,1,0)
+ ;;^UTILITY(U,$J,358.3,33334,1,3,0)
+ ;;=3^Major Depressive Disorder,Recurrent w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,33334,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,33334,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,33335,0)
+ ;;=F33.41^^148^1636^8
+ ;;^UTILITY(U,$J,358.3,33335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34858,1,3,0)
- ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34858,1,4,0)
- ;;=4^S42.114S
- ;;^UTILITY(U,$J,358.3,34858,2)
- ;;=^5026571
- ;;^UTILITY(U,$J,358.3,34859,0)
- ;;=S42.135S^^183^2023^65
- ;;^UTILITY(U,$J,358.3,34859,1,0)
+ ;;^UTILITY(U,$J,358.3,33335,1,3,0)
+ ;;=3^Major Depressive Disorder,Recurrent,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,33335,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,33335,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,33336,0)
+ ;;=F33.42^^148^1636^9
+ ;;^UTILITY(U,$J,358.3,33336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34859,1,3,0)
- ;;=3^Nondisp fx of coracoid process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34859,1,4,0)
- ;;=4^S42.135S
- ;;^UTILITY(U,$J,358.3,34859,2)
- ;;=^5026662
- ;;^UTILITY(U,$J,358.3,34860,0)
- ;;=S42.134S^^183^2023^66
- ;;^UTILITY(U,$J,358.3,34860,1,0)
+ ;;^UTILITY(U,$J,358.3,33336,1,3,0)
+ ;;=3^Major Depressive Disorder,Recurrent,In Full Remission
+ ;;^UTILITY(U,$J,358.3,33336,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,33336,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,33337,0)
+ ;;=F34.8^^148^1636^6
+ ;;^UTILITY(U,$J,358.3,33337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34860,1,3,0)
- ;;=3^Nondisp fx of coracoid process, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34860,1,4,0)
- ;;=4^S42.134S
- ;;^UTILITY(U,$J,358.3,34860,2)
- ;;=^5026655
- ;;^UTILITY(U,$J,358.3,34861,0)
- ;;=S42.144S^^183^2023^67
- ;;^UTILITY(U,$J,358.3,34861,1,0)
+ ;;^UTILITY(U,$J,358.3,33337,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,33337,1,4,0)
+ ;;=4^F34.8
+ ;;^UTILITY(U,$J,358.3,33337,2)
+ ;;=^5003539
+ ;;^UTILITY(U,$J,358.3,33338,0)
+ ;;=F32.8^^148^1636^1
+ ;;^UTILITY(U,$J,358.3,33338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34861,1,3,0)
- ;;=3^Nondisp fx of glenoid cav of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34861,1,4,0)
- ;;=4^S42.144S
- ;;^UTILITY(U,$J,358.3,34861,2)
- ;;=^5026697
- ;;^UTILITY(U,$J,358.3,34862,0)
- ;;=S42.155S^^183^2023^82
- ;;^UTILITY(U,$J,358.3,34862,1,0)
+ ;;^UTILITY(U,$J,358.3,33338,1,3,0)
+ ;;=3^Depressive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,33338,1,4,0)
+ ;;=4^F32.8
+ ;;^UTILITY(U,$J,358.3,33338,2)
+ ;;=^5003527
+ ;;^UTILITY(U,$J,358.3,33339,0)
+ ;;=F34.1^^148^1636^22
+ ;;^UTILITY(U,$J,358.3,33339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34862,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34862,1,4,0)
- ;;=4^S42.155S
- ;;^UTILITY(U,$J,358.3,34862,2)
- ;;=^5026746
- ;;^UTILITY(U,$J,358.3,34863,0)
- ;;=S42.155S^^183^2023^83
- ;;^UTILITY(U,$J,358.3,34863,1,0)
+ ;;^UTILITY(U,$J,358.3,33339,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthymic)
+ ;;^UTILITY(U,$J,358.3,33339,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,33339,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,33340,0)
+ ;;=F32.9^^148^1636^5
+ ;;^UTILITY(U,$J,358.3,33340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34863,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34863,1,4,0)
- ;;=4^S42.155S
- ;;^UTILITY(U,$J,358.3,34863,2)
- ;;=^5026746
- ;;^UTILITY(U,$J,358.3,34864,0)
- ;;=S42.154S^^183^2023^84
- ;;^UTILITY(U,$J,358.3,34864,1,0)
+ ;;^UTILITY(U,$J,358.3,33340,1,3,0)
+ ;;=3^Depressive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,33340,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,33340,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,33341,0)
+ ;;=N94.3^^148^1636^23
+ ;;^UTILITY(U,$J,358.3,33341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34864,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,34864,1,4,0)
- ;;=4^S42.154S
- ;;^UTILITY(U,$J,358.3,34864,2)
- ;;=^5026739
- ;;^UTILITY(U,$J,358.3,34865,0)
- ;;=M84.412S^^183^2023^102
- ;;^UTILITY(U,$J,358.3,34865,1,0)
+ ;;^UTILITY(U,$J,358.3,33341,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,33341,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,33341,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,33342,0)
+ ;;=G31.84^^148^1636^21
+ ;;^UTILITY(U,$J,358.3,33342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34865,1,3,0)
- ;;=3^Pathological fracture, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,33342,1,3,0)
+ ;;=3^Mild Cognitive Impairment,So Stated
+ ;;^UTILITY(U,$J,358.3,33342,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,33342,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,33343,0)
+ ;;=F44.81^^148^1637^5
+ ;;^UTILITY(U,$J,358.3,33343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33343,1,3,0)
+ ;;=3^Dissociative Identity Disorder

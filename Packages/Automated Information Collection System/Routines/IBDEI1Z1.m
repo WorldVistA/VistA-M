@@ -1,126 +1,134 @@
-IBDEI1Z1 ; ; 06-AUG-2015
+IBDEI1Z1 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34556,1,3,0)
- ;;=3^Nondisp anterior process fx of right calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,34556,1,4,0)
- ;;=4^S92.024S
- ;;^UTILITY(U,$J,358.3,34556,2)
- ;;=^5044436
- ;;^UTILITY(U,$J,358.3,34557,0)
- ;;=S92.015S^^183^2020^74
- ;;^UTILITY(U,$J,358.3,34557,1,0)
+ ;;^UTILITY(U,$J,358.3,33010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34557,1,3,0)
- ;;=3^Nondisp body of left calcaneus fx, sequela
- ;;^UTILITY(U,$J,358.3,34557,1,4,0)
- ;;=4^S92.015S
- ;;^UTILITY(U,$J,358.3,34557,2)
- ;;=^5044401
- ;;^UTILITY(U,$J,358.3,34558,0)
- ;;=S92.125S^^183^2020^75
- ;;^UTILITY(U,$J,358.3,34558,1,0)
+ ;;^UTILITY(U,$J,358.3,33010,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,33010,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,33010,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,33011,0)
+ ;;=Z62.820^^146^1603^4
+ ;;^UTILITY(U,$J,358.3,33011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34558,1,3,0)
- ;;=3^Nondisp body of left talus fx, sequela
- ;;^UTILITY(U,$J,358.3,34558,1,4,0)
- ;;=4^S92.125S
- ;;^UTILITY(U,$J,358.3,34558,2)
- ;;=^5044681
- ;;^UTILITY(U,$J,358.3,34559,0)
- ;;=S92.014S^^183^2020^76
- ;;^UTILITY(U,$J,358.3,34559,1,0)
+ ;;^UTILITY(U,$J,358.3,33011,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,33011,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,33011,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,33012,0)
+ ;;=Z62.891^^146^1603^6
+ ;;^UTILITY(U,$J,358.3,33012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34559,1,3,0)
- ;;=3^Nondisp body of right calcaneus fx, sequela
- ;;^UTILITY(U,$J,358.3,34559,1,4,0)
- ;;=4^S92.014S
- ;;^UTILITY(U,$J,358.3,34559,2)
- ;;=^5044394
- ;;^UTILITY(U,$J,358.3,34560,0)
- ;;=S92.124S^^183^2020^77
- ;;^UTILITY(U,$J,358.3,34560,1,0)
+ ;;^UTILITY(U,$J,358.3,33012,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,33012,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,33012,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,33013,0)
+ ;;=Z62.898^^146^1603^1
+ ;;^UTILITY(U,$J,358.3,33013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34560,1,3,0)
- ;;=3^Nondisp body of right talus fx, sequela
- ;;^UTILITY(U,$J,358.3,34560,1,4,0)
- ;;=4^S92.124S
- ;;^UTILITY(U,$J,358.3,34560,2)
- ;;=^5044674
- ;;^UTILITY(U,$J,358.3,34561,0)
- ;;=S92.115S^^183^2020^98
- ;;^UTILITY(U,$J,358.3,34561,1,0)
+ ;;^UTILITY(U,$J,358.3,33013,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,33013,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,33013,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,33014,0)
+ ;;=Z63.0^^146^1603^5
+ ;;^UTILITY(U,$J,358.3,33014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34561,1,3,0)
- ;;=3^Nondisp neck of left talus fx, sequela
- ;;^UTILITY(U,$J,358.3,34561,1,4,0)
- ;;=4^S92.115S
- ;;^UTILITY(U,$J,358.3,34561,2)
- ;;=^5044639
- ;;^UTILITY(U,$J,358.3,34562,0)
- ;;=S92.114S^^183^2020^99
- ;;^UTILITY(U,$J,358.3,34562,1,0)
+ ;;^UTILITY(U,$J,358.3,33014,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,33014,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,33014,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,33015,0)
+ ;;=Z63.5^^146^1603^2
+ ;;^UTILITY(U,$J,358.3,33015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34562,1,3,0)
- ;;=3^Nondisp neck of right talus fx, sequela
- ;;^UTILITY(U,$J,358.3,34562,1,4,0)
- ;;=4^S92.114S
- ;;^UTILITY(U,$J,358.3,34562,2)
- ;;=^5044632
- ;;^UTILITY(U,$J,358.3,34563,0)
- ;;=S92.135S^^183^2020^100
- ;;^UTILITY(U,$J,358.3,34563,1,0)
+ ;;^UTILITY(U,$J,358.3,33015,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,33015,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,33015,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,33016,0)
+ ;;=Z63.8^^146^1603^3
+ ;;^UTILITY(U,$J,358.3,33016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34563,1,3,0)
- ;;=3^Nondisp posterior process fx of left talus, sequela
- ;;^UTILITY(U,$J,358.3,34563,1,4,0)
- ;;=4^S92.135S
- ;;^UTILITY(U,$J,358.3,34563,2)
- ;;=^5044723
- ;;^UTILITY(U,$J,358.3,34564,0)
- ;;=S92.134S^^183^2020^101
- ;;^UTILITY(U,$J,358.3,34564,1,0)
+ ;;^UTILITY(U,$J,358.3,33016,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,33016,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,33016,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,33017,0)
+ ;;=Z63.4^^146^1603^7
+ ;;^UTILITY(U,$J,358.3,33017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34564,1,3,0)
- ;;=3^Nondisp posterior process fx of right talus, sequela
- ;;^UTILITY(U,$J,358.3,34564,1,4,0)
- ;;=4^S92.134S
- ;;^UTILITY(U,$J,358.3,34564,2)
- ;;=^5044716
- ;;^UTILITY(U,$J,358.3,34565,0)
- ;;=S92.064S^^183^2020^89
- ;;^UTILITY(U,$J,358.3,34565,1,0)
+ ;;^UTILITY(U,$J,358.3,33017,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,33017,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,33017,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,33018,0)
+ ;;=F20.9^^146^1604^5
+ ;;^UTILITY(U,$J,358.3,33018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34565,1,3,0)
- ;;=3^Nondisp intraarticular fx of right calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,34565,1,4,0)
- ;;=4^S92.064S
- ;;^UTILITY(U,$J,358.3,34565,2)
- ;;=^5044576
- ;;^UTILITY(U,$J,358.3,34566,0)
- ;;=S92.065S^^183^2020^88
- ;;^UTILITY(U,$J,358.3,34566,1,0)
+ ;;^UTILITY(U,$J,358.3,33018,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,33018,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,33018,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,33019,0)
+ ;;=F20.81^^146^1604^6
+ ;;^UTILITY(U,$J,358.3,33019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34566,1,3,0)
- ;;=3^Nondisp intraarticular fx of left calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,34566,1,4,0)
- ;;=4^S92.065S
- ;;^UTILITY(U,$J,358.3,34566,2)
- ;;=^5044583
- ;;^UTILITY(U,$J,358.3,34567,0)
- ;;=M84.472S^^183^2020^108
- ;;^UTILITY(U,$J,358.3,34567,1,0)
+ ;;^UTILITY(U,$J,358.3,33019,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,33019,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,33019,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,33020,0)
+ ;;=F22.^^146^1604^2
+ ;;^UTILITY(U,$J,358.3,33020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34567,1,3,0)
- ;;=3^Pathological fracture, left ankle, sequela
- ;;^UTILITY(U,$J,358.3,34567,1,4,0)
- ;;=4^M84.472S
- ;;^UTILITY(U,$J,358.3,34567,2)
- ;;=^5013973
- ;;^UTILITY(U,$J,358.3,34568,0)
- ;;=M84.471S^^183^2020^111
- ;;^UTILITY(U,$J,358.3,34568,1,0)
+ ;;^UTILITY(U,$J,358.3,33020,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,33020,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,33020,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,33021,0)
+ ;;=F23.^^146^1604^1
+ ;;^UTILITY(U,$J,358.3,33021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34568,1,3,0)
- ;;=3^Pathological fracture, right ankle, sequela
+ ;;^UTILITY(U,$J,358.3,33021,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,33021,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,33021,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,33022,0)
+ ;;=F25.0^^146^1604^3
+ ;;^UTILITY(U,$J,358.3,33022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33022,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,33022,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,33022,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,33023,0)
+ ;;=F25.1^^146^1604^4

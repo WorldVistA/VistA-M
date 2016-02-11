@@ -1,0 +1,134 @@
+IBDEI35H ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,52887,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,52888,0)
+ ;;=L20.84^^243^2651^4
+ ;;^UTILITY(U,$J,358.3,52888,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52888,1,3,0)
+ ;;=3^Eczema,Intrinsic
+ ;;^UTILITY(U,$J,358.3,52888,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,52888,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,52889,0)
+ ;;=L51.8^^243^2651^10
+ ;;^UTILITY(U,$J,358.3,52889,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52889,1,3,0)
+ ;;=3^Erythema Multiforme,Other
+ ;;^UTILITY(U,$J,358.3,52889,1,4,0)
+ ;;=4^L51.8
+ ;;^UTILITY(U,$J,358.3,52889,2)
+ ;;=^336639
+ ;;^UTILITY(U,$J,358.3,52890,0)
+ ;;=R23.4^^243^2651^14
+ ;;^UTILITY(U,$J,358.3,52890,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52890,1,3,0)
+ ;;=3^Eschar/Desquamination of Skin
+ ;;^UTILITY(U,$J,358.3,52890,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,52890,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,52891,0)
+ ;;=L49.9^^243^2651^23
+ ;;^UTILITY(U,$J,358.3,52891,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52891,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
+ ;;^UTILITY(U,$J,358.3,52891,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,52891,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,52892,0)
+ ;;=L74.9^^243^2651^1
+ ;;^UTILITY(U,$J,358.3,52892,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52892,1,3,0)
+ ;;=3^Eccrine Sweat Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,52892,1,4,0)
+ ;;=4^L74.9
+ ;;^UTILITY(U,$J,358.3,52892,2)
+ ;;=^5009296
+ ;;^UTILITY(U,$J,358.3,52893,0)
+ ;;=L92.3^^243^2652^1
+ ;;^UTILITY(U,$J,358.3,52893,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52893,1,3,0)
+ ;;=3^FB Granuloma Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,52893,1,4,0)
+ ;;=4^L92.3
+ ;;^UTILITY(U,$J,358.3,52893,2)
+ ;;=^5009464
+ ;;^UTILITY(U,$J,358.3,52894,0)
+ ;;=L66.2^^243^2652^2
+ ;;^UTILITY(U,$J,358.3,52894,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52894,1,3,0)
+ ;;=3^Folliculitis Decalvans
+ ;;^UTILITY(U,$J,358.3,52894,1,4,0)
+ ;;=4^L66.2
+ ;;^UTILITY(U,$J,358.3,52894,2)
+ ;;=^5009254
+ ;;^UTILITY(U,$J,358.3,52895,0)
+ ;;=L73.9^^243^2652^3
+ ;;^UTILITY(U,$J,358.3,52895,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52895,1,3,0)
+ ;;=3^Folliculitis,Unspec
+ ;;^UTILITY(U,$J,358.3,52895,1,4,0)
+ ;;=4^L73.9
+ ;;^UTILITY(U,$J,358.3,52895,2)
+ ;;=^5009286
+ ;;^UTILITY(U,$J,358.3,52896,0)
+ ;;=B09.^^243^2653^4
+ ;;^UTILITY(U,$J,358.3,52896,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52896,1,3,0)
+ ;;=3^Infection,Viral w/ Skin/Mucous Membrane Lesions
+ ;;^UTILITY(U,$J,358.3,52896,1,4,0)
+ ;;=4^B09.
+ ;;^UTILITY(U,$J,358.3,52896,2)
+ ;;=^5000534
+ ;;^UTILITY(U,$J,358.3,52897,0)
+ ;;=L08.9^^243^2653^3
+ ;;^UTILITY(U,$J,358.3,52897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52897,1,3,0)
+ ;;=3^Infection Local of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,52897,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,52897,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,52898,0)
+ ;;=Q80.0^^243^2653^1
+ ;;^UTILITY(U,$J,358.3,52898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52898,1,3,0)
+ ;;=3^Ichthyosis Vulgaris
+ ;;^UTILITY(U,$J,358.3,52898,1,4,0)
+ ;;=4^Q80.0
+ ;;^UTILITY(U,$J,358.3,52898,2)
+ ;;=^175407
+ ;;^UTILITY(U,$J,358.3,52899,0)
+ ;;=Q80.1^^243^2653^2
+ ;;^UTILITY(U,$J,358.3,52899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52899,1,3,0)
+ ;;=3^Ichthyosis,X-Linked
+ ;;^UTILITY(U,$J,358.3,52899,1,4,0)
+ ;;=4^Q80.1
+ ;;^UTILITY(U,$J,358.3,52899,2)
+ ;;=^5019041
+ ;;^UTILITY(U,$J,358.3,52900,0)
+ ;;=L76.01^^243^2653^6
+ ;;^UTILITY(U,$J,358.3,52900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52900,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom Skin/SQ Tissue,Comp Derm Procedure
+ ;;^UTILITY(U,$J,358.3,52900,1,4,0)
+ ;;=4^L76.01

@@ -1,136 +1,144 @@
-IBDEI026 ; ; 06-AUG-2015
+IBDEI026 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,466,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-negative, unsp site
- ;;^UTILITY(U,$J,358.3,466,1,4,0)
- ;;=4^C84.70
- ;;^UTILITY(U,$J,358.3,466,2)
- ;;=^5001661
- ;;^UTILITY(U,$J,358.3,467,0)
- ;;=C84.79^^2^21^9
- ;;^UTILITY(U,$J,358.3,467,1,0)
+ ;;^UTILITY(U,$J,358.3,242,1,4,0)
+ ;;=4^F50.2
+ ;;^UTILITY(U,$J,358.3,242,2)
+ ;;=^5003600
+ ;;^UTILITY(U,$J,358.3,243,0)
+ ;;=Z55.9^^3^31^1
+ ;;^UTILITY(U,$J,358.3,243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,467,1,3,0)
- ;;=3^Anaplstc lg cell lymph, ALK-neg, extrnod and solid org sites
- ;;^UTILITY(U,$J,358.3,467,1,4,0)
- ;;=4^C84.79
- ;;^UTILITY(U,$J,358.3,467,2)
- ;;=^5001670
- ;;^UTILITY(U,$J,358.3,468,0)
- ;;=C91.40^^2^21^32
- ;;^UTILITY(U,$J,358.3,468,1,0)
+ ;;^UTILITY(U,$J,358.3,243,1,3,0)
+ ;;=3^Acedemic/Educational Problem
+ ;;^UTILITY(U,$J,358.3,243,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,243,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,244,0)
+ ;;=Z56.81^^3^31^9
+ ;;^UTILITY(U,$J,358.3,244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,468,1,3,0)
- ;;=3^Hairy cell leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,468,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,468,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,469,0)
- ;;=C91.41^^2^21^34
- ;;^UTILITY(U,$J,358.3,469,1,0)
+ ;;^UTILITY(U,$J,358.3,244,1,3,0)
+ ;;=3^Sexual Harassment on the Job
+ ;;^UTILITY(U,$J,358.3,244,1,4,0)
+ ;;=4^Z56.81
+ ;;^UTILITY(U,$J,358.3,244,2)
+ ;;=^5063114
+ ;;^UTILITY(U,$J,358.3,245,0)
+ ;;=Z56.9^^3^31^8
+ ;;^UTILITY(U,$J,358.3,245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,469,1,3,0)
- ;;=3^Hairy cell leukemia, in remission
- ;;^UTILITY(U,$J,358.3,469,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,469,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,470,0)
- ;;=C91.42^^2^21^33
- ;;^UTILITY(U,$J,358.3,470,1,0)
+ ;;^UTILITY(U,$J,358.3,245,1,3,0)
+ ;;=3^Problems Related to Employment NEC
+ ;;^UTILITY(U,$J,358.3,245,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,245,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,246,0)
+ ;;=Z56.82^^3^31^6
+ ;;^UTILITY(U,$J,358.3,246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,470,1,3,0)
- ;;=3^Hairy cell leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,470,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,470,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,471,0)
- ;;=C96.4^^2^21^58
- ;;^UTILITY(U,$J,358.3,471,1,0)
+ ;;^UTILITY(U,$J,358.3,246,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,246,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,246,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,247,0)
+ ;;=Z56.0^^3^31^13
+ ;;^UTILITY(U,$J,358.3,247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,471,1,3,0)
- ;;=3^Sarcoma of dendritic cells (accessory cells)
- ;;^UTILITY(U,$J,358.3,471,1,4,0)
- ;;=4^C96.4
- ;;^UTILITY(U,$J,358.3,471,2)
- ;;=^5001861
- ;;^UTILITY(U,$J,358.3,472,0)
- ;;=C96.9^^2^21^43
- ;;^UTILITY(U,$J,358.3,472,1,0)
+ ;;^UTILITY(U,$J,358.3,247,1,3,0)
+ ;;=3^Unemployeement,Unspec
+ ;;^UTILITY(U,$J,358.3,247,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,247,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,248,0)
+ ;;=Z56.1^^3^31^2
+ ;;^UTILITY(U,$J,358.3,248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,472,1,3,0)
- ;;=3^Malig neoplm of lymphoid, hematpoetc and rel tissue, unsp
- ;;^UTILITY(U,$J,358.3,472,1,4,0)
- ;;=4^C96.9
- ;;^UTILITY(U,$J,358.3,472,2)
- ;;=^5001864
- ;;^UTILITY(U,$J,358.3,473,0)
- ;;=C90.00^^2^21^51
- ;;^UTILITY(U,$J,358.3,473,1,0)
+ ;;^UTILITY(U,$J,358.3,248,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,248,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,248,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,249,0)
+ ;;=Z56.2^^3^31^11
+ ;;^UTILITY(U,$J,358.3,249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,473,1,3,0)
- ;;=3^Multiple myeloma not having achieved remission
- ;;^UTILITY(U,$J,358.3,473,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,473,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,474,0)
- ;;=C90.01^^2^21^50
- ;;^UTILITY(U,$J,358.3,474,1,0)
+ ;;^UTILITY(U,$J,358.3,249,1,3,0)
+ ;;=3^Threat of Job Loss
+ ;;^UTILITY(U,$J,358.3,249,1,4,0)
+ ;;=4^Z56.2
+ ;;^UTILITY(U,$J,358.3,249,2)
+ ;;=^5063109
+ ;;^UTILITY(U,$J,358.3,250,0)
+ ;;=Z56.3^^3^31^10
+ ;;^UTILITY(U,$J,358.3,250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,474,1,3,0)
- ;;=3^Multiple myeloma in remission
- ;;^UTILITY(U,$J,358.3,474,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,474,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,475,0)
- ;;=C90.02^^2^21^49
- ;;^UTILITY(U,$J,358.3,475,1,0)
+ ;;^UTILITY(U,$J,358.3,250,1,3,0)
+ ;;=3^Stressful Work Schedule
+ ;;^UTILITY(U,$J,358.3,250,1,4,0)
+ ;;=4^Z56.3
+ ;;^UTILITY(U,$J,358.3,250,2)
+ ;;=^5063110
+ ;;^UTILITY(U,$J,358.3,251,0)
+ ;;=Z56.4^^3^31^3
+ ;;^UTILITY(U,$J,358.3,251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,475,1,3,0)
- ;;=3^Multiple myeloma in relapse
- ;;^UTILITY(U,$J,358.3,475,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,475,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,476,0)
- ;;=C91.00^^2^21^1
- ;;^UTILITY(U,$J,358.3,476,1,0)
+ ;;^UTILITY(U,$J,358.3,251,1,3,0)
+ ;;=3^Discord w/ Boss & Workmates
+ ;;^UTILITY(U,$J,358.3,251,1,4,0)
+ ;;=4^Z56.4
+ ;;^UTILITY(U,$J,358.3,251,2)
+ ;;=^5063111
+ ;;^UTILITY(U,$J,358.3,252,0)
+ ;;=Z56.5^^3^31^12
+ ;;^UTILITY(U,$J,358.3,252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,476,1,3,0)
- ;;=3^Acute lymphoblastic leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,476,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,476,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,477,0)
- ;;=C91.01^^2^21^3
- ;;^UTILITY(U,$J,358.3,477,1,0)
+ ;;^UTILITY(U,$J,358.3,252,1,3,0)
+ ;;=3^Uncongenial Work Environment
+ ;;^UTILITY(U,$J,358.3,252,1,4,0)
+ ;;=4^Z56.5
+ ;;^UTILITY(U,$J,358.3,252,2)
+ ;;=^5063112
+ ;;^UTILITY(U,$J,358.3,253,0)
+ ;;=Z56.6^^3^31^5
+ ;;^UTILITY(U,$J,358.3,253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,477,1,3,0)
- ;;=3^Acute lymphoblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,477,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,477,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,478,0)
- ;;=C91.02^^2^21^2
- ;;^UTILITY(U,$J,358.3,478,1,0)
+ ;;^UTILITY(U,$J,358.3,253,1,3,0)
+ ;;=3^Physical & Mental Strain Related to Work NEC
+ ;;^UTILITY(U,$J,358.3,253,1,4,0)
+ ;;=4^Z56.6
+ ;;^UTILITY(U,$J,358.3,253,2)
+ ;;=^5063113
+ ;;^UTILITY(U,$J,358.3,254,0)
+ ;;=Z56.82^^3^31^4
+ ;;^UTILITY(U,$J,358.3,254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,478,1,3,0)
- ;;=3^Acute lymphoblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,478,1,4,0)
- ;;=4^C91.02
- ;;^UTILITY(U,$J,358.3,478,2)
- ;;=^5001764
- ;;^UTILITY(U,$J,358.3,479,0)
- ;;=C91.10^^2^21^13
- ;;^UTILITY(U,$J,358.3,479,1,0)
+ ;;^UTILITY(U,$J,358.3,254,1,3,0)
+ ;;=3^Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,254,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,254,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,255,0)
+ ;;=Z56.89^^3^31^7
+ ;;^UTILITY(U,$J,358.3,255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,479,1,3,0)
- ;;=3^Chronic lymphocytic leuk of B-cell type not achieve remis
+ ;;^UTILITY(U,$J,358.3,255,1,3,0)
+ ;;=3^Problems Related to Employment,Other
+ ;;^UTILITY(U,$J,358.3,255,1,4,0)
+ ;;=4^Z56.89
+ ;;^UTILITY(U,$J,358.3,255,2)
+ ;;=^5063116
+ ;;^UTILITY(U,$J,358.3,256,0)
+ ;;=F64.1^^3^32^2
+ ;;^UTILITY(U,$J,358.3,256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,256,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults

@@ -1,138 +1,132 @@
-IBDEI072 ; ; 06-AUG-2015
+IBDEI072 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2793,1,4,0)
- ;;=4^T84.52XA
- ;;^UTILITY(U,$J,358.3,2793,2)
- ;;=^5055388
- ;;^UTILITY(U,$J,358.3,2794,0)
- ;;=T84.51XA^^7^83^178
- ;;^UTILITY(U,$J,358.3,2794,1,0)
+ ;;^UTILITY(U,$J,358.3,2725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2794,1,3,0)
- ;;=3^Prosthetic Right Hip Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,2794,1,4,0)
- ;;=4^T84.51XA
- ;;^UTILITY(U,$J,358.3,2794,2)
- ;;=^5055385
- ;;^UTILITY(U,$J,358.3,2795,0)
- ;;=T84.54XA^^7^83^177
- ;;^UTILITY(U,$J,358.3,2795,1,0)
+ ;;^UTILITY(U,$J,358.3,2725,1,3,0)
+ ;;=3^Unequal limb length (acq), rt tibia
+ ;;^UTILITY(U,$J,358.3,2725,1,4,0)
+ ;;=4^M21.761
+ ;;^UTILITY(U,$J,358.3,2725,2)
+ ;;=^5011143
+ ;;^UTILITY(U,$J,358.3,2726,0)
+ ;;=M21.762^^25^225^111
+ ;;^UTILITY(U,$J,358.3,2726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2795,1,3,0)
- ;;=3^Prosthetic Left Knee Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,2795,1,4,0)
- ;;=4^T84.54XA
- ;;^UTILITY(U,$J,358.3,2795,2)
- ;;=^5055394
- ;;^UTILITY(U,$J,358.3,2796,0)
- ;;=T84.53XA^^7^83^179
- ;;^UTILITY(U,$J,358.3,2796,1,0)
+ ;;^UTILITY(U,$J,358.3,2726,1,3,0)
+ ;;=3^Unequal limb length (acq), lft tibia
+ ;;^UTILITY(U,$J,358.3,2726,1,4,0)
+ ;;=4^M21.762
+ ;;^UTILITY(U,$J,358.3,2726,2)
+ ;;=^5011144
+ ;;^UTILITY(U,$J,358.3,2727,0)
+ ;;=M21.763^^25^225^112
+ ;;^UTILITY(U,$J,358.3,2727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2796,1,3,0)
- ;;=3^Prosthetic Right Knee Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,2796,1,4,0)
- ;;=4^T84.53XA
- ;;^UTILITY(U,$J,358.3,2796,2)
- ;;=^5055391
- ;;^UTILITY(U,$J,358.3,2797,0)
- ;;=T84.59XA^^7^83^180
- ;;^UTILITY(U,$J,358.3,2797,1,0)
+ ;;^UTILITY(U,$J,358.3,2727,1,3,0)
+ ;;=3^Unequal limb length (acq), right fibula
+ ;;^UTILITY(U,$J,358.3,2727,1,4,0)
+ ;;=4^M21.763
+ ;;^UTILITY(U,$J,358.3,2727,2)
+ ;;=^5011145
+ ;;^UTILITY(U,$J,358.3,2728,0)
+ ;;=M21.764^^25^225^110
+ ;;^UTILITY(U,$J,358.3,2728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2797,1,3,0)
- ;;=3^Prosthetic Shoulder Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,2797,1,4,0)
- ;;=4^T84.59XA
- ;;^UTILITY(U,$J,358.3,2797,2)
- ;;=^5055397
- ;;^UTILITY(U,$J,358.3,2798,0)
- ;;=T82.6XXA^^7^83^175
- ;;^UTILITY(U,$J,358.3,2798,1,0)
+ ;;^UTILITY(U,$J,358.3,2728,1,3,0)
+ ;;=3^Unequal limb length (acq), lft fibula
+ ;;^UTILITY(U,$J,358.3,2728,1,4,0)
+ ;;=4^M21.764
+ ;;^UTILITY(U,$J,358.3,2728,2)
+ ;;=^5011146
+ ;;^UTILITY(U,$J,358.3,2729,0)
+ ;;=M21.769^^25^225^115
+ ;;^UTILITY(U,$J,358.3,2729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2798,1,3,0)
- ;;=3^Prosthetic Heart Valve Infection, initial encounter
- ;;^UTILITY(U,$J,358.3,2798,1,4,0)
- ;;=4^T82.6XXA
- ;;^UTILITY(U,$J,358.3,2798,2)
- ;;=^5054908
- ;;^UTILITY(U,$J,358.3,2799,0)
- ;;=N12.^^7^83^183
- ;;^UTILITY(U,$J,358.3,2799,1,0)
+ ;;^UTILITY(U,$J,358.3,2729,1,3,0)
+ ;;=3^Unequal limb length (acq), tibia/fibula, unspec
+ ;;^UTILITY(U,$J,358.3,2729,1,4,0)
+ ;;=4^M21.769
+ ;;^UTILITY(U,$J,358.3,2729,2)
+ ;;=^5011147
+ ;;^UTILITY(U,$J,358.3,2730,0)
+ ;;=M99.86^^25^225^8
+ ;;^UTILITY(U,$J,358.3,2730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2799,1,3,0)
- ;;=3^Pyelonephritis
- ;;^UTILITY(U,$J,358.3,2799,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,2799,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,2800,0)
- ;;=J30.9^^7^83^184
- ;;^UTILITY(U,$J,358.3,2800,1,0)
+ ;;^UTILITY(U,$J,358.3,2730,1,3,0)
+ ;;=3^Biomech lesions of lwr extr
+ ;;^UTILITY(U,$J,358.3,2730,1,4,0)
+ ;;=4^M99.86
+ ;;^UTILITY(U,$J,358.3,2730,2)
+ ;;=^5015486
+ ;;^UTILITY(U,$J,358.3,2731,0)
+ ;;=M99.87^^25^225^9
+ ;;^UTILITY(U,$J,358.3,2731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2800,1,3,0)
- ;;=3^Rhinitis, allergic
- ;;^UTILITY(U,$J,358.3,2800,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,2800,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,2801,0)
- ;;=B86.^^7^83^186
- ;;^UTILITY(U,$J,358.3,2801,1,0)
+ ;;^UTILITY(U,$J,358.3,2731,1,3,0)
+ ;;=3^Biomechl lesions of upr extr
+ ;;^UTILITY(U,$J,358.3,2731,1,4,0)
+ ;;=4^M99.87
+ ;;^UTILITY(U,$J,358.3,2731,2)
+ ;;=^5015487
+ ;;^UTILITY(U,$J,358.3,2732,0)
+ ;;=M99.89^^25^225^7
+ ;;^UTILITY(U,$J,358.3,2732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2801,1,3,0)
- ;;=3^Scabies
- ;;^UTILITY(U,$J,358.3,2801,1,4,0)
- ;;=4^B86.
- ;;^UTILITY(U,$J,358.3,2801,2)
- ;;=^108096
- ;;^UTILITY(U,$J,358.3,2802,0)
- ;;=M00.9^^7^83^189
- ;;^UTILITY(U,$J,358.3,2802,1,0)
+ ;;^UTILITY(U,$J,358.3,2732,1,3,0)
+ ;;=3^Biomech lesions of abdmn & oth regns
+ ;;^UTILITY(U,$J,358.3,2732,1,4,0)
+ ;;=4^M99.89
+ ;;^UTILITY(U,$J,358.3,2732,2)
+ ;;=^5015489
+ ;;^UTILITY(U,$J,358.3,2733,0)
+ ;;=G44.221^^25^226^2
+ ;;^UTILITY(U,$J,358.3,2733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2802,1,3,0)
- ;;=3^Septic Joint/Arthritis
- ;;^UTILITY(U,$J,358.3,2802,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,2802,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,2803,0)
- ;;=B02.9^^7^83^193
- ;;^UTILITY(U,$J,358.3,2803,1,0)
+ ;;^UTILITY(U,$J,358.3,2733,1,3,0)
+ ;;=3^Chronic tension-type headache, intractable
+ ;;^UTILITY(U,$J,358.3,2733,1,4,0)
+ ;;=4^G44.221
+ ;;^UTILITY(U,$J,358.3,2733,2)
+ ;;=^5003939
+ ;;^UTILITY(U,$J,358.3,2734,0)
+ ;;=G44.229^^25^226^3
+ ;;^UTILITY(U,$J,358.3,2734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2803,1,3,0)
- ;;=3^Shingles/zoster
- ;;^UTILITY(U,$J,358.3,2803,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,2803,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,2804,0)
- ;;=J01.90^^7^83^194
- ;;^UTILITY(U,$J,358.3,2804,1,0)
+ ;;^UTILITY(U,$J,358.3,2734,1,3,0)
+ ;;=3^Chronic tension-type headache, not intractable
+ ;;^UTILITY(U,$J,358.3,2734,1,4,0)
+ ;;=4^G44.229
+ ;;^UTILITY(U,$J,358.3,2734,2)
+ ;;=^5003940
+ ;;^UTILITY(U,$J,358.3,2735,0)
+ ;;=G44.211^^25^226^4
+ ;;^UTILITY(U,$J,358.3,2735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2804,1,3,0)
- ;;=3^Sinusitis, acute
- ;;^UTILITY(U,$J,358.3,2804,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,2804,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,2805,0)
- ;;=J32.9^^7^83^195
- ;;^UTILITY(U,$J,358.3,2805,1,0)
+ ;;^UTILITY(U,$J,358.3,2735,1,3,0)
+ ;;=3^Episodic tension-type headache, intractable
+ ;;^UTILITY(U,$J,358.3,2735,1,4,0)
+ ;;=4^G44.211
+ ;;^UTILITY(U,$J,358.3,2735,2)
+ ;;=^5003937
+ ;;^UTILITY(U,$J,358.3,2736,0)
+ ;;=G44.219^^25^226^5
+ ;;^UTILITY(U,$J,358.3,2736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2805,1,3,0)
- ;;=3^Sinusitis, chronic
- ;;^UTILITY(U,$J,358.3,2805,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,2805,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,2806,0)
- ;;=A49.01^^7^83^143
- ;;^UTILITY(U,$J,358.3,2806,1,0)
+ ;;^UTILITY(U,$J,358.3,2736,1,3,0)
+ ;;=3^Episodic tension-type headache, not intractable
+ ;;^UTILITY(U,$J,358.3,2736,1,4,0)
+ ;;=4^G44.219
+ ;;^UTILITY(U,$J,358.3,2736,2)
+ ;;=^5003938
+ ;;^UTILITY(U,$J,358.3,2737,0)
+ ;;=G43.109^^25^226^7
+ ;;^UTILITY(U,$J,358.3,2737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2806,1,3,0)
- ;;=3^Methicillin Susceptible Staphylococcus Aureus Infection
- ;;^UTILITY(U,$J,358.3,2806,1,4,0)
- ;;=4^A49.01
- ;;^UTILITY(U,$J,358.3,2806,2)
- ;;=^5000235
+ ;;^UTILITY(U,$J,358.3,2737,1,3,0)
+ ;;=3^Migraine with aura, not intractable, w/o status migrainosus
+ ;;^UTILITY(U,$J,358.3,2737,1,4,0)
+ ;;=4^G43.109
+ ;;^UTILITY(U,$J,358.3,2737,2)
+ ;;=^5003881

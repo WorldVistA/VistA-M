@@ -1,5 +1,5 @@
 SROACTH ;B'HAM ISC/MAM - CARDIAC CATH INFO (PAGE 1) ; [ 04/01/04  3:25 PM ]
- ;;3.0; Surgery ;**38,95,125**;24 Jun 93
+ ;;3.0;Surgery;**38,95,125,184**;24 Jun 93;Build 35
  S SRA(206)=$G(^SRF(SRTN,206)),SRA(209)=$G(^SRF(SRTN,209))
  S NYUK=$P(SRA(209),"^",4) S SRAO(1)=$S(NYUK="C":"Cath",NYUK="I":"IVUS",NYUK="B":"BOTH",NYUK="NS":" NS",1:"")_"^476"
  S SRAO(2)=$P(SRA(206),"^",24)_"^357",SRAO(3)=$P(SRA(206),"^",25)_"^358",SRAO(4)=$P(SRA(206),"^",26)_"^359",SRAO(5)=$P(SRA(206),"^",27)_"^360"
@@ -9,11 +9,11 @@ SROACTH ;B'HAM ISC/MAM - CARDIAC CATH INFO (PAGE 1) ; [ 04/01/04  3:25 PM ]
  ;
 DISP S SRPAGE="PAGE: 1 OF 2" D HDR^SROAUTL
  W "1. Procedure:",?29,$P(SRAO(1),"^")
- W !,"2. LVEDP:",?29,$J($P(SRAO(2),"^"),3) W:$P(SRAO(2),"^") " mm Hg"
- W !,"3. Aortic Systolic Pressure: ",$J($P(SRAO(3),"^"),3) W:$P(SRAO(3),"^") " mm Hg"
+ W !,"2. LVEDP:",?29,$P(SRAO(2),"^") W:$P(SRAO(2),"^") ?32," mm Hg"
+ W !,"3. Aortic Systolic Pressure: ",?29,$P(SRAO(3),"^") W:$P(SRAO(3),"^") ?32," mm Hg"
  W !!,"For patients having right heart cath"
- W !,"4. PA Systolic Pressure:",?29,$J($P(SRAO(4),"^"),3) W:$P(SRAO(4),"^") " mm Hg"
- W !,"5. PAW Mean Pressure:",?29,$J($P(SRAO(5),"^"),3) W:$P(SRAO(5),"^") " mm Hg"
+ W !,"4. PA Systolic Pressure:",?29,$P(SRAO(4),"^") W:$P(SRAO(4),"^") ?32," mm Hg"
+ W !,"5. PAW Mean Pressure:",?29,$P(SRAO(5),"^") W:$P(SRAO(5),"^") ?32," mm Hg"
  W !!,"6. LV Contraction Grade  (from contrast ",!,"    or radionuclide angiogram or 2D echo): "_$P(SRAO(6),"^")
  W !!,"7. Mitral Regurgitation:",?30,$P(SRAO(7),"^")
  W !,"8. Aortic Stenosis:",?30,$P(SRAO(8),"^")

@@ -1,6 +1,6 @@
-EASUM1 ;ALB/SEK,GN - IVM MEANS/COPAY TEST UPLOAD DRIVER ; 7/6/04 1:23pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**23,30,35,42,86**;21-OCT-94;Build 4
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+EASUM1 ;ALB/SEK,GN,MNH - IVM MEANS/COPAY TEST UPLOAD DRIVER ;7/6/04 1:23pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**23,30,35,42,86,113**;21-OCT-94;Build 53
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;EAS*1*42 add RX Copay to Z06 Upload/Delete
  ;
@@ -106,7 +106,7 @@ ADDS21 ; add spouse entry to individual annual income file (408.21)
  ;
  ; add spouse entry to income relation file (408.22)
  S IVMDA1=IVMDAP+5 D GET ; spouse ZIR segment
- D EN^IVMUM5
+ D EN^EASUM5  ;EAS*1*113
  Q:$D(IVMFERR)
  ;
 ADDCHILD ; add children if not in 408.13
@@ -132,7 +132,7 @@ ADDC21 .; add child entry to individual annual income file (408.21)
  .; add entry to income relation file (408.22)
  .S IVMCTR2=IVMCTR2+1
  .S IVMDA1=IVMDAP+IVMCTR2 D GET ; child ZIR segment
- .D EN^IVMUM5
+ .D EN^EASUM5   ;EAS*1*113
  .Q:$D(IVMFERR)
  .Q
  Q:$D(IVMFERR)
@@ -148,7 +148,7 @@ ADDV21 ; add vet entry to individual annual income file (408.21)
  ;
  ; add vet entry to income relation file (408.22)
  S IVMDA1=IVMDAP+2 D GET ; vet ZIR segment
- D EN^IVMUM5
+ D EN^EASUM5   ;EAS*1*113
  Q:$D(IVMFERR)
  S DGVIRI=DGIRI ; vet income relation ien
  ;

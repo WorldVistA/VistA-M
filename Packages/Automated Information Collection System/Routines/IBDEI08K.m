@@ -1,144 +1,132 @@
-IBDEI08K ; ; 06-AUG-2015
+IBDEI08K ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3532,1,5,0)
- ;;=5^Exhibitionism
- ;;^UTILITY(U,$J,358.3,3532,2)
- ;;=^43610
- ;;^UTILITY(U,$J,358.3,3533,0)
- ;;=302.72^^11^154^6
- ;;^UTILITY(U,$J,358.3,3533,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3533,1,2,0)
- ;;=2^302.72
- ;;^UTILITY(U,$J,358.3,3533,1,5,0)
- ;;=5^Inhibited Sex Excite
- ;;^UTILITY(U,$J,358.3,3533,2)
- ;;=^100632
- ;;^UTILITY(U,$J,358.3,3534,0)
- ;;=302.73^^11^154^4
- ;;^UTILITY(U,$J,358.3,3534,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3534,1,2,0)
- ;;=2^302.73
- ;;^UTILITY(U,$J,358.3,3534,1,5,0)
- ;;=5^Inhibited Female Orgasm
- ;;^UTILITY(U,$J,358.3,3534,2)
- ;;=^100628
- ;;^UTILITY(U,$J,358.3,3535,0)
- ;;=302.74^^11^154^5
- ;;^UTILITY(U,$J,358.3,3535,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3535,1,2,0)
- ;;=2^302.74
- ;;^UTILITY(U,$J,358.3,3535,1,5,0)
- ;;=5^Inhibited Male Orgasm
- ;;^UTILITY(U,$J,358.3,3535,2)
- ;;=^100630
- ;;^UTILITY(U,$J,358.3,3536,0)
- ;;=302.75^^11^154^8
- ;;^UTILITY(U,$J,358.3,3536,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3536,1,2,0)
- ;;=2^302.75
- ;;^UTILITY(U,$J,358.3,3536,1,5,0)
- ;;=5^Premature Ejaculation
- ;;^UTILITY(U,$J,358.3,3536,2)
- ;;=^100637
- ;;^UTILITY(U,$J,358.3,3537,0)
- ;;=302.85^^11^154^3
- ;;^UTILITY(U,$J,358.3,3537,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3537,1,2,0)
- ;;=2^302.85
- ;;^UTILITY(U,$J,358.3,3537,1,5,0)
- ;;=5^Gender Dysphoria in Adults/Adolescents
- ;;^UTILITY(U,$J,358.3,3537,2)
- ;;=^268180
- ;;^UTILITY(U,$J,358.3,3538,0)
- ;;=302.0^^11^154^1
- ;;^UTILITY(U,$J,358.3,3538,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3538,1,2,0)
- ;;=2^302.0
- ;;^UTILITY(U,$J,358.3,3538,1,5,0)
- ;;=5^Ego-Dystonic Sexual Orient
- ;;^UTILITY(U,$J,358.3,3538,2)
- ;;=^331922
- ;;^UTILITY(U,$J,358.3,3539,0)
- ;;=302.1^^11^154^14
- ;;^UTILITY(U,$J,358.3,3539,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3539,1,2,0)
- ;;=2^302.1
- ;;^UTILITY(U,$J,358.3,3539,1,5,0)
- ;;=5^Zoophilia
- ;;^UTILITY(U,$J,358.3,3539,2)
- ;;=^265356
- ;;^UTILITY(U,$J,358.3,3540,0)
- ;;=302.3^^11^154^13
- ;;^UTILITY(U,$J,358.3,3540,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3540,1,2,0)
- ;;=2^302.3
- ;;^UTILITY(U,$J,358.3,3540,1,5,0)
- ;;=5^Transvestic Fetishism
- ;;^UTILITY(U,$J,358.3,3540,2)
- ;;=^331923
- ;;^UTILITY(U,$J,358.3,3541,0)
- ;;=302.50^^11^154^9
- ;;^UTILITY(U,$J,358.3,3541,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3541,1,2,0)
- ;;=2^302.50
- ;;^UTILITY(U,$J,358.3,3541,1,5,0)
- ;;=5^Trans-sexualism NOS
- ;;^UTILITY(U,$J,358.3,3541,2)
- ;;=^120949
- ;;^UTILITY(U,$J,358.3,3542,0)
- ;;=302.51^^11^154^10
- ;;^UTILITY(U,$J,358.3,3542,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3542,1,2,0)
- ;;=2^302.51
- ;;^UTILITY(U,$J,358.3,3542,1,5,0)
- ;;=5^Trans-sexualism w/ Asexual Hx
- ;;^UTILITY(U,$J,358.3,3542,2)
- ;;=^268175
- ;;^UTILITY(U,$J,358.3,3543,0)
- ;;=302.52^^11^154^12
- ;;^UTILITY(U,$J,358.3,3543,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3543,1,2,0)
- ;;=2^302.52
- ;;^UTILITY(U,$J,358.3,3543,1,5,0)
- ;;=5^Trans-sexualism w/ Homosexual Hx
- ;;^UTILITY(U,$J,358.3,3543,2)
- ;;=^268176
- ;;^UTILITY(U,$J,358.3,3544,0)
- ;;=302.53^^11^154^11
- ;;^UTILITY(U,$J,358.3,3544,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3544,1,2,0)
- ;;=2^302.53
- ;;^UTILITY(U,$J,358.3,3544,1,5,0)
- ;;=5^Trans-sexualism w/ Heterosexual Hx
- ;;^UTILITY(U,$J,358.3,3544,2)
- ;;=^268177
- ;;^UTILITY(U,$J,358.3,3545,0)
- ;;=780.52^^11^155^3
- ;;^UTILITY(U,$J,358.3,3545,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3545,1,2,0)
- ;;=2^780.52
- ;;^UTILITY(U,$J,358.3,3545,1,5,0)
- ;;=5^Insomnia
- ;;^UTILITY(U,$J,358.3,3545,2)
- ;;=^87662
- ;;^UTILITY(U,$J,358.3,3546,0)
- ;;=780.51^^11^155^4
- ;;^UTILITY(U,$J,358.3,3546,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3546,1,2,0)
- ;;=2^780.51
+ ;;^UTILITY(U,$J,358.3,3453,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3453,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,3453,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,3454,0)
+ ;;=W05.0XXA^^28^254^13
+ ;;^UTILITY(U,$J,358.3,3454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3454,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3454,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,3454,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,3455,0)
+ ;;=W18.12XA^^28^254^15
+ ;;^UTILITY(U,$J,358.3,3455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3455,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3455,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,3455,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,3456,0)
+ ;;=W18.11XA^^28^254^16
+ ;;^UTILITY(U,$J,358.3,3456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3456,1,3,0)
+ ;;=3^Fall from Toilet,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3456,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,3456,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,3457,0)
+ ;;=W08.XXXA^^28^254^9
+ ;;^UTILITY(U,$J,358.3,3457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3457,1,3,0)
+ ;;=3^Fall from Furniture,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3457,1,4,0)
+ ;;=4^W08.XXXA
+ ;;^UTILITY(U,$J,358.3,3457,2)
+ ;;=^5059565
+ ;;^UTILITY(U,$J,358.3,3458,0)
+ ;;=W18.2XXA^^28^254^17
+ ;;^UTILITY(U,$J,358.3,3458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3458,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3458,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,3458,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,3459,0)
+ ;;=W11.XXXA^^28^254^10
+ ;;^UTILITY(U,$J,358.3,3459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3459,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3459,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,3459,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,3460,0)
+ ;;=W01.10XA^^28^254^2
+ ;;^UTILITY(U,$J,358.3,3460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3460,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3460,1,4,0)
+ ;;=4^W01.10XA
+ ;;^UTILITY(U,$J,358.3,3460,2)
+ ;;=^5059525
+ ;;^UTILITY(U,$J,358.3,3461,0)
+ ;;=W01.0XXA^^28^254^3
+ ;;^UTILITY(U,$J,358.3,3461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3461,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3461,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,3461,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,3462,0)
+ ;;=W18.30XA^^28^254^18
+ ;;^UTILITY(U,$J,358.3,3462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3462,1,3,0)
+ ;;=3^Fall on Same Level,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3462,1,4,0)
+ ;;=4^W18.30XA
+ ;;^UTILITY(U,$J,358.3,3462,2)
+ ;;=^5059809
+ ;;^UTILITY(U,$J,358.3,3463,0)
+ ;;=W04.XXXA^^28^254^4
+ ;;^UTILITY(U,$J,358.3,3463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3463,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3463,1,4,0)
+ ;;=4^W04.XXXA
+ ;;^UTILITY(U,$J,358.3,3463,2)
+ ;;=^5059547
+ ;;^UTILITY(U,$J,358.3,3464,0)
+ ;;=Z91.81^^28^254^23
+ ;;^UTILITY(U,$J,358.3,3464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3464,1,3,0)
+ ;;=3^Hx of Falling
+ ;;^UTILITY(U,$J,358.3,3464,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,3464,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,3465,0)
+ ;;=W17.89XA^^28^254^14
+ ;;^UTILITY(U,$J,358.3,3465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3465,1,3,0)
+ ;;=3^Fall from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3465,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,3465,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,3466,0)
+ ;;=W03.XXXA^^28^254^1

@@ -1,134 +1,140 @@
-IBDEI0KL ; ; 06-AUG-2015
+IBDEI0KL ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9752,1,0)
+ ;;^UTILITY(U,$J,358.3,9309,1,3,0)
+ ;;=3^Posterior Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,9309,1,4,0)
+ ;;=4^G46.2
+ ;;^UTILITY(U,$J,358.3,9309,2)
+ ;;=^5003962
+ ;;^UTILITY(U,$J,358.3,9310,0)
+ ;;=G46.3^^61^589^3
+ ;;^UTILITY(U,$J,358.3,9310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9752,1,3,0)
- ;;=3^Lacrimal,Sac Stenosis
- ;;^UTILITY(U,$J,358.3,9752,1,4,0)
- ;;=4^375.54
- ;;^UTILITY(U,$J,358.3,9752,2)
- ;;=Lacrimal Punctum Stenosis^269156
- ;;^UTILITY(U,$J,358.3,9753,0)
- ;;=375.56^^44^557^78
- ;;^UTILITY(U,$J,358.3,9753,1,0)
+ ;;^UTILITY(U,$J,358.3,9310,1,3,0)
+ ;;=3^Brain Stem Stroke Syndrome
+ ;;^UTILITY(U,$J,358.3,9310,1,4,0)
+ ;;=4^G46.3
+ ;;^UTILITY(U,$J,358.3,9310,2)
+ ;;=^5003963
+ ;;^UTILITY(U,$J,358.3,9311,0)
+ ;;=G46.7^^61^589^7
+ ;;^UTILITY(U,$J,358.3,9311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9753,1,3,0)
- ;;=3^Nasolacrimal Duct Obstruction
- ;;^UTILITY(U,$J,358.3,9753,1,4,0)
- ;;=4^375.56
- ;;^UTILITY(U,$J,358.3,9753,2)
- ;;=Obstruction, Nasolacrimal duct^269159
- ;;^UTILITY(U,$J,358.3,9754,0)
- ;;=376.30^^44^557^87
- ;;^UTILITY(U,$J,358.3,9754,1,0)
+ ;;^UTILITY(U,$J,358.3,9311,1,3,0)
+ ;;=3^Lacunar Syndromes,Other
+ ;;^UTILITY(U,$J,358.3,9311,1,4,0)
+ ;;=4^G46.7
+ ;;^UTILITY(U,$J,358.3,9311,2)
+ ;;=^5003967
+ ;;^UTILITY(U,$J,358.3,9312,0)
+ ;;=G46.8^^61^589^14
+ ;;^UTILITY(U,$J,358.3,9312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9754,1,3,0)
- ;;=3^Orbit Exophalmos
- ;;^UTILITY(U,$J,358.3,9754,1,4,0)
- ;;=4^376.30
- ;;^UTILITY(U,$J,358.3,9754,2)
- ;;=Exophthalmos^43683
- ;;^UTILITY(U,$J,358.3,9755,0)
- ;;=802.8^^44^557^88
- ;;^UTILITY(U,$J,358.3,9755,1,0)
+ ;;^UTILITY(U,$J,358.3,9312,1,3,0)
+ ;;=3^Vascular Syndromes of Brain in CVD,Other
+ ;;^UTILITY(U,$J,358.3,9312,1,4,0)
+ ;;=4^G46.8
+ ;;^UTILITY(U,$J,358.3,9312,2)
+ ;;=^5003968
+ ;;^UTILITY(U,$J,358.3,9313,0)
+ ;;=I67.2^^61^589^5
+ ;;^UTILITY(U,$J,358.3,9313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9755,1,3,0)
- ;;=3^Orbit Fracture
- ;;^UTILITY(U,$J,358.3,9755,1,4,0)
- ;;=4^802.8
- ;;^UTILITY(U,$J,358.3,9755,2)
- ;;=Fracture of Orbit^25315
- ;;^UTILITY(U,$J,358.3,9756,0)
- ;;=870.4^^44^557^92
- ;;^UTILITY(U,$J,358.3,9756,1,0)
+ ;;^UTILITY(U,$J,358.3,9313,1,3,0)
+ ;;=3^Cerebral Atherosclerosis
+ ;;^UTILITY(U,$J,358.3,9313,1,4,0)
+ ;;=4^I67.2
+ ;;^UTILITY(U,$J,358.3,9313,2)
+ ;;=^21571
+ ;;^UTILITY(U,$J,358.3,9314,0)
+ ;;=I69.898^^61^589^6
+ ;;^UTILITY(U,$J,358.3,9314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9756,1,3,0)
- ;;=3^Orbit Penetrating Wound w/ Foreign Body
- ;;^UTILITY(U,$J,358.3,9756,1,4,0)
- ;;=4^870.4
- ;;^UTILITY(U,$J,358.3,9756,2)
- ;;=Foreign Body in Orbit^274883
- ;;^UTILITY(U,$J,358.3,9757,0)
- ;;=376.10^^44^557^91
- ;;^UTILITY(U,$J,358.3,9757,1,0)
+ ;;^UTILITY(U,$J,358.3,9314,1,3,0)
+ ;;=3^Cerebrovascular Disease Sequelae,Other
+ ;;^UTILITY(U,$J,358.3,9314,1,4,0)
+ ;;=4^I69.898
+ ;;^UTILITY(U,$J,358.3,9314,2)
+ ;;=^5007550
+ ;;^UTILITY(U,$J,358.3,9315,0)
+ ;;=Z86.73^^61^589^9
+ ;;^UTILITY(U,$J,358.3,9315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9757,1,3,0)
- ;;=3^Orbit Inflammation,Chronic
- ;;^UTILITY(U,$J,358.3,9757,1,4,0)
- ;;=4^376.10
- ;;^UTILITY(U,$J,358.3,9757,2)
- ;;=Orbital Inflammation^269175
- ;;^UTILITY(U,$J,358.3,9758,0)
- ;;=360.41^^44^557^66
- ;;^UTILITY(U,$J,358.3,9758,1,0)
+ ;;^UTILITY(U,$J,358.3,9315,1,3,0)
+ ;;=3^Personal Hx of TIA/Cerebral Inf w/o Resid Deficits
+ ;;^UTILITY(U,$J,358.3,9315,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,9315,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,9316,0)
+ ;;=H81.10^^61^590^1
+ ;;^UTILITY(U,$J,358.3,9316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9758,1,3,0)
- ;;=3^Hypotensive Blind Phthisis,Blind
- ;;^UTILITY(U,$J,358.3,9758,1,4,0)
- ;;=4^360.41
- ;;^UTILITY(U,$J,358.3,9758,2)
- ;;=Phthisis^268564
- ;;^UTILITY(U,$J,358.3,9759,0)
- ;;=376.50^^44^557^86
- ;;^UTILITY(U,$J,358.3,9759,1,0)
+ ;;^UTILITY(U,$J,358.3,9316,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo
+ ;;^UTILITY(U,$J,358.3,9316,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,9316,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,9317,0)
+ ;;=H81.49^^61^590^2
+ ;;^UTILITY(U,$J,358.3,9317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9759,1,3,0)
- ;;=3^Orbit Enopthalmos
- ;;^UTILITY(U,$J,358.3,9759,1,4,0)
- ;;=4^376.50
- ;;^UTILITY(U,$J,358.3,9759,2)
- ;;=Enopthalmos^40801
- ;;^UTILITY(U,$J,358.3,9760,0)
- ;;=239.2^^44^557^95
- ;;^UTILITY(U,$J,358.3,9760,1,0)
+ ;;^UTILITY(U,$J,358.3,9317,1,3,0)
+ ;;=3^Central Vertigo
+ ;;^UTILITY(U,$J,358.3,9317,1,4,0)
+ ;;=4^H81.49
+ ;;^UTILITY(U,$J,358.3,9317,2)
+ ;;=^5006883
+ ;;^UTILITY(U,$J,358.3,9318,0)
+ ;;=R55.^^61^590^4
+ ;;^UTILITY(U,$J,358.3,9318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9760,1,3,0)
- ;;=3^Orbital Tumor,Neopl,Unspec Nature
- ;;^UTILITY(U,$J,358.3,9760,1,4,0)
- ;;=4^239.2
- ;;^UTILITY(U,$J,358.3,9760,2)
- ;;=Orbital Tumor^267783
- ;;^UTILITY(U,$J,358.3,9761,0)
- ;;=239.7^^44^557^79
- ;;^UTILITY(U,$J,358.3,9761,1,0)
+ ;;^UTILITY(U,$J,358.3,9318,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,9318,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,9318,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,9319,0)
+ ;;=R42.^^61^590^3
+ ;;^UTILITY(U,$J,358.3,9319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9761,1,3,0)
- ;;=3^Optic Nerve Neop,Unspec Nature
- ;;^UTILITY(U,$J,358.3,9761,1,4,0)
- ;;=4^239.7
- ;;^UTILITY(U,$J,358.3,9761,2)
- ;;=Optic Nerve Tumor^267785
- ;;^UTILITY(U,$J,358.3,9762,0)
- ;;=V52.2^^44^557^2
- ;;^UTILITY(U,$J,358.3,9762,1,0)
+ ;;^UTILITY(U,$J,358.3,9319,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,9319,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,9319,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,9320,0)
+ ;;=F10.27^^61^591^1
+ ;;^UTILITY(U,$J,358.3,9320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9762,1,3,0)
- ;;=3^Artificial Eye Prosthethic Check
- ;;^UTILITY(U,$J,358.3,9762,1,4,0)
- ;;=4^V52.2
- ;;^UTILITY(U,$J,358.3,9762,2)
- ;;=Prosthethic Eye Check^295498^V43.0
- ;;^UTILITY(U,$J,358.3,9763,0)
- ;;=173.10^^44^557^56
- ;;^UTILITY(U,$J,358.3,9763,1,0)
+ ;;^UTILITY(U,$J,358.3,9320,1,3,0)
+ ;;=3^Alcoholic Encephalopathy
+ ;;^UTILITY(U,$J,358.3,9320,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,9320,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,9321,0)
+ ;;=G92.^^61^591^4
+ ;;^UTILITY(U,$J,358.3,9321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9763,1,3,0)
- ;;=3^Eyelid/Canthus,Malig Neopl,Unspec
- ;;^UTILITY(U,$J,358.3,9763,1,4,0)
- ;;=4^173.10
- ;;^UTILITY(U,$J,358.3,9763,2)
- ;;=^340597
- ;;^UTILITY(U,$J,358.3,9764,0)
- ;;=173.11^^44^557^53
- ;;^UTILITY(U,$J,358.3,9764,1,0)
+ ;;^UTILITY(U,$J,358.3,9321,1,3,0)
+ ;;=3^Toxic Encephalopathy
+ ;;^UTILITY(U,$J,358.3,9321,1,4,0)
+ ;;=4^G92.
+ ;;^UTILITY(U,$J,358.3,9321,2)
+ ;;=^259061
+ ;;^UTILITY(U,$J,358.3,9322,0)
+ ;;=G96.8^^61^591^2
+ ;;^UTILITY(U,$J,358.3,9322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9764,1,3,0)
- ;;=3^Eyelid/Canthus,BCC
- ;;^UTILITY(U,$J,358.3,9764,1,4,0)
- ;;=4^173.11
- ;;^UTILITY(U,$J,358.3,9764,2)
- ;;=^340467
- ;;^UTILITY(U,$J,358.3,9765,0)
- ;;=173.12^^44^557^57
+ ;;^UTILITY(U,$J,358.3,9322,1,3,0)
+ ;;=3^Disorder of Central Nervous System,Other Spec
+ ;;^UTILITY(U,$J,358.3,9322,1,4,0)
+ ;;=4^G96.8
+ ;;^UTILITY(U,$J,358.3,9322,2)
+ ;;=^5004199

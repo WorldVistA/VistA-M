@@ -1,126 +1,138 @@
-IBDEI1R8 ; ; 06-AUG-2015
+IBDEI1R8 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31008,1,0)
+ ;;^UTILITY(U,$J,358.3,29375,1,3,0)
+ ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29375,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,29375,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,29376,0)
+ ;;=L24.9^^135^1361^163
+ ;;^UTILITY(U,$J,358.3,29376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31008,1,3,0)
- ;;=3^Bursitis of right shoulder
- ;;^UTILITY(U,$J,358.3,31008,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,31008,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,31009,0)
- ;;=M75.32^^179^1938^9
- ;;^UTILITY(U,$J,358.3,31009,1,0)
+ ;;^UTILITY(U,$J,358.3,29376,1,3,0)
+ ;;=3^Irritant Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29376,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,29376,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,29377,0)
+ ;;=L25.9^^135^1361^115
+ ;;^UTILITY(U,$J,358.3,29377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31009,1,3,0)
- ;;=3^Calcific tendinitis of left shoulder
- ;;^UTILITY(U,$J,358.3,31009,1,4,0)
- ;;=4^M75.32
- ;;^UTILITY(U,$J,358.3,31009,2)
- ;;=^5013255
- ;;^UTILITY(U,$J,358.3,31010,0)
- ;;=M75.31^^179^1938^10
- ;;^UTILITY(U,$J,358.3,31010,1,0)
+ ;;^UTILITY(U,$J,358.3,29377,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29377,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,29377,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,29378,0)
+ ;;=L26.^^135^1361^148
+ ;;^UTILITY(U,$J,358.3,29378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31010,1,3,0)
- ;;=3^Calcific tendinitis of right shoulder
- ;;^UTILITY(U,$J,358.3,31010,1,4,0)
- ;;=4^M75.31
- ;;^UTILITY(U,$J,358.3,31010,2)
- ;;=^5013254
- ;;^UTILITY(U,$J,358.3,31011,0)
- ;;=M75.122^^179^1938^11
- ;;^UTILITY(U,$J,358.3,31011,1,0)
+ ;;^UTILITY(U,$J,358.3,29378,1,3,0)
+ ;;=3^Exfoliative Dermatitis
+ ;;^UTILITY(U,$J,358.3,29378,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,29378,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,29379,0)
+ ;;=L27.0^^135^1361^265
+ ;;^UTILITY(U,$J,358.3,29379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31011,1,3,0)
- ;;=3^Complete rotatr-cuff tear/ruptr of left shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,31011,1,4,0)
- ;;=4^M75.122
- ;;^UTILITY(U,$J,358.3,31011,2)
- ;;=^5013249
- ;;^UTILITY(U,$J,358.3,31012,0)
- ;;=M75.121^^179^1938^12
- ;;^UTILITY(U,$J,358.3,31012,1,0)
+ ;;^UTILITY(U,$J,358.3,29379,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,29379,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,29379,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,29380,0)
+ ;;=L27.1^^135^1361^266
+ ;;^UTILITY(U,$J,358.3,29380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31012,1,3,0)
- ;;=3^Complete rotatr-cuff tear/ruptr of r shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,31012,1,4,0)
- ;;=4^M75.121
- ;;^UTILITY(U,$J,358.3,31012,2)
- ;;=^5013248
- ;;^UTILITY(U,$J,358.3,31013,0)
- ;;=S40.012A^^179^1938^13
- ;;^UTILITY(U,$J,358.3,31013,1,0)
+ ;;^UTILITY(U,$J,358.3,29380,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;^UTILITY(U,$J,358.3,29380,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,29380,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,29381,0)
+ ;;=L29.0^^135^1361^250
+ ;;^UTILITY(U,$J,358.3,29381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31013,1,3,0)
- ;;=3^Contusion of left shoulder, initial encounter
- ;;^UTILITY(U,$J,358.3,31013,1,4,0)
- ;;=4^S40.012A
- ;;^UTILITY(U,$J,358.3,31013,2)
- ;;=^5026156
- ;;^UTILITY(U,$J,358.3,31014,0)
- ;;=S40.011A^^179^1938^14
- ;;^UTILITY(U,$J,358.3,31014,1,0)
+ ;;^UTILITY(U,$J,358.3,29381,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,29381,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,29381,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,29382,0)
+ ;;=L29.9^^135^1361^251
+ ;;^UTILITY(U,$J,358.3,29382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31014,1,3,0)
- ;;=3^Contusion of right shoulder, initial encounter
- ;;^UTILITY(U,$J,358.3,31014,1,4,0)
- ;;=4^S40.011A
- ;;^UTILITY(U,$J,358.3,31014,2)
- ;;=^5026153
- ;;^UTILITY(U,$J,358.3,31015,0)
- ;;=S42.002A^^179^1938^19
- ;;^UTILITY(U,$J,358.3,31015,1,0)
+ ;;^UTILITY(U,$J,358.3,29382,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,29382,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,29382,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,29383,0)
+ ;;=L30.0^^135^1361^232
+ ;;^UTILITY(U,$J,358.3,29383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31015,1,3,0)
- ;;=3^Fracture of unsp part of left clavicle, init for clos fx
- ;;^UTILITY(U,$J,358.3,31015,1,4,0)
- ;;=4^S42.002A
- ;;^UTILITY(U,$J,358.3,31015,2)
- ;;=^5026376
- ;;^UTILITY(U,$J,358.3,31016,0)
- ;;=S42.001A^^179^1938^20
- ;;^UTILITY(U,$J,358.3,31016,1,0)
+ ;;^UTILITY(U,$J,358.3,29383,1,3,0)
+ ;;=3^Nummular Dermatitis
+ ;;^UTILITY(U,$J,358.3,29383,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,29383,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,29384,0)
+ ;;=L30.1^^135^1361^140
+ ;;^UTILITY(U,$J,358.3,29384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31016,1,3,0)
- ;;=3^Fracture of unsp part of right clavicle, init for clos fx
- ;;^UTILITY(U,$J,358.3,31016,1,4,0)
- ;;=4^S42.001A
- ;;^UTILITY(U,$J,358.3,31016,2)
- ;;=^5026369
- ;;^UTILITY(U,$J,358.3,31017,0)
- ;;=M75.42^^179^1938^21
- ;;^UTILITY(U,$J,358.3,31017,1,0)
+ ;;^UTILITY(U,$J,358.3,29384,1,3,0)
+ ;;=3^Dyshidrosis
+ ;;^UTILITY(U,$J,358.3,29384,1,4,0)
+ ;;=4^L30.1
+ ;;^UTILITY(U,$J,358.3,29384,2)
+ ;;=^5009154
+ ;;^UTILITY(U,$J,358.3,29385,0)
+ ;;=L30.2^^135^1361^132
+ ;;^UTILITY(U,$J,358.3,29385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31017,1,3,0)
- ;;=3^Impingement syndrome of left shoulder
- ;;^UTILITY(U,$J,358.3,31017,1,4,0)
- ;;=4^M75.42
- ;;^UTILITY(U,$J,358.3,31017,2)
- ;;=^5013258
- ;;^UTILITY(U,$J,358.3,31018,0)
- ;;=M75.41^^179^1938^22
- ;;^UTILITY(U,$J,358.3,31018,1,0)
+ ;;^UTILITY(U,$J,358.3,29385,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,29385,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,29385,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,29386,0)
+ ;;=L30.4^^135^1361^144
+ ;;^UTILITY(U,$J,358.3,29386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31018,1,3,0)
- ;;=3^Impingement syndrome of right shoulder
- ;;^UTILITY(U,$J,358.3,31018,1,4,0)
- ;;=4^M75.41
- ;;^UTILITY(U,$J,358.3,31018,2)
- ;;=^5013257
- ;;^UTILITY(U,$J,358.3,31019,0)
- ;;=M75.112^^179^1938^23
- ;;^UTILITY(U,$J,358.3,31019,1,0)
+ ;;^UTILITY(U,$J,358.3,29386,1,3,0)
+ ;;=3^Erythema Intertrigo
+ ;;^UTILITY(U,$J,358.3,29386,1,4,0)
+ ;;=4^L30.4
+ ;;^UTILITY(U,$J,358.3,29386,2)
+ ;;=^5009157
+ ;;^UTILITY(U,$J,358.3,29387,0)
+ ;;=L30.8^^135^1361^135
+ ;;^UTILITY(U,$J,358.3,29387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31019,1,3,0)
- ;;=3^Incomplete rotatr-cuff tear/ruptr of l shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,31019,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,31019,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,31020,0)
- ;;=M75.111^^179^1938^24
- ;;^UTILITY(U,$J,358.3,31020,1,0)
+ ;;^UTILITY(U,$J,358.3,29387,1,3,0)
+ ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,29387,1,4,0)
+ ;;=4^L30.8
+ ;;^UTILITY(U,$J,358.3,29387,2)
+ ;;=^5009158
+ ;;^UTILITY(U,$J,358.3,29388,0)
+ ;;=L30.9^^135^1361^136
+ ;;^UTILITY(U,$J,358.3,29388,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29388,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29388,1,4,0)
+ ;;=4^L30.9

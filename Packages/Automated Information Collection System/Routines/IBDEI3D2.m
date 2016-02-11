@@ -1,0 +1,130 @@
+IBDEI3D2 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,56496,2)
+ ;;=^5055058
+ ;;^UTILITY(U,$J,358.3,56497,0)
+ ;;=T83.59XA^^259^2815^8
+ ;;^UTILITY(U,$J,358.3,56497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56497,1,3,0)
+ ;;=3^Infectn/Inflam d/t dvc/implnt/grft GU Syst,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56497,1,4,0)
+ ;;=4^T83.59XA
+ ;;^UTILITY(U,$J,358.3,56497,2)
+ ;;=^5055061
+ ;;^UTILITY(U,$J,358.3,56498,0)
+ ;;=T83.9XXA^^259^2815^2
+ ;;^UTILITY(U,$J,358.3,56498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56498,1,3,0)
+ ;;=3^Complic GU dvc/implnt/grft,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56498,1,4,0)
+ ;;=4^T83.9XXA
+ ;;^UTILITY(U,$J,358.3,56498,2)
+ ;;=^5055100
+ ;;^UTILITY(U,$J,358.3,56499,0)
+ ;;=T83.89XA^^259^2815^1
+ ;;^UTILITY(U,$J,358.3,56499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56499,1,3,0)
+ ;;=3^Complic GU dvc/implnt/grft,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56499,1,4,0)
+ ;;=4^T83.89XA
+ ;;^UTILITY(U,$J,358.3,56499,2)
+ ;;=^5055097
+ ;;^UTILITY(U,$J,358.3,56500,0)
+ ;;=T83.86XA^^259^2815^11
+ ;;^UTILITY(U,$J,358.3,56500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56500,1,3,0)
+ ;;=3^Thrombosis GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56500,1,4,0)
+ ;;=4^T83.86XA
+ ;;^UTILITY(U,$J,358.3,56500,2)
+ ;;=^5055094
+ ;;^UTILITY(U,$J,358.3,56501,0)
+ ;;=T83.85XA^^259^2815^10
+ ;;^UTILITY(U,$J,358.3,56501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56501,1,3,0)
+ ;;=3^Stenoisis GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56501,1,4,0)
+ ;;=4^T83.85XA
+ ;;^UTILITY(U,$J,358.3,56501,2)
+ ;;=^5055091
+ ;;^UTILITY(U,$J,358.3,56502,0)
+ ;;=T83.84XA^^259^2815^9
+ ;;^UTILITY(U,$J,358.3,56502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56502,1,3,0)
+ ;;=3^Pain GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56502,1,4,0)
+ ;;=4^T83.84XA
+ ;;^UTILITY(U,$J,358.3,56502,2)
+ ;;=^5055088
+ ;;^UTILITY(U,$J,358.3,56503,0)
+ ;;=T83.83XA^^259^2815^6
+ ;;^UTILITY(U,$J,358.3,56503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56503,1,3,0)
+ ;;=3^Hemorrhage GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56503,1,4,0)
+ ;;=4^T83.83XA
+ ;;^UTILITY(U,$J,358.3,56503,2)
+ ;;=^5055085
+ ;;^UTILITY(U,$J,358.3,56504,0)
+ ;;=T83.82XA^^259^2815^4
+ ;;^UTILITY(U,$J,358.3,56504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56504,1,3,0)
+ ;;=3^Fibrosis GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56504,1,4,0)
+ ;;=4^T83.82XA
+ ;;^UTILITY(U,$J,358.3,56504,2)
+ ;;=^5055082
+ ;;^UTILITY(U,$J,358.3,56505,0)
+ ;;=T83.81XA^^259^2815^3
+ ;;^UTILITY(U,$J,358.3,56505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56505,1,3,0)
+ ;;=3^Embolism GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56505,1,4,0)
+ ;;=4^T83.81XA
+ ;;^UTILITY(U,$J,358.3,56505,2)
+ ;;=^5055079
+ ;;^UTILITY(U,$J,358.3,56506,0)
+ ;;=Z46.6^^259^2815^5
+ ;;^UTILITY(U,$J,358.3,56506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56506,1,3,0)
+ ;;=3^Fitting/Adjustment of Urinary Device
+ ;;^UTILITY(U,$J,358.3,56506,1,4,0)
+ ;;=4^Z46.6
+ ;;^UTILITY(U,$J,358.3,56506,2)
+ ;;=^5063020
+ ;;^UTILITY(U,$J,358.3,56507,0)
+ ;;=G37.3^^259^2816^1
+ ;;^UTILITY(U,$J,358.3,56507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56507,1,3,0)
+ ;;=3^Acute trnsvrs myelitis in demyelinating dz of CNS
+ ;;^UTILITY(U,$J,358.3,56507,1,4,0)
+ ;;=4^G37.3
+ ;;^UTILITY(U,$J,358.3,56507,2)
+ ;;=^5003824
+ ;;^UTILITY(U,$J,358.3,56508,0)
+ ;;=G82.50^^259^2816^7
+ ;;^UTILITY(U,$J,358.3,56508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56508,1,3,0)
+ ;;=3^Quadriplegia, Unspec
+ ;;^UTILITY(U,$J,358.3,56508,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,56508,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,56509,0)
+ ;;=G83.4^^259^2816^2
+ ;;^UTILITY(U,$J,358.3,56509,1,0)
+ ;;=^358.31IA^4^2

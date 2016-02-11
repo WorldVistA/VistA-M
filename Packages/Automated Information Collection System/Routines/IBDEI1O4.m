@@ -1,130 +1,136 @@
-IBDEI1O4 ; ; 06-AUG-2015
+IBDEI1O4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29619,2)
- ;;=^5009354
- ;;^UTILITY(U,$J,358.3,29620,0)
- ;;=L89.113^^177^1892^99
- ;;^UTILITY(U,$J,358.3,29620,1,0)
+ ;;^UTILITY(U,$J,358.3,27908,0)
+ ;;=Z98.61^^132^1321^17
+ ;;^UTILITY(U,$J,358.3,27908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29620,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,29620,1,4,0)
- ;;=4^L89.113
- ;;^UTILITY(U,$J,358.3,29620,2)
- ;;=^5009355
- ;;^UTILITY(U,$J,358.3,29621,0)
- ;;=L89.114^^177^1892^100
- ;;^UTILITY(U,$J,358.3,29621,1,0)
+ ;;^UTILITY(U,$J,358.3,27908,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,27908,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,27908,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,27909,0)
+ ;;=Z98.62^^132^1321^73
+ ;;^UTILITY(U,$J,358.3,27909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29621,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,29621,1,4,0)
- ;;=4^L89.114
- ;;^UTILITY(U,$J,358.3,29621,2)
- ;;=^5009356
- ;;^UTILITY(U,$J,358.3,29622,0)
- ;;=L89.119^^177^1892^101
- ;;^UTILITY(U,$J,358.3,29622,1,0)
+ ;;^UTILITY(U,$J,358.3,27909,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,27909,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,27909,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,27910,0)
+ ;;=Z98.84^^132^1321^12
+ ;;^UTILITY(U,$J,358.3,27910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29622,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29622,1,4,0)
- ;;=4^L89.119
- ;;^UTILITY(U,$J,358.3,29622,2)
- ;;=^5009357
- ;;^UTILITY(U,$J,358.3,29623,0)
- ;;=L89.120^^177^1892^54
- ;;^UTILITY(U,$J,358.3,29623,1,0)
+ ;;^UTILITY(U,$J,358.3,27910,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,27910,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,27910,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,27911,0)
+ ;;=Z99.2^^132^1321^141
+ ;;^UTILITY(U,$J,358.3,27911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29623,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,29623,1,4,0)
- ;;=4^L89.120
- ;;^UTILITY(U,$J,358.3,29623,2)
- ;;=^5009358
- ;;^UTILITY(U,$J,358.3,29624,0)
- ;;=L89.121^^177^1892^49
- ;;^UTILITY(U,$J,358.3,29624,1,0)
+ ;;^UTILITY(U,$J,358.3,27911,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,27911,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,27911,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,27912,0)
+ ;;=Z99.81^^132^1321^144
+ ;;^UTILITY(U,$J,358.3,27912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29624,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,29624,1,4,0)
- ;;=4^L89.121
- ;;^UTILITY(U,$J,358.3,29624,2)
- ;;=^5009359
- ;;^UTILITY(U,$J,358.3,29625,0)
- ;;=L89.122^^177^1892^50
- ;;^UTILITY(U,$J,358.3,29625,1,0)
+ ;;^UTILITY(U,$J,358.3,27912,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,27912,1,4,0)
+ ;;=4^Z99.81
+ ;;^UTILITY(U,$J,358.3,27912,2)
+ ;;=^5063760
+ ;;^UTILITY(U,$J,358.3,27913,0)
+ ;;=Z90.79^^132^1321^2
+ ;;^UTILITY(U,$J,358.3,27913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29625,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,29625,1,4,0)
- ;;=4^L89.122
- ;;^UTILITY(U,$J,358.3,29625,2)
- ;;=^5009360
- ;;^UTILITY(U,$J,358.3,29626,0)
- ;;=L89.123^^177^1892^51
- ;;^UTILITY(U,$J,358.3,29626,1,0)
+ ;;^UTILITY(U,$J,358.3,27913,1,3,0)
+ ;;=3^Acquired Absence of Genital Organs NEC
+ ;;^UTILITY(U,$J,358.3,27913,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,27913,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,27914,0)
+ ;;=Z90.5^^132^1321^3
+ ;;^UTILITY(U,$J,358.3,27914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29626,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,29626,1,4,0)
- ;;=4^L89.123
- ;;^UTILITY(U,$J,358.3,29626,2)
- ;;=^5009361
- ;;^UTILITY(U,$J,358.3,29627,0)
- ;;=L89.124^^177^1892^52
- ;;^UTILITY(U,$J,358.3,29627,1,0)
+ ;;^UTILITY(U,$J,358.3,27914,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,27914,1,4,0)
+ ;;=4^Z90.5
+ ;;^UTILITY(U,$J,358.3,27914,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,27915,0)
+ ;;=Z90.2^^132^1321^6
+ ;;^UTILITY(U,$J,358.3,27915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29627,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,29627,1,4,0)
- ;;=4^L89.124
- ;;^UTILITY(U,$J,358.3,29627,2)
- ;;=^5009362
- ;;^UTILITY(U,$J,358.3,29628,0)
- ;;=L89.129^^177^1892^53
- ;;^UTILITY(U,$J,358.3,29628,1,0)
+ ;;^UTILITY(U,$J,358.3,27915,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,27915,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,27915,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,27916,0)
+ ;;=Z98.1^^132^1321^10
+ ;;^UTILITY(U,$J,358.3,27916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29628,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29628,1,4,0)
- ;;=4^L89.129
- ;;^UTILITY(U,$J,358.3,29628,2)
- ;;=^5133652
- ;;^UTILITY(U,$J,358.3,29629,0)
- ;;=L89.130^^177^1892^96
- ;;^UTILITY(U,$J,358.3,29629,1,0)
+ ;;^UTILITY(U,$J,358.3,27916,1,3,0)
+ ;;=3^Arthrodesis Status
+ ;;^UTILITY(U,$J,358.3,27916,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,27916,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,27917,0)
+ ;;=Z94.7^^132^1321^16
+ ;;^UTILITY(U,$J,358.3,27917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29629,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,29629,1,4,0)
- ;;=4^L89.130
- ;;^UTILITY(U,$J,358.3,29629,2)
- ;;=^5009363
- ;;^UTILITY(U,$J,358.3,29630,0)
- ;;=L89.131^^177^1892^91
- ;;^UTILITY(U,$J,358.3,29630,1,0)
+ ;;^UTILITY(U,$J,358.3,27917,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,27917,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,27917,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,27918,0)
+ ;;=Z83.511^^132^1321^30
+ ;;^UTILITY(U,$J,358.3,27918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29630,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,29630,1,4,0)
- ;;=4^L89.131
- ;;^UTILITY(U,$J,358.3,29630,2)
- ;;=^5009364
- ;;^UTILITY(U,$J,358.3,29631,0)
- ;;=L89.132^^177^1892^92
- ;;^UTILITY(U,$J,358.3,29631,1,0)
+ ;;^UTILITY(U,$J,358.3,27918,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,27918,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,27918,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,27919,0)
+ ;;=Z80.52^^132^1321^33
+ ;;^UTILITY(U,$J,358.3,27919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29631,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 2
- ;;^UTILITY(U,$J,358.3,29631,1,4,0)
- ;;=4^L89.132
- ;;^UTILITY(U,$J,358.3,29631,2)
- ;;=^5009365
- ;;^UTILITY(U,$J,358.3,29632,0)
- ;;=L89.133^^177^1892^93
- ;;^UTILITY(U,$J,358.3,29632,1,0)
+ ;;^UTILITY(U,$J,358.3,27919,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,27919,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,27919,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,27920,0)
+ ;;=Z80.51^^132^1321^36
+ ;;^UTILITY(U,$J,358.3,27920,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27920,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,27920,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,27920,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,27921,0)
+ ;;=Z83.41^^132^1321^43

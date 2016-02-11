@@ -1,144 +1,132 @@
-IBDEI09B ; ; 06-AUG-2015
+IBDEI09B ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3906,1,0)
+ ;;^UTILITY(U,$J,358.3,3816,0)
+ ;;=G90.01^^28^259^11
+ ;;^UTILITY(U,$J,358.3,3816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3906,1,3,0)
- ;;=3^379.54
- ;;^UTILITY(U,$J,358.3,3906,1,4,0)
- ;;=4^Nystagms W Vestibulr Dis
- ;;^UTILITY(U,$J,358.3,3906,2)
- ;;=^269324
- ;;^UTILITY(U,$J,358.3,3907,0)
- ;;=379.51^^12^172^1
- ;;^UTILITY(U,$J,358.3,3907,1,0)
+ ;;^UTILITY(U,$J,358.3,3816,1,3,0)
+ ;;=3^Carotid Sinus Syncope
+ ;;^UTILITY(U,$J,358.3,3816,1,4,0)
+ ;;=4^G90.01
+ ;;^UTILITY(U,$J,358.3,3816,2)
+ ;;=^5004160
+ ;;^UTILITY(U,$J,358.3,3817,0)
+ ;;=G37.9^^28^259^12
+ ;;^UTILITY(U,$J,358.3,3817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3907,1,3,0)
- ;;=3^379.51
- ;;^UTILITY(U,$J,358.3,3907,1,4,0)
- ;;=4^Congenital Nystagmus
- ;;^UTILITY(U,$J,358.3,3907,2)
- ;;=^265447
- ;;^UTILITY(U,$J,358.3,3908,0)
- ;;=379.55^^12^172^2
- ;;^UTILITY(U,$J,358.3,3908,1,0)
+ ;;^UTILITY(U,$J,358.3,3817,1,3,0)
+ ;;=3^Central Nervous System Demyelinating Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3817,1,4,0)
+ ;;=4^G37.9
+ ;;^UTILITY(U,$J,358.3,3817,2)
+ ;;=^5003828
+ ;;^UTILITY(U,$J,358.3,3818,0)
+ ;;=G96.9^^28^259^13
+ ;;^UTILITY(U,$J,358.3,3818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3908,1,3,0)
- ;;=3^379.55
- ;;^UTILITY(U,$J,358.3,3908,1,4,0)
- ;;=4^Dissociated Nystagmus
- ;;^UTILITY(U,$J,358.3,3908,2)
- ;;=^269325
- ;;^UTILITY(U,$J,358.3,3909,0)
- ;;=379.52^^12^172^3
- ;;^UTILITY(U,$J,358.3,3909,1,0)
+ ;;^UTILITY(U,$J,358.3,3818,1,3,0)
+ ;;=3^Central Nervous System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3818,1,4,0)
+ ;;=4^G96.9
+ ;;^UTILITY(U,$J,358.3,3818,2)
+ ;;=^5004200
+ ;;^UTILITY(U,$J,358.3,3819,0)
+ ;;=I63.50^^28^259^14
+ ;;^UTILITY(U,$J,358.3,3819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3909,1,3,0)
- ;;=3^379.52
- ;;^UTILITY(U,$J,358.3,3909,1,4,0)
- ;;=4^Latent Nystagmus
- ;;^UTILITY(U,$J,358.3,3909,2)
- ;;=^265449
- ;;^UTILITY(U,$J,358.3,3910,0)
- ;;=379.53^^12^172^7
- ;;^UTILITY(U,$J,358.3,3910,1,0)
+ ;;^UTILITY(U,$J,358.3,3819,1,3,0)
+ ;;=3^Cereb infrc due to unsp occls or stenos of unsp cereb artery
+ ;;^UTILITY(U,$J,358.3,3819,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,3819,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,3820,0)
+ ;;=I67.89^^28^259^36
+ ;;^UTILITY(U,$J,358.3,3820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3910,1,3,0)
- ;;=3^379.53
- ;;^UTILITY(U,$J,358.3,3910,1,4,0)
- ;;=4^Visual Deprivatn Nystagm
- ;;^UTILITY(U,$J,358.3,3910,2)
- ;;=^269322
- ;;^UTILITY(U,$J,358.3,3911,0)
- ;;=379.56^^12^172^5
- ;;^UTILITY(U,$J,358.3,3911,1,0)
+ ;;^UTILITY(U,$J,358.3,3820,1,3,0)
+ ;;=3^Cerebrovascular Disease,Other
+ ;;^UTILITY(U,$J,358.3,3820,1,4,0)
+ ;;=4^I67.89
+ ;;^UTILITY(U,$J,358.3,3820,2)
+ ;;=^5007388
+ ;;^UTILITY(U,$J,358.3,3821,0)
+ ;;=I69.920^^28^259^15
+ ;;^UTILITY(U,$J,358.3,3821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3911,1,3,0)
- ;;=3^379.56
- ;;^UTILITY(U,$J,358.3,3911,1,4,0)
- ;;=4^Nystagmus, Other
- ;;^UTILITY(U,$J,358.3,3911,2)
- ;;=^87599
- ;;^UTILITY(U,$J,358.3,3912,0)
- ;;=V52.8^^12^173^8
- ;;^UTILITY(U,$J,358.3,3912,1,0)
+ ;;^UTILITY(U,$J,358.3,3821,1,3,0)
+ ;;=3^Cerebrovascular Disease,Aphasia,Unspec
+ ;;^UTILITY(U,$J,358.3,3821,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,3821,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,3822,0)
+ ;;=I69.990^^28^259^16
+ ;;^UTILITY(U,$J,358.3,3822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3912,1,3,0)
- ;;=3^V52.8
- ;;^UTILITY(U,$J,358.3,3912,1,4,0)
- ;;=4^Fitting Prosthesis NEC
- ;;^UTILITY(U,$J,358.3,3912,2)
- ;;=^295501
- ;;^UTILITY(U,$J,358.3,3913,0)
- ;;=V53.09^^12^173^7
- ;;^UTILITY(U,$J,358.3,3913,1,0)
+ ;;^UTILITY(U,$J,358.3,3822,1,3,0)
+ ;;=3^Cerebrovascular Disease,Apraxia,Unspec
+ ;;^UTILITY(U,$J,358.3,3822,1,4,0)
+ ;;=4^I69.990
+ ;;^UTILITY(U,$J,358.3,3822,2)
+ ;;=^5007568
+ ;;^UTILITY(U,$J,358.3,3823,0)
+ ;;=I69.993^^28^259^17
+ ;;^UTILITY(U,$J,358.3,3823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3913,1,3,0)
- ;;=3^V53.09
- ;;^UTILITY(U,$J,358.3,3913,1,4,0)
- ;;=4^Fit/Adjust Nervous System Device
- ;;^UTILITY(U,$J,358.3,3913,2)
- ;;=^295503
- ;;^UTILITY(U,$J,358.3,3914,0)
- ;;=V65.19^^12^173^12
- ;;^UTILITY(U,$J,358.3,3914,1,0)
+ ;;^UTILITY(U,$J,358.3,3823,1,3,0)
+ ;;=3^Cerebrovascular Disease,Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,3823,1,4,0)
+ ;;=4^I69.993
+ ;;^UTILITY(U,$J,358.3,3823,2)
+ ;;=^5007571
+ ;;^UTILITY(U,$J,358.3,3824,0)
+ ;;=I69.91^^28^259^18
+ ;;^UTILITY(U,$J,358.3,3824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3914,1,3,0)
- ;;=3^V65.19
- ;;^UTILITY(U,$J,358.3,3914,1,4,0)
- ;;=4^Person Consulting for Another
- ;;^UTILITY(U,$J,358.3,3914,2)
- ;;=^329985
- ;;^UTILITY(U,$J,358.3,3915,0)
- ;;=V65.40^^12^173^3
- ;;^UTILITY(U,$J,358.3,3915,1,0)
+ ;;^UTILITY(U,$J,358.3,3824,1,3,0)
+ ;;=3^Cerebrovascular Disease,Cognitive Deficits,Unspec
+ ;;^UTILITY(U,$J,358.3,3824,1,4,0)
+ ;;=4^I69.91
+ ;;^UTILITY(U,$J,358.3,3824,2)
+ ;;=^5007552
+ ;;^UTILITY(U,$J,358.3,3825,0)
+ ;;=I69.922^^28^259^19
+ ;;^UTILITY(U,$J,358.3,3825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3915,1,3,0)
- ;;=3^V65.40
- ;;^UTILITY(U,$J,358.3,3915,1,4,0)
- ;;=4^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,3915,2)
- ;;=^87449
- ;;^UTILITY(U,$J,358.3,3916,0)
- ;;=V65.43^^12^173^1
- ;;^UTILITY(U,$J,358.3,3916,1,0)
+ ;;^UTILITY(U,$J,358.3,3825,1,3,0)
+ ;;=3^Cerebrovascular Disease,Dysarthria,Unspec
+ ;;^UTILITY(U,$J,358.3,3825,1,4,0)
+ ;;=4^I69.922
+ ;;^UTILITY(U,$J,358.3,3825,2)
+ ;;=^5007555
+ ;;^UTILITY(U,$J,358.3,3826,0)
+ ;;=I69.991^^28^259^20
+ ;;^UTILITY(U,$J,358.3,3826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3916,1,3,0)
- ;;=3^V65.43
- ;;^UTILITY(U,$J,358.3,3916,1,4,0)
- ;;=4^Counseling,Injury Prevention
- ;;^UTILITY(U,$J,358.3,3916,2)
- ;;=^303468
- ;;^UTILITY(U,$J,358.3,3917,0)
- ;;=V65.49^^12^173^2
- ;;^UTILITY(U,$J,358.3,3917,1,0)
+ ;;^UTILITY(U,$J,358.3,3826,1,3,0)
+ ;;=3^Cerebrovascular Disease,Dysphagia
+ ;;^UTILITY(U,$J,358.3,3826,1,4,0)
+ ;;=4^I69.991
+ ;;^UTILITY(U,$J,358.3,3826,2)
+ ;;=^5007569
+ ;;^UTILITY(U,$J,358.3,3827,0)
+ ;;=I69.921^^28^259^21
+ ;;^UTILITY(U,$J,358.3,3827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3917,1,3,0)
- ;;=3^V65.49
- ;;^UTILITY(U,$J,358.3,3917,1,4,0)
- ;;=4^Counseling,Oth Spec
- ;;^UTILITY(U,$J,358.3,3917,2)
- ;;=^303471
- ;;^UTILITY(U,$J,358.3,3918,0)
- ;;=V53.2^^12^173^10
- ;;^UTILITY(U,$J,358.3,3918,1,0)
+ ;;^UTILITY(U,$J,358.3,3827,1,3,0)
+ ;;=3^Cerebrovascular Disease,Dysphasia
+ ;;^UTILITY(U,$J,358.3,3827,1,4,0)
+ ;;=4^I69.921
+ ;;^UTILITY(U,$J,358.3,3827,2)
+ ;;=^5007554
+ ;;^UTILITY(U,$J,358.3,3828,0)
+ ;;=I69.992^^28^259^22
+ ;;^UTILITY(U,$J,358.3,3828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3918,1,3,0)
- ;;=3^V53.2
- ;;^UTILITY(U,$J,358.3,3918,1,4,0)
- ;;=4^Hearing Aid Adjustment
- ;;^UTILITY(U,$J,358.3,3918,2)
- ;;=^295505
- ;;^UTILITY(U,$J,358.3,3919,0)
- ;;=V55.0^^12^173^16
- ;;^UTILITY(U,$J,358.3,3919,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3919,1,3,0)
- ;;=3^V55.0
- ;;^UTILITY(U,$J,358.3,3919,1,4,0)
- ;;=4^Tracheostomy Care
- ;;^UTILITY(U,$J,358.3,3919,2)
- ;;=^295516
- ;;^UTILITY(U,$J,358.3,3920,0)
- ;;=V57.3^^12^173^14
+ ;;^UTILITY(U,$J,358.3,3828,1,3,0)
+ ;;=3^Cerebrovascular Disease,Facial Weakness
+ ;;^UTILITY(U,$J,358.3,3828,1,4,0)
+ ;;=4^I69.992

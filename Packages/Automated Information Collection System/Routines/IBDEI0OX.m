@@ -1,130 +1,140 @@
-IBDEI0OX ; ; 06-AUG-2015
+IBDEI0OX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11899,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11899,1,2,0)
- ;;=2^345.50
- ;;^UTILITY(U,$J,358.3,11899,1,3,0)
- ;;=3^Simple Partial Seizures
- ;;^UTILITY(U,$J,358.3,11899,2)
- ;;=Simple Partial Epilepsy^268470
- ;;^UTILITY(U,$J,358.3,11900,0)
- ;;=345.51^^58^697^12
- ;;^UTILITY(U,$J,358.3,11900,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11900,1,2,0)
- ;;=2^345.51
- ;;^UTILITY(U,$J,358.3,11900,1,3,0)
- ;;=3^Simple Partial Seizures, Intract
- ;;^UTILITY(U,$J,358.3,11900,2)
- ;;=Simple Epilepsy Partial, Intract^268467
- ;;^UTILITY(U,$J,358.3,11901,0)
- ;;=345.40^^58^697^2
- ;;^UTILITY(U,$J,358.3,11901,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11901,1,2,0)
- ;;=2^345.40
- ;;^UTILITY(U,$J,358.3,11901,1,3,0)
- ;;=3^Complex Partial Seizures
- ;;^UTILITY(U,$J,358.3,11901,2)
- ;;=Cmplx Partial Epilepsy^268467
- ;;^UTILITY(U,$J,358.3,11902,0)
- ;;=345.41^^58^697^3
- ;;^UTILITY(U,$J,358.3,11902,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11902,1,2,0)
- ;;=2^345.41
- ;;^UTILITY(U,$J,358.3,11902,1,3,0)
- ;;=3^Complex Partial Seizures, Intractible
- ;;^UTILITY(U,$J,358.3,11902,2)
- ;;=Complex Partial Seizures, Intractible^268469
- ;;^UTILITY(U,$J,358.3,11903,0)
- ;;=345.90^^58^697^6
- ;;^UTILITY(U,$J,358.3,11903,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11903,1,2,0)
- ;;=2^345.90
- ;;^UTILITY(U,$J,358.3,11903,1,3,0)
- ;;=3^Epilepsy,Unspec
- ;;^UTILITY(U,$J,358.3,11903,2)
- ;;=Unspecified Epilepsy^268477
- ;;^UTILITY(U,$J,358.3,11904,0)
- ;;=345.91^^58^697^5
- ;;^UTILITY(U,$J,358.3,11904,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11904,1,2,0)
- ;;=2^345.91
- ;;^UTILITY(U,$J,358.3,11904,1,3,0)
- ;;=3^Epilepsy w/ Intractable Epilepsy,Unspec
- ;;^UTILITY(U,$J,358.3,11904,2)
- ;;=Unspecified, Intract Epilepsy^268478
- ;;^UTILITY(U,$J,358.3,11905,0)
- ;;=780.02^^58^697^13
- ;;^UTILITY(U,$J,358.3,11905,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11905,1,2,0)
- ;;=2^780.02
- ;;^UTILITY(U,$J,358.3,11905,1,3,0)
- ;;=3^Trans Alt of Awareness
- ;;^UTILITY(U,$J,358.3,11905,2)
- ;;=Trans Alt of Awareness^293932
- ;;^UTILITY(U,$J,358.3,11906,0)
- ;;=780.09^^58^697^14
- ;;^UTILITY(U,$J,358.3,11906,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11906,1,2,0)
- ;;=2^780.09
- ;;^UTILITY(U,$J,358.3,11906,1,3,0)
- ;;=3^Trans Alt of Conscious
- ;;^UTILITY(U,$J,358.3,11906,2)
- ;;=Trans Alt of Conscious^260077
- ;;^UTILITY(U,$J,358.3,11907,0)
- ;;=780.33^^58^697^10
- ;;^UTILITY(U,$J,358.3,11907,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11907,1,2,0)
- ;;=2^780.33
- ;;^UTILITY(U,$J,358.3,11907,1,3,0)
- ;;=3^Post Traumatic Seizures
- ;;^UTILITY(U,$J,358.3,11907,2)
- ;;=^339635
- ;;^UTILITY(U,$J,358.3,11908,0)
- ;;=780.31^^58^697^7
- ;;^UTILITY(U,$J,358.3,11908,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11908,1,2,0)
- ;;=2^780.31
- ;;^UTILITY(U,$J,358.3,11908,1,3,0)
- ;;=3^Febrile Convulsions NOS
- ;;^UTILITY(U,$J,358.3,11908,2)
- ;;=^334260
- ;;^UTILITY(U,$J,358.3,11909,0)
- ;;=780.32^^58^697^1
- ;;^UTILITY(U,$J,358.3,11909,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11909,1,2,0)
- ;;=2^780.32
- ;;^UTILITY(U,$J,358.3,11909,1,3,0)
- ;;=3^Complex Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,11909,2)
- ;;=^334162
- ;;^UTILITY(U,$J,358.3,11910,0)
- ;;=780.39^^58^697^4
- ;;^UTILITY(U,$J,358.3,11910,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11910,1,2,0)
- ;;=2^780.39
- ;;^UTILITY(U,$J,358.3,11910,1,3,0)
- ;;=3^Covulsions NEC
- ;;^UTILITY(U,$J,358.3,11910,2)
- ;;=^28162
- ;;^UTILITY(U,$J,358.3,11911,0)
- ;;=346.20^^58^698^5
- ;;^UTILITY(U,$J,358.3,11911,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,11911,1,2,0)
- ;;=2^346.20
- ;;^UTILITY(U,$J,358.3,11911,1,3,0)
- ;;=3^Cluster Headache
+ ;;^UTILITY(U,$J,358.3,11406,0)
+ ;;=R68.84^^68^683^8
+ ;;^UTILITY(U,$J,358.3,11406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11406,1,3,0)
+ ;;=3^Jaw Pain
+ ;;^UTILITY(U,$J,358.3,11406,1,4,0)
+ ;;=4^R68.84
+ ;;^UTILITY(U,$J,358.3,11406,2)
+ ;;=^5019556
+ ;;^UTILITY(U,$J,358.3,11407,0)
+ ;;=N48.9^^68^683^6
+ ;;^UTILITY(U,$J,358.3,11407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11407,1,3,0)
+ ;;=3^Disorder of Penis,Unspec
+ ;;^UTILITY(U,$J,358.3,11407,1,4,0)
+ ;;=4^N48.9
+ ;;^UTILITY(U,$J,358.3,11407,2)
+ ;;=^5015743
+ ;;^UTILITY(U,$J,358.3,11408,0)
+ ;;=N50.9^^68^683^5
+ ;;^UTILITY(U,$J,358.3,11408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11408,1,3,0)
+ ;;=3^Disorder of Male Genital Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,11408,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,11408,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,11409,0)
+ ;;=R10.2^^68^683^13
+ ;;^UTILITY(U,$J,358.3,11409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11409,1,3,0)
+ ;;=3^Pelvic/Perineal Pain
+ ;;^UTILITY(U,$J,358.3,11409,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,11409,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,11410,0)
+ ;;=N94.89^^68^683^7
+ ;;^UTILITY(U,$J,358.3,11410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11410,1,3,0)
+ ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
+ ;;^UTILITY(U,$J,358.3,11410,1,4,0)
+ ;;=4^N94.89
+ ;;^UTILITY(U,$J,358.3,11410,2)
+ ;;=^5015925
+ ;;^UTILITY(U,$J,358.3,11411,0)
+ ;;=N23.^^68^683^18
+ ;;^UTILITY(U,$J,358.3,11411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11411,1,3,0)
+ ;;=3^Renal Colic,Unspec
+ ;;^UTILITY(U,$J,358.3,11411,1,4,0)
+ ;;=4^N23.
+ ;;^UTILITY(U,$J,358.3,11411,2)
+ ;;=^5015615
+ ;;^UTILITY(U,$J,358.3,11412,0)
+ ;;=Z71.89^^68^684^1
+ ;;^UTILITY(U,$J,358.3,11412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11412,1,3,0)
+ ;;=3^Activity/Exercise Counseling
+ ;;^UTILITY(U,$J,358.3,11412,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,11412,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,11413,0)
+ ;;=Z13.89^^68^684^2
+ ;;^UTILITY(U,$J,358.3,11413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11413,1,3,0)
+ ;;=3^Alcohol Use Screen
+ ;;^UTILITY(U,$J,358.3,11413,1,4,0)
+ ;;=4^Z13.89
+ ;;^UTILITY(U,$J,358.3,11413,2)
+ ;;=^5062720
+ ;;^UTILITY(U,$J,358.3,11414,0)
+ ;;=Z12.39^^68^684^3
+ ;;^UTILITY(U,$J,358.3,11414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11414,1,3,0)
+ ;;=3^Breast Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,11414,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,11414,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,11415,0)
+ ;;=Z12.4^^68^684^5
+ ;;^UTILITY(U,$J,358.3,11415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11415,1,3,0)
+ ;;=3^Cervix Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,11415,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,11415,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,11416,0)
+ ;;=Z13.5^^68^684^8
+ ;;^UTILITY(U,$J,358.3,11416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11416,1,3,0)
+ ;;=3^Eye and Ear Disorder Screen
+ ;;^UTILITY(U,$J,358.3,11416,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,11416,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,11417,0)
+ ;;=Z01.89^^68^684^6
+ ;;^UTILITY(U,$J,358.3,11417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11417,1,3,0)
+ ;;=3^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,11417,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,11417,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,11418,0)
+ ;;=Z11.59^^68^684^16
+ ;;^UTILITY(U,$J,358.3,11418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11418,1,3,0)
+ ;;=3^Viral Diseases Screen
+ ;;^UTILITY(U,$J,358.3,11418,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,11418,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,11419,0)
+ ;;=Z13.6^^68^684^4
+ ;;^UTILITY(U,$J,358.3,11419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11419,1,3,0)
+ ;;=3^Cardiovascular Disorder Screen

@@ -1,130 +1,132 @@
-IBDEI1SW ; ; 06-AUG-2015
+IBDEI1SW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31755,1,4,0)
- ;;=4^S02.0XXS
- ;;^UTILITY(U,$J,358.3,31755,2)
- ;;=^5020257
- ;;^UTILITY(U,$J,358.3,31756,0)
- ;;=S02.10XS^^181^1967^2
- ;;^UTILITY(U,$J,358.3,31756,1,0)
+ ;;^UTILITY(U,$J,358.3,30146,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,30146,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,30146,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,30147,0)
+ ;;=Z82.3^^135^1373^49
+ ;;^UTILITY(U,$J,358.3,30147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31756,1,3,0)
- ;;=3^Fracture of base of skull unspec, sequela
- ;;^UTILITY(U,$J,358.3,31756,1,4,0)
- ;;=4^S02.10XS
- ;;^UTILITY(U,$J,358.3,31756,2)
- ;;=^5020263
- ;;^UTILITY(U,$J,358.3,31757,0)
- ;;=S02.2XXS^^181^1967^10
- ;;^UTILITY(U,$J,358.3,31757,1,0)
+ ;;^UTILITY(U,$J,358.3,30147,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,30147,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,30147,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,30148,0)
+ ;;=Z82.49^^135^1373^31
+ ;;^UTILITY(U,$J,358.3,30148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31757,1,3,0)
- ;;=3^Fracture of nasal bones, sequela
- ;;^UTILITY(U,$J,358.3,31757,1,4,0)
- ;;=4^S02.2XXS
- ;;^UTILITY(U,$J,358.3,31757,2)
- ;;=^5020311
- ;;^UTILITY(U,$J,358.3,31758,0)
- ;;=S02.401S^^181^1967^19
- ;;^UTILITY(U,$J,358.3,31758,1,0)
+ ;;^UTILITY(U,$J,358.3,30148,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,30148,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,30148,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,30149,0)
+ ;;=Z82.5^^135^1373^22
+ ;;^UTILITY(U,$J,358.3,30149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31758,1,3,0)
- ;;=3^Maxillary fracture, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,31758,1,4,0)
- ;;=4^S02.401S
- ;;^UTILITY(U,$J,358.3,31758,2)
- ;;=^5020329
- ;;^UTILITY(U,$J,358.3,31759,0)
- ;;=S02.402S^^181^1967^23
- ;;^UTILITY(U,$J,358.3,31759,1,0)
+ ;;^UTILITY(U,$J,358.3,30149,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,30149,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,30149,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,30150,0)
+ ;;=Z82.61^^135^1373^21
+ ;;^UTILITY(U,$J,358.3,30150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31759,1,3,0)
- ;;=3^Zygomatic fracture, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,31759,1,4,0)
- ;;=4^S02.402S
- ;;^UTILITY(U,$J,358.3,31759,2)
- ;;=^5020335
- ;;^UTILITY(U,$J,358.3,31760,0)
- ;;=S02.91XS^^181^1967^14
- ;;^UTILITY(U,$J,358.3,31760,1,0)
+ ;;^UTILITY(U,$J,358.3,30150,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,30150,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,30150,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,30151,0)
+ ;;=Z82.69^^135^1373^44
+ ;;^UTILITY(U,$J,358.3,30151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31760,1,3,0)
- ;;=3^Fracture of skull unspec, sequela
- ;;^UTILITY(U,$J,358.3,31760,1,4,0)
- ;;=4^S02.91XS
- ;;^UTILITY(U,$J,358.3,31760,2)
- ;;=^5020437
- ;;^UTILITY(U,$J,358.3,31761,0)
- ;;=S02.92XS^^181^1967^5
- ;;^UTILITY(U,$J,358.3,31761,1,0)
+ ;;^UTILITY(U,$J,358.3,30151,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,30151,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,30151,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,30152,0)
+ ;;=Z83.3^^135^1373^28
+ ;;^UTILITY(U,$J,358.3,30152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31761,1,3,0)
- ;;=3^Fracture of facial bones unspec, sequela
- ;;^UTILITY(U,$J,358.3,31761,1,4,0)
- ;;=4^S02.92XS
- ;;^UTILITY(U,$J,358.3,31761,2)
- ;;=^5020443
- ;;^UTILITY(U,$J,358.3,31762,0)
- ;;=S06.0X0A^^181^1968^19
- ;;^UTILITY(U,$J,358.3,31762,1,0)
+ ;;^UTILITY(U,$J,358.3,30152,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,30152,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,30152,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,30153,0)
+ ;;=Z83.2^^135^1373^24
+ ;;^UTILITY(U,$J,358.3,30153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31762,1,3,0)
- ;;=3^Concussion w/o LOC, initial encounter
- ;;^UTILITY(U,$J,358.3,31762,1,4,0)
- ;;=4^S06.0X0A
- ;;^UTILITY(U,$J,358.3,31762,2)
- ;;=^5020666
- ;;^UTILITY(U,$J,358.3,31763,0)
- ;;=S06.0X1A^^181^1968^10
- ;;^UTILITY(U,$J,358.3,31763,1,0)
+ ;;^UTILITY(U,$J,358.3,30153,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,30153,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,30153,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,30154,0)
+ ;;=Z82.71^^135^1373^47
+ ;;^UTILITY(U,$J,358.3,30154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31763,1,3,0)
- ;;=3^Concussion w LOC of 30 minutes or less, init
- ;;^UTILITY(U,$J,358.3,31763,1,4,0)
- ;;=4^S06.0X1A
- ;;^UTILITY(U,$J,358.3,31763,2)
- ;;=^5020669
- ;;^UTILITY(U,$J,358.3,31764,0)
- ;;=S06.0X2A^^181^1968^13
- ;;^UTILITY(U,$J,358.3,31764,1,0)
+ ;;^UTILITY(U,$J,358.3,30154,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,30154,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,30154,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,30155,0)
+ ;;=Z82.1^^135^1373^23
+ ;;^UTILITY(U,$J,358.3,30155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31764,1,3,0)
- ;;=3^Concussion w LOC of 31-59 min, init
- ;;^UTILITY(U,$J,358.3,31764,1,4,0)
- ;;=4^S06.0X2A
- ;;^UTILITY(U,$J,358.3,31764,2)
- ;;=^5020672
- ;;^UTILITY(U,$J,358.3,31765,0)
- ;;=S06.0X3A^^181^1968^7
- ;;^UTILITY(U,$J,358.3,31765,1,0)
+ ;;^UTILITY(U,$J,358.3,30155,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,30155,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,30155,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,30156,0)
+ ;;=Z82.2^^135^1373^27
+ ;;^UTILITY(U,$J,358.3,30156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31765,1,3,0)
- ;;=3^Concussion w LOC of 1-5 hrs 59 min, init
- ;;^UTILITY(U,$J,358.3,31765,1,4,0)
- ;;=4^S06.0X3A
- ;;^UTILITY(U,$J,358.3,31765,2)
- ;;=^5020675
- ;;^UTILITY(U,$J,358.3,31766,0)
- ;;=S06.0X4A^^181^1968^16
- ;;^UTILITY(U,$J,358.3,31766,1,0)
+ ;;^UTILITY(U,$J,358.3,30156,1,3,0)
+ ;;=3^Family Hx of Deafness/Hearing Loss
+ ;;^UTILITY(U,$J,358.3,30156,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,30156,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,30157,0)
+ ;;=Z84.0^^135^1373^48
+ ;;^UTILITY(U,$J,358.3,30157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31766,1,3,0)
- ;;=3^Concussion w LOC of 6 hours to 24 hours, init
- ;;^UTILITY(U,$J,358.3,31766,1,4,0)
- ;;=4^S06.0X4A
- ;;^UTILITY(U,$J,358.3,31766,2)
- ;;=^5020678
- ;;^UTILITY(U,$J,358.3,31767,0)
- ;;=S06.0X5A^^181^1968^1
- ;;^UTILITY(U,$J,358.3,31767,1,0)
+ ;;^UTILITY(U,$J,358.3,30157,1,3,0)
+ ;;=3^Family Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,30157,1,4,0)
+ ;;=4^Z84.0
+ ;;^UTILITY(U,$J,358.3,30157,2)
+ ;;=^5063388
+ ;;^UTILITY(U,$J,358.3,30158,0)
+ ;;=Z82.79^^135^1373^26
+ ;;^UTILITY(U,$J,358.3,30158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31767,1,3,0)
- ;;=3^Concussion w LOC >24 hr w ret consc lev, init
- ;;^UTILITY(U,$J,358.3,31767,1,4,0)
- ;;=4^S06.0X5A
- ;;^UTILITY(U,$J,358.3,31767,2)
- ;;=^5020681
- ;;^UTILITY(U,$J,358.3,31768,0)
- ;;=S06.0X6A^^181^1968^4
+ ;;^UTILITY(U,$J,358.3,30158,1,3,0)
+ ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
+ ;;^UTILITY(U,$J,358.3,30158,1,4,0)
+ ;;=4^Z82.79
+ ;;^UTILITY(U,$J,358.3,30158,2)
+ ;;=^5063374
+ ;;^UTILITY(U,$J,358.3,30159,0)
+ ;;=Z84.89^^135^1373^46

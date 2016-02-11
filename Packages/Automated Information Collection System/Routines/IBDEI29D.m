@@ -1,0 +1,130 @@
+IBDEI29D ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,37932,1,4,0)
+ ;;=4^S44.92XA
+ ;;^UTILITY(U,$J,358.3,37932,2)
+ ;;=^5134802
+ ;;^UTILITY(U,$J,358.3,37933,0)
+ ;;=S94.8X1A^^175^1906^38
+ ;;^UTILITY(U,$J,358.3,37933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37933,1,3,0)
+ ;;=3^Nerve Injury,Right Ankle & Foot,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37933,1,4,0)
+ ;;=4^S94.8X1A
+ ;;^UTILITY(U,$J,358.3,37933,2)
+ ;;=^5045930
+ ;;^UTILITY(U,$J,358.3,37934,0)
+ ;;=S94.8X2A^^175^1906^35
+ ;;^UTILITY(U,$J,358.3,37934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37934,1,3,0)
+ ;;=3^Nerve Injury,Left Ankle & Foot,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37934,1,4,0)
+ ;;=4^S94.8X2A
+ ;;^UTILITY(U,$J,358.3,37934,2)
+ ;;=^5045933
+ ;;^UTILITY(U,$J,358.3,37935,0)
+ ;;=S74.91XA^^175^1906^39
+ ;;^UTILITY(U,$J,358.3,37935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37935,1,3,0)
+ ;;=3^Nerve Injury,Right Hip & Thigh,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37935,1,4,0)
+ ;;=4^S74.91XA
+ ;;^UTILITY(U,$J,358.3,37935,2)
+ ;;=^5136509
+ ;;^UTILITY(U,$J,358.3,37936,0)
+ ;;=S74.92XA^^175^1906^36
+ ;;^UTILITY(U,$J,358.3,37936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37936,1,3,0)
+ ;;=3^Nerve Injury,Left Hip & Thigh,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37936,1,4,0)
+ ;;=4^S74.92XA
+ ;;^UTILITY(U,$J,358.3,37936,2)
+ ;;=^5136510
+ ;;^UTILITY(U,$J,358.3,37937,0)
+ ;;=S84.91XA^^175^1906^40
+ ;;^UTILITY(U,$J,358.3,37937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37937,1,3,0)
+ ;;=3^Nerve Injury,Right Lower Leg,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37937,1,4,0)
+ ;;=4^S84.91XA
+ ;;^UTILITY(U,$J,358.3,37937,2)
+ ;;=^5137076
+ ;;^UTILITY(U,$J,358.3,37938,0)
+ ;;=S84.92XA^^175^1906^37
+ ;;^UTILITY(U,$J,358.3,37938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37938,1,3,0)
+ ;;=3^Nerve Injury,Left Lower Leg,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37938,1,4,0)
+ ;;=4^S84.92XA
+ ;;^UTILITY(U,$J,358.3,37938,2)
+ ;;=^5137077
+ ;;^UTILITY(U,$J,358.3,37939,0)
+ ;;=E11.40^^175^1907^4
+ ;;^UTILITY(U,$J,358.3,37939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37939,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,37939,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,37939,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,37940,0)
+ ;;=E11.41^^175^1907^3
+ ;;^UTILITY(U,$J,358.3,37940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37940,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,37940,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,37940,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,37941,0)
+ ;;=E11.42^^175^1907^5
+ ;;^UTILITY(U,$J,358.3,37941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37941,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,37941,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,37941,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,37942,0)
+ ;;=E11.43^^175^1907^2
+ ;;^UTILITY(U,$J,358.3,37942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37942,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,37942,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,37942,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,37943,0)
+ ;;=E11.44^^175^1907^1
+ ;;^UTILITY(U,$J,358.3,37943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37943,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Amyotrophy
+ ;;^UTILITY(U,$J,358.3,37943,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,37943,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,37944,0)
+ ;;=E11.49^^175^1907^6
+ ;;^UTILITY(U,$J,358.3,37944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37944,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diabetic Neurological Complications
+ ;;^UTILITY(U,$J,358.3,37944,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,37944,2)
+ ;;=e860^5002649
+ ;;^UTILITY(U,$J,358.3,37945,0)
+ ;;=E86.0^^175^1907^7

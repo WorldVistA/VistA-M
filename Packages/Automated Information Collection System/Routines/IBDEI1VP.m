@@ -1,132 +1,132 @@
-IBDEI1VP ; ; 06-AUG-2015
+IBDEI1VP ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33052,1,4,0)
- ;;=4^K71.2
- ;;^UTILITY(U,$J,358.3,33052,2)
- ;;=^5008796
- ;;^UTILITY(U,$J,358.3,33053,0)
- ;;=K71.3^^182^1995^27
- ;;^UTILITY(U,$J,358.3,33053,1,0)
+ ;;^UTILITY(U,$J,358.3,31465,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,31466,0)
+ ;;=T76.31XA^^138^1425^22
+ ;;^UTILITY(U,$J,358.3,31466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33053,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Persistent Hepatitis
- ;;^UTILITY(U,$J,358.3,33053,1,4,0)
- ;;=4^K71.3
- ;;^UTILITY(U,$J,358.3,33053,2)
- ;;=^5008797
- ;;^UTILITY(U,$J,358.3,33054,0)
- ;;=K71.4^^182^1995^26
- ;;^UTILITY(U,$J,358.3,33054,1,0)
+ ;;^UTILITY(U,$J,358.3,31466,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
+ ;;^UTILITY(U,$J,358.3,31466,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,31466,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,31467,0)
+ ;;=T76.31XD^^138^1425^23
+ ;;^UTILITY(U,$J,358.3,31467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33054,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Lobular Hepatitis
- ;;^UTILITY(U,$J,358.3,33054,1,4,0)
- ;;=4^K71.4
- ;;^UTILITY(U,$J,358.3,33054,2)
- ;;=^5008798
- ;;^UTILITY(U,$J,358.3,33055,0)
- ;;=K75.81^^182^1995^19
- ;;^UTILITY(U,$J,358.3,33055,1,0)
+ ;;^UTILITY(U,$J,358.3,31467,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,31467,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,31467,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,31468,0)
+ ;;=Z91.411^^138^1425^6
+ ;;^UTILITY(U,$J,358.3,31468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33055,1,3,0)
- ;;=3^Nonalcoholic Steatohepatitis (NASH)
- ;;^UTILITY(U,$J,358.3,33055,1,4,0)
- ;;=4^K75.81
- ;;^UTILITY(U,$J,358.3,33055,2)
- ;;=^5008828
- ;;^UTILITY(U,$J,358.3,33056,0)
- ;;=K75.89^^182^1995^16
- ;;^UTILITY(U,$J,358.3,33056,1,0)
+ ;;^UTILITY(U,$J,358.3,31468,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,31468,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,31468,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,31469,0)
+ ;;=F06.4^^138^1426^6
+ ;;^UTILITY(U,$J,358.3,31469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33056,1,3,0)
- ;;=3^Inflammatory Liver Disease,Oth Spec
- ;;^UTILITY(U,$J,358.3,33056,1,4,0)
- ;;=4^K75.89
- ;;^UTILITY(U,$J,358.3,33056,2)
- ;;=^5008829
- ;;^UTILITY(U,$J,358.3,33057,0)
- ;;=K76.4^^182^1995^21
- ;;^UTILITY(U,$J,358.3,33057,1,0)
+ ;;^UTILITY(U,$J,358.3,31469,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,31469,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,31469,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,31470,0)
+ ;;=F41.0^^138^1426^14
+ ;;^UTILITY(U,$J,358.3,31470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33057,1,3,0)
- ;;=3^Peliosis Hepatis
- ;;^UTILITY(U,$J,358.3,33057,1,4,0)
- ;;=4^K76.4
- ;;^UTILITY(U,$J,358.3,33057,2)
- ;;=^91041
- ;;^UTILITY(U,$J,358.3,33058,0)
- ;;=K71.50^^182^1995^24
- ;;^UTILITY(U,$J,358.3,33058,1,0)
+ ;;^UTILITY(U,$J,358.3,31470,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,31470,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,31470,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,31471,0)
+ ;;=F41.1^^138^1426^12
+ ;;^UTILITY(U,$J,358.3,31471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33058,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,33058,1,4,0)
- ;;=4^K71.50
- ;;^UTILITY(U,$J,358.3,33058,2)
- ;;=^5008799
- ;;^UTILITY(U,$J,358.3,33059,0)
- ;;=K71.51^^182^1995^25
- ;;^UTILITY(U,$J,358.3,33059,1,0)
+ ;;^UTILITY(U,$J,358.3,31471,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,31471,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,31471,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,31472,0)
+ ;;=F41.9^^138^1426^5
+ ;;^UTILITY(U,$J,358.3,31472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33059,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,33059,1,4,0)
- ;;=4^K71.51
- ;;^UTILITY(U,$J,358.3,33059,2)
- ;;=^5008800
- ;;^UTILITY(U,$J,358.3,33060,0)
- ;;=K71.7^^182^1995^28
- ;;^UTILITY(U,$J,358.3,33060,1,0)
+ ;;^UTILITY(U,$J,358.3,31472,1,3,0)
+ ;;=3^Anxiety Disorder NOS
+ ;;^UTILITY(U,$J,358.3,31472,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,31472,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,31473,0)
+ ;;=F40.02^^138^1426^2
+ ;;^UTILITY(U,$J,358.3,31473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33060,1,3,0)
- ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
- ;;^UTILITY(U,$J,358.3,33060,1,4,0)
- ;;=4^K71.7
- ;;^UTILITY(U,$J,358.3,33060,2)
- ;;=^5008802
- ;;^UTILITY(U,$J,358.3,33061,0)
- ;;=K71.8^^182^1995^32
- ;;^UTILITY(U,$J,358.3,33061,1,0)
+ ;;^UTILITY(U,$J,358.3,31473,1,3,0)
+ ;;=3^Agoraphobia
+ ;;^UTILITY(U,$J,358.3,31473,1,4,0)
+ ;;=4^F40.02
+ ;;^UTILITY(U,$J,358.3,31473,2)
+ ;;=^5003543
+ ;;^UTILITY(U,$J,358.3,31474,0)
+ ;;=F40.10^^138^1426^16
+ ;;^UTILITY(U,$J,358.3,31474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33061,1,3,0)
- ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
- ;;^UTILITY(U,$J,358.3,33061,1,4,0)
- ;;=4^K71.8
- ;;^UTILITY(U,$J,358.3,33061,2)
- ;;=^5008803
- ;;^UTILITY(U,$J,358.3,33062,0)
- ;;=K71.9^^182^1995^33
- ;;^UTILITY(U,$J,358.3,33062,1,0)
+ ;;^UTILITY(U,$J,358.3,31474,1,3,0)
+ ;;=3^Social Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,31474,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,31474,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,31475,0)
+ ;;=F40.218^^138^1426^4
+ ;;^UTILITY(U,$J,358.3,31475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33062,1,3,0)
- ;;=3^Toxic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,33062,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,33062,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,33063,0)
- ;;=K75.2^^182^1995^20
- ;;^UTILITY(U,$J,358.3,33063,1,0)
+ ;;^UTILITY(U,$J,358.3,31475,1,3,0)
+ ;;=3^Animal Type Phobias
+ ;;^UTILITY(U,$J,358.3,31475,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,31475,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,31476,0)
+ ;;=F40.228^^138^1426^13
+ ;;^UTILITY(U,$J,358.3,31476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33063,1,3,0)
- ;;=3^Nonspecific Reactive Hepatitis
- ;;^UTILITY(U,$J,358.3,33063,1,4,0)
- ;;=4^K75.2
- ;;^UTILITY(U,$J,358.3,33063,2)
- ;;=^5008826
- ;;^UTILITY(U,$J,358.3,33064,0)
- ;;=K75.3^^182^1995^13
- ;;^UTILITY(U,$J,358.3,33064,1,0)
+ ;;^UTILITY(U,$J,358.3,31476,1,3,0)
+ ;;=3^Natural Environment Type Phobia
+ ;;^UTILITY(U,$J,358.3,31476,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,31476,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,31477,0)
+ ;;=F40.230^^138^1426^8
+ ;;^UTILITY(U,$J,358.3,31477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33064,1,3,0)
- ;;=3^Granulomatous Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,33064,1,4,0)
- ;;=4^K75.3
- ;;^UTILITY(U,$J,358.3,33064,2)
- ;;=^5008827
- ;;^UTILITY(U,$J,358.3,33065,0)
- ;;=F02.80^^182^1996^9
- ;;^UTILITY(U,$J,358.3,33065,1,0)
+ ;;^UTILITY(U,$J,358.3,31477,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,31477,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,31477,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,31478,0)
+ ;;=F40.231^^138^1426^9
+ ;;^UTILITY(U,$J,358.3,31478,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31478,1,3,0)
+ ;;=3^Fear of Injections & Transfusions

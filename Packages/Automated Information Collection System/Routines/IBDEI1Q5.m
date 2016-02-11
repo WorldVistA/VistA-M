@@ -1,130 +1,132 @@
-IBDEI1Q5 ; ; 06-AUG-2015
+IBDEI1Q5 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30518,1,4,0)
- ;;=4^O09.523
- ;;^UTILITY(U,$J,358.3,30518,2)
- ;;=^5016078
- ;;^UTILITY(U,$J,358.3,30519,0)
- ;;=O76.^^178^1917^1
- ;;^UTILITY(U,$J,358.3,30519,1,0)
+ ;;^UTILITY(U,$J,358.3,28848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30519,1,3,0)
- ;;=3^Abnlt in fetal heart rate and rhythm comp labor and delivery
- ;;^UTILITY(U,$J,358.3,30519,1,4,0)
- ;;=4^O76.
- ;;^UTILITY(U,$J,358.3,30519,2)
- ;;=^5017746
- ;;^UTILITY(U,$J,358.3,30520,0)
- ;;=O86.89^^178^1918^2
- ;;^UTILITY(U,$J,358.3,30520,1,0)
+ ;;^UTILITY(U,$J,358.3,28848,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28848,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,28848,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,28849,0)
+ ;;=W13.9XXA^^132^1339^33
+ ;;^UTILITY(U,$J,358.3,28849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30520,1,3,0)
- ;;=3^Puerperal infections NEC
- ;;^UTILITY(U,$J,358.3,30520,1,4,0)
- ;;=4^O86.89
- ;;^UTILITY(U,$J,358.3,30520,2)
- ;;=^5017765
- ;;^UTILITY(U,$J,358.3,30521,0)
- ;;=O86.12^^178^1918^1
- ;;^UTILITY(U,$J,358.3,30521,1,0)
+ ;;^UTILITY(U,$J,358.3,28849,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28849,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,28849,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,28850,0)
+ ;;=W13.9XXD^^132^1339^34
+ ;;^UTILITY(U,$J,358.3,28850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30521,1,3,0)
- ;;=3^Endometritis following delivery
- ;;^UTILITY(U,$J,358.3,30521,1,4,0)
- ;;=4^O86.12
- ;;^UTILITY(U,$J,358.3,30521,2)
- ;;=^5017756
- ;;^UTILITY(U,$J,358.3,30522,0)
- ;;=O85.^^178^1918^3
- ;;^UTILITY(U,$J,358.3,30522,1,0)
+ ;;^UTILITY(U,$J,358.3,28850,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28850,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,28850,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,28851,0)
+ ;;=W14.XXXA^^132^1339^65
+ ;;^UTILITY(U,$J,358.3,28851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30522,1,3,0)
- ;;=3^Puerperal sepsis
- ;;^UTILITY(U,$J,358.3,30522,1,4,0)
- ;;=4^O85.
- ;;^UTILITY(U,$J,358.3,30522,2)
- ;;=^5017753
- ;;^UTILITY(U,$J,358.3,30523,0)
- ;;=O86.81^^178^1918^4
- ;;^UTILITY(U,$J,358.3,30523,1,0)
+ ;;^UTILITY(U,$J,358.3,28851,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28851,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,28851,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,28852,0)
+ ;;=W14.XXXD^^132^1339^66
+ ;;^UTILITY(U,$J,358.3,28852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30523,1,3,0)
- ;;=3^Puerperal septic thrombophlebitis
- ;;^UTILITY(U,$J,358.3,30523,1,4,0)
- ;;=4^O86.81
- ;;^UTILITY(U,$J,358.3,30523,2)
- ;;=^5017764
- ;;^UTILITY(U,$J,358.3,30524,0)
- ;;=O22.01^^178^1919^16
- ;;^UTILITY(U,$J,358.3,30524,1,0)
+ ;;^UTILITY(U,$J,358.3,28852,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28852,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,28852,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,28853,0)
+ ;;=W17.2XXA^^132^1339^77
+ ;;^UTILITY(U,$J,358.3,28853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30524,1,3,0)
- ;;=3^Varicose veins of low extrm in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30524,1,4,0)
- ;;=4^O22.01
- ;;^UTILITY(U,$J,358.3,30524,2)
- ;;=^5016188
- ;;^UTILITY(U,$J,358.3,30525,0)
- ;;=O22.02^^178^1919^17
- ;;^UTILITY(U,$J,358.3,30525,1,0)
+ ;;^UTILITY(U,$J,358.3,28853,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28853,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,28853,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,28854,0)
+ ;;=W17.2XXD^^132^1339^78
+ ;;^UTILITY(U,$J,358.3,28854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30525,1,3,0)
- ;;=3^Varicose veins of low extrm in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30525,1,4,0)
- ;;=4^O22.02
- ;;^UTILITY(U,$J,358.3,30525,2)
- ;;=^5016189
- ;;^UTILITY(U,$J,358.3,30526,0)
- ;;=O22.03^^178^1919^18
- ;;^UTILITY(U,$J,358.3,30526,1,0)
+ ;;^UTILITY(U,$J,358.3,28854,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28854,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,28854,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,28855,0)
+ ;;=W17.3XXA^^132^1339^75
+ ;;^UTILITY(U,$J,358.3,28855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30526,1,3,0)
- ;;=3^Varicose veins of low extrm in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30526,1,4,0)
- ;;=4^O22.03
- ;;^UTILITY(U,$J,358.3,30526,2)
- ;;=^5016190
- ;;^UTILITY(U,$J,358.3,30527,0)
- ;;=O87.4^^178^1919^19
- ;;^UTILITY(U,$J,358.3,30527,1,0)
+ ;;^UTILITY(U,$J,358.3,28855,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28855,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,28855,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,28856,0)
+ ;;=W17.3XXD^^132^1339^76
+ ;;^UTILITY(U,$J,358.3,28856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30527,1,3,0)
- ;;=3^Varicose veins of lower extremity in the puerperium
- ;;^UTILITY(U,$J,358.3,30527,1,4,0)
- ;;=4^O87.4
- ;;^UTILITY(U,$J,358.3,30527,2)
- ;;=^5017770
- ;;^UTILITY(U,$J,358.3,30528,0)
- ;;=O22.11^^178^1919^9
- ;;^UTILITY(U,$J,358.3,30528,1,0)
+ ;;^UTILITY(U,$J,358.3,28856,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28856,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,28856,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,28857,0)
+ ;;=W17.4XXA^^132^1339^39
+ ;;^UTILITY(U,$J,358.3,28857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30528,1,3,0)
- ;;=3^Genital varices in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30528,1,4,0)
- ;;=4^O22.11
- ;;^UTILITY(U,$J,358.3,30528,2)
- ;;=^5016192
- ;;^UTILITY(U,$J,358.3,30529,0)
- ;;=O22.12^^178^1919^10
- ;;^UTILITY(U,$J,358.3,30529,1,0)
+ ;;^UTILITY(U,$J,358.3,28857,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28857,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,28857,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,28858,0)
+ ;;=W17.4XXD^^132^1339^40
+ ;;^UTILITY(U,$J,358.3,28858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30529,1,3,0)
- ;;=3^Genital varices in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30529,1,4,0)
- ;;=4^O22.12
- ;;^UTILITY(U,$J,358.3,30529,2)
- ;;=^5016193
- ;;^UTILITY(U,$J,358.3,30530,0)
- ;;=O22.13^^178^1919^11
- ;;^UTILITY(U,$J,358.3,30530,1,0)
+ ;;^UTILITY(U,$J,358.3,28858,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28858,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,28858,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,28859,0)
+ ;;=W17.81XA^^132^1339^27
+ ;;^UTILITY(U,$J,358.3,28859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30530,1,3,0)
- ;;=3^Genital varices in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30530,1,4,0)
- ;;=4^O22.13
- ;;^UTILITY(U,$J,358.3,30530,2)
- ;;=^5016194
- ;;^UTILITY(U,$J,358.3,30531,0)
- ;;=O22.21^^178^1919^12
+ ;;^UTILITY(U,$J,358.3,28859,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28859,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,28859,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,28860,0)
+ ;;=W17.81XD^^132^1339^28
+ ;;^UTILITY(U,$J,358.3,28860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28860,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28860,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,28860,2)
+ ;;=^5059782

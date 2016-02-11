@@ -1,128 +1,124 @@
-IBDEI1WO ; ; 06-AUG-2015
+IBDEI1WO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33512,1,0)
+ ;;^UTILITY(U,$J,358.3,31914,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,31914,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,31915,0)
+ ;;=F06.34^^141^1476^2
+ ;;^UTILITY(U,$J,358.3,31915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33512,1,3,0)
- ;;=3^Abnormal Urine Cytology/Histology Findings
- ;;^UTILITY(U,$J,358.3,33512,1,4,0)
- ;;=4^R82.8
- ;;^UTILITY(U,$J,358.3,33512,2)
- ;;=^5019608
- ;;^UTILITY(U,$J,358.3,33513,0)
- ;;=R82.90^^182^2004^23
- ;;^UTILITY(U,$J,358.3,33513,1,0)
+ ;;^UTILITY(U,$J,358.3,31915,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,31915,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,31915,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,31916,0)
+ ;;=F31.11^^141^1476^3
+ ;;^UTILITY(U,$J,358.3,31916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33513,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
- ;;^UTILITY(U,$J,358.3,33513,1,4,0)
- ;;=4^R82.90
- ;;^UTILITY(U,$J,358.3,33513,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,33514,0)
- ;;=R82.91^^182^2004^46
- ;;^UTILITY(U,$J,358.3,33514,1,0)
+ ;;^UTILITY(U,$J,358.3,31916,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
+ ;;^UTILITY(U,$J,358.3,31916,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,31916,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,31917,0)
+ ;;=F31.12^^141^1476^4
+ ;;^UTILITY(U,$J,358.3,31917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33514,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,33514,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,33514,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,33515,0)
- ;;=R82.99^^182^2004^22
- ;;^UTILITY(U,$J,358.3,33515,1,0)
+ ;;^UTILITY(U,$J,358.3,31917,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
+ ;;^UTILITY(U,$J,358.3,31917,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,31917,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,31918,0)
+ ;;=F31.13^^141^1476^5
+ ;;^UTILITY(U,$J,358.3,31918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33515,1,3,0)
- ;;=3^Abnormal Urine Findings NEC
- ;;^UTILITY(U,$J,358.3,33515,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,33515,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,33516,0)
- ;;=R89.9^^182^2004^17
- ;;^UTILITY(U,$J,358.3,33516,1,0)
+ ;;^UTILITY(U,$J,358.3,31918,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
+ ;;^UTILITY(U,$J,358.3,31918,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,31918,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,31919,0)
+ ;;=F31.2^^141^1476^6
+ ;;^UTILITY(U,$J,358.3,31919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33516,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,33516,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,33516,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,33517,0)
- ;;=R90.0^^182^2004^92
- ;;^UTILITY(U,$J,358.3,33517,1,0)
+ ;;^UTILITY(U,$J,358.3,31919,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,31919,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,31919,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,31920,0)
+ ;;=F31.73^^141^1476^7
+ ;;^UTILITY(U,$J,358.3,31920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33517,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,33517,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,33517,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,33518,0)
- ;;=R90.89^^182^2004^12
- ;;^UTILITY(U,$J,358.3,33518,1,0)
+ ;;^UTILITY(U,$J,358.3,31920,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,31920,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,31920,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,31921,0)
+ ;;=F31.74^^141^1476^8
+ ;;^UTILITY(U,$J,358.3,31921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33518,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,33518,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,33518,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,33519,0)
- ;;=R91.1^^182^2004^142
- ;;^UTILITY(U,$J,358.3,33519,1,0)
+ ;;^UTILITY(U,$J,358.3,31921,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
+ ;;^UTILITY(U,$J,358.3,31921,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,31921,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,31922,0)
+ ;;=F31.30^^141^1476^9
+ ;;^UTILITY(U,$J,358.3,31922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33519,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,33519,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,33519,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,33520,0)
- ;;=R91.8^^182^2004^16
- ;;^UTILITY(U,$J,358.3,33520,1,0)
+ ;;^UTILITY(U,$J,358.3,31922,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
+ ;;^UTILITY(U,$J,358.3,31922,1,4,0)
+ ;;=4^F31.30
+ ;;^UTILITY(U,$J,358.3,31922,2)
+ ;;=^5003500
+ ;;^UTILITY(U,$J,358.3,31923,0)
+ ;;=F31.31^^141^1476^10
+ ;;^UTILITY(U,$J,358.3,31923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33520,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,33520,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,33520,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,33521,0)
- ;;=R92.0^^182^2004^111
- ;;^UTILITY(U,$J,358.3,33521,1,0)
+ ;;^UTILITY(U,$J,358.3,31923,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
+ ;;^UTILITY(U,$J,358.3,31923,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,31923,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,31924,0)
+ ;;=F31.32^^141^1476^11
+ ;;^UTILITY(U,$J,358.3,31924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33521,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,33521,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,33521,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,33522,0)
- ;;=R92.1^^182^2004^110
- ;;^UTILITY(U,$J,358.3,33522,1,0)
+ ;;^UTILITY(U,$J,358.3,31924,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
+ ;;^UTILITY(U,$J,358.3,31924,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,31924,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,31925,0)
+ ;;=F31.4^^141^1476^12
+ ;;^UTILITY(U,$J,358.3,31925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33522,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,33522,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,33522,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,33523,0)
- ;;=R92.2^^182^2004^86
- ;;^UTILITY(U,$J,358.3,33523,1,0)
+ ;;^UTILITY(U,$J,358.3,31925,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
+ ;;^UTILITY(U,$J,358.3,31925,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,31925,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,31926,0)
+ ;;=F31.5^^141^1476^13
+ ;;^UTILITY(U,$J,358.3,31926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33523,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,33523,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,33523,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,33524,0)
- ;;=R93.0^^182^2004^10
- ;;^UTILITY(U,$J,358.3,33524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33524,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,31926,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features

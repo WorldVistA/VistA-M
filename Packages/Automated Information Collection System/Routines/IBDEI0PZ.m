@@ -1,138 +1,126 @@
-IBDEI0PZ ; ; 06-AUG-2015
+IBDEI0PZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12444,1,4,0)
- ;;=4^Infection nipple-Antepartum
- ;;^UTILITY(U,$J,358.3,12444,2)
- ;;=^271795
- ;;^UTILITY(U,$J,358.3,12445,0)
- ;;=675.04^^62^742^12
- ;;^UTILITY(U,$J,358.3,12445,1,0)
+ ;;^UTILITY(U,$J,358.3,11899,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,11899,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,11900,0)
+ ;;=V00.838A^^68^694^93
+ ;;^UTILITY(U,$J,358.3,11900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12445,1,3,0)
- ;;=3^675.04
- ;;^UTILITY(U,$J,358.3,12445,1,4,0)
- ;;=4^Infection nipple-Postpartum
- ;;^UTILITY(U,$J,358.3,12445,2)
- ;;=^271796
- ;;^UTILITY(U,$J,358.3,12446,0)
- ;;=675.13^^62^742^1
- ;;^UTILITY(U,$J,358.3,12446,1,0)
+ ;;^UTILITY(U,$J,358.3,11900,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11900,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,11900,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,11901,0)
+ ;;=V00.838D^^68^694^94
+ ;;^UTILITY(U,$J,358.3,11901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12446,1,3,0)
- ;;=3^675.13
- ;;^UTILITY(U,$J,358.3,12446,1,4,0)
- ;;=4^Abscess breast-Antepartum
- ;;^UTILITY(U,$J,358.3,12446,2)
- ;;=^271801
- ;;^UTILITY(U,$J,358.3,12447,0)
- ;;=675.14^^62^742^2
- ;;^UTILITY(U,$J,358.3,12447,1,0)
+ ;;^UTILITY(U,$J,358.3,11901,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11901,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,11901,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,11902,0)
+ ;;=V00.891A^^68^694^57
+ ;;^UTILITY(U,$J,358.3,11902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12447,1,3,0)
- ;;=3^675.14
- ;;^UTILITY(U,$J,358.3,12447,1,4,0)
- ;;=4^Abscess breast-Postpartum
- ;;^UTILITY(U,$J,358.3,12447,2)
- ;;=^271802
- ;;^UTILITY(U,$J,358.3,12448,0)
- ;;=675.23^^62^742^13
- ;;^UTILITY(U,$J,358.3,12448,1,0)
+ ;;^UTILITY(U,$J,358.3,11902,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11902,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,11902,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,11903,0)
+ ;;=V00.891D^^68^694^58
+ ;;^UTILITY(U,$J,358.3,11903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12448,1,3,0)
- ;;=3^675.23
- ;;^UTILITY(U,$J,358.3,12448,1,4,0)
- ;;=4^Mastitis-Antepartum
- ;;^UTILITY(U,$J,358.3,12448,2)
- ;;=^271807
- ;;^UTILITY(U,$J,358.3,12449,0)
- ;;=675.24^^62^742^14
- ;;^UTILITY(U,$J,358.3,12449,1,0)
+ ;;^UTILITY(U,$J,358.3,11903,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11903,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,11903,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,11904,0)
+ ;;=V00.892A^^68^694^99
+ ;;^UTILITY(U,$J,358.3,11904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12449,1,3,0)
- ;;=3^675.24
- ;;^UTILITY(U,$J,358.3,12449,1,4,0)
- ;;=4^Mastitis-Postpartum
- ;;^UTILITY(U,$J,358.3,12449,2)
- ;;=^271808
- ;;^UTILITY(U,$J,358.3,12450,0)
- ;;=676.03^^62^742^15
- ;;^UTILITY(U,$J,358.3,12450,1,0)
+ ;;^UTILITY(U,$J,358.3,11904,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11904,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,11904,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,11905,0)
+ ;;=V00.892D^^68^694^100
+ ;;^UTILITY(U,$J,358.3,11905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12450,1,3,0)
- ;;=3^676.03
- ;;^UTILITY(U,$J,358.3,12450,1,4,0)
- ;;=4^Retracted nipple-Antepartum
- ;;^UTILITY(U,$J,358.3,12450,2)
- ;;=^271826
- ;;^UTILITY(U,$J,358.3,12451,0)
- ;;=676.04^^62^742^16
- ;;^UTILITY(U,$J,358.3,12451,1,0)
+ ;;^UTILITY(U,$J,358.3,11905,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11905,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,11905,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,11906,0)
+ ;;=V00.898A^^68^694^97
+ ;;^UTILITY(U,$J,358.3,11906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12451,1,3,0)
- ;;=3^676.04
- ;;^UTILITY(U,$J,358.3,12451,1,4,0)
- ;;=4^Retracted nipple-Postpartum
- ;;^UTILITY(U,$J,358.3,12451,2)
- ;;=^271827
- ;;^UTILITY(U,$J,358.3,12452,0)
- ;;=676.13^^62^742^3
- ;;^UTILITY(U,$J,358.3,12452,1,0)
+ ;;^UTILITY(U,$J,358.3,11906,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11906,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,11906,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,11907,0)
+ ;;=V00.898D^^68^694^98
+ ;;^UTILITY(U,$J,358.3,11907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12452,1,3,0)
- ;;=3^676.13
- ;;^UTILITY(U,$J,358.3,12452,1,4,0)
- ;;=4^Cracked nipple-Antepartum
- ;;^UTILITY(U,$J,358.3,12452,2)
- ;;=^271832
- ;;^UTILITY(U,$J,358.3,12453,0)
- ;;=676.14^^62^742^4
- ;;^UTILITY(U,$J,358.3,12453,1,0)
+ ;;^UTILITY(U,$J,358.3,11907,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11907,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,11907,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,11908,0)
+ ;;=W00.0XXA^^68^694^79
+ ;;^UTILITY(U,$J,358.3,11908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12453,1,3,0)
- ;;=3^676.14
- ;;^UTILITY(U,$J,358.3,12453,1,4,0)
- ;;=4^Cracked nipple-Postpartum
- ;;^UTILITY(U,$J,358.3,12453,2)
- ;;=^271833
- ;;^UTILITY(U,$J,358.3,12454,0)
- ;;=676.23^^62^742^5
- ;;^UTILITY(U,$J,358.3,12454,1,0)
+ ;;^UTILITY(U,$J,358.3,11908,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11908,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,11908,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,11909,0)
+ ;;=W00.0XXD^^68^694^80
+ ;;^UTILITY(U,$J,358.3,11909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12454,1,3,0)
- ;;=3^676.23
- ;;^UTILITY(U,$J,358.3,12454,1,4,0)
- ;;=4^Engorgement of breasts-Antepartum
- ;;^UTILITY(U,$J,358.3,12454,2)
- ;;=^271838
- ;;^UTILITY(U,$J,358.3,12455,0)
- ;;=676.24^^62^742^6
- ;;^UTILITY(U,$J,358.3,12455,1,0)
+ ;;^UTILITY(U,$J,358.3,11909,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11909,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,11909,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,11910,0)
+ ;;=W00.1XXA^^68^694^59
+ ;;^UTILITY(U,$J,358.3,11910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12455,1,3,0)
- ;;=3^676.24
- ;;^UTILITY(U,$J,358.3,12455,1,4,0)
- ;;=4^Engorgement of breasts-Postpartum
- ;;^UTILITY(U,$J,358.3,12455,2)
- ;;=^271839
- ;;^UTILITY(U,$J,358.3,12456,0)
- ;;=676.43^^62^742^7
- ;;^UTILITY(U,$J,358.3,12456,1,0)
+ ;;^UTILITY(U,$J,358.3,11910,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11910,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,11910,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,11911,0)
+ ;;=W00.1XXD^^68^694^60
+ ;;^UTILITY(U,$J,358.3,11911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12456,1,3,0)
- ;;=3^676.43
- ;;^UTILITY(U,$J,358.3,12456,1,4,0)
- ;;=4^Failure of lactation-Antepartum
- ;;^UTILITY(U,$J,358.3,12456,2)
- ;;=^271849
- ;;^UTILITY(U,$J,358.3,12457,0)
- ;;=676.44^^62^742^8
- ;;^UTILITY(U,$J,358.3,12457,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12457,1,3,0)
- ;;=3^676.44
- ;;^UTILITY(U,$J,358.3,12457,1,4,0)
- ;;=4^Failure of lactation-Postpartum
- ;;^UTILITY(U,$J,358.3,12457,2)
- ;;=^271850
+ ;;^UTILITY(U,$J,358.3,11911,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11911,1,4,0)
+ ;;=4^W00.1XXD

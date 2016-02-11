@@ -1,5 +1,5 @@
 SRONRPT3 ;BIR/ADM - NURSE INTRAOP REPORT ;10/05/2011
- ;;3.0;Surgery;**100,176,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**100,176,182,184**;24 Jun 93;Build 35
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -15,14 +15,14 @@ INTEG I 'SRALL,INTEG="N/A" G COLOR
  D LINE(1) S @SRG@(SRI)="Postoperative Skin Integrity: "_INTEG
 COLOR I 'SRALL,COLOR="N/A" G NEXT
  D LINE(1) S @SRG@(SRI)="Postoperative Skin Color:     "_COLOR
-NEXT S SRLF=1,SRLINE="Laser Unit(s): " I '$O(^SRF(SRTN,44,0)),SRALL D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
- I $O(^SRF(SRTN,44,0)) D LINE(1) S @SRG@(SRI)=SRLINE D LASER
+NEXT D LASER^SRONRPT4
  S Y=$P(SR(.7),"^",3) I 'SRALL,Y="" G CS
  S Y=$S(Y="Y":"YES",Y="N":"NO",1:"N/A") D LINE(2) S @SRG@(SRI)="Sequential Compression Device: "_Y
 CS S SRLF=1,SRLINE="Cell Saver(s): " I '$O(^SRF(SRTN,45,0)),SRALL D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $O(^SRF(SRTN,45,0)) D LINE(1) S @SRG@(SRI)=SRLINE D SAVE
  S X=$P($G(^SRF(SRTN,46)),"^") S:X="" X="N/A" I 'SRALL,X="N/A" S SRLF=0 G FLASH
  D LINE(2) S @SRG@(SRI)="Devices: "_X
+ D ORGDNR^SRONRPT4
 FLASH S SRLF=1,SRLINE="Immediate Use Steam Sterilization Episodes: " I '$D(^SRF(SRTN,52)) D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $D(^SRF(SRTN,52)) D LINE(1) S @SRG@(SRI)=SRLINE S X=$G(^SRF(SRTN,52)) D
  .D LINE(1) S @SRG@(SRI)="   Contamination:                       "_$P(X,"^")
@@ -34,19 +34,6 @@ FLASH S SRLF=1,SRLINE="Immediate Use Steam Sterilization Episodes: " I '$D(^SRF(
 NCC S SRLINE="Nursing Care Comments: " D LINE(2) S @SRG@(SRI)=SRLINE D
  .I '$O(^SRF(SRTN,7,0)) S @SRG@(SRI)=@SRG@(SRI)_"NO COMMENTS ENTERED" Q
  .S SRLINE=0 F  S SRLINE=$O(^SRF(SRTN,7,SRLINE)) Q:'SRLINE  S X=^SRF(SRTN,7,SRLINE,0) D COMM(X,2)
- Q
-LASER ; laser units
- N C,DUR,ID,LAS,OP,PE,SRCT,WAT,X,Y
- S LAS=0 F  S LAS=$O(^SRF(SRTN,44,LAS)) Q:'LAS  D
- .S X=^SRF(SRTN,44,LAS,0),ID=$P(X,"^"),DUR=$P(X,"^",2),WAT=$P(X,"^",3),OP=$P(X,"^",4),PE=$P(X,"^",5)
- .D LINE(1) S @SRG@(SRI)="  "_ID,@SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Duration: "_$S(DUR'="":DUR_" min.",1:"N/A")
- .D LINE(1) S @SRG@(SRI)="    Wattage: "_$S(WAT'="":WAT,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Plume Evacuator: "_$S(PE="Y":"YES",PE="N":"NO",1:"N/A")
- .S Y=OP,C=$P(^DD(130.0129,3,0),"^",2) D:Y Y^DIQ S:Y="" Y="N/A" D LINE(1) S @SRG@(SRI)="    Operator: "_Y
- .S (SRCT,SRLINE)=0 F  S SRLINE=$O(^SRF(SRTN,44,LAS,1,SRLINE)) Q:'SRLINE  S SRCT=SRCT+1
- .Q:'SRCT  D LINE(1) S SRLINE=0,SRL=4,SRLINE=$O(^SRF(SRTN,44,LAS,1,SRLINE)),X=^SRF(SRTN,44,LAS,1,SRLINE,0)
- .I SRCT=1,$L(X)<67 S @SRG@(SRI)="    Comments: "_X Q
- .S @SRG@(SRI)="    Comments:" D COMM(X,SRL)
- .F  S SRLINE=$O(^SRF(SRTN,44,LAS,1,SRLINE)) Q:'SRLINE  S X=^SRF(SRTN,44,LAS,1,SRLINE,0) D COMM(X,SRL)
  Q
 SAVE ; cell saver(s)
  N C,DISP,DNM,ID,INF,LOT,OP,SAL,SAV,SRCT,QTY,X,Y

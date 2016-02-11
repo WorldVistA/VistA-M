@@ -1,5 +1,5 @@
-VAFHLZIR ;ALB/SEK,TDM - Create generic HL7 ZIR segment ; 6/3/10 9:43am
- ;;5.3;Registration;**33,94,151,466,653,754**;Aug 13, 1993;Build 46
+VAFHLZIR ;ALB/SEK,TDM,MNH - Create generic HL7 ZIR segment ;6/3/10 9:43am
+ ;;5.3;Registration;**33,94,151,466,653,754,890**;Aug 13, 1993;Build 40
  ;
  ;
 EN(VAFIEN,VAFSTR,VAFNUM,VAFENC) ; This generic extrinsic function was designed to
@@ -8,7 +8,7 @@ EN(VAFIEN,VAFSTR,VAFNUM,VAFENC) ; This generic extrinsic function was designed t
  ;          data for a veteran and any applicable relations.
  ;
  ;  Input - VAFIEN as internal entry number of the INCOME RELATION file.
- ;          VAFSTR as the string of fields requested seperated by commas.
+ ;          VAFSTR as the string of fields requested separated by commas.
  ;          VAFNUM as the number desired for the SET ID (default = 1)
  ;          VAFENC as Outpatient Encounter IEN (from file #409.68)
  ;
@@ -41,20 +41,21 @@ EN(VAFIEN,VAFSTR,VAFNUM,VAFENC) ; This generic extrinsic function was designed t
  I VAFSTR[",8," S $P(VAFY,HLFS,8)=$$YN^VAFHLFNC($P(VAFNODE,"^",11)) ; Child had income
  I VAFSTR[",9," S $P(VAFY,HLFS,9)=$$YN^VAFHLFNC($P(VAFNODE,"^",12)) ; Income available to you
  I VAFSTR[",10," S X=$P(VAFNODE,"^",13),$P(VAFY,HLFS,10)=$S(X]"":X,1:HLQ) ; Number of dependent children
+ I VAFSTR[",15," S X=$P(VAFNODE,"^",20),$P(VAFY,HLFS,15)=$S(X]"":X,1:HLQ) ;Contribute spouse  DG*5.3*890
  ;
  ; ALB/ESD - Data elements 11,12,13 added as part of Ambulatory Care
  ;           Reporting Project requirements.
  ;
  I VAFSTR[",11,"!(VAFSTR[",12,")!(VAFSTR[",13,") D
  . ;
- . ;- If no encounter ptr, encounter node or DFN elements 11 - 13 = HLQ
+ . ;- If no encounter pointer, encounter node or DFN elements 11 - 13 = HLQ
  . I ('VAFENC) S VAFERR=1 Q
  . S VAFENODE=$$SCE^DGSDU(VAFENC) I VAFENODE']"" S VAFERR=1 Q
  . S VAFDFN=$P(VAFENODE,"^",2) S:VAFDFN="" VAFERR=1 Q
  I VAFSTR[",11," S $P(VAFY,HLFS,11)=$S('$G(VAFERR):+$$DEP^VAFMON(VAFDFN,$P(VAFENODE,"^")),1:HLQ) ;Total Dependents
  I VAFSTR[",12," S $P(VAFY,HLFS,12)=$S('$G(VAFERR):+$$INCOME^VAFMON(VAFDFN,$P(VAFENODE,"^")),1:HLQ) ;Patient Income
  ;
- ;- If outpat encounter node exists, get appointment type &
+ ;- If outpatient encounter node exists, get appointment type &
  ;  eligibility of encounter and make call to get means test indicator
  I VAFSTR[",13," S $P(VAFY,HLFS,13)=$S('$G(VAFERR):$$MTI^SCDXUTL0(VAFDFN,$P(VAFENODE,"^"),$P(VAFENODE,"^",13),$P(VAFENODE,"^",10),VAFENC),1:HLQ) ;Means Test Indicator
  ;

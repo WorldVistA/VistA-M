@@ -1,0 +1,30 @@
+IBDEI3JW ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.6,9,13,3,0)
+ ;;=3;IBD(358.98,^^1^^^^^9
+ ;;^UTILITY(U,$J,358.6,9,13,4,0)
+ ;;=3;IBE(358.99,^^0^^^^^
+ ;;^UTILITY(U,$J,358.6,9,13,5,0)
+ ;;=4;IBD(358.98,^^1^^^^^10
+ ;;^UTILITY(U,$J,358.6,9,13,6,0)
+ ;;=5;IBD(358.98,^^1^^^^^11
+ ;;^UTILITY(U,$J,358.6,9,13,7,0)
+ ;;=6;IBD(358.98,^^1^^^^^12
+ ;;^UTILITY(U,$J,358.6,9,13,8,0)
+ ;;=7;IBD(358.98,^^1^^^^^5
+ ;;^UTILITY(U,$J,358.6,9,13,9,0)
+ ;;=8;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,9,13,10,0)
+ ;;=9;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,9,14)
+ ;;=S Y=$$DSPICD10^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,9,16)
+ ;;=^^^^^^^^
+ ;;^UTILITY(U,$J,358.6,9,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,9,18)
+ ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
+ ;;^UTILITY(U,$J,358.6,9,19)
+ ;;=D DX10^IBDFN14(X)

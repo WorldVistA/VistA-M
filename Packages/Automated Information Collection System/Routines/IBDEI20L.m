@@ -1,122 +1,132 @@
-IBDEI20L ; ; 06-AUG-2015
+IBDEI20L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35223,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,35223,1,4,0)
- ;;=4^S52.234S
- ;;^UTILITY(U,$J,358.3,35223,2)
- ;;=^5029474
- ;;^UTILITY(U,$J,358.3,35224,0)
- ;;=S52.265S^^183^2026^113
- ;;^UTILITY(U,$J,358.3,35224,1,0)
+ ;;^UTILITY(U,$J,358.3,33754,0)
+ ;;=J0886^^153^1699^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33754,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33754,1,2,0)
+ ;;=2^Epoetin Alfa,ESRD Use,1000 Units
+ ;;^UTILITY(U,$J,358.3,33754,1,3,0)
+ ;;=3^J0886
+ ;;^UTILITY(U,$J,358.3,33755,0)
+ ;;=J1642^^153^1699^11^^^^1
+ ;;^UTILITY(U,$J,358.3,33755,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33755,1,2,0)
+ ;;=2^Heparin Sodium per 10 Units
+ ;;^UTILITY(U,$J,358.3,33755,1,3,0)
+ ;;=3^J1642
+ ;;^UTILITY(U,$J,358.3,33756,0)
+ ;;=92950^^153^1700^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33756,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33756,1,2,0)
+ ;;=2^Heart/Lung Resuscitation CPR
+ ;;^UTILITY(U,$J,358.3,33756,1,3,0)
+ ;;=3^92950
+ ;;^UTILITY(U,$J,358.3,33757,0)
+ ;;=93224^^153^1700^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33757,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33757,1,2,0)
+ ;;=2^ECG Monitor < 48hrs,Intrp & Rpt
+ ;;^UTILITY(U,$J,358.3,33757,1,3,0)
+ ;;=3^93224
+ ;;^UTILITY(U,$J,358.3,33758,0)
+ ;;=93225^^153^1700^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33758,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33758,1,2,0)
+ ;;=2^ECG Monitor < 48hrs,Recording Only
+ ;;^UTILITY(U,$J,358.3,33758,1,3,0)
+ ;;=3^93225
+ ;;^UTILITY(U,$J,358.3,33759,0)
+ ;;=93226^^153^1700^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33759,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33759,1,2,0)
+ ;;=2^ECG Monitor < 48hrs,Analysis & Rpt
+ ;;^UTILITY(U,$J,358.3,33759,1,3,0)
+ ;;=3^93226
+ ;;^UTILITY(U,$J,358.3,33760,0)
+ ;;=93227^^153^1700^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33760,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33760,1,2,0)
+ ;;=2^ECG Monitor < 48hrs,Intrp
+ ;;^UTILITY(U,$J,358.3,33760,1,3,0)
+ ;;=3^93227
+ ;;^UTILITY(U,$J,358.3,33761,0)
+ ;;=36245^^153^1701^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33761,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33761,1,2,0)
+ ;;=2^Ins Cath Abd/L-Ext Art,1st
+ ;;^UTILITY(U,$J,358.3,33761,1,3,0)
+ ;;=3^36245
+ ;;^UTILITY(U,$J,358.3,33762,0)
+ ;;=96523^^153^1701^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33762,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33762,1,2,0)
+ ;;=2^Irrig Drug Delivery Device
+ ;;^UTILITY(U,$J,358.3,33762,1,3,0)
+ ;;=3^96523
+ ;;^UTILITY(U,$J,358.3,33763,0)
+ ;;=Z49.31^^154^1702^1
+ ;;^UTILITY(U,$J,358.3,33763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35224,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,35224,1,4,0)
- ;;=4^S52.265S
- ;;^UTILITY(U,$J,358.3,35224,2)
- ;;=^5029778
- ;;^UTILITY(U,$J,358.3,35225,0)
- ;;=S52.264S^^183^2026^114
- ;;^UTILITY(U,$J,358.3,35225,1,0)
+ ;;^UTILITY(U,$J,358.3,33763,1,3,0)
+ ;;=3^Adequacy Testing for Hemodialysis
+ ;;^UTILITY(U,$J,358.3,33763,1,4,0)
+ ;;=4^Z49.31
+ ;;^UTILITY(U,$J,358.3,33763,2)
+ ;;=^5063058
+ ;;^UTILITY(U,$J,358.3,33764,0)
+ ;;=N18.6^^154^1702^3
+ ;;^UTILITY(U,$J,358.3,33764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35225,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,35225,1,4,0)
- ;;=4^S52.264S
- ;;^UTILITY(U,$J,358.3,35225,2)
- ;;=^5029762
- ;;^UTILITY(U,$J,358.3,35226,0)
- ;;=S52.245S^^183^2026^117
- ;;^UTILITY(U,$J,358.3,35226,1,0)
+ ;;^UTILITY(U,$J,358.3,33764,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,33764,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,33764,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,33765,0)
+ ;;=Z99.2^^154^1702^2
+ ;;^UTILITY(U,$J,358.3,33765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35226,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,35226,1,4,0)
- ;;=4^S52.245S
- ;;^UTILITY(U,$J,358.3,35226,2)
- ;;=^5029586
- ;;^UTILITY(U,$J,358.3,35227,0)
- ;;=S52.244S^^183^2026^118
- ;;^UTILITY(U,$J,358.3,35227,1,0)
+ ;;^UTILITY(U,$J,358.3,33765,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,33765,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,33765,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,33766,0)
+ ;;=Z91.15^^154^1702^4
+ ;;^UTILITY(U,$J,358.3,33766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35227,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,35227,1,4,0)
- ;;=4^S52.244S
- ;;^UTILITY(U,$J,358.3,35227,2)
- ;;=^5029570
- ;;^UTILITY(U,$J,358.3,35228,0)
- ;;=S52.225S^^183^2026^120
- ;;^UTILITY(U,$J,358.3,35228,1,0)
+ ;;^UTILITY(U,$J,358.3,33766,1,3,0)
+ ;;=3^Patient's Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,33766,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,33766,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,33767,0)
+ ;;=Z49.32^^154^1703^1
+ ;;^UTILITY(U,$J,358.3,33767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35228,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,35228,1,4,0)
- ;;=4^S52.225S
- ;;^UTILITY(U,$J,358.3,35228,2)
- ;;=^5029394
- ;;^UTILITY(U,$J,358.3,35229,0)
- ;;=S52.224S^^183^2026^122
- ;;^UTILITY(U,$J,358.3,35229,1,0)
+ ;;^UTILITY(U,$J,358.3,33767,1,3,0)
+ ;;=3^Adequacy Testing for Peritoneal Dialysis
+ ;;^UTILITY(U,$J,358.3,33767,1,4,0)
+ ;;=4^Z49.32
+ ;;^UTILITY(U,$J,358.3,33767,2)
+ ;;=^5063059
+ ;;^UTILITY(U,$J,358.3,33768,0)
+ ;;=N18.6^^154^1703^2
+ ;;^UTILITY(U,$J,358.3,33768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35229,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,35229,1,4,0)
- ;;=4^S52.224S
- ;;^UTILITY(U,$J,358.3,35229,2)
- ;;=^5029378
- ;;^UTILITY(U,$J,358.3,35230,0)
- ;;=M84.432S^^183^2026^130
- ;;^UTILITY(U,$J,358.3,35230,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35230,1,3,0)
- ;;=3^Pathological fracture, left ulna, sequela
- ;;^UTILITY(U,$J,358.3,35230,1,4,0)
- ;;=4^M84.432S
- ;;^UTILITY(U,$J,358.3,35230,2)
- ;;=^5013847
- ;;^UTILITY(U,$J,358.3,35231,0)
- ;;=M84.431S^^183^2026^132
- ;;^UTILITY(U,$J,358.3,35231,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35231,1,3,0)
- ;;=3^Pathological fracture, right ulna, sequela
- ;;^UTILITY(U,$J,358.3,35231,1,4,0)
- ;;=4^M84.431S
- ;;^UTILITY(U,$J,358.3,35231,2)
- ;;=^5013841
- ;;^UTILITY(U,$J,358.3,35232,0)
- ;;=S59.012S^^183^2026^133
- ;;^UTILITY(U,$J,358.3,35232,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35232,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end of ulna, left arm, sqla
- ;;^UTILITY(U,$J,358.3,35232,1,4,0)
- ;;=4^S59.012S
- ;;^UTILITY(U,$J,358.3,35232,2)
- ;;=^5031984
- ;;^UTILITY(U,$J,358.3,35233,0)
- ;;=S59.011S^^183^2026^136
- ;;^UTILITY(U,$J,358.3,35233,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35233,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end ulna, right arm, sqla
- ;;^UTILITY(U,$J,358.3,35233,1,4,0)
- ;;=4^S59.011S
- ;;^UTILITY(U,$J,358.3,35233,2)
- ;;=^5031978
- ;;^UTILITY(U,$J,358.3,35234,0)
- ;;=S59.022S^^183^2026^141
- ;;^UTILITY(U,$J,358.3,35234,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35234,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end ulna, left arm, sqla
- ;;^UTILITY(U,$J,358.3,35234,1,4,0)
- ;;=4^S59.022S
- ;;^UTILITY(U,$J,358.3,35234,2)
- ;;=^5032002
- ;;^UTILITY(U,$J,358.3,35235,0)
- ;;=S59.021S^^183^2026^142
+ ;;^UTILITY(U,$J,358.3,33768,1,3,0)
+ ;;=3^ESRD

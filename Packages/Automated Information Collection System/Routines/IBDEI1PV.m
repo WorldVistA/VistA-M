@@ -1,120 +1,132 @@
-IBDEI1PV ; ; 06-AUG-2015
+IBDEI1PV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30397,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, unsp
- ;;^UTILITY(U,$J,358.3,30397,1,4,0)
- ;;=4^O36.62X0
- ;;^UTILITY(U,$J,358.3,30397,2)
- ;;=^5017040
- ;;^UTILITY(U,$J,358.3,30398,0)
- ;;=O36.62X1^^178^1916^99
- ;;^UTILITY(U,$J,358.3,30398,1,0)
+ ;;^UTILITY(U,$J,358.3,28724,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,28724,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,28724,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,28725,0)
+ ;;=Z30.09^^132^1336^10
+ ;;^UTILITY(U,$J,358.3,28725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30398,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30398,1,4,0)
- ;;=4^O36.62X1
- ;;^UTILITY(U,$J,358.3,30398,2)
- ;;=^5017041
- ;;^UTILITY(U,$J,358.3,30399,0)
- ;;=O36.62X2^^178^1916^100
- ;;^UTILITY(U,$J,358.3,30399,1,0)
+ ;;^UTILITY(U,$J,358.3,28725,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,28725,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,28725,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,28726,0)
+ ;;=Z30.9^^132^1336^9
+ ;;^UTILITY(U,$J,358.3,28726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30399,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30399,1,4,0)
- ;;=4^O36.62X2
- ;;^UTILITY(U,$J,358.3,30399,2)
- ;;=^5017042
- ;;^UTILITY(U,$J,358.3,30400,0)
- ;;=O36.62X3^^178^1916^101
- ;;^UTILITY(U,$J,358.3,30400,1,0)
+ ;;^UTILITY(U,$J,358.3,28726,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,28726,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,28726,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,28727,0)
+ ;;=N64.3^^132^1336^23
+ ;;^UTILITY(U,$J,358.3,28727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30400,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30400,1,4,0)
- ;;=4^O36.62X3
- ;;^UTILITY(U,$J,358.3,30400,2)
- ;;=^5017043
- ;;^UTILITY(U,$J,358.3,30401,0)
- ;;=O36.62X4^^178^1916^102
- ;;^UTILITY(U,$J,358.3,30401,1,0)
+ ;;^UTILITY(U,$J,358.3,28727,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,28727,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,28727,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,28728,0)
+ ;;=R92.2^^132^1336^27
+ ;;^UTILITY(U,$J,358.3,28728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30401,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30401,1,4,0)
- ;;=4^O36.62X4
- ;;^UTILITY(U,$J,358.3,30401,2)
- ;;=^5017044
- ;;^UTILITY(U,$J,358.3,30402,0)
- ;;=O36.62X5^^178^1916^103
- ;;^UTILITY(U,$J,358.3,30402,1,0)
+ ;;^UTILITY(U,$J,358.3,28728,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,28728,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,28728,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,28729,0)
+ ;;=Z30.432^^132^1336^53
+ ;;^UTILITY(U,$J,358.3,28729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30402,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30402,1,4,0)
- ;;=4^O36.62X5
- ;;^UTILITY(U,$J,358.3,30402,2)
- ;;=^5017045
- ;;^UTILITY(U,$J,358.3,30403,0)
- ;;=O36.63X0^^178^1916^104
- ;;^UTILITY(U,$J,358.3,30403,1,0)
+ ;;^UTILITY(U,$J,358.3,28729,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,28729,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,28729,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,28730,0)
+ ;;=S31.000A^^132^1337^5
+ ;;^UTILITY(U,$J,358.3,28730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30403,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third trimester, unsp
- ;;^UTILITY(U,$J,358.3,30403,1,4,0)
- ;;=4^O36.63X0
- ;;^UTILITY(U,$J,358.3,30403,2)
- ;;=^5017047
- ;;^UTILITY(U,$J,358.3,30404,0)
- ;;=O36.63X1^^178^1916^105
- ;;^UTILITY(U,$J,358.3,30404,1,0)
+ ;;^UTILITY(U,$J,358.3,28730,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,28730,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,28730,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,28731,0)
+ ;;=S31.010A^^132^1337^2
+ ;;^UTILITY(U,$J,358.3,28731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30404,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30404,1,4,0)
- ;;=4^O36.63X1
- ;;^UTILITY(U,$J,358.3,30404,2)
- ;;=^5017048
- ;;^UTILITY(U,$J,358.3,30405,0)
- ;;=O36.63X2^^178^1916^106
- ;;^UTILITY(U,$J,358.3,30405,1,0)
+ ;;^UTILITY(U,$J,358.3,28731,1,3,0)
+ ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,28731,1,4,0)
+ ;;=4^S31.010A
+ ;;^UTILITY(U,$J,358.3,28731,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,28732,0)
+ ;;=T07.^^132^1337^4
+ ;;^UTILITY(U,$J,358.3,28732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30405,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30405,1,4,0)
- ;;=4^O36.63X2
- ;;^UTILITY(U,$J,358.3,30405,2)
- ;;=^5017049
- ;;^UTILITY(U,$J,358.3,30406,0)
- ;;=O36.63X3^^178^1916^107
- ;;^UTILITY(U,$J,358.3,30406,1,0)
+ ;;^UTILITY(U,$J,358.3,28732,1,3,0)
+ ;;=3^Multiple Injuries,Unspec
+ ;;^UTILITY(U,$J,358.3,28732,1,4,0)
+ ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,28732,2)
+ ;;=^5046377
+ ;;^UTILITY(U,$J,358.3,28733,0)
+ ;;=L08.89^^132^1337^3
+ ;;^UTILITY(U,$J,358.3,28733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30406,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30406,1,4,0)
- ;;=4^O36.63X3
- ;;^UTILITY(U,$J,358.3,30406,2)
- ;;=^5017050
- ;;^UTILITY(U,$J,358.3,30407,0)
- ;;=O36.63X4^^178^1916^108
- ;;^UTILITY(U,$J,358.3,30407,1,0)
+ ;;^UTILITY(U,$J,358.3,28733,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,28733,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,28733,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,28734,0)
+ ;;=T14.90^^132^1337^1
+ ;;^UTILITY(U,$J,358.3,28734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30407,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30407,1,4,0)
- ;;=4^O36.63X4
- ;;^UTILITY(U,$J,358.3,30407,2)
- ;;=^5017051
- ;;^UTILITY(U,$J,358.3,30408,0)
- ;;=O36.63X5^^178^1916^109
- ;;^UTILITY(U,$J,358.3,30408,1,0)
+ ;;^UTILITY(U,$J,358.3,28734,1,3,0)
+ ;;=3^Injury,Unspec
+ ;;^UTILITY(U,$J,358.3,28734,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,28734,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,28735,0)
+ ;;=S91.002A^^132^1337^6
+ ;;^UTILITY(U,$J,358.3,28735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30408,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30408,1,4,0)
- ;;=4^O36.63X5
- ;;^UTILITY(U,$J,358.3,30408,2)
- ;;=^5017052
+ ;;^UTILITY(U,$J,358.3,28735,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,28735,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,28735,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,28736,0)
+ ;;=S91.302A^^132^1337^7
+ ;;^UTILITY(U,$J,358.3,28736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28736,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,28736,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,28736,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,28737,0)
+ ;;=S51.802A^^132^1337^8

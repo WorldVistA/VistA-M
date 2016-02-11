@@ -1,5 +1,5 @@
-IVMPTRN9 ;ALB/KCL/CN/BRM,TDM,EG,LBD - HL7 FULL DATA TRANSMISSION (Z07) BUILDER (CONTINUED) ; 2/7/12 2:56pm
- ;;2.0;INCOME VERIFICATION MATCH;**9,11,19,12,21,17,46,50,53,34,49,58,79,99,116,105,115,152**; 21-OCT-94;Build 4
+IVMPTRN9 ;ALB/KCL/CN/BRM,TDM,EG,LBD,TGH - HL7 FULL DATA TRANSMISSION (Z07) BUILDER (CONTINUED) ; 2/7/12 2:56pm
+ ;;2.0;INCOME VERIFICATION MATCH;**9,11,19,12,21,17,46,50,53,34,49,58,79,99,116,105,115,152,160**; 21-OCT-94;Build 19
  ;
  ;
 GOTO ; place to break up the routine
@@ -43,7 +43,7 @@ GOTO ; place to break up the routine
  ;
  ; create (ZMT) Means Test segment 
  ;
- S SEQS=$S(TESTTYPE=1:"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22,23,24,25,26,28,29,30",1:"1,17")
+ S SEQS=$S(TESTTYPE=1:"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22,23,24,25,26,28,29,30,31",1:"1,17")  ;IVM*2.0*160
  S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^IVMCZMT(DFN,SEQS,IVMMTDT,1,1,.DELETE,1)
  ;
  ; create (ZMT) Rx-Copay Test segment
@@ -70,7 +70,7 @@ GOTO ; place to break up the routine
  S SEQS="1,17"
  ;can also send a co-pay test if there is no means test (see module GETTYPE)
  I TESTTYPE=2 D
- . S SEQS="1,2,3,4,5,6,7,9,10,12,15,16,17,18,21,22,25,26,30"
+ . S SEQS="1,2,3,4,5,6,7,9,10,12,15,16,17,18,21,22,25,26,30,31"  ;IVM*2.0*160
  . Q
  S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^IVMCZMT(DFN,SEQS,IVMMTDT,2,2,.DELETE,1)
  ;
@@ -79,7 +79,7 @@ GOTO ; place to break up the routine
  . ; set deletion indicators if LTC test deletion should be transmitted
  . I $P(IVMPNODE,"^",11) S DELETE("LTC")=1 S:('DELETE("DATE OF TEST")) DELETE("DATE OF TEST")=$P(IVMPNODE,"^",11)
  ;
- S SEQS="1,2,3,4,5,7,9,10,12,16,17,18,22,25,30"
+ S SEQS="1,2,3,4,5,7,9,10,12,16,17,18,22,25,30,31"  ;IVM*2.0*160
  S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^IVMCZMT(DFN,SEQS,IVMMTDT,4,4,.DELETE,1)
  ;
  ;if the deletion flags were set in the IVM Patient file, unset them

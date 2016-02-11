@@ -1,118 +1,132 @@
-IBDEI0TR ; ; 06-AUG-2015
+IBDEI0TR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14411,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14411,1,2,0)
- ;;=2^Perc Fixation Talus Fx
- ;;^UTILITY(U,$J,358.3,14411,1,3,0)
- ;;=3^28436
- ;;^UTILITY(U,$J,358.3,14412,0)
- ;;=28445^^75^888^54^^^^1
- ;;^UTILITY(U,$J,358.3,14412,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14412,1,2,0)
- ;;=2^Open/Closed TX of Talus FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,14412,1,3,0)
- ;;=3^28445
- ;;^UTILITY(U,$J,358.3,14413,0)
- ;;=28450^^75^888^68^^^^1
- ;;^UTILITY(U,$J,358.3,14413,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14413,1,2,0)
- ;;=2^TX of tarsal bone fracture; without manipulation, each 
- ;;^UTILITY(U,$J,358.3,14413,1,3,0)
- ;;=3^28450
- ;;^UTILITY(U,$J,358.3,14414,0)
- ;;=28455^^75^888^67^^^^1
- ;;^UTILITY(U,$J,358.3,14414,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14414,1,2,0)
- ;;=2^TX of tarsal bone fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,14414,1,3,0)
- ;;=3^28455
- ;;^UTILITY(U,$J,358.3,14415,0)
- ;;=28456^^75^888^64^^^^1
- ;;^UTILITY(U,$J,358.3,14415,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14415,1,2,0)
- ;;=2^Perc Fixation Tarsal Fx
- ;;^UTILITY(U,$J,358.3,14415,1,3,0)
- ;;=3^28456
- ;;^UTILITY(U,$J,358.3,14416,0)
- ;;=28465^^75^888^56^^^^1
- ;;^UTILITY(U,$J,358.3,14416,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14416,1,2,0)
- ;;=2^Open/Closed TX of tarsal FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,14416,1,3,0)
- ;;=3^28465
- ;;^UTILITY(U,$J,358.3,14417,0)
- ;;=28470^^75^888^14^^^^1
- ;;^UTILITY(U,$J,358.3,14417,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14417,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; without manipulation, eachnt of me
- ;;^UTILITY(U,$J,358.3,14417,1,3,0)
- ;;=3^28470
- ;;^UTILITY(U,$J,358.3,14418,0)
- ;;=28475^^75^888^13^^^^1
- ;;^UTILITY(U,$J,358.3,14418,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14418,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,14418,1,3,0)
- ;;=3^28475
- ;;^UTILITY(U,$J,358.3,14419,0)
- ;;=28476^^75^888^59^^^^1
- ;;^UTILITY(U,$J,358.3,14419,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14419,1,2,0)
- ;;=2^Perc Fixation Metatarsal Fx
- ;;^UTILITY(U,$J,358.3,14419,1,3,0)
- ;;=3^28476
- ;;^UTILITY(U,$J,358.3,14420,0)
- ;;=28485^^75^888^53^^^^1
- ;;^UTILITY(U,$J,358.3,14420,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14420,1,2,0)
- ;;=2^Open/Closed TX of Metatarsal FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,14420,1,3,0)
- ;;=3^28485
- ;;^UTILITY(U,$J,358.3,14421,0)
- ;;=28490^^75^888^7^^^^1
- ;;^UTILITY(U,$J,358.3,14421,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14421,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; without manipulation
- ;;^UTILITY(U,$J,358.3,14421,1,3,0)
- ;;=3^28490
- ;;^UTILITY(U,$J,358.3,14422,0)
- ;;=28495^^75^888^8^^^^1
- ;;^UTILITY(U,$J,358.3,14422,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14422,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; with manipulation
- ;;^UTILITY(U,$J,358.3,14422,1,3,0)
- ;;=3^28495
- ;;^UTILITY(U,$J,358.3,14423,0)
- ;;=28496^^75^888^57^^^^1
- ;;^UTILITY(U,$J,358.3,14423,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14423,1,2,0)
- ;;=2^Perc Fixation Great Toe Fx
- ;;^UTILITY(U,$J,358.3,14423,1,3,0)
- ;;=3^28496
- ;;^UTILITY(U,$J,358.3,14424,0)
- ;;=28505^^75^888^37^^^^1
- ;;^UTILITY(U,$J,358.3,14424,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14424,1,2,0)
- ;;=2^Open TX of fracture great toe, phalanx or phalanges, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,14424,1,3,0)
- ;;=3^28505
- ;;^UTILITY(U,$J,358.3,14425,0)
- ;;=28510^^75^888^9^^^^1
- ;;^UTILITY(U,$J,358.3,14425,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,13687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13687,1,3,0)
+ ;;=3^Lattice Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,13687,1,4,0)
+ ;;=4^H35.413
+ ;;^UTILITY(U,$J,358.3,13687,2)
+ ;;=^5005673
+ ;;^UTILITY(U,$J,358.3,13688,0)
+ ;;=H35.441^^80^763^1
+ ;;^UTILITY(U,$J,358.3,13688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13688,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Right Eye
+ ;;^UTILITY(U,$J,358.3,13688,1,4,0)
+ ;;=4^H35.441
+ ;;^UTILITY(U,$J,358.3,13688,2)
+ ;;=^5005683
+ ;;^UTILITY(U,$J,358.3,13689,0)
+ ;;=H35.442^^80^763^2
+ ;;^UTILITY(U,$J,358.3,13689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13689,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Left Eye
+ ;;^UTILITY(U,$J,358.3,13689,1,4,0)
+ ;;=4^H35.442
+ ;;^UTILITY(U,$J,358.3,13689,2)
+ ;;=^5005684
+ ;;^UTILITY(U,$J,358.3,13690,0)
+ ;;=H35.443^^80^763^3
+ ;;^UTILITY(U,$J,358.3,13690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13690,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,13690,1,4,0)
+ ;;=4^H35.443
+ ;;^UTILITY(U,$J,358.3,13690,2)
+ ;;=^5005685
+ ;;^UTILITY(U,$J,358.3,13691,0)
+ ;;=H35.61^^80^763^85
+ ;;^UTILITY(U,$J,358.3,13691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13691,1,3,0)
+ ;;=3^Retinal Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,13691,1,4,0)
+ ;;=4^H35.61
+ ;;^UTILITY(U,$J,358.3,13691,2)
+ ;;=^5005699
+ ;;^UTILITY(U,$J,358.3,13692,0)
+ ;;=H35.62^^80^763^84
+ ;;^UTILITY(U,$J,358.3,13692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13692,1,3,0)
+ ;;=3^Retinal Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,13692,1,4,0)
+ ;;=4^H35.62
+ ;;^UTILITY(U,$J,358.3,13692,2)
+ ;;=^5005700
+ ;;^UTILITY(U,$J,358.3,13693,0)
+ ;;=H35.63^^80^763^83
+ ;;^UTILITY(U,$J,358.3,13693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13693,1,3,0)
+ ;;=3^Retinal Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,13693,1,4,0)
+ ;;=4^H35.63
+ ;;^UTILITY(U,$J,358.3,13693,2)
+ ;;=^5005701
+ ;;^UTILITY(U,$J,358.3,13694,0)
+ ;;=H35.82^^80^763^86
+ ;;^UTILITY(U,$J,358.3,13694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13694,1,3,0)
+ ;;=3^Retinal Ischemia
+ ;;^UTILITY(U,$J,358.3,13694,1,4,0)
+ ;;=4^H35.82
+ ;;^UTILITY(U,$J,358.3,13694,2)
+ ;;=^5005716
+ ;;^UTILITY(U,$J,358.3,13695,0)
+ ;;=H30.93^^80^763^15
+ ;;^UTILITY(U,$J,358.3,13695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13695,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral
+ ;;^UTILITY(U,$J,358.3,13695,1,4,0)
+ ;;=4^H30.93
+ ;;^UTILITY(U,$J,358.3,13695,2)
+ ;;=^5005435
+ ;;^UTILITY(U,$J,358.3,13696,0)
+ ;;=H30.91^^80^763^19
+ ;;^UTILITY(U,$J,358.3,13696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13696,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Right Eye
+ ;;^UTILITY(U,$J,358.3,13696,1,4,0)
+ ;;=4^H30.91
+ ;;^UTILITY(U,$J,358.3,13696,2)
+ ;;=^5133481
+ ;;^UTILITY(U,$J,358.3,13697,0)
+ ;;=H30.92^^80^763^17
+ ;;^UTILITY(U,$J,358.3,13697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13697,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Left Eye
+ ;;^UTILITY(U,$J,358.3,13697,1,4,0)
+ ;;=4^H30.92
+ ;;^UTILITY(U,$J,358.3,13697,2)
+ ;;=^5133482
+ ;;^UTILITY(U,$J,358.3,13698,0)
+ ;;=H30.891^^80^763^20
+ ;;^UTILITY(U,$J,358.3,13698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13698,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,13698,1,4,0)
+ ;;=4^H30.891
+ ;;^UTILITY(U,$J,358.3,13698,2)
+ ;;=^5005430
+ ;;^UTILITY(U,$J,358.3,13699,0)
+ ;;=H30.892^^80^763^18
+ ;;^UTILITY(U,$J,358.3,13699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13699,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,13699,1,4,0)
+ ;;=4^H30.892
+ ;;^UTILITY(U,$J,358.3,13699,2)
+ ;;=^5005431

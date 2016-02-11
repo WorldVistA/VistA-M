@@ -1,130 +1,140 @@
-IBDEI20V ; ; 06-AUG-2015
+IBDEI20V ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35350,0)
- ;;=I69.191^^186^2033^21
- ;;^UTILITY(U,$J,358.3,35350,1,0)
+ ;;^UTILITY(U,$J,358.3,33885,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,33886,0)
+ ;;=R07.89^^154^1709^2
+ ;;^UTILITY(U,$J,358.3,33886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35350,1,3,0)
- ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,35350,1,4,0)
- ;;=4^I69.191
- ;;^UTILITY(U,$J,358.3,35350,2)
- ;;=^5007453
- ;;^UTILITY(U,$J,358.3,35351,0)
- ;;=I69.091^^186^2033^22
- ;;^UTILITY(U,$J,358.3,35351,1,0)
+ ;;^UTILITY(U,$J,358.3,33886,1,3,0)
+ ;;=3^Chest Pain,Other
+ ;;^UTILITY(U,$J,358.3,33886,1,4,0)
+ ;;=4^R07.89
+ ;;^UTILITY(U,$J,358.3,33886,2)
+ ;;=^5019200
+ ;;^UTILITY(U,$J,358.3,33887,0)
+ ;;=Z99.2^^154^1709^5
+ ;;^UTILITY(U,$J,358.3,33887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35351,1,3,0)
- ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,35351,1,4,0)
- ;;=4^I69.091
- ;;^UTILITY(U,$J,358.3,35351,2)
- ;;=^5007421
- ;;^UTILITY(U,$J,358.3,35352,0)
- ;;=I69.891^^186^2033^24
- ;;^UTILITY(U,$J,358.3,35352,1,0)
+ ;;^UTILITY(U,$J,358.3,33887,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,33887,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,33887,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,33888,0)
+ ;;=Z91.15^^154^1709^13
+ ;;^UTILITY(U,$J,358.3,33888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35352,1,3,0)
- ;;=3^Dysphagia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,35352,1,4,0)
- ;;=4^I69.891
- ;;^UTILITY(U,$J,358.3,35352,2)
- ;;=^5007547
- ;;^UTILITY(U,$J,358.3,35353,0)
- ;;=I69.291^^186^2033^23
- ;;^UTILITY(U,$J,358.3,35353,1,0)
+ ;;^UTILITY(U,$J,358.3,33888,1,3,0)
+ ;;=3^Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,33888,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,33888,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,33889,0)
+ ;;=N18.6^^154^1710^4
+ ;;^UTILITY(U,$J,358.3,33889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35353,1,3,0)
- ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,35353,1,4,0)
- ;;=4^I69.291
- ;;^UTILITY(U,$J,358.3,35353,2)
- ;;=^5007485
- ;;^UTILITY(U,$J,358.3,35354,0)
- ;;=I69.991^^186^2033^25
- ;;^UTILITY(U,$J,358.3,35354,1,0)
+ ;;^UTILITY(U,$J,358.3,33889,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,33889,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,33889,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,33890,0)
+ ;;=N12.^^154^1710^17
+ ;;^UTILITY(U,$J,358.3,33890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35354,1,3,0)
- ;;=3^Dysphagia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,35354,1,4,0)
- ;;=4^I69.991
- ;;^UTILITY(U,$J,358.3,35354,2)
- ;;=^5007569
- ;;^UTILITY(U,$J,358.3,35355,0)
- ;;=J38.01^^186^2034^3
- ;;^UTILITY(U,$J,358.3,35355,1,0)
+ ;;^UTILITY(U,$J,358.3,33890,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis,Not Acute or Chronic
+ ;;^UTILITY(U,$J,358.3,33890,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,33890,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,33891,0)
+ ;;=N20.0^^154^1710^2
+ ;;^UTILITY(U,$J,358.3,33891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35355,1,3,0)
- ;;=3^Paralysis of vocal cords and larynx, unilateral
- ;;^UTILITY(U,$J,358.3,35355,1,4,0)
- ;;=4^J38.01
- ;;^UTILITY(U,$J,358.3,35355,2)
- ;;=^5008220
- ;;^UTILITY(U,$J,358.3,35356,0)
- ;;=R13.0^^186^2034^1
- ;;^UTILITY(U,$J,358.3,35356,1,0)
+ ;;^UTILITY(U,$J,358.3,33891,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,33891,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,33891,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,33892,0)
+ ;;=R30.0^^154^1710^3
+ ;;^UTILITY(U,$J,358.3,33892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35356,1,3,0)
- ;;=3^Aphagia
- ;;^UTILITY(U,$J,358.3,35356,1,4,0)
- ;;=4^R13.0
- ;;^UTILITY(U,$J,358.3,35356,2)
- ;;=^5019239
- ;;^UTILITY(U,$J,358.3,35357,0)
- ;;=J38.02^^186^2034^2
- ;;^UTILITY(U,$J,358.3,35357,1,0)
+ ;;^UTILITY(U,$J,358.3,33892,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,33892,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,33892,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,33893,0)
+ ;;=R80.3^^154^1710^1
+ ;;^UTILITY(U,$J,358.3,33893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35357,1,3,0)
- ;;=3^Paralysis of vocal cords and larynx, bilateral
- ;;^UTILITY(U,$J,358.3,35357,1,4,0)
- ;;=4^J38.02
- ;;^UTILITY(U,$J,358.3,35357,2)
- ;;=^5008221
- ;;^UTILITY(U,$J,358.3,35358,0)
- ;;=J38.1^^186^2034^4
- ;;^UTILITY(U,$J,358.3,35358,1,0)
+ ;;^UTILITY(U,$J,358.3,33893,1,3,0)
+ ;;=3^Bence Jones Proteinuria
+ ;;^UTILITY(U,$J,358.3,33893,1,4,0)
+ ;;=4^R80.3
+ ;;^UTILITY(U,$J,358.3,33893,2)
+ ;;=^13272
+ ;;^UTILITY(U,$J,358.3,33894,0)
+ ;;=N40.1^^154^1710^5
+ ;;^UTILITY(U,$J,358.3,33894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35358,1,3,0)
- ;;=3^Polyp of vocal cord and larynx
- ;;^UTILITY(U,$J,358.3,35358,1,4,0)
- ;;=4^J38.1
- ;;^UTILITY(U,$J,358.3,35358,2)
- ;;=^5008222
- ;;^UTILITY(U,$J,358.3,35359,0)
- ;;=R13.11^^186^2035^2
- ;;^UTILITY(U,$J,358.3,35359,1,0)
+ ;;^UTILITY(U,$J,358.3,33894,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,33894,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,33894,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,33895,0)
+ ;;=R31.0^^154^1710^6
+ ;;^UTILITY(U,$J,358.3,33895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35359,1,3,0)
- ;;=3^Dysphagia, oral phase
- ;;^UTILITY(U,$J,358.3,35359,1,4,0)
- ;;=4^R13.11
- ;;^UTILITY(U,$J,358.3,35359,2)
- ;;=^335276
- ;;^UTILITY(U,$J,358.3,35360,0)
- ;;=R13.12^^186^2035^3
- ;;^UTILITY(U,$J,358.3,35360,1,0)
+ ;;^UTILITY(U,$J,358.3,33895,1,3,0)
+ ;;=3^Gross Hematuria
+ ;;^UTILITY(U,$J,358.3,33895,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,33895,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,33896,0)
+ ;;=R31.9^^154^1710^7
+ ;;^UTILITY(U,$J,358.3,33896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35360,1,3,0)
- ;;=3^Dysphagia, oropharyngeal phase
- ;;^UTILITY(U,$J,358.3,35360,1,4,0)
- ;;=4^R13.12
- ;;^UTILITY(U,$J,358.3,35360,2)
- ;;=^335277
- ;;^UTILITY(U,$J,358.3,35361,0)
- ;;=R13.13^^186^2035^4
- ;;^UTILITY(U,$J,358.3,35361,1,0)
+ ;;^UTILITY(U,$J,358.3,33896,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,33896,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,33896,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,33897,0)
+ ;;=R80.0^^154^1710^9
+ ;;^UTILITY(U,$J,358.3,33897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35361,1,3,0)
- ;;=3^Dysphagia, pharyngeal phase
- ;;^UTILITY(U,$J,358.3,35361,1,4,0)
- ;;=4^R13.13
- ;;^UTILITY(U,$J,358.3,35361,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,35362,0)
- ;;=R13.14^^186^2035^5
- ;;^UTILITY(U,$J,358.3,35362,1,0)
+ ;;^UTILITY(U,$J,358.3,33897,1,3,0)
+ ;;=3^Isolated Proteinuria
+ ;;^UTILITY(U,$J,358.3,33897,1,4,0)
+ ;;=4^R80.0
+ ;;^UTILITY(U,$J,358.3,33897,2)
+ ;;=^5019595
+ ;;^UTILITY(U,$J,358.3,33898,0)
+ ;;=R39.14^^154^1710^8
+ ;;^UTILITY(U,$J,358.3,33898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35362,1,3,0)
- ;;=3^Dysphagia, pharyngoesophageal phase
+ ;;^UTILITY(U,$J,358.3,33898,1,3,0)
+ ;;=3^Incomplete Bladder Emptying
+ ;;^UTILITY(U,$J,358.3,33898,1,4,0)
+ ;;=4^R39.14
+ ;;^UTILITY(U,$J,358.3,33898,2)
+ ;;=^5019344
+ ;;^UTILITY(U,$J,358.3,33899,0)
+ ;;=R31.2^^154^1710^10
+ ;;^UTILITY(U,$J,358.3,33899,1,0)
+ ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
-IVMCMF1 ;ALB/RMM,CKN - CHECK ANNUAL INCOME DATA ; 11/8/05 3:27pm
- ;;2.0;INCOME VERIFICATION MATCH;**71,82,107,105**;21-OCT-94;Build 2
+IVMCMF1 ;ALB/RMM,CKN,PWC - CHECK ANNUAL INCOME DATA ;11/8/05 3:27pm
+ ;;2.0;INCOME VERIFICATION MATCH;**71,82,107,105,160**;21-OCT-94;Build 19
  ;
  ; This routine is called from IVMCMF.
  ;
@@ -24,7 +24,13 @@ ZIR(STRING,DEPIEN) ; Check validity of ZIR segment
  I X]"",(X'="Y"),(X'="N") S CNT=CNT+1,FND1=1,IVMERR(CNT)="DEPENDENT CHILD SCHOOL INDICATOR contains unacceptable value."
  I '$G(DEPIEN) D
  .I X]"" S CNT=CNT+1,FND1=1,IVMERR(CNT)="DEPENDENT CHILD SCHOOL INDICATOR should not be filled in for Veteran."
- .I '$P(STRING,HLFS,3),SPOUSE,($P(STRING,HLFS,4)<600) S FND1=0 F I=3:1:20 Q:FND1  I $P(ARRAY(SPOUSE,"ZIC"),HLFS,I) S FND1=1,CNT=CNT+1,IVMERR(CNT)="No income data allowed if spouse didn't live w/vet & amt contributed <$600"
+ .;IVM*2.0*160
+ .; for historical data that has Married Last Year = Y, Lived With Spouse = N, SPOUSE has data, Amount Contributed with value
+ .I $P(STRING,U,15)="",$P(STRING,HLFS,2),'$P(STRING,HLFS,3),SPOUSE,($P(STRING,HLFS,4)<600) D  Q  ;don't go further since amount contributed had value - IVM*2*160
+ ..S FND1=0 F I=3:1:20 Q:FND1  I $P(ARRAY(SPOUSE,"ZIC"),HLFS,I) S FND1=1,CNT=CNT+1,IVMERR(CNT)="No income data allowed if spouse didn't live w/vet & amt contributed <$600"
+ .; Married Last Year = Y, Lived with Spouse = N, SPOUSE has data, Contributed to Spouse = N
+ .I $P(STRING,HLFS,2),'$P(STRING,HLFS,3),SPOUSE,($P(STRING,U,15)=0) S FND1=0 F I=3:1:20 Q:FND1  D
+ ..I $P(ARRAY(SPOUSE,"ZIC"),HLFS,I) S FND1=1,CNT=CNT+1,IVMERR(CNT)="No income data allowed if spouse didn't live w/vet & vet did not contribute to spousal support"
  I $G(DEPIEN)=SPOUSE D
  . I X]"" S CNT=CNT+1,FND1=1,IVMERR(CNT)="DEPENDENT CHILD SCHOOL INDICATOR should not be filled in for spouse ZIR."
  I $G(DEPIEN),(DEPIEN'=SPOUSE) D

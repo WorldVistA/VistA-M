@@ -1,5 +1,5 @@
-EASEZPDU ;ALB/AMA - PRINT 10-10EZ OR EZR FROM DG OPTIONS UTILITIES ; 8/1/08 1:23pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70**;Mar 15, 2001;Build 26
+EASEZPDU ;ALB/AMA,LBD - PRINT 10-10EZ OR EZR FROM DG OPTIONS UTILITIES ; 10/29/12 12:40pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70,107**;Mar 15, 2001;Build 32
  ;
  Q
  ;
@@ -58,11 +58,10 @@ NETEZ(EALNE,EAINFO,EASDG) ;  Print SECTION X - PREVIOUS CALENDAR YEAR NET WORTH
  . S EASIGN=$$GET1^DIQ(712,EAINFO("EASAPP")_",",4.1)
  S EASIGN=$G(EASIGN)
  ;
- D HDR^EASEZP6F(.EALNE,.EAINFO)
  S EASD=$NA(^TMP("EASEZ",$J,2))
  ;
- I $G(EASDG),+@EASD@(999) W !!?7,"SECTION X - PREVIOUS CALENDAR YEAR NET WORTH  (INCOME YEAR:  ",@EASD@(999),")  (Use a separate sheet for additional dependents)"
- E  W !!?18,"SECTION X - PREVIOUS CALENDAR YEAR NET WORTH  (Use a separate sheet for additional dependents)"
+ I $G(EASDG),+@EASD@(999) W !!?7,"SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH  (INCOME YEAR:  ",@EASD@(999),")  (Use a separate sheet for additional dependents)"
+ E  W !!?18,"SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH  (Use a separate sheet for additional dependents)"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  W !?78,"|",?84,"VETERAN",?96,"|",?102,"SPOUSE",?114,"|",?120,"CHILD 1"
@@ -87,6 +86,7 @@ NETEZ(EALNE,EAINFO,EASDG) ;  Print SECTION X - PREVIOUS CALENDAR YEAR NET WORTH
  W !,"BUSINESS ASSETS.  Exclude household effects and family vehicles.",?78,"|",?96,"|",?114,"|"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
+ D PAP^EASEZP64       ;EAS*1.0*107
  D CON^EASEZP64
  D AOB^EASEZP64
  D FT^EASEZP6F(.EALNE,.EAINFO)
@@ -115,8 +115,8 @@ NETEZR(EALNE,EAINFO,EASDG) ;  Print SECTION IX - PREVIOUS CALENDAR YEAR NET WORT
  D HDR^EASEZRPF(.EALNE,.EAINFO)
  S EASD=$NA(^TMP("EASEZR",$J,2))
  ;
- I $G(EASDG),+@EASD@(999) W !?7,"SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH  (INCOME YEAR:  ",@EASD@(999),")  (Use a separate sheet for additional dependents)"
- E  W !?18,"SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH  (Use a separate sheet for additional dependents)"
+ I $G(EASDG),+@EASD@(999) W !?7,"SECTION VIII - PREVIOUS CALENDAR YEAR NET WORTH  (INCOME YEAR:  ",@EASD@(999),")  (Use a separate sheet for additional dependents)"
+ E  W !?18,"SECTION VIII - PREVIOUS CALENDAR YEAR NET WORTH  (Use a separate sheet for additional dependents)"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  W !?78,"|",?84,"VETERAN",?96,"|",?102,"SPOUSE",?114,"|",?120,"CHILD 1"
@@ -141,6 +141,7 @@ NETEZR(EALNE,EAINFO,EASDG) ;  Print SECTION IX - PREVIOUS CALENDAR YEAR NET WORT
  W !,"BUSINESS ASSETS.  Exclude household effects and family vehicles.",?78,"|",?96,"|",?114,"|"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
+ D PAP^EASEZRP2
  D CON^EASEZRP3
  D AOB^EASEZRP3
  D FT^EASEZRPF(.EALNE,.EAINFO)

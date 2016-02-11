@@ -1,124 +1,134 @@
-IBDEI20A ; ; 06-AUG-2015
+IBDEI20A ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35092,1,0)
+ ;;^UTILITY(U,$J,358.3,33587,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,33587,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,33588,0)
+ ;;=F70.^^148^1668^1
+ ;;^UTILITY(U,$J,358.3,33588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35092,1,3,0)
- ;;=3^Disp fx of oblique shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,35092,1,4,0)
- ;;=4^S52.332S
- ;;^UTILITY(U,$J,358.3,35092,2)
- ;;=^5030094
- ;;^UTILITY(U,$J,358.3,35093,0)
- ;;=S52.331S^^183^2026^36
- ;;^UTILITY(U,$J,358.3,35093,1,0)
+ ;;^UTILITY(U,$J,358.3,33588,1,3,0)
+ ;;=3^Intellectual Disabilities,Mild
+ ;;^UTILITY(U,$J,358.3,33588,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,33588,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,33589,0)
+ ;;=F71.^^148^1668^2
+ ;;^UTILITY(U,$J,358.3,33589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35093,1,3,0)
- ;;=3^Disp fx of oblique shaft of right radius, sequela
- ;;^UTILITY(U,$J,358.3,35093,1,4,0)
- ;;=4^S52.331S
- ;;^UTILITY(U,$J,358.3,35093,2)
- ;;=^5030078
- ;;^UTILITY(U,$J,358.3,35094,0)
- ;;=S52.362S^^183^2026^47
- ;;^UTILITY(U,$J,358.3,35094,1,0)
+ ;;^UTILITY(U,$J,358.3,33589,1,3,0)
+ ;;=3^Intellectual Disabilities,Moderate
+ ;;^UTILITY(U,$J,358.3,33589,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,33589,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,33590,0)
+ ;;=F72.^^148^1668^3
+ ;;^UTILITY(U,$J,358.3,33590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35094,1,3,0)
- ;;=3^Disp fx of segmental shaft of radius, left arm, sequela
- ;;^UTILITY(U,$J,358.3,35094,1,4,0)
- ;;=4^S52.362S
- ;;^UTILITY(U,$J,358.3,35094,2)
- ;;=^5030382
- ;;^UTILITY(U,$J,358.3,35095,0)
- ;;=S52.361S^^183^2026^48
- ;;^UTILITY(U,$J,358.3,35095,1,0)
+ ;;^UTILITY(U,$J,358.3,33590,1,3,0)
+ ;;=3^Intellectual Disabilities,Severe
+ ;;^UTILITY(U,$J,358.3,33590,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,33590,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,33591,0)
+ ;;=F73.^^148^1668^4
+ ;;^UTILITY(U,$J,358.3,33591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35095,1,3,0)
- ;;=3^Disp fx of segmental shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,35095,1,4,0)
- ;;=4^S52.361S
- ;;^UTILITY(U,$J,358.3,35095,2)
- ;;=^5030366
- ;;^UTILITY(U,$J,358.3,35096,0)
- ;;=S52.342S^^183^2026^51
- ;;^UTILITY(U,$J,358.3,35096,1,0)
+ ;;^UTILITY(U,$J,358.3,33591,1,3,0)
+ ;;=3^Intellectual Disabilities,Profound
+ ;;^UTILITY(U,$J,358.3,33591,1,4,0)
+ ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,33591,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,33592,0)
+ ;;=F78.^^148^1668^5
+ ;;^UTILITY(U,$J,358.3,33592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35096,1,3,0)
- ;;=3^Disp fx of spiral shaft of radius, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,35096,1,4,0)
- ;;=4^S52.342S
- ;;^UTILITY(U,$J,358.3,35096,2)
- ;;=^5030190
- ;;^UTILITY(U,$J,358.3,35097,0)
- ;;=S52.341S^^183^2026^52
- ;;^UTILITY(U,$J,358.3,35097,1,0)
+ ;;^UTILITY(U,$J,358.3,33592,1,3,0)
+ ;;=3^Intellectual Disabilities,Oth Specified
+ ;;^UTILITY(U,$J,358.3,33592,1,4,0)
+ ;;=4^F78.
+ ;;^UTILITY(U,$J,358.3,33592,2)
+ ;;=^5003672
+ ;;^UTILITY(U,$J,358.3,33593,0)
+ ;;=F79.^^148^1668^6
+ ;;^UTILITY(U,$J,358.3,33593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35097,1,3,0)
- ;;=3^Disp fx of spiral shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,35097,1,4,0)
- ;;=4^S52.341S
- ;;^UTILITY(U,$J,358.3,35097,2)
- ;;=^5030174
- ;;^UTILITY(U,$J,358.3,35098,0)
- ;;=S52.322S^^183^2026^55
- ;;^UTILITY(U,$J,358.3,35098,1,0)
+ ;;^UTILITY(U,$J,358.3,33593,1,3,0)
+ ;;=3^Intellectual Disabilities,Unspec
+ ;;^UTILITY(U,$J,358.3,33593,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,33593,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,33594,0)
+ ;;=Z00.6^^148^1669^1
+ ;;^UTILITY(U,$J,358.3,33594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35098,1,3,0)
- ;;=3^Disp fx of transverse shaft of left radius, sequela   
- ;;^UTILITY(U,$J,358.3,35098,1,4,0)
- ;;=4^S52.322S
- ;;^UTILITY(U,$J,358.3,35098,2)
- ;;=^5029998
- ;;^UTILITY(U,$J,358.3,35099,0)
- ;;=S52.321S^^183^2026^57
- ;;^UTILITY(U,$J,358.3,35099,1,0)
+ ;;^UTILITY(U,$J,358.3,33594,1,3,0)
+ ;;=3^Exam of Participant of Control in Clinical Research Program
+ ;;^UTILITY(U,$J,358.3,33594,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,33594,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,33595,0)
+ ;;=F45.22^^148^1670^1
+ ;;^UTILITY(U,$J,358.3,33595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35099,1,3,0)
- ;;=3^Disp fx of transverse shaft of right radius, sequela
- ;;^UTILITY(U,$J,358.3,35099,1,4,0)
- ;;=4^S52.321S
- ;;^UTILITY(U,$J,358.3,35099,2)
- ;;=^5029982
- ;;^UTILITY(U,$J,358.3,35100,0)
- ;;=S52.372S^^183^2026^65
- ;;^UTILITY(U,$J,358.3,35100,1,0)
+ ;;^UTILITY(U,$J,358.3,33595,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,33595,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,33595,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,33596,0)
+ ;;=F45.20^^148^1670^2
+ ;;^UTILITY(U,$J,358.3,33596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35100,1,3,0)
- ;;=3^Galeazzi's fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,35100,1,4,0)
- ;;=4^S52.372S
- ;;^UTILITY(U,$J,358.3,35100,2)
- ;;=^5030478
- ;;^UTILITY(U,$J,358.3,35101,0)
- ;;=S52.371S^^183^2026^66
- ;;^UTILITY(U,$J,358.3,35101,1,0)
+ ;;^UTILITY(U,$J,358.3,33596,1,3,0)
+ ;;=3^Hypochondiacal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,33596,1,4,0)
+ ;;=4^F45.20
+ ;;^UTILITY(U,$J,358.3,33596,2)
+ ;;=^5003586
+ ;;^UTILITY(U,$J,358.3,33597,0)
+ ;;=F45.21^^148^1670^4
+ ;;^UTILITY(U,$J,358.3,33597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35101,1,3,0)
- ;;=3^Galeazzi's fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,35101,1,4,0)
- ;;=4^S52.371S
- ;;^UTILITY(U,$J,358.3,35101,2)
- ;;=^5030462
- ;;^UTILITY(U,$J,358.3,35102,0)
- ;;=S52.312S^^183^2026^67
- ;;^UTILITY(U,$J,358.3,35102,1,0)
+ ;;^UTILITY(U,$J,358.3,33597,1,3,0)
+ ;;=3^Hypochondriasis
+ ;;^UTILITY(U,$J,358.3,33597,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,33597,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,33598,0)
+ ;;=F45.29^^148^1670^3
+ ;;^UTILITY(U,$J,358.3,33598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35102,1,3,0)
- ;;=3^Greenstick fracture of shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,35102,1,4,0)
- ;;=4^S52.312S
- ;;^UTILITY(U,$J,358.3,35102,2)
- ;;=^5029960
- ;;^UTILITY(U,$J,358.3,35103,0)
- ;;=S52.311S^^183^2026^69
- ;;^UTILITY(U,$J,358.3,35103,1,0)
+ ;;^UTILITY(U,$J,358.3,33598,1,3,0)
+ ;;=3^Hypochondriacal Disorders NEC
+ ;;^UTILITY(U,$J,358.3,33598,1,4,0)
+ ;;=4^F45.29
+ ;;^UTILITY(U,$J,358.3,33598,2)
+ ;;=^5003589
+ ;;^UTILITY(U,$J,358.3,33599,0)
+ ;;=F45.8^^148^1670^9
+ ;;^UTILITY(U,$J,358.3,33599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35103,1,3,0)
- ;;=3^Greenstick fracture of shaft of right radius, sequela
- ;;^UTILITY(U,$J,358.3,35103,1,4,0)
- ;;=4^S52.311S
- ;;^UTILITY(U,$J,358.3,35103,2)
- ;;=^5029954
- ;;^UTILITY(U,$J,358.3,35104,0)
- ;;=S52.355S^^183^2026^77
+ ;;^UTILITY(U,$J,358.3,33599,1,3,0)
+ ;;=3^Somatoform Disorders NEC
+ ;;^UTILITY(U,$J,358.3,33599,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,33599,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,33600,0)
+ ;;=F45.41^^148^1670^5
+ ;;^UTILITY(U,$J,358.3,33600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33600,1,3,0)
+ ;;=3^Pain Disorder Exclusively Related to Psychological Factors

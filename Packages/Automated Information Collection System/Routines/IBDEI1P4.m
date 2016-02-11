@@ -1,120 +1,140 @@
-IBDEI1P4 ; ; 06-AUG-2015
+IBDEI1P4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30079,0)
- ;;=O24.011^^178^1913^62
- ;;^UTILITY(U,$J,358.3,30079,1,0)
+ ;;^UTILITY(U,$J,358.3,28375,1,3,0)
+ ;;=3^Dyspnea,Unspec
+ ;;^UTILITY(U,$J,358.3,28375,1,4,0)
+ ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,28375,2)
+ ;;=^5019180
+ ;;^UTILITY(U,$J,358.3,28376,0)
+ ;;=R06.89^^132^1330^6
+ ;;^UTILITY(U,$J,358.3,28376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30079,1,3,0)
- ;;=3^Pre-existing diabetes, type 1, in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30079,1,4,0)
- ;;=4^O24.011
- ;;^UTILITY(U,$J,358.3,30079,2)
- ;;=^5016255
- ;;^UTILITY(U,$J,358.3,30080,0)
- ;;=O24.012^^178^1913^58
- ;;^UTILITY(U,$J,358.3,30080,1,0)
+ ;;^UTILITY(U,$J,358.3,28376,1,3,0)
+ ;;=3^Breathing Abnormalities,Other
+ ;;^UTILITY(U,$J,358.3,28376,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,28376,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,28377,0)
+ ;;=R06.83^^132^1330^54
+ ;;^UTILITY(U,$J,358.3,28377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30080,1,3,0)
- ;;=3^Pre-exist diabetes, type 1, in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30080,1,4,0)
- ;;=4^O24.012
- ;;^UTILITY(U,$J,358.3,30080,2)
- ;;=^5016256
- ;;^UTILITY(U,$J,358.3,30081,0)
- ;;=O24.013^^178^1913^63
- ;;^UTILITY(U,$J,358.3,30081,1,0)
+ ;;^UTILITY(U,$J,358.3,28377,1,3,0)
+ ;;=3^Snoring
+ ;;^UTILITY(U,$J,358.3,28377,1,4,0)
+ ;;=4^R06.83
+ ;;^UTILITY(U,$J,358.3,28377,2)
+ ;;=^5019192
+ ;;^UTILITY(U,$J,358.3,28378,0)
+ ;;=R06.3^^132^1330^32
+ ;;^UTILITY(U,$J,358.3,28378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30081,1,3,0)
- ;;=3^Pre-existing diabetes, type 1, in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30081,1,4,0)
- ;;=4^O24.013
- ;;^UTILITY(U,$J,358.3,30081,2)
- ;;=^5016257
- ;;^UTILITY(U,$J,358.3,30082,0)
- ;;=O24.111^^178^1913^64
- ;;^UTILITY(U,$J,358.3,30082,1,0)
+ ;;^UTILITY(U,$J,358.3,28378,1,3,0)
+ ;;=3^Periodic Breathing
+ ;;^UTILITY(U,$J,358.3,28378,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,28378,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,28379,0)
+ ;;=R06.1^^132^1330^56
+ ;;^UTILITY(U,$J,358.3,28379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30082,1,3,0)
- ;;=3^Pre-existing diabetes, type 2, in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30082,1,4,0)
- ;;=4^O24.111
- ;;^UTILITY(U,$J,358.3,30082,2)
- ;;=^5016261
- ;;^UTILITY(U,$J,358.3,30083,0)
- ;;=O24.112^^178^1913^59
- ;;^UTILITY(U,$J,358.3,30083,1,0)
+ ;;^UTILITY(U,$J,358.3,28379,1,3,0)
+ ;;=3^Stridor
+ ;;^UTILITY(U,$J,358.3,28379,1,4,0)
+ ;;=4^R06.1
+ ;;^UTILITY(U,$J,358.3,28379,2)
+ ;;=^5019183
+ ;;^UTILITY(U,$J,358.3,28380,0)
+ ;;=R05.^^132^1330^15
+ ;;^UTILITY(U,$J,358.3,28380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30083,1,3,0)
- ;;=3^Pre-exist diabetes, type 2, in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30083,1,4,0)
- ;;=4^O24.112
- ;;^UTILITY(U,$J,358.3,30083,2)
- ;;=^5016262
- ;;^UTILITY(U,$J,358.3,30084,0)
- ;;=O24.113^^178^1913^65
- ;;^UTILITY(U,$J,358.3,30084,1,0)
+ ;;^UTILITY(U,$J,358.3,28380,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,28380,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,28380,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,28381,0)
+ ;;=R04.2^^132^1330^24
+ ;;^UTILITY(U,$J,358.3,28381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30084,1,3,0)
- ;;=3^Pre-existing diabetes, type 2, in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30084,1,4,0)
- ;;=4^O24.113
- ;;^UTILITY(U,$J,358.3,30084,2)
- ;;=^5016263
- ;;^UTILITY(U,$J,358.3,30085,0)
- ;;=O24.03^^178^1913^60
- ;;^UTILITY(U,$J,358.3,30085,1,0)
+ ;;^UTILITY(U,$J,358.3,28381,1,3,0)
+ ;;=3^Hemoptysis
+ ;;^UTILITY(U,$J,358.3,28381,1,4,0)
+ ;;=4^R04.2
+ ;;^UTILITY(U,$J,358.3,28381,2)
+ ;;=^5019175
+ ;;^UTILITY(U,$J,358.3,28382,0)
+ ;;=R91.8^^132^1330^1
+ ;;^UTILITY(U,$J,358.3,28382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30085,1,3,0)
- ;;=3^Pre-existing diabetes mellitus, type 1, in the puerperium
- ;;^UTILITY(U,$J,358.3,30085,1,4,0)
- ;;=4^O24.03
- ;;^UTILITY(U,$J,358.3,30085,2)
- ;;=^5016260
- ;;^UTILITY(U,$J,358.3,30086,0)
- ;;=O24.13^^178^1913^61
- ;;^UTILITY(U,$J,358.3,30086,1,0)
+ ;;^UTILITY(U,$J,358.3,28382,1,3,0)
+ ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
+ ;;^UTILITY(U,$J,358.3,28382,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,28382,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,28383,0)
+ ;;=R06.2^^132^1330^57
+ ;;^UTILITY(U,$J,358.3,28383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30086,1,3,0)
- ;;=3^Pre-existing diabetes mellitus, type 2, in the puerperium
- ;;^UTILITY(U,$J,358.3,30086,1,4,0)
- ;;=4^O24.13
- ;;^UTILITY(U,$J,358.3,30086,2)
- ;;=^5016266
- ;;^UTILITY(U,$J,358.3,30087,0)
- ;;=O99.281^^178^1913^16
- ;;^UTILITY(U,$J,358.3,30087,1,0)
+ ;;^UTILITY(U,$J,358.3,28383,1,3,0)
+ ;;=3^Wheezing
+ ;;^UTILITY(U,$J,358.3,28383,1,4,0)
+ ;;=4^R06.2
+ ;;^UTILITY(U,$J,358.3,28383,2)
+ ;;=^5019184
+ ;;^UTILITY(U,$J,358.3,28384,0)
+ ;;=J44.0^^132^1330^13
+ ;;^UTILITY(U,$J,358.3,28384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30087,1,3,0)
- ;;=3^Endo, nutritional and metab diseases comp preg, first tri
- ;;^UTILITY(U,$J,358.3,30087,1,4,0)
- ;;=4^O99.281
- ;;^UTILITY(U,$J,358.3,30087,2)
- ;;=^5017935
- ;;^UTILITY(U,$J,358.3,30088,0)
- ;;=O99.282^^178^1913^17
- ;;^UTILITY(U,$J,358.3,30088,1,0)
+ ;;^UTILITY(U,$J,358.3,28384,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,28384,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,28384,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,28385,0)
+ ;;=J94.1^^132^1330^23
+ ;;^UTILITY(U,$J,358.3,28385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30088,1,3,0)
- ;;=3^Endo, nutritional and metab diseases comp preg, second tri
- ;;^UTILITY(U,$J,358.3,30088,1,4,0)
- ;;=4^O99.282
- ;;^UTILITY(U,$J,358.3,30088,2)
- ;;=^5017936
- ;;^UTILITY(U,$J,358.3,30089,0)
- ;;=O99.283^^178^1913^18
- ;;^UTILITY(U,$J,358.3,30089,1,0)
+ ;;^UTILITY(U,$J,358.3,28385,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,28385,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,28385,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,28386,0)
+ ;;=G47.33^^132^1330^31
+ ;;^UTILITY(U,$J,358.3,28386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30089,1,3,0)
- ;;=3^Endo, nutritional and metab diseases comp preg, third tri
- ;;^UTILITY(U,$J,358.3,30089,1,4,0)
- ;;=4^O99.283
- ;;^UTILITY(U,$J,358.3,30089,2)
- ;;=^5017937
- ;;^UTILITY(U,$J,358.3,30090,0)
- ;;=O99.285^^178^1913^19
- ;;^UTILITY(U,$J,358.3,30090,1,0)
+ ;;^UTILITY(U,$J,358.3,28386,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,28386,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,28386,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,28387,0)
+ ;;=R91.1^^132^1330^55
+ ;;^UTILITY(U,$J,358.3,28387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30090,1,3,0)
- ;;=3^Endocrine, nutritional and metabolic diseases comp the puerp
+ ;;^UTILITY(U,$J,358.3,28387,1,3,0)
+ ;;=3^Solitary Pulmonary Nodule
+ ;;^UTILITY(U,$J,358.3,28387,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,28387,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,28388,0)
+ ;;=T74.21XA^^132^1331^1
+ ;;^UTILITY(U,$J,358.3,28388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28388,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28388,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,28388,2)
+ ;;=^5054152

@@ -1,136 +1,132 @@
-IBDEI0NG ; ; 06-AUG-2015
+IBDEI0NG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11173,2)
- ;;=^303621
- ;;^UTILITY(U,$J,358.3,11174,0)
- ;;=296.53^^50^635^2
- ;;^UTILITY(U,$J,358.3,11174,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11174,1,2,0)
- ;;=2^296.53
- ;;^UTILITY(U,$J,358.3,11174,1,5,0)
- ;;=5^Bipolar Depress Severe w/o Psychosis
- ;;^UTILITY(U,$J,358.3,11174,2)
- ;;=^303622
- ;;^UTILITY(U,$J,358.3,11175,0)
- ;;=296.54^^50^635^1
- ;;^UTILITY(U,$J,358.3,11175,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11175,1,2,0)
- ;;=2^296.54
- ;;^UTILITY(U,$J,358.3,11175,1,5,0)
- ;;=5^Bipolar Depress Severe w/Psychosis
- ;;^UTILITY(U,$J,358.3,11175,2)
- ;;=Bipolar Depress Severe w/Psychosis^303623
- ;;^UTILITY(U,$J,358.3,11176,0)
- ;;=296.55^^50^635^7
- ;;^UTILITY(U,$J,358.3,11176,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11176,1,2,0)
- ;;=2^296.55
- ;;^UTILITY(U,$J,358.3,11176,1,5,0)
- ;;=5^Bipolar Depressed, Part or Unspec Remiss
- ;;^UTILITY(U,$J,358.3,11176,2)
- ;;=^303624
- ;;^UTILITY(U,$J,358.3,11177,0)
- ;;=296.56^^50^635^3
- ;;^UTILITY(U,$J,358.3,11177,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11177,1,2,0)
- ;;=2^296.56
- ;;^UTILITY(U,$J,358.3,11177,1,5,0)
- ;;=5^Bipolar Depressed, Full Remission
- ;;^UTILITY(U,$J,358.3,11177,2)
- ;;=^303625
- ;;^UTILITY(U,$J,358.3,11178,0)
- ;;=296.40^^50^635^14
- ;;^UTILITY(U,$J,358.3,11178,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11178,1,2,0)
- ;;=2^296.40
- ;;^UTILITY(U,$J,358.3,11178,1,5,0)
- ;;=5^Bipolar Manic, NOS
- ;;^UTILITY(U,$J,358.3,11178,2)
- ;;=^303607
- ;;^UTILITY(U,$J,358.3,11179,0)
- ;;=296.41^^50^635^12
- ;;^UTILITY(U,$J,358.3,11179,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11179,1,2,0)
- ;;=2^296.41
- ;;^UTILITY(U,$J,358.3,11179,1,5,0)
- ;;=5^Bipolar Manic, Mild
- ;;^UTILITY(U,$J,358.3,11179,2)
- ;;=^303608
- ;;^UTILITY(U,$J,358.3,11180,0)
- ;;=296.42^^50^635^13
- ;;^UTILITY(U,$J,358.3,11180,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11180,1,2,0)
- ;;=2^296.42
- ;;^UTILITY(U,$J,358.3,11180,1,5,0)
- ;;=5^Bipolar Manic, Mod
- ;;^UTILITY(U,$J,358.3,11180,2)
- ;;=^303609
- ;;^UTILITY(U,$J,358.3,11181,0)
- ;;=296.43^^50^635^17
- ;;^UTILITY(U,$J,358.3,11181,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11181,1,2,0)
- ;;=2^296.43
- ;;^UTILITY(U,$J,358.3,11181,1,5,0)
- ;;=5^Bipolar Manic, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,11181,2)
- ;;=^303610
- ;;^UTILITY(U,$J,358.3,11182,0)
- ;;=296.44^^50^635^16
- ;;^UTILITY(U,$J,358.3,11182,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11182,1,2,0)
- ;;=2^296.44
- ;;^UTILITY(U,$J,358.3,11182,1,5,0)
- ;;=5^Bipolar Manic, Sev w/Psychosis
- ;;^UTILITY(U,$J,358.3,11182,2)
- ;;=^303611
- ;;^UTILITY(U,$J,358.3,11183,0)
- ;;=296.45^^50^635^15
- ;;^UTILITY(U,$J,358.3,11183,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11183,1,2,0)
- ;;=2^296.45
- ;;^UTILITY(U,$J,358.3,11183,1,5,0)
- ;;=5^Bipolar Manic, Part or Unspec Remiss
- ;;^UTILITY(U,$J,358.3,11183,2)
- ;;=^303612
- ;;^UTILITY(U,$J,358.3,11184,0)
- ;;=296.46^^50^635^11
- ;;^UTILITY(U,$J,358.3,11184,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11184,1,2,0)
- ;;=2^296.46
- ;;^UTILITY(U,$J,358.3,11184,1,5,0)
- ;;=5^Bipolar Manic, Full Remiss
- ;;^UTILITY(U,$J,358.3,11184,2)
- ;;=^303618
- ;;^UTILITY(U,$J,358.3,11185,0)
- ;;=296.60^^50^635^21
- ;;^UTILITY(U,$J,358.3,11185,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11185,1,2,0)
- ;;=2^296.60
- ;;^UTILITY(U,$J,358.3,11185,1,5,0)
- ;;=5^Bipolar Mixed, NOS
- ;;^UTILITY(U,$J,358.3,11185,2)
- ;;=^303626
- ;;^UTILITY(U,$J,358.3,11186,0)
- ;;=296.61^^50^635^19
- ;;^UTILITY(U,$J,358.3,11186,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11186,1,2,0)
- ;;=2^296.61
- ;;^UTILITY(U,$J,358.3,11186,1,5,0)
- ;;=5^Bipolar Mixed, Mild
- ;;^UTILITY(U,$J,358.3,11186,2)
- ;;=^303627
+ ;;^UTILITY(U,$J,358.3,10717,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,10718,0)
+ ;;=D09.0^^68^675^37
+ ;;^UTILITY(U,$J,358.3,10718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10718,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,10718,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,10718,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,10719,0)
+ ;;=D06.9^^68^675^38
+ ;;^UTILITY(U,$J,358.3,10719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10719,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,10719,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,10719,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,10720,0)
+ ;;=D06.0^^68^675^40
+ ;;^UTILITY(U,$J,358.3,10720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10720,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,10720,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,10720,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,10721,0)
+ ;;=D06.1^^68^675^41
+ ;;^UTILITY(U,$J,358.3,10721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10721,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,10721,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,10721,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,10722,0)
+ ;;=D06.7^^68^675^39
+ ;;^UTILITY(U,$J,358.3,10722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10722,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,10722,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,10722,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,10723,0)
+ ;;=D04.9^^68^675^42
+ ;;^UTILITY(U,$J,358.3,10723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10723,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,10723,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,10723,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,10724,0)
+ ;;=C91.11^^68^675^45
+ ;;^UTILITY(U,$J,358.3,10724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10724,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,10724,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,10724,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,10725,0)
+ ;;=C91.10^^68^675^46
+ ;;^UTILITY(U,$J,358.3,10725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10725,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10725,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,10725,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,10726,0)
+ ;;=C92.11^^68^675^47
+ ;;^UTILITY(U,$J,358.3,10726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10726,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
+ ;;^UTILITY(U,$J,358.3,10726,1,4,0)
+ ;;=4^C92.11
+ ;;^UTILITY(U,$J,358.3,10726,2)
+ ;;=^5001793
+ ;;^UTILITY(U,$J,358.3,10727,0)
+ ;;=C92.10^^68^675^48
+ ;;^UTILITY(U,$J,358.3,10727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10727,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10727,1,4,0)
+ ;;=4^C92.10
+ ;;^UTILITY(U,$J,358.3,10727,2)
+ ;;=^5001792
+ ;;^UTILITY(U,$J,358.3,10728,0)
+ ;;=D47.1^^68^675^49
+ ;;^UTILITY(U,$J,358.3,10728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10728,1,3,0)
+ ;;=3^Chronic Myeloproliferative Disease
+ ;;^UTILITY(U,$J,358.3,10728,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,10728,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,10729,0)
+ ;;=C82.69^^68^675^50
+ ;;^UTILITY(U,$J,358.3,10729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10729,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,10729,1,4,0)
+ ;;=4^C82.69
+ ;;^UTILITY(U,$J,358.3,10729,2)
+ ;;=^5001530
+ ;;^UTILITY(U,$J,358.3,10730,0)
+ ;;=C82.60^^68^675^51
+ ;;^UTILITY(U,$J,358.3,10730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10730,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site

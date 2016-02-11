@@ -1,122 +1,138 @@
-IBDEI200 ; ; 06-AUG-2015
+IBDEI200 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34973,1,0)
+ ;;^UTILITY(U,$J,358.3,33461,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,33461,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,33462,0)
+ ;;=Z63.0^^148^1653^5
+ ;;^UTILITY(U,$J,358.3,33462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34973,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
- ;;^UTILITY(U,$J,358.3,34973,1,4,0)
- ;;=4^S82.465S
- ;;^UTILITY(U,$J,358.3,34973,2)
- ;;=^5042177
- ;;^UTILITY(U,$J,358.3,34974,0)
- ;;=S82.464S^^183^2024^66
- ;;^UTILITY(U,$J,358.3,34974,1,0)
+ ;;^UTILITY(U,$J,358.3,33462,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,33462,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,33462,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,33463,0)
+ ;;=Z63.5^^148^1653^2
+ ;;^UTILITY(U,$J,358.3,33463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34974,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,34974,1,4,0)
- ;;=4^S82.464S
- ;;^UTILITY(U,$J,358.3,34974,2)
- ;;=^5042161
- ;;^UTILITY(U,$J,358.3,34975,0)
- ;;=S82.445S^^183^2024^67
- ;;^UTILITY(U,$J,358.3,34975,1,0)
+ ;;^UTILITY(U,$J,358.3,33463,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,33463,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,33463,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,33464,0)
+ ;;=Z63.8^^148^1653^3
+ ;;^UTILITY(U,$J,358.3,33464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34975,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,34975,1,4,0)
- ;;=4^S82.445S
- ;;^UTILITY(U,$J,358.3,34975,2)
- ;;=^5041985
- ;;^UTILITY(U,$J,358.3,34976,0)
- ;;=S82.444S^^183^2024^69
- ;;^UTILITY(U,$J,358.3,34976,1,0)
+ ;;^UTILITY(U,$J,358.3,33464,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,33464,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,33464,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,33465,0)
+ ;;=Z63.4^^148^1653^7
+ ;;^UTILITY(U,$J,358.3,33465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34976,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,34976,1,4,0)
- ;;=4^S82.444S
- ;;^UTILITY(U,$J,358.3,34976,2)
- ;;=^5041969
- ;;^UTILITY(U,$J,358.3,34977,0)
- ;;=S82.425S^^183^2024^72
- ;;^UTILITY(U,$J,358.3,34977,1,0)
+ ;;^UTILITY(U,$J,358.3,33465,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,33465,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,33465,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,33466,0)
+ ;;=F20.9^^148^1654^5
+ ;;^UTILITY(U,$J,358.3,33466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34977,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left fibula, sequela  
- ;;^UTILITY(U,$J,358.3,34977,1,4,0)
- ;;=4^S82.425S
- ;;^UTILITY(U,$J,358.3,34977,2)
- ;;=^5041793
- ;;^UTILITY(U,$J,358.3,34978,0)
- ;;=S82.424S^^183^2024^74
- ;;^UTILITY(U,$J,358.3,34978,1,0)
+ ;;^UTILITY(U,$J,358.3,33466,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,33466,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,33466,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,33467,0)
+ ;;=F20.81^^148^1654^6
+ ;;^UTILITY(U,$J,358.3,33467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34978,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,34978,1,4,0)
- ;;=4^S82.424S
- ;;^UTILITY(U,$J,358.3,34978,2)
- ;;=^5041777
- ;;^UTILITY(U,$J,358.3,34979,0)
- ;;=M84.464S^^183^2024^75
- ;;^UTILITY(U,$J,358.3,34979,1,0)
+ ;;^UTILITY(U,$J,358.3,33467,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,33467,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,33467,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,33468,0)
+ ;;=F22.^^148^1654^2
+ ;;^UTILITY(U,$J,358.3,33468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34979,1,3,0)
- ;;=3^Pathological fracture, left fibula, sequela
- ;;^UTILITY(U,$J,358.3,34979,1,4,0)
- ;;=4^M84.464S
- ;;^UTILITY(U,$J,358.3,34979,2)
- ;;=^5013955
- ;;^UTILITY(U,$J,358.3,34980,0)
- ;;=M84.463S^^183^2024^77
- ;;^UTILITY(U,$J,358.3,34980,1,0)
+ ;;^UTILITY(U,$J,358.3,33468,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,33468,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,33468,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,33469,0)
+ ;;=F23.^^148^1654^1
+ ;;^UTILITY(U,$J,358.3,33469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34980,1,3,0)
- ;;=3^Pathological fracture, right fibula, sequela
- ;;^UTILITY(U,$J,358.3,34980,1,4,0)
- ;;=4^M84.463S
- ;;^UTILITY(U,$J,358.3,34980,2)
- ;;=^5013949
- ;;^UTILITY(U,$J,358.3,34981,0)
- ;;=S89.312S^^183^2024^81
- ;;^UTILITY(U,$J,358.3,34981,1,0)
+ ;;^UTILITY(U,$J,358.3,33469,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,33469,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,33469,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,33470,0)
+ ;;=F25.0^^148^1654^3
+ ;;^UTILITY(U,$J,358.3,33470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34981,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,34981,1,4,0)
- ;;=4^S89.312S
- ;;^UTILITY(U,$J,358.3,34981,2)
- ;;=^5137372
- ;;^UTILITY(U,$J,358.3,34982,0)
- ;;=S89.311S^^183^2024^82
- ;;^UTILITY(U,$J,358.3,34982,1,0)
+ ;;^UTILITY(U,$J,358.3,33470,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,33470,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,33470,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,33471,0)
+ ;;=F25.1^^148^1654^4
+ ;;^UTILITY(U,$J,358.3,33471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34982,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,34982,1,4,0)
- ;;=4^S89.311S
- ;;^UTILITY(U,$J,358.3,34982,2)
- ;;=^5043822
- ;;^UTILITY(U,$J,358.3,34983,0)
- ;;=S89.212S^^183^2024^85
- ;;^UTILITY(U,$J,358.3,34983,1,0)
+ ;;^UTILITY(U,$J,358.3,33471,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,33471,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,33471,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,33472,0)
+ ;;=F52.32^^148^1655^1
+ ;;^UTILITY(U,$J,358.3,33472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34983,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,34983,1,4,0)
- ;;=4^S89.212S
- ;;^UTILITY(U,$J,358.3,34983,2)
- ;;=^5043780
- ;;^UTILITY(U,$J,358.3,34984,0)
- ;;=S89.211S^^183^2024^86
- ;;^UTILITY(U,$J,358.3,34984,1,0)
+ ;;^UTILITY(U,$J,358.3,33472,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,33472,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,33472,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,33473,0)
+ ;;=F52.21^^148^1655^2
+ ;;^UTILITY(U,$J,358.3,33473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34984,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,34984,1,4,0)
- ;;=4^S89.211S
- ;;^UTILITY(U,$J,358.3,34984,2)
- ;;=^5043774
+ ;;^UTILITY(U,$J,358.3,33473,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,33473,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,33473,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,33474,0)
+ ;;=F52.31^^148^1655^3
+ ;;^UTILITY(U,$J,358.3,33474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33474,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,33474,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,33474,2)
+ ;;=^331926

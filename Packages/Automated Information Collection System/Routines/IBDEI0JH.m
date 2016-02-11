@@ -1,144 +1,130 @@
-IBDEI0JH ; ; 06-AUG-2015
+IBDEI0JH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9159,1,4,0)
- ;;=4^MONOPLEGIA LOWER LIMB,DOM SIDE
- ;;^UTILITY(U,$J,358.3,9159,1,5,0)
- ;;=5^344.31
- ;;^UTILITY(U,$J,358.3,9159,2)
- ;;=^303276
- ;;^UTILITY(U,$J,358.3,9160,0)
- ;;=344.32^^38^520^7
- ;;^UTILITY(U,$J,358.3,9160,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9160,1,4,0)
- ;;=4^MONOPLEGIA LOWER LIMB,NONDOM SIDE
- ;;^UTILITY(U,$J,358.3,9160,1,5,0)
- ;;=5^344.32
- ;;^UTILITY(U,$J,358.3,9160,2)
- ;;=^303277
- ;;^UTILITY(U,$J,358.3,9161,0)
- ;;=344.41^^38^520^9
- ;;^UTILITY(U,$J,358.3,9161,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9161,1,4,0)
- ;;=4^MONOPLEGIA UPPER LIMB,DOM SIDE
- ;;^UTILITY(U,$J,358.3,9161,1,5,0)
- ;;=5^344.41
- ;;^UTILITY(U,$J,358.3,9161,2)
- ;;=^303279
- ;;^UTILITY(U,$J,358.3,9162,0)
- ;;=344.42^^38^520^10
- ;;^UTILITY(U,$J,358.3,9162,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9162,1,4,0)
- ;;=4^MONOPLEGIA UPPER LIMB,NONDOM SIDE
- ;;^UTILITY(U,$J,358.3,9162,1,5,0)
- ;;=5^344.42
- ;;^UTILITY(U,$J,358.3,9162,2)
- ;;=^303280
- ;;^UTILITY(U,$J,358.3,9163,0)
- ;;=344.40^^38^520^11
- ;;^UTILITY(U,$J,358.3,9163,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9163,1,4,0)
- ;;=4^MONOPLEGIA UPPER LIMB,SIDE UNSPEC
- ;;^UTILITY(U,$J,358.3,9163,1,5,0)
- ;;=5^344.40
- ;;^UTILITY(U,$J,358.3,9163,2)
- ;;=^303278
- ;;^UTILITY(U,$J,358.3,9164,0)
- ;;=344.9^^38^520^12
- ;;^UTILITY(U,$J,358.3,9164,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9164,1,4,0)
- ;;=4^PARALYSIS NOS
- ;;^UTILITY(U,$J,358.3,9164,1,5,0)
- ;;=5^344.9
- ;;^UTILITY(U,$J,358.3,9164,2)
- ;;=^89838
- ;;^UTILITY(U,$J,358.3,9165,0)
- ;;=707.11^^38^521^6
- ;;^UTILITY(U,$J,358.3,9165,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9165,1,4,0)
- ;;=4^ULCER THIGH
- ;;^UTILITY(U,$J,358.3,9165,1,5,0)
- ;;=5^707.11
- ;;^UTILITY(U,$J,358.3,9165,2)
- ;;=^322143
- ;;^UTILITY(U,$J,358.3,9166,0)
- ;;=707.12^^38^521^2
- ;;^UTILITY(U,$J,358.3,9166,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9166,1,4,0)
- ;;=4^ULCER CALF
- ;;^UTILITY(U,$J,358.3,9166,1,5,0)
- ;;=5^707.12
- ;;^UTILITY(U,$J,358.3,9166,2)
- ;;=^322144
- ;;^UTILITY(U,$J,358.3,9167,0)
- ;;=707.13^^38^521^1
- ;;^UTILITY(U,$J,358.3,9167,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9167,1,4,0)
- ;;=4^ULCER ANKLE
- ;;^UTILITY(U,$J,358.3,9167,1,5,0)
- ;;=5^707.13
- ;;^UTILITY(U,$J,358.3,9167,2)
- ;;=^322145
- ;;^UTILITY(U,$J,358.3,9168,0)
- ;;=707.14^^38^521^3
- ;;^UTILITY(U,$J,358.3,9168,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9168,1,4,0)
- ;;=4^ULCER HEEL/MIDFOOT
- ;;^UTILITY(U,$J,358.3,9168,1,5,0)
- ;;=5^707.14
- ;;^UTILITY(U,$J,358.3,9168,2)
- ;;=^322146
- ;;^UTILITY(U,$J,358.3,9169,0)
- ;;=707.15^^38^521^4
- ;;^UTILITY(U,$J,358.3,9169,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9169,1,4,0)
- ;;=4^ULCER OTH PART OF FOOT
- ;;^UTILITY(U,$J,358.3,9169,1,5,0)
- ;;=5^707.15
- ;;^UTILITY(U,$J,358.3,9169,2)
- ;;=^322148
- ;;^UTILITY(U,$J,358.3,9170,0)
- ;;=707.19^^38^521^5
- ;;^UTILITY(U,$J,358.3,9170,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9170,1,4,0)
- ;;=4^ULCER OTH PART OF LL
- ;;^UTILITY(U,$J,358.3,9170,1,5,0)
- ;;=5^707.19
- ;;^UTILITY(U,$J,358.3,9170,2)
- ;;=^322150
- ;;^UTILITY(U,$J,358.3,9171,0)
- ;;=438.11^^38^522^1
- ;;^UTILITY(U,$J,358.3,9171,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9171,1,4,0)
- ;;=4^APHASIA
- ;;^UTILITY(U,$J,358.3,9171,1,5,0)
- ;;=5^438.11
- ;;^UTILITY(U,$J,358.3,9171,2)
- ;;=^317907
- ;;^UTILITY(U,$J,358.3,9172,0)
- ;;=438.12^^38^522^4
- ;;^UTILITY(U,$J,358.3,9172,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,9172,1,4,0)
- ;;=4^DYSPHASIA
- ;;^UTILITY(U,$J,358.3,9172,1,5,0)
- ;;=5^438.12
- ;;^UTILITY(U,$J,358.3,9172,2)
- ;;=^317908
- ;;^UTILITY(U,$J,358.3,9173,0)
- ;;=438.13^^38^522^3
- ;;^UTILITY(U,$J,358.3,9173,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,8772,0)
+ ;;=G57.12^^55^545^39
+ ;;^UTILITY(U,$J,358.3,8772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8772,1,3,0)
+ ;;=3^Meralgia paresthetica, left lower limb
+ ;;^UTILITY(U,$J,358.3,8772,1,4,0)
+ ;;=4^G57.12
+ ;;^UTILITY(U,$J,358.3,8772,2)
+ ;;=^5004043
+ ;;^UTILITY(U,$J,358.3,8773,0)
+ ;;=G60.8^^55^545^47
+ ;;^UTILITY(U,$J,358.3,8773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8773,1,3,0)
+ ;;=3^Other hereditary and idiopathic neuropathies
+ ;;^UTILITY(U,$J,358.3,8773,1,4,0)
+ ;;=4^G60.8
+ ;;^UTILITY(U,$J,358.3,8773,2)
+ ;;=^5004070
+ ;;^UTILITY(U,$J,358.3,8774,0)
+ ;;=G60.9^^55^545^37
+ ;;^UTILITY(U,$J,358.3,8774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8774,1,3,0)
+ ;;=3^Hereditary and idiopathic neuropathy, unspecified
+ ;;^UTILITY(U,$J,358.3,8774,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,8774,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,8775,0)
+ ;;=H81.13^^55^545^13
+ ;;^UTILITY(U,$J,358.3,8775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8775,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, bilateral
+ ;;^UTILITY(U,$J,358.3,8775,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,8775,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,8776,0)
+ ;;=H81.11^^55^545^15
+ ;;^UTILITY(U,$J,358.3,8776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8776,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, right ear
+ ;;^UTILITY(U,$J,358.3,8776,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,8776,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,8777,0)
+ ;;=H81.12^^55^545^14
+ ;;^UTILITY(U,$J,358.3,8777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8777,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, left ear
+ ;;^UTILITY(U,$J,358.3,8777,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,8777,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,8778,0)
+ ;;=I63.50^^55^545^16
+ ;;^UTILITY(U,$J,358.3,8778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8778,1,3,0)
+ ;;=3^Cereb infrc due to unsp occls or stenos of unsp cereb artery
+ ;;^UTILITY(U,$J,358.3,8778,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,8778,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,8779,0)
+ ;;=G45.9^^55^545^63
+ ;;^UTILITY(U,$J,358.3,8779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8779,1,3,0)
+ ;;=3^Transient cerebral ischemic attack, unspecified
+ ;;^UTILITY(U,$J,358.3,8779,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,8779,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,8780,0)
+ ;;=I67.9^^55^545^17
+ ;;^UTILITY(U,$J,358.3,8780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8780,1,3,0)
+ ;;=3^Cerebrovascular disease, unspecified
+ ;;^UTILITY(U,$J,358.3,8780,1,4,0)
+ ;;=4^I67.9
+ ;;^UTILITY(U,$J,358.3,8780,2)
+ ;;=^5007389
+ ;;^UTILITY(U,$J,358.3,8781,0)
+ ;;=I69.91^^55^545^18
+ ;;^UTILITY(U,$J,358.3,8781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8781,1,3,0)
+ ;;=3^Cognitive deficits following unsp cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,8781,1,4,0)
+ ;;=4^I69.91
+ ;;^UTILITY(U,$J,358.3,8781,2)
+ ;;=^5007552
+ ;;^UTILITY(U,$J,358.3,8782,0)
+ ;;=I69.920^^55^545^9
+ ;;^UTILITY(U,$J,358.3,8782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8782,1,3,0)
+ ;;=3^Aphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,8782,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,8782,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,8783,0)
+ ;;=I69.921^^55^545^27
+ ;;^UTILITY(U,$J,358.3,8783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8783,1,3,0)
+ ;;=3^Dysphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,8783,1,4,0)
+ ;;=4^I69.921
+ ;;^UTILITY(U,$J,358.3,8783,2)
+ ;;=^5007554
+ ;;^UTILITY(U,$J,358.3,8784,0)
+ ;;=I69.951^^55^545^33
+ ;;^UTILITY(U,$J,358.3,8784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8784,1,3,0)
+ ;;=3^Hemiplga fol unsp cerebvasc disease aff right dominant side

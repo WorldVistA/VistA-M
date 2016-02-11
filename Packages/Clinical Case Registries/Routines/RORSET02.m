@@ -1,5 +1,5 @@
 RORSET02 ;BPIOFO/CLR - NEW REGISTRY SETUP FROM POST-INSTALL ;6/06/2012
- ;;1.5;CLINICAL CASE REGISTRIES;**18,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,21,26**;Feb 17, 2006;Build 53
  ; This routine uses the following IAs:
  ;
  ; #10063 ^%ZTLOAD            
@@ -16,13 +16,15 @@ RORSET02 ;BPIOFO/CLR - NEW REGISTRY SETUP FROM POST-INSTALL ;6/06/2012
  ;                                     Added initialization of registry params
  ;                                      for new registries
  ;                                     Corrected max # of strings variable used
- ;                                      from MAXNTSK to RORMNTSK          
+ ;                                      from MAXNTSK to RORMNTSK
+ ;ROR*1.5*26   APR 2015   T KOPP       Corrected 'suspend' parameters to strip
+ ;                                      date, leaving only time portions
  ;******************************************************************************
  ;******************************************************************************
  ;
  N RORPARM,RORBUF,RORI,RORDIFF,ROROUT,RORMSG,RORSUSP,MAXNTSK
  N RC,REGNAME,RORMNTSK,RORSUSP,TMP,REGLST,RORINFO
- N ZTCPU,ZTDESC,ZTIO,ZTKIL,ZTPRI,ZTRTN,ZTSAVE,ZTSK,ZTSYNC,ZTUCI,ZTREQ
+ N ZTCPU,ZTDESC,ZTIO,ZTKIL,ZTPRI,ZTRTN,ZTSAVE,ZTSK,ZTSYNC,ZTUCI,ZTREQ,ZTDTH
  N DIR,DIRUT,Y,DIERR,FLD,NODE,RORERRDL,RORQ,ZTQUEUED
  ;
  S RORPARM("ERR")=1         ; Enable error processing
@@ -43,7 +45,7 @@ RORSET02 ;BPIOFO/CLR - NEW REGISTRY SETUP FROM POST-INSTALL ;6/06/2012
  D BMES^XPDUTL("")
  D BMES^XPDUTL("   *** Storing registry setup parameters")
  S RORMNTSK=$G(XPDQUES("POSQ1")),RORSUSP=$G(XPDQUES("POSQ2"))
- I RORSUSP S RORSUSP=$G(XPDQUES("POSQ3"))_U_$G(XPDQUES("POSQ4"))
+ I RORSUSP S RORSUSP=($G(XPDQUES("POSQ3"))#1)_U_($G(XPDQUES("POSQ4"))#1)
  S RORQ=$G(XPDQUES("POSQ5"))
  I RORQ<$$NOW^XLFDT() S RORQ=$$NOW^XLFDT()
  D CONFTXT^RORSETU1(RORMNTSK,RORSUSP)

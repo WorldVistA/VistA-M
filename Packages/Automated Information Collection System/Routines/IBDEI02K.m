@@ -1,128 +1,130 @@
-IBDEI02K ; ; 06-AUG-2015
+IBDEI02K ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,648,1,3,0)
- ;;=3^Personal history of malignant neoplasm of nasl cav, mid ear, & acces sinus
- ;;^UTILITY(U,$J,358.3,648,1,4,0)
- ;;=4^Z85.22
- ;;^UTILITY(U,$J,358.3,648,2)
- ;;=^5063412
- ;;^UTILITY(U,$J,358.3,649,0)
- ;;=Z85.238^^2^27^17
- ;;^UTILITY(U,$J,358.3,649,1,0)
+ ;;^UTILITY(U,$J,358.3,432,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,432,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,433,0)
+ ;;=F13.182^^3^55^8
+ ;;^UTILITY(U,$J,358.3,433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,649,1,3,0)
- ;;=3^Personal history of malignant neoplasm of thymus NEC
- ;;^UTILITY(U,$J,358.3,649,1,4,0)
- ;;=4^Z85.238
- ;;^UTILITY(U,$J,358.3,649,2)
- ;;=^5063414
- ;;^UTILITY(U,$J,358.3,650,0)
- ;;=Z85.29^^2^27^18
- ;;^UTILITY(U,$J,358.3,650,1,0)
+ ;;^UTILITY(U,$J,358.3,433,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,433,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,433,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,434,0)
+ ;;=F13.20^^3^55^2
+ ;;^UTILITY(U,$J,358.3,434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,650,1,3,0)
- ;;=3^Personal history of malignant neoplasm of resp and intrathorac organs
- ;;^UTILITY(U,$J,358.3,650,1,4,0)
- ;;=4^Z85.29
- ;;^UTILITY(U,$J,358.3,650,2)
- ;;=^5063415
- ;;^UTILITY(U,$J,358.3,651,0)
- ;;=Z85.3^^2^27^19
- ;;^UTILITY(U,$J,358.3,651,1,0)
+ ;;^UTILITY(U,$J,358.3,434,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,434,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,434,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,435,0)
+ ;;=F13.21^^3^55^3
+ ;;^UTILITY(U,$J,358.3,435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,651,1,3,0)
- ;;=3^Personal history of malignant neoplasm of breast
- ;;^UTILITY(U,$J,358.3,651,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,651,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,652,0)
- ;;=Z85.41^^2^27^20
- ;;^UTILITY(U,$J,358.3,652,1,0)
+ ;;^UTILITY(U,$J,358.3,435,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,435,1,4,0)
+ ;;=4^F13.21
+ ;;^UTILITY(U,$J,358.3,435,2)
+ ;;=^331934
+ ;;^UTILITY(U,$J,358.3,436,0)
+ ;;=F13.232^^3^55^4
+ ;;^UTILITY(U,$J,358.3,436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,652,1,3,0)
- ;;=3^Personal history of malignant neoplasm of cervix uteri
- ;;^UTILITY(U,$J,358.3,652,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,652,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,653,0)
- ;;=Z85.43^^2^27^21
- ;;^UTILITY(U,$J,358.3,653,1,0)
+ ;;^UTILITY(U,$J,358.3,436,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,436,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,436,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,437,0)
+ ;;=F13.239^^3^55^5
+ ;;^UTILITY(U,$J,358.3,437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,653,1,3,0)
- ;;=3^Personal history of malignant neoplasm of ovary
- ;;^UTILITY(U,$J,358.3,653,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,653,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,654,0)
- ;;=Z85.44^^2^27^22
- ;;^UTILITY(U,$J,358.3,654,1,0)
+ ;;^UTILITY(U,$J,358.3,437,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,437,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,437,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,438,0)
+ ;;=F13.24^^3^55^9
+ ;;^UTILITY(U,$J,358.3,438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,654,1,3,0)
- ;;=3^Personal history of malignant neoplasm of female genital organs
- ;;^UTILITY(U,$J,358.3,654,1,4,0)
- ;;=4^Z85.44
- ;;^UTILITY(U,$J,358.3,654,2)
- ;;=^5063421
- ;;^UTILITY(U,$J,358.3,655,0)
- ;;=Z85.46^^2^27^23
- ;;^UTILITY(U,$J,358.3,655,1,0)
+ ;;^UTILITY(U,$J,358.3,438,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
+ ;;^UTILITY(U,$J,358.3,438,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,438,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,439,0)
+ ;;=F13.231^^3^55^6
+ ;;^UTILITY(U,$J,358.3,439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,655,1,3,0)
- ;;=3^Personal history of malignant neoplasm of prostate
- ;;^UTILITY(U,$J,358.3,655,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,655,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,656,0)
- ;;=Z85.47^^2^27^24
- ;;^UTILITY(U,$J,358.3,656,1,0)
+ ;;^UTILITY(U,$J,358.3,439,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,439,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,439,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,440,0)
+ ;;=F17.200^^3^56^1
+ ;;^UTILITY(U,$J,358.3,440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,656,1,3,0)
- ;;=3^Personal history of malignant neoplasm of testis
- ;;^UTILITY(U,$J,358.3,656,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,656,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,657,0)
- ;;=Z85.49^^2^27^25
- ;;^UTILITY(U,$J,358.3,657,1,0)
+ ;;^UTILITY(U,$J,358.3,440,1,3,0)
+ ;;=3^Tobacco Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,440,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,440,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,441,0)
+ ;;=F17.201^^3^56^2
+ ;;^UTILITY(U,$J,358.3,441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,657,1,3,0)
- ;;=3^Personal history of malignant neoplasm of male genital organs
- ;;^UTILITY(U,$J,358.3,657,1,4,0)
- ;;=4^Z85.49
- ;;^UTILITY(U,$J,358.3,657,2)
- ;;=^5063426
- ;;^UTILITY(U,$J,358.3,658,0)
- ;;=Z85.51^^2^27^26
- ;;^UTILITY(U,$J,358.3,658,1,0)
+ ;;^UTILITY(U,$J,358.3,441,1,3,0)
+ ;;=3^Tobacco Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,441,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,441,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,442,0)
+ ;;=F17.203^^3^56^3
+ ;;^UTILITY(U,$J,358.3,442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,658,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bladder
- ;;^UTILITY(U,$J,358.3,658,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,658,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,659,0)
- ;;=Z85.528^^2^27^27
- ;;^UTILITY(U,$J,358.3,659,1,0)
+ ;;^UTILITY(U,$J,358.3,442,1,3,0)
+ ;;=3^Tobacco Withdrawal
+ ;;^UTILITY(U,$J,358.3,442,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,442,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,443,0)
+ ;;=F17.210^^3^56^4
+ ;;^UTILITY(U,$J,358.3,443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,659,1,3,0)
- ;;=3^Personal history of malignant neoplasm of kidney NEC
- ;;^UTILITY(U,$J,358.3,659,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,659,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,660,0)
- ;;=Z85.79^^2^27^28
- ;;^UTILITY(U,$J,358.3,660,1,0)
+ ;;^UTILITY(U,$J,358.3,443,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,443,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,443,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,444,0)
+ ;;=F17.211^^3^56^5
+ ;;^UTILITY(U,$J,358.3,444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,660,1,3,0)
- ;;=3^Personal history of malignant neoplasm of lymphoid, hematpoetc & rel tiss
- ;;^UTILITY(U,$J,358.3,660,1,4,0)
- ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,444,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,444,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,444,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,445,0)
+ ;;=F17.220^^3^56^6

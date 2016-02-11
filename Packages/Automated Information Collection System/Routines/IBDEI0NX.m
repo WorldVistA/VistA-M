@@ -1,132 +1,132 @@
-IBDEI0NX ; ; 06-AUG-2015
+IBDEI0NX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11403,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11403,1,2,0)
- ;;=2^293.82
- ;;^UTILITY(U,$J,358.3,11403,1,5,0)
- ;;=5^Psychotic D/O,Transient,Hallucination
- ;;^UTILITY(U,$J,358.3,11403,2)
- ;;=^331837
- ;;^UTILITY(U,$J,358.3,11404,0)
- ;;=293.83^^50^645^3
- ;;^UTILITY(U,$J,358.3,11404,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11404,1,2,0)
- ;;=2^293.83
- ;;^UTILITY(U,$J,358.3,11404,1,5,0)
- ;;=5^Mood D/O,Transient,Depressive
- ;;^UTILITY(U,$J,358.3,11404,2)
- ;;=^331838
- ;;^UTILITY(U,$J,358.3,11405,0)
- ;;=295.12^^50^646^2
- ;;^UTILITY(U,$J,358.3,11405,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11405,1,2,0)
- ;;=2^295.12
- ;;^UTILITY(U,$J,358.3,11405,1,5,0)
- ;;=5^Disorganized Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,11405,2)
- ;;=^268051
- ;;^UTILITY(U,$J,358.3,11406,0)
- ;;=295.14^^50^646^3
- ;;^UTILITY(U,$J,358.3,11406,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11406,1,2,0)
- ;;=2^295.14
- ;;^UTILITY(U,$J,358.3,11406,1,5,0)
- ;;=5^Disorganized Schizophrenia,Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,11406,2)
- ;;=^268053
- ;;^UTILITY(U,$J,358.3,11407,0)
- ;;=295.52^^50^646^6
- ;;^UTILITY(U,$J,358.3,11407,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11407,1,2,0)
- ;;=2^295.52
- ;;^UTILITY(U,$J,358.3,11407,1,5,0)
- ;;=5^Latent Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,11407,2)
- ;;=Latent Schizophrenia, Chronic^268073
- ;;^UTILITY(U,$J,358.3,11408,0)
- ;;=295.54^^50^646^5
- ;;^UTILITY(U,$J,358.3,11408,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11408,1,2,0)
- ;;=2^295.54
- ;;^UTILITY(U,$J,358.3,11408,1,5,0)
- ;;=5^Latent Schizophrenia, Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,11408,2)
- ;;=^268075
- ;;^UTILITY(U,$J,358.3,11409,0)
- ;;=295.32^^50^646^8
- ;;^UTILITY(U,$J,358.3,11409,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11409,1,2,0)
- ;;=2^295.32
- ;;^UTILITY(U,$J,358.3,11409,1,5,0)
- ;;=5^Paranoid Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,11409,2)
- ;;=Paranoid Schizophrenia, Chronic^268061
- ;;^UTILITY(U,$J,358.3,11410,0)
- ;;=295.34^^50^646^9
- ;;^UTILITY(U,$J,358.3,11410,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11410,1,2,0)
- ;;=2^295.34
- ;;^UTILITY(U,$J,358.3,11410,1,5,0)
- ;;=5^Paranoid, Schizophrenia Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,11410,2)
- ;;=^268063
- ;;^UTILITY(U,$J,358.3,11411,0)
- ;;=295.62^^50^646^23
- ;;^UTILITY(U,$J,358.3,11411,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11411,1,2,0)
- ;;=2^295.62
- ;;^UTILITY(U,$J,358.3,11411,1,5,0)
- ;;=5^Undifferentiated Schizophrenia, Chr
- ;;^UTILITY(U,$J,358.3,11411,2)
- ;;=^268078
- ;;^UTILITY(U,$J,358.3,11412,0)
- ;;=295.72^^50^646^11
- ;;^UTILITY(U,$J,358.3,11412,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11412,1,2,0)
- ;;=2^295.72
- ;;^UTILITY(U,$J,358.3,11412,1,5,0)
- ;;=5^Schizoaffective Disorder, Chr
- ;;^UTILITY(U,$J,358.3,11412,2)
- ;;=^268083
- ;;^UTILITY(U,$J,358.3,11413,0)
- ;;=295.74^^50^646^12
- ;;^UTILITY(U,$J,358.3,11413,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11413,1,2,0)
- ;;=2^295.74
- ;;^UTILITY(U,$J,358.3,11413,1,5,0)
- ;;=5^Schizoaffective Disorder, w/Exacerb.
- ;;^UTILITY(U,$J,358.3,11413,2)
- ;;=^268085
- ;;^UTILITY(U,$J,358.3,11414,0)
- ;;=295.42^^50^646^17
- ;;^UTILITY(U,$J,358.3,11414,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11414,1,2,0)
- ;;=2^295.42
- ;;^UTILITY(U,$J,358.3,11414,1,5,0)
- ;;=5^Schizophreniform Disorder, Chr
- ;;^UTILITY(U,$J,358.3,11414,2)
- ;;=^268068
- ;;^UTILITY(U,$J,358.3,11415,0)
- ;;=295.44^^50^646^18
- ;;^UTILITY(U,$J,358.3,11415,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11415,1,2,0)
- ;;=2^295.44
- ;;^UTILITY(U,$J,358.3,11415,1,5,0)
- ;;=5^Schizophreniform Disorderw/Exacerb.
- ;;^UTILITY(U,$J,358.3,11415,2)
- ;;=^268070
+ ;;^UTILITY(U,$J,358.3,10937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10937,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,10937,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,10937,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,10938,0)
+ ;;=Z82.3^^68^676^49
+ ;;^UTILITY(U,$J,358.3,10938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10938,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,10938,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,10938,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,10939,0)
+ ;;=Z82.49^^68^676^31
+ ;;^UTILITY(U,$J,358.3,10939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10939,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,10939,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,10939,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,10940,0)
+ ;;=Z82.5^^68^676^22
+ ;;^UTILITY(U,$J,358.3,10940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10940,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,10940,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,10940,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,10941,0)
+ ;;=Z82.61^^68^676^21
+ ;;^UTILITY(U,$J,358.3,10941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10941,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,10941,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,10941,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,10942,0)
+ ;;=Z82.69^^68^676^44
+ ;;^UTILITY(U,$J,358.3,10942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10942,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,10942,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,10942,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,10943,0)
+ ;;=Z83.3^^68^676^28
+ ;;^UTILITY(U,$J,358.3,10943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10943,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,10943,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,10943,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,10944,0)
+ ;;=Z83.2^^68^676^24
+ ;;^UTILITY(U,$J,358.3,10944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10944,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,10944,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,10944,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,10945,0)
+ ;;=Z82.71^^68^676^47
+ ;;^UTILITY(U,$J,358.3,10945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10945,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,10945,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,10945,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,10946,0)
+ ;;=Z82.1^^68^676^23
+ ;;^UTILITY(U,$J,358.3,10946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10946,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,10946,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,10946,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,10947,0)
+ ;;=Z82.2^^68^676^27
+ ;;^UTILITY(U,$J,358.3,10947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10947,1,3,0)
+ ;;=3^Family Hx of Deafness/Hearing Loss
+ ;;^UTILITY(U,$J,358.3,10947,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,10947,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,10948,0)
+ ;;=Z84.0^^68^676^48
+ ;;^UTILITY(U,$J,358.3,10948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10948,1,3,0)
+ ;;=3^Family Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,10948,1,4,0)
+ ;;=4^Z84.0
+ ;;^UTILITY(U,$J,358.3,10948,2)
+ ;;=^5063388
+ ;;^UTILITY(U,$J,358.3,10949,0)
+ ;;=Z82.79^^68^676^26
+ ;;^UTILITY(U,$J,358.3,10949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10949,1,3,0)
+ ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
+ ;;^UTILITY(U,$J,358.3,10949,1,4,0)
+ ;;=4^Z82.79
+ ;;^UTILITY(U,$J,358.3,10949,2)
+ ;;=^5063374

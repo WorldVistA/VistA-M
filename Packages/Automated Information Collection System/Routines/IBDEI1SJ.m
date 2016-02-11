@@ -1,126 +1,134 @@
-IBDEI1SJ ; ; 06-AUG-2015
+IBDEI1SJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31594,2)
- ;;=^5010067
- ;;^UTILITY(U,$J,358.3,31595,0)
- ;;=M06.022^^180^1962^48
- ;;^UTILITY(U,$J,358.3,31595,1,0)
+ ;;^UTILITY(U,$J,358.3,29979,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,29980,0)
+ ;;=D05.00^^135^1372^98
+ ;;^UTILITY(U,$J,358.3,29980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31595,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left elbow
- ;;^UTILITY(U,$J,358.3,31595,1,4,0)
- ;;=4^M06.022
- ;;^UTILITY(U,$J,358.3,31595,2)
- ;;=^5010052
- ;;^UTILITY(U,$J,358.3,31596,0)
- ;;=M06.042^^180^1962^49
- ;;^UTILITY(U,$J,358.3,31596,1,0)
+ ;;^UTILITY(U,$J,358.3,29980,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,29980,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,29980,2)
+ ;;=^5001926
+ ;;^UTILITY(U,$J,358.3,29981,0)
+ ;;=R59.0^^135^1372^59
+ ;;^UTILITY(U,$J,358.3,29981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31596,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left hand
- ;;^UTILITY(U,$J,358.3,31596,1,4,0)
- ;;=4^M06.042
- ;;^UTILITY(U,$J,358.3,31596,2)
- ;;=^5010058
- ;;^UTILITY(U,$J,358.3,31597,0)
- ;;=M06.052^^180^1962^50
- ;;^UTILITY(U,$J,358.3,31597,1,0)
+ ;;^UTILITY(U,$J,358.3,29981,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,29981,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,29981,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,29982,0)
+ ;;=C83.59^^135^1372^99
+ ;;^UTILITY(U,$J,358.3,29982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31597,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left hip
- ;;^UTILITY(U,$J,358.3,31597,1,4,0)
- ;;=4^M06.052
- ;;^UTILITY(U,$J,358.3,31597,2)
- ;;=^5010061
- ;;^UTILITY(U,$J,358.3,31598,0)
- ;;=M06.062^^180^1962^51
- ;;^UTILITY(U,$J,358.3,31598,1,0)
+ ;;^UTILITY(U,$J,358.3,29982,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,29982,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,29982,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,29983,0)
+ ;;=C83.50^^135^1372^100
+ ;;^UTILITY(U,$J,358.3,29983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31598,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left knee
- ;;^UTILITY(U,$J,358.3,31598,1,4,0)
- ;;=4^M06.062
- ;;^UTILITY(U,$J,358.3,31598,2)
- ;;=^5010064
- ;;^UTILITY(U,$J,358.3,31599,0)
- ;;=M06.012^^180^1962^52
- ;;^UTILITY(U,$J,358.3,31599,1,0)
+ ;;^UTILITY(U,$J,358.3,29983,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,29983,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,29983,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,29984,0)
+ ;;=C43.9^^135^1372^102
+ ;;^UTILITY(U,$J,358.3,29984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31599,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left shoulder
- ;;^UTILITY(U,$J,358.3,31599,1,4,0)
- ;;=4^M06.012
- ;;^UTILITY(U,$J,358.3,31599,2)
- ;;=^5010049
- ;;^UTILITY(U,$J,358.3,31600,0)
- ;;=M06.032^^180^1962^53
- ;;^UTILITY(U,$J,358.3,31600,1,0)
+ ;;^UTILITY(U,$J,358.3,29984,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec Site
+ ;;^UTILITY(U,$J,358.3,29984,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,29984,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,29985,0)
+ ;;=C31.9^^135^1372^103
+ ;;^UTILITY(U,$J,358.3,29985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31600,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left wrist
- ;;^UTILITY(U,$J,358.3,31600,1,4,0)
- ;;=4^M06.032
- ;;^UTILITY(U,$J,358.3,31600,2)
- ;;=^5010055
- ;;^UTILITY(U,$J,358.3,31601,0)
- ;;=M06.09^^180^1962^54
- ;;^UTILITY(U,$J,358.3,31601,1,0)
+ ;;^UTILITY(U,$J,358.3,29985,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,29985,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,29985,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,29986,0)
+ ;;=C24.1^^135^1372^105
+ ;;^UTILITY(U,$J,358.3,29986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31601,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, multiple sites
- ;;^UTILITY(U,$J,358.3,31601,1,4,0)
- ;;=4^M06.09
- ;;^UTILITY(U,$J,358.3,31601,2)
- ;;=^5010070
- ;;^UTILITY(U,$J,358.3,31602,0)
- ;;=M06.071^^180^1962^55
- ;;^UTILITY(U,$J,358.3,31602,1,0)
+ ;;^UTILITY(U,$J,358.3,29986,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,29986,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,29986,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,29987,0)
+ ;;=C21.0^^135^1372^106
+ ;;^UTILITY(U,$J,358.3,29987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31602,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, right ank/ft
- ;;^UTILITY(U,$J,358.3,31602,1,4,0)
- ;;=4^M06.071
- ;;^UTILITY(U,$J,358.3,31602,2)
- ;;=^5010066
- ;;^UTILITY(U,$J,358.3,31603,0)
- ;;=M06.021^^180^1962^56
- ;;^UTILITY(U,$J,358.3,31603,1,0)
+ ;;^UTILITY(U,$J,358.3,29987,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,29987,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,29987,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,29988,0)
+ ;;=C67.9^^135^1372^109
+ ;;^UTILITY(U,$J,358.3,29988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31603,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, right elbow
- ;;^UTILITY(U,$J,358.3,31603,1,4,0)
- ;;=4^M06.021
- ;;^UTILITY(U,$J,358.3,31603,2)
- ;;=^5010051
- ;;^UTILITY(U,$J,358.3,31604,0)
- ;;=M06.041^^180^1962^57
- ;;^UTILITY(U,$J,358.3,31604,1,0)
+ ;;^UTILITY(U,$J,358.3,29988,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,29988,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,29988,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,29989,0)
+ ;;=C71.9^^135^1372^113
+ ;;^UTILITY(U,$J,358.3,29989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31604,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, right hand
- ;;^UTILITY(U,$J,358.3,31604,1,4,0)
- ;;=4^M06.041
- ;;^UTILITY(U,$J,358.3,31604,2)
- ;;=^5010057
- ;;^UTILITY(U,$J,358.3,31605,0)
- ;;=M06.051^^180^1962^58
- ;;^UTILITY(U,$J,358.3,31605,1,0)
+ ;;^UTILITY(U,$J,358.3,29989,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,29989,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,29989,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,29990,0)
+ ;;=C18.9^^135^1372^115
+ ;;^UTILITY(U,$J,358.3,29990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31605,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, right hip
- ;;^UTILITY(U,$J,358.3,31605,1,4,0)
- ;;=4^M06.051
- ;;^UTILITY(U,$J,358.3,31605,2)
- ;;=^5010060
- ;;^UTILITY(U,$J,358.3,31606,0)
- ;;=M06.061^^180^1962^59
- ;;^UTILITY(U,$J,358.3,31606,1,0)
+ ;;^UTILITY(U,$J,358.3,29990,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,29990,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,29990,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,29991,0)
+ ;;=C49.9^^135^1372^116
+ ;;^UTILITY(U,$J,358.3,29991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31606,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, right knee
- ;;^UTILITY(U,$J,358.3,31606,1,4,0)
- ;;=4^M06.061
- ;;^UTILITY(U,$J,358.3,31606,2)
- ;;=^5010063
+ ;;^UTILITY(U,$J,358.3,29991,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,29991,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,29991,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,29992,0)
+ ;;=C62.12^^135^1372^117
+ ;;^UTILITY(U,$J,358.3,29992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29992,1,3,0)
+ ;;=3^Malig Neop Descended Left Testis
+ ;;^UTILITY(U,$J,358.3,29992,1,4,0)
+ ;;=4^C62.12

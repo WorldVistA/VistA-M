@@ -1,126 +1,138 @@
-IBDEI1P6 ; ; 06-AUG-2015
+IBDEI1P6 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30103,1,0)
+ ;;^UTILITY(U,$J,358.3,28402,0)
+ ;;=F55.1^^132^1332^81
+ ;;^UTILITY(U,$J,358.3,28402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30103,1,3,0)
- ;;=3^Diseases of the circ sys comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30103,1,4,0)
- ;;=4^O99.413
- ;;^UTILITY(U,$J,358.3,30103,2)
- ;;=^5017972
- ;;^UTILITY(U,$J,358.3,30104,0)
- ;;=O99.43^^178^1913^11
- ;;^UTILITY(U,$J,358.3,30104,1,0)
+ ;;^UTILITY(U,$J,358.3,28402,1,3,0)
+ ;;=3^Herbal/Folk Remedy Abuse
+ ;;^UTILITY(U,$J,358.3,28402,1,4,0)
+ ;;=4^F55.1
+ ;;^UTILITY(U,$J,358.3,28402,2)
+ ;;=^5003629
+ ;;^UTILITY(U,$J,358.3,28403,0)
+ ;;=F55.8^^132^1332^124
+ ;;^UTILITY(U,$J,358.3,28403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30104,1,3,0)
- ;;=3^Diseases of the circ sys complicating the puerperium
- ;;^UTILITY(U,$J,358.3,30104,1,4,0)
- ;;=4^O99.43
- ;;^UTILITY(U,$J,358.3,30104,2)
- ;;=^5017975
- ;;^UTILITY(U,$J,358.3,30105,0)
- ;;=O33.0^^178^1913^38
- ;;^UTILITY(U,$J,358.3,30105,1,0)
+ ;;^UTILITY(U,$J,358.3,28403,1,3,0)
+ ;;=3^Non-Psychoactive Substance Abuse
+ ;;^UTILITY(U,$J,358.3,28403,1,4,0)
+ ;;=4^F55.8
+ ;;^UTILITY(U,$J,358.3,28403,2)
+ ;;=^5003633
+ ;;^UTILITY(U,$J,358.3,28404,0)
+ ;;=F55.4^^132^1332^161
+ ;;^UTILITY(U,$J,358.3,28404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30105,1,3,0)
- ;;=3^Matern care for disproprtn d/t deformity of matern pelv bone
- ;;^UTILITY(U,$J,358.3,30105,1,4,0)
- ;;=4^O33.0
- ;;^UTILITY(U,$J,358.3,30105,2)
- ;;=^5016691
- ;;^UTILITY(U,$J,358.3,30106,0)
- ;;=O99.810^^178^1913^1
- ;;^UTILITY(U,$J,358.3,30106,1,0)
+ ;;^UTILITY(U,$J,358.3,28404,1,3,0)
+ ;;=3^Vitamin Abuse
+ ;;^UTILITY(U,$J,358.3,28404,1,4,0)
+ ;;=4^F55.4
+ ;;^UTILITY(U,$J,358.3,28404,2)
+ ;;=^5003632
+ ;;^UTILITY(U,$J,358.3,28405,0)
+ ;;=F55.3^^132^1332^151
+ ;;^UTILITY(U,$J,358.3,28405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30106,1,3,0)
- ;;=3^Abnormal glucose complicating pregnancy
- ;;^UTILITY(U,$J,358.3,30106,1,4,0)
- ;;=4^O99.810
- ;;^UTILITY(U,$J,358.3,30106,2)
- ;;=^5017994
- ;;^UTILITY(U,$J,358.3,30107,0)
- ;;=O99.815^^178^1913^2
- ;;^UTILITY(U,$J,358.3,30107,1,0)
+ ;;^UTILITY(U,$J,358.3,28405,1,3,0)
+ ;;=3^Steroid/Hormone Abuse
+ ;;^UTILITY(U,$J,358.3,28405,1,4,0)
+ ;;=4^F55.3
+ ;;^UTILITY(U,$J,358.3,28405,2)
+ ;;=^5003631
+ ;;^UTILITY(U,$J,358.3,28406,0)
+ ;;=F51.09^^132^1332^97
+ ;;^UTILITY(U,$J,358.3,28406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30107,1,3,0)
- ;;=3^Abnormal glucose complicating the puerperium
- ;;^UTILITY(U,$J,358.3,30107,1,4,0)
- ;;=4^O99.815
- ;;^UTILITY(U,$J,358.3,30107,2)
- ;;=^5017996
- ;;^UTILITY(U,$J,358.3,30108,0)
- ;;=O99.331^^178^1914^20
- ;;^UTILITY(U,$J,358.3,30108,1,0)
+ ;;^UTILITY(U,$J,358.3,28406,1,3,0)
+ ;;=3^Insomnia not d/t Substance/Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,28406,1,4,0)
+ ;;=4^F51.09
+ ;;^UTILITY(U,$J,358.3,28406,2)
+ ;;=^5003608
+ ;;^UTILITY(U,$J,358.3,28407,0)
+ ;;=H53.9^^132^1332^159
+ ;;^UTILITY(U,$J,358.3,28407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30108,1,3,0)
- ;;=3^Tobacco complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30108,1,4,0)
- ;;=4^O99.331
- ;;^UTILITY(U,$J,358.3,30108,2)
- ;;=^5017953
- ;;^UTILITY(U,$J,358.3,30109,0)
- ;;=O99.332^^178^1914^21
- ;;^UTILITY(U,$J,358.3,30109,1,0)
+ ;;^UTILITY(U,$J,358.3,28407,1,3,0)
+ ;;=3^Visual Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,28407,1,4,0)
+ ;;=4^H53.9
+ ;;^UTILITY(U,$J,358.3,28407,2)
+ ;;=^124001
+ ;;^UTILITY(U,$J,358.3,28408,0)
+ ;;=I89.0^^132^1332^113
+ ;;^UTILITY(U,$J,358.3,28408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30109,1,3,0)
- ;;=3^Tobacco complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30109,1,4,0)
- ;;=4^O99.332
- ;;^UTILITY(U,$J,358.3,30109,2)
- ;;=^5017954
- ;;^UTILITY(U,$J,358.3,30110,0)
- ;;=O99.333^^178^1914^22
- ;;^UTILITY(U,$J,358.3,30110,1,0)
+ ;;^UTILITY(U,$J,358.3,28408,1,3,0)
+ ;;=3^Lymphedema NEC
+ ;;^UTILITY(U,$J,358.3,28408,1,4,0)
+ ;;=4^I89.0
+ ;;^UTILITY(U,$J,358.3,28408,2)
+ ;;=^5008073
+ ;;^UTILITY(U,$J,358.3,28409,0)
+ ;;=I87.1^^132^1332^158
+ ;;^UTILITY(U,$J,358.3,28409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30110,1,3,0)
- ;;=3^Tobacco complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30110,1,4,0)
- ;;=4^O99.333
- ;;^UTILITY(U,$J,358.3,30110,2)
- ;;=^5017955
- ;;^UTILITY(U,$J,358.3,30111,0)
- ;;=O99.335^^178^1914^23
- ;;^UTILITY(U,$J,358.3,30111,1,0)
+ ;;^UTILITY(U,$J,358.3,28409,1,3,0)
+ ;;=3^Vein Compression
+ ;;^UTILITY(U,$J,358.3,28409,1,4,0)
+ ;;=4^I87.1
+ ;;^UTILITY(U,$J,358.3,28409,2)
+ ;;=^269850
+ ;;^UTILITY(U,$J,358.3,28410,0)
+ ;;=K08.8^^132^1332^60
+ ;;^UTILITY(U,$J,358.3,28410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30111,1,3,0)
- ;;=3^Tobacco complicating the puerperium
- ;;^UTILITY(U,$J,358.3,30111,1,4,0)
- ;;=4^O99.335
- ;;^UTILITY(U,$J,358.3,30111,2)
- ;;=^5017957
- ;;^UTILITY(U,$J,358.3,30112,0)
- ;;=O99.211^^178^1914^14
- ;;^UTILITY(U,$J,358.3,30112,1,0)
+ ;;^UTILITY(U,$J,358.3,28410,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
+ ;;^UTILITY(U,$J,358.3,28410,1,4,0)
+ ;;=4^K08.8
+ ;;^UTILITY(U,$J,358.3,28410,2)
+ ;;=^5008467
+ ;;^UTILITY(U,$J,358.3,28411,0)
+ ;;=N39.3^^132^1332^152
+ ;;^UTILITY(U,$J,358.3,28411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30112,1,3,0)
- ;;=3^Obesity complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,30112,1,4,0)
- ;;=4^O99.211
- ;;^UTILITY(U,$J,358.3,30112,2)
- ;;=^5017929
- ;;^UTILITY(U,$J,358.3,30113,0)
- ;;=O99.212^^178^1914^15
- ;;^UTILITY(U,$J,358.3,30113,1,0)
+ ;;^UTILITY(U,$J,358.3,28411,1,3,0)
+ ;;=3^Stress Incontinence (Female/Male)
+ ;;^UTILITY(U,$J,358.3,28411,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,28411,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,28412,0)
+ ;;=R26.2^^132^1332^58
+ ;;^UTILITY(U,$J,358.3,28412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30113,1,3,0)
- ;;=3^Obesity complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,30113,1,4,0)
- ;;=4^O99.212
- ;;^UTILITY(U,$J,358.3,30113,2)
- ;;=^5017930
- ;;^UTILITY(U,$J,358.3,30114,0)
- ;;=O99.213^^178^1914^16
- ;;^UTILITY(U,$J,358.3,30114,1,0)
+ ;;^UTILITY(U,$J,358.3,28412,1,3,0)
+ ;;=3^Difficulty in Walking NEC
+ ;;^UTILITY(U,$J,358.3,28412,1,4,0)
+ ;;=4^R26.2
+ ;;^UTILITY(U,$J,358.3,28412,2)
+ ;;=^5019306
+ ;;^UTILITY(U,$J,358.3,28413,0)
+ ;;=M54.6^^132^1332^154
+ ;;^UTILITY(U,$J,358.3,28413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30114,1,3,0)
- ;;=3^Obesity complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,30114,1,4,0)
- ;;=4^O99.213
- ;;^UTILITY(U,$J,358.3,30114,2)
- ;;=^5017931
- ;;^UTILITY(U,$J,358.3,30115,0)
- ;;=O99.215^^178^1914^18
- ;;^UTILITY(U,$J,358.3,30115,1,0)
+ ;;^UTILITY(U,$J,358.3,28413,1,3,0)
+ ;;=3^Thoracic Spine Pain
+ ;;^UTILITY(U,$J,358.3,28413,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,28413,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,28414,0)
+ ;;=E66.8^^132^1332^125
+ ;;^UTILITY(U,$J,358.3,28414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28414,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,28414,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,28414,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,28415,0)
+ ;;=E66.9^^132^1332^126
+ ;;^UTILITY(U,$J,358.3,28415,1,0)
  ;;=^358.31IA^4^2

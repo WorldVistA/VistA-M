@@ -1,124 +1,136 @@
-IBDEI1WW ; ; 06-AUG-2015
+IBDEI1WW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33609,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,33610,0)
- ;;=F14.29^^182^2006^21
- ;;^UTILITY(U,$J,358.3,33610,1,0)
+ ;;^UTILITY(U,$J,358.3,32013,2)
+ ;;=^5063114
+ ;;^UTILITY(U,$J,358.3,32014,0)
+ ;;=Z56.9^^141^1482^8
+ ;;^UTILITY(U,$J,358.3,32014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33610,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,33610,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,33610,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,33611,0)
- ;;=F14.288^^182^2006^20
- ;;^UTILITY(U,$J,358.3,33611,1,0)
+ ;;^UTILITY(U,$J,358.3,32014,1,3,0)
+ ;;=3^Problems Related to Employment NEC
+ ;;^UTILITY(U,$J,358.3,32014,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,32014,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,32015,0)
+ ;;=Z56.82^^141^1482^6
+ ;;^UTILITY(U,$J,358.3,32015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33611,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,33611,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,33611,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,33612,0)
- ;;=F14.282^^182^2006^14
- ;;^UTILITY(U,$J,358.3,33612,1,0)
+ ;;^UTILITY(U,$J,358.3,32015,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,32015,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,32015,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,32016,0)
+ ;;=Z56.0^^141^1482^13
+ ;;^UTILITY(U,$J,358.3,32016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33612,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,33612,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,33612,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,33613,0)
- ;;=F14.281^^182^2006^15
- ;;^UTILITY(U,$J,358.3,33613,1,0)
+ ;;^UTILITY(U,$J,358.3,32016,1,3,0)
+ ;;=3^Unemployeement,Unspec
+ ;;^UTILITY(U,$J,358.3,32016,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,32016,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,32017,0)
+ ;;=Z56.1^^141^1482^2
+ ;;^UTILITY(U,$J,358.3,32017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33613,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,33613,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,33613,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,33614,0)
- ;;=F14.280^^182^2006^12
- ;;^UTILITY(U,$J,358.3,33614,1,0)
+ ;;^UTILITY(U,$J,358.3,32017,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,32017,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,32017,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,32018,0)
+ ;;=Z56.2^^141^1482^11
+ ;;^UTILITY(U,$J,358.3,32018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33614,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,33614,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,33614,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,33615,0)
- ;;=F14.259^^182^2006^11
- ;;^UTILITY(U,$J,358.3,33615,1,0)
+ ;;^UTILITY(U,$J,358.3,32018,1,3,0)
+ ;;=3^Threat of Job Loss
+ ;;^UTILITY(U,$J,358.3,32018,1,4,0)
+ ;;=4^Z56.2
+ ;;^UTILITY(U,$J,358.3,32018,2)
+ ;;=^5063109
+ ;;^UTILITY(U,$J,358.3,32019,0)
+ ;;=Z56.3^^141^1482^10
+ ;;^UTILITY(U,$J,358.3,32019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33615,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33615,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,33615,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,33616,0)
- ;;=F14.251^^182^2006^10
- ;;^UTILITY(U,$J,358.3,33616,1,0)
+ ;;^UTILITY(U,$J,358.3,32019,1,3,0)
+ ;;=3^Stressful Work Schedule
+ ;;^UTILITY(U,$J,358.3,32019,1,4,0)
+ ;;=4^Z56.3
+ ;;^UTILITY(U,$J,358.3,32019,2)
+ ;;=^5063110
+ ;;^UTILITY(U,$J,358.3,32020,0)
+ ;;=Z56.4^^141^1482^3
+ ;;^UTILITY(U,$J,358.3,32020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33616,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,33616,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,33616,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,33617,0)
- ;;=F14.250^^182^2006^9
- ;;^UTILITY(U,$J,358.3,33617,1,0)
+ ;;^UTILITY(U,$J,358.3,32020,1,3,0)
+ ;;=3^Discord w/ Boss & Workmates
+ ;;^UTILITY(U,$J,358.3,32020,1,4,0)
+ ;;=4^Z56.4
+ ;;^UTILITY(U,$J,358.3,32020,2)
+ ;;=^5063111
+ ;;^UTILITY(U,$J,358.3,32021,0)
+ ;;=Z56.5^^141^1482^12
+ ;;^UTILITY(U,$J,358.3,32021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33617,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,33617,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,33617,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,33618,0)
- ;;=F14.24^^182^2006^13
- ;;^UTILITY(U,$J,358.3,33618,1,0)
+ ;;^UTILITY(U,$J,358.3,32021,1,3,0)
+ ;;=3^Uncongenial Work Environment
+ ;;^UTILITY(U,$J,358.3,32021,1,4,0)
+ ;;=4^Z56.5
+ ;;^UTILITY(U,$J,358.3,32021,2)
+ ;;=^5063112
+ ;;^UTILITY(U,$J,358.3,32022,0)
+ ;;=Z56.6^^141^1482^5
+ ;;^UTILITY(U,$J,358.3,32022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33618,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,33618,1,4,0)
- ;;=4^F14.24
- ;;^UTILITY(U,$J,358.3,33618,2)
- ;;=^5003260
- ;;^UTILITY(U,$J,358.3,33619,0)
- ;;=F14.23^^182^2006^22
- ;;^UTILITY(U,$J,358.3,33619,1,0)
+ ;;^UTILITY(U,$J,358.3,32022,1,3,0)
+ ;;=3^Physical & Mental Strain Related to Work NEC
+ ;;^UTILITY(U,$J,358.3,32022,1,4,0)
+ ;;=4^Z56.6
+ ;;^UTILITY(U,$J,358.3,32022,2)
+ ;;=^5063113
+ ;;^UTILITY(U,$J,358.3,32023,0)
+ ;;=Z56.82^^141^1482^4
+ ;;^UTILITY(U,$J,358.3,32023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33619,1,3,0)
- ;;=3^Cocaine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,33619,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,33619,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,33620,0)
- ;;=F14.229^^182^2006^19
- ;;^UTILITY(U,$J,358.3,33620,1,0)
+ ;;^UTILITY(U,$J,358.3,32023,1,3,0)
+ ;;=3^Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,32023,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,32023,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,32024,0)
+ ;;=Z56.89^^141^1482^7
+ ;;^UTILITY(U,$J,358.3,32024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33620,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,33620,1,4,0)
- ;;=4^F14.229
- ;;^UTILITY(U,$J,358.3,33620,2)
- ;;=^5003258
- ;;^UTILITY(U,$J,358.3,33621,0)
- ;;=F14.222^^182^2006^17
- ;;^UTILITY(U,$J,358.3,33621,1,0)
+ ;;^UTILITY(U,$J,358.3,32024,1,3,0)
+ ;;=3^Problems Related to Employment,Other
+ ;;^UTILITY(U,$J,358.3,32024,1,4,0)
+ ;;=4^Z56.89
+ ;;^UTILITY(U,$J,358.3,32024,2)
+ ;;=^5063116
+ ;;^UTILITY(U,$J,358.3,32025,0)
+ ;;=F64.1^^141^1483^2
+ ;;^UTILITY(U,$J,358.3,32025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33621,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,33621,1,4,0)
- ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,32025,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,32025,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,32025,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,32026,0)
+ ;;=F64.8^^141^1483^1
+ ;;^UTILITY(U,$J,358.3,32026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32026,1,3,0)
+ ;;=3^Gender Dysphoria NEC
+ ;;^UTILITY(U,$J,358.3,32026,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,32026,2)
+ ;;=^5003649

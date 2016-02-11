@@ -1,0 +1,130 @@
+IBDEI2QY ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,46094,0)
+ ;;=S43.401S^^203^2275^23
+ ;;^UTILITY(U,$J,358.3,46094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46094,1,3,0)
+ ;;=3^Sprain,Right Shoulder Joint,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46094,1,4,0)
+ ;;=4^S43.401S
+ ;;^UTILITY(U,$J,358.3,46094,2)
+ ;;=^5027866
+ ;;^UTILITY(U,$J,358.3,46095,0)
+ ;;=S43.402S^^203^2275^10
+ ;;^UTILITY(U,$J,358.3,46095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46095,1,3,0)
+ ;;=3^Sprain,Left Shoulder Joint,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46095,1,4,0)
+ ;;=4^S43.402S
+ ;;^UTILITY(U,$J,358.3,46095,2)
+ ;;=^5027869
+ ;;^UTILITY(U,$J,358.3,46096,0)
+ ;;=S43.421S^^203^2275^22
+ ;;^UTILITY(U,$J,358.3,46096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46096,1,3,0)
+ ;;=3^Sprain,Right Rotator Cuff,Sequela
+ ;;^UTILITY(U,$J,358.3,46096,1,4,0)
+ ;;=4^S43.421S
+ ;;^UTILITY(U,$J,358.3,46096,2)
+ ;;=^5027881
+ ;;^UTILITY(U,$J,358.3,46097,0)
+ ;;=S43.422S^^203^2275^9
+ ;;^UTILITY(U,$J,358.3,46097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46097,1,3,0)
+ ;;=3^Sprain,Left Rotator Cuff,Sequela
+ ;;^UTILITY(U,$J,358.3,46097,1,4,0)
+ ;;=4^S43.422S
+ ;;^UTILITY(U,$J,358.3,46097,2)
+ ;;=^5027884
+ ;;^UTILITY(U,$J,358.3,46098,0)
+ ;;=S53.491S^^203^2275^16
+ ;;^UTILITY(U,$J,358.3,46098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46098,1,3,0)
+ ;;=3^Sprain,Right Elbow,Sequela
+ ;;^UTILITY(U,$J,358.3,46098,1,4,0)
+ ;;=4^S53.491S
+ ;;^UTILITY(U,$J,358.3,46098,2)
+ ;;=^5031405
+ ;;^UTILITY(U,$J,358.3,46099,0)
+ ;;=S53.492S^^203^2275^3
+ ;;^UTILITY(U,$J,358.3,46099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46099,1,3,0)
+ ;;=3^Sprain,Left Elbow,Sequela
+ ;;^UTILITY(U,$J,358.3,46099,1,4,0)
+ ;;=4^S53.492S
+ ;;^UTILITY(U,$J,358.3,46099,2)
+ ;;=^5135385
+ ;;^UTILITY(U,$J,358.3,46100,0)
+ ;;=S63.91XS^^203^2275^24
+ ;;^UTILITY(U,$J,358.3,46100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46100,1,3,0)
+ ;;=3^Sprain,Right Wrist/Hand,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46100,1,4,0)
+ ;;=4^S63.91XS
+ ;;^UTILITY(U,$J,358.3,46100,2)
+ ;;=^5136050
+ ;;^UTILITY(U,$J,358.3,46101,0)
+ ;;=S63.92XS^^203^2275^11
+ ;;^UTILITY(U,$J,358.3,46101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46101,1,3,0)
+ ;;=3^Sprain,Left Wrist/Hand,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46101,1,4,0)
+ ;;=4^S63.92XS
+ ;;^UTILITY(U,$J,358.3,46101,2)
+ ;;=^5136051
+ ;;^UTILITY(U,$J,358.3,46102,0)
+ ;;=S73.101S^^203^2275^19
+ ;;^UTILITY(U,$J,358.3,46102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46102,1,3,0)
+ ;;=3^Sprain,Right Hip,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46102,1,4,0)
+ ;;=4^S73.101S
+ ;;^UTILITY(U,$J,358.3,46102,2)
+ ;;=^5039311
+ ;;^UTILITY(U,$J,358.3,46103,0)
+ ;;=S73.102S^^203^2275^6
+ ;;^UTILITY(U,$J,358.3,46103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46103,1,3,0)
+ ;;=3^Sprain,Left Hip,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46103,1,4,0)
+ ;;=4^S73.102S
+ ;;^UTILITY(U,$J,358.3,46103,2)
+ ;;=^5039314
+ ;;^UTILITY(U,$J,358.3,46104,0)
+ ;;=S93.402S^^203^2275^2
+ ;;^UTILITY(U,$J,358.3,46104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46104,1,3,0)
+ ;;=3^Sprain,Left Ankle Ligament,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46104,1,4,0)
+ ;;=4^S93.402S
+ ;;^UTILITY(U,$J,358.3,46104,2)
+ ;;=^5045779
+ ;;^UTILITY(U,$J,358.3,46105,0)
+ ;;=S93.401S^^203^2275^15
+ ;;^UTILITY(U,$J,358.3,46105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46105,1,3,0)
+ ;;=3^Sprain,Right Ankle Ligament,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46105,1,4,0)
+ ;;=4^S93.401S
+ ;;^UTILITY(U,$J,358.3,46105,2)
+ ;;=^5045776
+ ;;^UTILITY(U,$J,358.3,46106,0)
+ ;;=S93.501S^^203^2275^18
+ ;;^UTILITY(U,$J,358.3,46106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46106,1,3,0)
+ ;;=3^Sprain,Right Great Toe,Unspec,Sequela

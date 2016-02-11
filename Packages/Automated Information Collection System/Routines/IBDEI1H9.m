@@ -1,124 +1,140 @@
-IBDEI1H9 ; ; 06-AUG-2015
+IBDEI1H9 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26215,1,5,0)
- ;;=5^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,26215,2)
- ;;=Borderline Personality Disorder^16372
- ;;^UTILITY(U,$J,358.3,26216,0)
- ;;=301.6^^152^1676^6
- ;;^UTILITY(U,$J,358.3,26216,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26216,1,2,0)
- ;;=2^301.6
- ;;^UTILITY(U,$J,358.3,26216,1,5,0)
- ;;=5^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,26216,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,26217,0)
- ;;=301.50^^152^1676^8
- ;;^UTILITY(U,$J,358.3,26217,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26217,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,26217,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,26217,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,26218,0)
- ;;=301.81^^152^1676^11
- ;;^UTILITY(U,$J,358.3,26218,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26218,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,26218,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,26218,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,26219,0)
- ;;=301.0^^152^1676^12
- ;;^UTILITY(U,$J,358.3,26219,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26219,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,26219,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,26219,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,26220,0)
- ;;=301.9^^152^1676^16
- ;;^UTILITY(U,$J,358.3,26220,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26220,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,26220,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,26220,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,26221,0)
- ;;=301.20^^152^1676^14
- ;;^UTILITY(U,$J,358.3,26221,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26221,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,26221,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,26221,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,26222,0)
- ;;=301.22^^152^1676^15
- ;;^UTILITY(U,$J,358.3,26222,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26222,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,26222,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,26222,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,26223,0)
- ;;=301.4^^152^1676^4
- ;;^UTILITY(U,$J,358.3,26223,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26223,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,26223,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,26223,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,26224,0)
- ;;=301.84^^152^1676^13
- ;;^UTILITY(U,$J,358.3,26224,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26224,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,26224,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,26224,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,26225,0)
- ;;=301.11^^152^1676^9
- ;;^UTILITY(U,$J,358.3,26225,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26225,1,2,0)
- ;;=2^301.11
- ;;^UTILITY(U,$J,358.3,26225,1,5,0)
- ;;=5^Hypomanic Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,26225,2)
- ;;=^268171
- ;;^UTILITY(U,$J,358.3,26226,0)
- ;;=301.12^^152^1676^7
- ;;^UTILITY(U,$J,358.3,26226,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26226,1,2,0)
- ;;=2^301.12
- ;;^UTILITY(U,$J,358.3,26226,1,5,0)
- ;;=5^Depressive Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,26226,2)
- ;;=^268173
- ;;^UTILITY(U,$J,358.3,26227,0)
- ;;=301.13^^152^1676^5
- ;;^UTILITY(U,$J,358.3,26227,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26227,1,2,0)
- ;;=2^301.13
+ ;;^UTILITY(U,$J,358.3,24700,1,3,0)
+ ;;=3^Hepatitis A,Acute
+ ;;^UTILITY(U,$J,358.3,24700,1,4,0)
+ ;;=4^B17.9
+ ;;^UTILITY(U,$J,358.3,24700,2)
+ ;;=^5000545
+ ;;^UTILITY(U,$J,358.3,24701,0)
+ ;;=B16.9^^121^1222^42
+ ;;^UTILITY(U,$J,358.3,24701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24701,1,3,0)
+ ;;=3^Hepatitis B,Acute
+ ;;^UTILITY(U,$J,358.3,24701,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,24701,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,24702,0)
+ ;;=B18.1^^121^1222^43
+ ;;^UTILITY(U,$J,358.3,24702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24702,1,3,0)
+ ;;=3^Hepatitis B,Chr w/o Coma
+ ;;^UTILITY(U,$J,358.3,24702,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,24702,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,24703,0)
+ ;;=B17.10^^121^1222^44
+ ;;^UTILITY(U,$J,358.3,24703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24703,1,3,0)
+ ;;=3^Hepatitis C,Acute
+ ;;^UTILITY(U,$J,358.3,24703,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,24703,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,24704,0)
+ ;;=B18.2^^121^1222^45
+ ;;^UTILITY(U,$J,358.3,24704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24704,1,3,0)
+ ;;=3^Hepatitis C,Chr w/o Coma
+ ;;^UTILITY(U,$J,358.3,24704,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,24704,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,24705,0)
+ ;;=K75.89^^121^1222^46
+ ;;^UTILITY(U,$J,358.3,24705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24705,1,3,0)
+ ;;=3^Hepatitis,Elevation in Transaminases
+ ;;^UTILITY(U,$J,358.3,24705,1,4,0)
+ ;;=4^K75.89
+ ;;^UTILITY(U,$J,358.3,24705,2)
+ ;;=^5008829
+ ;;^UTILITY(U,$J,358.3,24706,0)
+ ;;=B19.9^^121^1222^47
+ ;;^UTILITY(U,$J,358.3,24706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24706,1,3,0)
+ ;;=3^Hepatitis,Viral
+ ;;^UTILITY(U,$J,358.3,24706,1,4,0)
+ ;;=4^B19.9
+ ;;^UTILITY(U,$J,358.3,24706,2)
+ ;;=^5000554
+ ;;^UTILITY(U,$J,358.3,24707,0)
+ ;;=B00.9^^121^1222^48
+ ;;^UTILITY(U,$J,358.3,24707,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24707,1,3,0)
+ ;;=3^Herpes NEC
+ ;;^UTILITY(U,$J,358.3,24707,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,24707,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,24708,0)
+ ;;=B00.1^^121^1222^49
+ ;;^UTILITY(U,$J,358.3,24708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24708,1,3,0)
+ ;;=3^Herpes Simplex,Mouth/Lip
+ ;;^UTILITY(U,$J,358.3,24708,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,24708,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,24709,0)
+ ;;=B02.9^^121^1222^50
+ ;;^UTILITY(U,$J,358.3,24709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24709,1,3,0)
+ ;;=3^Herpes Zoster NOS
+ ;;^UTILITY(U,$J,358.3,24709,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,24709,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,24710,0)
+ ;;=B00.3^^121^1222^52
+ ;;^UTILITY(U,$J,358.3,24710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24710,1,3,0)
+ ;;=3^Herpes,Meningitis
+ ;;^UTILITY(U,$J,358.3,24710,1,4,0)
+ ;;=4^B00.3
+ ;;^UTILITY(U,$J,358.3,24710,2)
+ ;;=^5000470
+ ;;^UTILITY(U,$J,358.3,24711,0)
+ ;;=B01.9^^121^1222^53
+ ;;^UTILITY(U,$J,358.3,24711,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24711,1,3,0)
+ ;;=3^Herpes,Varicella
+ ;;^UTILITY(U,$J,358.3,24711,1,4,0)
+ ;;=4^B01.9
+ ;;^UTILITY(U,$J,358.3,24711,2)
+ ;;=^5000487
+ ;;^UTILITY(U,$J,358.3,24712,0)
+ ;;=B00.2^^121^1222^51
+ ;;^UTILITY(U,$J,358.3,24712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24712,1,3,0)
+ ;;=3^Herpes,Gingivostomatitis/Pharyngotonsillitis
+ ;;^UTILITY(U,$J,358.3,24712,1,4,0)
+ ;;=4^B00.2
+ ;;^UTILITY(U,$J,358.3,24712,2)
+ ;;=^5000469
+ ;;^UTILITY(U,$J,358.3,24713,0)
+ ;;=A60.01^^121^1222^54
+ ;;^UTILITY(U,$J,358.3,24713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24713,1,3,0)
+ ;;=3^Herpetic Infection of Penis
+ ;;^UTILITY(U,$J,358.3,24713,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,24713,2)
+ ;;=^5000353

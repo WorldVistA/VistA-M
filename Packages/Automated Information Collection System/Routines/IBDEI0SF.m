@@ -1,126 +1,130 @@
-IBDEI0SF ; ; 06-AUG-2015
+IBDEI0SF ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13739,0)
- ;;=11721^^72^814^3^^^^1
- ;;^UTILITY(U,$J,358.3,13739,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13739,1,2,0)
- ;;=2^11721
- ;;^UTILITY(U,$J,358.3,13739,1,3,0)
- ;;=3^Debride of nail(s) any method;6+
- ;;^UTILITY(U,$J,358.3,13740,0)
- ;;=11730^^72^814^4^^^^1
- ;;^UTILITY(U,$J,358.3,13740,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13740,1,2,0)
- ;;=2^11730
- ;;^UTILITY(U,$J,358.3,13740,1,3,0)
- ;;=3^Avulsion of nail plate,simple;single
- ;;^UTILITY(U,$J,358.3,13741,0)
- ;;=11732^^72^814^5^^^^1
- ;;^UTILITY(U,$J,358.3,13741,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13741,1,2,0)
- ;;=2^11732
- ;;^UTILITY(U,$J,358.3,13741,1,3,0)
- ;;=3^Avulsion of nail plate,Ea Add nail plate
- ;;^UTILITY(U,$J,358.3,13742,0)
- ;;=11740^^72^814^6^^^^1
- ;;^UTILITY(U,$J,358.3,13742,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13742,1,2,0)
- ;;=2^11740
- ;;^UTILITY(U,$J,358.3,13742,1,3,0)
- ;;=3^Evacuation of subungual hematoma
- ;;^UTILITY(U,$J,358.3,13743,0)
- ;;=11750^^72^814^7^^^^1
- ;;^UTILITY(U,$J,358.3,13743,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13743,1,2,0)
- ;;=2^11750
- ;;^UTILITY(U,$J,358.3,13743,1,3,0)
- ;;=3^Exc of nail&nail matrix,perm removal
- ;;^UTILITY(U,$J,358.3,13744,0)
- ;;=11752^^72^814^8^^^^1
- ;;^UTILITY(U,$J,358.3,13744,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13744,1,2,0)
- ;;=2^11752
- ;;^UTILITY(U,$J,358.3,13744,1,3,0)
- ;;=3^Exc of nail&nail matrix,w/amp of tuft
- ;;^UTILITY(U,$J,358.3,13745,0)
- ;;=11760^^72^814^9^^^^1
- ;;^UTILITY(U,$J,358.3,13745,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13745,1,2,0)
- ;;=2^11760
- ;;^UTILITY(U,$J,358.3,13745,1,3,0)
- ;;=3^Repair of nail bed
- ;;^UTILITY(U,$J,358.3,13746,0)
- ;;=11765^^72^814^10^^^^1
- ;;^UTILITY(U,$J,358.3,13746,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13746,1,2,0)
- ;;=2^11765
- ;;^UTILITY(U,$J,358.3,13746,1,3,0)
- ;;=3^Wedge excision of skin of nail fold
- ;;^UTILITY(U,$J,358.3,13747,0)
- ;;=11300^^72^815^1^^^^1
- ;;^UTILITY(U,$J,358.3,13747,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13747,1,2,0)
- ;;=2^11300
- ;;^UTILITY(U,$J,358.3,13747,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 0.5cm or less
- ;;^UTILITY(U,$J,358.3,13748,0)
- ;;=11301^^72^815^2^^^^1
- ;;^UTILITY(U,$J,358.3,13748,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13748,1,2,0)
- ;;=2^11301
- ;;^UTILITY(U,$J,358.3,13748,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,13749,0)
- ;;=11302^^72^815^3^^^^1
- ;;^UTILITY(U,$J,358.3,13749,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13749,1,2,0)
- ;;=2^11302
- ;;^UTILITY(U,$J,358.3,13749,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,13750,0)
- ;;=11303^^72^815^4^^^^1
- ;;^UTILITY(U,$J,358.3,13750,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13750,1,2,0)
- ;;=2^11303
- ;;^UTILITY(U,$J,358.3,13750,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg > 2.0cm
- ;;^UTILITY(U,$J,358.3,13751,0)
- ;;=12001^^72^816^1^^^^1
- ;;^UTILITY(U,$J,358.3,13751,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13751,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,13751,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,13752,0)
- ;;=12002^^72^816^2^^^^1
- ;;^UTILITY(U,$J,358.3,13752,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13752,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,13752,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,13753,0)
- ;;=12004^^72^816^3^^^^1
- ;;^UTILITY(U,$J,358.3,13753,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13753,1,2,0)
- ;;=2^12004
- ;;^UTILITY(U,$J,358.3,13753,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,13754,0)
- ;;=12005^^72^816^4^^^^1
+ ;;^UTILITY(U,$J,358.3,13079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13079,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13079,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,13079,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,13080,0)
+ ;;=H31.421^^80^754^120
+ ;;^UTILITY(U,$J,358.3,13080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13080,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,13080,1,4,0)
+ ;;=4^H31.421
+ ;;^UTILITY(U,$J,358.3,13080,2)
+ ;;=^5005483
+ ;;^UTILITY(U,$J,358.3,13081,0)
+ ;;=H31.422^^80^754^119
+ ;;^UTILITY(U,$J,358.3,13081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13081,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,13081,1,4,0)
+ ;;=4^H31.422
+ ;;^UTILITY(U,$J,358.3,13081,2)
+ ;;=^5005484
+ ;;^UTILITY(U,$J,358.3,13082,0)
+ ;;=H21.231^^80^754^28
+ ;;^UTILITY(U,$J,358.3,13082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13082,1,3,0)
+ ;;=3^Degeneration of Iris,Right Eye
+ ;;^UTILITY(U,$J,358.3,13082,1,4,0)
+ ;;=4^H21.231
+ ;;^UTILITY(U,$J,358.3,13082,2)
+ ;;=^5005187
+ ;;^UTILITY(U,$J,358.3,13083,0)
+ ;;=H21.232^^80^754^27
+ ;;^UTILITY(U,$J,358.3,13083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13083,1,3,0)
+ ;;=3^Degeneration of Iris,Left Eye
+ ;;^UTILITY(U,$J,358.3,13083,1,4,0)
+ ;;=4^H21.232
+ ;;^UTILITY(U,$J,358.3,13083,2)
+ ;;=^5005188
+ ;;^UTILITY(U,$J,358.3,13084,0)
+ ;;=H40.011^^80^754^85
+ ;;^UTILITY(U,$J,358.3,13084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13084,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,13084,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,13084,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,13085,0)
+ ;;=H40.012^^80^754^86
+ ;;^UTILITY(U,$J,358.3,13085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13085,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,13085,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,13085,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,13086,0)
+ ;;=H40.021^^80^754^82
+ ;;^UTILITY(U,$J,358.3,13086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13086,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,13086,1,4,0)
+ ;;=4^H40.021
+ ;;^UTILITY(U,$J,358.3,13086,2)
+ ;;=^5005728
+ ;;^UTILITY(U,$J,358.3,13087,0)
+ ;;=H40.022^^80^754^83
+ ;;^UTILITY(U,$J,358.3,13087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13087,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,13087,1,4,0)
+ ;;=4^H40.022
+ ;;^UTILITY(U,$J,358.3,13087,2)
+ ;;=^5005729
+ ;;^UTILITY(U,$J,358.3,13088,0)
+ ;;=H40.031^^80^754^3
+ ;;^UTILITY(U,$J,358.3,13088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13088,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Right Eye
+ ;;^UTILITY(U,$J,358.3,13088,1,4,0)
+ ;;=4^H40.031
+ ;;^UTILITY(U,$J,358.3,13088,2)
+ ;;=^5005732
+ ;;^UTILITY(U,$J,358.3,13089,0)
+ ;;=H40.032^^80^754^2
+ ;;^UTILITY(U,$J,358.3,13089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13089,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Left Eye
+ ;;^UTILITY(U,$J,358.3,13089,1,4,0)
+ ;;=4^H40.032
+ ;;^UTILITY(U,$J,358.3,13089,2)
+ ;;=^5005733
+ ;;^UTILITY(U,$J,358.3,13090,0)
+ ;;=H40.033^^80^754^1
+ ;;^UTILITY(U,$J,358.3,13090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13090,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,13090,1,4,0)
+ ;;=4^H40.033
+ ;;^UTILITY(U,$J,358.3,13090,2)
+ ;;=^5005734
+ ;;^UTILITY(U,$J,358.3,13091,0)
+ ;;=H40.041^^80^754^123
+ ;;^UTILITY(U,$J,358.3,13091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13091,1,3,0)
+ ;;=3^Steroid Responder,Right Eye
+ ;;^UTILITY(U,$J,358.3,13091,1,4,0)
+ ;;=4^H40.041

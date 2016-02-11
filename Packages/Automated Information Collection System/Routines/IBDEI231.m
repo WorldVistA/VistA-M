@@ -1,116 +1,130 @@
-IBDEI231 ; ; 06-AUG-2015
+IBDEI231 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.6)
- ;;=^IBE(358.6,
- ;;^UTILITY(U,$J,358.6,0)
- ;;=IMP/EXP PACKAGE INTERFACE^358.6I^11^11
- ;;^UTILITY(U,$J,358.6,1,0)
- ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^2^^^^1^1^^^^30
- ;;^UTILITY(U,$J,358.6,1,1,0)
- ;;=^^2^2^3140327
- ;;^UTILITY(U,$J,358.6,1,1,1,0)
- ;;=Allows the user to select ICD-10 diagnosis codes from the ICD Diagnosis
- ;;^UTILITY(U,$J,358.6,1,1,2,0)
- ;;=file. Allows only active codes to be selected.
- ;;^UTILITY(U,$J,358.6,1,2)
- ;;=CODE^8^^^^^^^^^^^^^^^1^1
- ;;^UTILITY(U,$J,358.6,1,3)
- ;;=SELECT ICD10 ICD-10 CODES DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,1,9)
- ;;=D INPICD10^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,1,11)
- ;;=D TESTICD0^IBDFN7
- ;;^UTILITY(U,$J,358.6,1,12)
- ;;=^^^^^
- ;;^UTILITY(U,$J,358.6,1,13,0)
- ;;=^357.613V^2^2
- ;;^UTILITY(U,$J,358.6,1,13,1,0)
- ;;=1;IBD(358.98,^^^^^^^
- ;;^UTILITY(U,$J,358.6,1,13,2,0)
- ;;=2;IBD(358.98,^^^^^^^
- ;;^UTILITY(U,$J,358.6,1,15,0)
- ;;=^357.615I^2^2
- ;;^UTILITY(U,$J,358.6,1,15,1,0)
- ;;=DIAGNOSIS^60^2^^DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,1,15,2,0)
- ;;=DESCRIPTION^200^3^^DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,1,16)
- ;;=o^2^Diagnosis^^r^3^ICD-10 Code^^1
- ;;^UTILITY(U,$J,358.6,1,17)
- ;;=D SLCTDX10^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,1,19)
- ;;=D DX10^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,2,0)
- ;;=INPUT DIAGNOSIS CODE (ICD10)^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP^^^1^^^
- ;;^UTILITY(U,$J,358.6,2,1,0)
- ;;=^^1^1^3140327
- ;;^UTILITY(U,$J,358.6,2,1,1,0)
- ;;=Used for inputting ICD10 diagnosis codes.
- ;;^UTILITY(U,$J,358.6,2,2)
- ;;=^^^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,2,3)
- ;;=INPUT ICD10 ICD-10 DIAGNOSIS CODES
- ;;^UTILITY(U,$J,358.6,2,9)
- ;;=D INPICD10^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,2,10)
- ;;=Enter at least two characters of an active ICD10 diagnosis code.
- ;;^UTILITY(U,$J,358.6,2,11)
- ;;=D TESTICD0^IBDFN7
- ;;^UTILITY(U,$J,358.6,2,12)
- ;;=DIAGNOSIS/PROBLEM^1^13^14^2^
- ;;^UTILITY(U,$J,358.6,2,13,0)
- ;;=^357.613V^10^10
- ;;^UTILITY(U,$J,358.6,2,13,1,0)
- ;;=1;IBD(358.98,^^1^^^^^2
- ;;^UTILITY(U,$J,358.6,2,13,2,0)
- ;;=2;IBD(358.98,^^1^^^^^2
- ;;^UTILITY(U,$J,358.6,2,13,3,0)
- ;;=3;IBD(358.98,^^1^^^^^9
- ;;^UTILITY(U,$J,358.6,2,13,4,0)
- ;;=1;IBE(358.99,^^0^^^^^
- ;;^UTILITY(U,$J,358.6,2,13,5,0)
- ;;=4;IBD(358.98,^^1^^^^^10
- ;;^UTILITY(U,$J,358.6,2,13,6,0)
- ;;=5;IBD(358.98,^^1^^^^^11
- ;;^UTILITY(U,$J,358.6,2,13,7,0)
- ;;=6;IBD(358.98,^^1^^^^^12
- ;;^UTILITY(U,$J,358.6,2,13,8,0)
- ;;=7;IBD(358.98,^^1^^^^^5
- ;;^UTILITY(U,$J,358.6,2,13,9,0)
- ;;=8;IBD(358.98,^^1^^^^^6
- ;;^UTILITY(U,$J,358.6,2,13,10,0)
- ;;=9;IBD(358.98,^^1^^^^^6
- ;;^UTILITY(U,$J,358.6,2,14)
- ;;=S Y=$$DSPICD10^IBDFN9(Y)
- ;;^UTILITY(U,$J,358.6,2,16)
- ;;=^^^^^^^^
- ;;^UTILITY(U,$J,358.6,2,17)
- ;;=D SLCTDX10^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,2,18)
- ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
- ;;^UTILITY(U,$J,358.6,2,19)
- ;;=D DX10^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,3,0)
- ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^4^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,3,1,0)
- ;;=^^2^2^2961007^^^^
- ;;^UTILITY(U,$J,358.6,3,1,1,0)
- ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
- ;;^UTILITY(U,$J,358.6,3,1,2,0)
- ;;=are allowed.
- ;;^UTILITY(U,$J,358.6,3,2)
- ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
- ;;^UTILITY(U,$J,358.6,3,3)
- ;;=SELECT CPT PROCEDURE CODES
- ;;^UTILITY(U,$J,358.6,3,9)
- ;;=S X=$$CPT^IBDFN12(X)
- ;;^UTILITY(U,$J,358.6,3,11)
- ;;=D TESTCPT^IBDFN7
- ;;^UTILITY(U,$J,358.6,3,15,0)
- ;;=^357.615I^2^2
- ;;^UTILITY(U,$J,358.6,3,15,1,0)
- ;;=SHORT NAME^28^2^^PROCEDURE
- ;;^UTILITY(U,$J,358.6,3,15,2,0)
- ;;=DESCRIPTION^161^3^^PROCEDURE
+ ;;^UTILITY(U,$J,358.3,34946,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,34946,1,4,0)
+ ;;=4^L89.011
+ ;;^UTILITY(U,$J,358.3,34946,2)
+ ;;=^5009338
+ ;;^UTILITY(U,$J,358.3,34947,0)
+ ;;=L89.012^^163^1788^74
+ ;;^UTILITY(U,$J,358.3,34947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34947,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,34947,1,4,0)
+ ;;=4^L89.012
+ ;;^UTILITY(U,$J,358.3,34947,2)
+ ;;=^5009339
+ ;;^UTILITY(U,$J,358.3,34948,0)
+ ;;=L89.013^^163^1788^75
+ ;;^UTILITY(U,$J,358.3,34948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34948,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,34948,1,4,0)
+ ;;=4^L89.013
+ ;;^UTILITY(U,$J,358.3,34948,2)
+ ;;=^5009340
+ ;;^UTILITY(U,$J,358.3,34949,0)
+ ;;=L89.014^^163^1788^76
+ ;;^UTILITY(U,$J,358.3,34949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34949,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,34949,1,4,0)
+ ;;=4^L89.014
+ ;;^UTILITY(U,$J,358.3,34949,2)
+ ;;=^5009341
+ ;;^UTILITY(U,$J,358.3,34950,0)
+ ;;=L89.019^^163^1788^77
+ ;;^UTILITY(U,$J,358.3,34950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34950,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,34950,1,4,0)
+ ;;=4^L89.019
+ ;;^UTILITY(U,$J,358.3,34950,2)
+ ;;=^5133648
+ ;;^UTILITY(U,$J,358.3,34951,0)
+ ;;=L89.029^^163^1788^29
+ ;;^UTILITY(U,$J,358.3,34951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34951,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,34951,1,4,0)
+ ;;=4^L89.029
+ ;;^UTILITY(U,$J,358.3,34951,2)
+ ;;=^5133649
+ ;;^UTILITY(U,$J,358.3,34952,0)
+ ;;=L89.020^^163^1788^30
+ ;;^UTILITY(U,$J,358.3,34952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34952,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,34952,1,4,0)
+ ;;=4^L89.020
+ ;;^UTILITY(U,$J,358.3,34952,2)
+ ;;=^5009342
+ ;;^UTILITY(U,$J,358.3,34953,0)
+ ;;=L89.021^^163^1788^25
+ ;;^UTILITY(U,$J,358.3,34953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34953,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,34953,1,4,0)
+ ;;=4^L89.021
+ ;;^UTILITY(U,$J,358.3,34953,2)
+ ;;=^5009343
+ ;;^UTILITY(U,$J,358.3,34954,0)
+ ;;=L89.022^^163^1788^26
+ ;;^UTILITY(U,$J,358.3,34954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34954,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,34954,1,4,0)
+ ;;=4^L89.022
+ ;;^UTILITY(U,$J,358.3,34954,2)
+ ;;=^5009344
+ ;;^UTILITY(U,$J,358.3,34955,0)
+ ;;=L89.023^^163^1788^27
+ ;;^UTILITY(U,$J,358.3,34955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34955,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,34955,1,4,0)
+ ;;=4^L89.023
+ ;;^UTILITY(U,$J,358.3,34955,2)
+ ;;=^5009345
+ ;;^UTILITY(U,$J,358.3,34956,0)
+ ;;=L89.024^^163^1788^28
+ ;;^UTILITY(U,$J,358.3,34956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34956,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,34956,1,4,0)
+ ;;=4^L89.024
+ ;;^UTILITY(U,$J,358.3,34956,2)
+ ;;=^5009346
+ ;;^UTILITY(U,$J,358.3,34957,0)
+ ;;=L89.110^^163^1788^102
+ ;;^UTILITY(U,$J,358.3,34957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34957,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,34957,1,4,0)
+ ;;=4^L89.110
+ ;;^UTILITY(U,$J,358.3,34957,2)
+ ;;=^5009352
+ ;;^UTILITY(U,$J,358.3,34958,0)
+ ;;=L89.111^^163^1788^97
+ ;;^UTILITY(U,$J,358.3,34958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34958,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,34958,1,4,0)
+ ;;=4^L89.111
+ ;;^UTILITY(U,$J,358.3,34958,2)
+ ;;=^5009353

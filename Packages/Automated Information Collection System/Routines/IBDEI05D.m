@@ -1,134 +1,130 @@
-IBDEI05D ; ; 06-AUG-2015
+IBDEI05D ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1994,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1994,1,3,0)
- ;;=3^Sleep disorder, unspecified
- ;;^UTILITY(U,$J,358.3,1994,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,1994,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,1995,0)
- ;;=I82.401^^3^59^1
- ;;^UTILITY(U,$J,358.3,1995,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1995,1,3,0)
- ;;=3^Acute embolism and thombos unsp deep veins of r low extrem
- ;;^UTILITY(U,$J,358.3,1995,1,4,0)
- ;;=4^I82.401
- ;;^UTILITY(U,$J,358.3,1995,2)
- ;;=^5007854
- ;;^UTILITY(U,$J,358.3,1996,0)
- ;;=I82.402^^3^59^2
- ;;^UTILITY(U,$J,358.3,1996,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1996,1,3,0)
- ;;=3^Acute embolism and thombos unsp deep veins of l low extrem
- ;;^UTILITY(U,$J,358.3,1996,1,4,0)
- ;;=4^I82.402
- ;;^UTILITY(U,$J,358.3,1996,2)
- ;;=^5007855
- ;;^UTILITY(U,$J,358.3,1997,0)
- ;;=Z86.718^^3^59^3
- ;;^UTILITY(U,$J,358.3,1997,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1997,1,3,0)
- ;;=3^Personal history of other venous thrombosis and embolism
- ;;^UTILITY(U,$J,358.3,1997,1,4,0)
- ;;=4^Z86.718
- ;;^UTILITY(U,$J,358.3,1997,2)
- ;;=^5063475
- ;;^UTILITY(U,$J,358.3,1998,0)
- ;;=D14.31^^3^60^2
- ;;^UTILITY(U,$J,358.3,1998,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1998,1,3,0)
- ;;=3^Benign neoplasm of right bronchus and lung
- ;;^UTILITY(U,$J,358.3,1998,1,4,0)
- ;;=4^D14.31
- ;;^UTILITY(U,$J,358.3,1998,2)
- ;;=^5001983
- ;;^UTILITY(U,$J,358.3,1999,0)
- ;;=D14.32^^3^60^1
- ;;^UTILITY(U,$J,358.3,1999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1999,1,3,0)
- ;;=3^Benign neoplasm of left bronchus and lung
- ;;^UTILITY(U,$J,358.3,1999,1,4,0)
- ;;=4^D14.32
- ;;^UTILITY(U,$J,358.3,1999,2)
- ;;=^5001984
- ;;^UTILITY(U,$J,358.3,2000,0)
- ;;=J98.4^^3^60^3
- ;;^UTILITY(U,$J,358.3,2000,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2000,1,3,0)
- ;;=3^Lung Disorders NEC
- ;;^UTILITY(U,$J,358.3,2000,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,2000,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,2001,0)
- ;;=I71.4^^3^61^1
- ;;^UTILITY(U,$J,358.3,2001,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2001,1,3,0)
- ;;=3^Abdominal aortic aneurysm, without rupture
- ;;^UTILITY(U,$J,358.3,2001,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,2001,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,2002,0)
- ;;=I73.9^^3^61^5
- ;;^UTILITY(U,$J,358.3,2002,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2002,1,3,0)
- ;;=3^Peripheral vascular disease, unspecified
- ;;^UTILITY(U,$J,358.3,2002,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,2002,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,2003,0)
- ;;=I80.9^^3^61^6
- ;;^UTILITY(U,$J,358.3,2003,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2003,1,3,0)
- ;;=3^Phlebitis and thrombophlebitis of unspecified site
- ;;^UTILITY(U,$J,358.3,2003,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,2003,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,2004,0)
- ;;=I83.91^^3^61^3
- ;;^UTILITY(U,$J,358.3,2004,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2004,1,3,0)
- ;;=3^Asymptomatic varicose veins of right lower extremity
- ;;^UTILITY(U,$J,358.3,2004,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,2004,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,2005,0)
- ;;=I83.92^^3^61^2
- ;;^UTILITY(U,$J,358.3,2005,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2005,1,3,0)
- ;;=3^Asymptomatic varicose veins of left lower extremity
- ;;^UTILITY(U,$J,358.3,2005,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,2005,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,2006,0)
- ;;=I99.8^^3^61^4
- ;;^UTILITY(U,$J,358.3,2006,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2006,1,3,0)
- ;;=3^Circulatory System Disorder NEC
- ;;^UTILITY(U,$J,358.3,2006,1,4,0)
- ;;=4^I99.8
- ;;^UTILITY(U,$J,358.3,2006,2)
- ;;=^5008113
- ;;^UTILITY(U,$J,358.3,2007,0)
- ;;=S90.511A^^4^62^16
+ ;;^UTILITY(U,$J,358.3,1857,0)
+ ;;=75731^^17^172^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1857,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1857,1,2,0)
+ ;;=2^75731
+ ;;^UTILITY(U,$J,358.3,1857,1,3,0)
+ ;;=3^Adrenal Unilat Selective
+ ;;^UTILITY(U,$J,358.3,1858,0)
+ ;;=75733^^17^172^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1858,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1858,1,2,0)
+ ;;=2^75733
+ ;;^UTILITY(U,$J,358.3,1858,1,3,0)
+ ;;=3^Adrenal Bilat Selective
+ ;;^UTILITY(U,$J,358.3,1859,0)
+ ;;=75736^^17^172^26^^^^1
+ ;;^UTILITY(U,$J,358.3,1859,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1859,1,2,0)
+ ;;=2^75736
+ ;;^UTILITY(U,$J,358.3,1859,1,3,0)
+ ;;=3^Pelvic Selective
+ ;;^UTILITY(U,$J,358.3,1860,0)
+ ;;=75741^^17^172^33^^^^1
+ ;;^UTILITY(U,$J,358.3,1860,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1860,1,2,0)
+ ;;=2^75741
+ ;;^UTILITY(U,$J,358.3,1860,1,3,0)
+ ;;=3^Pulmonary Unilat Selective
+ ;;^UTILITY(U,$J,358.3,1861,0)
+ ;;=75743^^17^172^31^^^^1
+ ;;^UTILITY(U,$J,358.3,1861,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1861,1,2,0)
+ ;;=2^75743
+ ;;^UTILITY(U,$J,358.3,1861,1,3,0)
+ ;;=3^Pulmonary Bilat Selective
+ ;;^UTILITY(U,$J,358.3,1862,0)
+ ;;=75746^^17^172^32^^^^1
+ ;;^UTILITY(U,$J,358.3,1862,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1862,1,2,0)
+ ;;=2^75746
+ ;;^UTILITY(U,$J,358.3,1862,1,3,0)
+ ;;=3^Pulmonary By Nonselective
+ ;;^UTILITY(U,$J,358.3,1863,0)
+ ;;=75756^^17^172^23^^^^1
+ ;;^UTILITY(U,$J,358.3,1863,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1863,1,2,0)
+ ;;=2^75756
+ ;;^UTILITY(U,$J,358.3,1863,1,3,0)
+ ;;=3^Internal Mammary
+ ;;^UTILITY(U,$J,358.3,1864,0)
+ ;;=37250^^17^172^24^^^^1
+ ;;^UTILITY(U,$J,358.3,1864,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1864,1,2,0)
+ ;;=2^37250
+ ;;^UTILITY(U,$J,358.3,1864,1,3,0)
+ ;;=3^Intravas Us,Non/Cor,Diag/Thera Interv, Each Ves
+ ;;^UTILITY(U,$J,358.3,1865,0)
+ ;;=35475^^17^172^27^^^^1
+ ;;^UTILITY(U,$J,358.3,1865,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1865,1,2,0)
+ ;;=2^35475
+ ;;^UTILITY(U,$J,358.3,1865,1,3,0)
+ ;;=3^Perc Angioplasty, Brachioceph Trunk/Branch, Each
+ ;;^UTILITY(U,$J,358.3,1866,0)
+ ;;=35471^^17^172^28^^^^1
+ ;;^UTILITY(U,$J,358.3,1866,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1866,1,2,0)
+ ;;=2^35471
+ ;;^UTILITY(U,$J,358.3,1866,1,3,0)
+ ;;=3^Perc Angioplasty, Renal/Visc
+ ;;^UTILITY(U,$J,358.3,1867,0)
+ ;;=36215^^17^172^40^^^^1
+ ;;^UTILITY(U,$J,358.3,1867,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1867,1,2,0)
+ ;;=2^36215
+ ;;^UTILITY(U,$J,358.3,1867,1,3,0)
+ ;;=3^Select Cath Arterial 1st Order Thor/Brachiocephalic
+ ;;^UTILITY(U,$J,358.3,1868,0)
+ ;;=36011^^17^172^41^^^^1
+ ;;^UTILITY(U,$J,358.3,1868,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1868,1,2,0)
+ ;;=2^36011
+ ;;^UTILITY(U,$J,358.3,1868,1,3,0)
+ ;;=3^Select Cath Venous 1st Order (Renal Jugular)
+ ;;^UTILITY(U,$J,358.3,1869,0)
+ ;;=36245^^17^172^37^^^^1
+ ;;^UTILITY(U,$J,358.3,1869,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1869,1,2,0)
+ ;;=2^36245
+ ;;^UTILITY(U,$J,358.3,1869,1,3,0)
+ ;;=3^Select Cath 1st Order Abd/Pelv/LE Artery
+ ;;^UTILITY(U,$J,358.3,1870,0)
+ ;;=36246^^17^172^38^^^^1
+ ;;^UTILITY(U,$J,358.3,1870,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1870,1,2,0)
+ ;;=2^36246
+ ;;^UTILITY(U,$J,358.3,1870,1,3,0)
+ ;;=3^Select Cath 2nd Order Abd/Pelv/LE Artery
+ ;;^UTILITY(U,$J,358.3,1871,0)
+ ;;=36247^^17^172^39^^^^1
+ ;;^UTILITY(U,$J,358.3,1871,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1871,1,2,0)
+ ;;=2^36247
+ ;;^UTILITY(U,$J,358.3,1871,1,3,0)
+ ;;=3^Select Cath 3rd Order Abd/Pelv/LE Artery
+ ;;^UTILITY(U,$J,358.3,1872,0)
+ ;;=75962^^17^172^51^^^^1
+ ;;^UTILITY(U,$J,358.3,1872,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1872,1,2,0)
+ ;;=2^75962

@@ -1,140 +1,118 @@
-IBDEI1I3 ; ; 06-AUG-2015
+IBDEI1I3 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26632,0)
- ;;=491.20^^156^1716^14
- ;;^UTILITY(U,$J,358.3,26632,1,0)
+ ;;^UTILITY(U,$J,358.3,25081,2)
+ ;;=^5008096
+ ;;^UTILITY(U,$J,358.3,25082,0)
+ ;;=J95.61^^124^1239^119
+ ;;^UTILITY(U,$J,358.3,25082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26632,1,3,0)
- ;;=3^Ob Ch Bronchitis W/O Exacerb
- ;;^UTILITY(U,$J,358.3,26632,1,4,0)
- ;;=4^491.20
- ;;^UTILITY(U,$J,358.3,26632,2)
- ;;=^269953
- ;;^UTILITY(U,$J,358.3,26633,0)
- ;;=492.8^^156^1716^10
- ;;^UTILITY(U,$J,358.3,26633,1,0)
+ ;;^UTILITY(U,$J,358.3,25082,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Resp Sys Complicating Resp Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25082,1,4,0)
+ ;;=4^J95.61
+ ;;^UTILITY(U,$J,358.3,25082,2)
+ ;;=^5008332
+ ;;^UTILITY(U,$J,358.3,25083,0)
+ ;;=J95.62^^124^1239^120
+ ;;^UTILITY(U,$J,358.3,25083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26633,1,3,0)
- ;;=3^Emphysema Nec
- ;;^UTILITY(U,$J,358.3,26633,1,4,0)
- ;;=4^492.8
- ;;^UTILITY(U,$J,358.3,26633,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,26634,0)
- ;;=V17.3^^156^1716^12
- ;;^UTILITY(U,$J,358.3,26634,1,0)
+ ;;^UTILITY(U,$J,358.3,25083,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Resp Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25083,1,4,0)
+ ;;=4^J95.62
+ ;;^UTILITY(U,$J,358.3,25083,2)
+ ;;=^5008333
+ ;;^UTILITY(U,$J,358.3,25084,0)
+ ;;=K91.61^^124^1239^105
+ ;;^UTILITY(U,$J,358.3,25084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26634,1,3,0)
- ;;=3^Fam Hx-Ischem Heart Dis
- ;;^UTILITY(U,$J,358.3,26634,1,4,0)
- ;;=4^V17.3
- ;;^UTILITY(U,$J,358.3,26634,2)
- ;;=^295305
- ;;^UTILITY(U,$J,358.3,26635,0)
- ;;=410.92^^156^1716^1
- ;;^UTILITY(U,$J,358.3,26635,1,0)
+ ;;^UTILITY(U,$J,358.3,25084,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Digestive Sys Complicating Digestive Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25084,1,4,0)
+ ;;=4^K91.61
+ ;;^UTILITY(U,$J,358.3,25084,2)
+ ;;=^5008903
+ ;;^UTILITY(U,$J,358.3,25085,0)
+ ;;=K91.62^^124^1239^106
+ ;;^UTILITY(U,$J,358.3,25085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26635,1,3,0)
- ;;=3^Ami Nos, Subsequent
- ;;^UTILITY(U,$J,358.3,26635,1,4,0)
- ;;=4^410.92
- ;;^UTILITY(U,$J,358.3,26635,2)
- ;;=^269675
- ;;^UTILITY(U,$J,358.3,26636,0)
- ;;=412.^^156^1716^15
- ;;^UTILITY(U,$J,358.3,26636,1,0)
+ ;;^UTILITY(U,$J,358.3,25085,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Digestive Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25085,1,4,0)
+ ;;=4^K91.62
+ ;;^UTILITY(U,$J,358.3,25085,2)
+ ;;=^5008904
+ ;;^UTILITY(U,$J,358.3,25086,0)
+ ;;=L76.01^^124^1239^123
+ ;;^UTILITY(U,$J,358.3,25086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26636,1,3,0)
- ;;=3^Old Myocardial Infarct
- ;;^UTILITY(U,$J,358.3,26636,1,4,0)
- ;;=4^412.
- ;;^UTILITY(U,$J,358.3,26636,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,26637,0)
- ;;=V45.01^^156^1716^4
- ;;^UTILITY(U,$J,358.3,26637,1,0)
+ ;;^UTILITY(U,$J,358.3,25086,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Skin Complicating Derm Procedure
+ ;;^UTILITY(U,$J,358.3,25086,1,4,0)
+ ;;=4^L76.01
+ ;;^UTILITY(U,$J,358.3,25086,2)
+ ;;=^5009302
+ ;;^UTILITY(U,$J,358.3,25087,0)
+ ;;=L76.02^^124^1239^124
+ ;;^UTILITY(U,$J,358.3,25087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26637,1,3,0)
- ;;=3^Cardiac Pacemaker In Situ
- ;;^UTILITY(U,$J,358.3,26637,1,4,0)
- ;;=4^V45.01
- ;;^UTILITY(U,$J,358.3,26637,2)
- ;;=^303419
- ;;^UTILITY(U,$J,358.3,26638,0)
- ;;=519.9^^156^1716^18
- ;;^UTILITY(U,$J,358.3,26638,1,0)
+ ;;^UTILITY(U,$J,358.3,25087,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Skin Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25087,1,4,0)
+ ;;=4^L76.02
+ ;;^UTILITY(U,$J,358.3,25087,2)
+ ;;=^5009303
+ ;;^UTILITY(U,$J,358.3,25088,0)
+ ;;=M96.810^^124^1239^115
+ ;;^UTILITY(U,$J,358.3,25088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26638,1,3,0)
- ;;=3^Resp System Disease Nos
- ;;^UTILITY(U,$J,358.3,26638,1,4,0)
- ;;=4^519.9
- ;;^UTILITY(U,$J,358.3,26638,2)
- ;;=^105137
- ;;^UTILITY(U,$J,358.3,26639,0)
- ;;=V17.49^^156^1716^11
- ;;^UTILITY(U,$J,358.3,26639,1,0)
+ ;;^UTILITY(U,$J,358.3,25088,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of MS Structure Complication MS Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25088,1,4,0)
+ ;;=4^M96.810
+ ;;^UTILITY(U,$J,358.3,25088,2)
+ ;;=^5015393
+ ;;^UTILITY(U,$J,358.3,25089,0)
+ ;;=M96.811^^124^1239^116
+ ;;^UTILITY(U,$J,358.3,25089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26639,1,3,0)
- ;;=3^Fam Hx-Cardiovas Dis Nec
- ;;^UTILITY(U,$J,358.3,26639,1,4,0)
- ;;=4^V17.49
- ;;^UTILITY(U,$J,358.3,26639,2)
- ;;=^295306
- ;;^UTILITY(U,$J,358.3,26640,0)
- ;;=V45.82^^156^1716^16
- ;;^UTILITY(U,$J,358.3,26640,1,0)
+ ;;^UTILITY(U,$J,358.3,25089,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of MS Structure Complication Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25089,1,4,0)
+ ;;=4^M96.811
+ ;;^UTILITY(U,$J,358.3,25089,2)
+ ;;=^5015394
+ ;;^UTILITY(U,$J,358.3,25090,0)
+ ;;=N99.61^^124^1239^111
+ ;;^UTILITY(U,$J,358.3,25090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26640,1,3,0)
- ;;=3^PTCA Status
- ;;^UTILITY(U,$J,358.3,26640,1,4,0)
- ;;=4^V45.82
- ;;^UTILITY(U,$J,358.3,26640,2)
- ;;=^303425
- ;;^UTILITY(U,$J,358.3,26641,0)
- ;;=996.77^^156^1717^1
- ;;^UTILITY(U,$J,358.3,26641,1,0)
+ ;;^UTILITY(U,$J,358.3,25090,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of GU Sys Complicating a GU Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25090,1,4,0)
+ ;;=4^N99.61
+ ;;^UTILITY(U,$J,358.3,25090,2)
+ ;;=^5015963
+ ;;^UTILITY(U,$J,358.3,25091,0)
+ ;;=N99.62^^124^1239^112
+ ;;^UTILITY(U,$J,358.3,25091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26641,1,3,0)
- ;;=3^Comp-Internal Joint Pros
- ;;^UTILITY(U,$J,358.3,26641,1,4,0)
- ;;=4^996.77
- ;;^UTILITY(U,$J,358.3,26641,2)
- ;;=^276300
- ;;^UTILITY(U,$J,358.3,26642,0)
- ;;=996.78^^156^1717^2
- ;;^UTILITY(U,$J,358.3,26642,1,0)
+ ;;^UTILITY(U,$J,358.3,25091,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of GU Sys Complication Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25091,1,4,0)
+ ;;=4^N99.62
+ ;;^UTILITY(U,$J,358.3,25091,2)
+ ;;=^5015964
+ ;;^UTILITY(U,$J,358.3,25092,0)
+ ;;=G97.51^^124^1239^182
+ ;;^UTILITY(U,$J,358.3,25092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26642,1,3,0)
- ;;=3^Comp-Oth Int Ortho Device
- ;;^UTILITY(U,$J,358.3,26642,1,4,0)
- ;;=4^996.78
- ;;^UTILITY(U,$J,358.3,26642,2)
- ;;=^276301
- ;;^UTILITY(U,$J,358.3,26643,0)
- ;;=905.3^^156^1718^1
- ;;^UTILITY(U,$J,358.3,26643,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26643,1,3,0)
- ;;=3^Late Eff Femoral Neck Fx
- ;;^UTILITY(U,$J,358.3,26643,1,4,0)
- ;;=4^905.3
- ;;^UTILITY(U,$J,358.3,26643,2)
- ;;=^275217
- ;;^UTILITY(U,$J,358.3,26644,0)
- ;;=905.4^^156^1718^4
- ;;^UTILITY(U,$J,358.3,26644,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26644,1,3,0)
- ;;=3^Late Effect Leg Fx
- ;;^UTILITY(U,$J,358.3,26644,1,4,0)
- ;;=4^905.4
- ;;^UTILITY(U,$J,358.3,26644,2)
- ;;=^275218
- ;;^UTILITY(U,$J,358.3,26645,0)
- ;;=905.1^^156^1718^2
- ;;^UTILITY(U,$J,358.3,26645,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26645,1,3,0)
- ;;=3^Late Eff Spine/Trunk Fx
+ ;;^UTILITY(U,$J,358.3,25092,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Nervous Sys Following a Nervous Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25092,1,4,0)
+ ;;=4^G97.51
+ ;;^UTILITY(U,$J,358.3,25092,2)
+ ;;=^5004209
+ ;;^UTILITY(U,$J,358.3,25093,0)
+ ;;=G97.52^^124^1239^183

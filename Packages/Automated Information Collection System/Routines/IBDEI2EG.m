@@ -1,0 +1,128 @@
+IBDEI2EG ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40306,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,40306,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,40307,0)
+ ;;=S53.442A^^186^2076^398
+ ;;^UTILITY(U,$J,358.3,40307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40307,1,3,0)
+ ;;=3^Sprain Ulnar Collateral Ligament Left Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40307,1,4,0)
+ ;;=4^S53.442A
+ ;;^UTILITY(U,$J,358.3,40307,2)
+ ;;=^5031397
+ ;;^UTILITY(U,$J,358.3,40308,0)
+ ;;=S53.441A^^186^2076^399
+ ;;^UTILITY(U,$J,358.3,40308,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40308,1,3,0)
+ ;;=3^Sprain Ulnar Collateral Ligament Right Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40308,1,4,0)
+ ;;=4^S53.441A
+ ;;^UTILITY(U,$J,358.3,40308,2)
+ ;;=^5031394
+ ;;^UTILITY(U,$J,358.3,40309,0)
+ ;;=Q37.9^^186^2076^124
+ ;;^UTILITY(U,$J,358.3,40309,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40309,1,3,0)
+ ;;=3^Cleft Palate w/ Unilateral Cleft Lip
+ ;;^UTILITY(U,$J,358.3,40309,1,4,0)
+ ;;=4^Q37.9
+ ;;^UTILITY(U,$J,358.3,40309,2)
+ ;;=^5018645
+ ;;^UTILITY(U,$J,358.3,40310,0)
+ ;;=Q74.9^^186^2076^130
+ ;;^UTILITY(U,$J,358.3,40310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40310,1,3,0)
+ ;;=3^Congenital Limb Malformation
+ ;;^UTILITY(U,$J,358.3,40310,1,4,0)
+ ;;=4^Q74.9
+ ;;^UTILITY(U,$J,358.3,40310,2)
+ ;;=^5018995
+ ;;^UTILITY(U,$J,358.3,40311,0)
+ ;;=S63.251A^^186^2076^149
+ ;;^UTILITY(U,$J,358.3,40311,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40311,1,3,0)
+ ;;=3^Dislocation Left Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40311,1,4,0)
+ ;;=4^S63.251A
+ ;;^UTILITY(U,$J,358.3,40311,2)
+ ;;=^5035268
+ ;;^UTILITY(U,$J,358.3,40312,0)
+ ;;=S63.257A^^186^2076^150
+ ;;^UTILITY(U,$J,358.3,40312,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40312,1,3,0)
+ ;;=3^Dislocation Left Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40312,1,4,0)
+ ;;=4^S63.257A
+ ;;^UTILITY(U,$J,358.3,40312,2)
+ ;;=^5035286
+ ;;^UTILITY(U,$J,358.3,40313,0)
+ ;;=S63.253A^^186^2076^151
+ ;;^UTILITY(U,$J,358.3,40313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40313,1,3,0)
+ ;;=3^Dislocation Left Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40313,1,4,0)
+ ;;=4^S63.253A
+ ;;^UTILITY(U,$J,358.3,40313,2)
+ ;;=^5035274
+ ;;^UTILITY(U,$J,358.3,40314,0)
+ ;;=S63.255A^^186^2076^152
+ ;;^UTILITY(U,$J,358.3,40314,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40314,1,3,0)
+ ;;=3^Dislocation Left Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40314,1,4,0)
+ ;;=4^S63.255A
+ ;;^UTILITY(U,$J,358.3,40314,2)
+ ;;=^5035280
+ ;;^UTILITY(U,$J,358.3,40315,0)
+ ;;=S63.105A^^186^2076^153
+ ;;^UTILITY(U,$J,358.3,40315,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40315,1,3,0)
+ ;;=3^Dislocation Left Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40315,1,4,0)
+ ;;=4^S63.105A
+ ;;^UTILITY(U,$J,358.3,40315,2)
+ ;;=^5035046
+ ;;^UTILITY(U,$J,358.3,40316,0)
+ ;;=S63.250A^^186^2076^154
+ ;;^UTILITY(U,$J,358.3,40316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40316,1,3,0)
+ ;;=3^Dislocation Right Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40316,1,4,0)
+ ;;=4^S63.250A
+ ;;^UTILITY(U,$J,358.3,40316,2)
+ ;;=^5035265
+ ;;^UTILITY(U,$J,358.3,40317,0)
+ ;;=S63.256A^^186^2076^155
+ ;;^UTILITY(U,$J,358.3,40317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40317,1,3,0)
+ ;;=3^Dislocation Right Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40317,1,4,0)
+ ;;=4^S63.256A
+ ;;^UTILITY(U,$J,358.3,40317,2)
+ ;;=^5035283
+ ;;^UTILITY(U,$J,358.3,40318,0)
+ ;;=S63.252A^^186^2076^156
+ ;;^UTILITY(U,$J,358.3,40318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40318,1,3,0)
+ ;;=3^Dislocation Right Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40318,1,4,0)
+ ;;=4^S63.252A
+ ;;^UTILITY(U,$J,358.3,40318,2)
+ ;;=^5035271

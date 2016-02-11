@@ -1,5 +1,5 @@
 XMSFTPUX ;(WASH ISC)/CAP-TCP/IP-FTP Sender ;04/17/2002  11:30
- ;;8.0;MailMan;;Jun 28, 2002
+ ;;8.0;MailMan;**48**;Jun 28, 2002;Build 5
  ;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  ;XXX/KCMO - Modified for UCX, added a field to the network location
  ;file called 'maps to reference' that can be used to map the DOS 
@@ -69,7 +69,7 @@ FILE(X) ;Add record to FTP list
  D FILE^DICN S %=$G(XMSFTP("IMAGE-PTR")) I % S $P(^XMBX(4.2995,+Y,0),U,4)=%
  Q Y
 TEST S TEST=1
- ;;XMSFTP(1)=get file IP address (EG   89.0.0.79 - sstu)
+ ;;XMSFTP(1)=get file IP address (EG   89.0.0.79 - IPv4 or 0000:0000:0000:0000:0000:FFFF:5900:004F - IPv6)
  ;;XMSFTP(2)=DOS dir / subdir... Other than default to IMPORT file into
  ;;XMSFTP(2,"F")=File to get (s:\image\nfibpd2.756)
  ;;XMSFTP(3)=put to IP address

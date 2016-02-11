@@ -1,5 +1,5 @@
 SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/03/11
- ;;3.0;Surgery;**27,38,62,88,97,111,142,153,174,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**27,38,62,88,97,111,142,153,174,175,184**;24 Jun 93;Build 35
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -50,8 +50,35 @@ SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/03/11
  S SRA(.9)=$G(^SRF(SRTN,.9)),SRA("VER")=$G(^SRF(SRTN,"VER"))
  S SHEMP=SHEMP_SRP_$J($P(SRA(.9),"^"),12)_$J($P(SRA(.9),"^",2),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)   ;Line 13
  F I=7:1:18 S SHEMP=SHEMP_$J($P(SRA("VER"),"^",I),2)
- S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP
- S SRACNT=SRACNT+1
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SRACNT=SRACNT+1
+ ;
+ N II,OT,SRC,SRNM11,SRNM13,SRNM23,SRNM25
+ S II=0,OT="" F  S II=$O(^SRF(SRTN,63,"B",II)) Q:'II  S OT=OT_II
+ S SHEMP=$E(SHEMP,1,11)_" 14"_$J(OT,7)_$J($P(SRA("VER1"),"^",2),10)_$J($P(SRA("VER1"),"^",3),2)_$J($P(SRA("VER1"),"^",4),2)_$J($P(SRA("VER1"),"^",5),2)
+ S SHEMP=SHEMP_$J($P(SRA("VER1"),"^",6),2)_$J($P(SRA("VER1"),"^",7),1)_$J($P(SRA("VER1"),"^",8),1)_$J($P(SRA("VER1"),"^",9),1)_$J($E($P(SRA("VER1"),"^",19),1,12),12)
+ S SHEMP=SHEMP_$J($P(SRA("VER1"),"^",10),1)_$J($E($P(SRA("VER1"),"^",21),1,12),12)_$J($P(SRA("VER1"),"^",22),1)_$J($P(SRA("VER1"),"^",12),1)_$J($P(SRA("VER1"),"^",24),2)
+ S SHEMP=SHEMP_$J($P(SRA("VER1"),"^",14),2)_$J($P(SRA("VER1"),"^",15),1)_$J($P(SRA("VER1"),"^",16),1)
+ S (SRNM11,SRNM13,SRNM23,SRNM25)=""
+ F II=11,23,13,25 I $P(SRA("VER1"),"^",II) S @("SRNM"_II)=$P($G(^VA(200,$P(SRA("VER1"),"^",II),0)),"^")
+ S SHEMP=SHEMP_$J($E(SRNM11,1,30),30)_$J($E(SRNM23,1,30),30)
+ S SHEMP=SHEMP_$J($E(SRNM13,1,30),30)_$J($E(SRNM25,1,30),30)
+ K SRNM S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SRACNT=SRACNT+1
+ ;
+ S II=0,(SRC,OT)="" F  S SRC=$O(^SRF(SRTN,57,"B",SRC)) Q:SRC=""!(II=7)  S OT=OT_$J($E(SRC,1,10),10),II=II+1
+ S OT=$E(OT,1,70)_$J("",70-$L(OT)),SHEMP=$E(SHEMP,1,11)_" 15"_$J(OT,70)
+ S OT="" F I=1:1:17,19:1:28 S OT=OT_$J($P(SRA(211),U,I),2)
+ S SHEMP=SHEMP_OT
+ S (SRC,OT)="" F  S SRC=$O(^SRF(SRTN,64,"B",SRC)) Q:'SRC  S OT=OT_$J(SRC,1)
+ S SHEMP=SHEMP_$J(OT,6)_$J($P(SRA(211),U,30),2)_$J($P(SRA(211),U,31),5)_$J($P(SRA(211),U,32),5)_$J($P(SRA(211),U,35),5)
+ S OT="",II=0 F II="34;4","39;4","33;3","36;3","40;3","37;2","38;2","41;2","42;2","43;2" S OT=OT_$J($P(SRA(211),U,+II),$P(II,";",2))
+ S SHEMP=SHEMP_OT_$J($P(SRA("VERD"),U,6),4)_$J($P(SRA("VERD"),U,7),5)_$J($P(SRA("VERD"),U,8),4)
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SRACNT=SRACNT+1
+ ;
+ S OT="" F II=2:1:4,7,10,11 S OT=OT_$J($P(SRA(210),U,II),2)
+ S SHEMP=$E(SHEMP,1,11)_" 16"_OT
+ S OT="" F II=44:1:53 S OT=OT_$J($P(SRA(211),U,II),2)
+ S SHEMP=SHEMP_OT_$J($E($P(SRA(211),U,54),1,12),12)_$J($E($P(SRA(211),U,55),1,12),12)_$J($P(SRA(211),U,56),3)_$J($P(SRA(211),U,57),3)
+ S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SRACNT=SRACNT+1
  ;
  S SHEMP=$E(SHEMP,1,11)_" A1"
  S SHEMP=SHEMP_SRANAME,^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_" A2",SRACNT=SRACNT+1

@@ -1,122 +1,130 @@
-IBDEI1SO ; ; 06-AUG-2015
+IBDEI1SO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31656,2)
- ;;=^5010118
- ;;^UTILITY(U,$J,358.3,31657,0)
- ;;=M05.572^^180^1962^110
- ;;^UTILITY(U,$J,358.3,31657,1,0)
+ ;;^UTILITY(U,$J,358.3,30044,1,4,0)
+ ;;=4^D05.82
+ ;;^UTILITY(U,$J,358.3,30044,2)
+ ;;=^5001934
+ ;;^UTILITY(U,$J,358.3,30045,0)
+ ;;=D05.81^^135^1372^34
+ ;;^UTILITY(U,$J,358.3,30045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31657,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left ank/ft
- ;;^UTILITY(U,$J,358.3,31657,1,4,0)
- ;;=4^M05.572
- ;;^UTILITY(U,$J,358.3,31657,2)
- ;;=^5009974
- ;;^UTILITY(U,$J,358.3,31658,0)
- ;;=M05.522^^180^1962^111
- ;;^UTILITY(U,$J,358.3,31658,1,0)
+ ;;^UTILITY(U,$J,358.3,30045,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,30045,1,4,0)
+ ;;=4^D05.81
+ ;;^UTILITY(U,$J,358.3,30045,2)
+ ;;=^5001933
+ ;;^UTILITY(U,$J,358.3,30046,0)
+ ;;=D05.80^^135^1372^36
+ ;;^UTILITY(U,$J,358.3,30046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31658,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left elbow
- ;;^UTILITY(U,$J,358.3,31658,1,4,0)
- ;;=4^M05.522
- ;;^UTILITY(U,$J,358.3,31658,2)
- ;;=^5009959
- ;;^UTILITY(U,$J,358.3,31659,0)
- ;;=M05.542^^180^1962^112
- ;;^UTILITY(U,$J,358.3,31659,1,0)
+ ;;^UTILITY(U,$J,358.3,30046,1,3,0)
+ ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,30046,1,4,0)
+ ;;=4^D05.80
+ ;;^UTILITY(U,$J,358.3,30046,2)
+ ;;=^5001932
+ ;;^UTILITY(U,$J,358.3,30047,0)
+ ;;=D56.8^^135^1372^182
+ ;;^UTILITY(U,$J,358.3,30047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31659,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left hand
- ;;^UTILITY(U,$J,358.3,31659,1,4,0)
- ;;=4^M05.542
- ;;^UTILITY(U,$J,358.3,31659,2)
- ;;=^5009965
- ;;^UTILITY(U,$J,358.3,31660,0)
- ;;=M05.552^^180^1962^113
- ;;^UTILITY(U,$J,358.3,31660,1,0)
+ ;;^UTILITY(U,$J,358.3,30047,1,3,0)
+ ;;=3^Thalassemias,Other
+ ;;^UTILITY(U,$J,358.3,30047,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,30047,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,30048,0)
+ ;;=C82.89^^135^1372^74
+ ;;^UTILITY(U,$J,358.3,30048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31660,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left hip
- ;;^UTILITY(U,$J,358.3,31660,1,4,0)
- ;;=4^M05.552
- ;;^UTILITY(U,$J,358.3,31660,2)
- ;;=^5009968
- ;;^UTILITY(U,$J,358.3,31661,0)
- ;;=M05.562^^180^1962^114
- ;;^UTILITY(U,$J,358.3,31661,1,0)
+ ;;^UTILITY(U,$J,358.3,30048,1,3,0)
+ ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
+ ;;^UTILITY(U,$J,358.3,30048,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,30048,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,30049,0)
+ ;;=D51.8^^135^1372^189
+ ;;^UTILITY(U,$J,358.3,30049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31661,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left knee
- ;;^UTILITY(U,$J,358.3,31661,1,4,0)
- ;;=4^M05.562
- ;;^UTILITY(U,$J,358.3,31661,2)
- ;;=^5009971
- ;;^UTILITY(U,$J,358.3,31662,0)
- ;;=M05.512^^180^1962^115
- ;;^UTILITY(U,$J,358.3,31662,1,0)
+ ;;^UTILITY(U,$J,358.3,30049,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemias,Other
+ ;;^UTILITY(U,$J,358.3,30049,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,30049,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,30050,0)
+ ;;=I80.9^^135^1372^174
+ ;;^UTILITY(U,$J,358.3,30050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31662,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left shoulder
- ;;^UTILITY(U,$J,358.3,31662,1,4,0)
- ;;=4^M05.512
- ;;^UTILITY(U,$J,358.3,31662,2)
- ;;=^5009956
- ;;^UTILITY(U,$J,358.3,31663,0)
- ;;=M05.532^^180^1962^116
- ;;^UTILITY(U,$J,358.3,31663,1,0)
+ ;;^UTILITY(U,$J,358.3,30050,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,30050,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,30050,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,30051,0)
+ ;;=D45.^^135^1372^175
+ ;;^UTILITY(U,$J,358.3,30051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31663,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left wrist
- ;;^UTILITY(U,$J,358.3,31663,1,4,0)
- ;;=4^M05.532
- ;;^UTILITY(U,$J,358.3,31663,2)
- ;;=^5009962
- ;;^UTILITY(U,$J,358.3,31664,0)
- ;;=M05.59^^180^1962^117
- ;;^UTILITY(U,$J,358.3,31664,1,0)
+ ;;^UTILITY(U,$J,358.3,30051,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,30051,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,30051,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,30052,0)
+ ;;=C77.3^^135^1372^107
+ ;;^UTILITY(U,$J,358.3,30052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31664,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of mult site
- ;;^UTILITY(U,$J,358.3,31664,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,31664,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,31665,0)
- ;;=M05.571^^180^1962^118
- ;;^UTILITY(U,$J,358.3,31665,1,0)
+ ;;^UTILITY(U,$J,358.3,30052,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,30052,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,30052,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,30053,0)
+ ;;=C77.2^^135^1372^123
+ ;;^UTILITY(U,$J,358.3,30053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31665,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right ank/ft
- ;;^UTILITY(U,$J,358.3,31665,1,4,0)
- ;;=4^M05.571
- ;;^UTILITY(U,$J,358.3,31665,2)
- ;;=^5009973
- ;;^UTILITY(U,$J,358.3,31666,0)
- ;;=M05.521^^180^1962^119
- ;;^UTILITY(U,$J,358.3,31666,1,0)
+ ;;^UTILITY(U,$J,358.3,30053,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,30053,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,30053,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,30054,0)
+ ;;=C77.1^^135^1372^124
+ ;;^UTILITY(U,$J,358.3,30054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31666,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right elbow
- ;;^UTILITY(U,$J,358.3,31666,1,4,0)
- ;;=4^M05.521
- ;;^UTILITY(U,$J,358.3,31666,2)
- ;;=^5009958
- ;;^UTILITY(U,$J,358.3,31667,0)
- ;;=M05.541^^180^1962^120
- ;;^UTILITY(U,$J,358.3,31667,1,0)
+ ;;^UTILITY(U,$J,358.3,30054,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,30054,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,30054,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,30055,0)
+ ;;=C77.0^^135^1372^140
+ ;;^UTILITY(U,$J,358.3,30055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31667,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hand
- ;;^UTILITY(U,$J,358.3,31667,1,4,0)
- ;;=4^M05.541
- ;;^UTILITY(U,$J,358.3,31667,2)
- ;;=^5009964
- ;;^UTILITY(U,$J,358.3,31668,0)
- ;;=M05.541^^180^1962^121
- ;;^UTILITY(U,$J,358.3,31668,1,0)
+ ;;^UTILITY(U,$J,358.3,30055,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,30055,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,30055,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,30056,0)
+ ;;=C77.8^^135^1372^141
+ ;;^UTILITY(U,$J,358.3,30056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31668,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hand
+ ;;^UTILITY(U,$J,358.3,30056,1,3,0)
+ ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,30056,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,30056,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,30057,0)
+ ;;=C79.51^^135^1372^111

@@ -1,5 +1,5 @@
 SROAPRE ;BIR/MAM - PREOPERATIVE INFO ;10/04/10
- ;;3.0;Surgery;**38,47,55,88,100,125,142,166,174,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**38,47,55,88,100,125,142,166,174,182,184**;24 Jun 93;Build 35
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  S (SRSOUT,SRACLR)=0,SRSUPCPT=1 D ^SROAUTL,DUP^SROAUTL G:SRSOUT END
 START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO D ^SROAPS1
@@ -21,6 +21,7 @@ ASK W !,"Select Preoperative Information to Edit: " R X:DTIME I '$T!(X["^") D CO
  I $D(SRAO(X)),$$LOCK^SROUTL(SRTN) D  D UNLOCK^SROUTL(SRTN)
  .S SRX=X I $P(SRAO(X),"^",2)=485 D ^SROACL2  S SRAO(SRX)=Y K DR,DIE S DA=SRTN,DR="485///"_$P(SRAO(SRX),"^"),DIE=130 D ^DIE K DR Q
  .S SRX=X W ! K DR,DIE S DA=SRTN,DR=$P(SRAO(X),"^",2)_"T",DIE=130 D ^DIE K DR
+ .I $P(SRAO(SRX),"^",2)=237.1 D F667
  G START
 END I '$D(SREQST) W @IOF D ^SRSKILL
  Q
@@ -44,4 +45,14 @@ CONCC ; check for concurrent case and update if one exists
  S SRI="" F  S SRI=$O(SRAO(SRI)) Q:SRI=""  S SRZ=$P(SRAO(SRI),"^",2) K DA,DIC,DIQ,DR,SRY D
  .S DA=SRTN,DR=SRZ,DIC="^SRF(",DIQ="SRY",DIQ(0)="I" D EN^DIQ1 S SRX=SRY(130,SRTN,SRZ,"I") S:SRX="" SRX="@"
  .I $$LOCK^SROUTL(SRTN) K DA,DIE,DR S DA=SRCON,DIE=130,DR=SRZ_"////"_SRX D ^DIE K DR D UNLOCK^SROUTL(SRTN)
+ Q
+F667 ; editing the Sleep Apnea-Compliance field
+ I $P(^SRF(SRTN,200.1),"^",8)'=3 S $P(^SRF(SRTN,200.1),"^",15)="" Q
+ S SRX="1K" W ! K DR,DIE S DA=SRTN,DR=$P(SRAO(SRX),"^",2)_"T",DIE=130 D ^DIE K DR,DIE
+ Q
+CHK667 ;check entries of the Sleep Apnea-Compliance field based on the value of the Preop Sleep Apnea field.
+ S SRTN=$S($G(SRTN):SRTN,1:DA)
+ I $P(^SRF(SRTN,200.1),"^",8)'=3 D  K X Q
+ .W !!,"Warning: Sleep Apnea-Compliance field can ONLY be edited if the value of the"
+ .W !,?9,"'Preop Sleep Apnea' field is set to '3-LEVEL 3'."
  Q

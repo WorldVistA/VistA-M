@@ -1,124 +1,122 @@
-IBDEI1C1 ; ; 06-AUG-2015
+IBDEI1C1 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23604,1,5,0)
- ;;=5^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,23604,2)
- ;;=Borderline Personality Disorder^16372
- ;;^UTILITY(U,$J,358.3,23605,0)
- ;;=301.6^^127^1427^6
- ;;^UTILITY(U,$J,358.3,23605,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23605,1,2,0)
- ;;=2^301.6
- ;;^UTILITY(U,$J,358.3,23605,1,5,0)
- ;;=5^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,23605,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,23606,0)
- ;;=301.50^^127^1427^8
- ;;^UTILITY(U,$J,358.3,23606,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23606,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,23606,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,23606,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,23607,0)
- ;;=301.81^^127^1427^11
- ;;^UTILITY(U,$J,358.3,23607,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23607,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,23607,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,23607,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,23608,0)
- ;;=301.0^^127^1427^12
- ;;^UTILITY(U,$J,358.3,23608,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23608,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,23608,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,23608,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,23609,0)
- ;;=301.9^^127^1427^16
- ;;^UTILITY(U,$J,358.3,23609,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23609,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,23609,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,23609,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,23610,0)
- ;;=301.20^^127^1427^14
- ;;^UTILITY(U,$J,358.3,23610,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23610,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,23610,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,23610,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,23611,0)
- ;;=301.22^^127^1427^15
- ;;^UTILITY(U,$J,358.3,23611,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23611,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,23611,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,23611,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,23612,0)
- ;;=301.4^^127^1427^4
- ;;^UTILITY(U,$J,358.3,23612,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23612,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,23612,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,23612,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,23613,0)
- ;;=301.84^^127^1427^13
- ;;^UTILITY(U,$J,358.3,23613,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23613,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,23613,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,23613,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,23614,0)
- ;;=301.11^^127^1427^9
- ;;^UTILITY(U,$J,358.3,23614,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23614,1,2,0)
- ;;=2^301.11
- ;;^UTILITY(U,$J,358.3,23614,1,5,0)
- ;;=5^Hypomanic Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,23614,2)
- ;;=^268171
- ;;^UTILITY(U,$J,358.3,23615,0)
- ;;=301.12^^127^1427^7
- ;;^UTILITY(U,$J,358.3,23615,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23615,1,2,0)
- ;;=2^301.12
- ;;^UTILITY(U,$J,358.3,23615,1,5,0)
- ;;=5^Depressive Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,23615,2)
- ;;=^268173
- ;;^UTILITY(U,$J,358.3,23616,0)
- ;;=301.13^^127^1427^5
- ;;^UTILITY(U,$J,358.3,23616,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23616,1,2,0)
- ;;=2^301.13
+ ;;^UTILITY(U,$J,358.3,22209,0)
+ ;;=S82.454S^^101^1038^44
+ ;;^UTILITY(U,$J,358.3,22209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22209,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,22209,1,4,0)
+ ;;=4^S82.454S
+ ;;^UTILITY(U,$J,358.3,22209,2)
+ ;;=^5042065
+ ;;^UTILITY(U,$J,358.3,22210,0)
+ ;;=S82.65XS^^101^1038^47
+ ;;^UTILITY(U,$J,358.3,22210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22210,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22210,1,4,0)
+ ;;=4^S82.65XS
+ ;;^UTILITY(U,$J,358.3,22210,2)
+ ;;=^5042390
+ ;;^UTILITY(U,$J,358.3,22211,0)
+ ;;=S82.64XS^^101^1038^48
+ ;;^UTILITY(U,$J,358.3,22211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22211,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22211,1,4,0)
+ ;;=4^S82.64XS
+ ;;^UTILITY(U,$J,358.3,22211,2)
+ ;;=^5042374
+ ;;^UTILITY(U,$J,358.3,22212,0)
+ ;;=S82.435S^^101^1038^55
+ ;;^UTILITY(U,$J,358.3,22212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22212,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22212,1,4,0)
+ ;;=4^S82.435S
+ ;;^UTILITY(U,$J,358.3,22212,2)
+ ;;=^5041889
+ ;;^UTILITY(U,$J,358.3,22213,0)
+ ;;=S82.434S^^101^1038^57
+ ;;^UTILITY(U,$J,358.3,22213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22213,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,22213,1,4,0)
+ ;;=4^S82.434S
+ ;;^UTILITY(U,$J,358.3,22213,2)
+ ;;=^5041873
+ ;;^UTILITY(U,$J,358.3,22214,0)
+ ;;=S82.465S^^101^1038^63
+ ;;^UTILITY(U,$J,358.3,22214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22214,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,22214,1,4,0)
+ ;;=4^S82.465S
+ ;;^UTILITY(U,$J,358.3,22214,2)
+ ;;=^5042177
+ ;;^UTILITY(U,$J,358.3,22215,0)
+ ;;=S82.464S^^101^1038^66
+ ;;^UTILITY(U,$J,358.3,22215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22215,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,22215,1,4,0)
+ ;;=4^S82.464S
+ ;;^UTILITY(U,$J,358.3,22215,2)
+ ;;=^5042161
+ ;;^UTILITY(U,$J,358.3,22216,0)
+ ;;=S82.445S^^101^1038^67
+ ;;^UTILITY(U,$J,358.3,22216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22216,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,22216,1,4,0)
+ ;;=4^S82.445S
+ ;;^UTILITY(U,$J,358.3,22216,2)
+ ;;=^5041985
+ ;;^UTILITY(U,$J,358.3,22217,0)
+ ;;=S82.444S^^101^1038^69
+ ;;^UTILITY(U,$J,358.3,22217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22217,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,22217,1,4,0)
+ ;;=4^S82.444S
+ ;;^UTILITY(U,$J,358.3,22217,2)
+ ;;=^5041969
+ ;;^UTILITY(U,$J,358.3,22218,0)
+ ;;=S82.425S^^101^1038^72
+ ;;^UTILITY(U,$J,358.3,22218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22218,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,22218,1,4,0)
+ ;;=4^S82.425S
+ ;;^UTILITY(U,$J,358.3,22218,2)
+ ;;=^5041793
+ ;;^UTILITY(U,$J,358.3,22219,0)
+ ;;=S82.424S^^101^1038^74
+ ;;^UTILITY(U,$J,358.3,22219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22219,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,22219,1,4,0)
+ ;;=4^S82.424S
+ ;;^UTILITY(U,$J,358.3,22219,2)
+ ;;=^5041777
+ ;;^UTILITY(U,$J,358.3,22220,0)
+ ;;=M84.464S^^101^1038^75
+ ;;^UTILITY(U,$J,358.3,22220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22220,1,3,0)
+ ;;=3^Pathological fracture, left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22220,1,4,0)
+ ;;=4^M84.464S

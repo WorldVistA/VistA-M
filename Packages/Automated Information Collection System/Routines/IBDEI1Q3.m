@@ -1,128 +1,128 @@
-IBDEI1Q3 ; ; 06-AUG-2015
+IBDEI1Q3 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30494,0)
- ;;=O41.1412^^178^1917^59
- ;;^UTILITY(U,$J,358.3,30494,1,0)
+ ;;^UTILITY(U,$J,358.3,28823,0)
+ ;;=W05.0XXA^^132^1339^51
+ ;;^UTILITY(U,$J,358.3,28823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30494,1,3,0)
- ;;=3^Placentitis, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30494,1,4,0)
- ;;=4^O41.1412
- ;;^UTILITY(U,$J,358.3,30494,2)
- ;;=^5017295
- ;;^UTILITY(U,$J,358.3,30495,0)
- ;;=O41.1413^^178^1917^60
- ;;^UTILITY(U,$J,358.3,30495,1,0)
+ ;;^UTILITY(U,$J,358.3,28823,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28823,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,28823,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,28824,0)
+ ;;=W05.0XXD^^132^1339^52
+ ;;^UTILITY(U,$J,358.3,28824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30495,1,3,0)
- ;;=3^Placentitis, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30495,1,4,0)
- ;;=4^O41.1413
- ;;^UTILITY(U,$J,358.3,30495,2)
- ;;=^5017296
- ;;^UTILITY(U,$J,358.3,30496,0)
- ;;=O41.1414^^178^1917^61
- ;;^UTILITY(U,$J,358.3,30496,1,0)
+ ;;^UTILITY(U,$J,358.3,28824,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28824,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,28824,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,28825,0)
+ ;;=W05.1XXA^^132^1339^49
+ ;;^UTILITY(U,$J,358.3,28825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30496,1,3,0)
- ;;=3^Placentitis, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30496,1,4,0)
- ;;=4^O41.1414
- ;;^UTILITY(U,$J,358.3,30496,2)
- ;;=^5017297
- ;;^UTILITY(U,$J,358.3,30497,0)
- ;;=O41.1415^^178^1917^62
- ;;^UTILITY(U,$J,358.3,30497,1,0)
+ ;;^UTILITY(U,$J,358.3,28825,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28825,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,28825,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,28826,0)
+ ;;=W05.1XXD^^132^1339^50
+ ;;^UTILITY(U,$J,358.3,28826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30497,1,3,0)
- ;;=3^Placentitis, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30497,1,4,0)
- ;;=4^O41.1415
- ;;^UTILITY(U,$J,358.3,30497,2)
- ;;=^5017298
- ;;^UTILITY(U,$J,358.3,30498,0)
- ;;=O41.1420^^178^1917^69
- ;;^UTILITY(U,$J,358.3,30498,1,0)
+ ;;^UTILITY(U,$J,358.3,28826,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28826,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,28826,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,28827,0)
+ ;;=W05.2XXA^^132^1339^47
+ ;;^UTILITY(U,$J,358.3,28827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30498,1,3,0)
- ;;=3^Placentitis, second trimester, not applicable or unspecified
- ;;^UTILITY(U,$J,358.3,30498,1,4,0)
- ;;=4^O41.1420
- ;;^UTILITY(U,$J,358.3,30498,2)
- ;;=^5017300
- ;;^UTILITY(U,$J,358.3,30499,0)
- ;;=O41.1421^^178^1917^64
- ;;^UTILITY(U,$J,358.3,30499,1,0)
+ ;;^UTILITY(U,$J,358.3,28827,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28827,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,28827,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,28828,0)
+ ;;=W05.2XXD^^132^1339^48
+ ;;^UTILITY(U,$J,358.3,28828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30499,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30499,1,4,0)
- ;;=4^O41.1421
- ;;^UTILITY(U,$J,358.3,30499,2)
- ;;=^5017301
- ;;^UTILITY(U,$J,358.3,30500,0)
- ;;=O41.1422^^178^1917^65
- ;;^UTILITY(U,$J,358.3,30500,1,0)
+ ;;^UTILITY(U,$J,358.3,28828,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28828,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,28828,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,28829,0)
+ ;;=W06.XXXA^^132^1339^29
+ ;;^UTILITY(U,$J,358.3,28829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30500,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30500,1,4,0)
- ;;=4^O41.1422
- ;;^UTILITY(U,$J,358.3,30500,2)
- ;;=^5017302
- ;;^UTILITY(U,$J,358.3,30501,0)
- ;;=O41.1423^^178^1917^66
- ;;^UTILITY(U,$J,358.3,30501,1,0)
+ ;;^UTILITY(U,$J,358.3,28829,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28829,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,28829,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,28830,0)
+ ;;=W06.XXXD^^132^1339^30
+ ;;^UTILITY(U,$J,358.3,28830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30501,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30501,1,4,0)
- ;;=4^O41.1423
- ;;^UTILITY(U,$J,358.3,30501,2)
- ;;=^5017303
- ;;^UTILITY(U,$J,358.3,30502,0)
- ;;=O41.1424^^178^1917^67
- ;;^UTILITY(U,$J,358.3,30502,1,0)
+ ;;^UTILITY(U,$J,358.3,28830,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28830,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,28830,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,28831,0)
+ ;;=W07.XXXA^^132^1339^37
+ ;;^UTILITY(U,$J,358.3,28831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30502,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30502,1,4,0)
- ;;=4^O41.1424
- ;;^UTILITY(U,$J,358.3,30502,2)
- ;;=^5017304
- ;;^UTILITY(U,$J,358.3,30503,0)
- ;;=O41.1425^^178^1917^68
- ;;^UTILITY(U,$J,358.3,30503,1,0)
+ ;;^UTILITY(U,$J,358.3,28831,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28831,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,28831,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,28832,0)
+ ;;=W07.XXXD^^132^1339^38
+ ;;^UTILITY(U,$J,358.3,28832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30503,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30503,1,4,0)
- ;;=4^O41.1425
- ;;^UTILITY(U,$J,358.3,30503,2)
- ;;=^5017305
- ;;^UTILITY(U,$J,358.3,30504,0)
- ;;=O41.1430^^178^1917^75
- ;;^UTILITY(U,$J,358.3,30504,1,0)
+ ;;^UTILITY(U,$J,358.3,28832,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28832,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,28832,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,28833,0)
+ ;;=W10.1XXA^^132^1339^81
+ ;;^UTILITY(U,$J,358.3,28833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30504,1,3,0)
- ;;=3^Placentitis, third trimester, not applicable or unspecified
- ;;^UTILITY(U,$J,358.3,30504,1,4,0)
- ;;=4^O41.1430
- ;;^UTILITY(U,$J,358.3,30504,2)
- ;;=^5017307
- ;;^UTILITY(U,$J,358.3,30505,0)
- ;;=O41.1431^^178^1917^70
- ;;^UTILITY(U,$J,358.3,30505,1,0)
+ ;;^UTILITY(U,$J,358.3,28833,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28833,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,28833,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,28834,0)
+ ;;=W10.1XXD^^132^1339^82
+ ;;^UTILITY(U,$J,358.3,28834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30505,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30505,1,4,0)
- ;;=4^O41.1431
- ;;^UTILITY(U,$J,358.3,30505,2)
- ;;=^5017308
- ;;^UTILITY(U,$J,358.3,30506,0)
- ;;=O41.1432^^178^1917^71
- ;;^UTILITY(U,$J,358.3,30506,1,0)
+ ;;^UTILITY(U,$J,358.3,28834,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28834,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,28834,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,28835,0)
+ ;;=W11.XXXA^^132^1339^41
+ ;;^UTILITY(U,$J,358.3,28835,1,0)
  ;;=^358.31IA^4^2

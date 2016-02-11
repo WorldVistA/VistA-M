@@ -1,132 +1,124 @@
-IBDEI1RE ; ; 06-AUG-2015
+IBDEI1RE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31082,1,3,0)
- ;;=3^Sprain of right wrist, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31082,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,31082,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,31083,0)
- ;;=Z89.442^^179^1941^1
- ;;^UTILITY(U,$J,358.3,31083,1,0)
+ ;;^UTILITY(U,$J,358.3,29455,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,29455,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,29456,0)
+ ;;=L95.1^^135^1361^143
+ ;;^UTILITY(U,$J,358.3,29456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31083,1,3,0)
- ;;=3^Acquired absence of left ankle
- ;;^UTILITY(U,$J,358.3,31083,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,31083,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,31084,0)
- ;;=Z89.432^^179^1941^2
- ;;^UTILITY(U,$J,358.3,31084,1,0)
+ ;;^UTILITY(U,$J,358.3,29456,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,29456,1,4,0)
+ ;;=4^L95.1
+ ;;^UTILITY(U,$J,358.3,29456,2)
+ ;;=^5009477
+ ;;^UTILITY(U,$J,358.3,29457,0)
+ ;;=L97.111^^135^1361^226
+ ;;^UTILITY(U,$J,358.3,29457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31084,1,3,0)
- ;;=3^Acquired absence of left foot
- ;;^UTILITY(U,$J,358.3,31084,1,4,0)
- ;;=4^Z89.432
- ;;^UTILITY(U,$J,358.3,31084,2)
- ;;=^5063561
- ;;^UTILITY(U,$J,358.3,31085,0)
- ;;=Z89.412^^179^1941^3
- ;;^UTILITY(U,$J,358.3,31085,1,0)
+ ;;^UTILITY(U,$J,358.3,29457,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,29457,1,4,0)
+ ;;=4^L97.111
+ ;;^UTILITY(U,$J,358.3,29457,2)
+ ;;=^5009485
+ ;;^UTILITY(U,$J,358.3,29458,0)
+ ;;=L97.112^^135^1361^227
+ ;;^UTILITY(U,$J,358.3,29458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31085,1,3,0)
- ;;=3^Acquired absence of left great toe
- ;;^UTILITY(U,$J,358.3,31085,1,4,0)
- ;;=4^Z89.412
- ;;^UTILITY(U,$J,358.3,31085,2)
- ;;=^5063555
- ;;^UTILITY(U,$J,358.3,31086,0)
- ;;=Z89.112^^179^1941^4
- ;;^UTILITY(U,$J,358.3,31086,1,0)
+ ;;^UTILITY(U,$J,358.3,29458,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,29458,1,4,0)
+ ;;=4^L97.112
+ ;;^UTILITY(U,$J,358.3,29458,2)
+ ;;=^5009486
+ ;;^UTILITY(U,$J,358.3,29459,0)
+ ;;=L97.113^^135^1361^228
+ ;;^UTILITY(U,$J,358.3,29459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31086,1,3,0)
- ;;=3^Acquired absence of left hand
- ;;^UTILITY(U,$J,358.3,31086,1,4,0)
- ;;=4^Z89.112
- ;;^UTILITY(U,$J,358.3,31086,2)
- ;;=^5063538
- ;;^UTILITY(U,$J,358.3,31087,0)
- ;;=Z89.622^^179^1941^5
- ;;^UTILITY(U,$J,358.3,31087,1,0)
+ ;;^UTILITY(U,$J,358.3,29459,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,29459,1,4,0)
+ ;;=4^L97.113
+ ;;^UTILITY(U,$J,358.3,29459,2)
+ ;;=^5009487
+ ;;^UTILITY(U,$J,358.3,29460,0)
+ ;;=L97.114^^135^1361^229
+ ;;^UTILITY(U,$J,358.3,29460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31087,1,3,0)
- ;;=3^Acquired absence of left hip joint
- ;;^UTILITY(U,$J,358.3,31087,1,4,0)
- ;;=4^Z89.622
- ;;^UTILITY(U,$J,358.3,31087,2)
- ;;=^5063576
- ;;^UTILITY(U,$J,358.3,31088,0)
- ;;=Z89.612^^179^1941^6
- ;;^UTILITY(U,$J,358.3,31088,1,0)
+ ;;^UTILITY(U,$J,358.3,29460,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,29460,1,4,0)
+ ;;=4^L97.114
+ ;;^UTILITY(U,$J,358.3,29460,2)
+ ;;=^5009488
+ ;;^UTILITY(U,$J,358.3,29461,0)
+ ;;=L97.119^^135^1361^230
+ ;;^UTILITY(U,$J,358.3,29461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31088,1,3,0)
- ;;=3^Acquired absence of left leg above knee
- ;;^UTILITY(U,$J,358.3,31088,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,31088,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,31089,0)
- ;;=Z89.512^^179^1941^7
- ;;^UTILITY(U,$J,358.3,31089,1,0)
+ ;;^UTILITY(U,$J,358.3,29461,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,29461,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,29461,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,29462,0)
+ ;;=L97.121^^135^1361^196
+ ;;^UTILITY(U,$J,358.3,29462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31089,1,3,0)
- ;;=3^Acquired absence of left leg below knee
- ;;^UTILITY(U,$J,358.3,31089,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,31089,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,31090,0)
- ;;=Z89.212^^179^1941^8
- ;;^UTILITY(U,$J,358.3,31090,1,0)
+ ;;^UTILITY(U,$J,358.3,29462,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,29462,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,29462,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,29463,0)
+ ;;=L97.122^^135^1361^197
+ ;;^UTILITY(U,$J,358.3,29463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31090,1,3,0)
- ;;=3^Acquired absence of left upper limb below elbow
- ;;^UTILITY(U,$J,358.3,31090,1,4,0)
- ;;=4^Z89.212
- ;;^UTILITY(U,$J,358.3,31090,2)
- ;;=^5063546
- ;;^UTILITY(U,$J,358.3,31091,0)
- ;;=Z89.422^^179^1941^9
- ;;^UTILITY(U,$J,358.3,31091,1,0)
+ ;;^UTILITY(U,$J,358.3,29463,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,29463,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,29463,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,29464,0)
+ ;;=L97.123^^135^1361^198
+ ;;^UTILITY(U,$J,358.3,29464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31091,1,3,0)
- ;;=3^Acquired absence of other left toe(s)
- ;;^UTILITY(U,$J,358.3,31091,1,4,0)
- ;;=4^Z89.422
- ;;^UTILITY(U,$J,358.3,31091,2)
- ;;=^5063558
- ;;^UTILITY(U,$J,358.3,31092,0)
- ;;=Z89.421^^179^1941^10
- ;;^UTILITY(U,$J,358.3,31092,1,0)
+ ;;^UTILITY(U,$J,358.3,29464,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,29464,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,29464,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,29465,0)
+ ;;=L97.124^^135^1361^199
+ ;;^UTILITY(U,$J,358.3,29465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31092,1,3,0)
- ;;=3^Acquired absence of other right toe(s)
- ;;^UTILITY(U,$J,358.3,31092,1,4,0)
- ;;=4^Z89.421
- ;;^UTILITY(U,$J,358.3,31092,2)
- ;;=^5063557
- ;;^UTILITY(U,$J,358.3,31093,0)
- ;;=Z89.441^^179^1941^11
- ;;^UTILITY(U,$J,358.3,31093,1,0)
+ ;;^UTILITY(U,$J,358.3,29465,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,29465,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,29465,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,29466,0)
+ ;;=L97.129^^135^1361^200
+ ;;^UTILITY(U,$J,358.3,29466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31093,1,3,0)
- ;;=3^Acquired absence of right ankle
- ;;^UTILITY(U,$J,358.3,31093,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,31093,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,31094,0)
- ;;=Z89.431^^179^1941^12
- ;;^UTILITY(U,$J,358.3,31094,1,0)
+ ;;^UTILITY(U,$J,358.3,29466,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,29466,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,29466,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,29467,0)
+ ;;=L97.211^^135^1361^206
+ ;;^UTILITY(U,$J,358.3,29467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31094,1,3,0)
- ;;=3^Acquired absence of right foot
- ;;^UTILITY(U,$J,358.3,31094,1,4,0)
- ;;=4^Z89.431
- ;;^UTILITY(U,$J,358.3,31094,2)
- ;;=^5063560
- ;;^UTILITY(U,$J,358.3,31095,0)
- ;;=Z89.411^^179^1941^13
+ ;;^UTILITY(U,$J,358.3,29467,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin

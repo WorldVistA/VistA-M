@@ -1,136 +1,130 @@
-IBDEI1UD ; ; 06-AUG-2015
+IBDEI1UD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32432,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,32432,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,32433,0)
- ;;=D12.6^^182^1987^11
- ;;^UTILITY(U,$J,358.3,32433,1,0)
+ ;;^UTILITY(U,$J,358.3,30837,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,30837,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,30838,0)
+ ;;=R90.89^^135^1384^13
+ ;;^UTILITY(U,$J,358.3,30838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32433,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,32433,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,32433,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,32434,0)
- ;;=D12.1^^182^1987^8
- ;;^UTILITY(U,$J,358.3,32434,1,0)
+ ;;^UTILITY(U,$J,358.3,30838,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,30838,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,30838,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,30839,0)
+ ;;=R91.8^^135^1384^18
+ ;;^UTILITY(U,$J,358.3,30839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32434,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,32434,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,32434,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,32435,0)
- ;;=K63.5^^182^1987^67
- ;;^UTILITY(U,$J,358.3,32435,1,0)
+ ;;^UTILITY(U,$J,358.3,30839,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,30839,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,30839,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,30840,0)
+ ;;=R92.0^^135^1384^117
+ ;;^UTILITY(U,$J,358.3,30840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32435,1,3,0)
- ;;=3^Polyp of Colon
- ;;^UTILITY(U,$J,358.3,32435,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,32435,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,32436,0)
- ;;=D12.3^^182^1987^14
- ;;^UTILITY(U,$J,358.3,32436,1,0)
+ ;;^UTILITY(U,$J,358.3,30840,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,30840,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,30840,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,30841,0)
+ ;;=R92.1^^135^1384^116
+ ;;^UTILITY(U,$J,358.3,30841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32436,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,32436,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,32436,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,32437,0)
- ;;=D12.2^^182^1987^9
- ;;^UTILITY(U,$J,358.3,32437,1,0)
+ ;;^UTILITY(U,$J,358.3,30841,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,30841,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,30841,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,30842,0)
+ ;;=R92.2^^135^1384^91
+ ;;^UTILITY(U,$J,358.3,30842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32437,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,32437,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,32437,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,32438,0)
- ;;=D12.5^^182^1987^13
- ;;^UTILITY(U,$J,358.3,32438,1,0)
+ ;;^UTILITY(U,$J,358.3,30842,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,30842,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,30842,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,30843,0)
+ ;;=R93.0^^135^1384^10
+ ;;^UTILITY(U,$J,358.3,30843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32438,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,32438,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,32438,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,32439,0)
- ;;=D12.4^^182^1987^12
- ;;^UTILITY(U,$J,358.3,32439,1,0)
+ ;;^UTILITY(U,$J,358.3,30843,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,30843,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,30843,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,30844,0)
+ ;;=R93.2^^135^1384^9
+ ;;^UTILITY(U,$J,358.3,30844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32439,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,32439,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,32439,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,32440,0)
- ;;=D73.2^^182^1987^16
- ;;^UTILITY(U,$J,358.3,32440,1,0)
+ ;;^UTILITY(U,$J,358.3,30844,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,30844,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,30844,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,30845,0)
+ ;;=R93.3^^135^1384^7
+ ;;^UTILITY(U,$J,358.3,30845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32440,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,32440,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,32440,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,32441,0)
- ;;=I85.00^^182^1987^43
- ;;^UTILITY(U,$J,358.3,32441,1,0)
+ ;;^UTILITY(U,$J,358.3,30845,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,30845,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,30845,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,30846,0)
+ ;;=R93.4^^135^1384^11
+ ;;^UTILITY(U,$J,358.3,30846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32441,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,32441,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,32441,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,32442,0)
- ;;=K20.9^^182^1987^44
- ;;^UTILITY(U,$J,358.3,32442,1,0)
+ ;;^UTILITY(U,$J,358.3,30846,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Urinary Organs
+ ;;^UTILITY(U,$J,358.3,30846,1,4,0)
+ ;;=4^R93.4
+ ;;^UTILITY(U,$J,358.3,30846,2)
+ ;;=^5019717
+ ;;^UTILITY(U,$J,358.3,30847,0)
+ ;;=R93.5^^135^1384^6
+ ;;^UTILITY(U,$J,358.3,30847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32442,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,32442,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,32442,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,32443,0)
- ;;=K21.9^^182^1987^50
- ;;^UTILITY(U,$J,358.3,32443,1,0)
+ ;;^UTILITY(U,$J,358.3,30847,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,30847,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,30847,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,30848,0)
+ ;;=R93.6^^135^1384^8
+ ;;^UTILITY(U,$J,358.3,30848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32443,1,3,0)
- ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,32443,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,32443,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,32444,0)
- ;;=K25.7^^182^1987^45
- ;;^UTILITY(U,$J,358.3,32444,1,0)
+ ;;^UTILITY(U,$J,358.3,30848,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,30848,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,30848,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,30849,0)
+ ;;=R94.4^^135^1384^16
+ ;;^UTILITY(U,$J,358.3,30849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32444,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,32444,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,32444,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,32445,0)
- ;;=K26.9^^182^1987^41
- ;;^UTILITY(U,$J,358.3,32445,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32445,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,32445,1,4,0)
- ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,30849,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,30849,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,30849,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,30850,0)
+ ;;=R94.5^^135^1384^17

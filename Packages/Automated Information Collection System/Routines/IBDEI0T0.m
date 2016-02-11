@@ -1,134 +1,126 @@
-IBDEI0T0 ; ; 06-AUG-2015
+IBDEI0T0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14041,2)
- ;;=^87342
- ;;^UTILITY(U,$J,358.3,14042,0)
- ;;=782.3^^74^853^3
- ;;^UTILITY(U,$J,358.3,14042,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14042,1,3,0)
- ;;=3^782.3
- ;;^UTILITY(U,$J,358.3,14042,1,5,0)
- ;;=5^Edema (any site)
- ;;^UTILITY(U,$J,358.3,14042,2)
- ;;=^38340
- ;;^UTILITY(U,$J,358.3,14043,0)
- ;;=726.70^^74^853^4
- ;;^UTILITY(U,$J,358.3,14043,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14043,1,3,0)
- ;;=3^726.70
- ;;^UTILITY(U,$J,358.3,14043,1,5,0)
- ;;=5^Enthesopathy of ankle & tarsus, unspecified
- ;;^UTILITY(U,$J,358.3,14043,2)
- ;;=^272548
- ;;^UTILITY(U,$J,358.3,14044,0)
- ;;=736.72^^74^853^5
- ;;^UTILITY(U,$J,358.3,14044,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14044,1,3,0)
- ;;=3^736.72
- ;;^UTILITY(U,$J,358.3,14044,1,5,0)
- ;;=5^Equinus deformity of foot, acquired
- ;;^UTILITY(U,$J,358.3,14044,2)
- ;;=^272744
- ;;^UTILITY(U,$J,358.3,14045,0)
- ;;=726.91^^74^853^6
- ;;^UTILITY(U,$J,358.3,14045,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14045,1,3,0)
- ;;=3^726.91
- ;;^UTILITY(U,$J,358.3,14045,1,5,0)
- ;;=5^Exostosis of unspecified site
- ;;^UTILITY(U,$J,358.3,14045,2)
- ;;=^43688
- ;;^UTILITY(U,$J,358.3,14046,0)
- ;;=728.71^^74^854^1
- ;;^UTILITY(U,$J,358.3,14046,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14046,1,3,0)
- ;;=3^728.71
- ;;^UTILITY(U,$J,358.3,14046,1,5,0)
- ;;=5^Fascite, Plantar
- ;;^UTILITY(U,$J,358.3,14046,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,14047,0)
- ;;=729.1^^74^854^2
- ;;^UTILITY(U,$J,358.3,14047,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14047,1,3,0)
- ;;=3^729.1
- ;;^UTILITY(U,$J,358.3,14047,1,5,0)
- ;;=5^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,14047,2)
- ;;=^80160
- ;;^UTILITY(U,$J,358.3,14048,0)
- ;;=709.8^^74^854^3
- ;;^UTILITY(U,$J,358.3,14048,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14048,1,3,0)
- ;;=3^709.8
- ;;^UTILITY(U,$J,358.3,14048,1,5,0)
- ;;=5^Fissured skin
- ;;^UTILITY(U,$J,358.3,14048,2)
- ;;=^88026
- ;;^UTILITY(U,$J,358.3,14049,0)
- ;;=V53.7^^74^854^4
- ;;^UTILITY(U,$J,358.3,14049,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14049,1,3,0)
- ;;=3^V53.7
- ;;^UTILITY(U,$J,358.3,14049,1,5,0)
- ;;=5^Fitting of Orthotic
- ;;^UTILITY(U,$J,358.3,14049,2)
- ;;=^295510
- ;;^UTILITY(U,$J,358.3,14050,0)
- ;;=709.4^^74^854^5
- ;;^UTILITY(U,$J,358.3,14050,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14050,1,3,0)
- ;;=3^709.4
- ;;^UTILITY(U,$J,358.3,14050,1,5,0)
- ;;=5^Foreign body granuloma of skin and subcutaneous tissue (old) 
- ;;^UTILITY(U,$J,358.3,14050,2)
- ;;=^271943
- ;;^UTILITY(U,$J,358.3,14051,0)
- ;;=917.6^^74^854^6
- ;;^UTILITY(U,$J,358.3,14051,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14051,1,3,0)
- ;;=3^917.6
- ;;^UTILITY(U,$J,358.3,14051,1,5,0)
- ;;=5^Foreign body, superficial injury (splinter) of foot & toe(s)without major open wound & without mention of infection  
- ;;^UTILITY(U,$J,358.3,14051,2)
- ;;=^275347
- ;;^UTILITY(U,$J,358.3,14052,0)
- ;;=892.1^^74^854^7
- ;;^UTILITY(U,$J,358.3,14052,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14052,1,3,0)
- ;;=3^892.1
- ;;^UTILITY(U,$J,358.3,14052,1,5,0)
- ;;=5^Foreign body, open wound of foot except toe(s); complicated
- ;;^UTILITY(U,$J,358.3,14052,2)
- ;;=^275092
- ;;^UTILITY(U,$J,358.3,14053,0)
- ;;=893.1^^74^854^8
- ;;^UTILITY(U,$J,358.3,14053,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14053,1,3,0)
- ;;=3^893.1
- ;;^UTILITY(U,$J,358.3,14053,1,5,0)
- ;;=5^Foreign body, open wound of toe; complicated
- ;;^UTILITY(U,$J,358.3,14053,2)
- ;;=^275096
- ;;^UTILITY(U,$J,358.3,14054,0)
- ;;=916.6^^74^854^9
- ;;^UTILITY(U,$J,358.3,14054,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14054,1,3,0)
- ;;=3^916.6
- ;;^UTILITY(U,$J,358.3,14054,1,5,0)
- ;;=5^Foreign body, superficial injury (splinter) of hip, thigh, leg, and ankle w/o major open wound & w/o mention of infection
+ ;;^UTILITY(U,$J,358.3,13340,0)
+ ;;=E11.321^^80^759^66
+ ;;^UTILITY(U,$J,358.3,13340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13340,1,3,0)
+ ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,13340,1,4,0)
+ ;;=4^E11.321
+ ;;^UTILITY(U,$J,358.3,13340,2)
+ ;;=^5002634
+ ;;^UTILITY(U,$J,358.3,13341,0)
+ ;;=E11.329^^80^759^67
+ ;;^UTILITY(U,$J,358.3,13341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13341,1,3,0)
+ ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,13341,1,4,0)
+ ;;=4^E11.329
+ ;;^UTILITY(U,$J,358.3,13341,2)
+ ;;=^5002635
+ ;;^UTILITY(U,$J,358.3,13342,0)
+ ;;=E11.331^^80^759^68
+ ;;^UTILITY(U,$J,358.3,13342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13342,1,3,0)
+ ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,13342,1,4,0)
+ ;;=4^E11.331
+ ;;^UTILITY(U,$J,358.3,13342,2)
+ ;;=^5002636
+ ;;^UTILITY(U,$J,358.3,13343,0)
+ ;;=E11.339^^80^759^69
+ ;;^UTILITY(U,$J,358.3,13343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13343,1,3,0)
+ ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,13343,1,4,0)
+ ;;=4^E11.339
+ ;;^UTILITY(U,$J,358.3,13343,2)
+ ;;=^5002637
+ ;;^UTILITY(U,$J,358.3,13344,0)
+ ;;=E11.351^^80^759^70
+ ;;^UTILITY(U,$J,358.3,13344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13344,1,3,0)
+ ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,13344,1,4,0)
+ ;;=4^E11.351
+ ;;^UTILITY(U,$J,358.3,13344,2)
+ ;;=^5002640
+ ;;^UTILITY(U,$J,358.3,13345,0)
+ ;;=E11.359^^80^759^71
+ ;;^UTILITY(U,$J,358.3,13345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13345,1,3,0)
+ ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,13345,1,4,0)
+ ;;=4^E11.359
+ ;;^UTILITY(U,$J,358.3,13345,2)
+ ;;=^5002641
+ ;;^UTILITY(U,$J,358.3,13346,0)
+ ;;=E11.341^^80^759^72
+ ;;^UTILITY(U,$J,358.3,13346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13346,1,3,0)
+ ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,13346,1,4,0)
+ ;;=4^E11.341
+ ;;^UTILITY(U,$J,358.3,13346,2)
+ ;;=^5002638
+ ;;^UTILITY(U,$J,358.3,13347,0)
+ ;;=E11.349^^80^759^73
+ ;;^UTILITY(U,$J,358.3,13347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13347,1,3,0)
+ ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,13347,1,4,0)
+ ;;=4^E11.349
+ ;;^UTILITY(U,$J,358.3,13347,2)
+ ;;=^5002639
+ ;;^UTILITY(U,$J,358.3,13348,0)
+ ;;=E11.9^^80^759^74
+ ;;^UTILITY(U,$J,358.3,13348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13348,1,3,0)
+ ;;=3^Type 2 DM w/o Complications
+ ;;^UTILITY(U,$J,358.3,13348,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,13348,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,13349,0)
+ ;;=H35.363^^80^759^18
+ ;;^UTILITY(U,$J,358.3,13349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13349,1,3,0)
+ ;;=3^Drusen of Macular,Bilateral
+ ;;^UTILITY(U,$J,358.3,13349,1,4,0)
+ ;;=4^H35.363
+ ;;^UTILITY(U,$J,358.3,13349,2)
+ ;;=^5005660
+ ;;^UTILITY(U,$J,358.3,13350,0)
+ ;;=H35.362^^80^759^19
+ ;;^UTILITY(U,$J,358.3,13350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13350,1,3,0)
+ ;;=3^Drusen of Macular,Left Eye
+ ;;^UTILITY(U,$J,358.3,13350,1,4,0)
+ ;;=4^H35.362
+ ;;^UTILITY(U,$J,358.3,13350,2)
+ ;;=^5005659
+ ;;^UTILITY(U,$J,358.3,13351,0)
+ ;;=H35.361^^80^759^20
+ ;;^UTILITY(U,$J,358.3,13351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13351,1,3,0)
+ ;;=3^Drusen of Macular,Right Eye
+ ;;^UTILITY(U,$J,358.3,13351,1,4,0)
+ ;;=4^H35.361
+ ;;^UTILITY(U,$J,358.3,13351,2)
+ ;;=^5005658
+ ;;^UTILITY(U,$J,358.3,13352,0)
+ ;;=H04.123^^80^759^21

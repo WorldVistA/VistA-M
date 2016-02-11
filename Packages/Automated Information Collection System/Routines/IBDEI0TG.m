@@ -1,112 +1,132 @@
-IBDEI0TG ; ; 06-AUG-2015
+IBDEI0TG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14257,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14257,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; over 4.0cm
- ;;^UTILITY(U,$J,358.3,14257,1,3,0)
- ;;=3^11606
- ;;^UTILITY(U,$J,358.3,14258,0)
- ;;=11620^^75^878^7^^^^1
- ;;^UTILITY(U,$J,358.3,14258,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14258,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,14258,1,3,0)
- ;;=3^11620
- ;;^UTILITY(U,$J,358.3,14259,0)
- ;;=11621^^75^878^8^^^^1
- ;;^UTILITY(U,$J,358.3,14259,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14259,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,14259,1,3,0)
- ;;=3^11621
- ;;^UTILITY(U,$J,358.3,14260,0)
- ;;=11622^^75^878^9^^^^1
- ;;^UTILITY(U,$J,358.3,14260,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14260,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,14260,1,3,0)
- ;;=3^11622
- ;;^UTILITY(U,$J,358.3,14261,0)
- ;;=11623^^75^878^10^^^^1
- ;;^UTILITY(U,$J,358.3,14261,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14261,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 2.1cm to 3.0cm
- ;;^UTILITY(U,$J,358.3,14261,1,3,0)
- ;;=3^11623
- ;;^UTILITY(U,$J,358.3,14262,0)
- ;;=11624^^75^878^11^^^^1
- ;;^UTILITY(U,$J,358.3,14262,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14262,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,14262,1,3,0)
- ;;=3^11624
- ;;^UTILITY(U,$J,358.3,14263,0)
- ;;=11626^^75^878^12^^^^1
- ;;^UTILITY(U,$J,358.3,14263,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14263,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, gentalia; over 4.0cm
- ;;^UTILITY(U,$J,358.3,14263,1,3,0)
- ;;=3^11626
- ;;^UTILITY(U,$J,358.3,14264,0)
- ;;=12001^^75^879^8^^^^1
- ;;^UTILITY(U,$J,358.3,14264,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14264,1,2,0)
- ;;=2^Simple Repair of Wnd-Scalp,Neck,Axillae,Trunk;2.5cm or less
- ;;^UTILITY(U,$J,358.3,14264,1,3,0)
- ;;=3^12001
- ;;^UTILITY(U,$J,358.3,14265,0)
- ;;=12002^^75^879^9^^^^1
- ;;^UTILITY(U,$J,358.3,14265,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14265,1,2,0)
- ;;=2^Simple Repair of Wnd-Scalp,Neck,Axillae,Trunk;2.6cm-7.5cm
- ;;^UTILITY(U,$J,358.3,14265,1,3,0)
- ;;=3^12002
- ;;^UTILITY(U,$J,358.3,14266,0)
- ;;=12041^^75^879^1^^^^1
- ;;^UTILITY(U,$J,358.3,14266,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14266,1,2,0)
- ;;=2^Layer Closure of Wnd-Neck,Hands,Feet,Ext Genitalia;2.5cm or less
- ;;^UTILITY(U,$J,358.3,14266,1,3,0)
- ;;=3^12041
- ;;^UTILITY(U,$J,358.3,14267,0)
- ;;=12042^^75^879^2^^^^1
- ;;^UTILITY(U,$J,358.3,14267,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14267,1,2,0)
- ;;=2^Layer Closure of Wnd-Neck,Hands,Feet,Ext Genitalia;2.6cm-7.5cm
- ;;^UTILITY(U,$J,358.3,14267,1,3,0)
- ;;=3^12042
- ;;^UTILITY(U,$J,358.3,14268,0)
- ;;=12031^^75^879^3^^^^1
- ;;^UTILITY(U,$J,358.3,14268,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14268,1,2,0)
- ;;=2^Layer Closure of Wnd-Scalp,Axillae,Trunk,Extrem;2.5cm or less
- ;;^UTILITY(U,$J,358.3,14268,1,3,0)
- ;;=3^12031
- ;;^UTILITY(U,$J,358.3,14269,0)
- ;;=12032^^75^879^4^^^^1
- ;;^UTILITY(U,$J,358.3,14269,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14269,1,2,0)
- ;;=2^Layer Closure of Wnd-Scalp,Axillae,Trunk,Extrem;2.6cm-7.5cm
- ;;^UTILITY(U,$J,358.3,14269,1,3,0)
- ;;=3^12032
- ;;^UTILITY(U,$J,358.3,14270,0)
- ;;=12020^^75^879^10^^^^1
- ;;^UTILITY(U,$J,358.3,14270,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14270,1,2,0)
- ;;=2^TX of Superficial Wound Dehiscence; simple closure
+ ;;^UTILITY(U,$J,358.3,13545,1,4,0)
+ ;;=4^H04.542
+ ;;^UTILITY(U,$J,358.3,13545,2)
+ ;;=^5004535
+ ;;^UTILITY(U,$J,358.3,13546,0)
+ ;;=H04.572^^80^761^104
+ ;;^UTILITY(U,$J,358.3,13546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13546,1,3,0)
+ ;;=3^Stenosis Left Lacrimal Sac
+ ;;^UTILITY(U,$J,358.3,13546,1,4,0)
+ ;;=4^H04.572
+ ;;^UTILITY(U,$J,358.3,13546,2)
+ ;;=^5004547
+ ;;^UTILITY(U,$J,358.3,13547,0)
+ ;;=H04.541^^80^761^105
+ ;;^UTILITY(U,$J,358.3,13547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13547,1,3,0)
+ ;;=3^Stenosis Right Lacrimal Canaliculi
+ ;;^UTILITY(U,$J,358.3,13547,1,4,0)
+ ;;=4^H04.541
+ ;;^UTILITY(U,$J,358.3,13547,2)
+ ;;=^5004534
+ ;;^UTILITY(U,$J,358.3,13548,0)
+ ;;=H04.571^^80^761^106
+ ;;^UTILITY(U,$J,358.3,13548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13548,1,3,0)
+ ;;=3^Stenosis Right Lacrimal Sac
+ ;;^UTILITY(U,$J,358.3,13548,1,4,0)
+ ;;=4^H04.571
+ ;;^UTILITY(U,$J,358.3,13548,2)
+ ;;=^5004546
+ ;;^UTILITY(U,$J,358.3,13549,0)
+ ;;=H02.055^^80^761^107
+ ;;^UTILITY(U,$J,358.3,13549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13549,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13549,1,4,0)
+ ;;=4^H02.055
+ ;;^UTILITY(U,$J,358.3,13549,2)
+ ;;=^5133405
+ ;;^UTILITY(U,$J,358.3,13550,0)
+ ;;=H02.054^^80^761^108
+ ;;^UTILITY(U,$J,358.3,13550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13550,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13550,1,4,0)
+ ;;=4^H02.054
+ ;;^UTILITY(U,$J,358.3,13550,2)
+ ;;=^5004301
+ ;;^UTILITY(U,$J,358.3,13551,0)
+ ;;=H02.052^^80^761^109
+ ;;^UTILITY(U,$J,358.3,13551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13551,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13551,1,4,0)
+ ;;=4^H02.052
+ ;;^UTILITY(U,$J,358.3,13551,2)
+ ;;=^5004299
+ ;;^UTILITY(U,$J,358.3,13552,0)
+ ;;=H02.051^^80^761^110
+ ;;^UTILITY(U,$J,358.3,13552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13552,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13552,1,4,0)
+ ;;=4^H02.051
+ ;;^UTILITY(U,$J,358.3,13552,2)
+ ;;=^5004298
+ ;;^UTILITY(U,$J,358.3,13553,0)
+ ;;=H05.10^^80^761^16
+ ;;^UTILITY(U,$J,358.3,13553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13553,1,3,0)
+ ;;=3^Chronic Inflammatory Orbit Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,13553,1,4,0)
+ ;;=4^H05.10
+ ;;^UTILITY(U,$J,358.3,13553,2)
+ ;;=^5004576
+ ;;^UTILITY(U,$J,358.3,13554,0)
+ ;;=H05.402^^80^761^35
+ ;;^UTILITY(U,$J,358.3,13554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13554,1,3,0)
+ ;;=3^Enophthalmos Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13554,1,4,0)
+ ;;=4^H05.402
+ ;;^UTILITY(U,$J,358.3,13554,2)
+ ;;=^5004632
+ ;;^UTILITY(U,$J,358.3,13555,0)
+ ;;=H05.401^^80^761^36
+ ;;^UTILITY(U,$J,358.3,13555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13555,1,3,0)
+ ;;=3^Enophthalmos Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13555,1,4,0)
+ ;;=4^H05.401
+ ;;^UTILITY(U,$J,358.3,13555,2)
+ ;;=^5004631
+ ;;^UTILITY(U,$J,358.3,13556,0)
+ ;;=H02.005^^80^761^37
+ ;;^UTILITY(U,$J,358.3,13556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13556,1,3,0)
+ ;;=3^Entropion Left Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,13556,1,4,0)
+ ;;=4^H02.005
+ ;;^UTILITY(U,$J,358.3,13556,2)
+ ;;=^5133396
+ ;;^UTILITY(U,$J,358.3,13557,0)
+ ;;=H02.004^^80^761^38
+ ;;^UTILITY(U,$J,358.3,13557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13557,1,3,0)
+ ;;=3^Entropion Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,13557,1,4,0)
+ ;;=4^H02.004
+ ;;^UTILITY(U,$J,358.3,13557,2)
+ ;;=^5004276
+ ;;^UTILITY(U,$J,358.3,13558,0)
+ ;;=H02.002^^80^761^39
+ ;;^UTILITY(U,$J,358.3,13558,1,0)
+ ;;=^358.31IA^4^2

@@ -1,140 +1,140 @@
-IBDEI07X ; ; 06-AUG-2015
+IBDEI07X ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3210,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,3210,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,3210,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,3211,0)
- ;;=F25.0^^8^109^3
- ;;^UTILITY(U,$J,358.3,3211,1,0)
+ ;;^UTILITY(U,$J,358.3,3143,0)
+ ;;=L98.9^^28^247^101
+ ;;^UTILITY(U,$J,358.3,3143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3211,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,3211,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,3211,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,3212,0)
- ;;=F25.1^^8^109^4
- ;;^UTILITY(U,$J,358.3,3212,1,0)
+ ;;^UTILITY(U,$J,358.3,3143,1,3,0)
+ ;;=3^Skin Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3143,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,3143,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,3144,0)
+ ;;=L08.9^^28^247^104
+ ;;^UTILITY(U,$J,358.3,3144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3212,1,3,0)
- ;;=3^Schizoaffective Disorder,Depressive Type
- ;;^UTILITY(U,$J,358.3,3212,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,3212,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,3213,0)
- ;;=F52.32^^8^110^1
- ;;^UTILITY(U,$J,358.3,3213,1,0)
+ ;;^UTILITY(U,$J,358.3,3144,1,3,0)
+ ;;=3^Skin Infection,Local,Unspec
+ ;;^UTILITY(U,$J,358.3,3144,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,3144,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,3145,0)
+ ;;=L57.9^^28^247^97
+ ;;^UTILITY(U,$J,358.3,3145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3213,1,3,0)
- ;;=3^Delayed Ejaculation
- ;;^UTILITY(U,$J,358.3,3213,1,4,0)
- ;;=4^F52.32
- ;;^UTILITY(U,$J,358.3,3213,2)
- ;;=^331927
- ;;^UTILITY(U,$J,358.3,3214,0)
- ;;=F52.21^^8^110^2
- ;;^UTILITY(U,$J,358.3,3214,1,0)
+ ;;^UTILITY(U,$J,358.3,3145,1,3,0)
+ ;;=3^Skin Changes d/t Chr Expsr to Nonionizing Radiation,Unspec
+ ;;^UTILITY(U,$J,358.3,3145,1,4,0)
+ ;;=4^L57.9
+ ;;^UTILITY(U,$J,358.3,3145,2)
+ ;;=^5009227
+ ;;^UTILITY(U,$J,358.3,3146,0)
+ ;;=L90.9^^28^247^99
+ ;;^UTILITY(U,$J,358.3,3146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3214,1,3,0)
- ;;=3^Erectile Disorder
- ;;^UTILITY(U,$J,358.3,3214,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,3214,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,3215,0)
- ;;=F52.31^^8^110^3
- ;;^UTILITY(U,$J,358.3,3215,1,0)
+ ;;^UTILITY(U,$J,358.3,3146,1,3,0)
+ ;;=3^Skin Disorder,Atrophic,Unspec
+ ;;^UTILITY(U,$J,358.3,3146,1,4,0)
+ ;;=4^L90.9
+ ;;^UTILITY(U,$J,358.3,3146,2)
+ ;;=^5009458
+ ;;^UTILITY(U,$J,358.3,3147,0)
+ ;;=L91.9^^28^247^100
+ ;;^UTILITY(U,$J,358.3,3147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3215,1,3,0)
- ;;=3^Female Orgasmic Disorder
- ;;^UTILITY(U,$J,358.3,3215,1,4,0)
- ;;=4^F52.31
- ;;^UTILITY(U,$J,358.3,3215,2)
- ;;=^331926
- ;;^UTILITY(U,$J,358.3,3216,0)
- ;;=F52.22^^8^110^4
- ;;^UTILITY(U,$J,358.3,3216,1,0)
+ ;;^UTILITY(U,$J,358.3,3147,1,3,0)
+ ;;=3^Skin Disorder,Hypertrophic,Unspec
+ ;;^UTILITY(U,$J,358.3,3147,1,4,0)
+ ;;=4^L91.9
+ ;;^UTILITY(U,$J,358.3,3147,2)
+ ;;=^5009461
+ ;;^UTILITY(U,$J,358.3,3148,0)
+ ;;=R20.0^^28^247^96
+ ;;^UTILITY(U,$J,358.3,3148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3216,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,3216,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,3216,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,3217,0)
- ;;=F52.6^^8^110^5
- ;;^UTILITY(U,$J,358.3,3217,1,0)
+ ;;^UTILITY(U,$J,358.3,3148,1,3,0)
+ ;;=3^Skin Anesthesia
+ ;;^UTILITY(U,$J,358.3,3148,1,4,0)
+ ;;=4^R20.0
+ ;;^UTILITY(U,$J,358.3,3148,2)
+ ;;=^5019278
+ ;;^UTILITY(U,$J,358.3,3149,0)
+ ;;=R20.3^^28^247^102
+ ;;^UTILITY(U,$J,358.3,3149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3217,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,3217,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,3217,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,3218,0)
- ;;=F52.0^^8^110^6
- ;;^UTILITY(U,$J,358.3,3218,1,0)
+ ;;^UTILITY(U,$J,358.3,3149,1,3,0)
+ ;;=3^Skin Hyperesthesia
+ ;;^UTILITY(U,$J,358.3,3149,1,4,0)
+ ;;=4^R20.3
+ ;;^UTILITY(U,$J,358.3,3149,2)
+ ;;=^60011
+ ;;^UTILITY(U,$J,358.3,3150,0)
+ ;;=R20.1^^28^247^103
+ ;;^UTILITY(U,$J,358.3,3150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3218,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,3218,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,3218,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,3219,0)
- ;;=F52.4^^8^110^7
- ;;^UTILITY(U,$J,358.3,3219,1,0)
+ ;;^UTILITY(U,$J,358.3,3150,1,3,0)
+ ;;=3^Skin Hypoesthesia
+ ;;^UTILITY(U,$J,358.3,3150,1,4,0)
+ ;;=4^R20.1
+ ;;^UTILITY(U,$J,358.3,3150,2)
+ ;;=^5019279
+ ;;^UTILITY(U,$J,358.3,3151,0)
+ ;;=R20.2^^28^247^105
+ ;;^UTILITY(U,$J,358.3,3151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3219,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,3219,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,3219,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,3220,0)
- ;;=F52.8^^8^110^9
- ;;^UTILITY(U,$J,358.3,3220,1,0)
+ ;;^UTILITY(U,$J,358.3,3151,1,3,0)
+ ;;=3^Skin Paresthesia
+ ;;^UTILITY(U,$J,358.3,3151,1,4,0)
+ ;;=4^R20.2
+ ;;^UTILITY(U,$J,358.3,3151,2)
+ ;;=^5019280
+ ;;^UTILITY(U,$J,358.3,3152,0)
+ ;;=R20.8^^28^247^107
+ ;;^UTILITY(U,$J,358.3,3152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3220,1,3,0)
- ;;=3^Sexual Dysfuntion NEC
- ;;^UTILITY(U,$J,358.3,3220,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,3220,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,3221,0)
- ;;=F52.9^^8^110^8
- ;;^UTILITY(U,$J,358.3,3221,1,0)
+ ;;^UTILITY(U,$J,358.3,3152,1,3,0)
+ ;;=3^Skin Sensation,Other Disturbances
+ ;;^UTILITY(U,$J,358.3,3152,1,4,0)
+ ;;=4^R20.8
+ ;;^UTILITY(U,$J,358.3,3152,2)
+ ;;=^5019281
+ ;;^UTILITY(U,$J,358.3,3153,0)
+ ;;=R20.9^^28^247^106
+ ;;^UTILITY(U,$J,358.3,3153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3221,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,3221,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,3221,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,3222,0)
- ;;=G47.09^^8^111^11
- ;;^UTILITY(U,$J,358.3,3222,1,0)
+ ;;^UTILITY(U,$J,358.3,3153,1,3,0)
+ ;;=3^Skin Sensation Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,3153,1,4,0)
+ ;;=4^R20.9
+ ;;^UTILITY(U,$J,358.3,3153,2)
+ ;;=^5019282
+ ;;^UTILITY(U,$J,358.3,3154,0)
+ ;;=R23.9^^28^247^98
+ ;;^UTILITY(U,$J,358.3,3154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3222,1,3,0)
- ;;=3^Insomnia Disorder NEC
- ;;^UTILITY(U,$J,358.3,3222,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,3222,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,3223,0)
- ;;=G47.00^^8^111^10
- ;;^UTILITY(U,$J,358.3,3223,1,0)
+ ;;^UTILITY(U,$J,358.3,3154,1,3,0)
+ ;;=3^Skin Changes,Unspec
+ ;;^UTILITY(U,$J,358.3,3154,1,4,0)
+ ;;=4^R23.9
+ ;;^UTILITY(U,$J,358.3,3154,2)
+ ;;=^5019298
+ ;;^UTILITY(U,$J,358.3,3155,0)
+ ;;=M79.9^^28^247^108
+ ;;^UTILITY(U,$J,358.3,3155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3223,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,3223,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,3223,2)
- ;;=^332924
+ ;;^UTILITY(U,$J,358.3,3155,1,3,0)
+ ;;=3^Soft Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3155,1,4,0)
+ ;;=4^M79.9
+ ;;^UTILITY(U,$J,358.3,3155,2)
+ ;;=^5013358
+ ;;^UTILITY(U,$J,358.3,3156,0)
+ ;;=L55.9^^28^247^109
+ ;;^UTILITY(U,$J,358.3,3156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3156,1,3,0)
+ ;;=3^Sunburn,Unspec

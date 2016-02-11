@@ -1,0 +1,134 @@
+IBDEI371 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,53637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53637,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,53637,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,53637,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,53638,0)
+ ;;=I65.21^^250^2702^7
+ ;;^UTILITY(U,$J,358.3,53638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53638,1,3,0)
+ ;;=3^Occl/Stenosis,Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,53638,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,53638,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,53639,0)
+ ;;=I65.22^^250^2702^5
+ ;;^UTILITY(U,$J,358.3,53639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53639,1,3,0)
+ ;;=3^Occl/Stenosis,Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,53639,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,53639,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,53640,0)
+ ;;=I70.219^^250^2702^2
+ ;;^UTILITY(U,$J,358.3,53640,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53640,1,3,0)
+ ;;=3^Athscl NTV Arteries,Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,53640,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,53640,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,53641,0)
+ ;;=I73.9^^250^2702^8
+ ;;^UTILITY(U,$J,358.3,53641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53641,1,3,0)
+ ;;=3^Peripheral Vasc Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,53641,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,53641,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,53642,0)
+ ;;=I65.23^^250^2702^4
+ ;;^UTILITY(U,$J,358.3,53642,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53642,1,3,0)
+ ;;=3^Occl/Stenosis,Bilat Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,53642,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,53642,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,53643,0)
+ ;;=I65.8^^250^2702^6
+ ;;^UTILITY(U,$J,358.3,53643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53643,1,3,0)
+ ;;=3^Occl/Stenosis,Precerebral Arteries NEC
+ ;;^UTILITY(U,$J,358.3,53643,1,4,0)
+ ;;=4^I65.8
+ ;;^UTILITY(U,$J,358.3,53643,2)
+ ;;=^5007364
+ ;;^UTILITY(U,$J,358.3,53644,0)
+ ;;=Z13.6^^250^2702^9
+ ;;^UTILITY(U,$J,358.3,53644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53644,1,3,0)
+ ;;=3^Screening for cardiovascular disorders
+ ;;^UTILITY(U,$J,358.3,53644,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,53644,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,53645,0)
+ ;;=I26.99^^250^2703^9
+ ;;^UTILITY(U,$J,358.3,53645,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53645,1,3,0)
+ ;;=3^Pulmonary embolism w/o acute cor pulmonale NEC
+ ;;^UTILITY(U,$J,358.3,53645,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,53645,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,53646,0)
+ ;;=J20.9^^250^2703^1
+ ;;^UTILITY(U,$J,358.3,53646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53646,1,3,0)
+ ;;=3^Acute bronchitis, unspecified
+ ;;^UTILITY(U,$J,358.3,53646,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,53646,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,53647,0)
+ ;;=J42.^^250^2703^5
+ ;;^UTILITY(U,$J,358.3,53647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53647,1,3,0)
+ ;;=3^Chronic bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,53647,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,53647,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,53648,0)
+ ;;=J45.909^^250^2703^3
+ ;;^UTILITY(U,$J,358.3,53648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53648,1,3,0)
+ ;;=3^Asthma,uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,53648,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,53648,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,53649,0)
+ ;;=J45.902^^250^2703^2
+ ;;^UTILITY(U,$J,358.3,53649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53649,1,3,0)
+ ;;=3^Asthma w/ status asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,53649,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,53649,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,53650,0)
+ ;;=J44.9^^250^2703^4

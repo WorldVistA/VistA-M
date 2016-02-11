@@ -1,0 +1,132 @@
+IBDEI30K ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,50522,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,50522,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,50522,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,50523,0)
+ ;;=J86.0^^219^2453^10
+ ;;^UTILITY(U,$J,358.3,50523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50523,1,3,0)
+ ;;=3^Pyothorax w/ Fistula
+ ;;^UTILITY(U,$J,358.3,50523,1,4,0)
+ ;;=4^J86.0
+ ;;^UTILITY(U,$J,358.3,50523,2)
+ ;;=^5008308
+ ;;^UTILITY(U,$J,358.3,50524,0)
+ ;;=J86.9^^219^2453^11
+ ;;^UTILITY(U,$J,358.3,50524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50524,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,50524,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,50524,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,50525,0)
+ ;;=F41.9^^219^2454^2
+ ;;^UTILITY(U,$J,358.3,50525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50525,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,50525,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,50525,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,50526,0)
+ ;;=F10.20^^219^2454^1
+ ;;^UTILITY(U,$J,358.3,50526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50526,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,50526,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,50526,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,50527,0)
+ ;;=F32.9^^219^2454^3
+ ;;^UTILITY(U,$J,358.3,50527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50527,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episoide,Unspec
+ ;;^UTILITY(U,$J,358.3,50527,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,50527,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,50528,0)
+ ;;=F17.221^^219^2454^4
+ ;;^UTILITY(U,$J,358.3,50528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50528,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,50528,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,50528,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,50529,0)
+ ;;=F17.220^^219^2454^5
+ ;;^UTILITY(U,$J,358.3,50529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50529,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,50529,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,50529,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,50530,0)
+ ;;=F17.211^^219^2454^6
+ ;;^UTILITY(U,$J,358.3,50530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50530,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,50530,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,50530,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,50531,0)
+ ;;=F17.210^^219^2454^7
+ ;;^UTILITY(U,$J,358.3,50531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50531,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,50531,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,50531,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,50532,0)
+ ;;=F17.291^^219^2454^8
+ ;;^UTILITY(U,$J,358.3,50532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50532,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,50532,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,50532,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,50533,0)
+ ;;=F17.290^^219^2454^9
+ ;;^UTILITY(U,$J,358.3,50533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50533,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,50533,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,50533,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,50534,0)
+ ;;=F17.201^^219^2454^10
+ ;;^UTILITY(U,$J,358.3,50534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50534,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,In Remission
+ ;;^UTILITY(U,$J,358.3,50534,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,50534,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,50535,0)
+ ;;=F17.200^^219^2454^11

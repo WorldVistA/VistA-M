@@ -1,0 +1,130 @@
+IBDEI3BY ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,55957,0)
+ ;;=F11.10^^256^2789^34
+ ;;^UTILITY(U,$J,358.3,55957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55957,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,55957,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,55957,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,55958,0)
+ ;;=F11.129^^256^2789^33
+ ;;^UTILITY(U,$J,358.3,55958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55958,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,55958,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,55958,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,55959,0)
+ ;;=F10.21^^256^2789^3
+ ;;^UTILITY(U,$J,358.3,55959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55959,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,55959,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,55959,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,55960,0)
+ ;;=F12.10^^256^2789^5
+ ;;^UTILITY(U,$J,358.3,55960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55960,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,55960,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,55960,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,55961,0)
+ ;;=F12.20^^256^2789^7
+ ;;^UTILITY(U,$J,358.3,55961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55961,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,55961,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,55961,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,55962,0)
+ ;;=F12.21^^256^2789^6
+ ;;^UTILITY(U,$J,358.3,55962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55962,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,55962,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,55962,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,55963,0)
+ ;;=F12.90^^256^2789^8
+ ;;^UTILITY(U,$J,358.3,55963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55963,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,55963,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,55963,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,55964,0)
+ ;;=I83.019^^256^2790^3
+ ;;^UTILITY(U,$J,358.3,55964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55964,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,55964,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,55964,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,55965,0)
+ ;;=I83.219^^256^2790^4
+ ;;^UTILITY(U,$J,358.3,55965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55965,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,55965,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,55965,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,55966,0)
+ ;;=I83.029^^256^2790^1
+ ;;^UTILITY(U,$J,358.3,55966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55966,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,55966,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,55966,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,55967,0)
+ ;;=I83.229^^256^2790^2
+ ;;^UTILITY(U,$J,358.3,55967,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55967,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,55967,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,55967,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,55968,0)
+ ;;=B00.81^^256^2791^25
+ ;;^UTILITY(U,$J,358.3,55968,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55968,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,55968,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,55968,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,55969,0)
+ ;;=D25.9^^256^2791^31
+ ;;^UTILITY(U,$J,358.3,55969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55969,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec

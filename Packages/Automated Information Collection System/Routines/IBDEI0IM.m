@@ -1,144 +1,130 @@
-IBDEI0IM ; ; 06-AUG-2015
+IBDEI0IM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8718,1,5,0)
- ;;=5^Abdominal Pain, LLQ
- ;;^UTILITY(U,$J,358.3,8718,2)
- ;;=^303321
- ;;^UTILITY(U,$J,358.3,8719,0)
- ;;=789.06^^35^489^15
- ;;^UTILITY(U,$J,358.3,8719,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8719,1,4,0)
- ;;=4^789.06
- ;;^UTILITY(U,$J,358.3,8719,1,5,0)
- ;;=5^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,8719,2)
- ;;=Epigastric Pain^303323
- ;;^UTILITY(U,$J,358.3,8720,0)
- ;;=789.07^^35^489^1
- ;;^UTILITY(U,$J,358.3,8720,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8720,1,4,0)
- ;;=4^789.07
- ;;^UTILITY(U,$J,358.3,8720,1,5,0)
- ;;=5^Abdominal Pain, Generalized
- ;;^UTILITY(U,$J,358.3,8720,2)
- ;;=^303324
- ;;^UTILITY(U,$J,358.3,8721,0)
- ;;=788.0^^35^489^21
- ;;^UTILITY(U,$J,358.3,8721,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8721,1,4,0)
- ;;=4^788.0
- ;;^UTILITY(U,$J,358.3,8721,1,5,0)
- ;;=5^Kidney Pain
- ;;^UTILITY(U,$J,358.3,8721,2)
- ;;=^265306
- ;;^UTILITY(U,$J,358.3,8722,0)
- ;;=338.0^^35^489^9
- ;;^UTILITY(U,$J,358.3,8722,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8722,1,4,0)
- ;;=4^338.0
- ;;^UTILITY(U,$J,358.3,8722,1,5,0)
- ;;=5^Central Pain Syndrome
- ;;^UTILITY(U,$J,358.3,8722,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,8723,0)
- ;;=338.11^^35^489^6
- ;;^UTILITY(U,$J,358.3,8723,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8723,1,4,0)
- ;;=4^338.11
- ;;^UTILITY(U,$J,358.3,8723,1,5,0)
- ;;=5^Acute Pain due to Trauma
- ;;^UTILITY(U,$J,358.3,8723,2)
- ;;=^334070
- ;;^UTILITY(U,$J,358.3,8724,0)
- ;;=338.12^^35^489^7
- ;;^UTILITY(U,$J,358.3,8724,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8724,1,4,0)
- ;;=4^338.12
- ;;^UTILITY(U,$J,358.3,8724,1,5,0)
- ;;=5^Acute Post-Operative Pain
- ;;^UTILITY(U,$J,358.3,8724,2)
- ;;=^334071
- ;;^UTILITY(U,$J,358.3,8725,0)
- ;;=338.18^^35^489^31
- ;;^UTILITY(U,$J,358.3,8725,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8725,1,4,0)
- ;;=4^338.18
- ;;^UTILITY(U,$J,358.3,8725,1,5,0)
- ;;=5^Postoperative Pain NOS
- ;;^UTILITY(U,$J,358.3,8725,2)
- ;;=^334072
- ;;^UTILITY(U,$J,358.3,8726,0)
- ;;=338.19^^35^489^26
- ;;^UTILITY(U,$J,358.3,8726,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8726,1,4,0)
- ;;=4^338.19
- ;;^UTILITY(U,$J,358.3,8726,1,5,0)
- ;;=5^Other Acute Pain
- ;;^UTILITY(U,$J,358.3,8726,2)
- ;;=^334073
- ;;^UTILITY(U,$J,358.3,8727,0)
- ;;=338.21^^35^489^12
- ;;^UTILITY(U,$J,358.3,8727,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8727,1,4,0)
- ;;=4^338.21
- ;;^UTILITY(U,$J,358.3,8727,1,5,0)
- ;;=5^Chronic Pain due to Trauma
- ;;^UTILITY(U,$J,358.3,8727,2)
- ;;=^334074
- ;;^UTILITY(U,$J,358.3,8728,0)
- ;;=338.22^^35^489^13
- ;;^UTILITY(U,$J,358.3,8728,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8728,1,4,0)
- ;;=4^338.22
- ;;^UTILITY(U,$J,358.3,8728,1,5,0)
- ;;=5^Chronic Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,8728,2)
- ;;=^334075
- ;;^UTILITY(U,$J,358.3,8729,0)
- ;;=338.28^^35^489^28
- ;;^UTILITY(U,$J,358.3,8729,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8729,1,4,0)
- ;;=4^338.28
- ;;^UTILITY(U,$J,358.3,8729,1,5,0)
- ;;=5^Other Chronic Postop Pain
- ;;^UTILITY(U,$J,358.3,8729,2)
- ;;=^334076
- ;;^UTILITY(U,$J,358.3,8730,0)
- ;;=338.29^^35^489^27
- ;;^UTILITY(U,$J,358.3,8730,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8730,1,4,0)
- ;;=4^338.29
- ;;^UTILITY(U,$J,358.3,8730,1,5,0)
- ;;=5^Other Chronic Pain
- ;;^UTILITY(U,$J,358.3,8730,2)
- ;;=^334077
- ;;^UTILITY(U,$J,358.3,8731,0)
- ;;=338.3^^35^489^8
- ;;^UTILITY(U,$J,358.3,8731,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8731,1,4,0)
- ;;=4^338.3
- ;;^UTILITY(U,$J,358.3,8731,1,5,0)
- ;;=5^Cancer Associated Pain
- ;;^UTILITY(U,$J,358.3,8731,2)
- ;;=^334078
- ;;^UTILITY(U,$J,358.3,8732,0)
- ;;=338.4^^35^489^11
- ;;^UTILITY(U,$J,358.3,8732,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8732,1,4,0)
- ;;=4^338.4
+ ;;^UTILITY(U,$J,358.3,8364,1,4,0)
+ ;;=4^C65.2
+ ;;^UTILITY(U,$J,358.3,8364,2)
+ ;;=^5001252
+ ;;^UTILITY(U,$J,358.3,8365,0)
+ ;;=C71.9^^55^538^53
+ ;;^UTILITY(U,$J,358.3,8365,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8365,1,3,0)
+ ;;=3^Malignant neoplasm of brain, unspecified
+ ;;^UTILITY(U,$J,358.3,8365,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,8365,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,8366,0)
+ ;;=C73.^^55^538^79
+ ;;^UTILITY(U,$J,358.3,8366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8366,1,3,0)
+ ;;=3^Malignant neoplasm of thyroid gland
+ ;;^UTILITY(U,$J,358.3,8366,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,8366,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,8367,0)
+ ;;=C76.0^^55^538^61
+ ;;^UTILITY(U,$J,358.3,8367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8367,1,3,0)
+ ;;=3^Malignant neoplasm of head, face and neck
+ ;;^UTILITY(U,$J,358.3,8367,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,8367,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,8368,0)
+ ;;=C77.0^^55^538^115
+ ;;^UTILITY(U,$J,358.3,8368,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8368,1,3,0)
+ ;;=3^Secondary and unsp malig neoplasm of nodes of head, face and neck
+ ;;^UTILITY(U,$J,358.3,8368,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,8368,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,8369,0)
+ ;;=C77.1^^55^538^117
+ ;;^UTILITY(U,$J,358.3,8369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8369,1,3,0)
+ ;;=3^Secondary and unsp malignant neoplasm of intrathorac nodes
+ ;;^UTILITY(U,$J,358.3,8369,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,8369,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,8370,0)
+ ;;=C77.2^^55^538^118
+ ;;^UTILITY(U,$J,358.3,8370,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8370,1,3,0)
+ ;;=3^Secondary and unsp malignant neoplasm of intra-abd nodes
+ ;;^UTILITY(U,$J,358.3,8370,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,8370,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,8371,0)
+ ;;=C77.3^^55^538^114
+ ;;^UTILITY(U,$J,358.3,8371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8371,1,3,0)
+ ;;=3^Secondary and unsp malig neoplasm of axilla and upper limb nodes
+ ;;^UTILITY(U,$J,358.3,8371,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,8371,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,8372,0)
+ ;;=C77.8^^55^538^116
+ ;;^UTILITY(U,$J,358.3,8372,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8372,1,3,0)
+ ;;=3^Secondary and unsp malig neoplasm of nodes of multiple regions
+ ;;^UTILITY(U,$J,358.3,8372,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,8372,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,8373,0)
+ ;;=C78.01^^55^538^126
+ ;;^UTILITY(U,$J,358.3,8373,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8373,1,3,0)
+ ;;=3^Secondary malignant neoplasm of right lung
+ ;;^UTILITY(U,$J,358.3,8373,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,8373,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,8374,0)
+ ;;=C78.02^^55^538^123
+ ;;^UTILITY(U,$J,358.3,8374,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8374,1,3,0)
+ ;;=3^Secondary malignant neoplasm of left lung
+ ;;^UTILITY(U,$J,358.3,8374,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,8374,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,8375,0)
+ ;;=C78.7^^55^538^124
+ ;;^UTILITY(U,$J,358.3,8375,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8375,1,3,0)
+ ;;=3^Secondary malignant neoplasm of liver/intrahepatic bile duct
+ ;;^UTILITY(U,$J,358.3,8375,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,8375,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,8376,0)
+ ;;=C79.31^^55^538^121
+ ;;^UTILITY(U,$J,358.3,8376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8376,1,3,0)
+ ;;=3^Secondary malignant neoplasm of brain
+ ;;^UTILITY(U,$J,358.3,8376,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,8376,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,8377,0)
+ ;;=C79.51^^55^538^119

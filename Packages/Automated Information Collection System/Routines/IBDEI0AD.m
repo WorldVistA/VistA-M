@@ -1,144 +1,132 @@
-IBDEI0AD ; ; 06-AUG-2015
+IBDEI0AD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4465,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4465,1,4,0)
- ;;=4^531.90
- ;;^UTILITY(U,$J,358.3,4465,1,5,0)
- ;;=5^Gastric Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,4465,2)
- ;;=^51128
- ;;^UTILITY(U,$J,358.3,4466,0)
- ;;=531.91^^23^230^17
- ;;^UTILITY(U,$J,358.3,4466,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4466,1,4,0)
- ;;=4^531.91
- ;;^UTILITY(U,$J,358.3,4466,1,5,0)
- ;;=5^Gastric Ulcer w/ Obstruction
- ;;^UTILITY(U,$J,358.3,4466,2)
- ;;=^270088
- ;;^UTILITY(U,$J,358.3,4467,0)
- ;;=789.51^^23^230^25
- ;;^UTILITY(U,$J,358.3,4467,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4467,1,4,0)
- ;;=4^789.51
- ;;^UTILITY(U,$J,358.3,4467,1,5,0)
- ;;=5^Malignant Ascites
- ;;^UTILITY(U,$J,358.3,4467,2)
- ;;=^335281
- ;;^UTILITY(U,$J,358.3,4468,0)
- ;;=533.90^^23^230^29
- ;;^UTILITY(U,$J,358.3,4468,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4468,1,4,0)
- ;;=4^533.90
- ;;^UTILITY(U,$J,358.3,4468,1,5,0)
- ;;=5^Peptic Ulcer w/o Obstruc
- ;;^UTILITY(U,$J,358.3,4468,2)
- ;;=^93051
- ;;^UTILITY(U,$J,358.3,4469,0)
- ;;=533.91^^23^230^28
- ;;^UTILITY(U,$J,358.3,4469,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4469,1,4,0)
- ;;=4^533.91
- ;;^UTILITY(U,$J,358.3,4469,1,5,0)
- ;;=5^Peptic Ulcer w/ Obstruction
- ;;^UTILITY(U,$J,358.3,4469,2)
- ;;=^270138
- ;;^UTILITY(U,$J,358.3,4470,0)
- ;;=070.54^^23^230^7
- ;;^UTILITY(U,$J,358.3,4470,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4470,1,4,0)
- ;;=4^070.54
- ;;^UTILITY(U,$J,358.3,4470,1,5,0)
- ;;=5^Chr Hep C w/o Coma
- ;;^UTILITY(U,$J,358.3,4470,2)
- ;;=^303252
- ;;^UTILITY(U,$J,358.3,4471,0)
- ;;=V02.62^^23^230^21
- ;;^UTILITY(U,$J,358.3,4471,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4471,1,4,0)
- ;;=4^V02.62
- ;;^UTILITY(U,$J,358.3,4471,1,5,0)
- ;;=5^Hepatitis C Carrier
- ;;^UTILITY(U,$J,358.3,4471,2)
- ;;=^317947
- ;;^UTILITY(U,$J,358.3,4472,0)
- ;;=583.9^^23^231^7
- ;;^UTILITY(U,$J,358.3,4472,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4472,1,4,0)
- ;;=4^583.9
- ;;^UTILITY(U,$J,358.3,4472,1,5,0)
- ;;=5^Glomerulonephritis
- ;;^UTILITY(U,$J,358.3,4472,2)
- ;;=^83446
- ;;^UTILITY(U,$J,358.3,4473,0)
- ;;=581.9^^23^231^9
- ;;^UTILITY(U,$J,358.3,4473,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4473,1,4,0)
- ;;=4^581.9
- ;;^UTILITY(U,$J,358.3,4473,1,5,0)
- ;;=5^Nephrotic Syndrome
- ;;^UTILITY(U,$J,358.3,4473,2)
- ;;=^82357
- ;;^UTILITY(U,$J,358.3,4474,0)
- ;;=753.12^^23^231^13
- ;;^UTILITY(U,$J,358.3,4474,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4474,1,4,0)
- ;;=4^753.12
- ;;^UTILITY(U,$J,358.3,4474,1,5,0)
- ;;=5^Polycystic Kidney Disease
- ;;^UTILITY(U,$J,358.3,4474,2)
- ;;=^67295
- ;;^UTILITY(U,$J,358.3,4475,0)
- ;;=596.0^^23^231^3
- ;;^UTILITY(U,$J,358.3,4475,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4475,1,4,0)
- ;;=4^596.0
- ;;^UTILITY(U,$J,358.3,4475,1,5,0)
- ;;=5^Bladder Neck Obstruction
- ;;^UTILITY(U,$J,358.3,4475,2)
- ;;=^15144
- ;;^UTILITY(U,$J,358.3,4476,0)
- ;;=788.1^^23^231^5
- ;;^UTILITY(U,$J,358.3,4476,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4476,1,4,0)
- ;;=4^788.1
- ;;^UTILITY(U,$J,358.3,4476,1,5,0)
- ;;=5^Dysuria
- ;;^UTILITY(U,$J,358.3,4476,2)
- ;;=^37716
- ;;^UTILITY(U,$J,358.3,4477,0)
- ;;=604.90^^23^231^12
- ;;^UTILITY(U,$J,358.3,4477,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4477,1,4,0)
- ;;=4^604.90
- ;;^UTILITY(U,$J,358.3,4477,1,5,0)
- ;;=5^Orchitis/Epididymit
- ;;^UTILITY(U,$J,358.3,4477,2)
- ;;=^86178
- ;;^UTILITY(U,$J,358.3,4478,0)
- ;;=788.30^^23^231^18
- ;;^UTILITY(U,$J,358.3,4478,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4478,1,4,0)
- ;;=4^788.30
- ;;^UTILITY(U,$J,358.3,4478,1,5,0)
- ;;=5^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,4478,2)
- ;;=^124400
- ;;^UTILITY(U,$J,358.3,4479,0)
- ;;=596.54^^23^231^10
+ ;;^UTILITY(U,$J,358.3,4322,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,4323,0)
+ ;;=W11.XXXD^^28^265^14
+ ;;^UTILITY(U,$J,358.3,4323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4323,1,3,0)
+ ;;=3^Fall from Ladder,Subsequent
+ ;;^UTILITY(U,$J,358.3,4323,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,4323,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,4324,0)
+ ;;=W01.10XD^^28^265^2
+ ;;^UTILITY(U,$J,358.3,4324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4324,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,4324,1,4,0)
+ ;;=4^W01.10XD
+ ;;^UTILITY(U,$J,358.3,4324,2)
+ ;;=^5059526
+ ;;^UTILITY(U,$J,358.3,4325,0)
+ ;;=W01.0XXD^^28^265^3
+ ;;^UTILITY(U,$J,358.3,4325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4325,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,4325,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,4325,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,4326,0)
+ ;;=W18.30XD^^28^265^4
+ ;;^UTILITY(U,$J,358.3,4326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4326,1,3,0)
+ ;;=3^Fall Same Level,Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,4326,1,4,0)
+ ;;=4^W18.30XD
+ ;;^UTILITY(U,$J,358.3,4326,2)
+ ;;=^5059810
+ ;;^UTILITY(U,$J,358.3,4327,0)
+ ;;=W04.XXXD^^28^265^6
+ ;;^UTILITY(U,$J,358.3,4327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4327,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Subsequent
+ ;;^UTILITY(U,$J,358.3,4327,1,4,0)
+ ;;=4^W04.XXXD
+ ;;^UTILITY(U,$J,358.3,4327,2)
+ ;;=^5059548
+ ;;^UTILITY(U,$J,358.3,4328,0)
+ ;;=W17.89XD^^28^265^18
+ ;;^UTILITY(U,$J,358.3,4328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4328,1,3,0)
+ ;;=3^Fall from One Level to Another,Subsequent
+ ;;^UTILITY(U,$J,358.3,4328,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,4328,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,4329,0)
+ ;;=W03.XXXD^^28^265^1
+ ;;^UTILITY(U,$J,358.3,4329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4329,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
+ ;;^UTILITY(U,$J,358.3,4329,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,4329,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,4330,0)
+ ;;=W18.00XD^^28^265^8
+ ;;^UTILITY(U,$J,358.3,4330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4330,1,3,0)
+ ;;=3^Fall d/t Striking Unspec Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,4330,1,4,0)
+ ;;=4^W18.00XD
+ ;;^UTILITY(U,$J,358.3,4330,2)
+ ;;=^5059791
+ ;;^UTILITY(U,$J,358.3,4331,0)
+ ;;=W00.9XXD^^28^265^7
+ ;;^UTILITY(U,$J,358.3,4331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4331,1,3,0)
+ ;;=3^Fall d/t Snow/Ice,Subsequent
+ ;;^UTILITY(U,$J,358.3,4331,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,4331,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,4332,0)
+ ;;=W19.XXXD^^28^265^5
+ ;;^UTILITY(U,$J,358.3,4332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4332,1,3,0)
+ ;;=3^Fall Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,4332,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,4332,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,4333,0)
+ ;;=W18.40XD^^28^265^24
+ ;;^UTILITY(U,$J,358.3,4333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4333,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Subsequent
+ ;;^UTILITY(U,$J,358.3,4333,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,4333,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,4334,0)
+ ;;=R27.0^^28^266^2
+ ;;^UTILITY(U,$J,358.3,4334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4334,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,4334,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,4334,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,4335,0)
+ ;;=Z74.1^^28^266^1
+ ;;^UTILITY(U,$J,358.3,4335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4335,1,3,0)
+ ;;=3^Assistance Needed for Personal Care

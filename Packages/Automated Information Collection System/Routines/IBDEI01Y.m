@@ -1,136 +1,138 @@
-IBDEI01Y ; ; 06-AUG-2015
+IBDEI01Y ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,361,0)
- ;;=Z12.39^^2^16^5
- ;;^UTILITY(U,$J,358.3,361,1,0)
+ ;;^UTILITY(U,$J,358.3,138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,361,1,3,0)
- ;;=3^Malig Neop of Breast Screening
- ;;^UTILITY(U,$J,358.3,361,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,361,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,362,0)
- ;;=Z12.4^^2^16^6
- ;;^UTILITY(U,$J,358.3,362,1,0)
+ ;;^UTILITY(U,$J,358.3,138,1,3,0)
+ ;;=3^Fear of Injections & Transfusions
+ ;;^UTILITY(U,$J,358.3,138,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,138,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,139,0)
+ ;;=F40.232^^3^24^11
+ ;;^UTILITY(U,$J,358.3,139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,362,1,3,0)
- ;;=3^Malig Neop of Cervix Screening
- ;;^UTILITY(U,$J,358.3,362,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,362,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,363,0)
- ;;=Z12.12^^2^16^7
- ;;^UTILITY(U,$J,358.3,363,1,0)
+ ;;^UTILITY(U,$J,358.3,139,1,3,0)
+ ;;=3^Fear of Oth Medical Care
+ ;;^UTILITY(U,$J,358.3,139,1,4,0)
+ ;;=4^F40.232
+ ;;^UTILITY(U,$J,358.3,139,2)
+ ;;=^5003552
+ ;;^UTILITY(U,$J,358.3,140,0)
+ ;;=F40.233^^3^24^10
+ ;;^UTILITY(U,$J,358.3,140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,363,1,3,0)
- ;;=3^Malig Neop of Rectum Screening
- ;;^UTILITY(U,$J,358.3,363,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,363,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,364,0)
- ;;=C61.^^2^17^11
- ;;^UTILITY(U,$J,358.3,364,1,0)
+ ;;^UTILITY(U,$J,358.3,140,1,3,0)
+ ;;=3^Fear of Injury
+ ;;^UTILITY(U,$J,358.3,140,1,4,0)
+ ;;=4^F40.233
+ ;;^UTILITY(U,$J,358.3,140,2)
+ ;;=^5003553
+ ;;^UTILITY(U,$J,358.3,141,0)
+ ;;=F40.240^^3^24^7
+ ;;^UTILITY(U,$J,358.3,141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,364,1,3,0)
- ;;=3^Malignant neoplasm of prostate
- ;;^UTILITY(U,$J,358.3,364,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,364,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,365,0)
- ;;=C62.11^^2^17^6
- ;;^UTILITY(U,$J,358.3,365,1,0)
+ ;;^UTILITY(U,$J,358.3,141,1,3,0)
+ ;;=3^Claustrophobia
+ ;;^UTILITY(U,$J,358.3,141,1,4,0)
+ ;;=4^F40.240
+ ;;^UTILITY(U,$J,358.3,141,2)
+ ;;=^5003554
+ ;;^UTILITY(U,$J,358.3,142,0)
+ ;;=F40.241^^3^24^1
+ ;;^UTILITY(U,$J,358.3,142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,365,1,3,0)
- ;;=3^Malignant neoplasm of descended right testis
- ;;^UTILITY(U,$J,358.3,365,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,365,2)
- ;;=^5001234
- ;;^UTILITY(U,$J,358.3,366,0)
- ;;=C62.12^^2^17^5
- ;;^UTILITY(U,$J,358.3,366,1,0)
+ ;;^UTILITY(U,$J,358.3,142,1,3,0)
+ ;;=3^Acrophobia
+ ;;^UTILITY(U,$J,358.3,142,1,4,0)
+ ;;=4^F40.241
+ ;;^UTILITY(U,$J,358.3,142,2)
+ ;;=^5003555
+ ;;^UTILITY(U,$J,358.3,143,0)
+ ;;=F40.248^^3^24^15
+ ;;^UTILITY(U,$J,358.3,143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,366,1,3,0)
- ;;=3^Malignant neoplasm of descended left testis
- ;;^UTILITY(U,$J,358.3,366,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,366,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,367,0)
- ;;=C62.91^^2^17^3
- ;;^UTILITY(U,$J,358.3,367,1,0)
+ ;;^UTILITY(U,$J,358.3,143,1,3,0)
+ ;;=3^Situational Type Phobia NEC
+ ;;^UTILITY(U,$J,358.3,143,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,143,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,144,0)
+ ;;=F40.01^^3^24^3
+ ;;^UTILITY(U,$J,358.3,144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,367,1,3,0)
- ;;=3^Malig neoplasm of right testis, unsp descended or undescended
- ;;^UTILITY(U,$J,358.3,367,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,367,2)
- ;;=^5001237
- ;;^UTILITY(U,$J,358.3,368,0)
- ;;=C62.92^^2^17^2
- ;;^UTILITY(U,$J,358.3,368,1,0)
+ ;;^UTILITY(U,$J,358.3,144,1,3,0)
+ ;;=3^Agoraphobia w/ Panic Disorder
+ ;;^UTILITY(U,$J,358.3,144,1,4,0)
+ ;;=4^F40.01
+ ;;^UTILITY(U,$J,358.3,144,2)
+ ;;=^331911
+ ;;^UTILITY(U,$J,358.3,145,0)
+ ;;=F06.33^^3^25^1
+ ;;^UTILITY(U,$J,358.3,145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,368,1,3,0)
- ;;=3^Malig neoplasm of left testis, unsp descended or undescended
- ;;^UTILITY(U,$J,358.3,368,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,368,2)
- ;;=^5001238
- ;;^UTILITY(U,$J,358.3,369,0)
- ;;=C60.9^^2^17^10
- ;;^UTILITY(U,$J,358.3,369,1,0)
+ ;;^UTILITY(U,$J,358.3,145,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
+ ;;^UTILITY(U,$J,358.3,145,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,145,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,146,0)
+ ;;=F06.34^^3^25^2
+ ;;^UTILITY(U,$J,358.3,146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,369,1,3,0)
- ;;=3^Malignant neoplasm of penis, unspecified
- ;;^UTILITY(U,$J,358.3,369,1,4,0)
- ;;=4^C60.9
- ;;^UTILITY(U,$J,358.3,369,2)
- ;;=^5001229
- ;;^UTILITY(U,$J,358.3,370,0)
- ;;=C67.9^^2^17^4
- ;;^UTILITY(U,$J,358.3,370,1,0)
+ ;;^UTILITY(U,$J,358.3,146,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,146,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,146,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,147,0)
+ ;;=F31.11^^3^25^3
+ ;;^UTILITY(U,$J,358.3,147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,370,1,3,0)
- ;;=3^Malignant neoplasm of bladder, unspecified
- ;;^UTILITY(U,$J,358.3,370,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,370,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,371,0)
- ;;=C64.2^^2^17^7
- ;;^UTILITY(U,$J,358.3,371,1,0)
+ ;;^UTILITY(U,$J,358.3,147,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
+ ;;^UTILITY(U,$J,358.3,147,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,147,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,148,0)
+ ;;=F31.12^^3^25^4
+ ;;^UTILITY(U,$J,358.3,148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,371,1,3,0)
- ;;=3^Malignant neoplasm of left kidney, except renal pelvis
- ;;^UTILITY(U,$J,358.3,371,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,371,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,372,0)
- ;;=C64.1^^2^17^12
- ;;^UTILITY(U,$J,358.3,372,1,0)
+ ;;^UTILITY(U,$J,358.3,148,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
+ ;;^UTILITY(U,$J,358.3,148,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,148,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,149,0)
+ ;;=F31.13^^3^25^5
+ ;;^UTILITY(U,$J,358.3,149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,372,1,3,0)
- ;;=3^Malignant neoplasm of right kidney, except renal pelvis
- ;;^UTILITY(U,$J,358.3,372,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,372,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,373,0)
- ;;=C65.1^^2^17^13
- ;;^UTILITY(U,$J,358.3,373,1,0)
+ ;;^UTILITY(U,$J,358.3,149,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
+ ;;^UTILITY(U,$J,358.3,149,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,149,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,150,0)
+ ;;=F31.2^^3^25^6
+ ;;^UTILITY(U,$J,358.3,150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,373,1,3,0)
- ;;=3^Malignant neoplasm of right renal pelvis
- ;;^UTILITY(U,$J,358.3,373,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,373,2)
- ;;=^5001251
- ;;^UTILITY(U,$J,358.3,374,0)
- ;;=C65.2^^2^17^8
+ ;;^UTILITY(U,$J,358.3,150,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,150,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,150,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,151,0)
+ ;;=F31.73^^3^25^7
+ ;;^UTILITY(U,$J,358.3,151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,151,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission

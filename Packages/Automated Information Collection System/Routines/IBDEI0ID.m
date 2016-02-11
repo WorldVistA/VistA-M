@@ -1,142 +1,136 @@
-IBDEI0ID ; ; 06-AUG-2015
+IBDEI0ID ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8593,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8593,1,4,0)
- ;;=4^789.30
- ;;^UTILITY(U,$J,358.3,8593,1,5,0)
- ;;=5^Abdominal Mass/Lump
- ;;^UTILITY(U,$J,358.3,8593,2)
- ;;=Abdominal Mass/Lump^917
- ;;^UTILITY(U,$J,358.3,8594,0)
- ;;=789.2^^35^487^140
- ;;^UTILITY(U,$J,358.3,8594,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8594,1,4,0)
- ;;=4^789.2
- ;;^UTILITY(U,$J,358.3,8594,1,5,0)
- ;;=5^Splenomegaly
- ;;^UTILITY(U,$J,358.3,8594,2)
- ;;=Splenomegaly^113452
- ;;^UTILITY(U,$J,358.3,8595,0)
- ;;=785.2^^35^487^34
- ;;^UTILITY(U,$J,358.3,8595,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8595,1,4,0)
- ;;=4^785.2
- ;;^UTILITY(U,$J,358.3,8595,1,5,0)
- ;;=5^Cardiac murmurs, undiagnosed
- ;;^UTILITY(U,$J,358.3,8595,2)
- ;;=^295854
- ;;^UTILITY(U,$J,358.3,8596,0)
- ;;=786.50^^35^487^37
- ;;^UTILITY(U,$J,358.3,8596,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8596,1,4,0)
- ;;=4^786.50
- ;;^UTILITY(U,$J,358.3,8596,1,5,0)
- ;;=5^Chest pain/Discomfort (nonsp) chest pain diff from discomfort
- ;;^UTILITY(U,$J,358.3,8596,2)
- ;;=^22485
- ;;^UTILITY(U,$J,358.3,8597,0)
- ;;=786.51^^35^487^131
- ;;^UTILITY(U,$J,358.3,8597,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8597,1,4,0)
- ;;=4^786.51
- ;;^UTILITY(U,$J,358.3,8597,1,5,0)
- ;;=5^Precordial Pain
- ;;^UTILITY(U,$J,358.3,8597,2)
- ;;=Precordial Pain^276877
- ;;^UTILITY(U,$J,358.3,8598,0)
- ;;=786.2^^35^487^45
- ;;^UTILITY(U,$J,358.3,8598,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8598,1,4,0)
- ;;=4^786.2
- ;;^UTILITY(U,$J,358.3,8598,1,5,0)
- ;;=5^Cough
- ;;^UTILITY(U,$J,358.3,8598,2)
- ;;=Cough^28905
- ;;^UTILITY(U,$J,358.3,8599,0)
- ;;=396.0^^35^487^42
- ;;^UTILITY(U,$J,358.3,8599,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8599,1,4,0)
- ;;=4^396.0
- ;;^UTILITY(U,$J,358.3,8599,1,5,0)
- ;;=5^Combined Aortic&Mitral Valve stenosis
- ;;^UTILITY(U,$J,358.3,8599,2)
- ;;=^269580
- ;;^UTILITY(U,$J,358.3,8600,0)
- ;;=786.09^^35^487^60
- ;;^UTILITY(U,$J,358.3,8600,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8600,1,4,0)
- ;;=4^786.09
- ;;^UTILITY(U,$J,358.3,8600,1,5,0)
- ;;=5^Dyspnea
- ;;^UTILITY(U,$J,358.3,8600,2)
- ;;=Dyspnea^87547
- ;;^UTILITY(U,$J,358.3,8601,0)
- ;;=786.8^^35^487^84
- ;;^UTILITY(U,$J,358.3,8601,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8601,1,4,0)
- ;;=4^786.8
- ;;^UTILITY(U,$J,358.3,8601,1,5,0)
- ;;=5^Hiccough
- ;;^UTILITY(U,$J,358.3,8601,2)
- ;;=Hiccough^57197
- ;;^UTILITY(U,$J,358.3,8602,0)
- ;;=786.01^^35^487^88
- ;;^UTILITY(U,$J,358.3,8602,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8602,1,4,0)
- ;;=4^786.01
- ;;^UTILITY(U,$J,358.3,8602,1,5,0)
- ;;=5^Hyperventilation
- ;;^UTILITY(U,$J,358.3,8602,2)
- ;;=Hyperventilation^60480
- ;;^UTILITY(U,$J,358.3,8603,0)
- ;;=786.6^^35^487^109
- ;;^UTILITY(U,$J,358.3,8603,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8603,1,4,0)
- ;;=4^786.6
- ;;^UTILITY(U,$J,358.3,8603,1,5,0)
- ;;=5^Mass, Lump of chest
- ;;^UTILITY(U,$J,358.3,8603,2)
- ;;=^273380
- ;;^UTILITY(U,$J,358.3,8604,0)
- ;;=786.02^^35^487^123
- ;;^UTILITY(U,$J,358.3,8604,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8604,1,4,0)
- ;;=4^786.02
- ;;^UTILITY(U,$J,358.3,8604,1,5,0)
- ;;=5^Orthopnea
- ;;^UTILITY(U,$J,358.3,8604,2)
- ;;=Orthopnea^186737
- ;;^UTILITY(U,$J,358.3,8605,0)
- ;;=786.52^^35^487^124
- ;;^UTILITY(U,$J,358.3,8605,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8605,1,4,0)
- ;;=4^786.52
- ;;^UTILITY(U,$J,358.3,8605,1,5,0)
- ;;=5^Painful Respiration
- ;;^UTILITY(U,$J,358.3,8605,2)
- ;;=^89126
- ;;^UTILITY(U,$J,358.3,8606,0)
- ;;=785.1^^35^487^126
- ;;^UTILITY(U,$J,358.3,8606,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8606,1,4,0)
- ;;=4^785.1
- ;;^UTILITY(U,$J,358.3,8606,1,5,0)
- ;;=5^Palpitations
- ;;^UTILITY(U,$J,358.3,8606,2)
- ;;=Palpitations^89281
+ ;;^UTILITY(U,$J,358.3,8244,2)
+ ;;=^5019224
+ ;;^UTILITY(U,$J,358.3,8245,0)
+ ;;=R10.816^^55^536^41
+ ;;^UTILITY(U,$J,358.3,8245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8245,1,3,0)
+ ;;=3^Epigastric abdominal tenderness
+ ;;^UTILITY(U,$J,358.3,8245,1,4,0)
+ ;;=4^R10.816
+ ;;^UTILITY(U,$J,358.3,8245,2)
+ ;;=^5019218
+ ;;^UTILITY(U,$J,358.3,8246,0)
+ ;;=R10.826^^55^536^43
+ ;;^UTILITY(U,$J,358.3,8246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8246,1,3,0)
+ ;;=3^Epigastric rebound abdominal tenderness
+ ;;^UTILITY(U,$J,358.3,8246,1,4,0)
+ ;;=4^R10.826
+ ;;^UTILITY(U,$J,358.3,8246,2)
+ ;;=^5019225
+ ;;^UTILITY(U,$J,358.3,8247,0)
+ ;;=R74.8^^55^536^2
+ ;;^UTILITY(U,$J,358.3,8247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8247,1,3,0)
+ ;;=3^Abnormal levels of other serum enzymes
+ ;;^UTILITY(U,$J,358.3,8247,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,8247,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,8248,0)
+ ;;=R79.89^^55^536^1
+ ;;^UTILITY(U,$J,358.3,8248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8248,1,3,0)
+ ;;=3^Abnormal Findings of Blood Chemistry NEC
+ ;;^UTILITY(U,$J,358.3,8248,1,4,0)
+ ;;=4^R79.89
+ ;;^UTILITY(U,$J,358.3,8248,2)
+ ;;=^5019593
+ ;;^UTILITY(U,$J,358.3,8249,0)
+ ;;=R19.5^^55^536^49
+ ;;^UTILITY(U,$J,358.3,8249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8249,1,3,0)
+ ;;=3^Fecal Abnormalites NEC
+ ;;^UTILITY(U,$J,358.3,8249,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,8249,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,8250,0)
+ ;;=Z87.11^^55^536^83
+ ;;^UTILITY(U,$J,358.3,8250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8250,1,3,0)
+ ;;=3^Personal history of peptic ulcer disease
+ ;;^UTILITY(U,$J,358.3,8250,1,4,0)
+ ;;=4^Z87.11
+ ;;^UTILITY(U,$J,358.3,8250,2)
+ ;;=^5063482
+ ;;^UTILITY(U,$J,358.3,8251,0)
+ ;;=Z86.010^^55^536^82
+ ;;^UTILITY(U,$J,358.3,8251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8251,1,3,0)
+ ;;=3^Personal history of colonic polyps
+ ;;^UTILITY(U,$J,358.3,8251,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,8251,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,8252,0)
+ ;;=Z83.71^^55^536^46
+ ;;^UTILITY(U,$J,358.3,8252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8252,1,3,0)
+ ;;=3^Family history of colonic polyps
+ ;;^UTILITY(U,$J,358.3,8252,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,8252,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,8253,0)
+ ;;=Z83.79^^55^536^47
+ ;;^UTILITY(U,$J,358.3,8253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8253,1,3,0)
+ ;;=3^Family history of other diseases of the digestive system
+ ;;^UTILITY(U,$J,358.3,8253,1,4,0)
+ ;;=4^Z83.79
+ ;;^UTILITY(U,$J,358.3,8253,2)
+ ;;=^5063387
+ ;;^UTILITY(U,$J,358.3,8254,0)
+ ;;=A54.00^^55^537^21
+ ;;^UTILITY(U,$J,358.3,8254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8254,1,3,0)
+ ;;=3^Gonococcal infection of lower genitourinary tract, unsp
+ ;;^UTILITY(U,$J,358.3,8254,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,8254,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,8255,0)
+ ;;=B37.42^^55^537^10
+ ;;^UTILITY(U,$J,358.3,8255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8255,1,3,0)
+ ;;=3^Candidal balanitis
+ ;;^UTILITY(U,$J,358.3,8255,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,8255,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,8256,0)
+ ;;=A59.03^^55^537^60
+ ;;^UTILITY(U,$J,358.3,8256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8256,1,3,0)
+ ;;=3^Trichomonal cystitis and urethritis
+ ;;^UTILITY(U,$J,358.3,8256,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,8256,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,8257,0)
+ ;;=C61.^^55^537^41
+ ;;^UTILITY(U,$J,358.3,8257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8257,1,3,0)
+ ;;=3^Malignant neoplasm of prostate
+ ;;^UTILITY(U,$J,358.3,8257,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,8257,2)
+ ;;=^267239

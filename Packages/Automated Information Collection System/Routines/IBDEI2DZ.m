@@ -1,0 +1,132 @@
+IBDEI2DZ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40096,2)
+ ;;=^5012684
+ ;;^UTILITY(U,$J,358.3,40097,0)
+ ;;=L81.9^^186^2076^360
+ ;;^UTILITY(U,$J,358.3,40097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40097,1,3,0)
+ ;;=3^Pigmentation Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40097,1,4,0)
+ ;;=4^L81.9
+ ;;^UTILITY(U,$J,358.3,40097,2)
+ ;;=^5009319
+ ;;^UTILITY(U,$J,358.3,40098,0)
+ ;;=L98.9^^186^2076^387
+ ;;^UTILITY(U,$J,358.3,40098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40098,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,40098,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,40098,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,40099,0)
+ ;;=Q79.6^^186^2076^164
+ ;;^UTILITY(U,$J,358.3,40099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40099,1,3,0)
+ ;;=3^Ehlers-Danlos Syndrome
+ ;;^UTILITY(U,$J,358.3,40099,1,4,0)
+ ;;=4^Q79.6
+ ;;^UTILITY(U,$J,358.3,40099,2)
+ ;;=^38754
+ ;;^UTILITY(U,$J,358.3,40100,0)
+ ;;=Z41.1^^186^2076^143
+ ;;^UTILITY(U,$J,358.3,40100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40100,1,3,0)
+ ;;=3^Cosmetic Surgery Encounter
+ ;;^UTILITY(U,$J,358.3,40100,1,4,0)
+ ;;=4^Z41.1
+ ;;^UTILITY(U,$J,358.3,40100,2)
+ ;;=^5062951
+ ;;^UTILITY(U,$J,358.3,40101,0)
+ ;;=N64.1^^186^2076^166
+ ;;^UTILITY(U,$J,358.3,40101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40101,1,3,0)
+ ;;=3^Fat Necrosis of Breast
+ ;;^UTILITY(U,$J,358.3,40101,1,4,0)
+ ;;=4^N64.1
+ ;;^UTILITY(U,$J,358.3,40101,2)
+ ;;=^270456
+ ;;^UTILITY(U,$J,358.3,40102,0)
+ ;;=L92.3^^186^2076^165
+ ;;^UTILITY(U,$J,358.3,40102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40102,1,3,0)
+ ;;=3^FB Granuloma Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,40102,1,4,0)
+ ;;=4^L92.3
+ ;;^UTILITY(U,$J,358.3,40102,2)
+ ;;=^5009464
+ ;;^UTILITY(U,$J,358.3,40103,0)
+ ;;=S02.69XA^^186^2076^174
+ ;;^UTILITY(U,$J,358.3,40103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40103,1,3,0)
+ ;;=3^Fx Mandible,Oth,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40103,1,4,0)
+ ;;=4^S02.69XA
+ ;;^UTILITY(U,$J,358.3,40103,2)
+ ;;=^5020420
+ ;;^UTILITY(U,$J,358.3,40104,0)
+ ;;=S02.2XXA^^186^2076^176
+ ;;^UTILITY(U,$J,358.3,40104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40104,1,3,0)
+ ;;=3^Fx Nasal Bones,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40104,1,4,0)
+ ;;=4^S02.2XXA
+ ;;^UTILITY(U,$J,358.3,40104,2)
+ ;;=^5020306
+ ;;^UTILITY(U,$J,358.3,40105,0)
+ ;;=S02.3XXA^^186^2076^179
+ ;;^UTILITY(U,$J,358.3,40105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40105,1,3,0)
+ ;;=3^Fx Orbital Floor,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40105,1,4,0)
+ ;;=4^S02.3XXA
+ ;;^UTILITY(U,$J,358.3,40105,2)
+ ;;=^5020312
+ ;;^UTILITY(U,$J,358.3,40106,0)
+ ;;=S62.102A^^186^2076^167
+ ;;^UTILITY(U,$J,358.3,40106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40106,1,3,0)
+ ;;=3^Fx Carpal Bone,Left Wrist,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40106,1,4,0)
+ ;;=4^S62.102A
+ ;;^UTILITY(U,$J,358.3,40106,2)
+ ;;=^5033206
+ ;;^UTILITY(U,$J,358.3,40107,0)
+ ;;=S62.101A^^186^2076^168
+ ;;^UTILITY(U,$J,358.3,40107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40107,1,3,0)
+ ;;=3^Fx Carpal Bone,Right Wrist,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40107,1,4,0)
+ ;;=4^S62.101A
+ ;;^UTILITY(U,$J,358.3,40107,2)
+ ;;=^5033199
+ ;;^UTILITY(U,$J,358.3,40108,0)
+ ;;=S62.601A^^186^2076^180
+ ;;^UTILITY(U,$J,358.3,40108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40108,1,3,0)
+ ;;=3^Fx Phalanx,Left Index Finger,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40108,1,4,0)
+ ;;=4^S62.601A
+ ;;^UTILITY(U,$J,358.3,40108,2)
+ ;;=^5034389
+ ;;^UTILITY(U,$J,358.3,40109,0)
+ ;;=S62.607A^^186^2076^181
+ ;;^UTILITY(U,$J,358.3,40109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40109,1,3,0)
+ ;;=3^Fx Phalanx,Left Little Finger,Init Encntr,Closed Fx

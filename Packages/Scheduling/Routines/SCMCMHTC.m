@@ -1,8 +1,9 @@
-SCMCMHTC ;BP/DMR - PCMM/MH API; 4 JAN 11
- ;;5.3;Scheduling;**575**;AUG 13, 1993;Build 28
+SCMCMHTC ;BP/DMR - PCMM/MH API ;02/27/2015
+ ;;5.3;Scheduling;**575,603**;AUG 13, 1993;Build 79
  ;
  ;This API provides the Mental Health Treatment Coordinator
  ;from PCMM for display in CPRS, or used as a stand alone API.
+ ;ICR #5697 - PCMM MHTC API's for CPRS
  ;
  ;Input  - DFN
  ;Output - IEN^MHTC^Team Position^Role^Team
@@ -10,7 +11,7 @@ SCMCMHTC ;BP/DMR - PCMM/MH API; 4 JAN 11
 START(DFN) ; Get patient MHTC info.
  Q:'$G(DFN)
  N ACT,IEN,PNAM,PRO,TIEM,TPUR,TEAM
- N TP,TPR,TPRIEN,ADATE,UDATE,SAVE,NP,TNAM
+ N TP,TPR,TPRIEN,ADATE,UDATE,SAVE,NP,TNAM,SCNOW
  S MHTC="",SAVE=""
  ;
  S IEN="" F  S IEN=$O(^SCPT(404.42,"B",DFN,IEN)) Q:IEN=""!(SAVE=1)  D
@@ -25,7 +26,12 @@ START(DFN) ; Get patient MHTC info.
  ..S PNAM="",PNAM=$$GET1^DIQ(404.52,PRO,.03) Q:PNAM=""
  ..S ADATE="",ADATE=$$GET1^DIQ(404.43,TPIEN,.03,"I")
  ..S UDATE="",UDATE=$$GET1^DIQ(404.43,TPIEN,.04,"I")
- ..Q:ADATE>DT  Q:UDATE>ADATE&(UDATE<DT)  Q:UDATE=ADATE&(UDATE<DT)  D SAVE
+ ..;Q:ADATE>DT  Q:UDATE>ADATE&(UDATE<DT)  Q:UDATE=ADATE&(UDATE<DT)  D SAVE
+ ..S SCNOW=$$NOW^XLFDT() ;603
+ ..Q:ADATE>SCNOW  ;603
+ ..Q:UDATE>ADATE&(UDATE<SCNOW)  ;603
+ ..Q:UDATE=ADATE&(UDATE<SCNOW)  ;603
+ ..D SAVE
  I $G(CPRSGUI) D PRINT Q
  Q MHTC
  ;
@@ -59,10 +65,10 @@ PRINT ;Display in CPRS Patient Inquiry.
 LIST ;List of all active MHTC's from PCMM to CPRS.
  ;
  ;Output Fields - PIEN^MHTC^Role^Team Position^Team
- ;Output Global - ^TMP("MHTC",$J,MHTC,CC)
+ ;Output Global - ^TMP("SCMCMHTC",$J,MHTC,CC)
  ;
  S MHTC="",PIEN="",IEN="",ROLE="",PAIEN="",TPIEN="",TP="",TEAM="",CC=""
- K ^TMP("MHTC")
+ K ^TMP("SCMCMHTC",$J)
  ;
  S IEN="" F  S IEN=$O(^SCTM(404.52,"B",IEN)) Q:IEN=""  D
  .S PAIEN="" F  S PAIEN=$O(^SCTM(404.52,"B",IEN,PAIEN)) Q:PAIEN=""  D
@@ -73,7 +79,7 @@ LIST ;List of all active MHTC's from PCMM to CPRS.
  ..S PIEN="",PIEN=$$GET1^DIQ(404.52,PAIEN,.03,"I")
  ..S TP="",TP=$$GET1^DIQ(404.57,TPIEN,.01)
  ..S TEAM="",TEAM=$$GET1^DIQ(404.57,TPIEN,.02)
- ..S CC=CC+1 S ^TMP("MHTC",$J,MHTC,CC)=PIEN_"^"_MHTC_"^"_ROLE_"^"_TP_"^"_TEAM
+ ..S CC=CC+1 S ^TMP("SCMCMHTC",$J,MHTC,CC)=PIEN_"^"_MHTC_"^"_ROLE_"^"_TP_"^"_TEAM
  ..Q
  D EXIT
  Q

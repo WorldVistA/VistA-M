@@ -1,138 +1,124 @@
-IBDEI0PX ; ; 06-AUG-2015
+IBDEI0PX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12417,1,4,0)
- ;;=4^Fetal damg, drug-Antepartum
- ;;^UTILITY(U,$J,358.3,12417,2)
- ;;=^271266
- ;;^UTILITY(U,$J,358.3,12418,0)
- ;;=655.63^^62^740^9
- ;;^UTILITY(U,$J,358.3,12418,1,0)
+ ;;^UTILITY(U,$J,358.3,11875,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,11875,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,11875,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,11876,0)
+ ;;=R40.2342^^68^693^8
+ ;;^UTILITY(U,$J,358.3,11876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12418,1,3,0)
- ;;=3^655.63
- ;;^UTILITY(U,$J,358.3,12418,1,4,0)
- ;;=4^Fetal damg, radiation-Antepartum
- ;;^UTILITY(U,$J,358.3,12418,2)
- ;;=^271270
- ;;^UTILITY(U,$J,358.3,12419,0)
- ;;=655.73^^62^740^2
- ;;^UTILITY(U,$J,358.3,12419,1,0)
+ ;;^UTILITY(U,$J,358.3,11876,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,11876,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,11876,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,11877,0)
+ ;;=R40.2341^^68^693^9
+ ;;^UTILITY(U,$J,358.3,11877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12419,1,3,0)
- ;;=3^655.73
- ;;^UTILITY(U,$J,358.3,12419,1,4,0)
- ;;=4^Decrease fetal movement-Antepartum
- ;;^UTILITY(U,$J,358.3,12419,2)
- ;;=^317933
- ;;^UTILITY(U,$J,358.3,12420,0)
- ;;=656.03^^62^740^12
- ;;^UTILITY(U,$J,358.3,12420,1,0)
+ ;;^UTILITY(U,$J,358.3,11877,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,11877,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,11877,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,11878,0)
+ ;;=R40.2340^^68^693^10
+ ;;^UTILITY(U,$J,358.3,11878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12420,1,3,0)
- ;;=3^656.03
- ;;^UTILITY(U,$J,358.3,12420,1,4,0)
- ;;=4^Fetal-Maternal Hem-Antepartum
- ;;^UTILITY(U,$J,358.3,12420,2)
- ;;=^271283
- ;;^UTILITY(U,$J,358.3,12421,0)
- ;;=656.13^^62^740^16
- ;;^UTILITY(U,$J,358.3,12421,1,0)
+ ;;^UTILITY(U,$J,358.3,11878,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,11878,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,11878,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,11879,0)
+ ;;=R40.2324^^68^693^1
+ ;;^UTILITY(U,$J,358.3,11879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12421,1,3,0)
- ;;=3^656.13
- ;;^UTILITY(U,$J,358.3,12421,1,4,0)
- ;;=4^RH Isoimmunization-Antepartum
- ;;^UTILITY(U,$J,358.3,12421,2)
- ;;=^271286
- ;;^UTILITY(U,$J,358.3,12422,0)
- ;;=656.23^^62^740^1
- ;;^UTILITY(U,$J,358.3,12422,1,0)
+ ;;^UTILITY(U,$J,358.3,11879,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,11879,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,11879,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,11880,0)
+ ;;=R40.2323^^68^693^4
+ ;;^UTILITY(U,$J,358.3,11880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12422,1,3,0)
- ;;=3^656.23
- ;;^UTILITY(U,$J,358.3,12422,1,4,0)
- ;;=4^ABO Isoimmunization-Antepartum
- ;;^UTILITY(U,$J,358.3,12422,2)
- ;;=^271290
- ;;^UTILITY(U,$J,358.3,12423,0)
- ;;=656.33^^62^740^7
- ;;^UTILITY(U,$J,358.3,12423,1,0)
+ ;;^UTILITY(U,$J,358.3,11880,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,11880,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,11880,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,11881,0)
+ ;;=R40.2322^^68^693^2
+ ;;^UTILITY(U,$J,358.3,11881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12423,1,3,0)
- ;;=3^656.33
- ;;^UTILITY(U,$J,358.3,12423,1,4,0)
- ;;=4^Fetal Distress-Antepartum
- ;;^UTILITY(U,$J,358.3,12423,2)
- ;;=^271293
- ;;^UTILITY(U,$J,358.3,12424,0)
- ;;=656.43^^62^740^14
- ;;^UTILITY(U,$J,358.3,12424,1,0)
+ ;;^UTILITY(U,$J,358.3,11881,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,11881,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,11881,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,11882,0)
+ ;;=R40.2321^^68^693^5
+ ;;^UTILITY(U,$J,358.3,11882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12424,1,3,0)
- ;;=3^656.43
- ;;^UTILITY(U,$J,358.3,12424,1,4,0)
- ;;=4^Intrauterine Death-Antepartum
- ;;^UTILITY(U,$J,358.3,12424,2)
- ;;=^271297
- ;;^UTILITY(U,$J,358.3,12425,0)
- ;;=656.53^^62^740^15
- ;;^UTILITY(U,$J,358.3,12425,1,0)
+ ;;^UTILITY(U,$J,358.3,11882,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,11882,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,11882,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,11883,0)
+ ;;=R40.2320^^68^693^3
+ ;;^UTILITY(U,$J,358.3,11883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12425,1,3,0)
- ;;=3^656.53
- ;;^UTILITY(U,$J,358.3,12425,1,4,0)
- ;;=4^Poor fetal grth-Antepartum
- ;;^UTILITY(U,$J,358.3,12425,2)
- ;;=^271301
- ;;^UTILITY(U,$J,358.3,12426,0)
- ;;=656.63^^62^740^3
- ;;^UTILITY(U,$J,358.3,12426,1,0)
+ ;;^UTILITY(U,$J,358.3,11883,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,11883,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,11883,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,11884,0)
+ ;;=R40.2314^^68^693^11
+ ;;^UTILITY(U,$J,358.3,11884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12426,1,3,0)
- ;;=3^656.63
- ;;^UTILITY(U,$J,358.3,12426,1,4,0)
- ;;=4^Excess fetal grth-Antepartum
- ;;^UTILITY(U,$J,358.3,12426,2)
- ;;=^271305
- ;;^UTILITY(U,$J,358.3,12427,0)
- ;;=657.03^^62^740^13
- ;;^UTILITY(U,$J,358.3,12427,1,0)
+ ;;^UTILITY(U,$J,358.3,11884,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,11884,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,11884,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,11885,0)
+ ;;=R40.2313^^68^693^14
+ ;;^UTILITY(U,$J,358.3,11885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12427,1,3,0)
- ;;=3^657.03
- ;;^UTILITY(U,$J,358.3,12427,1,4,0)
- ;;=4^Hydramnios-Antepartum
- ;;^UTILITY(U,$J,358.3,12427,2)
- ;;=^271319
- ;;^UTILITY(U,$J,358.3,12428,0)
- ;;=642.03^^62^741^1
- ;;^UTILITY(U,$J,358.3,12428,1,0)
+ ;;^UTILITY(U,$J,358.3,11885,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,11885,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,11885,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,11886,0)
+ ;;=R40.2312^^68^693^12
+ ;;^UTILITY(U,$J,358.3,11886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12428,1,3,0)
- ;;=3^642.03
- ;;^UTILITY(U,$J,358.3,12428,1,4,0)
- ;;=4^Benign Essen HTN-Antepartum
- ;;^UTILITY(U,$J,358.3,12428,2)
- ;;=^270819
- ;;^UTILITY(U,$J,358.3,12429,0)
- ;;=642.04^^62^741^2
- ;;^UTILITY(U,$J,358.3,12429,1,0)
+ ;;^UTILITY(U,$J,358.3,11886,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,11886,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,11886,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,11887,0)
+ ;;=R40.2311^^68^693^15
+ ;;^UTILITY(U,$J,358.3,11887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12429,1,3,0)
- ;;=3^642.04
- ;;^UTILITY(U,$J,358.3,12429,1,4,0)
- ;;=4^Benign Essen HTN-Postpartum
- ;;^UTILITY(U,$J,358.3,12429,2)
- ;;=^270820
- ;;^UTILITY(U,$J,358.3,12430,0)
- ;;=642.13^^62^741^8
- ;;^UTILITY(U,$J,358.3,12430,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12430,1,3,0)
- ;;=3^642.13
- ;;^UTILITY(U,$J,358.3,12430,1,4,0)
- ;;=4^Renal HTN-Antepartum
- ;;^UTILITY(U,$J,358.3,12430,2)
- ;;=^341479

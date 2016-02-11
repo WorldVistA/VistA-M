@@ -1,0 +1,128 @@
+IBDEI2ZK ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,50058,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,50058,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,50059,0)
+ ;;=I50.33^^219^2439^5
+ ;;^UTILITY(U,$J,358.3,50059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50059,1,3,0)
+ ;;=3^AC on Chr Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,50059,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,50059,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,50060,0)
+ ;;=I50.23^^219^2439^6
+ ;;^UTILITY(U,$J,358.3,50060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50060,1,3,0)
+ ;;=3^AC on Chr Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,50060,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,50060,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,50061,0)
+ ;;=I50.21^^219^2439^3
+ ;;^UTILITY(U,$J,358.3,50061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50061,1,3,0)
+ ;;=3^AC Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,50061,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,50061,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,50062,0)
+ ;;=I20.9^^219^2439^8
+ ;;^UTILITY(U,$J,358.3,50062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50062,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,50062,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,50062,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,50063,0)
+ ;;=I25.721^^219^2439^9
+ ;;^UTILITY(U,$J,358.3,50063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50063,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,50063,1,4,0)
+ ;;=4^I25.721
+ ;;^UTILITY(U,$J,358.3,50063,2)
+ ;;=^5007126
+ ;;^UTILITY(U,$J,358.3,50064,0)
+ ;;=I25.728^^219^2439^10
+ ;;^UTILITY(U,$J,358.3,50064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50064,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,50064,1,4,0)
+ ;;=4^I25.728
+ ;;^UTILITY(U,$J,358.3,50064,2)
+ ;;=^5133560
+ ;;^UTILITY(U,$J,358.3,50065,0)
+ ;;=I25.729^^219^2439^11
+ ;;^UTILITY(U,$J,358.3,50065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50065,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,50065,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,50065,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,50066,0)
+ ;;=I25.720^^219^2439^12
+ ;;^UTILITY(U,$J,358.3,50066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50066,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,50066,1,4,0)
+ ;;=4^I25.720
+ ;;^UTILITY(U,$J,358.3,50066,2)
+ ;;=^5007125
+ ;;^UTILITY(U,$J,358.3,50067,0)
+ ;;=I25.711^^219^2439^13
+ ;;^UTILITY(U,$J,358.3,50067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50067,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,50067,1,4,0)
+ ;;=4^I25.711
+ ;;^UTILITY(U,$J,358.3,50067,2)
+ ;;=^5007122
+ ;;^UTILITY(U,$J,358.3,50068,0)
+ ;;=I25.718^^219^2439^14
+ ;;^UTILITY(U,$J,358.3,50068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50068,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,50068,1,4,0)
+ ;;=4^I25.718
+ ;;^UTILITY(U,$J,358.3,50068,2)
+ ;;=^5007123
+ ;;^UTILITY(U,$J,358.3,50069,0)
+ ;;=I25.719^^219^2439^15
+ ;;^UTILITY(U,$J,358.3,50069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50069,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,50069,1,4,0)
+ ;;=4^I25.719
+ ;;^UTILITY(U,$J,358.3,50069,2)
+ ;;=^5007124
+ ;;^UTILITY(U,$J,358.3,50070,0)
+ ;;=I25.710^^219^2439^16
+ ;;^UTILITY(U,$J,358.3,50070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50070,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,50070,1,4,0)
+ ;;=4^I25.710
+ ;;^UTILITY(U,$J,358.3,50070,2)
+ ;;=^5007121

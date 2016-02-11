@@ -1,138 +1,138 @@
-IBDEI01P ; ; 06-AUG-2015
+IBDEI01P ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,238,1,3,0)
- ;;=3^Adjust/Mgmt of Bone Conduction Device
- ;;^UTILITY(U,$J,358.3,238,1,4,0)
- ;;=4^Z45.320
- ;;^UTILITY(U,$J,358.3,238,2)
- ;;=^5063001
- ;;^UTILITY(U,$J,358.3,239,0)
- ;;=Z45.321^^1^11^2
- ;;^UTILITY(U,$J,358.3,239,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,239,1,3,0)
- ;;=3^Adjust/Mgmt of Cochlear Device
- ;;^UTILITY(U,$J,358.3,239,1,4,0)
- ;;=4^Z45.321
- ;;^UTILITY(U,$J,358.3,239,2)
- ;;=^5063002
- ;;^UTILITY(U,$J,358.3,240,0)
- ;;=Z45.328^^1^11^3
- ;;^UTILITY(U,$J,358.3,240,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,240,1,3,0)
- ;;=3^Adjust/Mgmt of Implanted Hearing Device
- ;;^UTILITY(U,$J,358.3,240,1,4,0)
- ;;=4^Z45.328
- ;;^UTILITY(U,$J,358.3,240,2)
- ;;=^5063003
- ;;^UTILITY(U,$J,358.3,241,0)
- ;;=Z02.71^^1^11^4
- ;;^UTILITY(U,$J,358.3,241,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,241,1,3,0)
- ;;=3^Disability Determination Exam
- ;;^UTILITY(U,$J,358.3,241,1,4,0)
- ;;=4^Z02.71
- ;;^UTILITY(U,$J,358.3,241,2)
- ;;=^5062640
- ;;^UTILITY(U,$J,358.3,242,0)
- ;;=Z02.0^^1^11^7
- ;;^UTILITY(U,$J,358.3,242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,242,1,3,0)
- ;;=3^Exam for Admission to Educational Institution
- ;;^UTILITY(U,$J,358.3,242,1,4,0)
- ;;=4^Z02.0
- ;;^UTILITY(U,$J,358.3,242,2)
- ;;=^5062633
- ;;^UTILITY(U,$J,358.3,243,0)
- ;;=Z02.2^^1^11^8
- ;;^UTILITY(U,$J,358.3,243,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,243,1,3,0)
- ;;=3^Exam for Admission to Residential Institution
- ;;^UTILITY(U,$J,358.3,243,1,4,0)
- ;;=4^Z02.2
- ;;^UTILITY(U,$J,358.3,243,2)
- ;;=^5062635
- ;;^UTILITY(U,$J,358.3,244,0)
- ;;=Z02.4^^1^11^9
- ;;^UTILITY(U,$J,358.3,244,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,244,1,3,0)
- ;;=3^Exam for Driving License
- ;;^UTILITY(U,$J,358.3,244,1,4,0)
- ;;=4^Z02.4
- ;;^UTILITY(U,$J,358.3,244,2)
- ;;=^5062637
- ;;^UTILITY(U,$J,358.3,245,0)
- ;;=Z02.6^^1^11^11
- ;;^UTILITY(U,$J,358.3,245,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,245,1,3,0)
- ;;=3^Exam for Insurance Purposes
- ;;^UTILITY(U,$J,358.3,245,1,4,0)
- ;;=4^Z02.6
- ;;^UTILITY(U,$J,358.3,245,2)
- ;;=^5062639
- ;;^UTILITY(U,$J,358.3,246,0)
- ;;=Z02.5^^1^11^13
- ;;^UTILITY(U,$J,358.3,246,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,246,1,3,0)
- ;;=3^Exam for Sport Participation
- ;;^UTILITY(U,$J,358.3,246,1,4,0)
- ;;=4^Z02.5
- ;;^UTILITY(U,$J,358.3,246,2)
- ;;=^5062638
- ;;^UTILITY(U,$J,358.3,247,0)
- ;;=Z02.3^^1^11^12
- ;;^UTILITY(U,$J,358.3,247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,247,1,3,0)
- ;;=3^Exam for Recruitment to Armed Forces
- ;;^UTILITY(U,$J,358.3,247,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,247,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,248,0)
- ;;=Z01.118^^1^11^5
- ;;^UTILITY(U,$J,358.3,248,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,248,1,3,0)
- ;;=3^Ears/Hearing Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,248,1,4,0)
- ;;=4^Z01.118
- ;;^UTILITY(U,$J,358.3,248,2)
- ;;=^5062616
- ;;^UTILITY(U,$J,358.3,249,0)
- ;;=Z01.10^^1^11^6
- ;;^UTILITY(U,$J,358.3,249,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,249,1,3,0)
- ;;=3^Ears/Hearing Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,249,1,4,0)
- ;;=4^Z01.10
- ;;^UTILITY(U,$J,358.3,249,2)
- ;;=^5062614
- ;;^UTILITY(U,$J,358.3,250,0)
- ;;=Z46.1^^1^11^18
- ;;^UTILITY(U,$J,358.3,250,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,250,1,3,0)
- ;;=3^Fitting/Adjustment of Hearing Aid
- ;;^UTILITY(U,$J,358.3,250,1,4,0)
- ;;=4^Z46.1
- ;;^UTILITY(U,$J,358.3,250,2)
- ;;=^5063014
- ;;^UTILITY(U,$J,358.3,251,0)
- ;;=Z09.^^1^11^15
- ;;^UTILITY(U,$J,358.3,251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,251,1,3,0)
- ;;=3^F/U Exam After Trtmt for Cond Oth Than Malig Neop
- ;;^UTILITY(U,$J,358.3,251,1,4,0)
- ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3)
+ ;;=^IBE(358.3,
+ ;;^UTILITY(U,$J,358.3,0)
+ ;;=IMP/EXP SELECTION^358.3I^58753^58753
+ ;;^UTILITY(U,$J,358.3,1,0)
+ ;;=H0001^^1^1^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1,1,2,0)
+ ;;=2^H0001
+ ;;^UTILITY(U,$J,358.3,1,1,3,0)
+ ;;=3^Addictions Assessment
+ ;;^UTILITY(U,$J,358.3,2,0)
+ ;;=H0002^^1^1^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2,1,2,0)
+ ;;=2^H0002
+ ;;^UTILITY(U,$J,358.3,2,1,3,0)
+ ;;=3^Screen for Addictions Admission Eligibility
+ ;;^UTILITY(U,$J,358.3,3,0)
+ ;;=H0004^^1^1^7
+ ;;^UTILITY(U,$J,358.3,3,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3,1,2,0)
+ ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,3,1,3,0)
+ ;;=3^Individual Counseling & Therapy,per 15 Min
+ ;;^UTILITY(U,$J,358.3,4,0)
+ ;;=H0005^^1^1^2^^^^1
+ ;;^UTILITY(U,$J,358.3,4,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,4,1,3,0)
+ ;;=3^Addictions Group Counseling by Clinician
+ ;;^UTILITY(U,$J,358.3,5,0)
+ ;;=H0020^^1^1^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,5,1,3,0)
+ ;;=3^Methadone Admin &/or Service by Licensed Program
+ ;;^UTILITY(U,$J,358.3,6,0)
+ ;;=H0030^^1^1^4^^^^1
+ ;;^UTILITY(U,$J,358.3,6,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,6,1,2,0)
+ ;;=2^H0030
+ ;;^UTILITY(U,$J,358.3,6,1,3,0)
+ ;;=3^Addictions Hotline Services
+ ;;^UTILITY(U,$J,358.3,7,0)
+ ;;=H0025^^1^1^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,7,1,3,0)
+ ;;=3^Addictions Hlth Prevention Ed Service
+ ;;^UTILITY(U,$J,358.3,8,0)
+ ;;=H0046^^1^1^9^^^^1
+ ;;^UTILITY(U,$J,358.3,8,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8,1,2,0)
+ ;;=2^H0046
+ ;;^UTILITY(U,$J,358.3,8,1,3,0)
+ ;;=3^PTSD Group
+ ;;^UTILITY(U,$J,358.3,9,0)
+ ;;=H0003^^1^1^6^^^^1
+ ;;^UTILITY(U,$J,358.3,9,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,9,1,2,0)
+ ;;=2^H0003
+ ;;^UTILITY(U,$J,358.3,9,1,3,0)
+ ;;=3^Alcohol/Drug Screen;lab analysis
+ ;;^UTILITY(U,$J,358.3,10,0)
+ ;;=H0006^^1^1^5^^^^1
+ ;;^UTILITY(U,$J,358.3,10,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10,1,2,0)
+ ;;=2^H0006
+ ;;^UTILITY(U,$J,358.3,10,1,3,0)
+ ;;=3^Alcohol/Drug Case Management
+ ;;^UTILITY(U,$J,358.3,11,0)
+ ;;=H2027^^1^1^10^^^^1
+ ;;^UTILITY(U,$J,358.3,11,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,11,1,2,0)
+ ;;=2^H2027
+ ;;^UTILITY(U,$J,358.3,11,1,3,0)
+ ;;=3^Psychoeducational Svc,per 15min
+ ;;^UTILITY(U,$J,358.3,12,0)
+ ;;=90791^^1^2^1^^^^1
+ ;;^UTILITY(U,$J,358.3,12,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,12,1,3,0)
+ ;;=3^Psychiatric Diagnostic Evaluation
+ ;;^UTILITY(U,$J,358.3,13,0)
+ ;;=90792^^1^2^2^^^^1
+ ;;^UTILITY(U,$J,358.3,13,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,13,1,2,0)
+ ;;=2^90792
+ ;;^UTILITY(U,$J,358.3,13,1,3,0)
+ ;;=3^Psychiatric Diagnostic Evaluation w/ Medical Services
+ ;;^UTILITY(U,$J,358.3,14,0)
+ ;;=90853^^1^3^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,14,1,2,0)
+ ;;=2^90853
+ ;;^UTILITY(U,$J,358.3,14,1,3,0)
+ ;;=3^Group Psychotherapy
+ ;;^UTILITY(U,$J,358.3,15,0)
+ ;;=90846^^1^3^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15,1,2,0)
+ ;;=2^90846
+ ;;^UTILITY(U,$J,358.3,15,1,3,0)
+ ;;=3^Family Psychotherapy w/o Pt
+ ;;^UTILITY(U,$J,358.3,16,0)
+ ;;=90847^^1^3^2^^^^1
+ ;;^UTILITY(U,$J,358.3,16,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,16,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,16,1,3,0)
+ ;;=3^Family Psychotherpy w/ Pt
+ ;;^UTILITY(U,$J,358.3,17,0)
+ ;;=90875^^1^3^17^^^^1

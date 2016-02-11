@@ -1,144 +1,136 @@
-IBDEI077 ; ; 06-AUG-2015
+IBDEI077 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2862,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,2862,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,2863,0)
- ;;=A31.0^^7^83^151
- ;;^UTILITY(U,$J,358.3,2863,1,0)
+ ;;^UTILITY(U,$J,358.3,2789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2863,1,3,0)
- ;;=3^Non-tuberculous Mycobacteria (diseases of other mycobacteria)
- ;;^UTILITY(U,$J,358.3,2863,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,2863,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,2864,0)
- ;;=B44.9^^7^83^18
- ;;^UTILITY(U,$J,358.3,2864,1,0)
+ ;;^UTILITY(U,$J,358.3,2789,1,3,0)
+ ;;=3^Sprain of ligaments of lumbar spine, initial encounter
+ ;;^UTILITY(U,$J,358.3,2789,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,2789,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,2790,0)
+ ;;=S33.5XXS^^25^229^16
+ ;;^UTILITY(U,$J,358.3,2790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2864,1,3,0)
- ;;=3^Aspergillosis,Unspecified
- ;;^UTILITY(U,$J,358.3,2864,1,4,0)
- ;;=4^B44.9
- ;;^UTILITY(U,$J,358.3,2864,2)
- ;;=^5000668
- ;;^UTILITY(U,$J,358.3,2865,0)
- ;;=B40.9^^7^83^24
- ;;^UTILITY(U,$J,358.3,2865,1,0)
+ ;;^UTILITY(U,$J,358.3,2790,1,3,0)
+ ;;=3^Sprain of ligaments of lumbar spine, sequela
+ ;;^UTILITY(U,$J,358.3,2790,1,4,0)
+ ;;=4^S33.5XXS
+ ;;^UTILITY(U,$J,358.3,2790,2)
+ ;;=^5025174
+ ;;^UTILITY(U,$J,358.3,2791,0)
+ ;;=S33.5XXD^^25^229^17
+ ;;^UTILITY(U,$J,358.3,2791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2865,1,3,0)
- ;;=3^Blastomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,2865,1,4,0)
- ;;=4^B40.9
- ;;^UTILITY(U,$J,358.3,2865,2)
- ;;=^5000646
- ;;^UTILITY(U,$J,358.3,2866,0)
- ;;=B37.9^^7^83^32
- ;;^UTILITY(U,$J,358.3,2866,1,0)
+ ;;^UTILITY(U,$J,358.3,2791,1,3,0)
+ ;;=3^Sprain of ligaments of lumbar spine, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,2791,1,4,0)
+ ;;=4^S33.5XXD
+ ;;^UTILITY(U,$J,358.3,2791,2)
+ ;;=^5025173
+ ;;^UTILITY(U,$J,358.3,2792,0)
+ ;;=M99.85^^25^230^1
+ ;;^UTILITY(U,$J,358.3,2792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2866,1,3,0)
- ;;=3^Candidiasis,Unspec
- ;;^UTILITY(U,$J,358.3,2866,1,4,0)
- ;;=4^B37.9
- ;;^UTILITY(U,$J,358.3,2866,2)
- ;;=^5000624
- ;;^UTILITY(U,$J,358.3,2867,0)
- ;;=B38.9^^7^83^41
- ;;^UTILITY(U,$J,358.3,2867,1,0)
+ ;;^UTILITY(U,$J,358.3,2792,1,3,0)
+ ;;=3^Biomechanical lesions of pelvic region
+ ;;^UTILITY(U,$J,358.3,2792,1,4,0)
+ ;;=4^M99.85
+ ;;^UTILITY(U,$J,358.3,2792,2)
+ ;;=^5015485
+ ;;^UTILITY(U,$J,358.3,2793,0)
+ ;;=M99.84^^25^230^2
+ ;;^UTILITY(U,$J,358.3,2793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2867,1,3,0)
- ;;=3^Coccidioides,Unspec
- ;;^UTILITY(U,$J,358.3,2867,1,4,0)
- ;;=4^B38.9
- ;;^UTILITY(U,$J,358.3,2867,2)
- ;;=^5000631
- ;;^UTILITY(U,$J,358.3,2868,0)
- ;;=B45.9^^7^83^47
- ;;^UTILITY(U,$J,358.3,2868,1,0)
+ ;;^UTILITY(U,$J,358.3,2793,1,3,0)
+ ;;=3^Biomechanical lesions of sacral region
+ ;;^UTILITY(U,$J,358.3,2793,1,4,0)
+ ;;=4^M99.84
+ ;;^UTILITY(U,$J,358.3,2793,2)
+ ;;=^5015484
+ ;;^UTILITY(U,$J,358.3,2794,0)
+ ;;=G54.0^^25^230^3
+ ;;^UTILITY(U,$J,358.3,2794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2868,1,3,0)
- ;;=3^Cryptococcus
- ;;^UTILITY(U,$J,358.3,2868,1,4,0)
- ;;=4^B45.9
- ;;^UTILITY(U,$J,358.3,2868,2)
- ;;=^5000675
- ;;^UTILITY(U,$J,358.3,2869,0)
- ;;=B35.9^^7^83^57
- ;;^UTILITY(U,$J,358.3,2869,1,0)
+ ;;^UTILITY(U,$J,358.3,2794,1,3,0)
+ ;;=3^Brachial plexus disorders
+ ;;^UTILITY(U,$J,358.3,2794,1,4,0)
+ ;;=4^G54.0
+ ;;^UTILITY(U,$J,358.3,2794,2)
+ ;;=^5004007
+ ;;^UTILITY(U,$J,358.3,2795,0)
+ ;;=M76.02^^25^230^4
+ ;;^UTILITY(U,$J,358.3,2795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2869,1,3,0)
- ;;=3^Dermatophytosis,Unspec
- ;;^UTILITY(U,$J,358.3,2869,1,4,0)
- ;;=4^B35.9
- ;;^UTILITY(U,$J,358.3,2869,2)
- ;;=^5000607
- ;;^UTILITY(U,$J,358.3,2870,0)
- ;;=B39.4^^7^83^114
- ;;^UTILITY(U,$J,358.3,2870,1,0)
+ ;;^UTILITY(U,$J,358.3,2795,1,3,0)
+ ;;=3^Gluteal tendinitis, left hip
+ ;;^UTILITY(U,$J,358.3,2795,1,4,0)
+ ;;=4^M76.02
+ ;;^UTILITY(U,$J,358.3,2795,2)
+ ;;=^5013268
+ ;;^UTILITY(U,$J,358.3,2796,0)
+ ;;=M76.01^^25^230^5
+ ;;^UTILITY(U,$J,358.3,2796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2870,1,3,0)
- ;;=3^Histoplasmosis capsulati, unspecified
- ;;^UTILITY(U,$J,358.3,2870,1,4,0)
- ;;=4^B39.4
- ;;^UTILITY(U,$J,358.3,2870,2)
- ;;=^5000636
- ;;^UTILITY(U,$J,358.3,2871,0)
- ;;=B46.9^^7^83^227
- ;;^UTILITY(U,$J,358.3,2871,1,0)
+ ;;^UTILITY(U,$J,358.3,2796,1,3,0)
+ ;;=3^Gluteal tendinitis, right hip
+ ;;^UTILITY(U,$J,358.3,2796,1,4,0)
+ ;;=4^M76.01
+ ;;^UTILITY(U,$J,358.3,2796,2)
+ ;;=^5013267
+ ;;^UTILITY(U,$J,358.3,2797,0)
+ ;;=M76.22^^25^230^6
+ ;;^UTILITY(U,$J,358.3,2797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2871,1,3,0)
- ;;=3^Zygomycosis, unspecified
- ;;^UTILITY(U,$J,358.3,2871,1,4,0)
- ;;=4^B46.9
- ;;^UTILITY(U,$J,358.3,2871,2)
- ;;=^5000683
- ;;^UTILITY(U,$J,358.3,2872,0)
- ;;=B41.9^^7^83^160
- ;;^UTILITY(U,$J,358.3,2872,1,0)
+ ;;^UTILITY(U,$J,358.3,2797,1,3,0)
+ ;;=3^Iliac crest spur, left hip
+ ;;^UTILITY(U,$J,358.3,2797,1,4,0)
+ ;;=4^M76.22
+ ;;^UTILITY(U,$J,358.3,2797,2)
+ ;;=^5013274
+ ;;^UTILITY(U,$J,358.3,2798,0)
+ ;;=M76.21^^25^230^7
+ ;;^UTILITY(U,$J,358.3,2798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2872,1,3,0)
- ;;=3^Paracoccidioidomycosis, unspecified
- ;;^UTILITY(U,$J,358.3,2872,1,4,0)
- ;;=4^B41.9
- ;;^UTILITY(U,$J,358.3,2872,2)
- ;;=^5000650
- ;;^UTILITY(U,$J,358.3,2873,0)
- ;;=B48.8^^7^83^164
- ;;^UTILITY(U,$J,358.3,2873,1,0)
+ ;;^UTILITY(U,$J,358.3,2798,1,3,0)
+ ;;=3^Iliac crest spur, right hip
+ ;;^UTILITY(U,$J,358.3,2798,1,4,0)
+ ;;=4^M76.21
+ ;;^UTILITY(U,$J,358.3,2798,2)
+ ;;=^5013273
+ ;;^UTILITY(U,$J,358.3,2799,0)
+ ;;=M54.18^^25^230^8
+ ;;^UTILITY(U,$J,358.3,2799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2873,1,3,0)
- ;;=3^Phaeohyphomycosis
- ;;^UTILITY(U,$J,358.3,2873,1,4,0)
- ;;=4^B48.8
- ;;^UTILITY(U,$J,358.3,2873,2)
- ;;=^5000689
- ;;^UTILITY(U,$J,358.3,2874,0)
- ;;=B59.^^7^83^166
- ;;^UTILITY(U,$J,358.3,2874,1,0)
+ ;;^UTILITY(U,$J,358.3,2799,1,3,0)
+ ;;=3^Radiculopathy, sacral and sacrococcygeal region
+ ;;^UTILITY(U,$J,358.3,2799,1,4,0)
+ ;;=4^M54.18
+ ;;^UTILITY(U,$J,358.3,2799,2)
+ ;;=^5012303
+ ;;^UTILITY(U,$J,358.3,2800,0)
+ ;;=M54.32^^25^230^9
+ ;;^UTILITY(U,$J,358.3,2800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2874,1,3,0)
- ;;=3^Pneumocystosis
- ;;^UTILITY(U,$J,358.3,2874,1,4,0)
- ;;=4^B59.
- ;;^UTILITY(U,$J,358.3,2874,2)
- ;;=^5000734
- ;;^UTILITY(U,$J,358.3,2875,0)
- ;;=B42.9^^7^83^196
- ;;^UTILITY(U,$J,358.3,2875,1,0)
+ ;;^UTILITY(U,$J,358.3,2800,1,3,0)
+ ;;=3^Sciatica, left side
+ ;;^UTILITY(U,$J,358.3,2800,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,2800,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,2801,0)
+ ;;=M54.31^^25^230^10
+ ;;^UTILITY(U,$J,358.3,2801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2875,1,3,0)
- ;;=3^Sporotrichosis, unspecified
- ;;^UTILITY(U,$J,358.3,2875,1,4,0)
- ;;=4^B42.9
- ;;^UTILITY(U,$J,358.3,2875,2)
- ;;=^5000657
- ;;^UTILITY(U,$J,358.3,2876,0)
- ;;=B36.9^^7^83^207
- ;;^UTILITY(U,$J,358.3,2876,1,0)
+ ;;^UTILITY(U,$J,358.3,2801,1,3,0)
+ ;;=3^Sciatica, right side
+ ;;^UTILITY(U,$J,358.3,2801,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,2801,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,2802,0)
+ ;;=M99.04^^25^230^12
+ ;;^UTILITY(U,$J,358.3,2802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2876,1,3,0)
- ;;=3^Superficial mycosis, unspecified

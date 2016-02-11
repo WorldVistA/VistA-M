@@ -1,120 +1,124 @@
-IBDEI1YQ ; ; 06-AUG-2015
+IBDEI1YQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34424,0)
- ;;=S72.445S^^183^2019^69
- ;;^UTILITY(U,$J,358.3,34424,1,0)
+ ;;^UTILITY(U,$J,358.3,32867,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,32867,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,32868,0)
+ ;;=G20.^^146^1585^29
+ ;;^UTILITY(U,$J,358.3,32868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34424,1,3,0)
- ;;=3^Nondisp lower epiphy fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,34424,1,4,0)
- ;;=4^S72.445S
- ;;^UTILITY(U,$J,358.3,34424,2)
- ;;=^5136269
- ;;^UTILITY(U,$J,358.3,34425,0)
- ;;=S72.451S^^183^2019^41
- ;;^UTILITY(U,$J,358.3,34425,1,0)
+ ;;^UTILITY(U,$J,358.3,32868,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,32868,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,32868,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,32869,0)
+ ;;=G23.1^^146^1585^34
+ ;;^UTILITY(U,$J,358.3,32869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34425,1,3,0)
- ;;=3^Displaced suprcndl fx w/o intrcndl extn lower end r femur, sqla
- ;;^UTILITY(U,$J,358.3,34425,1,4,0)
- ;;=4^S72.451S
- ;;^UTILITY(U,$J,358.3,34425,2)
- ;;=^5039005
- ;;^UTILITY(U,$J,358.3,34426,0)
- ;;=S72.452S^^183^2019^42
- ;;^UTILITY(U,$J,358.3,34426,1,0)
+ ;;^UTILITY(U,$J,358.3,32869,1,3,0)
+ ;;=3^Progressive Supranuclear Palsy
+ ;;^UTILITY(U,$J,358.3,32869,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,32869,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,32870,0)
+ ;;=F03.91^^146^1585^15
+ ;;^UTILITY(U,$J,358.3,32870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34426,1,3,0)
- ;;=3^Displaced suprcndl fx w/o intrcndl extn lower end l femur, sqla
- ;;^UTILITY(U,$J,358.3,34426,1,4,0)
- ;;=4^S72.452S
- ;;^UTILITY(U,$J,358.3,34426,2)
- ;;=^5039021
- ;;^UTILITY(U,$J,358.3,34427,0)
- ;;=S72.454S^^183^2019^88
- ;;^UTILITY(U,$J,358.3,34427,1,0)
+ ;;^UTILITY(U,$J,358.3,32870,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,32870,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,32870,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,32871,0)
+ ;;=F03.90^^146^1585^17
+ ;;^UTILITY(U,$J,358.3,32871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34427,1,3,0)
- ;;=3^Nondisp suprcndl fx w/o intrcndl extn lower end r femr, sqla
- ;;^UTILITY(U,$J,358.3,34427,1,4,0)
- ;;=4^S72.454S
- ;;^UTILITY(U,$J,358.3,34427,2)
- ;;=^5039053
- ;;^UTILITY(U,$J,358.3,34428,0)
- ;;=S72.455S^^183^2019^89
- ;;^UTILITY(U,$J,358.3,34428,1,0)
+ ;;^UTILITY(U,$J,358.3,32871,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,32871,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,32871,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,32872,0)
+ ;;=F06.30^^146^1586^2
+ ;;^UTILITY(U,$J,358.3,32872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34428,1,3,0)
- ;;=3^Nondisp suprcndl fx w/o intrcndl extn lower end l femr, sqla
- ;;^UTILITY(U,$J,358.3,34428,1,4,0)
- ;;=4^S72.455S
- ;;^UTILITY(U,$J,358.3,34428,2)
- ;;=^5039069
- ;;^UTILITY(U,$J,358.3,34429,0)
- ;;=S72.461S^^183^2019^39
- ;;^UTILITY(U,$J,358.3,34429,1,0)
+ ;;^UTILITY(U,$J,358.3,32872,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,32872,1,4,0)
+ ;;=4^F06.30
+ ;;^UTILITY(U,$J,358.3,32872,2)
+ ;;=^5003056
+ ;;^UTILITY(U,$J,358.3,32873,0)
+ ;;=F06.31^^146^1586^3
+ ;;^UTILITY(U,$J,358.3,32873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34429,1,3,0)
- ;;=3^Displaced suprcndl fx w intrcndl extn lower end of r femur, sqla
- ;;^UTILITY(U,$J,358.3,34429,1,4,0)
- ;;=4^S72.461S
- ;;^UTILITY(U,$J,358.3,34429,2)
- ;;=^5039093
- ;;^UTILITY(U,$J,358.3,34430,0)
- ;;=S72.462S^^183^2019^40
- ;;^UTILITY(U,$J,358.3,34430,1,0)
+ ;;^UTILITY(U,$J,358.3,32873,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition w/ Depressive Features
+ ;;^UTILITY(U,$J,358.3,32873,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,32873,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,32874,0)
+ ;;=F06.32^^146^1586^4
+ ;;^UTILITY(U,$J,358.3,32874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34430,1,3,0)
- ;;=3^Displaced suprcndl fx w intrcndl extn lower end of l femur, sqla
- ;;^UTILITY(U,$J,358.3,34430,1,4,0)
- ;;=4^S72.462S
- ;;^UTILITY(U,$J,358.3,34430,2)
- ;;=^5136422
- ;;^UTILITY(U,$J,358.3,34431,0)
- ;;=S72.464S^^183^2019^86
- ;;^UTILITY(U,$J,358.3,34431,1,0)
+ ;;^UTILITY(U,$J,358.3,32874,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition w/ Major Depressive-Like Episode
+ ;;^UTILITY(U,$J,358.3,32874,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,32874,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,32875,0)
+ ;;=F32.9^^146^1586^14
+ ;;^UTILITY(U,$J,358.3,32875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34431,1,3,0)
- ;;=3^Nondisp suprcndl fx w intrcndl extn lower end r femur, sqla
- ;;^UTILITY(U,$J,358.3,34431,1,4,0)
- ;;=4^S72.464S
- ;;^UTILITY(U,$J,358.3,34431,2)
- ;;=^5039106
- ;;^UTILITY(U,$J,358.3,34432,0)
- ;;=S72.465S^^183^2019^87
- ;;^UTILITY(U,$J,358.3,34432,1,0)
+ ;;^UTILITY(U,$J,358.3,32875,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,32875,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,32875,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,32876,0)
+ ;;=F32.0^^146^1586^15
+ ;;^UTILITY(U,$J,358.3,32876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34432,1,3,0)
- ;;=3^Nondisp suprcndl fx w intrcndl extn lower end l femur, sqla
- ;;^UTILITY(U,$J,358.3,34432,1,4,0)
- ;;=4^S72.465S
- ;;^UTILITY(U,$J,358.3,34432,2)
- ;;=^5136457
- ;;^UTILITY(U,$J,358.3,34433,0)
- ;;=S72.471S^^183^2019^109
- ;;^UTILITY(U,$J,358.3,34433,1,0)
+ ;;^UTILITY(U,$J,358.3,32876,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,32876,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,32876,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,32877,0)
+ ;;=F32.1^^146^1586^16
+ ;;^UTILITY(U,$J,358.3,32877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34433,1,3,0)
- ;;=3^Torus fracture of lower end of right femur, sequela
- ;;^UTILITY(U,$J,358.3,34433,1,4,0)
- ;;=4^S72.471S
- ;;^UTILITY(U,$J,358.3,34433,2)
- ;;=^5039117
- ;;^UTILITY(U,$J,358.3,34434,0)
- ;;=S72.472S^^183^2019^108
- ;;^UTILITY(U,$J,358.3,34434,1,0)
+ ;;^UTILITY(U,$J,358.3,32877,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,32877,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,32877,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,32878,0)
+ ;;=F32.2^^146^1586^17
+ ;;^UTILITY(U,$J,358.3,32878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34434,1,3,0)
- ;;=3^Torus fracture of lower end of left femur, sequela
- ;;^UTILITY(U,$J,358.3,34434,1,4,0)
- ;;=4^S72.472S
- ;;^UTILITY(U,$J,358.3,34434,2)
- ;;=^5039123
- ;;^UTILITY(U,$J,358.3,34435,0)
- ;;=S79.011S^^183^2019^98
- ;;^UTILITY(U,$J,358.3,34435,1,0)
+ ;;^UTILITY(U,$J,358.3,32878,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,32878,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,32878,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,32879,0)
+ ;;=F32.3^^146^1586^18
+ ;;^UTILITY(U,$J,358.3,32879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34435,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,32879,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode w Psychotic Features

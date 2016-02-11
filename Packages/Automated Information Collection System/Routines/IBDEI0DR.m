@@ -1,142 +1,128 @@
-IBDEI0DR ; ; 06-AUG-2015
+IBDEI0DR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6242,2)
- ;;=^272609
- ;;^UTILITY(U,$J,358.3,6243,0)
- ;;=710.0^^31^407^81
- ;;^UTILITY(U,$J,358.3,6243,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6243,1,4,0)
- ;;=4^710.0
- ;;^UTILITY(U,$J,358.3,6243,1,5,0)
- ;;=5^Syst Lupus Erythematosis
- ;;^UTILITY(U,$J,358.3,6243,2)
- ;;=^72159
- ;;^UTILITY(U,$J,358.3,6244,0)
- ;;=524.60^^31^407^82
- ;;^UTILITY(U,$J,358.3,6244,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6244,1,4,0)
- ;;=4^524.60
- ;;^UTILITY(U,$J,358.3,6244,1,5,0)
- ;;=5^TMJ Syndrome
- ;;^UTILITY(U,$J,358.3,6244,2)
- ;;=^117722
- ;;^UTILITY(U,$J,358.3,6245,0)
- ;;=726.90^^31^407^83
- ;;^UTILITY(U,$J,358.3,6245,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6245,1,4,0)
- ;;=4^726.90
- ;;^UTILITY(U,$J,358.3,6245,1,5,0)
- ;;=5^Tendonitis
- ;;^UTILITY(U,$J,358.3,6245,2)
- ;;=^41010
- ;;^UTILITY(U,$J,358.3,6246,0)
- ;;=354.2^^31^407^85
- ;;^UTILITY(U,$J,358.3,6246,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6246,1,4,0)
- ;;=4^354.2
- ;;^UTILITY(U,$J,358.3,6246,1,5,0)
- ;;=5^Ulnar Nerve Entrapment
- ;;^UTILITY(U,$J,358.3,6246,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,6247,0)
- ;;=715.97^^31^407^22
- ;;^UTILITY(U,$J,358.3,6247,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6247,1,4,0)
- ;;=4^715.97
- ;;^UTILITY(U,$J,358.3,6247,1,5,0)
- ;;=5^DJD of Ankle/Foot
- ;;^UTILITY(U,$J,358.3,6247,2)
- ;;=DJD Ankle/Foot^272168
- ;;^UTILITY(U,$J,358.3,6248,0)
- ;;=731.0^^31^407^58
- ;;^UTILITY(U,$J,358.3,6248,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6248,1,4,0)
- ;;=4^731.0
- ;;^UTILITY(U,$J,358.3,6248,1,5,0)
- ;;=5^Paget's Disease
- ;;^UTILITY(U,$J,358.3,6248,2)
- ;;=Paget's Disease^86892
- ;;^UTILITY(U,$J,358.3,6249,0)
- ;;=733.01^^31^407^57
- ;;^UTILITY(U,$J,358.3,6249,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6249,1,4,0)
- ;;=4^733.01
- ;;^UTILITY(U,$J,358.3,6249,1,5,0)
- ;;=5^Osteoporosis, Senile
- ;;^UTILITY(U,$J,358.3,6249,2)
- ;;=Osteoporosis, Senile^87188
- ;;^UTILITY(U,$J,358.3,6250,0)
- ;;=733.02^^31^407^56
- ;;^UTILITY(U,$J,358.3,6250,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6250,1,4,0)
- ;;=4^733.02
- ;;^UTILITY(U,$J,358.3,6250,1,5,0)
- ;;=5^Osteoporosis, Idiopathic
- ;;^UTILITY(U,$J,358.3,6250,2)
- ;;=Osteoporosis, Idiopathic^272692
- ;;^UTILITY(U,$J,358.3,6251,0)
- ;;=733.90^^31^407^54
- ;;^UTILITY(U,$J,358.3,6251,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6251,1,4,0)
- ;;=4^733.90
- ;;^UTILITY(U,$J,358.3,6251,1,5,0)
- ;;=5^Osteopenia
- ;;^UTILITY(U,$J,358.3,6251,2)
- ;;=Osteopenia^35593
- ;;^UTILITY(U,$J,358.3,6252,0)
- ;;=733.13^^31^407^17
- ;;^UTILITY(U,$J,358.3,6252,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6252,1,4,0)
- ;;=4^733.13
- ;;^UTILITY(U,$J,358.3,6252,1,5,0)
- ;;=5^Compression Fx of Spine
- ;;^UTILITY(U,$J,358.3,6252,2)
- ;;=Compression Fx of Spine^295754
- ;;^UTILITY(U,$J,358.3,6253,0)
- ;;=274.00^^31^407^41
- ;;^UTILITY(U,$J,358.3,6253,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6253,1,4,0)
- ;;=4^274.00
- ;;^UTILITY(U,$J,358.3,6253,1,5,0)
- ;;=5^Gouty Arthritis NOS
- ;;^UTILITY(U,$J,358.3,6253,2)
- ;;=^338313
- ;;^UTILITY(U,$J,358.3,6254,0)
- ;;=356.9^^31^407^61
- ;;^UTILITY(U,$J,358.3,6254,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6254,1,4,0)
- ;;=4^356.9
- ;;^UTILITY(U,$J,358.3,6254,1,5,0)
- ;;=5^Peripheral Neuropathy
- ;;^UTILITY(U,$J,358.3,6254,2)
- ;;=^123931
- ;;^UTILITY(U,$J,358.3,6255,0)
- ;;=715.36^^31^407^52
- ;;^UTILITY(U,$J,358.3,6255,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6255,1,4,0)
- ;;=4^715.36
- ;;^UTILITY(U,$J,358.3,6255,1,5,0)
- ;;=5^Osteoarthrosis Knee Only
- ;;^UTILITY(U,$J,358.3,6255,2)
- ;;=^272155
- ;;^UTILITY(U,$J,358.3,6256,0)
- ;;=715.89^^31^407^53
- ;;^UTILITY(U,$J,358.3,6256,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6256,1,4,0)
- ;;=4^715.89
+ ;;^UTILITY(U,$J,358.3,5998,2)
+ ;;=^5007593
+ ;;^UTILITY(U,$J,358.3,5999,0)
+ ;;=I70.239^^40^383^28
+ ;;^UTILITY(U,$J,358.3,5999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5999,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,5999,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,5999,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,6000,0)
+ ;;=I70.241^^40^383^20
+ ;;^UTILITY(U,$J,358.3,6000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6000,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6000,1,4,0)
+ ;;=4^I70.241
+ ;;^UTILITY(U,$J,358.3,6000,2)
+ ;;=^5007595
+ ;;^UTILITY(U,$J,358.3,6001,0)
+ ;;=I70.242^^40^383^16
+ ;;^UTILITY(U,$J,358.3,6001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6001,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6001,1,4,0)
+ ;;=4^I70.242
+ ;;^UTILITY(U,$J,358.3,6001,2)
+ ;;=^5007596
+ ;;^UTILITY(U,$J,358.3,6002,0)
+ ;;=I70.243^^40^383^15
+ ;;^UTILITY(U,$J,358.3,6002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6002,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6002,1,4,0)
+ ;;=4^I70.243
+ ;;^UTILITY(U,$J,358.3,6002,2)
+ ;;=^5007597
+ ;;^UTILITY(U,$J,358.3,6003,0)
+ ;;=I70.244^^40^383^18
+ ;;^UTILITY(U,$J,358.3,6003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6003,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6003,1,4,0)
+ ;;=4^I70.244
+ ;;^UTILITY(U,$J,358.3,6003,2)
+ ;;=^5007598
+ ;;^UTILITY(U,$J,358.3,6004,0)
+ ;;=I70.245^^40^383^17
+ ;;^UTILITY(U,$J,358.3,6004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6004,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6004,1,4,0)
+ ;;=4^I70.245
+ ;;^UTILITY(U,$J,358.3,6004,2)
+ ;;=^5007599
+ ;;^UTILITY(U,$J,358.3,6005,0)
+ ;;=I70.248^^40^383^19
+ ;;^UTILITY(U,$J,358.3,6005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6005,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,6005,1,4,0)
+ ;;=4^I70.248
+ ;;^UTILITY(U,$J,358.3,6005,2)
+ ;;=^5007600
+ ;;^UTILITY(U,$J,358.3,6006,0)
+ ;;=I70.249^^40^383^21
+ ;;^UTILITY(U,$J,358.3,6006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6006,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6006,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,6006,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,6007,0)
+ ;;=I70.331^^40^383^64
+ ;;^UTILITY(U,$J,358.3,6007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6007,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6007,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,6007,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,6008,0)
+ ;;=I70.332^^40^383^65
+ ;;^UTILITY(U,$J,358.3,6008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6008,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6008,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,6008,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,6009,0)
+ ;;=I70.333^^40^383^66
+ ;;^UTILITY(U,$J,358.3,6009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6009,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6009,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,6009,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,6010,0)
+ ;;=I70.334^^40^383^67
+ ;;^UTILITY(U,$J,358.3,6010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6010,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6010,1,4,0)
+ ;;=4^I70.334
+ ;;^UTILITY(U,$J,358.3,6010,2)
+ ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,6011,0)
+ ;;=I70.335^^40^383^68

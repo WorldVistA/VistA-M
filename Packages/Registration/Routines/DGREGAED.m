@@ -1,25 +1,30 @@
 DGREGAED ;ALB/DW/PHH,BAJ,TDM - Address Edit API; 01/03/2006 ; 4/2/09 2:29pm
- ;;5.3;Registration;**522,560,658,730,688,808**;Aug 13, 1993;Build 4
+ ;;5.3;Registration;**522,560,658,730,688,808,915**;Aug 13, 1993;Build 6
  ;;
  ;; **688** Modifications for Country and Foreign address
+ ;; **915** Make DFN optional in case one is not established yet
  ;
-EN(DFN,FLG,SRC) ;Entry point
+EN(DFN,FLG,SRC,DGRET) ;Entry point
  ;Input: 
- ;  DFN (required) - Internal Entry # of Patient File (#2)
+ ;  DFN (optional) - Internal Entry # of Patient File (#2)
+ ;                   If not supplied then nothing filed or defaulted
  ;  FLG (optional) - Flags of 1 or 0; if null, 0 is assumed. Details:
  ;    FLG(1) - if 1 let user edit phone numbers (field #.131 and #.132)
  ;    FLG(2) - if 1 display before & after address for user confirmation
- K EASZIPLK
+ ;  DGRET - if passed by reference will contain address info array
+ K EASZIPLK,DGRET
  N DGINPUT,DGCMP,ICNTRY,CNTRY,FORGN,PSTR,OLDC
  N I,X,Y
- I $G(DFN)="" Q
+ S DFN=+$G(DFN)
  ;I ($G(DFN)'?.N) Q
  S FLG(1)=$G(FLG(1)),FLG(2)=$G(FLG(2))
  D GETOLD(.DGCMP,DFN)
- S CNTRY="",ICNTRY=$P($G(^DPT(DFN,.11)),"^",10) I ICNTRY="" S ICNTRY=1  ;default country is USA if NULL
+ S CNTRY="",ICNTRY=$S(DFN:$P($G(^DPT(DFN,.11)),"^",10),1:"")
+ I ICNTRY="" S ICNTRY=1  ;default country is USA if NULL
  S OLDC=DGCMP("OLD",.1173),FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,.1173,.CNTRY) I FORGN=-1 Q
- S FSTR=$$INPT1(DFN,FORGN,.PSTR)       ;set up field string of address prompts
+ S FSTR=$$INPT1(FORGN,.PSTR)      ;set up field string of address prompts
  S DGINPUT=1 D INPUT(.DGINPUT,DFN,FSTR,CNTRY) I $G(DGINPUT)=-1 Q
+ I 'DFN M DGRET=DGINPUT Q
  I $G(FLG(2))=1 D COMPARE(.DGINPUT,.DGCMP,.FLG)
  I '$$CONFIRM() W !,"Change aborted." D EOP Q
  N DGPRIOR
@@ -38,7 +43,7 @@ INPUT(DGINPUT,DFN,FSTR,CNTRY) ;Let user input address changes
  . I '$$READ(DFN,DGN,.Y) S DGINPUT=-1 Q
  . I DGN=.121 S Y=$G(Y) D  Q
  .. I Y="",DGINPUT(DGN)="" Q
- .. I $P(Y,U)=$$GET1^DIQ(2,DFN_",",DGN,"I") S DGINPUT(DGN)=$$GET1^DIQ(2,DFN_",",DGN)_U_$P(Y,U) Q
+ .. I DFN,$P(Y,U)=$$GET1^DIQ(2,DFN_",",DGN,"I") S DGINPUT(DGN)=$$GET1^DIQ(2,DFN_",",DGN)_U_$P(Y,U) Q
  .. S DGINPUT(DGN)=$P(Y(0),U)_U_Y
  . S DGINPUT(DGN)=$G(Y)
  I DGINPUT'=-1 S DGINPUT(.1173)=CNTRY_"^"_$O(^HL(779.004,"B",CNTRY,""))
@@ -49,14 +54,14 @@ GETOLD(DGCMP,DFN) ;populate array with existing address info
  ; get current country
  ; If current country is NULL it is old data
  ; Leave it NULL here because this is not an edit funtion
- S CCIEN=$$GET1^DIQ(2,DFN_",","COUNTRY","I")
+ S CCIEN=$S(DFN:$$GET1^DIQ(2,DFN_",","COUNTRY","I"),1:"")
  ;I CCIEN="" S CCIEN=$O(^HL(779.004,"D","UNITED STATES",""))
  S CFORGN=$$FORIEN^DGADDUTL(CCIEN)
  ;get current address fields and xlate to ^DIQ format
- S CFSTR=$$INPT1(DFN,CFORGN),CFSTR=$TR(CFSTR,",",";")
+ S CFSTR=$$INPT1(CFORGN),CFSTR=$TR(CFSTR,",",";")
  ; Domestic data needs some extra fields
  I 'CFORGN S CFSTR=CFSTR_";.114;.115;.117"
- D GETS^DIQ(2,DFN_",",CFSTR,"EI","DGCURR")
+ I DFN D GETS^DIQ(2,DFN_",",CFSTR,"EI","DGCURR")
  F L=1:1:$L(CFSTR,";") S T=$P(CFSTR,";",L),DGCMP("OLD",T)=$G(DGCURR(2,DFN_",",T,"E"))
  S COUNTRY=$$CNTRYI^DGADDUTL(CCIEN) I COUNTRY=-1 S COUNTRY="UNKNOWN COUNTRY"
  S DGCMP("OLD",.1173)=COUNTRY_"^"_CCIEN
@@ -152,13 +157,13 @@ READ(DFN,DGN,Y) ;Read input, return success
  S SUCCESS=1,POP=0
  F L=0:0 D  Q:POP
  . S DIR(0)=2_","_DGN
- . S DA=DFN
+ . I DFN S DA=DFN
  . D ^DIR
  . I $D(DTOUT) S POP=1,SUCCESS=0 Q
  . I $D(DUOUT)!$D(DIROUT) D UPCT Q
  . S POP=1
  Q SUCCESS
-INPT1(DFN,FORGN,PSTR) ; first address input prompts
+INPT1(FORGN,PSTR) ; first address input prompts
  N FSTR
  ; PSTR is the full set of fields domestic & foreign combined
  ; FSTR is the set of fields depending on Country code

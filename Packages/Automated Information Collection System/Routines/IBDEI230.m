@@ -1,34 +1,130 @@
-IBDEI230 ; ; 06-AUG-2015
+IBDEI230 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DD(358.6,.01,1,2,2)
- ;;=K ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)
- ;;^DD(358.6,.01,1,2,"%D",0)
- ;;=^^4^4^2940224^
- ;;^DD(358.6,.01,1,2,"%D",1,0)
- ;;= 
- ;;^DD(358.6,.01,1,2,"%D",2,0)
- ;;=For package interfaces that are output routines the name has the custodial
- ;;^DD(358.6,.01,1,2,"%D",3,0)
- ;;=package's name space as a prefix. This cross-reference removes that
- ;;^DD(358.6,.01,1,2,"%D",4,0)
- ;;=prefix. It is used to improve the display of output routines for the user.
- ;;^DD(358.6,.01,1,2,"DT")
- ;;=2930409
- ;;^DD(358.6,.01,3)
- ;;=Answer must be 3-40 characters in length. All entries with Action Type other than PRINT REPORT must be be prefixed with the namespace of the package that is responsible for the data.
- ;;^DD(358.6,.01,21,0)
- ;;=^^3^3^2950412^^^^
- ;;^DD(358.6,.01,21,1,0)
- ;;= 
- ;;^DD(358.6,.01,21,2,0)
- ;;=The name of the Package Interface. For interfaces returning data the name
- ;;^DD(358.6,.01,21,3,0)
- ;;=should be preceded with the namespace of the package.
- ;;^DD(358.6,.01,23,0)
- ;;=^^1^1^2950412^
- ;;^DD(358.6,.01,23,1,0)
- ;;= 
- ;;^DD(358.6,.01,"DT")
- ;;=2930409
+ ;;^UTILITY(U,$J,358.3,34931,0)
+ ;;=J1569^^162^1781^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34931,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34931,1,2,0)
+ ;;=2^J1569
+ ;;^UTILITY(U,$J,358.3,34931,1,3,0)
+ ;;=3^GAMMAGARD LIQUID 500mg
+ ;;^UTILITY(U,$J,358.3,34932,0)
+ ;;=96368^^162^1781^12^^^^1
+ ;;^UTILITY(U,$J,358.3,34932,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34932,1,2,0)
+ ;;=2^96368
+ ;;^UTILITY(U,$J,358.3,34932,1,3,0)
+ ;;=3^TX/PROPH/DX IV INF,CONCURRENT
+ ;;^UTILITY(U,$J,358.3,34933,0)
+ ;;=96376^^162^1781^7^^^^1
+ ;;^UTILITY(U,$J,358.3,34933,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34933,1,2,0)
+ ;;=2^96376
+ ;;^UTILITY(U,$J,358.3,34933,1,3,0)
+ ;;=3^IV PUSH,SUBSEQ,NEW DRUG
+ ;;^UTILITY(U,$J,358.3,34934,0)
+ ;;=36591^^162^1782^2^^^^1
+ ;;^UTILITY(U,$J,358.3,34934,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34934,1,2,0)
+ ;;=2^36591
+ ;;^UTILITY(U,$J,358.3,34934,1,3,0)
+ ;;=3^DRAW BLOOD OFF VENOUS DEVICE
+ ;;^UTILITY(U,$J,358.3,34935,0)
+ ;;=36592^^162^1782^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34935,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34935,1,2,0)
+ ;;=2^36592
+ ;;^UTILITY(U,$J,358.3,34935,1,3,0)
+ ;;=3^COLLECT BLOOD FROM PICC
+ ;;^UTILITY(U,$J,358.3,34936,0)
+ ;;=36569^^162^1782^3^^^^1
+ ;;^UTILITY(U,$J,358.3,34936,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34936,1,2,0)
+ ;;=2^36569
+ ;;^UTILITY(U,$J,358.3,34936,1,3,0)
+ ;;=3^INSERT PICC CATH
+ ;;^UTILITY(U,$J,358.3,34937,0)
+ ;;=36589^^162^1782^4^^^^1
+ ;;^UTILITY(U,$J,358.3,34937,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34937,1,2,0)
+ ;;=2^36589
+ ;;^UTILITY(U,$J,358.3,34937,1,3,0)
+ ;;=3^REMOVE PICC CATH
+ ;;^UTILITY(U,$J,358.3,34938,0)
+ ;;=S9453^^162^1783^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34938,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34938,1,2,0)
+ ;;=2^S9453
+ ;;^UTILITY(U,$J,358.3,34938,1,3,0)
+ ;;=3^SMOKING CESSATION,PER SESSION
+ ;;^UTILITY(U,$J,358.3,34939,0)
+ ;;=96401^^162^1784^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34939,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34939,1,2,0)
+ ;;=2^96401
+ ;;^UTILITY(U,$J,358.3,34939,1,3,0)
+ ;;=3^CHEMO ANTI-NEOPL SQ/IM
+ ;;^UTILITY(U,$J,358.3,34940,0)
+ ;;=96409^^162^1784^2^^^^1
+ ;;^UTILITY(U,$J,358.3,34940,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34940,1,2,0)
+ ;;=2^96409
+ ;;^UTILITY(U,$J,358.3,34940,1,3,0)
+ ;;=3^CHEMO IV PUSH SNGL DRUG
+ ;;^UTILITY(U,$J,358.3,34941,0)
+ ;;=96411^^162^1784^3^^^^1
+ ;;^UTILITY(U,$J,358.3,34941,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34941,1,2,0)
+ ;;=2^96411
+ ;;^UTILITY(U,$J,358.3,34941,1,3,0)
+ ;;=3^CHEMO IV PUSH ADDL DRUG
+ ;;^UTILITY(U,$J,358.3,34942,0)
+ ;;=99091^^162^1785^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34942,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34942,1,2,0)
+ ;;=2^99091
+ ;;^UTILITY(U,$J,358.3,34942,1,3,0)
+ ;;=3^COLLECT/REVIEW DATA FROM PT > 29MIN
+ ;;^UTILITY(U,$J,358.3,34943,0)
+ ;;=36430^^162^1786^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34943,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34943,1,2,0)
+ ;;=2^36430
+ ;;^UTILITY(U,$J,358.3,34943,1,3,0)
+ ;;=3^BLOOD TRANSFUSION SERVICE
+ ;;^UTILITY(U,$J,358.3,34944,0)
+ ;;=S9445^^162^1787^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34944,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34944,1,2,0)
+ ;;=2^S9445
+ ;;^UTILITY(U,$J,358.3,34944,1,3,0)
+ ;;=3^PT EDUCATION,INDIV,PER ENCOUNTER
+ ;;^UTILITY(U,$J,358.3,34945,0)
+ ;;=L89.010^^163^1788^78
+ ;;^UTILITY(U,$J,358.3,34945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34945,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,34945,1,4,0)
+ ;;=4^L89.010
+ ;;^UTILITY(U,$J,358.3,34945,2)
+ ;;=^5009337
+ ;;^UTILITY(U,$J,358.3,34946,0)
+ ;;=L89.011^^163^1788^73
+ ;;^UTILITY(U,$J,358.3,34946,1,0)
+ ;;=^358.31IA^4^2

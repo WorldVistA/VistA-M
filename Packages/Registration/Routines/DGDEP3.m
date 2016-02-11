@@ -1,5 +1,5 @@
-DGDEP3 ;ALB/CAW,BAJ,ERC - Dependents display ;11/22/2005
- ;;5.3;Registration;**45,624,653,688,867**;Aug 13, 1993;Build 59
+DGDEP3 ;ALB/CAW,BAJ,ERC,PWC - Dependents display ;11/22/2005
+ ;;5.3;Registration;**45,624,653,688,867,890**;Aug 13, 1993;Build 40
  ;
 SELF(INCPER,NAME,RELATE,ACT,DGMTI,CNT) ; Display information concerning veteran
  ;
@@ -24,6 +24,12 @@ SELF(INCPER,NAME,RELATE,ACT,DGMTI,CNT) ; Display information concerning veteran
  ;
  Q:RELATE=2
  D NEWB
+DISPLAY ;
+ ;  MARRIED LAST YEAR = PIECE 5
+ ;  LIVED WITH SPOUSE = PIECE 6
+ ;  AMOUNT CONTRIBUTED = PIECE 7
+ ;  CONTRIBUTED TO SPOUSE = PIECE 20
+ ;  DG*5.3*890 Amount Contributed Decommissioned.  Display only historical information
  S INCPER=^DGMT(408.22,INCPER,0)
  S DGX="",DGX=$$SETSTR^VALM1("Married Last Year: ",DGX,18,19)
  S DGX=$$SETSTR^VALM1($S($P(INCPER,U,5):"Yes",$P(INCPER,U,5)="":"Unanswered",1:"No"),DGX,38,10)
@@ -34,16 +40,33 @@ SELF(INCPER,NAME,RELATE,ACT,DGMTI,CNT) ; Display information concerning veteran
  . S DGX="",DGX=$$SETSTR^VALM1("Lived with Spouse: ",DGX,18,19)
  . S DGX=$$SETSTR^VALM1($S($P(INCPER,U,6):"Yes",$P(INCPER,U,6)="":"Unanswered",1:"No"),DGX,38,10)
  . D SET^DGDEP(DGX)
+ Q:$P(INCPER,U,5)=1&($P(INCPER,U,6)=1)    ;quit if Lived with Spouse and Married Last Year both equal YES
  ;
- I $P(INCPER,U,6)=0 D
+ I $P(INCPER,U,20)'="" D  ; new contributed to spouse question was answered
+ . S DGX="",DGX=$$SETSTR^VALM1("Contributed to Spouse: ",DGX,14,22)
+ . S DGX=$$SETSTR^VALM1($S($P(INCPER,U,20):"Yes",$P(INCPER,U,20)="":"Unanswered",1:"No"),DGX,38,10)
+ . D SET^DGDEP(DGX)
+ ;
+ Q:$P(INCPER,U,20)'=""   ;no need for old code because new question was answered
+ Q:$P(INCPER,U,6)=""     ;Lived with Spouse is Unanswered, no need to go further
+ ;
+ I $P(INCPER,U,7)'="" D  Q   ;new question has not been answered yet, but amount has value, historical information will display
  . S DGX="",DGX=$$SETSTR^VALM1("Amount Contributed: ",DGX,17,19)
  . S DGX=$$SETSTR^VALM1($S($P(INCPER,U,7)]"":$P(INCPER,U,7),1:"Unanswered"),DGX,38,10)
+ . D SET^DGDEP(DGX)
+ ;
+ Q:$P(INCPER,U,6)=1   ;Lived with Spouse is YES, so no need to go further
+ ;
+ I $P(INCPER,U,7)="" D    ;new question not answered yet but no value is entered
+ . S DGX="",DGX=$$SETSTR^VALM1("Contributed to Spouse: ",DGX,14,22)
+ . S DGX=$$SETSTR^VALM1($S($P(INCPER,U,20):"Yes",$P(INCPER,U,20)="":"Unanswered",1:"No"),DGX,38,10)
  . D SET^DGDEP(DGX)
  Q
  ;
 CHILD(INCPER,NAME,RELATE,ACT,DGMTI,DGMTACT,CNT) ; Display information concerning dependents
  ;
  ;** DG*5.3*688 - GTS Get MT Version
+ ;** DG*5.3*890 - Amount Contributed Decommissioned.  Display only historical information
  N MTVER
  S:(+$G(DGMTI)>0) MTVER=$P($G(^DGMT(408.31,DGMTI,2)),"^",11)
  I (+$G(DGMTI)'>0) DO
@@ -86,9 +109,11 @@ CHILD(INCPER,NAME,RELATE,ACT,DGMTI,DGMTACT,CNT) ; Display information concerning
  D SET^DGDEP(DGX)
  ;
  ;* DG*5.3*624
- S DGX="",DGX=$$SETSTR^VALM1("Amount contributed: ",DGX,17,20)
- S DGX=$$SETSTR^VALM1($S($P(INCPER,U,10)'=1:"N/A",($P(INCPER,U,19)'="0")&($P(INCPER,U,19)'=""):$P(INCPER,U,19),$P(INCPER,U,19)="":"Unanswered",1:"0"),DGX,38,10)
- D SET^DGDEP(DGX)
+ ;* DG*5.3*890   only display amount contributed if value already exists in field
+ I $P(INCPER,U,19)'="" D
+ . S DGX="",DGX=$$SETSTR^VALM1("Amount contributed: ",DGX,17,20)
+ . S DGX=$$SETSTR^VALM1($S($P(INCPER,U,10)'=1:"N/A",($P(INCPER,U,19)'="0")&($P(INCPER,U,19)'=""):$P(INCPER,U,19),$P(INCPER,U,19)="":"Unanswered",1:"0"),DGX,38,10)
+ . D SET^DGDEP(DGX)
  ;
  ;** DG*5.3*688 - GTS Chk MT Version and output correct data
  S DGX=""

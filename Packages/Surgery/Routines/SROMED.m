@@ -1,5 +1,5 @@
 SROMED ;BIR/MAM - ENTER/EDIT MEDICATIONS ;01/30/08
- ;;3.0; Surgery ;**21,44,79,100,151,166**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**21,44,79,100,151,166,184**;24 Jun 93;Build 35
  ;
  I '$D(^XUSEC("SROEDIT",DUZ))&'$D(^XUSEC("SROANES",DUZ)) W !!!,$C(7),"You must hold the SROEDIT key or the SROANES key to use this option !",! Q
  D ^SROLOCK G:SROLOCK END Q:'$D(SRTN)
@@ -43,7 +43,8 @@ D1 I SRF=1 R !!,"ENTER DOSE: ",SRD1:DTIME S:'$T SRD1="^" K:SRD1["^" SRD Q:SRD1["
  Q
 SCR(SRFL,SRPK) ; screening for fields point to the DRUG file (#50)
  N SRDT,SRN0,SRNODE,SROK,SRY S SROK=0,SRY=+Y K ^TMP($J,"SR")
- I $G(SRFL)=1 S SRTN=$S($G(SRTN):SRTN,1:DA),SRN0=$G(^SRF(SRTN,0)),SRDT=$S($P(SRN0,"^",9):$P($P(SRN0,"^",9),"."),1:DT)
+ I $G(SRFL)=1 S SRTN=$S($G(SRTN):SRTN,$G(DA):DA,1:"") I $G(SRTN) S SRN0=$G(^SRF(SRTN,0)),SRDT=$S($P(SRN0,"^",9):$P($P(SRN0,"^",9),"."),1:DT)
+ S SRDT=$S($G(SRDT):SRDT,1:DT)
  D DATA^PSS50(SRY,,$S($G(SRFL):SRDT,1:""),,,"SR")
  I SRPK="S" D  Q SROK
  .S SRNODE=$P($G(^TMP($J,"SR",SRY,63)),"^") K ^TMP($J,"SR") I SRNODE["S" S SROK=1

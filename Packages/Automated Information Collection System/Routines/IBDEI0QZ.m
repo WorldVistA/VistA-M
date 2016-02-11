@@ -1,144 +1,124 @@
-IBDEI0QZ ; ; 06-AUG-2015
+IBDEI0QZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12986,1,4,0)
- ;;=4^805.6
- ;;^UTILITY(U,$J,358.3,12986,2)
- ;;=^273893
- ;;^UTILITY(U,$J,358.3,12987,0)
- ;;=720.2^^65^776^5
- ;;^UTILITY(U,$J,358.3,12987,1,0)
+ ;;^UTILITY(U,$J,358.3,12352,1,4,0)
+ ;;=4^S61.204A
+ ;;^UTILITY(U,$J,358.3,12352,2)
+ ;;=^5032753
+ ;;^UTILITY(U,$J,358.3,12353,0)
+ ;;=S61.205A^^71^708^163
+ ;;^UTILITY(U,$J,358.3,12353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12987,1,3,0)
- ;;=3^Sacroilitis
- ;;^UTILITY(U,$J,358.3,12987,1,4,0)
- ;;=4^720.2
- ;;^UTILITY(U,$J,358.3,12987,2)
- ;;=^259118
- ;;^UTILITY(U,$J,358.3,12988,0)
- ;;=733.42^^65^777^1
- ;;^UTILITY(U,$J,358.3,12988,1,0)
+ ;;^UTILITY(U,$J,358.3,12353,1,3,0)
+ ;;=3^Open wnd of left ring finger w/o damage to nail unspec,
+ ;;^UTILITY(U,$J,358.3,12353,1,4,0)
+ ;;=4^S61.205A
+ ;;^UTILITY(U,$J,358.3,12353,2)
+ ;;=^5032756
+ ;;^UTILITY(U,$J,358.3,12354,0)
+ ;;=S61.206A^^71^708^170
+ ;;^UTILITY(U,$J,358.3,12354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12988,1,3,0)
- ;;=3^Avascular Necrosis
- ;;^UTILITY(U,$J,358.3,12988,1,4,0)
- ;;=4^733.42
- ;;^UTILITY(U,$J,358.3,12988,2)
- ;;=^10798
- ;;^UTILITY(U,$J,358.3,12989,0)
- ;;=726.5^^65^777^2
- ;;^UTILITY(U,$J,358.3,12989,1,0)
+ ;;^UTILITY(U,$J,358.3,12354,1,3,0)
+ ;;=3^Open wnd of right little finger w/o damage to nail unspec,
+ ;;^UTILITY(U,$J,358.3,12354,1,4,0)
+ ;;=4^S61.206A
+ ;;^UTILITY(U,$J,358.3,12354,2)
+ ;;=^5032759
+ ;;^UTILITY(U,$J,358.3,12355,0)
+ ;;=S61.207A^^71^708^160
+ ;;^UTILITY(U,$J,358.3,12355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12989,1,3,0)
- ;;=3^Bursitis
- ;;^UTILITY(U,$J,358.3,12989,1,4,0)
- ;;=4^726.5
- ;;^UTILITY(U,$J,358.3,12989,2)
- ;;=^272537
- ;;^UTILITY(U,$J,358.3,12990,0)
- ;;=924.01^^65^777^3
- ;;^UTILITY(U,$J,358.3,12990,1,0)
+ ;;^UTILITY(U,$J,358.3,12355,1,3,0)
+ ;;=3^Open wnd of left little finger w/o damage to nail unspec,init enctr
+ ;;^UTILITY(U,$J,358.3,12355,1,4,0)
+ ;;=4^S61.207A
+ ;;^UTILITY(U,$J,358.3,12355,2)
+ ;;=^5032762
+ ;;^UTILITY(U,$J,358.3,12356,0)
+ ;;=S91.301A^^71^708^166
+ ;;^UTILITY(U,$J,358.3,12356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12990,1,3,0)
- ;;=3^Contusion
- ;;^UTILITY(U,$J,358.3,12990,1,4,0)
- ;;=4^924.01
- ;;^UTILITY(U,$J,358.3,12990,2)
- ;;=^275416
- ;;^UTILITY(U,$J,358.3,12991,0)
- ;;=835.03^^65^777^4
- ;;^UTILITY(U,$J,358.3,12991,1,0)
+ ;;^UTILITY(U,$J,358.3,12356,1,3,0)
+ ;;=3^Open wnd of right foot unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,12356,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,12356,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,12357,0)
+ ;;=S91.302A^^71^708^156
+ ;;^UTILITY(U,$J,358.3,12357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12991,1,3,0)
- ;;=3^Dislocation, Anterior
- ;;^UTILITY(U,$J,358.3,12991,1,4,0)
- ;;=4^835.03
- ;;^UTILITY(U,$J,358.3,12991,2)
- ;;=^274355
- ;;^UTILITY(U,$J,358.3,12992,0)
- ;;=835.02^^65^777^5
- ;;^UTILITY(U,$J,358.3,12992,1,0)
+ ;;^UTILITY(U,$J,358.3,12357,1,3,0)
+ ;;=3^Open wnd of left foot unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,12357,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,12357,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,12358,0)
+ ;;=S51.801A^^71^708^167
+ ;;^UTILITY(U,$J,358.3,12358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12992,1,3,0)
- ;;=3^Dislocation, Obturator
- ;;^UTILITY(U,$J,358.3,12992,1,4,0)
- ;;=4^835.02
- ;;^UTILITY(U,$J,358.3,12992,2)
- ;;=^274354
- ;;^UTILITY(U,$J,358.3,12993,0)
- ;;=835.01^^65^777^6
- ;;^UTILITY(U,$J,358.3,12993,1,0)
+ ;;^UTILITY(U,$J,358.3,12358,1,3,0)
+ ;;=3^Open wnd of right forearm unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,12358,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,12358,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,12359,0)
+ ;;=S51.802A^^71^708^157
+ ;;^UTILITY(U,$J,358.3,12359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12993,1,3,0)
- ;;=3^Dislocation, Posterior
- ;;^UTILITY(U,$J,358.3,12993,1,4,0)
- ;;=4^835.01
- ;;^UTILITY(U,$J,358.3,12993,2)
- ;;=^274353
- ;;^UTILITY(U,$J,358.3,12994,0)
- ;;=835.00^^65^777^7
- ;;^UTILITY(U,$J,358.3,12994,1,0)
+ ;;^UTILITY(U,$J,358.3,12359,1,3,0)
+ ;;=3^Open wnd of left forearm unspec, initial encount
+ ;;^UTILITY(U,$J,358.3,12359,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,12359,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,12360,0)
+ ;;=S61.401A^^71^708^168
+ ;;^UTILITY(U,$J,358.3,12360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12994,1,3,0)
- ;;=3^Dislocation, Unspecified
- ;;^UTILITY(U,$J,358.3,12994,1,4,0)
- ;;=4^835.00
- ;;^UTILITY(U,$J,358.3,12994,2)
- ;;=^25297
- ;;^UTILITY(U,$J,358.3,12995,0)
- ;;=808.0^^65^777^8
- ;;^UTILITY(U,$J,358.3,12995,1,0)
+ ;;^UTILITY(U,$J,358.3,12360,1,3,0)
+ ;;=3^Open wnd of right hand unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,12360,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,12360,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,12361,0)
+ ;;=S61.402A^^71^708^158
+ ;;^UTILITY(U,$J,358.3,12361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12995,1,3,0)
- ;;=3^Fracture Acetabulum
- ;;^UTILITY(U,$J,358.3,12995,1,4,0)
- ;;=4^808.0
- ;;^UTILITY(U,$J,358.3,12995,2)
- ;;=^273981
- ;;^UTILITY(U,$J,358.3,12996,0)
- ;;=820.8^^65^777^10
- ;;^UTILITY(U,$J,358.3,12996,1,0)
+ ;;^UTILITY(U,$J,358.3,12361,1,3,0)
+ ;;=3^Open wnd of left hand unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,12361,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,12361,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,12362,0)
+ ;;=S81.801A^^71^708^171
+ ;;^UTILITY(U,$J,358.3,12362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12996,1,3,0)
- ;;=3^Fracture, Femoral Neck
- ;;^UTILITY(U,$J,358.3,12996,1,4,0)
- ;;=4^820.8
- ;;^UTILITY(U,$J,358.3,12996,2)
- ;;=^48061
- ;;^UTILITY(U,$J,358.3,12997,0)
- ;;=808.8^^65^777^13
- ;;^UTILITY(U,$J,358.3,12997,1,0)
+ ;;^UTILITY(U,$J,358.3,12362,1,3,0)
+ ;;=3^Open wnd of right lower leg unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,12362,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,12362,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,12363,0)
+ ;;=S81.802A^^71^708^161
+ ;;^UTILITY(U,$J,358.3,12363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12997,1,3,0)
- ;;=3^Fracture, Pelvis Unspec
- ;;^UTILITY(U,$J,358.3,12997,1,4,0)
- ;;=4^808.8
- ;;^UTILITY(U,$J,358.3,12997,2)
- ;;=^274001
- ;;^UTILITY(U,$J,358.3,12998,0)
- ;;=820.20^^65^777^15
- ;;^UTILITY(U,$J,358.3,12998,1,0)
+ ;;^UTILITY(U,$J,358.3,12363,1,3,0)
+ ;;=3^Open wnd of left lower leg unspec, initial encount
+ ;;^UTILITY(U,$J,358.3,12363,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,12363,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,12364,0)
+ ;;=B18.2^^71^709^13
+ ;;^UTILITY(U,$J,358.3,12364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12998,1,3,0)
- ;;=3^Fracture, Trochanter Great
- ;;^UTILITY(U,$J,358.3,12998,1,4,0)
- ;;=4^820.20
- ;;^UTILITY(U,$J,358.3,12998,2)
- ;;=^274186
- ;;^UTILITY(U,$J,358.3,12999,0)
- ;;=820.21^^65^777^11
- ;;^UTILITY(U,$J,358.3,12999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12999,1,3,0)
- ;;=3^Fracture, Intertrochanteric
- ;;^UTILITY(U,$J,358.3,12999,1,4,0)
- ;;=4^820.21
- ;;^UTILITY(U,$J,358.3,12999,2)
- ;;=^274187
- ;;^UTILITY(U,$J,358.3,13000,0)
- ;;=733.14^^65^777^12
- ;;^UTILITY(U,$J,358.3,13000,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13000,1,3,0)
- ;;=3^Fracture, Pathological
+ ;;^UTILITY(U,$J,358.3,12364,1,3,0)
+ ;;=3^Chronic viral hepatitis C

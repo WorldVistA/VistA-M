@@ -1,134 +1,140 @@
-IBDEI03R ; ; 06-AUG-2015
+IBDEI03R ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1226,1,0)
+ ;;^UTILITY(U,$J,358.3,1049,0)
+ ;;=K82.9^^12^125^2
+ ;;^UTILITY(U,$J,358.3,1049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1226,1,3,0)
- ;;=3^Malignant neoplasm of extrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,1226,1,4,0)
- ;;=4^C24.0
- ;;^UTILITY(U,$J,358.3,1226,2)
- ;;=^5000940
- ;;^UTILITY(U,$J,358.3,1227,0)
- ;;=C24.1^^3^39^50
- ;;^UTILITY(U,$J,358.3,1227,1,0)
+ ;;^UTILITY(U,$J,358.3,1049,1,3,0)
+ ;;=3^Gallbladder Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,1049,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,1049,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,1050,0)
+ ;;=K92.2^^12^125^6
+ ;;^UTILITY(U,$J,358.3,1050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1227,1,3,0)
- ;;=3^Malignant neoplasm of ampulla of Vater
- ;;^UTILITY(U,$J,358.3,1227,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,1227,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,1228,0)
- ;;=C25.9^^3^39^70
- ;;^UTILITY(U,$J,358.3,1228,1,0)
+ ;;^UTILITY(U,$J,358.3,1050,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,1050,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,1050,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,1051,0)
+ ;;=K25.9^^12^125^3
+ ;;^UTILITY(U,$J,358.3,1051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1228,1,3,0)
- ;;=3^Malignant neoplasm of pancreas, unspecified
- ;;^UTILITY(U,$J,358.3,1228,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,1228,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,1229,0)
- ;;=C31.9^^3^39^49
- ;;^UTILITY(U,$J,358.3,1229,1,0)
+ ;;^UTILITY(U,$J,358.3,1051,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,1051,1,4,0)
+ ;;=4^K25.9
+ ;;^UTILITY(U,$J,358.3,1051,2)
+ ;;=^5008522
+ ;;^UTILITY(U,$J,358.3,1052,0)
+ ;;=I69.959^^12^126^11
+ ;;^UTILITY(U,$J,358.3,1052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1229,1,3,0)
- ;;=3^Malignant neoplasm of accessory sinus, unspecified
- ;;^UTILITY(U,$J,358.3,1229,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,1229,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,1230,0)
- ;;=C32.9^^3^39^62
- ;;^UTILITY(U,$J,358.3,1230,1,0)
+ ;;^UTILITY(U,$J,358.3,1052,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Unspec Cerebrovascular Disease
+ ;;^UTILITY(U,$J,358.3,1052,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,1052,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,1053,0)
+ ;;=D89.2^^12^126^22
+ ;;^UTILITY(U,$J,358.3,1053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1230,1,3,0)
- ;;=3^Malignant neoplasm of larynx, unspecified
- ;;^UTILITY(U,$J,358.3,1230,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,1230,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,1231,0)
- ;;=C34.91^^3^39^82
- ;;^UTILITY(U,$J,358.3,1231,1,0)
+ ;;^UTILITY(U,$J,358.3,1053,1,3,0)
+ ;;=3^Hypergammaglobulinemia,Unspec
+ ;;^UTILITY(U,$J,358.3,1053,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,1053,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,1054,0)
+ ;;=B19.10^^12^126^15
+ ;;^UTILITY(U,$J,358.3,1054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1231,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
- ;;^UTILITY(U,$J,358.3,1231,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,1231,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,1232,0)
- ;;=C34.92^^3^39^81
- ;;^UTILITY(U,$J,358.3,1232,1,0)
+ ;;^UTILITY(U,$J,358.3,1054,1,3,0)
+ ;;=3^Hepatitis B w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,1054,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,1054,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,1055,0)
+ ;;=B17.10^^12^126^17
+ ;;^UTILITY(U,$J,358.3,1055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1232,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
- ;;^UTILITY(U,$J,358.3,1232,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,1232,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,1233,0)
- ;;=C38.4^^3^39^71
- ;;^UTILITY(U,$J,358.3,1233,1,0)
+ ;;^UTILITY(U,$J,358.3,1055,1,3,0)
+ ;;=3^Hepatitis C w/o Hepatic Coma,Acute
+ ;;^UTILITY(U,$J,358.3,1055,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,1055,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,1056,0)
+ ;;=B18.2^^12^126^18
+ ;;^UTILITY(U,$J,358.3,1056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1233,1,3,0)
- ;;=3^Malignant neoplasm of pleura
- ;;^UTILITY(U,$J,358.3,1233,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,1233,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,1234,0)
- ;;=C45.0^^3^39^86
- ;;^UTILITY(U,$J,358.3,1234,1,0)
+ ;;^UTILITY(U,$J,358.3,1056,1,3,0)
+ ;;=3^Hepatitis C,Chr
+ ;;^UTILITY(U,$J,358.3,1056,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,1056,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,1057,0)
+ ;;=E03.9^^12^126^31
+ ;;^UTILITY(U,$J,358.3,1057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1234,1,3,0)
- ;;=3^Mesothelioma of pleura
- ;;^UTILITY(U,$J,358.3,1234,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,1234,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,1235,0)
- ;;=C49.9^^3^39^55
- ;;^UTILITY(U,$J,358.3,1235,1,0)
+ ;;^UTILITY(U,$J,358.3,1057,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,1057,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,1057,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,1058,0)
+ ;;=E16.2^^12^126^28
+ ;;^UTILITY(U,$J,358.3,1058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1235,1,3,0)
- ;;=3^Malignant neoplasm of connective and soft tissue, unsp
- ;;^UTILITY(U,$J,358.3,1235,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,1235,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,1236,0)
- ;;=C43.9^^3^39^48
- ;;^UTILITY(U,$J,358.3,1236,1,0)
+ ;;^UTILITY(U,$J,358.3,1058,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,1058,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,1058,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,1059,0)
+ ;;=E78.0^^12^126^21
+ ;;^UTILITY(U,$J,358.3,1059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1236,1,3,0)
- ;;=3^Malignant melanoma of skin, unspecified
- ;;^UTILITY(U,$J,358.3,1236,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,1236,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,1237,0)
- ;;=D03.9^^3^39^85
- ;;^UTILITY(U,$J,358.3,1237,1,0)
+ ;;^UTILITY(U,$J,358.3,1059,1,3,0)
+ ;;=3^Hypercholesterolemia,Pure
+ ;;^UTILITY(U,$J,358.3,1059,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,1059,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,1060,0)
+ ;;=E78.1^^12^126^23
+ ;;^UTILITY(U,$J,358.3,1060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1237,1,3,0)
- ;;=3^Melanoma in situ, unspecified
- ;;^UTILITY(U,$J,358.3,1237,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,1237,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,1238,0)
- ;;=C50.911^^3^39^84
- ;;^UTILITY(U,$J,358.3,1238,1,0)
+ ;;^UTILITY(U,$J,358.3,1060,1,3,0)
+ ;;=3^Hyperglyceridemia,Pure
+ ;;^UTILITY(U,$J,358.3,1060,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,1060,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,1061,0)
+ ;;=E78.5^^12^126^26
+ ;;^UTILITY(U,$J,358.3,1061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1238,1,3,0)
- ;;=3^Malignant neoplasm of unsp site of right female breast
- ;;^UTILITY(U,$J,358.3,1238,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,1238,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,1239,0)
- ;;=C50.912^^3^39^83
+ ;;^UTILITY(U,$J,358.3,1061,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,1061,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,1061,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,1062,0)
+ ;;=E78.4^^12^126^25
+ ;;^UTILITY(U,$J,358.3,1062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1062,1,3,0)
+ ;;=3^Hyperlipidemia,Other

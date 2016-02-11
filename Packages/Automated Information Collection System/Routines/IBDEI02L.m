@@ -1,132 +1,136 @@
-IBDEI02L ; ; 06-AUG-2015
+IBDEI02L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,660,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,661,0)
- ;;=Z85.831^^2^27^29
- ;;^UTILITY(U,$J,358.3,661,1,0)
+ ;;^UTILITY(U,$J,358.3,445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,661,1,3,0)
- ;;=3^Personal history of malignant neoplasm of soft tissue
- ;;^UTILITY(U,$J,358.3,661,1,4,0)
- ;;=4^Z85.831
- ;;^UTILITY(U,$J,358.3,661,2)
- ;;=^5063445
- ;;^UTILITY(U,$J,358.3,662,0)
- ;;=Z85.71^^2^27^1
- ;;^UTILITY(U,$J,358.3,662,1,0)
+ ;;^UTILITY(U,$J,358.3,445,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,445,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,445,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,446,0)
+ ;;=F17.221^^3^56^7
+ ;;^UTILITY(U,$J,358.3,446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,662,1,3,0)
- ;;=3^Personal history of Hodgkin lymphoma
- ;;^UTILITY(U,$J,358.3,662,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,662,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,663,0)
- ;;=Z85.830^^2^27^30
- ;;^UTILITY(U,$J,358.3,663,1,0)
+ ;;^UTILITY(U,$J,358.3,446,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,446,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,446,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,447,0)
+ ;;=F17.290^^3^56^8
+ ;;^UTILITY(U,$J,358.3,447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,663,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,663,1,4,0)
- ;;=4^Z85.830
- ;;^UTILITY(U,$J,358.3,663,2)
- ;;=^5063444
- ;;^UTILITY(U,$J,358.3,664,0)
- ;;=Z85.820^^2^27^2
- ;;^UTILITY(U,$J,358.3,664,1,0)
+ ;;^UTILITY(U,$J,358.3,447,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,447,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,447,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,448,0)
+ ;;=F17.291^^3^56^9
+ ;;^UTILITY(U,$J,358.3,448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,664,1,3,0)
- ;;=3^Personal history of malignant melanoma of skin
- ;;^UTILITY(U,$J,358.3,664,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,664,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,665,0)
- ;;=Z85.828^^2^27^31
- ;;^UTILITY(U,$J,358.3,665,1,0)
+ ;;^UTILITY(U,$J,358.3,448,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,448,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,448,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,449,0)
+ ;;=F14.10^^3^57^1
+ ;;^UTILITY(U,$J,358.3,449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,665,1,3,0)
- ;;=3^Personal history of malignant neoplasm of skin NEC
- ;;^UTILITY(U,$J,358.3,665,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,665,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,666,0)
- ;;=Z85.840^^2^27^32
- ;;^UTILITY(U,$J,358.3,666,1,0)
+ ;;^UTILITY(U,$J,358.3,449,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,449,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,449,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,450,0)
+ ;;=F14.14^^3^57^5
+ ;;^UTILITY(U,$J,358.3,450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,666,1,3,0)
- ;;=3^Personal history of malignant neoplasm of eye
- ;;^UTILITY(U,$J,358.3,666,1,4,0)
- ;;=4^Z85.840
- ;;^UTILITY(U,$J,358.3,666,2)
- ;;=^5063446
- ;;^UTILITY(U,$J,358.3,667,0)
- ;;=Z85.841^^2^27^33
- ;;^UTILITY(U,$J,358.3,667,1,0)
+ ;;^UTILITY(U,$J,358.3,450,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,450,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,450,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,451,0)
+ ;;=F14.182^^3^57^6
+ ;;^UTILITY(U,$J,358.3,451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,667,1,3,0)
- ;;=3^Personal history of malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,667,1,4,0)
- ;;=4^Z85.841
- ;;^UTILITY(U,$J,358.3,667,2)
- ;;=^5063447
- ;;^UTILITY(U,$J,358.3,668,0)
- ;;=Z85.848^^2^27^34
- ;;^UTILITY(U,$J,358.3,668,1,0)
+ ;;^UTILITY(U,$J,358.3,451,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,451,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,451,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,452,0)
+ ;;=F14.20^^3^57^3
+ ;;^UTILITY(U,$J,358.3,452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,668,1,3,0)
- ;;=3^Personal history of malignant neoplasm of prt nervous tissue
- ;;^UTILITY(U,$J,358.3,668,1,4,0)
- ;;=4^Z85.848
- ;;^UTILITY(U,$J,358.3,668,2)
- ;;=^5063448
- ;;^UTILITY(U,$J,358.3,669,0)
- ;;=Z85.850^^2^27^35
- ;;^UTILITY(U,$J,358.3,669,1,0)
+ ;;^UTILITY(U,$J,358.3,452,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,452,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,452,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,453,0)
+ ;;=F14.21^^3^57^2
+ ;;^UTILITY(U,$J,358.3,453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,669,1,3,0)
- ;;=3^Personal history of malignant neoplasm of thyroid
- ;;^UTILITY(U,$J,358.3,669,1,4,0)
- ;;=4^Z85.850
- ;;^UTILITY(U,$J,358.3,669,2)
- ;;=^5063449
- ;;^UTILITY(U,$J,358.3,670,0)
- ;;=Z85.858^^2^27^36
- ;;^UTILITY(U,$J,358.3,670,1,0)
+ ;;^UTILITY(U,$J,358.3,453,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,453,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,453,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,454,0)
+ ;;=F14.23^^3^57^4
+ ;;^UTILITY(U,$J,358.3,454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,670,1,3,0)
- ;;=3^Personal history of malignant neoplasm of endocrine glands
- ;;^UTILITY(U,$J,358.3,670,1,4,0)
- ;;=4^Z85.858
- ;;^UTILITY(U,$J,358.3,670,2)
- ;;=^5063450
- ;;^UTILITY(U,$J,358.3,671,0)
- ;;=N17.1^^3^28^2
- ;;^UTILITY(U,$J,358.3,671,1,0)
+ ;;^UTILITY(U,$J,358.3,454,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,454,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,454,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,455,0)
+ ;;=F43.0^^3^58^1
+ ;;^UTILITY(U,$J,358.3,455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,671,1,3,0)
- ;;=3^Acute kidney failure w/ acute cortical necrosis
- ;;^UTILITY(U,$J,358.3,671,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,671,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,672,0)
- ;;=N17.2^^3^28^3
- ;;^UTILITY(U,$J,358.3,672,1,0)
+ ;;^UTILITY(U,$J,358.3,455,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,455,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,455,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,456,0)
+ ;;=F43.21^^3^58^3
+ ;;^UTILITY(U,$J,358.3,456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,672,1,3,0)
- ;;=3^Acute kidney failure w/ medullary necrosis
- ;;^UTILITY(U,$J,358.3,672,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,672,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,673,0)
- ;;=N17.8^^3^28^1
- ;;^UTILITY(U,$J,358.3,673,1,0)
+ ;;^UTILITY(U,$J,358.3,456,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,456,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,456,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,457,0)
+ ;;=F43.22^^3^58^2
+ ;;^UTILITY(U,$J,358.3,457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,673,1,3,0)
- ;;=3^Acute Kidney Failure NEC
+ ;;^UTILITY(U,$J,358.3,457,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,457,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,457,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,458,0)
+ ;;=F43.23^^3^58^5
+ ;;^UTILITY(U,$J,358.3,458,1,0)
+ ;;=^358.31IA^4^2

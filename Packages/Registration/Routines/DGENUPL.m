@@ -1,9 +1,10 @@
-DGENUPL ;ALB/CJM,ISA/KWP,TDM,CKN,BAJ - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 8/15/08 12:40pm
- ;;5.3;REGISTRATION;**147,222,232,363,472,497,564,677,672,688**;Aug 13,1993;Build 29
+DGENUPL ;ALB/CJM,ISA,KWP,TDM,CKN,BAJ,LMD - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;8/15/08 12:40pm
+ ;;5.3;REGISTRATION;**147,222,232,363,472,497,564,677,672,688,871**;Aug 13,1993;Build 84
+ ;
  ;Phase II Moved Z11 to DGENUPL7
 ORUZ11(MSGIEN,ERRCOUNT) ;
  ;Description:  This procedure is used to process a batch of ORU~Z11
- ;messages or a single ORU~Z11 message.The processing consists of
+ ;messages or a single ORU~Z11 message. The processing consists of
  ;uploading the patient enrollment and eligibility data.
  ;
  ;Input:
@@ -24,6 +25,7 @@ ORUZ11(MSGIEN,ERRCOUNT) ;
  Q:'CURLINE
  F  Q:'CURLINE  D  D ADVANCE(MSGIEN,.CURLINE)
  .D GETSEG(MSGIEN,CURLINE,.SEG)
+ .S MSHDT=SEG(7)
  .S MSGID=SEG(10)
  .D NXTSEG(MSGIEN,CURLINE,.SEG)
  .I SEG("TYPE")'="PID" D ADDERROR(MSGID,,"PID SEGMENT MISSING",.ERRCOUNT) Q
@@ -54,7 +56,7 @@ ORFZ11(MSGIEN,MSGID) ;
  N TMPARRY,PID3ARRY,ICN
  ;CURLINE tracks current line in the message
  ;QUERYIEN  the ien of query in the ENROLLMENT QUERY LOG
- ;QRYMSGID  the Message Controll ID of the query
+ ;QRYMSGID  the Message Control ID of the query
  ;QARRAY  array containing the ENROLLMENT QUERY LOG record
  ;HECERROR  error message returned by HEC in response to query
  ;DGRESENT  flag=1 if query was resent
@@ -68,6 +70,9 @@ ORFZ11(MSGIEN,MSGID) ;
  ;
  S CURLINE=1
  S HECERROR=""
+ D GETSEG(MSGIEN,CURLINE,.SEG)  ; DG*5.3*871
+ S MSHDT=SEG(7)                 ; DG*5.3*871
+ S MSGID=SEG(10)                ; DG*5.3*871
  ;
  D  ;drops out on error
  .D NXTSEG(MSGIEN,.CURLINE,.SEG)
@@ -199,7 +204,7 @@ GETSEG(MSGIEN,CURLINE,SEG) ;
  ..I IVMPID(CNTR)="""""" S IVMPID(CNTR)=""
  .M SEG=IVMPID
  ;
- ;the MSH & BHS segs contain as their first piece the field separator, which makes breaKing the seqment into fields a bit different
+ ;the MSH & BHS segs contain as their first piece the field separator, which makes breaking the segment into fields a bit different
  I (SEG("TYPE")="MSH")!(SEG("TYPE")="BHS") D
  .S SEG(1)=$E(SEGMENT,4)
  .F I=2:1:30 S SEG(I)=$P(SEGMENT,HLFS,I)
@@ -208,7 +213,7 @@ GETSEG(MSGIEN,CURLINE,SEG) ;
  Q
  ;
 ADVANCE(MSGIEN,CURLINE) ;
- ;Description: Used to find the begining of the next message in the batch.
+ ;Description: Used to find the beginning of the next message in the batch.
  ;
  ;Input:
  ;  MSGIEN - ien of message in the HL7 MESSAGE TEXT file.

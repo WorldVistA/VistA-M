@@ -1,136 +1,124 @@
-IBDEI0UT ; ; 06-AUG-2015
+IBDEI0UT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14967,0)
- ;;=428.42^^81^936^52
- ;;^UTILITY(U,$J,358.3,14967,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14967,1,4,0)
- ;;=4^428.42
- ;;^UTILITY(U,$J,358.3,14967,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic,Chronic
- ;;^UTILITY(U,$J,358.3,14967,2)
- ;;=^328501
- ;;^UTILITY(U,$J,358.3,14968,0)
- ;;=428.43^^81^936^51
- ;;^UTILITY(U,$J,358.3,14968,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14968,1,4,0)
- ;;=4^428.43
- ;;^UTILITY(U,$J,358.3,14968,1,5,0)
- ;;=5^Heart Failure,Systolic&Diastolic
- ;;^UTILITY(U,$J,358.3,14968,2)
- ;;=^328502
- ;;^UTILITY(U,$J,358.3,14969,0)
- ;;=396.3^^81^936^10
- ;;^UTILITY(U,$J,358.3,14969,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14969,1,4,0)
- ;;=4^396.3
- ;;^UTILITY(U,$J,358.3,14969,1,5,0)
- ;;=5^Aortic and Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,14969,2)
- ;;=Aortic and Mitral Insufficiency^269583
- ;;^UTILITY(U,$J,358.3,14970,0)
- ;;=429.9^^81^936^28
- ;;^UTILITY(U,$J,358.3,14970,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14970,1,4,0)
- ;;=4^429.9
- ;;^UTILITY(U,$J,358.3,14970,1,5,0)
- ;;=5^Diastolic Dysfunction
- ;;^UTILITY(U,$J,358.3,14970,2)
- ;;=^54741
- ;;^UTILITY(U,$J,358.3,14971,0)
- ;;=453.79^^81^936^27
- ;;^UTILITY(U,$J,358.3,14971,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14971,1,4,0)
- ;;=4^453.79
- ;;^UTILITY(U,$J,358.3,14971,1,5,0)
- ;;=5^Chr Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,14971,2)
- ;;=^338251
- ;;^UTILITY(U,$J,358.3,14972,0)
- ;;=453.89^^81^936^1
- ;;^UTILITY(U,$J,358.3,14972,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14972,1,4,0)
- ;;=4^453.89
- ;;^UTILITY(U,$J,358.3,14972,1,5,0)
- ;;=5^AC Venous Emblsm Oth Spec Veins
- ;;^UTILITY(U,$J,358.3,14972,2)
- ;;=^338259
- ;;^UTILITY(U,$J,358.3,14973,0)
- ;;=454.2^^81^936^85
- ;;^UTILITY(U,$J,358.3,14973,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14973,1,4,0)
- ;;=4^454.2
- ;;^UTILITY(U,$J,358.3,14973,1,5,0)
- ;;=5^Varicose Veins w/Ulcer&Inflam
- ;;^UTILITY(U,$J,358.3,14973,2)
- ;;=^269821
- ;;^UTILITY(U,$J,358.3,14974,0)
- ;;=397.1^^81^936^74
- ;;^UTILITY(U,$J,358.3,14974,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14974,1,4,0)
- ;;=4^397.1
- ;;^UTILITY(U,$J,358.3,14974,1,5,0)
- ;;=5^Rheumatic Disease Pulmonary Valve
- ;;^UTILITY(U,$J,358.3,14974,2)
- ;;=^269587
- ;;^UTILITY(U,$J,358.3,14975,0)
- ;;=397.0^^81^936^75
- ;;^UTILITY(U,$J,358.3,14975,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14975,1,4,0)
- ;;=4^397.0
- ;;^UTILITY(U,$J,358.3,14975,1,5,0)
- ;;=5^Rheumatic Disease Tricuspid Valve
- ;;^UTILITY(U,$J,358.3,14975,2)
- ;;=^35528
- ;;^UTILITY(U,$J,358.3,14976,0)
- ;;=414.3^^81^936^17
- ;;^UTILITY(U,$J,358.3,14976,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14976,1,4,0)
- ;;=4^414.3
- ;;^UTILITY(U,$J,358.3,14976,1,5,0)
- ;;=5^CAD d/t Lipid Rich Plaque
- ;;^UTILITY(U,$J,358.3,14976,2)
- ;;=^336601
- ;;^UTILITY(U,$J,358.3,14977,0)
- ;;=414.4^^81^936^16
- ;;^UTILITY(U,$J,358.3,14977,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14977,1,4,0)
- ;;=4^414.4
- ;;^UTILITY(U,$J,358.3,14977,1,5,0)
- ;;=5^CAD d/t Calc Coronary Lesion
- ;;^UTILITY(U,$J,358.3,14977,2)
- ;;=^340518
- ;;^UTILITY(U,$J,358.3,14978,0)
- ;;=425.11^^81^936^60
- ;;^UTILITY(U,$J,358.3,14978,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14978,1,4,0)
- ;;=4^425.11
- ;;^UTILITY(U,$J,358.3,14978,1,5,0)
- ;;=5^Hypertrophic Subaortic Stenosis
- ;;^UTILITY(U,$J,358.3,14978,2)
- ;;=^340520
- ;;^UTILITY(U,$J,358.3,14979,0)
- ;;=425.18^^81^936^59
- ;;^UTILITY(U,$J,358.3,14979,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14979,1,4,0)
- ;;=4^425.18
- ;;^UTILITY(U,$J,358.3,14979,1,5,0)
- ;;=5^Hypertrophic Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,14979,2)
- ;;=^340521
- ;;^UTILITY(U,$J,358.3,14980,0)
- ;;=V12.55^^81^936^54
+ ;;^UTILITY(U,$J,358.3,14180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14180,1,3,0)
+ ;;=3^DM Type 2 w/ Moderate NonProlif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,14180,1,4,0)
+ ;;=4^E11.339
+ ;;^UTILITY(U,$J,358.3,14180,2)
+ ;;=^5002637
+ ;;^UTILITY(U,$J,358.3,14181,0)
+ ;;=E11.331^^82^774^19
+ ;;^UTILITY(U,$J,358.3,14181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14181,1,3,0)
+ ;;=3^DM Type 2 w/ Moderate NonProlif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,14181,1,4,0)
+ ;;=4^E11.331
+ ;;^UTILITY(U,$J,358.3,14181,2)
+ ;;=^5002636
+ ;;^UTILITY(U,$J,358.3,14182,0)
+ ;;=E11.329^^82^774^16
+ ;;^UTILITY(U,$J,358.3,14182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14182,1,3,0)
+ ;;=3^DM Type 2 w/ Mild NonProlif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,14182,1,4,0)
+ ;;=4^E11.329
+ ;;^UTILITY(U,$J,358.3,14182,2)
+ ;;=^5002635
+ ;;^UTILITY(U,$J,358.3,14183,0)
+ ;;=E11.321^^82^774^17
+ ;;^UTILITY(U,$J,358.3,14183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14183,1,3,0)
+ ;;=3^DM Type 2 w/ Mild NonProlif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,14183,1,4,0)
+ ;;=4^E11.321
+ ;;^UTILITY(U,$J,358.3,14183,2)
+ ;;=^5002634
+ ;;^UTILITY(U,$J,358.3,14184,0)
+ ;;=E11.319^^82^774^24
+ ;;^UTILITY(U,$J,358.3,14184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14184,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,14184,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,14184,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,14185,0)
+ ;;=E11.311^^82^774^25
+ ;;^UTILITY(U,$J,358.3,14185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14185,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,14185,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,14185,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,14186,0)
+ ;;=E10.9^^82^774^13
+ ;;^UTILITY(U,$J,358.3,14186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14186,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,14186,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,14186,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,14187,0)
+ ;;=E10.311^^82^774^11
+ ;;^UTILITY(U,$J,358.3,14187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14187,1,3,0)
+ ;;=3^DM Type 1 w/ Unspec Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,14187,1,4,0)
+ ;;=4^E10.311
+ ;;^UTILITY(U,$J,358.3,14187,2)
+ ;;=^5002592
+ ;;^UTILITY(U,$J,358.3,14188,0)
+ ;;=E10.319^^82^774^12
+ ;;^UTILITY(U,$J,358.3,14188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14188,1,3,0)
+ ;;=3^DM Type 1 w/ Unspec Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,14188,1,4,0)
+ ;;=4^E10.319
+ ;;^UTILITY(U,$J,358.3,14188,2)
+ ;;=^5002593
+ ;;^UTILITY(U,$J,358.3,14189,0)
+ ;;=E10.36^^82^774^1
+ ;;^UTILITY(U,$J,358.3,14189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14189,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Cataract
+ ;;^UTILITY(U,$J,358.3,14189,1,4,0)
+ ;;=4^E10.36
+ ;;^UTILITY(U,$J,358.3,14189,2)
+ ;;=^5002602
+ ;;^UTILITY(U,$J,358.3,14190,0)
+ ;;=E10.39^^82^774^2
+ ;;^UTILITY(U,$J,358.3,14190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14190,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complication
+ ;;^UTILITY(U,$J,358.3,14190,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,14190,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,14191,0)
+ ;;=E10.321^^82^774^3
+ ;;^UTILITY(U,$J,358.3,14191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14191,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,14191,1,4,0)
+ ;;=4^E10.321
+ ;;^UTILITY(U,$J,358.3,14191,2)
+ ;;=^5002594
+ ;;^UTILITY(U,$J,358.3,14192,0)
+ ;;=E10.329^^82^774^4

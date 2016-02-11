@@ -1,5 +1,5 @@
 LRVRMI3 ;DALOI/STAFF - LAB MICRO LEDI INTERFACE ;08/15/13  16:08
- ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
+ ;;5.2;LAB SERVICE;**350,427,453**;Sep 27, 1994;Build 4
  ;
  ; Part of Micro LEDI interface.  It is a continuation of ^LRVRMI4 and ^LRVRMI2. Processes data in the temp global ^TMP("LRMI")
  ; and stores it into the appropriate sections of the Lab Data Microbiology file (#63.05).
@@ -20,7 +20,7 @@ NODE(LRNODE) ;  Process similar multiples - nodes 15,19-31
  . S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,IEN,0)),LRX=$S(LRX'="":LRX,1:" ")
  . I LRX'=" ",$$DUPCHK^LRVRMI3(LRLL,LRPROF,.LRCMT,LRX) Q
  . S LRFDA(1,LRFILE,"+"_IEN_","_LRIDT_","_LRDFN_",",.01)=LRX
- . S LRFDAIEN(IEN)=IEN
+ . ;S LRFDAIEN(IEN)=IEN
  . ;
  . ; if result came across in NTE, PL and status info will be under ^(0) node
  . I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,LRNODE,0)) D  ;

@@ -1,124 +1,124 @@
-IBDEI1ZF ; ; 06-AUG-2015
+IBDEI1ZF ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34723,1,4,0)
- ;;=4^S32.441S
- ;;^UTILITY(U,$J,358.3,34723,2)
- ;;=^5024814
- ;;^UTILITY(U,$J,358.3,34724,0)
- ;;=S32.422S^^183^2022^17
- ;;^UTILITY(U,$J,358.3,34724,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34724,1,3,0)
- ;;=3^Disp fx of posterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34724,1,4,0)
- ;;=4^S32.422S
- ;;^UTILITY(U,$J,358.3,34724,2)
- ;;=^5024748
- ;;^UTILITY(U,$J,358.3,34725,0)
- ;;=S32.421S^^183^2022^18
- ;;^UTILITY(U,$J,358.3,34725,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34725,1,3,0)
- ;;=3^Disp fx of posterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34725,1,4,0)
- ;;=4^S32.421S
- ;;^UTILITY(U,$J,358.3,34725,2)
- ;;=^5024742
- ;;^UTILITY(U,$J,358.3,34726,0)
- ;;=S32.452S^^183^2022^19
- ;;^UTILITY(U,$J,358.3,34726,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34726,1,3,0)
- ;;=3^Disp fx of transverse of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34726,1,4,0)
- ;;=4^S32.452S
- ;;^UTILITY(U,$J,358.3,34726,2)
- ;;=^5024856
- ;;^UTILITY(U,$J,358.3,34727,0)
- ;;=S32.451S^^183^2022^20
- ;;^UTILITY(U,$J,358.3,34727,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34727,1,3,0)
- ;;=3^Disp fx of transverse of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34727,1,4,0)
- ;;=4^S32.451S
- ;;^UTILITY(U,$J,358.3,34727,2)
- ;;=^5024850
- ;;^UTILITY(U,$J,358.3,34728,0)
- ;;=S32.512S^^183^2022^21
- ;;^UTILITY(U,$J,358.3,34728,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34728,1,3,0)
- ;;=3^Fx of superior rim of left pubis, sequela
- ;;^UTILITY(U,$J,358.3,34728,1,4,0)
- ;;=4^S32.512S
- ;;^UTILITY(U,$J,358.3,34728,2)
- ;;=^5025018
- ;;^UTILITY(U,$J,358.3,34729,0)
- ;;=S32.511S^^183^2022^22
- ;;^UTILITY(U,$J,358.3,34729,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34729,1,3,0)
- ;;=3^Fx of superior rim of right pubis, sequela
- ;;^UTILITY(U,$J,358.3,34729,1,4,0)
- ;;=4^S32.511S
- ;;^UTILITY(U,$J,358.3,34729,2)
- ;;=^5025012
- ;;^UTILITY(U,$J,358.3,34730,0)
- ;;=S32.810S^^183^2022^23
- ;;^UTILITY(U,$J,358.3,34730,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34730,1,3,0)
- ;;=3^Mult fx of pelvis w stable disrupt of pelvic ring, sequela
- ;;^UTILITY(U,$J,358.3,34730,1,4,0)
- ;;=4^S32.810S
- ;;^UTILITY(U,$J,358.3,34730,2)
- ;;=^5025102
- ;;^UTILITY(U,$J,358.3,34731,0)
- ;;=S32.811S^^183^2022^24
- ;;^UTILITY(U,$J,358.3,34731,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34731,1,3,0)
- ;;=3^Mult fx of pelvis w unstable disrupt of pelvic ring, sequela
- ;;^UTILITY(U,$J,358.3,34731,1,4,0)
- ;;=4^S32.811S
- ;;^UTILITY(U,$J,358.3,34731,2)
- ;;=^5025108
- ;;^UTILITY(U,$J,358.3,34732,0)
- ;;=S32.465S^^183^2022^25
- ;;^UTILITY(U,$J,358.3,34732,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34732,1,3,0)
- ;;=3^Nondisp associated transv/post fx left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34732,1,4,0)
- ;;=4^S32.465S
- ;;^UTILITY(U,$J,358.3,34732,2)
- ;;=^5024910
- ;;^UTILITY(U,$J,358.3,34733,0)
- ;;=S32.464S^^183^2022^26
- ;;^UTILITY(U,$J,358.3,34733,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34733,1,3,0)
- ;;=3^Nondisp associated transv/post fx right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34733,1,4,0)
- ;;=4^S32.464S
- ;;^UTILITY(U,$J,358.3,34733,2)
- ;;=^5024904
- ;;^UTILITY(U,$J,358.3,34734,0)
- ;;=S32.315S^^183^2022^32
- ;;^UTILITY(U,$J,358.3,34734,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34734,1,3,0)
- ;;=3^Nondisp fx of avulsion of left ilium, sequela
- ;;^UTILITY(U,$J,358.3,34734,1,4,0)
- ;;=4^S32.315S
- ;;^UTILITY(U,$J,358.3,34734,2)
- ;;=^5024676
- ;;^UTILITY(U,$J,358.3,34735,0)
- ;;=S32.615S^^183^2022^33
- ;;^UTILITY(U,$J,358.3,34735,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34735,1,3,0)
- ;;=3^Nondisp fx of avulsion of left ischium, sequela
+ ;;^UTILITY(U,$J,358.3,33192,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,33192,1,3,0)
+ ;;=3^Behavior Intervent,Ind,ea 15min
+ ;;^UTILITY(U,$J,358.3,33193,0)
+ ;;=96153^^147^1624^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33193,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33193,1,2,0)
+ ;;=2^96153
+ ;;^UTILITY(U,$J,358.3,33193,1,3,0)
+ ;;=3^Behavior Intervent,Grp,ea 15min
+ ;;^UTILITY(U,$J,358.3,33194,0)
+ ;;=96154^^147^1624^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33194,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33194,1,2,0)
+ ;;=2^96154
+ ;;^UTILITY(U,$J,358.3,33194,1,3,0)
+ ;;=3^Behavior Intervent,Fam w/Pt,ea 15min
+ ;;^UTILITY(U,$J,358.3,33195,0)
+ ;;=96155^^147^1624^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33195,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33195,1,2,0)
+ ;;=2^96155
+ ;;^UTILITY(U,$J,358.3,33195,1,3,0)
+ ;;=3^Behavior Intervent,Fam w/o Pt,ea 15min
+ ;;^UTILITY(U,$J,358.3,33196,0)
+ ;;=99368^^147^1625^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33196,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33196,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,33196,1,3,0)
+ ;;=3^Non-phys Team Conf w/o Pt &/or Family,30+ min
+ ;;^UTILITY(U,$J,358.3,33197,0)
+ ;;=99366^^147^1625^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33197,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33197,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,33197,1,3,0)
+ ;;=3^Non-phys Team Conf w/ Pt &/or Family,30+ min
+ ;;^UTILITY(U,$J,358.3,33198,0)
+ ;;=90785^^147^1626^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33198,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33198,1,2,0)
+ ;;=2^90785
+ ;;^UTILITY(U,$J,358.3,33198,1,3,0)
+ ;;=3^Interactive Complexity
+ ;;^UTILITY(U,$J,358.3,33199,0)
+ ;;=H0001^^147^1627^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33199,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33199,1,2,0)
+ ;;=2^H0001
+ ;;^UTILITY(U,$J,358.3,33199,1,3,0)
+ ;;=3^Addictions Assessment
+ ;;^UTILITY(U,$J,358.3,33200,0)
+ ;;=H0002^^147^1627^9^^^^1
+ ;;^UTILITY(U,$J,358.3,33200,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33200,1,2,0)
+ ;;=2^H0002
+ ;;^UTILITY(U,$J,358.3,33200,1,3,0)
+ ;;=3^Screen for Addictions Admission Eligibility
+ ;;^UTILITY(U,$J,358.3,33201,0)
+ ;;=H0003^^147^1627^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33201,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33201,1,2,0)
+ ;;=2^H0003
+ ;;^UTILITY(U,$J,358.3,33201,1,3,0)
+ ;;=3^Alcohol/Drug Screen;lab analysis
+ ;;^UTILITY(U,$J,358.3,33202,0)
+ ;;=H0004^^147^1627^7^^^^1
+ ;;^UTILITY(U,$J,358.3,33202,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33202,1,2,0)
+ ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,33202,1,3,0)
+ ;;=3^Individual Counseling & Therapy,per 15 min
+ ;;^UTILITY(U,$J,358.3,33203,0)
+ ;;=H0005^^147^1627^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33203,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33203,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,33203,1,3,0)
+ ;;=3^Addictions Group Counseling by Clinician
+ ;;^UTILITY(U,$J,358.3,33204,0)
+ ;;=H0006^^147^1627^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33204,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33204,1,2,0)
+ ;;=2^H0006
+ ;;^UTILITY(U,$J,358.3,33204,1,3,0)
+ ;;=3^Alcohol/Drug Case Management
+ ;;^UTILITY(U,$J,358.3,33205,0)
+ ;;=H0020^^147^1627^8^^^^1
+ ;;^UTILITY(U,$J,358.3,33205,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33205,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,33205,1,3,0)
+ ;;=3^Methadone Admin &/or Svc by Licensed Program
+ ;;^UTILITY(U,$J,358.3,33206,0)
+ ;;=H0025^^147^1627^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33206,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33206,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,33206,1,3,0)
+ ;;=3^Addictions Health Prevention Education Service
+ ;;^UTILITY(U,$J,358.3,33207,0)
+ ;;=H0030^^147^1627^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33207,1,0)
+ ;;=^358.31IA^3^2

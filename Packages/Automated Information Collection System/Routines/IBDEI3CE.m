@@ -1,0 +1,128 @@
+IBDEI3CE ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,56159,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,56159,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,56160,0)
+ ;;=W17.4XXA^^256^2794^39
+ ;;^UTILITY(U,$J,358.3,56160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56160,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56160,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,56160,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,56161,0)
+ ;;=W17.4XXD^^256^2794^40
+ ;;^UTILITY(U,$J,358.3,56161,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56161,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,56161,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,56161,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,56162,0)
+ ;;=W17.81XA^^256^2794^27
+ ;;^UTILITY(U,$J,358.3,56162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56162,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56162,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,56162,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,56163,0)
+ ;;=W17.81XD^^256^2794^28
+ ;;^UTILITY(U,$J,358.3,56163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56163,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,56163,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,56163,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,56164,0)
+ ;;=W17.89XA^^256^2794^55
+ ;;^UTILITY(U,$J,358.3,56164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56164,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56164,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,56164,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,56165,0)
+ ;;=W17.89XD^^256^2794^56
+ ;;^UTILITY(U,$J,358.3,56165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56165,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,56165,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,56165,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,56166,0)
+ ;;=W18.11XA^^256^2794^63
+ ;;^UTILITY(U,$J,358.3,56166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56166,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56166,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,56166,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,56167,0)
+ ;;=W18.11XD^^256^2794^64
+ ;;^UTILITY(U,$J,358.3,56167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56167,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,56167,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,56167,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,56168,0)
+ ;;=W18.12XA^^256^2794^61
+ ;;^UTILITY(U,$J,358.3,56168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56168,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56168,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,56168,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,56169,0)
+ ;;=W18.12XD^^256^2794^62
+ ;;^UTILITY(U,$J,358.3,56169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56169,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,56169,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,56169,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,56170,0)
+ ;;=W18.2XXA^^256^2794^73
+ ;;^UTILITY(U,$J,358.3,56170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56170,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,56170,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,56170,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,56171,0)
+ ;;=W18.2XXD^^256^2794^74
+ ;;^UTILITY(U,$J,358.3,56171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,56171,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,56171,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,56171,2)
+ ;;=^5059807

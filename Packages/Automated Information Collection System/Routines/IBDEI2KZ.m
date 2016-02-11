@@ -1,0 +1,132 @@
+IBDEI2KZ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,43291,1,3,0)
+ ;;=3^Personal Hx of TIA
+ ;;^UTILITY(U,$J,358.3,43291,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,43291,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,43292,0)
+ ;;=Z86.79^^197^2185^43
+ ;;^UTILITY(U,$J,358.3,43292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43292,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,43292,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,43292,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,43293,0)
+ ;;=Z87.11^^197^2185^57
+ ;;^UTILITY(U,$J,358.3,43293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43293,1,3,0)
+ ;;=3^Personal Hx of Peptic Ulcer Disease
+ ;;^UTILITY(U,$J,358.3,43293,1,4,0)
+ ;;=4^Z87.11
+ ;;^UTILITY(U,$J,358.3,43293,2)
+ ;;=^5063482
+ ;;^UTILITY(U,$J,358.3,43294,0)
+ ;;=Z86.010^^197^2185^44
+ ;;^UTILITY(U,$J,358.3,43294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43294,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,43294,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,43294,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,43295,0)
+ ;;=Z87.39^^197^2185^54
+ ;;^UTILITY(U,$J,358.3,43295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43295,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal System Diseases
+ ;;^UTILITY(U,$J,358.3,43295,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,43295,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,43296,0)
+ ;;=Z92.3^^197^2185^48
+ ;;^UTILITY(U,$J,358.3,43296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43296,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,43296,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,43296,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,43297,0)
+ ;;=Z87.820^^197^2185^59
+ ;;^UTILITY(U,$J,358.3,43297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43297,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,43297,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,43297,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,43298,0)
+ ;;=Z87.891^^197^2185^55
+ ;;^UTILITY(U,$J,358.3,43298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43298,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,43298,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,43298,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,43299,0)
+ ;;=Z77.090^^197^2185^45
+ ;;^UTILITY(U,$J,358.3,43299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43299,1,3,0)
+ ;;=3^Personal Hx of Contact With & Exposure to Asbestos
+ ;;^UTILITY(U,$J,358.3,43299,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,43299,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,43300,0)
+ ;;=Z57.8^^197^2185^56
+ ;;^UTILITY(U,$J,358.3,43300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43300,1,3,0)
+ ;;=3^Personal Hx of Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,43300,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,43300,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,43301,0)
+ ;;=Z91.81^^197^2185^46
+ ;;^UTILITY(U,$J,358.3,43301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43301,1,3,0)
+ ;;=3^Personal Hx of Falling
+ ;;^UTILITY(U,$J,358.3,43301,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,43301,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,43302,0)
+ ;;=Z80.0^^197^2185^23
+ ;;^UTILITY(U,$J,358.3,43302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43302,1,3,0)
+ ;;=3^Family Hx of Malig Neop Digestive Organs
+ ;;^UTILITY(U,$J,358.3,43302,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,43302,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,43303,0)
+ ;;=Z80.1^^197^2185^30
+ ;;^UTILITY(U,$J,358.3,43303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43303,1,3,0)
+ ;;=3^Family Hx of Malig Neop Trachea,Bronchus & Lung
+ ;;^UTILITY(U,$J,358.3,43303,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,43303,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,43304,0)
+ ;;=Z80.3^^197^2185^22

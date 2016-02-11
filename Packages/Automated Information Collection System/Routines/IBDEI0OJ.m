@@ -1,138 +1,128 @@
-IBDEI0OJ ; ; 06-AUG-2015
+IBDEI0OJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11699,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11699,1,2,0)
- ;;=2^V40.39
- ;;^UTILITY(U,$J,358.3,11699,1,5,0)
- ;;=5^Behavioral Problem NEC
- ;;^UTILITY(U,$J,358.3,11699,2)
- ;;=^340622
- ;;^UTILITY(U,$J,358.3,11700,0)
- ;;=V65.19^^53^669^45
- ;;^UTILITY(U,$J,358.3,11700,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11700,1,2,0)
- ;;=2^V65.19
- ;;^UTILITY(U,$J,358.3,11700,1,5,0)
- ;;=5^Person Consulting on Behalf of Pt
- ;;^UTILITY(U,$J,358.3,11700,2)
- ;;=^329985
- ;;^UTILITY(U,$J,358.3,11701,0)
- ;;=V66.7^^53^669^8
- ;;^UTILITY(U,$J,358.3,11701,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11701,1,2,0)
- ;;=2^V66.7
- ;;^UTILITY(U,$J,358.3,11701,1,5,0)
- ;;=5^Encounter for Palliative Care
- ;;^UTILITY(U,$J,358.3,11701,2)
- ;;=^89209
- ;;^UTILITY(U,$J,358.3,11702,0)
- ;;=V11.4^^53^669^20
- ;;^UTILITY(U,$J,358.3,11702,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11702,1,2,0)
- ;;=2^V11.4
- ;;^UTILITY(U,$J,358.3,11702,1,5,0)
- ;;=5^Hx Combat/Operational Stress
- ;;^UTILITY(U,$J,358.3,11702,2)
- ;;=^339674
- ;;^UTILITY(U,$J,358.3,11703,0)
- ;;=V60.1^^53^669^22
- ;;^UTILITY(U,$J,358.3,11703,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11703,1,2,0)
- ;;=2^V60.1
- ;;^UTILITY(U,$J,358.3,11703,1,5,0)
- ;;=5^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,11703,2)
- ;;=^295540
- ;;^UTILITY(U,$J,358.3,11704,0)
- ;;=V62.84^^53^669^49
- ;;^UTILITY(U,$J,358.3,11704,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11704,1,2,0)
- ;;=2^V62.84
- ;;^UTILITY(U,$J,358.3,11704,1,5,0)
- ;;=5^Suicidal Ideation
- ;;^UTILITY(U,$J,358.3,11704,2)
- ;;=^332876
- ;;^UTILITY(U,$J,358.3,11705,0)
- ;;=V62.85^^53^669^18
- ;;^UTILITY(U,$J,358.3,11705,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11705,1,2,0)
- ;;=2^V62.85
- ;;^UTILITY(U,$J,358.3,11705,1,5,0)
- ;;=5^Homicidal Ideation
- ;;^UTILITY(U,$J,358.3,11705,2)
- ;;=^339690
- ;;^UTILITY(U,$J,358.3,11706,0)
- ;;=V58.61^^53^669^25
- ;;^UTILITY(U,$J,358.3,11706,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11706,1,2,0)
- ;;=2^V58.61
- ;;^UTILITY(U,$J,358.3,11706,1,5,0)
- ;;=5^L/T (Current) Anticoagulant Use
- ;;^UTILITY(U,$J,358.3,11706,2)
- ;;=^303459
- ;;^UTILITY(U,$J,358.3,11707,0)
- ;;=V58.62^^53^669^24
- ;;^UTILITY(U,$J,358.3,11707,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11707,1,2,0)
- ;;=2^V58.62
- ;;^UTILITY(U,$J,358.3,11707,1,5,0)
- ;;=5^L/T (Current) Antibiotics Use
- ;;^UTILITY(U,$J,358.3,11707,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,11708,0)
- ;;=V58.63^^53^669^26
- ;;^UTILITY(U,$J,358.3,11708,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11708,1,2,0)
- ;;=2^V58.63
- ;;^UTILITY(U,$J,358.3,11708,1,5,0)
- ;;=5^L/T (Current) Antiplts/Antithrmbtcs
- ;;^UTILITY(U,$J,358.3,11708,2)
- ;;=^329978
- ;;^UTILITY(U,$J,358.3,11709,0)
- ;;=V58.64^^53^669^30
- ;;^UTILITY(U,$J,358.3,11709,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11709,1,2,0)
- ;;=2^V58.64
- ;;^UTILITY(U,$J,358.3,11709,1,5,0)
- ;;=5^L/T (Current) NSAIDS Use
- ;;^UTILITY(U,$J,358.3,11709,2)
- ;;=^329979
- ;;^UTILITY(U,$J,358.3,11710,0)
- ;;=V58.65^^53^669^32
- ;;^UTILITY(U,$J,358.3,11710,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11710,1,2,0)
- ;;=2^V58.65
- ;;^UTILITY(U,$J,358.3,11710,1,5,0)
- ;;=5^L/T (Current) Steroids Use
- ;;^UTILITY(U,$J,358.3,11710,2)
- ;;=^329980
- ;;^UTILITY(U,$J,358.3,11711,0)
- ;;=V58.66^^53^669^27
- ;;^UTILITY(U,$J,358.3,11711,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11711,1,2,0)
- ;;=2^V58.66
- ;;^UTILITY(U,$J,358.3,11711,1,5,0)
- ;;=5^L/T (Current) Aspirin Use
- ;;^UTILITY(U,$J,358.3,11711,2)
- ;;=^331584
- ;;^UTILITY(U,$J,358.3,11712,0)
- ;;=V58.67^^53^669^29
- ;;^UTILITY(U,$J,358.3,11712,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11712,1,2,0)
- ;;=2^V58.67
+ ;;^UTILITY(U,$J,358.3,11225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11225,1,3,0)
+ ;;=3^Primary Osteoarthritis of Hip,Bilateral
+ ;;^UTILITY(U,$J,358.3,11225,1,4,0)
+ ;;=4^M16.0
+ ;;^UTILITY(U,$J,358.3,11225,2)
+ ;;=^5010769
+ ;;^UTILITY(U,$J,358.3,11226,0)
+ ;;=M16.11^^68^681^116
+ ;;^UTILITY(U,$J,358.3,11226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11226,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,11226,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,11226,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,11227,0)
+ ;;=M16.12^^68^681^110
+ ;;^UTILITY(U,$J,358.3,11227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11227,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,11227,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,11227,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,11228,0)
+ ;;=M17.0^^68^681^106
+ ;;^UTILITY(U,$J,358.3,11228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11228,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,11228,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,11228,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,11229,0)
+ ;;=M17.11^^68^681^117
+ ;;^UTILITY(U,$J,358.3,11229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11229,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,11229,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,11229,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,11230,0)
+ ;;=M17.12^^68^681^111
+ ;;^UTILITY(U,$J,358.3,11230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11230,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,11230,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,11230,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,11231,0)
+ ;;=M18.0^^68^681^105
+ ;;^UTILITY(U,$J,358.3,11231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11231,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,11231,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,11231,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,11232,0)
+ ;;=M18.11^^68^681^115
+ ;;^UTILITY(U,$J,358.3,11232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11232,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,11232,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,11232,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,11233,0)
+ ;;=M18.12^^68^681^109
+ ;;^UTILITY(U,$J,358.3,11233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11233,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,11233,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,11233,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,11234,0)
+ ;;=M19.011^^68^681^118
+ ;;^UTILITY(U,$J,358.3,11234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11234,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,11234,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,11234,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,11235,0)
+ ;;=M19.012^^68^681^112
+ ;;^UTILITY(U,$J,358.3,11235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11235,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,11235,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,11235,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,11236,0)
+ ;;=M19.031^^68^681^119
+ ;;^UTILITY(U,$J,358.3,11236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11236,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,11236,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,11236,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,11237,0)
+ ;;=M19.032^^68^681^113
+ ;;^UTILITY(U,$J,358.3,11237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11237,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist

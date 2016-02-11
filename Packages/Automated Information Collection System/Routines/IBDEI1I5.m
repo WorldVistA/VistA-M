@@ -1,140 +1,120 @@
-IBDEI1I5 ; ; 06-AUG-2015
+IBDEI1I5 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26659,1,0)
+ ;;^UTILITY(U,$J,358.3,25104,1,4,0)
+ ;;=4^I97.618
+ ;;^UTILITY(U,$J,358.3,25104,2)
+ ;;=^5008101
+ ;;^UTILITY(U,$J,358.3,25105,0)
+ ;;=I97.62^^124^1239^171
+ ;;^UTILITY(U,$J,358.3,25105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26659,1,3,0)
- ;;=3^Arthropathy Nos-Oth Site
- ;;^UTILITY(U,$J,358.3,26659,1,4,0)
- ;;=4^716.98
- ;;^UTILITY(U,$J,358.3,26659,2)
- ;;=^272255
- ;;^UTILITY(U,$J,358.3,26660,0)
- ;;=714.0^^156^1720^35
- ;;^UTILITY(U,$J,358.3,26660,1,0)
+ ;;^UTILITY(U,$J,358.3,25105,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25105,1,4,0)
+ ;;=4^I97.62
+ ;;^UTILITY(U,$J,358.3,25105,2)
+ ;;=^5008102
+ ;;^UTILITY(U,$J,358.3,25106,0)
+ ;;=J95.830^^124^1239^184
+ ;;^UTILITY(U,$J,358.3,25106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26660,1,3,0)
- ;;=3^Rheumatoid Arthritis
- ;;^UTILITY(U,$J,358.3,26660,1,4,0)
- ;;=4^714.0
- ;;^UTILITY(U,$J,358.3,26660,2)
- ;;=^10473
- ;;^UTILITY(U,$J,358.3,26661,0)
- ;;=716.90^^156^1720^5
- ;;^UTILITY(U,$J,358.3,26661,1,0)
+ ;;^UTILITY(U,$J,358.3,25106,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Resp Sys Following Resp Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25106,1,4,0)
+ ;;=4^J95.830
+ ;;^UTILITY(U,$J,358.3,25106,2)
+ ;;=^5008340
+ ;;^UTILITY(U,$J,358.3,25107,0)
+ ;;=J95.831^^124^1239^185
+ ;;^UTILITY(U,$J,358.3,25107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26661,1,3,0)
- ;;=3^Arthropathy Nos-Unspec
- ;;^UTILITY(U,$J,358.3,26661,1,4,0)
- ;;=4^716.90
- ;;^UTILITY(U,$J,358.3,26661,2)
- ;;=^66343
- ;;^UTILITY(U,$J,358.3,26662,0)
- ;;=726.71^^156^1720^1
- ;;^UTILITY(U,$J,358.3,26662,1,0)
+ ;;^UTILITY(U,$J,358.3,25107,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Resp Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25107,1,4,0)
+ ;;=4^J95.831
+ ;;^UTILITY(U,$J,358.3,25107,2)
+ ;;=^5008341
+ ;;^UTILITY(U,$J,358.3,25108,0)
+ ;;=K91.840^^124^1239^172
+ ;;^UTILITY(U,$J,358.3,25108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26662,1,3,0)
- ;;=3^Achilles Tendinitis
- ;;^UTILITY(U,$J,358.3,26662,1,4,0)
- ;;=4^726.71
- ;;^UTILITY(U,$J,358.3,26662,2)
- ;;=^272550
- ;;^UTILITY(U,$J,358.3,26663,0)
- ;;=727.3^^156^1720^7
- ;;^UTILITY(U,$J,358.3,26663,1,0)
+ ;;^UTILITY(U,$J,358.3,25108,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Digestive Sys Following Digestive Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25108,1,4,0)
+ ;;=4^K91.840
+ ;;^UTILITY(U,$J,358.3,25108,2)
+ ;;=^5008910
+ ;;^UTILITY(U,$J,358.3,25109,0)
+ ;;=K91.841^^124^1239^173
+ ;;^UTILITY(U,$J,358.3,25109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26663,1,3,0)
- ;;=3^Bursitis Nec
- ;;^UTILITY(U,$J,358.3,26663,1,4,0)
- ;;=4^727.3
- ;;^UTILITY(U,$J,358.3,26663,2)
- ;;=^87364
- ;;^UTILITY(U,$J,358.3,26664,0)
- ;;=726.5^^156^1720^13
- ;;^UTILITY(U,$J,358.3,26664,1,0)
+ ;;^UTILITY(U,$J,358.3,25109,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Digestive Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25109,1,4,0)
+ ;;=4^K91.841
+ ;;^UTILITY(U,$J,358.3,25109,2)
+ ;;=^5008911
+ ;;^UTILITY(U,$J,358.3,25110,0)
+ ;;=L76.21^^124^1239^188
+ ;;^UTILITY(U,$J,358.3,25110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26664,1,3,0)
- ;;=3^Enthesopathy Of Hip
- ;;^UTILITY(U,$J,358.3,26664,1,4,0)
- ;;=4^726.5
- ;;^UTILITY(U,$J,358.3,26664,2)
- ;;=^272537
- ;;^UTILITY(U,$J,358.3,26665,0)
- ;;=728.6^^156^1720^11
- ;;^UTILITY(U,$J,358.3,26665,1,0)
+ ;;^UTILITY(U,$J,358.3,25110,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Skin Following Derm Procedure
+ ;;^UTILITY(U,$J,358.3,25110,1,4,0)
+ ;;=4^L76.21
+ ;;^UTILITY(U,$J,358.3,25110,2)
+ ;;=^5009306
+ ;;^UTILITY(U,$J,358.3,25111,0)
+ ;;=L76.22^^124^1239^189
+ ;;^UTILITY(U,$J,358.3,25111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26665,1,3,0)
- ;;=3^Contracted Palmar Fascia
- ;;^UTILITY(U,$J,358.3,26665,1,4,0)
- ;;=4^728.6
- ;;^UTILITY(U,$J,358.3,26665,2)
- ;;=^28077
- ;;^UTILITY(U,$J,358.3,26666,0)
- ;;=728.85^^156^1720^39
- ;;^UTILITY(U,$J,358.3,26666,1,0)
+ ;;^UTILITY(U,$J,358.3,25111,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Skin Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25111,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,25111,2)
+ ;;=^5009307
+ ;;^UTILITY(U,$J,358.3,25112,0)
+ ;;=M96.830^^124^1239^180
+ ;;^UTILITY(U,$J,358.3,25112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26666,1,3,0)
- ;;=3^Spasm Of Muscle
- ;;^UTILITY(U,$J,358.3,26666,1,4,0)
- ;;=4^728.85
- ;;^UTILITY(U,$J,358.3,26666,2)
- ;;=^112558
- ;;^UTILITY(U,$J,358.3,26667,0)
- ;;=727.81^^156^1720^12
- ;;^UTILITY(U,$J,358.3,26667,1,0)
+ ;;^UTILITY(U,$J,358.3,25112,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of MS Structutre Following MS Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25112,1,4,0)
+ ;;=4^M96.830
+ ;;^UTILITY(U,$J,358.3,25112,2)
+ ;;=^5015397
+ ;;^UTILITY(U,$J,358.3,25113,0)
+ ;;=M96.831^^124^1239^181
+ ;;^UTILITY(U,$J,358.3,25113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26667,1,3,0)
- ;;=3^Contracture Of Tendon
- ;;^UTILITY(U,$J,358.3,26667,1,4,0)
- ;;=4^727.81
- ;;^UTILITY(U,$J,358.3,26667,2)
- ;;=^272586
- ;;^UTILITY(U,$J,358.3,26668,0)
- ;;=717.7^^156^1720^10
- ;;^UTILITY(U,$J,358.3,26668,1,0)
+ ;;^UTILITY(U,$J,358.3,25113,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of MS Structure Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25113,1,4,0)
+ ;;=4^M96.831
+ ;;^UTILITY(U,$J,358.3,25113,2)
+ ;;=^5015398
+ ;;^UTILITY(U,$J,358.3,25114,0)
+ ;;=N99.820^^124^1239^176
+ ;;^UTILITY(U,$J,358.3,25114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26668,1,3,0)
- ;;=3^Chondromalacia Patellae
- ;;^UTILITY(U,$J,358.3,26668,1,4,0)
- ;;=4^717.7
- ;;^UTILITY(U,$J,358.3,26668,2)
- ;;=^23780
- ;;^UTILITY(U,$J,358.3,26669,0)
- ;;=717.9^^156^1720^16
- ;;^UTILITY(U,$J,358.3,26669,1,0)
+ ;;^UTILITY(U,$J,358.3,25114,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of GU Sys Following a GU Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25114,1,4,0)
+ ;;=4^N99.820
+ ;;^UTILITY(U,$J,358.3,25114,2)
+ ;;=^5015968
+ ;;^UTILITY(U,$J,358.3,25115,0)
+ ;;=N99.821^^124^1239^177
+ ;;^UTILITY(U,$J,358.3,25115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26669,1,3,0)
- ;;=3^Int Derangement Knee Nos
- ;;^UTILITY(U,$J,358.3,26669,1,4,0)
- ;;=4^717.9
- ;;^UTILITY(U,$J,358.3,26669,2)
- ;;=^272277
- ;;^UTILITY(U,$J,358.3,26670,0)
- ;;=718.86^^156^1720^18
- ;;^UTILITY(U,$J,358.3,26670,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26670,1,3,0)
- ;;=3^Jt Derangement Nec-L/Leg
- ;;^UTILITY(U,$J,358.3,26670,1,4,0)
- ;;=4^718.86
- ;;^UTILITY(U,$J,358.3,26670,2)
- ;;=^272345
- ;;^UTILITY(U,$J,358.3,26671,0)
- ;;=718.81^^156^1720^19
- ;;^UTILITY(U,$J,358.3,26671,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26671,1,3,0)
- ;;=3^Jt Derangment Nec-Shlder
- ;;^UTILITY(U,$J,358.3,26671,1,4,0)
- ;;=4^718.81
- ;;^UTILITY(U,$J,358.3,26671,2)
- ;;=^272340
- ;;^UTILITY(U,$J,358.3,26672,0)
- ;;=727.04^^156^1720^34
- ;;^UTILITY(U,$J,358.3,26672,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26672,1,3,0)
- ;;=3^Radial Styloid Tenosynov
- ;;^UTILITY(U,$J,358.3,26672,1,4,0)
- ;;=4^727.04
+ ;;^UTILITY(U,$J,358.3,25115,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of GU Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25115,1,4,0)
+ ;;=4^N99.821
+ ;;^UTILITY(U,$J,358.3,25115,2)
+ ;;=^5015969
+ ;;^UTILITY(U,$J,358.3,25116,0)
+ ;;=T88.8XXA^^124^1239^31

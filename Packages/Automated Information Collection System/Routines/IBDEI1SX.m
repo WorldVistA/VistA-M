@@ -1,128 +1,134 @@
-IBDEI1SX ; ; 06-AUG-2015
+IBDEI1SX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31768,1,0)
+ ;;^UTILITY(U,$J,358.3,30159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31768,1,3,0)
- ;;=3^Concussion w LOC >24 hr w/o ret consc w surv, init
- ;;^UTILITY(U,$J,358.3,31768,1,4,0)
- ;;=4^S06.0X6A
- ;;^UTILITY(U,$J,358.3,31768,2)
- ;;=^5020684
- ;;^UTILITY(U,$J,358.3,31769,0)
- ;;=S06.0X0D^^181^1968^21
- ;;^UTILITY(U,$J,358.3,31769,1,0)
+ ;;^UTILITY(U,$J,358.3,30159,1,3,0)
+ ;;=3^Family Hx of Other Spec Conditions
+ ;;^UTILITY(U,$J,358.3,30159,1,4,0)
+ ;;=4^Z84.89
+ ;;^UTILITY(U,$J,358.3,30159,2)
+ ;;=^5063393
+ ;;^UTILITY(U,$J,358.3,30160,0)
+ ;;=Z81.1^^135^1373^20
+ ;;^UTILITY(U,$J,358.3,30160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31769,1,3,0)
- ;;=3^Concussion w/o LOC, subs encntr
- ;;^UTILITY(U,$J,358.3,31769,1,4,0)
- ;;=4^S06.0X0D
- ;;^UTILITY(U,$J,358.3,31769,2)
- ;;=^5020667
- ;;^UTILITY(U,$J,358.3,31770,0)
- ;;=S06.0X1D^^181^1968^11
- ;;^UTILITY(U,$J,358.3,31770,1,0)
+ ;;^UTILITY(U,$J,358.3,30160,1,3,0)
+ ;;=3^Family Hx of Alcohol Abuse/Dependence
+ ;;^UTILITY(U,$J,358.3,30160,1,4,0)
+ ;;=4^Z81.1
+ ;;^UTILITY(U,$J,358.3,30160,2)
+ ;;=^5063359
+ ;;^UTILITY(U,$J,358.3,30161,0)
+ ;;=Z82.62^^135^1373^45
+ ;;^UTILITY(U,$J,358.3,30161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31770,1,3,0)
- ;;=3^Concussion w LOC of 30 minutes or less, subs
- ;;^UTILITY(U,$J,358.3,31770,1,4,0)
- ;;=4^S06.0X1D
- ;;^UTILITY(U,$J,358.3,31770,2)
- ;;=^5020670
- ;;^UTILITY(U,$J,358.3,31771,0)
- ;;=S06.0X2D^^181^1968^15
- ;;^UTILITY(U,$J,358.3,31771,1,0)
+ ;;^UTILITY(U,$J,358.3,30161,1,3,0)
+ ;;=3^Family Hx of Osteoporosis
+ ;;^UTILITY(U,$J,358.3,30161,1,4,0)
+ ;;=4^Z82.62
+ ;;^UTILITY(U,$J,358.3,30161,2)
+ ;;=^5063372
+ ;;^UTILITY(U,$J,358.3,30162,0)
+ ;;=Z83.71^^135^1373^25
+ ;;^UTILITY(U,$J,358.3,30162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31771,1,3,0)
- ;;=3^Concussion w LOC of 31-59 min, subs
- ;;^UTILITY(U,$J,358.3,31771,1,4,0)
- ;;=4^S06.0X2D
- ;;^UTILITY(U,$J,358.3,31771,2)
- ;;=^5020673
- ;;^UTILITY(U,$J,358.3,31772,0)
- ;;=S06.0X3D^^181^1968^9
- ;;^UTILITY(U,$J,358.3,31772,1,0)
+ ;;^UTILITY(U,$J,358.3,30162,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,30162,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,30162,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,30163,0)
+ ;;=Z84.81^^135^1373^29
+ ;;^UTILITY(U,$J,358.3,30163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31772,1,3,0)
- ;;=3^Concussion w LOC of 1-5 hrs 59 min, subs
- ;;^UTILITY(U,$J,358.3,31772,1,4,0)
- ;;=4^S06.0X3D
- ;;^UTILITY(U,$J,358.3,31772,2)
- ;;=^5020676
- ;;^UTILITY(U,$J,358.3,31773,0)
- ;;=S06.0X4D^^181^1968^17
- ;;^UTILITY(U,$J,358.3,31773,1,0)
+ ;;^UTILITY(U,$J,358.3,30163,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,30163,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,30163,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,30164,0)
+ ;;=Z86.010^^135^1373^76
+ ;;^UTILITY(U,$J,358.3,30164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31773,1,3,0)
- ;;=3^Concussion w LOC of 6 hours to 24 hours, subs
- ;;^UTILITY(U,$J,358.3,31773,1,4,0)
- ;;=4^S06.0X4D
- ;;^UTILITY(U,$J,358.3,31773,2)
- ;;=^5020679
- ;;^UTILITY(U,$J,358.3,31774,0)
- ;;=S06.0X5D^^181^1968^2
- ;;^UTILITY(U,$J,358.3,31774,1,0)
+ ;;^UTILITY(U,$J,358.3,30164,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,30164,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,30164,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,30165,0)
+ ;;=Z86.14^^135^1373^81
+ ;;^UTILITY(U,$J,358.3,30165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31774,1,3,0)
- ;;=3^Concussion w LOC >24 hr w ret consc lev, subs
- ;;^UTILITY(U,$J,358.3,31774,1,4,0)
- ;;=4^S06.0X5D
- ;;^UTILITY(U,$J,358.3,31774,2)
- ;;=^5020682
- ;;^UTILITY(U,$J,358.3,31775,0)
- ;;=S06.0X6D^^181^1968^5
- ;;^UTILITY(U,$J,358.3,31775,1,0)
+ ;;^UTILITY(U,$J,358.3,30165,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,30165,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,30165,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,30166,0)
+ ;;=Z86.31^^135^1373^77
+ ;;^UTILITY(U,$J,358.3,30166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31775,1,3,0)
- ;;=3^Concussion w LOC >24 hr w/o ret consc w surv, subs
- ;;^UTILITY(U,$J,358.3,31775,1,4,0)
- ;;=4^S06.0X6D
- ;;^UTILITY(U,$J,358.3,31775,2)
- ;;=^5020685
- ;;^UTILITY(U,$J,358.3,31776,0)
- ;;=S06.0X0S^^181^1968^20
- ;;^UTILITY(U,$J,358.3,31776,1,0)
+ ;;^UTILITY(U,$J,358.3,30166,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,30166,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,30166,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,30167,0)
+ ;;=Z86.711^^135^1373^107
+ ;;^UTILITY(U,$J,358.3,30167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31776,1,3,0)
- ;;=3^Concussion w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,31776,1,4,0)
- ;;=4^S06.0X0S
- ;;^UTILITY(U,$J,358.3,31776,2)
- ;;=^5020668
- ;;^UTILITY(U,$J,358.3,31777,0)
- ;;=S06.0X1S^^181^1968^12
- ;;^UTILITY(U,$J,358.3,31777,1,0)
+ ;;^UTILITY(U,$J,358.3,30167,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,30167,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,30167,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,30168,0)
+ ;;=Z86.72^^135^1373^113
+ ;;^UTILITY(U,$J,358.3,30168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31777,1,3,0)
- ;;=3^Concussion w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,31777,1,4,0)
- ;;=4^S06.0X1S
- ;;^UTILITY(U,$J,358.3,31777,2)
- ;;=^5020671
- ;;^UTILITY(U,$J,358.3,31778,0)
- ;;=S06.0X2S^^181^1968^14
- ;;^UTILITY(U,$J,358.3,31778,1,0)
+ ;;^UTILITY(U,$J,358.3,30168,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,30168,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,30168,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,30169,0)
+ ;;=Z87.310^^135^1373^105
+ ;;^UTILITY(U,$J,358.3,30169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31778,1,3,0)
- ;;=3^Concussion w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,31778,1,4,0)
- ;;=4^S06.0X2S
- ;;^UTILITY(U,$J,358.3,31778,2)
- ;;=^5020674
- ;;^UTILITY(U,$J,358.3,31779,0)
- ;;=S06.0X3S^^181^1968^8
- ;;^UTILITY(U,$J,358.3,31779,1,0)
+ ;;^UTILITY(U,$J,358.3,30169,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,30169,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,30169,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,30170,0)
+ ;;=Z87.442^^135^1373^116
+ ;;^UTILITY(U,$J,358.3,30170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31779,1,3,0)
- ;;=3^Concussion w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,31779,1,4,0)
- ;;=4^S06.0X3S
- ;;^UTILITY(U,$J,358.3,31779,2)
- ;;=^5020677
- ;;^UTILITY(U,$J,358.3,31780,0)
- ;;=S06.0X4S^^181^1968^18
- ;;^UTILITY(U,$J,358.3,31780,1,0)
+ ;;^UTILITY(U,$J,358.3,30170,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,30170,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,30170,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,30171,0)
+ ;;=Z87.81^^135^1373^114
+ ;;^UTILITY(U,$J,358.3,30171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31780,1,3,0)
- ;;=3^Concussion w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,30171,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,30171,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,30171,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,30172,0)
+ ;;=Z87.890^^135^1373^109

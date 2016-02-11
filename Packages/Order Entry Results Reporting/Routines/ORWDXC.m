@@ -1,5 +1,5 @@
-ORWDXC ; SLC/KCM - Utilities for Order Checking ;06/28/13  07:53
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311**;Dec 17, 1997;Build 30
+ORWDXC ; SLC/KCM - Utilities for Order Checking ;01/28/15  08:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395**;Dec 17, 1997;Build 11
  ;
 ON(VAL) ; returns E if order checking enabled, otherwise D
  S VAL=$$GET^XPAR("DIV^SYS^PKG","ORK SYSTEM ENABLE/DISABLE")
@@ -97,6 +97,10 @@ DELORD(OK,ORIFN)      ; Delete order
  N STS,DIK,DA
  S STS=$P(^OR(100,+ORIFN,8,1,0),U,15),OK=0
  I (STS=10)!(STS=11) D  Q  ; makes sure it's an unreleased order
+ . ;*400 - Delete unused replacement order
+ . N OLDIFN,DA,DIE,DR S OLDIFN=$P(^OR(100,+ORIFN,3),U,5) I $G(OLDIFN) D
+ . . S DA=+OLDIFN,DIE="^OR(100,",DR="9.1///@"
+ . . D ^DIE K DA,DIE,DR
  . S DA=+ORIFN,DIK="^OR(100," Q:'DA
  . D ^DIK
  . S OK=1

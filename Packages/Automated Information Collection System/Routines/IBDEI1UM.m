@@ -1,138 +1,128 @@
-IBDEI1UM ; ; 06-AUG-2015
+IBDEI1UM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32548,1,0)
+ ;;^UTILITY(U,$J,358.3,30947,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,30947,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,30948,0)
+ ;;=F14.20^^135^1386^23
+ ;;^UTILITY(U,$J,358.3,30948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32548,1,3,0)
- ;;=3^Paraphimosis
- ;;^UTILITY(U,$J,358.3,32548,1,4,0)
- ;;=4^N47.2
- ;;^UTILITY(U,$J,358.3,32548,2)
- ;;=^90023
- ;;^UTILITY(U,$J,358.3,32549,0)
- ;;=N47.1^^182^1988^76
- ;;^UTILITY(U,$J,358.3,32549,1,0)
+ ;;^UTILITY(U,$J,358.3,30948,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,30948,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,30948,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,30949,0)
+ ;;=F10.120^^135^1386^1
+ ;;^UTILITY(U,$J,358.3,30949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32549,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,32549,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,32549,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,32550,0)
- ;;=N47.3^^182^1988^22
- ;;^UTILITY(U,$J,358.3,32550,1,0)
+ ;;^UTILITY(U,$J,358.3,30949,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30949,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,30949,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,30950,0)
+ ;;=F10.10^^135^1386^2
+ ;;^UTILITY(U,$J,358.3,30950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32550,1,3,0)
- ;;=3^Deficient Foreskin
- ;;^UTILITY(U,$J,358.3,32550,1,4,0)
- ;;=4^N47.3
- ;;^UTILITY(U,$J,358.3,32550,2)
- ;;=^5015726
- ;;^UTILITY(U,$J,358.3,32551,0)
- ;;=N47.5^^182^1988^1
- ;;^UTILITY(U,$J,358.3,32551,1,0)
+ ;;^UTILITY(U,$J,358.3,30950,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30950,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,30950,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,30951,0)
+ ;;=F17.201^^135^1386^28
+ ;;^UTILITY(U,$J,358.3,30951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32551,1,3,0)
- ;;=3^Adhesions Prepuce & Glans Penis
- ;;^UTILITY(U,$J,358.3,32551,1,4,0)
- ;;=4^N47.5
- ;;^UTILITY(U,$J,358.3,32551,2)
- ;;=^5015728
- ;;^UTILITY(U,$J,358.3,32552,0)
- ;;=N47.4^^182^1988^17
- ;;^UTILITY(U,$J,358.3,32552,1,0)
+ ;;^UTILITY(U,$J,358.3,30951,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,30951,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,30951,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,30952,0)
+ ;;=F17.210^^135^1386^27
+ ;;^UTILITY(U,$J,358.3,30952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32552,1,3,0)
- ;;=3^Cyst of Prepuce,Benign
- ;;^UTILITY(U,$J,358.3,32552,1,4,0)
- ;;=4^N47.4
- ;;^UTILITY(U,$J,358.3,32552,2)
- ;;=^5015727
- ;;^UTILITY(U,$J,358.3,32553,0)
- ;;=N47.8^^182^1988^23
- ;;^UTILITY(U,$J,358.3,32553,1,0)
+ ;;^UTILITY(U,$J,358.3,30952,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30952,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,30952,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,30953,0)
+ ;;=F17.291^^135^1386^29
+ ;;^UTILITY(U,$J,358.3,30953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32553,1,3,0)
- ;;=3^Disorders of Prepuce
- ;;^UTILITY(U,$J,358.3,32553,1,4,0)
- ;;=4^N47.8
- ;;^UTILITY(U,$J,358.3,32553,2)
- ;;=^5015730
- ;;^UTILITY(U,$J,358.3,32554,0)
- ;;=N47.7^^182^1988^54
- ;;^UTILITY(U,$J,358.3,32554,1,0)
+ ;;^UTILITY(U,$J,358.3,30953,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,30953,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,30953,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,30954,0)
+ ;;=F17.290^^135^1386^30
+ ;;^UTILITY(U,$J,358.3,30954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32554,1,3,0)
- ;;=3^Inflammatory Diseases of Prepuce
- ;;^UTILITY(U,$J,358.3,32554,1,4,0)
- ;;=4^N47.7
- ;;^UTILITY(U,$J,358.3,32554,2)
- ;;=^5015729
- ;;^UTILITY(U,$J,358.3,32555,0)
- ;;=N47.6^^182^1988^3
- ;;^UTILITY(U,$J,358.3,32555,1,0)
+ ;;^UTILITY(U,$J,358.3,30954,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30954,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,30954,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,30955,0)
+ ;;=F17.221^^135^1386^24
+ ;;^UTILITY(U,$J,358.3,30955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32555,1,3,0)
- ;;=3^Balanoposthitis
- ;;^UTILITY(U,$J,358.3,32555,1,4,0)
- ;;=4^N47.6
- ;;^UTILITY(U,$J,358.3,32555,2)
- ;;=^12530
- ;;^UTILITY(U,$J,358.3,32556,0)
- ;;=N48.1^^182^1988^2
- ;;^UTILITY(U,$J,358.3,32556,1,0)
+ ;;^UTILITY(U,$J,358.3,30955,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,30955,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,30955,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,30956,0)
+ ;;=F17.220^^135^1386^25
+ ;;^UTILITY(U,$J,358.3,30956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32556,1,3,0)
- ;;=3^Balanitis
- ;;^UTILITY(U,$J,358.3,32556,1,4,0)
- ;;=4^N48.1
- ;;^UTILITY(U,$J,358.3,32556,2)
- ;;=^12525
- ;;^UTILITY(U,$J,358.3,32557,0)
- ;;=N52.9^^182^1988^61
- ;;^UTILITY(U,$J,358.3,32557,1,0)
+ ;;^UTILITY(U,$J,358.3,30956,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30956,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,30956,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,30957,0)
+ ;;=F17.211^^135^1386^26
+ ;;^UTILITY(U,$J,358.3,30957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32557,1,3,0)
- ;;=3^Male Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,32557,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,32557,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,32558,0)
- ;;=N52.8^^182^1988^60
- ;;^UTILITY(U,$J,358.3,32558,1,0)
+ ;;^UTILITY(U,$J,358.3,30957,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,30957,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,30957,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,30958,0)
+ ;;=F17.200^^135^1386^31
+ ;;^UTILITY(U,$J,358.3,30958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32558,1,3,0)
- ;;=3^Male Erectile Dysfunction,Other
- ;;^UTILITY(U,$J,358.3,32558,1,4,0)
- ;;=4^N52.8
- ;;^UTILITY(U,$J,358.3,32558,2)
- ;;=^5015762
- ;;^UTILITY(U,$J,358.3,32559,0)
- ;;=N52.34^^182^1988^35
- ;;^UTILITY(U,$J,358.3,32559,1,0)
+ ;;^UTILITY(U,$J,358.3,30958,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30958,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,30958,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,30959,0)
+ ;;=F11.120^^135^1386^32
+ ;;^UTILITY(U,$J,358.3,30959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32559,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,32559,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,32559,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,32560,0)
- ;;=N52.39^^182^1988^37
- ;;^UTILITY(U,$J,358.3,32560,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32560,1,3,0)
- ;;=3^Erectile Dysfunction Post-Surgical
- ;;^UTILITY(U,$J,358.3,32560,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,32560,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,32561,0)
- ;;=N52.33^^182^1988^36
- ;;^UTILITY(U,$J,358.3,32561,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32561,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,30959,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30959,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,30959,2)
+ ;;=^5003115

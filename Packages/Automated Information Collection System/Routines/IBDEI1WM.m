@@ -1,142 +1,122 @@
-IBDEI1WM ; ; 06-AUG-2015
+IBDEI1WM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33485,0)
- ;;=R53.0^^182^2004^109
- ;;^UTILITY(U,$J,358.3,33485,1,0)
+ ;;^UTILITY(U,$J,358.3,31889,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,31889,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,31890,0)
+ ;;=T76.01XA^^141^1474^18
+ ;;^UTILITY(U,$J,358.3,31890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33485,1,3,0)
- ;;=3^Malig Neop Related Fatigue
- ;;^UTILITY(U,$J,358.3,33485,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,33485,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,33486,0)
- ;;=R53.83^^182^2004^67
- ;;^UTILITY(U,$J,358.3,33486,1,0)
+ ;;^UTILITY(U,$J,358.3,31890,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
+ ;;^UTILITY(U,$J,358.3,31890,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,31890,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,31891,0)
+ ;;=T76.01XD^^141^1474^19
+ ;;^UTILITY(U,$J,358.3,31891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33486,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,33486,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,33486,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,33487,0)
- ;;=R53.1^^182^2004^157
- ;;^UTILITY(U,$J,358.3,33487,1,0)
+ ;;^UTILITY(U,$J,358.3,31891,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,31891,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,31891,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,31892,0)
+ ;;=Z91.412^^141^1474^7
+ ;;^UTILITY(U,$J,358.3,31892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33487,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,33487,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,33487,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,33488,0)
- ;;=R53.81^^182^2004^108
- ;;^UTILITY(U,$J,358.3,33488,1,0)
+ ;;^UTILITY(U,$J,358.3,31892,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,31892,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,31892,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,31893,0)
+ ;;=T74.31XA^^141^1474^20
+ ;;^UTILITY(U,$J,358.3,31893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33488,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,33488,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,33488,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,33489,0)
- ;;=R53.82^^182^2004^47
- ;;^UTILITY(U,$J,358.3,33489,1,0)
+ ;;^UTILITY(U,$J,358.3,31893,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
+ ;;^UTILITY(U,$J,358.3,31893,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,31893,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,31894,0)
+ ;;=T74.31XD^^141^1474^21
+ ;;^UTILITY(U,$J,358.3,31894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33489,1,3,0)
- ;;=3^Chronic Fatigue,Unspec
- ;;^UTILITY(U,$J,358.3,33489,1,4,0)
- ;;=4^R53.82
- ;;^UTILITY(U,$J,358.3,33489,2)
- ;;=^5019519
- ;;^UTILITY(U,$J,358.3,33490,0)
- ;;=R54.^^182^2004^31
- ;;^UTILITY(U,$J,358.3,33490,1,0)
+ ;;^UTILITY(U,$J,358.3,31894,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,31894,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,31894,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,31895,0)
+ ;;=T76.31XA^^141^1474^22
+ ;;^UTILITY(U,$J,358.3,31895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33490,1,3,0)
- ;;=3^Age-Related Physical Debility
- ;;^UTILITY(U,$J,358.3,33490,1,4,0)
- ;;=4^R54.
- ;;^UTILITY(U,$J,358.3,33490,2)
- ;;=^5019521
- ;;^UTILITY(U,$J,358.3,33491,0)
- ;;=R60.0^^182^2004^60
- ;;^UTILITY(U,$J,358.3,33491,1,0)
+ ;;^UTILITY(U,$J,358.3,31895,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
+ ;;^UTILITY(U,$J,358.3,31895,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,31895,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,31896,0)
+ ;;=T76.31XD^^141^1474^23
+ ;;^UTILITY(U,$J,358.3,31896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33491,1,3,0)
- ;;=3^Edema,Localized
- ;;^UTILITY(U,$J,358.3,33491,1,4,0)
- ;;=4^R60.0
- ;;^UTILITY(U,$J,358.3,33491,2)
- ;;=^5019532
- ;;^UTILITY(U,$J,358.3,33492,0)
- ;;=R60.1^^182^2004^59
- ;;^UTILITY(U,$J,358.3,33492,1,0)
+ ;;^UTILITY(U,$J,358.3,31896,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,31896,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,31896,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,31897,0)
+ ;;=Z91.411^^141^1474^6
+ ;;^UTILITY(U,$J,358.3,31897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33492,1,3,0)
- ;;=3^Edema,Generalized
- ;;^UTILITY(U,$J,358.3,33492,1,4,0)
- ;;=4^R60.1
- ;;^UTILITY(U,$J,358.3,33492,2)
- ;;=^5019533
- ;;^UTILITY(U,$J,358.3,33493,0)
- ;;=R60.9^^182^2004^61
- ;;^UTILITY(U,$J,358.3,33493,1,0)
+ ;;^UTILITY(U,$J,358.3,31897,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,31897,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,31897,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,31898,0)
+ ;;=F06.4^^141^1475^6
+ ;;^UTILITY(U,$J,358.3,31898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33493,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,33493,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,33493,2)
- ;;=^5019534
- ;;^UTILITY(U,$J,358.3,33494,0)
- ;;=R61.^^182^2004^81
- ;;^UTILITY(U,$J,358.3,33494,1,0)
+ ;;^UTILITY(U,$J,358.3,31898,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,31898,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,31898,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,31899,0)
+ ;;=F41.0^^141^1475^14
+ ;;^UTILITY(U,$J,358.3,31899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33494,1,3,0)
- ;;=3^Hyperhidrosis,Generalized
- ;;^UTILITY(U,$J,358.3,33494,1,4,0)
- ;;=4^R61.
- ;;^UTILITY(U,$J,358.3,33494,2)
- ;;=^331970
- ;;^UTILITY(U,$J,358.3,33495,0)
- ;;=R63.0^^182^2004^34
- ;;^UTILITY(U,$J,358.3,33495,1,0)
+ ;;^UTILITY(U,$J,358.3,31899,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,31899,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,31899,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,31900,0)
+ ;;=F41.1^^141^1475^12
+ ;;^UTILITY(U,$J,358.3,31900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33495,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,33495,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,33495,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,33496,0)
- ;;=R63.1^^182^2004^132
- ;;^UTILITY(U,$J,358.3,33496,1,0)
+ ;;^UTILITY(U,$J,358.3,31900,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,31900,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,31900,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,31901,0)
+ ;;=F41.9^^141^1475^5
+ ;;^UTILITY(U,$J,358.3,31901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33496,1,3,0)
- ;;=3^Polydipsia
- ;;^UTILITY(U,$J,358.3,33496,1,4,0)
- ;;=4^R63.1
- ;;^UTILITY(U,$J,358.3,33496,2)
- ;;=^186699
- ;;^UTILITY(U,$J,358.3,33497,0)
- ;;=R63.2^^182^2004^133
- ;;^UTILITY(U,$J,358.3,33497,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33497,1,3,0)
- ;;=3^Polyphagia
- ;;^UTILITY(U,$J,358.3,33497,1,4,0)
- ;;=4^R63.2
- ;;^UTILITY(U,$J,358.3,33497,2)
- ;;=^5019540
- ;;^UTILITY(U,$J,358.3,33498,0)
- ;;=R63.3^^182^2004^68
- ;;^UTILITY(U,$J,358.3,33498,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33498,1,3,0)
- ;;=3^Feeding Difficulties
- ;;^UTILITY(U,$J,358.3,33498,1,4,0)
- ;;=4^R63.3

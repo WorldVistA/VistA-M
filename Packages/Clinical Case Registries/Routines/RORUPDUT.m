@@ -1,5 +1,5 @@
-RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;8/2/05 9:17am
- ;;1.5;CLINICAL CASE REGISTRIES;**18,19**;Feb 17, 2006;Build 43
+RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;15 Jun 2015  12:30 PM
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,19,26**;Feb 17, 2006;Build 53
  ;
  ;*****************************************************************************
  ;*****************************************************************************
@@ -10,6 +10,8 @@ RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;8/2/05 9:17am
  ;ROR*1.5*18   APR 2012    C RAY        Add logic to define REGIEN for
  ;                                      ROR SELECTION RULE EXPRESSION
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*26   APR  2015   T KOPP       Add check for coding system for procedures
+ ;                                      Add logic for storing inpatient proc codes
  ;*****************************************************************************
  ;****************************************************************************
  ; This routine uses the following IAs:
@@ -29,6 +31,10 @@ RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;8/2/05 9:17am
  ;   LabSearch#)         Observation descriptor
  ;                         ^01: Date/time of the observation
  ;                         ^02: Institution IEN
+ ; RORVALS("PPTF",       List of inpatient procedure codes for patient
+ ;   Datatype,           Datatype="C" for CPT, 'I' for ICD procedure
+ ;   n,                  n = seq # unique to each multiple file entry found
+ ;   "I")                Internal value
  ;
  ; RORVALS("SV",         VALUES OF THE SELECTION RULES
  ;   Rule Name,          Current value
@@ -68,7 +74,7 @@ RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;8/2/05 9:17am
  ;        1  Stop looping
  ;
 APLRULES(FILE,IENS,MODE,DATE,LOCATION) ;
- N EXPR,HDR,LM,PATIEN,RC,REGIEN,RI,RULENAME,RULENODE,TMP
+ N EXPR,HDR,LM,PATIEN,RC,REGIEN,RI,RULENAME,RULENODE,TMP,RORCSYS
  S:'$G(DATE) DATE=$$DT^XLFDT
  S:$G(RORUPD("IMPDATE","ICD10"))="" RORUPD("IMPDATE","ICD10")=$$IMPDATE^LEXU("10D")  ;ICD-10 implementation date
  ;--- Loop through the selection rules
@@ -76,8 +82,9 @@ APLRULES(FILE,IENS,MODE,DATE,LOCATION) ;
  F  S RI=$O(RORUPD("SR",FILE,MODE,RI))  Q:RI=""  D  Q:RC<0
  . S RULENODE=$NA(RORUPD("SR",FILE,MODE,RI))
  . ;Check if rule is applicable or not based on coding system
- . Q:(DATE<RORUPD("IMPDATE","ICD10")&(@RULENODE@(3)="30"))  ;quit if date is before ICD-10 implementation date and selection rule is applicable for ICD-10 coding system
- . Q:(DATE>=RORUPD("IMPDATE","ICD10")&(@RULENODE@(3)="1"))  ;quit if date is on or after ICD-10 implementation date and selection rule is applicable for ICD-9 coding system 
+ . S RORCSYS=@RULENODE@(3)
+ . Q:(DATE<RORUPD("IMPDATE","ICD10")&(RORCSYS=30!(RORCSYS=31)))  ;quit if date is before ICD-10 implementation date and selection rule is applicable for ICD-10 coding system
+ . Q:(DATE'<RORUPD("IMPDATE","ICD10")&(RORCSYS=1!(RORCSYS=2)))  ;quit if date is on or after ICD-10 implementation date and selection rule is applicable for ICD-9 coding system 
  . S RORVALS("SV","ROR SRDT")=$P(DATE,".")
  . S RORVALS("SV","ROR SRLOC")=$G(LOCATION)
  . S HDR=$G(@RULENODE),RULENAME=$P(HDR,U)
@@ -116,6 +123,7 @@ APLRULES(FILE,IENS,MODE,DATE,LOCATION) ;
  ;
 CLRDES(FILE) ;
  K RORVALS("DV",FILE)
+ K RORVALS("PPTF",FILE)
  Q
  ;
  ;***** CLEARS VALUE OF THE ERROR COUNTER
@@ -146,7 +154,7 @@ CLRVALS(FILE) ;
  ;       >0  Code of the data element
  ;
 DATACODE(FILE,NAME) ;
- N IENS,RC,RORBUF,RORMSG
+ N DIERR,IENS,RC,RORBUF,RORMSG
  S IENS=","_FILE_","
  D FIND^DIC(799.22,IENS,"@;.02I","X",NAME,,"B",,,"RORBUF","RORMSG")
  I $G(DIERR)  D  Q RC
@@ -215,7 +223,7 @@ INCEC(RC) ;
  ;        0  Ok
  ;
 LOADFLDS(FILE,IENS) ;
- N DE,FLD,RC,RORFDA,RORMSG,VT  K RORVALS("DV",FILE)
+ N DE,FLD,RC,RORFDA,RORMSG,VT  K RORVALS("DV",FILE) K:FILE=45 RORVALS("PPTF",45)
  S FLD=$G(RORUPD("SR",FILE,"F",1))  Q:FLD="" 0
  ;--- Load the field values
  D GETS^DIQ(FILE,IENS,FLD,"EIN","RORFDA","RORMSG")
@@ -228,6 +236,15 @@ LOADFLDS(FILE,IENS) ;
  . S VT=""
  . F  S VT=$O(RORUPD("SR",FILE,"F",1,DE,VT))  Q:VT=""  D
  . . S RORVALS("DV",FILE,DE,VT)=$G(RORFDA(FILE,IENS,FLD,VT))
+ S DE=""
+ F  S DE=$O(RORUPD("SR",FILE,"F",3,DE))  Q:DE=""  D
+ . S VT=""
+ . F  S VT=$O(RORUPD("SR",FILE,"F",3,DE,VT))  Q:VT=""  D
+ . . N ADMDT,VT,FILE,IEN ; protect some variables
+ . . ; Call the API to return the CPT codes and ICD procedures for surgery and 'other'
+ . . ; Returns array RORVALS("PPTF","C",n,"I") for CPT codes
+ . . ;               RORVALS("PPTF","I",n,"I") for ICD procedure codes
+ . . D SETPROC^RORUTL20(DE,IENS,.RORUPD,.RORVALS)
  Q 0
  ;
  ;***** SETS THE EARLIEST DATE FOR THE RULE

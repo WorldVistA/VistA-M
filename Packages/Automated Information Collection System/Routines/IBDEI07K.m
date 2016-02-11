@@ -1,130 +1,138 @@
-IBDEI07K ; ; 06-AUG-2015
+IBDEI07K ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3038,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,3039,0)
- ;;=F31.4^^8^87^13
- ;;^UTILITY(U,$J,358.3,3039,1,0)
+ ;;^UTILITY(U,$J,358.3,2966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3039,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,3039,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,3039,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,3040,0)
- ;;=F31.5^^8^87^14
- ;;^UTILITY(U,$J,358.3,3040,1,0)
+ ;;^UTILITY(U,$J,358.3,2966,1,3,0)
+ ;;=3^GB & Bile Duct Calculus w/o Cholecyst w/ Obstruction
+ ;;^UTILITY(U,$J,358.3,2966,1,4,0)
+ ;;=4^K80.71
+ ;;^UTILITY(U,$J,358.3,2966,2)
+ ;;=^5133640
+ ;;^UTILITY(U,$J,358.3,2967,0)
+ ;;=K82.9^^28^245^32
+ ;;^UTILITY(U,$J,358.3,2967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3040,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,3040,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,3040,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,3041,0)
- ;;=F31.75^^8^87^15
- ;;^UTILITY(U,$J,358.3,3041,1,0)
+ ;;^UTILITY(U,$J,358.3,2967,1,3,0)
+ ;;=3^Gallbladder Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2967,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,2967,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,2968,0)
+ ;;=R14.1^^28^245^33
+ ;;^UTILITY(U,$J,358.3,2968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3041,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,3041,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,3041,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,3042,0)
- ;;=F31.76^^8^87^16
- ;;^UTILITY(U,$J,358.3,3042,1,0)
+ ;;^UTILITY(U,$J,358.3,2968,1,3,0)
+ ;;=3^Gas Pain
+ ;;^UTILITY(U,$J,358.3,2968,1,4,0)
+ ;;=4^R14.1
+ ;;^UTILITY(U,$J,358.3,2968,2)
+ ;;=^5019241
+ ;;^UTILITY(U,$J,358.3,2969,0)
+ ;;=A09.^^28^245^34
+ ;;^UTILITY(U,$J,358.3,2969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3042,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,3042,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,3042,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,3043,0)
- ;;=F31.9^^8^87^17
- ;;^UTILITY(U,$J,358.3,3043,1,0)
+ ;;^UTILITY(U,$J,358.3,2969,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Infectious,Unspec
+ ;;^UTILITY(U,$J,358.3,2969,1,4,0)
+ ;;=4^A09.
+ ;;^UTILITY(U,$J,358.3,2969,2)
+ ;;=^5000061
+ ;;^UTILITY(U,$J,358.3,2970,0)
+ ;;=K52.9^^28^245^35
+ ;;^UTILITY(U,$J,358.3,2970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3043,1,3,0)
- ;;=3^Bipolor I Disorder,Current/Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,3043,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,3043,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,3044,0)
- ;;=F31.81^^8^87^3
- ;;^UTILITY(U,$J,358.3,3044,1,0)
+ ;;^UTILITY(U,$J,358.3,2970,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfectious,Unspec
+ ;;^UTILITY(U,$J,358.3,2970,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,2970,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,2971,0)
+ ;;=K21.0^^28^245^30
+ ;;^UTILITY(U,$J,358.3,2971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3044,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,3044,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,3044,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,3045,0)
- ;;=F34.0^^8^87^18
- ;;^UTILITY(U,$J,358.3,3045,1,0)
+ ;;^UTILITY(U,$J,358.3,2971,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,2971,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,2971,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,2972,0)
+ ;;=K21.9^^28^245^31
+ ;;^UTILITY(U,$J,358.3,2972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3045,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,3045,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,3045,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,3046,0)
- ;;=F10.232^^8^88^2
- ;;^UTILITY(U,$J,358.3,3046,1,0)
+ ;;^UTILITY(U,$J,358.3,2972,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,2972,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,2972,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,2973,0)
+ ;;=K64.4^^28^245^36
+ ;;^UTILITY(U,$J,358.3,2973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3046,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,3046,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,3046,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,3047,0)
- ;;=F10.231^^8^88^3
- ;;^UTILITY(U,$J,358.3,3047,1,0)
+ ;;^UTILITY(U,$J,358.3,2973,1,3,0)
+ ;;=3^Hemorrhoidal Skin Tags,Residual
+ ;;^UTILITY(U,$J,358.3,2973,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,2973,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,2974,0)
+ ;;=K64.8^^28^245^37
+ ;;^UTILITY(U,$J,358.3,2974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3047,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,3047,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,3047,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,3048,0)
- ;;=F10.121^^8^88^6
- ;;^UTILITY(U,$J,358.3,3048,1,0)
+ ;;^UTILITY(U,$J,358.3,2974,1,3,0)
+ ;;=3^Hemorrhoids,Other
+ ;;^UTILITY(U,$J,358.3,2974,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,2974,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,2975,0)
+ ;;=K64.5^^28^245^38
+ ;;^UTILITY(U,$J,358.3,2975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3048,1,3,0)
- ;;=3^Mild Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,3048,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,3048,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,3049,0)
- ;;=F10.221^^8^88^7
- ;;^UTILITY(U,$J,358.3,3049,1,0)
+ ;;^UTILITY(U,$J,358.3,2975,1,3,0)
+ ;;=3^Hemorrhoids,Perianal Venous Thrombosis
+ ;;^UTILITY(U,$J,358.3,2975,1,4,0)
+ ;;=4^K64.5
+ ;;^UTILITY(U,$J,358.3,2975,2)
+ ;;=^5008773
+ ;;^UTILITY(U,$J,358.3,2976,0)
+ ;;=K70.9^^28^245^46
+ ;;^UTILITY(U,$J,358.3,2976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3049,1,3,0)
- ;;=3^Moderate/Severe Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,3049,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,3049,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,3050,0)
- ;;=F10.921^^8^88^1
- ;;^UTILITY(U,$J,358.3,3050,1,0)
+ ;;^UTILITY(U,$J,358.3,2976,1,3,0)
+ ;;=3^Hepatic Liver Disease,Alcoholic,Unspec
+ ;;^UTILITY(U,$J,358.3,2976,1,4,0)
+ ;;=4^K70.9
+ ;;^UTILITY(U,$J,358.3,2976,2)
+ ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,2977,0)
+ ;;=K75.9^^28^245^47
+ ;;^UTILITY(U,$J,358.3,2977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3050,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,3050,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,3050,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,3051,0)
- ;;=F05.^^8^88^4
- ;;^UTILITY(U,$J,358.3,3051,1,0)
+ ;;^UTILITY(U,$J,358.3,2977,1,3,0)
+ ;;=3^Hepatic Liver Disease,Inflammatory,Unspec
+ ;;^UTILITY(U,$J,358.3,2977,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,2977,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,2978,0)
+ ;;=K71.9^^28^245^48
+ ;;^UTILITY(U,$J,358.3,2978,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2978,1,3,0)
+ ;;=3^Hepatic Liver Disease,Toxic,Unspec
+ ;;^UTILITY(U,$J,358.3,2978,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,2978,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,2979,0)
+ ;;=K76.9^^28^245^49
+ ;;^UTILITY(U,$J,358.3,2979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2979,1,3,0)
+ ;;=3^Hepatic Liver Disease,Unspec

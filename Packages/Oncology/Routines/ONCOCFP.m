@@ -1,7 +1,8 @@
 ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;05/03/12
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,7**;Jul 31, 2013;Build 5
  ;
  ; rvd - 0403/12 p56. Use ICD API (#3990) instead of direct global call
+ ; P2.2*7 - icd10 CASEFINDING
  W @IOF
  W !!!?10,"****************** PTF CASEFINDING ******************",!
  W !?10,"This option will search the PRINCIPLE DIAGNOSIS and"
@@ -47,6 +48,22 @@ ED K DIR
  G EX:(Y="")!(Y[U)
  G T:'Y
  S ONCO("SD")=SD,ONCO("ED")=ED
+ ;
+ ;Include Squamous and Basal cell neoplasms (Y/N?)
+ W !
+ S SBCIND="NO"
+ K DIR
+ S DIR(0)="Y"
+ S DIR("A")="          Include Squamous and Basal cell neoplasms"
+ S DIR("B")="Yes"
+ S DIR("?")=" "
+ S DIR("?",1)=" Answer 'YES' if you want to include squamous and basal cell neoplasms."
+ S DIR("?",2)=" Answer  'NO' if you want to exclude these neoplasms."
+ D ^DIR
+ G EX:(Y="")!(Y[U)
+ S:Y=1 SBCIND="YES"
+ K DIR
+ ;
  W !!?3,"The following ICD codes will be searched for:"
  W !
  W !?3,"140-239        NEOPLASMS"
@@ -87,6 +104,10 @@ ED K DIR
  W !?3,"V71.1          OBSV-SUSPCT MAL NEOPLASM"
  W !?3,"V76.0-V76.9    SPECIAL SCREENING FOR MALIGNANT NEOPLASMS"
  W !
+ ;List of ICD10
+ D L10^ONCOCFP1
+ W !
+ ;
  S %ZIS="Q" D ^%ZIS I POP G EX
  I '$D(IO("Q")) D SER^ONCOCFP G EX
  S ZTRTN="SER^ONCOCFP",ZTSAVE("ONCO*")="",ZTDESC="ONCOLOGY PTF SEARCH"
@@ -110,18 +131,20 @@ SER ;Search PTF file (#45) file
  .S FR=DUZ(2)_","_ONCO("SD"),TO=DUZ(2)_","_ONCO("ED")
  .S FLDS="[ONCO PTF-CASEFINDING RPT]"
  S L=0,IOP=ION,DIOEND="D WP^ONCOCFP"
- D EN1^DIP G EX
+ D EN1^DIP Q
  ;
 WP ;Wrap-up report
  W !?3,$G(^TMP("ONCO",$J,0))_" PTF cases added to Suspense"
  Q
  ;
 IC ;Search for ICD codes
- K HT,IC9,IC,ICD,ICP
- S P="",CI=0
- F F=10,16:1:24 S ICP=+$P(X70,U,F) I ICP S ICD=$$ICDDX^ICDCODE(ICP),IC9=$P(ICD,U,2) D FD Q:CI=1
- I X71'="",CI=0 F F=1,2,3,4 S ICP=+$P(X71,U,F) I ICP S ICD=$$ICDDX^ICDCODE(ICP),IC9=$P(ICD,U,1) D FD Q:CI=1
- Q:CI=0  G CK
+ K HT,IC9,IC,ICD,ICP,CI10
+ S P="",CI=0,CI10=0
+ F F=10,16:1:24 S ICP=+$P(X70,U,F) I ICP>0 S IC9=$$GET1^DIQ(80,ICP,.01,"I") D FD Q:(CI=1)!(CI10=1)
+ I (X71'=""),(CI=0),(CI10=0) F F=1:1:15 S ICP=+$P(X71,U,F) I ICP>0 S IC9=$$GET1^DIQ(80,ICP,.01,"I") D FD Q:(CI=1)!(CI10=1)
+ ;I CI=0 D IC10^ONCOCFP1
+ I (CI=0),(CI10=0) Q
+ G CK
  ;
 FD I ((IC9>139.9)&(IC9<210)) S CI=1 Q
  I ((IC9>224.9)&(IC9<226)) S CI=1 Q
@@ -129,11 +152,12 @@ FD I ((IC9>139.9)&(IC9<210)) S CI=1 Q
  I ((IC9>229.9)&(IC9<240)) S CI=1 Q
  I (IC9=259.2)!(IC9=273.1)!(IC9=273.2)!(IC9=273.3)!(IC9=273.9)!(IC9=284.9)!(IC9=288.3)!(IC9=288.4)!(IC9=289.6)!(IC9=289.8)!(IC9=289.83)!(IC9=795.06)!(IC9=795.16)!(IC9=795.76)!(IC9=796.76)!(IC9="042.2")!(IC9="285.0") S CI=1 Q
  I $E(IC9)="V" S CD=$E(IC9,2,5) I ((CD>9)&(CD<11))!(CD=12.41)!(CD="58.0")!(CD=58.1)!(CD=66.1)!(CD=66.2)!(CD=67.1)!(CD=67.2)!(CD=71.1)!(CD="07.3")!(CD="07.8")!($E(CD,1,2)=76) S CI=1 Q
+ S IC10=IC9 D FD10^ONCOCFP1
  Q
  ;
 CK ;Check ONCOLOGY PATIENT (160) file
  ;Supported by IA #418
- Q:IC9=""
+ I ($G(IC9)=""),($G(IC10)="") Q
  D DIV Q:DVMTCH=0
  S X=^DGPT(D0,0),ADT=$P($P(X,U,2),"."),X=$P(X,U)_";DPT("
  S XD0=$O(^ONCO(160,"B",X,0)),ONCIEN=XD0 I XD0="" G MR
@@ -179,7 +203,7 @@ DIV ;DIVISION match
  ;
 EX ;KILL variables
  K %DT,%T,%ZIS,ADT,AFFDIV,BY,CD,CI,D0,DA,DD,DIC,DIE,DIOEND,DIR,DO,DR
- K DVMTCH,ED,F,FLDS,FR,GLO,HT,IC,IC9,ICD,ICP,INST,IOP,L,MCDV,NM,O2
+ K DVMTCH,ED,F,FLDS,FR,GLO,HT,IC,IC9,ICD,ICP,INST,IOP,L,MCDV,NM,O2,CI10,IC10,SBCIND
  K ONCDIVS,ONCDIVSP,ONCIEN,ONCO,ONCS,ONCSUB,OSP,P,POP,PTFD0,PTFDT,PTMV
  K SD,SDDEF,SDT,TO,WED,WSD,X,X1,X2,X70,X71,XD0,XD1,XDT,XDX,XED,Y,Z
  K ZTDESC,ZTRTN,ZTSAVE

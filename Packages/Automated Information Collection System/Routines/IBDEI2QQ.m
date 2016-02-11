@@ -1,0 +1,128 @@
+IBDEI2QQ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45990,1,3,0)
+ ;;=3^Fx of Clavicle,Left,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45990,1,4,0)
+ ;;=4^S42.002S
+ ;;^UTILITY(U,$J,358.3,45990,2)
+ ;;=^5026382
+ ;;^UTILITY(U,$J,358.3,45991,0)
+ ;;=S42.101S^^203^2270^36
+ ;;^UTILITY(U,$J,358.3,45991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45991,1,3,0)
+ ;;=3^Fx of Scapula,Right,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45991,1,4,0)
+ ;;=4^S42.101S
+ ;;^UTILITY(U,$J,358.3,45991,2)
+ ;;=^5026536
+ ;;^UTILITY(U,$J,358.3,45992,0)
+ ;;=S42.102S^^203^2270^35
+ ;;^UTILITY(U,$J,358.3,45992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45992,1,3,0)
+ ;;=3^Fx of Scapula,Left,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45992,1,4,0)
+ ;;=4^S42.102S
+ ;;^UTILITY(U,$J,358.3,45992,2)
+ ;;=^5026543
+ ;;^UTILITY(U,$J,358.3,45993,0)
+ ;;=S42.201S^^203^2270^21
+ ;;^UTILITY(U,$J,358.3,45993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45993,1,3,0)
+ ;;=3^Fx of Humerus,Right Upper End,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45993,1,4,0)
+ ;;=4^S42.201S
+ ;;^UTILITY(U,$J,358.3,45993,2)
+ ;;=^5026767
+ ;;^UTILITY(U,$J,358.3,45994,0)
+ ;;=S42.202S^^203^2270^20
+ ;;^UTILITY(U,$J,358.3,45994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45994,1,3,0)
+ ;;=3^Fx of Humerus,Left Upper End,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45994,1,4,0)
+ ;;=4^S42.202S
+ ;;^UTILITY(U,$J,358.3,45994,2)
+ ;;=^5026774
+ ;;^UTILITY(U,$J,358.3,45995,0)
+ ;;=S42.301S^^203^2270^19
+ ;;^UTILITY(U,$J,358.3,45995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45995,1,3,0)
+ ;;=3^Fx of Humerus Shaft,Right Arm,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45995,1,4,0)
+ ;;=4^S42.301S
+ ;;^UTILITY(U,$J,358.3,45995,2)
+ ;;=^5027037
+ ;;^UTILITY(U,$J,358.3,45996,0)
+ ;;=S42.302S^^203^2270^18
+ ;;^UTILITY(U,$J,358.3,45996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45996,1,3,0)
+ ;;=3^Fx of Humerus Shaft,Left Arm,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45996,1,4,0)
+ ;;=4^S42.302S
+ ;;^UTILITY(U,$J,358.3,45996,2)
+ ;;=^5027044
+ ;;^UTILITY(U,$J,358.3,45997,0)
+ ;;=S42.401S^^203^2270^17
+ ;;^UTILITY(U,$J,358.3,45997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45997,1,3,0)
+ ;;=3^Fx of Humerus Lower End,Right,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45997,1,4,0)
+ ;;=4^S42.401S
+ ;;^UTILITY(U,$J,358.3,45997,2)
+ ;;=^5027300
+ ;;^UTILITY(U,$J,358.3,45998,0)
+ ;;=S42.402S^^203^2270^16
+ ;;^UTILITY(U,$J,358.3,45998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45998,1,3,0)
+ ;;=3^Fx of Humerus Lower End,Left,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45998,1,4,0)
+ ;;=4^S42.402S
+ ;;^UTILITY(U,$J,358.3,45998,2)
+ ;;=^5134725
+ ;;^UTILITY(U,$J,358.3,45999,0)
+ ;;=S42.91XS^^203^2270^38
+ ;;^UTILITY(U,$J,358.3,45999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45999,1,3,0)
+ ;;=3^Fx of Shoulder Girdle,Right,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,45999,1,4,0)
+ ;;=4^S42.91XS
+ ;;^UTILITY(U,$J,358.3,45999,2)
+ ;;=^5027649
+ ;;^UTILITY(U,$J,358.3,46000,0)
+ ;;=S42.92XS^^203^2270^37
+ ;;^UTILITY(U,$J,358.3,46000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46000,1,3,0)
+ ;;=3^Fx of Shoulder Girdle,Left,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46000,1,4,0)
+ ;;=4^S42.92XS
+ ;;^UTILITY(U,$J,358.3,46000,2)
+ ;;=^5027656
+ ;;^UTILITY(U,$J,358.3,46001,0)
+ ;;=S52.91XS^^203^2270^15
+ ;;^UTILITY(U,$J,358.3,46001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46001,1,3,0)
+ ;;=3^Fx of Forearm,Right,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46001,1,4,0)
+ ;;=4^S52.91XS
+ ;;^UTILITY(U,$J,358.3,46001,2)
+ ;;=^5031173
+ ;;^UTILITY(U,$J,358.3,46002,0)
+ ;;=S52.92XS^^203^2270^14
+ ;;^UTILITY(U,$J,358.3,46002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46002,1,3,0)
+ ;;=3^Fx of Forearem,Left,Unspec,Sequela

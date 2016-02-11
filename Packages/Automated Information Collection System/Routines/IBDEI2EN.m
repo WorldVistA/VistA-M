@@ -1,0 +1,130 @@
+IBDEI2EN ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40393,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,40393,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,40394,0)
+ ;;=Z42.8^^186^2076^361
+ ;;^UTILITY(U,$J,358.3,40394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40394,1,3,0)
+ ;;=3^Plastic Surgery Following Proc or Healed Inj NEC
+ ;;^UTILITY(U,$J,358.3,40394,1,4,0)
+ ;;=4^Z42.8
+ ;;^UTILITY(U,$J,358.3,40394,2)
+ ;;=^5062957
+ ;;^UTILITY(U,$J,358.3,40395,0)
+ ;;=Z01.818^^186^2076^363
+ ;;^UTILITY(U,$J,358.3,40395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40395,1,3,0)
+ ;;=3^Preprocedureal Exam NEC
+ ;;^UTILITY(U,$J,358.3,40395,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,40395,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,40396,0)
+ ;;=Z48.89^^186^2076^10
+ ;;^UTILITY(U,$J,358.3,40396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40396,1,3,0)
+ ;;=3^Aftercare for Oth Specified Surgery
+ ;;^UTILITY(U,$J,358.3,40396,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,40396,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,40397,0)
+ ;;=Z48.811^^186^2076^9
+ ;;^UTILITY(U,$J,358.3,40397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40397,1,3,0)
+ ;;=3^Aftercare for Nervous System Surgery
+ ;;^UTILITY(U,$J,358.3,40397,1,4,0)
+ ;;=4^Z48.811
+ ;;^UTILITY(U,$J,358.3,40397,2)
+ ;;=^5063048
+ ;;^UTILITY(U,$J,358.3,40398,0)
+ ;;=Z48.817^^186^2076^11
+ ;;^UTILITY(U,$J,358.3,40398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40398,1,3,0)
+ ;;=3^Aftercare for Skin/Subcutaneous System Surgery
+ ;;^UTILITY(U,$J,358.3,40398,1,4,0)
+ ;;=4^Z48.817
+ ;;^UTILITY(U,$J,358.3,40398,2)
+ ;;=^5063054
+ ;;^UTILITY(U,$J,358.3,40399,0)
+ ;;=Z48.02^^186^2076^371
+ ;;^UTILITY(U,$J,358.3,40399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40399,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,40399,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,40399,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,40400,0)
+ ;;=S02.600A^^186^2076^175
+ ;;^UTILITY(U,$J,358.3,40400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40400,1,3,0)
+ ;;=3^Fx Mandible,Unspec,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,40400,1,4,0)
+ ;;=4^S02.600A
+ ;;^UTILITY(U,$J,358.3,40400,2)
+ ;;=^5020366
+ ;;^UTILITY(U,$J,358.3,40401,0)
+ ;;=S61.122A^^186^2076^275
+ ;;^UTILITY(U,$J,358.3,40401,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40401,1,3,0)
+ ;;=3^Laceration w/ FB Left Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40401,1,4,0)
+ ;;=4^S61.122A
+ ;;^UTILITY(U,$J,358.3,40401,2)
+ ;;=^5135706
+ ;;^UTILITY(U,$J,358.3,40402,0)
+ ;;=S61.121A^^186^2076^292
+ ;;^UTILITY(U,$J,358.3,40402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40402,1,3,0)
+ ;;=3^Laceration w/ FB Right Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40402,1,4,0)
+ ;;=4^S61.121A
+ ;;^UTILITY(U,$J,358.3,40402,2)
+ ;;=^5135705
+ ;;^UTILITY(U,$J,358.3,40403,0)
+ ;;=D17.0^^186^2076^302
+ ;;^UTILITY(U,$J,358.3,40403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40403,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Face,Head,Neck
+ ;;^UTILITY(U,$J,358.3,40403,1,4,0)
+ ;;=4^D17.0
+ ;;^UTILITY(U,$J,358.3,40403,2)
+ ;;=^5002005
+ ;;^UTILITY(U,$J,358.3,40404,0)
+ ;;=D17.20^^186^2076^303
+ ;;^UTILITY(U,$J,358.3,40404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40404,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Limb
+ ;;^UTILITY(U,$J,358.3,40404,1,4,0)
+ ;;=4^D17.20
+ ;;^UTILITY(U,$J,358.3,40404,2)
+ ;;=^5002007
+ ;;^UTILITY(U,$J,358.3,40405,0)
+ ;;=D17.30^^186^2076^304
+ ;;^UTILITY(U,$J,358.3,40405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40405,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Other Sites
+ ;;^UTILITY(U,$J,358.3,40405,1,4,0)
+ ;;=4^D17.30
+ ;;^UTILITY(U,$J,358.3,40405,2)
+ ;;=^5002012
+ ;;^UTILITY(U,$J,358.3,40406,0)
+ ;;=D17.1^^186^2076^305

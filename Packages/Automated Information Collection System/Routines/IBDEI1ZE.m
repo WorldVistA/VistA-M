@@ -1,124 +1,126 @@
-IBDEI1ZE ; ; 06-AUG-2015
+IBDEI1ZE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34711,1,4,0)
- ;;=4^S32.311S
- ;;^UTILITY(U,$J,358.3,34711,2)
- ;;=^5024652
- ;;^UTILITY(U,$J,358.3,34712,0)
- ;;=S32.612S^^183^2022^8
- ;;^UTILITY(U,$J,358.3,34712,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34712,1,3,0)
- ;;=3^Disp fx of avulsion of left ischium, sequela
- ;;^UTILITY(U,$J,358.3,34712,1,4,0)
- ;;=4^S32.612S
- ;;^UTILITY(U,$J,358.3,34712,2)
- ;;=^5025066
- ;;^UTILITY(U,$J,358.3,34713,0)
- ;;=S32.611S^^183^2022^10
- ;;^UTILITY(U,$J,358.3,34713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34713,1,3,0)
- ;;=3^Disp fx of avulsion of right ischium, sequela
- ;;^UTILITY(U,$J,358.3,34713,1,4,0)
- ;;=4^S32.611S
- ;;^UTILITY(U,$J,358.3,34713,2)
- ;;=^5025060
- ;;^UTILITY(U,$J,358.3,34714,0)
- ;;=S32.482S^^183^2022^11
- ;;^UTILITY(U,$J,358.3,34714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34714,1,3,0)
- ;;=3^Disp fx of dome of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34714,1,4,0)
- ;;=4^S32.482S
- ;;^UTILITY(U,$J,358.3,34714,2)
- ;;=^5024964
- ;;^UTILITY(U,$J,358.3,34715,0)
- ;;=S32.481S^^183^2022^12
- ;;^UTILITY(U,$J,358.3,34715,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34715,1,3,0)
- ;;=3^Disp fx of dome of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34715,1,4,0)
- ;;=4^S32.481S
- ;;^UTILITY(U,$J,358.3,34715,2)
- ;;=^5024958
- ;;^UTILITY(U,$J,358.3,34716,0)
- ;;=S32.432S^^183^2022^1
- ;;^UTILITY(U,$J,358.3,34716,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34716,1,3,0)
- ;;=3^Disp fx of anterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34716,1,4,0)
- ;;=4^S32.432S
- ;;^UTILITY(U,$J,358.3,34716,2)
- ;;=^5024784
- ;;^UTILITY(U,$J,358.3,34717,0)
- ;;=S32.431S^^183^2022^2
- ;;^UTILITY(U,$J,358.3,34717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34717,1,3,0)
- ;;=3^Disp fx of anterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34717,1,4,0)
- ;;=4^S32.431S
- ;;^UTILITY(U,$J,358.3,34717,2)
- ;;=^5024778
- ;;^UTILITY(U,$J,358.3,34718,0)
- ;;=S32.412S^^183^2022^3
- ;;^UTILITY(U,$J,358.3,34718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34718,1,3,0)
- ;;=3^Disp fx of anterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34718,1,4,0)
- ;;=4^S32.412S
- ;;^UTILITY(U,$J,358.3,34718,2)
- ;;=^5024712
- ;;^UTILITY(U,$J,358.3,34719,0)
- ;;=S32.411S^^183^2022^4
- ;;^UTILITY(U,$J,358.3,34719,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34719,1,3,0)
- ;;=3^Disp fx of anterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34719,1,4,0)
- ;;=4^S32.411S
- ;;^UTILITY(U,$J,358.3,34719,2)
- ;;=^5024706
- ;;^UTILITY(U,$J,358.3,34720,0)
- ;;=S32.472S^^183^2022^13
- ;;^UTILITY(U,$J,358.3,34720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34720,1,3,0)
- ;;=3^Disp fx of medial wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34720,1,4,0)
- ;;=4^S32.472S
- ;;^UTILITY(U,$J,358.3,34720,2)
- ;;=^5024928
- ;;^UTILITY(U,$J,358.3,34721,0)
- ;;=S32.471S^^183^2022^14
- ;;^UTILITY(U,$J,358.3,34721,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34721,1,3,0)
- ;;=3^Disp fx of medial wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34721,1,4,0)
- ;;=4^S32.471S
- ;;^UTILITY(U,$J,358.3,34721,2)
- ;;=^5024922
- ;;^UTILITY(U,$J,358.3,34722,0)
- ;;=S32.442S^^183^2022^15
- ;;^UTILITY(U,$J,358.3,34722,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34722,1,3,0)
- ;;=3^Disp fx of posterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,34722,1,4,0)
- ;;=4^S32.442S
- ;;^UTILITY(U,$J,358.3,34722,2)
- ;;=^5024820
- ;;^UTILITY(U,$J,358.3,34723,0)
- ;;=S32.441S^^183^2022^16
- ;;^UTILITY(U,$J,358.3,34723,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34723,1,3,0)
- ;;=3^Disp fx of posterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,33177,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33177,1,2,0)
+ ;;=2^96125
+ ;;^UTILITY(U,$J,358.3,33177,1,3,0)
+ ;;=3^Standardized Cognitive Performance Tst,per hr
+ ;;^UTILITY(U,$J,358.3,33178,0)
+ ;;=Q3014^^147^1623^19^^^^1
+ ;;^UTILITY(U,$J,358.3,33178,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33178,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,33178,1,3,0)
+ ;;=3^Telehealth Facility Fee
+ ;;^UTILITY(U,$J,358.3,33179,0)
+ ;;=90887^^147^1623^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33179,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33179,1,2,0)
+ ;;=2^90887
+ ;;^UTILITY(U,$J,358.3,33179,1,3,0)
+ ;;=3^Consultation w/Family
+ ;;^UTILITY(U,$J,358.3,33180,0)
+ ;;=90889^^147^1623^11^^^^1
+ ;;^UTILITY(U,$J,358.3,33180,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33180,1,2,0)
+ ;;=2^90889
+ ;;^UTILITY(U,$J,358.3,33180,1,3,0)
+ ;;=3^Preparation of Report
+ ;;^UTILITY(U,$J,358.3,33181,0)
+ ;;=96118^^147^1623^8^^^^1
+ ;;^UTILITY(U,$J,358.3,33181,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33181,1,2,0)
+ ;;=2^96118
+ ;;^UTILITY(U,$J,358.3,33181,1,3,0)
+ ;;=3^Neuropsych Test Admin by Psychologist,per hr
+ ;;^UTILITY(U,$J,358.3,33182,0)
+ ;;=G0177^^147^1623^20^^^^1
+ ;;^UTILITY(U,$J,358.3,33182,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33182,1,2,0)
+ ;;=2^G0177
+ ;;^UTILITY(U,$J,358.3,33182,1,3,0)
+ ;;=3^Train & Ed for Disabiling MH Problem 45+ min
+ ;;^UTILITY(U,$J,358.3,33183,0)
+ ;;=96116^^147^1623^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33183,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33183,1,2,0)
+ ;;=2^96116
+ ;;^UTILITY(U,$J,358.3,33183,1,3,0)
+ ;;=3^Neurobehavioral Status Exam,per hr
+ ;;^UTILITY(U,$J,358.3,33184,0)
+ ;;=98961^^147^1623^15^^^^1
+ ;;^UTILITY(U,$J,358.3,33184,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33184,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,33184,1,3,0)
+ ;;=3^Self-Mgmt Ed/Train,2-4 Pts,ea 30 min
+ ;;^UTILITY(U,$J,358.3,33185,0)
+ ;;=98962^^147^1623^16^^^^1
+ ;;^UTILITY(U,$J,358.3,33185,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33185,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,33185,1,3,0)
+ ;;=3^Self-Mgmt Ed/Train,5-8 Pts,ea 30 min
+ ;;^UTILITY(U,$J,358.3,33186,0)
+ ;;=99078^^147^1623^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33186,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33186,1,2,0)
+ ;;=2^99078
+ ;;^UTILITY(U,$J,358.3,33186,1,3,0)
+ ;;=3^Group Health Education
+ ;;^UTILITY(U,$J,358.3,33187,0)
+ ;;=96127^^147^1623^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33187,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33187,1,2,0)
+ ;;=2^96127
+ ;;^UTILITY(U,$J,358.3,33187,1,3,0)
+ ;;=3^Brief Emot/Behav Assmt w/ Score & Docum
+ ;;^UTILITY(U,$J,358.3,33188,0)
+ ;;=96101^^147^1623^12^^^^1
+ ;;^UTILITY(U,$J,358.3,33188,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33188,1,2,0)
+ ;;=2^96101
+ ;;^UTILITY(U,$J,358.3,33188,1,3,0)
+ ;;=3^Psych Test by Psych/Phys,per hr
+ ;;^UTILITY(U,$J,358.3,33189,0)
+ ;;=90899^^147^1623^21^^^^1
+ ;;^UTILITY(U,$J,358.3,33189,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33189,1,2,0)
+ ;;=2^90899
+ ;;^UTILITY(U,$J,358.3,33189,1,3,0)
+ ;;=3^Unlisted Psychiatric Service
+ ;;^UTILITY(U,$J,358.3,33190,0)
+ ;;=96150^^147^1624^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33190,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33190,1,2,0)
+ ;;=2^96150
+ ;;^UTILITY(U,$J,358.3,33190,1,3,0)
+ ;;=3^Behavior Assessm,Initial,ea 15min
+ ;;^UTILITY(U,$J,358.3,33191,0)
+ ;;=96151^^147^1624^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33191,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33191,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,33191,1,3,0)
+ ;;=3^Behavior Reassessm,ea 15min
+ ;;^UTILITY(U,$J,358.3,33192,0)
+ ;;=96152^^147^1624^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33192,1,0)
+ ;;=^358.31IA^3^2

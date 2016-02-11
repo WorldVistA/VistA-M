@@ -1,122 +1,134 @@
-IBDEI201 ; ; 06-AUG-2015
+IBDEI201 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34985,0)
- ;;=S89.322S^^183^2024^89
- ;;^UTILITY(U,$J,358.3,34985,1,0)
+ ;;^UTILITY(U,$J,358.3,33475,0)
+ ;;=F52.22^^148^1655^4
+ ;;^UTILITY(U,$J,358.3,33475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34985,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,34985,1,4,0)
- ;;=4^S89.322S
- ;;^UTILITY(U,$J,358.3,34985,2)
- ;;=^5137378
- ;;^UTILITY(U,$J,358.3,34986,0)
- ;;=S89.221S^^183^2024^93
- ;;^UTILITY(U,$J,358.3,34986,1,0)
+ ;;^UTILITY(U,$J,358.3,33475,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,33475,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,33475,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,33476,0)
+ ;;=F52.6^^148^1655^5
+ ;;^UTILITY(U,$J,358.3,33476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34986,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,34986,1,4,0)
- ;;=4^S89.221S
- ;;^UTILITY(U,$J,358.3,34986,2)
- ;;=^5043792
- ;;^UTILITY(U,$J,358.3,34987,0)
- ;;=S89.321S^^183^2024^90
- ;;^UTILITY(U,$J,358.3,34987,1,0)
+ ;;^UTILITY(U,$J,358.3,33476,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,33476,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,33476,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,33477,0)
+ ;;=F52.0^^148^1655^6
+ ;;^UTILITY(U,$J,358.3,33477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34987,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,34987,1,4,0)
- ;;=4^S89.321S
- ;;^UTILITY(U,$J,358.3,34987,2)
- ;;=^5043834
- ;;^UTILITY(U,$J,358.3,34988,0)
- ;;=S89.222S^^183^2024^94
- ;;^UTILITY(U,$J,358.3,34988,1,0)
+ ;;^UTILITY(U,$J,358.3,33477,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,33477,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,33477,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,33478,0)
+ ;;=F52.4^^148^1655^7
+ ;;^UTILITY(U,$J,358.3,33478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34988,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,34988,1,4,0)
- ;;=4^S89.222S
- ;;^UTILITY(U,$J,358.3,34988,2)
- ;;=^5043798
- ;;^UTILITY(U,$J,358.3,34989,0)
- ;;=M84.364S^^183^2024^103
- ;;^UTILITY(U,$J,358.3,34989,1,0)
+ ;;^UTILITY(U,$J,358.3,33478,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,33478,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,33478,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,33479,0)
+ ;;=F52.8^^148^1655^9
+ ;;^UTILITY(U,$J,358.3,33479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34989,1,3,0)
- ;;=3^Stress fracture, left fibula, sequela
- ;;^UTILITY(U,$J,358.3,34989,1,4,0)
- ;;=4^M84.364S
- ;;^UTILITY(U,$J,358.3,34989,2)
- ;;=^5013727
- ;;^UTILITY(U,$J,358.3,34990,0)
- ;;=M84.363S^^183^2024^105
- ;;^UTILITY(U,$J,358.3,34990,1,0)
+ ;;^UTILITY(U,$J,358.3,33479,1,3,0)
+ ;;=3^Sexual Dysfuntion NEC
+ ;;^UTILITY(U,$J,358.3,33479,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,33479,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,33480,0)
+ ;;=F52.9^^148^1655^8
+ ;;^UTILITY(U,$J,358.3,33480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34990,1,3,0)
- ;;=3^Stress fracture, right fibula, sequela
- ;;^UTILITY(U,$J,358.3,34990,1,4,0)
- ;;=4^M84.363S
- ;;^UTILITY(U,$J,358.3,34990,2)
- ;;=^5013721
- ;;^UTILITY(U,$J,358.3,34991,0)
- ;;=S82.822S^^183^2024^107
- ;;^UTILITY(U,$J,358.3,34991,1,0)
+ ;;^UTILITY(U,$J,358.3,33480,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,33480,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,33480,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,33481,0)
+ ;;=G47.09^^148^1656^11
+ ;;^UTILITY(U,$J,358.3,33481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34991,1,3,0)
- ;;=3^Torus fracture of lower end of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,34991,1,4,0)
- ;;=4^S82.822S
- ;;^UTILITY(U,$J,358.3,34991,2)
- ;;=^5136943
- ;;^UTILITY(U,$J,358.3,34992,0)
- ;;=S82.821S^^183^2024^109
- ;;^UTILITY(U,$J,358.3,34992,1,0)
+ ;;^UTILITY(U,$J,358.3,33481,1,3,0)
+ ;;=3^Insomnia Disorder NEC
+ ;;^UTILITY(U,$J,358.3,33481,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,33481,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,33482,0)
+ ;;=G47.00^^148^1656^10
+ ;;^UTILITY(U,$J,358.3,33482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34992,1,3,0)
- ;;=3^Torus fracture of lower end of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,34992,1,4,0)
- ;;=4^S82.821S
- ;;^UTILITY(U,$J,358.3,34992,2)
- ;;=^5042430
- ;;^UTILITY(U,$J,358.3,34993,0)
- ;;=S82.812S^^183^2024^111
- ;;^UTILITY(U,$J,358.3,34993,1,0)
+ ;;^UTILITY(U,$J,358.3,33482,1,3,0)
+ ;;=3^Insomnia Disorder
+ ;;^UTILITY(U,$J,358.3,33482,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,33482,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,33483,0)
+ ;;=G47.10^^148^1656^9
+ ;;^UTILITY(U,$J,358.3,33483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34993,1,3,0)
- ;;=3^Torus fracture of upper end of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,34993,1,4,0)
- ;;=4^S82.812S
- ;;^UTILITY(U,$J,358.3,34993,2)
- ;;=^5042418
- ;;^UTILITY(U,$J,358.3,34994,0)
- ;;=S82.811S^^183^2024^113
- ;;^UTILITY(U,$J,358.3,34994,1,0)
+ ;;^UTILITY(U,$J,358.3,33483,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,33483,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,33483,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,33484,0)
+ ;;=G47.419^^148^1656^12
+ ;;^UTILITY(U,$J,358.3,33484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34994,1,3,0)
- ;;=3^Torus fracture of upper end of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,34994,1,4,0)
- ;;=4^S82.811S
- ;;^UTILITY(U,$J,358.3,34994,2)
- ;;=^5042412
- ;;^UTILITY(U,$J,358.3,34995,0)
- ;;=S82.865S^^183^2024^37
- ;;^UTILITY(U,$J,358.3,34995,1,0)
+ ;;^UTILITY(U,$J,358.3,33484,1,3,0)
+ ;;=3^Narcolepsy
+ ;;^UTILITY(U,$J,358.3,33484,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,33484,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,33485,0)
+ ;;=G47.33^^148^1656^16
+ ;;^UTILITY(U,$J,358.3,33485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34995,1,3,0)
- ;;=3^Nondisp Maisonneuve's fx of left leg, sequela   
- ;;^UTILITY(U,$J,358.3,34995,1,4,0)
- ;;=4^S82.865S
- ;;^UTILITY(U,$J,358.3,34995,2)
- ;;=^5042750
- ;;^UTILITY(U,$J,358.3,34996,0)
- ;;=S82.864S^^183^2024^38
- ;;^UTILITY(U,$J,358.3,34996,1,0)
+ ;;^UTILITY(U,$J,358.3,33485,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,33485,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,33485,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,33486,0)
+ ;;=G47.31^^148^1656^1
+ ;;^UTILITY(U,$J,358.3,33486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34996,1,3,0)
- ;;=3^Nondisp Maisonneuve's fx of right leg, sequela   
- ;;^UTILITY(U,$J,358.3,34996,1,4,0)
- ;;=4^S82.864S
+ ;;^UTILITY(U,$J,358.3,33486,1,3,0)
+ ;;=3^Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,33486,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,33486,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,33487,0)
+ ;;=G47.21^^148^1656^3
+ ;;^UTILITY(U,$J,358.3,33487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33487,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,33487,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,33487,2)
+ ;;=^332769

@@ -1,5 +1,8 @@
-SDCOU ;ALB/RMO - Utilities - Check Out;28 DEC 1992 10:00 am
- ;;5.3;Scheduling;;Aug 13, 1993
+SDCOU ;ALB/RMO - Utilities - Check Out;28 DEC 1992 10:00 am ;01/21/2015
+ ;;5.3;Scheduling;**603**;Aug 13, 1993;Build 79
+ ;
+ ;Private ICR
+ ; 6167 - READ ACCESS TO DD(409.68
  ;
 CODT(DFN,SDT,SDCL) ; -- does appt have co date
  Q $P($G(^SC(SDCL,"S",SDT,1,+$$FIND^SDAM2(.DFN,.SDT,.SDCL),"C")),U,3)
@@ -20,6 +23,7 @@ STATUS(SDAT) ;Selected Appointment Status IEN
 ORG(SDORG) ;Originating Process Type Name for Outpatient Encounter
  ; Input  -- SDORG    Originating Process Type
  ; Output -- Originating Process Type Name
+ ;ICR 6167 - READ ACCESS TO DD(409.68
  N Y
  S Y=$$LOWER^VALM1($P($P(^DD(409.68,.08,0),SDORG_":",2),";"))
  Q $G(Y)
@@ -27,23 +31,23 @@ ORG(SDORG) ;Originating Process Type Name for Outpatient Encounter
 COMDT(SDOE) ;Check Out Process Completion Date/Time
  Q $P($G(^SCE(+SDOE,0)),"^",7)
  ;
-SET(SDOE,SDNEW) ; -- set x-ref logic for co completion date to updates children
+SET(SDOE,SDNEW) ; -- set x-ref logic for co completion date to update children
  I '$D(^SCE("APAR",SDOE)) G SETQ
- N SDOEP,SDOEC,X,DA,SDIX
- S SDOEP=SDOE,SDOEC=0
- F  S SDOEC=$O(^SCE("APAR",SDOEP,SDOEC)) Q:'SDOEC  D
- .I $D(^SCE(SDOEC,0)) D
- ..S $P(^SCE(SDOEC,0),U,7)=SDNEW,X=SDNEW,DA=SDOEC,SDIX=0
- ..F  S SDIX=$O(^DD(409.68,.07,1,SDIX)) Q:'SDIX  X ^(SDIX,1) S X=SDNEW
+ N SDOEC,SDFDA
+ S SDOEC=0 F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D
+ .I $D(^SCE(SDOE,0)) D
+ ..K SDFDA
+ ..S SDFDA(409.68,SDOEC_",",.07)=SDNEW
+ ..D FILE^DIE("","SDFDA")
 SETQ Q
  ;
-KILL(SDOE,SDOLD) ; -- set x-ref logic for co completion date to updates children
+KILL(SDOE,SDOLD) ; -- set x-ref logic for co completion date to update children
  I '$D(^SCE("APAR",SDOE)) G KILLQ
- N SDOEP,SDOEC,X,DA,SDIX
- S SDOEP=SDOE,SDOEC=0
- F  S SDOEC=$O(^SCE("APAR",SDOEP,SDOEC)) Q:'SDOEC  D
- .I $D(^SCE(SDOEC,0)) D
- ..S $P(^SCE(SDOEC,0),U,7)="",X=SDOLD,DA=SDOEC,SDIX=0
- ..F  S SDIX=$O(^DD(409.68,.07,1,SDIX)) Q:'SDIX  X ^(SDIX,2) S X=SDOLD
+ N SDOEC,SDFDA
+ S SDOEC=0 F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D
+ .I $D(^SCE(SDOE,0)) D
+ ..K SDFDA
+ ..S SDFDA(409.68,SDOEC_",",.07)=""
+ ..D FILE^DIE("","SDFDA")
 KILLQ Q
  ;

@@ -1,128 +1,130 @@
-IBDEI05M ; ; 06-AUG-2015
+IBDEI05M ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2107,1,3,0)
- ;;=3^Fx of unsp phalanx of left little finger, init
- ;;^UTILITY(U,$J,358.3,2107,1,4,0)
- ;;=4^S62.607A
- ;;^UTILITY(U,$J,358.3,2107,2)
- ;;=^5034431
- ;;^UTILITY(U,$J,358.3,2108,0)
- ;;=S92.901A^^4^62^79
- ;;^UTILITY(U,$J,358.3,2108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2108,1,3,0)
- ;;=3^Fx of right foot unspec, init encntr for closed fra
- ;;^UTILITY(U,$J,358.3,2108,1,4,0)
- ;;=4^S92.901A
- ;;^UTILITY(U,$J,358.3,2108,2)
- ;;=^5045578
- ;;^UTILITY(U,$J,358.3,2109,0)
- ;;=S92.902A^^4^62^66
- ;;^UTILITY(U,$J,358.3,2109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2109,1,3,0)
- ;;=3^Fx of left foot unspec, init encntr for closed fx
- ;;^UTILITY(U,$J,358.3,2109,1,4,0)
- ;;=4^S92.902A
- ;;^UTILITY(U,$J,358.3,2109,2)
- ;;=^5045585
- ;;^UTILITY(U,$J,358.3,2110,0)
- ;;=S42.301A^^4^62^81
- ;;^UTILITY(U,$J,358.3,2110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2110,1,3,0)
- ;;=3^Fx of right humerus shaft humerus unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2110,1,4,0)
- ;;=4^S42.301A
- ;;^UTILITY(U,$J,358.3,2110,2)
- ;;=^5027031
- ;;^UTILITY(U,$J,358.3,2111,0)
- ;;=S42.302A^^4^62^68
- ;;^UTILITY(U,$J,358.3,2111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2111,1,3,0)
- ;;=3^Fx of left humerus shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2111,1,4,0)
- ;;=4^S42.302A
- ;;^UTILITY(U,$J,358.3,2111,2)
- ;;=^5027038
- ;;^UTILITY(U,$J,358.3,2112,0)
- ;;=S92.301A^^4^62^91
- ;;^UTILITY(U,$J,358.3,2112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2112,1,3,0)
- ;;=3^Fx of unsp metatarsal bone(s), right foot, init
- ;;^UTILITY(U,$J,358.3,2112,1,4,0)
- ;;=4^S92.301A
- ;;^UTILITY(U,$J,358.3,2112,2)
- ;;=^5045046
- ;;^UTILITY(U,$J,358.3,2113,0)
- ;;=S92.302A^^4^62^90
- ;;^UTILITY(U,$J,358.3,2113,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2113,1,3,0)
- ;;=3^Fx of unsp metatarsal bone(s), left foot, init
- ;;^UTILITY(U,$J,358.3,2113,1,4,0)
- ;;=4^S92.302A
- ;;^UTILITY(U,$J,358.3,2113,2)
- ;;=^5045053
- ;;^UTILITY(U,$J,358.3,2114,0)
- ;;=S82.001A^^4^62^83
- ;;^UTILITY(U,$J,358.3,2114,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2114,1,3,0)
- ;;=3^Fx of right patella unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2114,1,4,0)
- ;;=4^S82.001A
- ;;^UTILITY(U,$J,358.3,2114,2)
- ;;=^5040104
- ;;^UTILITY(U,$J,358.3,2115,0)
- ;;=S82.002A^^4^62^70
- ;;^UTILITY(U,$J,358.3,2115,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2115,1,3,0)
- ;;=3^Fx of left patella unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2115,1,4,0)
- ;;=4^S82.002A
- ;;^UTILITY(U,$J,358.3,2115,2)
- ;;=^5040120
- ;;^UTILITY(U,$J,358.3,2116,0)
- ;;=S52.91XA^^4^62^80
- ;;^UTILITY(U,$J,358.3,2116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2116,1,3,0)
- ;;=3^Fx of right forearm unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2116,1,4,0)
- ;;=4^S52.91XA
- ;;^UTILITY(U,$J,358.3,2116,2)
- ;;=^5031158
- ;;^UTILITY(U,$J,358.3,2117,0)
- ;;=S52.92XA^^4^62^67
- ;;^UTILITY(U,$J,358.3,2117,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2117,1,3,0)
- ;;=3^Fx of left forearm unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,2117,1,4,0)
- ;;=4^S52.92XA
- ;;^UTILITY(U,$J,358.3,2117,2)
- ;;=^5031174
- ;;^UTILITY(U,$J,358.3,2118,0)
- ;;=S22.31XA^^4^62^76
- ;;^UTILITY(U,$J,358.3,2118,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2118,1,3,0)
- ;;=3^Fx of one rib, right side, init for clos fx
- ;;^UTILITY(U,$J,358.3,2118,1,4,0)
- ;;=4^S22.31XA
- ;;^UTILITY(U,$J,358.3,2118,2)
- ;;=^5023105
- ;;^UTILITY(U,$J,358.3,2119,0)
- ;;=S22.32XA^^4^62^75
- ;;^UTILITY(U,$J,358.3,2119,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2119,1,3,0)
- ;;=3^Fx of one rib, left side, init for clos fx
+ ;;^UTILITY(U,$J,358.3,1999,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1999,1,2,0)
+ ;;=2^93561
+ ;;^UTILITY(U,$J,358.3,1999,1,3,0)
+ ;;=3^Thermal Dilution Study W/Cardiac Output
+ ;;^UTILITY(U,$J,358.3,2000,0)
+ ;;=93571^^17^177^10^^^^1
+ ;;^UTILITY(U,$J,358.3,2000,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2000,1,2,0)
+ ;;=2^93571
+ ;;^UTILITY(U,$J,358.3,2000,1,3,0)
+ ;;=3^Intravascular Dopplar Add-On, First Vessel
+ ;;^UTILITY(U,$J,358.3,2001,0)
+ ;;=93572^^17^177^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2001,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2001,1,2,0)
+ ;;=2^93572
+ ;;^UTILITY(U,$J,358.3,2001,1,3,0)
+ ;;=3^Intravascular Dopplar, Each Addl Vessel
+ ;;^UTILITY(U,$J,358.3,2002,0)
+ ;;=93740^^17^177^14^^^^1
+ ;;^UTILITY(U,$J,358.3,2002,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2002,1,2,0)
+ ;;=2^93740
+ ;;^UTILITY(U,$J,358.3,2002,1,3,0)
+ ;;=3^Temperature Gradient Studies
+ ;;^UTILITY(U,$J,358.3,2003,0)
+ ;;=93784^^17^177^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2003,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2003,1,2,0)
+ ;;=2^93784
+ ;;^UTILITY(U,$J,358.3,2003,1,3,0)
+ ;;=3^Amb BP Monitor 24+ hrs,Int&Rpt
+ ;;^UTILITY(U,$J,358.3,2004,0)
+ ;;=93786^^17^177^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2004,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2004,1,2,0)
+ ;;=2^93786
+ ;;^UTILITY(U,$J,358.3,2004,1,3,0)
+ ;;=3^Amb BP Monitor 24+ hrs,Record Only
+ ;;^UTILITY(U,$J,358.3,2005,0)
+ ;;=93788^^17^177^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2005,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2005,1,2,0)
+ ;;=2^93788
+ ;;^UTILITY(U,$J,358.3,2005,1,3,0)
+ ;;=3^Amb BP Analysis & Rpt
+ ;;^UTILITY(U,$J,358.3,2006,0)
+ ;;=93790^^17^177^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2006,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2006,1,2,0)
+ ;;=2^93790
+ ;;^UTILITY(U,$J,358.3,2006,1,3,0)
+ ;;=3^Amb BP Review w/ Int&Rpt
+ ;;^UTILITY(U,$J,358.3,2007,0)
+ ;;=34800^^17^178^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2007,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2007,1,2,0)
+ ;;=2^34800
+ ;;^UTILITY(U,$J,358.3,2007,1,3,0)
+ ;;=3^Endovasc Abd Repair,Infrarenal AAA w/Tube
+ ;;^UTILITY(U,$J,358.3,2008,0)
+ ;;=34802^^17^178^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2008,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2008,1,2,0)
+ ;;=2^34802
+ ;;^UTILITY(U,$J,358.3,2008,1,3,0)
+ ;;=3^Endovasc Abd Repr,Infrarenal AAA w/Bifurc,1 Dock Limb
+ ;;^UTILITY(U,$J,358.3,2009,0)
+ ;;=34803^^17^178^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2009,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2009,1,2,0)
+ ;;=2^34803
+ ;;^UTILITY(U,$J,358.3,2009,1,3,0)
+ ;;=3^Endovasc Abd Repr,Infrarenal AAA w/Bifurc,2 Dock Limbs
+ ;;^UTILITY(U,$J,358.3,2010,0)
+ ;;=93279^^17^179^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2010,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2010,1,2,0)
+ ;;=2^93279
+ ;;^UTILITY(U,$J,358.3,2010,1,3,0)
+ ;;=3^PM DEVICE PROGR EVAL, SNGL
+ ;;^UTILITY(U,$J,358.3,2011,0)
+ ;;=93280^^17^179^9^^^^1
+ ;;^UTILITY(U,$J,358.3,2011,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2011,1,2,0)
+ ;;=2^93280
+ ;;^UTILITY(U,$J,358.3,2011,1,3,0)
+ ;;=3^PM DEVICE PROGR EVAL, DUAL
+ ;;^UTILITY(U,$J,358.3,2012,0)
+ ;;=93281^^17^179^10^^^^1
+ ;;^UTILITY(U,$J,358.3,2012,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2012,1,2,0)
+ ;;=2^93281
+ ;;^UTILITY(U,$J,358.3,2012,1,3,0)
+ ;;=3^PM DEVICE PROGR EVAL, MULTI
+ ;;^UTILITY(U,$J,358.3,2013,0)
+ ;;=93282^^17^179^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2013,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2013,1,2,0)
+ ;;=2^93282
+ ;;^UTILITY(U,$J,358.3,2013,1,3,0)
+ ;;=3^ICD DEVICE PROG EVAL, 1 SNGL
+ ;;^UTILITY(U,$J,358.3,2014,0)
+ ;;=93283^^17^179^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2014,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2014,1,2,0)
+ ;;=2^93283
+ ;;^UTILITY(U,$J,358.3,2014,1,3,0)
+ ;;=3^ICD DEVICE PROGR EVAL, DUAL

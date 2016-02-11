@@ -1,138 +1,124 @@
-IBDEI1AG ; ; 06-AUG-2015
+IBDEI1AG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22823,1,4,0)
- ;;=4^201.90
- ;;^UTILITY(U,$J,358.3,22823,1,5,0)
- ;;=5^Hodgkin's Lymphoma, Unpsec Type & Site
- ;;^UTILITY(U,$J,358.3,22823,2)
- ;;=^267430
- ;;^UTILITY(U,$J,358.3,22824,0)
- ;;=785.6^^125^1397^89
- ;;^UTILITY(U,$J,358.3,22824,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22824,1,4,0)
- ;;=4^785.6
- ;;^UTILITY(U,$J,358.3,22824,1,5,0)
- ;;=5^Lymphadenopathy
- ;;^UTILITY(U,$J,358.3,22824,2)
- ;;=^72368
- ;;^UTILITY(U,$J,358.3,22825,0)
- ;;=200.20^^125^1397^90
- ;;^UTILITY(U,$J,358.3,22825,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22825,1,4,0)
- ;;=4^200.20
- ;;^UTILITY(U,$J,358.3,22825,1,5,0)
- ;;=5^Lymphoma,Burkitt's,Site Unspec
- ;;^UTILITY(U,$J,358.3,22825,2)
- ;;=^17529
- ;;^UTILITY(U,$J,358.3,22826,0)
- ;;=202.00^^125^1397^92
- ;;^UTILITY(U,$J,358.3,22826,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22826,1,4,0)
- ;;=4^202.00
- ;;^UTILITY(U,$J,358.3,22826,1,5,0)
- ;;=5^Lymphoma,Low-Grade,Site Unspec
- ;;^UTILITY(U,$J,358.3,22826,2)
- ;;=^72606
- ;;^UTILITY(U,$J,358.3,22827,0)
- ;;=200.10^^125^1397^91
- ;;^UTILITY(U,$J,358.3,22827,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22827,1,4,0)
- ;;=4^200.10
- ;;^UTILITY(U,$J,358.3,22827,1,5,0)
- ;;=5^Lymphoma,Int or High Grade,Site Unspec
- ;;^UTILITY(U,$J,358.3,22827,2)
- ;;=^175886
- ;;^UTILITY(U,$J,358.3,22828,0)
- ;;=273.3^^125^1397^93
- ;;^UTILITY(U,$J,358.3,22828,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22828,1,4,0)
- ;;=4^273.3
- ;;^UTILITY(U,$J,358.3,22828,1,5,0)
- ;;=5^Macroglobulinemia
- ;;^UTILITY(U,$J,358.3,22828,2)
- ;;=^73013
- ;;^UTILITY(U,$J,358.3,22829,0)
- ;;=203.00^^125^1397^103
- ;;^UTILITY(U,$J,358.3,22829,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22829,1,4,0)
- ;;=4^203.00
- ;;^UTILITY(U,$J,358.3,22829,1,5,0)
- ;;=5^Multiple Myeloma w/o Remission
- ;;^UTILITY(U,$J,358.3,22829,2)
- ;;=^267514
- ;;^UTILITY(U,$J,358.3,22830,0)
- ;;=203.01^^125^1397^105
- ;;^UTILITY(U,$J,358.3,22830,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22830,1,4,0)
- ;;=4^203.01
- ;;^UTILITY(U,$J,358.3,22830,1,5,0)
- ;;=5^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,22830,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,22831,0)
- ;;=238.6^^125^1397^108
- ;;^UTILITY(U,$J,358.3,22831,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22831,1,4,0)
- ;;=4^238.6
- ;;^UTILITY(U,$J,358.3,22831,1,5,0)
- ;;=5^Plasmacytoma NOS
- ;;^UTILITY(U,$J,358.3,22831,2)
- ;;=^81973
- ;;^UTILITY(U,$J,358.3,22832,0)
- ;;=205.00^^125^1397^4
- ;;^UTILITY(U,$J,358.3,22832,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22832,1,4,0)
- ;;=4^205.00
- ;;^UTILITY(U,$J,358.3,22832,1,5,0)
- ;;=5^AML w/o Remission
- ;;^UTILITY(U,$J,358.3,22832,2)
- ;;=^267531
- ;;^UTILITY(U,$J,358.3,22833,0)
- ;;=205.01^^125^1397^6
- ;;^UTILITY(U,$J,358.3,22833,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22833,1,4,0)
- ;;=4^205.01
- ;;^UTILITY(U,$J,358.3,22833,1,5,0)
- ;;=5^AML,In Remission
- ;;^UTILITY(U,$J,358.3,22833,2)
- ;;=^267532
- ;;^UTILITY(U,$J,358.3,22834,0)
- ;;=205.10^^125^1397^19
- ;;^UTILITY(U,$J,358.3,22834,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22834,1,4,0)
- ;;=4^205.10
- ;;^UTILITY(U,$J,358.3,22834,1,5,0)
- ;;=5^CML w/o Remission
- ;;^UTILITY(U,$J,358.3,22834,2)
- ;;=^267533
- ;;^UTILITY(U,$J,358.3,22835,0)
- ;;=205.11^^125^1397^21
- ;;^UTILITY(U,$J,358.3,22835,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22835,1,4,0)
- ;;=4^205.11
- ;;^UTILITY(U,$J,358.3,22835,1,5,0)
- ;;=5^CML,In Remission
- ;;^UTILITY(U,$J,358.3,22835,2)
- ;;=^267534
- ;;^UTILITY(U,$J,358.3,22836,0)
- ;;=289.0^^125^1397^55
- ;;^UTILITY(U,$J,358.3,22836,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22836,1,4,0)
- ;;=4^289.0
- ;;^UTILITY(U,$J,358.3,22836,1,5,0)
- ;;=5^Erthryocytosis, Secondary
+ ;;^UTILITY(U,$J,358.3,21528,1,4,0)
+ ;;=4^S06.2X4S
+ ;;^UTILITY(U,$J,358.3,21528,2)
+ ;;=^5020740
+ ;;^UTILITY(U,$J,358.3,21529,0)
+ ;;=S06.2X9S^^101^1032^53
+ ;;^UTILITY(U,$J,358.3,21529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21529,1,3,0)
+ ;;=3^Diffuse TBI w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,21529,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,21529,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,21530,0)
+ ;;=S06.2X0S^^101^1032^54
+ ;;^UTILITY(U,$J,358.3,21530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21530,1,3,0)
+ ;;=3^Diffuse TBI w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,21530,1,4,0)
+ ;;=4^S06.2X0S
+ ;;^UTILITY(U,$J,358.3,21530,2)
+ ;;=^5020728
+ ;;^UTILITY(U,$J,358.3,21531,0)
+ ;;=S06.4X5S^^101^1032^55
+ ;;^UTILITY(U,$J,358.3,21531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21531,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,21531,1,4,0)
+ ;;=4^S06.4X5S
+ ;;^UTILITY(U,$J,358.3,21531,2)
+ ;;=^5021043
+ ;;^UTILITY(U,$J,358.3,21532,0)
+ ;;=S06.4X6S^^101^1032^56
+ ;;^UTILITY(U,$J,358.3,21532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21532,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,21532,1,4,0)
+ ;;=4^S06.4X6S
+ ;;^UTILITY(U,$J,358.3,21532,2)
+ ;;=^5021046
+ ;;^UTILITY(U,$J,358.3,21533,0)
+ ;;=S06.4X3S^^101^1032^57
+ ;;^UTILITY(U,$J,358.3,21533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21533,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,21533,1,4,0)
+ ;;=4^S06.4X3S
+ ;;^UTILITY(U,$J,358.3,21533,2)
+ ;;=^5021037
+ ;;^UTILITY(U,$J,358.3,21534,0)
+ ;;=S06.4X1S^^101^1032^58
+ ;;^UTILITY(U,$J,358.3,21534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21534,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,21534,1,4,0)
+ ;;=4^S06.4X1S
+ ;;^UTILITY(U,$J,358.3,21534,2)
+ ;;=^5021031
+ ;;^UTILITY(U,$J,358.3,21535,0)
+ ;;=S06.4X2S^^101^1032^59
+ ;;^UTILITY(U,$J,358.3,21535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21535,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,21535,1,4,0)
+ ;;=4^S06.4X2S
+ ;;^UTILITY(U,$J,358.3,21535,2)
+ ;;=^5021034
+ ;;^UTILITY(U,$J,358.3,21536,0)
+ ;;=S06.4X4S^^101^1032^60
+ ;;^UTILITY(U,$J,358.3,21536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21536,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,21536,1,4,0)
+ ;;=4^S06.4X4S
+ ;;^UTILITY(U,$J,358.3,21536,2)
+ ;;=^5021040
+ ;;^UTILITY(U,$J,358.3,21537,0)
+ ;;=S06.4X9S^^101^1032^61
+ ;;^UTILITY(U,$J,358.3,21537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21537,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,21537,1,4,0)
+ ;;=4^S06.4X9S
+ ;;^UTILITY(U,$J,358.3,21537,2)
+ ;;=^5021055
+ ;;^UTILITY(U,$J,358.3,21538,0)
+ ;;=S06.4X0S^^101^1032^62
+ ;;^UTILITY(U,$J,358.3,21538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21538,1,3,0)
+ ;;=3^Epidural hemorrhage without LOC, sequela
+ ;;^UTILITY(U,$J,358.3,21538,1,4,0)
+ ;;=4^S06.4X0S
+ ;;^UTILITY(U,$J,358.3,21538,2)
+ ;;=^5021028
+ ;;^UTILITY(U,$J,358.3,21539,0)
+ ;;=S06.825S^^101^1032^63
+ ;;^UTILITY(U,$J,358.3,21539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21539,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,21539,1,4,0)
+ ;;=4^S06.825S
+ ;;^UTILITY(U,$J,358.3,21539,2)
+ ;;=^5021163
+ ;;^UTILITY(U,$J,358.3,21540,0)
+ ;;=S06.826S^^101^1032^64
+ ;;^UTILITY(U,$J,358.3,21540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21540,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla

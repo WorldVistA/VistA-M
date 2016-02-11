@@ -1,130 +1,132 @@
-IBDEI1W6 ; ; 06-AUG-2015
+IBDEI1W6 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33272,1,0)
+ ;;^UTILITY(U,$J,358.3,31682,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,31683,0)
+ ;;=Z64.0^^138^1446^4
+ ;;^UTILITY(U,$J,358.3,31683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33272,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,33272,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,33272,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,33273,0)
- ;;=G35.^^182^1999^29
- ;;^UTILITY(U,$J,358.3,33273,1,0)
+ ;;^UTILITY(U,$J,358.3,31683,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,31683,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,31683,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,31684,0)
+ ;;=Z64.1^^138^1446^3
+ ;;^UTILITY(U,$J,358.3,31684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33273,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,33273,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,33273,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,33274,0)
- ;;=G40.901^^182^1999^13
- ;;^UTILITY(U,$J,358.3,33274,1,0)
+ ;;^UTILITY(U,$J,358.3,31684,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,31684,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,31684,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,31685,0)
+ ;;=Z64.4^^138^1446^1
+ ;;^UTILITY(U,$J,358.3,31685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33274,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,33274,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,33274,2)
- ;;=^5003864
- ;;^UTILITY(U,$J,358.3,33275,0)
- ;;=G40.909^^182^1999^14
- ;;^UTILITY(U,$J,358.3,33275,1,0)
+ ;;^UTILITY(U,$J,358.3,31685,1,3,0)
+ ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
+ ;;^UTILITY(U,$J,358.3,31685,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,31685,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,31686,0)
+ ;;=Z65.5^^138^1446^2
+ ;;^UTILITY(U,$J,358.3,31686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33275,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,33275,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,33275,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,33276,0)
- ;;=G43.809^^182^1999^26
- ;;^UTILITY(U,$J,358.3,33276,1,0)
+ ;;^UTILITY(U,$J,358.3,31686,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,31686,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,31686,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,31687,0)
+ ;;=Z62.820^^138^1447^4
+ ;;^UTILITY(U,$J,358.3,31687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33276,1,3,0)
- ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,33276,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,33276,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,33277,0)
- ;;=G43.B0^^182^1999^28
- ;;^UTILITY(U,$J,358.3,33277,1,0)
+ ;;^UTILITY(U,$J,358.3,31687,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,31687,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,31687,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,31688,0)
+ ;;=Z62.891^^138^1447^6
+ ;;^UTILITY(U,$J,358.3,31688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33277,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Not Intractable
- ;;^UTILITY(U,$J,358.3,33277,1,4,0)
- ;;=4^G43.B0
- ;;^UTILITY(U,$J,358.3,33277,2)
- ;;=^5003914
- ;;^UTILITY(U,$J,358.3,33278,0)
- ;;=G43.C0^^182^1999^17
- ;;^UTILITY(U,$J,358.3,33278,1,0)
+ ;;^UTILITY(U,$J,358.3,31688,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,31688,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,31688,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,31689,0)
+ ;;=Z62.898^^138^1447^1
+ ;;^UTILITY(U,$J,358.3,31689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33278,1,3,0)
- ;;=3^Headache Syndromes,Periodic Not Intractable
- ;;^UTILITY(U,$J,358.3,33278,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,33278,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,33279,0)
- ;;=G43.A0^^182^1999^8
- ;;^UTILITY(U,$J,358.3,33279,1,0)
+ ;;^UTILITY(U,$J,358.3,31689,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,31689,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,31689,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,31690,0)
+ ;;=Z63.0^^138^1447^5
+ ;;^UTILITY(U,$J,358.3,31690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33279,1,3,0)
- ;;=3^Cyclical Vomiting Not Intractable
- ;;^UTILITY(U,$J,358.3,33279,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,33279,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,33280,0)
- ;;=G43.C1^^182^1999^16
- ;;^UTILITY(U,$J,358.3,33280,1,0)
+ ;;^UTILITY(U,$J,358.3,31690,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,31690,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,31690,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,31691,0)
+ ;;=Z63.5^^138^1447^2
+ ;;^UTILITY(U,$J,358.3,31691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33280,1,3,0)
- ;;=3^Headache Syndromes,Periodic Intractable
- ;;^UTILITY(U,$J,358.3,33280,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,33280,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,33281,0)
- ;;=G43.B1^^182^1999^27
- ;;^UTILITY(U,$J,358.3,33281,1,0)
+ ;;^UTILITY(U,$J,358.3,31691,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,31691,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,31691,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,31692,0)
+ ;;=Z63.8^^138^1447^3
+ ;;^UTILITY(U,$J,358.3,31692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33281,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Intractable
- ;;^UTILITY(U,$J,358.3,33281,1,4,0)
- ;;=4^G43.B1
- ;;^UTILITY(U,$J,358.3,33281,2)
- ;;=^5003915
- ;;^UTILITY(U,$J,358.3,33282,0)
- ;;=G43.A1^^182^1999^7
- ;;^UTILITY(U,$J,358.3,33282,1,0)
+ ;;^UTILITY(U,$J,358.3,31692,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,31692,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,31692,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,31693,0)
+ ;;=Z63.4^^138^1447^7
+ ;;^UTILITY(U,$J,358.3,31693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33282,1,3,0)
- ;;=3^Cyclical Vomiting Intractable
- ;;^UTILITY(U,$J,358.3,33282,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,33282,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,33283,0)
- ;;=G43.819^^182^1999^23
- ;;^UTILITY(U,$J,358.3,33283,1,0)
+ ;;^UTILITY(U,$J,358.3,31693,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,31693,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,31693,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,31694,0)
+ ;;=F20.9^^138^1448^5
+ ;;^UTILITY(U,$J,358.3,31694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33283,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,33283,1,4,0)
- ;;=4^G43.819
- ;;^UTILITY(U,$J,358.3,33283,2)
- ;;=^5003903
- ;;^UTILITY(U,$J,358.3,33284,0)
- ;;=G43.909^^182^1999^25
- ;;^UTILITY(U,$J,358.3,33284,1,0)
+ ;;^UTILITY(U,$J,358.3,31694,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,31694,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,31694,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,31695,0)
+ ;;=F20.81^^138^1448^6
+ ;;^UTILITY(U,$J,358.3,31695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33284,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,33284,1,4,0)
- ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,31695,1,3,0)
+ ;;=3^Schizophreniform Disorder

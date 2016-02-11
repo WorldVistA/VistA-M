@@ -1,144 +1,124 @@
-IBDEI216 ; ; 06-AUG-2015
+IBDEI216 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35491,1,0)
+ ;;^UTILITY(U,$J,358.3,34029,0)
+ ;;=N02.6^^154^1722^75
+ ;;^UTILITY(U,$J,358.3,34029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35491,1,3,0)
- ;;=3^Wheezing
- ;;^UTILITY(U,$J,358.3,35491,1,4,0)
- ;;=4^R06.2
- ;;^UTILITY(U,$J,358.3,35491,2)
- ;;=^5019184
- ;;^UTILITY(U,$J,358.3,35492,0)
- ;;=R06.00^^188^2045^18
- ;;^UTILITY(U,$J,358.3,35492,1,0)
+ ;;^UTILITY(U,$J,358.3,34029,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,34029,1,4,0)
+ ;;=4^N02.6
+ ;;^UTILITY(U,$J,358.3,34029,2)
+ ;;=^5015517
+ ;;^UTILITY(U,$J,358.3,34030,0)
+ ;;=N02.7^^154^1722^76
+ ;;^UTILITY(U,$J,358.3,34030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35492,1,3,0)
- ;;=3^Dyspnea, unspecified
- ;;^UTILITY(U,$J,358.3,35492,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,35492,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,35493,0)
- ;;=R06.1^^188^2045^40
- ;;^UTILITY(U,$J,358.3,35493,1,0)
+ ;;^UTILITY(U,$J,358.3,34030,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,34030,1,4,0)
+ ;;=4^N02.7
+ ;;^UTILITY(U,$J,358.3,34030,2)
+ ;;=^5015518
+ ;;^UTILITY(U,$J,358.3,34031,0)
+ ;;=N02.8^^154^1722^81
+ ;;^UTILITY(U,$J,358.3,34031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35493,1,3,0)
- ;;=3^Stridor
- ;;^UTILITY(U,$J,358.3,35493,1,4,0)
- ;;=4^R06.1
- ;;^UTILITY(U,$J,358.3,35493,2)
- ;;=^5019183
- ;;^UTILITY(U,$J,358.3,35494,0)
- ;;=R05.^^188^2045^11
- ;;^UTILITY(U,$J,358.3,35494,1,0)
+ ;;^UTILITY(U,$J,358.3,34031,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,34031,1,4,0)
+ ;;=4^N02.8
+ ;;^UTILITY(U,$J,358.3,34031,2)
+ ;;=^5015519
+ ;;^UTILITY(U,$J,358.3,34032,0)
+ ;;=N02.9^^154^1722^82
+ ;;^UTILITY(U,$J,358.3,34032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35494,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,35494,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,35494,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,35495,0)
- ;;=R04.2^^188^2045^24
- ;;^UTILITY(U,$J,358.3,35495,1,0)
+ ;;^UTILITY(U,$J,358.3,34032,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,34032,1,4,0)
+ ;;=4^N02.9
+ ;;^UTILITY(U,$J,358.3,34032,2)
+ ;;=^5015520
+ ;;^UTILITY(U,$J,358.3,34033,0)
+ ;;=N03.0^^154^1722^18
+ ;;^UTILITY(U,$J,358.3,34033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35495,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,35495,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,35495,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,35496,0)
- ;;=R09.3^^188^2045^1
- ;;^UTILITY(U,$J,358.3,35496,1,0)
+ ;;^UTILITY(U,$J,358.3,34033,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,34033,1,4,0)
+ ;;=4^N03.0
+ ;;^UTILITY(U,$J,358.3,34033,2)
+ ;;=^5015521
+ ;;^UTILITY(U,$J,358.3,34034,0)
+ ;;=N03.1^^154^1722^17
+ ;;^UTILITY(U,$J,358.3,34034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35496,1,3,0)
- ;;=3^Abnormal sputum
- ;;^UTILITY(U,$J,358.3,35496,1,4,0)
- ;;=4^R09.3
- ;;^UTILITY(U,$J,358.3,35496,2)
- ;;=^5019202
- ;;^UTILITY(U,$J,358.3,35497,0)
- ;;=R07.9^^188^2045^5
- ;;^UTILITY(U,$J,358.3,35497,1,0)
+ ;;^UTILITY(U,$J,358.3,34034,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,34034,1,4,0)
+ ;;=4^N03.1
+ ;;^UTILITY(U,$J,358.3,34034,2)
+ ;;=^5015522
+ ;;^UTILITY(U,$J,358.3,34035,0)
+ ;;=N03.2^^154^1722^14
+ ;;^UTILITY(U,$J,358.3,34035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35497,1,3,0)
- ;;=3^Chest pain, unspecified
- ;;^UTILITY(U,$J,358.3,35497,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,35497,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,35498,0)
- ;;=R07.2^^188^2045^35
- ;;^UTILITY(U,$J,358.3,35498,1,0)
+ ;;^UTILITY(U,$J,358.3,34035,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,34035,1,4,0)
+ ;;=4^N03.2
+ ;;^UTILITY(U,$J,358.3,34035,2)
+ ;;=^5015523
+ ;;^UTILITY(U,$J,358.3,34036,0)
+ ;;=N03.3^^154^1722^15
+ ;;^UTILITY(U,$J,358.3,34036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35498,1,3,0)
- ;;=3^Precordial pain
- ;;^UTILITY(U,$J,358.3,35498,1,4,0)
- ;;=4^R07.2
- ;;^UTILITY(U,$J,358.3,35498,2)
- ;;=^5019197
- ;;^UTILITY(U,$J,358.3,35499,0)
- ;;=R22.2^^188^2045^29
- ;;^UTILITY(U,$J,358.3,35499,1,0)
+ ;;^UTILITY(U,$J,358.3,34036,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34036,1,4,0)
+ ;;=4^N03.3
+ ;;^UTILITY(U,$J,358.3,34036,2)
+ ;;=^5015524
+ ;;^UTILITY(U,$J,358.3,34037,0)
+ ;;=N03.4^^154^1722^13
+ ;;^UTILITY(U,$J,358.3,34037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35499,1,3,0)
- ;;=3^Localized swelling, mass and lump, trunk
- ;;^UTILITY(U,$J,358.3,35499,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,35499,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,35500,0)
- ;;=R06.6^^188^2045^25
- ;;^UTILITY(U,$J,358.3,35500,1,0)
+ ;;^UTILITY(U,$J,358.3,34037,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34037,1,4,0)
+ ;;=4^N03.4
+ ;;^UTILITY(U,$J,358.3,34037,2)
+ ;;=^5015525
+ ;;^UTILITY(U,$J,358.3,34038,0)
+ ;;=N03.5^^154^1722^16
+ ;;^UTILITY(U,$J,358.3,34038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35500,1,3,0)
- ;;=3^Hiccough
- ;;^UTILITY(U,$J,358.3,35500,1,4,0)
- ;;=4^R06.6
- ;;^UTILITY(U,$J,358.3,35500,2)
- ;;=^5019188
- ;;^UTILITY(U,$J,358.3,35501,0)
- ;;=R11.2^^188^2045^32
- ;;^UTILITY(U,$J,358.3,35501,1,0)
+ ;;^UTILITY(U,$J,358.3,34038,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,34038,1,4,0)
+ ;;=4^N03.5
+ ;;^UTILITY(U,$J,358.3,34038,2)
+ ;;=^5015526
+ ;;^UTILITY(U,$J,358.3,34039,0)
+ ;;=N03.6^^154^1722^11
+ ;;^UTILITY(U,$J,358.3,34039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35501,1,3,0)
- ;;=3^Nausea with vomiting, unspecified
- ;;^UTILITY(U,$J,358.3,35501,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,35501,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,35502,0)
- ;;=R11.0^^188^2045^31
- ;;^UTILITY(U,$J,358.3,35502,1,0)
+ ;;^UTILITY(U,$J,358.3,34039,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,34039,1,4,0)
+ ;;=4^N03.6
+ ;;^UTILITY(U,$J,358.3,34039,2)
+ ;;=^5015527
+ ;;^UTILITY(U,$J,358.3,34040,0)
+ ;;=N03.7^^154^1722^12
+ ;;^UTILITY(U,$J,358.3,34040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35502,1,3,0)
- ;;=3^Nausea
- ;;^UTILITY(U,$J,358.3,35502,1,4,0)
- ;;=4^R11.0
- ;;^UTILITY(U,$J,358.3,35502,2)
- ;;=^5019231
- ;;^UTILITY(U,$J,358.3,35503,0)
- ;;=R11.11^^188^2045^44
- ;;^UTILITY(U,$J,358.3,35503,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35503,1,3,0)
- ;;=3^Vomiting without nausea
- ;;^UTILITY(U,$J,358.3,35503,1,4,0)
- ;;=4^R11.11
- ;;^UTILITY(U,$J,358.3,35503,2)
- ;;=^5019233
- ;;^UTILITY(U,$J,358.3,35504,0)
- ;;=R12.^^188^2045^23
- ;;^UTILITY(U,$J,358.3,35504,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35504,1,3,0)
- ;;=3^Heartburn
- ;;^UTILITY(U,$J,358.3,35504,1,4,0)
- ;;=4^R12.
- ;;^UTILITY(U,$J,358.3,35504,2)
- ;;=^5019238
- ;;^UTILITY(U,$J,358.3,35505,0)
- ;;=R13.10^^188^2045^17
+ ;;^UTILITY(U,$J,358.3,34040,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,34040,1,4,0)
+ ;;=4^N03.7
+ ;;^UTILITY(U,$J,358.3,34040,2)
+ ;;=^5015528

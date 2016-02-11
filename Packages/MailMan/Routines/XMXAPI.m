@@ -1,5 +1,5 @@
-XMXAPI ;ISC-SF/GMB-Message APIs ; 4/2/09 10:11am
- ;;8.0;MailMan;**15,41**;Jun 28, 2002;Build 3
+XMXAPI ;ISC-SF/GMB - Message APIs ; 4/2/09 10:11am
+ ;;8.0;MailMan;**15,41,47**;Jun 28, 2002;Build 6
  ; All entry points covered by DBIA 2729.
  ; Variables input:
  ; XMATTACH  Imaging system BLOB attachment array
@@ -143,6 +143,9 @@ SENDMSG(XMDUZ,XMSUBJ,XMBODY,XMTO,XMINSTR,XMZ,XMATTACH) ; Send a msg
  ; XMINSTR("RCPT BSKT")
  N DIERR ; ADDED IN PATCH XM*8.0*41 JDG
  I '$D(XMV) N XMV,XMDISPI,XMDUN,XMNOSEND,XMPRIV
+ ; ** XM*8*47 Adds code to automatically truncate subject line if too long or concatenate if too short. **
+ I $L(XMSUBJ)<3,XMSUBJ'="" S XMSUBJ=XMSUBJ_"..."
+ I $L(XMSUBJ)>65 S XMSUBJ=$E(XMSUBJ,1,65)
  D SENDMSG^XMXPARM(.XMDUZ,.XMSUBJ,.XMBODY,.XMTO,.XMINSTR,.XMATTACH) Q:$D(XMERR)
  D SENDMSG^XMXSEND(XMDUZ,XMSUBJ,XMBODY,.XMTO,.XMINSTR,.XMZ,.XMATTACH)
  Q

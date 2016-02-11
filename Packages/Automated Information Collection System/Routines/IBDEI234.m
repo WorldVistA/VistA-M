@@ -1,58 +1,132 @@
-IBDEI234 ; ; 06-AUG-2015
+IBDEI234 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,34984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34984,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 3
+ ;;^UTILITY(U,$J,358.3,34984,1,4,0)
+ ;;=4^L89.153
+ ;;^UTILITY(U,$J,358.3,34984,2)
+ ;;=^5009371
+ ;;^UTILITY(U,$J,358.3,34985,0)
+ ;;=L89.154^^163^1788^106
+ ;;^UTILITY(U,$J,358.3,34985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34985,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 4
+ ;;^UTILITY(U,$J,358.3,34985,1,4,0)
+ ;;=4^L89.154
+ ;;^UTILITY(U,$J,358.3,34985,2)
+ ;;=^5009372
+ ;;^UTILITY(U,$J,358.3,34986,0)
+ ;;=L89.159^^163^1788^107
+ ;;^UTILITY(U,$J,358.3,34986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34986,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,34986,1,4,0)
+ ;;=4^L89.159
+ ;;^UTILITY(U,$J,358.3,34986,2)
+ ;;=^5009373
+ ;;^UTILITY(U,$J,358.3,34987,0)
+ ;;=L89.210^^163^1788^90
+ ;;^UTILITY(U,$J,358.3,34987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34987,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,34987,1,4,0)
+ ;;=4^L89.210
+ ;;^UTILITY(U,$J,358.3,34987,2)
+ ;;=^5009379
+ ;;^UTILITY(U,$J,358.3,34988,0)
+ ;;=L89.211^^163^1788^85
+ ;;^UTILITY(U,$J,358.3,34988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34988,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,34988,1,4,0)
+ ;;=4^L89.211
+ ;;^UTILITY(U,$J,358.3,34988,2)
+ ;;=^5009380
+ ;;^UTILITY(U,$J,358.3,34989,0)
+ ;;=L89.212^^163^1788^86
+ ;;^UTILITY(U,$J,358.3,34989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34989,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,34989,1,4,0)
+ ;;=4^L89.212
+ ;;^UTILITY(U,$J,358.3,34989,2)
+ ;;=^5009381
+ ;;^UTILITY(U,$J,358.3,34990,0)
+ ;;=L89.213^^163^1788^87
+ ;;^UTILITY(U,$J,358.3,34990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34990,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,34990,1,4,0)
+ ;;=4^L89.213
+ ;;^UTILITY(U,$J,358.3,34990,2)
+ ;;=^5009382
+ ;;^UTILITY(U,$J,358.3,34991,0)
+ ;;=L89.214^^163^1788^88
+ ;;^UTILITY(U,$J,358.3,34991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34991,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,34991,1,4,0)
+ ;;=4^L89.214
+ ;;^UTILITY(U,$J,358.3,34991,2)
+ ;;=^5009383
+ ;;^UTILITY(U,$J,358.3,34992,0)
+ ;;=L89.219^^163^1788^89
+ ;;^UTILITY(U,$J,358.3,34992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34992,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,34992,1,4,0)
+ ;;=4^L89.219
+ ;;^UTILITY(U,$J,358.3,34992,2)
+ ;;=^5133661
+ ;;^UTILITY(U,$J,358.3,34993,0)
+ ;;=L89.220^^163^1788^42
+ ;;^UTILITY(U,$J,358.3,34993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34993,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,34993,1,4,0)
+ ;;=4^L89.220
+ ;;^UTILITY(U,$J,358.3,34993,2)
+ ;;=^5009384
+ ;;^UTILITY(U,$J,358.3,34994,0)
+ ;;=L89.221^^163^1788^37
+ ;;^UTILITY(U,$J,358.3,34994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34994,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,34994,1,4,0)
+ ;;=4^L89.221
+ ;;^UTILITY(U,$J,358.3,34994,2)
+ ;;=^5009385
+ ;;^UTILITY(U,$J,358.3,34995,0)
+ ;;=L89.222^^163^1788^38
+ ;;^UTILITY(U,$J,358.3,34995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34995,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,34995,1,4,0)
+ ;;=4^L89.222
+ ;;^UTILITY(U,$J,358.3,34995,2)
+ ;;=^5009386
+ ;;^UTILITY(U,$J,358.3,34996,0)
+ ;;=L89.223^^163^1788^39
+ ;;^UTILITY(U,$J,358.3,34996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34996,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,34996,1,4,0)
+ ;;=4^L89.223
+ ;;^UTILITY(U,$J,358.3,34996,2)
+ ;;=^5009387

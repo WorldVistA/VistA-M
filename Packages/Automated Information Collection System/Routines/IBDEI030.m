@@ -1,136 +1,144 @@
-IBDEI030 ; ; 06-AUG-2015
+IBDEI030 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,861,2)
- ;;=^5009204
- ;;^UTILITY(U,$J,358.3,862,0)
- ;;=L98.9^^3^32^31
- ;;^UTILITY(U,$J,358.3,862,1,0)
+ ;;^UTILITY(U,$J,358.3,647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,862,1,3,0)
- ;;=3^Disorder of the skin and subcutaneous tissue, unspecified
- ;;^UTILITY(U,$J,358.3,862,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,862,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,863,0)
- ;;=M34.9^^3^32^143
- ;;^UTILITY(U,$J,358.3,863,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,863,1,3,0)
- ;;=3^Systemic sclerosis, unspecified
- ;;^UTILITY(U,$J,358.3,863,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,863,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,864,0)
- ;;=M34.0^^3^32^127
- ;;^UTILITY(U,$J,358.3,864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,864,1,3,0)
- ;;=3^Progressive systemic sclerosis
- ;;^UTILITY(U,$J,358.3,864,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,864,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,865,0)
- ;;=M34.1^^3^32^10
- ;;^UTILITY(U,$J,358.3,865,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,865,1,3,0)
- ;;=3^CR(E)ST syndrome
- ;;^UTILITY(U,$J,358.3,865,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,865,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,866,0)
- ;;=R21.^^3^32^133
- ;;^UTILITY(U,$J,358.3,866,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,866,1,3,0)
- ;;=3^Rash and other nonspecific skin eruption
- ;;^UTILITY(U,$J,358.3,866,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,866,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,867,0)
- ;;=R23.3^^3^32^141
- ;;^UTILITY(U,$J,358.3,867,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,867,1,3,0)
- ;;=3^Spontaneous ecchymoses
- ;;^UTILITY(U,$J,358.3,867,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,867,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,868,0)
- ;;=I96.^^3^32^44
- ;;^UTILITY(U,$J,358.3,868,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,868,1,3,0)
- ;;=3^Gangrene, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,868,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,868,2)
- ;;=^5008081
- ;;^UTILITY(U,$J,358.3,869,0)
- ;;=E11.21^^3^33^13
- ;;^UTILITY(U,$J,358.3,869,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,869,1,3,0)
- ;;=3^Type 2 diab w diabetic nephropathy
- ;;^UTILITY(U,$J,358.3,869,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,869,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,870,0)
- ;;=E10.21^^3^33^1
- ;;^UTILITY(U,$J,358.3,870,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,870,1,3,0)
- ;;=3^Type 1 diab w diabetic nephropathy
- ;;^UTILITY(U,$J,358.3,870,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,870,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,871,0)
- ;;=E11.321^^3^33^19
- ;;^UTILITY(U,$J,358.3,871,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,871,1,3,0)
- ;;=3^Type 2 diab w mild nonprlf diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,871,1,4,0)
- ;;=4^E11.321
- ;;^UTILITY(U,$J,358.3,871,2)
- ;;=^5002634
- ;;^UTILITY(U,$J,358.3,872,0)
- ;;=E11.329^^3^33^20
- ;;^UTILITY(U,$J,358.3,872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,872,1,3,0)
- ;;=3^Type 2 diab w mild nonprlf diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,872,1,4,0)
- ;;=4^E11.329
- ;;^UTILITY(U,$J,358.3,872,2)
- ;;=^5002635
- ;;^UTILITY(U,$J,358.3,873,0)
- ;;=E11.331^^3^33^21
- ;;^UTILITY(U,$J,358.3,873,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,873,1,3,0)
- ;;=3^Type 2 diab w moderate nonprlf diab rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,873,1,4,0)
- ;;=4^E11.331
- ;;^UTILITY(U,$J,358.3,873,2)
- ;;=^5002636
- ;;^UTILITY(U,$J,358.3,874,0)
- ;;=E11.339^^3^33^22
- ;;^UTILITY(U,$J,358.3,874,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,874,1,3,0)
- ;;=3^Type 2 diab w moderate nonprlf diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,874,1,4,0)
- ;;=4^E11.339
- ;;^UTILITY(U,$J,358.3,874,2)
- ;;=^5002637
+ ;;^UTILITY(U,$J,358.3,647,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia
+ ;;^UTILITY(U,$J,358.3,647,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,647,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,648,0)
+ ;;=99201^^7^77^1
+ ;;^UTILITY(U,$J,358.3,648,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,648,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,648,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,649,0)
+ ;;=99202^^7^77^2
+ ;;^UTILITY(U,$J,358.3,649,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,649,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,649,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,650,0)
+ ;;=99203^^7^77^3
+ ;;^UTILITY(U,$J,358.3,650,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,650,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,650,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,651,0)
+ ;;=99204^^7^77^4
+ ;;^UTILITY(U,$J,358.3,651,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,651,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,651,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,652,0)
+ ;;=99205^^7^77^5
+ ;;^UTILITY(U,$J,358.3,652,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,652,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,652,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,653,0)
+ ;;=99211^^7^78^1
+ ;;^UTILITY(U,$J,358.3,653,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,653,1,1,0)
+ ;;=1^Brief Visit
+ ;;^UTILITY(U,$J,358.3,653,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,654,0)
+ ;;=99212^^7^78^2
+ ;;^UTILITY(U,$J,358.3,654,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,654,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,654,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,655,0)
+ ;;=99213^^7^78^3
+ ;;^UTILITY(U,$J,358.3,655,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,655,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,655,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,656,0)
+ ;;=99214^^7^78^4
+ ;;^UTILITY(U,$J,358.3,656,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,656,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,656,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,657,0)
+ ;;=99215^^7^78^5
+ ;;^UTILITY(U,$J,358.3,657,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,657,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,657,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,658,0)
+ ;;=99241^^7^79^1
+ ;;^UTILITY(U,$J,358.3,658,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,658,1,1,0)
+ ;;=1^PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,658,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,659,0)
+ ;;=99242^^7^79^2
+ ;;^UTILITY(U,$J,358.3,659,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,659,1,1,0)
+ ;;=1^EXPANDED PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,659,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,660,0)
+ ;;=99243^^7^79^3
+ ;;^UTILITY(U,$J,358.3,660,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,660,1,1,0)
+ ;;=1^DETAILED
+ ;;^UTILITY(U,$J,358.3,660,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,661,0)
+ ;;=99244^^7^79^4
+ ;;^UTILITY(U,$J,358.3,661,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,661,1,1,0)
+ ;;=1^COMPREHENSIVE-MODERATE
+ ;;^UTILITY(U,$J,358.3,661,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,662,0)
+ ;;=99245^^7^79^5
+ ;;^UTILITY(U,$J,358.3,662,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,662,1,1,0)
+ ;;=1^COMPREHENSIVE-HIGH COMPLEX
+ ;;^UTILITY(U,$J,358.3,662,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,663,0)
+ ;;=90471^^8^80^5^^^^1
+ ;;^UTILITY(U,$J,358.3,663,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,663,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,663,1,3,0)
+ ;;=3^Immunization Administration (use w/ Vacs below)
+ ;;^UTILITY(U,$J,358.3,664,0)
+ ;;=90472^^8^80^4^^^^1
+ ;;^UTILITY(U,$J,358.3,664,1,0)
+ ;;=^358.31IA^3^2

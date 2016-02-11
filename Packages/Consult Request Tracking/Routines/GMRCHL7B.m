@@ -1,7 +1,7 @@
-GMRCHL7B ;SLC/DCM,MA,JFR - Process data from GMRCHL7A ;01/28/14  07:12
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,21,17,22,33,66,46,73**;DEC 27, 1997;Build 22
+GMRCHL7B ;SLC/DCM,MA,JFR - Process data from GMRCHL7A ;10/09/15  13:26
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,21,17,22,33,66,46,73,85**;DEC 27, 1997;Build 3
  ;
- ; This routine invokes IA #5699(ICDXCODE), #2053(DIE), #10006(DIC), #2056(GET1^DIQ)
+ ; This routine invokes IA #2053(DIE), #10006(DIC), #2056(GET1^DIQ), #5747$$CODECS^ICDEX
  ;
 NEW(MESSAGE) ;Add new order
  ;GMRCO=^GMR(123,IFN, the new file number in file ^GMR(123,
@@ -22,16 +22,7 @@ NEW(MESSAGE) ;Add new order
  ;    MESSAGE = rejection message if problems encountered while filing
  ;
  ;
- N DIC,DLAYGO,X,Y,DR,DIE,GMRCADUZ,GMRCCP,GMRCCS,GMRCCDT,GMRCCPTR,STATCHK
- ;    check for inactive ICD-9 code in Prov. DX
- I $D(GMRCPRCD) D  I $D(MESSAGE) Q  ; rejected due to inactive code
- .S GMRCCS="ICD"
- .I DT>=$$IMPDATE^LEXU("10D") S GMRCCS="10D"
- .S GMRCCPTR=$S(GMRCCS="ICD":1,1:30)
- .S STATCHK=$$STATCHK^ICDXCODE(GMRCCPTR,GMRCPRCD,DT)
- .I +STATCHK Q  ;code is OK
- .I $P(STATCHK,"^",2)=-1 S MESSAGE="Provisional DX code rejected: "_$P(STATCHK,"^",3)_" unable to file request" Q
- .S MESSAGE="Provisional DX code is inactive. Unable to file request."
+ N DIC,DLAYGO,X,Y,DR,DIE,GMRCADUZ,GMRCCP,GMRCCS
  S DIC="^GMR(123,",DIC(0)="L",X="""N""",DLAYGO=123 D ^DIC K DLAYGO Q:Y<1
  ; Patch #21 changed GMRCA=1 to GMRCA=2
  S (DA,GMRCO)=+Y,GMRCSTS=5,GMRCA=2,DIE=DIC
@@ -42,6 +33,9 @@ NEW(MESSAGE) ;Add new order
  ;Added new field .1 to DR on 7/11/98 to save the order text
  S DR="6////^S X=GMRCPLI;8////^S X=GMRCSTS;9////^S X=GMRCA;10////^S X=GMRCORNP;13////^S X=GMRCTYPE;14////^S X=$G(GMRCSBR);17////^S X=$G(GMRCERDT);30////^S X=$G(GMRCPRDG);.1////^S X=$G(GMRCOTXT)" ;wat/66
  I $D(GMRCPRCD) D
+ .S GMRCCS=""
+ .S GMRCCS=$$CODECS^ICDEX(GMRCPRCD,80) I $G(GMRCCS)'="" D  ;use dx code to get coding system
+ ..S GMRCCS=$S($P(GMRCCS,U)=1:"ICD",1:"10D")
  .S DR=DR_";30.1///^S X=GMRCPRCD;30.2////^S X=DT;30.3////^S X=GMRCCS"
  S GMRCCP=$P($G(^GMR(123.3,+GMRCPRI,0)),U,4) I GMRCCP D  ;file CP
  . S DR=DR_";1.01///^S X=GMRCCP"

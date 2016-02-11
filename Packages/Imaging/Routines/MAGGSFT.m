@@ -1,5 +1,5 @@
 MAGGSFT ;WOIFO/GEK - Utilities  ; 26 May 2010 10:20 AM
- ;;3.0;IMAGING;**7,8,94**;Mar 19, 2002;Build 1744;May 26, 2010
+ ;;3.0;IMAGING;**7,8,94,158**;Mar 19, 2002;Build 12;May 19, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -66,3 +66,24 @@ ABS4IMAG(MAGIEN) ; True, False  If the Image (MAGIEN) has an abstract
  S FTIEN=$O(^MAG(2005.021,"B",X,""))
  I 'FTIEN Q 0
  Q $P(^MAG(2005.021,FTIEN,0),"^",5)
+ ;
+ABSPDFNO(VAL) ;PATCH 158 Backout routine.
+ ; if a site needs to turn OFF creation of abstracts for PDF's, they
+ ; can call this tag.
+ ;  Called with VAL = ""     it will default to 0)
+ ;  Called with VAL = 0      turn off creation of Abstracts for PDF's)
+ ;  Called with VAL = 1      turn ON creation of Abstracts for PDF's)
+ N PDFID
+ S PDFID=$O(^MAG(2005.021,"B","PDF",""))
+ I 'PDFID W !,"Error - PDF entry does not exist in IMAGE FILE TYPES File" Q
+ S VAL=$G(VAL,0)
+ ;   if turning off
+ I 'VAL D  W !,"Abstracts for PDF's will not be created" Q
+ . S $P(^MAG(2005.021,PDFID,0),"^",4)="magpdf.bmp" ;canned bitmap to use.
+ . S $P(^MAG(2005.021,PDFID,0),"^",5)="0"          ; abstracts created = 0  NO
+ . Q
+ I VAL D  W !,"Abstracts for PDF's will be created" Q
+ . S $P(^MAG(2005.021,PDFID,0),"^",4)=""     ; erase the canned bitmap.
+ . S $P(^MAG(2005.021,PDFID,0),"^",5)="1"    ; abstracts created = 1  YES
+ . Q
+ Q

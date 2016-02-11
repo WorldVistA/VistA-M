@@ -1,5 +1,5 @@
-ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;12/5/14  16:23
- ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122,126**;8 May 96;Build 8
+ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;7/30/15  15:44
+ ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122,126,130**;8 May 96;Build 1
  ;
 ASKCLASS(DFN,ECANS,ERR,ECTOPCE,ECPATST,ECHDA) ;  Ask classification questions
  ; (Agent Orange, Ionizing Radiation, Environmental Contaminants/South 
@@ -243,7 +243,7 @@ RCNTVST(RESULT,ECARY) ;126 Changed parameter name from DFN to ECARY
  ..S PARAMS=$G(^TMP("VSIT",$J,VIEN,NUM))
  ..;make sure location is a clinic
  ..I $$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),2,"I")'="C" Q
- ..I $G(LOC) I LOC'=$$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),3,"I") Q  ;126 If location sent, filter out any visits whose clinic isn't in the location
+ ..I $G(LOC) I LOC'=$$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),"3.5:.07","I") Q  ;126,130 If location sent, filter out any visits whose clinic isn't in the location
  ..S P1DT=$P(PARAMS,U,1),P1=$$FMTE^XLFDT(P1DT,"9M"),P2=$P($P(PARAMS,U,2),";",2)
  ..I '$G(P1DT)!($G(P2)="") Q
  ..I $D(ARR(P1DT,P2))=1 Q
@@ -255,7 +255,7 @@ RCNTVST(RESULT,ECARY) ;126 Changed parameter name from DFN to ECARY
  .S P1DT=$G(^TMP($J,"SDAMA201","GETAPPT",VIEN,1))
  .S P1=$$FMTE^XLFDT(P1DT,"9M")
  .S P2=$P($G(^TMP($J,"SDAMA201","GETAPPT",VIEN,2)),U,2)
- .I $G(LOC) I LOC'=$$GET1^DIQ(44,$P($G(^TMP($J,"SDAMA201","GETAPPT",VIEN,2)),U),3,"I") Q  ;126 If location sent, filter out any appts whos clinic isn't in the location
+ .I $G(LOC) I LOC'=$$GET1^DIQ(44,$P($G(^TMP($J,"SDAMA201","GETAPPT",VIEN,2)),U),"3.5:.07","I") Q  ;126,130 If location sent, filter out any appts whose clinic isn't in the location
  .I '$G(P1DT)!($G(P2)="") Q
  .I $D(ARR(P1DT,P2))=1 Q
  .;;cntrl array, filter visits from PT file

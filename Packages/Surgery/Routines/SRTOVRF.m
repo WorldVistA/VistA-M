@@ -1,5 +1,5 @@
 SRTOVRF ;BIR/SJA - TIME OUT VERIFIED FOR SURGERY ;12/16/10
- ;;3.0;Surgery;**175,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**175,182,184**;24 Jun 93;Build 35
  ;
  ; entry point called by 'AE' x-ref of the 600-611 surgery fields
 IN N SRJ,SRK,SRTN1,SRYN S SRTN1=$S($D(SRTN):SRTN,1:DA) Q:'SRTN1
@@ -47,5 +47,33 @@ SK D EN^DDIOL($S(SRJ=635:"Wound Sweep",1:"Intraoperative X-Ray")_" comments shou
  Q
 ABORT(SRTN) ; check if the case is aborted
  N SRNP2 S SRNP2=$G(^SRF(SRTN,.2))
- I $P($G(^SRF(SRTN,30)),"^")'=""!($P($G(^SRF(SRTN,31)),"^",8)'="") I $P(SRNP2,"^")!($P(SRNP2,"^",10)) Q 1
+ I $P($G(^SRF(SRTN,30)),"^")'=""!($P($G(^SRF(SRTN,31)),"^",8)'="") I $P(SRNP2,"^")!($P(SRNP2,"^",10))&($P($G(^SRF(SRTN,30)),"^",6)>1) Q 1
  Q 0
+ ;
+VER1(SRTN) ; check before displaying [SROMEN-VERF1] fields
+ N SRCPT
+ S SRCPT=$P($G(^SRF(SRTN,"OP")),"^",2) I 'SRCPT Q 0
+ I ",32851,32852,32853,32854,33935,33945,44135,44136,47135,47136,48160,48554,50360,50365,"[(","_SRCPT_",") Q 1
+ Q 0
+ ;
+VER2(SRTN) ; check before displaying [SROMEN-VERF2] fields
+ N SRCPT
+ S SRCPT=$P($G(^SRF(SRTN,"OP")),"^",2) I 'SRCPT Q 0
+ I ",44133,47140,47141,47142,48550,50320,50547,"[(","_SRCPT_",") Q 1
+ Q 0
+ ;
+SPIN(SRCPT) ; check to see if the case is spinal case
+ N SRF,SCPT S SRF=0
+ S SRTN=$S($D(SRTN):SRTN,$D(DA):DA,1:"") I SRTN S SROP=$G(^SRF(SRTN,"OP"))
+ S SCPT=$S($D(SRCPT):SRCPT,$P(SROP,"^",2):$P(SROP,"^",2),1:"")
+ S:'SCPT SRF=0
+ I $G(SCPT),$D(^SRO(131.4,SCPT,0)) S SRF=1
+ I SRF=0 S $P(^SRF(SRTN,1.1),"^",4)=""
+ Q SRF
+ ;
+SCR(SRF) ; screen items that are not matching case specialty
+ N SRSPEC
+ S SRSPEC=$P($G(^SRF($S($D(SRTN):SRTN,1:DA),0)),"^",4)
+ I '$O(^SRO(SRF,Y,1,"B",0)) Q 1
+ I '$D(^SRO(SRF,Y,1,"B",SRSPEC)) Q 0
+ Q 1

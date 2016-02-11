@@ -1,5 +1,5 @@
 MPIFHWSC ;OAK/ELZ - MPIF HEALTHEVET WEB SERVICES CLIENT TOOLS ;3 APR 2012
- ;;1.0;MASTER PATIENT INDEX VISTA;**56**;30 Apr 99;Build 2
+ ;;1.0;MASTER PATIENT INDEX VISTA;**56,61**;30 Apr 99;Build 3
  ;
 ENV ; - environment check entry (first time with this patch only)
  ; this tag area can be removed with future patches
@@ -63,9 +63,23 @@ POST(MPIXML,MPIXMLR) ; - post XML to the execute server
  ; set error trap
  S $ETRAP="DO ERROR^MPIFHWSC"
  ;
+ ; test mode (outgoing)?
+ I $D(^XTMP("MPIFXML EDIT")) D TEST("OUTGOING",.MPIXML)
+ ;
  ; make the call
  S SVC=$$GETPROXY^XOBWLIB("MPI_PSIM_EXECUTE","MPI_PSIM_EXECUTE")
  S MPIXMLR=SVC.execute(MPIXML)
+ ;
+ ; in case debugging needed, save both out and return
+ I $D(^XTMP("MPIFHWSC")) D
+ . N MPIFSAVE
+ . S MPIFSAVE=$O(^XTMP("MPIFHWSC",":"),-1)+1
+ . S ^XTMP("MPIFHWSC",MPIFSAVE,0)=$$NOW^XLFDT
+ . S ^XTMP("MPIFHWSC",MPIFSAVE,"OUT")=MPIXML
+ . S ^XTMP("MPIFHWSC",MPIFSAVE,"RETURN")=MPIXMLR
+ ;
+ ; test mode (return)?
+ I $D(^XTMP("MPIFXML EDIT")) D TEST("RETURN",.MPIXMLR)
  ;
  Q
  ;
@@ -82,3 +96,22 @@ ERROR ; - catch errors
  D UNWIND^%ZTER
  Q
  ;
+TEST(TYPE,MPIXML) ; - call to possibly edit the xml string
+ ; used for testing purposes only.
+ ; production NOT allowed
+ I $$PROD^XUPROD Q
+ I $E($G(IOST),1,2)'="C-" Q
+ ;
+ N X,S,L,T,C,%,%Y
+ W !!,"Do you want to edit the "_TYPE_" XML"
+ S %=2 D YN^DICN I %'=1 Q
+ K ^TMP("MPIFXMLT",$J)
+ S L=0,T=""
+ F X=1:1 S C=$E(MPIXML,X) Q:C=""  D
+ . I C="<",T'="" S L=L+1,^TMP("MPIFXMLT",$J,L,0)=T,T=C Q
+ . S T=T_C
+ S DIC="^TMP(""MPIFXMLT"",$J,"
+ D EN^DIWE
+ S MPIXML=""
+ S X=0 F  S X=$O(^TMP("MPIFXMLT",$J,X)) Q:'X  S MPIXML=MPIXML_^TMP("MPIFXMLT",$J,X,0)
+ Q

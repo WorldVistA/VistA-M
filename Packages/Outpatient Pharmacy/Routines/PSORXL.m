@@ -1,5 +1,5 @@
 PSORXL ;BHAM ISC/SAB - action to be taken on prescriptions ;10/15/08 2:12pm
- ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334,251,354,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334,251,354,367,370**;DEC 1997;Build 14
  ;External reference to File #50 supported by DBIA 221
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
  I $G(PSOTRVV),$G(PPL) S PSORX("PSOL",1)=PPL K PPL
@@ -11,7 +11,7 @@ LBL ;
  I $$GET1^DIQ(59,PSOSITE,134)'="" D
  . I $G(PSOFDAPT)="" S PSOFDAPT=$$DEFPRT^PSOFDAUT(PSOSITE)
  . S DIR("A",2)="FDA Med Guide Printer: "_$S($G(PSOFDAPT)="":"HOME",1:$P(PSOFDAPT,"^"))
- S DIR("A")="LABEL: QUEUE/CHANGE PRINTER"_$S($P(PSOPAR,"^",23):"/HOLD",1:"")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_" or '^' to bypass "
+ S DIR("A")="LABEL: QUEUE/CHANGE PRINTER"_$S($P(PSOPAR,"^",23)&($D(^XUSEC("PSORPH",DUZ))!($D(^XUSEC("PSO TECH ADV",DUZ)))):"/HOLD",1:"")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_" or '^' to bypass "
  S DIR("?",1)="Enter 'Q' to queue labels to print",DIR("?")="Enter '^' to bypass label functions",DIR("?",4)="Enter 'S' to suspend labels to print later"
  S DIR("?",2)="Enter 'H' to hold label until Rx can be filled",DIR("?",3)="Enter 'P' for Rx profile"
  S DIR("?",5)="Enter 'C' to select another label printer"
@@ -42,7 +42,8 @@ SETP K PSORX("PSOL"),PPL S VVCT=1 F VV=0:0 S VV=$O(^TMP($J,$S($G(PSTRIVAR):"PSON
  K ^TMP($J,"PSONOB") S PPL=$G(PSORX("PSOL",1))
 PASS ;
  I $E($G(DIR("A")),1,6)'="LABEL:" D RESDIR^PSOCPTRI
- S DIR(0)="SA^P:PROFILE;Q:QUEUE;C:CHANGE PRINTER"_$S($P(PSOPAR,"^",23):";H:HOLD",1:"")_$S($P(PSOPAR,"^",24):";S:SUSPENSE",1:"")_$S($P(PSOPAR,"^",26):";L:PRINT",1:""),DIR("B")="Q" D ^DIR D  G:$D(DIRUT)!($D(DUOUT)) EX
+ S DIR(0)="SA^P:PROFILE;Q:QUEUE;C:CHANGE PRINTER"_$S($P(PSOPAR,"^",23)&($D(^XUSEC("PSORPH",DUZ))!($D(^XUSEC("PSO TECH ADV",DUZ)))):";H:HOLD",1:"")
+ S DIR(0)=DIR(0)_$S($P(PSOPAR,"^",24):";S:SUSPENSE",1:"")_$S($P(PSOPAR,"^",26):";L:PRINT",1:""),DIR("B")="Q" D ^DIR D  G:$D(DIRUT)!($D(DUOUT)) EX  ;*370
  .I $D(DIRUT)!($D(DUOUT)) D AL^PSOLBL("UT") I $G(PSOEXREP) S PSOEXREX=1
  .I $G(PSOPULL) I $D(DIRUT)!($D(DUOUT)) S PSOQFLAG=1
  S:$G(PSOBEDT) NOPP=Y

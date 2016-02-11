@@ -1,136 +1,124 @@
-IBDEI1BU ; ; 06-AUG-2015
+IBDEI1BU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23511,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23511,1,2,0)
- ;;=2^H0025
- ;;^UTILITY(U,$J,358.3,23511,1,3,0)
- ;;=3^Addictions Education Service
- ;;^UTILITY(U,$J,358.3,23512,0)
- ;;=H0030^^126^1417^4^^^^1
- ;;^UTILITY(U,$J,358.3,23512,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23512,1,2,0)
- ;;=2^H0030
- ;;^UTILITY(U,$J,358.3,23512,1,3,0)
- ;;=3^Addictions Hotline Services
- ;;^UTILITY(U,$J,358.3,23513,0)
- ;;=H0046^^126^1417^9^^^^1
- ;;^UTILITY(U,$J,358.3,23513,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23513,1,2,0)
- ;;=2^H0046
- ;;^UTILITY(U,$J,358.3,23513,1,3,0)
- ;;=3^PTSD Group
- ;;^UTILITY(U,$J,358.3,23514,0)
- ;;=90791^^126^1418^1^^^^1
- ;;^UTILITY(U,$J,358.3,23514,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23514,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,23514,1,3,0)
- ;;=3^Psychiatric Diagnostic Evaluation
- ;;^UTILITY(U,$J,358.3,23515,0)
- ;;=309.24^^127^1419^1
- ;;^UTILITY(U,$J,358.3,23515,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23515,1,2,0)
- ;;=2^309.24
- ;;^UTILITY(U,$J,358.3,23515,1,5,0)
- ;;=5^Adj Reac w/ Anxiety
- ;;^UTILITY(U,$J,358.3,23515,2)
- ;;=^268308
- ;;^UTILITY(U,$J,358.3,23516,0)
- ;;=309.4^^127^1419^4
- ;;^UTILITY(U,$J,358.3,23516,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23516,1,2,0)
- ;;=2^309.4
- ;;^UTILITY(U,$J,358.3,23516,1,5,0)
- ;;=5^Adj Reac w/ Mixed Disturbance of Emotion & Conduct
- ;;^UTILITY(U,$J,358.3,23516,2)
- ;;=^268312
- ;;^UTILITY(U,$J,358.3,23517,0)
- ;;=309.28^^127^1419^2
- ;;^UTILITY(U,$J,358.3,23517,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23517,1,2,0)
- ;;=2^309.28
- ;;^UTILITY(U,$J,358.3,23517,1,5,0)
- ;;=5^Adj Reac w/ Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,23517,2)
- ;;=^268309
- ;;^UTILITY(U,$J,358.3,23518,0)
- ;;=309.9^^127^1419^8
- ;;^UTILITY(U,$J,358.3,23518,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23518,1,2,0)
- ;;=2^309.9
- ;;^UTILITY(U,$J,358.3,23518,1,5,0)
- ;;=5^Adjustment Reaction NOS
- ;;^UTILITY(U,$J,358.3,23518,2)
- ;;=^123757
- ;;^UTILITY(U,$J,358.3,23519,0)
- ;;=309.0^^127^1419^9
- ;;^UTILITY(U,$J,358.3,23519,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23519,1,2,0)
- ;;=2^309.0
- ;;^UTILITY(U,$J,358.3,23519,1,5,0)
- ;;=5^Depressive Reac-Brief
- ;;^UTILITY(U,$J,358.3,23519,2)
- ;;=^3308
- ;;^UTILITY(U,$J,358.3,23520,0)
- ;;=309.1^^127^1419^10
- ;;^UTILITY(U,$J,358.3,23520,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23520,1,2,0)
- ;;=2^309.1
- ;;^UTILITY(U,$J,358.3,23520,1,5,0)
- ;;=5^Depressive Reac-Prolong
- ;;^UTILITY(U,$J,358.3,23520,2)
- ;;=^268304
- ;;^UTILITY(U,$J,358.3,23521,0)
- ;;=309.3^^127^1419^3
- ;;^UTILITY(U,$J,358.3,23521,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23521,1,2,0)
- ;;=2^309.3
- ;;^UTILITY(U,$J,358.3,23521,1,5,0)
- ;;=5^Adj Reac w/ Conduct Disturbance
- ;;^UTILITY(U,$J,358.3,23521,2)
- ;;=^268311
- ;;^UTILITY(U,$J,358.3,23522,0)
- ;;=309.81^^127^1419^11
- ;;^UTILITY(U,$J,358.3,23522,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23522,1,2,0)
- ;;=2^309.81
- ;;^UTILITY(U,$J,358.3,23522,1,5,0)
- ;;=5^PTSD, Chronic
- ;;^UTILITY(U,$J,358.3,23522,2)
- ;;=^114692
- ;;^UTILITY(U,$J,358.3,23523,0)
- ;;=309.82^^127^1419^6
- ;;^UTILITY(U,$J,358.3,23523,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23523,1,2,0)
- ;;=2^309.82
- ;;^UTILITY(U,$J,358.3,23523,1,5,0)
- ;;=5^Adj React w/ Phys Symptom
- ;;^UTILITY(U,$J,358.3,23523,2)
- ;;=^268315
- ;;^UTILITY(U,$J,358.3,23524,0)
- ;;=309.83^^127^1419^5
- ;;^UTILITY(U,$J,358.3,23524,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23524,1,2,0)
- ;;=2^309.83
- ;;^UTILITY(U,$J,358.3,23524,1,5,0)
- ;;=5^Adj Reac w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,23524,2)
- ;;=^268316
- ;;^UTILITY(U,$J,358.3,23525,0)
- ;;=309.89^^127^1419^7
+ ;;^UTILITY(U,$J,358.3,22125,1,4,0)
+ ;;=4^S82.141S
+ ;;^UTILITY(U,$J,358.3,22125,2)
+ ;;=^5040886
+ ;;^UTILITY(U,$J,358.3,22126,0)
+ ;;=S82.252S^^101^1038^4
+ ;;^UTILITY(U,$J,358.3,22126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22126,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
+ ;;^UTILITY(U,$J,358.3,22126,1,4,0)
+ ;;=4^S82.252S
+ ;;^UTILITY(U,$J,358.3,22126,2)
+ ;;=^5041458
+ ;;^UTILITY(U,$J,358.3,22127,0)
+ ;;=S82.251S^^101^1038^6
+ ;;^UTILITY(U,$J,358.3,22127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22127,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,22127,1,4,0)
+ ;;=4^S82.251S
+ ;;^UTILITY(U,$J,358.3,22127,2)
+ ;;=^5041442
+ ;;^UTILITY(U,$J,358.3,22128,0)
+ ;;=S82.122S^^101^1038^7
+ ;;^UTILITY(U,$J,358.3,22128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22128,1,3,0)
+ ;;=3^Disp fx of lateral condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22128,1,4,0)
+ ;;=4^S82.122S
+ ;;^UTILITY(U,$J,358.3,22128,2)
+ ;;=^5040710
+ ;;^UTILITY(U,$J,358.3,22129,0)
+ ;;=S82.112S^^101^1038^11
+ ;;^UTILITY(U,$J,358.3,22129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22129,1,3,0)
+ ;;=3^Disp fx of left tibial spine, sequela        
+ ;;^UTILITY(U,$J,358.3,22129,1,4,0)
+ ;;=4^S82.112S
+ ;;^UTILITY(U,$J,358.3,22129,2)
+ ;;=^5040614
+ ;;^UTILITY(U,$J,358.3,22130,0)
+ ;;=S82.121S^^101^1038^8
+ ;;^UTILITY(U,$J,358.3,22130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22130,1,3,0)
+ ;;=3^Disp fx of lateral condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22130,1,4,0)
+ ;;=4^S82.121S
+ ;;^UTILITY(U,$J,358.3,22130,2)
+ ;;=^5040694
+ ;;^UTILITY(U,$J,358.3,22131,0)
+ ;;=S82.152S^^101^1038^12
+ ;;^UTILITY(U,$J,358.3,22131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22131,1,3,0)
+ ;;=3^Disp fx of left tibial tuberosity, sequela   
+ ;;^UTILITY(U,$J,358.3,22131,1,4,0)
+ ;;=4^S82.152S
+ ;;^UTILITY(U,$J,358.3,22131,2)
+ ;;=^5040998
+ ;;^UTILITY(U,$J,358.3,22132,0)
+ ;;=S82.132S^^101^1038^13
+ ;;^UTILITY(U,$J,358.3,22132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22132,1,3,0)
+ ;;=3^Disp fx of medial condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22132,1,4,0)
+ ;;=4^S82.132S
+ ;;^UTILITY(U,$J,358.3,22132,2)
+ ;;=^5040806
+ ;;^UTILITY(U,$J,358.3,22133,0)
+ ;;=S82.131S^^101^1038^14
+ ;;^UTILITY(U,$J,358.3,22133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22133,1,3,0)
+ ;;=3^Disp fx of medial condyle of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,22133,1,4,0)
+ ;;=4^S82.131S
+ ;;^UTILITY(U,$J,358.3,22133,2)
+ ;;=^5040790
+ ;;^UTILITY(U,$J,358.3,22134,0)
+ ;;=S82.52XS^^101^1038^15
+ ;;^UTILITY(U,$J,358.3,22134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22134,1,3,0)
+ ;;=3^Disp fx of medial malleolus of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22134,1,4,0)
+ ;;=4^S82.52XS
+ ;;^UTILITY(U,$J,358.3,22134,2)
+ ;;=^5042246
+ ;;^UTILITY(U,$J,358.3,22135,0)
+ ;;=S82.51XS^^101^1038^16
+ ;;^UTILITY(U,$J,358.3,22135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22135,1,3,0)
+ ;;=3^Disp fx of medial malleolus of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22135,1,4,0)
+ ;;=4^S82.51XS
+ ;;^UTILITY(U,$J,358.3,22135,2)
+ ;;=^5042230
+ ;;^UTILITY(U,$J,358.3,22136,0)
+ ;;=S82.111S^^101^1038^23
+ ;;^UTILITY(U,$J,358.3,22136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22136,1,3,0)
+ ;;=3^Disp fx of right tibial spine, sequela       
+ ;;^UTILITY(U,$J,358.3,22136,1,4,0)
+ ;;=4^S82.111S
+ ;;^UTILITY(U,$J,358.3,22136,2)
+ ;;=^5040598
+ ;;^UTILITY(U,$J,358.3,22137,0)
+ ;;=S82.151S^^101^1038^24
+ ;;^UTILITY(U,$J,358.3,22137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22137,1,3,0)
+ ;;=3^Disp fx of right tibial tuberosity, sequela  

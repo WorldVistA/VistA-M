@@ -1,140 +1,124 @@
-IBDEI10Y ; ; 06-AUG-2015
+IBDEI10Y ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18044,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18044,1,4,0)
- ;;=4^351.0
- ;;^UTILITY(U,$J,358.3,18044,1,5,0)
- ;;=5^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,18044,2)
- ;;=Bell's Palsy^13238
- ;;^UTILITY(U,$J,358.3,18045,0)
- ;;=386.11^^96^1151^22
- ;;^UTILITY(U,$J,358.3,18045,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18045,1,4,0)
- ;;=4^386.11
- ;;^UTILITY(U,$J,358.3,18045,1,5,0)
- ;;=5^Vertigo, Benign Positional
- ;;^UTILITY(U,$J,358.3,18045,2)
- ;;=^269480
- ;;^UTILITY(U,$J,358.3,18046,0)
- ;;=784.0^^96^1151^9
- ;;^UTILITY(U,$J,358.3,18046,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18046,1,4,0)
- ;;=4^784.0
- ;;^UTILITY(U,$J,358.3,18046,1,5,0)
- ;;=5^Headache
- ;;^UTILITY(U,$J,358.3,18046,2)
- ;;=^54133
- ;;^UTILITY(U,$J,358.3,18047,0)
- ;;=346.20^^96^1151^3
- ;;^UTILITY(U,$J,358.3,18047,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18047,1,4,0)
- ;;=4^346.20
- ;;^UTILITY(U,$J,358.3,18047,1,5,0)
- ;;=5^Cluster/Migraine Variant
- ;;^UTILITY(U,$J,358.3,18047,2)
- ;;=^294062
- ;;^UTILITY(U,$J,358.3,18048,0)
- ;;=346.21^^96^1151^4
- ;;^UTILITY(U,$J,358.3,18048,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18048,1,4,0)
- ;;=4^346.21
- ;;^UTILITY(U,$J,358.3,18048,1,5,0)
- ;;=5^Cluster/Migraine Variant, Resistant To Meds
- ;;^UTILITY(U,$J,358.3,18048,2)
- ;;=^293879
- ;;^UTILITY(U,$J,358.3,18049,0)
- ;;=346.90^^96^1151^11
- ;;^UTILITY(U,$J,358.3,18049,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18049,1,4,0)
- ;;=4^346.90
- ;;^UTILITY(U,$J,358.3,18049,1,5,0)
- ;;=5^Migraine Headache
- ;;^UTILITY(U,$J,358.3,18049,2)
- ;;=^293880
- ;;^UTILITY(U,$J,358.3,18050,0)
- ;;=346.91^^96^1151^12
- ;;^UTILITY(U,$J,358.3,18050,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18050,1,4,0)
- ;;=4^346.91
- ;;^UTILITY(U,$J,358.3,18050,1,5,0)
- ;;=5^Migraine Headache Resistant To TX
- ;;^UTILITY(U,$J,358.3,18050,2)
- ;;=^293881
- ;;^UTILITY(U,$J,358.3,18051,0)
- ;;=307.81^^96^1151^19
- ;;^UTILITY(U,$J,358.3,18051,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18051,1,4,0)
- ;;=4^307.81
- ;;^UTILITY(U,$J,358.3,18051,1,5,0)
- ;;=5^Tension Headache
- ;;^UTILITY(U,$J,358.3,18051,2)
- ;;=^100405
- ;;^UTILITY(U,$J,358.3,18052,0)
- ;;=331.0^^96^1151^5
- ;;^UTILITY(U,$J,358.3,18052,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18052,1,4,0)
- ;;=4^331.0
- ;;^UTILITY(U,$J,358.3,18052,1,5,0)
- ;;=5^Dementia, Alzheimer'S
- ;;^UTILITY(U,$J,358.3,18052,2)
- ;;=^5679^294.10
- ;;^UTILITY(U,$J,358.3,18053,0)
- ;;=290.40^^96^1151^6
- ;;^UTILITY(U,$J,358.3,18053,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18053,1,4,0)
- ;;=4^290.40
- ;;^UTILITY(U,$J,358.3,18053,1,5,0)
- ;;=5^Dementia, Multi-Infarct
- ;;^UTILITY(U,$J,358.3,18053,2)
- ;;=^303487
- ;;^UTILITY(U,$J,358.3,18054,0)
- ;;=780.4^^96^1151^21
- ;;^UTILITY(U,$J,358.3,18054,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18054,1,4,0)
- ;;=4^780.4
- ;;^UTILITY(U,$J,358.3,18054,1,5,0)
- ;;=5^Vertigo
- ;;^UTILITY(U,$J,358.3,18054,2)
- ;;=^35946
- ;;^UTILITY(U,$J,358.3,18055,0)
- ;;=355.1^^96^1151^10
- ;;^UTILITY(U,$J,358.3,18055,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18055,1,4,0)
- ;;=4^355.1
- ;;^UTILITY(U,$J,358.3,18055,1,5,0)
- ;;=5^Meralgia Paresthetica
- ;;^UTILITY(U,$J,358.3,18055,2)
- ;;=^265141
- ;;^UTILITY(U,$J,358.3,18056,0)
- ;;=340.^^96^1151^13
- ;;^UTILITY(U,$J,358.3,18056,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18056,1,4,0)
- ;;=4^340.
- ;;^UTILITY(U,$J,358.3,18056,1,5,0)
- ;;=5^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,18056,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,18057,0)
- ;;=310.9^^96^1151^15
- ;;^UTILITY(U,$J,358.3,18057,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18057,1,4,0)
- ;;=4^310.9
- ;;^UTILITY(U,$J,358.3,18057,1,5,0)
- ;;=5^Organic Brain Syndrome
+ ;;^UTILITY(U,$J,358.3,17047,0)
+ ;;=I69.943^^88^857^33
+ ;;^UTILITY(U,$J,358.3,17047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17047,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,17047,1,4,0)
+ ;;=4^I69.943
+ ;;^UTILITY(U,$J,358.3,17047,2)
+ ;;=^5133584
+ ;;^UTILITY(U,$J,358.3,17048,0)
+ ;;=I69.931^^88^857^34
+ ;;^UTILITY(U,$J,358.3,17048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17048,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Upper Dominant Side
+ ;;^UTILITY(U,$J,358.3,17048,1,4,0)
+ ;;=4^I69.931
+ ;;^UTILITY(U,$J,358.3,17048,2)
+ ;;=^5007558
+ ;;^UTILITY(U,$J,358.3,17049,0)
+ ;;=I69.933^^88^857^35
+ ;;^UTILITY(U,$J,358.3,17049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17049,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Upper Nondominant Side
+ ;;^UTILITY(U,$J,358.3,17049,1,4,0)
+ ;;=4^I69.933
+ ;;^UTILITY(U,$J,358.3,17049,2)
+ ;;=^5007559
+ ;;^UTILITY(U,$J,358.3,17050,0)
+ ;;=I69.998^^88^857^42
+ ;;^UTILITY(U,$J,358.3,17050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17050,1,3,0)
+ ;;=3^Cerebrovascular Disease,Sequelae,Unspec
+ ;;^UTILITY(U,$J,358.3,17050,1,4,0)
+ ;;=4^I69.998
+ ;;^UTILITY(U,$J,358.3,17050,2)
+ ;;=^5007572
+ ;;^UTILITY(U,$J,358.3,17051,0)
+ ;;=I69.928^^88^857^43
+ ;;^UTILITY(U,$J,358.3,17051,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17051,1,3,0)
+ ;;=3^Cerebrovascular Disease,Speech/Language Deficits,Unspec
+ ;;^UTILITY(U,$J,358.3,17051,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,17051,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,17052,0)
+ ;;=I69.965^^88^857^37
+ ;;^UTILITY(U,$J,358.3,17052,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17052,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,17052,1,4,0)
+ ;;=4^I69.965
+ ;;^UTILITY(U,$J,358.3,17052,2)
+ ;;=^5007566
+ ;;^UTILITY(U,$J,358.3,17053,0)
+ ;;=I69.962^^88^857^38
+ ;;^UTILITY(U,$J,358.3,17053,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17053,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Lt Dominant Side
+ ;;^UTILITY(U,$J,358.3,17053,1,4,0)
+ ;;=4^I69.962
+ ;;^UTILITY(U,$J,358.3,17053,2)
+ ;;=^5133588
+ ;;^UTILITY(U,$J,358.3,17054,0)
+ ;;=I69.964^^88^857^39
+ ;;^UTILITY(U,$J,358.3,17054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17054,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Lt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,17054,1,4,0)
+ ;;=4^I69.964
+ ;;^UTILITY(U,$J,358.3,17054,2)
+ ;;=^5133589
+ ;;^UTILITY(U,$J,358.3,17055,0)
+ ;;=I69.961^^88^857^40
+ ;;^UTILITY(U,$J,358.3,17055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17055,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Rt Dominant Side
+ ;;^UTILITY(U,$J,358.3,17055,1,4,0)
+ ;;=4^I69.961
+ ;;^UTILITY(U,$J,358.3,17055,2)
+ ;;=^5007564
+ ;;^UTILITY(U,$J,358.3,17056,0)
+ ;;=I69.963^^88^857^41
+ ;;^UTILITY(U,$J,358.3,17056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17056,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Rt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,17056,1,4,0)
+ ;;=4^I69.963
+ ;;^UTILITY(U,$J,358.3,17056,2)
+ ;;=^5007565
+ ;;^UTILITY(U,$J,358.3,17057,0)
+ ;;=G90.50^^88^857^44
+ ;;^UTILITY(U,$J,358.3,17057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17057,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,17057,1,4,0)
+ ;;=4^G90.50
+ ;;^UTILITY(U,$J,358.3,17057,2)
+ ;;=^5004163
+ ;;^UTILITY(U,$J,358.3,17058,0)
+ ;;=R56.9^^88^857^45
+ ;;^UTILITY(U,$J,358.3,17058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17058,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,17058,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,17058,2)
+ ;;=^5019524

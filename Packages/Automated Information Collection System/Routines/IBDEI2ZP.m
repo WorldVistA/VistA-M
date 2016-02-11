@@ -1,0 +1,132 @@
+IBDEI2ZP ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,50121,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,50122,0)
+ ;;=I21.3^^219^2439^71
+ ;;^UTILITY(U,$J,358.3,50122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50122,1,3,0)
+ ;;=3^STEMI Myocardial Infarction,Unspec Site
+ ;;^UTILITY(U,$J,358.3,50122,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,50122,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,50123,0)
+ ;;=I44.30^^219^2439^43
+ ;;^UTILITY(U,$J,358.3,50123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50123,1,3,0)
+ ;;=3^Atrioventricular Block,Unspec
+ ;;^UTILITY(U,$J,358.3,50123,1,4,0)
+ ;;=4^I44.30
+ ;;^UTILITY(U,$J,358.3,50123,2)
+ ;;=^5007204
+ ;;^UTILITY(U,$J,358.3,50124,0)
+ ;;=I50.40^^219^2439^51
+ ;;^UTILITY(U,$J,358.3,50124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50124,1,3,0)
+ ;;=3^Combined Systolic & Diastolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,50124,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,50124,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,50125,0)
+ ;;=I50.30^^219^2439^52
+ ;;^UTILITY(U,$J,358.3,50125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50125,1,3,0)
+ ;;=3^Diastolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,50125,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,50125,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,50126,0)
+ ;;=I50.20^^219^2439^72
+ ;;^UTILITY(U,$J,358.3,50126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50126,1,3,0)
+ ;;=3^Systolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,50126,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,50126,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,50127,0)
+ ;;=I20.0^^219^2439^73
+ ;;^UTILITY(U,$J,358.3,50127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50127,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,50127,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,50127,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,50128,0)
+ ;;=M32.12^^219^2439^64
+ ;;^UTILITY(U,$J,358.3,50128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50128,1,3,0)
+ ;;=3^Pericarditis in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,50128,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,50128,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,50129,0)
+ ;;=E87.8^^219^2440^3
+ ;;^UTILITY(U,$J,358.3,50129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50129,1,3,0)
+ ;;=3^Electrolyte/Fluid Balance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,50129,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,50129,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,50130,0)
+ ;;=E13.9^^219^2440^2
+ ;;^UTILITY(U,$J,358.3,50130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50130,1,3,0)
+ ;;=3^Diabetes Mellitus w/o Complications 
+ ;;^UTILITY(U,$J,358.3,50130,1,4,0)
+ ;;=4^E13.9
+ ;;^UTILITY(U,$J,358.3,50130,2)
+ ;;=^5002704
+ ;;^UTILITY(U,$J,358.3,50131,0)
+ ;;=E11.9^^219^2440^1
+ ;;^UTILITY(U,$J,358.3,50131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50131,1,3,0)
+ ;;=3^DM Type 2 w/o Complicataions
+ ;;^UTILITY(U,$J,358.3,50131,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,50131,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,50132,0)
+ ;;=H60.03^^219^2441^1
+ ;;^UTILITY(U,$J,358.3,50132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50132,1,3,0)
+ ;;=3^Abscess Bilateral External Ear
+ ;;^UTILITY(U,$J,358.3,50132,1,4,0)
+ ;;=4^H60.03
+ ;;^UTILITY(U,$J,358.3,50132,2)
+ ;;=^5006438
+ ;;^UTILITY(U,$J,358.3,50133,0)
+ ;;=H60.02^^219^2441^2
+ ;;^UTILITY(U,$J,358.3,50133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50133,1,3,0)
+ ;;=3^Abscess Left External Ear
+ ;;^UTILITY(U,$J,358.3,50133,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,50133,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,50134,0)
+ ;;=H60.01^^219^2441^3
+ ;;^UTILITY(U,$J,358.3,50134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50134,1,3,0)
+ ;;=3^Abscess Right External Ear

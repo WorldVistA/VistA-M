@@ -1,128 +1,144 @@
-IBDEI031 ; ; 06-AUG-2015
+IBDEI031 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,875,0)
- ;;=E11.311^^3^33^25
- ;;^UTILITY(U,$J,358.3,875,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,875,1,3,0)
- ;;=3^Type 2 diab w unsp diabetic retinopathy w macular edema
- ;;^UTILITY(U,$J,358.3,875,1,4,0)
- ;;=4^E11.311
- ;;^UTILITY(U,$J,358.3,875,2)
- ;;=^5002632
- ;;^UTILITY(U,$J,358.3,876,0)
- ;;=E11.319^^3^33^26
- ;;^UTILITY(U,$J,358.3,876,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,876,1,3,0)
- ;;=3^Type 2 diab w unsp diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,876,1,4,0)
- ;;=4^E11.319
- ;;^UTILITY(U,$J,358.3,876,2)
- ;;=^5002633
- ;;^UTILITY(U,$J,358.3,877,0)
- ;;=E11.341^^3^33^24
- ;;^UTILITY(U,$J,358.3,877,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,877,1,3,0)
- ;;=3^Type 2 diab w severe nonprlf diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,877,1,4,0)
- ;;=4^E11.341
- ;;^UTILITY(U,$J,358.3,877,2)
- ;;=^5002638
- ;;^UTILITY(U,$J,358.3,878,0)
- ;;=E11.349^^3^33^23
- ;;^UTILITY(U,$J,358.3,878,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,878,1,3,0)
- ;;=3^Type 2 diab w severe nonprlf diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,878,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,878,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,879,0)
- ;;=E10.321^^3^33^5
- ;;^UTILITY(U,$J,358.3,879,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,879,1,3,0)
- ;;=3^Type 1 diab w mild nonprlf diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,879,1,4,0)
- ;;=4^E10.321
- ;;^UTILITY(U,$J,358.3,879,2)
- ;;=^5002594
- ;;^UTILITY(U,$J,358.3,880,0)
- ;;=E10.329^^3^33^6
- ;;^UTILITY(U,$J,358.3,880,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,880,1,3,0)
- ;;=3^Type 1 diab w mild nonprlf diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,880,1,4,0)
- ;;=4^E10.329
- ;;^UTILITY(U,$J,358.3,880,2)
- ;;=^5002595
- ;;^UTILITY(U,$J,358.3,881,0)
- ;;=E10.331^^3^33^7
- ;;^UTILITY(U,$J,358.3,881,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,881,1,3,0)
- ;;=3^Type 1 diab w moderate nonprlf diab rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,881,1,4,0)
- ;;=4^E10.331
- ;;^UTILITY(U,$J,358.3,881,2)
- ;;=^5002596
- ;;^UTILITY(U,$J,358.3,882,0)
- ;;=E10.339^^3^33^8
- ;;^UTILITY(U,$J,358.3,882,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,882,1,3,0)
- ;;=3^Type 1 diab w moderate nonprlf diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,882,1,4,0)
- ;;=4^E10.339
- ;;^UTILITY(U,$J,358.3,882,2)
- ;;=^5002597
- ;;^UTILITY(U,$J,358.3,883,0)
- ;;=E10.311^^3^33^11
- ;;^UTILITY(U,$J,358.3,883,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,883,1,3,0)
- ;;=3^Type 1 diab w unsp diabetic retinopathy w macular edema
- ;;^UTILITY(U,$J,358.3,883,1,4,0)
- ;;=4^E10.311
- ;;^UTILITY(U,$J,358.3,883,2)
- ;;=^5002592
- ;;^UTILITY(U,$J,358.3,884,0)
- ;;=E10.319^^3^33^12
- ;;^UTILITY(U,$J,358.3,884,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,884,1,3,0)
- ;;=3^Type 1 diab w unsp diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,884,1,4,0)
- ;;=4^E10.319
- ;;^UTILITY(U,$J,358.3,884,2)
- ;;=^5002593
- ;;^UTILITY(U,$J,358.3,885,0)
- ;;=E10.341^^3^33^10
- ;;^UTILITY(U,$J,358.3,885,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,885,1,3,0)
- ;;=3^Type 1 diab w severe nonprlf diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,885,1,4,0)
- ;;=4^E10.341
- ;;^UTILITY(U,$J,358.3,885,2)
- ;;=^5002598
- ;;^UTILITY(U,$J,358.3,886,0)
- ;;=E10.349^^3^33^9
- ;;^UTILITY(U,$J,358.3,886,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,886,1,3,0)
- ;;=3^Type 1 diab w severe nonprlf diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,886,1,4,0)
- ;;=4^E10.349
- ;;^UTILITY(U,$J,358.3,886,2)
- ;;=^5002599
- ;;^UTILITY(U,$J,358.3,887,0)
- ;;=E11.40^^3^33^14
- ;;^UTILITY(U,$J,358.3,887,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,664,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,664,1,3,0)
+ ;;=3^Immunization Admin, ea add
+ ;;^UTILITY(U,$J,358.3,665,0)
+ ;;=90632^^8^80^1^^^^1
+ ;;^UTILITY(U,$J,358.3,665,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,665,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,665,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,666,0)
+ ;;=90746^^8^80^3^^^^1
+ ;;^UTILITY(U,$J,358.3,666,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,666,1,2,0)
+ ;;=2^90746
+ ;;^UTILITY(U,$J,358.3,666,1,3,0)
+ ;;=3^Hepatitis B Vaccine
+ ;;^UTILITY(U,$J,358.3,667,0)
+ ;;=90636^^8^80^2^^^^1
+ ;;^UTILITY(U,$J,358.3,667,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,667,1,2,0)
+ ;;=2^90636
+ ;;^UTILITY(U,$J,358.3,667,1,3,0)
+ ;;=3^Hepatitis A&B Vaccine
+ ;;^UTILITY(U,$J,358.3,668,0)
+ ;;=90707^^8^80^8^^^^1
+ ;;^UTILITY(U,$J,358.3,668,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,668,1,2,0)
+ ;;=2^90707
+ ;;^UTILITY(U,$J,358.3,668,1,3,0)
+ ;;=3^MMR Vaccine
+ ;;^UTILITY(U,$J,358.3,669,0)
+ ;;=90658^^8^80^6^^^^1
+ ;;^UTILITY(U,$J,358.3,669,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,669,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,669,1,3,0)
+ ;;=3^Influenza Vaccine
+ ;;^UTILITY(U,$J,358.3,670,0)
+ ;;=90732^^8^80^9^^^^1
+ ;;^UTILITY(U,$J,358.3,670,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,670,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,670,1,3,0)
+ ;;=3^Pneumococcal Vaccine
+ ;;^UTILITY(U,$J,358.3,671,0)
+ ;;=90715^^8^80^11^^^^1
+ ;;^UTILITY(U,$J,358.3,671,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,671,1,2,0)
+ ;;=2^90715
+ ;;^UTILITY(U,$J,358.3,671,1,3,0)
+ ;;=3^TDap Vaccine
+ ;;^UTILITY(U,$J,358.3,672,0)
+ ;;=90714^^8^80^10^^^^1
+ ;;^UTILITY(U,$J,358.3,672,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,672,1,2,0)
+ ;;=2^90714
+ ;;^UTILITY(U,$J,358.3,672,1,3,0)
+ ;;=3^TD Vaccine
+ ;;^UTILITY(U,$J,358.3,673,0)
+ ;;=90656^^8^80^7^^^^1
+ ;;^UTILITY(U,$J,358.3,673,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,673,1,2,0)
+ ;;=2^90656
+ ;;^UTILITY(U,$J,358.3,673,1,3,0)
+ ;;=3^Influenza Vaccine-Preservative Free
+ ;;^UTILITY(U,$J,358.3,674,0)
+ ;;=86485^^8^81^1^^^^1
+ ;;^UTILITY(U,$J,358.3,674,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,674,1,2,0)
+ ;;=2^86485
+ ;;^UTILITY(U,$J,358.3,674,1,3,0)
+ ;;=3^Candida
+ ;;^UTILITY(U,$J,358.3,675,0)
+ ;;=86580^^8^81^5^^^^1
+ ;;^UTILITY(U,$J,358.3,675,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,675,1,2,0)
+ ;;=2^86580
+ ;;^UTILITY(U,$J,358.3,675,1,3,0)
+ ;;=3^TB
+ ;;^UTILITY(U,$J,358.3,676,0)
+ ;;=95024^^8^81^3^^^^1
+ ;;^UTILITY(U,$J,358.3,676,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,676,1,2,0)
+ ;;=2^95024
+ ;;^UTILITY(U,$J,358.3,676,1,3,0)
+ ;;=3^Intradermals (each)
+ ;;^UTILITY(U,$J,358.3,677,0)
+ ;;=86510^^8^81^2^^^^1
+ ;;^UTILITY(U,$J,358.3,677,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,677,1,2,0)
+ ;;=2^86510
+ ;;^UTILITY(U,$J,358.3,677,1,3,0)
+ ;;=3^Histoplasmosis
+ ;;^UTILITY(U,$J,358.3,678,0)
+ ;;=86774^^8^81^6^^^^1
+ ;;^UTILITY(U,$J,358.3,678,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,678,1,2,0)
+ ;;=2^86774
+ ;;^UTILITY(U,$J,358.3,678,1,3,0)
+ ;;=3^Tetanus Antibody
+ ;;^UTILITY(U,$J,358.3,679,0)
+ ;;=86735^^8^81^4^^^^1
+ ;;^UTILITY(U,$J,358.3,679,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,679,1,2,0)
+ ;;=2^86735
+ ;;^UTILITY(U,$J,358.3,679,1,3,0)
+ ;;=3^Mumps
+ ;;^UTILITY(U,$J,358.3,680,0)
+ ;;=95004^^8^82^5^^^^1
+ ;;^UTILITY(U,$J,358.3,680,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,680,1,2,0)
+ ;;=2^95004
+ ;;^UTILITY(U,$J,358.3,680,1,3,0)
+ ;;=3^Percut Allergy Skin Tests
+ ;;^UTILITY(U,$J,358.3,681,0)
+ ;;=95024^^8^82^3^^^^1
+ ;;^UTILITY(U,$J,358.3,681,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,681,1,2,0)
+ ;;=2^95024
+ ;;^UTILITY(U,$J,358.3,681,1,3,0)
+ ;;=3^Intradermals Allergy Tests

@@ -1,5 +1,5 @@
-XMXSEC1 ;ISC-SF/GMB-Message security and restrictions (cont.) ;05/17/2002  13:26
- ;;8.0;MailMan;;Jun 28, 2002
+XMXSEC1 ;ISC-SF/GMB - Message security and restrictions (cont.) ;05/17/2002  13:26
+ ;;8.0;MailMan;**47**;Jun 28, 2002;Build 6
  ; All entry points covered by DBIA 2732.
 GETRESTR(XMDUZ,XMZ,XMZREC,XMINSTR,XMRESTR) ;
  ; If a message is closed, it may not be forwarded to SHARED,MAIL, even by the sender
@@ -155,12 +155,12 @@ COPYAMT(XMZ,XMWHICH) ; Checks total number of lines to be copied and total numbe
  N I,J,XMRANGE,XMLINES
  S:'$D(XMWHICH) XMWHICH="0-"_XMRESPS
  S (XMRESPS,XMLINES)=0
- F I=1:1:$L(XMWHICH,",")-1 D
+ ; **Patch XM*8*47 modifies the FOR loop to work when XMWHICH does not contain a ",". Added a conditional so that response(XMRESPS) lines are counted correctly.**
+ F I=1:1:$L(XMWHICH,",") D
  . S XMRANGE=$P(XMWHICH,",",I)
  . F J=$P(XMRANGE,"-",1):1:$S(XMRANGE["-":$P(XMRANGE,"-",2),1:XMRANGE) D
- . . S XMRESPS=XMRESPS+1
- . . I J=0 S XMLINES=XMLINES+$P($G(^XMB(3.9,XMZ,2,0)),U,4) Q
- . . S XMLINES=XMLINES+$P($G(^XMB(3.9,+$G(^XMB(3.9,XMZ,3,J,0)),2,0)),U,4)
+ . . I J=0 S XMLINES=XMLINES+$P($G(^XMB(3.9,XMZ,2,0)),U,4)
+ . . I J'=0 S XMRESPS=XMRESPS+1,XMLINES=XMLINES+$P($G(^XMB(3.9,+$G(^XMB(3.9,XMZ,3,J,0)),2,0)),U,4)
  D TOOMANY(XMLINES,$P(XMLIMIT,U,3),37470,.XMABORT) Q:XMABORT 0
  D TOOMANY(XMRESPS,$P(XMLIMIT,U,2),37471,.XMABORT) Q:XMABORT 0
  Q 1

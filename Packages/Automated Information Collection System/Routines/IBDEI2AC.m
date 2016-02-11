@@ -1,0 +1,134 @@
+IBDEI2AC ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,38375,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38375,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,38375,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,38375,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,38376,0)
+ ;;=F43.10^^177^1949^12
+ ;;^UTILITY(U,$J,358.3,38376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38376,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,38376,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,38376,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,38377,0)
+ ;;=F43.8^^177^1949^13
+ ;;^UTILITY(U,$J,358.3,38377,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38377,1,3,0)
+ ;;=3^Reaction to Severe Stress,Other
+ ;;^UTILITY(U,$J,358.3,38377,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,38377,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,38378,0)
+ ;;=F43.9^^177^1949^14
+ ;;^UTILITY(U,$J,358.3,38378,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38378,1,3,0)
+ ;;=3^Reaction to Severe Stress,Unspec
+ ;;^UTILITY(U,$J,358.3,38378,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,38378,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,38379,0)
+ ;;=F18.10^^177^1950^1
+ ;;^UTILITY(U,$J,358.3,38379,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38379,1,3,0)
+ ;;=3^Inhalant Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,38379,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,38379,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,38380,0)
+ ;;=F18.20^^177^1950^2
+ ;;^UTILITY(U,$J,358.3,38380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38380,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,38380,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,38380,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,38381,0)
+ ;;=F18.21^^177^1950^3
+ ;;^UTILITY(U,$J,358.3,38381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38381,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,38381,1,4,0)
+ ;;=4^F18.21
+ ;;^UTILITY(U,$J,358.3,38381,2)
+ ;;=^5003393
+ ;;^UTILITY(U,$J,358.3,38382,0)
+ ;;=F18.14^^177^1950^4
+ ;;^UTILITY(U,$J,358.3,38382,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38382,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38382,1,4,0)
+ ;;=4^F18.14
+ ;;^UTILITY(U,$J,358.3,38382,2)
+ ;;=^5003384
+ ;;^UTILITY(U,$J,358.3,38383,0)
+ ;;=F18.24^^177^1950^5
+ ;;^UTILITY(U,$J,358.3,38383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38383,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38383,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,38383,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,38384,0)
+ ;;=F70.^^177^1951^1
+ ;;^UTILITY(U,$J,358.3,38384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38384,1,3,0)
+ ;;=3^Intellectual Disabilities,Mild
+ ;;^UTILITY(U,$J,358.3,38384,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,38384,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,38385,0)
+ ;;=F71.^^177^1951^2
+ ;;^UTILITY(U,$J,358.3,38385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38385,1,3,0)
+ ;;=3^Intellectual Disabilities,Moderate
+ ;;^UTILITY(U,$J,358.3,38385,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,38385,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,38386,0)
+ ;;=F72.^^177^1951^3
+ ;;^UTILITY(U,$J,358.3,38386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38386,1,3,0)
+ ;;=3^Intellectual Disabilities,Severe
+ ;;^UTILITY(U,$J,358.3,38386,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,38386,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,38387,0)
+ ;;=F73.^^177^1951^4
+ ;;^UTILITY(U,$J,358.3,38387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38387,1,3,0)
+ ;;=3^Intellectual Disabilities,Profound
+ ;;^UTILITY(U,$J,358.3,38387,1,4,0)
+ ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,38387,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,38388,0)
+ ;;=F78.^^177^1951^5

@@ -1,0 +1,132 @@
+IBDEI3FM ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,57739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57739,1,3,0)
+ ;;=3^Laceration w/ FB,Right Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57739,1,4,0)
+ ;;=4^S91.321D
+ ;;^UTILITY(U,$J,358.3,57739,2)
+ ;;=^5044330
+ ;;^UTILITY(U,$J,358.3,57740,0)
+ ;;=S81.021D^^270^2894^26
+ ;;^UTILITY(U,$J,358.3,57740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57740,1,3,0)
+ ;;=3^Laceration w/ FB,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57740,1,4,0)
+ ;;=4^S81.021D
+ ;;^UTILITY(U,$J,358.3,57740,2)
+ ;;=^5040042
+ ;;^UTILITY(U,$J,358.3,57741,0)
+ ;;=S81.821D^^270^2894^28
+ ;;^UTILITY(U,$J,358.3,57741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57741,1,3,0)
+ ;;=3^Laceration w/ FB,Right Lower Leg,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57741,1,4,0)
+ ;;=4^S81.821D
+ ;;^UTILITY(U,$J,358.3,57741,2)
+ ;;=^5040081
+ ;;^UTILITY(U,$J,358.3,57742,0)
+ ;;=S91.002D^^270^2894^30
+ ;;^UTILITY(U,$J,358.3,57742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57742,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57742,1,4,0)
+ ;;=4^S91.002D
+ ;;^UTILITY(U,$J,358.3,57742,2)
+ ;;=^5044133
+ ;;^UTILITY(U,$J,358.3,57743,0)
+ ;;=S91.302D^^270^2894^32
+ ;;^UTILITY(U,$J,358.3,57743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57743,1,3,0)
+ ;;=3^Open Wound,Left Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57743,1,4,0)
+ ;;=4^S91.302D
+ ;;^UTILITY(U,$J,358.3,57743,2)
+ ;;=^5044318
+ ;;^UTILITY(U,$J,358.3,57744,0)
+ ;;=S81.002D^^270^2894^34
+ ;;^UTILITY(U,$J,358.3,57744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57744,1,3,0)
+ ;;=3^Open Wound,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57744,1,4,0)
+ ;;=4^S81.002D
+ ;;^UTILITY(U,$J,358.3,57744,2)
+ ;;=^5040030
+ ;;^UTILITY(U,$J,358.3,57745,0)
+ ;;=S81.802D^^270^2894^36
+ ;;^UTILITY(U,$J,358.3,57745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57745,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57745,1,4,0)
+ ;;=4^S81.802D
+ ;;^UTILITY(U,$J,358.3,57745,2)
+ ;;=^5040069
+ ;;^UTILITY(U,$J,358.3,57746,0)
+ ;;=S91.001D^^270^2894^38
+ ;;^UTILITY(U,$J,358.3,57746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57746,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57746,1,4,0)
+ ;;=4^S91.001D
+ ;;^UTILITY(U,$J,358.3,57746,2)
+ ;;=^5044130
+ ;;^UTILITY(U,$J,358.3,57747,0)
+ ;;=S91.301D^^270^2894^40
+ ;;^UTILITY(U,$J,358.3,57747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57747,1,3,0)
+ ;;=3^Open Wound,Right Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57747,1,4,0)
+ ;;=4^S91.301D
+ ;;^UTILITY(U,$J,358.3,57747,2)
+ ;;=^5044315
+ ;;^UTILITY(U,$J,358.3,57748,0)
+ ;;=S81.001D^^270^2894^42
+ ;;^UTILITY(U,$J,358.3,57748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57748,1,3,0)
+ ;;=3^Open Wound,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57748,1,4,0)
+ ;;=4^S81.001D
+ ;;^UTILITY(U,$J,358.3,57748,2)
+ ;;=^5040027
+ ;;^UTILITY(U,$J,358.3,57749,0)
+ ;;=S81.801D^^270^2894^44
+ ;;^UTILITY(U,$J,358.3,57749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57749,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,57749,1,4,0)
+ ;;=4^S81.801D
+ ;;^UTILITY(U,$J,358.3,57749,2)
+ ;;=^5040066
+ ;;^UTILITY(U,$J,358.3,57750,0)
+ ;;=Z43.3^^270^2895^3
+ ;;^UTILITY(U,$J,358.3,57750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57750,1,3,0)
+ ;;=3^Attention to Colostomy
+ ;;^UTILITY(U,$J,358.3,57750,1,4,0)
+ ;;=4^Z43.3
+ ;;^UTILITY(U,$J,358.3,57750,2)
+ ;;=^5062961
+ ;;^UTILITY(U,$J,358.3,57751,0)
+ ;;=Z43.5^^270^2895^4
+ ;;^UTILITY(U,$J,358.3,57751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57751,1,3,0)
+ ;;=3^Attention to Cystostomy
+ ;;^UTILITY(U,$J,358.3,57751,1,4,0)
+ ;;=4^Z43.5
+ ;;^UTILITY(U,$J,358.3,57751,2)
+ ;;=^5062963

@@ -1,128 +1,134 @@
-IBDEI1QY ; ; 06-AUG-2015
+IBDEI1QY ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30883,1,0)
+ ;;^UTILITY(U,$J,358.3,29248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30883,1,3,0)
- ;;=3^Trigger finger, right ring finger
- ;;^UTILITY(U,$J,358.3,30883,1,4,0)
- ;;=4^M65.341
- ;;^UTILITY(U,$J,358.3,30883,2)
- ;;=^5012786
- ;;^UTILITY(U,$J,358.3,30884,0)
- ;;=M65.312^^179^1932^30
- ;;^UTILITY(U,$J,358.3,30884,1,0)
+ ;;^UTILITY(U,$J,358.3,29248,1,3,0)
+ ;;=3^Superficial Mycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,29248,1,4,0)
+ ;;=4^B36.9
+ ;;^UTILITY(U,$J,358.3,29248,2)
+ ;;=^5000611
+ ;;^UTILITY(U,$J,358.3,29249,0)
+ ;;=D69.0^^135^1361^32
+ ;;^UTILITY(U,$J,358.3,29249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30884,1,3,0)
- ;;=3^Trigger thumb, left thumb
- ;;^UTILITY(U,$J,358.3,30884,1,4,0)
- ;;=4^M65.312
- ;;^UTILITY(U,$J,358.3,30884,2)
- ;;=^5012778
- ;;^UTILITY(U,$J,358.3,30885,0)
- ;;=M65.311^^179^1932^31
- ;;^UTILITY(U,$J,358.3,30885,1,0)
+ ;;^UTILITY(U,$J,358.3,29249,1,3,0)
+ ;;=3^Allergic Purpura
+ ;;^UTILITY(U,$J,358.3,29249,1,4,0)
+ ;;=4^D69.0
+ ;;^UTILITY(U,$J,358.3,29249,2)
+ ;;=^5002365
+ ;;^UTILITY(U,$J,358.3,29250,0)
+ ;;=B00.9^^135^1361^158
+ ;;^UTILITY(U,$J,358.3,29250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30885,1,3,0)
- ;;=3^Trigger thumb, right thumb
- ;;^UTILITY(U,$J,358.3,30885,1,4,0)
- ;;=4^M65.311
- ;;^UTILITY(U,$J,358.3,30885,2)
- ;;=^5012777
- ;;^UTILITY(U,$J,358.3,30886,0)
- ;;=S40.022A^^179^1933^1
- ;;^UTILITY(U,$J,358.3,30886,1,0)
+ ;;^UTILITY(U,$J,358.3,29250,1,3,0)
+ ;;=3^Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,29250,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,29250,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,29251,0)
+ ;;=B02.9^^135^1361^291
+ ;;^UTILITY(U,$J,358.3,29251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30886,1,3,0)
- ;;=3^Contusion of left upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,30886,1,4,0)
- ;;=4^S40.022A
- ;;^UTILITY(U,$J,358.3,30886,2)
- ;;=^5026165
- ;;^UTILITY(U,$J,358.3,30887,0)
- ;;=S40.021A^^179^1933^2
- ;;^UTILITY(U,$J,358.3,30887,1,0)
+ ;;^UTILITY(U,$J,358.3,29251,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,29251,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,29251,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,29252,0)
+ ;;=D17.9^^135^1361^89
+ ;;^UTILITY(U,$J,358.3,29252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30887,1,3,0)
- ;;=3^Contusion of right upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,30887,1,4,0)
- ;;=4^S40.021A
- ;;^UTILITY(U,$J,358.3,30887,2)
- ;;=^5026162
- ;;^UTILITY(U,$J,358.3,30888,0)
- ;;=M84.422A^^179^1933^5
- ;;^UTILITY(U,$J,358.3,30888,1,0)
+ ;;^UTILITY(U,$J,358.3,29252,1,3,0)
+ ;;=3^Benign Lipomatous Neop,Unspec
+ ;;^UTILITY(U,$J,358.3,29252,1,4,0)
+ ;;=4^D17.9
+ ;;^UTILITY(U,$J,358.3,29252,2)
+ ;;=^5002020
+ ;;^UTILITY(U,$J,358.3,29253,0)
+ ;;=E08.621^^135^1361^134
+ ;;^UTILITY(U,$J,358.3,29253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30888,1,3,0)
- ;;=3^Pathological fracture, left humerus, init for fx
- ;;^UTILITY(U,$J,358.3,30888,1,4,0)
- ;;=4^M84.422A
- ;;^UTILITY(U,$J,358.3,30888,2)
- ;;=^5013824
- ;;^UTILITY(U,$J,358.3,30889,0)
- ;;=M84.421A^^179^1933^6
- ;;^UTILITY(U,$J,358.3,30889,1,0)
+ ;;^UTILITY(U,$J,358.3,29253,1,3,0)
+ ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,29253,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,29253,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,29254,0)
+ ;;=E09.621^^135^1361^133
+ ;;^UTILITY(U,$J,358.3,29254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30889,1,3,0)
- ;;=3^Pathological fracture, right humerus, init for fx
- ;;^UTILITY(U,$J,358.3,30889,1,4,0)
- ;;=4^M84.421A
- ;;^UTILITY(U,$J,358.3,30889,2)
- ;;=^5013818
- ;;^UTILITY(U,$J,358.3,30890,0)
- ;;=S42.202A^^179^1933^3
- ;;^UTILITY(U,$J,358.3,30890,1,0)
+ ;;^UTILITY(U,$J,358.3,29254,1,3,0)
+ ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,29254,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,29254,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,29255,0)
+ ;;=H05.011^^135^1361^110
+ ;;^UTILITY(U,$J,358.3,29255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30890,1,3,0)
- ;;=3^Fracture of upper end of left humerus, init for clos fx,Unspec
- ;;^UTILITY(U,$J,358.3,30890,1,4,0)
- ;;=4^S42.202A
- ;;^UTILITY(U,$J,358.3,30890,2)
- ;;=^5026768
- ;;^UTILITY(U,$J,358.3,30891,0)
- ;;=S42.201A^^179^1933^4
- ;;^UTILITY(U,$J,358.3,30891,1,0)
+ ;;^UTILITY(U,$J,358.3,29255,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,29255,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,29255,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,29256,0)
+ ;;=H05.012^^135^1361^103
+ ;;^UTILITY(U,$J,358.3,29256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30891,1,3,0)
- ;;=3^Fracture of upper end of right humerus, init,Unspec
- ;;^UTILITY(U,$J,358.3,30891,1,4,0)
- ;;=4^S42.201A
- ;;^UTILITY(U,$J,358.3,30891,2)
- ;;=^5026761
- ;;^UTILITY(U,$J,358.3,30892,0)
- ;;=M00.862^^179^1934^1
- ;;^UTILITY(U,$J,358.3,30892,1,0)
+ ;;^UTILITY(U,$J,358.3,29256,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,29256,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,29256,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,29257,0)
+ ;;=H05.013^^135^1361^97
+ ;;^UTILITY(U,$J,358.3,29257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30892,1,3,0)
- ;;=3^Arthritis due to other bacteria, left knee
- ;;^UTILITY(U,$J,358.3,30892,1,4,0)
- ;;=4^M00.862
- ;;^UTILITY(U,$J,358.3,30892,2)
- ;;=^5009686
- ;;^UTILITY(U,$J,358.3,30893,0)
- ;;=M00.861^^179^1934^2
- ;;^UTILITY(U,$J,358.3,30893,1,0)
+ ;;^UTILITY(U,$J,358.3,29257,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,29257,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,29257,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,29258,0)
+ ;;=I70.331^^135^1361^50
+ ;;^UTILITY(U,$J,358.3,29258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30893,1,3,0)
- ;;=3^Arthritis due to other bacteria, right knee
- ;;^UTILITY(U,$J,358.3,30893,1,4,0)
- ;;=4^M00.861
- ;;^UTILITY(U,$J,358.3,30893,2)
- ;;=^5009685
- ;;^UTILITY(U,$J,358.3,30894,0)
- ;;=M22.42^^179^1934^5
- ;;^UTILITY(U,$J,358.3,30894,1,0)
+ ;;^UTILITY(U,$J,358.3,29258,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,29258,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,29258,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,29259,0)
+ ;;=I70.332^^135^1361^51
+ ;;^UTILITY(U,$J,358.3,29259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30894,1,3,0)
- ;;=3^Chondromalacia patellae, left knee
- ;;^UTILITY(U,$J,358.3,30894,1,4,0)
- ;;=4^M22.42
- ;;^UTILITY(U,$J,358.3,30894,2)
- ;;=^5011187
- ;;^UTILITY(U,$J,358.3,30895,0)
- ;;=M22.41^^179^1934^6
- ;;^UTILITY(U,$J,358.3,30895,1,0)
+ ;;^UTILITY(U,$J,358.3,29259,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,29259,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,29259,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,29260,0)
+ ;;=I70.333^^135^1361^52
+ ;;^UTILITY(U,$J,358.3,29260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30895,1,3,0)
- ;;=3^Chondromalacia patellae, right knee
+ ;;^UTILITY(U,$J,358.3,29260,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,29260,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,29260,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,29261,0)
+ ;;=I70.334^^135^1361^53

@@ -1,0 +1,128 @@
+IBDEI2U8 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47624,1,4,0)
+ ;;=4^C91.31
+ ;;^UTILITY(U,$J,358.3,47624,2)
+ ;;=^5001769
+ ;;^UTILITY(U,$J,358.3,47625,0)
+ ;;=C91.32^^209^2346^448
+ ;;^UTILITY(U,$J,358.3,47625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47625,1,3,0)
+ ;;=3^Prolymphocytic Leukemia of B-Cell Type,In Relapse
+ ;;^UTILITY(U,$J,358.3,47625,1,4,0)
+ ;;=4^C91.32
+ ;;^UTILITY(U,$J,358.3,47625,2)
+ ;;=^5001770
+ ;;^UTILITY(U,$J,358.3,47626,0)
+ ;;=C91.40^^209^2346^212
+ ;;^UTILITY(U,$J,358.3,47626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47626,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47626,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,47626,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,47627,0)
+ ;;=C91.41^^209^2346^211
+ ;;^UTILITY(U,$J,358.3,47627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47627,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,47627,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,47627,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,47628,0)
+ ;;=C91.42^^209^2346^210
+ ;;^UTILITY(U,$J,358.3,47628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47628,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,47628,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,47628,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,47629,0)
+ ;;=C91.50^^209^2346^36
+ ;;^UTILITY(U,$J,358.3,47629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47629,1,3,0)
+ ;;=3^Adult T-Cell Lymphoma/Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47629,1,4,0)
+ ;;=4^C91.50
+ ;;^UTILITY(U,$J,358.3,47629,2)
+ ;;=^5001774
+ ;;^UTILITY(U,$J,358.3,47630,0)
+ ;;=C91.51^^209^2346^35
+ ;;^UTILITY(U,$J,358.3,47630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47630,1,3,0)
+ ;;=3^Adult T-Cell Lymphoma/Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,47630,1,4,0)
+ ;;=4^C91.51
+ ;;^UTILITY(U,$J,358.3,47630,2)
+ ;;=^5001775
+ ;;^UTILITY(U,$J,358.3,47631,0)
+ ;;=C91.52^^209^2346^34
+ ;;^UTILITY(U,$J,358.3,47631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47631,1,3,0)
+ ;;=3^Adult T-Cell Lymphoma/Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,47631,1,4,0)
+ ;;=4^C91.52
+ ;;^UTILITY(U,$J,358.3,47631,2)
+ ;;=^5001776
+ ;;^UTILITY(U,$J,358.3,47632,0)
+ ;;=C91.60^^209^2346^449
+ ;;^UTILITY(U,$J,358.3,47632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47632,1,3,0)
+ ;;=3^Prolymphocytic Leukemia of T-Cell Type,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47632,1,4,0)
+ ;;=4^C91.60
+ ;;^UTILITY(U,$J,358.3,47632,2)
+ ;;=^5001777
+ ;;^UTILITY(U,$J,358.3,47633,0)
+ ;;=C91.61^^209^2346^450
+ ;;^UTILITY(U,$J,358.3,47633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47633,1,3,0)
+ ;;=3^Prolymphocytic Leukemia of T-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,47633,1,4,0)
+ ;;=4^C91.61
+ ;;^UTILITY(U,$J,358.3,47633,2)
+ ;;=^5001778
+ ;;^UTILITY(U,$J,358.3,47634,0)
+ ;;=C91.62^^209^2346^451
+ ;;^UTILITY(U,$J,358.3,47634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47634,1,3,0)
+ ;;=3^Prolymphocytic Leukemia of T-Cell Type,In Relapse
+ ;;^UTILITY(U,$J,358.3,47634,1,4,0)
+ ;;=4^C91.62
+ ;;^UTILITY(U,$J,358.3,47634,2)
+ ;;=^5001779
+ ;;^UTILITY(U,$J,358.3,47635,0)
+ ;;=C91.A0^^209^2346^301
+ ;;^UTILITY(U,$J,358.3,47635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47635,1,3,0)
+ ;;=3^Mature B-Cell Leukemia Burkitt Type,Not in Remission
+ ;;^UTILITY(U,$J,358.3,47635,1,4,0)
+ ;;=4^C91.A0
+ ;;^UTILITY(U,$J,358.3,47635,2)
+ ;;=^5001783
+ ;;^UTILITY(U,$J,358.3,47636,0)
+ ;;=C91.A1^^209^2346^299
+ ;;^UTILITY(U,$J,358.3,47636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47636,1,3,0)
+ ;;=3^Mature B-Cell Leukemia Burkitt Type,In Remission
+ ;;^UTILITY(U,$J,358.3,47636,1,4,0)
+ ;;=4^C91.A1
+ ;;^UTILITY(U,$J,358.3,47636,2)
+ ;;=^5001784

@@ -1,134 +1,130 @@
-IBDEI0KT ; ; 06-AUG-2015
+IBDEI0KT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9859,2)
- ;;=Pemphigoid^91108
- ;;^UTILITY(U,$J,358.3,9860,0)
- ;;=364.10^^44^558^54
- ;;^UTILITY(U,$J,358.3,9860,1,0)
+ ;;^UTILITY(U,$J,358.3,9419,1,4,0)
+ ;;=4^G40.111
+ ;;^UTILITY(U,$J,358.3,9419,2)
+ ;;=^5003835
+ ;;^UTILITY(U,$J,358.3,9420,0)
+ ;;=G40.119^^63^604^26
+ ;;^UTILITY(U,$J,358.3,9420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9860,1,3,0)
- ;;=3^Iridocyclitis, Chronic
- ;;^UTILITY(U,$J,358.3,9860,1,4,0)
- ;;=4^364.10
- ;;^UTILITY(U,$J,358.3,9860,2)
- ;;=Iridocyclitis, Chronic^24398
- ;;^UTILITY(U,$J,358.3,9861,0)
- ;;=054.44^^44^558^55
- ;;^UTILITY(U,$J,358.3,9861,1,0)
+ ;;^UTILITY(U,$J,358.3,9420,1,3,0)
+ ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9420,1,4,0)
+ ;;=4^G40.119
+ ;;^UTILITY(U,$J,358.3,9420,2)
+ ;;=^5003836
+ ;;^UTILITY(U,$J,358.3,9421,0)
+ ;;=G40.B09^^63^604^22
+ ;;^UTILITY(U,$J,358.3,9421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9861,1,3,0)
- ;;=3^Iridocyclitis, H Simplex
- ;;^UTILITY(U,$J,358.3,9861,1,4,0)
- ;;=4^054.44
- ;;^UTILITY(U,$J,358.3,9861,2)
- ;;=Iridocyclitis, H Simplex^266565
- ;;^UTILITY(U,$J,358.3,9862,0)
- ;;=053.22^^44^558^56
- ;;^UTILITY(U,$J,358.3,9862,1,0)
+ ;;^UTILITY(U,$J,358.3,9421,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9421,1,4,0)
+ ;;=4^G40.B09
+ ;;^UTILITY(U,$J,358.3,9421,2)
+ ;;=^5003873
+ ;;^UTILITY(U,$J,358.3,9422,0)
+ ;;=G40.B11^^63^604^20
+ ;;^UTILITY(U,$J,358.3,9422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9862,1,3,0)
- ;;=3^Iridocyclitis, H Zoster
- ;;^UTILITY(U,$J,358.3,9862,1,4,0)
- ;;=4^053.22
- ;;^UTILITY(U,$J,358.3,9862,2)
- ;;=Iridocyclitis, H Zoster^266554
- ;;^UTILITY(U,$J,358.3,9863,0)
- ;;=364.42^^44^558^111
- ;;^UTILITY(U,$J,358.3,9863,1,0)
+ ;;^UTILITY(U,$J,358.3,9422,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9422,1,4,0)
+ ;;=4^G40.B11
+ ;;^UTILITY(U,$J,358.3,9422,2)
+ ;;=^5003874
+ ;;^UTILITY(U,$J,358.3,9423,0)
+ ;;=G40.B19^^63^604^21
+ ;;^UTILITY(U,$J,358.3,9423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9863,1,3,0)
- ;;=3^Rubeosis Iridis
- ;;^UTILITY(U,$J,358.3,9863,1,4,0)
- ;;=4^364.42
- ;;^UTILITY(U,$J,358.3,9863,2)
- ;;=Rubeosis Iridis^268716
- ;;^UTILITY(U,$J,358.3,9864,0)
- ;;=364.59^^44^558^59
- ;;^UTILITY(U,$J,358.3,9864,1,0)
+ ;;^UTILITY(U,$J,358.3,9423,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9423,1,4,0)
+ ;;=4^G40.B19
+ ;;^UTILITY(U,$J,358.3,9423,2)
+ ;;=^5003875
+ ;;^UTILITY(U,$J,358.3,9424,0)
+ ;;=G40.509^^63^604^13
+ ;;^UTILITY(U,$J,358.3,9424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9864,1,3,0)
- ;;=3^Iris Atrophy,Other
- ;;^UTILITY(U,$J,358.3,9864,1,4,0)
- ;;=4^364.59
- ;;^UTILITY(U,$J,358.3,9864,2)
- ;;=Iris Atrophy^268731
- ;;^UTILITY(U,$J,358.3,9865,0)
- ;;=224.0^^44^558^11
- ;;^UTILITY(U,$J,358.3,9865,1,0)
+ ;;^UTILITY(U,$J,358.3,9424,1,3,0)
+ ;;=3^Epileptic Seizures d/t External Causes Not Intractalbe w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9424,1,4,0)
+ ;;=4^G40.509
+ ;;^UTILITY(U,$J,358.3,9424,2)
+ ;;=^5003850
+ ;;^UTILITY(U,$J,358.3,9425,0)
+ ;;=G40.909^^63^604^12
+ ;;^UTILITY(U,$J,358.3,9425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9865,1,3,0)
- ;;=3^Benign Neopl of Iris
- ;;^UTILITY(U,$J,358.3,9865,1,4,0)
- ;;=4^224.0
- ;;^UTILITY(U,$J,358.3,9865,2)
- ;;=^267670
- ;;^UTILITY(U,$J,358.3,9866,0)
- ;;=364.72^^44^558^6
- ;;^UTILITY(U,$J,358.3,9866,1,0)
+ ;;^UTILITY(U,$J,358.3,9425,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,9425,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,9425,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,9426,0)
+ ;;=G40.911^^63^604^10
+ ;;^UTILITY(U,$J,358.3,9426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9866,1,3,0)
- ;;=3^Anterior Synechiae
- ;;^UTILITY(U,$J,358.3,9866,1,4,0)
- ;;=4^364.72
- ;;^UTILITY(U,$J,358.3,9866,2)
- ;;=Anterior Synechiae^265517
- ;;^UTILITY(U,$J,358.3,9867,0)
- ;;=364.71^^44^558^102
- ;;^UTILITY(U,$J,358.3,9867,1,0)
+ ;;^UTILITY(U,$J,358.3,9426,1,3,0)
+ ;;=3^Epilepsy Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,9426,1,4,0)
+ ;;=4^G40.911
+ ;;^UTILITY(U,$J,358.3,9426,2)
+ ;;=^5003866
+ ;;^UTILITY(U,$J,358.3,9427,0)
+ ;;=G40.919^^63^604^11
+ ;;^UTILITY(U,$J,358.3,9427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9867,1,3,0)
- ;;=3^Posterior Synechiae
- ;;^UTILITY(U,$J,358.3,9867,1,4,0)
- ;;=4^364.71
- ;;^UTILITY(U,$J,358.3,9867,2)
- ;;=Posterior Synechiae^265519
- ;;^UTILITY(U,$J,358.3,9868,0)
- ;;=364.00^^44^558^57
- ;;^UTILITY(U,$J,358.3,9868,1,0)
+ ;;^UTILITY(U,$J,358.3,9427,1,3,0)
+ ;;=3^Epilepsy Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,9427,1,4,0)
+ ;;=4^G40.919
+ ;;^UTILITY(U,$J,358.3,9427,2)
+ ;;=^5003867
+ ;;^UTILITY(U,$J,358.3,9428,0)
+ ;;=G93.81^^63^604^23
+ ;;^UTILITY(U,$J,358.3,9428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9868,1,3,0)
- ;;=3^Iridocyclitis,Acute/Subacute,Unspec
- ;;^UTILITY(U,$J,358.3,9868,1,4,0)
- ;;=4^364.00
- ;;^UTILITY(U,$J,358.3,9868,2)
- ;;=Iridocyclitis, Acute^268703
- ;;^UTILITY(U,$J,358.3,9869,0)
- ;;=379.40^^44^558^106
- ;;^UTILITY(U,$J,358.3,9869,1,0)
+ ;;^UTILITY(U,$J,358.3,9428,1,3,0)
+ ;;=3^Mesial Temporal Sclerosis
+ ;;^UTILITY(U,$J,358.3,9428,1,4,0)
+ ;;=4^G93.81
+ ;;^UTILITY(U,$J,358.3,9428,2)
+ ;;=^338233
+ ;;^UTILITY(U,$J,358.3,9429,0)
+ ;;=F44.5^^63^604^8
+ ;;^UTILITY(U,$J,358.3,9429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9869,1,3,0)
- ;;=3^Pupil, Abnormal function
- ;;^UTILITY(U,$J,358.3,9869,1,4,0)
- ;;=4^379.40
- ;;^UTILITY(U,$J,358.3,9869,2)
- ;;=Pupil, Abnormal function^101288
- ;;^UTILITY(U,$J,358.3,9870,0)
- ;;=190.0^^44^558^84
- ;;^UTILITY(U,$J,358.3,9870,1,0)
+ ;;^UTILITY(U,$J,358.3,9429,1,3,0)
+ ;;=3^Conversion Disorder w/ Seizures/Convulsions
+ ;;^UTILITY(U,$J,358.3,9429,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,9429,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,9430,0)
+ ;;=R40.4^^63^604^30
+ ;;^UTILITY(U,$J,358.3,9430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9870,1,3,0)
- ;;=3^Malig Neopl of Eyeball,Iris
- ;;^UTILITY(U,$J,358.3,9870,1,4,0)
- ;;=4^190.0
- ;;^UTILITY(U,$J,358.3,9870,2)
- ;;=Malig Neopl of Iris^267271
- ;;^UTILITY(U,$J,358.3,9871,0)
- ;;=190.3^^44^558^83
- ;;^UTILITY(U,$J,358.3,9871,1,0)
+ ;;^UTILITY(U,$J,358.3,9430,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,9430,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,9430,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,9431,0)
+ ;;=R40.1^^63^604^29
+ ;;^UTILITY(U,$J,358.3,9431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9871,1,3,0)
- ;;=3^Malig Neopl Conjunctiva
- ;;^UTILITY(U,$J,358.3,9871,1,4,0)
- ;;=4^190.3
- ;;^UTILITY(U,$J,358.3,9871,2)
- ;;=Malig Neopl Conjunctiva^267274
- ;;^UTILITY(U,$J,358.3,9872,0)
- ;;=364.41^^44^558^50
- ;;^UTILITY(U,$J,358.3,9872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9872,1,3,0)
- ;;=3^Hyphema
- ;;^UTILITY(U,$J,358.3,9872,1,4,0)
- ;;=4^364.41
+ ;;^UTILITY(U,$J,358.3,9431,1,3,0)
+ ;;=3^Stupor
+ ;;^UTILITY(U,$J,358.3,9431,1,4,0)
+ ;;=4^R40.1
+ ;;^UTILITY(U,$J,358.3,9431,2)
+ ;;=^5019353
+ ;;^UTILITY(U,$J,358.3,9432,0)
+ ;;=R40.0^^63^604^28

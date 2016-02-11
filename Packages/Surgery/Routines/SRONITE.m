@@ -1,5 +1,5 @@
 SRONITE ;BIR/MAM - NIGHTLY BACKGROUND TASK ;07/06/2011
- ;;3.0;Surgery;**47,58,62,41,86,142,167,175,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**47,58,62,41,86,142,167,175,176,184**;24 Jun 93;Build 35
  F SRI=1:1 S SRX=$P($T(TASK+SRI),";;",2) Q:SRX=""  S SRRTN=$P(SRX,";"),SRDESC=$P(SRX,";",2) S ZTDESC=SRDESC,ZTRTN="JOB^SRONITE",ZTIO="",ZTDTH=$H,ZTSAVE("SRRTN")="" D ^%ZTLOAD
  D EN^SROA30
  Q
@@ -19,7 +19,5 @@ TASK ;
  ;;LOCK^SROLOCK;Lock Surgery Cases
  ;;TASK^SRSAVG;Store Operation Times
  ;;^SROATMIT;Transmit Surgery Risk Assessments
- ;;NIGHT^SRTPTMIT;Transmit Surgery Transplant Assessments
  ;;TASK^SROAWL;Surgery Workload Report
- ;;NIGHT^SROQ30D;Surgery 30-Day Readmission Report
  ;;^SRHLXTMP;Surgery Interface Purge

@@ -1,0 +1,134 @@
+IBDEI23N ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,35232,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,35232,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,35233,0)
+ ;;=B17.10^^163^1795^4
+ ;;^UTILITY(U,$J,358.3,35233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35233,1,3,0)
+ ;;=3^Acute Viral Hepatitis C w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,35233,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,35233,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,35234,0)
+ ;;=B17.11^^163^1795^3
+ ;;^UTILITY(U,$J,358.3,35234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35234,1,3,0)
+ ;;=3^Acute Viral Hepatitis C w/ Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,35234,1,4,0)
+ ;;=4^B17.11
+ ;;^UTILITY(U,$J,358.3,35234,2)
+ ;;=^331777
+ ;;^UTILITY(U,$J,358.3,35235,0)
+ ;;=K70.30^^163^1795^6
+ ;;^UTILITY(U,$J,358.3,35235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35235,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,35235,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,35235,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,35236,0)
+ ;;=K70.31^^163^1795^5
+ ;;^UTILITY(U,$J,358.3,35236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35236,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,35236,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,35236,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,35237,0)
+ ;;=K21.0^^163^1795^13
+ ;;^UTILITY(U,$J,358.3,35237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35237,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,35237,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,35237,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,35238,0)
+ ;;=K58.0^^163^1795^16
+ ;;^UTILITY(U,$J,358.3,35238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35238,1,3,0)
+ ;;=3^IBS w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,35238,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,35238,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,35239,0)
+ ;;=C61.^^163^1796^21
+ ;;^UTILITY(U,$J,358.3,35239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35239,1,3,0)
+ ;;=3^Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,35239,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,35239,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,35240,0)
+ ;;=N20.0^^163^1796^2
+ ;;^UTILITY(U,$J,358.3,35240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35240,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,35240,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,35240,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,35241,0)
+ ;;=N39.0^^163^1796^28
+ ;;^UTILITY(U,$J,358.3,35241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35241,1,3,0)
+ ;;=3^UTI,Site Unspec
+ ;;^UTILITY(U,$J,358.3,35241,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,35241,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,35242,0)
+ ;;=N40.0^^163^1796^12
+ ;;^UTILITY(U,$J,358.3,35242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35242,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,35242,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,35242,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,35243,0)
+ ;;=N40.1^^163^1796^11
+ ;;^UTILITY(U,$J,358.3,35243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35243,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,35243,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,35243,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,35244,0)
+ ;;=N40.2^^163^1796^24
+ ;;^UTILITY(U,$J,358.3,35244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35244,1,3,0)
+ ;;=3^Nodular Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,35244,1,4,0)
+ ;;=4^N40.2
+ ;;^UTILITY(U,$J,358.3,35244,2)
+ ;;=^5015691
+ ;;^UTILITY(U,$J,358.3,35245,0)
+ ;;=N40.3^^163^1796^23
+ ;;^UTILITY(U,$J,358.3,35245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35245,1,3,0)
+ ;;=3^Nodular Prostate w/ Lower Urinary Tract Symptoms

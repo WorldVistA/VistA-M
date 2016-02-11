@@ -1,136 +1,130 @@
-IBDEI0BG ; ; 06-AUG-2015
+IBDEI0BG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5031,2)
- ;;=^266557
- ;;^UTILITY(U,$J,358.3,5032,0)
- ;;=V16.8^^25^270^5
- ;;^UTILITY(U,$J,358.3,5032,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5032,1,2,0)
- ;;=2^V16.8
- ;;^UTILITY(U,$J,358.3,5032,1,5,0)
- ;;=5^Family History of SCC/BCC
- ;;^UTILITY(U,$J,358.3,5032,2)
- ;;=Family Hx of Skin Cancer^295300
- ;;^UTILITY(U,$J,358.3,5033,0)
- ;;=V10.82^^25^270^10
- ;;^UTILITY(U,$J,358.3,5033,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5033,1,2,0)
- ;;=2^V10.82
- ;;^UTILITY(U,$J,358.3,5033,1,5,0)
- ;;=5^Personal History of Malig Melanoma
- ;;^UTILITY(U,$J,358.3,5033,2)
- ;;=Personal History of Malig Melanoma^295240
- ;;^UTILITY(U,$J,358.3,5034,0)
- ;;=V15.82^^25^270^7
- ;;^UTILITY(U,$J,358.3,5034,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5034,1,2,0)
- ;;=2^V15.82
- ;;^UTILITY(U,$J,358.3,5034,1,5,0)
- ;;=5^History Of Tobacco Use
- ;;^UTILITY(U,$J,358.3,5034,2)
- ;;=^303405
- ;;^UTILITY(U,$J,358.3,5035,0)
- ;;=V13.3^^25^270^6
- ;;^UTILITY(U,$J,358.3,5035,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5035,1,2,0)
- ;;=2^V13.3
- ;;^UTILITY(U,$J,358.3,5035,1,5,0)
- ;;=5^History Of Other Skin Disorder
- ;;^UTILITY(U,$J,358.3,5035,2)
- ;;=^295266
- ;;^UTILITY(U,$J,358.3,5036,0)
- ;;=V10.83^^25^270^9
- ;;^UTILITY(U,$J,358.3,5036,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5036,1,2,0)
- ;;=2^V10.83
- ;;^UTILITY(U,$J,358.3,5036,1,5,0)
- ;;=5^Personal History of BCC/SCC
- ;;^UTILITY(U,$J,358.3,5036,2)
- ;;=Hx of Skin Cancer^295241
- ;;^UTILITY(U,$J,358.3,5037,0)
- ;;=V15.89^^25^270^2
- ;;^UTILITY(U,$J,358.3,5037,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5037,1,2,0)
- ;;=2^V15.89
- ;;^UTILITY(U,$J,358.3,5037,1,5,0)
- ;;=5^Exposure to Env Contaminants in Pers Gulf
- ;;^UTILITY(U,$J,358.3,5037,2)
- ;;=Exposure to Env Contaminante in Pers Gulf^295291
- ;;^UTILITY(U,$J,358.3,5038,0)
- ;;=V15.81^^25^270^8
- ;;^UTILITY(U,$J,358.3,5038,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5038,1,2,0)
- ;;=2^V15.81
- ;;^UTILITY(U,$J,358.3,5038,1,5,0)
- ;;=5^History of non-compliance
- ;;^UTILITY(U,$J,358.3,5038,2)
- ;;=^295290
- ;;^UTILITY(U,$J,358.3,5039,0)
- ;;=757.1^^25^271^2
- ;;^UTILITY(U,$J,358.3,5039,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5039,1,2,0)
- ;;=2^757.1
- ;;^UTILITY(U,$J,358.3,5039,1,5,0)
- ;;=5^Ichthyosis Congenital
- ;;^UTILITY(U,$J,358.3,5039,2)
- ;;=^61019
- ;;^UTILITY(U,$J,358.3,5040,0)
- ;;=911.4^^25^272^7
- ;;^UTILITY(U,$J,358.3,5040,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5040,1,2,0)
- ;;=2^911.4
- ;;^UTILITY(U,$J,358.3,5040,1,5,0)
- ;;=5^Insect Bite, Trunk, W/O Infection
- ;;^UTILITY(U,$J,358.3,5040,2)
- ;;=^275279
- ;;^UTILITY(U,$J,358.3,5041,0)
- ;;=913.4^^25^272^1
- ;;^UTILITY(U,$J,358.3,5041,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5041,1,2,0)
- ;;=2^913.4
- ;;^UTILITY(U,$J,358.3,5041,1,5,0)
- ;;=5^Insect Bite, Arm, W/O Infection
- ;;^UTILITY(U,$J,358.3,5041,2)
- ;;=^275301
- ;;^UTILITY(U,$J,358.3,5042,0)
- ;;=910.4^^25^272^2
- ;;^UTILITY(U,$J,358.3,5042,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5042,1,2,0)
- ;;=2^910.4
- ;;^UTILITY(U,$J,358.3,5042,1,5,0)
- ;;=5^Insect Bite, Face, W/O Infection
- ;;^UTILITY(U,$J,358.3,5042,2)
- ;;=^275267
- ;;^UTILITY(U,$J,358.3,5043,0)
- ;;=915.4^^25^272^3
- ;;^UTILITY(U,$J,358.3,5043,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5043,1,2,0)
- ;;=2^915.4
- ;;^UTILITY(U,$J,358.3,5043,1,5,0)
- ;;=5^Insect Bite, Finger, W/O Infection
- ;;^UTILITY(U,$J,358.3,5043,2)
- ;;=^275323
- ;;^UTILITY(U,$J,358.3,5044,0)
- ;;=917.4^^25^272^4
- ;;^UTILITY(U,$J,358.3,5044,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,5044,1,2,0)
- ;;=2^917.4
- ;;^UTILITY(U,$J,358.3,5044,1,5,0)
- ;;=5^Insect Bite, Foot, W/O Infection 
- ;;^UTILITY(U,$J,358.3,5044,2)
- ;;=^275345
+ ;;^UTILITY(U,$J,358.3,4875,1,4,0)
+ ;;=4^T82.897A
+ ;;^UTILITY(U,$J,358.3,4875,2)
+ ;;=^5054950
+ ;;^UTILITY(U,$J,358.3,4876,0)
+ ;;=T82.110A^^37^323^1
+ ;;^UTILITY(U,$J,358.3,4876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4876,1,3,0)
+ ;;=3^Cardiac Electrode Breakdown,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4876,1,4,0)
+ ;;=4^T82.110A
+ ;;^UTILITY(U,$J,358.3,4876,2)
+ ;;=^5054680
+ ;;^UTILITY(U,$J,358.3,4877,0)
+ ;;=T82.111A^^37^323^4
+ ;;^UTILITY(U,$J,358.3,4877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4877,1,3,0)
+ ;;=3^Cardiac Pulse Generator Battery Breakdown,Init
+ ;;^UTILITY(U,$J,358.3,4877,1,4,0)
+ ;;=4^T82.111A
+ ;;^UTILITY(U,$J,358.3,4877,2)
+ ;;=^5054683
+ ;;^UTILITY(U,$J,358.3,4878,0)
+ ;;=T82.120A^^37^323^2
+ ;;^UTILITY(U,$J,358.3,4878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4878,1,3,0)
+ ;;=3^Cardiac Electrode Displacement,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4878,1,4,0)
+ ;;=4^T82.120A
+ ;;^UTILITY(U,$J,358.3,4878,2)
+ ;;=^5054692
+ ;;^UTILITY(U,$J,358.3,4879,0)
+ ;;=T82.121A^^37^323^5
+ ;;^UTILITY(U,$J,358.3,4879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4879,1,3,0)
+ ;;=3^Cardiac Pulse Generator Battery Displacement,Init
+ ;;^UTILITY(U,$J,358.3,4879,1,4,0)
+ ;;=4^T82.121A
+ ;;^UTILITY(U,$J,358.3,4879,2)
+ ;;=^5054695
+ ;;^UTILITY(U,$J,358.3,4880,0)
+ ;;=T82.190A^^37^323^3
+ ;;^UTILITY(U,$J,358.3,4880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4880,1,3,0)
+ ;;=3^Cardiac Electrode Mech Complication,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4880,1,4,0)
+ ;;=4^T82.190A
+ ;;^UTILITY(U,$J,358.3,4880,2)
+ ;;=^5054704
+ ;;^UTILITY(U,$J,358.3,4881,0)
+ ;;=T82.191A^^37^323^6
+ ;;^UTILITY(U,$J,358.3,4881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4881,1,3,0)
+ ;;=3^Cardiac Pulse Generator Battery Mech Complication,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4881,1,4,0)
+ ;;=4^T82.191A
+ ;;^UTILITY(U,$J,358.3,4881,2)
+ ;;=^5054707
+ ;;^UTILITY(U,$J,358.3,4882,0)
+ ;;=T82.818A^^37^323^11
+ ;;^UTILITY(U,$J,358.3,4882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4882,1,3,0)
+ ;;=3^Embolism of Vascular Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,4882,1,4,0)
+ ;;=4^T82.818A
+ ;;^UTILITY(U,$J,358.3,4882,2)
+ ;;=^5054917
+ ;;^UTILITY(U,$J,358.3,4883,0)
+ ;;=T82.828A^^37^323^13
+ ;;^UTILITY(U,$J,358.3,4883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4883,1,3,0)
+ ;;=3^Fibrosis of Vascular Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,4883,1,4,0)
+ ;;=4^T82.828A
+ ;;^UTILITY(U,$J,358.3,4883,2)
+ ;;=^5054923
+ ;;^UTILITY(U,$J,358.3,4884,0)
+ ;;=T82.838A^^37^323^15
+ ;;^UTILITY(U,$J,358.3,4884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4884,1,3,0)
+ ;;=3^Hemorrhage of Vascular Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,4884,1,4,0)
+ ;;=4^T82.838A
+ ;;^UTILITY(U,$J,358.3,4884,2)
+ ;;=^5054929
+ ;;^UTILITY(U,$J,358.3,4885,0)
+ ;;=T82.848A^^37^323^21
+ ;;^UTILITY(U,$J,358.3,4885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4885,1,3,0)
+ ;;=3^Pain from Vascular Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,4885,1,4,0)
+ ;;=4^T82.848A
+ ;;^UTILITY(U,$J,358.3,4885,2)
+ ;;=^5054935
+ ;;^UTILITY(U,$J,358.3,4886,0)
+ ;;=T82.858A^^37^323^26
+ ;;^UTILITY(U,$J,358.3,4886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4886,1,3,0)
+ ;;=3^Stenosis of Vascular Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,4886,1,4,0)
+ ;;=4^T82.858A
+ ;;^UTILITY(U,$J,358.3,4886,2)
+ ;;=^5054941
+ ;;^UTILITY(U,$J,358.3,4887,0)
+ ;;=T82.868A^^37^323^28
+ ;;^UTILITY(U,$J,358.3,4887,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4887,1,3,0)
+ ;;=3^Thrombosis of Vascular Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,4887,1,4,0)
+ ;;=4^T82.868A
+ ;;^UTILITY(U,$J,358.3,4887,2)
+ ;;=^5054947
+ ;;^UTILITY(U,$J,358.3,4888,0)
+ ;;=T82.898A^^37^323^8

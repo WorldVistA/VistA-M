@@ -1,132 +1,132 @@
-IBDEI1LZ ; ; 06-AUG-2015
+IBDEI1LZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28546,2)
- ;;=Fall From Ladder^294644
- ;;^UTILITY(U,$J,358.3,28547,0)
- ;;=E882.^^162^1801^3
- ;;^UTILITY(U,$J,358.3,28547,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28547,1,4,0)
- ;;=4^E882.
- ;;^UTILITY(U,$J,358.3,28547,1,5,0)
- ;;=5^Fall From Building
- ;;^UTILITY(U,$J,358.3,28547,2)
- ;;=Fall From Building^294646
- ;;^UTILITY(U,$J,358.3,28548,0)
- ;;=E883.9^^162^1801^13
- ;;^UTILITY(U,$J,358.3,28548,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28548,1,4,0)
- ;;=4^E883.9
- ;;^UTILITY(U,$J,358.3,28548,1,5,0)
- ;;=5^Fall Into Hole
- ;;^UTILITY(U,$J,358.3,28548,2)
- ;;=Fall Into Hole^294650
- ;;^UTILITY(U,$J,358.3,28549,0)
- ;;=E884.2^^162^1801^4
- ;;^UTILITY(U,$J,358.3,28549,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28549,1,4,0)
- ;;=4^E884.2
- ;;^UTILITY(U,$J,358.3,28549,1,5,0)
- ;;=5^Fall From Chair
- ;;^UTILITY(U,$J,358.3,28549,2)
- ;;=Fall From Chair^294653
- ;;^UTILITY(U,$J,358.3,28550,0)
- ;;=E884.3^^162^1801^11
- ;;^UTILITY(U,$J,358.3,28550,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28550,1,4,0)
- ;;=4^E884.3
- ;;^UTILITY(U,$J,358.3,28550,1,5,0)
- ;;=5^Fall From Wheelchair
- ;;^UTILITY(U,$J,358.3,28550,2)
- ;;=Fall From Wheelchair^303368
- ;;^UTILITY(U,$J,358.3,28551,0)
- ;;=E884.4^^162^1801^2
- ;;^UTILITY(U,$J,358.3,28551,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28551,1,4,0)
- ;;=4^E884.4
- ;;^UTILITY(U,$J,358.3,28551,1,5,0)
- ;;=5^Fall From Bed
- ;;^UTILITY(U,$J,358.3,28551,2)
- ;;=Fall From Bed^303369
- ;;^UTILITY(U,$J,358.3,28552,0)
- ;;=E884.6^^162^1801^5
- ;;^UTILITY(U,$J,358.3,28552,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28552,1,4,0)
- ;;=4^E884.6
- ;;^UTILITY(U,$J,358.3,28552,1,5,0)
- ;;=5^Fall From Commode
- ;;^UTILITY(U,$J,358.3,28552,2)
- ;;=Fall from Commode^303371
- ;;^UTILITY(U,$J,358.3,28553,0)
- ;;=E884.9^^162^1801^18
- ;;^UTILITY(U,$J,358.3,28553,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28553,1,4,0)
- ;;=4^E884.9
- ;;^UTILITY(U,$J,358.3,28553,1,5,0)
- ;;=5^Other Fall, One Level To Another
- ;;^UTILITY(U,$J,358.3,28553,2)
- ;;=Other Fall^294654
- ;;^UTILITY(U,$J,358.3,28554,0)
- ;;=E885.1^^162^1801^7
- ;;^UTILITY(U,$J,358.3,28554,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28554,1,4,0)
- ;;=4^E885.1
- ;;^UTILITY(U,$J,358.3,28554,1,5,0)
- ;;=5^Fall From Roller Skates
- ;;^UTILITY(U,$J,358.3,28554,2)
- ;;=Fall from Roller Skates^322100
- ;;^UTILITY(U,$J,358.3,28555,0)
- ;;=E885.2^^162^1801^8
- ;;^UTILITY(U,$J,358.3,28555,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28555,1,4,0)
- ;;=4^E885.2
- ;;^UTILITY(U,$J,358.3,28555,1,5,0)
- ;;=5^Fall From Skateboard
- ;;^UTILITY(U,$J,358.3,28555,2)
- ;;=Fall from Skateboard^322102
- ;;^UTILITY(U,$J,358.3,28556,0)
- ;;=E885.3^^162^1801^9
- ;;^UTILITY(U,$J,358.3,28556,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28556,1,4,0)
- ;;=4^E885.3
- ;;^UTILITY(U,$J,358.3,28556,1,5,0)
- ;;=5^Fall From Skis
- ;;^UTILITY(U,$J,358.3,28556,2)
- ;;=Fall from Skis^322103
- ;;^UTILITY(U,$J,358.3,28557,0)
- ;;=E885.4^^162^1801^10
- ;;^UTILITY(U,$J,358.3,28557,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28557,1,4,0)
- ;;=4^E885.4
- ;;^UTILITY(U,$J,358.3,28557,1,5,0)
- ;;=5^Fall From Snowboard
- ;;^UTILITY(U,$J,358.3,28557,2)
- ;;=Fall from Snowboard^322104
- ;;^UTILITY(U,$J,358.3,28558,0)
- ;;=E885.9^^162^1801^1
- ;;^UTILITY(U,$J,358.3,28558,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28558,1,4,0)
- ;;=4^E885.9
- ;;^UTILITY(U,$J,358.3,28558,1,5,0)
- ;;=5^Fall After Tripping Or Slipping
- ;;^UTILITY(U,$J,358.3,28558,2)
- ;;=Fall after tripping or slipping^322105
- ;;^UTILITY(U,$J,358.3,28559,0)
- ;;=E886.0^^162^1801^12
- ;;^UTILITY(U,$J,358.3,28559,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,28559,1,4,0)
- ;;=4^E886.0
+ ;;^UTILITY(U,$J,358.3,26917,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,26918,0)
+ ;;=I82.891^^132^1307^14
+ ;;^UTILITY(U,$J,358.3,26918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26918,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,26918,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,26918,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,26919,0)
+ ;;=I82.890^^132^1307^13
+ ;;^UTILITY(U,$J,358.3,26919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26919,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,26919,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,26919,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,26920,0)
+ ;;=E78.0^^132^1308^12
+ ;;^UTILITY(U,$J,358.3,26920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26920,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,26920,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,26920,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,26921,0)
+ ;;=E78.1^^132^1308^13
+ ;;^UTILITY(U,$J,358.3,26921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26921,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,26921,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,26921,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,26922,0)
+ ;;=E78.2^^132^1308^11
+ ;;^UTILITY(U,$J,358.3,26922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26922,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,26922,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,26922,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,26923,0)
+ ;;=I10.^^132^1308^3
+ ;;^UTILITY(U,$J,358.3,26923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26923,1,3,0)
+ ;;=3^Essential Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,26923,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,26923,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,26924,0)
+ ;;=I11.9^^132^1308^10
+ ;;^UTILITY(U,$J,358.3,26924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26924,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,26924,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,26924,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,26925,0)
+ ;;=I11.0^^132^1308^9
+ ;;^UTILITY(U,$J,358.3,26925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26925,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,26925,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,26925,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,26926,0)
+ ;;=I12.0^^132^1308^8
+ ;;^UTILITY(U,$J,358.3,26926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26926,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
+ ;;^UTILITY(U,$J,358.3,26926,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,26926,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,26927,0)
+ ;;=I13.10^^132^1308^6
+ ;;^UTILITY(U,$J,358.3,26927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26927,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,26927,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,26927,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,26928,0)
+ ;;=I13.0^^132^1308^4
+ ;;^UTILITY(U,$J,358.3,26928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26928,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,26928,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,26928,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,26929,0)
+ ;;=I13.11^^132^1308^7
+ ;;^UTILITY(U,$J,358.3,26929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26929,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,26929,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,26929,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,26930,0)
+ ;;=I13.2^^132^1308^5
+ ;;^UTILITY(U,$J,358.3,26930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26930,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny

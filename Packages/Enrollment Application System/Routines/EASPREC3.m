@@ -1,27 +1,27 @@
-EASPREC3 ;ALB/PJH - PROCESS INCOMING HL7 (QRY) MESSAGES ; 11/27/07 3:04pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71**;15-MAR-01;Build 18
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+EASPREC3 ;ALB/PJH,BDB,MNH - PROCESS INCOMING HL7 (QRY) MESSAGES ;11/27/07 3:04pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71,111,113**;15-MAR-01;Build 53
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; CLONED FROM IVMPREC2 (ESR EVENT DRIVER)
  ;
  ; This routine will process (ORU) HL7 messages received from the
  ; IVM center. Event type code indicating type of transmission is
  ; in the BHS segment. Routines based on type will be called to
- ; process these messages.  For each batch an ACK will be sent to
- ; the IVM Center indicating errors found.  If any errors are found
- ; a batch message with AE(indicating error(s)) is sent.  If no errors
+ ; process these messages. For each batch an ACK will be sent to
+ ; the IVM Center indicating errors found. If any errors are found
+ ; a batch message with AE(indicating error(s)) is sent. If no errors
  ; only a MSH and MSA with AA(no errors) is sent. The following event
  ; type codes are processed in the following routines:
  ;
- ;    EVENT CODE    TRANSMISSION TYPE             PROCESSING ROUTINE
- ;    ==============================================================
- ;       Z03        SSN TRANSMISSIONS                  IVMPREC5
- ;       Z04        INSURANCE TRANSMISSIONS            IVMPREC3
- ;       Z05        DEMOGRAPHIC TRANSMISSIONS          IVMPREC6
- ;       Z06        MEANS TEST TRANSMISSIONS           IVMPREC7
- ;       Z08        CASE STATUS TRANSMISSIONS          IVMPREC4
- ;       Z10        INCOME TEST TRANSMISSIONS          IVMCM
- ;       Z11        ENROLLMENT/ELIGIBILTY              ORUZ11^DGENUPL
+ ; EVENT CODE TRANSMISSION TYPE PROCESSING ROUTINE
+ ; ==============================================================
+ ; Z03 SSN TRANSMISSIONS IVMPREC5
+ ; Z04 INSURANCE TRANSMISSIONS IVMPREC3
+ ; Z05 DEMOGRAPHIC TRANSMISSIONS IVMPREC6
+ ; Z06 MEANS TEST TRANSMISSIONS EASPREC6
+ ; Z08 CASE STATUS TRANSMISSIONS IVMPREC4
+ ; Z10 INCOME TEST TRANSMISSIONS IVMCM
+ ; Z11 ENROLLMENT/ELIGIBILTY ORUZ11^DGENUPL
  ;
  ;
 ORU ; - Receive Observational Results Unsolicited Message
@@ -63,7 +63,9 @@ ORU ; - Receive Observational Results Unsolicited Message
  I HLEID]"" S HLEIDS=$O(^ORD(101,HLEID,775,"B",0))
  ;
  ; - process the message according to the event type code
- S IVMDO=$S(IVMETC="Z03":"EN^IVMPREC5",IVMETC="Z04":"EN^IVMPREC3",IVMETC="Z05":"EN^IVMPREC6",IVMETC="Z06":"EN^IVMPREC7",IVMETC="Z08":"EN^IVMPREC4",IVMETC="Z10":"ORU^IVMCM",IVMETC="Z11":"ORUZ11^DGENUPL",1:"ORUQ")
+ ;ADD Z06 EAS*1.0*111
+ ;S IVMDO=$S(IVMETC="Z03":"EN^IVMPREC5",IVMETC="Z04":"EN^IVMPREC3",IVMETC="Z05":"EN^IVMPREC6",IVMETC="Z06":"EN^EASPREC6",IVMETC="Z08":"EN^IVMPREC4",IVMETC="Z10":"ORU^IVMCM",IVMETC="Z11":"ORUZ11^DGENUPL",1:"ORUQ")
+ S IVMDO=$S(IVMETC="Z03":"EN^IVMPREC5",IVMETC="Z04":"EN^IVMPREC3",IVMETC="Z05":"EN^IVMPREC6",IVMETC="Z06":"EN^EASPREC6",IVMETC="Z08":"EN^IVMPREC4",IVMETC="Z10":"ORU^EASCM",IVMETC="Z11":"ORUZ11^DGENUPL",1:"ORUQ") ;EAS*1*113
  I IVMETC="Z11" D
  .D ORUZ11^DGENUPL(HLDA,.IVMERROR)
  .S IVMCT=2*IVMERROR
@@ -79,12 +81,13 @@ ORU ; - Receive Observational Results Unsolicited Message
  I IVMERROR S HLARYTYP="GB",HLMTIENA=HLMTIEN  ;HLMTIEN comes from ACK^IVMPREC
  K ^TMP("HLA",$J) M ^TMP("HLA",$J)=^TMP("HLS",$J) K ^TMP("HLS",$J)
  D GENACK^HLMA1(HLEID,HLMTIENS,HLEIDS,HLARYTYP,1,.HLRESLTA,HLMTIENA,.HLP)
- ; The following line is added for  PFSS Registration.  This line will ensure any patient 
+ ; The following line is added for PFSS Registration. This line will ensure any patient 
  ; registration updates received from the HEC are forwarded to a COTS billing application
  ; See DBIA#4780 - this line will need re enabling if PFSS is active 
  ;S X="DGPFSS1" X ^%ZOSF("TEST") I $T D SEND^DGPFSS1(DFN,0)
  ;
 ORUQ ;
+ ;
  K DFN,IVMCNTR,IVMCT,IVMDA,IVMERR,IVMERROR,IVMHLMID,IVMNDE,IVMPTID
  K IVMSEG,IVMSEG1,IVMSEG2,IVMSEG3,IVMTEXT,XMSUB
  K HLARYTYP,HLMTIENA,HLRESLTA,HLP

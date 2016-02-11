@@ -1,124 +1,138 @@
-IBDEI20G ; ; 06-AUG-2015
+IBDEI20G ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35163,1,4,0)
- ;;=4^S62.181S
- ;;^UTILITY(U,$J,358.3,35163,2)
- ;;=^5033513
- ;;^UTILITY(U,$J,358.3,35164,0)
- ;;=S62.112S^^183^2026^63
- ;;^UTILITY(U,$J,358.3,35164,1,0)
+ ;;^UTILITY(U,$J,358.3,33676,0)
+ ;;=Z71.89^^151^1681^2
+ ;;^UTILITY(U,$J,358.3,33676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35164,1,3,0)
- ;;=3^Disp fx of triquetrum bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,35164,1,4,0)
- ;;=4^S62.112S
- ;;^UTILITY(U,$J,358.3,35164,2)
- ;;=^5033226
- ;;^UTILITY(U,$J,358.3,35165,0)
- ;;=S62.111S^^183^2026^64
- ;;^UTILITY(U,$J,358.3,35165,1,0)
+ ;;^UTILITY(U,$J,358.3,33676,1,3,0)
+ ;;=3^Other Spec Counseling
+ ;;^UTILITY(U,$J,358.3,33676,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,33676,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,33677,0)
+ ;;=E11.9^^151^1682^5
+ ;;^UTILITY(U,$J,358.3,33677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35165,1,3,0)
- ;;=3^Disp fx of triquetrum bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,35165,1,4,0)
- ;;=4^S62.111S
- ;;^UTILITY(U,$J,358.3,35165,2)
- ;;=^5033219
- ;;^UTILITY(U,$J,358.3,35166,0)
- ;;=S62.145S^^183^2026^73
- ;;^UTILITY(U,$J,358.3,35166,1,0)
+ ;;^UTILITY(U,$J,358.3,33677,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,33677,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,33677,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,33678,0)
+ ;;=E10.9^^151^1682^3
+ ;;^UTILITY(U,$J,358.3,33678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35166,1,3,0)
- ;;=3^Nondisp fx of body of hamate bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,35166,1,4,0)
- ;;=4^S62.145S
- ;;^UTILITY(U,$J,358.3,35166,2)
- ;;=^5033373
- ;;^UTILITY(U,$J,358.3,35167,0)
- ;;=S62.144S^^183^2026^74
- ;;^UTILITY(U,$J,358.3,35167,1,0)
+ ;;^UTILITY(U,$J,358.3,33678,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,33678,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,33678,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,33679,0)
+ ;;=E11.65^^151^1682^4
+ ;;^UTILITY(U,$J,358.3,33679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35167,1,3,0)
- ;;=3^Nondisp fx of body of hamate bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,35167,1,4,0)
- ;;=4^S62.144S
- ;;^UTILITY(U,$J,358.3,35167,2)
- ;;=^5033366
- ;;^UTILITY(U,$J,358.3,35168,0)
- ;;=S62.135S^^183^2026^75
- ;;^UTILITY(U,$J,358.3,35168,1,0)
+ ;;^UTILITY(U,$J,358.3,33679,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,33679,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,33679,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,33680,0)
+ ;;=E10.65^^151^1682^2
+ ;;^UTILITY(U,$J,358.3,33680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35168,1,3,0)
- ;;=3^Nondisp fx of capitate bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,35168,1,4,0)
- ;;=4^S62.135S
- ;;^UTILITY(U,$J,358.3,35168,2)
- ;;=^5033331
- ;;^UTILITY(U,$J,358.3,35169,0)
- ;;=S62.134S^^183^2026^76
- ;;^UTILITY(U,$J,358.3,35169,1,0)
+ ;;^UTILITY(U,$J,358.3,33680,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,33680,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,33680,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,33681,0)
+ ;;=R73.09^^151^1682^1
+ ;;^UTILITY(U,$J,358.3,33681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35169,1,3,0)
- ;;=3^Nondisp fx of capitate bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,35169,1,4,0)
- ;;=4^S62.134S
- ;;^UTILITY(U,$J,358.3,35169,2)
- ;;=^5033324
- ;;^UTILITY(U,$J,358.3,35170,0)
- ;;=S62.015S^^183^2026^83
- ;;^UTILITY(U,$J,358.3,35170,1,0)
+ ;;^UTILITY(U,$J,358.3,33681,1,3,0)
+ ;;=3^Abnormal Glucose
+ ;;^UTILITY(U,$J,358.3,33681,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,33681,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,33682,0)
+ ;;=Z79.4^^151^1682^6
+ ;;^UTILITY(U,$J,358.3,33682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35170,1,3,0)
- ;;=3^Nondisp fx of distal pole of navic bone of left wrist, sequela
- ;;^UTILITY(U,$J,358.3,35170,1,4,0)
- ;;=4^S62.015S
- ;;^UTILITY(U,$J,358.3,35170,2)
- ;;=^5033107
- ;;^UTILITY(U,$J,358.3,35171,0)
- ;;=S62.014S^^183^2026^84
- ;;^UTILITY(U,$J,358.3,35171,1,0)
+ ;;^UTILITY(U,$J,358.3,33682,1,3,0)
+ ;;=3^Long Term (Current) Use of Insulin
+ ;;^UTILITY(U,$J,358.3,33682,1,4,0)
+ ;;=4^Z79.4
+ ;;^UTILITY(U,$J,358.3,33682,2)
+ ;;=^5063334
+ ;;^UTILITY(U,$J,358.3,33683,0)
+ ;;=E66.9^^151^1683^5
+ ;;^UTILITY(U,$J,358.3,33683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35171,1,3,0)
- ;;=3^Nondisp fx of distal pole of navic bone of right wrist, sequela
- ;;^UTILITY(U,$J,358.3,35171,1,4,0)
- ;;=4^S62.014S
- ;;^UTILITY(U,$J,358.3,35171,2)
- ;;=^5033100
- ;;^UTILITY(U,$J,358.3,35172,0)
- ;;=S62.155S^^183^2026^87
- ;;^UTILITY(U,$J,358.3,35172,1,0)
+ ;;^UTILITY(U,$J,358.3,33683,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,33683,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,33683,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,33684,0)
+ ;;=E66.01^^151^1683^2
+ ;;^UTILITY(U,$J,358.3,33684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35172,1,3,0)
- ;;=3^Nondisp fx of hook process of hamate bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,35172,1,4,0)
- ;;=4^S62.155S
- ;;^UTILITY(U,$J,358.3,35172,2)
- ;;=^5033415
- ;;^UTILITY(U,$J,358.3,35173,0)
- ;;=S62.154S^^183^2026^88
- ;;^UTILITY(U,$J,358.3,35173,1,0)
+ ;;^UTILITY(U,$J,358.3,33684,1,3,0)
+ ;;=3^Morbid Obesity d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,33684,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,33684,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,33685,0)
+ ;;=E66.3^^151^1683^6
+ ;;^UTILITY(U,$J,358.3,33685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35173,1,3,0)
- ;;=3^Nondisp fx of hook process of hamate bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,35173,1,4,0)
- ;;=4^S62.154S
- ;;^UTILITY(U,$J,358.3,35173,2)
- ;;=^5033408
- ;;^UTILITY(U,$J,358.3,35174,0)
- ;;=S62.125S^^183^2026^91
- ;;^UTILITY(U,$J,358.3,35174,1,0)
+ ;;^UTILITY(U,$J,358.3,33685,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,33685,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,33685,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,33686,0)
+ ;;=E66.09^^151^1683^4
+ ;;^UTILITY(U,$J,358.3,33686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35174,1,3,0)
- ;;=3^Nondisp fx of lunate, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,35174,1,4,0)
- ;;=4^S62.125S
- ;;^UTILITY(U,$J,358.3,35174,2)
- ;;=^5033289
- ;;^UTILITY(U,$J,358.3,35175,0)
- ;;=S62.124S^^183^2026^92
- ;;^UTILITY(U,$J,358.3,35175,1,0)
+ ;;^UTILITY(U,$J,358.3,33686,1,3,0)
+ ;;=3^Obesity d/t Excess Calories NEC
+ ;;^UTILITY(U,$J,358.3,33686,1,4,0)
+ ;;=4^E66.09
+ ;;^UTILITY(U,$J,358.3,33686,2)
+ ;;=^5002827
+ ;;^UTILITY(U,$J,358.3,33687,0)
+ ;;=E66.1^^151^1683^1
+ ;;^UTILITY(U,$J,358.3,33687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35175,1,3,0)
- ;;=3^Nondisp fx of lunate, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,33687,1,3,0)
+ ;;=3^Drug-Induced Obesity
+ ;;^UTILITY(U,$J,358.3,33687,1,4,0)
+ ;;=4^E66.1
+ ;;^UTILITY(U,$J,358.3,33687,2)
+ ;;=^5002828
+ ;;^UTILITY(U,$J,358.3,33688,0)
+ ;;=E66.2^^151^1683^3
+ ;;^UTILITY(U,$J,358.3,33688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33688,1,3,0)
+ ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,33688,1,4,0)
+ ;;=4^E66.2
+ ;;^UTILITY(U,$J,358.3,33688,2)
+ ;;=^5002829
+ ;;^UTILITY(U,$J,358.3,33689,0)
+ ;;=99201^^152^1684^1
+ ;;^UTILITY(U,$J,358.3,33689,1,0)
+ ;;=^358.31IA^2^2

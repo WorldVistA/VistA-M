@@ -1,122 +1,136 @@
-IBDEI1U0 ; ; 06-AUG-2015
+IBDEI1U0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32264,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,32264,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,32265,0)
- ;;=L97.523^^182^1981^184
- ;;^UTILITY(U,$J,358.3,32265,1,0)
+ ;;^UTILITY(U,$J,358.3,30664,0)
+ ;;=J43.8^^135^1382^20
+ ;;^UTILITY(U,$J,358.3,30664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32265,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32265,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,32265,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,32266,0)
- ;;=L97.524^^182^1981^185
- ;;^UTILITY(U,$J,358.3,32266,1,0)
+ ;;^UTILITY(U,$J,358.3,30664,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,30664,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,30664,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,30665,0)
+ ;;=J45.902^^135^1382^4
+ ;;^UTILITY(U,$J,358.3,30665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32266,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,32266,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,32266,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,32267,0)
- ;;=L97.529^^182^1981^186
- ;;^UTILITY(U,$J,358.3,32267,1,0)
+ ;;^UTILITY(U,$J,358.3,30665,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,30665,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,30665,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,30666,0)
+ ;;=J45.901^^135^1382^3
+ ;;^UTILITY(U,$J,358.3,30666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32267,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,32267,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,32267,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,32268,0)
- ;;=L97.911^^182^1981^222
- ;;^UTILITY(U,$J,358.3,32268,1,0)
+ ;;^UTILITY(U,$J,358.3,30666,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,30666,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,30666,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,30667,0)
+ ;;=J47.9^^135^1382^9
+ ;;^UTILITY(U,$J,358.3,30667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32268,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32268,1,4,0)
- ;;=4^L97.911
- ;;^UTILITY(U,$J,358.3,32268,2)
- ;;=^5133679
- ;;^UTILITY(U,$J,358.3,32269,0)
- ;;=L97.912^^182^1981^223
- ;;^UTILITY(U,$J,358.3,32269,1,0)
+ ;;^UTILITY(U,$J,358.3,30667,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30667,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,30667,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,30668,0)
+ ;;=J47.1^^135^1382^7
+ ;;^UTILITY(U,$J,358.3,30668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32269,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,32269,1,4,0)
- ;;=4^L97.912
- ;;^UTILITY(U,$J,358.3,32269,2)
- ;;=^5133681
- ;;^UTILITY(U,$J,358.3,32270,0)
- ;;=L97.913^^182^1981^224
- ;;^UTILITY(U,$J,358.3,32270,1,0)
+ ;;^UTILITY(U,$J,358.3,30668,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,30668,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,30668,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,30669,0)
+ ;;=J47.0^^135^1382^8
+ ;;^UTILITY(U,$J,358.3,30669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32270,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32270,1,4,0)
- ;;=4^L97.913
- ;;^UTILITY(U,$J,358.3,32270,2)
- ;;=^5133683
- ;;^UTILITY(U,$J,358.3,32271,0)
- ;;=L97.914^^182^1981^225
- ;;^UTILITY(U,$J,358.3,32271,1,0)
+ ;;^UTILITY(U,$J,358.3,30669,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,30669,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,30669,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,30670,0)
+ ;;=R09.1^^135^1382^37
+ ;;^UTILITY(U,$J,358.3,30670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32271,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,32271,1,4,0)
- ;;=4^L97.914
- ;;^UTILITY(U,$J,358.3,32271,2)
- ;;=^5133685
- ;;^UTILITY(U,$J,358.3,32272,0)
- ;;=L97.919^^182^1981^226
- ;;^UTILITY(U,$J,358.3,32272,1,0)
+ ;;^UTILITY(U,$J,358.3,30670,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,30670,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,30670,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,30671,0)
+ ;;=J94.9^^135^1382^33
+ ;;^UTILITY(U,$J,358.3,30671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32272,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,32272,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,32272,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,32273,0)
- ;;=L97.921^^182^1981^192
- ;;^UTILITY(U,$J,358.3,32273,1,0)
+ ;;^UTILITY(U,$J,358.3,30671,1,3,0)
+ ;;=3^Pleural Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,30671,1,4,0)
+ ;;=4^J94.9
+ ;;^UTILITY(U,$J,358.3,30671,2)
+ ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,30672,0)
+ ;;=J92.9^^135^1382^36
+ ;;^UTILITY(U,$J,358.3,30672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32273,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32273,1,4,0)
- ;;=4^L97.921
- ;;^UTILITY(U,$J,358.3,32273,2)
- ;;=^5133680
- ;;^UTILITY(U,$J,358.3,32274,0)
- ;;=L97.922^^182^1981^193
- ;;^UTILITY(U,$J,358.3,32274,1,0)
+ ;;^UTILITY(U,$J,358.3,30672,1,3,0)
+ ;;=3^Pleural Plaque w/o Asbestos
+ ;;^UTILITY(U,$J,358.3,30672,1,4,0)
+ ;;=4^J92.9
+ ;;^UTILITY(U,$J,358.3,30672,2)
+ ;;=^5008313
+ ;;^UTILITY(U,$J,358.3,30673,0)
+ ;;=J94.8^^135^1382^34
+ ;;^UTILITY(U,$J,358.3,30673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32274,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,32274,1,4,0)
- ;;=4^L97.922
- ;;^UTILITY(U,$J,358.3,32274,2)
- ;;=^5133682
- ;;^UTILITY(U,$J,358.3,32275,0)
- ;;=L97.923^^182^1981^194
- ;;^UTILITY(U,$J,358.3,32275,1,0)
+ ;;^UTILITY(U,$J,358.3,30673,1,3,0)
+ ;;=3^Pleural Conditions,Other Spec
+ ;;^UTILITY(U,$J,358.3,30673,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,30673,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,30674,0)
+ ;;=J86.9^^135^1382^38
+ ;;^UTILITY(U,$J,358.3,30674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32275,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32275,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,32275,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,32276,0)
- ;;=L97.924^^182^1981^195
- ;;^UTILITY(U,$J,358.3,32276,1,0)
+ ;;^UTILITY(U,$J,358.3,30674,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,30674,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,30674,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,30675,0)
+ ;;=J91.8^^135^1382^35
+ ;;^UTILITY(U,$J,358.3,30675,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30675,1,3,0)
+ ;;=3^Pleural Effusion in Other Conditions
+ ;;^UTILITY(U,$J,358.3,30675,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,30675,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,30676,0)
+ ;;=J84.9^^135^1382^29
+ ;;^UTILITY(U,$J,358.3,30676,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30676,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,30676,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,30676,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,30677,0)
+ ;;=J98.01^^135^1382^11

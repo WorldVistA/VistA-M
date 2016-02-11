@@ -1,140 +1,128 @@
-IBDEI06L ; ; 06-AUG-2015
+IBDEI06L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2561,1,0)
+ ;;^UTILITY(U,$J,358.3,2484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2561,1,3,0)
- ;;=3^Intrahepatic bile duct carcinoma
- ;;^UTILITY(U,$J,358.3,2561,1,4,0)
- ;;=4^C22.1
- ;;^UTILITY(U,$J,358.3,2561,2)
- ;;=^5000934
- ;;^UTILITY(U,$J,358.3,2562,0)
- ;;=C78.7^^6^76^20
- ;;^UTILITY(U,$J,358.3,2562,1,0)
+ ;;^UTILITY(U,$J,358.3,2484,1,3,0)
+ ;;=3^Rheumatic Aortic Stenosis
+ ;;^UTILITY(U,$J,358.3,2484,1,4,0)
+ ;;=4^I06.0
+ ;;^UTILITY(U,$J,358.3,2484,2)
+ ;;=^269573
+ ;;^UTILITY(U,$J,358.3,2485,0)
+ ;;=I06.1^^19^204^1
+ ;;^UTILITY(U,$J,358.3,2485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2562,1,3,0)
- ;;=3^Secondary malig neoplasm of liver and intrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,2562,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,2562,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,2563,0)
- ;;=K85.9^^6^77^2
- ;;^UTILITY(U,$J,358.3,2563,1,0)
+ ;;^UTILITY(U,$J,358.3,2485,1,3,0)
+ ;;=3^Rheumatic Aortic Insufficiency
+ ;;^UTILITY(U,$J,358.3,2485,1,4,0)
+ ;;=4^I06.1
+ ;;^UTILITY(U,$J,358.3,2485,2)
+ ;;=^269575
+ ;;^UTILITY(U,$J,358.3,2486,0)
+ ;;=I06.2^^19^204^3
+ ;;^UTILITY(U,$J,358.3,2486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2563,1,3,0)
- ;;=3^Acute pancreatitis, unspecified
- ;;^UTILITY(U,$J,358.3,2563,1,4,0)
- ;;=4^K85.9
- ;;^UTILITY(U,$J,358.3,2563,2)
- ;;=^5008887
- ;;^UTILITY(U,$J,358.3,2564,0)
- ;;=K85.8^^6^77^1
- ;;^UTILITY(U,$J,358.3,2564,1,0)
+ ;;^UTILITY(U,$J,358.3,2486,1,3,0)
+ ;;=3^Rheumatic Aortic Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,2486,1,4,0)
+ ;;=4^I06.2
+ ;;^UTILITY(U,$J,358.3,2486,2)
+ ;;=^269577
+ ;;^UTILITY(U,$J,358.3,2487,0)
+ ;;=I06.8^^19^204^4
+ ;;^UTILITY(U,$J,358.3,2487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2564,1,3,0)
- ;;=3^Acute pancreatitis NEC
- ;;^UTILITY(U,$J,358.3,2564,1,4,0)
- ;;=4^K85.8
- ;;^UTILITY(U,$J,358.3,2564,2)
- ;;=^5008886
- ;;^UTILITY(U,$J,358.3,2565,0)
- ;;=K85.3^^6^77^9
- ;;^UTILITY(U,$J,358.3,2565,1,0)
+ ;;^UTILITY(U,$J,358.3,2487,1,3,0)
+ ;;=3^Rheumatic Aortic Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,2487,1,4,0)
+ ;;=4^I06.8
+ ;;^UTILITY(U,$J,358.3,2487,2)
+ ;;=^5007045
+ ;;^UTILITY(U,$J,358.3,2488,0)
+ ;;=I09.89^^19^204^6
+ ;;^UTILITY(U,$J,358.3,2488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2565,1,3,0)
- ;;=3^Drug induced acute pancreatitis
- ;;^UTILITY(U,$J,358.3,2565,1,4,0)
- ;;=4^K85.3
- ;;^UTILITY(U,$J,358.3,2565,2)
- ;;=^5008885
- ;;^UTILITY(U,$J,358.3,2566,0)
- ;;=K85.2^^6^77^3
- ;;^UTILITY(U,$J,358.3,2566,1,0)
+ ;;^UTILITY(U,$J,358.3,2488,1,3,0)
+ ;;=3^Rheumatic Heart Diseases
+ ;;^UTILITY(U,$J,358.3,2488,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,2488,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,2489,0)
+ ;;=I08.8^^19^204^11
+ ;;^UTILITY(U,$J,358.3,2489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2566,1,3,0)
- ;;=3^Alcohol induced acute pancreatitis
- ;;^UTILITY(U,$J,358.3,2566,1,4,0)
- ;;=4^K85.2
- ;;^UTILITY(U,$J,358.3,2566,2)
- ;;=^5008884
- ;;^UTILITY(U,$J,358.3,2567,0)
- ;;=K85.1^^6^77^5
- ;;^UTILITY(U,$J,358.3,2567,1,0)
+ ;;^UTILITY(U,$J,358.3,2489,1,3,0)
+ ;;=3^Rheumatic Multiple Valve Dieases NEC
+ ;;^UTILITY(U,$J,358.3,2489,1,4,0)
+ ;;=4^I08.8
+ ;;^UTILITY(U,$J,358.3,2489,2)
+ ;;=^5007056
+ ;;^UTILITY(U,$J,358.3,2490,0)
+ ;;=T82.9XXA^^19^205^2
+ ;;^UTILITY(U,$J,358.3,2490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2567,1,3,0)
- ;;=3^Biliary acute pancreatitis
- ;;^UTILITY(U,$J,358.3,2567,1,4,0)
- ;;=4^K85.1
- ;;^UTILITY(U,$J,358.3,2567,2)
- ;;=^5008883
- ;;^UTILITY(U,$J,358.3,2568,0)
- ;;=K85.0^^6^77^10
- ;;^UTILITY(U,$J,358.3,2568,1,0)
+ ;;^UTILITY(U,$J,358.3,2490,1,3,0)
+ ;;=3^Complication of Cardiac/Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2490,1,4,0)
+ ;;=4^T82.9XXA
+ ;;^UTILITY(U,$J,358.3,2490,2)
+ ;;=^5054956
+ ;;^UTILITY(U,$J,358.3,2491,0)
+ ;;=T82.857A^^19^205^9
+ ;;^UTILITY(U,$J,358.3,2491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2568,1,3,0)
- ;;=3^Idiopathic acute pancreatitis
- ;;^UTILITY(U,$J,358.3,2568,1,4,0)
- ;;=4^K85.0
- ;;^UTILITY(U,$J,358.3,2568,2)
- ;;=^5008882
- ;;^UTILITY(U,$J,358.3,2569,0)
- ;;=B25.2^^6^77^8
- ;;^UTILITY(U,$J,358.3,2569,1,0)
+ ;;^UTILITY(U,$J,358.3,2491,1,3,0)
+ ;;=3^Stenosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2491,1,4,0)
+ ;;=4^T82.857A
+ ;;^UTILITY(U,$J,358.3,2491,2)
+ ;;=^5054938
+ ;;^UTILITY(U,$J,358.3,2492,0)
+ ;;=T82.867A^^19^205^10
+ ;;^UTILITY(U,$J,358.3,2492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2569,1,3,0)
- ;;=3^Cytomegaloviral pancreatitis
- ;;^UTILITY(U,$J,358.3,2569,1,4,0)
- ;;=4^B25.2
- ;;^UTILITY(U,$J,358.3,2569,2)
- ;;=^5000558
- ;;^UTILITY(U,$J,358.3,2570,0)
- ;;=K86.0^^6^77^4
- ;;^UTILITY(U,$J,358.3,2570,1,0)
+ ;;^UTILITY(U,$J,358.3,2492,1,3,0)
+ ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2492,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,2492,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,2493,0)
+ ;;=T82.897A^^19^205^3
+ ;;^UTILITY(U,$J,358.3,2493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2570,1,3,0)
- ;;=3^Alcohol-induced chronic pancreatitis
- ;;^UTILITY(U,$J,358.3,2570,1,4,0)
- ;;=4^K86.0
- ;;^UTILITY(U,$J,358.3,2570,2)
- ;;=^5008888
- ;;^UTILITY(U,$J,358.3,2571,0)
- ;;=K86.1^^6^77^6
- ;;^UTILITY(U,$J,358.3,2571,1,0)
+ ;;^UTILITY(U,$J,358.3,2493,1,3,0)
+ ;;=3^Complications of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2493,1,4,0)
+ ;;=4^T82.897A
+ ;;^UTILITY(U,$J,358.3,2493,2)
+ ;;=^5054950
+ ;;^UTILITY(U,$J,358.3,2494,0)
+ ;;=T82.817A^^19^205^4
+ ;;^UTILITY(U,$J,358.3,2494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2571,1,3,0)
- ;;=3^Chronic pancreatitis NEC
- ;;^UTILITY(U,$J,358.3,2571,1,4,0)
- ;;=4^K86.1
- ;;^UTILITY(U,$J,358.3,2571,2)
- ;;=^5008889
- ;;^UTILITY(U,$J,358.3,2572,0)
- ;;=K86.2^^6^77^7
- ;;^UTILITY(U,$J,358.3,2572,1,0)
+ ;;^UTILITY(U,$J,358.3,2494,1,3,0)
+ ;;=3^Ebolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2494,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,2494,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,2495,0)
+ ;;=T82.827A^^19^205^5
+ ;;^UTILITY(U,$J,358.3,2495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2572,1,3,0)
- ;;=3^Cyst of pancreas
- ;;^UTILITY(U,$J,358.3,2572,1,4,0)
- ;;=4^K86.2
- ;;^UTILITY(U,$J,358.3,2572,2)
- ;;=^5008890
- ;;^UTILITY(U,$J,358.3,2573,0)
- ;;=K86.3^^6^77^11
- ;;^UTILITY(U,$J,358.3,2573,1,0)
+ ;;^UTILITY(U,$J,358.3,2495,1,3,0)
+ ;;=3^Fibrosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2495,1,4,0)
+ ;;=4^T82.827A
+ ;;^UTILITY(U,$J,358.3,2495,2)
+ ;;=^5054920
+ ;;^UTILITY(U,$J,358.3,2496,0)
+ ;;=T82.837A^^19^205^6
+ ;;^UTILITY(U,$J,358.3,2496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2573,1,3,0)
- ;;=3^Pseudocyst of pancreas
- ;;^UTILITY(U,$J,358.3,2573,1,4,0)
- ;;=4^K86.3
- ;;^UTILITY(U,$J,358.3,2573,2)
- ;;=^5008891
- ;;^UTILITY(U,$J,358.3,2574,0)
- ;;=E73.0^^6^78^2
- ;;^UTILITY(U,$J,358.3,2574,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2574,1,3,0)
- ;;=3^Congenital lactase deficiency
- ;;^UTILITY(U,$J,358.3,2574,1,4,0)
- ;;=4^E73.0
+ ;;^UTILITY(U,$J,358.3,2496,1,3,0)
+ ;;=3^Hemorrhage of Cardiac Prosthetic Device/Implant/Graft,Init Encntr

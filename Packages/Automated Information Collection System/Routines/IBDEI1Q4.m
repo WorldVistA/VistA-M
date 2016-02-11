@@ -1,126 +1,132 @@
-IBDEI1Q4 ; ; 06-AUG-2015
+IBDEI1Q4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30506,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30506,1,4,0)
- ;;=4^O41.1432
- ;;^UTILITY(U,$J,358.3,30506,2)
- ;;=^5017309
- ;;^UTILITY(U,$J,358.3,30507,0)
- ;;=O41.1433^^178^1917^72
- ;;^UTILITY(U,$J,358.3,30507,1,0)
+ ;;^UTILITY(U,$J,358.3,28835,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28835,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,28835,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,28836,0)
+ ;;=W11.XXXD^^132^1339^42
+ ;;^UTILITY(U,$J,358.3,28836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30507,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30507,1,4,0)
- ;;=4^O41.1433
- ;;^UTILITY(U,$J,358.3,30507,2)
- ;;=^5017310
- ;;^UTILITY(U,$J,358.3,30508,0)
- ;;=O41.1434^^178^1917^73
- ;;^UTILITY(U,$J,358.3,30508,1,0)
+ ;;^UTILITY(U,$J,358.3,28836,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28836,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,28836,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,28837,0)
+ ;;=W13.0XXA^^132^1339^67
+ ;;^UTILITY(U,$J,358.3,28837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30508,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30508,1,4,0)
- ;;=4^O41.1434
- ;;^UTILITY(U,$J,358.3,30508,2)
- ;;=^5017311
- ;;^UTILITY(U,$J,358.3,30509,0)
- ;;=O41.1435^^178^1917^74
- ;;^UTILITY(U,$J,358.3,30509,1,0)
+ ;;^UTILITY(U,$J,358.3,28837,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28837,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,28837,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,28838,0)
+ ;;=W13.0XXD^^132^1339^68
+ ;;^UTILITY(U,$J,358.3,28838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30509,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30509,1,4,0)
- ;;=4^O41.1435
- ;;^UTILITY(U,$J,358.3,30509,2)
- ;;=^5017312
- ;;^UTILITY(U,$J,358.3,30510,0)
- ;;=O09.41^^178^1917^91
- ;;^UTILITY(U,$J,358.3,30510,1,0)
+ ;;^UTILITY(U,$J,358.3,28838,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28838,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,28838,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,28839,0)
+ ;;=W13.1XXA^^132^1339^31
+ ;;^UTILITY(U,$J,358.3,28839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30510,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, first trimester
- ;;^UTILITY(U,$J,358.3,30510,1,4,0)
- ;;=4^O09.41
- ;;^UTILITY(U,$J,358.3,30510,2)
- ;;=^5016069
- ;;^UTILITY(U,$J,358.3,30511,0)
- ;;=O09.42^^178^1917^92
- ;;^UTILITY(U,$J,358.3,30511,1,0)
+ ;;^UTILITY(U,$J,358.3,28839,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28839,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,28839,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,28840,0)
+ ;;=W13.1XXD^^132^1339^32
+ ;;^UTILITY(U,$J,358.3,28840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30511,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, second trimester
- ;;^UTILITY(U,$J,358.3,30511,1,4,0)
- ;;=4^O09.42
- ;;^UTILITY(U,$J,358.3,30511,2)
- ;;=^5016070
- ;;^UTILITY(U,$J,358.3,30512,0)
- ;;=O09.43^^178^1917^93
- ;;^UTILITY(U,$J,358.3,30512,1,0)
+ ;;^UTILITY(U,$J,358.3,28840,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28840,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,28840,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,28841,0)
+ ;;=W13.2XXA^^132^1339^69
+ ;;^UTILITY(U,$J,358.3,28841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30512,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, third trimester
- ;;^UTILITY(U,$J,358.3,30512,1,4,0)
- ;;=4^O09.43
- ;;^UTILITY(U,$J,358.3,30512,2)
- ;;=^5016071
- ;;^UTILITY(U,$J,358.3,30513,0)
- ;;=O09.511^^178^1917^88
- ;;^UTILITY(U,$J,358.3,30513,1,0)
+ ;;^UTILITY(U,$J,358.3,28841,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28841,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,28841,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,28842,0)
+ ;;=W13.2XXD^^132^1339^70
+ ;;^UTILITY(U,$J,358.3,28842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30513,1,3,0)
- ;;=3^Supervision of elderly primigravida, first trimester
- ;;^UTILITY(U,$J,358.3,30513,1,4,0)
- ;;=4^O09.511
- ;;^UTILITY(U,$J,358.3,30513,2)
- ;;=^5016072
- ;;^UTILITY(U,$J,358.3,30514,0)
- ;;=O09.512^^178^1917^89
- ;;^UTILITY(U,$J,358.3,30514,1,0)
+ ;;^UTILITY(U,$J,358.3,28842,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28842,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,28842,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,28843,0)
+ ;;=W13.3XXA^^132^1339^83
+ ;;^UTILITY(U,$J,358.3,28843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30514,1,3,0)
- ;;=3^Supervision of elderly primigravida, second trimester
- ;;^UTILITY(U,$J,358.3,30514,1,4,0)
- ;;=4^O09.512
- ;;^UTILITY(U,$J,358.3,30514,2)
- ;;=^5016073
- ;;^UTILITY(U,$J,358.3,30515,0)
- ;;=O09.513^^178^1917^90
- ;;^UTILITY(U,$J,358.3,30515,1,0)
+ ;;^UTILITY(U,$J,358.3,28843,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28843,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,28843,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,28844,0)
+ ;;=W13.3XXD^^132^1339^84
+ ;;^UTILITY(U,$J,358.3,28844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30515,1,3,0)
- ;;=3^Supervision of elderly primigravida, third trimester
- ;;^UTILITY(U,$J,358.3,30515,1,4,0)
- ;;=4^O09.513
- ;;^UTILITY(U,$J,358.3,30515,2)
- ;;=^5016074
- ;;^UTILITY(U,$J,358.3,30516,0)
- ;;=O09.521^^178^1917^85
- ;;^UTILITY(U,$J,358.3,30516,1,0)
+ ;;^UTILITY(U,$J,358.3,28844,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28844,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,28844,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,28845,0)
+ ;;=W13.4XXA^^132^1339^71
+ ;;^UTILITY(U,$J,358.3,28845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30516,1,3,0)
- ;;=3^Supervision of elderly multigravida, first trimester
- ;;^UTILITY(U,$J,358.3,30516,1,4,0)
- ;;=4^O09.521
- ;;^UTILITY(U,$J,358.3,30516,2)
- ;;=^5016076
- ;;^UTILITY(U,$J,358.3,30517,0)
- ;;=O09.522^^178^1917^86
- ;;^UTILITY(U,$J,358.3,30517,1,0)
+ ;;^UTILITY(U,$J,358.3,28845,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28845,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,28845,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,28846,0)
+ ;;=W13.4XXD^^132^1339^72
+ ;;^UTILITY(U,$J,358.3,28846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30517,1,3,0)
- ;;=3^Supervision of elderly multigravida, second trimester
- ;;^UTILITY(U,$J,358.3,30517,1,4,0)
- ;;=4^O09.522
- ;;^UTILITY(U,$J,358.3,30517,2)
- ;;=^5016077
- ;;^UTILITY(U,$J,358.3,30518,0)
- ;;=O09.523^^178^1917^87
- ;;^UTILITY(U,$J,358.3,30518,1,0)
+ ;;^UTILITY(U,$J,358.3,28846,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28846,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,28846,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,28847,0)
+ ;;=W13.8XXA^^132^1339^35
+ ;;^UTILITY(U,$J,358.3,28847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30518,1,3,0)
- ;;=3^Supervision of elderly multigravida, third trimester
+ ;;^UTILITY(U,$J,358.3,28847,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28847,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,28847,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,28848,0)
+ ;;=W13.8XXD^^132^1339^36

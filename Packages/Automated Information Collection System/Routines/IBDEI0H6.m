@@ -1,146 +1,128 @@
-IBDEI0H6 ; ; 06-AUG-2015
+IBDEI0H6 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7993,1,5,0)
- ;;=5^GI Bleed
- ;;^UTILITY(U,$J,358.3,7993,2)
- ;;=GI Bleed^49525
- ;;^UTILITY(U,$J,358.3,7994,0)
- ;;=531.70^^35^479^42
- ;;^UTILITY(U,$J,358.3,7994,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7994,1,4,0)
- ;;=4^531.70
- ;;^UTILITY(U,$J,358.3,7994,1,5,0)
- ;;=5^Gastric Ulcer, Chronic
- ;;^UTILITY(U,$J,358.3,7994,2)
- ;;=^270086
- ;;^UTILITY(U,$J,358.3,7995,0)
- ;;=535.50^^35^479^43
- ;;^UTILITY(U,$J,358.3,7995,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7995,1,4,0)
- ;;=4^535.50
- ;;^UTILITY(U,$J,358.3,7995,1,5,0)
- ;;=5^Gastritis
- ;;^UTILITY(U,$J,358.3,7995,2)
- ;;=^270181
- ;;^UTILITY(U,$J,358.3,7996,0)
- ;;=041.86^^35^479^47
- ;;^UTILITY(U,$J,358.3,7996,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7996,1,4,0)
- ;;=4^041.86
- ;;^UTILITY(U,$J,358.3,7996,1,5,0)
- ;;=5^H. Pylori Infection
- ;;^UTILITY(U,$J,358.3,7996,2)
- ;;=^303246
- ;;^UTILITY(U,$J,358.3,7997,0)
- ;;=455.6^^35^479^49
- ;;^UTILITY(U,$J,358.3,7997,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7997,1,4,0)
- ;;=4^455.6
- ;;^UTILITY(U,$J,358.3,7997,1,5,0)
- ;;=5^Hemorrhoids NOS
- ;;^UTILITY(U,$J,358.3,7997,2)
- ;;=^123922
- ;;^UTILITY(U,$J,358.3,7998,0)
- ;;=789.1^^35^479^60
- ;;^UTILITY(U,$J,358.3,7998,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7998,1,4,0)
- ;;=4^789.1
- ;;^UTILITY(U,$J,358.3,7998,1,5,0)
- ;;=5^Hepatomegaly
- ;;^UTILITY(U,$J,358.3,7998,2)
- ;;=^56494
- ;;^UTILITY(U,$J,358.3,7999,0)
- ;;=553.3^^35^479^64
- ;;^UTILITY(U,$J,358.3,7999,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7999,1,4,0)
- ;;=4^553.3
- ;;^UTILITY(U,$J,358.3,7999,1,5,0)
- ;;=5^Hiatal Hernia
- ;;^UTILITY(U,$J,358.3,7999,2)
- ;;=^33903
- ;;^UTILITY(U,$J,358.3,8000,0)
- ;;=550.92^^35^479^62
- ;;^UTILITY(U,$J,358.3,8000,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8000,1,4,0)
- ;;=4^550.92
- ;;^UTILITY(U,$J,358.3,8000,1,5,0)
- ;;=5^Hernia, Inguinal, Bilat
- ;;^UTILITY(U,$J,358.3,8000,2)
- ;;=^270212
- ;;^UTILITY(U,$J,358.3,8001,0)
- ;;=550.90^^35^479^63
- ;;^UTILITY(U,$J,358.3,8001,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8001,1,4,0)
- ;;=4^550.90
- ;;^UTILITY(U,$J,358.3,8001,1,5,0)
- ;;=5^Hernia, Inguinal, Unilat
- ;;^UTILITY(U,$J,358.3,8001,2)
- ;;=^63302
- ;;^UTILITY(U,$J,358.3,8002,0)
- ;;=553.9^^35^479^61
- ;;^UTILITY(U,$J,358.3,8002,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8002,1,4,0)
- ;;=4^553.9
- ;;^UTILITY(U,$J,358.3,8002,1,5,0)
- ;;=5^Hernia NOS
- ;;^UTILITY(U,$J,358.3,8002,2)
- ;;=^56659
- ;;^UTILITY(U,$J,358.3,8003,0)
- ;;=564.1^^35^479^68
- ;;^UTILITY(U,$J,358.3,8003,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8003,1,4,0)
- ;;=4^564.1
- ;;^UTILITY(U,$J,358.3,8003,1,5,0)
- ;;=5^Irritable Bowel Syndrome
- ;;^UTILITY(U,$J,358.3,8003,2)
- ;;=^65682^909.2
- ;;^UTILITY(U,$J,358.3,8004,0)
- ;;=787.02^^35^479^74
- ;;^UTILITY(U,$J,358.3,8004,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8004,1,4,0)
- ;;=4^787.02
- ;;^UTILITY(U,$J,358.3,8004,1,5,0)
- ;;=5^Nausea
- ;;^UTILITY(U,$J,358.3,8004,2)
- ;;=^81639
- ;;^UTILITY(U,$J,358.3,8005,0)
- ;;=787.01^^35^479^75
- ;;^UTILITY(U,$J,358.3,8005,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8005,1,4,0)
- ;;=4^787.01
- ;;^UTILITY(U,$J,358.3,8005,1,5,0)
- ;;=5^Nausea W/ Vomiting
- ;;^UTILITY(U,$J,358.3,8005,2)
- ;;=^81644
- ;;^UTILITY(U,$J,358.3,8006,0)
- ;;=577.2^^35^479^77
- ;;^UTILITY(U,$J,358.3,8006,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8006,1,4,0)
- ;;=4^577.2
- ;;^UTILITY(U,$J,358.3,8006,1,5,0)
- ;;=5^Pancreatic Pseudocyst
- ;;^UTILITY(U,$J,358.3,8006,2)
- ;;=^30078
- ;;^UTILITY(U,$J,358.3,8007,0)
- ;;=577.0^^35^479^78
- ;;^UTILITY(U,$J,358.3,8007,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8007,1,4,0)
- ;;=4^577.0
- ;;^UTILITY(U,$J,358.3,8007,1,5,0)
- ;;=5^Pancreatitis, Acute
+ ;;^UTILITY(U,$J,358.3,7680,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7680,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,7680,1,4,0)
+ ;;=4^N01.4
+ ;;^UTILITY(U,$J,358.3,7680,2)
+ ;;=^5015505
+ ;;^UTILITY(U,$J,358.3,7681,0)
+ ;;=N01.5^^52^518^68
+ ;;^UTILITY(U,$J,358.3,7681,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7681,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,7681,1,4,0)
+ ;;=4^N01.5
+ ;;^UTILITY(U,$J,358.3,7681,2)
+ ;;=^5015506
+ ;;^UTILITY(U,$J,358.3,7682,0)
+ ;;=N01.6^^52^518^63
+ ;;^UTILITY(U,$J,358.3,7682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7682,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,7682,1,4,0)
+ ;;=4^N01.6
+ ;;^UTILITY(U,$J,358.3,7682,2)
+ ;;=^5015507
+ ;;^UTILITY(U,$J,358.3,7683,0)
+ ;;=N01.7^^52^518^66
+ ;;^UTILITY(U,$J,358.3,7683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7683,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,7683,1,4,0)
+ ;;=4^N01.7
+ ;;^UTILITY(U,$J,358.3,7683,2)
+ ;;=^5015508
+ ;;^UTILITY(U,$J,358.3,7684,0)
+ ;;=N01.8^^52^518^71
+ ;;^UTILITY(U,$J,358.3,7684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7684,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,7684,1,4,0)
+ ;;=4^N01.8
+ ;;^UTILITY(U,$J,358.3,7684,2)
+ ;;=^5015509
+ ;;^UTILITY(U,$J,358.3,7685,0)
+ ;;=N01.9^^52^518^72
+ ;;^UTILITY(U,$J,358.3,7685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7685,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,7685,1,4,0)
+ ;;=4^N01.9
+ ;;^UTILITY(U,$J,358.3,7685,2)
+ ;;=^5015510
+ ;;^UTILITY(U,$J,358.3,7686,0)
+ ;;=N02.0^^52^518^80
+ ;;^UTILITY(U,$J,358.3,7686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7686,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ minor glomerular abnlt
+ ;;^UTILITY(U,$J,358.3,7686,1,4,0)
+ ;;=4^N02.0
+ ;;^UTILITY(U,$J,358.3,7686,2)
+ ;;=^5015511
+ ;;^UTILITY(U,$J,358.3,7687,0)
+ ;;=N02.1^^52^518^79
+ ;;^UTILITY(U,$J,358.3,7687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7687,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,7687,1,4,0)
+ ;;=4^N02.1
+ ;;^UTILITY(U,$J,358.3,7687,2)
+ ;;=^5015512
+ ;;^UTILITY(U,$J,358.3,7688,0)
+ ;;=N02.2^^52^518^77
+ ;;^UTILITY(U,$J,358.3,7688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7688,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,7688,1,4,0)
+ ;;=4^N02.2
+ ;;^UTILITY(U,$J,358.3,7688,2)
+ ;;=^5015513
+ ;;^UTILITY(U,$J,358.3,7689,0)
+ ;;=N02.3^^52^518^74
+ ;;^UTILITY(U,$J,358.3,7689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7689,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,7689,1,4,0)
+ ;;=4^N02.3
+ ;;^UTILITY(U,$J,358.3,7689,2)
+ ;;=^5015514
+ ;;^UTILITY(U,$J,358.3,7690,0)
+ ;;=N02.4^^52^518^73
+ ;;^UTILITY(U,$J,358.3,7690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7690,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,7690,1,4,0)
+ ;;=4^N02.4
+ ;;^UTILITY(U,$J,358.3,7690,2)
+ ;;=^5015515
+ ;;^UTILITY(U,$J,358.3,7691,0)
+ ;;=N02.5^^52^518^78
+ ;;^UTILITY(U,$J,358.3,7691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7691,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,7691,1,4,0)
+ ;;=4^N02.5
+ ;;^UTILITY(U,$J,358.3,7691,2)
+ ;;=^5015516
+ ;;^UTILITY(U,$J,358.3,7692,0)
+ ;;=N02.6^^52^518^75
+ ;;^UTILITY(U,$J,358.3,7692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7692,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ dense deposit disease

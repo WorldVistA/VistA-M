@@ -1,130 +1,126 @@
-IBDEI176 ; ; 06-AUG-2015
+IBDEI176 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21168,0)
- ;;=33223^^117^1323^59^^^^1
- ;;^UTILITY(U,$J,358.3,21168,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21168,1,2,0)
- ;;=2^33223
- ;;^UTILITY(U,$J,358.3,21168,1,3,0)
- ;;=3^Revision Skin Pckt, ICD
- ;;^UTILITY(U,$J,358.3,21169,0)
- ;;=33224^^117^1323^25^^^^1
- ;;^UTILITY(U,$J,358.3,21169,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21169,1,2,0)
- ;;=2^33224
- ;;^UTILITY(U,$J,358.3,21169,1,3,0)
- ;;=3^Insertion of Pacing Electrode
- ;;^UTILITY(U,$J,358.3,21170,0)
- ;;=33214^^117^1323^65^^^^1
- ;;^UTILITY(U,$J,358.3,21170,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21170,1,2,0)
- ;;=2^33214
- ;;^UTILITY(U,$J,358.3,21170,1,3,0)
- ;;=3^Upgrade Sng to Dual PM System
- ;;^UTILITY(U,$J,358.3,21171,0)
- ;;=33215^^117^1323^57^^^^1
- ;;^UTILITY(U,$J,358.3,21171,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21171,1,2,0)
- ;;=2^33215
- ;;^UTILITY(U,$J,358.3,21171,1,3,0)
- ;;=3^Reposition Transvenous PM/ICD Lead
- ;;^UTILITY(U,$J,358.3,21172,0)
- ;;=33221^^117^1323^29^^^^1
- ;;^UTILITY(U,$J,358.3,21172,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21172,1,2,0)
- ;;=2^33221
- ;;^UTILITY(U,$J,358.3,21172,1,3,0)
- ;;=3^New Pacemaker Attached to Old Leads
- ;;^UTILITY(U,$J,358.3,21173,0)
- ;;=33225^^117^1323^3^^^^1
- ;;^UTILITY(U,$J,358.3,21173,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21173,1,2,0)
- ;;=2^33225
- ;;^UTILITY(U,$J,358.3,21173,1,3,0)
- ;;=3^CS Lead Implt at time of New Implt/Upgd
- ;;^UTILITY(U,$J,358.3,21174,0)
- ;;=33284^^117^1323^27^^^^1
- ;;^UTILITY(U,$J,358.3,21174,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21174,1,2,0)
- ;;=2^33284
- ;;^UTILITY(U,$J,358.3,21174,1,3,0)
- ;;=3^Monitor Explant
- ;;^UTILITY(U,$J,358.3,21175,0)
- ;;=33282^^117^1323^28^^^^1
- ;;^UTILITY(U,$J,358.3,21175,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21175,1,2,0)
- ;;=2^33282
- ;;^UTILITY(U,$J,358.3,21175,1,3,0)
- ;;=3^Monitor Implant
- ;;^UTILITY(U,$J,358.3,21176,0)
- ;;=33226^^117^1323^4^^^^1
- ;;^UTILITY(U,$J,358.3,21176,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21176,1,2,0)
- ;;=2^33226
- ;;^UTILITY(U,$J,358.3,21176,1,3,0)
- ;;=3^CS Lead Revision
- ;;^UTILITY(U,$J,358.3,21177,0)
- ;;=92961^^117^1323^6^^^^1
- ;;^UTILITY(U,$J,358.3,21177,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21177,1,2,0)
- ;;=2^92961
- ;;^UTILITY(U,$J,358.3,21177,1,3,0)
- ;;=3^Cardioversion,Internal
- ;;^UTILITY(U,$J,358.3,21178,0)
- ;;=93260^^117^1323^41^^^^1
- ;;^UTILITY(U,$J,358.3,21178,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21178,1,2,0)
- ;;=2^93260
- ;;^UTILITY(U,$J,358.3,21178,1,3,0)
- ;;=3^Prgrmg Dev Eval Impltbl Sys
- ;;^UTILITY(U,$J,358.3,21179,0)
- ;;=93261^^117^1323^26^^^^1
- ;;^UTILITY(U,$J,358.3,21179,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21179,1,2,0)
- ;;=2^93261
- ;;^UTILITY(U,$J,358.3,21179,1,3,0)
- ;;=3^Interrogate Subq Defib
- ;;^UTILITY(U,$J,358.3,21180,0)
- ;;=93298^^117^1323^14^^^^1
- ;;^UTILITY(U,$J,358.3,21180,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21180,1,2,0)
- ;;=2^93298
- ;;^UTILITY(U,$J,358.3,21180,1,3,0)
- ;;=3^ILR Device Interrogat Remote
- ;;^UTILITY(U,$J,358.3,21181,0)
- ;;=93724^^117^1323^1^^^^1
- ;;^UTILITY(U,$J,358.3,21181,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21181,1,2,0)
- ;;=2^93724
- ;;^UTILITY(U,$J,358.3,21181,1,3,0)
- ;;=3^ANALYZE PACEMAKER SYSTEM
- ;;^UTILITY(U,$J,358.3,21182,0)
- ;;=33967^^117^1323^17^^^^1
- ;;^UTILITY(U,$J,358.3,21182,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21182,1,2,0)
- ;;=2^33967
- ;;^UTILITY(U,$J,358.3,21182,1,3,0)
- ;;=3^Insert IA Percut Device
- ;;^UTILITY(U,$J,358.3,21183,0)
- ;;=33236^^117^1323^46^^^^1
- ;;^UTILITY(U,$J,358.3,21183,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21183,1,2,0)
- ;;=2^33236
+ ;;^UTILITY(U,$J,358.3,20007,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,20007,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,20007,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,20008,0)
+ ;;=V00.811D^^94^935^46
+ ;;^UTILITY(U,$J,358.3,20008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20008,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20008,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,20008,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,20009,0)
+ ;;=V00.812A^^94^935^133
+ ;;^UTILITY(U,$J,358.3,20009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20009,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20009,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,20009,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,20010,0)
+ ;;=V00.812D^^94^935^134
+ ;;^UTILITY(U,$J,358.3,20010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20010,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20010,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,20010,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,20011,0)
+ ;;=V00.818A^^94^935^131
+ ;;^UTILITY(U,$J,358.3,20011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20011,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20011,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,20011,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,20012,0)
+ ;;=V00.818D^^94^935^132
+ ;;^UTILITY(U,$J,358.3,20012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20012,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20012,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,20012,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,20013,0)
+ ;;=V00.831A^^94^935^43
+ ;;^UTILITY(U,$J,358.3,20013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20013,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20013,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,20013,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,20014,0)
+ ;;=V00.831D^^94^935^44
+ ;;^UTILITY(U,$J,358.3,20014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20014,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20014,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,20014,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,20015,0)
+ ;;=V00.832A^^94^935^95
+ ;;^UTILITY(U,$J,358.3,20015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20015,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20015,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,20015,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,20016,0)
+ ;;=V00.832D^^94^935^96
+ ;;^UTILITY(U,$J,358.3,20016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20016,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20016,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,20016,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,20017,0)
+ ;;=V00.838A^^94^935^93
+ ;;^UTILITY(U,$J,358.3,20017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20017,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20017,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,20017,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,20018,0)
+ ;;=V00.838D^^94^935^94
+ ;;^UTILITY(U,$J,358.3,20018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20018,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20018,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,20018,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,20019,0)
+ ;;=V00.891A^^94^935^57
+ ;;^UTILITY(U,$J,358.3,20019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20019,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr

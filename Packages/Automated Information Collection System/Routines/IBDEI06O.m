@@ -1,136 +1,142 @@
-IBDEI06O ; ; 06-AUG-2015
+IBDEI06O ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2600,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,2600,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,2601,0)
- ;;=K29.71^^6^79^16
- ;;^UTILITY(U,$J,358.3,2601,1,0)
+ ;;^UTILITY(U,$J,358.3,2527,0)
+ ;;=Z63.8^^22^212^11
+ ;;^UTILITY(U,$J,358.3,2527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2601,1,3,0)
- ;;=3^Gastritis, unspecified, with bleeding
- ;;^UTILITY(U,$J,358.3,2601,1,4,0)
- ;;=4^K29.71
- ;;^UTILITY(U,$J,358.3,2601,2)
- ;;=^5008553
- ;;^UTILITY(U,$J,358.3,2602,0)
- ;;=K29.91^^6^79^18
- ;;^UTILITY(U,$J,358.3,2602,1,0)
+ ;;^UTILITY(U,$J,358.3,2527,1,3,0)
+ ;;=3^Family Disruption-Estrangment
+ ;;^UTILITY(U,$J,358.3,2527,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,2527,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,2528,0)
+ ;;=Z63.6^^22^212^14
+ ;;^UTILITY(U,$J,358.3,2528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2602,1,3,0)
- ;;=3^Gastroduodenitis, unspecified, with bleeding
- ;;^UTILITY(U,$J,358.3,2602,1,4,0)
- ;;=4^K29.91
- ;;^UTILITY(U,$J,358.3,2602,2)
- ;;=^5008557
- ;;^UTILITY(U,$J,358.3,2603,0)
- ;;=E08.43^^6^79^10
- ;;^UTILITY(U,$J,358.3,2603,1,0)
+ ;;^UTILITY(U,$J,358.3,2528,1,3,0)
+ ;;=3^Family Health Problem NEC
+ ;;^UTILITY(U,$J,358.3,2528,1,4,0)
+ ;;=4^Z63.6
+ ;;^UTILITY(U,$J,358.3,2528,2)
+ ;;=^5063170
+ ;;^UTILITY(U,$J,358.3,2529,0)
+ ;;=Z63.32^^22^212^9
+ ;;^UTILITY(U,$J,358.3,2529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2603,1,3,0)
- ;;=3^Diab due to undrl cond w diabetic autonm (poly)neuropathy
- ;;^UTILITY(U,$J,358.3,2603,1,4,0)
- ;;=4^E08.43
- ;;^UTILITY(U,$J,358.3,2603,2)
- ;;=^5002525
- ;;^UTILITY(U,$J,358.3,2604,0)
- ;;=E09.43^^6^79^11
- ;;^UTILITY(U,$J,358.3,2604,1,0)
+ ;;^UTILITY(U,$J,358.3,2529,1,3,0)
+ ;;=3^Family Disruption-Child Custody
+ ;;^UTILITY(U,$J,358.3,2529,1,4,0)
+ ;;=4^Z63.32
+ ;;^UTILITY(U,$J,358.3,2529,2)
+ ;;=^5063167
+ ;;^UTILITY(U,$J,358.3,2530,0)
+ ;;=Z63.5^^22^212^10
+ ;;^UTILITY(U,$J,358.3,2530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2604,1,3,0)
- ;;=3^Drug/chem diab w neuro comp w diab autonm (poly)neuropathy
- ;;^UTILITY(U,$J,358.3,2604,1,4,0)
- ;;=4^E09.43
- ;;^UTILITY(U,$J,358.3,2604,2)
- ;;=^5002567
- ;;^UTILITY(U,$J,358.3,2605,0)
- ;;=E10.43^^6^79^28
- ;;^UTILITY(U,$J,358.3,2605,1,0)
+ ;;^UTILITY(U,$J,358.3,2530,1,3,0)
+ ;;=3^Family Disruption-Divorce/Separation
+ ;;^UTILITY(U,$J,358.3,2530,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,2530,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,2531,0)
+ ;;=Z63.32^^22^212^12
+ ;;^UTILITY(U,$J,358.3,2531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2605,1,3,0)
- ;;=3^Type 1 diabetes w diabetic autonomic (poly)neuropathy
- ;;^UTILITY(U,$J,358.3,2605,1,4,0)
- ;;=4^E10.43
- ;;^UTILITY(U,$J,358.3,2605,2)
- ;;=^5002607
- ;;^UTILITY(U,$J,358.3,2606,0)
- ;;=E11.43^^6^79^29
- ;;^UTILITY(U,$J,358.3,2606,1,0)
+ ;;^UTILITY(U,$J,358.3,2531,1,3,0)
+ ;;=3^Family Disruption-Military
+ ;;^UTILITY(U,$J,358.3,2531,1,4,0)
+ ;;=4^Z63.32
+ ;;^UTILITY(U,$J,358.3,2531,2)
+ ;;=^5063167
+ ;;^UTILITY(U,$J,358.3,2532,0)
+ ;;=Z63.8^^22^212^13
+ ;;^UTILITY(U,$J,358.3,2532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2606,1,3,0)
- ;;=3^Type 2 diabetes w diabetic autonomic (poly)neuropathy
- ;;^UTILITY(U,$J,358.3,2606,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,2606,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,2607,0)
- ;;=K31.89^^6^79^27
- ;;^UTILITY(U,$J,358.3,2607,1,0)
+ ;;^UTILITY(U,$J,358.3,2532,1,3,0)
+ ;;=3^Family Disruption-Return to Military
+ ;;^UTILITY(U,$J,358.3,2532,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,2532,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,2533,0)
+ ;;=Z62.1^^22^212^16
+ ;;^UTILITY(U,$J,358.3,2533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2607,1,3,0)
- ;;=3^Stomach and Duodenum Diseases NEC
- ;;^UTILITY(U,$J,358.3,2607,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,2607,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,2608,0)
- ;;=K31.89^^6^79^26
- ;;^UTILITY(U,$J,358.3,2608,1,0)
+ ;;^UTILITY(U,$J,358.3,2533,1,3,0)
+ ;;=3^Parental Overprotection
+ ;;^UTILITY(U,$J,358.3,2533,1,4,0)
+ ;;=4^Z62.1
+ ;;^UTILITY(U,$J,358.3,2533,2)
+ ;;=^5063147
+ ;;^UTILITY(U,$J,358.3,2534,0)
+ ;;=Z62.898^^22^212^15
+ ;;^UTILITY(U,$J,358.3,2534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2608,1,3,0)
- ;;=3^Portal hypertensive gastropathy
- ;;^UTILITY(U,$J,358.3,2608,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,2608,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,2609,0)
- ;;=K94.23^^6^79^21
- ;;^UTILITY(U,$J,358.3,2609,1,0)
+ ;;^UTILITY(U,$J,358.3,2534,1,3,0)
+ ;;=3^Parent-Child Problem NEC
+ ;;^UTILITY(U,$J,358.3,2534,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,2534,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,2535,0)
+ ;;=Z63.79^^22^212^17
+ ;;^UTILITY(U,$J,358.3,2535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2609,1,3,0)
- ;;=3^Gastrostomy malfunction
- ;;^UTILITY(U,$J,358.3,2609,1,4,0)
- ;;=4^K94.23
- ;;^UTILITY(U,$J,358.3,2609,2)
- ;;=^5008931
- ;;^UTILITY(U,$J,358.3,2610,0)
- ;;=K94.29^^6^79^9
- ;;^UTILITY(U,$J,358.3,2610,1,0)
+ ;;^UTILITY(U,$J,358.3,2535,1,3,0)
+ ;;=3^Problem w/ Aged Parent
+ ;;^UTILITY(U,$J,358.3,2535,1,4,0)
+ ;;=4^Z63.79
+ ;;^UTILITY(U,$J,358.3,2535,2)
+ ;;=^5063173
+ ;;^UTILITY(U,$J,358.3,2536,0)
+ ;;=Z59.5^^22^213^2
+ ;;^UTILITY(U,$J,358.3,2536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2610,1,3,0)
- ;;=3^Complications of gastrostomy NEC
- ;;^UTILITY(U,$J,358.3,2610,1,4,0)
- ;;=4^K94.29
- ;;^UTILITY(U,$J,358.3,2610,2)
- ;;=^5008932
- ;;^UTILITY(U,$J,358.3,2611,0)
- ;;=K94.21^^6^79^20
- ;;^UTILITY(U,$J,358.3,2611,1,0)
+ ;;^UTILITY(U,$J,358.3,2536,1,3,0)
+ ;;=3^Economic Problem
+ ;;^UTILITY(U,$J,358.3,2536,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,2536,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,2537,0)
+ ;;=Z75.5^^22^213^3
+ ;;^UTILITY(U,$J,358.3,2537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2611,1,3,0)
- ;;=3^Gastrostomy hemorrhage
- ;;^UTILITY(U,$J,358.3,2611,1,4,0)
- ;;=4^K94.21
- ;;^UTILITY(U,$J,358.3,2611,2)
- ;;=^5008929
- ;;^UTILITY(U,$J,358.3,2612,0)
- ;;=K30.^^6^79^13
- ;;^UTILITY(U,$J,358.3,2612,1,0)
+ ;;^UTILITY(U,$J,358.3,2537,1,3,0)
+ ;;=3^Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,2537,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,2537,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,2538,0)
+ ;;=Z59.8^^22^213^5
+ ;;^UTILITY(U,$J,358.3,2538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2612,1,3,0)
- ;;=3^Functional dyspepsia
- ;;^UTILITY(U,$J,358.3,2612,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,2612,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,2613,0)
- ;;=K31.5^^6^79^24
- ;;^UTILITY(U,$J,358.3,2613,1,0)
+ ;;^UTILITY(U,$J,358.3,2538,1,3,0)
+ ;;=3^Housing/Econo Circum NEC
+ ;;^UTILITY(U,$J,358.3,2538,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,2538,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,2539,0)
+ ;;=Z59.1^^22^213^6
+ ;;^UTILITY(U,$J,358.3,2539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2613,1,3,0)
- ;;=3^Obstruction of duodenum
- ;;^UTILITY(U,$J,358.3,2613,1,4,0)
- ;;=4^K31.5
+ ;;^UTILITY(U,$J,358.3,2539,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,2539,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,2539,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,2540,0)
+ ;;=Z59.0^^22^213^4
+ ;;^UTILITY(U,$J,358.3,2540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2540,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,2540,1,4,0)
+ ;;=4^Z59.0

@@ -1,126 +1,130 @@
-IBDEI1PX ; ; 06-AUG-2015
+IBDEI1PX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30421,1,0)
+ ;;^UTILITY(U,$J,358.3,28749,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,28750,0)
+ ;;=S91.105A^^132^1337^12
+ ;;^UTILITY(U,$J,358.3,28750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30421,1,3,0)
- ;;=3^Polyhydramnios, third trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,30421,1,4,0)
- ;;=4^O40.3XX0
- ;;^UTILITY(U,$J,358.3,30421,2)
- ;;=^5017201
- ;;^UTILITY(U,$J,358.3,30422,0)
- ;;=O40.3XX1^^178^1916^212
- ;;^UTILITY(U,$J,358.3,30422,1,0)
+ ;;^UTILITY(U,$J,358.3,28750,1,3,0)
+ ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,28750,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,28750,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,28751,0)
+ ;;=S81.801A^^132^1337^23
+ ;;^UTILITY(U,$J,358.3,28751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30422,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30422,1,4,0)
- ;;=4^O40.3XX1
- ;;^UTILITY(U,$J,358.3,30422,2)
- ;;=^5017202
- ;;^UTILITY(U,$J,358.3,30423,0)
- ;;=O40.3XX2^^178^1916^213
- ;;^UTILITY(U,$J,358.3,30423,1,0)
+ ;;^UTILITY(U,$J,358.3,28751,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,28751,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,28751,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,28752,0)
+ ;;=S71.102A^^132^1337^14
+ ;;^UTILITY(U,$J,358.3,28752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30423,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30423,1,4,0)
- ;;=4^O40.3XX2
- ;;^UTILITY(U,$J,358.3,30423,2)
- ;;=^5017203
- ;;^UTILITY(U,$J,358.3,30424,0)
- ;;=O40.3XX3^^178^1916^214
- ;;^UTILITY(U,$J,358.3,30424,1,0)
+ ;;^UTILITY(U,$J,358.3,28752,1,3,0)
+ ;;=3^Open Wound,Left Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,28752,1,4,0)
+ ;;=4^S71.102A
+ ;;^UTILITY(U,$J,358.3,28752,2)
+ ;;=^5037011
+ ;;^UTILITY(U,$J,358.3,28753,0)
+ ;;=S71.101A^^132^1337^24
+ ;;^UTILITY(U,$J,358.3,28753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30424,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30424,1,4,0)
- ;;=4^O40.3XX3
- ;;^UTILITY(U,$J,358.3,30424,2)
- ;;=^5017204
- ;;^UTILITY(U,$J,358.3,30425,0)
- ;;=O40.3XX4^^178^1916^215
- ;;^UTILITY(U,$J,358.3,30425,1,0)
+ ;;^UTILITY(U,$J,358.3,28753,1,3,0)
+ ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,28753,1,4,0)
+ ;;=4^S71.101A
+ ;;^UTILITY(U,$J,358.3,28753,2)
+ ;;=^5037008
+ ;;^UTILITY(U,$J,358.3,28754,0)
+ ;;=S41.101A^^132^1337^25
+ ;;^UTILITY(U,$J,358.3,28754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30425,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30425,1,4,0)
- ;;=4^O40.3XX4
- ;;^UTILITY(U,$J,358.3,30425,2)
- ;;=^5017205
- ;;^UTILITY(U,$J,358.3,30426,0)
- ;;=O40.3XX5^^178^1916^216
- ;;^UTILITY(U,$J,358.3,30426,1,0)
+ ;;^UTILITY(U,$J,358.3,28754,1,3,0)
+ ;;=3^Open Wound,Right Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,28754,1,4,0)
+ ;;=4^S41.101A
+ ;;^UTILITY(U,$J,358.3,28754,2)
+ ;;=^5026330
+ ;;^UTILITY(U,$J,358.3,28755,0)
+ ;;=E03.5^^132^1338^37
+ ;;^UTILITY(U,$J,358.3,28755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30426,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30426,1,4,0)
- ;;=4^O40.3XX5
- ;;^UTILITY(U,$J,358.3,30426,2)
- ;;=^5017206
- ;;^UTILITY(U,$J,358.3,30427,0)
- ;;=O41.01X0^^178^1917^44
- ;;^UTILITY(U,$J,358.3,30427,1,0)
+ ;;^UTILITY(U,$J,358.3,28755,1,3,0)
+ ;;=3^Myxedema Coma
+ ;;^UTILITY(U,$J,358.3,28755,1,4,0)
+ ;;=4^E03.5
+ ;;^UTILITY(U,$J,358.3,28755,2)
+ ;;=^5002474
+ ;;^UTILITY(U,$J,358.3,28756,0)
+ ;;=R40.2121^^132^1338^33
+ ;;^UTILITY(U,$J,358.3,28756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30427,1,3,0)
- ;;=3^Oligohydramnios, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,30427,1,4,0)
- ;;=4^O41.01X0
- ;;^UTILITY(U,$J,358.3,30427,2)
- ;;=^5017220
- ;;^UTILITY(U,$J,358.3,30428,0)
- ;;=O41.01X1^^178^1917^39
- ;;^UTILITY(U,$J,358.3,30428,1,0)
+ ;;^UTILITY(U,$J,358.3,28756,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
+ ;;^UTILITY(U,$J,358.3,28756,1,4,0)
+ ;;=4^R40.2121
+ ;;^UTILITY(U,$J,358.3,28756,2)
+ ;;=^5019361
+ ;;^UTILITY(U,$J,358.3,28757,0)
+ ;;=R40.2120^^132^1338^34
+ ;;^UTILITY(U,$J,358.3,28757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30428,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30428,1,4,0)
- ;;=4^O41.01X1
- ;;^UTILITY(U,$J,358.3,30428,2)
- ;;=^5017221
- ;;^UTILITY(U,$J,358.3,30429,0)
- ;;=O41.01X2^^178^1917^40
- ;;^UTILITY(U,$J,358.3,30429,1,0)
+ ;;^UTILITY(U,$J,358.3,28757,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
+ ;;^UTILITY(U,$J,358.3,28757,1,4,0)
+ ;;=4^R40.2120
+ ;;^UTILITY(U,$J,358.3,28757,2)
+ ;;=^5019360
+ ;;^UTILITY(U,$J,358.3,28758,0)
+ ;;=R40.2114^^132^1338^26
+ ;;^UTILITY(U,$J,358.3,28758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30429,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30429,1,4,0)
- ;;=4^O41.01X2
- ;;^UTILITY(U,$J,358.3,30429,2)
- ;;=^5017222
- ;;^UTILITY(U,$J,358.3,30430,0)
- ;;=O41.01X3^^178^1917^41
- ;;^UTILITY(U,$J,358.3,30430,1,0)
+ ;;^UTILITY(U,$J,358.3,28758,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
+ ;;^UTILITY(U,$J,358.3,28758,1,4,0)
+ ;;=4^R40.2114
+ ;;^UTILITY(U,$J,358.3,28758,2)
+ ;;=^5019359
+ ;;^UTILITY(U,$J,358.3,28759,0)
+ ;;=R40.2113^^132^1338^30
+ ;;^UTILITY(U,$J,358.3,28759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30430,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30430,1,4,0)
- ;;=4^O41.01X3
- ;;^UTILITY(U,$J,358.3,30430,2)
- ;;=^5017223
- ;;^UTILITY(U,$J,358.3,30431,0)
- ;;=O41.01X4^^178^1917^42
- ;;^UTILITY(U,$J,358.3,30431,1,0)
+ ;;^UTILITY(U,$J,358.3,28759,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,28759,1,4,0)
+ ;;=4^R40.2113
+ ;;^UTILITY(U,$J,358.3,28759,2)
+ ;;=^5019358
+ ;;^UTILITY(U,$J,358.3,28760,0)
+ ;;=R40.2112^^132^1338^27
+ ;;^UTILITY(U,$J,358.3,28760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30431,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30431,1,4,0)
- ;;=4^O41.01X4
- ;;^UTILITY(U,$J,358.3,30431,2)
- ;;=^5017224
- ;;^UTILITY(U,$J,358.3,30432,0)
- ;;=O41.01X5^^178^1917^43
- ;;^UTILITY(U,$J,358.3,30432,1,0)
+ ;;^UTILITY(U,$J,358.3,28760,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,28760,1,4,0)
+ ;;=4^R40.2112
+ ;;^UTILITY(U,$J,358.3,28760,2)
+ ;;=^5019357
+ ;;^UTILITY(U,$J,358.3,28761,0)
+ ;;=R40.2111^^132^1338^28
+ ;;^UTILITY(U,$J,358.3,28761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30432,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30432,1,4,0)
- ;;=4^O41.01X5
- ;;^UTILITY(U,$J,358.3,30432,2)
- ;;=^5017225
- ;;^UTILITY(U,$J,358.3,30433,0)
- ;;=O41.02X0^^178^1917^50
- ;;^UTILITY(U,$J,358.3,30433,1,0)
+ ;;^UTILITY(U,$J,358.3,28761,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,In the Field
+ ;;^UTILITY(U,$J,358.3,28761,1,4,0)
+ ;;=4^R40.2111
+ ;;^UTILITY(U,$J,358.3,28761,2)
+ ;;=^5019356
+ ;;^UTILITY(U,$J,358.3,28762,0)
+ ;;=R40.2110^^132^1338^29
+ ;;^UTILITY(U,$J,358.3,28762,1,0)
  ;;=^358.31IA^4^2

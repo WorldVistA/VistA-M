@@ -1,122 +1,128 @@
-IBDEI202 ; ; 06-AUG-2015
+IBDEI202 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34996,2)
- ;;=^5042734
- ;;^UTILITY(U,$J,358.3,34997,0)
- ;;=S12.44XS^^183^2025^50
- ;;^UTILITY(U,$J,358.3,34997,1,0)
+ ;;^UTILITY(U,$J,358.3,33488,0)
+ ;;=G47.22^^148^1656^2
+ ;;^UTILITY(U,$J,358.3,33488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34997,1,3,0)
- ;;=3^Type 3 traum spondylolysis of fifth cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,34997,1,4,0)
- ;;=4^S12.44XS
- ;;^UTILITY(U,$J,358.3,34997,2)
- ;;=^5021826
- ;;^UTILITY(U,$J,358.3,34998,0)
- ;;=S12.34XS^^183^2025^51
- ;;^UTILITY(U,$J,358.3,34998,1,0)
+ ;;^UTILITY(U,$J,358.3,33488,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,33488,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,33488,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,33489,0)
+ ;;=G47.23^^148^1656^4
+ ;;^UTILITY(U,$J,358.3,33489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34998,1,3,0)
- ;;=3^Type 3 traum spondylolysis of fourth cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,34998,1,4,0)
- ;;=4^S12.34XS
- ;;^UTILITY(U,$J,358.3,34998,2)
- ;;=^5021772
- ;;^UTILITY(U,$J,358.3,34999,0)
- ;;=S12.14XS^^183^2025^52
- ;;^UTILITY(U,$J,358.3,34999,1,0)
+ ;;^UTILITY(U,$J,358.3,33489,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,33489,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,33489,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,33490,0)
+ ;;=G47.24^^148^1656^5
+ ;;^UTILITY(U,$J,358.3,33490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34999,1,3,0)
- ;;=3^Type 3 traum spondylolysis of second cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,34999,1,4,0)
- ;;=4^S12.14XS
- ;;^UTILITY(U,$J,358.3,34999,2)
- ;;=^5021664
- ;;^UTILITY(U,$J,358.3,35000,0)
- ;;=S12.64XS^^183^2025^53
- ;;^UTILITY(U,$J,358.3,35000,1,0)
+ ;;^UTILITY(U,$J,358.3,33490,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,33490,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,33490,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,33491,0)
+ ;;=G47.26^^148^1656^6
+ ;;^UTILITY(U,$J,358.3,33491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35000,1,3,0)
- ;;=3^Type 3 traum spondylolysis of seventh cervcal vert, sqla
- ;;^UTILITY(U,$J,358.3,35000,1,4,0)
- ;;=4^S12.64XS
- ;;^UTILITY(U,$J,358.3,35000,2)
- ;;=^5021934
- ;;^UTILITY(U,$J,358.3,35001,0)
- ;;=S12.54XS^^183^2025^54
- ;;^UTILITY(U,$J,358.3,35001,1,0)
+ ;;^UTILITY(U,$J,358.3,33491,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,33491,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,33491,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,33492,0)
+ ;;=G47.20^^148^1656^7
+ ;;^UTILITY(U,$J,358.3,33492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35001,1,3,0)
- ;;=3^Type 3 traum spondylolysis of sixth cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,35001,1,4,0)
- ;;=4^S12.54XS
- ;;^UTILITY(U,$J,358.3,35001,2)
- ;;=^5021880
- ;;^UTILITY(U,$J,358.3,35002,0)
- ;;=S12.24XS^^183^2025^55
- ;;^UTILITY(U,$J,358.3,35002,1,0)
+ ;;^UTILITY(U,$J,358.3,33492,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
+ ;;^UTILITY(U,$J,358.3,33492,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,33492,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,33493,0)
+ ;;=F51.3^^148^1656^14
+ ;;^UTILITY(U,$J,358.3,33493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35002,1,3,0)
- ;;=3^Type 3 traum spondylolysis of third cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,35002,1,4,0)
- ;;=4^S12.24XS
- ;;^UTILITY(U,$J,358.3,35002,2)
- ;;=^5021718
- ;;^UTILITY(U,$J,358.3,35003,0)
- ;;=S32.052S^^183^2025^61
- ;;^UTILITY(U,$J,358.3,35003,1,0)
+ ;;^UTILITY(U,$J,358.3,33493,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleepwalking Type
+ ;;^UTILITY(U,$J,358.3,33493,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,33493,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,33494,0)
+ ;;=F51.4^^148^1656^15
+ ;;^UTILITY(U,$J,358.3,33494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35003,1,3,0)
- ;;=3^Unstable burst fracture of fifth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,35003,1,4,0)
- ;;=4^S32.052S
- ;;^UTILITY(U,$J,358.3,35003,2)
- ;;=^5024508
- ;;^UTILITY(U,$J,358.3,35004,0)
- ;;=S12.02XS^^183^2025^62
- ;;^UTILITY(U,$J,358.3,35004,1,0)
+ ;;^UTILITY(U,$J,358.3,33494,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,33494,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,33494,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,33495,0)
+ ;;=F51.5^^148^1656^13
+ ;;^UTILITY(U,$J,358.3,33495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35004,1,3,0)
- ;;=3^Unstable burst fracture of first cervical vertebra, sequela
- ;;^UTILITY(U,$J,358.3,35004,1,4,0)
- ;;=4^S12.02XS
- ;;^UTILITY(U,$J,358.3,35004,2)
- ;;=^5021568
- ;;^UTILITY(U,$J,358.3,35005,0)
- ;;=S32.012S^^183^2025^63
- ;;^UTILITY(U,$J,358.3,35005,1,0)
+ ;;^UTILITY(U,$J,358.3,33495,1,3,0)
+ ;;=3^Nightmare Disorder
+ ;;^UTILITY(U,$J,358.3,33495,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,33495,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,33496,0)
+ ;;=G47.52^^148^1656^17
+ ;;^UTILITY(U,$J,358.3,33496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35005,1,3,0)
- ;;=3^Unstable burst fracture of first lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,35005,1,4,0)
- ;;=4^S32.012S
- ;;^UTILITY(U,$J,358.3,35005,2)
- ;;=^5024388
- ;;^UTILITY(U,$J,358.3,35006,0)
- ;;=S22.012S^^183^2025^64
- ;;^UTILITY(U,$J,358.3,35006,1,0)
+ ;;^UTILITY(U,$J,358.3,33496,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior Disorder
+ ;;^UTILITY(U,$J,358.3,33496,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,33496,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,33497,0)
+ ;;=G25.81^^148^1656^18
+ ;;^UTILITY(U,$J,358.3,33497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35006,1,3,0)
- ;;=3^Unstable burst fracture of first thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,35006,1,4,0)
- ;;=4^S22.012S
- ;;^UTILITY(U,$J,358.3,35006,2)
- ;;=^5022852
- ;;^UTILITY(U,$J,358.3,35007,0)
- ;;=S32.042S^^183^2025^65
- ;;^UTILITY(U,$J,358.3,35007,1,0)
+ ;;^UTILITY(U,$J,358.3,33497,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,33497,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,33497,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,33498,0)
+ ;;=G47.19^^148^1656^8
+ ;;^UTILITY(U,$J,358.3,33498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35007,1,3,0)
- ;;=3^Unstable burst fracture of fourth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,35007,1,4,0)
- ;;=4^S32.042S
- ;;^UTILITY(U,$J,358.3,35007,2)
- ;;=^5024478
- ;;^UTILITY(U,$J,358.3,35008,0)
- ;;=S22.042S^^183^2025^66
- ;;^UTILITY(U,$J,358.3,35008,1,0)
+ ;;^UTILITY(U,$J,358.3,33498,1,3,0)
+ ;;=3^Hypersomnolence Disorder NEC
+ ;;^UTILITY(U,$J,358.3,33498,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,33498,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,33499,0)
+ ;;=G47.8^^148^1656^19
+ ;;^UTILITY(U,$J,358.3,33499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35008,1,3,0)
- ;;=3^Unstable burst fracture of fourth thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,33499,1,3,0)
+ ;;=3^Sleep-Wake Disorder NEC
+ ;;^UTILITY(U,$J,358.3,33499,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,33499,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,33500,0)
+ ;;=F10.10^^148^1657^1
+ ;;^UTILITY(U,$J,358.3,33500,1,0)
+ ;;=^358.31IA^4^2

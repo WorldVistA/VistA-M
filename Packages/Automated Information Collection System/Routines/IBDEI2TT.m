@@ -1,0 +1,132 @@
+IBDEI2TT ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47439,1,4,0)
+ ;;=4^C83.55
+ ;;^UTILITY(U,$J,358.3,47439,2)
+ ;;=^5001586
+ ;;^UTILITY(U,$J,358.3,47440,0)
+ ;;=C83.56^^209^2346^250
+ ;;^UTILITY(U,$J,358.3,47440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47440,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Intrapelvic Nodes
+ ;;^UTILITY(U,$J,358.3,47440,1,4,0)
+ ;;=4^C83.56
+ ;;^UTILITY(U,$J,358.3,47440,2)
+ ;;=^5001587
+ ;;^UTILITY(U,$J,358.3,47441,0)
+ ;;=C83.57^^209^2346^253
+ ;;^UTILITY(U,$J,358.3,47441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47441,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Spleen
+ ;;^UTILITY(U,$J,358.3,47441,1,4,0)
+ ;;=4^C83.57
+ ;;^UTILITY(U,$J,358.3,47441,2)
+ ;;=^5001588
+ ;;^UTILITY(U,$J,358.3,47442,0)
+ ;;=C83.58^^209^2346^252
+ ;;^UTILITY(U,$J,358.3,47442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47442,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Mult Site Nodes
+ ;;^UTILITY(U,$J,358.3,47442,1,4,0)
+ ;;=4^C83.58
+ ;;^UTILITY(U,$J,358.3,47442,2)
+ ;;=^5001589
+ ;;^UTILITY(U,$J,358.3,47443,0)
+ ;;=C83.59^^209^2346^246
+ ;;^UTILITY(U,$J,358.3,47443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47443,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47443,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,47443,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,47444,0)
+ ;;=C83.70^^209^2346^78
+ ;;^UTILITY(U,$J,358.3,47444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47444,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47444,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,47444,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,47445,0)
+ ;;=C83.71^^209^2346^71
+ ;;^UTILITY(U,$J,358.3,47445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47445,1,3,0)
+ ;;=3^Burkitt Lymphoma,Head/Face/Neck Nodes
+ ;;^UTILITY(U,$J,358.3,47445,1,4,0)
+ ;;=4^C83.71
+ ;;^UTILITY(U,$J,358.3,47445,2)
+ ;;=^5001592
+ ;;^UTILITY(U,$J,358.3,47446,0)
+ ;;=C83.72^^209^2346^75
+ ;;^UTILITY(U,$J,358.3,47446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47446,1,3,0)
+ ;;=3^Burkitt Lymphoma,Intrathoracic Nodes
+ ;;^UTILITY(U,$J,358.3,47446,1,4,0)
+ ;;=4^C83.72
+ ;;^UTILITY(U,$J,358.3,47446,2)
+ ;;=^5001593
+ ;;^UTILITY(U,$J,358.3,47447,0)
+ ;;=C83.73^^209^2346^73
+ ;;^UTILITY(U,$J,358.3,47447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47447,1,3,0)
+ ;;=3^Burkitt Lymphoma,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47447,1,4,0)
+ ;;=4^C83.73
+ ;;^UTILITY(U,$J,358.3,47447,2)
+ ;;=^5001594
+ ;;^UTILITY(U,$J,358.3,47448,0)
+ ;;=C83.74^^209^2346^69
+ ;;^UTILITY(U,$J,358.3,47448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47448,1,3,0)
+ ;;=3^Burkitt Lymphoma,Axilla/Upper Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47448,1,4,0)
+ ;;=4^C83.74
+ ;;^UTILITY(U,$J,358.3,47448,2)
+ ;;=^5001595
+ ;;^UTILITY(U,$J,358.3,47449,0)
+ ;;=C83.75^^209^2346^72
+ ;;^UTILITY(U,$J,358.3,47449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47449,1,3,0)
+ ;;=3^Burkitt Lymphoma,Ing Region/Lower Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47449,1,4,0)
+ ;;=4^C83.75
+ ;;^UTILITY(U,$J,358.3,47449,2)
+ ;;=^5001596
+ ;;^UTILITY(U,$J,358.3,47450,0)
+ ;;=C83.76^^209^2346^74
+ ;;^UTILITY(U,$J,358.3,47450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47450,1,3,0)
+ ;;=3^Burkitt Lymphoma,Intrapelvic Nodes
+ ;;^UTILITY(U,$J,358.3,47450,1,4,0)
+ ;;=4^C83.76
+ ;;^UTILITY(U,$J,358.3,47450,2)
+ ;;=^5001597
+ ;;^UTILITY(U,$J,358.3,47451,0)
+ ;;=C83.77^^209^2346^77
+ ;;^UTILITY(U,$J,358.3,47451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47451,1,3,0)
+ ;;=3^Burkitt Lymphoma,Spleen
+ ;;^UTILITY(U,$J,358.3,47451,1,4,0)
+ ;;=4^C83.77
+ ;;^UTILITY(U,$J,358.3,47451,2)
+ ;;=^5001598
+ ;;^UTILITY(U,$J,358.3,47452,0)
+ ;;=C83.78^^209^2346^76
+ ;;^UTILITY(U,$J,358.3,47452,1,0)
+ ;;=^358.31IA^4^2

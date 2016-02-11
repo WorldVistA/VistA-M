@@ -1,128 +1,136 @@
-IBDEI1YZ ; ; 06-AUG-2015
+IBDEI1YZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34531,2)
- ;;=^5044786
- ;;^UTILITY(U,$J,358.3,34532,0)
- ;;=S92.151S^^183^2020^14
- ;;^UTILITY(U,$J,358.3,34532,1,0)
+ ;;^UTILITY(U,$J,358.3,32984,1,3,0)
+ ;;=3^Sexual Masochism Disorder
+ ;;^UTILITY(U,$J,358.3,32984,1,4,0)
+ ;;=4^F65.51
+ ;;^UTILITY(U,$J,358.3,32984,2)
+ ;;=^5003657
+ ;;^UTILITY(U,$J,358.3,32985,0)
+ ;;=F65.52^^146^1599^8
+ ;;^UTILITY(U,$J,358.3,32985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34532,1,3,0)
- ;;=3^Disp avulsion fx of right talus, sequela
- ;;^UTILITY(U,$J,358.3,34532,1,4,0)
- ;;=4^S92.151S
- ;;^UTILITY(U,$J,358.3,34532,2)
- ;;=^5044779
- ;;^UTILITY(U,$J,358.3,34533,0)
- ;;=S92.032S^^183^2020^15
- ;;^UTILITY(U,$J,358.3,34533,1,0)
+ ;;^UTILITY(U,$J,358.3,32985,1,3,0)
+ ;;=3^Sexual Sadism Disorder
+ ;;^UTILITY(U,$J,358.3,32985,1,4,0)
+ ;;=4^F65.52
+ ;;^UTILITY(U,$J,358.3,32985,2)
+ ;;=^5003658
+ ;;^UTILITY(U,$J,358.3,32986,0)
+ ;;=F65.0^^146^1599^2
+ ;;^UTILITY(U,$J,358.3,32986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34533,1,3,0)
- ;;=3^Disp avulsion tuberosity fx of left calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,34533,1,4,0)
- ;;=4^S92.032S
- ;;^UTILITY(U,$J,358.3,34533,2)
- ;;=^5044464
- ;;^UTILITY(U,$J,358.3,34534,0)
- ;;=S92.142S^^183^2020^29
- ;;^UTILITY(U,$J,358.3,34534,1,0)
+ ;;^UTILITY(U,$J,358.3,32986,1,3,0)
+ ;;=3^Fetishistic Disorder
+ ;;^UTILITY(U,$J,358.3,32986,1,4,0)
+ ;;=4^F65.0
+ ;;^UTILITY(U,$J,358.3,32986,2)
+ ;;=^5003651
+ ;;^UTILITY(U,$J,358.3,32987,0)
+ ;;=F65.1^^146^1599^9
+ ;;^UTILITY(U,$J,358.3,32987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34534,1,3,0)
- ;;=3^Disp dome fx of left talus, sequela
- ;;^UTILITY(U,$J,358.3,34534,1,4,0)
- ;;=4^S92.142S
- ;;^UTILITY(U,$J,358.3,34534,2)
- ;;=^5044744
- ;;^UTILITY(U,$J,358.3,34535,0)
- ;;=S92.031S^^183^2020^16
- ;;^UTILITY(U,$J,358.3,34535,1,0)
+ ;;^UTILITY(U,$J,358.3,32987,1,3,0)
+ ;;=3^Transvestic Disorder
+ ;;^UTILITY(U,$J,358.3,32987,1,4,0)
+ ;;=4^F65.1
+ ;;^UTILITY(U,$J,358.3,32987,2)
+ ;;=^5003652
+ ;;^UTILITY(U,$J,358.3,32988,0)
+ ;;=F65.89^^146^1599^4
+ ;;^UTILITY(U,$J,358.3,32988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34535,1,3,0)
- ;;=3^Disp avulsion tuberosity fx of right calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,34535,1,4,0)
- ;;=4^S92.031S
- ;;^UTILITY(U,$J,358.3,34535,2)
- ;;=^5044457
- ;;^UTILITY(U,$J,358.3,34536,0)
- ;;=S92.141S^^183^2020^30
- ;;^UTILITY(U,$J,358.3,34536,1,0)
+ ;;^UTILITY(U,$J,358.3,32988,1,3,0)
+ ;;=3^Paraphilic Disorder NEC
+ ;;^UTILITY(U,$J,358.3,32988,1,4,0)
+ ;;=4^F65.89
+ ;;^UTILITY(U,$J,358.3,32988,2)
+ ;;=^5003660
+ ;;^UTILITY(U,$J,358.3,32989,0)
+ ;;=F65.9^^146^1599^5
+ ;;^UTILITY(U,$J,358.3,32989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34536,1,3,0)
- ;;=3^Disp dome fx of right talus, sequela
- ;;^UTILITY(U,$J,358.3,34536,1,4,0)
- ;;=4^S92.141S
- ;;^UTILITY(U,$J,358.3,34536,2)
- ;;=^5044737
- ;;^UTILITY(U,$J,358.3,34537,0)
- ;;=S92.022S^^183^2020^11
- ;;^UTILITY(U,$J,358.3,34537,1,0)
+ ;;^UTILITY(U,$J,358.3,32989,1,3,0)
+ ;;=3^Paraphilic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32989,1,4,0)
+ ;;=4^F65.9
+ ;;^UTILITY(U,$J,358.3,32989,2)
+ ;;=^5003661
+ ;;^UTILITY(U,$J,358.3,32990,0)
+ ;;=F60.0^^146^1600^8
+ ;;^UTILITY(U,$J,358.3,32990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34537,1,3,0)
- ;;=3^Disp anterior process fx of left calcaneus,sequela
- ;;^UTILITY(U,$J,358.3,34537,1,4,0)
- ;;=4^S92.022S
- ;;^UTILITY(U,$J,358.3,34537,2)
- ;;=^5044422
- ;;^UTILITY(U,$J,358.3,34538,0)
- ;;=S92.021S^^183^2020^12
- ;;^UTILITY(U,$J,358.3,34538,1,0)
+ ;;^UTILITY(U,$J,358.3,32990,1,3,0)
+ ;;=3^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32990,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,32990,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,32991,0)
+ ;;=F60.1^^146^1600^11
+ ;;^UTILITY(U,$J,358.3,32991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34538,1,3,0)
- ;;=3^Disp anterior process fx of right calcaneus,sequela
- ;;^UTILITY(U,$J,358.3,34538,1,4,0)
- ;;=4^S92.021S
- ;;^UTILITY(U,$J,358.3,34538,2)
- ;;=^5044415
- ;;^UTILITY(U,$J,358.3,34539,0)
- ;;=S92.012S^^183^2020^19
- ;;^UTILITY(U,$J,358.3,34539,1,0)
+ ;;^UTILITY(U,$J,358.3,32991,1,3,0)
+ ;;=3^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32991,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,32991,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,32992,0)
+ ;;=F21.^^146^1600^12
+ ;;^UTILITY(U,$J,358.3,32992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34539,1,3,0)
- ;;=3^Disp body of left calcaneus fx, sequela
- ;;^UTILITY(U,$J,358.3,34539,1,4,0)
- ;;=4^S92.012S
- ;;^UTILITY(U,$J,358.3,34539,2)
- ;;=^5044380
- ;;^UTILITY(U,$J,358.3,34540,0)
- ;;=S92.122S^^183^2020^20
- ;;^UTILITY(U,$J,358.3,34540,1,0)
+ ;;^UTILITY(U,$J,358.3,32992,1,3,0)
+ ;;=3^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32992,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,32992,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,32993,0)
+ ;;=F60.5^^146^1600^7
+ ;;^UTILITY(U,$J,358.3,32993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34540,1,3,0)
- ;;=3^Disp body of left talus fx, sequela
- ;;^UTILITY(U,$J,358.3,34540,1,4,0)
- ;;=4^S92.122S
- ;;^UTILITY(U,$J,358.3,34540,2)
- ;;=^5044660
- ;;^UTILITY(U,$J,358.3,34541,0)
- ;;=S92.011S^^183^2020^21
- ;;^UTILITY(U,$J,358.3,34541,1,0)
+ ;;^UTILITY(U,$J,358.3,32993,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32993,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,32993,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,32994,0)
+ ;;=F60.4^^146^1600^5
+ ;;^UTILITY(U,$J,358.3,32994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34541,1,3,0)
- ;;=3^Disp body of right calcaneus fx, sequela
- ;;^UTILITY(U,$J,358.3,34541,1,4,0)
- ;;=4^S92.011S
- ;;^UTILITY(U,$J,358.3,34541,2)
- ;;=^5044373
- ;;^UTILITY(U,$J,358.3,34542,0)
- ;;=S92.121S^^183^2020^22
- ;;^UTILITY(U,$J,358.3,34542,1,0)
+ ;;^UTILITY(U,$J,358.3,32994,1,3,0)
+ ;;=3^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32994,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,32994,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,32995,0)
+ ;;=F60.7^^146^1600^4
+ ;;^UTILITY(U,$J,358.3,32995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34542,1,3,0)
- ;;=3^Disp body of right talus fx, sequela
- ;;^UTILITY(U,$J,358.3,34542,1,4,0)
- ;;=4^S92.121S
- ;;^UTILITY(U,$J,358.3,34542,2)
- ;;=^5044653
- ;;^UTILITY(U,$J,358.3,34543,0)
- ;;=S92.112S^^183^2020^46
- ;;^UTILITY(U,$J,358.3,34543,1,0)
+ ;;^UTILITY(U,$J,358.3,32995,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32995,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,32995,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,32996,0)
+ ;;=F60.2^^146^1600^1
+ ;;^UTILITY(U,$J,358.3,32996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34543,1,3,0)
- ;;=3^Disp neck of left talus fx, sequla
- ;;^UTILITY(U,$J,358.3,34543,1,4,0)
- ;;=4^S92.112S
- ;;^UTILITY(U,$J,358.3,34543,2)
- ;;=^5044618
- ;;^UTILITY(U,$J,358.3,34544,0)
- ;;=S92.111S^^183^2020^47
+ ;;^UTILITY(U,$J,358.3,32996,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,32996,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,32996,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,32997,0)
+ ;;=F60.81^^146^1600^6
+ ;;^UTILITY(U,$J,358.3,32997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32997,1,3,0)
+ ;;=3^Narcissistic Personality Disorder

@@ -1,124 +1,128 @@
-IBDEI1PF ; ; 06-AUG-2015
+IBDEI1PF ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30209,1,4,0)
- ;;=4^O31.33X9
- ;;^UTILITY(U,$J,358.3,30209,2)
- ;;=^5016613
- ;;^UTILITY(U,$J,358.3,30210,0)
- ;;=O35.0XX0^^178^1916^37
- ;;^UTILITY(U,$J,358.3,30210,1,0)
+ ;;^UTILITY(U,$J,358.3,28523,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,28523,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,28523,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,28524,0)
+ ;;=R82.6^^132^1332^26
+ ;;^UTILITY(U,$J,358.3,28524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30210,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, unsp
- ;;^UTILITY(U,$J,358.3,30210,1,4,0)
- ;;=4^O35.0XX0
- ;;^UTILITY(U,$J,358.3,30210,2)
- ;;=^5016775
- ;;^UTILITY(U,$J,358.3,30211,0)
- ;;=O35.0XX1^^178^1916^38
- ;;^UTILITY(U,$J,358.3,30211,1,0)
+ ;;^UTILITY(U,$J,358.3,28524,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,28524,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,28524,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,28525,0)
+ ;;=R82.7^^132^1332^27
+ ;;^UTILITY(U,$J,358.3,28525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30211,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 1
- ;;^UTILITY(U,$J,358.3,30211,1,4,0)
- ;;=4^O35.0XX1
- ;;^UTILITY(U,$J,358.3,30211,2)
- ;;=^5016776
- ;;^UTILITY(U,$J,358.3,30212,0)
- ;;=O35.0XX2^^178^1916^39
- ;;^UTILITY(U,$J,358.3,30212,1,0)
+ ;;^UTILITY(U,$J,358.3,28525,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,28525,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,28525,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,28526,0)
+ ;;=R82.8^^132^1332^23
+ ;;^UTILITY(U,$J,358.3,28526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30212,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 2
- ;;^UTILITY(U,$J,358.3,30212,1,4,0)
- ;;=4^O35.0XX2
- ;;^UTILITY(U,$J,358.3,30212,2)
- ;;=^5016777
- ;;^UTILITY(U,$J,358.3,30213,0)
- ;;=O35.0XX3^^178^1916^40
- ;;^UTILITY(U,$J,358.3,30213,1,0)
+ ;;^UTILITY(U,$J,358.3,28526,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,28526,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,28526,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,28527,0)
+ ;;=R82.90^^132^1332^25
+ ;;^UTILITY(U,$J,358.3,28527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30213,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 3
- ;;^UTILITY(U,$J,358.3,30213,1,4,0)
- ;;=4^O35.0XX3
- ;;^UTILITY(U,$J,358.3,30213,2)
- ;;=^5016778
- ;;^UTILITY(U,$J,358.3,30214,0)
- ;;=O35.0XX4^^178^1916^41
- ;;^UTILITY(U,$J,358.3,30214,1,0)
+ ;;^UTILITY(U,$J,358.3,28527,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,28527,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,28527,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,28528,0)
+ ;;=R82.91^^132^1332^49
+ ;;^UTILITY(U,$J,358.3,28528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30214,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 4
- ;;^UTILITY(U,$J,358.3,30214,1,4,0)
- ;;=4^O35.0XX4
- ;;^UTILITY(U,$J,358.3,30214,2)
- ;;=^5016779
- ;;^UTILITY(U,$J,358.3,30215,0)
- ;;=O35.0XX5^^178^1916^42
- ;;^UTILITY(U,$J,358.3,30215,1,0)
+ ;;^UTILITY(U,$J,358.3,28528,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,28528,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,28528,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,28529,0)
+ ;;=R82.99^^132^1332^24
+ ;;^UTILITY(U,$J,358.3,28529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30215,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 5
- ;;^UTILITY(U,$J,358.3,30215,1,4,0)
- ;;=4^O35.0XX5
- ;;^UTILITY(U,$J,358.3,30215,2)
- ;;=^5016780
- ;;^UTILITY(U,$J,358.3,30216,0)
- ;;=O35.1XX0^^178^1916^61
- ;;^UTILITY(U,$J,358.3,30216,1,0)
+ ;;^UTILITY(U,$J,358.3,28529,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,28529,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,28529,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,28530,0)
+ ;;=R89.9^^132^1332^19
+ ;;^UTILITY(U,$J,358.3,28530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30216,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, unsp
- ;;^UTILITY(U,$J,358.3,30216,1,4,0)
- ;;=4^O35.1XX0
- ;;^UTILITY(U,$J,358.3,30216,2)
- ;;=^5016782
- ;;^UTILITY(U,$J,358.3,30217,0)
- ;;=O35.1XX1^^178^1916^62
- ;;^UTILITY(U,$J,358.3,30217,1,0)
+ ;;^UTILITY(U,$J,358.3,28530,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,28530,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,28530,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,28531,0)
+ ;;=R90.0^^132^1332^98
+ ;;^UTILITY(U,$J,358.3,28531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30217,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 1
- ;;^UTILITY(U,$J,358.3,30217,1,4,0)
- ;;=4^O35.1XX1
- ;;^UTILITY(U,$J,358.3,30217,2)
- ;;=^5016783
- ;;^UTILITY(U,$J,358.3,30218,0)
- ;;=O35.1XX2^^178^1916^63
- ;;^UTILITY(U,$J,358.3,30218,1,0)
+ ;;^UTILITY(U,$J,358.3,28531,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,28531,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,28531,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,28532,0)
+ ;;=R90.89^^132^1332^13
+ ;;^UTILITY(U,$J,358.3,28532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30218,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 2
- ;;^UTILITY(U,$J,358.3,30218,1,4,0)
- ;;=4^O35.1XX2
- ;;^UTILITY(U,$J,358.3,30218,2)
- ;;=^5016784
- ;;^UTILITY(U,$J,358.3,30219,0)
- ;;=O35.1XX3^^178^1916^64
- ;;^UTILITY(U,$J,358.3,30219,1,0)
+ ;;^UTILITY(U,$J,358.3,28532,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,28532,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,28532,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,28533,0)
+ ;;=R91.8^^132^1332^18
+ ;;^UTILITY(U,$J,358.3,28533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30219,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 3
- ;;^UTILITY(U,$J,358.3,30219,1,4,0)
- ;;=4^O35.1XX3
- ;;^UTILITY(U,$J,358.3,30219,2)
- ;;=^5016785
- ;;^UTILITY(U,$J,358.3,30220,0)
- ;;=O35.1XX4^^178^1916^65
- ;;^UTILITY(U,$J,358.3,30220,1,0)
+ ;;^UTILITY(U,$J,358.3,28533,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,28533,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,28533,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,28534,0)
+ ;;=R92.0^^132^1332^117
+ ;;^UTILITY(U,$J,358.3,28534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30220,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 4
- ;;^UTILITY(U,$J,358.3,30220,1,4,0)
- ;;=4^O35.1XX4
- ;;^UTILITY(U,$J,358.3,30220,2)
- ;;=^5016786
- ;;^UTILITY(U,$J,358.3,30221,0)
- ;;=O35.1XX5^^178^1916^66
- ;;^UTILITY(U,$J,358.3,30221,1,0)
+ ;;^UTILITY(U,$J,358.3,28534,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,28534,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,28534,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,28535,0)
+ ;;=R92.1^^132^1332^116
+ ;;^UTILITY(U,$J,358.3,28535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30221,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 5
+ ;;^UTILITY(U,$J,358.3,28535,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,28535,1,4,0)
+ ;;=4^R92.1

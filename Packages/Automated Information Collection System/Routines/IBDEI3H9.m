@@ -1,0 +1,130 @@
+IBDEI3H9 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58486,0)
+ ;;=C44.109^^272^2908^65
+ ;;^UTILITY(U,$J,358.3,58486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58486,1,3,0)
+ ;;=3^Malig Neop Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,58486,1,4,0)
+ ;;=4^C44.109
+ ;;^UTILITY(U,$J,358.3,58486,2)
+ ;;=^5001018
+ ;;^UTILITY(U,$J,358.3,58487,0)
+ ;;=C44.102^^272^2908^67
+ ;;^UTILITY(U,$J,358.3,58487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58487,1,3,0)
+ ;;=3^Malig Neop Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,58487,1,4,0)
+ ;;=4^C44.102
+ ;;^UTILITY(U,$J,358.3,58487,2)
+ ;;=^5001017
+ ;;^UTILITY(U,$J,358.3,58488,0)
+ ;;=H02.125^^272^2908^69
+ ;;^UTILITY(U,$J,358.3,58488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58488,1,3,0)
+ ;;=3^Mechanical Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58488,1,4,0)
+ ;;=4^H02.125
+ ;;^UTILITY(U,$J,358.3,58488,2)
+ ;;=^5133412
+ ;;^UTILITY(U,$J,358.3,58489,0)
+ ;;=H02.124^^272^2908^70
+ ;;^UTILITY(U,$J,358.3,58489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58489,1,3,0)
+ ;;=3^Mechanical Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58489,1,4,0)
+ ;;=4^H02.124
+ ;;^UTILITY(U,$J,358.3,58489,2)
+ ;;=^5004315
+ ;;^UTILITY(U,$J,358.3,58490,0)
+ ;;=H02.121^^272^2908^72
+ ;;^UTILITY(U,$J,358.3,58490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58490,1,3,0)
+ ;;=3^Mechanical Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58490,1,4,0)
+ ;;=4^H02.121
+ ;;^UTILITY(U,$J,358.3,58490,2)
+ ;;=^5004312
+ ;;^UTILITY(U,$J,358.3,58491,0)
+ ;;=H02.122^^272^2908^71
+ ;;^UTILITY(U,$J,358.3,58491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58491,1,3,0)
+ ;;=3^Mechanical Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58491,1,4,0)
+ ;;=4^H02.122
+ ;;^UTILITY(U,$J,358.3,58491,2)
+ ;;=^5004313
+ ;;^UTILITY(U,$J,358.3,58492,0)
+ ;;=H02.025^^272^2908^73
+ ;;^UTILITY(U,$J,358.3,58492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58492,1,3,0)
+ ;;=3^Mechanical Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58492,1,4,0)
+ ;;=4^H02.025
+ ;;^UTILITY(U,$J,358.3,58492,2)
+ ;;=^5133399
+ ;;^UTILITY(U,$J,358.3,58493,0)
+ ;;=H02.024^^272^2908^74
+ ;;^UTILITY(U,$J,358.3,58493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58493,1,3,0)
+ ;;=3^Mechanical Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58493,1,4,0)
+ ;;=4^H02.024
+ ;;^UTILITY(U,$J,358.3,58493,2)
+ ;;=^5004286
+ ;;^UTILITY(U,$J,358.3,58494,0)
+ ;;=H02.022^^272^2908^75
+ ;;^UTILITY(U,$J,358.3,58494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58494,1,3,0)
+ ;;=3^Mechanical Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,58494,1,4,0)
+ ;;=4^H02.022
+ ;;^UTILITY(U,$J,358.3,58494,2)
+ ;;=^5004284
+ ;;^UTILITY(U,$J,358.3,58495,0)
+ ;;=H02.021^^272^2908^76
+ ;;^UTILITY(U,$J,358.3,58495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58495,1,3,0)
+ ;;=3^Mechanical Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,58495,1,4,0)
+ ;;=4^H02.021
+ ;;^UTILITY(U,$J,358.3,58495,2)
+ ;;=^5004283
+ ;;^UTILITY(U,$J,358.3,58496,0)
+ ;;=S01.152A^^272^2908^77
+ ;;^UTILITY(U,$J,358.3,58496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58496,1,3,0)
+ ;;=3^Open Bite Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58496,1,4,0)
+ ;;=4^S01.152A
+ ;;^UTILITY(U,$J,358.3,58496,2)
+ ;;=^5020084
+ ;;^UTILITY(U,$J,358.3,58497,0)
+ ;;=S01.151A^^272^2908^78
+ ;;^UTILITY(U,$J,358.3,58497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58497,1,3,0)
+ ;;=3^Open Bite Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,58497,1,4,0)
+ ;;=4^S01.151A
+ ;;^UTILITY(U,$J,358.3,58497,2)
+ ;;=^5020081
+ ;;^UTILITY(U,$J,358.3,58498,0)
+ ;;=C44.199^^272^2908^66
+ ;;^UTILITY(U,$J,358.3,58498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58498,1,3,0)
+ ;;=3^Malig Neop Skin Left Eyelid NEC

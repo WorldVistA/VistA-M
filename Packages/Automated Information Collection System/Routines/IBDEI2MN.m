@@ -1,0 +1,128 @@
+IBDEI2MN ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44092,0)
+ ;;=S05.01XA^^200^2222^4
+ ;;^UTILITY(U,$J,358.3,44092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44092,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,44092,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,44092,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,44093,0)
+ ;;=T15.02XA^^200^2222^1
+ ;;^UTILITY(U,$J,358.3,44093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44093,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44093,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,44093,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,44094,0)
+ ;;=T15.01XA^^200^2222^2
+ ;;^UTILITY(U,$J,358.3,44094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44094,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44094,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,44094,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,44095,0)
+ ;;=S00.252A^^200^2222^5
+ ;;^UTILITY(U,$J,358.3,44095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44095,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44095,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,44095,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,44096,0)
+ ;;=S00.251A^^200^2222^6
+ ;;^UTILITY(U,$J,358.3,44096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44096,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44096,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,44096,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,44097,0)
+ ;;=B96.81^^200^2223^56
+ ;;^UTILITY(U,$J,358.3,44097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44097,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,44097,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,44097,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,44098,0)
+ ;;=B15.9^^200^2223^58
+ ;;^UTILITY(U,$J,358.3,44098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44098,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,44098,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,44098,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,44099,0)
+ ;;=B16.9^^200^2223^59
+ ;;^UTILITY(U,$J,358.3,44099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44099,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,44099,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,44099,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,44100,0)
+ ;;=B19.10^^200^2223^61
+ ;;^UTILITY(U,$J,358.3,44100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44100,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,44100,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,44100,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,44101,0)
+ ;;=B18.1^^200^2223^60
+ ;;^UTILITY(U,$J,358.3,44101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44101,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,44101,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,44101,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,44102,0)
+ ;;=B17.10^^200^2223^62
+ ;;^UTILITY(U,$J,358.3,44102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44102,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,44102,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,44102,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,44103,0)
+ ;;=B18.2^^200^2223^63
+ ;;^UTILITY(U,$J,358.3,44103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44103,1,3,0)
+ ;;=3^Hepatitis C,Chronic Viral
+ ;;^UTILITY(U,$J,358.3,44103,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,44103,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,44104,0)
+ ;;=B18.8^^200^2223^65
+ ;;^UTILITY(U,$J,358.3,44104,1,0)
+ ;;=^358.31IA^4^2

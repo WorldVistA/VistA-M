@@ -1,142 +1,126 @@
-IBDEI0JW ; ; 06-AUG-2015
+IBDEI0JW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9380,2)
- ;;=^340482
- ;;^UTILITY(U,$J,358.3,9381,0)
- ;;=173.62^^41^535^96
- ;;^UTILITY(U,$J,358.3,9381,1,0)
+ ;;^UTILITY(U,$J,358.3,8967,1,3,0)
+ ;;=3^Diabetes due to underlying condition w diab prph angiopath w/o gangrene
+ ;;^UTILITY(U,$J,358.3,8967,1,4,0)
+ ;;=4^E08.51
+ ;;^UTILITY(U,$J,358.3,8967,2)
+ ;;=^5002528
+ ;;^UTILITY(U,$J,358.3,8968,0)
+ ;;=E08.59^^55^555^19
+ ;;^UTILITY(U,$J,358.3,8968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9381,1,3,0)
- ;;=3^SCC, SKIN OF UPPER LIMB
- ;;^UTILITY(U,$J,358.3,9381,1,4,0)
- ;;=4^173.62
- ;;^UTILITY(U,$J,358.3,9381,2)
- ;;=^340483
- ;;^UTILITY(U,$J,358.3,9382,0)
- ;;=173.69^^41^535^85
- ;;^UTILITY(U,$J,358.3,9382,1,0)
+ ;;^UTILITY(U,$J,358.3,8968,1,3,0)
+ ;;=3^Diabetes due to underlying condition w oth circulatory comp
+ ;;^UTILITY(U,$J,358.3,8968,1,4,0)
+ ;;=4^E08.59
+ ;;^UTILITY(U,$J,358.3,8968,2)
+ ;;=^5002530
+ ;;^UTILITY(U,$J,358.3,8969,0)
+ ;;=E09.51^^55^555^36
+ ;;^UTILITY(U,$J,358.3,8969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9382,1,3,0)
- ;;=3^MALIGNANT NEOP UPPER LIMB NEC
- ;;^UTILITY(U,$J,358.3,9382,1,4,0)
- ;;=4^173.69
- ;;^UTILITY(U,$J,358.3,9382,2)
- ;;=^340484
- ;;^UTILITY(U,$J,358.3,9383,0)
- ;;=173.70^^41^535^58
- ;;^UTILITY(U,$J,358.3,9383,1,0)
+ ;;^UTILITY(U,$J,358.3,8969,1,3,0)
+ ;;=3^Drug/chem diabetes w diabetic prph angiopath w/o gangrene
+ ;;^UTILITY(U,$J,358.3,8969,1,4,0)
+ ;;=4^E09.51
+ ;;^UTILITY(U,$J,358.3,8969,2)
+ ;;=^5002570
+ ;;^UTILITY(U,$J,358.3,8970,0)
+ ;;=E09.59^^55^555^48
+ ;;^UTILITY(U,$J,358.3,8970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9383,1,3,0)
- ;;=3^MALIGNANT NEOP LOWER LIMB SKIN,UNSPEC
- ;;^UTILITY(U,$J,358.3,9383,1,4,0)
- ;;=4^173.70
- ;;^UTILITY(U,$J,358.3,9383,2)
- ;;=^340603
- ;;^UTILITY(U,$J,358.3,9384,0)
- ;;=173.71^^41^535^8
- ;;^UTILITY(U,$J,358.3,9384,1,0)
+ ;;^UTILITY(U,$J,358.3,8970,1,3,0)
+ ;;=3^Drug/chem diabetes w oth circulatory complications
+ ;;^UTILITY(U,$J,358.3,8970,1,4,0)
+ ;;=4^E09.59
+ ;;^UTILITY(U,$J,358.3,8970,2)
+ ;;=^5002572
+ ;;^UTILITY(U,$J,358.3,8971,0)
+ ;;=E08.618^^55^555^20
+ ;;^UTILITY(U,$J,358.3,8971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9384,1,3,0)
- ;;=3^BCC, SKIN OF LOWER LIMB
- ;;^UTILITY(U,$J,358.3,9384,1,4,0)
- ;;=4^173.71
- ;;^UTILITY(U,$J,358.3,9384,2)
- ;;=^340485
- ;;^UTILITY(U,$J,358.3,9385,0)
- ;;=173.72^^41^535^95
- ;;^UTILITY(U,$J,358.3,9385,1,0)
+ ;;^UTILITY(U,$J,358.3,8971,1,3,0)
+ ;;=3^Diabetes due to underlying condition w oth diabetic arthrop
+ ;;^UTILITY(U,$J,358.3,8971,1,4,0)
+ ;;=4^E08.618
+ ;;^UTILITY(U,$J,358.3,8971,2)
+ ;;=^5002532
+ ;;^UTILITY(U,$J,358.3,8972,0)
+ ;;=E08.620^^55^555^21
+ ;;^UTILITY(U,$J,358.3,8972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9385,1,3,0)
- ;;=3^SCC, SKIN OF LOWER LIMB
- ;;^UTILITY(U,$J,358.3,9385,1,4,0)
- ;;=4^173.72
- ;;^UTILITY(U,$J,358.3,9385,2)
- ;;=^340486
- ;;^UTILITY(U,$J,358.3,9386,0)
- ;;=173.79^^41^535^57
- ;;^UTILITY(U,$J,358.3,9386,1,0)
+ ;;^UTILITY(U,$J,358.3,8972,1,3,0)
+ ;;=3^Diabetes due to underlying condition w diabetic dermatitis
+ ;;^UTILITY(U,$J,358.3,8972,1,4,0)
+ ;;=4^E08.620
+ ;;^UTILITY(U,$J,358.3,8972,2)
+ ;;=^5002533
+ ;;^UTILITY(U,$J,358.3,8973,0)
+ ;;=E08.621^^55^555^22
+ ;;^UTILITY(U,$J,358.3,8973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9386,1,3,0)
- ;;=3^MALIGNANT NEOP LOWER LIMB NEC
- ;;^UTILITY(U,$J,358.3,9386,1,4,0)
- ;;=4^173.79
- ;;^UTILITY(U,$J,358.3,9386,2)
- ;;=^340487
- ;;^UTILITY(U,$J,358.3,9387,0)
- ;;=173.80^^41^535^74
- ;;^UTILITY(U,$J,358.3,9387,1,0)
+ ;;^UTILITY(U,$J,358.3,8973,1,3,0)
+ ;;=3^Diabetes due to underlying condition w foot ulcer
+ ;;^UTILITY(U,$J,358.3,8973,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,8973,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,8974,0)
+ ;;=E08.622^^55^555^23
+ ;;^UTILITY(U,$J,358.3,8974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9387,1,3,0)
- ;;=3^MALIGNANT NEOP SKIN,UNSPEC
- ;;^UTILITY(U,$J,358.3,9387,1,4,0)
- ;;=4^173.80
- ;;^UTILITY(U,$J,358.3,9387,2)
- ;;=^340604
- ;;^UTILITY(U,$J,358.3,9388,0)
- ;;=173.81^^41^535^4
- ;;^UTILITY(U,$J,358.3,9388,1,0)
+ ;;^UTILITY(U,$J,358.3,8974,1,3,0)
+ ;;=3^Diabetes due to underlying condition w oth skin ulcer
+ ;;^UTILITY(U,$J,358.3,8974,1,4,0)
+ ;;=4^E08.622
+ ;;^UTILITY(U,$J,358.3,8974,2)
+ ;;=^5002535
+ ;;^UTILITY(U,$J,358.3,8975,0)
+ ;;=E08.628^^55^555^24
+ ;;^UTILITY(U,$J,358.3,8975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9388,1,3,0)
- ;;=3^BCC, MALIGNANT SKIN, OTHER
- ;;^UTILITY(U,$J,358.3,9388,1,4,0)
- ;;=4^173.81
- ;;^UTILITY(U,$J,358.3,9388,2)
- ;;=^340488
- ;;^UTILITY(U,$J,358.3,9389,0)
- ;;=173.82^^41^535^93
- ;;^UTILITY(U,$J,358.3,9389,1,0)
+ ;;^UTILITY(U,$J,358.3,8975,1,3,0)
+ ;;=3^Diabetes due to underlying condition w oth skin comp
+ ;;^UTILITY(U,$J,358.3,8975,1,4,0)
+ ;;=4^E08.628
+ ;;^UTILITY(U,$J,358.3,8975,2)
+ ;;=^5002536
+ ;;^UTILITY(U,$J,358.3,8976,0)
+ ;;=E08.630^^55^555^25
+ ;;^UTILITY(U,$J,358.3,8976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9389,1,3,0)
- ;;=3^SCC, MALIGNANT SKIN,OTHER
- ;;^UTILITY(U,$J,358.3,9389,1,4,0)
- ;;=4^173.82
- ;;^UTILITY(U,$J,358.3,9389,2)
- ;;=^340489
- ;;^UTILITY(U,$J,358.3,9390,0)
- ;;=173.89^^41^535^73
- ;;^UTILITY(U,$J,358.3,9390,1,0)
+ ;;^UTILITY(U,$J,358.3,8976,1,3,0)
+ ;;=3^Diabetes due to underlying condition w periodontal disease
+ ;;^UTILITY(U,$J,358.3,8976,1,4,0)
+ ;;=4^E08.630
+ ;;^UTILITY(U,$J,358.3,8976,2)
+ ;;=^5002537
+ ;;^UTILITY(U,$J,358.3,8977,0)
+ ;;=E08.638^^55^555^26
+ ;;^UTILITY(U,$J,358.3,8977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9390,1,3,0)
- ;;=3^MALIGNANT NEOP SKIN NEC
- ;;^UTILITY(U,$J,358.3,9390,1,4,0)
- ;;=4^173.89
- ;;^UTILITY(U,$J,358.3,9390,2)
- ;;=^340490
- ;;^UTILITY(U,$J,358.3,9391,0)
- ;;=173.91^^41^535^5
- ;;^UTILITY(U,$J,358.3,9391,1,0)
+ ;;^UTILITY(U,$J,358.3,8977,1,3,0)
+ ;;=3^Diabetes due to underlying condition w oth oral comp
+ ;;^UTILITY(U,$J,358.3,8977,1,4,0)
+ ;;=4^E08.638
+ ;;^UTILITY(U,$J,358.3,8977,2)
+ ;;=^5002538
+ ;;^UTILITY(U,$J,358.3,8978,0)
+ ;;=E08.649^^55^555^27
+ ;;^UTILITY(U,$J,358.3,8978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9391,1,3,0)
- ;;=3^BCC, MALIGNANT SKIN, UNSP
- ;;^UTILITY(U,$J,358.3,9391,1,4,0)
- ;;=4^173.91
- ;;^UTILITY(U,$J,358.3,9391,2)
- ;;=^340491
- ;;^UTILITY(U,$J,358.3,9392,0)
- ;;=173.92^^41^535^92
- ;;^UTILITY(U,$J,358.3,9392,1,0)
+ ;;^UTILITY(U,$J,358.3,8978,1,3,0)
+ ;;=3^Diabetes due to underlying condition w hypoglycemia w/o coma
+ ;;^UTILITY(U,$J,358.3,8978,1,4,0)
+ ;;=4^E08.649
+ ;;^UTILITY(U,$J,358.3,8978,2)
+ ;;=^5002540
+ ;;^UTILITY(U,$J,358.3,8979,0)
+ ;;=E08.65^^55^555^28
+ ;;^UTILITY(U,$J,358.3,8979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9392,1,3,0)
- ;;=3^SCC, MALIGNANT SKIN, UNSP
- ;;^UTILITY(U,$J,358.3,9392,1,4,0)
- ;;=4^173.92
- ;;^UTILITY(U,$J,358.3,9392,2)
- ;;=^340492
- ;;^UTILITY(U,$J,358.3,9393,0)
- ;;=225.1^^41^536^1
- ;;^UTILITY(U,$J,358.3,9393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9393,1,3,0)
- ;;=3^ACOUSTIC NEUROMA
- ;;^UTILITY(U,$J,358.3,9393,1,4,0)
- ;;=4^225.1
- ;;^UTILITY(U,$J,358.3,9393,2)
- ;;=^13298
- ;;^UTILITY(U,$J,358.3,9394,0)
- ;;=385.30^^41^536^6
- ;;^UTILITY(U,$J,358.3,9394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9394,1,3,0)
- ;;=3^CHOLESTEATOMA NOS
+ ;;^UTILITY(U,$J,358.3,8979,1,3,0)
+ ;;=3^Diabetes due to underlying condition w hyperglycemia

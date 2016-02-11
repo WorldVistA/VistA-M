@@ -1,5 +1,5 @@
 XMTDR ;ISC-SF/GMB-Transmit messages in a queue ;08/28/2003  09:22
- ;;8.0;MailMan;**22**;Jun 28, 2002
+ ;;8.0;MailMan;**22,48**;Jun 28, 2002;Build 5
 PLAY(XMINST,XMSITE,XMB) ; 
  N XMIO,XMTLER,XM,XMTURN
  S:'$D(ZTQUEUED) XM="D"
@@ -99,7 +99,7 @@ XMTAUDT(XMINST,XMB) ;
  K XMFDA
  S XMFDA(4.29992,"+1,"_XMIENS,.01)=XMNOW ; audit try time
  S XMFDA(4.29992,"+1,"_XMIENS,1)=$E($P(XMB("SCR REC"),U),1,10) ; audit script name
- S XMFDA(4.29992,"+1,"_XMIENS,3)=$E($P(XMB("SCR REC"),U,6),1,20) ; audit IP address
+ S XMFDA(4.29992,"+1,"_XMIENS,3)=$E($P(XMB("SCR REC"),U,6),1,39) ; audit IP address - XM*8.0*48 updated for IPv6 compatibility
  D UPDATE^DIE("","XMFDA","XMIEN")
  L -^XMBS(4.2999,XMINST)
  S XMB("AUDIT IENS")=XMIEN(1)_","_XMIENS

@@ -1,5 +1,5 @@
 SROAPIMS ;BIR/ADM - PIMS Information Retrieval ;01/24/07
- ;;3.0;Surgery;**38,46,47,57,71,81,86,100,125,134,160,175,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**38,46,47,57,71,81,86,100,125,134,160,175,182,184**;24 Jun 93;Build 35
  ;
  ; Reference to ^MCAR(690,"AC" supported by DBIA #80
  ; Reference to ^DGPM("APTT1" supported by DBIA #565
@@ -50,6 +50,7 @@ END S $P(^SRF(SRTN,208),"^",10)=$P(SRVADPT(5),"^"),SRINOUT=$P(^SRF(SRTN,0),"^",1
  I SRVADPT(12)="" F J=1:1:3 S $P(^SRF(SRTN,208.1),"^",J)="NA"
  S $P(^SRF(SRTN,205),"^",3)=$S($P(SRVADPT(6),"^")'="":$E($P(SRVADPT(6),"^"),1,12),1:"NA")
  S $P(^SRF(SRTN,205),"^",41)=$S($P(SRVADPT(6),"^")="":"N",$$FMDIFF^XLFDT($P(SRVADPT(6),"^"),$P(^SRF(SRTN,.2),"^",3))>30:"N",1:"Y")
+ S $P(^SRF(SRTN,210),"^",14)=1
  D MCAR,EMPLOY
  D KVA^VADPT K DIE,DR,I,SR,SR24,SR48,SRCC,SRD,SRDD,SRDO,SRDT,SRF,SRINOUT,SRNON,SRSP,SRSRV,SRQ,SRX,SRY,X,X1,Y
  Q

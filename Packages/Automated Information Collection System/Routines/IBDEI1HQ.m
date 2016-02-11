@@ -1,142 +1,122 @@
-IBDEI1HQ ; ; 06-AUG-2015
+IBDEI1HQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26442,0)
- ;;=300.7^^152^1686^2
- ;;^UTILITY(U,$J,358.3,26442,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26442,1,2,0)
- ;;=2^300.7
- ;;^UTILITY(U,$J,358.3,26442,1,5,0)
- ;;=5^Hyponchondriasis
- ;;^UTILITY(U,$J,358.3,26442,2)
- ;;=^60556
- ;;^UTILITY(U,$J,358.3,26443,0)
- ;;=300.81^^152^1686^3
- ;;^UTILITY(U,$J,358.3,26443,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26443,1,2,0)
- ;;=2^300.81
- ;;^UTILITY(U,$J,358.3,26443,1,5,0)
- ;;=5^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,26443,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,26444,0)
- ;;=307.1^^152^1687^1
- ;;^UTILITY(U,$J,358.3,26444,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26444,1,2,0)
- ;;=2^307.1
- ;;^UTILITY(U,$J,358.3,26444,1,5,0)
- ;;=5^Anorexia Nervosa
- ;;^UTILITY(U,$J,358.3,26444,2)
- ;;=^7942
- ;;^UTILITY(U,$J,358.3,26445,0)
- ;;=307.51^^152^1687^2
- ;;^UTILITY(U,$J,358.3,26445,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26445,1,2,0)
- ;;=2^307.51
- ;;^UTILITY(U,$J,358.3,26445,1,5,0)
- ;;=5^Bulemia Nervosa
- ;;^UTILITY(U,$J,358.3,26445,2)
- ;;=^17407
- ;;^UTILITY(U,$J,358.3,26446,0)
- ;;=307.50^^152^1687^3
- ;;^UTILITY(U,$J,358.3,26446,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26446,1,2,0)
- ;;=2^307.50
- ;;^UTILITY(U,$J,358.3,26446,1,5,0)
- ;;=5^Eating Disorder, NOS
- ;;^UTILITY(U,$J,358.3,26446,2)
- ;;=^37864
- ;;^UTILITY(U,$J,358.3,26447,0)
- ;;=333.99^^152^1688^2
- ;;^UTILITY(U,$J,358.3,26447,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26447,1,2,0)
- ;;=2^333.99
- ;;^UTILITY(U,$J,358.3,26447,1,5,0)
- ;;=5^Acute Akathisia
- ;;^UTILITY(U,$J,358.3,26447,2)
- ;;=^303698
- ;;^UTILITY(U,$J,358.3,26448,0)
- ;;=332.0^^152^1688^3
- ;;^UTILITY(U,$J,358.3,26448,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26448,1,2,0)
- ;;=2^332.0
- ;;^UTILITY(U,$J,358.3,26448,1,5,0)
- ;;=5^Parkinsonism
- ;;^UTILITY(U,$J,358.3,26448,2)
- ;;=^304847
- ;;^UTILITY(U,$J,358.3,26449,0)
- ;;=333.79^^152^1688^1
- ;;^UTILITY(U,$J,358.3,26449,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26449,1,2,0)
- ;;=2^333.79
- ;;^UTILITY(U,$J,358.3,26449,1,5,0)
- ;;=5^Acquired Torsion Dystonia NEC
- ;;^UTILITY(U,$J,358.3,26449,2)
- ;;=^334068
- ;;^UTILITY(U,$J,358.3,26450,0)
- ;;=333.85^^152^1688^4
- ;;^UTILITY(U,$J,358.3,26450,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26450,1,2,0)
- ;;=2^333.85
- ;;^UTILITY(U,$J,358.3,26450,1,5,0)
- ;;=5^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,26450,2)
- ;;=^334069
- ;;^UTILITY(U,$J,358.3,26451,0)
- ;;=V87.39^^152^1689^1
- ;;^UTILITY(U,$J,358.3,26451,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26451,1,2,0)
- ;;=2^V87.39
- ;;^UTILITY(U,$J,358.3,26451,1,5,0)
- ;;=5^Cont/Exp Hazard Sub NEC
- ;;^UTILITY(U,$J,358.3,26451,2)
- ;;=^336815
- ;;^UTILITY(U,$J,358.3,26452,0)
- ;;=310.0^^152^1690^1
- ;;^UTILITY(U,$J,358.3,26452,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26452,1,2,0)
- ;;=2^310.0
- ;;^UTILITY(U,$J,358.3,26452,1,5,0)
- ;;=5^Frontal Lobe Syndrome
- ;;^UTILITY(U,$J,358.3,26452,2)
- ;;=^265201
- ;;^UTILITY(U,$J,358.3,26453,0)
- ;;=310.1^^152^1690^3
- ;;^UTILITY(U,$J,358.3,26453,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26453,1,2,0)
- ;;=2^310.1
- ;;^UTILITY(U,$J,358.3,26453,1,5,0)
- ;;=5^Personality Chg d/t TBI/Lesion
- ;;^UTILITY(U,$J,358.3,26453,2)
- ;;=^331953
- ;;^UTILITY(U,$J,358.3,26454,0)
- ;;=310.2^^152^1690^4
- ;;^UTILITY(U,$J,358.3,26454,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26454,1,2,0)
- ;;=2^310.2
- ;;^UTILITY(U,$J,358.3,26454,1,5,0)
- ;;=5^Postconcussion Syndrome
- ;;^UTILITY(U,$J,358.3,26454,2)
- ;;=^265160
- ;;^UTILITY(U,$J,358.3,26455,0)
- ;;=310.81^^152^1690^5
- ;;^UTILITY(U,$J,358.3,26455,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26455,1,2,0)
- ;;=2^310.81
- ;;^UTILITY(U,$J,358.3,26455,1,5,0)
- ;;=5^Pseudobulbar Affect
+ ;;^UTILITY(U,$J,358.3,24932,0)
+ ;;=T82.390A^^124^1239^137
+ ;;^UTILITY(U,$J,358.3,24932,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24932,1,3,0)
+ ;;=3^Mechanical Compl of Aortic Graft,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24932,1,4,0)
+ ;;=4^T82.390A
+ ;;^UTILITY(U,$J,358.3,24932,2)
+ ;;=^5054785
+ ;;^UTILITY(U,$J,358.3,24933,0)
+ ;;=T82.391A^^124^1239^142
+ ;;^UTILITY(U,$J,358.3,24933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24933,1,3,0)
+ ;;=3^Mechanical Compl of Carotid Arterial Graft,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24933,1,4,0)
+ ;;=4^T82.391A
+ ;;^UTILITY(U,$J,358.3,24933,2)
+ ;;=^5054788
+ ;;^UTILITY(U,$J,358.3,24934,0)
+ ;;=T82.392A^^124^1239^143
+ ;;^UTILITY(U,$J,358.3,24934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24934,1,3,0)
+ ;;=3^Mechanical Compl of Femoral Arterial Graft,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24934,1,4,0)
+ ;;=4^T82.392A
+ ;;^UTILITY(U,$J,358.3,24934,2)
+ ;;=^5054791
+ ;;^UTILITY(U,$J,358.3,24935,0)
+ ;;=T82.399A^^124^1239^156
+ ;;^UTILITY(U,$J,358.3,24935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24935,1,3,0)
+ ;;=3^Mechanical Compl of Vascular Graft,Unspec,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24935,1,4,0)
+ ;;=4^T82.399A
+ ;;^UTILITY(U,$J,358.3,24935,2)
+ ;;=^5054797
+ ;;^UTILITY(U,$J,358.3,24936,0)
+ ;;=T82.41XA^^124^1239^16
+ ;;^UTILITY(U,$J,358.3,24936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24936,1,3,0)
+ ;;=3^Breakdown of Vascular Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24936,1,4,0)
+ ;;=4^T82.41XA
+ ;;^UTILITY(U,$J,358.3,24936,2)
+ ;;=^5054800
+ ;;^UTILITY(U,$J,358.3,24937,0)
+ ;;=T82.42XA^^124^1239^46
+ ;;^UTILITY(U,$J,358.3,24937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24937,1,3,0)
+ ;;=3^Displacement of Vascular Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24937,1,4,0)
+ ;;=4^T82.42XA
+ ;;^UTILITY(U,$J,358.3,24937,2)
+ ;;=^5054803
+ ;;^UTILITY(U,$J,358.3,24938,0)
+ ;;=T82.43XA^^124^1239^134
+ ;;^UTILITY(U,$J,358.3,24938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24938,1,3,0)
+ ;;=3^Leakage of Vascular Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24938,1,4,0)
+ ;;=4^T82.43XA
+ ;;^UTILITY(U,$J,358.3,24938,2)
+ ;;=^5054806
+ ;;^UTILITY(U,$J,358.3,24939,0)
+ ;;=T82.49XA^^124^1239^22
+ ;;^UTILITY(U,$J,358.3,24939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24939,1,3,0)
+ ;;=3^Complication of Vascular Dialysis Catheter NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24939,1,4,0)
+ ;;=4^T82.49XA
+ ;;^UTILITY(U,$J,358.3,24939,2)
+ ;;=^5054809
+ ;;^UTILITY(U,$J,358.3,24940,0)
+ ;;=T82.510A^^124^1239^13
+ ;;^UTILITY(U,$J,358.3,24940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24940,1,3,0)
+ ;;=3^Breakdown of Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24940,1,4,0)
+ ;;=4^T82.510A
+ ;;^UTILITY(U,$J,358.3,24940,2)
+ ;;=^5054812
+ ;;^UTILITY(U,$J,358.3,24941,0)
+ ;;=T82.511A^^124^1239^14
+ ;;^UTILITY(U,$J,358.3,24941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24941,1,3,0)
+ ;;=3^Breakdown of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24941,1,4,0)
+ ;;=4^T82.511A
+ ;;^UTILITY(U,$J,358.3,24941,2)
+ ;;=^5054815
+ ;;^UTILITY(U,$J,358.3,24942,0)
+ ;;=T82.513A^^124^1239^3
+ ;;^UTILITY(U,$J,358.3,24942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24942,1,3,0)
+ ;;=3^Breakdown of Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24942,1,4,0)
+ ;;=4^T82.513A
+ ;;^UTILITY(U,$J,358.3,24942,2)
+ ;;=^5054821
+ ;;^UTILITY(U,$J,358.3,24943,0)
+ ;;=T82.515A^^124^1239^15
+ ;;^UTILITY(U,$J,358.3,24943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24943,1,3,0)
+ ;;=3^Breakdown of Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24943,1,4,0)
+ ;;=4^T82.515A

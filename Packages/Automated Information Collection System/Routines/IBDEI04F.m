@@ -1,144 +1,136 @@
-IBDEI04F ; ; 06-AUG-2015
+IBDEI04F ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1542,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,1542,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,1543,0)
- ;;=M19.072^^3^45^75
- ;;^UTILITY(U,$J,358.3,1543,1,0)
+ ;;^UTILITY(U,$J,358.3,1387,0)
+ ;;=H81.393^^14^149^15
+ ;;^UTILITY(U,$J,358.3,1387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1543,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,1543,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,1543,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,1544,0)
- ;;=M12.9^^3^45^9
- ;;^UTILITY(U,$J,358.3,1544,1,0)
+ ;;^UTILITY(U,$J,358.3,1387,1,3,0)
+ ;;=3^Peripheral vertigo, bilateral NEC
+ ;;^UTILITY(U,$J,358.3,1387,1,4,0)
+ ;;=4^H81.393
+ ;;^UTILITY(U,$J,358.3,1387,2)
+ ;;=^5006878
+ ;;^UTILITY(U,$J,358.3,1388,0)
+ ;;=H81.392^^14^149^16
+ ;;^UTILITY(U,$J,358.3,1388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1544,1,3,0)
- ;;=3^Arthropathy, unspecified
- ;;^UTILITY(U,$J,358.3,1544,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,1544,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,1545,0)
- ;;=M24.60^^3^45^8
- ;;^UTILITY(U,$J,358.3,1545,1,0)
+ ;;^UTILITY(U,$J,358.3,1388,1,3,0)
+ ;;=3^Peripheral vertigo, left ear NEC
+ ;;^UTILITY(U,$J,358.3,1388,1,4,0)
+ ;;=4^H81.392
+ ;;^UTILITY(U,$J,358.3,1388,2)
+ ;;=^5006877
+ ;;^UTILITY(U,$J,358.3,1389,0)
+ ;;=H81.391^^14^149^17
+ ;;^UTILITY(U,$J,358.3,1389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1545,1,3,0)
- ;;=3^Ankylosis, unspecified joint
- ;;^UTILITY(U,$J,358.3,1545,1,4,0)
- ;;=4^M24.60
- ;;^UTILITY(U,$J,358.3,1545,2)
- ;;=^5011426
- ;;^UTILITY(U,$J,358.3,1546,0)
- ;;=M25.40^^3^45^25
- ;;^UTILITY(U,$J,358.3,1546,1,0)
+ ;;^UTILITY(U,$J,358.3,1389,1,3,0)
+ ;;=3^Peripheral vertigo, right ear NEC
+ ;;^UTILITY(U,$J,358.3,1389,1,4,0)
+ ;;=4^H81.391
+ ;;^UTILITY(U,$J,358.3,1389,2)
+ ;;=^5006876
+ ;;^UTILITY(U,$J,358.3,1390,0)
+ ;;=H71.93^^14^149^10
+ ;;^UTILITY(U,$J,358.3,1390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1546,1,3,0)
- ;;=3^Effusion, unspecified joint
- ;;^UTILITY(U,$J,358.3,1546,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,1546,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,1547,0)
- ;;=M25.511^^3^45^68
- ;;^UTILITY(U,$J,358.3,1547,1,0)
+ ;;^UTILITY(U,$J,358.3,1390,1,3,0)
+ ;;=3^Cholesteatoma,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,1390,1,4,0)
+ ;;=4^H71.93
+ ;;^UTILITY(U,$J,358.3,1390,2)
+ ;;=^5006741
+ ;;^UTILITY(U,$J,358.3,1391,0)
+ ;;=H81.43^^14^149^7
+ ;;^UTILITY(U,$J,358.3,1391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1547,1,3,0)
- ;;=3^Pain in right shoulder
- ;;^UTILITY(U,$J,358.3,1547,1,4,0)
- ;;=4^M25.511
- ;;^UTILITY(U,$J,358.3,1547,2)
- ;;=^5011602
- ;;^UTILITY(U,$J,358.3,1548,0)
- ;;=M25.512^^3^45^62
- ;;^UTILITY(U,$J,358.3,1548,1,0)
+ ;;^UTILITY(U,$J,358.3,1391,1,3,0)
+ ;;=3^Central Origin Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,1391,1,4,0)
+ ;;=4^H81.43
+ ;;^UTILITY(U,$J,358.3,1391,2)
+ ;;=^5006882
+ ;;^UTILITY(U,$J,358.3,1392,0)
+ ;;=H81.42^^14^149^8
+ ;;^UTILITY(U,$J,358.3,1392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1548,1,3,0)
- ;;=3^Pain in left shoulder
- ;;^UTILITY(U,$J,358.3,1548,1,4,0)
- ;;=4^M25.512
- ;;^UTILITY(U,$J,358.3,1548,2)
- ;;=^5011603
- ;;^UTILITY(U,$J,358.3,1549,0)
- ;;=M25.521^^3^45^65
- ;;^UTILITY(U,$J,358.3,1549,1,0)
+ ;;^UTILITY(U,$J,358.3,1392,1,3,0)
+ ;;=3^Central Origin Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,1392,1,4,0)
+ ;;=4^H81.42
+ ;;^UTILITY(U,$J,358.3,1392,2)
+ ;;=^5006881
+ ;;^UTILITY(U,$J,358.3,1393,0)
+ ;;=H81.41^^14^149^9
+ ;;^UTILITY(U,$J,358.3,1393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1549,1,3,0)
- ;;=3^Pain in right elbow
- ;;^UTILITY(U,$J,358.3,1549,1,4,0)
- ;;=4^M25.521
- ;;^UTILITY(U,$J,358.3,1549,2)
- ;;=^5011605
- ;;^UTILITY(U,$J,358.3,1550,0)
- ;;=M25.522^^3^45^59
- ;;^UTILITY(U,$J,358.3,1550,1,0)
+ ;;^UTILITY(U,$J,358.3,1393,1,3,0)
+ ;;=3^Central Origin Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,1393,1,4,0)
+ ;;=4^H81.41
+ ;;^UTILITY(U,$J,358.3,1393,2)
+ ;;=^5006880
+ ;;^UTILITY(U,$J,358.3,1394,0)
+ ;;=H81.23^^14^149^18
+ ;;^UTILITY(U,$J,358.3,1394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1550,1,3,0)
- ;;=3^Pain in left elbow
- ;;^UTILITY(U,$J,358.3,1550,1,4,0)
- ;;=4^M25.522
- ;;^UTILITY(U,$J,358.3,1550,2)
- ;;=^5011606
- ;;^UTILITY(U,$J,358.3,1551,0)
- ;;=M25.531^^3^45^69
- ;;^UTILITY(U,$J,358.3,1551,1,0)
+ ;;^UTILITY(U,$J,358.3,1394,1,3,0)
+ ;;=3^Vestibular neuronitis, bilateral
+ ;;^UTILITY(U,$J,358.3,1394,1,4,0)
+ ;;=4^H81.23
+ ;;^UTILITY(U,$J,358.3,1394,2)
+ ;;=^5006871
+ ;;^UTILITY(U,$J,358.3,1395,0)
+ ;;=T70.0XXA^^14^150^1
+ ;;^UTILITY(U,$J,358.3,1395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1551,1,3,0)
- ;;=3^Pain in right wrist
- ;;^UTILITY(U,$J,358.3,1551,1,4,0)
- ;;=4^M25.531
- ;;^UTILITY(U,$J,358.3,1551,2)
- ;;=^5011608
- ;;^UTILITY(U,$J,358.3,1552,0)
- ;;=M25.532^^3^45^63
- ;;^UTILITY(U,$J,358.3,1552,1,0)
+ ;;^UTILITY(U,$J,358.3,1395,1,3,0)
+ ;;=3^Otitic barotrauma, initial encounter
+ ;;^UTILITY(U,$J,358.3,1395,1,4,0)
+ ;;=4^T70.0XXA
+ ;;^UTILITY(U,$J,358.3,1395,2)
+ ;;=^5053981
+ ;;^UTILITY(U,$J,358.3,1396,0)
+ ;;=T70.0XXD^^14^150^3
+ ;;^UTILITY(U,$J,358.3,1396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1552,1,3,0)
- ;;=3^Pain in left wrist
- ;;^UTILITY(U,$J,358.3,1552,1,4,0)
- ;;=4^M25.532
- ;;^UTILITY(U,$J,358.3,1552,2)
- ;;=^5011609
- ;;^UTILITY(U,$J,358.3,1553,0)
- ;;=M25.551^^3^45^66
- ;;^UTILITY(U,$J,358.3,1553,1,0)
+ ;;^UTILITY(U,$J,358.3,1396,1,3,0)
+ ;;=3^Otitic barotrauma, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,1396,1,4,0)
+ ;;=4^T70.0XXD
+ ;;^UTILITY(U,$J,358.3,1396,2)
+ ;;=^5053982
+ ;;^UTILITY(U,$J,358.3,1397,0)
+ ;;=T70.0XXS^^14^150^2
+ ;;^UTILITY(U,$J,358.3,1397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1553,1,3,0)
- ;;=3^Pain in right hip
- ;;^UTILITY(U,$J,358.3,1553,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,1553,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,1554,0)
- ;;=M25.552^^3^45^60
- ;;^UTILITY(U,$J,358.3,1554,1,0)
+ ;;^UTILITY(U,$J,358.3,1397,1,3,0)
+ ;;=3^Otitic barotrauma, sequela
+ ;;^UTILITY(U,$J,358.3,1397,1,4,0)
+ ;;=4^T70.0XXS
+ ;;^UTILITY(U,$J,358.3,1397,2)
+ ;;=^5053983
+ ;;^UTILITY(U,$J,358.3,1398,0)
+ ;;=H73.813^^14^151^1
+ ;;^UTILITY(U,$J,358.3,1398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1554,1,3,0)
- ;;=3^Pain in left hip
- ;;^UTILITY(U,$J,358.3,1554,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,1554,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,1555,0)
- ;;=M25.561^^3^45^67
- ;;^UTILITY(U,$J,358.3,1555,1,0)
+ ;;^UTILITY(U,$J,358.3,1398,1,3,0)
+ ;;=3^Atrophic flaccid tympanic membrane, bilateral
+ ;;^UTILITY(U,$J,358.3,1398,1,4,0)
+ ;;=4^H73.813
+ ;;^UTILITY(U,$J,358.3,1398,2)
+ ;;=^5006782
+ ;;^UTILITY(U,$J,358.3,1399,0)
+ ;;=H73.812^^14^151^2
+ ;;^UTILITY(U,$J,358.3,1399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1555,1,3,0)
- ;;=3^Pain in right knee
- ;;^UTILITY(U,$J,358.3,1555,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,1555,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,1556,0)
- ;;=M25.562^^3^45^61
- ;;^UTILITY(U,$J,358.3,1556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1556,1,3,0)
- ;;=3^Pain in left knee
+ ;;^UTILITY(U,$J,358.3,1399,1,3,0)
+ ;;=3^Atrophic flaccid tympanic membrane, left ear
+ ;;^UTILITY(U,$J,358.3,1399,1,4,0)
+ ;;=4^H73.812
+ ;;^UTILITY(U,$J,358.3,1399,2)
+ ;;=^5006781
+ ;;^UTILITY(U,$J,358.3,1400,0)
+ ;;=H73.811^^14^151^3

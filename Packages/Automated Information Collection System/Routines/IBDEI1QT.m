@@ -1,130 +1,134 @@
-IBDEI1QT ; ; 06-AUG-2015
+IBDEI1QT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30819,0)
- ;;=M84.351A^^179^1929^16
- ;;^UTILITY(U,$J,358.3,30819,1,0)
+ ;;^UTILITY(U,$J,358.3,29184,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,29184,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,29185,0)
+ ;;=Z02.1^^135^1357^14
+ ;;^UTILITY(U,$J,358.3,29185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30819,1,3,0)
- ;;=3^Stress fracture, right femur, initial encounter for fracture
- ;;^UTILITY(U,$J,358.3,30819,1,4,0)
- ;;=4^M84.351A
- ;;^UTILITY(U,$J,358.3,30819,2)
- ;;=^5013680
- ;;^UTILITY(U,$J,358.3,30820,0)
- ;;=M00.872^^179^1930^1
- ;;^UTILITY(U,$J,358.3,30820,1,0)
+ ;;^UTILITY(U,$J,358.3,29185,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,29185,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,29185,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,29186,0)
+ ;;=Z01.810^^135^1357^2
+ ;;^UTILITY(U,$J,358.3,29186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30820,1,3,0)
- ;;=3^Arthritis due to other bacteria, left ankle and foot
- ;;^UTILITY(U,$J,358.3,30820,1,4,0)
- ;;=4^M00.872
- ;;^UTILITY(U,$J,358.3,30820,2)
- ;;=^5009689
- ;;^UTILITY(U,$J,358.3,30821,0)
- ;;=M00.871^^179^1930^2
- ;;^UTILITY(U,$J,358.3,30821,1,0)
+ ;;^UTILITY(U,$J,358.3,29186,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,29186,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,29186,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,29187,0)
+ ;;=Z01.811^^135^1357^16
+ ;;^UTILITY(U,$J,358.3,29187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30821,1,3,0)
- ;;=3^Arthritis due to other bacteria, right ankle and foot
- ;;^UTILITY(U,$J,358.3,30821,1,4,0)
- ;;=4^M00.871
- ;;^UTILITY(U,$J,358.3,30821,2)
- ;;=^5009688
- ;;^UTILITY(U,$J,358.3,30822,0)
- ;;=L03.116^^179^1930^3
- ;;^UTILITY(U,$J,358.3,30822,1,0)
+ ;;^UTILITY(U,$J,358.3,29187,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,29187,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,29187,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,29188,0)
+ ;;=Z01.812^^135^1357^13
+ ;;^UTILITY(U,$J,358.3,29188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30822,1,3,0)
- ;;=3^Cellulitis of left lower limb
- ;;^UTILITY(U,$J,358.3,30822,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,30822,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,30823,0)
- ;;=L03.115^^179^1930^4
- ;;^UTILITY(U,$J,358.3,30823,1,0)
+ ;;^UTILITY(U,$J,358.3,29188,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,29188,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,29188,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,29189,0)
+ ;;=Z01.818^^135^1357^15
+ ;;^UTILITY(U,$J,358.3,29189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30823,1,3,0)
- ;;=3^Cellulitis of right lower limb
- ;;^UTILITY(U,$J,358.3,30823,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,30823,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,30824,0)
- ;;=M20.22^^179^1930^7
- ;;^UTILITY(U,$J,358.3,30824,1,0)
+ ;;^UTILITY(U,$J,358.3,29189,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,29189,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,29189,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,29190,0)
+ ;;=Z71.0^^135^1357^9
+ ;;^UTILITY(U,$J,358.3,29190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30824,1,3,0)
- ;;=3^Hallux rigidus, left foot
- ;;^UTILITY(U,$J,358.3,30824,1,4,0)
- ;;=4^M20.22
- ;;^UTILITY(U,$J,358.3,30824,2)
- ;;=^5011046
- ;;^UTILITY(U,$J,358.3,30825,0)
- ;;=M20.21^^179^1930^8
- ;;^UTILITY(U,$J,358.3,30825,1,0)
+ ;;^UTILITY(U,$J,358.3,29190,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,29190,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,29190,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,29191,0)
+ ;;=Z59.8^^135^1357^10
+ ;;^UTILITY(U,$J,358.3,29191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30825,1,3,0)
- ;;=3^Hallux rigidus, right foot
- ;;^UTILITY(U,$J,358.3,30825,1,4,0)
- ;;=4^M20.21
- ;;^UTILITY(U,$J,358.3,30825,2)
- ;;=^5011045
- ;;^UTILITY(U,$J,358.3,30826,0)
- ;;=M20.12^^179^1930^9
- ;;^UTILITY(U,$J,358.3,30826,1,0)
+ ;;^UTILITY(U,$J,358.3,29191,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,29191,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,29191,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,29192,0)
+ ;;=I20.0^^135^1358^14
+ ;;^UTILITY(U,$J,358.3,29192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30826,1,3,0)
- ;;=3^Hallux valgus (acquired), left foot
- ;;^UTILITY(U,$J,358.3,30826,1,4,0)
- ;;=4^M20.12
- ;;^UTILITY(U,$J,358.3,30826,2)
- ;;=^5011043
- ;;^UTILITY(U,$J,358.3,30827,0)
- ;;=M20.11^^179^1930^10
- ;;^UTILITY(U,$J,358.3,30827,1,0)
+ ;;^UTILITY(U,$J,358.3,29192,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,29192,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,29192,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,29193,0)
+ ;;=I25.110^^135^1358^7
+ ;;^UTILITY(U,$J,358.3,29193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30827,1,3,0)
- ;;=3^Hallux valgus (acquired), right foot
- ;;^UTILITY(U,$J,358.3,30827,1,4,0)
- ;;=4^M20.11
- ;;^UTILITY(U,$J,358.3,30827,2)
- ;;=^5011042
- ;;^UTILITY(U,$J,358.3,30828,0)
- ;;=M10.072^^179^1930^11
- ;;^UTILITY(U,$J,358.3,30828,1,0)
+ ;;^UTILITY(U,$J,358.3,29193,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,29193,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,29193,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,29194,0)
+ ;;=I25.700^^135^1358^12
+ ;;^UTILITY(U,$J,358.3,29194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30828,1,3,0)
- ;;=3^Idiopathic gout, left ankle and foot
- ;;^UTILITY(U,$J,358.3,30828,1,4,0)
- ;;=4^M10.072
- ;;^UTILITY(U,$J,358.3,30828,2)
- ;;=^5010304
- ;;^UTILITY(U,$J,358.3,30829,0)
- ;;=M10.071^^179^1930^12
- ;;^UTILITY(U,$J,358.3,30829,1,0)
+ ;;^UTILITY(U,$J,358.3,29194,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,29194,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,29194,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,29195,0)
+ ;;=I25.2^^135^1358^13
+ ;;^UTILITY(U,$J,358.3,29195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30829,1,3,0)
- ;;=3^Idiopathic gout, right ankle and foot
- ;;^UTILITY(U,$J,358.3,30829,1,4,0)
- ;;=4^M10.071
- ;;^UTILITY(U,$J,358.3,30829,2)
- ;;=^5010303
- ;;^UTILITY(U,$J,358.3,30830,0)
- ;;=M77.42^^179^1930^13
- ;;^UTILITY(U,$J,358.3,30830,1,0)
+ ;;^UTILITY(U,$J,358.3,29195,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,29195,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,29195,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,29196,0)
+ ;;=I20.8^^135^1358^2
+ ;;^UTILITY(U,$J,358.3,29196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30830,1,3,0)
- ;;=3^Metatarsalgia, left foot
- ;;^UTILITY(U,$J,358.3,30830,1,4,0)
- ;;=4^M77.42
- ;;^UTILITY(U,$J,358.3,30830,2)
- ;;=^5013314
- ;;^UTILITY(U,$J,358.3,30831,0)
- ;;=M77.41^^179^1930^14
- ;;^UTILITY(U,$J,358.3,30831,1,0)
+ ;;^UTILITY(U,$J,358.3,29196,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,29196,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,29196,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,29197,0)
+ ;;=I20.1^^135^1358^1
+ ;;^UTILITY(U,$J,358.3,29197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30831,1,3,0)
- ;;=3^Metatarsalgia, right foot
+ ;;^UTILITY(U,$J,358.3,29197,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm

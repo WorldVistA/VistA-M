@@ -1,130 +1,140 @@
-IBDEI03U ; ; 06-AUG-2015
+IBDEI03U ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1264,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,1264,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,1265,0)
- ;;=C79.71^^3^39^125
- ;;^UTILITY(U,$J,358.3,1265,1,0)
+ ;;^UTILITY(U,$J,358.3,1090,0)
+ ;;=G47.00^^12^127^13
+ ;;^UTILITY(U,$J,358.3,1090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1265,1,3,0)
- ;;=3^Secondary malignant neoplasm of right adrenal gland
- ;;^UTILITY(U,$J,358.3,1265,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,1265,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,1266,0)
- ;;=C79.72^^3^39^122
- ;;^UTILITY(U,$J,358.3,1266,1,0)
+ ;;^UTILITY(U,$J,358.3,1090,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,1090,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,1090,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,1091,0)
+ ;;=T81.4XXA^^12^127^7
+ ;;^UTILITY(U,$J,358.3,1091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1266,1,3,0)
- ;;=3^Secondary malignant neoplasm of left adrenal gland
- ;;^UTILITY(U,$J,358.3,1266,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,1266,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,1267,0)
- ;;=C83.50^^3^39^46
- ;;^UTILITY(U,$J,358.3,1267,1,0)
+ ;;^UTILITY(U,$J,358.3,1091,1,3,0)
+ ;;=3^Infection Following Procedure,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,1091,1,4,0)
+ ;;=4^T81.4XXA
+ ;;^UTILITY(U,$J,358.3,1091,2)
+ ;;=^5054479
+ ;;^UTILITY(U,$J,358.3,1092,0)
+ ;;=K40.90^^12^127^12
+ ;;^UTILITY(U,$J,358.3,1092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1267,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,1267,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,1267,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,1268,0)
- ;;=C83.59^^3^39^47
- ;;^UTILITY(U,$J,358.3,1268,1,0)
+ ;;^UTILITY(U,$J,358.3,1092,1,3,0)
+ ;;=3^Inguinal Hernia,Unil w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,1092,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,1092,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,1093,0)
+ ;;=K40.20^^12^127^11
+ ;;^UTILITY(U,$J,358.3,1093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1268,1,3,0)
- ;;=3^Lymphoblastic lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,1268,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,1268,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,1269,0)
- ;;=C83.70^^3^39^18
- ;;^UTILITY(U,$J,358.3,1269,1,0)
+ ;;^UTILITY(U,$J,358.3,1093,1,3,0)
+ ;;=3^Inguinal Hernia,Bilat w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,1093,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,1093,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,1094,0)
+ ;;=K43.2^^12^127^6
+ ;;^UTILITY(U,$J,358.3,1094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1269,1,3,0)
- ;;=3^Burkitt lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,1269,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,1269,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,1270,0)
- ;;=C83.79^^3^39^17
- ;;^UTILITY(U,$J,358.3,1270,1,0)
+ ;;^UTILITY(U,$J,358.3,1094,1,3,0)
+ ;;=3^Incisional Hernia w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,1094,1,4,0)
+ ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,1094,2)
+ ;;=^5008609
+ ;;^UTILITY(U,$J,358.3,1095,0)
+ ;;=K75.9^^12^127^8
+ ;;^UTILITY(U,$J,358.3,1095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1270,1,3,0)
- ;;=3^Burkitt lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,1270,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,1270,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,1271,0)
- ;;=C81.90^^3^39^40
- ;;^UTILITY(U,$J,358.3,1271,1,0)
+ ;;^UTILITY(U,$J,358.3,1095,1,3,0)
+ ;;=3^Inflammatory Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,1095,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,1095,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,1096,0)
+ ;;=M51.9^^12^127^14
+ ;;^UTILITY(U,$J,358.3,1096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1271,1,3,0)
- ;;=3^Hodgkin lymphoma, unspecified, unspecified site
- ;;^UTILITY(U,$J,358.3,1271,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,1271,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,1272,0)
- ;;=C81.99^^3^39^39
- ;;^UTILITY(U,$J,358.3,1272,1,0)
+ ;;^UTILITY(U,$J,358.3,1096,1,3,0)
+ ;;=3^Intervertebral Disc Disorder Thoracic,Thoracolumbar & Lumbar
+ ;;^UTILITY(U,$J,358.3,1096,1,4,0)
+ ;;=4^M51.9
+ ;;^UTILITY(U,$J,358.3,1096,2)
+ ;;=^5012263
+ ;;^UTILITY(U,$J,358.3,1097,0)
+ ;;=I30.0^^12^127^2
+ ;;^UTILITY(U,$J,358.3,1097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1272,1,3,0)
- ;;=3^Hodgkin lymphoma, unsp, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,1272,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,1272,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,1273,0)
- ;;=C82.90^^3^39^33
- ;;^UTILITY(U,$J,358.3,1273,1,0)
+ ;;^UTILITY(U,$J,358.3,1097,1,3,0)
+ ;;=3^Idiopathic Pericarditis Acute
+ ;;^UTILITY(U,$J,358.3,1097,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,1097,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,1098,0)
+ ;;=N18.9^^12^128^3
+ ;;^UTILITY(U,$J,358.3,1098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1273,1,3,0)
- ;;=3^Follicular lymphoma, unspecified, unspecified site
- ;;^UTILITY(U,$J,358.3,1273,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,1273,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,1274,0)
- ;;=C82.99^^3^39^32
- ;;^UTILITY(U,$J,358.3,1274,1,0)
+ ;;^UTILITY(U,$J,358.3,1098,1,3,0)
+ ;;=3^Kidney Disease,Chr,Unspec
+ ;;^UTILITY(U,$J,358.3,1098,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,1098,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,1099,0)
+ ;;=J04.0^^12^128^6
+ ;;^UTILITY(U,$J,358.3,1099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1274,1,3,0)
- ;;=3^Follicular lymphoma, unsp, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,1274,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,1274,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,1275,0)
- ;;=C91.40^^3^39^34
- ;;^UTILITY(U,$J,358.3,1275,1,0)
+ ;;^UTILITY(U,$J,358.3,1099,1,3,0)
+ ;;=3^Laryngitis,Acute
+ ;;^UTILITY(U,$J,358.3,1099,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,1099,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,1100,0)
+ ;;=J05.0^^12^128^7
+ ;;^UTILITY(U,$J,358.3,1100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1275,1,3,0)
- ;;=3^Hairy cell leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,1275,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,1275,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,1276,0)
- ;;=C90.00^^3^39^88
- ;;^UTILITY(U,$J,358.3,1276,1,0)
+ ;;^UTILITY(U,$J,358.3,1100,1,3,0)
+ ;;=3^Laryngitis,Acute Obstructive (Croup)
+ ;;^UTILITY(U,$J,358.3,1100,1,4,0)
+ ;;=4^J05.0
+ ;;^UTILITY(U,$J,358.3,1100,2)
+ ;;=^5008141
+ ;;^UTILITY(U,$J,358.3,1101,0)
+ ;;=R17.^^12^128^1
+ ;;^UTILITY(U,$J,358.3,1101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1276,1,3,0)
- ;;=3^Multiple myeloma not having achieved remission
- ;;^UTILITY(U,$J,358.3,1276,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,1276,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,1277,0)
- ;;=C90.01^^3^39^87
+ ;;^UTILITY(U,$J,358.3,1101,1,3,0)
+ ;;=3^Jaundice,Unspec
+ ;;^UTILITY(U,$J,358.3,1101,1,4,0)
+ ;;=4^R17.
+ ;;^UTILITY(U,$J,358.3,1101,2)
+ ;;=^5019251
+ ;;^UTILITY(U,$J,358.3,1102,0)
+ ;;=N17.9^^12^128^4
+ ;;^UTILITY(U,$J,358.3,1102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1102,1,3,0)
+ ;;=3^Kidney Failure,Acute
+ ;;^UTILITY(U,$J,358.3,1102,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,1102,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,1103,0)
+ ;;=N18.9^^12^128^5
+ ;;^UTILITY(U,$J,358.3,1103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1103,1,3,0)
+ ;;=3^Kidney Failure,Chronic

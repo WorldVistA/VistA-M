@@ -1,128 +1,132 @@
-IBDEI0XJ ; ; 06-AUG-2015
+IBDEI0XJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16308,1,3,0)
- ;;=3^Compliance Study
- ;;^UTILITY(U,$J,358.3,16309,0)
- ;;=94375^^82^962^6^^^^1
- ;;^UTILITY(U,$J,358.3,16309,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16309,1,2,0)
- ;;=2^94375
- ;;^UTILITY(U,$J,358.3,16309,1,3,0)
- ;;=3^Flow Volume Loop (included w/94010)
- ;;^UTILITY(U,$J,358.3,16310,0)
- ;;=94070^^82^962^11^^^^1
- ;;^UTILITY(U,$J,358.3,16310,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16310,1,2,0)
- ;;=2^94070
- ;;^UTILITY(U,$J,358.3,16310,1,3,0)
- ;;=3^Prolong Eval of Bronchospasm/Methacholine
- ;;^UTILITY(U,$J,358.3,16311,0)
- ;;=94200^^82^962^9^^^^1
- ;;^UTILITY(U,$J,358.3,16311,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16311,1,2,0)
- ;;=2^94200
- ;;^UTILITY(U,$J,358.3,16311,1,3,0)
- ;;=3^Max Voluntary Ventilation (included w/94010)
- ;;^UTILITY(U,$J,358.3,16312,0)
- ;;=94014^^82^962^1^^^^1
- ;;^UTILITY(U,$J,358.3,16312,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16312,1,2,0)
- ;;=2^94014
- ;;^UTILITY(U,$J,358.3,16312,1,3,0)
- ;;=3^30 day Spirometry
- ;;^UTILITY(U,$J,358.3,16313,0)
- ;;=94726^^82^962^10^^^^1
- ;;^UTILITY(U,$J,358.3,16313,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16313,1,2,0)
- ;;=2^94726
- ;;^UTILITY(U,$J,358.3,16313,1,3,0)
- ;;=3^Plethysmography for Lung Volumes
- ;;^UTILITY(U,$J,358.3,16314,0)
- ;;=94727^^82^962^7^^^^1
- ;;^UTILITY(U,$J,358.3,16314,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16314,1,2,0)
- ;;=2^94727
- ;;^UTILITY(U,$J,358.3,16314,1,3,0)
- ;;=3^Gas Dilution or Washout for Lung Volumes
- ;;^UTILITY(U,$J,358.3,16315,0)
- ;;=94728^^82^962^2^^^^1
- ;;^UTILITY(U,$J,358.3,16315,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16315,1,2,0)
- ;;=2^94728
- ;;^UTILITY(U,$J,358.3,16315,1,3,0)
- ;;=3^Airway Resistance by Impulse Oscillometry
- ;;^UTILITY(U,$J,358.3,16316,0)
- ;;=94729^^82^962^4^^^^1
- ;;^UTILITY(U,$J,358.3,16316,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16316,1,2,0)
- ;;=2^94729
- ;;^UTILITY(U,$J,358.3,16316,1,3,0)
- ;;=3^Diffusing Capacity
- ;;^UTILITY(U,$J,358.3,16317,0)
- ;;=94250^^82^962^5^^^^1
- ;;^UTILITY(U,$J,358.3,16317,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16317,1,2,0)
- ;;=2^94250
- ;;^UTILITY(U,$J,358.3,16317,1,3,0)
- ;;=3^Expired Gas Collection
- ;;^UTILITY(U,$J,358.3,16318,0)
- ;;=94799^^82^962^8^^^^1
- ;;^UTILITY(U,$J,358.3,16318,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16318,1,2,0)
- ;;=2^94799
- ;;^UTILITY(U,$J,358.3,16318,1,3,0)
- ;;=3^MIP/MEP's
- ;;^UTILITY(U,$J,358.3,16319,0)
- ;;=94150^^82^962^14^^^^1
- ;;^UTILITY(U,$J,358.3,16319,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16319,1,2,0)
- ;;=2^94150
- ;;^UTILITY(U,$J,358.3,16319,1,3,0)
- ;;=3^Vital Capacity Test
- ;;^UTILITY(U,$J,358.3,16320,0)
- ;;=32400^^82^963^2^^^^1
- ;;^UTILITY(U,$J,358.3,16320,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16320,1,2,0)
- ;;=2^32400
- ;;^UTILITY(U,$J,358.3,16320,1,3,0)
- ;;=3^Pleural Biopsy
- ;;^UTILITY(U,$J,358.3,16321,0)
- ;;=32554^^82^963^7^^^^1
- ;;^UTILITY(U,$J,358.3,16321,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16321,1,2,0)
- ;;=2^32554
- ;;^UTILITY(U,$J,358.3,16321,1,3,0)
- ;;=3^Thoracentesis w/o Image Guidance
- ;;^UTILITY(U,$J,358.3,16322,0)
- ;;=32555^^82^963^6^^^^1
- ;;^UTILITY(U,$J,358.3,16322,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16322,1,2,0)
- ;;=2^32555
- ;;^UTILITY(U,$J,358.3,16322,1,3,0)
- ;;=3^Thoracentesis w/ Image Guidance
- ;;^UTILITY(U,$J,358.3,16323,0)
- ;;=32556^^82^963^4^^^^1
- ;;^UTILITY(U,$J,358.3,16323,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,16323,1,2,0)
- ;;=2^32556
- ;;^UTILITY(U,$J,358.3,16323,1,3,0)
- ;;=3^Pleural Drainage Perc w/ Cath w/o Image Guidance
- ;;^UTILITY(U,$J,358.3,16324,0)
- ;;=32557^^82^963^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15455,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,15455,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,15455,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,15456,0)
+ ;;=M47.815^^85^818^35
+ ;;^UTILITY(U,$J,358.3,15456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15456,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,15456,1,4,0)
+ ;;=4^M47.815
+ ;;^UTILITY(U,$J,358.3,15456,2)
+ ;;=^5012072
+ ;;^UTILITY(U,$J,358.3,15457,0)
+ ;;=S08.111A^^85^819^3
+ ;;^UTILITY(U,$J,358.3,15457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15457,1,3,0)
+ ;;=3^Complete Traumatic Amputation of Right Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15457,1,4,0)
+ ;;=4^S08.111A
+ ;;^UTILITY(U,$J,358.3,15457,2)
+ ;;=^5021251
+ ;;^UTILITY(U,$J,358.3,15458,0)
+ ;;=S08.112A^^85^819^2
+ ;;^UTILITY(U,$J,358.3,15458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15458,1,3,0)
+ ;;=3^Complete Traumatic Amputation of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15458,1,4,0)
+ ;;=4^S08.112A
+ ;;^UTILITY(U,$J,358.3,15458,2)
+ ;;=^5021254
+ ;;^UTILITY(U,$J,358.3,15459,0)
+ ;;=S08.0XXA^^85^819^1
+ ;;^UTILITY(U,$J,358.3,15459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15459,1,3,0)
+ ;;=3^Avulsion of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15459,1,4,0)
+ ;;=4^S08.0XXA
+ ;;^UTILITY(U,$J,358.3,15459,2)
+ ;;=^5021248
+ ;;^UTILITY(U,$J,358.3,15460,0)
+ ;;=S09.90XA^^85^819^6
+ ;;^UTILITY(U,$J,358.3,15460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15460,1,3,0)
+ ;;=3^Injury of Head,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15460,1,4,0)
+ ;;=4^S09.90XA
+ ;;^UTILITY(U,$J,358.3,15460,2)
+ ;;=^5021332
+ ;;^UTILITY(U,$J,358.3,15461,0)
+ ;;=S09.8XXA^^85^819^5
+ ;;^UTILITY(U,$J,358.3,15461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15461,1,3,0)
+ ;;=3^Injury of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15461,1,4,0)
+ ;;=4^S09.8XXA
+ ;;^UTILITY(U,$J,358.3,15461,2)
+ ;;=^5021329
+ ;;^UTILITY(U,$J,358.3,15462,0)
+ ;;=S08.89XA^^85^819^7
+ ;;^UTILITY(U,$J,358.3,15462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15462,1,3,0)
+ ;;=3^Traumatic Amputation of Parts of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15462,1,4,0)
+ ;;=4^S08.89XA
+ ;;^UTILITY(U,$J,358.3,15462,2)
+ ;;=^5021275
+ ;;^UTILITY(U,$J,358.3,15463,0)
+ ;;=S09.93XA^^85^819^4
+ ;;^UTILITY(U,$J,358.3,15463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15463,1,3,0)
+ ;;=3^Injury of Face,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15463,1,4,0)
+ ;;=4^S09.93XA
+ ;;^UTILITY(U,$J,358.3,15463,2)
+ ;;=^5021341
+ ;;^UTILITY(U,$J,358.3,15464,0)
+ ;;=M79.671^^85^820^13
+ ;;^UTILITY(U,$J,358.3,15464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15464,1,3,0)
+ ;;=3^Right Foot Pain
+ ;;^UTILITY(U,$J,358.3,15464,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,15464,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,15465,0)
+ ;;=M79.675^^85^820^9
+ ;;^UTILITY(U,$J,358.3,15465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15465,1,3,0)
+ ;;=3^Left Toe(s) Pain
+ ;;^UTILITY(U,$J,358.3,15465,1,4,0)
+ ;;=4^M79.675
+ ;;^UTILITY(U,$J,358.3,15465,2)
+ ;;=^5013354
+ ;;^UTILITY(U,$J,358.3,15466,0)
+ ;;=M79.674^^85^820^19
+ ;;^UTILITY(U,$J,358.3,15466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15466,1,3,0)
+ ;;=3^Right Toe(s) Pain
+ ;;^UTILITY(U,$J,358.3,15466,1,4,0)
+ ;;=4^M79.674
+ ;;^UTILITY(U,$J,358.3,15466,2)
+ ;;=^5013353
+ ;;^UTILITY(U,$J,358.3,15467,0)
+ ;;=M79.672^^85^820^3
+ ;;^UTILITY(U,$J,358.3,15467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15467,1,3,0)
+ ;;=3^Left Foot Pain
+ ;;^UTILITY(U,$J,358.3,15467,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,15467,2)
+ ;;=^5013351

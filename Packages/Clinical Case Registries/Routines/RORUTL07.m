@@ -1,7 +1,18 @@
-RORUTL07 ;HCIOFO/SG - TEST ENTRY POINTS ; 11/1/05 1:12pm
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+RORUTL07 ;HCIOFO/SG - TEST ENTRY POINTS ; 26 May 2015  3:44 PM
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,26**;Feb 17, 2006;Build 53
  ;
  Q
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*26   APR  2015   T KOPP       UPDATE updated to ask for start date
+ ;                                      and set IO variable 
+ ;
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  ;***** DISPLAYS THE ERRORS
 ERROR ;
@@ -76,7 +87,8 @@ UPDATE ;
  N RORERROR      ; Error processing data
  N RORPARM       ; Application parameters
  ;
- N RC,REGLST,REGNAME
+ N RC,REGLST,REGNAME,DSBEG
+ D HOME^%ZIS
  W !,"REGISTRY UPDATE IN DEBUG MODE",!
  D KILL^XUSCLEAN
  S RORPARM("DEBUG")=2
@@ -84,6 +96,9 @@ UPDATE ;
  D CLEAR^RORERR("UPDATE^RORUTL07")
  ;--- Select registries
  Q:$$SELREG(.REGLST)'>0
+ ;--- Request a start date
+ S DSBEG=$$GETSDT()
+ Q:DSBEG<0
  ;--- Update the registry
  S RC=$$UPDATE^RORUPD(.REGLST)  G:RC<0 ERROR
  Q

@@ -1,134 +1,142 @@
-IBDEI029 ; ; 06-AUG-2015
+IBDEI029 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,505,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,505,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,506,0)
- ;;=C48.2^^2^23^22
- ;;^UTILITY(U,$J,358.3,506,1,0)
+ ;;^UTILITY(U,$J,358.3,284,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,284,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,285,0)
+ ;;=F06.4^^3^36^1
+ ;;^UTILITY(U,$J,358.3,285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,506,1,3,0)
- ;;=3^Malignant neoplasm of peritoneum, unspecified
- ;;^UTILITY(U,$J,358.3,506,1,4,0)
- ;;=4^C48.2
- ;;^UTILITY(U,$J,358.3,506,2)
- ;;=^5001122
- ;;^UTILITY(U,$J,358.3,507,0)
- ;;=C45.0^^2^23^28
- ;;^UTILITY(U,$J,358.3,507,1,0)
+ ;;^UTILITY(U,$J,358.3,285,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,285,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,285,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,286,0)
+ ;;=F06.1^^3^36^2
+ ;;^UTILITY(U,$J,358.3,286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,507,1,3,0)
- ;;=3^Mesothelioma of pleura
- ;;^UTILITY(U,$J,358.3,507,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,507,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,508,0)
- ;;=C38.4^^2^23^23
- ;;^UTILITY(U,$J,358.3,508,1,0)
+ ;;^UTILITY(U,$J,358.3,286,1,3,0)
+ ;;=3^Catatonia Associated w/ Schizophrenia
+ ;;^UTILITY(U,$J,358.3,286,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,286,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,287,0)
+ ;;=R41.9^^3^36^3
+ ;;^UTILITY(U,$J,358.3,287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,508,1,3,0)
- ;;=3^Malignant neoplasm of pleura
- ;;^UTILITY(U,$J,358.3,508,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,508,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,509,0)
- ;;=C41.9^^2^23^14
- ;;^UTILITY(U,$J,358.3,509,1,0)
+ ;;^UTILITY(U,$J,358.3,287,1,3,0)
+ ;;=3^Neurocognitive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,287,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,287,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,288,0)
+ ;;=F29.^^3^36^7
+ ;;^UTILITY(U,$J,358.3,288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,509,1,3,0)
- ;;=3^Malignant neoplasm of bone and articular cartilage, unsp
- ;;^UTILITY(U,$J,358.3,509,1,4,0)
- ;;=4^C41.9
- ;;^UTILITY(U,$J,358.3,509,2)
- ;;=^5000993
- ;;^UTILITY(U,$J,358.3,510,0)
- ;;=C49.9^^2^23^17
- ;;^UTILITY(U,$J,358.3,510,1,0)
+ ;;^UTILITY(U,$J,358.3,288,1,3,0)
+ ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,288,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,288,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,289,0)
+ ;;=F07.0^^3^36^4
+ ;;^UTILITY(U,$J,358.3,289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,510,1,3,0)
- ;;=3^Malignant neoplasm of connective and soft tissue, unsp
- ;;^UTILITY(U,$J,358.3,510,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,510,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,511,0)
- ;;=C47.9^^2^23^12
- ;;^UTILITY(U,$J,358.3,511,1,0)
+ ;;^UTILITY(U,$J,358.3,289,1,3,0)
+ ;;=3^Personality Change d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,289,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,289,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,290,0)
+ ;;=Z91.49^^3^37^9
+ ;;^UTILITY(U,$J,358.3,290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,511,1,3,0)
- ;;=3^Malig neoplasm of prph nerves and autonm nervous sys, unsp
- ;;^UTILITY(U,$J,358.3,511,1,4,0)
- ;;=4^C47.9
- ;;^UTILITY(U,$J,358.3,511,2)
- ;;=^5001121
- ;;^UTILITY(U,$J,358.3,512,0)
- ;;=C43.9^^2^23^13
- ;;^UTILITY(U,$J,358.3,512,1,0)
+ ;;^UTILITY(U,$J,358.3,290,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,290,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,290,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,291,0)
+ ;;=Z91.5^^3^37^10
+ ;;^UTILITY(U,$J,358.3,291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,512,1,3,0)
- ;;=3^Malignant melanoma of skin, unspecified
- ;;^UTILITY(U,$J,358.3,512,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,512,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,513,0)
- ;;=D03.9^^2^23^27
- ;;^UTILITY(U,$J,358.3,513,1,0)
+ ;;^UTILITY(U,$J,358.3,291,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,291,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,291,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,292,0)
+ ;;=Z91.82^^3^37^8
+ ;;^UTILITY(U,$J,358.3,292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,513,1,3,0)
- ;;=3^Melanoma in situ, unspecified
- ;;^UTILITY(U,$J,358.3,513,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,513,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,514,0)
- ;;=C44.01^^2^23^3
- ;;^UTILITY(U,$J,358.3,514,1,0)
+ ;;^UTILITY(U,$J,358.3,292,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,292,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,292,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,293,0)
+ ;;=Z91.89^^3^37^11
+ ;;^UTILITY(U,$J,358.3,293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,514,1,3,0)
- ;;=3^Basal cell carcinoma of skin of lip
- ;;^UTILITY(U,$J,358.3,514,1,4,0)
- ;;=4^C44.01
- ;;^UTILITY(U,$J,358.3,514,2)
- ;;=^340464
- ;;^UTILITY(U,$J,358.3,515,0)
- ;;=C44.02^^2^23^31
- ;;^UTILITY(U,$J,358.3,515,1,0)
+ ;;^UTILITY(U,$J,358.3,293,1,3,0)
+ ;;=3^Personal Risk Factors
+ ;;^UTILITY(U,$J,358.3,293,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,293,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,294,0)
+ ;;=Z72.9^^3^37^12
+ ;;^UTILITY(U,$J,358.3,294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,515,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of lip
- ;;^UTILITY(U,$J,358.3,515,1,4,0)
- ;;=4^C44.02
- ;;^UTILITY(U,$J,358.3,515,2)
- ;;=^340465
- ;;^UTILITY(U,$J,358.3,516,0)
- ;;=C44.111^^2^23^10
- ;;^UTILITY(U,$J,358.3,516,1,0)
+ ;;^UTILITY(U,$J,358.3,294,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,294,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,294,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,295,0)
+ ;;=Z72.811^^3^37^1
+ ;;^UTILITY(U,$J,358.3,295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,516,1,3,0)
- ;;=3^Basal cell carcinoma skin/ unsp eyelid, including canthus
- ;;^UTILITY(U,$J,358.3,516,1,4,0)
- ;;=4^C44.111
- ;;^UTILITY(U,$J,358.3,516,2)
- ;;=^5001019
- ;;^UTILITY(U,$J,358.3,517,0)
- ;;=C44.121^^2^23^38
- ;;^UTILITY(U,$J,358.3,517,1,0)
+ ;;^UTILITY(U,$J,358.3,295,1,3,0)
+ ;;=3^Adult Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,295,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,295,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,296,0)
+ ;;=Z91.19^^3^37^5
+ ;;^UTILITY(U,$J,358.3,296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,517,1,3,0)
- ;;=3^Squamous cell carcinoma skin/ unsp eyelid, including canthus
- ;;^UTILITY(U,$J,358.3,517,1,4,0)
- ;;=4^C44.121
- ;;^UTILITY(U,$J,358.3,517,2)
- ;;=^5001022
- ;;^UTILITY(U,$J,358.3,518,0)
- ;;=C44.211^^2^23^9
- ;;^UTILITY(U,$J,358.3,518,1,0)
+ ;;^UTILITY(U,$J,358.3,296,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,296,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,296,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,297,0)
+ ;;=E66.9^^3^37^6
+ ;;^UTILITY(U,$J,358.3,297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,518,1,3,0)
- ;;=3^Basal cell carcinoma skin/ unsp ear and external auric canal
+ ;;^UTILITY(U,$J,358.3,297,1,3,0)
+ ;;=3^Obesity
+ ;;^UTILITY(U,$J,358.3,297,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,297,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,298,0)
+ ;;=Z76.5^^3^37^3
+ ;;^UTILITY(U,$J,358.3,298,1,0)
+ ;;=^358.31IA^4^2

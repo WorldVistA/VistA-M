@@ -1,5 +1,6 @@
-SCMCTSK6 ;ALB/JDS - PCMM Bulletins ; 7/19/05 10:04am
- ;;5.3;Scheduling;**297,532,581**;AUG 13, 1993;Build 16
+SCMCTSK6 ;ALB/JDS - PCMM Bulletins ;01/28/2013
+ ;;5.3;Scheduling;**297,532,581,603**;AUG 13, 1993;Build 79
+ ;
  Q
 MAKEMAIL(TYPE)  ;
  N PRE,IN
@@ -68,9 +69,9 @@ PRMAIL(TYPE)    ;
  ..I $D(^TMP("SCML",$J,"XM",USER,+$P(ZERO,U,2))) D MAKEMAIL(TYPE)
  .I CNT=HEAD Q
  .S XMY(USER)="",XMTEXT="^TMP(""SCMCTXT"",$J,"
- .S XMSUB="Patients Scheduled for Inactivation from Primary Care Panel"
+ .S XMSUB="Patients Scheduled for Inactivation from PACT"
  .I TYPE=3 S XMSUB="Patients With Extended PCMM Inactivation Date"
- .I TYPE=2 S XMSUB="Patients Automated Inactivations from Primary Care Panels"
+ .I TYPE=2 S XMSUB="Patients Automated Inactivations from PACT"
  .I TYPE=4 S XMSUB="Primary Care Providers Scheduled for Inactivation"
  .I TYPE=5 Q  ;S XMSUB="Primary Care Providers Inactivated"
  .D ^XMD

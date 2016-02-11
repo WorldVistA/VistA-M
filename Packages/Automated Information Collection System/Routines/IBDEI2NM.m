@@ -1,0 +1,132 @@
+IBDEI2NM ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44542,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,44542,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,44542,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,44543,0)
+ ;;=Z86.73^^200^2229^112
+ ;;^UTILITY(U,$J,358.3,44543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44543,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,44543,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,44543,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,44544,0)
+ ;;=Z86.79^^200^2229^75
+ ;;^UTILITY(U,$J,358.3,44544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44544,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,44544,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,44544,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,44545,0)
+ ;;=Z91.040^^200^2229^64
+ ;;^UTILITY(U,$J,358.3,44545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44545,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,44545,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,44545,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,44546,0)
+ ;;=Z98.89^^200^2229^120
+ ;;^UTILITY(U,$J,358.3,44546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44546,1,3,0)
+ ;;=3^Postprocedural States/Hx of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,44546,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,44546,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,44547,0)
+ ;;=Z92.3^^200^2229^79
+ ;;^UTILITY(U,$J,358.3,44547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44547,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,44547,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,44547,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,44548,0)
+ ;;=Z91.120^^200^2229^60
+ ;;^UTILITY(U,$J,358.3,44548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44548,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,44548,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,44548,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,44549,0)
+ ;;=Z91.11^^200^2229^69
+ ;;^UTILITY(U,$J,358.3,44549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44549,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,44549,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,44549,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,44550,0)
+ ;;=Z87.891^^200^2229^103
+ ;;^UTILITY(U,$J,358.3,44550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44550,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,44550,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,44550,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,44551,0)
+ ;;=Z77.090^^200^2229^11
+ ;;^UTILITY(U,$J,358.3,44551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44551,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,44551,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,44551,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,44552,0)
+ ;;=Z57.8^^200^2229^72
+ ;;^UTILITY(U,$J,358.3,44552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44552,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,44552,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,44552,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,44553,0)
+ ;;=Z77.21^^200^2229^53
+ ;;^UTILITY(U,$J,358.3,44553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44553,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,44553,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,44553,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,44554,0)
+ ;;=Z91.81^^200^2229^57
+ ;;^UTILITY(U,$J,358.3,44554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44554,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,44554,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,44554,2)
+ ;;=^5063625

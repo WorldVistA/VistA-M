@@ -1,0 +1,134 @@
+IBDEI33T ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,52096,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,52096,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,52097,0)
+ ;;=Z59.8^^235^2563^5
+ ;;^UTILITY(U,$J,358.3,52097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52097,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,52097,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,52097,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,52098,0)
+ ;;=F81.9^^235^2564^2
+ ;;^UTILITY(U,$J,358.3,52098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52098,1,3,0)
+ ;;=3^Developmental Disorder of Scholastic Skills,Unspec
+ ;;^UTILITY(U,$J,358.3,52098,1,4,0)
+ ;;=4^F81.9
+ ;;^UTILITY(U,$J,358.3,52098,2)
+ ;;=^5003682
+ ;;^UTILITY(U,$J,358.3,52099,0)
+ ;;=Z86.59^^235^2564^4
+ ;;^UTILITY(U,$J,358.3,52099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52099,1,3,0)
+ ;;=3^Personal Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,52099,1,4,0)
+ ;;=4^Z86.59
+ ;;^UTILITY(U,$J,358.3,52099,2)
+ ;;=^5063471
+ ;;^UTILITY(U,$J,358.3,52100,0)
+ ;;=F48.9^^235^2564^3
+ ;;^UTILITY(U,$J,358.3,52100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52100,1,3,0)
+ ;;=3^Nonpsychotic Mental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,52100,1,4,0)
+ ;;=4^F48.9
+ ;;^UTILITY(U,$J,358.3,52100,2)
+ ;;=^5003596
+ ;;^UTILITY(U,$J,358.3,52101,0)
+ ;;=Z91.83^^235^2564^5
+ ;;^UTILITY(U,$J,358.3,52101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52101,1,3,0)
+ ;;=3^Wandering in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,52101,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,52101,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,52102,0)
+ ;;=F69.^^235^2564^1
+ ;;^UTILITY(U,$J,358.3,52102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52102,1,3,0)
+ ;;=3^Adult Personality/Behavior Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,52102,1,4,0)
+ ;;=4^F69.
+ ;;^UTILITY(U,$J,358.3,52102,2)
+ ;;=^5003667
+ ;;^UTILITY(U,$J,358.3,52103,0)
+ ;;=Z94.0^^235^2565^6
+ ;;^UTILITY(U,$J,358.3,52103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52103,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,52103,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,52103,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,52104,0)
+ ;;=Z94.1^^235^2565^4
+ ;;^UTILITY(U,$J,358.3,52104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52104,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,52104,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,52104,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,52105,0)
+ ;;=Z95.3^^235^2565^10
+ ;;^UTILITY(U,$J,358.3,52105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52105,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,52105,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,52105,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,52106,0)
+ ;;=Z94.5^^235^2565^11
+ ;;^UTILITY(U,$J,358.3,52106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52106,1,3,0)
+ ;;=3^Skin Transplant Status
+ ;;^UTILITY(U,$J,358.3,52106,1,4,0)
+ ;;=4^Z94.5
+ ;;^UTILITY(U,$J,358.3,52106,2)
+ ;;=^5063659
+ ;;^UTILITY(U,$J,358.3,52107,0)
+ ;;=Z94.6^^235^2565^2
+ ;;^UTILITY(U,$J,358.3,52107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52107,1,3,0)
+ ;;=3^Bone Transplant Status
+ ;;^UTILITY(U,$J,358.3,52107,1,4,0)
+ ;;=4^Z94.6
+ ;;^UTILITY(U,$J,358.3,52107,2)
+ ;;=^5063660
+ ;;^UTILITY(U,$J,358.3,52108,0)
+ ;;=Z94.7^^235^2565^3
+ ;;^UTILITY(U,$J,358.3,52108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52108,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,52108,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,52108,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,52109,0)
+ ;;=Z94.2^^235^2565^8
+ ;;^UTILITY(U,$J,358.3,52109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52109,1,3,0)
+ ;;=3^Lung Transplant Status

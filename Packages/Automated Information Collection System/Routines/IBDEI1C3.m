@@ -1,140 +1,124 @@
-IBDEI1C3 ; ; 06-AUG-2015
+IBDEI1C3 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23630,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23630,1,2,0)
- ;;=2^302.52
- ;;^UTILITY(U,$J,358.3,23630,1,5,0)
- ;;=5^Trans-sexualism w/ Homosexual Hx
- ;;^UTILITY(U,$J,358.3,23630,2)
- ;;=^268176
- ;;^UTILITY(U,$J,358.3,23631,0)
- ;;=302.53^^127^1428^11
- ;;^UTILITY(U,$J,358.3,23631,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23631,1,2,0)
- ;;=2^302.53
- ;;^UTILITY(U,$J,358.3,23631,1,5,0)
- ;;=5^Trans-sexualism w/ Heterosexual Hx
- ;;^UTILITY(U,$J,358.3,23631,2)
- ;;=^268177
- ;;^UTILITY(U,$J,358.3,23632,0)
- ;;=780.52^^127^1429^3
- ;;^UTILITY(U,$J,358.3,23632,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23632,1,2,0)
- ;;=2^780.52
- ;;^UTILITY(U,$J,358.3,23632,1,5,0)
- ;;=5^Insomnia
- ;;^UTILITY(U,$J,358.3,23632,2)
- ;;=^87662
- ;;^UTILITY(U,$J,358.3,23633,0)
- ;;=780.51^^127^1429^4
- ;;^UTILITY(U,$J,358.3,23633,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23633,1,2,0)
- ;;=2^780.51
- ;;^UTILITY(U,$J,358.3,23633,1,5,0)
- ;;=5^Insomnia w/Sleep Apnea
- ;;^UTILITY(U,$J,358.3,23633,2)
- ;;=^273348
- ;;^UTILITY(U,$J,358.3,23634,0)
- ;;=780.57^^127^1429^5
- ;;^UTILITY(U,$J,358.3,23634,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23634,1,2,0)
- ;;=2^780.57
- ;;^UTILITY(U,$J,358.3,23634,1,5,0)
- ;;=5^Sleep Apnea
- ;;^UTILITY(U,$J,358.3,23634,2)
- ;;=^293933
- ;;^UTILITY(U,$J,358.3,23635,0)
- ;;=780.50^^127^1429^6
- ;;^UTILITY(U,$J,358.3,23635,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23635,1,2,0)
- ;;=2^780.50
- ;;^UTILITY(U,$J,358.3,23635,1,5,0)
- ;;=5^Sleep Disturbance, Unspec
- ;;^UTILITY(U,$J,358.3,23635,2)
- ;;=^111271
- ;;^UTILITY(U,$J,358.3,23636,0)
- ;;=291.82^^127^1429^1
- ;;^UTILITY(U,$J,358.3,23636,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23636,1,2,0)
- ;;=2^291.82
- ;;^UTILITY(U,$J,358.3,23636,1,5,0)
- ;;=5^Alcohol Induced Sleep D/O
- ;;^UTILITY(U,$J,358.3,23636,2)
- ;;=^332750
- ;;^UTILITY(U,$J,358.3,23637,0)
- ;;=292.85^^127^1429^2
- ;;^UTILITY(U,$J,358.3,23637,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23637,1,2,0)
- ;;=2^292.85
- ;;^UTILITY(U,$J,358.3,23637,1,5,0)
- ;;=5^Drug Induced Sleep D/O
- ;;^UTILITY(U,$J,358.3,23637,2)
- ;;=^332751
- ;;^UTILITY(U,$J,358.3,23638,0)
- ;;=316.^^127^1430^10
- ;;^UTILITY(U,$J,358.3,23638,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23638,1,2,0)
- ;;=2^316.
- ;;^UTILITY(U,$J,358.3,23638,1,5,0)
- ;;=5^Psychic Fact w/Other Dis
- ;;^UTILITY(U,$J,358.3,23638,2)
- ;;=^268363
- ;;^UTILITY(U,$J,358.3,23639,0)
- ;;=314.01^^127^1430^2
- ;;^UTILITY(U,$J,358.3,23639,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23639,1,2,0)
- ;;=2^314.01
- ;;^UTILITY(U,$J,358.3,23639,1,5,0)
- ;;=5^Attn Defic w/ Hyperactiv
- ;;^UTILITY(U,$J,358.3,23639,2)
- ;;=^303679
- ;;^UTILITY(U,$J,358.3,23640,0)
- ;;=317.^^127^1430^8
- ;;^UTILITY(U,$J,358.3,23640,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23640,1,2,0)
- ;;=2^317.
- ;;^UTILITY(U,$J,358.3,23640,1,5,0)
- ;;=5^Mild Intellect Disability
- ;;^UTILITY(U,$J,358.3,23640,2)
- ;;=^77931
- ;;^UTILITY(U,$J,358.3,23641,0)
- ;;=312.32^^127^1430^7
- ;;^UTILITY(U,$J,358.3,23641,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23641,1,2,0)
- ;;=2^312.32
- ;;^UTILITY(U,$J,358.3,23641,1,5,0)
- ;;=5^Kleptomania
- ;;^UTILITY(U,$J,358.3,23641,2)
- ;;=^67477
- ;;^UTILITY(U,$J,358.3,23642,0)
- ;;=312.33^^127^1430^11
- ;;^UTILITY(U,$J,358.3,23642,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23642,1,2,0)
- ;;=2^312.33
- ;;^UTILITY(U,$J,358.3,23642,1,5,0)
- ;;=5^Pyromania
- ;;^UTILITY(U,$J,358.3,23642,2)
- ;;=^46554
- ;;^UTILITY(U,$J,358.3,23643,0)
- ;;=312.34^^127^1430^5
- ;;^UTILITY(U,$J,358.3,23643,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23643,1,2,0)
- ;;=2^312.34
- ;;^UTILITY(U,$J,358.3,23643,1,5,0)
- ;;=5^Intermittent Explosive Disorder
+ ;;^UTILITY(U,$J,358.3,22232,1,4,0)
+ ;;=4^S82.822S
+ ;;^UTILITY(U,$J,358.3,22232,2)
+ ;;=^5136943
+ ;;^UTILITY(U,$J,358.3,22233,0)
+ ;;=S82.821S^^101^1038^109
+ ;;^UTILITY(U,$J,358.3,22233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22233,1,3,0)
+ ;;=3^Torus fracture of lower end of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22233,1,4,0)
+ ;;=4^S82.821S
+ ;;^UTILITY(U,$J,358.3,22233,2)
+ ;;=^5042430
+ ;;^UTILITY(U,$J,358.3,22234,0)
+ ;;=S82.812S^^101^1038^111
+ ;;^UTILITY(U,$J,358.3,22234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22234,1,3,0)
+ ;;=3^Torus fracture of upper end of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22234,1,4,0)
+ ;;=4^S82.812S
+ ;;^UTILITY(U,$J,358.3,22234,2)
+ ;;=^5042418
+ ;;^UTILITY(U,$J,358.3,22235,0)
+ ;;=S82.811S^^101^1038^113
+ ;;^UTILITY(U,$J,358.3,22235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22235,1,3,0)
+ ;;=3^Torus fracture of upper end of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22235,1,4,0)
+ ;;=4^S82.811S
+ ;;^UTILITY(U,$J,358.3,22235,2)
+ ;;=^5042412
+ ;;^UTILITY(U,$J,358.3,22236,0)
+ ;;=S82.865S^^101^1038^37
+ ;;^UTILITY(U,$J,358.3,22236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22236,1,3,0)
+ ;;=3^Nondisp Maisonneuve's fx of left leg, sequela   
+ ;;^UTILITY(U,$J,358.3,22236,1,4,0)
+ ;;=4^S82.865S
+ ;;^UTILITY(U,$J,358.3,22236,2)
+ ;;=^5042750
+ ;;^UTILITY(U,$J,358.3,22237,0)
+ ;;=S82.864S^^101^1038^38
+ ;;^UTILITY(U,$J,358.3,22237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22237,1,3,0)
+ ;;=3^Nondisp Maisonneuve's fx of right leg, sequela   
+ ;;^UTILITY(U,$J,358.3,22237,1,4,0)
+ ;;=4^S82.864S
+ ;;^UTILITY(U,$J,358.3,22237,2)
+ ;;=^5042734
+ ;;^UTILITY(U,$J,358.3,22238,0)
+ ;;=S12.44XS^^101^1039^50
+ ;;^UTILITY(U,$J,358.3,22238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22238,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of fifth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,22238,1,4,0)
+ ;;=4^S12.44XS
+ ;;^UTILITY(U,$J,358.3,22238,2)
+ ;;=^5021826
+ ;;^UTILITY(U,$J,358.3,22239,0)
+ ;;=S12.34XS^^101^1039^51
+ ;;^UTILITY(U,$J,358.3,22239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22239,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of fourth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,22239,1,4,0)
+ ;;=4^S12.34XS
+ ;;^UTILITY(U,$J,358.3,22239,2)
+ ;;=^5021772
+ ;;^UTILITY(U,$J,358.3,22240,0)
+ ;;=S12.14XS^^101^1039^52
+ ;;^UTILITY(U,$J,358.3,22240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22240,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of second cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,22240,1,4,0)
+ ;;=4^S12.14XS
+ ;;^UTILITY(U,$J,358.3,22240,2)
+ ;;=^5021664
+ ;;^UTILITY(U,$J,358.3,22241,0)
+ ;;=S12.64XS^^101^1039^53
+ ;;^UTILITY(U,$J,358.3,22241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22241,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of seventh cervcal vert, sqla
+ ;;^UTILITY(U,$J,358.3,22241,1,4,0)
+ ;;=4^S12.64XS
+ ;;^UTILITY(U,$J,358.3,22241,2)
+ ;;=^5021934
+ ;;^UTILITY(U,$J,358.3,22242,0)
+ ;;=S12.54XS^^101^1039^54
+ ;;^UTILITY(U,$J,358.3,22242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22242,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of sixth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,22242,1,4,0)
+ ;;=4^S12.54XS
+ ;;^UTILITY(U,$J,358.3,22242,2)
+ ;;=^5021880
+ ;;^UTILITY(U,$J,358.3,22243,0)
+ ;;=S12.24XS^^101^1039^55
+ ;;^UTILITY(U,$J,358.3,22243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22243,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of third cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,22243,1,4,0)
+ ;;=4^S12.24XS
+ ;;^UTILITY(U,$J,358.3,22243,2)
+ ;;=^5021718
+ ;;^UTILITY(U,$J,358.3,22244,0)
+ ;;=S32.052S^^101^1039^61
+ ;;^UTILITY(U,$J,358.3,22244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22244,1,3,0)
+ ;;=3^Unstable burst fracture of fifth lumbar vertebra, sequela

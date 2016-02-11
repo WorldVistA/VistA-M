@@ -1,130 +1,138 @@
-IBDEI1RR ; ; 06-AUG-2015
+IBDEI1RR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31242,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,31243,0)
- ;;=H61.22^^180^1950^2
- ;;^UTILITY(U,$J,358.3,31243,1,0)
+ ;;^UTILITY(U,$J,358.3,29618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31243,1,3,0)
- ;;=3^Impacted cerumen, left ear
- ;;^UTILITY(U,$J,358.3,31243,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,31243,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,31244,0)
- ;;=H61.21^^180^1950^3
- ;;^UTILITY(U,$J,358.3,31244,1,0)
+ ;;^UTILITY(U,$J,358.3,29618,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,29618,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,29618,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,29619,0)
+ ;;=E20.0^^135^1364^34
+ ;;^UTILITY(U,$J,358.3,29619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31244,1,3,0)
- ;;=3^Impacted cerumen, right ear
- ;;^UTILITY(U,$J,358.3,31244,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,31244,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,31245,0)
- ;;=H61.20^^180^1950^4
- ;;^UTILITY(U,$J,358.3,31245,1,0)
+ ;;^UTILITY(U,$J,358.3,29619,1,3,0)
+ ;;=3^Idiopathic Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,29619,1,4,0)
+ ;;=4^E20.0
+ ;;^UTILITY(U,$J,358.3,29619,2)
+ ;;=^5002712
+ ;;^UTILITY(U,$J,358.3,29620,0)
+ ;;=E20.9^^135^1364^30
+ ;;^UTILITY(U,$J,358.3,29620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31245,1,3,0)
- ;;=3^Impacted cerumen, unspecified ear
- ;;^UTILITY(U,$J,358.3,31245,1,4,0)
- ;;=4^H61.20
- ;;^UTILITY(U,$J,358.3,31245,2)
- ;;=^5006530
- ;;^UTILITY(U,$J,358.3,31246,0)
- ;;=H90.6^^180^1950^7
- ;;^UTILITY(U,$J,358.3,31246,1,0)
+ ;;^UTILITY(U,$J,358.3,29620,1,3,0)
+ ;;=3^Hypoparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,29620,1,4,0)
+ ;;=4^E20.9
+ ;;^UTILITY(U,$J,358.3,29620,2)
+ ;;=^5002714
+ ;;^UTILITY(U,$J,358.3,29621,0)
+ ;;=E23.0^^135^1364^31
+ ;;^UTILITY(U,$J,358.3,29621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31246,1,3,0)
- ;;=3^Mixed conductive and sensorineural hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,31246,1,4,0)
- ;;=4^H90.6
- ;;^UTILITY(U,$J,358.3,31246,2)
- ;;=^5006924
- ;;^UTILITY(U,$J,358.3,31247,0)
- ;;=H90.72^^180^1950^5
- ;;^UTILITY(U,$J,358.3,31247,1,0)
+ ;;^UTILITY(U,$J,358.3,29621,1,3,0)
+ ;;=3^Hypopituitarism
+ ;;^UTILITY(U,$J,358.3,29621,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,29621,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,29622,0)
+ ;;=E27.1^^135^1364^51
+ ;;^UTILITY(U,$J,358.3,29622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31247,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,uni,l ear,w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,31247,1,4,0)
- ;;=4^H90.72
- ;;^UTILITY(U,$J,358.3,31247,2)
- ;;=^5006926
- ;;^UTILITY(U,$J,358.3,31248,0)
- ;;=H90.71^^180^1950^6
- ;;^UTILITY(U,$J,358.3,31248,1,0)
+ ;;^UTILITY(U,$J,358.3,29622,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,29622,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,29622,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,29623,0)
+ ;;=E27.2^^135^1364^1
+ ;;^UTILITY(U,$J,358.3,29623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31248,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,uni,r ear,w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,31248,1,4,0)
- ;;=4^H90.71
- ;;^UTILITY(U,$J,358.3,31248,2)
- ;;=^5006925
- ;;^UTILITY(U,$J,358.3,31249,0)
- ;;=H90.8^^180^1950^8
- ;;^UTILITY(U,$J,358.3,31249,1,0)
+ ;;^UTILITY(U,$J,358.3,29623,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,29623,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,29623,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,29624,0)
+ ;;=E27.3^^135^1364^23
+ ;;^UTILITY(U,$J,358.3,29624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31249,1,3,0)
- ;;=3^Mixed conductive and sensorineural hearing loss, unspecified
- ;;^UTILITY(U,$J,358.3,31249,1,4,0)
- ;;=4^H90.8
- ;;^UTILITY(U,$J,358.3,31249,2)
- ;;=^5006927
- ;;^UTILITY(U,$J,358.3,31250,0)
- ;;=H90.3^^180^1950^9
- ;;^UTILITY(U,$J,358.3,31250,1,0)
+ ;;^UTILITY(U,$J,358.3,29624,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,29624,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,29624,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,29625,0)
+ ;;=E29.1^^135^1364^52
+ ;;^UTILITY(U,$J,358.3,29625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31250,1,3,0)
- ;;=3^Snsrnrl hear loss, bilateral
- ;;^UTILITY(U,$J,358.3,31250,1,4,0)
- ;;=4^H90.3
- ;;^UTILITY(U,$J,358.3,31250,2)
- ;;=^335328
- ;;^UTILITY(U,$J,358.3,31251,0)
- ;;=H90.42^^180^1950^10
- ;;^UTILITY(U,$J,358.3,31251,1,0)
+ ;;^UTILITY(U,$J,358.3,29625,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,29625,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,29625,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,29626,0)
+ ;;=E55.9^^135^1364^59
+ ;;^UTILITY(U,$J,358.3,29626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31251,1,3,0)
- ;;=3^Snsrnrl hear loss, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,31251,1,4,0)
- ;;=4^H90.42
- ;;^UTILITY(U,$J,358.3,31251,2)
- ;;=^5006922
- ;;^UTILITY(U,$J,358.3,31252,0)
- ;;=H90.41^^180^1950^11
- ;;^UTILITY(U,$J,358.3,31252,1,0)
+ ;;^UTILITY(U,$J,358.3,29626,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,29626,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,29626,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,29627,0)
+ ;;=E66.01^^135^1364^38
+ ;;^UTILITY(U,$J,358.3,29627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31252,1,3,0)
- ;;=3^Snsrnrl hear loss, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,31252,1,4,0)
- ;;=4^H90.41
- ;;^UTILITY(U,$J,358.3,31252,2)
- ;;=^5006921
- ;;^UTILITY(U,$J,358.3,31253,0)
- ;;=H93.13^^180^1950^12
- ;;^UTILITY(U,$J,358.3,31253,1,0)
+ ;;^UTILITY(U,$J,358.3,29627,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,29627,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,29627,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,29628,0)
+ ;;=E66.8^^135^1364^42
+ ;;^UTILITY(U,$J,358.3,29628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31253,1,3,0)
- ;;=3^Tinnitus, bilateral
- ;;^UTILITY(U,$J,358.3,31253,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,31253,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,31254,0)
- ;;=H93.12^^180^1950^13
- ;;^UTILITY(U,$J,358.3,31254,1,0)
+ ;;^UTILITY(U,$J,358.3,29628,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,29628,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,29628,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,29629,0)
+ ;;=E66.9^^135^1364^43
+ ;;^UTILITY(U,$J,358.3,29629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31254,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,31254,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,31254,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,31255,0)
- ;;=H93.11^^180^1950^14
- ;;^UTILITY(U,$J,358.3,31255,1,0)
+ ;;^UTILITY(U,$J,358.3,29629,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,29629,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,29629,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,29630,0)
+ ;;=E74.39^^135^1364^35
+ ;;^UTILITY(U,$J,358.3,29630,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29630,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,29630,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,29630,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,29631,0)
+ ;;=E83.30^^135^1364^46
+ ;;^UTILITY(U,$J,358.3,29631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29631,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec

@@ -1,76 +1,68 @@
-IBDEI00K ; ; 06-AUG-2015
+IBDEI00K ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.2)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.2,0,"GL")
- ;;=^IBE(358.2,
- ;;^DIC("B","IMP/EXP SELECTION LIST",358.2)
- ;;=
- ;;^DIC(358.2,"%D",0)
- ;;=^^1^1^2940829^^^^
- ;;^DIC(358.2,"%D",1,0)
- ;;=Used by the import/export utility as a workspace.
- ;;^DIC(358.2,"%D",2,0)
- ;;= 
- ;;^DIC(358.2,"%D",3,0)
- ;;= 
- ;;^DIC(358.2,"%D",4,0)
- ;;= 
- ;;^DIC(358.2,"%D",5,0)
- ;;= 
- ;;^DIC(358.2,"%D",6,0)
- ;;= 
- ;;^DIC(358.2,"%D",7,0)
- ;;= 
- ;;^DIC(358.2,"%D",8,0)
- ;;=This file is nearly identical to file #357.2 . It is used by the
- ;;^DIC(358.2,"%D",9,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.2,"%D",10,0)
- ;;=that is being imported or exported.
- ;;^DIC(358.2,"%D",11,0)
- ;;=provisions have been made to specify up to 4 columns per list.
- ;;^DD(358.2,0)
- ;;=FIELD^^2^19
- ;;^DD(358.2,0,"DDA")
- ;;=N
- ;;^DD(358.2,0,"DT")
- ;;=2960123
- ;;^DD(358.2,0,"ID",.02)
- ;;=W ""
- ;;^DD(358.2,0,"ID",.11)
- ;;=W ""
- ;;^DD(358.2,0,"IX","B",358.2,.01)
- ;;=
- ;;^DD(358.2,0,"IX","C",358.2,.02)
- ;;=
- ;;^DD(358.2,0,"NM","IMP/EXP SELECTION LIST")
- ;;=
- ;;^DD(358.2,0,"PT",358.3,.03)
- ;;=
- ;;^DD(358.2,0,"PT",358.4,.03)
- ;;=
- ;;^DD(358.2,0,"VRPK")
- ;;=IBD
- ;;^DD(358.2,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.2,.01,1,0)
- ;;=^.1
- ;;^DD(358.2,.01,1,1,0)
- ;;=358.2^B
- ;;^DD(358.2,.01,1,1,1)
- ;;=S ^IBE(358.2,"B",$E(X,1,30),DA)=""
- ;;^DD(358.2,.01,1,1,2)
- ;;=K ^IBE(358.2,"B",$E(X,1,30),DA)
- ;;^DD(358.2,.01,3)
- ;;=Answer must be 3-30 characters in length.
- ;;^DD(358.2,.01,21,0)
- ;;=^^2^2^2930527^
- ;;^DD(358.2,.01,21,1,0)
- ;;= 
- ;;^DD(358.2,.01,21,2,0)
- ;;=The name of the list.
- ;;^DD(358.2,.01,"DEL",1,0)
- ;;=I '$G(IBLISTPR) W "...Selection Lists can only be deleted through the Encounter Form Utilities!"
- ;;^DD(358.2,.01,"DT")
- ;;=2921119
+ ;;^UTILITY(U,$J,358.1,264,0)
+ ;;=NEPHROLOGY ICD-10^55^^61^0^132^379^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,265,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^56^^7^0^132^8^^^1^^CRU^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,266,0)
+ ;;=HEADER^56^^2^55^18^1^^^2
+ ;;^UTILITY(U,$J,358.1,267,0)
+ ;;=PATIENT INFORMATION^56^^4^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,268,0)
+ ;;=CPT CODES^56^^16^0^132^64^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
+ ;;^UTILITY(U,$J,358.1,269,0)
+ ;;=NEUROLOGY ICD-10^56^^81^0^132^329^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,270,0)
+ ;;=CPT PROCEDURE^57^^17^0^133^18^^^1^MARK BUBBLE FOR ALL PROCEDURES PERFORMED TODAY^CRUB^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,271,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^57^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,272,0)
+ ;;=HEADER^57^^1^49^21^1^^^2
+ ;;^UTILITY(U,$J,358.1,273,0)
+ ;;=PATIENT INFORMATION^57^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,274,0)
+ ;;=ICD-10 DIAGNOSES (V1.0)^57^^36^0^132^227^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
+ ;;^UTILITY(U,$J,358.1,275,0)
+ ;;=HEADER^58^^1^46^24^1^^^2
+ ;;^UTILITY(U,$J,358.1,276,0)
+ ;;=PATIENT INFORMATION^58^^4^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,277,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^58^^7^0^132^6^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,278,0)
+ ;;=PROCEDURES (V2.1)^58^^14^0^133^96^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,279,0)
+ ;;=NURSING ICD-10^58^^111^0^132^439^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,280,0)
+ ;;=WOMEN'S CLINIC PROCEDURES^59^^19^0^132^71^^^1^PROCEDURES^CR^WOMEN'S CLINIC PROCEDURES^0
+ ;;^UTILITY(U,$J,358.1,281,0)
+ ;;=PATIENT INFORMATION^59^^3^1^132^3^^^2^^^Patient information-name/ssn/age^0
+ ;;^UTILITY(U,$J,358.1,282,0)
+ ;;=HEADER^59^^1^49^30^1^^^2
+ ;;^UTILITY(U,$J,358.1,283,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^59^^7^0^132^11^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,284,0)
+ ;;=ICD-10 DIAGNOSES (V1.0)^59^^91^0^132^837^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,285,0)
+ ;;=CPT PROCEDURE^60^^16^0^133^134^^^1^MARK BUBBLE FOR ALL PROCEDURES PERFORMED TODAY^CRUB^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,286,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^60^^6^0^132^9^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,287,0)
+ ;;=HEADER^60^^1^44^39^1^^^2
+ ;;^UTILITY(U,$J,358.1,288,0)
+ ;;=PATIENT INFORMATION^60^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,289,0)
+ ;;=ICD-10 DIAGNOSES (V1.0)^60^^161^0^132^469^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,290,0)
+ ;;=PROCEDURES (V2.1)^61^^16^0^133^99^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
+ ;;^UTILITY(U,$J,358.1,291,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^61^^5^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^UTILITY(U,$J,358.1,292,0)
+ ;;=HEADER^61^^1^57^19^1^^^2
+ ;;^UTILITY(U,$J,358.1,293,0)
+ ;;=PATIENT INFORMATION^61^^3^0^132^3^^^2^^^Patient information-name/ssn/age
+ ;;^UTILITY(U,$J,358.1,294,0)
+ ;;=ICD-10 DIAGNOSES (V1.0)^61^^116^0^132^584^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^UTILITY(U,$J,358.1,295,0)
+ ;;=1995 VISIT TYPE CODES (V2.1)^62^^6^0^132^9^^^1^^CR^1995 visit types WITH CODES SHOWN^0

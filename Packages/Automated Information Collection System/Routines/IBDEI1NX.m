@@ -1,130 +1,134 @@
-IBDEI1NX ; ; 06-AUG-2015
+IBDEI1NX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29531,1,3,0)
- ;;=3^Lumbosacral plexus disorders
- ;;^UTILITY(U,$J,358.3,29531,1,4,0)
- ;;=4^G54.1
- ;;^UTILITY(U,$J,358.3,29531,2)
- ;;=^5004008
- ;;^UTILITY(U,$J,358.3,29532,0)
- ;;=G54.8^^176^1888^30
- ;;^UTILITY(U,$J,358.3,29532,1,0)
+ ;;^UTILITY(U,$J,358.3,27817,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,27817,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,27818,0)
+ ;;=Z57.8^^132^1321^72
+ ;;^UTILITY(U,$J,358.3,27818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29532,1,3,0)
- ;;=3^Nerve root and plexus disorders NEC
- ;;^UTILITY(U,$J,358.3,29532,1,4,0)
- ;;=4^G54.8
- ;;^UTILITY(U,$J,358.3,29532,2)
- ;;=^268502
- ;;^UTILITY(U,$J,358.3,29533,0)
- ;;=G56.21^^176^1888^20
- ;;^UTILITY(U,$J,358.3,29533,1,0)
+ ;;^UTILITY(U,$J,358.3,27818,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,27818,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,27818,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,27819,0)
+ ;;=Z77.21^^132^1321^53
+ ;;^UTILITY(U,$J,358.3,27819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29533,1,3,0)
- ;;=3^Lesion of ulnar nerve, right upper limb
- ;;^UTILITY(U,$J,358.3,29533,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,29533,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,29534,0)
- ;;=G56.22^^176^1888^19
- ;;^UTILITY(U,$J,358.3,29534,1,0)
+ ;;^UTILITY(U,$J,358.3,27819,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27819,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,27819,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,27820,0)
+ ;;=Z91.81^^132^1321^57
+ ;;^UTILITY(U,$J,358.3,27820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29534,1,3,0)
- ;;=3^Lesion of ulnar nerve, left upper limb
- ;;^UTILITY(U,$J,358.3,29534,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,29534,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,29535,0)
- ;;=G56.31^^176^1888^16
- ;;^UTILITY(U,$J,358.3,29535,1,0)
+ ;;^UTILITY(U,$J,358.3,27820,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,27820,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,27820,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,27821,0)
+ ;;=Z91.89^^132^1321^118
+ ;;^UTILITY(U,$J,358.3,27821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29535,1,3,0)
- ;;=3^Lesion of radial nerve, right upper limb
- ;;^UTILITY(U,$J,358.3,29535,1,4,0)
- ;;=4^G56.31
- ;;^UTILITY(U,$J,358.3,29535,2)
- ;;=^5004027
- ;;^UTILITY(U,$J,358.3,29536,0)
- ;;=G56.32^^176^1888^15
- ;;^UTILITY(U,$J,358.3,29536,1,0)
+ ;;^UTILITY(U,$J,358.3,27821,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,27821,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,27821,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,27822,0)
+ ;;=Z92.89^^132^1321^106
+ ;;^UTILITY(U,$J,358.3,27822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29536,1,3,0)
- ;;=3^Lesion of radial nerve, left upper limb
- ;;^UTILITY(U,$J,358.3,29536,1,4,0)
- ;;=4^G56.32
- ;;^UTILITY(U,$J,358.3,29536,2)
- ;;=^5004028
- ;;^UTILITY(U,$J,358.3,29537,0)
- ;;=G56.81^^176^1888^27
- ;;^UTILITY(U,$J,358.3,29537,1,0)
+ ;;^UTILITY(U,$J,358.3,27822,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,27822,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,27822,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,27823,0)
+ ;;=Z77.110^^132^1321^9
+ ;;^UTILITY(U,$J,358.3,27823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29537,1,3,0)
- ;;=3^Mononeuropathies of right upper limb NEC
- ;;^UTILITY(U,$J,358.3,29537,1,4,0)
- ;;=4^G56.81
- ;;^UTILITY(U,$J,358.3,29537,2)
- ;;=^5004033
- ;;^UTILITY(U,$J,358.3,29538,0)
- ;;=G56.82^^176^1888^25
- ;;^UTILITY(U,$J,358.3,29538,1,0)
+ ;;^UTILITY(U,$J,358.3,27823,1,3,0)
+ ;;=3^Air Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27823,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,27823,2)
+ ;;=^5063314
+ ;;^UTILITY(U,$J,358.3,27824,0)
+ ;;=Z77.112^^132^1321^142
+ ;;^UTILITY(U,$J,358.3,27824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29538,1,3,0)
- ;;=3^Mononeuropathies of left upper limb NEC
- ;;^UTILITY(U,$J,358.3,29538,1,4,0)
- ;;=4^G56.82
- ;;^UTILITY(U,$J,358.3,29538,2)
- ;;=^5004034
- ;;^UTILITY(U,$J,358.3,29539,0)
- ;;=G57.01^^176^1888^18
- ;;^UTILITY(U,$J,358.3,29539,1,0)
+ ;;^UTILITY(U,$J,358.3,27824,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27824,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,27824,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,27825,0)
+ ;;=Z77.111^^132^1321^148
+ ;;^UTILITY(U,$J,358.3,27825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29539,1,3,0)
- ;;=3^Lesion of sciatic nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,29539,1,4,0)
- ;;=4^G57.01
- ;;^UTILITY(U,$J,358.3,29539,2)
- ;;=^5004039
- ;;^UTILITY(U,$J,358.3,29540,0)
- ;;=G57.02^^176^1888^17
- ;;^UTILITY(U,$J,358.3,29540,1,0)
+ ;;^UTILITY(U,$J,358.3,27825,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27825,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,27825,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,27826,0)
+ ;;=Z77.128^^132^1321^119
+ ;;^UTILITY(U,$J,358.3,27826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29540,1,3,0)
- ;;=3^Lesion of sciatic nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,29540,1,4,0)
- ;;=4^G57.02
- ;;^UTILITY(U,$J,358.3,29540,2)
- ;;=^5004040
- ;;^UTILITY(U,$J,358.3,29541,0)
- ;;=G57.11^^176^1888^23
- ;;^UTILITY(U,$J,358.3,29541,1,0)
+ ;;^UTILITY(U,$J,358.3,27826,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27826,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,27826,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,27827,0)
+ ;;=Z77.123^^132^1321^140
+ ;;^UTILITY(U,$J,358.3,27827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29541,1,3,0)
- ;;=3^Meralgia paresthetica, right lower limb
- ;;^UTILITY(U,$J,358.3,29541,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,29541,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,29542,0)
- ;;=G57.12^^176^1888^22
- ;;^UTILITY(U,$J,358.3,29542,1,0)
+ ;;^UTILITY(U,$J,358.3,27827,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27827,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,27827,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,27828,0)
+ ;;=Z77.122^^132^1321^68
+ ;;^UTILITY(U,$J,358.3,27828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29542,1,3,0)
- ;;=3^Meralgia paresthetica, left lower limb
- ;;^UTILITY(U,$J,358.3,29542,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,29542,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,29543,0)
- ;;=G57.21^^176^1888^8
- ;;^UTILITY(U,$J,358.3,29543,1,0)
+ ;;^UTILITY(U,$J,358.3,27828,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27828,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,27828,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,27829,0)
+ ;;=Z77.118^^132^1321^19
+ ;;^UTILITY(U,$J,358.3,27829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29543,1,3,0)
- ;;=3^Lesion of femoral nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,29543,1,4,0)
- ;;=4^G57.21
- ;;^UTILITY(U,$J,358.3,29543,2)
- ;;=^5004045
+ ;;^UTILITY(U,$J,358.3,27829,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,27829,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,27829,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,27830,0)
+ ;;=Z77.9^^132^1321^54
+ ;;^UTILITY(U,$J,358.3,27830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27830,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure

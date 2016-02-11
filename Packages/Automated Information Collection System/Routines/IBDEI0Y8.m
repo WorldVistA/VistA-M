@@ -1,140 +1,124 @@
-IBDEI0Y8 ; ; 06-AUG-2015
+IBDEI0Y8 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16668,2)
- ;;=^24355
- ;;^UTILITY(U,$J,358.3,16669,0)
- ;;=512.89^^84^1001^18
- ;;^UTILITY(U,$J,358.3,16669,1,0)
+ ;;^UTILITY(U,$J,358.3,15770,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,15770,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,15771,0)
+ ;;=L97.323^^85^825^89
+ ;;^UTILITY(U,$J,358.3,15771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16669,1,3,0)
- ;;=3^512.89
- ;;^UTILITY(U,$J,358.3,16669,1,4,0)
- ;;=4^Pneumothorax NEC
- ;;^UTILITY(U,$J,358.3,16669,2)
- ;;=^340533
- ;;^UTILITY(U,$J,358.3,16670,0)
- ;;=513.0^^84^1001^15
- ;;^UTILITY(U,$J,358.3,16670,1,0)
+ ;;^UTILITY(U,$J,358.3,15771,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Ankle,Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,15771,1,4,0)
+ ;;=4^L97.323
+ ;;^UTILITY(U,$J,358.3,15771,2)
+ ;;=^5009522
+ ;;^UTILITY(U,$J,358.3,15772,0)
+ ;;=L97.324^^85^825^90
+ ;;^UTILITY(U,$J,358.3,15772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16670,1,3,0)
- ;;=3^513.0
- ;;^UTILITY(U,$J,358.3,16670,1,4,0)
- ;;=4^Lung Abscess
- ;;^UTILITY(U,$J,358.3,16670,2)
- ;;=^72039
- ;;^UTILITY(U,$J,358.3,16671,0)
- ;;=514.^^84^1001^22
- ;;^UTILITY(U,$J,358.3,16671,1,0)
+ ;;^UTILITY(U,$J,358.3,15772,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Ankle,Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,15772,1,4,0)
+ ;;=4^L97.324
+ ;;^UTILITY(U,$J,358.3,15772,2)
+ ;;=^5009523
+ ;;^UTILITY(U,$J,358.3,15773,0)
+ ;;=L97.329^^85^825^91
+ ;;^UTILITY(U,$J,358.3,15773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16671,1,3,0)
- ;;=3^514.
- ;;^UTILITY(U,$J,358.3,16671,1,4,0)
- ;;=4^Pulmonary Congestion/Hypostasis
- ;;^UTILITY(U,$J,358.3,16671,2)
- ;;=^269992
- ;;^UTILITY(U,$J,358.3,16672,0)
- ;;=515.^^84^1001^19
- ;;^UTILITY(U,$J,358.3,16672,1,0)
+ ;;^UTILITY(U,$J,358.3,15773,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Ankle,Unspec Severity
+ ;;^UTILITY(U,$J,358.3,15773,1,4,0)
+ ;;=4^L97.329
+ ;;^UTILITY(U,$J,358.3,15773,2)
+ ;;=^5009524
+ ;;^UTILITY(U,$J,358.3,15774,0)
+ ;;=L97.421^^85^825^102
+ ;;^UTILITY(U,$J,358.3,15774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16672,1,3,0)
- ;;=3^515.
- ;;^UTILITY(U,$J,358.3,16672,1,4,0)
- ;;=4^Postinflam Pulm Fibrosis
- ;;^UTILITY(U,$J,358.3,16672,2)
- ;;=^101072
- ;;^UTILITY(U,$J,358.3,16673,0)
- ;;=516.31^^84^1001^24
- ;;^UTILITY(U,$J,358.3,16673,1,0)
+ ;;^UTILITY(U,$J,358.3,15774,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,15774,1,4,0)
+ ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,15774,2)
+ ;;=^5009535
+ ;;^UTILITY(U,$J,358.3,15775,0)
+ ;;=L97.422^^85^825^103
+ ;;^UTILITY(U,$J,358.3,15775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16673,1,3,0)
- ;;=3^516.31
- ;;^UTILITY(U,$J,358.3,16673,1,4,0)
- ;;=4^Pulmonary Fibrosis,Idiopathic
- ;;^UTILITY(U,$J,358.3,16673,2)
- ;;=^340534
- ;;^UTILITY(U,$J,358.3,16674,0)
- ;;=517.8^^84^1001^11
- ;;^UTILITY(U,$J,358.3,16674,1,0)
+ ;;^UTILITY(U,$J,358.3,15775,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,15775,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,15775,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,15776,0)
+ ;;=L97.423^^85^825^104
+ ;;^UTILITY(U,$J,358.3,15776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16674,1,3,0)
- ;;=3^517.8
- ;;^UTILITY(U,$J,358.3,16674,1,4,0)
- ;;=4^Drug Induced Lung Disease
- ;;^UTILITY(U,$J,358.3,16674,2)
- ;;=^270000
- ;;^UTILITY(U,$J,358.3,16675,0)
- ;;=518.1^^84^1001^14
- ;;^UTILITY(U,$J,358.3,16675,1,0)
+ ;;^UTILITY(U,$J,358.3,15776,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,15776,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,15776,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,15777,0)
+ ;;=L97.424^^85^825^105
+ ;;^UTILITY(U,$J,358.3,15777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16675,1,3,0)
- ;;=3^518.1
- ;;^UTILITY(U,$J,358.3,16675,1,4,0)
- ;;=4^Interstitial Lung Disease
- ;;^UTILITY(U,$J,358.3,16675,2)
- ;;=^39734
- ;;^UTILITY(U,$J,358.3,16676,0)
- ;;=518.4^^84^1001^23
- ;;^UTILITY(U,$J,358.3,16676,1,0)
+ ;;^UTILITY(U,$J,358.3,15777,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,15777,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,15777,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,15778,0)
+ ;;=L97.429^^85^825^106
+ ;;^UTILITY(U,$J,358.3,15778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16676,1,3,0)
- ;;=3^518.4
- ;;^UTILITY(U,$J,358.3,16676,1,4,0)
- ;;=4^Pulmonary Edema
- ;;^UTILITY(U,$J,358.3,16676,2)
- ;;=^270003
- ;;^UTILITY(U,$J,358.3,16677,0)
- ;;=519.8^^84^1001^28
- ;;^UTILITY(U,$J,358.3,16677,1,0)
+ ;;^UTILITY(U,$J,358.3,15778,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Unspec Severity
+ ;;^UTILITY(U,$J,358.3,15778,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,15778,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,15779,0)
+ ;;=L97.521^^85^825^97
+ ;;^UTILITY(U,$J,358.3,15779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16677,1,3,0)
- ;;=3^519.8
- ;;^UTILITY(U,$J,358.3,16677,1,4,0)
- ;;=4^Respiratory System Disease NEC
- ;;^UTILITY(U,$J,358.3,16677,2)
- ;;=^87495
- ;;^UTILITY(U,$J,358.3,16678,0)
- ;;=519.9^^84^1001^27
- ;;^UTILITY(U,$J,358.3,16678,1,0)
+ ;;^UTILITY(U,$J,358.3,15779,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,15779,1,4,0)
+ ;;=4^L97.521
+ ;;^UTILITY(U,$J,358.3,15779,2)
+ ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,15780,0)
+ ;;=L97.522^^85^825^98
+ ;;^UTILITY(U,$J,358.3,15780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16678,1,3,0)
- ;;=3^519.9
- ;;^UTILITY(U,$J,358.3,16678,1,4,0)
- ;;=4^Respiratory System Diease NOS
- ;;^UTILITY(U,$J,358.3,16678,2)
- ;;=^105137
- ;;^UTILITY(U,$J,358.3,16679,0)
- ;;=748.4^^84^1001^10
- ;;^UTILITY(U,$J,358.3,16679,1,0)
+ ;;^UTILITY(U,$J,358.3,15780,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,15780,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,15780,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,15781,0)
+ ;;=L97.523^^85^825^99
+ ;;^UTILITY(U,$J,358.3,15781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16679,1,3,0)
- ;;=3^748.4
- ;;^UTILITY(U,$J,358.3,16679,1,4,0)
- ;;=4^Cystic Lung Disease
- ;;^UTILITY(U,$J,358.3,16679,2)
- ;;=^272919
- ;;^UTILITY(U,$J,358.3,16680,0)
- ;;=786.05^^84^1001^29
- ;;^UTILITY(U,$J,358.3,16680,1,0)
+ ;;^UTILITY(U,$J,358.3,15781,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,15781,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,15781,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,15782,0)
+ ;;=L97.524^^85^825^100
+ ;;^UTILITY(U,$J,358.3,15782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16680,1,3,0)
- ;;=3^786.05
- ;;^UTILITY(U,$J,358.3,16680,1,4,0)
- ;;=4^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,16680,2)
- ;;=^37632
- ;;^UTILITY(U,$J,358.3,16681,0)
- ;;=799.1^^84^1001^26
- ;;^UTILITY(U,$J,358.3,16681,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16681,1,3,0)
- ;;=3^799.1
- ;;^UTILITY(U,$J,358.3,16681,1,4,0)
- ;;=4^Respiratory Arrest
- ;;^UTILITY(U,$J,358.3,16681,2)
- ;;=^276886
- ;;^UTILITY(U,$J,358.3,16682,0)
- ;;=V72.82^^84^1001^20
- ;;^UTILITY(U,$J,358.3,16682,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15782,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Necrosis of Bone

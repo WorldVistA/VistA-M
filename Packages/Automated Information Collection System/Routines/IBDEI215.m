@@ -1,140 +1,124 @@
-IBDEI215 ; ; 06-AUG-2015
+IBDEI215 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35477,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,35477,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,35478,0)
- ;;=R55.^^188^2045^41
- ;;^UTILITY(U,$J,358.3,35478,1,0)
+ ;;^UTILITY(U,$J,358.3,34017,0)
+ ;;=N01.4^^154^1722^64
+ ;;^UTILITY(U,$J,358.3,34017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35478,1,3,0)
- ;;=3^Syncope and collapse
- ;;^UTILITY(U,$J,358.3,35478,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,35478,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,35479,0)
- ;;=R42.^^188^2045^16
- ;;^UTILITY(U,$J,358.3,35479,1,0)
+ ;;^UTILITY(U,$J,358.3,34017,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34017,1,4,0)
+ ;;=4^N01.4
+ ;;^UTILITY(U,$J,358.3,34017,2)
+ ;;=^5015505
+ ;;^UTILITY(U,$J,358.3,34018,0)
+ ;;=N01.5^^154^1722^68
+ ;;^UTILITY(U,$J,358.3,34018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35479,1,3,0)
- ;;=3^Dizziness and giddiness
- ;;^UTILITY(U,$J,358.3,35479,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,35479,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,35480,0)
- ;;=G47.9^^188^2045^39
- ;;^UTILITY(U,$J,358.3,35480,1,0)
+ ;;^UTILITY(U,$J,358.3,34018,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,34018,1,4,0)
+ ;;=4^N01.5
+ ;;^UTILITY(U,$J,358.3,34018,2)
+ ;;=^5015506
+ ;;^UTILITY(U,$J,358.3,34019,0)
+ ;;=N01.6^^154^1722^63
+ ;;^UTILITY(U,$J,358.3,34019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35480,1,3,0)
- ;;=3^Sleep disorder, unspecified
- ;;^UTILITY(U,$J,358.3,35480,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,35480,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,35481,0)
- ;;=G47.00^^188^2045^26
- ;;^UTILITY(U,$J,358.3,35481,1,0)
+ ;;^UTILITY(U,$J,358.3,34019,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,34019,1,4,0)
+ ;;=4^N01.6
+ ;;^UTILITY(U,$J,358.3,34019,2)
+ ;;=^5015507
+ ;;^UTILITY(U,$J,358.3,34020,0)
+ ;;=N01.7^^154^1722^66
+ ;;^UTILITY(U,$J,358.3,34020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35481,1,3,0)
- ;;=3^Insomnia, unspecified
- ;;^UTILITY(U,$J,358.3,35481,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,35481,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,35482,0)
- ;;=R50.9^^188^2045^20
- ;;^UTILITY(U,$J,358.3,35482,1,0)
+ ;;^UTILITY(U,$J,358.3,34020,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,34020,1,4,0)
+ ;;=4^N01.7
+ ;;^UTILITY(U,$J,358.3,34020,2)
+ ;;=^5015508
+ ;;^UTILITY(U,$J,358.3,34021,0)
+ ;;=N01.8^^154^1722^71
+ ;;^UTILITY(U,$J,358.3,34021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35482,1,3,0)
- ;;=3^Fever, unspecified
- ;;^UTILITY(U,$J,358.3,35482,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,35482,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,35483,0)
- ;;=R53.82^^188^2045^8
- ;;^UTILITY(U,$J,358.3,35483,1,0)
+ ;;^UTILITY(U,$J,358.3,34021,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,34021,1,4,0)
+ ;;=4^N01.8
+ ;;^UTILITY(U,$J,358.3,34021,2)
+ ;;=^5015509
+ ;;^UTILITY(U,$J,358.3,34022,0)
+ ;;=N01.9^^154^1722^72
+ ;;^UTILITY(U,$J,358.3,34022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35483,1,3,0)
- ;;=3^Chronic fatigue, unspecified
- ;;^UTILITY(U,$J,358.3,35483,1,4,0)
- ;;=4^R53.82
- ;;^UTILITY(U,$J,358.3,35483,2)
- ;;=^5019519
- ;;^UTILITY(U,$J,358.3,35484,0)
- ;;=R53.1^^188^2045^45
- ;;^UTILITY(U,$J,358.3,35484,1,0)
+ ;;^UTILITY(U,$J,358.3,34022,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,34022,1,4,0)
+ ;;=4^N01.9
+ ;;^UTILITY(U,$J,358.3,34022,2)
+ ;;=^5015510
+ ;;^UTILITY(U,$J,358.3,34023,0)
+ ;;=N02.0^^154^1722^80
+ ;;^UTILITY(U,$J,358.3,34023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35484,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,35484,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,35484,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,35485,0)
- ;;=R68.83^^188^2045^6
- ;;^UTILITY(U,$J,358.3,35485,1,0)
+ ;;^UTILITY(U,$J,358.3,34023,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ minor glomerular abnlt
+ ;;^UTILITY(U,$J,358.3,34023,1,4,0)
+ ;;=4^N02.0
+ ;;^UTILITY(U,$J,358.3,34023,2)
+ ;;=^5015511
+ ;;^UTILITY(U,$J,358.3,34024,0)
+ ;;=N02.1^^154^1722^79
+ ;;^UTILITY(U,$J,358.3,34024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35485,1,3,0)
- ;;=3^Chills (without fever)
- ;;^UTILITY(U,$J,358.3,35485,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,35485,2)
- ;;=^5019555
- ;;^UTILITY(U,$J,358.3,35486,0)
- ;;=R50.9^^188^2045^7
- ;;^UTILITY(U,$J,358.3,35486,1,0)
+ ;;^UTILITY(U,$J,358.3,34024,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,34024,1,4,0)
+ ;;=4^N02.1
+ ;;^UTILITY(U,$J,358.3,34024,2)
+ ;;=^5015512
+ ;;^UTILITY(U,$J,358.3,34025,0)
+ ;;=N02.2^^154^1722^77
+ ;;^UTILITY(U,$J,358.3,34025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35486,1,3,0)
- ;;=3^Chills with fever
- ;;^UTILITY(U,$J,358.3,35486,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,35486,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,35487,0)
- ;;=R22.9^^188^2045^30
- ;;^UTILITY(U,$J,358.3,35487,1,0)
+ ;;^UTILITY(U,$J,358.3,34025,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,34025,1,4,0)
+ ;;=4^N02.2
+ ;;^UTILITY(U,$J,358.3,34025,2)
+ ;;=^5015513
+ ;;^UTILITY(U,$J,358.3,34026,0)
+ ;;=N02.3^^154^1722^74
+ ;;^UTILITY(U,$J,358.3,34026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35487,1,3,0)
- ;;=3^Localized swelling, mass and lump, unspecified
- ;;^UTILITY(U,$J,358.3,35487,1,4,0)
- ;;=4^R22.9
- ;;^UTILITY(U,$J,358.3,35487,2)
- ;;=^5019292
- ;;^UTILITY(U,$J,358.3,35488,0)
- ;;=R06.01^^188^2045^34
- ;;^UTILITY(U,$J,358.3,35488,1,0)
+ ;;^UTILITY(U,$J,358.3,34026,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34026,1,4,0)
+ ;;=4^N02.3
+ ;;^UTILITY(U,$J,358.3,34026,2)
+ ;;=^5015514
+ ;;^UTILITY(U,$J,358.3,34027,0)
+ ;;=N02.4^^154^1722^73
+ ;;^UTILITY(U,$J,358.3,34027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35488,1,3,0)
- ;;=3^Orthopnea
- ;;^UTILITY(U,$J,358.3,35488,1,4,0)
- ;;=4^R06.01
- ;;^UTILITY(U,$J,358.3,35488,2)
- ;;=^186737
- ;;^UTILITY(U,$J,358.3,35489,0)
- ;;=R06.02^^188^2045^37
- ;;^UTILITY(U,$J,358.3,35489,1,0)
+ ;;^UTILITY(U,$J,358.3,34027,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,34027,1,4,0)
+ ;;=4^N02.4
+ ;;^UTILITY(U,$J,358.3,34027,2)
+ ;;=^5015515
+ ;;^UTILITY(U,$J,358.3,34028,0)
+ ;;=N02.5^^154^1722^78
+ ;;^UTILITY(U,$J,358.3,34028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35489,1,3,0)
- ;;=3^Shortness of breath
- ;;^UTILITY(U,$J,358.3,35489,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,35489,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,35490,0)
- ;;=R06.82^^188^2045^42
- ;;^UTILITY(U,$J,358.3,35490,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35490,1,3,0)
- ;;=3^Tachypnea, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,35490,1,4,0)
- ;;=4^R06.82
- ;;^UTILITY(U,$J,358.3,35490,2)
- ;;=^5019191
- ;;^UTILITY(U,$J,358.3,35491,0)
- ;;=R06.2^^188^2045^46
+ ;;^UTILITY(U,$J,358.3,34028,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,34028,1,4,0)
+ ;;=4^N02.5
+ ;;^UTILITY(U,$J,358.3,34028,2)
+ ;;=^5015516

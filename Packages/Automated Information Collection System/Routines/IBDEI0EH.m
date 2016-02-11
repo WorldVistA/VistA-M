@@ -1,142 +1,118 @@
-IBDEI0EH ; ; 06-AUG-2015
+IBDEI0EH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6606,0)
- ;;=446.6^^31^412^119
- ;;^UTILITY(U,$J,358.3,6606,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6606,1,4,0)
- ;;=4^446.6
- ;;^UTILITY(U,$J,358.3,6606,1,5,0)
- ;;=5^Thrombotic Thrombocytopenic Purpura(Ttp)
- ;;^UTILITY(U,$J,358.3,6606,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,6607,0)
- ;;=286.4^^31^412^122
- ;;^UTILITY(U,$J,358.3,6607,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6607,1,4,0)
- ;;=4^286.4
- ;;^UTILITY(U,$J,358.3,6607,1,5,0)
- ;;=5^Von Willebrand's Disease
- ;;^UTILITY(U,$J,358.3,6607,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,6608,0)
- ;;=204.00^^31^412^1
- ;;^UTILITY(U,$J,358.3,6608,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6608,1,4,0)
- ;;=4^204.00
- ;;^UTILITY(U,$J,358.3,6608,1,5,0)
- ;;=5^ALL w/o Remission
- ;;^UTILITY(U,$J,358.3,6608,2)
- ;;=^267521
- ;;^UTILITY(U,$J,358.3,6609,0)
- ;;=204.01^^31^412^2
- ;;^UTILITY(U,$J,358.3,6609,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6609,1,4,0)
- ;;=4^204.01
- ;;^UTILITY(U,$J,358.3,6609,1,5,0)
- ;;=5^ALL,In Remission
- ;;^UTILITY(U,$J,358.3,6609,2)
- ;;=^267522
- ;;^UTILITY(U,$J,358.3,6610,0)
- ;;=204.10^^31^412^13
- ;;^UTILITY(U,$J,358.3,6610,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6610,1,4,0)
- ;;=4^204.10
- ;;^UTILITY(U,$J,358.3,6610,1,5,0)
- ;;=5^CLL w/o Remission
- ;;^UTILITY(U,$J,358.3,6610,2)
- ;;=^267523
- ;;^UTILITY(U,$J,358.3,6611,0)
- ;;=204.11^^31^412^14
- ;;^UTILITY(U,$J,358.3,6611,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6611,1,4,0)
- ;;=4^204.11
- ;;^UTILITY(U,$J,358.3,6611,1,5,0)
- ;;=5^CLL,In Remission
- ;;^UTILITY(U,$J,358.3,6611,2)
- ;;=^267524
- ;;^UTILITY(U,$J,358.3,6612,0)
- ;;=201.90^^31^412^80
- ;;^UTILITY(U,$J,358.3,6612,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6612,1,4,0)
- ;;=4^201.90
- ;;^UTILITY(U,$J,358.3,6612,1,5,0)
- ;;=5^Hodgkin's Lymphoma,Unspec Type/Site
- ;;^UTILITY(U,$J,358.3,6612,2)
- ;;=^267430
- ;;^UTILITY(U,$J,358.3,6613,0)
- ;;=785.6^^31^412^87
- ;;^UTILITY(U,$J,358.3,6613,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6613,1,4,0)
- ;;=4^785.6
- ;;^UTILITY(U,$J,358.3,6613,1,5,0)
- ;;=5^Lymphadenopathy
- ;;^UTILITY(U,$J,358.3,6613,2)
- ;;=^72368
- ;;^UTILITY(U,$J,358.3,6614,0)
- ;;=200.20^^31^412^89
- ;;^UTILITY(U,$J,358.3,6614,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6614,1,4,0)
- ;;=4^200.20
- ;;^UTILITY(U,$J,358.3,6614,1,5,0)
- ;;=5^Lymphoma, Burkitt's, Unspecified Sites
- ;;^UTILITY(U,$J,358.3,6614,2)
- ;;=^17529
- ;;^UTILITY(U,$J,358.3,6615,0)
- ;;=202.00^^31^412^91
- ;;^UTILITY(U,$J,358.3,6615,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6615,1,4,0)
- ;;=4^202.00
- ;;^UTILITY(U,$J,358.3,6615,1,5,0)
- ;;=5^Lymphoma, Low-Grade, Unspec Site
- ;;^UTILITY(U,$J,358.3,6615,2)
- ;;=^72606
- ;;^UTILITY(U,$J,358.3,6616,0)
- ;;=200.10^^31^412^90
- ;;^UTILITY(U,$J,358.3,6616,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6616,1,4,0)
- ;;=4^200.10
- ;;^UTILITY(U,$J,358.3,6616,1,5,0)
- ;;=5^Lymphoma, Int Or High Grade, Unspec Site
- ;;^UTILITY(U,$J,358.3,6616,2)
- ;;=^175886
- ;;^UTILITY(U,$J,358.3,6617,0)
- ;;=273.3^^31^412^92
- ;;^UTILITY(U,$J,358.3,6617,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6617,1,4,0)
- ;;=4^273.3
- ;;^UTILITY(U,$J,358.3,6617,1,5,0)
- ;;=5^Macroglobulinemia
- ;;^UTILITY(U,$J,358.3,6617,2)
- ;;=^73013
- ;;^UTILITY(U,$J,358.3,6618,0)
- ;;=203.00^^31^412^104
- ;;^UTILITY(U,$J,358.3,6618,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6618,1,4,0)
- ;;=4^203.00
- ;;^UTILITY(U,$J,358.3,6618,1,5,0)
- ;;=5^Multiple Myeloma w/o Remission
- ;;^UTILITY(U,$J,358.3,6618,2)
- ;;=^267514
- ;;^UTILITY(U,$J,358.3,6619,0)
- ;;=203.01^^31^412^103
- ;;^UTILITY(U,$J,358.3,6619,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6619,1,4,0)
- ;;=4^203.01
- ;;^UTILITY(U,$J,358.3,6619,1,5,0)
- ;;=5^Multiple Myeloma In Remission
+ ;;^UTILITY(U,$J,358.3,6321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6321,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6321,1,4,0)
+ ;;=4^S61.031A
+ ;;^UTILITY(U,$J,358.3,6321,2)
+ ;;=^5032702
+ ;;^UTILITY(U,$J,358.3,6322,0)
+ ;;=S61.032A^^40^388^30
+ ;;^UTILITY(U,$J,358.3,6322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6322,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6322,1,4,0)
+ ;;=4^S61.032A
+ ;;^UTILITY(U,$J,358.3,6322,2)
+ ;;=^5032705
+ ;;^UTILITY(U,$J,358.3,6323,0)
+ ;;=S61.237A^^40^388^20
+ ;;^UTILITY(U,$J,358.3,6323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6323,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6323,1,4,0)
+ ;;=4^S61.237A
+ ;;^UTILITY(U,$J,358.3,6323,2)
+ ;;=^5032837
+ ;;^UTILITY(U,$J,358.3,6324,0)
+ ;;=S91.232A^^40^388^11
+ ;;^UTILITY(U,$J,358.3,6324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6324,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Great Toe w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6324,1,4,0)
+ ;;=4^S91.232A
+ ;;^UTILITY(U,$J,358.3,6324,2)
+ ;;=^5044293
+ ;;^UTILITY(U,$J,358.3,6325,0)
+ ;;=S91.132A^^40^388^12
+ ;;^UTILITY(U,$J,358.3,6325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6325,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Great Toe w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6325,1,4,0)
+ ;;=4^S91.132A
+ ;;^UTILITY(U,$J,358.3,6325,2)
+ ;;=^5044216
+ ;;^UTILITY(U,$J,358.3,6326,0)
+ ;;=S61.331A^^40^388^15
+ ;;^UTILITY(U,$J,358.3,6326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6326,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Index Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6326,1,4,0)
+ ;;=4^S61.331A
+ ;;^UTILITY(U,$J,358.3,6326,2)
+ ;;=^5032939
+ ;;^UTILITY(U,$J,358.3,6327,0)
+ ;;=S61.231A^^40^388^16
+ ;;^UTILITY(U,$J,358.3,6327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6327,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6327,1,4,0)
+ ;;=4^S61.231A
+ ;;^UTILITY(U,$J,358.3,6327,2)
+ ;;=^5032819
+ ;;^UTILITY(U,$J,358.3,6328,0)
+ ;;=S91.235A^^40^388^18
+ ;;^UTILITY(U,$J,358.3,6328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6328,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Lesser Toe(s) w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6328,1,4,0)
+ ;;=4^S91.235A
+ ;;^UTILITY(U,$J,358.3,6328,2)
+ ;;=^5044299
+ ;;^UTILITY(U,$J,358.3,6329,0)
+ ;;=S91.135A^^40^388^19
+ ;;^UTILITY(U,$J,358.3,6329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6329,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Lesser Toe(s) w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6329,1,4,0)
+ ;;=4^S91.135A
+ ;;^UTILITY(U,$J,358.3,6329,2)
+ ;;=^5044225
+ ;;^UTILITY(U,$J,358.3,6330,0)
+ ;;=S61.337A^^40^388^21
+ ;;^UTILITY(U,$J,358.3,6330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6330,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6330,1,4,0)
+ ;;=4^S61.337A
+ ;;^UTILITY(U,$J,358.3,6330,2)
+ ;;=^5032957
+ ;;^UTILITY(U,$J,358.3,6331,0)
+ ;;=S61.333A^^40^388^23
+ ;;^UTILITY(U,$J,358.3,6331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6331,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6331,1,4,0)
+ ;;=4^S61.333A
+ ;;^UTILITY(U,$J,358.3,6331,2)
+ ;;=^5032945
+ ;;^UTILITY(U,$J,358.3,6332,0)
+ ;;=S61.233A^^40^388^24
+ ;;^UTILITY(U,$J,358.3,6332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6332,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Middle Finger w/o Nail Damage,Init Encntr

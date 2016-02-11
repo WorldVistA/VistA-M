@@ -1,0 +1,130 @@
+IBDEI2NH ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44478,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,44479,0)
+ ;;=D45.^^200^2228^175
+ ;;^UTILITY(U,$J,358.3,44479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44479,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,44479,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,44479,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,44480,0)
+ ;;=C77.3^^200^2228^107
+ ;;^UTILITY(U,$J,358.3,44480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44480,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,44480,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,44480,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,44481,0)
+ ;;=C77.2^^200^2228^123
+ ;;^UTILITY(U,$J,358.3,44481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44481,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,44481,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,44481,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,44482,0)
+ ;;=C77.1^^200^2228^124
+ ;;^UTILITY(U,$J,358.3,44482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44482,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,44482,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,44482,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,44483,0)
+ ;;=C77.0^^200^2228^140
+ ;;^UTILITY(U,$J,358.3,44483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44483,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,44483,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,44483,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,44484,0)
+ ;;=C77.8^^200^2228^141
+ ;;^UTILITY(U,$J,358.3,44484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44484,1,3,0)
+ ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,44484,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,44484,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,44485,0)
+ ;;=C79.51^^200^2228^111
+ ;;^UTILITY(U,$J,358.3,44485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44485,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,44485,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,44485,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,44486,0)
+ ;;=C79.52^^200^2228^110
+ ;;^UTILITY(U,$J,358.3,44486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44486,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary
+ ;;^UTILITY(U,$J,358.3,44486,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,44486,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,44487,0)
+ ;;=C79.31^^200^2228^112
+ ;;^UTILITY(U,$J,358.3,44487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44487,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,44487,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,44487,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,44488,0)
+ ;;=C79.72^^200^2228^127
+ ;;^UTILITY(U,$J,358.3,44488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44488,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,44488,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,44488,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,44489,0)
+ ;;=C78.02^^200^2228^131
+ ;;^UTILITY(U,$J,358.3,44489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44489,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,44489,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,44489,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,44490,0)
+ ;;=C78.7^^200^2228^136
+ ;;^UTILITY(U,$J,358.3,44490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44490,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,44490,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,44490,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,44491,0)
+ ;;=C79.71^^200^2228^149
+ ;;^UTILITY(U,$J,358.3,44491,1,0)
+ ;;=^358.31IA^4^2

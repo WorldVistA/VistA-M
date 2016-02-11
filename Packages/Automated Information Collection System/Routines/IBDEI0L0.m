@@ -1,138 +1,124 @@
-IBDEI0L0 ; ; 06-AUG-2015
+IBDEI0L0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9955,0)
- ;;=366.02^^44^559^27
- ;;^UTILITY(U,$J,358.3,9955,1,0)
+ ;;^UTILITY(U,$J,358.3,9515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9955,1,3,0)
- ;;=3^Presenile Cataract,Post Subcap
- ;;^UTILITY(U,$J,358.3,9955,1,4,0)
- ;;=4^366.02
- ;;^UTILITY(U,$J,358.3,9955,2)
- ;;=^268788
- ;;^UTILITY(U,$J,358.3,9956,0)
- ;;=366.03^^44^559^25
- ;;^UTILITY(U,$J,358.3,9956,1,0)
+ ;;^UTILITY(U,$J,358.3,9515,1,3,0)
+ ;;=3^Absence Seizures Not Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9515,1,4,0)
+ ;;=4^G40.A01
+ ;;^UTILITY(U,$J,358.3,9515,2)
+ ;;=^5003868
+ ;;^UTILITY(U,$J,358.3,9516,0)
+ ;;=G40.A09^^65^617^4
+ ;;^UTILITY(U,$J,358.3,9516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9956,1,3,0)
- ;;=3^Presenile Cataract,Cortical,Lemellar
- ;;^UTILITY(U,$J,358.3,9956,1,4,0)
- ;;=4^366.03
- ;;^UTILITY(U,$J,358.3,9956,2)
- ;;=^268789
- ;;^UTILITY(U,$J,358.3,9957,0)
- ;;=366.04^^44^559^26
- ;;^UTILITY(U,$J,358.3,9957,1,0)
+ ;;^UTILITY(U,$J,358.3,9516,1,3,0)
+ ;;=3^Absence Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9516,1,4,0)
+ ;;=4^G40.A09
+ ;;^UTILITY(U,$J,358.3,9516,2)
+ ;;=^5003869
+ ;;^UTILITY(U,$J,358.3,9517,0)
+ ;;=G40.A11^^65^617^1
+ ;;^UTILITY(U,$J,358.3,9517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9957,1,3,0)
- ;;=3^Presenile Cataract,Nuclear
- ;;^UTILITY(U,$J,358.3,9957,1,4,0)
- ;;=4^366.04
- ;;^UTILITY(U,$J,358.3,9957,2)
- ;;=^268790
- ;;^UTILITY(U,$J,358.3,9958,0)
- ;;=366.10^^44^559^16
- ;;^UTILITY(U,$J,358.3,9958,1,0)
+ ;;^UTILITY(U,$J,358.3,9517,1,3,0)
+ ;;=3^Absence Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9517,1,4,0)
+ ;;=4^G40.A11
+ ;;^UTILITY(U,$J,358.3,9517,2)
+ ;;=^5003870
+ ;;^UTILITY(U,$J,358.3,9518,0)
+ ;;=G40.A19^^65^617^2
+ ;;^UTILITY(U,$J,358.3,9518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9958,1,3,0)
- ;;=3^Cataract, Senile NOS
- ;;^UTILITY(U,$J,358.3,9958,1,4,0)
- ;;=4^366.10
- ;;^UTILITY(U,$J,358.3,9958,2)
- ;;=^109203
- ;;^UTILITY(U,$J,358.3,9959,0)
- ;;=379.32^^44^559^29
- ;;^UTILITY(U,$J,358.3,9959,1,0)
+ ;;^UTILITY(U,$J,358.3,9518,1,3,0)
+ ;;=3^Absence Seizures Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9518,1,4,0)
+ ;;=4^G40.A19
+ ;;^UTILITY(U,$J,358.3,9518,2)
+ ;;=^5003871
+ ;;^UTILITY(U,$J,358.3,9519,0)
+ ;;=G40.309^^65^617^16
+ ;;^UTILITY(U,$J,358.3,9519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9959,1,3,0)
- ;;=3^Subluxation of Lens
- ;;^UTILITY(U,$J,358.3,9959,1,4,0)
- ;;=4^379.32
- ;;^UTILITY(U,$J,358.3,9959,2)
- ;;=^69116
- ;;^UTILITY(U,$J,358.3,9960,0)
- ;;=366.22^^44^559^18
- ;;^UTILITY(U,$J,358.3,9960,1,0)
+ ;;^UTILITY(U,$J,358.3,9519,1,3,0)
+ ;;=3^Generalized Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9519,1,4,0)
+ ;;=4^G40.309
+ ;;^UTILITY(U,$J,358.3,9519,2)
+ ;;=^5003842
+ ;;^UTILITY(U,$J,358.3,9520,0)
+ ;;=G40.311^^65^617^14
+ ;;^UTILITY(U,$J,358.3,9520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9960,1,3,0)
- ;;=3^Cataract, Total Traumatic
- ;;^UTILITY(U,$J,358.3,9960,1,4,0)
- ;;=4^366.22
- ;;^UTILITY(U,$J,358.3,9960,2)
- ;;=^268805
- ;;^UTILITY(U,$J,358.3,9961,0)
- ;;=366.13^^44^559^2
- ;;^UTILITY(U,$J,358.3,9961,1,0)
+ ;;^UTILITY(U,$J,358.3,9520,1,3,0)
+ ;;=3^Generalized Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9520,1,4,0)
+ ;;=4^G40.311
+ ;;^UTILITY(U,$J,358.3,9520,2)
+ ;;=^5003843
+ ;;^UTILITY(U,$J,358.3,9521,0)
+ ;;=G40.319^^65^617^15
+ ;;^UTILITY(U,$J,358.3,9521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9961,1,3,0)
- ;;=3^Cataract, Ant Subcaps Senile
- ;;^UTILITY(U,$J,358.3,9961,1,4,0)
- ;;=4^366.13
- ;;^UTILITY(U,$J,358.3,9961,2)
- ;;=^268795
- ;;^UTILITY(U,$J,358.3,9962,0)
- ;;=366.45^^44^559^17
- ;;^UTILITY(U,$J,358.3,9962,1,0)
+ ;;^UTILITY(U,$J,358.3,9521,1,3,0)
+ ;;=3^Generalized Seizures Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9521,1,4,0)
+ ;;=4^G40.319
+ ;;^UTILITY(U,$J,358.3,9521,2)
+ ;;=^5003844
+ ;;^UTILITY(U,$J,358.3,9522,0)
+ ;;=G40.409^^65^617^19
+ ;;^UTILITY(U,$J,358.3,9522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9962,1,3,0)
- ;;=3^Cataract, Steroid Induced
- ;;^UTILITY(U,$J,358.3,9962,1,4,0)
- ;;=4^366.45
- ;;^UTILITY(U,$J,358.3,9962,2)
- ;;=^268819^E932.0
- ;;^UTILITY(U,$J,358.3,9963,0)
- ;;=366.18^^44^559^7
- ;;^UTILITY(U,$J,358.3,9963,1,0)
+ ;;^UTILITY(U,$J,358.3,9522,1,3,0)
+ ;;=3^Generalized Seizures,Other, Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9522,1,4,0)
+ ;;=4^G40.409
+ ;;^UTILITY(U,$J,358.3,9522,2)
+ ;;=^5003846
+ ;;^UTILITY(U,$J,358.3,9523,0)
+ ;;=G40.411^^65^617^17
+ ;;^UTILITY(U,$J,358.3,9523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9963,1,3,0)
- ;;=3^Cataract, Hypermature
- ;;^UTILITY(U,$J,358.3,9963,1,4,0)
- ;;=4^366.18
- ;;^UTILITY(U,$J,358.3,9963,2)
- ;;=^265532
- ;;^UTILITY(U,$J,358.3,9964,0)
- ;;=996.53^^44^559^23
- ;;^UTILITY(U,$J,358.3,9964,1,0)
+ ;;^UTILITY(U,$J,358.3,9523,1,3,0)
+ ;;=3^Generalized Seizures,Other, Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9523,1,4,0)
+ ;;=4^G40.411
+ ;;^UTILITY(U,$J,358.3,9523,2)
+ ;;=^5003847
+ ;;^UTILITY(U,$J,358.3,9524,0)
+ ;;=G40.419^^65^617^18
+ ;;^UTILITY(U,$J,358.3,9524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9964,1,3,0)
- ;;=3^Mech Compl IOL
- ;;^UTILITY(U,$J,358.3,9964,1,4,0)
- ;;=4^996.53
- ;;^UTILITY(U,$J,358.3,9964,2)
- ;;=^276279
- ;;^UTILITY(U,$J,358.3,9965,0)
- ;;=V43.1^^44^559^22
- ;;^UTILITY(U,$J,358.3,9965,1,0)
+ ;;^UTILITY(U,$J,358.3,9524,1,3,0)
+ ;;=3^Generalized Seizures,Other, Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9524,1,4,0)
+ ;;=4^G40.419
+ ;;^UTILITY(U,$J,358.3,9524,2)
+ ;;=^5003848
+ ;;^UTILITY(U,$J,358.3,9525,0)
+ ;;=G40.209^^65^617^7
+ ;;^UTILITY(U,$J,358.3,9525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9965,1,3,0)
- ;;=3^Lens Replacement NEC
- ;;^UTILITY(U,$J,358.3,9965,1,4,0)
- ;;=4^V43.1
- ;;^UTILITY(U,$J,358.3,9965,2)
- ;;=^69114
- ;;^UTILITY(U,$J,358.3,9966,0)
- ;;=362.36^^44^560^7
- ;;^UTILITY(U,$J,358.3,9966,1,0)
+ ;;^UTILITY(U,$J,358.3,9525,1,3,0)
+ ;;=3^Complex Partial Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9525,1,4,0)
+ ;;=4^G40.209
+ ;;^UTILITY(U,$J,358.3,9525,2)
+ ;;=^5003838
+ ;;^UTILITY(U,$J,358.3,9526,0)
+ ;;=G40.211^^65^617^5
+ ;;^UTILITY(U,$J,358.3,9526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9966,1,3,0)
- ;;=3^Brvo/Branch Retinal Vein Occlusion
- ;;^UTILITY(U,$J,358.3,9966,1,4,0)
- ;;=4^362.36
- ;;^UTILITY(U,$J,358.3,9966,2)
- ;;=Branch Retina Vein Occlusion^268626
- ;;^UTILITY(U,$J,358.3,9967,0)
- ;;=362.31^^44^560^10
- ;;^UTILITY(U,$J,358.3,9967,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9967,1,3,0)
- ;;=3^Central Retinal Artery Occlusion
- ;;^UTILITY(U,$J,358.3,9967,1,4,0)
- ;;=4^362.31
- ;;^UTILITY(U,$J,358.3,9967,2)
- ;;=Central Retinal Artery Occulusion^21255
- ;;^UTILITY(U,$J,358.3,9968,0)
- ;;=362.35^^44^560^11
- ;;^UTILITY(U,$J,358.3,9968,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9526,1,3,0)
+ ;;=3^Complex Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,9526,1,4,0)
+ ;;=4^G40.211
+ ;;^UTILITY(U,$J,358.3,9526,2)
+ ;;=^5003839
+ ;;^UTILITY(U,$J,358.3,9527,0)
+ ;;=G40.219^^65^617^6

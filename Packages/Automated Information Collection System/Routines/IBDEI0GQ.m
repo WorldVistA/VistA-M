@@ -1,146 +1,128 @@
-IBDEI0GQ ; ; 06-AUG-2015
+IBDEI0GQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7772,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7772,1,4,0)
- ;;=4^724.00
- ;;^UTILITY(U,$J,358.3,7772,1,5,0)
- ;;=5^Spinal Stenosis
- ;;^UTILITY(U,$J,358.3,7772,2)
- ;;=^113279
- ;;^UTILITY(U,$J,358.3,7773,0)
- ;;=848.9^^35^476^70
- ;;^UTILITY(U,$J,358.3,7773,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7773,1,4,0)
- ;;=4^848.9
- ;;^UTILITY(U,$J,358.3,7773,1,5,0)
- ;;=5^Sprain Or Strain NOS
- ;;^UTILITY(U,$J,358.3,7773,2)
- ;;=^123990
- ;;^UTILITY(U,$J,358.3,7774,0)
- ;;=845.00^^35^476^71
- ;;^UTILITY(U,$J,358.3,7774,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7774,1,4,0)
- ;;=4^845.00
- ;;^UTILITY(U,$J,358.3,7774,1,5,0)
- ;;=5^Sprain, Ankle
- ;;^UTILITY(U,$J,358.3,7774,2)
- ;;=^274507
- ;;^UTILITY(U,$J,358.3,7775,0)
- ;;=842.00^^35^476^74
- ;;^UTILITY(U,$J,358.3,7775,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7775,1,4,0)
- ;;=4^842.00
- ;;^UTILITY(U,$J,358.3,7775,1,5,0)
- ;;=5^Sprain, Wrist
- ;;^UTILITY(U,$J,358.3,7775,2)
- ;;=^274483
- ;;^UTILITY(U,$J,358.3,7776,0)
- ;;=847.0^^35^476^72
- ;;^UTILITY(U,$J,358.3,7776,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7776,1,4,0)
- ;;=4^847.0
- ;;^UTILITY(U,$J,358.3,7776,1,5,0)
- ;;=5^Sprain, Cervical
- ;;^UTILITY(U,$J,358.3,7776,2)
- ;;=^81735
- ;;^UTILITY(U,$J,358.3,7777,0)
- ;;=847.2^^35^476^69
- ;;^UTILITY(U,$J,358.3,7777,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7777,1,4,0)
- ;;=4^847.2
- ;;^UTILITY(U,$J,358.3,7777,1,5,0)
- ;;=5^Sprain Lumbar
- ;;^UTILITY(U,$J,358.3,7777,2)
- ;;=^274527
- ;;^UTILITY(U,$J,358.3,7778,0)
- ;;=847.1^^35^476^73
- ;;^UTILITY(U,$J,358.3,7778,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7778,1,4,0)
- ;;=4^847.1
- ;;^UTILITY(U,$J,358.3,7778,1,5,0)
- ;;=5^Sprain, Thoracic
- ;;^UTILITY(U,$J,358.3,7778,2)
- ;;=^274526
- ;;^UTILITY(U,$J,358.3,7779,0)
- ;;=729.81^^35^476^75
- ;;^UTILITY(U,$J,358.3,7779,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7779,1,4,0)
- ;;=4^729.81
- ;;^UTILITY(U,$J,358.3,7779,1,5,0)
- ;;=5^Swelling Of Limb
- ;;^UTILITY(U,$J,358.3,7779,2)
- ;;=^272609
- ;;^UTILITY(U,$J,358.3,7780,0)
- ;;=710.0^^35^476^76
- ;;^UTILITY(U,$J,358.3,7780,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7780,1,4,0)
- ;;=4^710.0
- ;;^UTILITY(U,$J,358.3,7780,1,5,0)
- ;;=5^Syst Lupus Erythematosis
- ;;^UTILITY(U,$J,358.3,7780,2)
- ;;=^72159
- ;;^UTILITY(U,$J,358.3,7781,0)
- ;;=524.60^^35^476^77
- ;;^UTILITY(U,$J,358.3,7781,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7781,1,4,0)
- ;;=4^524.60
- ;;^UTILITY(U,$J,358.3,7781,1,5,0)
- ;;=5^TMJ Syndrome
- ;;^UTILITY(U,$J,358.3,7781,2)
- ;;=^117722
- ;;^UTILITY(U,$J,358.3,7782,0)
- ;;=726.90^^35^476^78
- ;;^UTILITY(U,$J,358.3,7782,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7782,1,4,0)
- ;;=4^726.90
- ;;^UTILITY(U,$J,358.3,7782,1,5,0)
- ;;=5^Tendonitis
- ;;^UTILITY(U,$J,358.3,7782,2)
- ;;=^41010
- ;;^UTILITY(U,$J,358.3,7783,0)
- ;;=354.2^^35^476^80
- ;;^UTILITY(U,$J,358.3,7783,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7783,1,4,0)
- ;;=4^354.2
- ;;^UTILITY(U,$J,358.3,7783,1,5,0)
- ;;=5^Ulnar Nerve Entrapment
- ;;^UTILITY(U,$J,358.3,7783,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,7784,0)
- ;;=715.97^^35^476^14
- ;;^UTILITY(U,$J,358.3,7784,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7784,1,4,0)
- ;;=4^715.97
- ;;^UTILITY(U,$J,358.3,7784,1,5,0)
- ;;=5^DJD of Ankle/Foot
- ;;^UTILITY(U,$J,358.3,7784,2)
- ;;=DJD Ankle/Foot^272168
- ;;^UTILITY(U,$J,358.3,7785,0)
- ;;=731.0^^35^476^45
- ;;^UTILITY(U,$J,358.3,7785,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7785,1,4,0)
- ;;=4^731.0
- ;;^UTILITY(U,$J,358.3,7785,1,5,0)
- ;;=5^Paget's Disease
- ;;^UTILITY(U,$J,358.3,7785,2)
- ;;=Paget's Disease^86892
- ;;^UTILITY(U,$J,358.3,7786,0)
- ;;=733.01^^35^476^44
- ;;^UTILITY(U,$J,358.3,7786,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,7465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7465,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7465,1,4,0)
+ ;;=4^T85.621A
+ ;;^UTILITY(U,$J,358.3,7465,2)
+ ;;=^5055625
+ ;;^UTILITY(U,$J,358.3,7466,0)
+ ;;=T85.621D^^52^501^9
+ ;;^UTILITY(U,$J,358.3,7466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7466,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7466,1,4,0)
+ ;;=4^T85.621D
+ ;;^UTILITY(U,$J,358.3,7466,2)
+ ;;=^5055626
+ ;;^UTILITY(U,$J,358.3,7467,0)
+ ;;=K65.0^^52^501^10
+ ;;^UTILITY(U,$J,358.3,7467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7467,1,3,0)
+ ;;=3^Generalized (acute) Peritonitis
+ ;;^UTILITY(U,$J,358.3,7467,1,4,0)
+ ;;=4^K65.0
+ ;;^UTILITY(U,$J,358.3,7467,2)
+ ;;=^332799
+ ;;^UTILITY(U,$J,358.3,7468,0)
+ ;;=G60.9^^52^501^14
+ ;;^UTILITY(U,$J,358.3,7468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7468,1,3,0)
+ ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,7468,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,7468,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,7469,0)
+ ;;=T82.838A^^52^501^12
+ ;;^UTILITY(U,$J,358.3,7469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7469,1,3,0)
+ ;;=3^Hemorrhage of Vascular Graft/Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7469,1,4,0)
+ ;;=4^T82.838A
+ ;;^UTILITY(U,$J,358.3,7469,2)
+ ;;=^5054929
+ ;;^UTILITY(U,$J,358.3,7470,0)
+ ;;=T82.838D^^52^501^13
+ ;;^UTILITY(U,$J,358.3,7470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7470,1,3,0)
+ ;;=3^Hemorrhage of Vascular Graft/Fistula,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7470,1,4,0)
+ ;;=4^T82.838D
+ ;;^UTILITY(U,$J,358.3,7470,2)
+ ;;=^5054930
+ ;;^UTILITY(U,$J,358.3,7471,0)
+ ;;=E83.81^^52^501^15
+ ;;^UTILITY(U,$J,358.3,7471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7471,1,3,0)
+ ;;=3^Hungry Bone Syndrome
+ ;;^UTILITY(U,$J,358.3,7471,1,4,0)
+ ;;=4^E83.81
+ ;;^UTILITY(U,$J,358.3,7471,2)
+ ;;=^336538
+ ;;^UTILITY(U,$J,358.3,7472,0)
+ ;;=T85.71XA^^52^501^21
+ ;;^UTILITY(U,$J,358.3,7472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7472,1,3,0)
+ ;;=3^Infection d/t Peritoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7472,1,4,0)
+ ;;=4^T85.71XA
+ ;;^UTILITY(U,$J,358.3,7472,2)
+ ;;=^5055670
+ ;;^UTILITY(U,$J,358.3,7473,0)
+ ;;=T85.71XD^^52^501^22
+ ;;^UTILITY(U,$J,358.3,7473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7473,1,3,0)
+ ;;=3^Infection d/t Peritoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7473,1,4,0)
+ ;;=4^T85.71XD
+ ;;^UTILITY(U,$J,358.3,7473,2)
+ ;;=^5055671
+ ;;^UTILITY(U,$J,358.3,7474,0)
+ ;;=T82.7XXA^^52^501^19
+ ;;^UTILITY(U,$J,358.3,7474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7474,1,3,0)
+ ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7474,1,4,0)
+ ;;=4^T82.7XXA
+ ;;^UTILITY(U,$J,358.3,7474,2)
+ ;;=^5054911
+ ;;^UTILITY(U,$J,358.3,7475,0)
+ ;;=T82.7XXD^^52^501^20
+ ;;^UTILITY(U,$J,358.3,7475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7475,1,3,0)
+ ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7475,1,4,0)
+ ;;=4^T82.7XXD
+ ;;^UTILITY(U,$J,358.3,7475,2)
+ ;;=^5054912
+ ;;^UTILITY(U,$J,358.3,7476,0)
+ ;;=T85.631A^^52^501^23
+ ;;^UTILITY(U,$J,358.3,7476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7476,1,3,0)
+ ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7476,1,4,0)
+ ;;=4^T85.631A
+ ;;^UTILITY(U,$J,358.3,7476,2)
+ ;;=^5055643
+ ;;^UTILITY(U,$J,358.3,7477,0)
+ ;;=T85.631D^^52^501^24
+ ;;^UTILITY(U,$J,358.3,7477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7477,1,3,0)
+ ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Subs Encntr

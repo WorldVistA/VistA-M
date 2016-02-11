@@ -1,0 +1,134 @@
+IBDEI2N2 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44286,1,3,0)
+ ;;=3^Medication Overuse Headache,Not Intractable
+ ;;^UTILITY(U,$J,358.3,44286,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,44286,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,44287,0)
+ ;;=G44.89^^200^2225^3
+ ;;^UTILITY(U,$J,358.3,44287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44287,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,44287,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,44287,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,44288,0)
+ ;;=G44.84^^200^2225^7
+ ;;^UTILITY(U,$J,358.3,44288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44288,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,44288,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,44288,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,44289,0)
+ ;;=G44.301^^200^2225^6
+ ;;^UTILITY(U,$J,358.3,44289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44289,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,44289,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,44289,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,44290,0)
+ ;;=G44.209^^200^2225^8
+ ;;^UTILITY(U,$J,358.3,44290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44290,1,3,0)
+ ;;=3^Tension-Type Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,44290,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,44290,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,44291,0)
+ ;;=I50.32^^200^2226^5
+ ;;^UTILITY(U,$J,358.3,44291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44291,1,3,0)
+ ;;=3^Diastolic Heart Failure,Chronic
+ ;;^UTILITY(U,$J,358.3,44291,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,44291,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,44292,0)
+ ;;=I50.33^^200^2226^4
+ ;;^UTILITY(U,$J,358.3,44292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44292,1,3,0)
+ ;;=3^Diastolic Heart Failure,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,44292,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,44292,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,44293,0)
+ ;;=I50.40^^200^2226^9
+ ;;^UTILITY(U,$J,358.3,44293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44293,1,3,0)
+ ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
+ ;;^UTILITY(U,$J,358.3,44293,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,44293,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,44294,0)
+ ;;=I51.7^^200^2226^2
+ ;;^UTILITY(U,$J,358.3,44294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44294,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,44294,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,44294,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,44295,0)
+ ;;=I42.6^^200^2226^1
+ ;;^UTILITY(U,$J,358.3,44295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44295,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,44295,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,44295,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,44296,0)
+ ;;=I50.1^^200^2226^8
+ ;;^UTILITY(U,$J,358.3,44296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44296,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,44296,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,44296,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,44297,0)
+ ;;=I50.20^^200^2226^13
+ ;;^UTILITY(U,$J,358.3,44297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44297,1,3,0)
+ ;;=3^Systolic Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,44297,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,44297,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,44298,0)
+ ;;=I50.21^^200^2226^10
+ ;;^UTILITY(U,$J,358.3,44298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44298,1,3,0)
+ ;;=3^Systolic Heart Failure,Acute
+ ;;^UTILITY(U,$J,358.3,44298,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,44298,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,44299,0)
+ ;;=I50.22^^200^2226^12

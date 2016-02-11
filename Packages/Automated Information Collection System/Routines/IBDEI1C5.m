@@ -1,140 +1,120 @@
-IBDEI1C5 ; ; 06-AUG-2015
+IBDEI1C5 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23657,1,2,0)
- ;;=2^304.10
- ;;^UTILITY(U,$J,358.3,23657,1,5,0)
- ;;=5^Anxiolytic Dependence
- ;;^UTILITY(U,$J,358.3,23657,2)
- ;;=^268194
- ;;^UTILITY(U,$J,358.3,23658,0)
- ;;=304.13^^127^1431^27
- ;;^UTILITY(U,$J,358.3,23658,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23658,1,2,0)
- ;;=2^304.13
- ;;^UTILITY(U,$J,358.3,23658,1,5,0)
- ;;=5^Anxiolytic Dep-Remis
- ;;^UTILITY(U,$J,358.3,23658,2)
- ;;=^268197
- ;;^UTILITY(U,$J,358.3,23659,0)
- ;;=305.40^^127^1431^23
- ;;^UTILITY(U,$J,358.3,23659,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23659,1,2,0)
- ;;=2^305.40
- ;;^UTILITY(U,$J,358.3,23659,1,5,0)
- ;;=5^Anxiolytic Abuse
- ;;^UTILITY(U,$J,358.3,23659,2)
- ;;=^268240
- ;;^UTILITY(U,$J,358.3,23660,0)
- ;;=305.43^^127^1431^26
- ;;^UTILITY(U,$J,358.3,23660,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23660,1,2,0)
- ;;=2^305.43
- ;;^UTILITY(U,$J,358.3,23660,1,5,0)
- ;;=5^Anxiolytic Abuse-Remission
- ;;^UTILITY(U,$J,358.3,23660,2)
- ;;=^268243
- ;;^UTILITY(U,$J,358.3,23661,0)
- ;;=304.20^^127^1431^46
- ;;^UTILITY(U,$J,358.3,23661,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23661,1,2,0)
- ;;=2^304.20
- ;;^UTILITY(U,$J,358.3,23661,1,5,0)
- ;;=5^Cocaine Dependence
- ;;^UTILITY(U,$J,358.3,23661,2)
- ;;=^25599
- ;;^UTILITY(U,$J,358.3,23662,0)
- ;;=305.60^^127^1431^39
- ;;^UTILITY(U,$J,358.3,23662,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23662,1,2,0)
- ;;=2^305.60
- ;;^UTILITY(U,$J,358.3,23662,1,5,0)
- ;;=5^Cocaine Abuse   
- ;;^UTILITY(U,$J,358.3,23662,2)
- ;;=^25596
- ;;^UTILITY(U,$J,358.3,23663,0)
- ;;=305.63^^127^1431^42
- ;;^UTILITY(U,$J,358.3,23663,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23663,1,2,0)
- ;;=2^305.63
- ;;^UTILITY(U,$J,358.3,23663,1,5,0)
- ;;=5^Cocaine Abuse-Remission
- ;;^UTILITY(U,$J,358.3,23663,2)
- ;;=^268249
- ;;^UTILITY(U,$J,358.3,23664,0)
- ;;=304.30^^127^1431^38
- ;;^UTILITY(U,$J,358.3,23664,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23664,1,2,0)
- ;;=2^304.30
- ;;^UTILITY(U,$J,358.3,23664,1,5,0)
- ;;=5^Cannabis Dependence
- ;;^UTILITY(U,$J,358.3,23664,2)
- ;;=^18670
- ;;^UTILITY(U,$J,358.3,23665,0)
- ;;=304.33^^127^1431^35
- ;;^UTILITY(U,$J,358.3,23665,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23665,1,2,0)
- ;;=2^304.33
- ;;^UTILITY(U,$J,358.3,23665,1,5,0)
- ;;=5^Cannabis Dep-Remission
- ;;^UTILITY(U,$J,358.3,23665,2)
- ;;=^268203
- ;;^UTILITY(U,$J,358.3,23666,0)
- ;;=305.20^^127^1431^31
- ;;^UTILITY(U,$J,358.3,23666,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23666,1,2,0)
- ;;=2^305.20
- ;;^UTILITY(U,$J,358.3,23666,1,5,0)
- ;;=5^Cannabis Abuse
- ;;^UTILITY(U,$J,358.3,23666,2)
- ;;=^18664
- ;;^UTILITY(U,$J,358.3,23667,0)
- ;;=305.23^^127^1431^34
- ;;^UTILITY(U,$J,358.3,23667,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23667,1,2,0)
- ;;=2^305.23
- ;;^UTILITY(U,$J,358.3,23667,1,5,0)
- ;;=5^Cannabis Abuse-Remis
- ;;^UTILITY(U,$J,358.3,23667,2)
- ;;=^268236
- ;;^UTILITY(U,$J,358.3,23668,0)
- ;;=304.40^^127^1431^22
- ;;^UTILITY(U,$J,358.3,23668,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23668,1,2,0)
- ;;=2^304.40
- ;;^UTILITY(U,$J,358.3,23668,1,5,0)
- ;;=5^Amphetamine Dependence
- ;;^UTILITY(U,$J,358.3,23668,2)
- ;;=^268204
- ;;^UTILITY(U,$J,358.3,23669,0)
- ;;=304.43^^127^1431^19
- ;;^UTILITY(U,$J,358.3,23669,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23669,1,2,0)
- ;;=2^304.43
- ;;^UTILITY(U,$J,358.3,23669,1,5,0)
- ;;=5^Amphetamine Dep-Remis
- ;;^UTILITY(U,$J,358.3,23669,2)
- ;;=^268207
- ;;^UTILITY(U,$J,358.3,23670,0)
- ;;=305.70^^127^1431^15
- ;;^UTILITY(U,$J,358.3,23670,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23670,1,2,0)
- ;;=2^305.70
- ;;^UTILITY(U,$J,358.3,23670,1,5,0)
- ;;=5^Amphetamine Abuse
- ;;^UTILITY(U,$J,358.3,23670,2)
- ;;=^268250
+ ;;^UTILITY(U,$J,358.3,22256,1,3,0)
+ ;;=3^Unstable burst fracture of third lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22256,1,4,0)
+ ;;=4^S32.032S
+ ;;^UTILITY(U,$J,358.3,22256,2)
+ ;;=^5024448
+ ;;^UTILITY(U,$J,358.3,22257,0)
+ ;;=S22.032S^^101^1039^70
+ ;;^UTILITY(U,$J,358.3,22257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22257,1,3,0)
+ ;;=3^Unstable burst fracture of third thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22257,1,4,0)
+ ;;=4^S22.032S
+ ;;^UTILITY(U,$J,358.3,22257,2)
+ ;;=^5022912
+ ;;^UTILITY(U,$J,358.3,22258,0)
+ ;;=S32.050S^^101^1039^75
+ ;;^UTILITY(U,$J,358.3,22258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22258,1,3,0)
+ ;;=3^Wedge compression fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22258,1,4,0)
+ ;;=4^S32.050S
+ ;;^UTILITY(U,$J,358.3,22258,2)
+ ;;=^5024496
+ ;;^UTILITY(U,$J,358.3,22259,0)
+ ;;=S32.010S^^101^1039^76
+ ;;^UTILITY(U,$J,358.3,22259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22259,1,3,0)
+ ;;=3^Wedge compression fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22259,1,4,0)
+ ;;=4^S32.010S
+ ;;^UTILITY(U,$J,358.3,22259,2)
+ ;;=^5024376
+ ;;^UTILITY(U,$J,358.3,22260,0)
+ ;;=S22.010S^^101^1039^77
+ ;;^UTILITY(U,$J,358.3,22260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22260,1,3,0)
+ ;;=3^Wedge compression fracture of first thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22260,1,4,0)
+ ;;=4^S22.010S
+ ;;^UTILITY(U,$J,358.3,22260,2)
+ ;;=^5022840
+ ;;^UTILITY(U,$J,358.3,22261,0)
+ ;;=S32.040S^^101^1039^78
+ ;;^UTILITY(U,$J,358.3,22261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22261,1,3,0)
+ ;;=3^Wedge compression fracture of fourth lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22261,1,4,0)
+ ;;=4^S32.040S
+ ;;^UTILITY(U,$J,358.3,22261,2)
+ ;;=^5024466
+ ;;^UTILITY(U,$J,358.3,22262,0)
+ ;;=S22.040S^^101^1039^79
+ ;;^UTILITY(U,$J,358.3,22262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22262,1,3,0)
+ ;;=3^Wedge compression fracture of fourth thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22262,1,4,0)
+ ;;=4^S22.040S
+ ;;^UTILITY(U,$J,358.3,22262,2)
+ ;;=^5022930
+ ;;^UTILITY(U,$J,358.3,22263,0)
+ ;;=S32.020S^^101^1039^80
+ ;;^UTILITY(U,$J,358.3,22263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22263,1,3,0)
+ ;;=3^Wedge compression fracture of second lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22263,1,4,0)
+ ;;=4^S32.020S
+ ;;^UTILITY(U,$J,358.3,22263,2)
+ ;;=^5024406
+ ;;^UTILITY(U,$J,358.3,22264,0)
+ ;;=S22.020S^^101^1039^81
+ ;;^UTILITY(U,$J,358.3,22264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22264,1,3,0)
+ ;;=3^Wedge compression fracture of second thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22264,1,4,0)
+ ;;=4^S22.020S
+ ;;^UTILITY(U,$J,358.3,22264,2)
+ ;;=^5022870
+ ;;^UTILITY(U,$J,358.3,22265,0)
+ ;;=S22.080S^^101^1039^71
+ ;;^UTILITY(U,$J,358.3,22265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22265,1,3,0)
+ ;;=3^Wedge compression fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22265,1,4,0)
+ ;;=4^S22.080S
+ ;;^UTILITY(U,$J,358.3,22265,2)
+ ;;=^5023050
+ ;;^UTILITY(U,$J,358.3,22266,0)
+ ;;=S22.050S^^101^1039^72
+ ;;^UTILITY(U,$J,358.3,22266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22266,1,3,0)
+ ;;=3^Wedge compression fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22266,1,4,0)
+ ;;=4^S22.050S
+ ;;^UTILITY(U,$J,358.3,22266,2)
+ ;;=^5022960
+ ;;^UTILITY(U,$J,358.3,22267,0)
+ ;;=S22.060S^^101^1039^73
+ ;;^UTILITY(U,$J,358.3,22267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22267,1,3,0)
+ ;;=3^Wedge compression fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22267,1,4,0)
+ ;;=4^S22.060S
+ ;;^UTILITY(U,$J,358.3,22267,2)
+ ;;=^5022990

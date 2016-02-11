@@ -1,5 +1,5 @@
-RGADTP ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS ; 11/19/14 5:10pm
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**26,27,20,34,35,40,45,44,47,59,60,61,62**;30 Apr 99;Build 3
+RGADTP ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS ;21 May 2015  5:09 PM
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**26,27,20,34,35,40,45,44,47,59,60,61,62,63**;30 Apr 99;Build 1
  ;
  ;Reference to BLDEVN^VAFCQRY and BLDPID^VAFCQRY supported by IA #3630
  ;Reference to EN1^VAFHLZEL is supported by IA #752
@@ -187,6 +187,8 @@ OBX ;;
  ;**47 use SSN Verification status code and not words since they have changed since this code was first written
  ;only update values to valid or invalid other statuses aren't stored in VistA
  I 'RGLOCAL,$P(HL("SFN"),COMP)="200M" I $P($P(MSG,HL("FS"),4),RGC)="SSN VERIFICATION STATUS" S SSNV=$P($P(MSG,HL("FS"),6),RGC,1),ARRAY(.0907)=$S(SSNV=4:4,SSNV=2:2,1:"@")
+ ;**63 Story 174247 (mko): Get Self-ID Gender
+ I 'RGLOCAL,$P($P(MSG,HL("FS"),4),RGC)="SELF ID GENDER" S ARRAY(.024)=$$FREE^RGRSPARS($P($P(MSG,HL("FS"),6),RGC))
  Q
 ZPD ;;
  I RGLOCAL S THLA("HLS",ENT)=$$EN1^VAFHLZPD(DFN,"1,17,21,34"),ENT=ENT+1 ;**45 to build new ZPD

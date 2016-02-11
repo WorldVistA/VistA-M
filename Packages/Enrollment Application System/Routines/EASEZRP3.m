@@ -1,5 +1,5 @@
-EASEZRP3 ;ALB/AMA - Print 1010EZR, Cont. ; 8/1/08 1:28pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70**;Mar 15, 2001;Build 26
+EASEZRP3 ;ALB/AMA,TDM - Print 1010EZR, Cont. ; 1/19/13 5:10pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70,107**;Mar 15, 2001;Build 32
  ;
  Q
  ;
@@ -19,16 +19,17 @@ EN(EALNE,EAINFO,EASDG) ; Entry point to print Page 3, called from EN^EASEZRPF
  S EASD=$NA(^TMP("EASEZR",$J,2))
  ;
  D NET
+ D PAP^EASEZRP2
  D CON
  D AOB
  D FT^EASEZRPF(.EALNE,.EAINFO)
  ;
  Q
  ;
-NET ;  Print SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH
+NET ;  Print SECTION VIII - PREVIOUS CALENDAR YEAR NET WORTH
  ;
- I $G(EASDG),+@EASD@(999) W !!?2,"SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH  (INCOME YEAR:  ",@EASD@(999),")  (Use a separate sheet for additional dependents)"
- E  W !!?38,"SECTION IX - PREVIOUS CALENDAR YEAR NET WORTH  (Use a separate sheet for additional dependents)"
+ I $G(EASDG),+@EASD@(999) W !!?2,"SECTION VIII - PREVIOUS CALENDAR YEAR NET WORTH  (INCOME YEAR:  ",@EASD@(999),")  (Use a separate sheet for additional dependents)"
+ E  W !!?38,"SECTION VIII - PREVIOUS CALENDAR YEAR NET WORTH  (Use a separate sheet for additional dependents)"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  W !?78,"|",?84,"VETERAN",?96,"|",?102,"SPOUSE",?114,"|",?120,"CHILD 1"
@@ -53,11 +54,8 @@ CON ;  Print SECTION X - CONSENT TO COPAYMENTS
  W !?49,"SECTION X - CONSENT TO COPAYMENTS"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"If you are a 0% service-connected veteran and do not receive VA monetary benefits or a nonservice-connected veteran (and you are"
- W !,"not an Ex-POW, Purple Heart Recipient, WWI veteran or VA pensioner) and your household income (or combined income and net worth)"
- W !,"exceeds the established threshold, this application will be considered for enrollment, but only if you agree to pay VA copayments"
- W !,"for treatment of your nonservice-connected conditions.  If you are such a veteran, by signing this application you are agreeing"
- W !,"to pay the applicable VA copayment as required by law.",!
+ W !,"By signing this application you are agreeing to pay the applicable VA copays for treatment or services for your NSC conditions as"
+ W !,"required by law."
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  Q
  ;
@@ -66,10 +64,19 @@ AOB ;  Print SECTION XI - ASSIGNMENT OF BENEFITS
  W !?48,"SECTION XI - ASSIGNMENT OF BENEFITS"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"I understand that pursuant to 38 U.S.C. Section 1729, VA is authorized to recover or collect from my health plan (HP) for the"
- W !,"reasonable charges of nonservice-connected VA medical care or services furnished or provided to me.  I hereby authorize payment"
- W !,"directly to VA from any HP under which I am covered (including coverage provided under my spouse's HP) that is responsible for"
- W !,"payment of the charges for my medical care, including benefits otherwise payable to me or my spouse.",!
+ W !,"I understand that pursuant to 38 U.S.C. Section 1729 and 42 U.S.C. 2651, the Department of Veterans Affairs (VA) is authorized to"
+ W !,"recover or collect from my health plan (HP) or any other legally responsible third party for the reasonable charges of nonservice-"
+ W !,"connected VA medical care or services furnished or provided to me.  I hereby authorize payment directly to VA from any HP under"
+ W !,"which I am covered (including coverage provided under my spouse's HP) that is responsible for payment of the charges for my medical"
+ W !,"care, including benefits otherwise payable to me or my spouse.  Furthermore, I hereby assign to the VA any claim I may have against"
+ W !,"any person or entity who is or may be legally responsible for the payment of the cost of medical services provided to me by the VA."
+ W !,"I understand that this assignment shall not limit or prejudice my right to recover for my own benefit any amount in excess of the"
+ W !,"cost of medical services provided to me by the VA or any other amount to which I may be entitled.  I hereby appoint the Attorney"
+ W !,"General of the United States and the Secretary of Veterans' Affairs and their designees as my Attorneys-in-fact to take all"
+ W !,"necessary and appropriate actions in order to recover and receive all or part of the amount herein assigned.  I hereby authorize"
+ W !,"the VA to disclose to my attorney and to any third party or administrative agency who may be responsible for payment of the cost of"
+ W !,"medical services provided to me, information from my medical records as necessary to verify my claim.  Further, I hereby authorize"
+ W !,"any such third party or administrative agency to disclose to the VA any information regarding my claim."
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  W !?11,"ALL APPLICANTS MUST SIGN AND DATE THIS FORM.  REFER TO INSTRUCTIONS ON WHO CAN SIGN ON BEHALF OF THE VETERAN.",!

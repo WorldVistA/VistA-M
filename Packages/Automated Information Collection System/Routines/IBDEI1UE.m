@@ -1,132 +1,136 @@
-IBDEI1UE ; ; 06-AUG-2015
+IBDEI1UE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32445,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,32446,0)
- ;;=K27.9^^182^1987^66
- ;;^UTILITY(U,$J,358.3,32446,1,0)
+ ;;^UTILITY(U,$J,358.3,30850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32446,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,32446,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,32446,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,32447,0)
- ;;=K29.70^^182^1987^46
- ;;^UTILITY(U,$J,358.3,32447,1,0)
+ ;;^UTILITY(U,$J,358.3,30850,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,30850,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,30850,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,30851,0)
+ ;;=R94.6^^135^1384^21
+ ;;^UTILITY(U,$J,358.3,30851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32447,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,32447,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,32447,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,32448,0)
- ;;=K29.90^^182^1987^47
- ;;^UTILITY(U,$J,358.3,32448,1,0)
+ ;;^UTILITY(U,$J,358.3,30851,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,30851,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,30851,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,30852,0)
+ ;;=R94.7^^135^1384^5
+ ;;^UTILITY(U,$J,358.3,30852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32448,1,3,0)
- ;;=3^Gastroduodenitis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,32448,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,32448,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,32449,0)
- ;;=K30.^^182^1987^42
- ;;^UTILITY(U,$J,358.3,32449,1,0)
+ ;;^UTILITY(U,$J,358.3,30852,1,3,0)
+ ;;=3^Abnormal Endocrine Function Sutdies NEC
+ ;;^UTILITY(U,$J,358.3,30852,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,30852,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,30853,0)
+ ;;=R94.31^^135^1384^4
+ ;;^UTILITY(U,$J,358.3,30853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32449,1,3,0)
- ;;=3^Dyspepsia,Functional
- ;;^UTILITY(U,$J,358.3,32449,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,32449,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,32450,0)
- ;;=K31.89^^182^1987^31
- ;;^UTILITY(U,$J,358.3,32450,1,0)
+ ;;^UTILITY(U,$J,358.3,30853,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,30853,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,30853,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,30854,0)
+ ;;=R97.0^^135^1384^67
+ ;;^UTILITY(U,$J,358.3,30854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32450,1,3,0)
- ;;=3^Diseases of Stomach & Duodenum,Other
- ;;^UTILITY(U,$J,358.3,32450,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,32450,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,32451,0)
- ;;=K31.9^^182^1987^30
- ;;^UTILITY(U,$J,358.3,32451,1,0)
+ ;;^UTILITY(U,$J,358.3,30854,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,30854,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,30854,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,30855,0)
+ ;;=R97.1^^135^1384^66
+ ;;^UTILITY(U,$J,358.3,30855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32451,1,3,0)
- ;;=3^Disease of Stomach & Duodenum,Unspec
- ;;^UTILITY(U,$J,358.3,32451,1,4,0)
- ;;=4^K31.9
- ;;^UTILITY(U,$J,358.3,32451,2)
- ;;=^5008570
- ;;^UTILITY(U,$J,358.3,32452,0)
- ;;=K40.90^^182^1987^63
- ;;^UTILITY(U,$J,358.3,32452,1,0)
+ ;;^UTILITY(U,$J,358.3,30855,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,30855,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,30855,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,30856,0)
+ ;;=R97.2^^135^1384^68
+ ;;^UTILITY(U,$J,358.3,30856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32452,1,3,0)
- ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,32452,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,32452,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,32453,0)
- ;;=K40.20^^182^1987^62
- ;;^UTILITY(U,$J,358.3,32453,1,0)
+ ;;^UTILITY(U,$J,358.3,30856,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,30856,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,30856,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,30857,0)
+ ;;=R97.8^^135^1384^22
+ ;;^UTILITY(U,$J,358.3,30857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32453,1,3,0)
- ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,32453,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,32453,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,32454,0)
- ;;=K44.9^^182^1987^28
- ;;^UTILITY(U,$J,358.3,32454,1,0)
+ ;;^UTILITY(U,$J,358.3,30857,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,30857,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,30857,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,30858,0)
+ ;;=R93.8^^135^1384^12
+ ;;^UTILITY(U,$J,358.3,30858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32454,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,32454,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,32454,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,32455,0)
- ;;=K46.9^^182^1987^1
- ;;^UTILITY(U,$J,358.3,32455,1,0)
+ ;;^UTILITY(U,$J,358.3,30858,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Body Structures
+ ;;^UTILITY(U,$J,358.3,30858,1,4,0)
+ ;;=4^R93.8
+ ;;^UTILITY(U,$J,358.3,30858,2)
+ ;;=^5019721
+ ;;^UTILITY(U,$J,358.3,30859,0)
+ ;;=R93.1^^135^1384^14
+ ;;^UTILITY(U,$J,358.3,30859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32455,1,3,0)
- ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,32455,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,32455,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,32456,0)
- ;;=K50.90^^182^1987^26
- ;;^UTILITY(U,$J,358.3,32456,1,0)
+ ;;^UTILITY(U,$J,358.3,30859,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,30859,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,30859,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,30860,0)
+ ;;=R68.83^^135^1384^48
+ ;;^UTILITY(U,$J,358.3,30860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32456,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,32456,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,32456,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,32457,0)
- ;;=K50.911^^182^1987^24
- ;;^UTILITY(U,$J,358.3,32457,1,0)
+ ;;^UTILITY(U,$J,358.3,30860,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,30860,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,30860,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,30861,0)
+ ;;=R68.2^^135^1384^62
+ ;;^UTILITY(U,$J,358.3,30861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32457,1,3,0)
- ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,32457,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,32457,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,32458,0)
- ;;=K50.912^^182^1987^22
- ;;^UTILITY(U,$J,358.3,32458,1,0)
+ ;;^UTILITY(U,$J,358.3,30861,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,30861,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,30861,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,30862,0)
+ ;;=R09.02^^135^1384^88
+ ;;^UTILITY(U,$J,358.3,30862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32458,1,3,0)
- ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,30862,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,30862,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,30862,2)
+ ;;=^332831
+ ;;^UTILITY(U,$J,358.3,30863,0)
+ ;;=R39.81^^135^1384^92
+ ;;^UTILITY(U,$J,358.3,30863,1,0)
+ ;;=^358.31IA^4^2

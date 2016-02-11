@@ -1,4 +1,4 @@
-IBDEINIS ; ; 06-AUG-2015
+IBDEINIS ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
 PAC(PKG,VER) ; called from package init (DIFROM7 created this routine)
  ; PKG = $T(IXF) of the INIT routine.

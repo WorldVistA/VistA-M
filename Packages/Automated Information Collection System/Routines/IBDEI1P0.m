@@ -1,128 +1,136 @@
-IBDEI1P0 ; ; 06-AUG-2015
+IBDEI1P0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30030,1,0)
+ ;;^UTILITY(U,$J,358.3,28322,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,28322,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,28323,0)
+ ;;=Z12.12^^132^1329^14
+ ;;^UTILITY(U,$J,358.3,28323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30030,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30030,1,4,0)
- ;;=4^O31.02X5
- ;;^UTILITY(U,$J,358.3,30030,2)
- ;;=^5016521
- ;;^UTILITY(U,$J,358.3,30031,0)
- ;;=O31.01X0^^178^1913^44
- ;;^UTILITY(U,$J,358.3,30031,1,0)
+ ;;^UTILITY(U,$J,358.3,28323,1,3,0)
+ ;;=3^Rectum Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,28323,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,28323,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,28324,0)
+ ;;=Z71.89^^132^1329^12
+ ;;^UTILITY(U,$J,358.3,28324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30031,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,30031,1,4,0)
- ;;=4^O31.01X0
- ;;^UTILITY(U,$J,358.3,30031,2)
- ;;=^5016509
- ;;^UTILITY(U,$J,358.3,30032,0)
- ;;=O31.01X1^^178^1913^39
- ;;^UTILITY(U,$J,358.3,30032,1,0)
+ ;;^UTILITY(U,$J,358.3,28324,1,3,0)
+ ;;=3^Other Specified Counseling
+ ;;^UTILITY(U,$J,358.3,28324,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,28324,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,28325,0)
+ ;;=Z12.5^^132^1329^13
+ ;;^UTILITY(U,$J,358.3,28325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30032,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30032,1,4,0)
- ;;=4^O31.01X1
- ;;^UTILITY(U,$J,358.3,30032,2)
- ;;=^5016510
- ;;^UTILITY(U,$J,358.3,30033,0)
- ;;=O31.01X2^^178^1913^40
- ;;^UTILITY(U,$J,358.3,30033,1,0)
+ ;;^UTILITY(U,$J,358.3,28325,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,28325,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,28325,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,28326,0)
+ ;;=Z00.00^^132^1329^9
+ ;;^UTILITY(U,$J,358.3,28326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30033,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30033,1,4,0)
- ;;=4^O31.01X2
- ;;^UTILITY(U,$J,358.3,30033,2)
- ;;=^5016511
- ;;^UTILITY(U,$J,358.3,30034,0)
- ;;=O31.01X3^^178^1913^41
- ;;^UTILITY(U,$J,358.3,30034,1,0)
+ ;;^UTILITY(U,$J,358.3,28326,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,28326,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,28326,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,28327,0)
+ ;;=Z02.79^^132^1329^11
+ ;;^UTILITY(U,$J,358.3,28327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30034,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30034,1,4,0)
- ;;=4^O31.01X3
- ;;^UTILITY(U,$J,358.3,30034,2)
- ;;=^5016512
- ;;^UTILITY(U,$J,358.3,30035,0)
- ;;=O31.01X4^^178^1913^42
- ;;^UTILITY(U,$J,358.3,30035,1,0)
+ ;;^UTILITY(U,$J,358.3,28327,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,28327,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,28327,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,28328,0)
+ ;;=Z71.3^^132^1329^7
+ ;;^UTILITY(U,$J,358.3,28328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30035,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30035,1,4,0)
- ;;=4^O31.01X4
- ;;^UTILITY(U,$J,358.3,30035,2)
- ;;=^5016513
- ;;^UTILITY(U,$J,358.3,30036,0)
- ;;=O31.01X5^^178^1913^43
- ;;^UTILITY(U,$J,358.3,30036,1,0)
+ ;;^UTILITY(U,$J,358.3,28328,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,28328,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,28328,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,28329,0)
+ ;;=Z71.7^^132^1329^10
+ ;;^UTILITY(U,$J,358.3,28329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30036,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,30036,1,4,0)
- ;;=4^O31.01X5
- ;;^UTILITY(U,$J,358.3,30036,2)
- ;;=^5016514
- ;;^UTILITY(U,$J,358.3,30037,0)
- ;;=O12.01^^178^1913^26
- ;;^UTILITY(U,$J,358.3,30037,1,0)
+ ;;^UTILITY(U,$J,358.3,28329,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,28329,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,28329,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,28330,0)
+ ;;=Z71.6^^132^1329^15
+ ;;^UTILITY(U,$J,358.3,28330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30037,1,3,0)
- ;;=3^Gestational edema, first trimester
- ;;^UTILITY(U,$J,358.3,30037,1,4,0)
- ;;=4^O12.01
- ;;^UTILITY(U,$J,358.3,30037,2)
- ;;=^5016147
- ;;^UTILITY(U,$J,358.3,30038,0)
- ;;=O12.02^^178^1913^27
- ;;^UTILITY(U,$J,358.3,30038,1,0)
+ ;;^UTILITY(U,$J,358.3,28330,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,28330,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,28330,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,28331,0)
+ ;;=D86.0^^132^1330^45
+ ;;^UTILITY(U,$J,358.3,28331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30038,1,3,0)
- ;;=3^Gestational edema, second trimester
- ;;^UTILITY(U,$J,358.3,30038,1,4,0)
- ;;=4^O12.02
- ;;^UTILITY(U,$J,358.3,30038,2)
- ;;=^5016148
- ;;^UTILITY(U,$J,358.3,30039,0)
- ;;=O12.03^^178^1913^28
- ;;^UTILITY(U,$J,358.3,30039,1,0)
+ ;;^UTILITY(U,$J,358.3,28331,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,28331,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,28331,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,28332,0)
+ ;;=D86.1^^132^1330^47
+ ;;^UTILITY(U,$J,358.3,28332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30039,1,3,0)
- ;;=3^Gestational edema, third trimester
- ;;^UTILITY(U,$J,358.3,30039,1,4,0)
- ;;=4^O12.03
- ;;^UTILITY(U,$J,358.3,30039,2)
- ;;=^5016149
- ;;^UTILITY(U,$J,358.3,30040,0)
- ;;=O12.21^^178^1913^23
- ;;^UTILITY(U,$J,358.3,30040,1,0)
+ ;;^UTILITY(U,$J,358.3,28332,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,28332,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,28332,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,28333,0)
+ ;;=D86.2^^132^1330^46
+ ;;^UTILITY(U,$J,358.3,28333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30040,1,3,0)
- ;;=3^Gestational edema with proteinuria, first trimester
- ;;^UTILITY(U,$J,358.3,30040,1,4,0)
- ;;=4^O12.21
- ;;^UTILITY(U,$J,358.3,30040,2)
- ;;=^5016155
- ;;^UTILITY(U,$J,358.3,30041,0)
- ;;=O12.22^^178^1913^24
- ;;^UTILITY(U,$J,358.3,30041,1,0)
+ ;;^UTILITY(U,$J,358.3,28333,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,28333,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,28333,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,28334,0)
+ ;;=D86.89^^132^1330^48
+ ;;^UTILITY(U,$J,358.3,28334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30041,1,3,0)
- ;;=3^Gestational edema with proteinuria, second trimester
- ;;^UTILITY(U,$J,358.3,30041,1,4,0)
- ;;=4^O12.22
- ;;^UTILITY(U,$J,358.3,30041,2)
- ;;=^5016156
- ;;^UTILITY(U,$J,358.3,30042,0)
- ;;=O12.23^^178^1913^25
- ;;^UTILITY(U,$J,358.3,30042,1,0)
+ ;;^UTILITY(U,$J,358.3,28334,1,3,0)
+ ;;=3^Sarcoidosis of Other Sites
+ ;;^UTILITY(U,$J,358.3,28334,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,28334,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,28335,0)
+ ;;=D86.9^^132^1330^51
+ ;;^UTILITY(U,$J,358.3,28335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30042,1,3,0)
- ;;=3^Gestational edema with proteinuria, third trimester
+ ;;^UTILITY(U,$J,358.3,28335,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,28335,1,4,0)
+ ;;=4^D86.9

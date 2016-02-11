@@ -1,126 +1,124 @@
-IBDEI1UW ; ; 06-AUG-2015
+IBDEI1UW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32678,1,0)
+ ;;^UTILITY(U,$J,358.3,31076,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,31076,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,31077,0)
+ ;;=R40.2222^^135^1390^20
+ ;;^UTILITY(U,$J,358.3,31077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32678,1,3,0)
- ;;=3^Essential Thrombocythemia
- ;;^UTILITY(U,$J,358.3,32678,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,32678,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,32679,0)
- ;;=C82.09^^182^1992^59
- ;;^UTILITY(U,$J,358.3,32679,1,0)
+ ;;^UTILITY(U,$J,358.3,31077,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,31077,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,31077,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,31078,0)
+ ;;=R40.2221^^135^1390^21
+ ;;^UTILITY(U,$J,358.3,31078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32679,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32679,1,4,0)
- ;;=4^C82.09
- ;;^UTILITY(U,$J,358.3,32679,2)
- ;;=^5001470
- ;;^UTILITY(U,$J,358.3,32680,0)
- ;;=C82.00^^182^1992^60
- ;;^UTILITY(U,$J,358.3,32680,1,0)
+ ;;^UTILITY(U,$J,358.3,31078,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,31078,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,31078,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,31079,0)
+ ;;=R40.2220^^135^1390^22
+ ;;^UTILITY(U,$J,358.3,31079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32680,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Unspec Site
- ;;^UTILITY(U,$J,358.3,32680,1,4,0)
- ;;=4^C82.00
- ;;^UTILITY(U,$J,358.3,32680,2)
- ;;=^5001461
- ;;^UTILITY(U,$J,358.3,32681,0)
- ;;=C82.19^^182^1992^61
- ;;^UTILITY(U,$J,358.3,32681,1,0)
+ ;;^UTILITY(U,$J,358.3,31079,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,31079,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,31079,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,31080,0)
+ ;;=R40.2214^^135^1390^23
+ ;;^UTILITY(U,$J,358.3,31080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32681,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32681,1,4,0)
- ;;=4^C82.19
- ;;^UTILITY(U,$J,358.3,32681,2)
- ;;=^5001480
- ;;^UTILITY(U,$J,358.3,32682,0)
- ;;=C82.10^^182^1992^62
- ;;^UTILITY(U,$J,358.3,32682,1,0)
+ ;;^UTILITY(U,$J,358.3,31080,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,31080,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,31080,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,31081,0)
+ ;;=R40.2213^^135^1390^25
+ ;;^UTILITY(U,$J,358.3,31081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32682,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Unspec Site
- ;;^UTILITY(U,$J,358.3,32682,1,4,0)
- ;;=4^C82.10
- ;;^UTILITY(U,$J,358.3,32682,2)
- ;;=^5001471
- ;;^UTILITY(U,$J,358.3,32683,0)
- ;;=C82.29^^182^1992^63
- ;;^UTILITY(U,$J,358.3,32683,1,0)
+ ;;^UTILITY(U,$J,358.3,31081,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,31081,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,31081,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,31082,0)
+ ;;=R40.2212^^135^1390^24
+ ;;^UTILITY(U,$J,358.3,31082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32683,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32683,1,4,0)
- ;;=4^C82.29
- ;;^UTILITY(U,$J,358.3,32683,2)
- ;;=^5001490
- ;;^UTILITY(U,$J,358.3,32684,0)
- ;;=C82.20^^182^1992^64
- ;;^UTILITY(U,$J,358.3,32684,1,0)
+ ;;^UTILITY(U,$J,358.3,31082,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,31082,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,31082,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,31083,0)
+ ;;=R40.2344^^135^1390^6
+ ;;^UTILITY(U,$J,358.3,31083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32684,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Unspec Site
- ;;^UTILITY(U,$J,358.3,32684,1,4,0)
- ;;=4^C82.20
- ;;^UTILITY(U,$J,358.3,32684,2)
- ;;=^5001481
- ;;^UTILITY(U,$J,358.3,32685,0)
- ;;=C82.39^^182^1992^65
- ;;^UTILITY(U,$J,358.3,32685,1,0)
+ ;;^UTILITY(U,$J,358.3,31083,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,31083,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,31083,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,31084,0)
+ ;;=R40.2343^^135^1390^7
+ ;;^UTILITY(U,$J,358.3,31084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32685,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32685,1,4,0)
- ;;=4^C82.39
- ;;^UTILITY(U,$J,358.3,32685,2)
- ;;=^5001500
- ;;^UTILITY(U,$J,358.3,32686,0)
- ;;=C82.30^^182^1992^66
- ;;^UTILITY(U,$J,358.3,32686,1,0)
+ ;;^UTILITY(U,$J,358.3,31084,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,31084,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,31084,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,31085,0)
+ ;;=R40.2342^^135^1390^8
+ ;;^UTILITY(U,$J,358.3,31085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32686,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
- ;;^UTILITY(U,$J,358.3,32686,1,4,0)
- ;;=4^C82.30
- ;;^UTILITY(U,$J,358.3,32686,2)
- ;;=^5001491
- ;;^UTILITY(U,$J,358.3,32687,0)
- ;;=C82.49^^182^1992^67
- ;;^UTILITY(U,$J,358.3,32687,1,0)
+ ;;^UTILITY(U,$J,358.3,31085,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,31085,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,31085,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,31086,0)
+ ;;=R40.2341^^135^1390^9
+ ;;^UTILITY(U,$J,358.3,31086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32687,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32687,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,32687,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,32688,0)
- ;;=C82.40^^182^1992^68
- ;;^UTILITY(U,$J,358.3,32688,1,0)
+ ;;^UTILITY(U,$J,358.3,31086,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,31086,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,31086,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,31087,0)
+ ;;=R40.2340^^135^1390^10
+ ;;^UTILITY(U,$J,358.3,31087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32688,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
- ;;^UTILITY(U,$J,358.3,32688,1,4,0)
- ;;=4^C82.40
- ;;^UTILITY(U,$J,358.3,32688,2)
- ;;=^5001501
- ;;^UTILITY(U,$J,358.3,32689,0)
- ;;=C82.99^^182^1992^69
- ;;^UTILITY(U,$J,358.3,32689,1,0)
+ ;;^UTILITY(U,$J,358.3,31087,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,31087,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,31087,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,31088,0)
+ ;;=R40.2324^^135^1390^1
+ ;;^UTILITY(U,$J,358.3,31088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32689,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,32689,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,32689,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,32690,0)
- ;;=C82.90^^182^1992^70
- ;;^UTILITY(U,$J,358.3,32690,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31088,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs

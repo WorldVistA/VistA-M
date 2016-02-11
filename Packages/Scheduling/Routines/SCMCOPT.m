@@ -1,0 +1,184 @@
+SCMCOPT ;ALB/DJS/ART - MARK SET OF PCMM OPTIONS OUT-OF-ORDER ;02/27/2015
+ ;;5.3;Scheduling;**603**;AUG 13, 1993;Build 79
+ ;
+ QUIT
+ ;
+ ;Supported ICRs
+ ; #1157 - XPDMENU call
+ ; #5567 - XPDPROT call
+ ; #2053 - Data Base Server API: Editing Utilities (DIE)
+ ; #2056 - Data Base Server API: Data Retriever Utilities (DIQ)
+ ; #10060 - NEW PERSON FILE
+ ; #10075 - OPTION FILE
+ ; #10141 - XPDUTL - Public APIs for KIDS
+ ;
+OPTOUT ;Set option out-of-order
+ ;
+ ;  OPT - Menu option to mark out-of-order
+ ;  TXT - Out-of-order message text
+ ;
+ N I,OPT,TXT
+ S TXT="This functionality is now accomplished by the PCMM Web Application."
+ ;
+ ;Set up FOR loop to process each OOO option
+ ;
+ F I=1:1 S OPT=$P($TEXT(OPTLIST+I),";;",2) Q:OPT="$$END"!(OPT="")   D
+ . D OUT^XPDMENU(OPT,TXT)  ;Mark option out-of-order
+ DO MES^XPDUTL(" o  Legacy PCMM menu options were marked Out-of-Order.")
+ DO MES^XPDUTL(" ")
+ ;
+PROTDIS ;Disable protocol
+ ;
+ ;  PROT - Protocol to disable
+ ;  TXT - Disabled protocol message text
+ ;
+ N I,PROT,TXT
+ S TXT="This functionality is now accomplished by the PCMM Web Application."
+ ;
+ ;Set up FOR loop to process each disabled protocol
+ ;
+ F I=1:1 S PROT=$P($TEXT(PROTLIST+I),";;",2) Q:PROT="$$END"!(PROT="")   D
+ . D OUT^XPDPROT(PROT,TXT)  ;Disable protocol
+ DO MES^XPDUTL(" o  Legacy PCMM - SC PC PATIENT ASSIGN/UNASSIGN - protocol was disabled.")
+ DO MES^XPDUTL(" ")
+ QUIT
+ ;
+RESTORE ;UnSet option out-of-order
+ ;
+ ;  OPT - Menu option to mark out-of-order
+ ;  TXT - Out-of-order message text
+ ;
+ N I,OPT,TXT
+ S TXT=""
+ ;
+ ;Set up FOR loop to process each OOO option
+ ;
+ F I=1:1 S OPT=$P($TEXT(OPTLIST+I),";;",2) Q:OPT="$$END"!(OPT="")   D
+ . D OUT^XPDMENU(OPT,TXT)  ;UnMark option out-of-order
+ W !!,"Legacy PCMM options were unmarked Out-of-Order.",!
+ ;
+ QUIT
+ ;
+SECMENU ; Change New Person Records that have SCMC PCMM GUI WORKSTATION to SCMC PCMMR WEB USER MENU
+ ;
+ NEW SCGUIIEN,SCWEBIEN,SCDUZ,SCSECIEN,SCIENS,SCFDA,SCERR
+ NEW SCGUINM,SCWEBNM
+ SET SCGUINM="SCMC PCMM GUI WORKSTATION"
+ SET SCWEBNM="SCMC PCMMR WEB USER MENU"
+ ;
+ SET SCGUIIEN=$$FIND1^DIC(19,"","BX",SCGUINM,"","","")
+ SET SCWEBIEN=$$FIND1^DIC(19,"","BX",SCWEBNM,"","","")
+ QUIT:'SCGUIIEN
+ QUIT:'SCWEBIEN
+ ;
+ WRITE !,"This routine will convert a user's Seconary Menu Option from",!
+ WRITE "SCMC PCMM GUI WORKSTATION to SCMC PCMMR WEB USER MENU",!
+ ;
+ SET ^XTMP("SCMC-SECMENU",0)=$$FMADD^XLFDT($$DT^XLFDT(),180)_U_$$DT^XLFDT()_U_"Convert PCMM Users Secondary Menu Option"
+ SET SCDUZ=0
+ FOR  SET SCDUZ=$ORDER(^VA(200,SCDUZ)) QUIT:'+SCDUZ  DO
+ . SET SCSECIEN=0
+ . FOR  SET SCSECIEN=$ORDER(^VA(200,SCDUZ,203,SCSECIEN)) QUIT:'+SCSECIEN  DO
+ . . SET SCIENS=SCSECIEN_","_SCDUZ_","
+ . . IF $$GET1^DIQ(200.03,SCIENS,.01,"I")=SCGUIIEN DO  ;if = SCMC PCMM GUI WORKSTATION
+ . . . ;change it to SCMC PCMMR WEB USER MENU
+ . . . NEW SCFDA
+ . . . SET SCFDA(200.03,SCIENS,.01)=SCWEBIEN
+ . . . SET SCFDA(200.03,SCIENS,2)=""
+ . . . DO FILE^DIE("K","SCFDA","SCERR")
+ . . . SET ^XTMP("SCMC-SECMENU",SCDUZ)=$$GET1^DIQ(200,SCDUZ,.01)
+ ;
+ ;list
+ WRITE !!,"Users with Secondary Menu Option - SCMC PCMMR WEB USER MENU",!
+ SET SCDUZ=0
+ FOR  SET SCDUZ=$ORDER(^VA(200,SCDUZ)) QUIT:'+SCDUZ  DO
+ . SET SCSECIEN=0
+ . FOR  SET SCSECIEN=$ORDER(^VA(200,SCDUZ,203,SCSECIEN)) QUIT:'+SCSECIEN  DO
+ . . SET SCIENS=SCSECIEN_","_SCDUZ_","
+ . . IF $$GET1^DIQ(200.03,SCIENS,.01,"I")=SCWEBIEN DO  ;if = SCMC PCMMR WEB USER MENU
+ . . . WRITE "DUZ: ",SCDUZ,"     NAME: ",$$GET1^DIQ(200,SCDUZ,.01),!
+ ;
+ QUIT
+ ;
+RESTMENU ; Change New Person Records that have SCMC PCMMR WEB USER MENU to SCMC PCMM GUI WORKSTATION
+ ;
+ NEW SCGUIIEN,SCWEBIEN,SCDUZ,SCSECIEN,SCIENS,SCFDA,SCERR
+ NEW SCGUINM,SCWEBNM
+ SET SCGUINM="SCMC PCMM GUI WORKSTATION"
+ SET SCWEBNM="SCMC PCMMR WEB USER MENU"
+ ;
+ SET SCGUIIEN=$$FIND1^DIC(19,"","BX",SCGUINM,"","","")
+ SET SCWEBIEN=$$FIND1^DIC(19,"","BX",SCWEBNM,"","","")
+ QUIT:'SCGUIIEN
+ QUIT:'SCWEBIEN
+ ;
+ ;list
+ WRITE !,"This routine will convert a user's Seconary Menu Option from",!
+ WRITE "SCMC PCMMR WEB USER MENU to SCMC PCMM GUI WORKSTATION",!
+ WRITE !,"Users with Secondary Menu Option - SCMC PCMMR WEB USER MENU",!
+ SET SCDUZ=0
+ FOR  SET SCDUZ=$ORDER(^VA(200,SCDUZ)) QUIT:'+SCDUZ  DO
+ . SET SCSECIEN=0
+ . FOR  SET SCSECIEN=$ORDER(^VA(200,SCDUZ,203,SCSECIEN)) QUIT:'+SCSECIEN  DO
+ . . SET SCIENS=SCSECIEN_","_SCDUZ_","
+ . . IF $$GET1^DIQ(200.03,SCIENS,.01,"I")=SCWEBIEN DO  ;if = SCMC PCMMR WEB USER MENU
+ . . . WRITE "DUZ: ",SCDUZ,"     NAME: ",$$GET1^DIQ(200,SCDUZ,.01),!
+ ;
+ NEW DIR,X,Y,DIRUT
+ SET DIR(0)="Y"
+ SET DIR("A")="Do you want to convert now"
+ SET DIR("B")="NO"
+ DO ^DIR
+ QUIT:$DATA(DIRUT)
+ QUIT:'Y
+ ;
+ ;convert
+ SET ^XTMP("SCMC-SECMENU2",0)=$$FMADD^XLFDT($$DT^XLFDT(),180)_U_$$DT^XLFDT()_U_"UnConvert PCMM Users Secondary Menu Option"
+ SET SCDUZ=0
+ FOR  SET SCDUZ=$ORDER(^VA(200,SCDUZ)) QUIT:'+SCDUZ  DO
+ . SET SCSECIEN=0
+ . FOR  SET SCSECIEN=$ORDER(^VA(200,SCDUZ,203,SCSECIEN)) QUIT:'+SCSECIEN  DO
+ . . SET SCIENS=SCSECIEN_","_SCDUZ_","
+ . . IF $$GET1^DIQ(200.03,SCIENS,.01,"I")=SCWEBIEN DO  ;if = SCMC PCMMR WEB USER MENU
+ . . . ;change it to SCMC PCMMR WEB USER MENU
+ . . . NEW SCFDA
+ . . . SET SCFDA(200.03,SCIENS,.01)=SCGUIIEN
+ . . . SET SCFDA(200.03,SCIENS,2)=""
+ . . . DO FILE^DIE("K","SCFDA","SCERR")
+ . . . SET ^XTMP("SCMC-SECMENU2",SCDUZ)=$$GET1^DIQ(200,SCDUZ,.01)
+ ;
+ ;list again
+ WRITE !!,"Users with Secondary Menu Option - SCMC PCMM GUI WORKSTATION",!
+ SET SCDUZ=0
+ FOR  SET SCDUZ=$ORDER(^VA(200,SCDUZ)) QUIT:'+SCDUZ  DO
+ . SET SCSECIEN=0
+ . FOR  SET SCSECIEN=$ORDER(^VA(200,SCDUZ,203,SCSECIEN)) QUIT:'+SCSECIEN  DO
+ . . SET SCIENS=SCSECIEN_","_SCDUZ_","
+ . . IF $$GET1^DIQ(200.03,SCIENS,.01,"I")=SCGUIIEN DO  ;if = SCMC PCMM GUI WORKSTATION
+ . . . WRITE "DUZ: ",SCDUZ,"     NAME: ",$$GET1^DIQ(200,SCDUZ,.01),!
+ ;
+ QUIT
+ ;
+OPTLIST ;OPTIONS LIST
+ ;;SCMC PATIENT ASSIGN/UNASSIGN
+ ;;SCMC CLEAN GHOST ENTRIES
+ ;;SCMC CLEAN INSTITUTION
+ ;;SCMC CONVERSION TOOLS MENU
+ ;;SCMC EXTEND A PATIENT
+ ;;SCMC FLAGGED
+ ;;SCMC MU MASS TEAM UNASSIGNMENT
+ ;;SCMC PC ATTENDING CONVERSION
+ ;;SCMC PCMM BASELINE SEEDING
+ ;;SCMC PCMM EDIT PRACTIT #404.52
+ ;;SCMC PCMM NIGHTLY TASK
+ ;;SCMC PRECEPTOR CONVERSION
+ ;;SCMC PRECEPTOR MIGRATION RPT
+ ;;SCMC RETRANSMIT
+ ;;SCMC PCMM GUI WORKSTATION
+ ;;SCMC PC ATTENDING ASGN RPT
+ ;;$$END
+ ;
+PROTLIST ;PROTOCOLS LIST
+ ;;SC PC PATIENT ASSIGN/UNASSIGN
+ ;;$$END
+ ;

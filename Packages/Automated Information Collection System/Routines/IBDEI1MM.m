@@ -1,142 +1,126 @@
-IBDEI1MM ; ; 06-AUG-2015
+IBDEI1MM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28876,1,4,0)
- ;;=4^305.20
- ;;^UTILITY(U,$J,358.3,28876,2)
- ;;=^18664
- ;;^UTILITY(U,$J,358.3,28877,0)
- ;;=304.30^^167^1845^16
- ;;^UTILITY(U,$J,358.3,28877,1,0)
+ ;;^UTILITY(U,$J,358.3,27210,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,27210,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,27210,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,27211,0)
+ ;;=L98.2^^132^1309^149
+ ;;^UTILITY(U,$J,358.3,27211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28877,1,3,0)
- ;;=3^Cannabis Dependence
- ;;^UTILITY(U,$J,358.3,28877,1,4,0)
- ;;=4^304.30
- ;;^UTILITY(U,$J,358.3,28877,2)
- ;;=^18670
- ;;^UTILITY(U,$J,358.3,28878,0)
- ;;=305.60^^167^1845^24
- ;;^UTILITY(U,$J,358.3,28878,1,0)
+ ;;^UTILITY(U,$J,358.3,27211,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,27211,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,27211,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,27212,0)
+ ;;=L98.9^^132^1309^267
+ ;;^UTILITY(U,$J,358.3,27212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28878,1,3,0)
- ;;=3^Cocaine Abuse
- ;;^UTILITY(U,$J,358.3,28878,1,4,0)
- ;;=4^305.60
- ;;^UTILITY(U,$J,358.3,28878,2)
- ;;=^25596
- ;;^UTILITY(U,$J,358.3,28879,0)
- ;;=304.20^^167^1845^25
- ;;^UTILITY(U,$J,358.3,28879,1,0)
+ ;;^UTILITY(U,$J,358.3,27212,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27212,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,27212,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,27213,0)
+ ;;=I70.731^^132^1309^80
+ ;;^UTILITY(U,$J,358.3,27213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28879,1,3,0)
- ;;=3^Cocaine Dependence
- ;;^UTILITY(U,$J,358.3,28879,1,4,0)
- ;;=4^304.20
- ;;^UTILITY(U,$J,358.3,28879,2)
- ;;=^25599
- ;;^UTILITY(U,$J,358.3,28880,0)
- ;;=297.1^^167^1845^29
- ;;^UTILITY(U,$J,358.3,28880,1,0)
+ ;;^UTILITY(U,$J,358.3,27213,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,27213,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,27213,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,27214,0)
+ ;;=I70.732^^132^1309^81
+ ;;^UTILITY(U,$J,358.3,27214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28880,1,3,0)
- ;;=3^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,28880,1,4,0)
- ;;=4^297.1
- ;;^UTILITY(U,$J,358.3,28880,2)
- ;;=^331896
- ;;^UTILITY(U,$J,358.3,28881,0)
- ;;=290.40^^167^1845^32
- ;;^UTILITY(U,$J,358.3,28881,1,0)
+ ;;^UTILITY(U,$J,358.3,27214,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,27214,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,27214,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,27215,0)
+ ;;=I70.733^^132^1309^82
+ ;;^UTILITY(U,$J,358.3,27215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28881,1,3,0)
- ;;=3^Dementia, Vascular Uncomp
- ;;^UTILITY(U,$J,358.3,28881,1,4,0)
- ;;=4^290.40
- ;;^UTILITY(U,$J,358.3,28881,2)
- ;;=^10350^437.0
- ;;^UTILITY(U,$J,358.3,28882,0)
- ;;=290.0^^167^1845^31
- ;;^UTILITY(U,$J,358.3,28882,1,0)
+ ;;^UTILITY(U,$J,358.3,27215,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,27215,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,27215,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,27216,0)
+ ;;=I70.734^^132^1309^83
+ ;;^UTILITY(U,$J,358.3,27216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28882,1,3,0)
- ;;=3^Dementia, Alzheimer's Type
- ;;^UTILITY(U,$J,358.3,28882,1,4,0)
- ;;=4^290.0
- ;;^UTILITY(U,$J,358.3,28882,2)
- ;;=^31703
- ;;^UTILITY(U,$J,358.3,28883,0)
- ;;=300.4^^167^1845^34
- ;;^UTILITY(U,$J,358.3,28883,1,0)
+ ;;^UTILITY(U,$J,358.3,27216,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,27216,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,27216,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,27217,0)
+ ;;=I70.735^^132^1309^84
+ ;;^UTILITY(U,$J,358.3,27217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28883,1,3,0)
- ;;=3^Dysthymic Disorder
- ;;^UTILITY(U,$J,358.3,28883,1,4,0)
- ;;=4^300.4
- ;;^UTILITY(U,$J,358.3,28883,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,28884,0)
- ;;=305.30^^167^1845^37
- ;;^UTILITY(U,$J,358.3,28884,1,0)
+ ;;^UTILITY(U,$J,358.3,27217,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,27217,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,27217,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,27218,0)
+ ;;=I70.741^^132^1309^79
+ ;;^UTILITY(U,$J,358.3,27218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28884,1,3,0)
- ;;=3^Hallucinogen Abuse
- ;;^UTILITY(U,$J,358.3,28884,1,4,0)
- ;;=4^305.30
- ;;^UTILITY(U,$J,358.3,28884,2)
- ;;=^53741
- ;;^UTILITY(U,$J,358.3,28885,0)
- ;;=304.50^^167^1845^38
- ;;^UTILITY(U,$J,358.3,28885,1,0)
+ ;;^UTILITY(U,$J,358.3,27218,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,27218,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,27218,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,27219,0)
+ ;;=I70.742^^132^1309^76
+ ;;^UTILITY(U,$J,358.3,27219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28885,1,3,0)
- ;;=3^Hallucinogen Dependence
- ;;^UTILITY(U,$J,358.3,28885,1,4,0)
- ;;=4^304.50
- ;;^UTILITY(U,$J,358.3,28885,2)
- ;;=^53744
- ;;^UTILITY(U,$J,358.3,28886,0)
- ;;=305.90^^167^1845^42
- ;;^UTILITY(U,$J,358.3,28886,1,0)
+ ;;^UTILITY(U,$J,358.3,27219,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,27219,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,27219,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,27220,0)
+ ;;=I70.743^^132^1309^75
+ ;;^UTILITY(U,$J,358.3,27220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28886,1,3,0)
- ;;=3^Inhalant Abuse
- ;;^UTILITY(U,$J,358.3,28886,1,4,0)
- ;;=4^305.90
- ;;^UTILITY(U,$J,358.3,28886,2)
- ;;=^63304
- ;;^UTILITY(U,$J,358.3,28887,0)
- ;;=304.60^^167^1845^43
- ;;^UTILITY(U,$J,358.3,28887,1,0)
+ ;;^UTILITY(U,$J,358.3,27220,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,27220,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,27220,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,27221,0)
+ ;;=I70.744^^132^1309^77
+ ;;^UTILITY(U,$J,358.3,27221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28887,1,3,0)
- ;;=3^Inhalant Dependence
- ;;^UTILITY(U,$J,358.3,28887,1,4,0)
- ;;=4^304.60
- ;;^UTILITY(U,$J,358.3,28887,2)
- ;;=^63306
- ;;^UTILITY(U,$J,358.3,28888,0)
- ;;=312.34^^167^1845^44
- ;;^UTILITY(U,$J,358.3,28888,1,0)
+ ;;^UTILITY(U,$J,358.3,27221,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,27221,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,27221,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,27222,0)
+ ;;=I70.745^^132^1309^78
+ ;;^UTILITY(U,$J,358.3,27222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28888,1,3,0)
- ;;=3^Intermit Explosive D/O
- ;;^UTILITY(U,$J,358.3,28888,1,4,0)
- ;;=4^312.34
- ;;^UTILITY(U,$J,358.3,28888,2)
- ;;=^64512
- ;;^UTILITY(U,$J,358.3,28889,0)
- ;;=296.36^^167^1845^48
- ;;^UTILITY(U,$J,358.3,28889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28889,1,3,0)
- ;;=3^Maj Depr, Recurr, Full Rem
- ;;^UTILITY(U,$J,358.3,28889,1,4,0)
- ;;=4^296.36
- ;;^UTILITY(U,$J,358.3,28889,2)
- ;;=^303605
- ;;^UTILITY(U,$J,358.3,28890,0)
- ;;=296.30^^167^1845^49
- ;;^UTILITY(U,$J,358.3,28890,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27222,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer

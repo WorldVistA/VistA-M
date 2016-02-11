@@ -1,0 +1,134 @@
+IBDEI2NY ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44697,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,44697,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,44698,0)
+ ;;=J01.90^^200^2230^77
+ ;;^UTILITY(U,$J,358.3,44698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44698,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,44698,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,44698,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,44699,0)
+ ;;=J20.1^^200^2230^10
+ ;;^UTILITY(U,$J,358.3,44699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44699,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,44699,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,44699,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,44700,0)
+ ;;=J20.0^^200^2230^11
+ ;;^UTILITY(U,$J,358.3,44700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44700,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,44700,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,44700,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,44701,0)
+ ;;=J20.2^^200^2230^6
+ ;;^UTILITY(U,$J,358.3,44701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44701,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,44701,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,44701,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,44702,0)
+ ;;=J20.4^^200^2230^13
+ ;;^UTILITY(U,$J,358.3,44702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44702,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,44702,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,44702,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,44703,0)
+ ;;=J20.3^^200^2230^8
+ ;;^UTILITY(U,$J,358.3,44703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44703,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,44703,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,44703,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,44704,0)
+ ;;=J20.9^^200^2230^7
+ ;;^UTILITY(U,$J,358.3,44704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44704,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,44704,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,44704,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,44705,0)
+ ;;=J20.8^^200^2230^12
+ ;;^UTILITY(U,$J,358.3,44705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44705,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,44705,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,44705,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,44706,0)
+ ;;=J20.5^^200^2230^14
+ ;;^UTILITY(U,$J,358.3,44706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44706,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,44706,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,44706,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,44707,0)
+ ;;=J20.7^^200^2230^9
+ ;;^UTILITY(U,$J,358.3,44707,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44707,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,44707,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,44707,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,44708,0)
+ ;;=J20.6^^200^2230^15
+ ;;^UTILITY(U,$J,358.3,44708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44708,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,44708,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,44708,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,44709,0)
+ ;;=J18.9^^200^2230^67
+ ;;^UTILITY(U,$J,358.3,44709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44709,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,44709,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,44709,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,44710,0)
+ ;;=J18.8^^200^2230^68
+ ;;^UTILITY(U,$J,358.3,44710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44710,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC

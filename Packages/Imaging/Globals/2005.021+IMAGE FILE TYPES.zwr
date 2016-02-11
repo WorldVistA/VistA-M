@@ -15,7 +15,7 @@ ZWR
 ^MAG(2005.021,12,0)="DOC^Word Document DOC^0^magdoc.bmp^0^102^0"
 ^MAG(2005.021,13,0)="HTM^Web Document HTM^1^maghtml.bmp^0^101^1"
 ^MAG(2005.021,14,0)="JPG^Full Color JPG^1^^1^1^1"
-^MAG(2005.021,15,0)="PDF^Adobe PDF^0^magpdf.bmp^0^104^1"
+^MAG(2005.021,15,0)="PDF^Adobe PDF^0^^1^104^1"
 ^MAG(2005.021,16,0)="RTF^Rich Text format RTF^0^magrtf.bmp^0^105^1"
 ^MAG(2005.021,17,0)="WAV^Audio file WAV^0^magwav.bmp^0^106^1"
 ^MAG(2005.021,18,0)="DCM^Dicom file DCM^1^^1^100^1"

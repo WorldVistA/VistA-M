@@ -1,5 +1,5 @@
 RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27**;Feb 17, 2006;Build 58
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27,26**;Feb 17, 2006;Build 53
  ;
  ; This routine uses the following IAs:
  ;
@@ -23,7 +23,10 @@ RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
  ;                                      Telaprevir, removed requirement that
  ;                                      only genotype 1 is included on the
  ;                                      report.
- ;                                      
+ ;ROR*1.5*26   MAR 2015    T KOPP       Added FIB-4 as report column if FIB-4
+ ;                                      range option selected (STORE), calculate
+ ;                                      FIB-4 score if parameter selected. 
+ ;                                      Remove treatment status column.        
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -77,13 +80,14 @@ LTSCB(ROR8DST,INVDT,RESULT) ;
  ; REPORT        Parent IEN of report
  ; FLAGS         Flags for the $$SKIP^RORXU005
  ; .NSPT         Number of selected patients is returned here
+ ; .RORLC        sub-file and LOINC codes to search for FIB4
  ;
  ; Return Values:
  ;       <0  Fatal error
  ;        0  Ok
  ;       >0  Number of non-fatal errors
  ;
-QUERY(REPORT,FLAGS,NSPT) ;
+QUERY(REPORT,FLAGS,NSPT,RORLC) ;
  N RORLDST       ; Descriptor for Lab search API
  N RORPTN        ; Number of patients in the registry
  N RORXDST       ; Descriptor for pharmacy search API
@@ -187,13 +191,20 @@ QUERY(REPORT,FLAGS,NSPT) ;
  . . S UTIL=+$$UTIL^RORXU003(UTSDT,UTEDT,PATIEN,.TMP)
  . . S:'UTIL SKIP=1
  . ;
+ . ; Skip patient if FIB4 range has been selected and score does not match parameters
+ . I 'SKIP,$G(RORDATA("IDLST")) D
+ . . N OK
+ . . S OK=$$CALCFIB^RORX019A(PATIEN,"",.RORDATA,IEN,.RORLC)
+ . . I OK<0 S SKIP=1 Q
+ . . I '$$INRANGE^RORX019(.RORDATA) S SKIP=1 Q  ;exclude patient from report if ANY score is out of range
+ . . I '$$SKIP^RORX019(.RORDATA) S SKIP=1  ;exclude patient from report with null scores
  . ;--- Skip the patient if not all selection criteria have been met
  . I SKIP K ^TMP("RORX021",$J,"PAT",PATIEN)  Q
  . ;
- . ;--- Get and store the patient's data  last4^name^treatment status
+ . ;--- Get and store the patient's data  last4^name^treatment status^ICN^FIB-4 score
  . D VADEM^RORUTL05(PATIEN,1)
  . S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
- . S ^TMP("RORX021",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_RORTH_U_TMP
+ . S ^TMP("RORX021",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_RORTH_U_TMP_U_$G(RORDATA("SCORE",4))
  . S NSPT=NSPT+1   ;increment count of selected patients
  ;
  D FREE^RORTMP(RORXL)  ;clean up drug list
@@ -272,6 +283,7 @@ STORE(REPORT,NSPT) ;
  N RORLDST
  N RORXDST
  N RORICN
+ N RORFIB4
  N RORBODY,PTAG  ;parent iens
  N CNT,DATE,DFN,ECNT,IEN,LAST4,LTLST,NAME,NODE,PTCNT,PTLST,PTNAME,RC,RXLST,TMP,VAL,THIST
  N GT,HCVQT,HCV,HCVQL
@@ -286,7 +298,7 @@ STORE(REPORT,NSPT) ;
  . S CNT=CNT+1,NODE=$NA(^TMP("RORX021",$J,"PAT",DFN))
  . ;--- Patient's data
  . S TMP=$G(@NODE)
- . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),THIST=$P(TMP,U,3),RORICN=$P(TMP,U,4)
+ . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),THIST=$P(TMP,U,3),RORICN=$P(TMP,U,4),RORFIB4=$P(TMP,U,5)
  . ;--- get lab results
  . S RORLDST=$NA(^TMP("RORX021",$J,"PAT",DFN,"LR"))
  . S RORXDST=$NA(^TMP("RORX021",$J,"PAT",DFN,"RX"))
@@ -318,12 +330,14 @@ STORE(REPORT,NSPT) ;
  . ;--- store
  . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,PTAG,1)
  . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,PTAG,2)
- . D ADDVAL^RORTSK11(RORTSK,"STATUS",THIST,PTAG,1)
+ . ; I $G(RORDATA("LIST"))'["4" D ADDVAL^RORTSK11(RORTSK,"STATUS",THIST,PTAG,1)
  . D ADDVAL^RORTSK11(RORTSK,"HCV_DATE",$P(HCV,U),PTAG,1)
  . D ADDVAL^RORTSK11(RORTSK,"HCV",$P(HCV,U,2),PTAG,3)
  . D ADDVAL^RORTSK11(RORTSK,"GT",$P(GT,U,2),PTAG,1)
  . D ADDVAL^RORTSK11(RORTSK,"FILL_DATE",RORFDT,PTAG,1)
  . D ADDVAL^RORTSK11(RORTSK,"FILL_MED",RORRX,PTAG,1)
+ . I $G(RORDATA("IDLST"))'="" D
+ . . S:RORDATA("IDLST")["4" TMP=$$ADDVAL^RORTSK11(RORTSK,"FIB4",RORFIB4,PTAG,3)
  . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",RORICN,PTAG,1)
  . S PTCNT=PTCNT+1
  ;--- Inactivate the patient list tag if the list is empty

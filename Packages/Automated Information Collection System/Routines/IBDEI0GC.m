@@ -1,142 +1,126 @@
-IBDEI0GC ; ; 06-AUG-2015
+IBDEI0GC ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7576,2)
- ;;=^64790
- ;;^UTILITY(U,$J,358.3,7577,0)
- ;;=611.1^^35^473^16
- ;;^UTILITY(U,$J,358.3,7577,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7577,1,4,0)
- ;;=4^611.1
- ;;^UTILITY(U,$J,358.3,7577,1,5,0)
- ;;=5^Gynecomastia
- ;;^UTILITY(U,$J,358.3,7577,2)
- ;;=^60454
- ;;^UTILITY(U,$J,358.3,7578,0)
- ;;=704.1^^35^473^17
- ;;^UTILITY(U,$J,358.3,7578,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7578,1,4,0)
- ;;=4^704.1
- ;;^UTILITY(U,$J,358.3,7578,1,5,0)
- ;;=5^Hirsutism
- ;;^UTILITY(U,$J,358.3,7578,2)
- ;;=^57407
- ;;^UTILITY(U,$J,358.3,7579,0)
- ;;=251.2^^35^473^30
- ;;^UTILITY(U,$J,358.3,7579,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7579,1,4,0)
- ;;=4^251.2
- ;;^UTILITY(U,$J,358.3,7579,1,5,0)
- ;;=5^Hypoglycemia NOS
- ;;^UTILITY(U,$J,358.3,7579,2)
- ;;=^60580
- ;;^UTILITY(U,$J,358.3,7580,0)
- ;;=253.2^^35^473^34
- ;;^UTILITY(U,$J,358.3,7580,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7580,1,4,0)
- ;;=4^253.2
- ;;^UTILITY(U,$J,358.3,7580,1,5,0)
- ;;=5^Hypopituitarism
- ;;^UTILITY(U,$J,358.3,7580,2)
- ;;=^60686
- ;;^UTILITY(U,$J,358.3,7581,0)
- ;;=733.00^^35^473^43
- ;;^UTILITY(U,$J,358.3,7581,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7581,1,4,0)
- ;;=4^733.00
- ;;^UTILITY(U,$J,358.3,7581,1,5,0)
- ;;=5^Osteoporosis NOS
- ;;^UTILITY(U,$J,358.3,7581,2)
- ;;=^87159
- ;;^UTILITY(U,$J,358.3,7582,0)
- ;;=278.00^^35^473^40
- ;;^UTILITY(U,$J,358.3,7582,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7582,1,4,0)
- ;;=4^278.00
- ;;^UTILITY(U,$J,358.3,7582,1,5,0)
- ;;=5^Obesity
- ;;^UTILITY(U,$J,358.3,7582,2)
- ;;=^84823
- ;;^UTILITY(U,$J,358.3,7583,0)
- ;;=278.01^^35^473^39
- ;;^UTILITY(U,$J,358.3,7583,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7583,1,4,0)
- ;;=4^278.01
- ;;^UTILITY(U,$J,358.3,7583,1,5,0)
- ;;=5^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,7583,2)
- ;;=^84844
- ;;^UTILITY(U,$J,358.3,7584,0)
- ;;=250.80^^35^473^10
- ;;^UTILITY(U,$J,358.3,7584,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7584,1,4,0)
- ;;=4^250.80
- ;;^UTILITY(U,$J,358.3,7584,1,5,0)
- ;;=5^DM Type II with LE Ulcer
- ;;^UTILITY(U,$J,358.3,7584,2)
- ;;=DM Type II with LE Ulcer^267846^707.10
- ;;^UTILITY(U,$J,358.3,7585,0)
- ;;=250.00^^35^473^5
- ;;^UTILITY(U,$J,358.3,7585,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7585,1,4,0)
- ;;=4^250.00
- ;;^UTILITY(U,$J,358.3,7585,1,5,0)
- ;;=5^DM Type II Dm W/O Complications
- ;;^UTILITY(U,$J,358.3,7585,2)
- ;;=^33605
- ;;^UTILITY(U,$J,358.3,7586,0)
- ;;=250.40^^35^473^6
- ;;^UTILITY(U,$J,358.3,7586,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7586,1,4,0)
- ;;=4^250.40
- ;;^UTILITY(U,$J,358.3,7586,1,5,0)
- ;;=5^DM Type II Dm with Nephropathy
- ;;^UTILITY(U,$J,358.3,7586,2)
- ;;=^267837^583.81
- ;;^UTILITY(U,$J,358.3,7587,0)
- ;;=250.50^^35^473^9
- ;;^UTILITY(U,$J,358.3,7587,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7587,1,4,0)
- ;;=4^250.50
- ;;^UTILITY(U,$J,358.3,7587,1,5,0)
- ;;=5^DM Type II w/ PDR
- ;;^UTILITY(U,$J,358.3,7587,2)
- ;;=DM Type II w/ PDR^267839^362.02
- ;;^UTILITY(U,$J,358.3,7588,0)
- ;;=250.60^^35^473^7
- ;;^UTILITY(U,$J,358.3,7588,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7588,1,4,0)
- ;;=4^250.60
- ;;^UTILITY(U,$J,358.3,7588,1,5,0)
- ;;=5^DM Type II Dm with Neuropathy
- ;;^UTILITY(U,$J,358.3,7588,2)
- ;;=^267841^357.2
- ;;^UTILITY(U,$J,358.3,7589,0)
- ;;=250.70^^35^473^8
- ;;^UTILITY(U,$J,358.3,7589,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7589,1,4,0)
- ;;=4^250.70
- ;;^UTILITY(U,$J,358.3,7589,1,5,0)
- ;;=5^DM Type II Dm with Peripheral Vasc Dis
- ;;^UTILITY(U,$J,358.3,7589,2)
- ;;=^267843^443.81
- ;;^UTILITY(U,$J,358.3,7590,0)
- ;;=250.01^^35^473^4
- ;;^UTILITY(U,$J,358.3,7590,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,7590,1,4,0)
- ;;=4^250.01
+ ;;^UTILITY(U,$J,358.3,7252,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication NEC
+ ;;^UTILITY(U,$J,358.3,7252,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,7252,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,7253,0)
+ ;;=E11.41^^49^479^63
+ ;;^UTILITY(U,$J,358.3,7253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7253,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Mononueuropathy
+ ;;^UTILITY(U,$J,358.3,7253,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,7253,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,7254,0)
+ ;;=E11.42^^49^479^66
+ ;;^UTILITY(U,$J,358.3,7254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7254,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,7254,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,7254,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,7255,0)
+ ;;=E11.43^^49^479^62
+ ;;^UTILITY(U,$J,358.3,7255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7255,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,7255,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,7255,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,7256,0)
+ ;;=E11.44^^49^479^61
+ ;;^UTILITY(U,$J,358.3,7256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7256,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Amyotrophy
+ ;;^UTILITY(U,$J,358.3,7256,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,7256,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,7257,0)
+ ;;=E11.49^^49^479^64
+ ;;^UTILITY(U,$J,358.3,7257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7257,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neurological Complication NEC
+ ;;^UTILITY(U,$J,358.3,7257,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,7257,2)
+ ;;=^5002649
+ ;;^UTILITY(U,$J,358.3,7258,0)
+ ;;=E10.39^^49^479^26
+ ;;^UTILITY(U,$J,358.3,7258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7258,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Ophthalmic Complication NEC
+ ;;^UTILITY(U,$J,358.3,7258,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,7258,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,7259,0)
+ ;;=E10.10^^49^479^37
+ ;;^UTILITY(U,$J,358.3,7259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7259,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Ketoacidosis w/o Coma
+ ;;^UTILITY(U,$J,358.3,7259,1,4,0)
+ ;;=4^E10.10
+ ;;^UTILITY(U,$J,358.3,7259,2)
+ ;;=^5002587
+ ;;^UTILITY(U,$J,358.3,7260,0)
+ ;;=E10.21^^49^479^22
+ ;;^UTILITY(U,$J,358.3,7260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7260,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,7260,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,7260,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,7261,0)
+ ;;=E10.311^^49^479^30
+ ;;^UTILITY(U,$J,358.3,7261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7261,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,7261,1,4,0)
+ ;;=4^E10.311
+ ;;^UTILITY(U,$J,358.3,7261,2)
+ ;;=^5002592
+ ;;^UTILITY(U,$J,358.3,7262,0)
+ ;;=E10.319^^49^479^31
+ ;;^UTILITY(U,$J,358.3,7262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7262,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,7262,1,4,0)
+ ;;=4^E10.319
+ ;;^UTILITY(U,$J,358.3,7262,2)
+ ;;=^5002593
+ ;;^UTILITY(U,$J,358.3,7263,0)
+ ;;=E10.321^^49^479^38
+ ;;^UTILITY(U,$J,358.3,7263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7263,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Mild Nonprlf Diabetic Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,7263,1,4,0)
+ ;;=4^E10.321
+ ;;^UTILITY(U,$J,358.3,7263,2)
+ ;;=^5002594
+ ;;^UTILITY(U,$J,358.3,7264,0)
+ ;;=E10.329^^49^479^39
+ ;;^UTILITY(U,$J,358.3,7264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7264,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Mild Nonprlf Diabetic Retinopathy w/o Macular Edema

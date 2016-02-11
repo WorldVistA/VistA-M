@@ -1,124 +1,130 @@
-IBDEI0NI ; ; 06-AUG-2015
+IBDEI0NI ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11200,1,2,0)
- ;;=2^301.7
- ;;^UTILITY(U,$J,358.3,11200,1,5,0)
- ;;=5^Antisocial Personality Dis
- ;;^UTILITY(U,$J,358.3,11200,2)
- ;;=Antisocial Personality Dis^9066
- ;;^UTILITY(U,$J,358.3,11201,0)
- ;;=301.82^^50^637^2
- ;;^UTILITY(U,$J,358.3,11201,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11201,1,2,0)
- ;;=2^301.82
- ;;^UTILITY(U,$J,358.3,11201,1,5,0)
- ;;=5^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,11201,2)
- ;;=Avoidant Personality Disorder^265347
- ;;^UTILITY(U,$J,358.3,11202,0)
- ;;=301.83^^50^637^3
- ;;^UTILITY(U,$J,358.3,11202,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11202,1,2,0)
- ;;=2^301.83
- ;;^UTILITY(U,$J,358.3,11202,1,5,0)
- ;;=5^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,11202,2)
- ;;=Borderline Personality Disorder^16372
- ;;^UTILITY(U,$J,358.3,11203,0)
- ;;=301.6^^50^637^6
- ;;^UTILITY(U,$J,358.3,11203,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11203,1,2,0)
- ;;=2^301.6
- ;;^UTILITY(U,$J,358.3,11203,1,5,0)
- ;;=5^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,11203,2)
- ;;=Dependent Personality Disorder^32860
- ;;^UTILITY(U,$J,358.3,11204,0)
- ;;=301.50^^50^637^8
- ;;^UTILITY(U,$J,358.3,11204,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11204,1,2,0)
- ;;=2^301.50
- ;;^UTILITY(U,$J,358.3,11204,1,5,0)
- ;;=5^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,11204,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,11205,0)
- ;;=301.81^^50^637^11
- ;;^UTILITY(U,$J,358.3,11205,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11205,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,11205,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,11205,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,11206,0)
- ;;=301.0^^50^637^12
- ;;^UTILITY(U,$J,358.3,11206,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11206,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,11206,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,11206,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,11207,0)
- ;;=301.9^^50^637^16
- ;;^UTILITY(U,$J,358.3,11207,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11207,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,11207,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,11207,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,11208,0)
- ;;=301.20^^50^637^14
- ;;^UTILITY(U,$J,358.3,11208,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11208,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,11208,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,11208,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,11209,0)
- ;;=301.22^^50^637^15
- ;;^UTILITY(U,$J,358.3,11209,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11209,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,11209,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,11209,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,11210,0)
- ;;=301.4^^50^637^4
- ;;^UTILITY(U,$J,358.3,11210,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11210,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,11210,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,11210,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,11211,0)
- ;;=301.84^^50^637^13
- ;;^UTILITY(U,$J,358.3,11211,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,11211,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,11211,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,11211,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,11212,0)
- ;;=301.11^^50^637^9
- ;;^UTILITY(U,$J,358.3,11212,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10743,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,10743,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,10743,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,10744,0)
+ ;;=C82.30^^68^675^69
+ ;;^UTILITY(U,$J,358.3,10744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10744,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10744,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,10744,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,10745,0)
+ ;;=C82.49^^68^675^70
+ ;;^UTILITY(U,$J,358.3,10745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10745,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,10745,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,10745,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,10746,0)
+ ;;=C82.40^^68^675^71
+ ;;^UTILITY(U,$J,358.3,10746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10746,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10746,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,10746,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,10747,0)
+ ;;=C82.99^^68^675^72
+ ;;^UTILITY(U,$J,358.3,10747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10747,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,10747,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,10747,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,10748,0)
+ ;;=C82.90^^68^675^73
+ ;;^UTILITY(U,$J,358.3,10748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10748,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10748,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,10748,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,10749,0)
+ ;;=R59.1^^68^675^58
+ ;;^UTILITY(U,$J,358.3,10749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10749,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,10749,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,10749,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,10750,0)
+ ;;=C91.40^^68^675^77
+ ;;^UTILITY(U,$J,358.3,10750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10750,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,10750,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,10750,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,10751,0)
+ ;;=C91.42^^68^675^75
+ ;;^UTILITY(U,$J,358.3,10751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10751,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,10751,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,10751,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,10752,0)
+ ;;=C91.41^^68^675^76
+ ;;^UTILITY(U,$J,358.3,10752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10752,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,10752,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,10752,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,10753,0)
+ ;;=D57.01^^68^675^78
+ ;;^UTILITY(U,$J,358.3,10753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10753,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,10753,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,10753,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,10754,0)
+ ;;=D57.00^^68^675^79
+ ;;^UTILITY(U,$J,358.3,10754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10754,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,10754,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,10754,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,10755,0)
+ ;;=D57.02^^68^675^80
+ ;;^UTILITY(U,$J,358.3,10755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10755,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,10755,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,10755,2)
+ ;;=^5002308

@@ -1,126 +1,134 @@
-IBDEI1YY ; ; 06-AUG-2015
+IBDEI1YY ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34519,1,4,0)
- ;;=4^S92.245S
- ;;^UTILITY(U,$J,358.3,34519,2)
- ;;=^5044996
- ;;^UTILITY(U,$J,358.3,34520,0)
- ;;=S92.244S^^183^2020^93
- ;;^UTILITY(U,$J,358.3,34520,1,0)
+ ;;^UTILITY(U,$J,358.3,32971,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,32971,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,32971,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,32972,0)
+ ;;=Z69.12^^146^1597^2
+ ;;^UTILITY(U,$J,358.3,32972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34520,1,3,0)
- ;;=3^Nondisp medial cuneiform fx of right foot, sequela
- ;;^UTILITY(U,$J,358.3,34520,1,4,0)
- ;;=4^S92.244S
- ;;^UTILITY(U,$J,358.3,34520,2)
- ;;=^5044989
- ;;^UTILITY(U,$J,358.3,34521,0)
- ;;=S92.255S^^183^2020^96
- ;;^UTILITY(U,$J,358.3,34521,1,0)
+ ;;^UTILITY(U,$J,358.3,32972,1,3,0)
+ ;;=3^Mental Health Svcs for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,32972,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,32972,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,32973,0)
+ ;;=Z69.11^^146^1597^3
+ ;;^UTILITY(U,$J,358.3,32973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34521,1,3,0)
- ;;=3^Nondisp navicular fx of left foot, sequela
- ;;^UTILITY(U,$J,358.3,34521,1,4,0)
- ;;=4^S92.255S
- ;;^UTILITY(U,$J,358.3,34521,2)
- ;;=^5045038
- ;;^UTILITY(U,$J,358.3,34522,0)
- ;;=S92.254S^^183^2020^97
- ;;^UTILITY(U,$J,358.3,34522,1,0)
+ ;;^UTILITY(U,$J,358.3,32973,1,3,0)
+ ;;=3^Mental Health Svcs for Victim of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,32973,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,32973,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,32974,0)
+ ;;=Z60.0^^146^1598^2
+ ;;^UTILITY(U,$J,358.3,32974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34522,1,3,0)
- ;;=3^Nondisp navicular fx of right foot, sequela
- ;;^UTILITY(U,$J,358.3,34522,1,4,0)
- ;;=4^S92.254S
- ;;^UTILITY(U,$J,358.3,34522,2)
- ;;=^5045031
- ;;^UTILITY(U,$J,358.3,34523,0)
- ;;=S92.325S^^183^2020^58
- ;;^UTILITY(U,$J,358.3,34523,1,0)
+ ;;^UTILITY(U,$J,358.3,32974,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,32974,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,32974,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,32975,0)
+ ;;=Z60.2^^146^1598^3
+ ;;^UTILITY(U,$J,358.3,32975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34523,1,3,0)
- ;;=3^Nondisp 2nd metatarsal fx of left foot, sequela
- ;;^UTILITY(U,$J,358.3,34523,1,4,0)
- ;;=4^S92.325S
- ;;^UTILITY(U,$J,358.3,34523,2)
- ;;=^5045136
- ;;^UTILITY(U,$J,358.3,34524,0)
- ;;=S92.324S^^183^2020^59
- ;;^UTILITY(U,$J,358.3,34524,1,0)
+ ;;^UTILITY(U,$J,358.3,32975,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,32975,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,32975,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,32976,0)
+ ;;=Z60.3^^146^1598^1
+ ;;^UTILITY(U,$J,358.3,32976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34524,1,3,0)
- ;;=3^Nondisp 2nd metatarsal fx of right foot, sequela
- ;;^UTILITY(U,$J,358.3,34524,1,4,0)
- ;;=4^S92.324S
- ;;^UTILITY(U,$J,358.3,34524,2)
- ;;=^5045129
- ;;^UTILITY(U,$J,358.3,34525,0)
- ;;=S92.335S^^183^2020^60
- ;;^UTILITY(U,$J,358.3,34525,1,0)
+ ;;^UTILITY(U,$J,358.3,32976,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,32976,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,32976,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,32977,0)
+ ;;=Z60.4^^146^1598^5
+ ;;^UTILITY(U,$J,358.3,32977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34525,1,3,0)
- ;;=3^Nondisp 3rd metatarsal fx of left foot, sequela
- ;;^UTILITY(U,$J,358.3,34525,1,4,0)
- ;;=4^S92.335S
- ;;^UTILITY(U,$J,358.3,34525,2)
- ;;=^5045178
- ;;^UTILITY(U,$J,358.3,34526,0)
- ;;=S92.334S^^183^2020^61
- ;;^UTILITY(U,$J,358.3,34526,1,0)
+ ;;^UTILITY(U,$J,358.3,32977,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,32977,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,32977,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,32978,0)
+ ;;=Z60.5^^146^1598^6
+ ;;^UTILITY(U,$J,358.3,32978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34526,1,3,0)
- ;;=3^Nondisp 3rd metatarsal fx of right foot, sequela
- ;;^UTILITY(U,$J,358.3,34526,1,4,0)
- ;;=4^S92.334S
- ;;^UTILITY(U,$J,358.3,34526,2)
- ;;=^5045171
- ;;^UTILITY(U,$J,358.3,34527,0)
- ;;=M84.475S^^183^2020^109
- ;;^UTILITY(U,$J,358.3,34527,1,0)
+ ;;^UTILITY(U,$J,358.3,32978,1,3,0)
+ ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
+ ;;^UTILITY(U,$J,358.3,32978,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,32978,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,32979,0)
+ ;;=Z60.9^^146^1598^4
+ ;;^UTILITY(U,$J,358.3,32979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34527,1,3,0)
- ;;=3^Pathological fracture, left foot, sequela
- ;;^UTILITY(U,$J,358.3,34527,1,4,0)
- ;;=4^M84.475S
- ;;^UTILITY(U,$J,358.3,34527,2)
- ;;=^5013991
- ;;^UTILITY(U,$J,358.3,34528,0)
- ;;=M84.474S^^183^2020^112
- ;;^UTILITY(U,$J,358.3,34528,1,0)
+ ;;^UTILITY(U,$J,358.3,32979,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,32979,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,32979,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,32980,0)
+ ;;=F65.4^^146^1599^6
+ ;;^UTILITY(U,$J,358.3,32980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34528,1,3,0)
- ;;=3^Pathological fracture, right foot, sequela
- ;;^UTILITY(U,$J,358.3,34528,1,4,0)
- ;;=4^M84.474S
- ;;^UTILITY(U,$J,358.3,34528,2)
- ;;=^5013985
- ;;^UTILITY(U,$J,358.3,34529,0)
- ;;=M84.375S^^183^2020^115
- ;;^UTILITY(U,$J,358.3,34529,1,0)
+ ;;^UTILITY(U,$J,358.3,32980,1,3,0)
+ ;;=3^Pedophilia Disorder
+ ;;^UTILITY(U,$J,358.3,32980,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,32980,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,32981,0)
+ ;;=F65.2^^146^1599^1
+ ;;^UTILITY(U,$J,358.3,32981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34529,1,3,0)
- ;;=3^Stress fracture, left foot, sequela
- ;;^UTILITY(U,$J,358.3,34529,1,4,0)
- ;;=4^M84.375S
- ;;^UTILITY(U,$J,358.3,34529,2)
- ;;=^5013763
- ;;^UTILITY(U,$J,358.3,34530,0)
- ;;=M84.374S^^183^2020^118
- ;;^UTILITY(U,$J,358.3,34530,1,0)
+ ;;^UTILITY(U,$J,358.3,32981,1,3,0)
+ ;;=3^Exhibitionistic Disorder
+ ;;^UTILITY(U,$J,358.3,32981,1,4,0)
+ ;;=4^F65.2
+ ;;^UTILITY(U,$J,358.3,32981,2)
+ ;;=^5003653
+ ;;^UTILITY(U,$J,358.3,32982,0)
+ ;;=F65.3^^146^1599^10
+ ;;^UTILITY(U,$J,358.3,32982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34530,1,3,0)
- ;;=3^Stress fracture, right foot, sequela
- ;;^UTILITY(U,$J,358.3,34530,1,4,0)
- ;;=4^M84.374S
- ;;^UTILITY(U,$J,358.3,34530,2)
- ;;=^5013757
- ;;^UTILITY(U,$J,358.3,34531,0)
- ;;=S92.152S^^183^2020^13
- ;;^UTILITY(U,$J,358.3,34531,1,0)
+ ;;^UTILITY(U,$J,358.3,32982,1,3,0)
+ ;;=3^Voyeuristic Disorder
+ ;;^UTILITY(U,$J,358.3,32982,1,4,0)
+ ;;=4^F65.3
+ ;;^UTILITY(U,$J,358.3,32982,2)
+ ;;=^5003654
+ ;;^UTILITY(U,$J,358.3,32983,0)
+ ;;=F65.81^^146^1599^3
+ ;;^UTILITY(U,$J,358.3,32983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34531,1,3,0)
- ;;=3^Disp avulsion fx of left talus, sequela
- ;;^UTILITY(U,$J,358.3,34531,1,4,0)
- ;;=4^S92.152S
+ ;;^UTILITY(U,$J,358.3,32983,1,3,0)
+ ;;=3^Frotteuristic Disorder
+ ;;^UTILITY(U,$J,358.3,32983,1,4,0)
+ ;;=4^F65.81
+ ;;^UTILITY(U,$J,358.3,32983,2)
+ ;;=^5003659
+ ;;^UTILITY(U,$J,358.3,32984,0)
+ ;;=F65.51^^146^1599^7
+ ;;^UTILITY(U,$J,358.3,32984,1,0)
+ ;;=^358.31IA^4^2

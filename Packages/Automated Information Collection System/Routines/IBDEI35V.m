@@ -1,0 +1,132 @@
+IBDEI35V ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,53072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53072,1,3,0)
+ ;;=3^Tinea Blanca
+ ;;^UTILITY(U,$J,358.3,53072,1,4,0)
+ ;;=4^B36.3
+ ;;^UTILITY(U,$J,358.3,53072,2)
+ ;;=^266864
+ ;;^UTILITY(U,$J,358.3,53073,0)
+ ;;=B36.1^^243^2660^7
+ ;;^UTILITY(U,$J,358.3,53073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53073,1,3,0)
+ ;;=3^Tinea Nigra
+ ;;^UTILITY(U,$J,358.3,53073,1,4,0)
+ ;;=4^B36.1
+ ;;^UTILITY(U,$J,358.3,53073,2)
+ ;;=^264999
+ ;;^UTILITY(U,$J,358.3,53074,0)
+ ;;=B36.0^^243^2660^10
+ ;;^UTILITY(U,$J,358.3,53074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53074,1,3,0)
+ ;;=3^Tinea Veriscolor
+ ;;^UTILITY(U,$J,358.3,53074,1,4,0)
+ ;;=4^B36.0
+ ;;^UTILITY(U,$J,358.3,53074,2)
+ ;;=^5000608
+ ;;^UTILITY(U,$J,358.3,53075,0)
+ ;;=L81.8^^243^2660^1
+ ;;^UTILITY(U,$J,358.3,53075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53075,1,3,0)
+ ;;=3^Tattoo Pigmentation
+ ;;^UTILITY(U,$J,358.3,53075,1,4,0)
+ ;;=4^L81.8
+ ;;^UTILITY(U,$J,358.3,53075,2)
+ ;;=^5009318
+ ;;^UTILITY(U,$J,358.3,53076,0)
+ ;;=L80.^^243^2661^12
+ ;;^UTILITY(U,$J,358.3,53076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53076,1,3,0)
+ ;;=3^Vitiligo
+ ;;^UTILITY(U,$J,358.3,53076,1,4,0)
+ ;;=4^L80.
+ ;;^UTILITY(U,$J,358.3,53076,2)
+ ;;=^127071
+ ;;^UTILITY(U,$J,358.3,53077,0)
+ ;;=I83.019^^243^2661^7
+ ;;^UTILITY(U,$J,358.3,53077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53077,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Site Unspec
+ ;;^UTILITY(U,$J,358.3,53077,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,53077,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,53078,0)
+ ;;=I83.029^^243^2661^2
+ ;;^UTILITY(U,$J,358.3,53078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53078,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Site Unspec
+ ;;^UTILITY(U,$J,358.3,53078,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,53078,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,53079,0)
+ ;;=I83.012^^243^2661^8
+ ;;^UTILITY(U,$J,358.3,53079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53079,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,53079,1,4,0)
+ ;;=4^I83.012
+ ;;^UTILITY(U,$J,358.3,53079,2)
+ ;;=^5007974
+ ;;^UTILITY(U,$J,358.3,53080,0)
+ ;;=I83.013^^243^2661^9
+ ;;^UTILITY(U,$J,358.3,53080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53080,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,53080,1,4,0)
+ ;;=4^I83.013
+ ;;^UTILITY(U,$J,358.3,53080,2)
+ ;;=^5007975
+ ;;^UTILITY(U,$J,358.3,53081,0)
+ ;;=I83.014^^243^2661^10
+ ;;^UTILITY(U,$J,358.3,53081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53081,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,53081,1,4,0)
+ ;;=4^I83.014
+ ;;^UTILITY(U,$J,358.3,53081,2)
+ ;;=^5007976
+ ;;^UTILITY(U,$J,358.3,53082,0)
+ ;;=I83.11^^243^2661^6
+ ;;^UTILITY(U,$J,358.3,53082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53082,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,53082,1,4,0)
+ ;;=4^I83.11
+ ;;^UTILITY(U,$J,358.3,53082,2)
+ ;;=^5007988
+ ;;^UTILITY(U,$J,358.3,53083,0)
+ ;;=I83.022^^243^2661^3
+ ;;^UTILITY(U,$J,358.3,53083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53083,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,53083,1,4,0)
+ ;;=4^I83.022
+ ;;^UTILITY(U,$J,358.3,53083,2)
+ ;;=^5007981
+ ;;^UTILITY(U,$J,358.3,53084,0)
+ ;;=I83.023^^243^2661^4
+ ;;^UTILITY(U,$J,358.3,53084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53084,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,53084,1,4,0)
+ ;;=4^I83.023
+ ;;^UTILITY(U,$J,358.3,53084,2)
+ ;;=^5007982

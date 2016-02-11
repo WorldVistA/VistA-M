@@ -1,0 +1,124 @@
+IBDEI2WS ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,48828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48828,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,48828,1,4,0)
+ ;;=4^S06.2X3S
+ ;;^UTILITY(U,$J,358.3,48828,2)
+ ;;=^5020737
+ ;;^UTILITY(U,$J,358.3,48829,0)
+ ;;=S06.2X1S^^216^2412^50
+ ;;^UTILITY(U,$J,358.3,48829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48829,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,48829,1,4,0)
+ ;;=4^S06.2X1S
+ ;;^UTILITY(U,$J,358.3,48829,2)
+ ;;=^5020731
+ ;;^UTILITY(U,$J,358.3,48830,0)
+ ;;=S06.2X2S^^216^2412^51
+ ;;^UTILITY(U,$J,358.3,48830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48830,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,48830,1,4,0)
+ ;;=4^S06.2X2S
+ ;;^UTILITY(U,$J,358.3,48830,2)
+ ;;=^5020734
+ ;;^UTILITY(U,$J,358.3,48831,0)
+ ;;=S06.2X4S^^216^2412^52
+ ;;^UTILITY(U,$J,358.3,48831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48831,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,48831,1,4,0)
+ ;;=4^S06.2X4S
+ ;;^UTILITY(U,$J,358.3,48831,2)
+ ;;=^5020740
+ ;;^UTILITY(U,$J,358.3,48832,0)
+ ;;=S06.2X9S^^216^2412^53
+ ;;^UTILITY(U,$J,358.3,48832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48832,1,3,0)
+ ;;=3^Diffuse TBI w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,48832,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,48832,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,48833,0)
+ ;;=S06.2X0S^^216^2412^54
+ ;;^UTILITY(U,$J,358.3,48833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48833,1,3,0)
+ ;;=3^Diffuse TBI w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,48833,1,4,0)
+ ;;=4^S06.2X0S
+ ;;^UTILITY(U,$J,358.3,48833,2)
+ ;;=^5020728
+ ;;^UTILITY(U,$J,358.3,48834,0)
+ ;;=S06.4X5S^^216^2412^55
+ ;;^UTILITY(U,$J,358.3,48834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48834,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,48834,1,4,0)
+ ;;=4^S06.4X5S
+ ;;^UTILITY(U,$J,358.3,48834,2)
+ ;;=^5021043
+ ;;^UTILITY(U,$J,358.3,48835,0)
+ ;;=S06.4X6S^^216^2412^56
+ ;;^UTILITY(U,$J,358.3,48835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48835,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,48835,1,4,0)
+ ;;=4^S06.4X6S
+ ;;^UTILITY(U,$J,358.3,48835,2)
+ ;;=^5021046
+ ;;^UTILITY(U,$J,358.3,48836,0)
+ ;;=S06.4X3S^^216^2412^57
+ ;;^UTILITY(U,$J,358.3,48836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48836,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,48836,1,4,0)
+ ;;=4^S06.4X3S
+ ;;^UTILITY(U,$J,358.3,48836,2)
+ ;;=^5021037
+ ;;^UTILITY(U,$J,358.3,48837,0)
+ ;;=S06.4X1S^^216^2412^58
+ ;;^UTILITY(U,$J,358.3,48837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48837,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,48837,1,4,0)
+ ;;=4^S06.4X1S
+ ;;^UTILITY(U,$J,358.3,48837,2)
+ ;;=^5021031
+ ;;^UTILITY(U,$J,358.3,48838,0)
+ ;;=S06.4X2S^^216^2412^59
+ ;;^UTILITY(U,$J,358.3,48838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48838,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,48838,1,4,0)
+ ;;=4^S06.4X2S
+ ;;^UTILITY(U,$J,358.3,48838,2)
+ ;;=^5021034
+ ;;^UTILITY(U,$J,358.3,48839,0)
+ ;;=S06.4X4S^^216^2412^60
+ ;;^UTILITY(U,$J,358.3,48839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48839,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,48839,1,4,0)
+ ;;=4^S06.4X4S
+ ;;^UTILITY(U,$J,358.3,48839,2)
+ ;;=^5021040
+ ;;^UTILITY(U,$J,358.3,48840,0)
+ ;;=S06.4X9S^^216^2412^61

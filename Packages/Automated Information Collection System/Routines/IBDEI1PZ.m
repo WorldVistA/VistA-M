@@ -1,124 +1,124 @@
-IBDEI1PZ ; ; 06-AUG-2015
+IBDEI1PZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30445,1,4,0)
- ;;=4^O41.03X9
- ;;^UTILITY(U,$J,358.3,30445,2)
- ;;=^5017240
- ;;^UTILITY(U,$J,358.3,30446,0)
- ;;=O42.00^^178^1917^77
- ;;^UTILITY(U,$J,358.3,30446,1,0)
+ ;;^UTILITY(U,$J,358.3,28774,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,28774,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,28775,0)
+ ;;=R40.2213^^132^1338^25
+ ;;^UTILITY(U,$J,358.3,28775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30446,1,3,0)
- ;;=3^Prem ROM, onset labor w/n 24 hr of rupt, unsp weeks of gest
- ;;^UTILITY(U,$J,358.3,30446,1,4,0)
- ;;=4^O42.00
- ;;^UTILITY(U,$J,358.3,30446,2)
- ;;=^5017372
- ;;^UTILITY(U,$J,358.3,30447,0)
- ;;=O42.011^^178^1917^82
- ;;^UTILITY(U,$J,358.3,30447,1,0)
+ ;;^UTILITY(U,$J,358.3,28775,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,28775,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,28775,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,28776,0)
+ ;;=R40.2212^^132^1338^24
+ ;;^UTILITY(U,$J,358.3,28776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30447,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, first tri
- ;;^UTILITY(U,$J,358.3,30447,1,4,0)
- ;;=4^O42.011
- ;;^UTILITY(U,$J,358.3,30447,2)
- ;;=^5017373
- ;;^UTILITY(U,$J,358.3,30448,0)
- ;;=O42.012^^178^1917^83
- ;;^UTILITY(U,$J,358.3,30448,1,0)
+ ;;^UTILITY(U,$J,358.3,28776,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,28776,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,28776,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,28777,0)
+ ;;=R40.2344^^132^1338^6
+ ;;^UTILITY(U,$J,358.3,28777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30448,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, 2nd tri
- ;;^UTILITY(U,$J,358.3,30448,1,4,0)
- ;;=4^O42.012
- ;;^UTILITY(U,$J,358.3,30448,2)
- ;;=^5017374
- ;;^UTILITY(U,$J,358.3,30449,0)
- ;;=O42.013^^178^1917^84
- ;;^UTILITY(U,$J,358.3,30449,1,0)
+ ;;^UTILITY(U,$J,358.3,28777,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,28777,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,28777,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,28778,0)
+ ;;=R40.2343^^132^1338^7
+ ;;^UTILITY(U,$J,358.3,28778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30449,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, third tri
- ;;^UTILITY(U,$J,358.3,30449,1,4,0)
- ;;=4^O42.013
- ;;^UTILITY(U,$J,358.3,30449,2)
- ;;=^5017375
- ;;^UTILITY(U,$J,358.3,30450,0)
- ;;=O42.10^^178^1917^76
- ;;^UTILITY(U,$J,358.3,30450,1,0)
+ ;;^UTILITY(U,$J,358.3,28778,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,28778,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,28778,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,28779,0)
+ ;;=R40.2342^^132^1338^8
+ ;;^UTILITY(U,$J,358.3,28779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30450,1,3,0)
- ;;=3^Prem ROM, onset labor > 24 hr fol rupt, unsp weeks of gest
- ;;^UTILITY(U,$J,358.3,30450,1,4,0)
- ;;=4^O42.10
- ;;^UTILITY(U,$J,358.3,30450,2)
- ;;=^5017378
- ;;^UTILITY(U,$J,358.3,30451,0)
- ;;=O42.111^^178^1917^78
- ;;^UTILITY(U,$J,358.3,30451,1,0)
+ ;;^UTILITY(U,$J,358.3,28779,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,28779,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,28779,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,28780,0)
+ ;;=R40.2341^^132^1338^9
+ ;;^UTILITY(U,$J,358.3,28780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30451,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, first tri
- ;;^UTILITY(U,$J,358.3,30451,1,4,0)
- ;;=4^O42.111
- ;;^UTILITY(U,$J,358.3,30451,2)
- ;;=^5017379
- ;;^UTILITY(U,$J,358.3,30452,0)
- ;;=O42.112^^178^1917^79
- ;;^UTILITY(U,$J,358.3,30452,1,0)
+ ;;^UTILITY(U,$J,358.3,28780,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,28780,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,28780,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,28781,0)
+ ;;=R40.2340^^132^1338^10
+ ;;^UTILITY(U,$J,358.3,28781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30452,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, second tri
- ;;^UTILITY(U,$J,358.3,30452,1,4,0)
- ;;=4^O42.112
- ;;^UTILITY(U,$J,358.3,30452,2)
- ;;=^5017380
- ;;^UTILITY(U,$J,358.3,30453,0)
- ;;=O42.113^^178^1917^80
- ;;^UTILITY(U,$J,358.3,30453,1,0)
+ ;;^UTILITY(U,$J,358.3,28781,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,28781,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,28781,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,28782,0)
+ ;;=R40.2324^^132^1338^1
+ ;;^UTILITY(U,$J,358.3,28782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30453,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, third tri
- ;;^UTILITY(U,$J,358.3,30453,1,4,0)
- ;;=4^O42.113
- ;;^UTILITY(U,$J,358.3,30453,2)
- ;;=^5017381
- ;;^UTILITY(U,$J,358.3,30454,0)
- ;;=O42.119^^178^1917^81
- ;;^UTILITY(U,$J,358.3,30454,1,0)
+ ;;^UTILITY(U,$J,358.3,28782,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,28782,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,28782,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,28783,0)
+ ;;=R40.2323^^132^1338^4
+ ;;^UTILITY(U,$J,358.3,28783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30454,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, unsp tri
- ;;^UTILITY(U,$J,358.3,30454,1,4,0)
- ;;=4^O42.119
- ;;^UTILITY(U,$J,358.3,30454,2)
- ;;=^5017382
- ;;^UTILITY(U,$J,358.3,30455,0)
- ;;=O75.5^^178^1917^20
- ;;^UTILITY(U,$J,358.3,30455,1,0)
+ ;;^UTILITY(U,$J,358.3,28783,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,28783,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,28783,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,28784,0)
+ ;;=R40.2322^^132^1338^2
+ ;;^UTILITY(U,$J,358.3,28784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30455,1,3,0)
- ;;=3^Delayed delivery after artificial rupture of membranes
- ;;^UTILITY(U,$J,358.3,30455,1,4,0)
- ;;=4^O75.5
- ;;^UTILITY(U,$J,358.3,30455,2)
- ;;=^271331
- ;;^UTILITY(U,$J,358.3,30456,0)
- ;;=O41.1010^^178^1917^21
- ;;^UTILITY(U,$J,358.3,30456,1,0)
+ ;;^UTILITY(U,$J,358.3,28784,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,28784,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,28784,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,28785,0)
+ ;;=R40.2321^^132^1338^5
+ ;;^UTILITY(U,$J,358.3,28785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30456,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, unsp
- ;;^UTILITY(U,$J,358.3,30456,1,4,0)
- ;;=4^O41.1010
- ;;^UTILITY(U,$J,358.3,30456,2)
- ;;=^5017241
- ;;^UTILITY(U,$J,358.3,30457,0)
- ;;=O41.1011^^178^1917^22
- ;;^UTILITY(U,$J,358.3,30457,1,0)
+ ;;^UTILITY(U,$J,358.3,28785,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,28785,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,28785,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,28786,0)
+ ;;=R40.2320^^132^1338^3
+ ;;^UTILITY(U,$J,358.3,28786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30457,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,28786,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time

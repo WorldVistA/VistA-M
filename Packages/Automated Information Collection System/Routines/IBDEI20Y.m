@@ -1,132 +1,136 @@
-IBDEI20Y ; ; 06-AUG-2015
+IBDEI20Y ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35389,1,3,0)
- ;;=3^Exam for insurance purposes
- ;;^UTILITY(U,$J,358.3,35389,1,4,0)
- ;;=4^Z02.6
- ;;^UTILITY(U,$J,358.3,35389,2)
- ;;=^5062639
- ;;^UTILITY(U,$J,358.3,35390,0)
- ;;=Z02.5^^186^2037^13
- ;;^UTILITY(U,$J,358.3,35390,1,0)
+ ;;^UTILITY(U,$J,358.3,33925,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,33926,0)
+ ;;=I15.1^^154^1712^11
+ ;;^UTILITY(U,$J,358.3,33926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35390,1,3,0)
- ;;=3^Exam for participation in sport
- ;;^UTILITY(U,$J,358.3,35390,1,4,0)
- ;;=4^Z02.5
- ;;^UTILITY(U,$J,358.3,35390,2)
- ;;=^5062638
- ;;^UTILITY(U,$J,358.3,35391,0)
- ;;=Z02.3^^186^2037^14
- ;;^UTILITY(U,$J,358.3,35391,1,0)
+ ;;^UTILITY(U,$J,358.3,33926,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,33926,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,33926,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,33927,0)
+ ;;=I15.2^^154^1712^10
+ ;;^UTILITY(U,$J,358.3,33927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35391,1,3,0)
- ;;=3^Exam for recruitment to armed forces
- ;;^UTILITY(U,$J,358.3,35391,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,35391,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,35392,0)
- ;;=Z44.8^^186^2037^17
- ;;^UTILITY(U,$J,358.3,35392,1,0)
+ ;;^UTILITY(U,$J,358.3,33927,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,33927,1,4,0)
+ ;;=4^I15.2
+ ;;^UTILITY(U,$J,358.3,33927,2)
+ ;;=^5007073
+ ;;^UTILITY(U,$J,358.3,33928,0)
+ ;;=I50.1^^154^1712^16
+ ;;^UTILITY(U,$J,358.3,33928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35392,1,3,0)
- ;;=3^Fit/adjst of external prosthetic devices
- ;;^UTILITY(U,$J,358.3,35392,1,4,0)
- ;;=4^Z44.8
- ;;^UTILITY(U,$J,358.3,35392,2)
- ;;=^5062992
- ;;^UTILITY(U,$J,358.3,35393,0)
- ;;=Z44.9^^186^2037^18
- ;;^UTILITY(U,$J,358.3,35393,1,0)
+ ;;^UTILITY(U,$J,358.3,33928,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,33928,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,33928,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,33929,0)
+ ;;=E26.09^^154^1712^17
+ ;;^UTILITY(U,$J,358.3,33929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35393,1,3,0)
- ;;=3^Fit/adjst of unsp external prosthetic device
- ;;^UTILITY(U,$J,358.3,35393,1,4,0)
- ;;=4^Z44.9
- ;;^UTILITY(U,$J,358.3,35393,2)
- ;;=^5062993
- ;;^UTILITY(U,$J,358.3,35394,0)
- ;;=Z09.^^186^2037^16
- ;;^UTILITY(U,$J,358.3,35394,1,0)
+ ;;^UTILITY(U,$J,358.3,33929,1,3,0)
+ ;;=3^Primary Hyperaldosteronism,Other
+ ;;^UTILITY(U,$J,358.3,33929,1,4,0)
+ ;;=4^E26.09
+ ;;^UTILITY(U,$J,358.3,33929,2)
+ ;;=^5002735
+ ;;^UTILITY(U,$J,358.3,33930,0)
+ ;;=I15.8^^154^1712^18
+ ;;^UTILITY(U,$J,358.3,33930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35394,1,3,0)
- ;;=3^F/U exam aft trtmt for cond oth than malig neoplm
- ;;^UTILITY(U,$J,358.3,35394,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,35394,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,35395,0)
- ;;=Z02.79^^186^2037^19
- ;;^UTILITY(U,$J,358.3,35395,1,0)
+ ;;^UTILITY(U,$J,358.3,33930,1,3,0)
+ ;;=3^Secondary Hypertension,Other
+ ;;^UTILITY(U,$J,358.3,33930,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,33930,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,33931,0)
+ ;;=E27.5^^154^1712^1
+ ;;^UTILITY(U,$J,358.3,33931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35395,1,3,0)
- ;;=3^Issue of other medical certificate
- ;;^UTILITY(U,$J,358.3,35395,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,35395,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,35396,0)
- ;;=Z51.89^^186^2037^31
- ;;^UTILITY(U,$J,358.3,35396,1,0)
+ ;;^UTILITY(U,$J,358.3,33931,1,3,0)
+ ;;=3^Adrenomedullary Hyperfunction
+ ;;^UTILITY(U,$J,358.3,33931,1,4,0)
+ ;;=4^E27.5
+ ;;^UTILITY(U,$J,358.3,33931,2)
+ ;;=^5002744
+ ;;^UTILITY(U,$J,358.3,33932,0)
+ ;;=E26.01^^154^1712^4
+ ;;^UTILITY(U,$J,358.3,33932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35396,1,3,0)
- ;;=3^Specified aftercare NEC
- ;;^UTILITY(U,$J,358.3,35396,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,35396,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,35397,0)
- ;;=Z02.1^^186^2037^25
- ;;^UTILITY(U,$J,358.3,35397,1,0)
+ ;;^UTILITY(U,$J,358.3,33932,1,3,0)
+ ;;=3^Conn's Syndrome
+ ;;^UTILITY(U,$J,358.3,33932,1,4,0)
+ ;;=4^E26.01
+ ;;^UTILITY(U,$J,358.3,33932,2)
+ ;;=^329905
+ ;;^UTILITY(U,$J,358.3,33933,0)
+ ;;=I15.9^^154^1712^19
+ ;;^UTILITY(U,$J,358.3,33933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35397,1,3,0)
- ;;=3^Pre-employment examination
- ;;^UTILITY(U,$J,358.3,35397,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,35397,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,35398,0)
- ;;=Z13.5^^186^2037^15
- ;;^UTILITY(U,$J,358.3,35398,1,0)
+ ;;^UTILITY(U,$J,358.3,33933,1,3,0)
+ ;;=3^Secondary Hypertension,Unspec
+ ;;^UTILITY(U,$J,358.3,33933,1,4,0)
+ ;;=4^I15.9
+ ;;^UTILITY(U,$J,358.3,33933,2)
+ ;;=^5007075
+ ;;^UTILITY(U,$J,358.3,33934,0)
+ ;;=B20.^^154^1713^3
+ ;;^UTILITY(U,$J,358.3,33934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35398,1,3,0)
- ;;=3^Eye and Ear Disorder Screening
- ;;^UTILITY(U,$J,358.3,35398,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,35398,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,35399,0)
- ;;=Z13.850^^186^2037^32
- ;;^UTILITY(U,$J,358.3,35399,1,0)
+ ;;^UTILITY(U,$J,358.3,33934,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,33934,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,33934,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,33935,0)
+ ;;=J18.9^^154^1713^6
+ ;;^UTILITY(U,$J,358.3,33935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35399,1,3,0)
- ;;=3^Traumatic Brain Injury Screening
- ;;^UTILITY(U,$J,358.3,35399,1,4,0)
- ;;=4^Z13.850
- ;;^UTILITY(U,$J,358.3,35399,2)
- ;;=^5062717
- ;;^UTILITY(U,$J,358.3,35400,0)
- ;;=Z85.841^^186^2037^20
- ;;^UTILITY(U,$J,358.3,35400,1,0)
+ ;;^UTILITY(U,$J,358.3,33935,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,33935,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,33935,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,33936,0)
+ ;;=J10.1^^154^1713^1
+ ;;^UTILITY(U,$J,358.3,33936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35400,1,3,0)
- ;;=3^Personal history of malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,35400,1,4,0)
- ;;=4^Z85.841
- ;;^UTILITY(U,$J,358.3,35400,2)
- ;;=^5063447
- ;;^UTILITY(U,$J,358.3,35401,0)
- ;;=Z85.21^^186^2037^21
- ;;^UTILITY(U,$J,358.3,35401,1,0)
+ ;;^UTILITY(U,$J,358.3,33936,1,3,0)
+ ;;=3^Flu w/ Respiratory Manifestations
+ ;;^UTILITY(U,$J,358.3,33936,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,33936,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,33937,0)
+ ;;=K52.9^^154^1713^2
+ ;;^UTILITY(U,$J,358.3,33937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35401,1,3,0)
- ;;=3^Personal history of malignant neoplasm of larynx
- ;;^UTILITY(U,$J,358.3,35401,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,35401,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,35402,0)
- ;;=Z85.22^^186^2037^22
+ ;;^UTILITY(U,$J,358.3,33937,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective,Unspec
+ ;;^UTILITY(U,$J,358.3,33937,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,33937,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,33938,0)
+ ;;=N12.^^154^1713^7
+ ;;^UTILITY(U,$J,358.3,33938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33938,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,33938,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,33938,2)
+ ;;=^5015575

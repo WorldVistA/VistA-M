@@ -1,128 +1,130 @@
-IBDEI1T2 ; ; 06-AUG-2015
+IBDEI1T2 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31828,1,4,0)
- ;;=4^S06.892A
- ;;^UTILITY(U,$J,358.3,31828,2)
- ;;=^5021182
- ;;^UTILITY(U,$J,358.3,31829,0)
- ;;=S06.894A^^181^1968^37
- ;;^UTILITY(U,$J,358.3,31829,1,0)
+ ;;^UTILITY(U,$J,358.3,30224,0)
+ ;;=Z83.511^^135^1373^30
+ ;;^UTILITY(U,$J,358.3,30224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31829,1,3,0)
- ;;=3^Intcran inj w LOC of 6 hours to 24 hours, init
- ;;^UTILITY(U,$J,358.3,31829,1,4,0)
- ;;=4^S06.894A
- ;;^UTILITY(U,$J,358.3,31829,2)
- ;;=^5021188
- ;;^UTILITY(U,$J,358.3,31830,0)
- ;;=S06.895A^^181^1968^33
- ;;^UTILITY(U,$J,358.3,31830,1,0)
+ ;;^UTILITY(U,$J,358.3,30224,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,30224,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,30224,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,30225,0)
+ ;;=Z80.52^^135^1373^33
+ ;;^UTILITY(U,$J,358.3,30225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31830,1,3,0)
- ;;=3^Intcran inj w LOC >24 hr w ret consc lev, init
- ;;^UTILITY(U,$J,358.3,31830,1,4,0)
- ;;=4^S06.895A
- ;;^UTILITY(U,$J,358.3,31830,2)
- ;;=^5021191
- ;;^UTILITY(U,$J,358.3,31831,0)
- ;;=S06.896A^^181^1968^34
- ;;^UTILITY(U,$J,358.3,31831,1,0)
+ ;;^UTILITY(U,$J,358.3,30225,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,30225,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,30225,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,30226,0)
+ ;;=Z80.51^^135^1373^36
+ ;;^UTILITY(U,$J,358.3,30226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31831,1,3,0)
- ;;=3^Intcran inj w LOC >24 hr w/o ret consc w surv, init
- ;;^UTILITY(U,$J,358.3,31831,1,4,0)
- ;;=4^S06.896A
- ;;^UTILITY(U,$J,358.3,31831,2)
- ;;=^5021194
- ;;^UTILITY(U,$J,358.3,31832,0)
- ;;=S06.897A^^181^1968^40
- ;;^UTILITY(U,$J,358.3,31832,1,0)
+ ;;^UTILITY(U,$J,358.3,30226,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,30226,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,30226,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,30227,0)
+ ;;=Z83.41^^135^1373^43
+ ;;^UTILITY(U,$J,358.3,30227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31832,1,3,0)
- ;;=3^Intcran inj w LOC w death due to brain injury bf consc, init
- ;;^UTILITY(U,$J,358.3,31832,1,4,0)
- ;;=4^S06.897A
- ;;^UTILITY(U,$J,358.3,31832,2)
- ;;=^5021197
- ;;^UTILITY(U,$J,358.3,31833,0)
- ;;=S06.898A^^181^1968^39
- ;;^UTILITY(U,$J,358.3,31833,1,0)
+ ;;^UTILITY(U,$J,358.3,30227,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,30227,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,30227,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,30228,0)
+ ;;=Z81.8^^135^1373^50
+ ;;^UTILITY(U,$J,358.3,30228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31833,1,3,0)
- ;;=3^Intcran inj w LOC w death d/t oth cause bf consc, init
- ;;^UTILITY(U,$J,358.3,31833,1,4,0)
- ;;=4^S06.898A
- ;;^UTILITY(U,$J,358.3,31833,2)
- ;;=^5021200
- ;;^UTILITY(U,$J,358.3,31834,0)
- ;;=S06.899A^^181^1968^38
- ;;^UTILITY(U,$J,358.3,31834,1,0)
+ ;;^UTILITY(U,$J,358.3,30228,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,30228,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,30228,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,30229,0)
+ ;;=Z81.4^^135^1373^51
+ ;;^UTILITY(U,$J,358.3,30229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31834,1,3,0)
- ;;=3^Intcran inj w LOC of unsp duration, init
- ;;^UTILITY(U,$J,358.3,31834,1,4,0)
- ;;=4^S06.899A
- ;;^UTILITY(U,$J,358.3,31834,2)
- ;;=^5021203
- ;;^UTILITY(U,$J,358.3,31835,0)
- ;;=S06.890D^^181^1968^42
- ;;^UTILITY(U,$J,358.3,31835,1,0)
+ ;;^UTILITY(U,$J,358.3,30229,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,30229,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,30229,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,30230,0)
+ ;;=Z98.0^^135^1373^62
+ ;;^UTILITY(U,$J,358.3,30230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31835,1,3,0)
- ;;=3^Intcran inj w/o LOC, subs encntr
- ;;^UTILITY(U,$J,358.3,31835,1,4,0)
- ;;=4^S06.890D
- ;;^UTILITY(U,$J,358.3,31835,2)
- ;;=^5021177
- ;;^UTILITY(U,$J,358.3,31836,0)
- ;;=F32.9^^181^1969^3
- ;;^UTILITY(U,$J,358.3,31836,1,0)
+ ;;^UTILITY(U,$J,358.3,30230,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,30230,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,30230,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,30231,0)
+ ;;=Z91.128^^135^1373^61
+ ;;^UTILITY(U,$J,358.3,30231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31836,1,3,0)
- ;;=3^Major depressive disorder, single episode, unspecified
- ;;^UTILITY(U,$J,358.3,31836,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,31836,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,31837,0)
- ;;=F43.21^^181^1969^1
- ;;^UTILITY(U,$J,358.3,31837,1,0)
+ ;;^UTILITY(U,$J,358.3,30231,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,30231,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,30231,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,30232,0)
+ ;;=Z77.120^^135^1373^67
+ ;;^UTILITY(U,$J,358.3,30232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31837,1,3,0)
- ;;=3^Adjustment disorder with depressed mood
- ;;^UTILITY(U,$J,358.3,31837,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,31837,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,31838,0)
- ;;=G47.00^^181^1969^2
- ;;^UTILITY(U,$J,358.3,31838,1,0)
+ ;;^UTILITY(U,$J,358.3,30232,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30232,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,30232,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,30233,0)
+ ;;=Z86.74^^135^1373^110
+ ;;^UTILITY(U,$J,358.3,30233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31838,1,3,0)
- ;;=3^Insomnia, unspecified
- ;;^UTILITY(U,$J,358.3,31838,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,31838,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,31839,0)
- ;;=F43.10^^181^1969^5
- ;;^UTILITY(U,$J,358.3,31839,1,0)
+ ;;^UTILITY(U,$J,358.3,30233,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,30233,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,30233,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,30234,0)
+ ;;=Z86.718^^135^1373^117
+ ;;^UTILITY(U,$J,358.3,30234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31839,1,3,0)
- ;;=3^Post-traumatic stress disorder, unspecified
- ;;^UTILITY(U,$J,358.3,31839,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,31839,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,31840,0)
- ;;=F43.12^^181^1969^4
- ;;^UTILITY(U,$J,358.3,31840,1,0)
+ ;;^UTILITY(U,$J,358.3,30234,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,30234,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,30234,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,30235,0)
+ ;;=Z96.1^^135^1373^127
+ ;;^UTILITY(U,$J,358.3,30235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31840,1,3,0)
- ;;=3^Post-traumatic stress disorder, chronic
- ;;^UTILITY(U,$J,358.3,31840,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,31840,2)
- ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,30235,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,30235,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,30235,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,30236,0)
+ ;;=Z96.612^^135^1373^132
+ ;;^UTILITY(U,$J,358.3,30236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30236,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint

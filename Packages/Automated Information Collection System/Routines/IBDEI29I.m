@@ -1,0 +1,132 @@
+IBDEI29I ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,37997,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,37997,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,37998,0)
+ ;;=Z48.89^^175^1911^1
+ ;;^UTILITY(U,$J,358.3,37998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37998,1,3,0)
+ ;;=3^Postsurgical Aftercare
+ ;;^UTILITY(U,$J,358.3,37998,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,37998,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,37999,0)
+ ;;=J95.821^^175^1912^5
+ ;;^UTILITY(U,$J,358.3,37999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37999,1,3,0)
+ ;;=3^Acute Postprocedural Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,37999,1,4,0)
+ ;;=4^J95.821
+ ;;^UTILITY(U,$J,358.3,37999,2)
+ ;;=^5008338
+ ;;^UTILITY(U,$J,358.3,38000,0)
+ ;;=J96.00^^175^1912^8
+ ;;^UTILITY(U,$J,358.3,38000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38000,1,3,0)
+ ;;=3^Acute Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,38000,1,4,0)
+ ;;=4^J96.00
+ ;;^UTILITY(U,$J,358.3,38000,2)
+ ;;=^5008347
+ ;;^UTILITY(U,$J,358.3,38001,0)
+ ;;=J96.01^^175^1912^7
+ ;;^UTILITY(U,$J,358.3,38001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38001,1,3,0)
+ ;;=3^Acute Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,38001,1,4,0)
+ ;;=4^J96.01
+ ;;^UTILITY(U,$J,358.3,38001,2)
+ ;;=^5008348
+ ;;^UTILITY(U,$J,358.3,38002,0)
+ ;;=J96.02^^175^1912^6
+ ;;^UTILITY(U,$J,358.3,38002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38002,1,3,0)
+ ;;=3^Acute Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,38002,1,4,0)
+ ;;=4^J96.02
+ ;;^UTILITY(U,$J,358.3,38002,2)
+ ;;=^5008349
+ ;;^UTILITY(U,$J,358.3,38003,0)
+ ;;=J96.10^^175^1912^11
+ ;;^UTILITY(U,$J,358.3,38003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38003,1,3,0)
+ ;;=3^Chronic Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,38003,1,4,0)
+ ;;=4^J96.10
+ ;;^UTILITY(U,$J,358.3,38003,2)
+ ;;=^5008350
+ ;;^UTILITY(U,$J,358.3,38004,0)
+ ;;=J96.11^^175^1912^10
+ ;;^UTILITY(U,$J,358.3,38004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38004,1,3,0)
+ ;;=3^Chronic Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,38004,1,4,0)
+ ;;=4^J96.11
+ ;;^UTILITY(U,$J,358.3,38004,2)
+ ;;=^5008351
+ ;;^UTILITY(U,$J,358.3,38005,0)
+ ;;=J96.12^^175^1912^9
+ ;;^UTILITY(U,$J,358.3,38005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38005,1,3,0)
+ ;;=3^Chronic Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,38005,1,4,0)
+ ;;=4^J96.12
+ ;;^UTILITY(U,$J,358.3,38005,2)
+ ;;=^5008352
+ ;;^UTILITY(U,$J,358.3,38006,0)
+ ;;=J96.20^^175^1912^4
+ ;;^UTILITY(U,$J,358.3,38006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38006,1,3,0)
+ ;;=3^Acute & Chronic Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,38006,1,4,0)
+ ;;=4^J96.20
+ ;;^UTILITY(U,$J,358.3,38006,2)
+ ;;=^5008353
+ ;;^UTILITY(U,$J,358.3,38007,0)
+ ;;=J96.21^^175^1912^2
+ ;;^UTILITY(U,$J,358.3,38007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38007,1,3,0)
+ ;;=3^Acute & Chronic Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,38007,1,4,0)
+ ;;=4^J96.21
+ ;;^UTILITY(U,$J,358.3,38007,2)
+ ;;=^5008354
+ ;;^UTILITY(U,$J,358.3,38008,0)
+ ;;=J96.22^^175^1912^3
+ ;;^UTILITY(U,$J,358.3,38008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38008,1,3,0)
+ ;;=3^Acute & Chronic Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,38008,1,4,0)
+ ;;=4^J96.22
+ ;;^UTILITY(U,$J,358.3,38008,2)
+ ;;=^5008355
+ ;;^UTILITY(U,$J,358.3,38009,0)
+ ;;=R79.81^^175^1912^1
+ ;;^UTILITY(U,$J,358.3,38009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38009,1,3,0)
+ ;;=3^Abnormal Blood-Gas Level
+ ;;^UTILITY(U,$J,358.3,38009,1,4,0)
+ ;;=4^R79.81
+ ;;^UTILITY(U,$J,358.3,38009,2)
+ ;;=^5019592
+ ;;^UTILITY(U,$J,358.3,38010,0)
+ ;;=R09.2^^175^1912^14
+ ;;^UTILITY(U,$J,358.3,38010,1,0)
+ ;;=^358.31IA^4^2

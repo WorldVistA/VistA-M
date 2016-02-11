@@ -1,114 +1,132 @@
-IBDEI0TU ; ; 06-AUG-2015
+IBDEI0TU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14449,1,3,0)
- ;;=3^28540
- ;;^UTILITY(U,$J,358.3,14450,0)
- ;;=28545^^75^888^31^^^^1
- ;;^UTILITY(U,$J,358.3,14450,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14450,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,14450,1,3,0)
- ;;=3^28545
- ;;^UTILITY(U,$J,358.3,14451,0)
- ;;=28546^^75^888^63^^^^1
- ;;^UTILITY(U,$J,358.3,14451,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14451,1,2,0)
- ;;=2^Perc Fixation Tarsal Bone Dislocation
- ;;^UTILITY(U,$J,358.3,14451,1,3,0)
- ;;=3^28546
- ;;^UTILITY(U,$J,358.3,14452,0)
- ;;=28555^^75^888^40^^^^1
- ;;^UTILITY(U,$J,358.3,14452,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14452,1,2,0)
- ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,14452,1,3,0)
- ;;=3^28555
- ;;^UTILITY(U,$J,358.3,14453,0)
- ;;=28570^^75^888^28^^^^1
- ;;^UTILITY(U,$J,358.3,14453,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14453,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,14453,1,3,0)
- ;;=3^28570
- ;;^UTILITY(U,$J,358.3,14454,0)
- ;;=28575^^75^888^29^^^^1
- ;;^UTILITY(U,$J,358.3,14454,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14454,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,14454,1,3,0)
- ;;=3^28575
- ;;^UTILITY(U,$J,358.3,14455,0)
- ;;=28576^^75^888^61^^^^1
- ;;^UTILITY(U,$J,358.3,14455,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14455,1,2,0)
- ;;=2^Perc Fixation Talotarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,14455,1,3,0)
- ;;=3^28576
- ;;^UTILITY(U,$J,358.3,14456,0)
- ;;=28585^^75^888^49^^^^1
- ;;^UTILITY(U,$J,358.3,14456,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14456,1,2,0)
- ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,14456,1,3,0)
- ;;=3^28585
- ;;^UTILITY(U,$J,358.3,14457,0)
- ;;=28600^^75^888^32^^^^1
- ;;^UTILITY(U,$J,358.3,14457,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14457,1,2,0)
- ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,14457,1,3,0)
- ;;=3^28600
- ;;^UTILITY(U,$J,358.3,14458,0)
- ;;=28606^^75^888^65^^^^1
- ;;^UTILITY(U,$J,358.3,14458,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14458,1,2,0)
- ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,14458,1,3,0)
- ;;=3^28606
- ;;^UTILITY(U,$J,358.3,14459,0)
- ;;=28615^^75^888^50^^^^1
- ;;^UTILITY(U,$J,358.3,14459,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14459,1,2,0)
- ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,14459,1,3,0)
- ;;=3^28615
- ;;^UTILITY(U,$J,358.3,14460,0)
- ;;=28630^^75^888^26^^^^1
- ;;^UTILITY(U,$J,358.3,14460,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14460,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,14460,1,3,0)
- ;;=3^28630
- ;;^UTILITY(U,$J,358.3,14461,0)
- ;;=28635^^75^888^27^^^^1
- ;;^UTILITY(U,$J,358.3,14461,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14461,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,14461,1,3,0)
- ;;=3^28635
- ;;^UTILITY(U,$J,358.3,14462,0)
- ;;=28636^^75^888^60^^^^1
- ;;^UTILITY(U,$J,358.3,14462,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14462,1,2,0)
- ;;=2^Perc Fixation Metatarsophalangeal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,14462,1,3,0)
- ;;=3^28636
- ;;^UTILITY(U,$J,358.3,14463,0)
- ;;=28645^^75^888^48^^^^1
- ;;^UTILITY(U,$J,358.3,14463,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,13725,2)
+ ;;=^5005647
+ ;;^UTILITY(U,$J,358.3,13726,0)
+ ;;=H35.353^^80^763^31
+ ;;^UTILITY(U,$J,358.3,13726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13726,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,13726,1,4,0)
+ ;;=4^H35.353
+ ;;^UTILITY(U,$J,358.3,13726,2)
+ ;;=^5005656
+ ;;^UTILITY(U,$J,358.3,13727,0)
+ ;;=H35.352^^80^763^33
+ ;;^UTILITY(U,$J,358.3,13727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13727,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,13727,1,4,0)
+ ;;=4^H35.352
+ ;;^UTILITY(U,$J,358.3,13727,2)
+ ;;=^5005655
+ ;;^UTILITY(U,$J,358.3,13728,0)
+ ;;=H35.351^^80^763^35
+ ;;^UTILITY(U,$J,358.3,13728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13728,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,13728,1,4,0)
+ ;;=4^H35.351
+ ;;^UTILITY(U,$J,358.3,13728,2)
+ ;;=^5005654
+ ;;^UTILITY(U,$J,358.3,13729,0)
+ ;;=H31.402^^80^763^24
+ ;;^UTILITY(U,$J,358.3,13729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13729,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13729,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,13729,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,13730,0)
+ ;;=H31.401^^80^763^25
+ ;;^UTILITY(U,$J,358.3,13730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13730,1,3,0)
+ ;;=3^Choroidal Detachment,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13730,1,4,0)
+ ;;=4^H31.401
+ ;;^UTILITY(U,$J,358.3,13730,2)
+ ;;=^5005476
+ ;;^UTILITY(U,$J,358.3,13731,0)
+ ;;=H35.353^^80^763^32
+ ;;^UTILITY(U,$J,358.3,13731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13731,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,13731,1,4,0)
+ ;;=4^H35.353
+ ;;^UTILITY(U,$J,358.3,13731,2)
+ ;;=^5005656
+ ;;^UTILITY(U,$J,358.3,13732,0)
+ ;;=H35.352^^80^763^34
+ ;;^UTILITY(U,$J,358.3,13732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13732,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,13732,1,4,0)
+ ;;=4^H35.352
+ ;;^UTILITY(U,$J,358.3,13732,2)
+ ;;=^5005655
+ ;;^UTILITY(U,$J,358.3,13733,0)
+ ;;=H35.351^^80^763^36
+ ;;^UTILITY(U,$J,358.3,13733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13733,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,13733,1,4,0)
+ ;;=4^H35.351
+ ;;^UTILITY(U,$J,358.3,13733,2)
+ ;;=^5005654
+ ;;^UTILITY(U,$J,358.3,13734,0)
+ ;;=H35.32^^80^763^42
+ ;;^UTILITY(U,$J,358.3,13734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13734,1,3,0)
+ ;;=3^Exudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,13734,1,4,0)
+ ;;=4^H35.32
+ ;;^UTILITY(U,$J,358.3,13734,2)
+ ;;=^5005648
+ ;;^UTILITY(U,$J,358.3,13735,0)
+ ;;=H35.023^^80^763^43
+ ;;^UTILITY(U,$J,358.3,13735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13735,1,3,0)
+ ;;=3^Exudative Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,13735,1,4,0)
+ ;;=4^H35.023
+ ;;^UTILITY(U,$J,358.3,13735,2)
+ ;;=^5005588
+ ;;^UTILITY(U,$J,358.3,13736,0)
+ ;;=H35.022^^80^763^44
+ ;;^UTILITY(U,$J,358.3,13736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13736,1,3,0)
+ ;;=3^Exudative Retinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,13736,1,4,0)
+ ;;=4^H35.022
+ ;;^UTILITY(U,$J,358.3,13736,2)
+ ;;=^5005587
+ ;;^UTILITY(U,$J,358.3,13737,0)
+ ;;=H35.021^^80^763^45
+ ;;^UTILITY(U,$J,358.3,13737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13737,1,3,0)
+ ;;=3^Exudative Retinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,13737,1,4,0)
+ ;;=4^H35.021
+ ;;^UTILITY(U,$J,358.3,13737,2)
+ ;;=^5005586
+ ;;^UTILITY(U,$J,358.3,13738,0)
+ ;;=H35.373^^80^763^71
+ ;;^UTILITY(U,$J,358.3,13738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13738,1,3,0)
+ ;;=3^Puckering of Macula,Bilateral

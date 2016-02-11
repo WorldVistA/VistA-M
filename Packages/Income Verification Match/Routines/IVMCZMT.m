@@ -1,5 +1,5 @@
-IVMCZMT ;ALB/MLI/LD/CKN,TDM,EG,TDM - Creation of  HL7 ZMT (means test) segment ; 7/19/06 4:41pm
- ;;2.0;INCOME VERIFICATION MATCH;**17,53,49,58,81,89,104,105**;21-OCT-94;Build 2
+IVMCZMT ;ALB/MLI/LD/CKN,TDM,EG,TDM,TGH - Creation of  HL7 ZMT (means test) segment ; 7/19/06 4:41pm
+ ;;2.0;INCOME VERIFICATION MATCH;**17,53,49,58,81,89,104,105,160**;21-OCT-94;Build 19
  ;
  ; This routine returns the ZMT segment which contains means test
  ; data for a selected patient. It differs from the standard segment
@@ -158,6 +158,7 @@ EN(DFN,VAFSTR,VAFMTDT,VAFTYPE,SETID,DELETE,LIMIT)       ; Entry point to get ZMT
  I VAFSTR[",28," S $P(VAFY,HLFS,28)=$P(NODE,"^",27)  ;GMT Threshold
  I VAFSTR[",29," S $P(VAFY,HLFS,29)=$P(NODE2,"^",9)  ;Hardship Reason
  I VAFSTR[",30," S $P(VAFY,HLFS,30)=+$P(NODE2,"^",11) ; Test Version
+ I VAFSTR[",31," S $P(VAFY,HLFS,31)=$G(^DGMT(408.31,MTIEN,4)) ;Beneficiary Travel Financial Indicator - IVM*2.0*160
  ;
  ;can only transmit the deletion of a hardship if the segment is for a means test - and the income years must match if there is a means test
  ;

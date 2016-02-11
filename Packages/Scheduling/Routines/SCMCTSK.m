@@ -1,19 +1,20 @@
-SCMCTSK ;ALB/JDS - PCMM ; 03 Jun 2004  3:30 PM
- ;;5.3;Scheduling;**264,278,272,297,581**;AUG 13, 1993;Build 16
+SCMCTSK ;ALB/JDS/ART - PCMM ;02/26/2015
+ ;;5.3;Scheduling;**264,278,272,297,581,603**;AUG 13, 1993;Build 79
+ ;
  Q
 RPT1 ;REPORT
- N DHD,DIOBEG
+ N DHD,DIOBEG,DIC,FLDS,BY
  S DIOBEG="D INACTIVE^SCMCTSK",DIC="^SCPT(404.43,",(FLDS,BY)="[SCMC PENDING UNASSIGN]"
- S DHD="Patients Flagged for Inactivation from Primary Care Panels"
+ S DHD="Patients Flagged for Inactivation from PACT" ;603
  D EN1^DIP
  Q
 INACTIVE ;run every night to determine if patient can be inactivated from
  ;team
- ;Inactivation happens for patients without activity for 24 months
- N I,TEAMNM
- D DT^DICRW S X="T-12M" D ^%DT S STDT=Y
- S X="T-24M" D ^%DT S TYDT=+Y
-RPT ;eneter for report with STDT and TYDT defined
+ ;Inactivation happens for patients without activity for 20 months
+ N I,TEAMNM,SDDT,TYDT
+ D DT^DICRW S X="T-8M" D ^%DT S STDT=Y ;603
+ S X="T-20M" D ^%DT S TYDT=+Y ;603
+RPT ;enter for report with STDT and TYDT defined
  S A="^SCPT(404.43,""ADFN""",L=""""""
  S Q=A_")"
  F  S Q=$Q(@Q) Q:Q'[A  D
@@ -56,40 +57,58 @@ DIS ;discharge
  ;
  Q
 DEATH ;Called from date of death event
+ ;DG FIELD MONITOR protocol, which calls SCMC PCMM INACTIVATE ON DATE OF DEATH
  ;
  I $G(DGFILE)'=2 Q
  I $G(DGFIELD)'=.351 Q
  S DFN=+$G(DGDA)
- N DEATH,I,DR,SCJ
+ N DEATH,I,DR,DIE,SCI,SCJ,SCTP,SCERR
  D DEM^VADPT S DEATH=$G(VADM(6))
- ;loop through assignments
- F SCJ=0:0 S SCJ=$O(^SCPT(404.42,"B",DFN,SCJ)) Q:'SCJ  D
- .S ZERO=$G(^SCPT(404.42,SCJ,0)) Q:'$L(ZERO)
- .I DEATH,'$P(ZERO,U,9) D
- ..S DA=SCJ,DIE="^SCPT(404.42,",DR=".09////"_DT_";.15////DU" D ^DIE
- .I ('DEATH)&($P(ZERO,U,15)="DU")&($P(ZERO,U,9)) D
- ..S DA=SCJ,DIE="^SCPT(404.42,",DR=".09///@;.15////DD" D ^DIE
- .F SCI=0:0 S SCI=$O(^SCPT(404.43,"B",SCJ,SCI)) Q:'SCI  D
- ..S ZERO=$G(^SCPT(404.43,SCI,0)),SCTP=+$P(ZERO,U,2) Q:'$L(ZERO)
- ..I DEATH,$P(ZERO,U,4) Q
- ..I 'DEATH I (('$P(ZERO,U,4))!($P(ZERO,U,12)'="DU")) Q
- ..I DEATH D  Q
- ...S DA=SCI,DIE="^SCPT(404.43,",DR=".04////"_DT_";.12////DU" D ^DIE
- ..I '+$$ACTHIST^SCAPMCU2(404.52,SCTP,,.SCERR) Q
- ..S DA=SCI,DIE="^SCPT(404.43,",DR=".04///@;.12////DD" D ^DIE
+ ;update CPMM patient Events (404.54) - 603
+ D UPDEVNT(DFN,DEATH)
  Q:'DEATH
  ;DISPOSITION WAIT LIST
  F I=0:0 S I=$O(^SDWL(409.3,"B",+$G(DFN),I)) Q:'I  S A=$G(^SDWL(409.3,I,0)) D
  .I $G(^SDWL(409.3,I,"DIS")) Q
- .N FDA S FDA(409.3,I_",",21)="D"
- .S FDA(409.3,I_",",19)=DT,FDA(409.3,I_",",23)="C"
+ .N FDA
+ .S FDA(409.3,I_",",21)="D"
+ .S FDA(409.3,I_",",19)=DT
+ .S FDA(409.3,I_",",23)="C"
  .S FDA(409.3,I_",",20)=DUZ
  .D UPDATE^DIE("","FDA")
  Q
+ ;
+UPDEVNT(SCDFN,SCDTDTH) ;create/update patient event record (404.54)
+ ; new for patch 603
+ ; Inputs: SCDFN - patient DFN
+ ;         SCDTDTH - patient date of death
+ ; Output: new or updated record in 404.54
+ ;
+ ; ICR - 10103 - XLFDT - Supported APIs for date & time
+ ; ICR - 2053 - Data Base Server API: Editing Utilities (DIE) - supported, public
+ ;
+ NEW SCEXIST,SCIEN,SCIENS,SCFDA,SCERR
+ SET SCEXIST=$DATA(^SCPT(404.54,+SCDFN))
+ IF SCEXIST DO
+ . SET SCIENS=SCDFN_","
+ . SET SCFDA(404.54,SCIENS,.02)=$$NOW^XLFDT()
+ . SET SCFDA(404.54,SCIENS,.03)=$SELECT(+SCDTDTH>0:"AD",1:"AR")
+ . SET SCFDA(404.54,SCIENS,.04)=$SELECT(+SCDTDTH>0:$TR(SCDTDTH,"^","|"),1:"")
+ . DO FILE^DIE("K","SCFDA","SCERR")
+ ELSE  DO
+ . SET SCIENS="+1,"
+ . SET SCIEN(1)=SCDFN
+ . SET SCFDA(404.54,SCIENS,.01)=SCDFN
+ . SET SCFDA(404.54,SCIENS,.02)=$$NOW^XLFDT()
+ . SET SCFDA(404.54,SCIENS,.03)=$SELECT(+SCDTDTH>0:"AD",1:"AR")
+ . SET SCFDA(404.54,SCIENS,.04)=$SELECT(+SCDTDTH>0:$TR(SCDTDTH,"^","|"),1:"")
+ . DO UPDATE^DIE("","SCFDA","SCIEN","SCERR")
+ QUIT
+ ;
 POST ;
  D MES^XPDUTL("Deleting Traditional ASTAT CROSS REFERENCE from FILE 404.43")
  D DELIX^DDMOD(404.43,.12,1)
- N ENTRY,DGDA,DGFIELD,DGFILE
+ N ENTRY,DGDA,DGFIELD,DGFILE,DATE
  K DGLEFDA,YEAR
  I '$D(^SCTM(404.46,"B","1.2.3.0")) D
  .K DO S DIC(0)="LM",DIC("DR")=".02////1;.03////"_DT,DIC="^SCTM(404.46,",X="1.2.3.0" D FILE^DICN
@@ -135,13 +154,13 @@ FILE(RES,DATA) ;File data on FTEE
  .S FLDA(404.52,(+DATA(I))_",",.09)=+$TR($P(DATA(I),U,7)," ")
  I $O(FLDA(0)) D FILE^DIE("E","FLDA","ERR")
  Q
-FTEXR ;Ftee cross reference
- N DIC,DD,DO,DINUM,DS,ENTRY,VALUE
- I '$D(^SCTM(404.52,+DA,1,0)) S ^(0)="^404.521DA"
- S ENTRY=+$G(DA),VALUE=X
- N DIC,FLDA,Y,DA,X S DIC="^SCTM(404.52,"_ENTRY_",1,",DA(1)=ENTRY
- S DIC(0)="LM",X="NOW",DIC("DR")=".02////"_VALUE_";.03////"_$G(DUZ)
- D ^DICN
+FTEXR ;Ftee cross reference - this code is obsolete as of SD*5.3*603
+ ;N DIC,DD,DO,DINUM,DS,ENTRY,VALUE
+ ;I '$D(^SCTM(404.52,+DA,1,0)) S ^(0)="^404.521DA"
+ ;S ENTRY=+$G(DA),VALUE=X
+ ;N DIC,FLDA,Y,DA,X S DIC="^SCTM(404.52,"_ENTRY_",1,",DA(1)=ENTRY
+ ;S DIC(0)="LM",X="NOW",DIC("DR")=".02////"_VALUE_";.03////"_$G(DUZ)
+ ;D ^DICN
  Q
 SCREEN ;Screen for active assignments
  N A S A=$G(^SCTM(404.52,D0,0))

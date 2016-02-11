@@ -1,5 +1,5 @@
-DGMTSCC ;ALB/RMO,CAW,LBD,EG - Means Test Screen Completion ; 03/24/2006
- ;;5.3;Registration;**33,45,130,438,332,433,462,456,610,624,611**;Aug 13, 1993;Build 3
+DGMTSCC ;ALB/RMO,CAW,LBD,EG,LMD - Means Test Screen Completion ;03/24/2006
+ ;;5.3;Registration;**33,45,130,438,332,433,462,456,610,624,611,890**;Aug 13, 1993;Build 40
  ;
  ; Input  -- DFN      Patient IEN
  ;           DGMTACT  Means Test Action
@@ -67,7 +67,7 @@ REFQ Q
 CHK ;Check if means test can be completed
  N DGA,DGD,DGDEP,DGREL,DGL,DGM,I
  D GETREL^DGMTU11(DFN,"CS",$$LYR^DGMTSCU1(DGMTDT),$S($G(DGMTI):DGMTI,1:""))
- S DGM=$P(DGVIR0,"^",5),DGL=$P(DGVIR0,"^",6),DGA=$P(DGVIR0,"^",7),DGD=$P(DGVIR0,"^",8)
+ S DGM=$P(DGVIR0,"^",5),DGL=$P(DGVIR0,"^",6),DGA=$P(DGVIR0,"^",20),DGD=$P(DGVIR0,"^",8)   ;DG*5.3*890
  I DGM']""!(DGM&(DGL']""))!(DGM&('DGL)&(DGA']"")) W !?3,"Marital section must be completed." S DGERR=1
  I DGM,'$D(DGREL("S")),'$D(DGREF) W !?3,"Married is 'YES'.  An active spouse for this means test does not exist." S DGERR=1
  I 'DGM,$D(DGREL("S")) W !?3,"An active spouse exists for this means test. Married should be 'YES'." S DGERR=1

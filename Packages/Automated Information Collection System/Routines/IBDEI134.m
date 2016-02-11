@@ -1,134 +1,126 @@
-IBDEI134 ; ; 06-AUG-2015
+IBDEI134 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19141,2)
- ;;=^338239
- ;;^UTILITY(U,$J,358.3,19142,0)
- ;;=438.14^^105^1227^10
- ;;^UTILITY(U,$J,358.3,19142,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19142,1,4,0)
- ;;=4^438.14
- ;;^UTILITY(U,$J,358.3,19142,1,5,0)
- ;;=5^CVA w/Fluency (late effect)
- ;;^UTILITY(U,$J,358.3,19142,2)
- ;;=^338240
- ;;^UTILITY(U,$J,358.3,19143,0)
- ;;=438.30^^105^1227^20
- ;;^UTILITY(U,$J,358.3,19143,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19143,1,4,0)
- ;;=4^438.30
- ;;^UTILITY(U,$J,358.3,19143,1,5,0)
- ;;=5^CVA w/Monoplegia Upper Arm (late effect)
- ;;^UTILITY(U,$J,358.3,19143,2)
- ;;=^317913
- ;;^UTILITY(U,$J,358.3,19144,0)
- ;;=438.31^^105^1227^16
- ;;^UTILITY(U,$J,358.3,19144,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19144,1,4,0)
- ;;=4^438.31
- ;;^UTILITY(U,$J,358.3,19144,1,5,0)
- ;;=5^CVA w/Monoplegia Dominant Upper Arm
- ;;^UTILITY(U,$J,358.3,19144,2)
- ;;=^317914
- ;;^UTILITY(U,$J,358.3,19145,0)
- ;;=438.32^^105^1227^19
- ;;^UTILITY(U,$J,358.3,19145,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19145,1,4,0)
- ;;=4^438.32
- ;;^UTILITY(U,$J,358.3,19145,1,5,0)
- ;;=5^CVA w/Monoplegia Nondominant Upper Arm
- ;;^UTILITY(U,$J,358.3,19145,2)
- ;;=^317915
- ;;^UTILITY(U,$J,358.3,19146,0)
- ;;=438.40^^105^1227^17
- ;;^UTILITY(U,$J,358.3,19146,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19146,1,4,0)
- ;;=4^438.40
- ;;^UTILITY(U,$J,358.3,19146,1,5,0)
- ;;=5^CVA w/Monoplegia Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,19146,2)
- ;;=^317916
- ;;^UTILITY(U,$J,358.3,19147,0)
- ;;=438.41^^105^1227^15
- ;;^UTILITY(U,$J,358.3,19147,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19147,1,4,0)
- ;;=4^438.41
- ;;^UTILITY(U,$J,358.3,19147,1,5,0)
- ;;=5^CVA w/Monoplegia Dominant Lower Limb
- ;;^UTILITY(U,$J,358.3,19147,2)
- ;;=^317917
- ;;^UTILITY(U,$J,358.3,19148,0)
- ;;=438.42^^105^1227^18
- ;;^UTILITY(U,$J,358.3,19148,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19148,1,4,0)
- ;;=4^438.42
- ;;^UTILITY(U,$J,358.3,19148,1,5,0)
- ;;=5^CVA w/Monoplegia Nondominant Lower Limb
- ;;^UTILITY(U,$J,358.3,19148,2)
- ;;=^317918
- ;;^UTILITY(U,$J,358.3,19149,0)
- ;;=438.50^^105^1227^24
- ;;^UTILITY(U,$J,358.3,19149,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19149,1,4,0)
- ;;=4^438.50
- ;;^UTILITY(U,$J,358.3,19149,1,5,0)
- ;;=5^CVA w/Oth Paralysis,Unspec
- ;;^UTILITY(U,$J,358.3,19149,2)
- ;;=^317919
- ;;^UTILITY(U,$J,358.3,19150,0)
- ;;=438.51^^105^1227^21
- ;;^UTILITY(U,$J,358.3,19150,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19150,1,4,0)
- ;;=4^438.51
- ;;^UTILITY(U,$J,358.3,19150,1,5,0)
- ;;=5^CVA w/Oth Paralysis Dominant Side
- ;;^UTILITY(U,$J,358.3,19150,2)
- ;;=^317920
- ;;^UTILITY(U,$J,358.3,19151,0)
- ;;=438.52^^105^1227^22
- ;;^UTILITY(U,$J,358.3,19151,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19151,1,4,0)
- ;;=4^438.52
- ;;^UTILITY(U,$J,358.3,19151,1,5,0)
- ;;=5^CVA w/Oth Paralysis Nondominant Side
- ;;^UTILITY(U,$J,358.3,19151,2)
- ;;=^317921
- ;;^UTILITY(U,$J,358.3,19152,0)
- ;;=438.53^^105^1227^23
- ;;^UTILITY(U,$J,358.3,19152,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19152,1,4,0)
- ;;=4^438.53
- ;;^UTILITY(U,$J,358.3,19152,1,5,0)
- ;;=5^CVA w/Oth Paralysis,Bilateral
- ;;^UTILITY(U,$J,358.3,19152,2)
- ;;=^321176
- ;;^UTILITY(U,$J,358.3,19153,0)
- ;;=438.81^^105^1227^4
- ;;^UTILITY(U,$J,358.3,19153,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19153,1,4,0)
- ;;=4^438.81
- ;;^UTILITY(U,$J,358.3,19153,1,5,0)
- ;;=5^CVA w/Apraxi NEC
- ;;^UTILITY(U,$J,358.3,19153,2)
- ;;=^317922
- ;;^UTILITY(U,$J,358.3,19154,0)
- ;;=438.83^^105^1227^9
- ;;^UTILITY(U,$J,358.3,19154,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19154,1,4,0)
- ;;=4^438.83
- ;;^UTILITY(U,$J,358.3,19154,1,5,0)
- ;;=5^CVA w/Facial Weakness
+ ;;^UTILITY(U,$J,358.3,18112,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,18112,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,18113,0)
+ ;;=I25.810^^94^902^8
+ ;;^UTILITY(U,$J,358.3,18113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18113,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,18113,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,18113,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,18114,0)
+ ;;=I65.29^^94^903^18
+ ;;^UTILITY(U,$J,358.3,18114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18114,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,18114,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,18114,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,18115,0)
+ ;;=I65.22^^94^903^16
+ ;;^UTILITY(U,$J,358.3,18115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18115,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,18115,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,18115,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,18116,0)
+ ;;=I65.23^^94^903^15
+ ;;^UTILITY(U,$J,358.3,18116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18116,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,18116,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,18116,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,18117,0)
+ ;;=I65.21^^94^903^17
+ ;;^UTILITY(U,$J,358.3,18117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18117,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,18117,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,18117,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,18118,0)
+ ;;=I70.219^^94^903^3
+ ;;^UTILITY(U,$J,358.3,18118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18118,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,18118,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,18118,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,18119,0)
+ ;;=I70.213^^94^903^4
+ ;;^UTILITY(U,$J,358.3,18119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18119,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,18119,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,18119,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,18120,0)
+ ;;=I70.212^^94^903^5
+ ;;^UTILITY(U,$J,358.3,18120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18120,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,18120,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,18120,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,18121,0)
+ ;;=I70.211^^94^903^6
+ ;;^UTILITY(U,$J,358.3,18121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18121,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,18121,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,18121,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,18122,0)
+ ;;=I70.25^^94^903^2
+ ;;^UTILITY(U,$J,358.3,18122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18122,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,18122,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,18122,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,18123,0)
+ ;;=I70.249^^94^903^7
+ ;;^UTILITY(U,$J,358.3,18123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18123,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,18123,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,18123,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,18124,0)
+ ;;=I70.239^^94^903^8
+ ;;^UTILITY(U,$J,358.3,18124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18124,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,18124,1,4,0)
+ ;;=4^I70.239

@@ -1,0 +1,130 @@
+IBDEI304 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,50315,1,4,0)
+ ;;=4^M05.112
+ ;;^UTILITY(U,$J,358.3,50315,2)
+ ;;=^5009864
+ ;;^UTILITY(U,$J,358.3,50316,0)
+ ;;=M05.132^^219^2447^32
+ ;;^UTILITY(U,$J,358.3,50316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50316,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
+ ;;^UTILITY(U,$J,358.3,50316,1,4,0)
+ ;;=4^M05.132
+ ;;^UTILITY(U,$J,358.3,50316,2)
+ ;;=^5009870
+ ;;^UTILITY(U,$J,358.3,50317,0)
+ ;;=M05.19^^219^2447^33
+ ;;^UTILITY(U,$J,358.3,50317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50317,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Mult Sites
+ ;;^UTILITY(U,$J,358.3,50317,1,4,0)
+ ;;=4^M05.19
+ ;;^UTILITY(U,$J,358.3,50317,2)
+ ;;=^5009884
+ ;;^UTILITY(U,$J,358.3,50318,0)
+ ;;=M05.171^^219^2447^34
+ ;;^UTILITY(U,$J,358.3,50318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50318,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,50318,1,4,0)
+ ;;=4^M05.171
+ ;;^UTILITY(U,$J,358.3,50318,2)
+ ;;=^5009881
+ ;;^UTILITY(U,$J,358.3,50319,0)
+ ;;=M05.121^^219^2447^35
+ ;;^UTILITY(U,$J,358.3,50319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50319,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Elbow
+ ;;^UTILITY(U,$J,358.3,50319,1,4,0)
+ ;;=4^M05.121
+ ;;^UTILITY(U,$J,358.3,50319,2)
+ ;;=^5009866
+ ;;^UTILITY(U,$J,358.3,50320,0)
+ ;;=M05.141^^219^2447^36
+ ;;^UTILITY(U,$J,358.3,50320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50320,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hand
+ ;;^UTILITY(U,$J,358.3,50320,1,4,0)
+ ;;=4^M05.141
+ ;;^UTILITY(U,$J,358.3,50320,2)
+ ;;=^5009872
+ ;;^UTILITY(U,$J,358.3,50321,0)
+ ;;=M05.151^^219^2447^37
+ ;;^UTILITY(U,$J,358.3,50321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50321,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hip
+ ;;^UTILITY(U,$J,358.3,50321,1,4,0)
+ ;;=4^M05.151
+ ;;^UTILITY(U,$J,358.3,50321,2)
+ ;;=^5009875
+ ;;^UTILITY(U,$J,358.3,50322,0)
+ ;;=M05.161^^219^2447^38
+ ;;^UTILITY(U,$J,358.3,50322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50322,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Knee
+ ;;^UTILITY(U,$J,358.3,50322,1,4,0)
+ ;;=4^M05.161
+ ;;^UTILITY(U,$J,358.3,50322,2)
+ ;;=^5009878
+ ;;^UTILITY(U,$J,358.3,50323,0)
+ ;;=M05.111^^219^2447^39
+ ;;^UTILITY(U,$J,358.3,50323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50323,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Shldr
+ ;;^UTILITY(U,$J,358.3,50323,1,4,0)
+ ;;=4^M05.111
+ ;;^UTILITY(U,$J,358.3,50323,2)
+ ;;=^5009863
+ ;;^UTILITY(U,$J,358.3,50324,0)
+ ;;=M05.131^^219^2447^40
+ ;;^UTILITY(U,$J,358.3,50324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50324,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Wrist
+ ;;^UTILITY(U,$J,358.3,50324,1,4,0)
+ ;;=4^M05.131
+ ;;^UTILITY(U,$J,358.3,50324,2)
+ ;;=^5009869
+ ;;^UTILITY(U,$J,358.3,50325,0)
+ ;;=M05.10^^219^2447^41
+ ;;^UTILITY(U,$J,358.3,50325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50325,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Unspec Site
+ ;;^UTILITY(U,$J,358.3,50325,1,4,0)
+ ;;=4^M05.10
+ ;;^UTILITY(U,$J,358.3,50325,2)
+ ;;=^5009862
+ ;;^UTILITY(U,$J,358.3,50326,0)
+ ;;=D86.86^^219^2447^42
+ ;;^UTILITY(U,$J,358.3,50326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50326,1,3,0)
+ ;;=3^Sacoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,50326,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,50326,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,50327,0)
+ ;;=D86.83^^219^2447^43
+ ;;^UTILITY(U,$J,358.3,50327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50327,1,3,0)
+ ;;=3^Sacoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,50327,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,50327,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,50328,0)
+ ;;=D86.81^^219^2447^44

@@ -1,130 +1,124 @@
-IBDEI1V6 ; ; 06-AUG-2015
+IBDEI1V6 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32806,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,32806,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,32807,0)
- ;;=M31.1^^182^1992^176
- ;;^UTILITY(U,$J,358.3,32807,1,0)
+ ;;^UTILITY(U,$J,358.3,31199,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,31199,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,31200,0)
+ ;;=Y04.1XXD^^135^1391^2
+ ;;^UTILITY(U,$J,358.3,31200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32807,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,32807,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,32807,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,32808,0)
- ;;=D51.2^^182^1992^177
- ;;^UTILITY(U,$J,358.3,32808,1,0)
+ ;;^UTILITY(U,$J,358.3,31200,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31200,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,31200,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,31201,0)
+ ;;=Y04.2XXA^^135^1391^5
+ ;;^UTILITY(U,$J,358.3,31201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32808,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,32808,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,32808,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,32809,0)
- ;;=D05.92^^182^1992^31
- ;;^UTILITY(U,$J,358.3,32809,1,0)
+ ;;^UTILITY(U,$J,358.3,31201,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31201,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,31201,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,31202,0)
+ ;;=Y04.8XXA^^135^1391^3
+ ;;^UTILITY(U,$J,358.3,31202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32809,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,32809,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,32809,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,32810,0)
- ;;=D05.91^^182^1992^33
- ;;^UTILITY(U,$J,358.3,32810,1,0)
+ ;;^UTILITY(U,$J,358.3,31202,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31202,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,31202,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,31203,0)
+ ;;=Y04.2XXD^^135^1391^6
+ ;;^UTILITY(U,$J,358.3,31203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32810,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,32810,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,32810,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,32811,0)
- ;;=D05.90^^182^1992^29
- ;;^UTILITY(U,$J,358.3,32811,1,0)
+ ;;^UTILITY(U,$J,358.3,31203,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31203,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,31203,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,31204,0)
+ ;;=Y04.8XXD^^135^1391^4
+ ;;^UTILITY(U,$J,358.3,31204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32811,1,3,0)
- ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
- ;;^UTILITY(U,$J,358.3,32811,1,4,0)
- ;;=4^D05.90
- ;;^UTILITY(U,$J,358.3,32811,2)
- ;;=^5001935
- ;;^UTILITY(U,$J,358.3,32812,0)
- ;;=D51.0^^182^1992^178
- ;;^UTILITY(U,$J,358.3,32812,1,0)
+ ;;^UTILITY(U,$J,358.3,31204,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31204,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,31204,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,31205,0)
+ ;;=Y36.200A^^135^1391^124
+ ;;^UTILITY(U,$J,358.3,31205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32812,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
- ;;^UTILITY(U,$J,358.3,32812,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,32812,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,32813,0)
- ;;=D51.1^^182^1992^179
- ;;^UTILITY(U,$J,358.3,32813,1,0)
+ ;;^UTILITY(U,$J,358.3,31205,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31205,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,31205,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,31206,0)
+ ;;=Y36.200D^^135^1391^125
+ ;;^UTILITY(U,$J,358.3,31206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32813,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
- ;;^UTILITY(U,$J,358.3,32813,1,4,0)
- ;;=4^D51.1
- ;;^UTILITY(U,$J,358.3,32813,2)
- ;;=^5002285
- ;;^UTILITY(U,$J,358.3,32814,0)
- ;;=D51.9^^182^1992^181
- ;;^UTILITY(U,$J,358.3,32814,1,0)
+ ;;^UTILITY(U,$J,358.3,31206,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31206,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,31206,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,31207,0)
+ ;;=Y36.300A^^135^1391^126
+ ;;^UTILITY(U,$J,358.3,31207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32814,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,32814,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,32814,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,32815,0)
- ;;=D68.0^^182^1992^183
- ;;^UTILITY(U,$J,358.3,32815,1,0)
+ ;;^UTILITY(U,$J,358.3,31207,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31207,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,31207,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,31208,0)
+ ;;=Y36.300D^^135^1391^127
+ ;;^UTILITY(U,$J,358.3,31208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32815,1,3,0)
- ;;=3^Von Willebrand's Disease
- ;;^UTILITY(U,$J,358.3,32815,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,32815,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,32816,0)
- ;;=C88.0^^182^1992^184
- ;;^UTILITY(U,$J,358.3,32816,1,0)
+ ;;^UTILITY(U,$J,358.3,31208,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31208,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,31208,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,31209,0)
+ ;;=Y36.410A^^135^1391^121
+ ;;^UTILITY(U,$J,358.3,31209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32816,1,3,0)
- ;;=3^Waldenstrom Macroglobulinemia
- ;;^UTILITY(U,$J,358.3,32816,1,4,0)
- ;;=4^C88.0
- ;;^UTILITY(U,$J,358.3,32816,2)
- ;;=^5001748
- ;;^UTILITY(U,$J,358.3,32817,0)
- ;;=Z85.818^^182^1993^77
- ;;^UTILITY(U,$J,358.3,32817,1,0)
+ ;;^UTILITY(U,$J,358.3,31209,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31209,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,31209,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,31210,0)
+ ;;=Y36.410D^^135^1391^123
+ ;;^UTILITY(U,$J,358.3,31210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32817,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,32817,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,32817,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,32818,0)
- ;;=Z85.819^^182^1993^78
- ;;^UTILITY(U,$J,358.3,32818,1,0)
+ ;;^UTILITY(U,$J,358.3,31210,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31210,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,31210,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,31211,0)
+ ;;=Y36.6X0A^^135^1391^113
+ ;;^UTILITY(U,$J,358.3,31211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32818,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,32818,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,32818,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,32819,0)
- ;;=Z85.01^^182^1993^73
+ ;;^UTILITY(U,$J,358.3,31211,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr

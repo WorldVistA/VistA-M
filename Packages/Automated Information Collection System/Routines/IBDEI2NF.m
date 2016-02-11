@@ -1,0 +1,134 @@
+IBDEI2NF ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,44453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44453,1,3,0)
+ ;;=3^Mesothelioma of Pleura
+ ;;^UTILITY(U,$J,358.3,44453,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,44453,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,44454,0)
+ ;;=C90.01^^200^2228^164
+ ;;^UTILITY(U,$J,358.3,44454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44454,1,3,0)
+ ;;=3^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,44454,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,44454,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,44455,0)
+ ;;=C90.00^^200^2228^165
+ ;;^UTILITY(U,$J,358.3,44455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44455,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,44455,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,44455,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,44456,0)
+ ;;=C94.6^^200^2228^166
+ ;;^UTILITY(U,$J,358.3,44456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44456,1,3,0)
+ ;;=3^Myelodysplastic Disease NEC
+ ;;^UTILITY(U,$J,358.3,44456,1,4,0)
+ ;;=4^C94.6
+ ;;^UTILITY(U,$J,358.3,44456,2)
+ ;;=^5001846
+ ;;^UTILITY(U,$J,358.3,44457,0)
+ ;;=D61.82^^200^2228^167
+ ;;^UTILITY(U,$J,358.3,44457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44457,1,3,0)
+ ;;=3^Myelophthisis
+ ;;^UTILITY(U,$J,358.3,44457,1,4,0)
+ ;;=4^D61.82
+ ;;^UTILITY(U,$J,358.3,44457,2)
+ ;;=^334037
+ ;;^UTILITY(U,$J,358.3,44458,0)
+ ;;=D47.9^^200^2228^168
+ ;;^UTILITY(U,$J,358.3,44458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44458,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,44458,1,4,0)
+ ;;=4^D47.9
+ ;;^UTILITY(U,$J,358.3,44458,2)
+ ;;=^5002260
+ ;;^UTILITY(U,$J,358.3,44459,0)
+ ;;=D53.9^^200^2228^172
+ ;;^UTILITY(U,$J,358.3,44459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44459,1,3,0)
+ ;;=3^Nutritional Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,44459,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,44459,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,44460,0)
+ ;;=D47.4^^200^2228^173
+ ;;^UTILITY(U,$J,358.3,44460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44460,1,3,0)
+ ;;=3^Osteomyelofibrosis
+ ;;^UTILITY(U,$J,358.3,44460,1,4,0)
+ ;;=4^D47.4
+ ;;^UTILITY(U,$J,358.3,44460,2)
+ ;;=^5002259
+ ;;^UTILITY(U,$J,358.3,44461,0)
+ ;;=D59.1^^200^2228^27
+ ;;^UTILITY(U,$J,358.3,44461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44461,1,3,0)
+ ;;=3^Autoimmune Hemolytic Anemia,Other
+ ;;^UTILITY(U,$J,358.3,44461,1,4,0)
+ ;;=4^D59.1
+ ;;^UTILITY(U,$J,358.3,44461,2)
+ ;;=^5002324
+ ;;^UTILITY(U,$J,358.3,44462,0)
+ ;;=D51.3^^200^2228^187
+ ;;^UTILITY(U,$J,358.3,44462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44462,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Other
+ ;;^UTILITY(U,$J,358.3,44462,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,44462,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,44463,0)
+ ;;=D77.^^200^2228^55
+ ;;^UTILITY(U,$J,358.3,44463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44463,1,3,0)
+ ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
+ ;;^UTILITY(U,$J,358.3,44463,1,4,0)
+ ;;=4^D77.
+ ;;^UTILITY(U,$J,358.3,44463,2)
+ ;;=^5002396
+ ;;^UTILITY(U,$J,358.3,44464,0)
+ ;;=D58.2^^200^2228^81
+ ;;^UTILITY(U,$J,358.3,44464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44464,1,3,0)
+ ;;=3^Hemoglobinopathies,Other
+ ;;^UTILITY(U,$J,358.3,44464,1,4,0)
+ ;;=4^D58.2
+ ;;^UTILITY(U,$J,358.3,44464,2)
+ ;;=^87629
+ ;;^UTILITY(U,$J,358.3,44465,0)
+ ;;=C88.8^^200^2228^101
+ ;;^UTILITY(U,$J,358.3,44465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44465,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases,Other
+ ;;^UTILITY(U,$J,358.3,44465,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,44465,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,44466,0)
+ ;;=D70.8^^200^2228^170

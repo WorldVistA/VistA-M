@@ -1,124 +1,120 @@
-IBDEI1PJ ; ; 06-AUG-2015
+IBDEI1PJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30256,2)
- ;;=^5016820
- ;;^UTILITY(U,$J,358.3,30257,0)
- ;;=O35.6XX4^^178^1916^84
- ;;^UTILITY(U,$J,358.3,30257,1,0)
+ ;;^UTILITY(U,$J,358.3,28573,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,28573,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,28574,0)
+ ;;=S56.418A^^132^1333^25
+ ;;^UTILITY(U,$J,358.3,28574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30257,1,3,0)
- ;;=3^Maternal care for damage to fetus by radiation, fetus 4
- ;;^UTILITY(U,$J,358.3,30257,1,4,0)
- ;;=4^O35.6XX4
- ;;^UTILITY(U,$J,358.3,30257,2)
- ;;=^5016821
- ;;^UTILITY(U,$J,358.3,30258,0)
- ;;=O35.6XX5^^178^1916^85
- ;;^UTILITY(U,$J,358.3,30258,1,0)
+ ;;^UTILITY(U,$J,358.3,28574,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28574,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,28574,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,28575,0)
+ ;;=S56.811A^^132^1333^41
+ ;;^UTILITY(U,$J,358.3,28575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30258,1,3,0)
- ;;=3^Maternal care for damage to fetus by radiation, fetus 5
- ;;^UTILITY(U,$J,358.3,30258,1,4,0)
- ;;=4^O35.6XX5
- ;;^UTILITY(U,$J,358.3,30258,2)
- ;;=^5016822
- ;;^UTILITY(U,$J,358.3,30259,0)
- ;;=O36.8120^^178^1916^1
- ;;^UTILITY(U,$J,358.3,30259,1,0)
+ ;;^UTILITY(U,$J,358.3,28575,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28575,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,28575,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,28576,0)
+ ;;=S56.812A^^132^1333^21
+ ;;^UTILITY(U,$J,358.3,28576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30259,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, unsp
- ;;^UTILITY(U,$J,358.3,30259,1,4,0)
- ;;=4^O36.8120
- ;;^UTILITY(U,$J,358.3,30259,2)
- ;;=^5017089
- ;;^UTILITY(U,$J,358.3,30260,0)
- ;;=O36.8130^^178^1916^7
- ;;^UTILITY(U,$J,358.3,30260,1,0)
+ ;;^UTILITY(U,$J,358.3,28576,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28576,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,28576,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,28577,0)
+ ;;=S56.116A^^132^1333^33
+ ;;^UTILITY(U,$J,358.3,28577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30260,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, unsp
- ;;^UTILITY(U,$J,358.3,30260,1,4,0)
- ;;=4^O36.8130
- ;;^UTILITY(U,$J,358.3,30260,2)
- ;;=^5017096
- ;;^UTILITY(U,$J,358.3,30261,0)
- ;;=O36.8121^^178^1916^2
- ;;^UTILITY(U,$J,358.3,30261,1,0)
+ ;;^UTILITY(U,$J,358.3,28577,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28577,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,28577,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,28578,0)
+ ;;=S56.117A^^132^1333^46
+ ;;^UTILITY(U,$J,358.3,28578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30261,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30261,1,4,0)
- ;;=4^O36.8121
- ;;^UTILITY(U,$J,358.3,30261,2)
- ;;=^5017090
- ;;^UTILITY(U,$J,358.3,30262,0)
- ;;=O36.8131^^178^1916^8
- ;;^UTILITY(U,$J,358.3,30262,1,0)
+ ;;^UTILITY(U,$J,358.3,28578,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28578,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,28578,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,28579,0)
+ ;;=S56.118A^^132^1333^26
+ ;;^UTILITY(U,$J,358.3,28579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30262,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,30262,1,4,0)
- ;;=4^O36.8131
- ;;^UTILITY(U,$J,358.3,30262,2)
- ;;=^5017097
- ;;^UTILITY(U,$J,358.3,30263,0)
- ;;=O36.8122^^178^1916^3
- ;;^UTILITY(U,$J,358.3,30263,1,0)
+ ;;^UTILITY(U,$J,358.3,28579,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28579,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,28579,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,28580,0)
+ ;;=S56.211A^^132^1333^40
+ ;;^UTILITY(U,$J,358.3,28580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30263,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30263,1,4,0)
- ;;=4^O36.8122
- ;;^UTILITY(U,$J,358.3,30263,2)
- ;;=^5017091
- ;;^UTILITY(U,$J,358.3,30264,0)
- ;;=O36.8132^^178^1916^9
- ;;^UTILITY(U,$J,358.3,30264,1,0)
+ ;;^UTILITY(U,$J,358.3,28580,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28580,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,28580,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,28581,0)
+ ;;=S56.212A^^132^1333^20
+ ;;^UTILITY(U,$J,358.3,28581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30264,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,30264,1,4,0)
- ;;=4^O36.8132
- ;;^UTILITY(U,$J,358.3,30264,2)
- ;;=^5017098
- ;;^UTILITY(U,$J,358.3,30265,0)
- ;;=O36.8123^^178^1916^4
- ;;^UTILITY(U,$J,358.3,30265,1,0)
+ ;;^UTILITY(U,$J,358.3,28581,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28581,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,28581,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,28582,0)
+ ;;=S56.311A^^132^1333^56
+ ;;^UTILITY(U,$J,358.3,28582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30265,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30265,1,4,0)
- ;;=4^O36.8123
- ;;^UTILITY(U,$J,358.3,30265,2)
- ;;=^5017092
- ;;^UTILITY(U,$J,358.3,30266,0)
- ;;=O36.8133^^178^1916^10
- ;;^UTILITY(U,$J,358.3,30266,1,0)
+ ;;^UTILITY(U,$J,358.3,28582,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28582,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,28582,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,28583,0)
+ ;;=S56.312A^^132^1333^35
+ ;;^UTILITY(U,$J,358.3,28583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30266,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,30266,1,4,0)
- ;;=4^O36.8133
- ;;^UTILITY(U,$J,358.3,30266,2)
- ;;=^5017099
- ;;^UTILITY(U,$J,358.3,30267,0)
- ;;=O36.8124^^178^1916^5
- ;;^UTILITY(U,$J,358.3,30267,1,0)
+ ;;^UTILITY(U,$J,358.3,28583,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28583,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,28583,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,28584,0)
+ ;;=S56.411A^^132^1333^44
+ ;;^UTILITY(U,$J,358.3,28584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30267,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30267,1,4,0)
- ;;=4^O36.8124
- ;;^UTILITY(U,$J,358.3,30267,2)
- ;;=^5017093
- ;;^UTILITY(U,$J,358.3,30268,0)
- ;;=O36.8134^^178^1916^11
- ;;^UTILITY(U,$J,358.3,30268,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30268,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,30268,1,4,0)
- ;;=4^O36.8134
+ ;;^UTILITY(U,$J,358.3,28584,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,28584,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,28584,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,28585,0)
+ ;;=S56.412A^^132^1333^24

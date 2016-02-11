@@ -1,9 +1,9 @@
 SROALOG ;BIR/MAM - ASSESSMENT LOG ;01/24/08
- ;;3.0; Surgery ;**38,55,62,77,50,153,160,166**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**38,55,62,77,50,153,160,166,184**;24 Jun 93;Build 35
  K SRMNA S (SRSOUT,SRFLG,SRSP,SRAST)=0,SRSRT=1
 START G:SRSOUT END W @IOF K DIR S DIR("A",1)="List of Surgery Risk Assessments",DIR("A",2)="",DIR("A",3)="  1. List of Incomplete Assessments"
  S DIR("A",4)="  2. List of Completed Assessments",DIR("A",5)="  3. List of Transmitted Assessments"
- S DIR("A",6)="  4. List of Non-Assessed Major Surgical Cases",DIR("A",7)="  5. List of All Major Surgical Cases"
+ S DIR("A",6)="  4. List of Non-Assessed Major Surgical Cases (Deactivated)",DIR("A",7)="  5. List of All Major Surgical Cases (Deactivated)"
  S DIR("A",8)="  6. List of All Surgical Cases",DIR("A",9)="  7. List of Completed/Transmitted Assessments Missing Information"
  S DIR("A",10)="  8. List of 1-Liner Cases Missing Information",DIR("A",11)="  9. List of Eligible Cases"
  S DIR("A",12)=" 10. List of Cases With No CPT Codes",DIR("A",13)=" 11. Summary List of Assessed Cases"
@@ -11,6 +11,8 @@ START G:SRSOUT END W @IOF K DIR S DIR("A",1)="List of Surgery Risk Assessments",
  S DIR(0)="NO^1:11" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y S SRSOUT=1 G END
  S SREPORT=X
 DATE I SREPORT=3 D DSORT G:SRSOUT END
+ I SREPORT=4 D NL G SROALOG
+ I SREPORT=5 D NL G SROALOG
  D DATE^SROUTL(.SRSD,.SRED,.SRSOUT) G:SRSOUT END
  I SREPORT=9 D TYPE9 I SRSOUT G END
  I SREPORT=3 D TYPE3 I SRSOUT G END
@@ -28,8 +30,6 @@ EN ; entry when queued
  I SREPORT=1 D:SRSP ^SROANTS D:'SRSP ^SROANT G END
  I SREPORT=2 D:SRSP ^SROALCS D:'SRSP ^SROALC G END
  I SREPORT=3 D:SRSP ^SROALTS D:'SRSP ^SROALT G END
- I SREPORT=4 S SRMNA=1 D:SRSP ^SROALLS D:'SRSP ^SROALL G END
- I SREPORT=5 D:SRSP ^SROALLS D:'SRSP ^SROALL G END
  I SREPORT=7 D ^SROALM G END
  I SREPORT=8 D ^SROALMN G END
  I SREPORT=9 D ^SROALEC G END
@@ -68,4 +68,7 @@ SEL1 S SRSP=1 W ! K DIR S DIR(0)="YA",DIR("A")="Print report for ALL specialties
  D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1 Q
  I 'Y W ! S DIC("S")="I '$P(^(0),""^"",3)",DIC("A")="Print the Report for which Surgical Specialty: ",DIC=137.45,DIC(0)="QEAMZ" D ^DIC K DIC I Y>0 S SRASP=+Y,SRFLG=1 Q
  I Y'>0 S SRSOUT=1 Q
+ Q
+NL W !!,"This display is no longer used. Please select a different list."
+ W !!,"Press ENTER to continue  " R X:DTIME
  Q

@@ -1,140 +1,118 @@
-IBDEI1I4 ; ; 06-AUG-2015
+IBDEI1I4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26645,1,4,0)
- ;;=4^905.1
- ;;^UTILITY(U,$J,358.3,26645,2)
- ;;=^275215
- ;;^UTILITY(U,$J,358.3,26646,0)
- ;;=905.2^^156^1718^3
- ;;^UTILITY(U,$J,358.3,26646,1,0)
+ ;;^UTILITY(U,$J,358.3,25093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26646,1,3,0)
- ;;=3^Late Effect Arm Fx
- ;;^UTILITY(U,$J,358.3,26646,1,4,0)
- ;;=4^905.2
- ;;^UTILITY(U,$J,358.3,26646,2)
- ;;=^275216
- ;;^UTILITY(U,$J,358.3,26647,0)
- ;;=303.90^^156^1719^1
- ;;^UTILITY(U,$J,358.3,26647,1,0)
+ ;;^UTILITY(U,$J,358.3,25093,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Nervous Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25093,1,4,0)
+ ;;=4^G97.52
+ ;;^UTILITY(U,$J,358.3,25093,2)
+ ;;=^5004210
+ ;;^UTILITY(U,$J,358.3,25094,0)
+ ;;=H59.311^^124^1239^186
+ ;;^UTILITY(U,$J,358.3,25094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26647,1,3,0)
- ;;=3^Alcoh Dep Nec/Nos-Unspec
- ;;^UTILITY(U,$J,358.3,26647,1,4,0)
- ;;=4^303.90
- ;;^UTILITY(U,$J,358.3,26647,2)
- ;;=^4648
- ;;^UTILITY(U,$J,358.3,26648,0)
- ;;=296.40^^156^1719^2
- ;;^UTILITY(U,$J,358.3,26648,1,0)
+ ;;^UTILITY(U,$J,358.3,25094,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Right Eye/Adnexa Following Ophth Procedure
+ ;;^UTILITY(U,$J,358.3,25094,1,4,0)
+ ;;=4^H59.311
+ ;;^UTILITY(U,$J,358.3,25094,2)
+ ;;=^5006417
+ ;;^UTILITY(U,$J,358.3,25095,0)
+ ;;=H59.312^^124^1239^178
+ ;;^UTILITY(U,$J,358.3,25095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26648,1,3,0)
- ;;=3^Bipol Aff, Manic-Unspec
- ;;^UTILITY(U,$J,358.3,26648,1,4,0)
- ;;=4^296.40
- ;;^UTILITY(U,$J,358.3,26648,2)
- ;;=^268123
- ;;^UTILITY(U,$J,358.3,26649,0)
- ;;=290.0^^156^1719^9
- ;;^UTILITY(U,$J,358.3,26649,1,0)
+ ;;^UTILITY(U,$J,358.3,25095,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Left Eye/Adnexa Following Ophth Procedure
+ ;;^UTILITY(U,$J,358.3,25095,1,4,0)
+ ;;=4^H59.312
+ ;;^UTILITY(U,$J,358.3,25095,2)
+ ;;=^5006418
+ ;;^UTILITY(U,$J,358.3,25096,0)
+ ;;=H59.313^^124^1239^166
+ ;;^UTILITY(U,$J,358.3,25096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26649,1,3,0)
- ;;=3^Senile Dementia Uncomp
- ;;^UTILITY(U,$J,358.3,26649,1,4,0)
- ;;=4^290.0
- ;;^UTILITY(U,$J,358.3,26649,2)
- ;;=^31703
- ;;^UTILITY(U,$J,358.3,26650,0)
- ;;=294.8^^156^1719^6
- ;;^UTILITY(U,$J,358.3,26650,1,0)
+ ;;^UTILITY(U,$J,358.3,25096,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Bilateral Eyes/Adnexa Following Ophth Procedure
+ ;;^UTILITY(U,$J,358.3,25096,1,4,0)
+ ;;=4^H59.313
+ ;;^UTILITY(U,$J,358.3,25096,2)
+ ;;=^5006419
+ ;;^UTILITY(U,$J,358.3,25097,0)
+ ;;=H59.321^^124^1239^187
+ ;;^UTILITY(U,$J,358.3,25097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26650,1,3,0)
- ;;=3^Organic Brain Synd Nec
- ;;^UTILITY(U,$J,358.3,26650,1,4,0)
- ;;=4^294.8
- ;;^UTILITY(U,$J,358.3,26650,2)
- ;;=^268044
- ;;^UTILITY(U,$J,358.3,26651,0)
- ;;=304.90^^156^1719^10
- ;;^UTILITY(U,$J,358.3,26651,1,0)
+ ;;^UTILITY(U,$J,358.3,25097,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Right Eye/Adnexa Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25097,1,4,0)
+ ;;=4^H59.321
+ ;;^UTILITY(U,$J,358.3,25097,2)
+ ;;=^5006421
+ ;;^UTILITY(U,$J,358.3,25098,0)
+ ;;=H59.322^^124^1239^179
+ ;;^UTILITY(U,$J,358.3,25098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26651,1,3,0)
- ;;=3^Unspec Drug Depend Nec Unspec
- ;;^UTILITY(U,$J,358.3,26651,1,4,0)
- ;;=4^304.90
- ;;^UTILITY(U,$J,358.3,26651,2)
- ;;=^36870
- ;;^UTILITY(U,$J,358.3,26652,0)
- ;;=311.^^156^1719^5
- ;;^UTILITY(U,$J,358.3,26652,1,0)
+ ;;^UTILITY(U,$J,358.3,25098,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Left Eye/Adnexa Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25098,1,4,0)
+ ;;=4^H59.322
+ ;;^UTILITY(U,$J,358.3,25098,2)
+ ;;=^5006422
+ ;;^UTILITY(U,$J,358.3,25099,0)
+ ;;=H59.323^^124^1239^167
+ ;;^UTILITY(U,$J,358.3,25099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26652,1,3,0)
- ;;=3^Depressive Disorder Nec
- ;;^UTILITY(U,$J,358.3,26652,1,4,0)
- ;;=4^311.
- ;;^UTILITY(U,$J,358.3,26652,2)
- ;;=^35603
- ;;^UTILITY(U,$J,358.3,26653,0)
- ;;=295.30^^156^1719^7
- ;;^UTILITY(U,$J,358.3,26653,1,0)
+ ;;^UTILITY(U,$J,358.3,25099,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Bilateral Eye/Adnexa Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25099,1,4,0)
+ ;;=4^H59.323
+ ;;^UTILITY(U,$J,358.3,25099,2)
+ ;;=^5006423
+ ;;^UTILITY(U,$J,358.3,25100,0)
+ ;;=H95.41^^124^1239^174
+ ;;^UTILITY(U,$J,358.3,25100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26653,1,3,0)
- ;;=3^Paranoid Schizo-Unspec
- ;;^UTILITY(U,$J,358.3,26653,1,4,0)
- ;;=4^295.30
- ;;^UTILITY(U,$J,358.3,26653,2)
- ;;=^108330
- ;;^UTILITY(U,$J,358.3,26654,0)
- ;;=295.90^^156^1719^8
- ;;^UTILITY(U,$J,358.3,26654,1,0)
+ ;;^UTILITY(U,$J,358.3,25100,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Ear/Mastoid Following Ear/Mastoid Procedure
+ ;;^UTILITY(U,$J,358.3,25100,1,4,0)
+ ;;=4^H95.41
+ ;;^UTILITY(U,$J,358.3,25100,2)
+ ;;=^5007030
+ ;;^UTILITY(U,$J,358.3,25101,0)
+ ;;=H95.42^^124^1239^175
+ ;;^UTILITY(U,$J,358.3,25101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26654,1,3,0)
- ;;=3^Schizophrenia Nos-Unspec
- ;;^UTILITY(U,$J,358.3,26654,1,4,0)
- ;;=4^295.90
- ;;^UTILITY(U,$J,358.3,26654,2)
- ;;=^108287
- ;;^UTILITY(U,$J,358.3,26655,0)
- ;;=294.20^^156^1719^4
- ;;^UTILITY(U,$J,358.3,26655,1,0)
+ ;;^UTILITY(U,$J,358.3,25101,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Ear/Mastoid Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25101,1,4,0)
+ ;;=4^H95.42
+ ;;^UTILITY(U,$J,358.3,25101,2)
+ ;;=^5007031
+ ;;^UTILITY(U,$J,358.3,25102,0)
+ ;;=I97.610^^124^1239^168
+ ;;^UTILITY(U,$J,358.3,25102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26655,1,3,0)
- ;;=3^Dementia w/o behv disturb NOS
- ;;^UTILITY(U,$J,358.3,26655,1,4,0)
- ;;=4^294.20
- ;;^UTILITY(U,$J,358.3,26655,2)
- ;;=^340607
- ;;^UTILITY(U,$J,358.3,26656,0)
- ;;=294.21^^156^1719^3
- ;;^UTILITY(U,$J,358.3,26656,1,0)
+ ;;^UTILITY(U,$J,358.3,25102,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following a Cardiac Cath
+ ;;^UTILITY(U,$J,358.3,25102,1,4,0)
+ ;;=4^I97.610
+ ;;^UTILITY(U,$J,358.3,25102,2)
+ ;;=^5008099
+ ;;^UTILITY(U,$J,358.3,25103,0)
+ ;;=I97.611^^124^1239^169
+ ;;^UTILITY(U,$J,358.3,25103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26656,1,3,0)
- ;;=3^Dementia w/ behv disturb NOS
- ;;^UTILITY(U,$J,358.3,26656,1,4,0)
- ;;=4^294.21
- ;;^UTILITY(U,$J,358.3,26656,2)
- ;;=^340505
- ;;^UTILITY(U,$J,358.3,26657,0)
- ;;=726.0^^156^1720^2
- ;;^UTILITY(U,$J,358.3,26657,1,0)
+ ;;^UTILITY(U,$J,358.3,25103,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,25103,1,4,0)
+ ;;=4^I97.611
+ ;;^UTILITY(U,$J,358.3,25103,2)
+ ;;=^5008100
+ ;;^UTILITY(U,$J,358.3,25104,0)
+ ;;=I97.618^^124^1239^170
+ ;;^UTILITY(U,$J,358.3,25104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26657,1,3,0)
- ;;=3^Adhesive Capsulit Shlder
- ;;^UTILITY(U,$J,358.3,26657,1,4,0)
- ;;=4^726.0
- ;;^UTILITY(U,$J,358.3,26657,2)
- ;;=^272520
- ;;^UTILITY(U,$J,358.3,26658,0)
- ;;=716.99^^156^1720^3
- ;;^UTILITY(U,$J,358.3,26658,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26658,1,3,0)
- ;;=3^Arthropathy Nos-Mult
- ;;^UTILITY(U,$J,358.3,26658,1,4,0)
- ;;=4^716.99
- ;;^UTILITY(U,$J,358.3,26658,2)
- ;;=^272256
- ;;^UTILITY(U,$J,358.3,26659,0)
- ;;=716.98^^156^1720^4
+ ;;^UTILITY(U,$J,358.3,25104,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Oth Circ Sys Procedure

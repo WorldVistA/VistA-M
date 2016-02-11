@@ -1,132 +1,128 @@
-IBDEI05F ; ; 06-AUG-2015
+IBDEI05F ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2019,2)
- ;;=^5043892
- ;;^UTILITY(U,$J,358.3,2020,0)
- ;;=S90.414A^^4^62^23
- ;;^UTILITY(U,$J,358.3,2020,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2020,1,3,0)
- ;;=3^Abrasion,Right lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,2020,1,4,0)
- ;;=4^S90.414A
- ;;^UTILITY(U,$J,358.3,2020,2)
- ;;=^5043898
- ;;^UTILITY(U,$J,358.3,2021,0)
- ;;=S90.415A^^4^62^8
- ;;^UTILITY(U,$J,358.3,2021,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2021,1,3,0)
- ;;=3^Abrasion,Left lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,2021,1,4,0)
- ;;=4^S90.415A
- ;;^UTILITY(U,$J,358.3,2021,2)
- ;;=^5043901
- ;;^UTILITY(U,$J,358.3,2022,0)
- ;;=S50.811A^^4^62^19
- ;;^UTILITY(U,$J,358.3,2022,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2022,1,3,0)
- ;;=3^Abrasion,Right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,2022,1,4,0)
- ;;=4^S50.811A
- ;;^UTILITY(U,$J,358.3,2022,2)
- ;;=^5028554
- ;;^UTILITY(U,$J,358.3,2023,0)
- ;;=S50.812A^^4^62^4
- ;;^UTILITY(U,$J,358.3,2023,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2023,1,3,0)
- ;;=3^Abrasion,Left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,2023,1,4,0)
- ;;=4^S50.812A
- ;;^UTILITY(U,$J,358.3,2023,2)
- ;;=^5028557
- ;;^UTILITY(U,$J,358.3,2024,0)
- ;;=S60.511A^^4^62^21
- ;;^UTILITY(U,$J,358.3,2024,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2024,1,3,0)
- ;;=3^Abrasion,Right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,2024,1,4,0)
- ;;=4^S60.511A
- ;;^UTILITY(U,$J,358.3,2024,2)
- ;;=^5032528
- ;;^UTILITY(U,$J,358.3,2025,0)
- ;;=S60.512A^^4^62^6
- ;;^UTILITY(U,$J,358.3,2025,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2025,1,3,0)
- ;;=3^Abrasion,Left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,2025,1,4,0)
- ;;=4^S60.512A
- ;;^UTILITY(U,$J,358.3,2025,2)
- ;;=^5032531
- ;;^UTILITY(U,$J,358.3,2026,0)
- ;;=S80.211A^^4^62^22
- ;;^UTILITY(U,$J,358.3,2026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2026,1,3,0)
- ;;=3^Abrasion,Right knee, initial encounter
- ;;^UTILITY(U,$J,358.3,2026,1,4,0)
- ;;=4^S80.211A
- ;;^UTILITY(U,$J,358.3,2026,2)
- ;;=^5039906
- ;;^UTILITY(U,$J,358.3,2027,0)
- ;;=S80.212A^^4^62^7
- ;;^UTILITY(U,$J,358.3,2027,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2027,1,3,0)
- ;;=3^Abrasion,Left knee, initial encounter
- ;;^UTILITY(U,$J,358.3,2027,1,4,0)
- ;;=4^S80.212A
- ;;^UTILITY(U,$J,358.3,2027,2)
- ;;=^5039909
- ;;^UTILITY(U,$J,358.3,2028,0)
- ;;=S80.811A^^4^62^24
- ;;^UTILITY(U,$J,358.3,2028,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2028,1,3,0)
- ;;=3^Abrasion,Right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,2028,1,4,0)
- ;;=4^S80.811A
- ;;^UTILITY(U,$J,358.3,2028,2)
- ;;=^5039960
- ;;^UTILITY(U,$J,358.3,2029,0)
- ;;=S80.812A^^4^62^9
- ;;^UTILITY(U,$J,358.3,2029,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2029,1,3,0)
- ;;=3^Abrasion,Left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,2029,1,4,0)
- ;;=4^S80.812A
- ;;^UTILITY(U,$J,358.3,2029,2)
- ;;=^5039963
- ;;^UTILITY(U,$J,358.3,2030,0)
- ;;=S40.211A^^4^62^25
- ;;^UTILITY(U,$J,358.3,2030,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2030,1,3,0)
- ;;=3^Abrasion,Right shoulder, initial encounter
- ;;^UTILITY(U,$J,358.3,2030,1,4,0)
- ;;=4^S40.211A
- ;;^UTILITY(U,$J,358.3,2030,2)
- ;;=^5026171
- ;;^UTILITY(U,$J,358.3,2031,0)
- ;;=S40.212A^^4^62^10
- ;;^UTILITY(U,$J,358.3,2031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2031,1,3,0)
- ;;=3^Abrasion,Left shoulder, initial encounter
- ;;^UTILITY(U,$J,358.3,2031,1,4,0)
- ;;=4^S40.212A
- ;;^UTILITY(U,$J,358.3,2031,2)
- ;;=^5026174
- ;;^UTILITY(U,$J,358.3,2032,0)
- ;;=S70.311A^^4^62^26
- ;;^UTILITY(U,$J,358.3,2032,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2032,1,3,0)
- ;;=3^Abrasion,Right thigh, initial encounter
+ ;;^UTILITY(U,$J,358.3,1888,1,2,0)
+ ;;=2^37233
+ ;;^UTILITY(U,$J,358.3,1888,1,3,0)
+ ;;=3^TIB/Per Revasc w/ Ather,ea addl Vessel
+ ;;^UTILITY(U,$J,358.3,1889,0)
+ ;;=37234^^17^172^47^^^^1
+ ;;^UTILITY(U,$J,358.3,1889,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1889,1,2,0)
+ ;;=2^37234
+ ;;^UTILITY(U,$J,358.3,1889,1,3,0)
+ ;;=3^TIB/Per Revasc w/ Stent,ea addl Vessel
+ ;;^UTILITY(U,$J,358.3,1890,0)
+ ;;=37235^^17^172^48^^^^1
+ ;;^UTILITY(U,$J,358.3,1890,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1890,1,2,0)
+ ;;=2^37235
+ ;;^UTILITY(U,$J,358.3,1890,1,3,0)
+ ;;=3^TIB/Per Revasc w/ Stnt&Ather,addl Vessel
+ ;;^UTILITY(U,$J,358.3,1891,0)
+ ;;=36251^^17^172^36^^^^1
+ ;;^UTILITY(U,$J,358.3,1891,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1891,1,2,0)
+ ;;=2^36251
+ ;;^UTILITY(U,$J,358.3,1891,1,3,0)
+ ;;=3^Select Cath 1st Main Ren&Access Art
+ ;;^UTILITY(U,$J,358.3,1892,0)
+ ;;=36252^^17^172^35^^^^1
+ ;;^UTILITY(U,$J,358.3,1892,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1892,1,2,0)
+ ;;=2^36252
+ ;;^UTILITY(U,$J,358.3,1892,1,3,0)
+ ;;=3^Select Cath 1st Main Ren&Acc Art,Bilat
+ ;;^UTILITY(U,$J,358.3,1893,0)
+ ;;=36254^^17^172^42^^^^1
+ ;;^UTILITY(U,$J,358.3,1893,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1893,1,2,0)
+ ;;=2^36254
+ ;;^UTILITY(U,$J,358.3,1893,1,3,0)
+ ;;=3^Superselect Cath Ren Art&Access Art
+ ;;^UTILITY(U,$J,358.3,1894,0)
+ ;;=37191^^17^172^22^^^^1
+ ;;^UTILITY(U,$J,358.3,1894,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1894,1,2,0)
+ ;;=2^37191
+ ;;^UTILITY(U,$J,358.3,1894,1,3,0)
+ ;;=3^Insert Intravas Vena Cava Filter,Endovas
+ ;;^UTILITY(U,$J,358.3,1895,0)
+ ;;=37619^^17^172^25^^^^1
+ ;;^UTILITY(U,$J,358.3,1895,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1895,1,2,0)
+ ;;=2^37619
+ ;;^UTILITY(U,$J,358.3,1895,1,3,0)
+ ;;=3^Open Inferior Vena Cava Filter Placement
+ ;;^UTILITY(U,$J,358.3,1896,0)
+ ;;=75635^^17^172^11^^^^1
+ ;;^UTILITY(U,$J,358.3,1896,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1896,1,2,0)
+ ;;=2^75635
+ ;;^UTILITY(U,$J,358.3,1896,1,3,0)
+ ;;=3^CT Angio Abd Art w/ Contrast
+ ;;^UTILITY(U,$J,358.3,1897,0)
+ ;;=75658^^17^172^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1897,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1897,1,2,0)
+ ;;=2^75658
+ ;;^UTILITY(U,$J,358.3,1897,1,3,0)
+ ;;=3^Angiography,Brachial,Retrograd,Rad S&I
+ ;;^UTILITY(U,$J,358.3,1898,0)
+ ;;=76506^^17^172^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1898,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1898,1,2,0)
+ ;;=2^76506
+ ;;^UTILITY(U,$J,358.3,1898,1,3,0)
+ ;;=3^Echoencephalography,Real Time w/ Image Doc
+ ;;^UTILITY(U,$J,358.3,1899,0)
+ ;;=76000^^17^172^12^^^^1
+ ;;^UTILITY(U,$J,358.3,1899,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1899,1,2,0)
+ ;;=2^76000
+ ;;^UTILITY(U,$J,358.3,1899,1,3,0)
+ ;;=3^Cardiac Fluoro<1hr
+ ;;^UTILITY(U,$J,358.3,1900,0)
+ ;;=35472^^17^172^29^^^^1
+ ;;^UTILITY(U,$J,358.3,1900,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1900,1,2,0)
+ ;;=2^35472
+ ;;^UTILITY(U,$J,358.3,1900,1,3,0)
+ ;;=3^Perc Angioplasty,Aortic
+ ;;^UTILITY(U,$J,358.3,1901,0)
+ ;;=35476^^17^172^30^^^^1
+ ;;^UTILITY(U,$J,358.3,1901,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1901,1,2,0)
+ ;;=2^35476
+ ;;^UTILITY(U,$J,358.3,1901,1,3,0)
+ ;;=3^Perc Angioplasty,Venous
+ ;;^UTILITY(U,$J,358.3,1902,0)
+ ;;=37236^^17^172^57^^^^1
+ ;;^UTILITY(U,$J,358.3,1902,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1902,1,2,0)
+ ;;=2^37236
+ ;;^UTILITY(U,$J,358.3,1902,1,3,0)
+ ;;=3^Transcath Plcmt of Intravas Stent,Init Art
+ ;;^UTILITY(U,$J,358.3,1903,0)
+ ;;=37237^^17^172^55^^^^1
+ ;;^UTILITY(U,$J,358.3,1903,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1903,1,2,0)
+ ;;=2^37237
+ ;;^UTILITY(U,$J,358.3,1903,1,3,0)
+ ;;=3^Transcath Plcmt Intravas Stnt,Ea Addl Art

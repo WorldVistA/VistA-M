@@ -1,120 +1,134 @@
-IBDEI1TZ ; ; 06-AUG-2015
+IBDEI1TZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32253,0)
- ;;=L97.421^^182^1981^187
- ;;^UTILITY(U,$J,358.3,32253,1,0)
+ ;;^UTILITY(U,$J,358.3,30651,0)
+ ;;=D81.810^^135^1382^5
+ ;;^UTILITY(U,$J,358.3,30651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32253,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32253,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,32253,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,32254,0)
- ;;=L97.422^^182^1981^188
- ;;^UTILITY(U,$J,358.3,32254,1,0)
+ ;;^UTILITY(U,$J,358.3,30651,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,30651,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,30651,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,30652,0)
+ ;;=E88.01^^135^1382^2
+ ;;^UTILITY(U,$J,358.3,30652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32254,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,32254,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,32254,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,32255,0)
- ;;=L97.423^^182^1981^189
- ;;^UTILITY(U,$J,358.3,32255,1,0)
+ ;;^UTILITY(U,$J,358.3,30652,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,30652,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,30652,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,30653,0)
+ ;;=J09.X1^^135^1382^25
+ ;;^UTILITY(U,$J,358.3,30653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32255,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32255,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,32255,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,32256,0)
- ;;=L97.424^^182^1981^190
- ;;^UTILITY(U,$J,358.3,32256,1,0)
+ ;;^UTILITY(U,$J,358.3,30653,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,30653,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,30653,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,30654,0)
+ ;;=J09.X2^^135^1382^26
+ ;;^UTILITY(U,$J,358.3,30654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32256,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,32256,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,32256,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,32257,0)
- ;;=L97.429^^182^1981^191
- ;;^UTILITY(U,$J,358.3,32257,1,0)
+ ;;^UTILITY(U,$J,358.3,30654,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,30654,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,30654,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,30655,0)
+ ;;=J09.X3^^135^1382^27
+ ;;^UTILITY(U,$J,358.3,30655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32257,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,32257,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,32257,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,32258,0)
- ;;=L97.511^^182^1981^212
- ;;^UTILITY(U,$J,358.3,32258,1,0)
+ ;;^UTILITY(U,$J,358.3,30655,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,30655,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,30655,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,30656,0)
+ ;;=J09.X9^^135^1382^28
+ ;;^UTILITY(U,$J,358.3,30656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32258,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32258,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,32258,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,32259,0)
- ;;=L97.512^^182^1981^213
- ;;^UTILITY(U,$J,358.3,32259,1,0)
+ ;;^UTILITY(U,$J,358.3,30656,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,30656,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,30656,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,30657,0)
+ ;;=J44.9^^135^1382^14
+ ;;^UTILITY(U,$J,358.3,30657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32259,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,32259,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,32259,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,32260,0)
- ;;=L97.513^^182^1981^214
- ;;^UTILITY(U,$J,358.3,32260,1,0)
+ ;;^UTILITY(U,$J,358.3,30657,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,30657,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,30657,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,30658,0)
+ ;;=J44.1^^135^1382^12
+ ;;^UTILITY(U,$J,358.3,30658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32260,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,32260,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,32260,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,32261,0)
- ;;=L97.514^^182^1981^215
- ;;^UTILITY(U,$J,358.3,32261,1,0)
+ ;;^UTILITY(U,$J,358.3,30658,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,30658,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,30658,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,30659,0)
+ ;;=J42.^^135^1382^10
+ ;;^UTILITY(U,$J,358.3,30659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32261,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,32261,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,32261,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,32262,0)
- ;;=L97.519^^182^1981^216
- ;;^UTILITY(U,$J,358.3,32262,1,0)
+ ;;^UTILITY(U,$J,358.3,30659,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,30659,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,30659,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,30660,0)
+ ;;=J43.9^^135^1382^22
+ ;;^UTILITY(U,$J,358.3,30660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32262,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,32262,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,32262,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,32263,0)
- ;;=L97.521^^182^1981^182
- ;;^UTILITY(U,$J,358.3,32263,1,0)
+ ;;^UTILITY(U,$J,358.3,30660,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,30660,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,30660,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,30661,0)
+ ;;=J43.0^^135^1382^30
+ ;;^UTILITY(U,$J,358.3,30661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32263,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,32263,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,32263,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,32264,0)
- ;;=L97.522^^182^1981^183
- ;;^UTILITY(U,$J,358.3,32264,1,0)
+ ;;^UTILITY(U,$J,358.3,30661,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,30661,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,30661,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,30662,0)
+ ;;=J43.1^^135^1382^21
+ ;;^UTILITY(U,$J,358.3,30662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32264,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,30662,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,30662,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,30662,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,30663,0)
+ ;;=J43.2^^135^1382^19
+ ;;^UTILITY(U,$J,358.3,30663,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30663,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,30663,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,30663,2)
+ ;;=^5008237

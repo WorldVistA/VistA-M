@@ -1,128 +1,142 @@
-IBDEI0KF ; ; 06-AUG-2015
+IBDEI0KF ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9663,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9663,1,2,0)
- ;;=2^Remove Corneal Epith, EDTA
- ;;^UTILITY(U,$J,358.3,9663,1,3,0)
- ;;=3^65436
- ;;^UTILITY(U,$J,358.3,9664,0)
- ;;=65772^^43^551^24^^^^1
- ;;^UTILITY(U,$J,358.3,9664,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9664,1,2,0)
- ;;=2^Incision, Cornea, Relaxation
- ;;^UTILITY(U,$J,358.3,9664,1,3,0)
- ;;=3^65772
- ;;^UTILITY(U,$J,358.3,9665,0)
- ;;=37609^^43^551^32^^^^1
- ;;^UTILITY(U,$J,358.3,9665,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9665,1,2,0)
- ;;=2^Temporal Artery Biopsy
- ;;^UTILITY(U,$J,358.3,9665,1,3,0)
- ;;=3^37609
- ;;^UTILITY(U,$J,358.3,9666,0)
- ;;=66170^^43^551^23^^^^1
- ;;^UTILITY(U,$J,358.3,9666,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9666,1,2,0)
- ;;=2^Fistulization Sclera for Glauc Trabeculectomy
- ;;^UTILITY(U,$J,358.3,9666,1,3,0)
- ;;=3^66170
- ;;^UTILITY(U,$J,358.3,9667,0)
- ;;=65800^^43^551^13^^^^1
- ;;^UTILITY(U,$J,358.3,9667,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9667,1,2,0)
- ;;=2^Drainage of Eye
- ;;^UTILITY(U,$J,358.3,9667,1,3,0)
- ;;=3^65800
- ;;^UTILITY(U,$J,358.3,9668,0)
- ;;=67805^^43^551^6^^^^1
- ;;^UTILITY(U,$J,358.3,9668,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9668,1,2,0)
- ;;=2^Chalazion-Excision;Mult,Different Lid
- ;;^UTILITY(U,$J,358.3,9668,1,3,0)
- ;;=3^67805
- ;;^UTILITY(U,$J,358.3,9669,0)
- ;;=67801^^43^551^7^^^^1
- ;;^UTILITY(U,$J,358.3,9669,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9669,1,2,0)
- ;;=2^Chalazion-Excision;Mult,Same Lid
- ;;^UTILITY(U,$J,358.3,9669,1,3,0)
- ;;=3^67801
- ;;^UTILITY(U,$J,358.3,9670,0)
- ;;=68110^^43^551^29^^^^1
- ;;^UTILITY(U,$J,358.3,9670,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9670,1,2,0)
- ;;=2^Remove Eyelid Lining Lesion
- ;;^UTILITY(U,$J,358.3,9670,1,3,0)
- ;;=3^68110
- ;;^UTILITY(U,$J,358.3,9671,0)
- ;;=65855^^43^552^11^^^^1
- ;;^UTILITY(U,$J,358.3,9671,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9671,1,2,0)
- ;;=2^Trabeculoplasty, one/more sessions
- ;;^UTILITY(U,$J,358.3,9671,1,3,0)
- ;;=3^65855
- ;;^UTILITY(U,$J,358.3,9672,0)
- ;;=65860^^43^552^10^^^^1
- ;;^UTILITY(U,$J,358.3,9672,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9672,1,2,0)
- ;;=2^Sever Adhesions of Ant Segment
- ;;^UTILITY(U,$J,358.3,9672,1,3,0)
- ;;=3^65860
- ;;^UTILITY(U,$J,358.3,9673,0)
- ;;=66761^^43^552^5^^^^1
- ;;^UTILITY(U,$J,358.3,9673,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9673,1,2,0)
- ;;=2^Iridotomy/Iridectomy, one/more session
- ;;^UTILITY(U,$J,358.3,9673,1,3,0)
- ;;=3^66761
- ;;^UTILITY(U,$J,358.3,9674,0)
- ;;=66762^^43^552^4^^^^1
- ;;^UTILITY(U,$J,358.3,9674,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9674,1,2,0)
- ;;=2^Iridoplasty, one/more sessions
- ;;^UTILITY(U,$J,358.3,9674,1,3,0)
- ;;=3^66762
- ;;^UTILITY(U,$J,358.3,9675,0)
- ;;=67105^^43^552^9^^^^1
- ;;^UTILITY(U,$J,358.3,9675,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9675,1,2,0)
- ;;=2^Repair Detach Retina 1 or + Sessions,Photocoag
- ;;^UTILITY(U,$J,358.3,9675,1,3,0)
- ;;=3^67105
- ;;^UTILITY(U,$J,358.3,9676,0)
- ;;=67145^^43^552^8^^^^1
- ;;^UTILITY(U,$J,358.3,9676,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9676,1,2,0)
- ;;=2^Prophylactic Tx of Retina 1 or + Sessions,Photocoag
- ;;^UTILITY(U,$J,358.3,9676,1,3,0)
- ;;=3^67145
- ;;^UTILITY(U,$J,358.3,9677,0)
- ;;=67210^^43^552^3^^^^1
- ;;^UTILITY(U,$J,358.3,9677,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9677,1,2,0)
- ;;=2^Destroy Retinal Lesion 1 or + Sessions,Photocoag
- ;;^UTILITY(U,$J,358.3,9677,1,3,0)
- ;;=3^67210
- ;;^UTILITY(U,$J,358.3,9678,0)
- ;;=67228^^43^552^2^^^^1
- ;;^UTILITY(U,$J,358.3,9678,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9678,1,2,0)
- ;;=2^Destroy Ext Retinopathy, one/more sessions
+ ;;^UTILITY(U,$J,358.3,9228,2)
+ ;;=^185540
+ ;;^UTILITY(U,$J,358.3,9229,0)
+ ;;=G25.81^^58^577^8
+ ;;^UTILITY(U,$J,358.3,9229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9229,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,9229,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,9229,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,9230,0)
+ ;;=R27.0^^58^577^1
+ ;;^UTILITY(U,$J,358.3,9230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9230,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,9230,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,9230,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,9231,0)
+ ;;=C71.9^^58^578^3
+ ;;^UTILITY(U,$J,358.3,9231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9231,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,9231,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,9231,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,9232,0)
+ ;;=C72.0^^58^578^5
+ ;;^UTILITY(U,$J,358.3,9232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9232,1,3,0)
+ ;;=3^Malig Neop Spinal Cord
+ ;;^UTILITY(U,$J,358.3,9232,1,4,0)
+ ;;=4^C72.0
+ ;;^UTILITY(U,$J,358.3,9232,2)
+ ;;=^267292
+ ;;^UTILITY(U,$J,358.3,9233,0)
+ ;;=C72.1^^58^578^4
+ ;;^UTILITY(U,$J,358.3,9233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9233,1,3,0)
+ ;;=3^Malig Neop Cauda Equina
+ ;;^UTILITY(U,$J,358.3,9233,1,4,0)
+ ;;=4^C72.1
+ ;;^UTILITY(U,$J,358.3,9233,2)
+ ;;=^5001298
+ ;;^UTILITY(U,$J,358.3,9234,0)
+ ;;=C79.31^^58^578^6
+ ;;^UTILITY(U,$J,358.3,9234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9234,1,3,0)
+ ;;=3^Secondary Malig Neop Brain
+ ;;^UTILITY(U,$J,358.3,9234,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,9234,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,9235,0)
+ ;;=D32.0^^58^578^1
+ ;;^UTILITY(U,$J,358.3,9235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9235,1,3,0)
+ ;;=3^Benign Neop Cerebral Meninges
+ ;;^UTILITY(U,$J,358.3,9235,1,4,0)
+ ;;=4^D32.0
+ ;;^UTILITY(U,$J,358.3,9235,2)
+ ;;=^267681
+ ;;^UTILITY(U,$J,358.3,9236,0)
+ ;;=D33.4^^58^578^2
+ ;;^UTILITY(U,$J,358.3,9236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9236,1,3,0)
+ ;;=3^Benign Neop Spinal Cord
+ ;;^UTILITY(U,$J,358.3,9236,1,4,0)
+ ;;=4^D33.4
+ ;;^UTILITY(U,$J,358.3,9236,2)
+ ;;=^267682
+ ;;^UTILITY(U,$J,358.3,9237,0)
+ ;;=F03.90^^58^579^3
+ ;;^UTILITY(U,$J,358.3,9237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9237,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,9237,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,9237,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,9238,0)
+ ;;=G30.9^^58^579^1
+ ;;^UTILITY(U,$J,358.3,9238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9238,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,9238,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,9238,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,9239,0)
+ ;;=R41.3^^58^579^2
+ ;;^UTILITY(U,$J,358.3,9239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9239,1,3,0)
+ ;;=3^Amnesia,Other
+ ;;^UTILITY(U,$J,358.3,9239,1,4,0)
+ ;;=4^R41.3
+ ;;^UTILITY(U,$J,358.3,9239,2)
+ ;;=^5019439
+ ;;^UTILITY(U,$J,358.3,9240,0)
+ ;;=G47.61^^58^580^3
+ ;;^UTILITY(U,$J,358.3,9240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9240,1,3,0)
+ ;;=3^Periodic Limb Movement Disorder
+ ;;^UTILITY(U,$J,358.3,9240,1,4,0)
+ ;;=4^G47.61
+ ;;^UTILITY(U,$J,358.3,9240,2)
+ ;;=^5003987
+ ;;^UTILITY(U,$J,358.3,9241,0)
+ ;;=G25.81^^58^580^4
+ ;;^UTILITY(U,$J,358.3,9241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9241,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,9241,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,9241,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,9242,0)
+ ;;=G47.419^^58^580^2
+ ;;^UTILITY(U,$J,358.3,9242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9242,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy

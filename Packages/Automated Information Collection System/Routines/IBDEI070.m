@@ -1,138 +1,136 @@
-IBDEI070 ; ; 06-AUG-2015
+IBDEI070 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2766,1,0)
+ ;;^UTILITY(U,$J,358.3,2698,1,4,0)
+ ;;=4^M71.552
+ ;;^UTILITY(U,$J,358.3,2698,2)
+ ;;=^5013201
+ ;;^UTILITY(U,$J,358.3,2699,0)
+ ;;=M71.561^^25^225^21
+ ;;^UTILITY(U,$J,358.3,2699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2766,1,3,0)
- ;;=3^Mycobacteria, Atypical, Pulmonary
- ;;^UTILITY(U,$J,358.3,2766,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,2766,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,2767,0)
- ;;=A15.9^^7^83^148
- ;;^UTILITY(U,$J,358.3,2767,1,0)
+ ;;^UTILITY(U,$J,358.3,2699,1,3,0)
+ ;;=3^Bursitis, rt knee NEC
+ ;;^UTILITY(U,$J,358.3,2699,1,4,0)
+ ;;=4^M71.561
+ ;;^UTILITY(U,$J,358.3,2699,2)
+ ;;=^5013203
+ ;;^UTILITY(U,$J,358.3,2700,0)
+ ;;=M71.562^^25^225^14
+ ;;^UTILITY(U,$J,358.3,2700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2767,1,3,0)
- ;;=3^Mycobacterium, Tuberculosis active disease
- ;;^UTILITY(U,$J,358.3,2767,1,4,0)
- ;;=4^A15.9
- ;;^UTILITY(U,$J,358.3,2767,2)
- ;;=^5000066
- ;;^UTILITY(U,$J,358.3,2768,0)
- ;;=A31.2^^7^83^63
- ;;^UTILITY(U,$J,358.3,2768,1,0)
+ ;;^UTILITY(U,$J,358.3,2700,1,3,0)
+ ;;=3^Bursitis, lft knee NEC
+ ;;^UTILITY(U,$J,358.3,2700,1,4,0)
+ ;;=4^M71.562
+ ;;^UTILITY(U,$J,358.3,2700,2)
+ ;;=^5013204
+ ;;^UTILITY(U,$J,358.3,2701,0)
+ ;;=M71.571^^25^225^17
+ ;;^UTILITY(U,$J,358.3,2701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2768,1,3,0)
- ;;=3^Disseminated mycobacterium avian-intracellulare complex(DMAC)
- ;;^UTILITY(U,$J,358.3,2768,1,4,0)
- ;;=4^A31.2
- ;;^UTILITY(U,$J,358.3,2768,2)
- ;;=^5000151
- ;;^UTILITY(U,$J,358.3,2769,0)
- ;;=A31.8^^7^83^147
- ;;^UTILITY(U,$J,358.3,2769,1,0)
+ ;;^UTILITY(U,$J,358.3,2701,1,3,0)
+ ;;=3^Bursitis, rt ankle & foot NEC
+ ;;^UTILITY(U,$J,358.3,2701,1,4,0)
+ ;;=4^M71.571
+ ;;^UTILITY(U,$J,358.3,2701,2)
+ ;;=^5013206
+ ;;^UTILITY(U,$J,358.3,2702,0)
+ ;;=M71.572^^25^225^10
+ ;;^UTILITY(U,$J,358.3,2702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2769,1,3,0)
- ;;=3^Mycobacterium, Non-Tuberculosis NEC
- ;;^UTILITY(U,$J,358.3,2769,1,4,0)
- ;;=4^A31.8
- ;;^UTILITY(U,$J,358.3,2769,2)
- ;;=^5000152
- ;;^UTILITY(U,$J,358.3,2770,0)
- ;;=J00.^^7^83^13
- ;;^UTILITY(U,$J,358.3,2770,1,0)
+ ;;^UTILITY(U,$J,358.3,2702,1,3,0)
+ ;;=3^Bursitis, lft ankle & foot NEC
+ ;;^UTILITY(U,$J,358.3,2702,1,4,0)
+ ;;=4^M71.572
+ ;;^UTILITY(U,$J,358.3,2702,2)
+ ;;=^5013207
+ ;;^UTILITY(U,$J,358.3,2703,0)
+ ;;=M71.58^^25^225^16
+ ;;^UTILITY(U,$J,358.3,2703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2770,1,3,0)
- ;;=3^Acute nasopharyngitis [common cold]
- ;;^UTILITY(U,$J,358.3,2770,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,2770,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,2771,0)
- ;;=R11.2^^7^83^149
- ;;^UTILITY(U,$J,358.3,2771,1,0)
+ ;;^UTILITY(U,$J,358.3,2703,1,3,0)
+ ;;=3^Bursitis, oth site NEC
+ ;;^UTILITY(U,$J,358.3,2703,1,4,0)
+ ;;=4^M71.58
+ ;;^UTILITY(U,$J,358.3,2703,2)
+ ;;=^5133867
+ ;;^UTILITY(U,$J,358.3,2704,0)
+ ;;=M66.231^^25^225^95
+ ;;^UTILITY(U,$J,358.3,2704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2771,1,3,0)
- ;;=3^Nausea with vomiting, unspecified
- ;;^UTILITY(U,$J,358.3,2771,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,2771,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,2772,0)
- ;;=D70.9^^7^83^150
- ;;^UTILITY(U,$J,358.3,2772,1,0)
+ ;;^UTILITY(U,$J,358.3,2704,1,3,0)
+ ;;=3^Spont ruptr of extnsr tendons, rt forearm
+ ;;^UTILITY(U,$J,358.3,2704,1,4,0)
+ ;;=4^M66.231
+ ;;^UTILITY(U,$J,358.3,2704,2)
+ ;;=^5012854
+ ;;^UTILITY(U,$J,358.3,2705,0)
+ ;;=M66.232^^25^225^93
+ ;;^UTILITY(U,$J,358.3,2705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2772,1,3,0)
- ;;=3^Neutropenia, unspecified
- ;;^UTILITY(U,$J,358.3,2772,1,4,0)
- ;;=4^D70.9
- ;;^UTILITY(U,$J,358.3,2772,2)
- ;;=^334186
- ;;^UTILITY(U,$J,358.3,2773,0)
- ;;=M86.10^^7^83^152
- ;;^UTILITY(U,$J,358.3,2773,1,0)
+ ;;^UTILITY(U,$J,358.3,2705,1,3,0)
+ ;;=3^Spont ruptr of extnsr tendons, lft forearm
+ ;;^UTILITY(U,$J,358.3,2705,1,4,0)
+ ;;=4^M66.232
+ ;;^UTILITY(U,$J,358.3,2705,2)
+ ;;=^5012855
+ ;;^UTILITY(U,$J,358.3,2706,0)
+ ;;=M66.241^^25^225^96
+ ;;^UTILITY(U,$J,358.3,2706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2773,1,3,0)
- ;;=3^Osteomyelitis, acute - NOS
- ;;^UTILITY(U,$J,358.3,2773,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,2773,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,2774,0)
- ;;=M86.60^^7^83^153
- ;;^UTILITY(U,$J,358.3,2774,1,0)
+ ;;^UTILITY(U,$J,358.3,2706,1,3,0)
+ ;;=3^Spont ruptr of extnsr tendons, rt hand
+ ;;^UTILITY(U,$J,358.3,2706,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,2706,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,2707,0)
+ ;;=M66.242^^25^225^94
+ ;;^UTILITY(U,$J,358.3,2707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2774,1,3,0)
- ;;=3^Osteomyelitis, chronic - NOS
- ;;^UTILITY(U,$J,358.3,2774,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,2774,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,2775,0)
- ;;=H60.501^^7^83^156
- ;;^UTILITY(U,$J,358.3,2775,1,0)
+ ;;^UTILITY(U,$J,358.3,2707,1,3,0)
+ ;;=3^Spont ruptr of extnsr tendons, lft hand
+ ;;^UTILITY(U,$J,358.3,2707,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,2707,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,2708,0)
+ ;;=M66.841^^25^225^102
+ ;;^UTILITY(U,$J,358.3,2708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2775,1,3,0)
- ;;=3^Otitis, externa, right ear
- ;;^UTILITY(U,$J,358.3,2775,1,4,0)
- ;;=4^H60.501
- ;;^UTILITY(U,$J,358.3,2775,2)
- ;;=^5006467
- ;;^UTILITY(U,$J,358.3,2776,0)
- ;;=H60.502^^7^83^155
- ;;^UTILITY(U,$J,358.3,2776,1,0)
+ ;;^UTILITY(U,$J,358.3,2708,1,3,0)
+ ;;=3^Spont ruptr of other tendons, rt hand
+ ;;^UTILITY(U,$J,358.3,2708,1,4,0)
+ ;;=4^M66.841
+ ;;^UTILITY(U,$J,358.3,2708,2)
+ ;;=^5012898
+ ;;^UTILITY(U,$J,358.3,2709,0)
+ ;;=M66.842^^25^225^101
+ ;;^UTILITY(U,$J,358.3,2709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2776,1,3,0)
- ;;=3^Otitis, externa, left ear
- ;;^UTILITY(U,$J,358.3,2776,1,4,0)
- ;;=4^H60.502
- ;;^UTILITY(U,$J,358.3,2776,2)
- ;;=^5006468
- ;;^UTILITY(U,$J,358.3,2777,0)
- ;;=H60.503^^7^83^154
- ;;^UTILITY(U,$J,358.3,2777,1,0)
+ ;;^UTILITY(U,$J,358.3,2709,1,3,0)
+ ;;=3^Spont ruptr of other tendons, lft hand
+ ;;^UTILITY(U,$J,358.3,2709,1,4,0)
+ ;;=4^M66.842
+ ;;^UTILITY(U,$J,358.3,2709,2)
+ ;;=^5133840
+ ;;^UTILITY(U,$J,358.3,2710,0)
+ ;;=M66.331^^25^225^99
+ ;;^UTILITY(U,$J,358.3,2710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2777,1,3,0)
- ;;=3^Otitis, externa, bilateral
- ;;^UTILITY(U,$J,358.3,2777,1,4,0)
- ;;=4^H60.503
- ;;^UTILITY(U,$J,358.3,2777,2)
- ;;=^5006469
- ;;^UTILITY(U,$J,358.3,2778,0)
- ;;=H66.91^^7^83^159
- ;;^UTILITY(U,$J,358.3,2778,1,0)
+ ;;^UTILITY(U,$J,358.3,2710,1,3,0)
+ ;;=3^Spont ruptr of flexor tendons, rt forearm
+ ;;^UTILITY(U,$J,358.3,2710,1,4,0)
+ ;;=4^M66.331
+ ;;^UTILITY(U,$J,358.3,2710,2)
+ ;;=^5012878
+ ;;^UTILITY(U,$J,358.3,2711,0)
+ ;;=M66.332^^25^225^97
+ ;;^UTILITY(U,$J,358.3,2711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2778,1,3,0)
- ;;=3^Otitis, media, right ear
- ;;^UTILITY(U,$J,358.3,2778,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,2778,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,2779,0)
- ;;=H66.92^^7^83^158
- ;;^UTILITY(U,$J,358.3,2779,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2779,1,3,0)
- ;;=3^Otitis, media, left ear
+ ;;^UTILITY(U,$J,358.3,2711,1,3,0)
+ ;;=3^Spont ruptr of flexor tendons, lft forearm
+ ;;^UTILITY(U,$J,358.3,2711,1,4,0)
+ ;;=4^M66.332

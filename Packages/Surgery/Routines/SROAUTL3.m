@@ -1,5 +1,5 @@
 SROAUTL3 ;BIR/ADM - RISK ASSESSMENT UTILITY ;08/11/2011
- ;;3.0;Surgery;**38,47,63,77,142,163,166,176**;24 Jun 93;Build 8
+ ;;3.0;Surgery;**38,47,63,77,142,163,166,176,184**;24 Jun 93;Build 35
  ;
  ; Reference to ^DIC(45.3 supported by DBIA #218
  ;
@@ -47,7 +47,7 @@ LAB ; print preoperative laboratory test information (managerial)
  Q
 TR S J=I,J=$TR(J,"1234567890.","ABCDEFGHIJP")
  Q
-NON S DR=".03;102;.035"
+NON S DR="102;.035"
  Q
 CHK ; check for missing information for excluded cases
  K SRX,DA,DIC,DIQ,DR,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="I" D NON D EN^DIQ1 D ^SROAUTL2

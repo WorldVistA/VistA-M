@@ -1,5 +1,5 @@
 SROAPR1A ;B'HAM ISC/MAM - EDIT PREOP INFO ; [ 03/16/04  2:44 PM ]
- ;;3.0;Surgery;**38,125,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**38,125,182,184**;24 Jun 93;Build 35
  K DA D @EMILY Q
 4 ; edit gastrointestinal information
  W ! K DIR S X=$P(SRAO(4),"^") I X'="" S DIR("B")=X
@@ -30,7 +30,7 @@ NOGAST ; no gastointectinal problems
  S $P(^SRF(SRTN,200),"^",16)=SRAX
  Q
 CARD ; cardiac
- W ! K DR,DIE S DA=SRTN,DIE=130,DR="207T;205T;640T" D ^DIE K DR
+ W ! K DR,DIE S DA=SRTN,DIE=130,DR="423T;205T;640T" D ^DIE K DR
  S X="5D" D ^SROACL2  S SRYY=Y D
  .K DR,DIE S DA=SRTN,DR="485///"_$P(SRYY,"^"),DIE=130 D ^DIE K DR
  W ! K DR,DIE S DA=SRTN,DIE=130,DR="267T;643T;641T" D ^DIE K DR
@@ -38,7 +38,7 @@ CARD ; cardiac
  Q
 NOCARD ; no cardiac problems
  F I=32,36 S $P(^SRF(SRTN,200),"^",I)=SRAX
- S $P(^SRF(SRTN,206),"^",19)="N",$P(^SRF(SRTN,206),"^",18)="N"
+ S $P(^SRF(SRTN,207),"^",29)=0,$P(^SRF(SRTN,206),"^",18)="N"
  S $P(^SRF(SRTN,206),"^",42)=0
  S $P(^SRF(SRTN,206),"^",14)=0
  S $P(^SRF(SRTN,200),"^",56)=1,$P(^SRF(SRTN,200),"^",57)=1

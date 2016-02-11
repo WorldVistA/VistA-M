@@ -1,134 +1,134 @@
-IBDEI02D ; ; 06-AUG-2015
+IBDEI02D ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,557,1,4,0)
- ;;=4^C92.21
- ;;^UTILITY(U,$J,358.3,557,2)
- ;;=^5001796
- ;;^UTILITY(U,$J,358.3,558,0)
- ;;=C92.22^^2^24^24
- ;;^UTILITY(U,$J,358.3,558,1,0)
+ ;;^UTILITY(U,$J,358.3,340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,558,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in relapse
- ;;^UTILITY(U,$J,358.3,558,1,4,0)
- ;;=4^C92.22
- ;;^UTILITY(U,$J,358.3,558,2)
- ;;=^5001797
- ;;^UTILITY(U,$J,358.3,559,0)
- ;;=C92.30^^2^24^54
- ;;^UTILITY(U,$J,358.3,559,1,0)
+ ;;^UTILITY(U,$J,358.3,340,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,340,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,340,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,341,0)
+ ;;=Z65.3^^3^43^2
+ ;;^UTILITY(U,$J,358.3,341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,559,1,3,0)
- ;;=3^Myeloid sarcoma, not having achieved remission
- ;;^UTILITY(U,$J,358.3,559,1,4,0)
- ;;=4^C92.30
- ;;^UTILITY(U,$J,358.3,559,2)
- ;;=^5001798
- ;;^UTILITY(U,$J,358.3,560,0)
- ;;=C92.31^^2^24^53
- ;;^UTILITY(U,$J,358.3,560,1,0)
+ ;;^UTILITY(U,$J,358.3,341,1,3,0)
+ ;;=3^Problems Related to Oth Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,341,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,341,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,342,0)
+ ;;=Z65.8^^3^44^5
+ ;;^UTILITY(U,$J,358.3,342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,560,1,3,0)
- ;;=3^Myeloid sarcoma, in remission
- ;;^UTILITY(U,$J,358.3,560,1,4,0)
- ;;=4^C92.31
- ;;^UTILITY(U,$J,358.3,560,2)
- ;;=^5001799
- ;;^UTILITY(U,$J,358.3,561,0)
- ;;=C92.32^^2^24^52
- ;;^UTILITY(U,$J,358.3,561,1,0)
+ ;;^UTILITY(U,$J,358.3,342,1,3,0)
+ ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,342,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,342,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,343,0)
+ ;;=Z64.0^^3^44^4
+ ;;^UTILITY(U,$J,358.3,343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,561,1,3,0)
- ;;=3^Myeloid sarcoma, in relapse
- ;;^UTILITY(U,$J,358.3,561,1,4,0)
- ;;=4^C92.32
- ;;^UTILITY(U,$J,358.3,561,2)
- ;;=^5001800
- ;;^UTILITY(U,$J,358.3,562,0)
- ;;=C92.90^^2^24^51
- ;;^UTILITY(U,$J,358.3,562,1,0)
+ ;;^UTILITY(U,$J,358.3,343,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,343,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,343,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,344,0)
+ ;;=Z64.1^^3^44^3
+ ;;^UTILITY(U,$J,358.3,344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,562,1,3,0)
- ;;=3^Myeloid leukemia, unspecified, not having achieved remission
- ;;^UTILITY(U,$J,358.3,562,1,4,0)
- ;;=4^C92.90
- ;;^UTILITY(U,$J,358.3,562,2)
- ;;=^5001810
- ;;^UTILITY(U,$J,358.3,563,0)
- ;;=C92.91^^2^24^50
- ;;^UTILITY(U,$J,358.3,563,1,0)
+ ;;^UTILITY(U,$J,358.3,344,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,344,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,344,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,345,0)
+ ;;=Z64.4^^3^44^1
+ ;;^UTILITY(U,$J,358.3,345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,563,1,3,0)
- ;;=3^Myeloid leukemia, unspecified in remission
- ;;^UTILITY(U,$J,358.3,563,1,4,0)
- ;;=4^C92.91
- ;;^UTILITY(U,$J,358.3,563,2)
- ;;=^5001811
- ;;^UTILITY(U,$J,358.3,564,0)
- ;;=C92.92^^2^24^49
- ;;^UTILITY(U,$J,358.3,564,1,0)
+ ;;^UTILITY(U,$J,358.3,345,1,3,0)
+ ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
+ ;;^UTILITY(U,$J,358.3,345,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,345,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,346,0)
+ ;;=Z65.5^^3^44^2
+ ;;^UTILITY(U,$J,358.3,346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,564,1,3,0)
- ;;=3^Myeloid leukemia, unspecified in relapse
- ;;^UTILITY(U,$J,358.3,564,1,4,0)
- ;;=4^C92.92
- ;;^UTILITY(U,$J,358.3,564,2)
- ;;=^5001812
- ;;^UTILITY(U,$J,358.3,565,0)
- ;;=C93.00^^2^24^12
- ;;^UTILITY(U,$J,358.3,565,1,0)
+ ;;^UTILITY(U,$J,358.3,346,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,346,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,346,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,347,0)
+ ;;=Z62.820^^3^45^4
+ ;;^UTILITY(U,$J,358.3,347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,565,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, not achieve remission
- ;;^UTILITY(U,$J,358.3,565,1,4,0)
- ;;=4^C93.00
- ;;^UTILITY(U,$J,358.3,565,2)
- ;;=^5001819
- ;;^UTILITY(U,$J,358.3,566,0)
- ;;=C93.01^^2^24^10
- ;;^UTILITY(U,$J,358.3,566,1,0)
+ ;;^UTILITY(U,$J,358.3,347,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,347,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,347,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,348,0)
+ ;;=Z62.891^^3^45^6
+ ;;^UTILITY(U,$J,358.3,348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,566,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,566,1,4,0)
- ;;=4^C93.01
- ;;^UTILITY(U,$J,358.3,566,2)
- ;;=^5001820
- ;;^UTILITY(U,$J,358.3,567,0)
- ;;=C93.02^^2^24^11
- ;;^UTILITY(U,$J,358.3,567,1,0)
+ ;;^UTILITY(U,$J,358.3,348,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,348,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,348,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,349,0)
+ ;;=Z62.898^^3^45^1
+ ;;^UTILITY(U,$J,358.3,349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,567,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,567,1,4,0)
- ;;=4^C93.02
- ;;^UTILITY(U,$J,358.3,567,2)
- ;;=^5001821
- ;;^UTILITY(U,$J,358.3,568,0)
- ;;=C93.10^^2^24^31
- ;;^UTILITY(U,$J,358.3,568,1,0)
+ ;;^UTILITY(U,$J,358.3,349,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,349,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,349,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,350,0)
+ ;;=Z63.0^^3^45^5
+ ;;^UTILITY(U,$J,358.3,350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,568,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia not achieve remission
- ;;^UTILITY(U,$J,358.3,568,1,4,0)
- ;;=4^C93.10
- ;;^UTILITY(U,$J,358.3,568,2)
- ;;=^5001822
- ;;^UTILITY(U,$J,358.3,569,0)
- ;;=C93.11^^2^24^33
- ;;^UTILITY(U,$J,358.3,569,1,0)
+ ;;^UTILITY(U,$J,358.3,350,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,350,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,350,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,351,0)
+ ;;=Z63.5^^3^45^2
+ ;;^UTILITY(U,$J,358.3,351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,569,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,569,1,4,0)
- ;;=4^C93.11
- ;;^UTILITY(U,$J,358.3,569,2)
- ;;=^5001823
- ;;^UTILITY(U,$J,358.3,570,0)
- ;;=C93.12^^2^24^32
- ;;^UTILITY(U,$J,358.3,570,1,0)
+ ;;^UTILITY(U,$J,358.3,351,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,351,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,351,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,352,0)
+ ;;=Z63.8^^3^45^3
+ ;;^UTILITY(U,$J,358.3,352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,570,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,352,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,352,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,352,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,353,0)
+ ;;=Z63.4^^3^45^7

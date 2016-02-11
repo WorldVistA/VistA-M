@@ -1,134 +1,126 @@
-IBDEI04A ; ; 06-AUG-2015
+IBDEI04A ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1476,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,1477,0)
- ;;=J84.111^^3^43^11
- ;;^UTILITY(U,$J,358.3,1477,1,0)
+ ;;^UTILITY(U,$J,358.3,1319,0)
+ ;;=92541^^13^143^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1319,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1319,1,2,0)
+ ;;=2^92541
+ ;;^UTILITY(U,$J,358.3,1319,1,3,0)
+ ;;=3^Spontaneous Nystagmus Test W/Recording
+ ;;^UTILITY(U,$J,358.3,1320,0)
+ ;;=92540^^13^143^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1320,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1320,1,2,0)
+ ;;=2^92540
+ ;;^UTILITY(U,$J,358.3,1320,1,3,0)
+ ;;=3^Basic Vestibular Eval w/Recordings
+ ;;^UTILITY(U,$J,358.3,1321,0)
+ ;;=92531^^13^144^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1321,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1321,1,2,0)
+ ;;=2^92531
+ ;;^UTILITY(U,$J,358.3,1321,1,3,0)
+ ;;=3^Spontaneous Nystagmus Test, W/O Recording
+ ;;^UTILITY(U,$J,358.3,1322,0)
+ ;;=92532^^13^144^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1322,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1322,1,2,0)
+ ;;=2^92532
+ ;;^UTILITY(U,$J,358.3,1322,1,3,0)
+ ;;=3^Positional Nystagmus Test, W/O Recording
+ ;;^UTILITY(U,$J,358.3,1323,0)
+ ;;=92533^^13^144^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1323,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1323,1,2,0)
+ ;;=2^92533
+ ;;^UTILITY(U,$J,358.3,1323,1,3,0)
+ ;;=3^Caloric Vestibular Test, W/O Recording
+ ;;^UTILITY(U,$J,358.3,1324,0)
+ ;;=92534^^13^144^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1324,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1324,1,2,0)
+ ;;=2^92534
+ ;;^UTILITY(U,$J,358.3,1324,1,3,0)
+ ;;=3^Opokinetic Nystagmus Test, W/O Recording
+ ;;^UTILITY(U,$J,358.3,1325,0)
+ ;;=92626^^13^145^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1325,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1325,1,2,0)
+ ;;=2^92626
+ ;;^UTILITY(U,$J,358.3,1325,1,3,0)
+ ;;=3^Eval of Auditory Rehab Status,1st Hr
+ ;;^UTILITY(U,$J,358.3,1326,0)
+ ;;=92627^^13^145^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1326,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1326,1,2,0)
+ ;;=2^92627
+ ;;^UTILITY(U,$J,358.3,1326,1,3,0)
+ ;;=3^Eval of Auditory Rehab Status,Ea Addl 15min
+ ;;^UTILITY(U,$J,358.3,1327,0)
+ ;;=92630^^13^145^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1327,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1327,1,2,0)
+ ;;=2^92630
+ ;;^UTILITY(U,$J,358.3,1327,1,3,0)
+ ;;=3^Auditory Rehab;Prelingual Hearing Loss
+ ;;^UTILITY(U,$J,358.3,1328,0)
+ ;;=92633^^13^145^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1328,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1328,1,2,0)
+ ;;=2^92633
+ ;;^UTILITY(U,$J,358.3,1328,1,3,0)
+ ;;=3^Auditory Rehab;Postlingual Hearing Loss
+ ;;^UTILITY(U,$J,358.3,1329,0)
+ ;;=92625^^13^145^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1329,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1329,1,2,0)
+ ;;=2^92625
+ ;;^UTILITY(U,$J,358.3,1329,1,3,0)
+ ;;=3^Tinnitus Assessment
+ ;;^UTILITY(U,$J,358.3,1330,0)
+ ;;=99366^^13^146^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1330,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1330,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,1330,1,3,0)
+ ;;=3^Team Conf w/ Pt by HC Pro,30 Min
+ ;;^UTILITY(U,$J,358.3,1331,0)
+ ;;=99368^^13^146^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1331,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1331,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,1331,1,3,0)
+ ;;=3^Team Conf w/o Pt by HC Pro,30 Min
+ ;;^UTILITY(U,$J,358.3,1332,0)
+ ;;=S04.61XA^^14^147^4
+ ;;^UTILITY(U,$J,358.3,1332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1477,1,3,0)
- ;;=3^Idiopathic interstitial pneumonia, not otherwise specified
- ;;^UTILITY(U,$J,358.3,1477,1,4,0)
- ;;=4^J84.111
- ;;^UTILITY(U,$J,358.3,1477,2)
- ;;=^340610
- ;;^UTILITY(U,$J,358.3,1478,0)
- ;;=J84.112^^3^43^13
- ;;^UTILITY(U,$J,358.3,1478,1,0)
+ ;;^UTILITY(U,$J,358.3,1332,1,3,0)
+ ;;=3^Injury of acoustic nerve, right side, initial encounter
+ ;;^UTILITY(U,$J,358.3,1332,1,4,0)
+ ;;=4^S04.61XA
+ ;;^UTILITY(U,$J,358.3,1332,2)
+ ;;=^5020540
+ ;;^UTILITY(U,$J,358.3,1333,0)
+ ;;=S04.61XD^^14^147^5
+ ;;^UTILITY(U,$J,358.3,1333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1478,1,3,0)
- ;;=3^Idiopathic pulmonary fibrosis
- ;;^UTILITY(U,$J,358.3,1478,1,4,0)
- ;;=4^J84.112
- ;;^UTILITY(U,$J,358.3,1478,2)
- ;;=^340534
- ;;^UTILITY(U,$J,358.3,1479,0)
- ;;=J84.113^^3^43^12
- ;;^UTILITY(U,$J,358.3,1479,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1479,1,3,0)
- ;;=3^Idiopathic non-specific interstitial pneumonitis
- ;;^UTILITY(U,$J,358.3,1479,1,4,0)
- ;;=4^J84.113
- ;;^UTILITY(U,$J,358.3,1479,2)
- ;;=^340535
- ;;^UTILITY(U,$J,358.3,1480,0)
- ;;=J84.114^^3^43^1
- ;;^UTILITY(U,$J,358.3,1480,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1480,1,3,0)
- ;;=3^Acute interstitial pneumonitis
- ;;^UTILITY(U,$J,358.3,1480,1,4,0)
- ;;=4^J84.114
- ;;^UTILITY(U,$J,358.3,1480,2)
- ;;=^340536
- ;;^UTILITY(U,$J,358.3,1481,0)
- ;;=J84.115^^3^43^21
- ;;^UTILITY(U,$J,358.3,1481,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1481,1,3,0)
- ;;=3^Respiratory bronchiolitis interstitial lung disease
- ;;^UTILITY(U,$J,358.3,1481,1,4,0)
- ;;=4^J84.115
- ;;^UTILITY(U,$J,358.3,1481,2)
- ;;=^340537
- ;;^UTILITY(U,$J,358.3,1482,0)
- ;;=J84.2^^3^43^15
- ;;^UTILITY(U,$J,358.3,1482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1482,1,3,0)
- ;;=3^Lymphoid interstitial pneumonia
- ;;^UTILITY(U,$J,358.3,1482,1,4,0)
- ;;=4^J84.2
- ;;^UTILITY(U,$J,358.3,1482,2)
- ;;=^5008302
- ;;^UTILITY(U,$J,358.3,1483,0)
- ;;=J84.116^^3^43^7
- ;;^UTILITY(U,$J,358.3,1483,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1483,1,3,0)
- ;;=3^Cryptogenic organizing pneumonia
- ;;^UTILITY(U,$J,358.3,1483,1,4,0)
- ;;=4^J84.116
- ;;^UTILITY(U,$J,358.3,1483,2)
- ;;=^340539
- ;;^UTILITY(U,$J,358.3,1484,0)
- ;;=J84.117^^3^43^8
- ;;^UTILITY(U,$J,358.3,1484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1484,1,3,0)
- ;;=3^Desquamative interstitial pneumonia
- ;;^UTILITY(U,$J,358.3,1484,1,4,0)
- ;;=4^J84.117
- ;;^UTILITY(U,$J,358.3,1484,2)
- ;;=^340540
- ;;^UTILITY(U,$J,358.3,1485,0)
- ;;=J84.81^^3^43^14
- ;;^UTILITY(U,$J,358.3,1485,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1485,1,3,0)
- ;;=3^Lymphangioleiomyomatosis
- ;;^UTILITY(U,$J,358.3,1485,1,4,0)
- ;;=4^J84.81
- ;;^UTILITY(U,$J,358.3,1485,2)
- ;;=^340541
- ;;^UTILITY(U,$J,358.3,1486,0)
- ;;=J84.82^^3^43^2
- ;;^UTILITY(U,$J,358.3,1486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1486,1,3,0)
- ;;=3^Adult pulmonary Langerhans cell histiocytosis
- ;;^UTILITY(U,$J,358.3,1486,1,4,0)
- ;;=4^J84.82
- ;;^UTILITY(U,$J,358.3,1486,2)
- ;;=^340542
- ;;^UTILITY(U,$J,358.3,1487,0)
- ;;=J84.842^^3^43^20
- ;;^UTILITY(U,$J,358.3,1487,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1487,1,3,0)
- ;;=3^Pulmonary interstitial glycogenosis
- ;;^UTILITY(U,$J,358.3,1487,1,4,0)
- ;;=4^J84.842
- ;;^UTILITY(U,$J,358.3,1487,2)
- ;;=^340544
- ;;^UTILITY(U,$J,358.3,1488,0)
- ;;=J84.83^^3^43^27
- ;;^UTILITY(U,$J,358.3,1488,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1488,1,3,0)
- ;;=3^Surfactant mutations of the lung
- ;;^UTILITY(U,$J,358.3,1488,1,4,0)
- ;;=4^J84.83
- ;;^UTILITY(U,$J,358.3,1488,2)
- ;;=^340545
- ;;^UTILITY(U,$J,358.3,1489,0)
- ;;=J99.^^3^43^23
- ;;^UTILITY(U,$J,358.3,1489,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1489,1,3,0)
- ;;=3^Respiratory disorders in diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,1489,1,4,0)
- ;;=4^J99.
+ ;;^UTILITY(U,$J,358.3,1333,1,3,0)
+ ;;=3^Injury of acoustic nerve, right side, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,1333,1,4,0)
+ ;;=4^S04.61XD

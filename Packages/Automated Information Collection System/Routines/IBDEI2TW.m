@@ -1,0 +1,132 @@
+IBDEI2TW ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47476,2)
+ ;;=^5001623
+ ;;^UTILITY(U,$J,358.3,47477,0)
+ ;;=C84.03^^209^2346^356
+ ;;^UTILITY(U,$J,358.3,47477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47477,1,3,0)
+ ;;=3^Mycosis Fungoides,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47477,1,4,0)
+ ;;=4^C84.03
+ ;;^UTILITY(U,$J,358.3,47477,2)
+ ;;=^5001624
+ ;;^UTILITY(U,$J,358.3,47478,0)
+ ;;=C84.04^^209^2346^352
+ ;;^UTILITY(U,$J,358.3,47478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47478,1,3,0)
+ ;;=3^Mycosis Fungoides,Axilla/Upper Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47478,1,4,0)
+ ;;=4^C84.04
+ ;;^UTILITY(U,$J,358.3,47478,2)
+ ;;=^5001625
+ ;;^UTILITY(U,$J,358.3,47479,0)
+ ;;=C84.05^^209^2346^355
+ ;;^UTILITY(U,$J,358.3,47479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47479,1,3,0)
+ ;;=3^Mycosis Fungoides,Ing Region/Lower Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47479,1,4,0)
+ ;;=4^C84.05
+ ;;^UTILITY(U,$J,358.3,47479,2)
+ ;;=^5001626
+ ;;^UTILITY(U,$J,358.3,47480,0)
+ ;;=C84.06^^209^2346^357
+ ;;^UTILITY(U,$J,358.3,47480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47480,1,3,0)
+ ;;=3^Mycosis Fungoides,Intrapelvic Nodes
+ ;;^UTILITY(U,$J,358.3,47480,1,4,0)
+ ;;=4^C84.06
+ ;;^UTILITY(U,$J,358.3,47480,2)
+ ;;=^5001627
+ ;;^UTILITY(U,$J,358.3,47481,0)
+ ;;=C84.07^^209^2346^360
+ ;;^UTILITY(U,$J,358.3,47481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47481,1,3,0)
+ ;;=3^Mycosis Fungoides,Spleen
+ ;;^UTILITY(U,$J,358.3,47481,1,4,0)
+ ;;=4^C84.07
+ ;;^UTILITY(U,$J,358.3,47481,2)
+ ;;=^5001628
+ ;;^UTILITY(U,$J,358.3,47482,0)
+ ;;=C84.08^^209^2346^359
+ ;;^UTILITY(U,$J,358.3,47482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47482,1,3,0)
+ ;;=3^Mycosis Fungoides,Mult Site Nodes
+ ;;^UTILITY(U,$J,358.3,47482,1,4,0)
+ ;;=4^C84.08
+ ;;^UTILITY(U,$J,358.3,47482,2)
+ ;;=^5001629
+ ;;^UTILITY(U,$J,358.3,47483,0)
+ ;;=C84.09^^209^2346^353
+ ;;^UTILITY(U,$J,358.3,47483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47483,1,3,0)
+ ;;=3^Mycosis Fungoides,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47483,1,4,0)
+ ;;=4^C84.09
+ ;;^UTILITY(U,$J,358.3,47483,2)
+ ;;=^5001630
+ ;;^UTILITY(U,$J,358.3,47484,0)
+ ;;=C84.10^^209^2346^462
+ ;;^UTILITY(U,$J,358.3,47484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47484,1,3,0)
+ ;;=3^Sezary Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47484,1,4,0)
+ ;;=4^C84.10
+ ;;^UTILITY(U,$J,358.3,47484,2)
+ ;;=^5001631
+ ;;^UTILITY(U,$J,358.3,47485,0)
+ ;;=C84.11^^209^2346^455
+ ;;^UTILITY(U,$J,358.3,47485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47485,1,3,0)
+ ;;=3^Sezary Disease,Head/Face/Neck Nodes
+ ;;^UTILITY(U,$J,358.3,47485,1,4,0)
+ ;;=4^C84.11
+ ;;^UTILITY(U,$J,358.3,47485,2)
+ ;;=^5001632
+ ;;^UTILITY(U,$J,358.3,47486,0)
+ ;;=C84.12^^209^2346^459
+ ;;^UTILITY(U,$J,358.3,47486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47486,1,3,0)
+ ;;=3^Sezary Disease,Intrathoracic Nodes
+ ;;^UTILITY(U,$J,358.3,47486,1,4,0)
+ ;;=4^C84.12
+ ;;^UTILITY(U,$J,358.3,47486,2)
+ ;;=^5001633
+ ;;^UTILITY(U,$J,358.3,47487,0)
+ ;;=C84.13^^209^2346^457
+ ;;^UTILITY(U,$J,358.3,47487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47487,1,3,0)
+ ;;=3^Sezary Disease,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47487,1,4,0)
+ ;;=4^C84.13
+ ;;^UTILITY(U,$J,358.3,47487,2)
+ ;;=^5001634
+ ;;^UTILITY(U,$J,358.3,47488,0)
+ ;;=C84.14^^209^2346^453
+ ;;^UTILITY(U,$J,358.3,47488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47488,1,3,0)
+ ;;=3^Sezary Disease,Axilla/Upper Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47488,1,4,0)
+ ;;=4^C84.14
+ ;;^UTILITY(U,$J,358.3,47488,2)
+ ;;=^5001635
+ ;;^UTILITY(U,$J,358.3,47489,0)
+ ;;=C84.15^^209^2346^456
+ ;;^UTILITY(U,$J,358.3,47489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47489,1,3,0)
+ ;;=3^Sezary Disease,Ing Region/Lower Limb Nodes

@@ -1,5 +1,6 @@
-SCAPMC23 ;ALB/REW - Team API's:TPPT ; JUN 30, 1995
- ;;5.3;Scheduling;**41,148**;AUG 13, 1993
+SCAPMC23 ;ALB/REW - Team API's:TPPT ;02/19/2014
+ ;;5.3;Scheduling;**41,148,603**;AUG 13, 1993;Build 79
+ ;
  ;;1.0
 TPPT(DFN,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCYESCL,SCLIST,SCERR) ; -- positions for a patient 
  ; input:
@@ -59,14 +60,15 @@ ST N SCPTTP,SCPTTP0,SCTP,SCR,SCACTHIS,SCTM,SCND,SCU,SCPTTPI,SCTPA,SCPTBEG,SCPTEN
  ; -- initialize control variables
  G:'$$OKDATA PRACQ
  ; -- loop through patient team position assignment history
+ ; -- 603 - changed quit condition on 3 for loops below to prevent endless loop when bad data
  S (SCTP,SCTPA)=0
- F  S SCTP=$O(^SCPT(404.43,"ADFN",DFN,SCTP)) Q:'SCTP  D
- .F SCPTTP=0:0 S SCPTTP=$O(^SCPT(404.43,"ADFN",DFN,SCTP,SCPTTP)) Q:'SCPTTP  D
+ F  S SCTP=$O(^SCPT(404.43,"ADFN",DFN,SCTP)) Q:SCTP=""  D
+ .F SCPTTP=0:0 S SCPTTP=$O(^SCPT(404.43,"ADFN",DFN,SCTP,SCPTTP)) Q:SCPTTP=""  D
  .. ; S SCPTTPI=$O(^SCPT(404.43,"ADFN",DFN,SCTP,SCPTTP,0))
  .. ; replaced line above with FOR LOOP and new dot level below. Now loops thru all assignments
  .. ; made on a given day - PDR 9/98
  .. S SCPTPA="" ; position assignment IEN
- .. F  S SCPTPA=$O(^SCPT(404.43,"ADFN",DFN,SCTP,SCPTTP,SCPTPA)) Q:'SCPTPA  D
+ .. F  S SCPTPA=$O(^SCPT(404.43,"ADFN",DFN,SCTP,SCPTTP,SCPTPA)) Q:SCPTPA=""  D
  ... S SCPTTP0=$G(^SCPT(404.43,SCPTPA,0))
  ... S SCPTBEG=$P(SCPTTP0,U,3)
  ... S SCPTEND=$P(SCPTTP0,U,4)

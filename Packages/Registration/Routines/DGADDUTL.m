@@ -1,5 +1,5 @@
 DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD-PATIENT ADDRESS ; 8/19/13 11:13am
- ;;5.3;Registration;**658,695,730,688,808,851,872**;Aug 13, 1993;Build 28
+ ;;5.3;Registration;**658,695,730,688,808,851,872,915**;Aug 13, 1993;Build 6
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -119,7 +119,7 @@ FOREIGN(DFN,CIEN,FILE,FIELD,COUNTRY) ;
  ; ** NOTE we have to default the value for "US" into the prompt if it is blank
  N FORGN,DA,DIR,DTOUT,DUOUT,DIROUT,DONE,INDX
  S:'$G(FILE) FILE=2  I '$G(FIELD) S FIELD=.1173
- S DIR(0)=FILE_","_FIELD,DA=DFN,DONE=0
+ S DIR(0)=FILE_","_FIELD,DONE=0 S:DFN DA=DFN
  S DIR("B")=$E($$CNTRYI^DGADDUTL(CIEN),1,19) I DIR("B")=-1 S DIR("B")="UNKNOWN COUNTRY"
  F  D  Q:DONE
  . D ^DIR

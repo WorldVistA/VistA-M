@@ -1,136 +1,124 @@
-IBDEI1V0 ; ; 06-AUG-2015
+IBDEI1V0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32729,1,0)
+ ;;^UTILITY(U,$J,358.3,31125,0)
+ ;;=W01.0XXA^^135^1391^87
+ ;;^UTILITY(U,$J,358.3,31125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32729,1,3,0)
- ;;=3^Malig Neop Extrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,32729,1,4,0)
- ;;=4^C24.0
- ;;^UTILITY(U,$J,358.3,32729,2)
- ;;=^5000940
- ;;^UTILITY(U,$J,358.3,32730,0)
- ;;=C23.^^182^1992^119
- ;;^UTILITY(U,$J,358.3,32730,1,0)
+ ;;^UTILITY(U,$J,358.3,31125,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31125,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,31125,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,31126,0)
+ ;;=W01.0XXD^^135^1391^88
+ ;;^UTILITY(U,$J,358.3,31126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32730,1,3,0)
- ;;=3^Malig Neop Gallbladder
- ;;^UTILITY(U,$J,358.3,32730,1,4,0)
- ;;=4^C23.
- ;;^UTILITY(U,$J,358.3,32730,2)
- ;;=^267098
- ;;^UTILITY(U,$J,358.3,32731,0)
- ;;=C32.9^^182^1992^123
- ;;^UTILITY(U,$J,358.3,32731,1,0)
+ ;;^UTILITY(U,$J,358.3,31126,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31126,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,31126,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,31127,0)
+ ;;=W03.XXXA^^135^1391^85
+ ;;^UTILITY(U,$J,358.3,31127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32731,1,3,0)
- ;;=3^Malig Neop Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,32731,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,32731,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,32732,0)
- ;;=C64.2^^182^1992^127
- ;;^UTILITY(U,$J,358.3,32732,1,0)
+ ;;^UTILITY(U,$J,358.3,31127,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31127,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,31127,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,31128,0)
+ ;;=W03.XXXD^^135^1391^86
+ ;;^UTILITY(U,$J,358.3,31128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32732,1,3,0)
- ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,32732,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,32732,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,32733,0)
- ;;=C65.2^^182^1992^129
- ;;^UTILITY(U,$J,358.3,32733,1,0)
+ ;;^UTILITY(U,$J,358.3,31128,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31128,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,31128,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,31129,0)
+ ;;=W05.0XXA^^135^1391^51
+ ;;^UTILITY(U,$J,358.3,31129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32733,1,3,0)
- ;;=3^Malig Neop Left Renal Pelvis
- ;;^UTILITY(U,$J,358.3,32733,1,4,0)
- ;;=4^C65.2
- ;;^UTILITY(U,$J,358.3,32733,2)
- ;;=^5001252
- ;;^UTILITY(U,$J,358.3,32734,0)
- ;;=C62.92^^182^1992^130
- ;;^UTILITY(U,$J,358.3,32734,1,0)
+ ;;^UTILITY(U,$J,358.3,31129,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31129,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,31129,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,31130,0)
+ ;;=W05.0XXD^^135^1391^52
+ ;;^UTILITY(U,$J,358.3,31130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32734,1,3,0)
- ;;=3^Malig Neop Left Testis,Unspec
- ;;^UTILITY(U,$J,358.3,32734,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,32734,2)
- ;;=^5001238
- ;;^UTILITY(U,$J,358.3,32735,0)
- ;;=C22.8^^182^1992^131
- ;;^UTILITY(U,$J,358.3,32735,1,0)
+ ;;^UTILITY(U,$J,358.3,31130,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31130,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,31130,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,31131,0)
+ ;;=W05.1XXA^^135^1391^49
+ ;;^UTILITY(U,$J,358.3,31131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32735,1,3,0)
- ;;=3^Malig Neop Liver,Primary
- ;;^UTILITY(U,$J,358.3,32735,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,32735,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,32736,0)
- ;;=C06.9^^182^1992^134
- ;;^UTILITY(U,$J,358.3,32736,1,0)
+ ;;^UTILITY(U,$J,358.3,31131,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31131,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,31131,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,31132,0)
+ ;;=W05.1XXD^^135^1391^50
+ ;;^UTILITY(U,$J,358.3,31132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32736,1,3,0)
- ;;=3^Malig Neop Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,32736,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,32736,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,32737,0)
- ;;=C11.9^^182^1992^135
- ;;^UTILITY(U,$J,358.3,32737,1,0)
+ ;;^UTILITY(U,$J,358.3,31132,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31132,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,31132,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,31133,0)
+ ;;=W05.2XXA^^135^1391^47
+ ;;^UTILITY(U,$J,358.3,31133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32737,1,3,0)
- ;;=3^Malig Neop Nasopharynx,Unspec
- ;;^UTILITY(U,$J,358.3,32737,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,32737,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,32738,0)
- ;;=C10.9^^182^1992^138
- ;;^UTILITY(U,$J,358.3,32738,1,0)
+ ;;^UTILITY(U,$J,358.3,31133,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31133,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,31133,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,31134,0)
+ ;;=W05.2XXD^^135^1391^48
+ ;;^UTILITY(U,$J,358.3,31134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32738,1,3,0)
- ;;=3^Malig Neop Oropharynx,Unspec
- ;;^UTILITY(U,$J,358.3,32738,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,32738,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,32739,0)
- ;;=C25.9^^182^1992^139
- ;;^UTILITY(U,$J,358.3,32739,1,0)
+ ;;^UTILITY(U,$J,358.3,31134,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31134,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,31134,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,31135,0)
+ ;;=W06.XXXA^^135^1391^29
+ ;;^UTILITY(U,$J,358.3,31135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32739,1,3,0)
- ;;=3^Malig Neop Pancreas,Unspec
- ;;^UTILITY(U,$J,358.3,32739,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,32739,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,32740,0)
- ;;=C47.9^^182^1992^140
- ;;^UTILITY(U,$J,358.3,32740,1,0)
+ ;;^UTILITY(U,$J,358.3,31135,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31135,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,31135,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,31136,0)
+ ;;=W06.XXXD^^135^1391^30
+ ;;^UTILITY(U,$J,358.3,31136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32740,1,3,0)
- ;;=3^Malig Neop Peripheral Nerves/Autonomic Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,32740,1,4,0)
- ;;=4^C47.9
- ;;^UTILITY(U,$J,358.3,32740,2)
- ;;=^5001121
- ;;^UTILITY(U,$J,358.3,32741,0)
- ;;=C38.4^^182^1992^141
- ;;^UTILITY(U,$J,358.3,32741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32741,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,32741,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,32741,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,32742,0)
- ;;=C61.^^182^1992^142
- ;;^UTILITY(U,$J,358.3,32742,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31136,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31136,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,31136,2)
+ ;;=^5059560

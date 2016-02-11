@@ -1,140 +1,122 @@
-IBDEI1BM ; ; 06-AUG-2015
+IBDEI1BM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23395,1,4,0)
- ;;=4^V81.1
- ;;^UTILITY(U,$J,358.3,23395,1,5,0)
- ;;=5^Hypertension Screening
- ;;^UTILITY(U,$J,358.3,23395,2)
- ;;=^295688
- ;;^UTILITY(U,$J,358.3,23396,0)
- ;;=V65.3^^125^1407^10
- ;;^UTILITY(U,$J,358.3,23396,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23396,1,4,0)
- ;;=4^V65.3
- ;;^UTILITY(U,$J,358.3,23396,1,5,0)
- ;;=5^Nutrition Counseling
- ;;^UTILITY(U,$J,358.3,23396,2)
- ;;=^295563
- ;;^UTILITY(U,$J,358.3,23397,0)
- ;;=V76.41^^125^1407^13
- ;;^UTILITY(U,$J,358.3,23397,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23397,1,4,0)
- ;;=4^V76.41
- ;;^UTILITY(U,$J,358.3,23397,1,5,0)
- ;;=5^Rectal Exam
- ;;^UTILITY(U,$J,358.3,23397,2)
- ;;=^295655
- ;;^UTILITY(U,$J,358.3,23398,0)
- ;;=V65.43^^125^1407^15
- ;;^UTILITY(U,$J,358.3,23398,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23398,1,4,0)
- ;;=4^V65.43
- ;;^UTILITY(U,$J,358.3,23398,1,5,0)
- ;;=5^Safety Counseling
- ;;^UTILITY(U,$J,358.3,23398,2)
- ;;=^303468
- ;;^UTILITY(U,$J,358.3,23399,0)
- ;;=V77.8^^125^1407^19
- ;;^UTILITY(U,$J,358.3,23399,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23399,1,4,0)
- ;;=4^V77.8
- ;;^UTILITY(U,$J,358.3,23399,1,5,0)
- ;;=5^Weight Screen
- ;;^UTILITY(U,$J,358.3,23399,2)
- ;;=^295669
- ;;^UTILITY(U,$J,358.3,23400,0)
- ;;=V65.40^^125^1407^11
- ;;^UTILITY(U,$J,358.3,23400,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23400,1,4,0)
- ;;=4^V65.40
- ;;^UTILITY(U,$J,358.3,23400,1,5,0)
- ;;=5^Preventive Counseling, Unspec
- ;;^UTILITY(U,$J,358.3,23400,2)
- ;;=^87449
- ;;^UTILITY(U,$J,358.3,23401,0)
- ;;=V76.44^^125^1407^12
- ;;^UTILITY(U,$J,358.3,23401,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23401,1,4,0)
- ;;=4^V76.44
- ;;^UTILITY(U,$J,358.3,23401,1,5,0)
- ;;=5^Prostate CA Screen (DRE/PSA)
- ;;^UTILITY(U,$J,358.3,23401,2)
- ;;=^321548
- ;;^UTILITY(U,$J,358.3,23402,0)
- ;;=V70.0^^125^1407^14
- ;;^UTILITY(U,$J,358.3,23402,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23402,1,4,0)
- ;;=4^V70.0
- ;;^UTILITY(U,$J,358.3,23402,1,5,0)
- ;;=5^Rountine Med Exam
- ;;^UTILITY(U,$J,358.3,23402,2)
- ;;=^295590
- ;;^UTILITY(U,$J,358.3,23403,0)
- ;;=V73.89^^125^1407^16
- ;;^UTILITY(U,$J,358.3,23403,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23403,1,4,0)
- ;;=4^V73.89
- ;;^UTILITY(U,$J,358.3,23403,1,5,0)
- ;;=5^Screening for HIV
- ;;^UTILITY(U,$J,358.3,23403,2)
- ;;=^295833
- ;;^UTILITY(U,$J,358.3,23404,0)
- ;;=V74.5^^125^1407^18
- ;;^UTILITY(U,$J,358.3,23404,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23404,1,4,0)
- ;;=4^V74.5
- ;;^UTILITY(U,$J,358.3,23404,1,5,0)
- ;;=5^Screening for STD's
- ;;^UTILITY(U,$J,358.3,23404,2)
- ;;=^295637
- ;;^UTILITY(U,$J,358.3,23405,0)
- ;;=V77.91^^125^1407^17
- ;;^UTILITY(U,$J,358.3,23405,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23405,1,4,0)
- ;;=4^V77.91
- ;;^UTILITY(U,$J,358.3,23405,1,5,0)
- ;;=5^Screening for High Cholesterol
- ;;^UTILITY(U,$J,358.3,23405,2)
- ;;=^322093
- ;;^UTILITY(U,$J,358.3,23406,0)
- ;;=V87.39^^125^1408^1
- ;;^UTILITY(U,$J,358.3,23406,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23406,1,4,0)
- ;;=4^V87.39
- ;;^UTILITY(U,$J,358.3,23406,1,5,0)
- ;;=5^Cont/Exp Hazard Sub NEC
- ;;^UTILITY(U,$J,358.3,23406,2)
- ;;=^336815
- ;;^UTILITY(U,$J,358.3,23407,0)
- ;;=E819.0^^125^1409^19
- ;;^UTILITY(U,$J,358.3,23407,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23407,1,4,0)
- ;;=4^E819.0
- ;;^UTILITY(U,$J,358.3,23407,1,5,0)
- ;;=5^Traffic Accident,Driver
- ;;^UTILITY(U,$J,358.3,23407,2)
- ;;=^294215
- ;;^UTILITY(U,$J,358.3,23408,0)
- ;;=E819.1^^125^1409^20
- ;;^UTILITY(U,$J,358.3,23408,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23408,1,4,0)
- ;;=4^E819.1
- ;;^UTILITY(U,$J,358.3,23408,1,5,0)
- ;;=5^Traffic Accident,Passenger
- ;;^UTILITY(U,$J,358.3,23408,2)
- ;;=^294216
+ ;;^UTILITY(U,$J,358.3,22030,2)
+ ;;=^5027056
+ ;;^UTILITY(U,$J,358.3,22031,0)
+ ;;=S42.311S^^101^1037^54
+ ;;^UTILITY(U,$J,358.3,22031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22031,1,3,0)
+ ;;=3^Greenstick fracture of shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,22031,1,4,0)
+ ;;=4^S42.311S
+ ;;^UTILITY(U,$J,358.3,22031,2)
+ ;;=^5027050
+ ;;^UTILITY(U,$J,358.3,22032,0)
+ ;;=S42.448S^^101^1037^55
+ ;;^UTILITY(U,$J,358.3,22032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22032,1,3,0)
+ ;;=3^Incarcerated fx of medial epicondyl of l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22032,1,4,0)
+ ;;=4^S42.448S
+ ;;^UTILITY(U,$J,358.3,22032,2)
+ ;;=^5027482
+ ;;^UTILITY(U,$J,358.3,22033,0)
+ ;;=S42.447S^^101^1037^56
+ ;;^UTILITY(U,$J,358.3,22033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22033,1,3,0)
+ ;;=3^Incarcerated fx of medial epicondyl of r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22033,1,4,0)
+ ;;=4^S42.447S
+ ;;^UTILITY(U,$J,358.3,22033,2)
+ ;;=^5027475
+ ;;^UTILITY(U,$J,358.3,22034,0)
+ ;;=S42.355S^^101^1037^61
+ ;;^UTILITY(U,$J,358.3,22034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22034,1,3,0)
+ ;;=3^Nondisp fx of commnt shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,22034,1,4,0)
+ ;;=4^S42.355S
+ ;;^UTILITY(U,$J,358.3,22034,2)
+ ;;=^5027223
+ ;;^UTILITY(U,$J,358.3,22035,0)
+ ;;=S42.354S^^101^1037^62
+ ;;^UTILITY(U,$J,358.3,22035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22035,1,3,0)
+ ;;=3^Nondisp fx of commnt shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,22035,1,4,0)
+ ;;=4^S42.354S
+ ;;^UTILITY(U,$J,358.3,22035,2)
+ ;;=^5027216
+ ;;^UTILITY(U,$J,358.3,22036,0)
+ ;;=S42.425S^^101^1037^63
+ ;;^UTILITY(U,$J,358.3,22036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22036,1,3,0)
+ ;;=3^Nondisp fx of commnt suprcndl w/o intrcndl fx left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22036,1,4,0)
+ ;;=4^S42.425S
+ ;;^UTILITY(U,$J,358.3,22036,2)
+ ;;=^5027377
+ ;;^UTILITY(U,$J,358.3,22037,0)
+ ;;=S42.424S^^101^1037^64
+ ;;^UTILITY(U,$J,358.3,22037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22037,1,3,0)
+ ;;=3^Nondisp fx of commnt suprcndl w/o intrcndl fx right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22037,1,4,0)
+ ;;=4^S42.424S
+ ;;^UTILITY(U,$J,358.3,22037,2)
+ ;;=^5027370
+ ;;^UTILITY(U,$J,358.3,22038,0)
+ ;;=S42.435S^^101^1037^74
+ ;;^UTILITY(U,$J,358.3,22038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22038,1,3,0)
+ ;;=3^Nondisp fx of lateral epicondyle of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22038,1,4,0)
+ ;;=4^S42.435S
+ ;;^UTILITY(U,$J,358.3,22038,2)
+ ;;=^5027419
+ ;;^UTILITY(U,$J,358.3,22039,0)
+ ;;=S42.434S^^101^1037^75
+ ;;^UTILITY(U,$J,358.3,22039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22039,1,3,0)
+ ;;=3^Nondisp fx of lateral epicondyle of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22039,1,4,0)
+ ;;=4^S42.434S
+ ;;^UTILITY(U,$J,358.3,22039,2)
+ ;;=^5027412
+ ;;^UTILITY(U,$J,358.3,22040,0)
+ ;;=S42.445S^^101^1037^80
+ ;;^UTILITY(U,$J,358.3,22040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22040,1,3,0)
+ ;;=3^Nondisp fx of medial epicondyle of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22040,1,4,0)
+ ;;=4^S42.445S
+ ;;^UTILITY(U,$J,358.3,22040,2)
+ ;;=^5027461
+ ;;^UTILITY(U,$J,358.3,22041,0)
+ ;;=S42.444S^^101^1037^81
+ ;;^UTILITY(U,$J,358.3,22041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22041,1,3,0)
+ ;;=3^Nondisp fx of medial epicondyle of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22041,1,4,0)
+ ;;=4^S42.444S
+ ;;^UTILITY(U,$J,358.3,22041,2)
+ ;;=^5027454
+ ;;^UTILITY(U,$J,358.3,22042,0)
+ ;;=S42.255S^^101^1037^68
+ ;;^UTILITY(U,$J,358.3,22042,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22042,1,3,0)
+ ;;=3^Nondisp fx of greater tuberosity of left humerus, sequela

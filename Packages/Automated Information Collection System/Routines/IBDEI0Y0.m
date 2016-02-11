@@ -1,140 +1,124 @@
-IBDEI0Y0 ; ; 06-AUG-2015
+IBDEI0Y0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16556,1,0)
+ ;;^UTILITY(U,$J,358.3,15674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16556,1,3,0)
- ;;=3^482.49
- ;;^UTILITY(U,$J,358.3,16556,1,4,0)
- ;;=4^Staph Pneumonia NEC
- ;;^UTILITY(U,$J,358.3,16556,2)
- ;;=^321181
- ;;^UTILITY(U,$J,358.3,16557,0)
- ;;=482.81^^84^987^38
- ;;^UTILITY(U,$J,358.3,16557,1,0)
+ ;;^UTILITY(U,$J,358.3,15674,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,15674,1,4,0)
+ ;;=4^I70.432
+ ;;^UTILITY(U,$J,358.3,15674,2)
+ ;;=^5007665
+ ;;^UTILITY(U,$J,358.3,15675,0)
+ ;;=I70.433^^85^825^10
+ ;;^UTILITY(U,$J,358.3,15675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16557,1,3,0)
- ;;=3^482.81
- ;;^UTILITY(U,$J,358.3,16557,1,4,0)
- ;;=4^Pneumonia d/t Anaerobes
- ;;^UTILITY(U,$J,358.3,16557,2)
- ;;=^293890
- ;;^UTILITY(U,$J,358.3,16558,0)
- ;;=482.82^^84^987^40
- ;;^UTILITY(U,$J,358.3,16558,1,0)
+ ;;^UTILITY(U,$J,358.3,15675,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,15675,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,15675,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,15676,0)
+ ;;=I70.434^^85^825^11
+ ;;^UTILITY(U,$J,358.3,15676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16558,1,3,0)
- ;;=3^482.82
- ;;^UTILITY(U,$J,358.3,16558,1,4,0)
- ;;=4^Pneumonia d/t E. Coli
- ;;^UTILITY(U,$J,358.3,16558,2)
- ;;=^293891
- ;;^UTILITY(U,$J,358.3,16559,0)
- ;;=482.83^^84^987^19
- ;;^UTILITY(U,$J,358.3,16559,1,0)
+ ;;^UTILITY(U,$J,358.3,15676,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,15676,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,15676,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,15677,0)
+ ;;=I70.435^^85^825^12
+ ;;^UTILITY(U,$J,358.3,15677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16559,1,3,0)
- ;;=3^482.83
- ;;^UTILITY(U,$J,358.3,16559,1,4,0)
- ;;=4^Gram-Negative Pneumonia NOS
- ;;^UTILITY(U,$J,358.3,16559,2)
- ;;=^293893
- ;;^UTILITY(U,$J,358.3,16560,0)
- ;;=482.84^^84^987^45
- ;;^UTILITY(U,$J,358.3,16560,1,0)
+ ;;^UTILITY(U,$J,358.3,15677,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,15677,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,15677,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,15678,0)
+ ;;=I70.438^^85^825^13
+ ;;^UTILITY(U,$J,358.3,15678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16560,1,3,0)
- ;;=3^482.84
- ;;^UTILITY(U,$J,358.3,16560,1,4,0)
- ;;=4^Pneumonia d/t Legionnaires'
- ;;^UTILITY(U,$J,358.3,16560,2)
- ;;=^68817
- ;;^UTILITY(U,$J,358.3,16561,0)
- ;;=482.89^^84^987^46
- ;;^UTILITY(U,$J,358.3,16561,1,0)
+ ;;^UTILITY(U,$J,358.3,15678,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,15678,1,4,0)
+ ;;=4^I70.438
+ ;;^UTILITY(U,$J,358.3,15678,2)
+ ;;=^5007669
+ ;;^UTILITY(U,$J,358.3,15679,0)
+ ;;=I70.439^^85^825^14
+ ;;^UTILITY(U,$J,358.3,15679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16561,1,3,0)
- ;;=3^482.89
- ;;^UTILITY(U,$J,358.3,16561,1,4,0)
- ;;=4^Pneumonia d/t Oth Spec Bacteria
- ;;^UTILITY(U,$J,358.3,16561,2)
- ;;=^95571
- ;;^UTILITY(U,$J,358.3,16562,0)
- ;;=483.0^^84^987^29
- ;;^UTILITY(U,$J,358.3,16562,1,0)
+ ;;^UTILITY(U,$J,358.3,15679,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,15679,1,4,0)
+ ;;=4^I70.439
+ ;;^UTILITY(U,$J,358.3,15679,2)
+ ;;=^5007670
+ ;;^UTILITY(U,$J,358.3,15680,0)
+ ;;=I70.441^^85^825^1
+ ;;^UTILITY(U,$J,358.3,15680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16562,1,3,0)
- ;;=3^483.0
- ;;^UTILITY(U,$J,358.3,16562,1,4,0)
- ;;=4^Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,16562,2)
- ;;=^294067
- ;;^UTILITY(U,$J,358.3,16563,0)
- ;;=483.1^^84^987^39
- ;;^UTILITY(U,$J,358.3,16563,1,0)
+ ;;^UTILITY(U,$J,358.3,15680,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,15680,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,15680,2)
+ ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,15681,0)
+ ;;=I70.442^^85^825^2
+ ;;^UTILITY(U,$J,358.3,15681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16563,1,3,0)
- ;;=3^483.1
- ;;^UTILITY(U,$J,358.3,16563,1,4,0)
- ;;=4^Pneumonia d/t Chlamydia
- ;;^UTILITY(U,$J,358.3,16563,2)
- ;;=^304311
- ;;^UTILITY(U,$J,358.3,16564,0)
- ;;=483.8^^84^987^47
- ;;^UTILITY(U,$J,358.3,16564,1,0)
+ ;;^UTILITY(U,$J,358.3,15681,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,15681,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,15681,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,15682,0)
+ ;;=I70.443^^85^825^3
+ ;;^UTILITY(U,$J,358.3,15682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16564,1,3,0)
- ;;=3^483.8
- ;;^UTILITY(U,$J,358.3,16564,1,4,0)
- ;;=4^Pneumonia d/t Oth Spec Organism
- ;;^UTILITY(U,$J,358.3,16564,2)
- ;;=^95573
- ;;^UTILITY(U,$J,358.3,16565,0)
- ;;=485.^^84^987^9
- ;;^UTILITY(U,$J,358.3,16565,1,0)
+ ;;^UTILITY(U,$J,358.3,15682,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,15682,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,15682,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,15683,0)
+ ;;=I70.444^^85^825^4
+ ;;^UTILITY(U,$J,358.3,15683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16565,1,3,0)
- ;;=3^485.
- ;;^UTILITY(U,$J,358.3,16565,1,4,0)
- ;;=4^Bronchopneumonia,Organism Unspec
- ;;^UTILITY(U,$J,358.3,16565,2)
- ;;=^17194
- ;;^UTILITY(U,$J,358.3,16566,0)
- ;;=487.0^^84^987^23
- ;;^UTILITY(U,$J,358.3,16566,1,0)
+ ;;^UTILITY(U,$J,358.3,15683,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,15683,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,15683,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,15684,0)
+ ;;=I70.445^^85^825^5
+ ;;^UTILITY(U,$J,358.3,15684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16566,1,3,0)
- ;;=3^487.0
- ;;^UTILITY(U,$J,358.3,16566,1,4,0)
- ;;=4^Influenza w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,16566,2)
- ;;=^269942
- ;;^UTILITY(U,$J,358.3,16567,0)
- ;;=487.1^^84^987^22
- ;;^UTILITY(U,$J,358.3,16567,1,0)
+ ;;^UTILITY(U,$J,358.3,15684,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,15684,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,15684,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,15685,0)
+ ;;=I70.448^^85^825^6
+ ;;^UTILITY(U,$J,358.3,15685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16567,1,3,0)
- ;;=3^487.1
- ;;^UTILITY(U,$J,358.3,16567,1,4,0)
- ;;=4^Influenza w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,16567,2)
- ;;=^63125
- ;;^UTILITY(U,$J,358.3,16568,0)
- ;;=487.8^^84^987^21
- ;;^UTILITY(U,$J,358.3,16568,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16568,1,3,0)
- ;;=3^487.8
- ;;^UTILITY(U,$J,358.3,16568,1,4,0)
- ;;=4^Influenza w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,16568,2)
- ;;=^269945
- ;;^UTILITY(U,$J,358.3,16569,0)
- ;;=042.^^84^987^20
- ;;^UTILITY(U,$J,358.3,16569,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16569,1,3,0)
- ;;=3^042.
- ;;^UTILITY(U,$J,358.3,16569,1,4,0)
- ;;=4^HIV Disease
+ ;;^UTILITY(U,$J,358.3,15685,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,15685,1,4,0)
+ ;;=4^I70.448
+ ;;^UTILITY(U,$J,358.3,15685,2)
+ ;;=^5007676
+ ;;^UTILITY(U,$J,358.3,15686,0)
+ ;;=I70.449^^85^825^7

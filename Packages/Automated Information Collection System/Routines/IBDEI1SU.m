@@ -1,126 +1,134 @@
-IBDEI1SU ; ; 06-AUG-2015
+IBDEI1SU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31731,1,3,0)
- ;;=3^Fit/adjst of partial artificial left leg
- ;;^UTILITY(U,$J,358.3,31731,1,4,0)
- ;;=4^Z44.122
- ;;^UTILITY(U,$J,358.3,31731,2)
- ;;=^5062984
- ;;^UTILITY(U,$J,358.3,31732,0)
- ;;=Z44.8^^180^1965^5
- ;;^UTILITY(U,$J,358.3,31732,1,0)
+ ;;^UTILITY(U,$J,358.3,30120,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,30120,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,30121,0)
+ ;;=Z91.11^^135^1373^69
+ ;;^UTILITY(U,$J,358.3,30121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31732,1,3,0)
- ;;=3^Fit/adjst of external prosthetic devices
- ;;^UTILITY(U,$J,358.3,31732,1,4,0)
- ;;=4^Z44.8
- ;;^UTILITY(U,$J,358.3,31732,2)
- ;;=^5062992
- ;;^UTILITY(U,$J,358.3,31733,0)
- ;;=Z44.9^^180^1965^10
- ;;^UTILITY(U,$J,358.3,31733,1,0)
+ ;;^UTILITY(U,$J,358.3,30121,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,30121,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,30121,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,30122,0)
+ ;;=Z87.891^^135^1373^103
+ ;;^UTILITY(U,$J,358.3,30122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31733,1,3,0)
- ;;=3^Fit/adjst of unsp external prosthetic device
- ;;^UTILITY(U,$J,358.3,31733,1,4,0)
- ;;=4^Z44.9
- ;;^UTILITY(U,$J,358.3,31733,2)
- ;;=^5062993
- ;;^UTILITY(U,$J,358.3,31734,0)
- ;;=Z47.89^^180^1965^11
- ;;^UTILITY(U,$J,358.3,31734,1,0)
+ ;;^UTILITY(U,$J,358.3,30122,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,30122,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,30122,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,30123,0)
+ ;;=Z77.090^^135^1373^11
+ ;;^UTILITY(U,$J,358.3,30123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31734,1,3,0)
- ;;=3^Orthopedic Aftercare NEC
- ;;^UTILITY(U,$J,358.3,31734,1,4,0)
- ;;=4^Z47.89
- ;;^UTILITY(U,$J,358.3,31734,2)
- ;;=^5063032
- ;;^UTILITY(U,$J,358.3,31735,0)
- ;;=Z51.89^^180^1965^12
- ;;^UTILITY(U,$J,358.3,31735,1,0)
+ ;;^UTILITY(U,$J,358.3,30123,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30123,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,30123,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,30124,0)
+ ;;=Z57.8^^135^1373^72
+ ;;^UTILITY(U,$J,358.3,30124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31735,1,3,0)
- ;;=3^Specified Aftercare NEC
- ;;^UTILITY(U,$J,358.3,31735,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,31735,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,31736,0)
- ;;=Z13.89^^181^1966^1
- ;;^UTILITY(U,$J,358.3,31736,1,0)
+ ;;^UTILITY(U,$J,358.3,30124,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,30124,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,30124,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,30125,0)
+ ;;=Z77.21^^135^1373^53
+ ;;^UTILITY(U,$J,358.3,30125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31736,1,3,0)
- ;;=3^Encounter for screening for other disorder
- ;;^UTILITY(U,$J,358.3,31736,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,31736,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,31737,0)
- ;;=Z87.81^^181^1966^2
- ;;^UTILITY(U,$J,358.3,31737,1,0)
+ ;;^UTILITY(U,$J,358.3,30125,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30125,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,30125,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,30126,0)
+ ;;=Z91.81^^135^1373^57
+ ;;^UTILITY(U,$J,358.3,30126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31737,1,3,0)
- ;;=3^Personal history of (healed) traumatic fracture
- ;;^UTILITY(U,$J,358.3,31737,1,4,0)
- ;;=4^Z87.81
- ;;^UTILITY(U,$J,358.3,31737,2)
- ;;=^5063513
- ;;^UTILITY(U,$J,358.3,31738,0)
- ;;=Z87.828^^181^1966^3
- ;;^UTILITY(U,$J,358.3,31738,1,0)
+ ;;^UTILITY(U,$J,358.3,30126,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,30126,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,30126,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,30127,0)
+ ;;=Z91.89^^135^1373^118
+ ;;^UTILITY(U,$J,358.3,30127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31738,1,3,0)
- ;;=3^Personal history of oth (healed) physical injury and trauma
- ;;^UTILITY(U,$J,358.3,31738,1,4,0)
- ;;=4^Z87.828
- ;;^UTILITY(U,$J,358.3,31738,2)
- ;;=^5063516
- ;;^UTILITY(U,$J,358.3,31739,0)
- ;;=S02.10XA^^181^1967^1
- ;;^UTILITY(U,$J,358.3,31739,1,0)
+ ;;^UTILITY(U,$J,358.3,30127,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,30127,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,30127,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,30128,0)
+ ;;=Z92.89^^135^1373^106
+ ;;^UTILITY(U,$J,358.3,30128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31739,1,3,0)
- ;;=3^Fracture of base of skull unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,31739,1,4,0)
- ;;=4^S02.10XA
- ;;^UTILITY(U,$J,358.3,31739,2)
- ;;=^5020258
- ;;^UTILITY(U,$J,358.3,31740,0)
- ;;=S02.113A^^181^1967^20
- ;;^UTILITY(U,$J,358.3,31740,1,0)
+ ;;^UTILITY(U,$J,358.3,30128,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,30128,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,30128,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,30129,0)
+ ;;=Z77.110^^135^1373^9
+ ;;^UTILITY(U,$J,358.3,30129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31740,1,3,0)
- ;;=3^Occipital condyle fx unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,31740,1,4,0)
- ;;=4^S02.113A
- ;;^UTILITY(U,$J,358.3,31740,2)
- ;;=^5020282
- ;;^UTILITY(U,$J,358.3,31741,0)
- ;;=S02.2XXA^^181^1967^8
- ;;^UTILITY(U,$J,358.3,31741,1,0)
+ ;;^UTILITY(U,$J,358.3,30129,1,3,0)
+ ;;=3^Air Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30129,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,30129,2)
+ ;;=^5063314
+ ;;^UTILITY(U,$J,358.3,30130,0)
+ ;;=Z77.112^^135^1373^142
+ ;;^UTILITY(U,$J,358.3,30130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31741,1,3,0)
- ;;=3^Fracture of nasal bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,31741,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,31741,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,31742,0)
- ;;=S02.401A^^181^1967^18
- ;;^UTILITY(U,$J,358.3,31742,1,0)
+ ;;^UTILITY(U,$J,358.3,30130,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30130,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,30130,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,30131,0)
+ ;;=Z77.111^^135^1373^148
+ ;;^UTILITY(U,$J,358.3,30131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31742,1,3,0)
- ;;=3^Maxillary fracture, unsp, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,31742,1,4,0)
- ;;=4^S02.401A
- ;;^UTILITY(U,$J,358.3,31742,2)
- ;;=^5020324
- ;;^UTILITY(U,$J,358.3,31743,0)
- ;;=S02.402A^^181^1967^21
- ;;^UTILITY(U,$J,358.3,31743,1,0)
+ ;;^UTILITY(U,$J,358.3,30131,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30131,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,30131,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,30132,0)
+ ;;=Z77.128^^135^1373^119
+ ;;^UTILITY(U,$J,358.3,30132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31743,1,3,0)
- ;;=3^Zygomatic fracture, unsp, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,30132,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30132,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,30132,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,30133,0)
+ ;;=Z77.123^^135^1373^140
+ ;;^UTILITY(U,$J,358.3,30133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30133,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure

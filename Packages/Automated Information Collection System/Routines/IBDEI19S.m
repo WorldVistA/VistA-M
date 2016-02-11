@@ -1,136 +1,128 @@
-IBDEI19S ; ; 06-AUG-2015
+IBDEI19S ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22498,1,4,0)
- ;;=4^V61.02
- ;;^UTILITY(U,$J,358.3,22498,1,5,0)
- ;;=5^Family Dsrpt-Return from Military Deployment
- ;;^UTILITY(U,$J,358.3,22498,2)
- ;;=^336800
- ;;^UTILITY(U,$J,358.3,22499,0)
- ;;=V62.84^^125^1393^36
- ;;^UTILITY(U,$J,358.3,22499,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22499,1,4,0)
- ;;=4^V62.84
- ;;^UTILITY(U,$J,358.3,22499,1,5,0)
- ;;=5^Suicidal Ideation
- ;;^UTILITY(U,$J,358.3,22499,2)
- ;;=^332876
- ;;^UTILITY(U,$J,358.3,22500,0)
- ;;=V62.85^^125^1393^23
- ;;^UTILITY(U,$J,358.3,22500,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22500,1,4,0)
- ;;=4^V62.85
- ;;^UTILITY(U,$J,358.3,22500,1,5,0)
- ;;=5^Homicidal Ideation
- ;;^UTILITY(U,$J,358.3,22500,2)
- ;;=^339690
- ;;^UTILITY(U,$J,358.3,22501,0)
- ;;=296.80^^125^1393^5
- ;;^UTILITY(U,$J,358.3,22501,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22501,1,4,0)
- ;;=4^296.80
- ;;^UTILITY(U,$J,358.3,22501,1,5,0)
- ;;=5^Bipolar Disorder NOS
- ;;^UTILITY(U,$J,358.3,22501,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,22502,0)
- ;;=296.50^^125^1393^6
- ;;^UTILITY(U,$J,358.3,22502,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22502,1,4,0)
- ;;=4^296.50
- ;;^UTILITY(U,$J,358.3,22502,1,5,0)
- ;;=5^Bipolar Disorder,Current Depressed NOS
- ;;^UTILITY(U,$J,358.3,22502,2)
- ;;=^331877
- ;;^UTILITY(U,$J,358.3,22503,0)
- ;;=296.40^^125^1393^7
- ;;^UTILITY(U,$J,358.3,22503,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22503,1,4,0)
- ;;=4^296.40
- ;;^UTILITY(U,$J,358.3,22503,1,5,0)
- ;;=5^Bipolar Disorder,Current Manic NOS
- ;;^UTILITY(U,$J,358.3,22503,2)
- ;;=^331870
- ;;^UTILITY(U,$J,358.3,22504,0)
- ;;=296.60^^125^1393^8
- ;;^UTILITY(U,$J,358.3,22504,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22504,1,4,0)
- ;;=4^296.60
- ;;^UTILITY(U,$J,358.3,22504,1,5,0)
- ;;=5^Bipolar Disorder,Current Mixed NOS
- ;;^UTILITY(U,$J,358.3,22504,2)
- ;;=^331884
- ;;^UTILITY(U,$J,358.3,22505,0)
- ;;=296.7^^125^1393^9
- ;;^UTILITY(U,$J,358.3,22505,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22505,1,4,0)
- ;;=4^296.7
- ;;^UTILITY(U,$J,358.3,22505,1,5,0)
- ;;=5^Bipolar Disorder,Current NOS
- ;;^UTILITY(U,$J,358.3,22505,2)
- ;;=^331891
- ;;^UTILITY(U,$J,358.3,22506,0)
- ;;=296.00^^125^1393^10
- ;;^UTILITY(U,$J,358.3,22506,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22506,1,4,0)
- ;;=4^296.00
- ;;^UTILITY(U,$J,358.3,22506,1,5,0)
- ;;=5^Bipolar Disorder,Single Manic NOS
- ;;^UTILITY(U,$J,358.3,22506,2)
- ;;=^331863
- ;;^UTILITY(U,$J,358.3,22507,0)
- ;;=296.30^^125^1393^15
- ;;^UTILITY(U,$J,358.3,22507,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22507,1,4,0)
- ;;=4^296.30
- ;;^UTILITY(U,$J,358.3,22507,1,5,0)
- ;;=5^Depression Disorder,Recurrent Episode
- ;;^UTILITY(U,$J,358.3,22507,2)
- ;;=^303614
- ;;^UTILITY(U,$J,358.3,22508,0)
- ;;=296.20^^125^1393^16
- ;;^UTILITY(U,$J,358.3,22508,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22508,1,4,0)
- ;;=4^296.20
- ;;^UTILITY(U,$J,358.3,22508,1,5,0)
- ;;=5^Depression Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22508,2)
- ;;=^303598
- ;;^UTILITY(U,$J,358.3,22509,0)
- ;;=296.90^^125^1393^18
- ;;^UTILITY(U,$J,358.3,22509,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22509,1,4,0)
- ;;=4^296.90
- ;;^UTILITY(U,$J,358.3,22509,1,5,0)
- ;;=5^Episodic Mood Disorder NOS
- ;;^UTILITY(U,$J,358.3,22509,2)
- ;;=^331894
- ;;^UTILITY(U,$J,358.3,22510,0)
- ;;=296.10^^125^1393^27
- ;;^UTILITY(U,$J,358.3,22510,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22510,1,4,0)
- ;;=4^296.10
- ;;^UTILITY(U,$J,358.3,22510,1,5,0)
- ;;=5^Mainic Disorder,Recurrent Episode
- ;;^UTILITY(U,$J,358.3,22510,2)
- ;;=^268103
- ;;^UTILITY(U,$J,358.3,22511,0)
- ;;=785.9^^125^1394^1
- ;;^UTILITY(U,$J,358.3,22511,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22511,1,4,0)
- ;;=4^785.9
+ ;;^UTILITY(U,$J,358.3,21231,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,21231,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,21232,0)
+ ;;=I50.21^^101^1028^6
+ ;;^UTILITY(U,$J,358.3,21232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21232,1,3,0)
+ ;;=3^Acute systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,21232,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,21232,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,21233,0)
+ ;;=I25.111^^101^1028^7
+ ;;^UTILITY(U,$J,358.3,21233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21233,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w ang pctrs w spasm
+ ;;^UTILITY(U,$J,358.3,21233,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,21233,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,21234,0)
+ ;;=I25.118^^101^1028^8
+ ;;^UTILITY(U,$J,358.3,21234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21234,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w oth ang pctrs
+ ;;^UTILITY(U,$J,358.3,21234,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,21234,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,21235,0)
+ ;;=I25.119^^101^1028^9
+ ;;^UTILITY(U,$J,358.3,21235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21235,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unsp ang pctrs
+ ;;^UTILITY(U,$J,358.3,21235,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,21235,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,21236,0)
+ ;;=I25.110^^101^1028^10
+ ;;^UTILITY(U,$J,358.3,21236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21236,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unstable ang pctrs
+ ;;^UTILITY(U,$J,358.3,21236,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,21236,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,21237,0)
+ ;;=I25.10^^101^1028^11
+ ;;^UTILITY(U,$J,358.3,21237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21237,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w/o ang pctrs
+ ;;^UTILITY(U,$J,358.3,21237,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,21237,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,21238,0)
+ ;;=I48.0^^101^1028^28
+ ;;^UTILITY(U,$J,358.3,21238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21238,1,3,0)
+ ;;=3^Paroxysmal atrial fibrillation
+ ;;^UTILITY(U,$J,358.3,21238,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,21238,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,21239,0)
+ ;;=I42.9^^101^1028^13
+ ;;^UTILITY(U,$J,358.3,21239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21239,1,3,0)
+ ;;=3^Cardiomyopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,21239,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,21239,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,21240,0)
+ ;;=I50.42^^101^1028^14
+ ;;^UTILITY(U,$J,358.3,21240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21240,1,3,0)
+ ;;=3^Chronic combined systolic and diastolic hrt fail
+ ;;^UTILITY(U,$J,358.3,21240,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,21240,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,21241,0)
+ ;;=I50.32^^101^1028^15
+ ;;^UTILITY(U,$J,358.3,21241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21241,1,3,0)
+ ;;=3^Chronic diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,21241,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,21241,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,21242,0)
+ ;;=J44.1^^101^1028^16
+ ;;^UTILITY(U,$J,358.3,21242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21242,1,3,0)
+ ;;=3^Chronic obstructive pulmonary disease w (acute) exacerbation
+ ;;^UTILITY(U,$J,358.3,21242,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,21242,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,21243,0)
+ ;;=J44.9^^101^1028^17
+ ;;^UTILITY(U,$J,358.3,21243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21243,1,3,0)
+ ;;=3^Chronic obstructive pulmonary disease, unspecified
+ ;;^UTILITY(U,$J,358.3,21243,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,21243,2)
+ ;;=^5008241

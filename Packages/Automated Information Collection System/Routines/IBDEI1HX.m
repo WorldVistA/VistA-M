@@ -1,136 +1,118 @@
-IBDEI1HX ; ; 06-AUG-2015
+IBDEI1HX ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26550,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26550,1,2,0)
- ;;=2^Joint Inj w/ US-Major
- ;;^UTILITY(U,$J,358.3,26550,1,3,0)
- ;;=3^20611
- ;;^UTILITY(U,$J,358.3,26551,0)
- ;;=20606^^154^1709^2^^^^1
- ;;^UTILITY(U,$J,358.3,26551,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26551,1,2,0)
- ;;=2^Joint Inj w/ US-Intermediate
- ;;^UTILITY(U,$J,358.3,26551,1,3,0)
- ;;=3^20606
- ;;^UTILITY(U,$J,358.3,26552,0)
- ;;=20604^^154^1709^1^^^^1
- ;;^UTILITY(U,$J,358.3,26552,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26552,1,2,0)
- ;;=2^Joint Inj w/ US-Small
- ;;^UTILITY(U,$J,358.3,26552,1,3,0)
- ;;=3^20604
- ;;^UTILITY(U,$J,358.3,26553,0)
- ;;=20552^^154^1710^1^^^^1
- ;;^UTILITY(U,$J,358.3,26553,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26553,1,2,0)
- ;;=2^Inject 1-2 Muscles
- ;;^UTILITY(U,$J,358.3,26553,1,3,0)
- ;;=3^20552
- ;;^UTILITY(U,$J,358.3,26554,0)
- ;;=20553^^154^1710^2^^^^1
- ;;^UTILITY(U,$J,358.3,26554,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26554,1,2,0)
- ;;=2^Inject 3 or more Muscles
- ;;^UTILITY(U,$J,358.3,26554,1,3,0)
- ;;=3^20553
- ;;^UTILITY(U,$J,358.3,26555,0)
- ;;=76881^^154^1711^2^^^^1
- ;;^UTILITY(U,$J,358.3,26555,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26555,1,2,0)
- ;;=2^US Guided w/ Image
- ;;^UTILITY(U,$J,358.3,26555,1,3,0)
- ;;=3^76881
- ;;^UTILITY(U,$J,358.3,26556,0)
- ;;=76882^^154^1711^1^^^^1
- ;;^UTILITY(U,$J,358.3,26556,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26556,1,2,0)
- ;;=2^Complete US Guided w/ Image
- ;;^UTILITY(U,$J,358.3,26556,1,3,0)
- ;;=3^76882
- ;;^UTILITY(U,$J,358.3,26557,0)
- ;;=76942^^154^1711^3^^^^1
- ;;^UTILITY(U,$J,358.3,26557,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26557,1,2,0)
- ;;=2^US Guided w/o Image
- ;;^UTILITY(U,$J,358.3,26557,1,3,0)
- ;;=3^76942
- ;;^UTILITY(U,$J,358.3,26558,0)
- ;;=V15.52^^155^1712^10
- ;;^UTILITY(U,$J,358.3,26558,1,0)
+ ;;^UTILITY(U,$J,358.3,25013,0)
+ ;;=T82.818A^^124^1239^55
+ ;;^UTILITY(U,$J,358.3,25013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26558,1,3,0)
- ;;=3^HX TRAUMATIC BRAIN INJURY
- ;;^UTILITY(U,$J,358.3,26558,1,4,0)
- ;;=4^V15.52
- ;;^UTILITY(U,$J,358.3,26558,2)
- ;;=^338495
- ;;^UTILITY(U,$J,358.3,26559,0)
- ;;=V80.01^^155^1712^11
- ;;^UTILITY(U,$J,358.3,26559,1,0)
+ ;;^UTILITY(U,$J,358.3,25013,1,3,0)
+ ;;=3^Embolism of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25013,1,4,0)
+ ;;=4^T82.818A
+ ;;^UTILITY(U,$J,358.3,25013,2)
+ ;;=^5054917
+ ;;^UTILITY(U,$J,358.3,25014,0)
+ ;;=T82.828A^^124^1239^60
+ ;;^UTILITY(U,$J,358.3,25014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26559,1,3,0)
- ;;=3^SCREEN FOR TBI
- ;;^UTILITY(U,$J,358.3,26559,1,4,0)
- ;;=4^V80.01
- ;;^UTILITY(U,$J,358.3,26559,2)
- ;;=^338517
- ;;^UTILITY(U,$J,358.3,26560,0)
- ;;=850.0^^155^1712^7
- ;;^UTILITY(U,$J,358.3,26560,1,0)
+ ;;^UTILITY(U,$J,358.3,25014,1,3,0)
+ ;;=3^Fibrosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25014,1,4,0)
+ ;;=4^T82.828A
+ ;;^UTILITY(U,$J,358.3,25014,2)
+ ;;=^5054923
+ ;;^UTILITY(U,$J,358.3,25015,0)
+ ;;=T82.838A^^124^1239^65
+ ;;^UTILITY(U,$J,358.3,25015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26560,1,3,0)
- ;;=3^CONCUSSION W/O LOSS OF CONSCIOUSNESS
- ;;^UTILITY(U,$J,358.3,26560,1,4,0)
- ;;=4^850.0
- ;;^UTILITY(U,$J,358.3,26560,2)
- ;;=^274540
- ;;^UTILITY(U,$J,358.3,26561,0)
- ;;=850.11^^155^1712^3
- ;;^UTILITY(U,$J,358.3,26561,1,0)
+ ;;^UTILITY(U,$J,358.3,25015,1,3,0)
+ ;;=3^Hemorrhage of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25015,1,4,0)
+ ;;=4^T82.838A
+ ;;^UTILITY(U,$J,358.3,25015,2)
+ ;;=^5054929
+ ;;^UTILITY(U,$J,358.3,25016,0)
+ ;;=T82.848A^^124^1239^162
+ ;;^UTILITY(U,$J,358.3,25016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26561,1,3,0)
- ;;=3^CONCUS-BRIEF LOC <31 MN
- ;;^UTILITY(U,$J,358.3,26561,1,4,0)
- ;;=4^850.11
- ;;^UTILITY(U,$J,358.3,26561,2)
- ;;=^329958
- ;;^UTILITY(U,$J,358.3,26562,0)
- ;;=850.12^^155^1712^2
- ;;^UTILITY(U,$J,358.3,26562,1,0)
+ ;;^UTILITY(U,$J,358.3,25016,1,3,0)
+ ;;=3^Pain from Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25016,1,4,0)
+ ;;=4^T82.848A
+ ;;^UTILITY(U,$J,358.3,25016,2)
+ ;;=^5054935
+ ;;^UTILITY(U,$J,358.3,25017,0)
+ ;;=T82.858A^^124^1239^208
+ ;;^UTILITY(U,$J,358.3,25017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26562,1,3,0)
- ;;=3^CONCUS-BRIEF LOC 31-59 MN
- ;;^UTILITY(U,$J,358.3,26562,1,4,0)
- ;;=4^850.12
- ;;^UTILITY(U,$J,358.3,26562,2)
- ;;=^329959
- ;;^UTILITY(U,$J,358.3,26563,0)
- ;;=850.2^^155^1712^8
- ;;^UTILITY(U,$J,358.3,26563,1,0)
+ ;;^UTILITY(U,$J,358.3,25017,1,3,0)
+ ;;=3^Stenosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25017,1,4,0)
+ ;;=4^T82.858A
+ ;;^UTILITY(U,$J,358.3,25017,2)
+ ;;=^5054941
+ ;;^UTILITY(U,$J,358.3,25018,0)
+ ;;=T82.868A^^124^1239^214
+ ;;^UTILITY(U,$J,358.3,25018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26563,1,3,0)
- ;;=3^CONCUSSION-MODERATE LOC
- ;;^UTILITY(U,$J,358.3,26563,1,4,0)
- ;;=4^850.2
- ;;^UTILITY(U,$J,358.3,26563,2)
- ;;=^274542
- ;;^UTILITY(U,$J,358.3,26564,0)
- ;;=850.3^^155^1712^9
- ;;^UTILITY(U,$J,358.3,26564,1,0)
+ ;;^UTILITY(U,$J,358.3,25018,1,3,0)
+ ;;=3^Thrombosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25018,1,4,0)
+ ;;=4^T82.868A
+ ;;^UTILITY(U,$J,358.3,25018,2)
+ ;;=^5054947
+ ;;^UTILITY(U,$J,358.3,25019,0)
+ ;;=T82.898A^^124^1239^23
+ ;;^UTILITY(U,$J,358.3,25019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26564,1,3,0)
- ;;=3^CONCUSSION-PROLONG LOC
- ;;^UTILITY(U,$J,358.3,26564,1,4,0)
- ;;=4^850.3
- ;;^UTILITY(U,$J,358.3,26564,2)
- ;;=^274543
+ ;;^UTILITY(U,$J,358.3,25019,1,3,0)
+ ;;=3^Complication of Vascular Prosthetic Device/Implant/Graft Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25019,1,4,0)
+ ;;=4^T82.898A
+ ;;^UTILITY(U,$J,358.3,25019,2)
+ ;;=^5054953
+ ;;^UTILITY(U,$J,358.3,25020,0)
+ ;;=T85.81XA^^124^1239^50
+ ;;^UTILITY(U,$J,358.3,25020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25020,1,3,0)
+ ;;=3^Embolism d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25020,1,4,0)
+ ;;=4^T85.81XA
+ ;;^UTILITY(U,$J,358.3,25020,2)
+ ;;=^5055679
+ ;;^UTILITY(U,$J,358.3,25021,0)
+ ;;=T85.82XA^^124^1239^57
+ ;;^UTILITY(U,$J,358.3,25021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25021,1,3,0)
+ ;;=3^Fibrosis d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25021,1,4,0)
+ ;;=4^T85.82XA
+ ;;^UTILITY(U,$J,358.3,25021,2)
+ ;;=^5055682
+ ;;^UTILITY(U,$J,358.3,25022,0)
+ ;;=T85.83XA^^124^1239^62
+ ;;^UTILITY(U,$J,358.3,25022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25022,1,3,0)
+ ;;=3^Hemorrhage d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25022,1,4,0)
+ ;;=4^T85.83XA
+ ;;^UTILITY(U,$J,358.3,25022,2)
+ ;;=^5055685
+ ;;^UTILITY(U,$J,358.3,25023,0)
+ ;;=T85.84XA^^124^1239^159
+ ;;^UTILITY(U,$J,358.3,25023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25023,1,3,0)
+ ;;=3^Pain d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25023,1,4,0)
+ ;;=4^T85.84XA
+ ;;^UTILITY(U,$J,358.3,25023,2)
+ ;;=^5055688
+ ;;^UTILITY(U,$J,358.3,25024,0)
+ ;;=T85.85XA^^124^1239^206
+ ;;^UTILITY(U,$J,358.3,25024,1,0)
+ ;;=^358.31IA^4^2

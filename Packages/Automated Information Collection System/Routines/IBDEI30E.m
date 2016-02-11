@@ -1,0 +1,130 @@
+IBDEI30E ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,50444,1,4,0)
+ ;;=4^M05.462
+ ;;^UTILITY(U,$J,358.3,50444,2)
+ ;;=^5009948
+ ;;^UTILITY(U,$J,358.3,50445,0)
+ ;;=M05.412^^219^2448^63
+ ;;^UTILITY(U,$J,358.3,50445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50445,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Shoulder
+ ;;^UTILITY(U,$J,358.3,50445,1,4,0)
+ ;;=4^M05.412
+ ;;^UTILITY(U,$J,358.3,50445,2)
+ ;;=^5009933
+ ;;^UTILITY(U,$J,358.3,50446,0)
+ ;;=M05.432^^219^2448^64
+ ;;^UTILITY(U,$J,358.3,50446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50446,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Wrist
+ ;;^UTILITY(U,$J,358.3,50446,1,4,0)
+ ;;=4^M05.432
+ ;;^UTILITY(U,$J,358.3,50446,2)
+ ;;=^5009939
+ ;;^UTILITY(U,$J,358.3,50447,0)
+ ;;=M05.49^^219^2448^65
+ ;;^UTILITY(U,$J,358.3,50447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50447,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Mult Sites
+ ;;^UTILITY(U,$J,358.3,50447,1,4,0)
+ ;;=4^M05.49
+ ;;^UTILITY(U,$J,358.3,50447,2)
+ ;;=^5009953
+ ;;^UTILITY(U,$J,358.3,50448,0)
+ ;;=M05.471^^219^2448^66
+ ;;^UTILITY(U,$J,358.3,50448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50448,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,50448,1,4,0)
+ ;;=4^M05.471
+ ;;^UTILITY(U,$J,358.3,50448,2)
+ ;;=^5009950
+ ;;^UTILITY(U,$J,358.3,50449,0)
+ ;;=M05.421^^219^2448^67
+ ;;^UTILITY(U,$J,358.3,50449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50449,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Elbow
+ ;;^UTILITY(U,$J,358.3,50449,1,4,0)
+ ;;=4^M05.421
+ ;;^UTILITY(U,$J,358.3,50449,2)
+ ;;=^5009935
+ ;;^UTILITY(U,$J,358.3,50450,0)
+ ;;=M05.441^^219^2448^68
+ ;;^UTILITY(U,$J,358.3,50450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50450,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Hand
+ ;;^UTILITY(U,$J,358.3,50450,1,4,0)
+ ;;=4^M05.441
+ ;;^UTILITY(U,$J,358.3,50450,2)
+ ;;=^5009941
+ ;;^UTILITY(U,$J,358.3,50451,0)
+ ;;=M05.451^^219^2448^69
+ ;;^UTILITY(U,$J,358.3,50451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50451,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Hip
+ ;;^UTILITY(U,$J,358.3,50451,1,4,0)
+ ;;=4^M05.451
+ ;;^UTILITY(U,$J,358.3,50451,2)
+ ;;=^5009944
+ ;;^UTILITY(U,$J,358.3,50452,0)
+ ;;=M05.461^^219^2448^70
+ ;;^UTILITY(U,$J,358.3,50452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50452,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Knee
+ ;;^UTILITY(U,$J,358.3,50452,1,4,0)
+ ;;=4^M05.461
+ ;;^UTILITY(U,$J,358.3,50452,2)
+ ;;=^5009947
+ ;;^UTILITY(U,$J,358.3,50453,0)
+ ;;=M05.411^^219^2448^71
+ ;;^UTILITY(U,$J,358.3,50453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50453,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Shoulder
+ ;;^UTILITY(U,$J,358.3,50453,1,4,0)
+ ;;=4^M05.411
+ ;;^UTILITY(U,$J,358.3,50453,2)
+ ;;=^5009932
+ ;;^UTILITY(U,$J,358.3,50454,0)
+ ;;=M05.431^^219^2448^72
+ ;;^UTILITY(U,$J,358.3,50454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50454,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Wrist
+ ;;^UTILITY(U,$J,358.3,50454,1,4,0)
+ ;;=4^M05.431
+ ;;^UTILITY(U,$J,358.3,50454,2)
+ ;;=^5009938
+ ;;^UTILITY(U,$J,358.3,50455,0)
+ ;;=M05.40^^219^2448^73
+ ;;^UTILITY(U,$J,358.3,50455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50455,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Unspec Site
+ ;;^UTILITY(U,$J,358.3,50455,1,4,0)
+ ;;=4^M05.40
+ ;;^UTILITY(U,$J,358.3,50455,2)
+ ;;=^5009931
+ ;;^UTILITY(U,$J,358.3,50456,0)
+ ;;=M06.372^^219^2448^123
+ ;;^UTILITY(U,$J,358.3,50456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50456,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,50456,1,4,0)
+ ;;=4^M06.372
+ ;;^UTILITY(U,$J,358.3,50456,2)
+ ;;=^5010116
+ ;;^UTILITY(U,$J,358.3,50457,0)
+ ;;=M06.322^^219^2448^124

@@ -1,122 +1,128 @@
-IBDEI1OV ; ; 06-AUG-2015
+IBDEI1OV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29968,2)
- ;;=^5017480
- ;;^UTILITY(U,$J,358.3,29969,0)
- ;;=O46.093^^178^1909^12
- ;;^UTILITY(U,$J,358.3,29969,1,0)
+ ;;^UTILITY(U,$J,358.3,28257,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,28257,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,28258,0)
+ ;;=F03.90^^132^1327^10
+ ;;^UTILITY(U,$J,358.3,28258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29969,1,3,0)
- ;;=3^Antepartum hemorrhage w oth coag defect, third trimester
- ;;^UTILITY(U,$J,358.3,29969,1,4,0)
- ;;=4^O46.093
- ;;^UTILITY(U,$J,358.3,29969,2)
- ;;=^5017481
- ;;^UTILITY(U,$J,358.3,29970,0)
- ;;=O10.011^^178^1910^25
- ;;^UTILITY(U,$J,358.3,29970,1,0)
+ ;;^UTILITY(U,$J,358.3,28258,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,28258,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,28258,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,28259,0)
+ ;;=F03.91^^132^1327^9
+ ;;^UTILITY(U,$J,358.3,28259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29970,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29970,1,4,0)
- ;;=4^O10.011
- ;;^UTILITY(U,$J,358.3,29970,2)
- ;;=^5016108
- ;;^UTILITY(U,$J,358.3,29971,0)
- ;;=O10.012^^178^1910^26
- ;;^UTILITY(U,$J,358.3,29971,1,0)
+ ;;^UTILITY(U,$J,358.3,28259,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,28259,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,28259,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,28260,0)
+ ;;=F01.50^^132^1327^12
+ ;;^UTILITY(U,$J,358.3,28260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29971,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29971,1,4,0)
- ;;=4^O10.012
- ;;^UTILITY(U,$J,358.3,29971,2)
- ;;=^5016109
- ;;^UTILITY(U,$J,358.3,29972,0)
- ;;=O10.013^^178^1910^27
- ;;^UTILITY(U,$J,358.3,29972,1,0)
+ ;;^UTILITY(U,$J,358.3,28260,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,28260,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,28260,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,28261,0)
+ ;;=F10.27^^132^1327^11
+ ;;^UTILITY(U,$J,358.3,28261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29972,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29972,1,4,0)
- ;;=4^O10.013
- ;;^UTILITY(U,$J,358.3,29972,2)
- ;;=^5016110
- ;;^UTILITY(U,$J,358.3,29973,0)
- ;;=O10.03^^178^1910^30
- ;;^UTILITY(U,$J,358.3,29973,1,0)
+ ;;^UTILITY(U,$J,358.3,28261,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,28261,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,28261,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,28262,0)
+ ;;=F06.1^^132^1327^6
+ ;;^UTILITY(U,$J,358.3,28262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29973,1,3,0)
- ;;=3^Pre-existing essential htn comp the puerperium
- ;;^UTILITY(U,$J,358.3,29973,1,4,0)
- ;;=4^O10.03
- ;;^UTILITY(U,$J,358.3,29973,2)
- ;;=^5016113
- ;;^UTILITY(U,$J,358.3,29974,0)
- ;;=O10.411^^178^1910^39
- ;;^UTILITY(U,$J,358.3,29974,1,0)
+ ;;^UTILITY(U,$J,358.3,28262,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,28262,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,28262,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,28263,0)
+ ;;=F06.8^^132^1327^19
+ ;;^UTILITY(U,$J,358.3,28263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29974,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29974,1,4,0)
- ;;=4^O10.411
- ;;^UTILITY(U,$J,358.3,29974,2)
- ;;=^5016132
- ;;^UTILITY(U,$J,358.3,29975,0)
- ;;=O10.412^^178^1910^40
- ;;^UTILITY(U,$J,358.3,29975,1,0)
+ ;;^UTILITY(U,$J,358.3,28263,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,28263,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,28263,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,28264,0)
+ ;;=F06.0^^132^1327^35
+ ;;^UTILITY(U,$J,358.3,28264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29975,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29975,1,4,0)
- ;;=4^O10.412
- ;;^UTILITY(U,$J,358.3,29975,2)
- ;;=^5016133
- ;;^UTILITY(U,$J,358.3,29976,0)
- ;;=O10.413^^178^1910^41
- ;;^UTILITY(U,$J,358.3,29976,1,0)
+ ;;^UTILITY(U,$J,358.3,28264,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,28264,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,28264,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,28265,0)
+ ;;=G44.209^^132^1327^37
+ ;;^UTILITY(U,$J,358.3,28265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29976,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29976,1,4,0)
- ;;=4^O10.413
- ;;^UTILITY(U,$J,358.3,29976,2)
- ;;=^5016134
- ;;^UTILITY(U,$J,358.3,29977,0)
- ;;=O10.43^^178^1910^42
- ;;^UTILITY(U,$J,358.3,29977,1,0)
+ ;;^UTILITY(U,$J,358.3,28265,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,28265,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,28265,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,28266,0)
+ ;;=F09.^^132^1327^18
+ ;;^UTILITY(U,$J,358.3,28266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29977,1,3,0)
- ;;=3^Pre-existing secondary htn comp the puerperium
- ;;^UTILITY(U,$J,358.3,29977,1,4,0)
- ;;=4^O10.43
- ;;^UTILITY(U,$J,358.3,29977,2)
- ;;=^5016137
- ;;^UTILITY(U,$J,358.3,29978,0)
- ;;=O10.111^^178^1910^24
- ;;^UTILITY(U,$J,358.3,29978,1,0)
+ ;;^UTILITY(U,$J,358.3,28266,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,28266,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,28266,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,28267,0)
+ ;;=F07.9^^132^1327^33
+ ;;^UTILITY(U,$J,358.3,28267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29978,1,3,0)
- ;;=3^Pre-exist hyp heart disease comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29978,1,4,0)
- ;;=4^O10.111
- ;;^UTILITY(U,$J,358.3,29978,2)
- ;;=^5016114
- ;;^UTILITY(U,$J,358.3,29979,0)
- ;;=O10.012^^178^1910^28
- ;;^UTILITY(U,$J,358.3,29979,1,0)
+ ;;^UTILITY(U,$J,358.3,28267,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,28267,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,28267,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,28268,0)
+ ;;=G30.0^^132^1327^1
+ ;;^UTILITY(U,$J,358.3,28268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29979,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29979,1,4,0)
- ;;=4^O10.012
- ;;^UTILITY(U,$J,358.3,29979,2)
- ;;=^5016109
- ;;^UTILITY(U,$J,358.3,29980,0)
- ;;=O10.013^^178^1910^29
- ;;^UTILITY(U,$J,358.3,29980,1,0)
+ ;;^UTILITY(U,$J,358.3,28268,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,28268,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,28268,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,28269,0)
+ ;;=G30.8^^132^1327^3
+ ;;^UTILITY(U,$J,358.3,28269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29980,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28269,1,3,0)
+ ;;=3^Alzheimer's Disease,Other
+ ;;^UTILITY(U,$J,358.3,28269,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,28269,2)
+ ;;=^5003807

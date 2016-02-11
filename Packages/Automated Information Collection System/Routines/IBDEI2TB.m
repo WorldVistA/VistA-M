@@ -1,0 +1,134 @@
+IBDEI2TB ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47220,1,4,0)
+ ;;=4^C13.1
+ ;;^UTILITY(U,$J,358.3,47220,2)
+ ;;=^267047
+ ;;^UTILITY(U,$J,358.3,47221,0)
+ ;;=C13.2^^209^2343^5
+ ;;^UTILITY(U,$J,358.3,47221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47221,1,3,0)
+ ;;=3^Malig Neop of Posterior Wall of Hypopharynx
+ ;;^UTILITY(U,$J,358.3,47221,1,4,0)
+ ;;=4^C13.2
+ ;;^UTILITY(U,$J,358.3,47221,2)
+ ;;=^5000913
+ ;;^UTILITY(U,$J,358.3,47222,0)
+ ;;=C13.8^^209^2343^3
+ ;;^UTILITY(U,$J,358.3,47222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47222,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Hypopharynx
+ ;;^UTILITY(U,$J,358.3,47222,1,4,0)
+ ;;=4^C13.8
+ ;;^UTILITY(U,$J,358.3,47222,2)
+ ;;=^5000914
+ ;;^UTILITY(U,$J,358.3,47223,0)
+ ;;=C13.9^^209^2343^2
+ ;;^UTILITY(U,$J,358.3,47223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47223,1,3,0)
+ ;;=3^Malig Neop of Hypopharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,47223,1,4,0)
+ ;;=4^C13.9
+ ;;^UTILITY(U,$J,358.3,47223,2)
+ ;;=^5000915
+ ;;^UTILITY(U,$J,358.3,47224,0)
+ ;;=C32.0^^209^2344^1
+ ;;^UTILITY(U,$J,358.3,47224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47224,1,3,0)
+ ;;=3^Malig Neop of Glottis
+ ;;^UTILITY(U,$J,358.3,47224,1,4,0)
+ ;;=4^C32.0
+ ;;^UTILITY(U,$J,358.3,47224,2)
+ ;;=^267129
+ ;;^UTILITY(U,$J,358.3,47225,0)
+ ;;=C32.1^^209^2344^6
+ ;;^UTILITY(U,$J,358.3,47225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47225,1,3,0)
+ ;;=3^Malig Neop of Supraglottis
+ ;;^UTILITY(U,$J,358.3,47225,1,4,0)
+ ;;=4^C32.1
+ ;;^UTILITY(U,$J,358.3,47225,2)
+ ;;=^267130
+ ;;^UTILITY(U,$J,358.3,47226,0)
+ ;;=C32.2^^209^2344^5
+ ;;^UTILITY(U,$J,358.3,47226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47226,1,3,0)
+ ;;=3^Malig Neop of Subglottis
+ ;;^UTILITY(U,$J,358.3,47226,1,4,0)
+ ;;=4^C32.2
+ ;;^UTILITY(U,$J,358.3,47226,2)
+ ;;=^267131
+ ;;^UTILITY(U,$J,358.3,47227,0)
+ ;;=C32.3^^209^2344^2
+ ;;^UTILITY(U,$J,358.3,47227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47227,1,3,0)
+ ;;=3^Malig Neop of Laryngeal Cartilage
+ ;;^UTILITY(U,$J,358.3,47227,1,4,0)
+ ;;=4^C32.3
+ ;;^UTILITY(U,$J,358.3,47227,2)
+ ;;=^5000954
+ ;;^UTILITY(U,$J,358.3,47228,0)
+ ;;=C32.8^^209^2344^4
+ ;;^UTILITY(U,$J,358.3,47228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47228,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Larynx
+ ;;^UTILITY(U,$J,358.3,47228,1,4,0)
+ ;;=4^C32.8
+ ;;^UTILITY(U,$J,358.3,47228,2)
+ ;;=^5000955
+ ;;^UTILITY(U,$J,358.3,47229,0)
+ ;;=C32.9^^209^2344^3
+ ;;^UTILITY(U,$J,358.3,47229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47229,1,3,0)
+ ;;=3^Malig Neop of Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,47229,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,47229,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,47230,0)
+ ;;=C33.^^209^2344^7
+ ;;^UTILITY(U,$J,358.3,47230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47230,1,3,0)
+ ;;=3^Malig Neop of Trachea
+ ;;^UTILITY(U,$J,358.3,47230,1,4,0)
+ ;;=4^C33.
+ ;;^UTILITY(U,$J,358.3,47230,2)
+ ;;=^267135
+ ;;^UTILITY(U,$J,358.3,47231,0)
+ ;;=C34.01^^209^2345^11
+ ;;^UTILITY(U,$J,358.3,47231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47231,1,3,0)
+ ;;=3^Malig Neop of Right Main Bronchus
+ ;;^UTILITY(U,$J,358.3,47231,1,4,0)
+ ;;=4^C34.01
+ ;;^UTILITY(U,$J,358.3,47231,2)
+ ;;=^5000958
+ ;;^UTILITY(U,$J,358.3,47232,0)
+ ;;=C34.02^^209^2345^3
+ ;;^UTILITY(U,$J,358.3,47232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47232,1,3,0)
+ ;;=3^Malig Neop of Left Main Bronchus
+ ;;^UTILITY(U,$J,358.3,47232,1,4,0)
+ ;;=4^C34.02
+ ;;^UTILITY(U,$J,358.3,47232,2)
+ ;;=^5000959
+ ;;^UTILITY(U,$J,358.3,47233,0)
+ ;;=C34.11^^209^2345^12
+ ;;^UTILITY(U,$J,358.3,47233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47233,1,3,0)
+ ;;=3^Malig Neop of Right Upper Lobe of Bronchus/Lung

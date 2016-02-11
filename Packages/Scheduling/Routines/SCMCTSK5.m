@@ -1,9 +1,10 @@
-SCMCTSK5 ;ALB/JDS - PCMM Inactivation Reports;
- ;;5.3;Scheduling;**297,532,539**;AUG 13, 1993;Build 24
+SCMCTSK5 ;ALB/JDS - PCMM Inactivation Reports ;01/28/2013
+ ;;5.3;Scheduling;**297,532,539,603**;AUG 13, 1993;Build 79
+ ;
  Q
 FLAG ;
- ;;Patients scheduled for inactivation from their Primary Care team and
- ;;Primary Care Provider assignments appear below.
+ ;;Patients scheduled for inactivation from their Patient Aligned Care
+ ;;Team (PACT) assignments appear below.
  ;;  
  ;;Flagging of primary care patients from a PCMM panel occurs each time
  ;;this Inactivation Task is run.
@@ -15,12 +16,12 @@ FLAG ;
  ;;position. If a patient is assigned to the PC preceptor position then only
  ;;the encounters with the provider assigned as preceptor will be evaluated.
  ;;(a) If a patient is NEW as assigned to the position 12 months or less,
- ;;and it is the 11th month since being assigned to the position,
+ ;;and it is the 8th month since being assigned to the position,
  ;;and the patient had no prior encounters with the PCP/APs in the preceding
- ;;11 months + 7 days then the patient is flagged for inactivation.
+ ;;8 months + 7 days then the patient is flagged for inactivation.
  ;;(b) If a patient is ESTABLISHED as assigned to the position more than
  ;;12 months and if the patient had no prior encounters with the PCP/AP in
- ;;the preceding 23 months + 7 days the patient is flagged for inactivation.
+ ;;the preceding 20 months + 7 days the patient is flagged for inactivation.
  ;;Inactivation will occur on the fifteenth and the last day of the month
  ;;unless the patient has a completed appointment encounter with their current
  ;;Primary Care Provider (PCP) or their Associate Primary Care Provider (AP)
@@ -37,7 +38,7 @@ FLAG ;
  Q
 EXT ;
  ;;By using the Extend Patient Inactivation Date option, these patients'
- ;;PCMM inactivation dates are now 60 days from their original inactivation date.
+ ;;PCMM inactivation dates are now 183 days from their original inactivation date.
  ;;Inactivation occurs on the fifteenth and the last day of the month, unless
  ;;the patient has a completed appointment encounter with their current
  ;;Primary Care Provider (PCP) or their Associate Primary Care Provider (AP)
@@ -50,7 +51,7 @@ EXT ;
  ;;---------------------------------------------------------------------------
  Q
 INACT ;
- ;;Patients inactivated from their Primary Care team and Primary Care Provider
+ ;;Patients inactivated from their Patient Aligned Care Team (PACT)
  ;;assignments appear below.
  ;;Inactivation occurs on the fifteenth and the last day of a month, unless
  ;;the patient has a completed appointment encounter with their current
@@ -65,11 +66,11 @@ INACT ;
  ;;time of assignment to that provider.  This provides every PCP a 1-year grace
  ;;period for seeing patients added to their panel (either newly-enrolled
  ;;patients or patients transferred from a different panel) before they are
- ;;inactivated. Patients must be seen by their PCP or AP within 12 months +7 days
+ ;;inactivated. Patients must be seen by their PCP or AP within 8 months +7 days
  ;;of being assigned, or they need to be inactivated from the PCP's panel.
  ;;(c) Established patients that have been assigned to the PCP's panel for more 
  ;;than 12 months, but have not been seen by their PCP or AP in the past
- ;;24 months +7 days need to be inactivated.
+ ;;20 months +7 days need to be inactivated.
  ;;The patient may be reactivated to their previous PCP and PC team if they
  ;;return for care.
  ;;Patients Automated Inactivation from Primary Care Panels

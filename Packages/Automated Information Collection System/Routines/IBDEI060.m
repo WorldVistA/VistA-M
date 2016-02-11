@@ -1,142 +1,128 @@
-IBDEI060 ; ; 06-AUG-2015
+IBDEI060 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2281,1,3,0)
- ;;=3^Pain in right hip
- ;;^UTILITY(U,$J,358.3,2281,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,2281,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,2282,0)
- ;;=M25.552^^4^63^33
- ;;^UTILITY(U,$J,358.3,2282,1,0)
+ ;;^UTILITY(U,$J,358.3,2211,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,2211,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,2212,0)
+ ;;=I25.118^^19^191^17
+ ;;^UTILITY(U,$J,358.3,2212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2282,1,3,0)
- ;;=3^Pain in left hip
- ;;^UTILITY(U,$J,358.3,2282,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,2282,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,2283,0)
- ;;=M25.561^^4^63^37
- ;;^UTILITY(U,$J,358.3,2283,1,0)
+ ;;^UTILITY(U,$J,358.3,2212,1,3,0)
+ ;;=3^Athscl Hrt Disease of Native Cor Art w/ Oth Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,2212,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,2212,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,2213,0)
+ ;;=I25.119^^19^191^18
+ ;;^UTILITY(U,$J,358.3,2213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2283,1,3,0)
- ;;=3^Pain in right knee
- ;;^UTILITY(U,$J,358.3,2283,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,2283,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,2284,0)
- ;;=M25.562^^4^63^34
- ;;^UTILITY(U,$J,358.3,2284,1,0)
+ ;;^UTILITY(U,$J,358.3,2213,1,3,0)
+ ;;=3^Athscl Hrt Disease of Native Cor Art w/ Unspec Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,2213,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,2213,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,2214,0)
+ ;;=I25.701^^19^191^29
+ ;;^UTILITY(U,$J,358.3,2214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2284,1,3,0)
- ;;=3^Pain in left knee
- ;;^UTILITY(U,$J,358.3,2284,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,2284,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,2285,0)
- ;;=M54.2^^4^63^9
- ;;^UTILITY(U,$J,358.3,2285,1,0)
+ ;;^UTILITY(U,$J,358.3,2214,1,3,0)
+ ;;=3^Athscl of CABG w/ Ang Pctrs w/ Documented Spasm,Unspec
+ ;;^UTILITY(U,$J,358.3,2214,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,2214,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,2215,0)
+ ;;=I25.708^^19^191^31
+ ;;^UTILITY(U,$J,358.3,2215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2285,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,2285,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,2285,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,2286,0)
- ;;=M54.5^^4^63^22
- ;;^UTILITY(U,$J,358.3,2286,1,0)
+ ;;^UTILITY(U,$J,358.3,2215,1,3,0)
+ ;;=3^Athscl of CABG w/ Oth Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,2215,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,2215,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,2216,0)
+ ;;=I25.709^^19^191^33
+ ;;^UTILITY(U,$J,358.3,2216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2286,1,3,0)
- ;;=3^Low back pain
- ;;^UTILITY(U,$J,358.3,2286,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,2286,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,2287,0)
- ;;=M54.9^^4^63^15
- ;;^UTILITY(U,$J,358.3,2287,1,0)
+ ;;^UTILITY(U,$J,358.3,2216,1,3,0)
+ ;;=3^Athscl of CABG w/ Unspec Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,2216,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,2216,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,2217,0)
+ ;;=I25.711^^19^191^7
+ ;;^UTILITY(U,$J,358.3,2217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2287,1,3,0)
- ;;=3^Dorsalgia, unspecified
- ;;^UTILITY(U,$J,358.3,2287,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,2287,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,2288,0)
- ;;=R51.^^4^63^18
- ;;^UTILITY(U,$J,358.3,2288,1,0)
+ ;;^UTILITY(U,$J,358.3,2217,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,2217,1,4,0)
+ ;;=4^I25.711
+ ;;^UTILITY(U,$J,358.3,2217,2)
+ ;;=^5007122
+ ;;^UTILITY(U,$J,358.3,2218,0)
+ ;;=I25.718^^19^191^8
+ ;;^UTILITY(U,$J,358.3,2218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2288,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,2288,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,2288,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,2289,0)
- ;;=R05.^^4^63^14
- ;;^UTILITY(U,$J,358.3,2289,1,0)
+ ;;^UTILITY(U,$J,358.3,2218,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Oth Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,2218,1,4,0)
+ ;;=4^I25.718
+ ;;^UTILITY(U,$J,358.3,2218,2)
+ ;;=^5007123
+ ;;^UTILITY(U,$J,358.3,2219,0)
+ ;;=I25.719^^19^191^9
+ ;;^UTILITY(U,$J,358.3,2219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2289,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,2289,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,2289,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,2290,0)
- ;;=R07.9^^4^63^10
- ;;^UTILITY(U,$J,358.3,2290,1,0)
+ ;;^UTILITY(U,$J,358.3,2219,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Unspec Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,2219,1,4,0)
+ ;;=4^I25.719
+ ;;^UTILITY(U,$J,358.3,2219,2)
+ ;;=^5007124
+ ;;^UTILITY(U,$J,358.3,2220,0)
+ ;;=I25.721^^19^191^3
+ ;;^UTILITY(U,$J,358.3,2220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2290,1,3,0)
- ;;=3^Chest pain, unspecified
- ;;^UTILITY(U,$J,358.3,2290,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,2290,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,2291,0)
- ;;=R10.9^^4^63^1
- ;;^UTILITY(U,$J,358.3,2291,1,0)
+ ;;^UTILITY(U,$J,358.3,2220,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,2220,1,4,0)
+ ;;=4^I25.721
+ ;;^UTILITY(U,$J,358.3,2220,2)
+ ;;=^5007126
+ ;;^UTILITY(U,$J,358.3,2221,0)
+ ;;=I25.728^^19^191^4
+ ;;^UTILITY(U,$J,358.3,2221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2291,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,2291,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,2291,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,2292,0)
- ;;=R76.11^^4^63^31
- ;;^UTILITY(U,$J,358.3,2292,1,0)
+ ;;^UTILITY(U,$J,358.3,2221,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Oth Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,2221,1,4,0)
+ ;;=4^I25.728
+ ;;^UTILITY(U,$J,358.3,2221,2)
+ ;;=^5133560
+ ;;^UTILITY(U,$J,358.3,2222,0)
+ ;;=I25.729^^19^191^5
+ ;;^UTILITY(U,$J,358.3,2222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2292,1,3,0)
- ;;=3^Nonspecific reaction to skin test w/o active tuberculosis
- ;;^UTILITY(U,$J,358.3,2292,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,2292,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,2293,0)
- ;;=R76.12^^4^63^30
- ;;^UTILITY(U,$J,358.3,2293,1,0)
+ ;;^UTILITY(U,$J,358.3,2222,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,2222,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,2222,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,2223,0)
+ ;;=I25.731^^19^191^25
+ ;;^UTILITY(U,$J,358.3,2223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2293,1,3,0)
- ;;=3^Nonspec reaction to gamma intrfrn respns w/o actv tubrclosis
- ;;^UTILITY(U,$J,358.3,2293,1,4,0)
- ;;=4^R76.12
- ;;^UTILITY(U,$J,358.3,2293,2)
- ;;=^5019571
- ;;^UTILITY(U,$J,358.3,2294,0)
- ;;=R03.0^^4^63^16
- ;;^UTILITY(U,$J,358.3,2294,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2294,1,3,0)
- ;;=3^Elevated blood-pressure reading, w/o diagnosis of htn
- ;;^UTILITY(U,$J,358.3,2294,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,2294,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,2295,0)
- ;;=M25.50^^4^63^32
+ ;;^UTILITY(U,$J,358.3,2223,1,3,0)
+ ;;=3^Athscl Nonautologous Biological CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,2223,1,4,0)
+ ;;=4^I25.731
+ ;;^UTILITY(U,$J,358.3,2223,2)
+ ;;=^5007128

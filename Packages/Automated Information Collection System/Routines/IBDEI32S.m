@@ -1,0 +1,130 @@
+IBDEI32S ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,51583,1,3,0)
+ ;;=3^Acute Systolic Cong Heart Failure
+ ;;^UTILITY(U,$J,358.3,51583,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,51583,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,51584,0)
+ ;;=I50.22^^225^2498^10
+ ;;^UTILITY(U,$J,358.3,51584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51584,1,3,0)
+ ;;=3^Chronic Systolic Cong Heart Failure
+ ;;^UTILITY(U,$J,358.3,51584,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,51584,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,51585,0)
+ ;;=V49.9XXA^^225^2499^1
+ ;;^UTILITY(U,$J,358.3,51585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51585,1,3,0)
+ ;;=3^Car Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51585,1,4,0)
+ ;;=4^V49.9XXA
+ ;;^UTILITY(U,$J,358.3,51585,2)
+ ;;=^5057368
+ ;;^UTILITY(U,$J,358.3,51586,0)
+ ;;=V59.9XXA^^225^2499^7
+ ;;^UTILITY(U,$J,358.3,51586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51586,1,3,0)
+ ;;=3^Truck/Van Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51586,1,4,0)
+ ;;=4^V59.9XXA
+ ;;^UTILITY(U,$J,358.3,51586,2)
+ ;;=^5057659
+ ;;^UTILITY(U,$J,358.3,51587,0)
+ ;;=V69.9XXA^^225^2499^5
+ ;;^UTILITY(U,$J,358.3,51587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51587,1,3,0)
+ ;;=3^Heavy Transport Vehicle Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51587,1,4,0)
+ ;;=4^V69.9XXA
+ ;;^UTILITY(U,$J,358.3,51587,2)
+ ;;=^5057950
+ ;;^UTILITY(U,$J,358.3,51588,0)
+ ;;=V89.2XXA^^225^2499^6
+ ;;^UTILITY(U,$J,358.3,51588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51588,1,3,0)
+ ;;=3^Person injured in Motor-Vehicle Traffic Accident,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51588,1,4,0)
+ ;;=4^V89.2XXA
+ ;;^UTILITY(U,$J,358.3,51588,2)
+ ;;=^5058688
+ ;;^UTILITY(U,$J,358.3,51589,0)
+ ;;=W07.XXXA^^225^2499^3
+ ;;^UTILITY(U,$J,358.3,51589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51589,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51589,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,51589,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,51590,0)
+ ;;=W06.XXXA^^225^2499^2
+ ;;^UTILITY(U,$J,358.3,51590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51590,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51590,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,51590,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,51591,0)
+ ;;=W19.XXXA^^225^2499^4
+ ;;^UTILITY(U,$J,358.3,51591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51591,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51591,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,51591,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,51592,0)
+ ;;=F32.9^^225^2500^2
+ ;;^UTILITY(U,$J,358.3,51592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51592,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,51592,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,51592,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,51593,0)
+ ;;=Z71.89^^225^2500^1
+ ;;^UTILITY(U,$J,358.3,51593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51593,1,3,0)
+ ;;=3^Counseling NEC
+ ;;^UTILITY(U,$J,358.3,51593,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,51593,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,51594,0)
+ ;;=G56.01^^225^2501^6
+ ;;^UTILITY(U,$J,358.3,51594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51594,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,51594,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,51594,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,51595,0)
+ ;;=G56.02^^225^2501^5
+ ;;^UTILITY(U,$J,358.3,51595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51595,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,51595,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,51595,2)
+ ;;=^5004019

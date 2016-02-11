@@ -1,134 +1,138 @@
-IBDEI06N ; ; 06-AUG-2015
+IBDEI06N ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2587,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,2587,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,2588,0)
- ;;=C16.9^^6^79^23
- ;;^UTILITY(U,$J,358.3,2588,1,0)
+ ;;^UTILITY(U,$J,358.3,2511,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,2511,1,3,0)
+ ;;=3^Psych Diagnostic Evaluation
+ ;;^UTILITY(U,$J,358.3,2512,0)
+ ;;=96101^^20^209^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2512,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2512,1,2,0)
+ ;;=2^96101
+ ;;^UTILITY(U,$J,358.3,2512,1,3,0)
+ ;;=3^Psych Testing by Psych/Phys
+ ;;^UTILITY(U,$J,358.3,2513,0)
+ ;;=90885^^20^209^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2513,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2513,1,2,0)
+ ;;=2^90885
+ ;;^UTILITY(U,$J,358.3,2513,1,3,0)
+ ;;=3^Psych Evaluation of Records
+ ;;^UTILITY(U,$J,358.3,2514,0)
+ ;;=99212^^21^210^1
+ ;;^UTILITY(U,$J,358.3,2514,1,0)
+ ;;=^358.31IA^1^1
+ ;;^UTILITY(U,$J,358.3,2514,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,2515,0)
+ ;;=99213^^21^210^2
+ ;;^UTILITY(U,$J,358.3,2515,1,0)
+ ;;=^358.31IA^1^1
+ ;;^UTILITY(U,$J,358.3,2515,1,1,0)
+ ;;=1^Expanded Problem Focused
+ ;;^UTILITY(U,$J,358.3,2516,0)
+ ;;=99214^^21^210^3
+ ;;^UTILITY(U,$J,358.3,2516,1,0)
+ ;;=^358.31IA^1^1
+ ;;^UTILITY(U,$J,358.3,2516,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,2517,0)
+ ;;=99215^^21^210^4
+ ;;^UTILITY(U,$J,358.3,2517,1,0)
+ ;;=^358.31IA^1^1
+ ;;^UTILITY(U,$J,358.3,2517,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,2518,0)
+ ;;=Z02.89^^22^211^1
+ ;;^UTILITY(U,$J,358.3,2518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2588,1,3,0)
- ;;=3^Malignant neoplasm of stomach, unspecified
- ;;^UTILITY(U,$J,358.3,2588,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,2588,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,2589,0)
- ;;=I86.4^^6^79^15
- ;;^UTILITY(U,$J,358.3,2589,1,0)
+ ;;^UTILITY(U,$J,358.3,2518,1,3,0)
+ ;;=3^Admin Enc-Adv Direc/LTC
+ ;;^UTILITY(U,$J,358.3,2518,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,2518,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,2519,0)
+ ;;=Z63.72^^22^212^1
+ ;;^UTILITY(U,$J,358.3,2519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2589,1,3,0)
- ;;=3^Gastric varices
- ;;^UTILITY(U,$J,358.3,2589,1,4,0)
- ;;=4^I86.4
- ;;^UTILITY(U,$J,358.3,2589,2)
- ;;=^49382
- ;;^UTILITY(U,$J,358.3,2590,0)
- ;;=K25.0^^6^79^2
- ;;^UTILITY(U,$J,358.3,2590,1,0)
+ ;;^UTILITY(U,$J,358.3,2519,1,3,0)
+ ;;=3^Alcoholism in Family
+ ;;^UTILITY(U,$J,358.3,2519,1,4,0)
+ ;;=4^Z63.72
+ ;;^UTILITY(U,$J,358.3,2519,2)
+ ;;=^5063172
+ ;;^UTILITY(U,$J,358.3,2520,0)
+ ;;=Z71.89^^22^212^2
+ ;;^UTILITY(U,$J,358.3,2520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2590,1,3,0)
- ;;=3^Acute gastric ulcer with hemorrhage
- ;;^UTILITY(U,$J,358.3,2590,1,4,0)
- ;;=4^K25.0
- ;;^UTILITY(U,$J,358.3,2590,2)
- ;;=^270064
- ;;^UTILITY(U,$J,358.3,2591,0)
- ;;=K25.9^^6^79^14
- ;;^UTILITY(U,$J,358.3,2591,1,0)
+ ;;^UTILITY(U,$J,358.3,2520,1,3,0)
+ ;;=3^Counsel Parent-Child Prob,Unspec
+ ;;^UTILITY(U,$J,358.3,2520,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,2520,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,2521,0)
+ ;;=Z71.89^^22^212^3
+ ;;^UTILITY(U,$J,358.3,2521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2591,1,3,0)
- ;;=3^Gastric ulcer, unsp as acute or chronic, w/o hemor or perf
- ;;^UTILITY(U,$J,358.3,2591,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,2591,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,2592,0)
- ;;=K26.0^^6^79^1
- ;;^UTILITY(U,$J,358.3,2592,1,0)
+ ;;^UTILITY(U,$J,358.3,2521,1,3,0)
+ ;;=3^Counsel-Marital/Partn,Unspec
+ ;;^UTILITY(U,$J,358.3,2521,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,2521,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,2522,0)
+ ;;=Z69.011^^22^212^4
+ ;;^UTILITY(U,$J,358.3,2522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2592,1,3,0)
- ;;=3^Acute duodenal ulcer with hemorrhage
- ;;^UTILITY(U,$J,358.3,2592,1,4,0)
- ;;=4^K26.0
- ;;^UTILITY(U,$J,358.3,2592,2)
- ;;=^270089
- ;;^UTILITY(U,$J,358.3,2593,0)
- ;;=K26.9^^6^79^12
- ;;^UTILITY(U,$J,358.3,2593,1,0)
+ ;;^UTILITY(U,$J,358.3,2522,1,3,0)
+ ;;=3^Counsel-Perp Par-Child Abuse
+ ;;^UTILITY(U,$J,358.3,2522,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,2522,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,2523,0)
+ ;;=Z69.12^^22^212^5
+ ;;^UTILITY(U,$J,358.3,2523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2593,1,3,0)
- ;;=3^Duodenal ulcer, unsp as acute or chronic, w/o hemor or perf
- ;;^UTILITY(U,$J,358.3,2593,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,2593,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,2594,0)
- ;;=K27.9^^6^79^25
- ;;^UTILITY(U,$J,358.3,2594,1,0)
+ ;;^UTILITY(U,$J,358.3,2523,1,3,0)
+ ;;=3^Counsel-Perp Spous/Partn Abuse
+ ;;^UTILITY(U,$J,358.3,2523,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,2523,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,2524,0)
+ ;;=Z69.010^^22^212^6
+ ;;^UTILITY(U,$J,358.3,2524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2594,1,3,0)
- ;;=3^Peptic ulc, site unsp, unsp as ac or chr, w/o hemor or perf
- ;;^UTILITY(U,$J,358.3,2594,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,2594,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,2595,0)
- ;;=K29.40^^6^79^7
- ;;^UTILITY(U,$J,358.3,2595,1,0)
+ ;;^UTILITY(U,$J,358.3,2524,1,3,0)
+ ;;=3^Counsel-Victim Child Abuse
+ ;;^UTILITY(U,$J,358.3,2524,1,4,0)
+ ;;=4^Z69.010
+ ;;^UTILITY(U,$J,358.3,2524,2)
+ ;;=^5063228
+ ;;^UTILITY(U,$J,358.3,2525,0)
+ ;;=Z69.11^^22^212^7
+ ;;^UTILITY(U,$J,358.3,2525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2595,1,3,0)
- ;;=3^Chronic atrophic gastritis without bleeding
- ;;^UTILITY(U,$J,358.3,2595,1,4,0)
- ;;=4^K29.40
- ;;^UTILITY(U,$J,358.3,2595,2)
- ;;=^5008548
- ;;^UTILITY(U,$J,358.3,2596,0)
- ;;=K29.50^^6^79^6
- ;;^UTILITY(U,$J,358.3,2596,1,0)
+ ;;^UTILITY(U,$J,358.3,2525,1,3,0)
+ ;;=3^Counsel-Victim Spous/Partn Abuse
+ ;;^UTILITY(U,$J,358.3,2525,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,2525,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,2526,0)
+ ;;=Z63.8^^22^212^8
+ ;;^UTILITY(U,$J,358.3,2526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2596,1,3,0)
- ;;=3^Chronic Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,2596,1,4,0)
- ;;=4^K29.50
- ;;^UTILITY(U,$J,358.3,2596,2)
- ;;=^5008550
- ;;^UTILITY(U,$J,358.3,2597,0)
- ;;=K29.30^^6^79^8
- ;;^UTILITY(U,$J,358.3,2597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2597,1,3,0)
- ;;=3^Chronic superficial gastritis without bleeding
- ;;^UTILITY(U,$J,358.3,2597,1,4,0)
- ;;=4^K29.30
- ;;^UTILITY(U,$J,358.3,2597,2)
- ;;=^5008546
- ;;^UTILITY(U,$J,358.3,2598,0)
- ;;=K29.20^^6^79^3
- ;;^UTILITY(U,$J,358.3,2598,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2598,1,3,0)
- ;;=3^Alcoholic gastritis without bleeding
- ;;^UTILITY(U,$J,358.3,2598,1,4,0)
- ;;=4^K29.20
- ;;^UTILITY(U,$J,358.3,2598,2)
- ;;=^5008544
- ;;^UTILITY(U,$J,358.3,2599,0)
- ;;=K29.90^^6^79^19
- ;;^UTILITY(U,$J,358.3,2599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2599,1,3,0)
- ;;=3^Gastroduodenitis, unspecified, without bleeding
- ;;^UTILITY(U,$J,358.3,2599,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,2599,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,2600,0)
- ;;=K29.70^^6^79^17
- ;;^UTILITY(U,$J,358.3,2600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2600,1,3,0)
- ;;=3^Gastritis, unspecified, without bleeding
+ ;;^UTILITY(U,$J,358.3,2526,1,3,0)
+ ;;=3^Family Disruption NEC
+ ;;^UTILITY(U,$J,358.3,2526,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,2526,2)
+ ;;=^5063174

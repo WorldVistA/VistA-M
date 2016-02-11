@@ -1,5 +1,5 @@
 RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ;8/3/05 9:50am
- ;;1.5;CLINICAL CASE REGISTRIES;**18,25**;Feb 17, 2006;Build 19
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,25,26**;Feb 17, 2006;Build 53
  ;
  ;*****************************************************************************
  ;*****************************************************************************
@@ -10,7 +10,8 @@ RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ;8/3/05 9:50am
  ;ROR*1.5*18   APR 2012    C RAY        Modified PTF RULE to use B xref #798.5
  ;ROR*1.5*25   FEB 2015    T KOPP       Modified PTF rule to add new Diagnosis
  ;                                      fields for ICD-10 PTF expansion.
- ;                                      
+ ;ROR*1.5*26   MAR 2015    T KOPP       Added rule for PTF procedure codes check
+ ;                                      in API #3
  ;*****************************************************************************
  ;*****************************************************************************
  ; This routine uses the following IAs:
@@ -33,8 +34,8 @@ RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ;8/3/05 9:50am
  ;
 LOAD(IENS) ;
  N RC  S RC=0
- ;--- API #1
- I $D(RORUPD("SR",RORFILE,"F",1))  D  Q:RC<0 RC
+ ;--- API #1 or #3
+ I $S($D(RORUPD("SR",RORFILE,"F",1)):1,1:$D(RORUPD("SR",RORFILE,"F",3))) D  Q:RC<0 RC
  . S RC=$$LOADFLDS^RORUPDUT(RORFILE,IENS)
  ;--- API #2
  I $D(RORUPD("SR",RORFILE,"F",2))  D  Q:RC<0 RC
@@ -97,10 +98,21 @@ PTF(UPDSTART,PATIEN) ;
  D CLRDES^RORUPDUT(RORFILE)
  Q RC
  ;
- ;***** IMPLEMENTATION OF THE 'PTF' RULE
+ ;***** IMPLEMENTATION OF THE 'PTF' Diagnosis RULE
 PTFRULE(ICD) ;
  N DATELMT,RC
  S RC=0
  F DATELMT=111,101:1:110,131:1:147  D  Q:RC
  . S RC=+$D(^ROR(798.5,REGIEN,1,"B",+$G(RORVALS("DV",45,DATELMT,"I"))))
  Q RC
+ ;
+ ;***** IMPLEMENTATION OF THE 'PTF' Procedure RULE for ICD and CPT
+PTFRULE1(REGIEN) ;
+ N ROR
+ S RC=0
+ I $D(^ROR(798.5,REGIEN,2,"B")) D  Q:RC  ;ICD procedure codes
+ . S ROR=0 F  S ROR=$O(RORVALS("PPTF","I",ROR)) Q:'ROR  I +$D(^ROR(798.5,REGIEN,2,"B",+$G(RORVALS("PPTF","I",ROR,"I")))) S RC=1 Q
+ I 'RC,$D(^ROR(798.5,REGIEN,3,"B")) D  ;CPT procedure codes
+ . S ROR=0 F  S ROR=$O(RORVALS("PPTF","C",ROR)) Q:'ROR  I +$D(^ROR(798.5,REGIEN,3,"B",+$G(RORVALS("PPTF","C",ROR,"I")))) S RC=1 Q
+ Q RC
+ ;

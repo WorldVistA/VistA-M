@@ -1,142 +1,130 @@
-IBDEI04T ; ; 06-AUG-2015
+IBDEI04T ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1728,1,3,0)
- ;;=3^Chronic post-thoracotomy pain
- ;;^UTILITY(U,$J,358.3,1728,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,1728,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,1729,0)
- ;;=G89.28^^3^50^9
- ;;^UTILITY(U,$J,358.3,1729,1,0)
+ ;;^UTILITY(U,$J,358.3,1563,0)
+ ;;=T49.6X6A^^14^156^86
+ ;;^UTILITY(U,$J,358.3,1563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1729,1,3,0)
- ;;=3^Chronic postprocedural pain NEC
- ;;^UTILITY(U,$J,358.3,1729,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,1729,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,1730,0)
- ;;=G89.29^^3^50^5
- ;;^UTILITY(U,$J,358.3,1730,1,0)
+ ;;^UTILITY(U,$J,358.3,1563,1,3,0)
+ ;;=3^Underdosing of otorhino drugs and preparations, init
+ ;;^UTILITY(U,$J,358.3,1563,1,4,0)
+ ;;=4^T49.6X6A
+ ;;^UTILITY(U,$J,358.3,1563,2)
+ ;;=^5051929
+ ;;^UTILITY(U,$J,358.3,1564,0)
+ ;;=T49.6X6D^^14^156^87
+ ;;^UTILITY(U,$J,358.3,1564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1730,1,3,0)
- ;;=3^Chronic Pain NEC
- ;;^UTILITY(U,$J,358.3,1730,1,4,0)
- ;;=4^G89.29
- ;;^UTILITY(U,$J,358.3,1730,2)
- ;;=^5004158
- ;;^UTILITY(U,$J,358.3,1731,0)
- ;;=G89.3^^3^50^12
- ;;^UTILITY(U,$J,358.3,1731,1,0)
+ ;;^UTILITY(U,$J,358.3,1564,1,3,0)
+ ;;=3^Underdosing of otorhino drugs and preparations, subs
+ ;;^UTILITY(U,$J,358.3,1564,1,4,0)
+ ;;=4^T49.6X6D
+ ;;^UTILITY(U,$J,358.3,1564,2)
+ ;;=^5051930
+ ;;^UTILITY(U,$J,358.3,1565,0)
+ ;;=T49.6X6S^^14^156^88
+ ;;^UTILITY(U,$J,358.3,1565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1731,1,3,0)
- ;;=3^Neoplasm related pain (acute) (chronic)
- ;;^UTILITY(U,$J,358.3,1731,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,1731,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,1732,0)
- ;;=G89.4^^3^50^7
- ;;^UTILITY(U,$J,358.3,1732,1,0)
+ ;;^UTILITY(U,$J,358.3,1565,1,3,0)
+ ;;=3^Underdosing of otorhino drugs and preparations, sequela
+ ;;^UTILITY(U,$J,358.3,1565,1,4,0)
+ ;;=4^T49.6X6S
+ ;;^UTILITY(U,$J,358.3,1565,2)
+ ;;=^5051931
+ ;;^UTILITY(U,$J,358.3,1566,0)
+ ;;=T36.96XA^^14^156^89
+ ;;^UTILITY(U,$J,358.3,1566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1732,1,3,0)
- ;;=3^Chronic pain syndrome
- ;;^UTILITY(U,$J,358.3,1732,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,1732,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,1733,0)
- ;;=H92.01^^3^50^15
- ;;^UTILITY(U,$J,358.3,1733,1,0)
+ ;;^UTILITY(U,$J,358.3,1566,1,3,0)
+ ;;=3^Underdosing of unspecified systemic antibiotic, init encntr
+ ;;^UTILITY(U,$J,358.3,1566,1,4,0)
+ ;;=4^T36.96XA
+ ;;^UTILITY(U,$J,358.3,1566,2)
+ ;;=^5049433
+ ;;^UTILITY(U,$J,358.3,1567,0)
+ ;;=T36.96XD^^14^156^90
+ ;;^UTILITY(U,$J,358.3,1567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1733,1,3,0)
- ;;=3^Otalgia, right ear
- ;;^UTILITY(U,$J,358.3,1733,1,4,0)
- ;;=4^H92.01
- ;;^UTILITY(U,$J,358.3,1733,2)
- ;;=^5006945
- ;;^UTILITY(U,$J,358.3,1734,0)
- ;;=H92.02^^3^50^14
- ;;^UTILITY(U,$J,358.3,1734,1,0)
+ ;;^UTILITY(U,$J,358.3,1567,1,3,0)
+ ;;=3^Underdosing of unspecified systemic antibiotic, subs encntr
+ ;;^UTILITY(U,$J,358.3,1567,1,4,0)
+ ;;=4^T36.96XD
+ ;;^UTILITY(U,$J,358.3,1567,2)
+ ;;=^5049434
+ ;;^UTILITY(U,$J,358.3,1568,0)
+ ;;=T36.96XS^^14^156^91
+ ;;^UTILITY(U,$J,358.3,1568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1734,1,3,0)
- ;;=3^Otalgia, left ear
- ;;^UTILITY(U,$J,358.3,1734,1,4,0)
- ;;=4^H92.02
- ;;^UTILITY(U,$J,358.3,1734,2)
- ;;=^5006946
- ;;^UTILITY(U,$J,358.3,1735,0)
- ;;=H92.03^^3^50^13
- ;;^UTILITY(U,$J,358.3,1735,1,0)
+ ;;^UTILITY(U,$J,358.3,1568,1,3,0)
+ ;;=3^Underdosing of unspecified systemic antibiotic, sequela
+ ;;^UTILITY(U,$J,358.3,1568,1,4,0)
+ ;;=4^T36.96XS
+ ;;^UTILITY(U,$J,358.3,1568,2)
+ ;;=^5049435
+ ;;^UTILITY(U,$J,358.3,1569,0)
+ ;;=Z45.320^^14^157^1
+ ;;^UTILITY(U,$J,358.3,1569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1735,1,3,0)
- ;;=3^Otalgia, bilateral
- ;;^UTILITY(U,$J,358.3,1735,1,4,0)
- ;;=4^H92.03
- ;;^UTILITY(U,$J,358.3,1735,2)
- ;;=^5006947
- ;;^UTILITY(U,$J,358.3,1736,0)
- ;;=R68.84^^3^50^10
- ;;^UTILITY(U,$J,358.3,1736,1,0)
+ ;;^UTILITY(U,$J,358.3,1569,1,3,0)
+ ;;=3^Adjust/Mgmt of Bone Conduction Device
+ ;;^UTILITY(U,$J,358.3,1569,1,4,0)
+ ;;=4^Z45.320
+ ;;^UTILITY(U,$J,358.3,1569,2)
+ ;;=^5063001
+ ;;^UTILITY(U,$J,358.3,1570,0)
+ ;;=Z45.321^^14^157^2
+ ;;^UTILITY(U,$J,358.3,1570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1736,1,3,0)
- ;;=3^Jaw pain
- ;;^UTILITY(U,$J,358.3,1736,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,1736,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,1737,0)
- ;;=N48.89^^3^50^18
- ;;^UTILITY(U,$J,358.3,1737,1,0)
+ ;;^UTILITY(U,$J,358.3,1570,1,3,0)
+ ;;=3^Adjust/Mgmt of Cochlear Device
+ ;;^UTILITY(U,$J,358.3,1570,1,4,0)
+ ;;=4^Z45.321
+ ;;^UTILITY(U,$J,358.3,1570,2)
+ ;;=^5063002
+ ;;^UTILITY(U,$J,358.3,1571,0)
+ ;;=Z45.328^^14^157^3
+ ;;^UTILITY(U,$J,358.3,1571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1737,1,3,0)
- ;;=3^Penis Disorders NEC
- ;;^UTILITY(U,$J,358.3,1737,1,4,0)
- ;;=4^N48.89
- ;;^UTILITY(U,$J,358.3,1737,2)
- ;;=^88018
- ;;^UTILITY(U,$J,358.3,1738,0)
- ;;=N50.8^^3^50^11
- ;;^UTILITY(U,$J,358.3,1738,1,0)
+ ;;^UTILITY(U,$J,358.3,1571,1,3,0)
+ ;;=3^Adjust/Mgmt of Implanted Hearing Device
+ ;;^UTILITY(U,$J,358.3,1571,1,4,0)
+ ;;=4^Z45.328
+ ;;^UTILITY(U,$J,358.3,1571,2)
+ ;;=^5063003
+ ;;^UTILITY(U,$J,358.3,1572,0)
+ ;;=Z02.0^^14^157^6
+ ;;^UTILITY(U,$J,358.3,1572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1738,1,3,0)
- ;;=3^Male Genital Organ Disorders NEC
- ;;^UTILITY(U,$J,358.3,1738,1,4,0)
- ;;=4^N50.8
- ;;^UTILITY(U,$J,358.3,1738,2)
- ;;=^88009
- ;;^UTILITY(U,$J,358.3,1739,0)
- ;;=R10.2^^3^50^17
- ;;^UTILITY(U,$J,358.3,1739,1,0)
+ ;;^UTILITY(U,$J,358.3,1572,1,3,0)
+ ;;=3^Exam for Admission to Educational Institution
+ ;;^UTILITY(U,$J,358.3,1572,1,4,0)
+ ;;=4^Z02.0
+ ;;^UTILITY(U,$J,358.3,1572,2)
+ ;;=^5062633
+ ;;^UTILITY(U,$J,358.3,1573,0)
+ ;;=Z02.2^^14^157^7
+ ;;^UTILITY(U,$J,358.3,1573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1739,1,3,0)
- ;;=3^Pelvic and perineal pain
- ;;^UTILITY(U,$J,358.3,1739,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,1739,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,1740,0)
- ;;=Z85.810^^3^51^7
- ;;^UTILITY(U,$J,358.3,1740,1,0)
+ ;;^UTILITY(U,$J,358.3,1573,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,1573,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,1573,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,1574,0)
+ ;;=Z02.4^^14^157^8
+ ;;^UTILITY(U,$J,358.3,1574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1740,1,3,0)
- ;;=3^Personal history of malignant neoplasm of tongue
- ;;^UTILITY(U,$J,358.3,1740,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,1740,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,1741,0)
- ;;=Z85.05^^3^51^8
- ;;^UTILITY(U,$J,358.3,1741,1,0)
+ ;;^UTILITY(U,$J,358.3,1574,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,1574,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,1574,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,1575,0)
+ ;;=Z02.6^^14^157^10
+ ;;^UTILITY(U,$J,358.3,1575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1741,1,3,0)
- ;;=3^Personal history of malignant neoplasm of liver
- ;;^UTILITY(U,$J,358.3,1741,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,1741,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,1742,0)
- ;;=Z85.068^^3^51^9
+ ;;^UTILITY(U,$J,358.3,1575,1,3,0)
+ ;;=3^Exam for Insurance Purposes

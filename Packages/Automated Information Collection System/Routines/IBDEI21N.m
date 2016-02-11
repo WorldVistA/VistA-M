@@ -1,100 +1,132 @@
-IBDEI21N ; ; 06-AUG-2015
+IBDEI21N ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35708,1,3,0)
- ;;=3^Postprocedural retroperitoneal abscess
- ;;^UTILITY(U,$J,358.3,35708,1,4,0)
- ;;=4^K68.11
- ;;^UTILITY(U,$J,358.3,35708,2)
- ;;=^5008782
- ;;^UTILITY(U,$J,358.3,35709,0)
- ;;=T81.89XA^^189^2061^2
- ;;^UTILITY(U,$J,358.3,35709,1,0)
+ ;;^UTILITY(U,$J,358.3,34263,0)
+ ;;=G45.9^^157^1740^15
+ ;;^UTILITY(U,$J,358.3,34263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35709,1,3,0)
- ;;=3^Complications of procedures, NEC, init
- ;;^UTILITY(U,$J,358.3,35709,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,35709,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,35710,0)
- ;;=Z91.19^^189^2061^16
- ;;^UTILITY(U,$J,358.3,35710,1,0)
+ ;;^UTILITY(U,$J,358.3,34263,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attacks,Unspec
+ ;;^UTILITY(U,$J,358.3,34263,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,34263,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,34264,0)
+ ;;=G46.0^^157^1740^7
+ ;;^UTILITY(U,$J,358.3,34264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35710,1,3,0)
- ;;=3^Patient's noncompliance w oth medical treatment and regimen
- ;;^UTILITY(U,$J,358.3,35710,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,35710,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,35711,0)
- ;;=Z48.298^^189^2061^1
- ;;^UTILITY(U,$J,358.3,35711,1,0)
+ ;;^UTILITY(U,$J,358.3,34264,1,3,0)
+ ;;=3^Middle Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,34264,1,4,0)
+ ;;=4^G46.0
+ ;;^UTILITY(U,$J,358.3,34264,2)
+ ;;=^5003960
+ ;;^UTILITY(U,$J,358.3,34265,0)
+ ;;=G46.1^^157^1740^2
+ ;;^UTILITY(U,$J,358.3,34265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35711,1,3,0)
- ;;=3^Aftercare following other organ transplant
- ;;^UTILITY(U,$J,358.3,35711,1,4,0)
- ;;=4^Z48.298
- ;;^UTILITY(U,$J,358.3,35711,2)
- ;;=^5063045
- ;;^UTILITY(U,$J,358.3,35712,0)
- ;;=Z52.011^^189^2062^1
- ;;^UTILITY(U,$J,358.3,35712,1,0)
+ ;;^UTILITY(U,$J,358.3,34265,1,3,0)
+ ;;=3^Anterior Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,34265,1,4,0)
+ ;;=4^G46.1
+ ;;^UTILITY(U,$J,358.3,34265,2)
+ ;;=^5003961
+ ;;^UTILITY(U,$J,358.3,34266,0)
+ ;;=G46.2^^157^1740^11
+ ;;^UTILITY(U,$J,358.3,34266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35712,1,3,0)
- ;;=3^Autologous donor, stem cells
- ;;^UTILITY(U,$J,358.3,35712,1,4,0)
- ;;=4^Z52.011
- ;;^UTILITY(U,$J,358.3,35712,2)
- ;;=^5063070
- ;;^UTILITY(U,$J,358.3,35713,0)
- ;;=Z52.091^^189^2062^2
- ;;^UTILITY(U,$J,358.3,35713,1,0)
+ ;;^UTILITY(U,$J,358.3,34266,1,3,0)
+ ;;=3^Posterior Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,34266,1,4,0)
+ ;;=4^G46.2
+ ;;^UTILITY(U,$J,358.3,34266,2)
+ ;;=^5003962
+ ;;^UTILITY(U,$J,358.3,34267,0)
+ ;;=G46.3^^157^1740^3
+ ;;^UTILITY(U,$J,358.3,34267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35713,1,3,0)
- ;;=3^Blood donor, stem cells
- ;;^UTILITY(U,$J,358.3,35713,1,4,0)
- ;;=4^Z52.091
- ;;^UTILITY(U,$J,358.3,35713,2)
- ;;=^5063073
- ;;^UTILITY(U,$J,358.3,35714,0)
- ;;=Z52.3^^189^2062^3
- ;;^UTILITY(U,$J,358.3,35714,1,0)
+ ;;^UTILITY(U,$J,358.3,34267,1,3,0)
+ ;;=3^Brain Stem Stroke Syndrome
+ ;;^UTILITY(U,$J,358.3,34267,1,4,0)
+ ;;=4^G46.3
+ ;;^UTILITY(U,$J,358.3,34267,2)
+ ;;=^5003963
+ ;;^UTILITY(U,$J,358.3,34268,0)
+ ;;=G46.7^^157^1740^6
+ ;;^UTILITY(U,$J,358.3,34268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35714,1,3,0)
- ;;=3^Bone marrow donor
- ;;^UTILITY(U,$J,358.3,35714,1,4,0)
- ;;=4^Z52.3
- ;;^UTILITY(U,$J,358.3,35714,2)
- ;;=^5063081
- ;;^UTILITY(U,$J,358.3,35715,0)
- ;;=Z94.81^^189^2062^4
- ;;^UTILITY(U,$J,358.3,35715,1,0)
+ ;;^UTILITY(U,$J,358.3,34268,1,3,0)
+ ;;=3^Lacunar Syndromes,Other
+ ;;^UTILITY(U,$J,358.3,34268,1,4,0)
+ ;;=4^G46.7
+ ;;^UTILITY(U,$J,358.3,34268,2)
+ ;;=^5003967
+ ;;^UTILITY(U,$J,358.3,34269,0)
+ ;;=G46.8^^157^1740^17
+ ;;^UTILITY(U,$J,358.3,34269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35715,1,3,0)
- ;;=3^Bone marrow transplant status
- ;;^UTILITY(U,$J,358.3,35715,1,4,0)
- ;;=4^Z94.81
- ;;^UTILITY(U,$J,358.3,35715,2)
- ;;=^5063662
- ;;^UTILITY(U,$J,358.3,35716,0)
- ;;=Z94.84^^189^2062^6
- ;;^UTILITY(U,$J,358.3,35716,1,0)
+ ;;^UTILITY(U,$J,358.3,34269,1,3,0)
+ ;;=3^Vascular Syndromes of Brain in CVD,Other
+ ;;^UTILITY(U,$J,358.3,34269,1,4,0)
+ ;;=4^G46.8
+ ;;^UTILITY(U,$J,358.3,34269,2)
+ ;;=^5003968
+ ;;^UTILITY(U,$J,358.3,34270,0)
+ ;;=Z86.73^^157^1740^10
+ ;;^UTILITY(U,$J,358.3,34270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35716,1,3,0)
- ;;=3^Stem cells transplant status
- ;;^UTILITY(U,$J,358.3,35716,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,35716,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,35717,0)
- ;;=Z52.89^^189^2062^5
- ;;^UTILITY(U,$J,358.3,35717,1,0)
+ ;;^UTILITY(U,$J,358.3,34270,1,3,0)
+ ;;=3^Personal Hx of TIA/Cerebral Inf w/o Resid Deficits
+ ;;^UTILITY(U,$J,358.3,34270,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,34270,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,34271,0)
+ ;;=G46.4^^157^1740^5
+ ;;^UTILITY(U,$J,358.3,34271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35717,1,3,0)
- ;;=3^Donor of other specified organs or tissues
- ;;^UTILITY(U,$J,358.3,35717,1,4,0)
- ;;=4^Z52.89
- ;;^UTILITY(U,$J,358.3,35717,2)
- ;;=^5063090
+ ;;^UTILITY(U,$J,358.3,34271,1,3,0)
+ ;;=3^Cerebellar Stroke Syndrome
+ ;;^UTILITY(U,$J,358.3,34271,1,4,0)
+ ;;=4^G46.4
+ ;;^UTILITY(U,$J,358.3,34271,2)
+ ;;=^5003964
+ ;;^UTILITY(U,$J,358.3,34272,0)
+ ;;=I65.23^^157^1740^8
+ ;;^UTILITY(U,$J,358.3,34272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34272,1,3,0)
+ ;;=3^Occlusion & Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,34272,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,34272,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,34273,0)
+ ;;=I65.29^^157^1740^9
+ ;;^UTILITY(U,$J,358.3,34273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34273,1,3,0)
+ ;;=3^Occlusion & Stenosis of Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,34273,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,34273,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,34274,0)
+ ;;=G46.5^^157^1740^12
+ ;;^UTILITY(U,$J,358.3,34274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34274,1,3,0)
+ ;;=3^Pure Motor Lacunar Syndrome
+ ;;^UTILITY(U,$J,358.3,34274,1,4,0)
+ ;;=4^G46.5
+ ;;^UTILITY(U,$J,358.3,34274,2)
+ ;;=^5003965
+ ;;^UTILITY(U,$J,358.3,34275,0)
+ ;;=G46.6^^157^1740^13
+ ;;^UTILITY(U,$J,358.3,34275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34275,1,3,0)
+ ;;=3^Pure Sensory Lacunar Syndrome
+ ;;^UTILITY(U,$J,358.3,34275,1,4,0)
+ ;;=4^G46.6

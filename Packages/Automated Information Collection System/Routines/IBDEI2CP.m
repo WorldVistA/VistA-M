@@ -1,0 +1,130 @@
+IBDEI2CP ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,39480,1,4,0)
+ ;;=4^S32.9XXS
+ ;;^UTILITY(U,$J,358.3,39480,2)
+ ;;=^5025126
+ ;;^UTILITY(U,$J,358.3,39481,0)
+ ;;=S92.902S^^183^2024^10
+ ;;^UTILITY(U,$J,358.3,39481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39481,1,3,0)
+ ;;=3^Fracture of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,39481,1,4,0)
+ ;;=4^S92.902S
+ ;;^UTILITY(U,$J,358.3,39481,2)
+ ;;=^5045591
+ ;;^UTILITY(U,$J,358.3,39482,0)
+ ;;=S52.92XS^^183^2024^11
+ ;;^UTILITY(U,$J,358.3,39482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39482,1,3,0)
+ ;;=3^Fracture of left forearm, sequela
+ ;;^UTILITY(U,$J,358.3,39482,1,4,0)
+ ;;=4^S52.92XS
+ ;;^UTILITY(U,$J,358.3,39482,2)
+ ;;=^5031189
+ ;;^UTILITY(U,$J,358.3,39483,0)
+ ;;=S82.92XS^^183^2024^12
+ ;;^UTILITY(U,$J,358.3,39483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39483,1,3,0)
+ ;;=3^Fracture of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,39483,1,4,0)
+ ;;=4^S82.92XS
+ ;;^UTILITY(U,$J,358.3,39483,2)
+ ;;=^5136992
+ ;;^UTILITY(U,$J,358.3,39484,0)
+ ;;=S82.002S^^183^2024^13
+ ;;^UTILITY(U,$J,358.3,39484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39484,1,3,0)
+ ;;=3^Fracture of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,39484,1,4,0)
+ ;;=4^S82.002S
+ ;;^UTILITY(U,$J,358.3,39484,2)
+ ;;=^5040135
+ ;;^UTILITY(U,$J,358.3,39485,0)
+ ;;=S92.912S^^183^2024^15
+ ;;^UTILITY(U,$J,358.3,39485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39485,1,3,0)
+ ;;=3^Fracture of left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,39485,1,4,0)
+ ;;=4^S92.912S
+ ;;^UTILITY(U,$J,358.3,39485,2)
+ ;;=^5045605
+ ;;^UTILITY(U,$J,358.3,39486,0)
+ ;;=S62.92XS^^183^2024^16
+ ;;^UTILITY(U,$J,358.3,39486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39486,1,3,0)
+ ;;=3^Fracture of left wrist and hand, sequela
+ ;;^UTILITY(U,$J,358.3,39486,1,4,0)
+ ;;=4^S62.92XS
+ ;;^UTILITY(U,$J,358.3,39486,2)
+ ;;=^5034892
+ ;;^UTILITY(U,$J,358.3,39487,0)
+ ;;=S42.402S^^183^2024^17
+ ;;^UTILITY(U,$J,358.3,39487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39487,1,3,0)
+ ;;=3^Fracture of lower end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,39487,1,4,0)
+ ;;=4^S42.402S
+ ;;^UTILITY(U,$J,358.3,39487,2)
+ ;;=^5134725
+ ;;^UTILITY(U,$J,358.3,39488,0)
+ ;;=S42.401S^^183^2024^18
+ ;;^UTILITY(U,$J,358.3,39488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39488,1,3,0)
+ ;;=3^Fracture of lower end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,39488,1,4,0)
+ ;;=4^S42.401S
+ ;;^UTILITY(U,$J,358.3,39488,2)
+ ;;=^5027300
+ ;;^UTILITY(U,$J,358.3,39489,0)
+ ;;=S92.901S^^183^2024^27
+ ;;^UTILITY(U,$J,358.3,39489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39489,1,3,0)
+ ;;=3^Fracture of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,39489,1,4,0)
+ ;;=4^S92.901S
+ ;;^UTILITY(U,$J,358.3,39489,2)
+ ;;=^5045584
+ ;;^UTILITY(U,$J,358.3,39490,0)
+ ;;=S52.91XS^^183^2024^28
+ ;;^UTILITY(U,$J,358.3,39490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39490,1,3,0)
+ ;;=3^Fracture of right forearm, sequela
+ ;;^UTILITY(U,$J,358.3,39490,1,4,0)
+ ;;=4^S52.91XS
+ ;;^UTILITY(U,$J,358.3,39490,2)
+ ;;=^5031173
+ ;;^UTILITY(U,$J,358.3,39491,0)
+ ;;=S82.91XS^^183^2024^29
+ ;;^UTILITY(U,$J,358.3,39491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39491,1,3,0)
+ ;;=3^Fracture of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,39491,1,4,0)
+ ;;=4^S82.91XS
+ ;;^UTILITY(U,$J,358.3,39491,2)
+ ;;=^5136991
+ ;;^UTILITY(U,$J,358.3,39492,0)
+ ;;=S82.001S^^183^2024^30
+ ;;^UTILITY(U,$J,358.3,39492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39492,1,3,0)
+ ;;=3^Fracture of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,39492,1,4,0)
+ ;;=4^S82.001S
+ ;;^UTILITY(U,$J,358.3,39492,2)
+ ;;=^5040119
+ ;;^UTILITY(U,$J,358.3,39493,0)
+ ;;=S92.911S^^183^2024^32

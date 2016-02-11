@@ -1,134 +1,132 @@
-IBDEI1V1 ; ; 06-AUG-2015
+IBDEI1V1 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32742,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,32742,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,32742,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,32743,0)
- ;;=C20.^^182^1992^143
- ;;^UTILITY(U,$J,358.3,32743,1,0)
+ ;;^UTILITY(U,$J,358.3,31137,0)
+ ;;=W07.XXXA^^135^1391^37
+ ;;^UTILITY(U,$J,358.3,31137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32743,1,3,0)
- ;;=3^Malig Neop Rectum
- ;;^UTILITY(U,$J,358.3,32743,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,32743,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,32744,0)
- ;;=C64.1^^182^1992^147
- ;;^UTILITY(U,$J,358.3,32744,1,0)
+ ;;^UTILITY(U,$J,358.3,31137,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31137,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,31137,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,31138,0)
+ ;;=W07.XXXD^^135^1391^38
+ ;;^UTILITY(U,$J,358.3,31138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32744,1,3,0)
- ;;=3^Malig Neop Right Kidney,Except Renal pelvis
- ;;^UTILITY(U,$J,358.3,32744,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,32744,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,32745,0)
- ;;=C65.1^^182^1992^149
- ;;^UTILITY(U,$J,358.3,32745,1,0)
+ ;;^UTILITY(U,$J,358.3,31138,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31138,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,31138,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,31139,0)
+ ;;=W10.1XXA^^135^1391^81
+ ;;^UTILITY(U,$J,358.3,31139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32745,1,3,0)
- ;;=3^Malig Neop Right Renal Pelvis
- ;;^UTILITY(U,$J,358.3,32745,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,32745,2)
- ;;=^5001251
- ;;^UTILITY(U,$J,358.3,32746,0)
- ;;=C62.91^^182^1992^150
- ;;^UTILITY(U,$J,358.3,32746,1,0)
+ ;;^UTILITY(U,$J,358.3,31139,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31139,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,31139,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,31140,0)
+ ;;=W10.1XXD^^135^1391^82
+ ;;^UTILITY(U,$J,358.3,31140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32746,1,3,0)
- ;;=3^Malig Neop Right Testis
- ;;^UTILITY(U,$J,358.3,32746,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,32746,2)
- ;;=^5001237
- ;;^UTILITY(U,$J,358.3,32747,0)
- ;;=C17.9^^182^1992^151
- ;;^UTILITY(U,$J,358.3,32747,1,0)
+ ;;^UTILITY(U,$J,358.3,31140,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31140,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,31140,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,31141,0)
+ ;;=W11.XXXA^^135^1391^41
+ ;;^UTILITY(U,$J,358.3,31141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32747,1,3,0)
- ;;=3^Malig Neop Small Intestine,Unspec
- ;;^UTILITY(U,$J,358.3,32747,1,4,0)
- ;;=4^C17.9
- ;;^UTILITY(U,$J,358.3,32747,2)
- ;;=^5000926
- ;;^UTILITY(U,$J,358.3,32748,0)
- ;;=C16.9^^182^1992^152
- ;;^UTILITY(U,$J,358.3,32748,1,0)
+ ;;^UTILITY(U,$J,358.3,31141,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31141,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,31141,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,31142,0)
+ ;;=W11.XXXD^^135^1391^42
+ ;;^UTILITY(U,$J,358.3,31142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32748,1,3,0)
- ;;=3^Malig Neop Stomach,Unspec
- ;;^UTILITY(U,$J,358.3,32748,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,32748,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,32749,0)
- ;;=C02.9^^182^1992^154
- ;;^UTILITY(U,$J,358.3,32749,1,0)
+ ;;^UTILITY(U,$J,358.3,31142,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31142,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,31142,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,31143,0)
+ ;;=W13.0XXA^^135^1391^67
+ ;;^UTILITY(U,$J,358.3,31143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32749,1,3,0)
- ;;=3^Malig Neop Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,32749,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,32749,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,32750,0)
- ;;=C62.10^^182^1992^115
- ;;^UTILITY(U,$J,358.3,32750,1,0)
+ ;;^UTILITY(U,$J,358.3,31143,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31143,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,31143,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,31144,0)
+ ;;=W13.0XXD^^135^1391^68
+ ;;^UTILITY(U,$J,358.3,31144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32750,1,3,0)
- ;;=3^Malig Neop Descended Testis,Unspec
- ;;^UTILITY(U,$J,358.3,32750,1,4,0)
- ;;=4^C62.10
- ;;^UTILITY(U,$J,358.3,32750,2)
- ;;=^5001233
- ;;^UTILITY(U,$J,358.3,32751,0)
- ;;=C64.9^^182^1992^122
- ;;^UTILITY(U,$J,358.3,32751,1,0)
+ ;;^UTILITY(U,$J,358.3,31144,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31144,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,31144,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,31145,0)
+ ;;=W13.1XXA^^135^1391^31
+ ;;^UTILITY(U,$J,358.3,31145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32751,1,3,0)
- ;;=3^Malig Neop Kidney,Except Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,32751,1,4,0)
- ;;=4^C64.9
- ;;^UTILITY(U,$J,358.3,32751,2)
- ;;=^5001250
- ;;^UTILITY(U,$J,358.3,32752,0)
- ;;=C34.92^^182^1992^125
- ;;^UTILITY(U,$J,358.3,32752,1,0)
+ ;;^UTILITY(U,$J,358.3,31145,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31145,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,31145,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,31146,0)
+ ;;=W13.1XXD^^135^1391^32
+ ;;^UTILITY(U,$J,358.3,31146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32752,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,32752,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,32752,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,32753,0)
- ;;=C34.90^^182^1992^110
- ;;^UTILITY(U,$J,358.3,32753,1,0)
+ ;;^UTILITY(U,$J,358.3,31146,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31146,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,31146,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,31147,0)
+ ;;=W13.2XXA^^135^1391^69
+ ;;^UTILITY(U,$J,358.3,31147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32753,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,32753,1,4,0)
- ;;=4^C34.90
- ;;^UTILITY(U,$J,358.3,32753,2)
- ;;=^5000966
- ;;^UTILITY(U,$J,358.3,32754,0)
- ;;=C65.9^^182^1992^144
- ;;^UTILITY(U,$J,358.3,32754,1,0)
+ ;;^UTILITY(U,$J,358.3,31147,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31147,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,31147,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,31148,0)
+ ;;=W13.2XXD^^135^1391^70
+ ;;^UTILITY(U,$J,358.3,31148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32754,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,32754,1,4,0)
- ;;=4^C65.9
- ;;^UTILITY(U,$J,358.3,32754,2)
- ;;=^5001253
- ;;^UTILITY(U,$J,358.3,32755,0)
- ;;=C50.912^^182^1992^126
- ;;^UTILITY(U,$J,358.3,32755,1,0)
+ ;;^UTILITY(U,$J,358.3,31148,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31148,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,31148,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,31149,0)
+ ;;=W13.3XXA^^135^1391^83
+ ;;^UTILITY(U,$J,358.3,31149,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31149,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31149,1,4,0)
+ ;;=4^W13.3XXA

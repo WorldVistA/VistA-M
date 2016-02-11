@@ -1,132 +1,138 @@
-IBDEI1X4 ; ; 06-AUG-2015
+IBDEI1X4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33712,2)
- ;;=^5024008
- ;;^UTILITY(U,$J,358.3,33713,0)
- ;;=S31.010A^^182^2009^2
- ;;^UTILITY(U,$J,358.3,33713,1,0)
+ ;;^UTILITY(U,$J,358.3,32118,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,32118,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,32119,0)
+ ;;=Z63.0^^141^1496^5
+ ;;^UTILITY(U,$J,358.3,32119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33713,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,33713,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,33713,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,33714,0)
- ;;=S38.3XXA^^182^2009^8
- ;;^UTILITY(U,$J,358.3,33714,1,0)
+ ;;^UTILITY(U,$J,358.3,32119,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,32119,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,32119,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,32120,0)
+ ;;=Z63.5^^141^1496^2
+ ;;^UTILITY(U,$J,358.3,32120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33714,1,3,0)
- ;;=3^Transection (Partial) Abdomen,Init
- ;;^UTILITY(U,$J,358.3,33714,1,4,0)
- ;;=4^S38.3XXA
- ;;^UTILITY(U,$J,358.3,33714,2)
- ;;=^5026087
- ;;^UTILITY(U,$J,358.3,33715,0)
- ;;=T07.^^182^2009^4
- ;;^UTILITY(U,$J,358.3,33715,1,0)
+ ;;^UTILITY(U,$J,358.3,32120,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,32120,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,32120,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,32121,0)
+ ;;=Z63.8^^141^1496^3
+ ;;^UTILITY(U,$J,358.3,32121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33715,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,33715,1,4,0)
- ;;=4^T07.
- ;;^UTILITY(U,$J,358.3,33715,2)
- ;;=^5046377
- ;;^UTILITY(U,$J,358.3,33716,0)
- ;;=L08.89^^182^2009^3
- ;;^UTILITY(U,$J,358.3,33716,1,0)
+ ;;^UTILITY(U,$J,358.3,32121,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,32121,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,32121,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,32122,0)
+ ;;=Z63.4^^141^1496^7
+ ;;^UTILITY(U,$J,358.3,32122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33716,1,3,0)
- ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
- ;;^UTILITY(U,$J,358.3,33716,1,4,0)
- ;;=4^L08.89
- ;;^UTILITY(U,$J,358.3,33716,2)
- ;;=^5009081
- ;;^UTILITY(U,$J,358.3,33717,0)
- ;;=T14.90^^182^2009^1
- ;;^UTILITY(U,$J,358.3,33717,1,0)
+ ;;^UTILITY(U,$J,358.3,32122,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,32122,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,32122,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,32123,0)
+ ;;=F20.9^^141^1497^5
+ ;;^UTILITY(U,$J,358.3,32123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33717,1,3,0)
- ;;=3^Injury,Unspec
- ;;^UTILITY(U,$J,358.3,33717,1,4,0)
- ;;=4^T14.90
- ;;^UTILITY(U,$J,358.3,33717,2)
- ;;=^5046379
- ;;^UTILITY(U,$J,358.3,33718,0)
- ;;=E03.5^^182^2010^37
- ;;^UTILITY(U,$J,358.3,33718,1,0)
+ ;;^UTILITY(U,$J,358.3,32123,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,32123,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,32123,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,32124,0)
+ ;;=F20.81^^141^1497^6
+ ;;^UTILITY(U,$J,358.3,32124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33718,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,33718,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,33718,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,33719,0)
- ;;=R40.2121^^182^2010^33
- ;;^UTILITY(U,$J,358.3,33719,1,0)
+ ;;^UTILITY(U,$J,358.3,32124,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,32124,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,32124,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,32125,0)
+ ;;=F22.^^141^1497^2
+ ;;^UTILITY(U,$J,358.3,32125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33719,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,33719,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,33719,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,33720,0)
- ;;=R40.2120^^182^2010^34
- ;;^UTILITY(U,$J,358.3,33720,1,0)
+ ;;^UTILITY(U,$J,358.3,32125,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,32125,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,32125,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,32126,0)
+ ;;=F23.^^141^1497^1
+ ;;^UTILITY(U,$J,358.3,32126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33720,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,33720,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,33720,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,33721,0)
- ;;=R40.2114^^182^2010^26
- ;;^UTILITY(U,$J,358.3,33721,1,0)
+ ;;^UTILITY(U,$J,358.3,32126,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,32126,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,32126,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,32127,0)
+ ;;=F25.0^^141^1497^3
+ ;;^UTILITY(U,$J,358.3,32127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33721,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,33721,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,33721,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,33722,0)
- ;;=R40.2113^^182^2010^30
- ;;^UTILITY(U,$J,358.3,33722,1,0)
+ ;;^UTILITY(U,$J,358.3,32127,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,32127,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,32127,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,32128,0)
+ ;;=F25.1^^141^1497^4
+ ;;^UTILITY(U,$J,358.3,32128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33722,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,33722,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,33722,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,33723,0)
- ;;=R40.2112^^182^2010^27
- ;;^UTILITY(U,$J,358.3,33723,1,0)
+ ;;^UTILITY(U,$J,358.3,32128,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,32128,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,32128,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,32129,0)
+ ;;=F52.32^^141^1498^1
+ ;;^UTILITY(U,$J,358.3,32129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33723,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,33723,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,33723,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,33724,0)
- ;;=R40.2111^^182^2010^28
- ;;^UTILITY(U,$J,358.3,33724,1,0)
+ ;;^UTILITY(U,$J,358.3,32129,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,32129,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,32129,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,32130,0)
+ ;;=F52.21^^141^1498^2
+ ;;^UTILITY(U,$J,358.3,32130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33724,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,33724,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,33724,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,33725,0)
- ;;=R40.2110^^182^2010^29
- ;;^UTILITY(U,$J,358.3,33725,1,0)
+ ;;^UTILITY(U,$J,358.3,32130,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,32130,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,32130,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,32131,0)
+ ;;=F52.31^^141^1498^3
+ ;;^UTILITY(U,$J,358.3,32131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33725,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
+ ;;^UTILITY(U,$J,358.3,32131,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,32131,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,32131,2)
+ ;;=^331926

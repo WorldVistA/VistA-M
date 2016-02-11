@@ -1,0 +1,134 @@
+IBDEI2UJ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47763,1,4,0)
+ ;;=4^C25.2
+ ;;^UTILITY(U,$J,358.3,47763,2)
+ ;;=^267106
+ ;;^UTILITY(U,$J,358.3,47764,0)
+ ;;=C25.3^^209^2351^7
+ ;;^UTILITY(U,$J,358.3,47764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47764,1,3,0)
+ ;;=3^Malig Neop of Pancreatic Duct
+ ;;^UTILITY(U,$J,358.3,47764,1,4,0)
+ ;;=4^C25.3
+ ;;^UTILITY(U,$J,358.3,47764,2)
+ ;;=^267107
+ ;;^UTILITY(U,$J,358.3,47765,0)
+ ;;=C25.4^^209^2351^2
+ ;;^UTILITY(U,$J,358.3,47765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47765,1,3,0)
+ ;;=3^Malig Neop of Endocrine Pancreas
+ ;;^UTILITY(U,$J,358.3,47765,1,4,0)
+ ;;=4^C25.4
+ ;;^UTILITY(U,$J,358.3,47765,2)
+ ;;=^5000943
+ ;;^UTILITY(U,$J,358.3,47766,0)
+ ;;=C25.8^^209^2351^5
+ ;;^UTILITY(U,$J,358.3,47766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47766,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Pancreas
+ ;;^UTILITY(U,$J,358.3,47766,1,4,0)
+ ;;=4^C25.8
+ ;;^UTILITY(U,$J,358.3,47766,2)
+ ;;=^5000945
+ ;;^UTILITY(U,$J,358.3,47767,0)
+ ;;=C25.7^^209^2351^4
+ ;;^UTILITY(U,$J,358.3,47767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47767,1,3,0)
+ ;;=3^Malig Neop of Other Parts of Pancreas
+ ;;^UTILITY(U,$J,358.3,47767,1,4,0)
+ ;;=4^C25.7
+ ;;^UTILITY(U,$J,358.3,47767,2)
+ ;;=^5000944
+ ;;^UTILITY(U,$J,358.3,47768,0)
+ ;;=C25.9^^209^2351^6
+ ;;^UTILITY(U,$J,358.3,47768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47768,1,3,0)
+ ;;=3^Malig Neop of Pancreas,Unspec
+ ;;^UTILITY(U,$J,358.3,47768,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,47768,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,47769,0)
+ ;;=C21.1^^209^2352^1
+ ;;^UTILITY(U,$J,358.3,47769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47769,1,3,0)
+ ;;=3^Malig Neop of Anal Canal
+ ;;^UTILITY(U,$J,358.3,47769,1,4,0)
+ ;;=4^C21.1
+ ;;^UTILITY(U,$J,358.3,47769,2)
+ ;;=^267091
+ ;;^UTILITY(U,$J,358.3,47770,0)
+ ;;=C21.8^^209^2352^3
+ ;;^UTILITY(U,$J,358.3,47770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47770,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Rectum/Anus/Anal Canal
+ ;;^UTILITY(U,$J,358.3,47770,1,4,0)
+ ;;=4^C21.8
+ ;;^UTILITY(U,$J,358.3,47770,2)
+ ;;=^5000932
+ ;;^UTILITY(U,$J,358.3,47771,0)
+ ;;=C21.0^^209^2352^2
+ ;;^UTILITY(U,$J,358.3,47771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47771,1,3,0)
+ ;;=3^Malig Neop of Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,47771,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,47771,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,47772,0)
+ ;;=C07.^^209^2353^2
+ ;;^UTILITY(U,$J,358.3,47772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47772,1,3,0)
+ ;;=3^Malig Neop of Parotid Gland
+ ;;^UTILITY(U,$J,358.3,47772,1,4,0)
+ ;;=4^C07.
+ ;;^UTILITY(U,$J,358.3,47772,2)
+ ;;=^267005
+ ;;^UTILITY(U,$J,358.3,47773,0)
+ ;;=C08.0^^209^2353^4
+ ;;^UTILITY(U,$J,358.3,47773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47773,1,3,0)
+ ;;=3^Malig Neop of Submandibular Gland
+ ;;^UTILITY(U,$J,358.3,47773,1,4,0)
+ ;;=4^C08.0
+ ;;^UTILITY(U,$J,358.3,47773,2)
+ ;;=^267006
+ ;;^UTILITY(U,$J,358.3,47774,0)
+ ;;=C08.1^^209^2353^3
+ ;;^UTILITY(U,$J,358.3,47774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47774,1,3,0)
+ ;;=3^Malig Neop of Sublingual Gland
+ ;;^UTILITY(U,$J,358.3,47774,1,4,0)
+ ;;=4^C08.1
+ ;;^UTILITY(U,$J,358.3,47774,2)
+ ;;=^267007
+ ;;^UTILITY(U,$J,358.3,47775,0)
+ ;;=C08.9^^209^2353^1
+ ;;^UTILITY(U,$J,358.3,47775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47775,1,3,0)
+ ;;=3^Malig Neop of Major Salivary Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,47775,1,4,0)
+ ;;=4^C08.9
+ ;;^UTILITY(U,$J,358.3,47775,2)
+ ;;=^5000902
+ ;;^UTILITY(U,$J,358.3,47776,0)
+ ;;=C09.0^^209^2353^6
+ ;;^UTILITY(U,$J,358.3,47776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47776,1,3,0)
+ ;;=3^Malig Neop of Tonsillar Fossa

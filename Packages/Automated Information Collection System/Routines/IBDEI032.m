@@ -1,136 +1,140 @@
-IBDEI032 ; ; 06-AUG-2015
+IBDEI032 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,887,1,3,0)
- ;;=3^Type 2 diab w diabetic neuropathy, unsp
- ;;^UTILITY(U,$J,358.3,887,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,887,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,888,0)
- ;;=E10.40^^3^33^2
- ;;^UTILITY(U,$J,358.3,888,1,0)
+ ;;^UTILITY(U,$J,358.3,682,0)
+ ;;=95017^^8^82^2^^^^1
+ ;;^UTILITY(U,$J,358.3,682,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,682,1,2,0)
+ ;;=2^95017
+ ;;^UTILITY(U,$J,358.3,682,1,3,0)
+ ;;=3^Allergy Testing,Any Combo,w/ Venom
+ ;;^UTILITY(U,$J,358.3,683,0)
+ ;;=95018^^8^82^1^^^^1
+ ;;^UTILITY(U,$J,358.3,683,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,683,1,2,0)
+ ;;=2^95018
+ ;;^UTILITY(U,$J,358.3,683,1,3,0)
+ ;;=3^Allergy Testing,Any Combo,w/ Drugs/Biologicals
+ ;;^UTILITY(U,$J,358.3,684,0)
+ ;;=95027^^8^82^4^^^^1
+ ;;^UTILITY(U,$J,358.3,684,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,684,1,2,0)
+ ;;=2^95027
+ ;;^UTILITY(U,$J,358.3,684,1,3,0)
+ ;;=3^Intradermals for Airborne Allergens
+ ;;^UTILITY(U,$J,358.3,685,0)
+ ;;=95044^^8^83^1^^^^1
+ ;;^UTILITY(U,$J,358.3,685,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,685,1,2,0)
+ ;;=2^95044
+ ;;^UTILITY(U,$J,358.3,685,1,3,0)
+ ;;=3^Allergy Patch Tests
+ ;;^UTILITY(U,$J,358.3,686,0)
+ ;;=95115^^8^84^3^^^^1
+ ;;^UTILITY(U,$J,358.3,686,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,686,1,2,0)
+ ;;=2^95115
+ ;;^UTILITY(U,$J,358.3,686,1,3,0)
+ ;;=3^Allergy Inj,Pts Own Med
+ ;;^UTILITY(U,$J,358.3,687,0)
+ ;;=95117^^8^84^1^^^^1
+ ;;^UTILITY(U,$J,358.3,687,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,687,1,2,0)
+ ;;=2^95117
+ ;;^UTILITY(U,$J,358.3,687,1,3,0)
+ ;;=3^Allergy Inj 2+,Pts Own Med
+ ;;^UTILITY(U,$J,358.3,688,0)
+ ;;=95125^^8^84^2^^^^1
+ ;;^UTILITY(U,$J,358.3,688,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,688,1,2,0)
+ ;;=2^95125
+ ;;^UTILITY(U,$J,358.3,688,1,3,0)
+ ;;=3^Allergy Inj 2+,We Provide Med
+ ;;^UTILITY(U,$J,358.3,689,0)
+ ;;=95165^^8^84^5^^^^1
+ ;;^UTILITY(U,$J,358.3,689,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,689,1,2,0)
+ ;;=2^95165
+ ;;^UTILITY(U,$J,358.3,689,1,3,0)
+ ;;=3^Antigen Therapy,Multidose Vial(s)
+ ;;^UTILITY(U,$J,358.3,690,0)
+ ;;=95120^^8^84^4^^^^1
+ ;;^UTILITY(U,$J,358.3,690,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,690,1,2,0)
+ ;;=2^95120
+ ;;^UTILITY(U,$J,358.3,690,1,3,0)
+ ;;=3^Allergy Inj,We Provide Med
+ ;;^UTILITY(U,$J,358.3,691,0)
+ ;;=36415^^8^85^1^^^^1
+ ;;^UTILITY(U,$J,358.3,691,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,691,1,2,0)
+ ;;=2^36415
+ ;;^UTILITY(U,$J,358.3,691,1,3,0)
+ ;;=3^Drawing Blood
+ ;;^UTILITY(U,$J,358.3,692,0)
+ ;;=96360^^8^86^1^^^^1
+ ;;^UTILITY(U,$J,358.3,692,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,692,1,2,0)
+ ;;=2^96360
+ ;;^UTILITY(U,$J,358.3,692,1,3,0)
+ ;;=3^Hydration IV Infusion,Init
+ ;;^UTILITY(U,$J,358.3,693,0)
+ ;;=96361^^8^86^2^^^^1
+ ;;^UTILITY(U,$J,358.3,693,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,693,1,2,0)
+ ;;=2^96361
+ ;;^UTILITY(U,$J,358.3,693,1,3,0)
+ ;;=3^Hydrate IV Infusion,Add-On
+ ;;^UTILITY(U,$J,358.3,694,0)
+ ;;=94010^^8^87^1^^^^1
+ ;;^UTILITY(U,$J,358.3,694,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,694,1,2,0)
+ ;;=2^94010
+ ;;^UTILITY(U,$J,358.3,694,1,3,0)
+ ;;=3^Spirometry
+ ;;^UTILITY(U,$J,358.3,695,0)
+ ;;=31231^^8^87^2^^^^1
+ ;;^UTILITY(U,$J,358.3,695,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,695,1,2,0)
+ ;;=2^31231
+ ;;^UTILITY(U,$J,358.3,695,1,3,0)
+ ;;=3^Rhinoscopy
+ ;;^UTILITY(U,$J,358.3,696,0)
+ ;;=R10.9^^9^88^1
+ ;;^UTILITY(U,$J,358.3,696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,888,1,3,0)
- ;;=3^Type 1 diab w diabetic neuropathy, unsp
- ;;^UTILITY(U,$J,358.3,888,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,888,2)
- ;;=^5002604
- ;;^UTILITY(U,$J,358.3,889,0)
- ;;=E11.51^^3^33^15
- ;;^UTILITY(U,$J,358.3,889,1,0)
+ ;;^UTILITY(U,$J,358.3,696,1,3,0)
+ ;;=3^Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,696,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,696,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,697,0)
+ ;;=L70.1^^9^88^2
+ ;;^UTILITY(U,$J,358.3,697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,889,1,3,0)
- ;;=3^Type 2 diab w diabetic peripheral angiopath w/o gangrene
- ;;^UTILITY(U,$J,358.3,889,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,889,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,890,0)
- ;;=E11.52^^3^33^16
- ;;^UTILITY(U,$J,358.3,890,1,0)
+ ;;^UTILITY(U,$J,358.3,697,1,3,0)
+ ;;=3^Acne Conglobata
+ ;;^UTILITY(U,$J,358.3,697,1,4,0)
+ ;;=4^L70.1
+ ;;^UTILITY(U,$J,358.3,697,2)
+ ;;=^5009269
+ ;;^UTILITY(U,$J,358.3,698,0)
+ ;;=L70.0^^9^88^3
+ ;;^UTILITY(U,$J,358.3,698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,890,1,3,0)
- ;;=3^Type 2 diab w diabetic peripheral angiopathy w gangrene
- ;;^UTILITY(U,$J,358.3,890,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,890,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,891,0)
- ;;=E10.51^^3^33^3
- ;;^UTILITY(U,$J,358.3,891,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,891,1,3,0)
- ;;=3^Type 1 diab w diabetic peripheral angiopath w/o gangrene
- ;;^UTILITY(U,$J,358.3,891,1,4,0)
- ;;=4^E10.51
- ;;^UTILITY(U,$J,358.3,891,2)
- ;;=^5002610
- ;;^UTILITY(U,$J,358.3,892,0)
- ;;=E10.52^^3^33^4
- ;;^UTILITY(U,$J,358.3,892,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,892,1,3,0)
- ;;=3^Type 1 diab w diabetic peripheral angiopathy w gangrene
- ;;^UTILITY(U,$J,358.3,892,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,892,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,893,0)
- ;;=E11.649^^3^33^18
- ;;^UTILITY(U,$J,358.3,893,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,893,1,3,0)
- ;;=3^Type 2 diab w hypoglycemia without coma
- ;;^UTILITY(U,$J,358.3,893,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,893,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,894,0)
- ;;=E11.641^^3^33^17
- ;;^UTILITY(U,$J,358.3,894,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,894,1,3,0)
- ;;=3^Type 2 diab w hypoglycemia with coma
- ;;^UTILITY(U,$J,358.3,894,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,894,2)
- ;;=^5002661
- ;;^UTILITY(U,$J,358.3,895,0)
- ;;=E11.9^^3^34^2
- ;;^UTILITY(U,$J,358.3,895,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,895,1,3,0)
- ;;=3^Type 2 diabetes mellitus without complications
- ;;^UTILITY(U,$J,358.3,895,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,895,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,896,0)
- ;;=E10.9^^3^34^1
- ;;^UTILITY(U,$J,358.3,896,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,896,1,3,0)
- ;;=3^Type 1 diabetes mellitus without complications
- ;;^UTILITY(U,$J,358.3,896,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,896,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,897,0)
- ;;=J02.0^^3^35^115
- ;;^UTILITY(U,$J,358.3,897,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,897,1,3,0)
- ;;=3^Streptococcal pharyngitis
- ;;^UTILITY(U,$J,358.3,897,1,4,0)
- ;;=4^J02.0
- ;;^UTILITY(U,$J,358.3,897,2)
- ;;=^114607
- ;;^UTILITY(U,$J,358.3,898,0)
- ;;=J03.00^^3^35^13
- ;;^UTILITY(U,$J,358.3,898,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,898,1,3,0)
- ;;=3^Acute streptococcal tonsillitis, unspecified
- ;;^UTILITY(U,$J,358.3,898,1,4,0)
- ;;=4^J03.00
- ;;^UTILITY(U,$J,358.3,898,2)
- ;;=^5008131
- ;;^UTILITY(U,$J,358.3,899,0)
- ;;=B37.0^^3^35^33
- ;;^UTILITY(U,$J,358.3,899,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,899,1,3,0)
- ;;=3^Candidal stomatitis
- ;;^UTILITY(U,$J,358.3,899,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,899,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,900,0)
- ;;=B37.83^^3^35^32
- ;;^UTILITY(U,$J,358.3,900,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,900,1,3,0)
- ;;=3^Candidal cheilitis

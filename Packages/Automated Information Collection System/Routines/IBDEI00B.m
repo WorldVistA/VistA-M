@@ -1,70 +1,68 @@
-IBDEI00B ; ; 06-AUG-2015
+IBDEI00B ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.1,32,0)
- ;;=PROCEDURES (V2.1)^13^^21^0^132^9^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,33,0)
- ;;=DIAGNOSIS NAT PC^13^^31^0^133^312^^^1^DIAGNOSES^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,34,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^14^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,35,0)
- ;;=HEADER^14^^1^49^24^1^^^2
- ;;^UTILITY(U,$J,358.1,36,0)
- ;;=PATIENT INFORMATION^14^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,37,0)
- ;;=DIAGNOSIS CODES^14^^271^0^132^274^^^1^DIAGNOSES^RC^Selection list - ICD-9 dx codes^0
- ;;^UTILITY(U,$J,358.1,38,0)
- ;;=CPT CODES (3 COL)^14^^17^0^132^253^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,39,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^15^^5^0^132^15^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,40,0)
- ;;=PATIENT INFORMATION^15^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,41,0)
- ;;=HEADER^15^^1^49^17^1^^^2
- ;;^UTILITY(U,$J,358.1,42,0)
- ;;=VISN DX W CODE BY BUBBLE (V2.1^15^^101^0^133^154^^^1^DIAGNOSIS^CR^VISN NEW DX BLOCK WITH ACTIVE PROBLEMS^0
- ;;^UTILITY(U,$J,358.1,43,0)
- ;;=CPT CODES (3 COL)^15^^21^0^132^79^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,44,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^16^^6^0^132^6^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,45,0)
- ;;=HEADER^16^^1^56^18^1^^^2
- ;;^UTILITY(U,$J,358.1,46,0)
- ;;=PATIENT INFORMATION^16^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,47,0)
- ;;=DIAGNOSIS NAT PC^16^^26^0^133^637^^^1^DIAGNOSES^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,48,0)
- ;;=PROCEDURES (V2.1)^16^^13^0^133^12^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,49,0)
- ;;=PROCEDURES (V2.1)^17^^13^0^133^157^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,50,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^17^^6^0^132^6^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,51,0)
- ;;=HEADER^17^^1^56^29^1^^^2
- ;;^UTILITY(U,$J,358.1,52,0)
- ;;=PATIENT INFORMATION^17^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,53,0)
- ;;=DIAGNOSIS NAT PC^17^^171^0^133^729^^^1^DIAGNOSES^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,54,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^18^^6^0^132^9^^^1^^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,55,0)
- ;;=CPT CODES^18^^15^0^132^15^^^1^MARK PROCEDURE(S) PERFORMED THIS VISIT^RC^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,56,0)
- ;;=DIAGNOSES CODES^18^^31^0^132^149^^^1^^RC^3 COLUMN ICD-9 CODES^0
- ;;^UTILITY(U,$J,358.1,57,0)
- ;;=HEADER^18^^1^54^22^1^^^2
- ;;^UTILITY(U,$J,358.1,58,0)
- ;;=PATIENT INFORMATION^18^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,59,0)
- ;;=CPT CODES^19^^17^0^132^28^^^1^FILL IN BUBBLES FOR ALL PROCEDURES PERFORMED THIS VISIT^UBRC^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,60,0)
- ;;=TYPE OF VISIT - 1994 CODES^19^^6^0^132^10^^^1^^^Selection list - visit types with their CPT codes^0
- ;;^UTILITY(U,$J,358.1,61,0)
- ;;=PATIENT INFORMATION^19^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,62,0)
- ;;=HEADER^19^^1^48^12^1^^^2
- ;;^UTILITY(U,$J,358.1,63,0)
- ;;=ICD-9 DIAGNOSES (V2.1)^19^^46^0^132^174^^^1^DIAGNOSIS^CR^Common ICD-9 diagnoses^0
- ;;^UTILITY(U,$J,358.1,64,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^20^^6^0^132^10^^^1^^CR^1995 visit types WITH CODES SHOWN^0
+ ;;^DIC(358.1,0,"GL")
+ ;;=^IBE(358.1,
+ ;;^DIC("B","IMP/EXP ENCOUNTER FORM BLOCK",358.1)
+ ;;=
+ ;;^DIC(358.1,"%",0)
+ ;;=^1.005^^0
+ ;;^DIC(358.1,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.1,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.1,"%D",2,0)
+ ;;=This file is nearly identical to file #357.1. It is used by the
+ ;;^DIC(358.1,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.1,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.1,0)
+ ;;=FIELD^^1^12
+ ;;^DD(358.1,0,"DDA")
+ ;;=N
+ ;;^DD(358.1,0,"DT")
+ ;;=2930806
+ ;;^DD(358.1,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.1,0,"IX","B",358.1,.01)
+ ;;=
+ ;;^DD(358.1,0,"IX","C",358.1,.02)
+ ;;=
+ ;;^DD(358.1,0,"IX","D",358.1,.14)
+ ;;=
+ ;;^DD(358.1,0,"NM","IMP/EXP ENCOUNTER FORM BLOCK")
+ ;;=
+ ;;^DD(358.1,0,"PT",358.2,.02)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.5,.02)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.7,.06)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.8,.02)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.93,.08)
+ ;;=
+ ;;^DD(358.1,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.1,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.1,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.1,.01,1,1,0)
+ ;;=358.1^B
+ ;;^DD(358.1,.01,1,1,1)
+ ;;=S ^IBE(358.1,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.1,.01,1,1,2)
+ ;;=K ^IBE(358.1,"B",$E(X,1,30),DA)
+ ;;^DD(358.1,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.1,.01,21,0)
+ ;;=^^2^2^2930527^
+ ;;^DD(358.1,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.1,.01,21,2,0)
+ ;;=The name of the block.
+ ;;^DD(358.1,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Encounter Form Blocks can only be deleted through the Encounter Form Utilities!"

@@ -1,0 +1,130 @@
+IBDEI2EA ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,40233,1,4,0)
+ ;;=4^Q17.8
+ ;;^UTILITY(U,$J,358.3,40233,2)
+ ;;=^5018515
+ ;;^UTILITY(U,$J,358.3,40234,0)
+ ;;=N64.89^^186^2076^112
+ ;;^UTILITY(U,$J,358.3,40234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40234,1,3,0)
+ ;;=3^Breast Disorders NEC
+ ;;^UTILITY(U,$J,358.3,40234,1,4,0)
+ ;;=4^N64.89
+ ;;^UTILITY(U,$J,358.3,40234,2)
+ ;;=^336616
+ ;;^UTILITY(U,$J,358.3,40235,0)
+ ;;=C44.99^^186^2076^331
+ ;;^UTILITY(U,$J,358.3,40235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40235,1,3,0)
+ ;;=3^Malig Neop Skin,Oth,Unspec Site
+ ;;^UTILITY(U,$J,358.3,40235,1,4,0)
+ ;;=4^C44.99
+ ;;^UTILITY(U,$J,358.3,40235,2)
+ ;;=^5001094
+ ;;^UTILITY(U,$J,358.3,40236,0)
+ ;;=M65.842^^186^2076^400
+ ;;^UTILITY(U,$J,358.3,40236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40236,1,3,0)
+ ;;=3^Synovitis/Tenosynovitis Left Hand
+ ;;^UTILITY(U,$J,358.3,40236,1,4,0)
+ ;;=4^M65.842
+ ;;^UTILITY(U,$J,358.3,40236,2)
+ ;;=^5012804
+ ;;^UTILITY(U,$J,358.3,40237,0)
+ ;;=M65.841^^186^2076^401
+ ;;^UTILITY(U,$J,358.3,40237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40237,1,3,0)
+ ;;=3^Synovitis/Tenosynovitis Right Hand
+ ;;^UTILITY(U,$J,358.3,40237,1,4,0)
+ ;;=4^M65.841
+ ;;^UTILITY(U,$J,358.3,40237,2)
+ ;;=^5012803
+ ;;^UTILITY(U,$J,358.3,40238,0)
+ ;;=M25.532^^186^2076^357
+ ;;^UTILITY(U,$J,358.3,40238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40238,1,3,0)
+ ;;=3^Pain,Left Wrist
+ ;;^UTILITY(U,$J,358.3,40238,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,40238,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,40239,0)
+ ;;=M25.531^^186^2076^358
+ ;;^UTILITY(U,$J,358.3,40239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40239,1,3,0)
+ ;;=3^Pain,Right Wrist
+ ;;^UTILITY(U,$J,358.3,40239,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,40239,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,40240,0)
+ ;;=M72.0^^186^2076^359
+ ;;^UTILITY(U,$J,358.3,40240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40240,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,40240,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,40240,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,40241,0)
+ ;;=S58.122A^^186^2076^14
+ ;;^UTILITY(U,$J,358.3,40241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40241,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Arm Between Elbow & Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40241,1,4,0)
+ ;;=4^S58.122A
+ ;;^UTILITY(U,$J,358.3,40241,2)
+ ;;=^5031937
+ ;;^UTILITY(U,$J,358.3,40242,0)
+ ;;=S98.022A^^186^2076^15
+ ;;^UTILITY(U,$J,358.3,40242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40242,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Foot at Ankle Level,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40242,1,4,0)
+ ;;=4^S98.022A
+ ;;^UTILITY(U,$J,358.3,40242,2)
+ ;;=^5046257
+ ;;^UTILITY(U,$J,358.3,40243,0)
+ ;;=S98.922A^^186^2076^16
+ ;;^UTILITY(U,$J,358.3,40243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40243,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40243,1,4,0)
+ ;;=4^S98.922A
+ ;;^UTILITY(U,$J,358.3,40243,2)
+ ;;=^5046347
+ ;;^UTILITY(U,$J,358.3,40244,0)
+ ;;=S98.122A^^186^2076^17
+ ;;^UTILITY(U,$J,358.3,40244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40244,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Great Toe,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40244,1,4,0)
+ ;;=4^S98.122A
+ ;;^UTILITY(U,$J,358.3,40244,2)
+ ;;=^5046275
+ ;;^UTILITY(U,$J,358.3,40245,0)
+ ;;=S98.322A^^186^2076^23
+ ;;^UTILITY(U,$J,358.3,40245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40245,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Midfoot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40245,1,4,0)
+ ;;=4^S98.322A
+ ;;^UTILITY(U,$J,358.3,40245,2)
+ ;;=^5046329
+ ;;^UTILITY(U,$J,358.3,40246,0)
+ ;;=S48.922A^^186^2076^24

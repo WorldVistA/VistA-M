@@ -1,138 +1,126 @@
-IBDEI0XG ; ; 06-AUG-2015
+IBDEI0XG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16266,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16266,1,4,0)
- ;;=4^E888.9
- ;;^UTILITY(U,$J,358.3,16266,1,5,0)
- ;;=5^Fall NOS
- ;;^UTILITY(U,$J,358.3,16266,2)
- ;;=^323639
- ;;^UTILITY(U,$J,358.3,16267,0)
- ;;=E891.9^^81^958^18
- ;;^UTILITY(U,$J,358.3,16267,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16267,1,4,0)
- ;;=4^E891.9
- ;;^UTILITY(U,$J,358.3,16267,1,5,0)
- ;;=5^Fire in Building
- ;;^UTILITY(U,$J,358.3,16267,2)
- ;;=^294669
- ;;^UTILITY(U,$J,358.3,16268,0)
- ;;=369.00^^81^959^2
- ;;^UTILITY(U,$J,358.3,16268,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16268,1,4,0)
- ;;=4^369.00
- ;;^UTILITY(U,$J,358.3,16268,1,5,0)
- ;;=5^Both Eyes Blind-WHO Def
- ;;^UTILITY(U,$J,358.3,16268,2)
- ;;=^15310
- ;;^UTILITY(U,$J,358.3,16269,0)
- ;;=369.01^^81^959^26
- ;;^UTILITY(U,$J,358.3,16269,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16269,1,4,0)
- ;;=4^369.01
- ;;^UTILITY(U,$J,358.3,16269,1,5,0)
- ;;=5^Tot Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,16269,2)
- ;;=^268861
- ;;^UTILITY(U,$J,358.3,16270,0)
- ;;=369.02^^81^959^14
- ;;^UTILITY(U,$J,358.3,16270,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16270,1,4,0)
- ;;=4^369.02
- ;;^UTILITY(U,$J,358.3,16270,1,5,0)
- ;;=5^One Eye Nr Total/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,16270,2)
- ;;=^268862
- ;;^UTILITY(U,$J,358.3,16271,0)
- ;;=369.03^^81^959^15
- ;;^UTILITY(U,$J,358.3,16271,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16271,1,4,0)
- ;;=4^369.03
- ;;^UTILITY(U,$J,358.3,16271,1,5,0)
- ;;=5^One Eye Nr Total/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,16271,2)
- ;;=^268863
- ;;^UTILITY(U,$J,358.3,16272,0)
- ;;=369.04^^81^959^6
- ;;^UTILITY(U,$J,358.3,16272,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16272,1,4,0)
- ;;=4^369.04
- ;;^UTILITY(U,$J,358.3,16272,1,5,0)
- ;;=5^Near Total Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,16272,2)
- ;;=^268864
- ;;^UTILITY(U,$J,358.3,16273,0)
- ;;=369.05^^81^959^16
- ;;^UTILITY(U,$J,358.3,16273,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16273,1,4,0)
- ;;=4^369.05
- ;;^UTILITY(U,$J,358.3,16273,1,5,0)
- ;;=5^One Eye Profound/Oth Eye NOS
- ;;^UTILITY(U,$J,358.3,16273,2)
- ;;=^268865
- ;;^UTILITY(U,$J,358.3,16274,0)
- ;;=369.06^^81^959^18
- ;;^UTILITY(U,$J,358.3,16274,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16274,1,4,0)
- ;;=4^369.06
- ;;^UTILITY(U,$J,358.3,16274,1,5,0)
- ;;=5^One Eye Profound/Oth Eye Total
- ;;^UTILITY(U,$J,358.3,16274,2)
- ;;=^268866
- ;;^UTILITY(U,$J,358.3,16275,0)
- ;;=369.07^^81^959^17
- ;;^UTILITY(U,$J,358.3,16275,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16275,1,4,0)
- ;;=4^369.07
- ;;^UTILITY(U,$J,358.3,16275,1,5,0)
- ;;=5^One Eye Profound/Oth Eye Near Total
- ;;^UTILITY(U,$J,358.3,16275,2)
- ;;=^268867
- ;;^UTILITY(U,$J,358.3,16276,0)
- ;;=369.08^^81^959^24
- ;;^UTILITY(U,$J,358.3,16276,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16276,1,4,0)
- ;;=4^369.08
- ;;^UTILITY(U,$J,358.3,16276,1,5,0)
- ;;=5^Profound Impairment,Both Eyes
- ;;^UTILITY(U,$J,358.3,16276,2)
- ;;=^268868
- ;;^UTILITY(U,$J,358.3,16277,0)
- ;;=369.10^^81^959^7
- ;;^UTILITY(U,$J,358.3,16277,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16277,1,4,0)
- ;;=4^369.10
- ;;^UTILITY(U,$J,358.3,16277,1,5,0)
- ;;=5^One Eye Blindness/Oth Eye Low Vision
- ;;^UTILITY(U,$J,358.3,16277,2)
- ;;=^268870
- ;;^UTILITY(U,$J,358.3,16278,0)
- ;;=369.11^^81^959^19
- ;;^UTILITY(U,$J,358.3,16278,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16278,1,4,0)
- ;;=4^369.11
- ;;^UTILITY(U,$J,358.3,16278,1,5,0)
- ;;=5^One Eye Severe/Oth Eye Blind NOS
- ;;^UTILITY(U,$J,358.3,16278,2)
- ;;=^268871
- ;;^UTILITY(U,$J,358.3,16279,0)
- ;;=369.12^^81^959^23
- ;;^UTILITY(U,$J,358.3,16279,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,16279,1,4,0)
- ;;=4^369.12
+ ;;^UTILITY(U,$J,358.3,15418,1,3,0)
+ ;;=3^Primary Osteoarthritis,Right Wrist
+ ;;^UTILITY(U,$J,358.3,15418,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,15418,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,15419,0)
+ ;;=M19.032^^85^818^12
+ ;;^UTILITY(U,$J,358.3,15419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15419,1,3,0)
+ ;;=3^Primary Osteoarthritis,Left Wrist
+ ;;^UTILITY(U,$J,358.3,15419,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,15419,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,15420,0)
+ ;;=M19.041^^85^818^15
+ ;;^UTILITY(U,$J,358.3,15420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15420,1,3,0)
+ ;;=3^Primary Osteoarthritis,Right Hand
+ ;;^UTILITY(U,$J,358.3,15420,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,15420,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,15421,0)
+ ;;=M19.042^^85^818^10
+ ;;^UTILITY(U,$J,358.3,15421,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15421,1,3,0)
+ ;;=3^Primary Osteoarthritis,Left Hand
+ ;;^UTILITY(U,$J,358.3,15421,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,15421,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,15422,0)
+ ;;=M19.071^^85^818^13
+ ;;^UTILITY(U,$J,358.3,15422,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15422,1,3,0)
+ ;;=3^Primary Osteoarthritis,Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15422,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,15422,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,15423,0)
+ ;;=M19.072^^85^818^8
+ ;;^UTILITY(U,$J,358.3,15423,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15423,1,3,0)
+ ;;=3^Primary Osteoarthritis,Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15423,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,15423,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,15424,0)
+ ;;=M12.9^^85^818^1
+ ;;^UTILITY(U,$J,358.3,15424,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15424,1,3,0)
+ ;;=3^Arthropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,15424,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,15424,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,15425,0)
+ ;;=M23.021^^85^818^2
+ ;;^UTILITY(U,$J,358.3,15425,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15425,1,3,0)
+ ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Right Knee
+ ;;^UTILITY(U,$J,358.3,15425,1,4,0)
+ ;;=4^M23.021
+ ;;^UTILITY(U,$J,358.3,15425,2)
+ ;;=^5011201
+ ;;^UTILITY(U,$J,358.3,15426,0)
+ ;;=M23.022^^85^818^3
+ ;;^UTILITY(U,$J,358.3,15426,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15426,1,3,0)
+ ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Left Knee
+ ;;^UTILITY(U,$J,358.3,15426,1,4,0)
+ ;;=4^M23.022
+ ;;^UTILITY(U,$J,358.3,15426,2)
+ ;;=^5011202
+ ;;^UTILITY(U,$J,358.3,15427,0)
+ ;;=M23.221^^85^818^4
+ ;;^UTILITY(U,$J,358.3,15427,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15427,1,3,0)
+ ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,15427,1,4,0)
+ ;;=4^M23.221
+ ;;^UTILITY(U,$J,358.3,15427,2)
+ ;;=^5011221
+ ;;^UTILITY(U,$J,358.3,15428,0)
+ ;;=M23.222^^85^818^5
+ ;;^UTILITY(U,$J,358.3,15428,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15428,1,3,0)
+ ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,15428,1,4,0)
+ ;;=4^M23.222
+ ;;^UTILITY(U,$J,358.3,15428,2)
+ ;;=^5011222
+ ;;^UTILITY(U,$J,358.3,15429,0)
+ ;;=M47.812^^85^818^28
+ ;;^UTILITY(U,$J,358.3,15429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15429,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,15429,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,15429,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,15430,0)
+ ;;=M47.813^^85^818^29
+ ;;^UTILITY(U,$J,358.3,15430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15430,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervicothoracic Region

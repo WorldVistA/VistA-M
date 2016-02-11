@@ -1,106 +1,132 @@
-IBDEI0TN ; ; 06-AUG-2015
+IBDEI0TN ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14356,0)
- ;;=28062^^75^886^22^^^^1
- ;;^UTILITY(U,$J,358.3,14356,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14356,1,2,0)
- ;;=2^Fasciectomy, plantar fascia; radical
- ;;^UTILITY(U,$J,358.3,14356,1,3,0)
- ;;=3^28062
- ;;^UTILITY(U,$J,358.3,14357,0)
- ;;=28080^^75^886^20^^^^1
- ;;^UTILITY(U,$J,358.3,14357,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14357,1,2,0)
- ;;=2^Excision, interdigital (Morton) neuroma, single, each
- ;;^UTILITY(U,$J,358.3,14357,1,3,0)
- ;;=3^28080
- ;;^UTILITY(U,$J,358.3,14358,0)
- ;;=28090^^75^886^6^^^^1
- ;;^UTILITY(U,$J,358.3,14358,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14358,1,2,0)
- ;;=2^Excision of lesion, tendon, tendon sheath, or capsule; foot
- ;;^UTILITY(U,$J,358.3,14358,1,3,0)
- ;;=3^28090
- ;;^UTILITY(U,$J,358.3,14359,0)
- ;;=28092^^75^886^7^^^^1
- ;;^UTILITY(U,$J,358.3,14359,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14359,1,2,0)
- ;;=2^Excision of lesion, tendon, tendon sheath, or capsule; toe(s), each
- ;;^UTILITY(U,$J,358.3,14359,1,3,0)
- ;;=3^28092
- ;;^UTILITY(U,$J,358.3,14360,0)
- ;;=28100^^75^886^14^^^^1
- ;;^UTILITY(U,$J,358.3,14360,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14360,1,2,0)
- ;;=2^Excision or Curettage of bone cyst or benign tumor, talus or calcaneus
- ;;^UTILITY(U,$J,358.3,14360,1,3,0)
- ;;=3^28100
- ;;^UTILITY(U,$J,358.3,14361,0)
- ;;=28102^^75^886^15^^^^1
- ;;^UTILITY(U,$J,358.3,14361,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14361,1,2,0)
- ;;=2^Excision or Curettage of bone cyst or benign tumor, talus or calcaneus; with iliac or other autograft (includes obtaining graft)
- ;;^UTILITY(U,$J,358.3,14361,1,3,0)
- ;;=3^28102
- ;;^UTILITY(U,$J,358.3,14362,0)
- ;;=28103^^75^886^16^^^^1
- ;;^UTILITY(U,$J,358.3,14362,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14362,1,2,0)
- ;;=2^Excision or Curettage of bone cyst or benign tumor, talus or calcaneus; with allograft
- ;;^UTILITY(U,$J,358.3,14362,1,3,0)
- ;;=3^28103
- ;;^UTILITY(U,$J,358.3,14363,0)
- ;;=28104^^75^886^17^^^^1
- ;;^UTILITY(U,$J,358.3,14363,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14363,1,2,0)
- ;;=2^Excision or Curettage of bone cyst or benign tumor, tarsal or metatarsal, except talus or calcaneus 
- ;;^UTILITY(U,$J,358.3,14363,1,3,0)
- ;;=3^28104
- ;;^UTILITY(U,$J,358.3,14364,0)
- ;;=28106^^75^886^18^^^^1
- ;;^UTILITY(U,$J,358.3,14364,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14364,1,2,0)
- ;;=2^Excision or Curettage of bone cyst or benign tumor, tarsal or metatarsal, except talus or calcaneus; with iliac or other autograft
- ;;^UTILITY(U,$J,358.3,14364,1,3,0)
- ;;=3^28106
- ;;^UTILITY(U,$J,358.3,14365,0)
- ;;=28107^^75^886^13^^^^1
- ;;^UTILITY(U,$J,358.3,14365,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14365,1,2,0)
- ;;=2^Excision or Curettage of bone cyst of benign tumor, tarsal or metatarsal, except talus or calcaneus; with allograft
- ;;^UTILITY(U,$J,358.3,14365,1,3,0)
- ;;=3^28107
- ;;^UTILITY(U,$J,358.3,14366,0)
- ;;=28108^^75^886^19^^^^1
- ;;^UTILITY(U,$J,358.3,14366,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14366,1,2,0)
- ;;=2^Excision or Curettage of bone cyst or benign tumor, phalanges of foot
- ;;^UTILITY(U,$J,358.3,14366,1,3,0)
- ;;=3^28108
- ;;^UTILITY(U,$J,358.3,14367,0)
- ;;=28110^^75^886^30^^^^1
- ;;^UTILITY(U,$J,358.3,14367,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14367,1,2,0)
- ;;=2^Ostectomy, partial excision, fifth metararsal head
- ;;^UTILITY(U,$J,358.3,14367,1,3,0)
- ;;=3^28110
- ;;^UTILITY(U,$J,358.3,14368,0)
- ;;=28111^^75^886^26^^^^1
- ;;^UTILITY(U,$J,358.3,14368,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14368,1,2,0)
- ;;=2^Ostectomy, complete excision; 1st metatarsal head
+ ;;^UTILITY(U,$J,358.3,13636,2)
+ ;;=^5005539
+ ;;^UTILITY(U,$J,358.3,13637,0)
+ ;;=H33.322^^80^763^98
+ ;;^UTILITY(U,$J,358.3,13637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13637,1,3,0)
+ ;;=3^Round Hole,Left Eye
+ ;;^UTILITY(U,$J,358.3,13637,1,4,0)
+ ;;=4^H33.322
+ ;;^UTILITY(U,$J,358.3,13637,2)
+ ;;=^5005540
+ ;;^UTILITY(U,$J,358.3,13638,0)
+ ;;=H33.311^^80^763^48
+ ;;^UTILITY(U,$J,358.3,13638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13638,1,3,0)
+ ;;=3^Horseshoe Tear of Retina w/o Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,13638,1,4,0)
+ ;;=4^H33.311
+ ;;^UTILITY(U,$J,358.3,13638,2)
+ ;;=^5005535
+ ;;^UTILITY(U,$J,358.3,13639,0)
+ ;;=H33.312^^80^763^49
+ ;;^UTILITY(U,$J,358.3,13639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13639,1,3,0)
+ ;;=3^Horseshoe Tear of Retina w/o Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,13639,1,4,0)
+ ;;=4^H33.312
+ ;;^UTILITY(U,$J,358.3,13639,2)
+ ;;=^5005536
+ ;;^UTILITY(U,$J,358.3,13640,0)
+ ;;=H35.033^^80^763^50
+ ;;^UTILITY(U,$J,358.3,13640,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13640,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,13640,1,4,0)
+ ;;=4^H35.033
+ ;;^UTILITY(U,$J,358.3,13640,2)
+ ;;=^5005592
+ ;;^UTILITY(U,$J,358.3,13641,0)
+ ;;=H35.031^^80^763^52
+ ;;^UTILITY(U,$J,358.3,13641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13641,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,13641,1,4,0)
+ ;;=4^H35.031
+ ;;^UTILITY(U,$J,358.3,13641,2)
+ ;;=^5005590
+ ;;^UTILITY(U,$J,358.3,13642,0)
+ ;;=H35.032^^80^763^51
+ ;;^UTILITY(U,$J,358.3,13642,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13642,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,13642,1,4,0)
+ ;;=4^H35.032
+ ;;^UTILITY(U,$J,358.3,13642,2)
+ ;;=^5005591
+ ;;^UTILITY(U,$J,358.3,13643,0)
+ ;;=H35.071^^80^763^90
+ ;;^UTILITY(U,$J,358.3,13643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13643,1,3,0)
+ ;;=3^Retinal Telangiectasis,Right Eye
+ ;;^UTILITY(U,$J,358.3,13643,1,4,0)
+ ;;=4^H35.071
+ ;;^UTILITY(U,$J,358.3,13643,2)
+ ;;=^5005606
+ ;;^UTILITY(U,$J,358.3,13644,0)
+ ;;=H35.072^^80^763^89
+ ;;^UTILITY(U,$J,358.3,13644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13644,1,3,0)
+ ;;=3^Retinal Telangiectasis,Left Eye
+ ;;^UTILITY(U,$J,358.3,13644,1,4,0)
+ ;;=4^H35.072
+ ;;^UTILITY(U,$J,358.3,13644,2)
+ ;;=^5005607
+ ;;^UTILITY(U,$J,358.3,13645,0)
+ ;;=H35.051^^80^763^88
+ ;;^UTILITY(U,$J,358.3,13645,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13645,1,3,0)
+ ;;=3^Retinal Neovascularization,Right Eye
+ ;;^UTILITY(U,$J,358.3,13645,1,4,0)
+ ;;=4^H35.051
+ ;;^UTILITY(U,$J,358.3,13645,2)
+ ;;=^5005598
+ ;;^UTILITY(U,$J,358.3,13646,0)
+ ;;=H35.052^^80^763^87
+ ;;^UTILITY(U,$J,358.3,13646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13646,1,3,0)
+ ;;=3^Retinal Neovascularization,Left Eye
+ ;;^UTILITY(U,$J,358.3,13646,1,4,0)
+ ;;=4^H35.052
+ ;;^UTILITY(U,$J,358.3,13646,2)
+ ;;=^5005599
+ ;;^UTILITY(U,$J,358.3,13647,0)
+ ;;=H35.061^^80^763^92
+ ;;^UTILITY(U,$J,358.3,13647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13647,1,3,0)
+ ;;=3^Retinal Vasculitis,Right Eye
+ ;;^UTILITY(U,$J,358.3,13647,1,4,0)
+ ;;=4^H35.061
+ ;;^UTILITY(U,$J,358.3,13647,2)
+ ;;=^5005602
+ ;;^UTILITY(U,$J,358.3,13648,0)
+ ;;=H35.062^^80^763^91
+ ;;^UTILITY(U,$J,358.3,13648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13648,1,3,0)
+ ;;=3^Retinal Vasculitis,Left Eye
+ ;;^UTILITY(U,$J,358.3,13648,1,4,0)
+ ;;=4^H35.062
+ ;;^UTILITY(U,$J,358.3,13648,2)
+ ;;=^5005603
+ ;;^UTILITY(U,$J,358.3,13649,0)
+ ;;=H34.13^^80^763^6
+ ;;^UTILITY(U,$J,358.3,13649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13649,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Bilateral

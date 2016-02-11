@@ -1,132 +1,132 @@
-IBDEI1UC ; ; 06-AUG-2015
+IBDEI1UC ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32419,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,32420,0)
- ;;=S05.01XA^^182^1986^2
- ;;^UTILITY(U,$J,358.3,32420,1,0)
+ ;;^UTILITY(U,$J,358.3,30824,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,30825,0)
+ ;;=R73.09^^135^1384^15
+ ;;^UTILITY(U,$J,358.3,30825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32420,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,32420,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,32420,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,32421,0)
- ;;=B96.81^^182^1987^51
- ;;^UTILITY(U,$J,358.3,32421,1,0)
+ ;;^UTILITY(U,$J,358.3,30825,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,30825,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,30825,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,30826,0)
+ ;;=R73.9^^135^1384^84
+ ;;^UTILITY(U,$J,358.3,30826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32421,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,32421,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,32421,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,32422,0)
- ;;=B15.9^^182^1987^53
- ;;^UTILITY(U,$J,358.3,32422,1,0)
+ ;;^UTILITY(U,$J,358.3,30826,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,30826,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,30826,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,30827,0)
+ ;;=R76.11^^135^1384^142
+ ;;^UTILITY(U,$J,358.3,30827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32422,1,3,0)
- ;;=3^Hepatitis A w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,32422,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,32422,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,32423,0)
- ;;=B16.9^^182^1987^54
- ;;^UTILITY(U,$J,358.3,32423,1,0)
+ ;;^UTILITY(U,$J,358.3,30827,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,30827,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,30827,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,30828,0)
+ ;;=R79.1^^135^1384^3
+ ;;^UTILITY(U,$J,358.3,30828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32423,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,32423,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,32423,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,32424,0)
- ;;=B19.10^^182^1987^56
- ;;^UTILITY(U,$J,358.3,32424,1,0)
+ ;;^UTILITY(U,$J,358.3,30828,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,30828,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,30828,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,30829,0)
+ ;;=R82.5^^135^1384^69
+ ;;^UTILITY(U,$J,358.3,30829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32424,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,32424,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,32424,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,32425,0)
- ;;=B18.1^^182^1987^55
- ;;^UTILITY(U,$J,358.3,32425,1,0)
+ ;;^UTILITY(U,$J,358.3,30829,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,30829,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,30829,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,30830,0)
+ ;;=R82.6^^135^1384^26
+ ;;^UTILITY(U,$J,358.3,30830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32425,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,32425,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,32425,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,32426,0)
- ;;=B17.10^^182^1987^57
- ;;^UTILITY(U,$J,358.3,32426,1,0)
+ ;;^UTILITY(U,$J,358.3,30830,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,30830,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,30830,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,30831,0)
+ ;;=R82.7^^135^1384^27
+ ;;^UTILITY(U,$J,358.3,30831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32426,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,32426,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,32426,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,32427,0)
- ;;=B18.2^^182^1987^58
- ;;^UTILITY(U,$J,358.3,32427,1,0)
+ ;;^UTILITY(U,$J,358.3,30831,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,30831,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,30831,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,30832,0)
+ ;;=R82.8^^135^1384^23
+ ;;^UTILITY(U,$J,358.3,30832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32427,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,32427,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,32427,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,32428,0)
- ;;=B18.8^^182^1987^60
- ;;^UTILITY(U,$J,358.3,32428,1,0)
+ ;;^UTILITY(U,$J,358.3,30832,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,30832,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,30832,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,30833,0)
+ ;;=R82.90^^135^1384^25
+ ;;^UTILITY(U,$J,358.3,30833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32428,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,32428,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,32428,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,32429,0)
- ;;=B17.8^^182^1987^61
- ;;^UTILITY(U,$J,358.3,32429,1,0)
+ ;;^UTILITY(U,$J,358.3,30833,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,30833,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,30833,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,30834,0)
+ ;;=R82.91^^135^1384^49
+ ;;^UTILITY(U,$J,358.3,30834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32429,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
- ;;^UTILITY(U,$J,358.3,32429,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,32429,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,32430,0)
- ;;=B18.9^^182^1987^59
- ;;^UTILITY(U,$J,358.3,32430,1,0)
+ ;;^UTILITY(U,$J,358.3,30834,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,30834,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,30834,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,30835,0)
+ ;;=R82.99^^135^1384^24
+ ;;^UTILITY(U,$J,358.3,30835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32430,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,32430,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,32430,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,32431,0)
- ;;=B37.81^^182^1987^15
- ;;^UTILITY(U,$J,358.3,32431,1,0)
+ ;;^UTILITY(U,$J,358.3,30835,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,30835,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,30835,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,30836,0)
+ ;;=R89.9^^135^1384^19
+ ;;^UTILITY(U,$J,358.3,30836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32431,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,32431,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,32431,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,32432,0)
- ;;=D12.0^^182^1987^10
- ;;^UTILITY(U,$J,358.3,32432,1,0)
+ ;;^UTILITY(U,$J,358.3,30836,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,30836,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,30836,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,30837,0)
+ ;;=R90.0^^135^1384^98
+ ;;^UTILITY(U,$J,358.3,30837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32432,1,3,0)
- ;;=3^Benign Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,30837,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System

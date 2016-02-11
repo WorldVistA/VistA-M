@@ -1,0 +1,134 @@
+IBDEI2S5 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,46667,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,46667,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,46668,0)
+ ;;=D86.2^^206^2305^49
+ ;;^UTILITY(U,$J,358.3,46668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46668,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,46668,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,46668,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,46669,0)
+ ;;=D86.1^^206^2305^50
+ ;;^UTILITY(U,$J,358.3,46669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46669,1,3,0)
+ ;;=3^Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,46669,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,46669,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,46670,0)
+ ;;=D86.89^^206^2305^51
+ ;;^UTILITY(U,$J,358.3,46670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46670,1,3,0)
+ ;;=3^Sarcoidosis of Oth Sites
+ ;;^UTILITY(U,$J,358.3,46670,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,46670,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,46671,0)
+ ;;=D86.3^^206^2305^52
+ ;;^UTILITY(U,$J,358.3,46671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46671,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,46671,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,46671,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,46672,0)
+ ;;=D86.9^^206^2305^53
+ ;;^UTILITY(U,$J,358.3,46672,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46672,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,46672,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,46672,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,46673,0)
+ ;;=M35.01^^206^2305^54
+ ;;^UTILITY(U,$J,358.3,46673,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46673,1,3,0)
+ ;;=3^Sicca Syndrome w/ Keratoconjunctivitis
+ ;;^UTILITY(U,$J,358.3,46673,1,4,0)
+ ;;=4^M35.01
+ ;;^UTILITY(U,$J,358.3,46673,2)
+ ;;=^5011787
+ ;;^UTILITY(U,$J,358.3,46674,0)
+ ;;=M35.02^^206^2305^55
+ ;;^UTILITY(U,$J,358.3,46674,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46674,1,3,0)
+ ;;=3^Sicca Syndrome w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,46674,1,4,0)
+ ;;=4^M35.02
+ ;;^UTILITY(U,$J,358.3,46674,2)
+ ;;=^5011788
+ ;;^UTILITY(U,$J,358.3,46675,0)
+ ;;=M35.03^^206^2305^56
+ ;;^UTILITY(U,$J,358.3,46675,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46675,1,3,0)
+ ;;=3^Sicca Syndrome w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,46675,1,4,0)
+ ;;=4^M35.03
+ ;;^UTILITY(U,$J,358.3,46675,2)
+ ;;=^5011789
+ ;;^UTILITY(U,$J,358.3,46676,0)
+ ;;=M35.09^^206^2305^57
+ ;;^UTILITY(U,$J,358.3,46676,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46676,1,3,0)
+ ;;=3^Sicca Syndrome w/ Oth Organ Involvement
+ ;;^UTILITY(U,$J,358.3,46676,1,4,0)
+ ;;=4^M35.09
+ ;;^UTILITY(U,$J,358.3,46676,2)
+ ;;=^5011791
+ ;;^UTILITY(U,$J,358.3,46677,0)
+ ;;=M35.04^^206^2305^58
+ ;;^UTILITY(U,$J,358.3,46677,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46677,1,3,0)
+ ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
+ ;;^UTILITY(U,$J,358.3,46677,1,4,0)
+ ;;=4^M35.04
+ ;;^UTILITY(U,$J,358.3,46677,2)
+ ;;=^5011790
+ ;;^UTILITY(U,$J,358.3,46678,0)
+ ;;=M35.00^^206^2305^59
+ ;;^UTILITY(U,$J,358.3,46678,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46678,1,3,0)
+ ;;=3^Sicca Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,46678,1,4,0)
+ ;;=4^M35.00
+ ;;^UTILITY(U,$J,358.3,46678,2)
+ ;;=^5011786
+ ;;^UTILITY(U,$J,358.3,46679,0)
+ ;;=M32.10^^206^2305^62
+ ;;^UTILITY(U,$J,358.3,46679,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46679,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
+ ;;^UTILITY(U,$J,358.3,46679,1,4,0)
+ ;;=4^M32.10
+ ;;^UTILITY(U,$J,358.3,46679,2)
+ ;;=^5011753
+ ;;^UTILITY(U,$J,358.3,46680,0)
+ ;;=M32.9^^206^2305^61
+ ;;^UTILITY(U,$J,358.3,46680,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46680,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec

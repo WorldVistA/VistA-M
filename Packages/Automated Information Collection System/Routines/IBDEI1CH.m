@@ -1,134 +1,124 @@
-IBDEI1CH ; ; 06-AUG-2015
+IBDEI1CH ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23818,0)
- ;;=295.02^^127^1436^21
- ;;^UTILITY(U,$J,358.3,23818,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23818,1,2,0)
- ;;=2^295.02
- ;;^UTILITY(U,$J,358.3,23818,1,5,0)
- ;;=5^Simple Schizophrenia, Chronic
- ;;^UTILITY(U,$J,358.3,23818,2)
- ;;=Simple Schizophrenia, Chronic^268046
- ;;^UTILITY(U,$J,358.3,23819,0)
- ;;=295.04^^127^1436^20
- ;;^UTILITY(U,$J,358.3,23819,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23819,1,2,0)
- ;;=2^295.04
- ;;^UTILITY(U,$J,358.3,23819,1,5,0)
- ;;=5^Simple Schizophrenia,  Chr w/Exacerbation
- ;;^UTILITY(U,$J,358.3,23819,2)
- ;;=^268048
- ;;^UTILITY(U,$J,358.3,23820,0)
- ;;=295.92^^127^1436^14
- ;;^UTILITY(U,$J,358.3,23820,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23820,1,2,0)
- ;;=2^295.92
- ;;^UTILITY(U,$J,358.3,23820,1,5,0)
- ;;=5^Schizophrenia, NOS, Chronic
- ;;^UTILITY(U,$J,358.3,23820,2)
- ;;=Schizophrenia, NOS, Chronic^268093
- ;;^UTILITY(U,$J,358.3,23821,0)
- ;;=295.94^^127^1436^15
- ;;^UTILITY(U,$J,358.3,23821,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23821,1,2,0)
- ;;=2^295.94
- ;;^UTILITY(U,$J,358.3,23821,1,5,0)
- ;;=5^Schizophrenia, NOS, Chronic w/Exacerbation
- ;;^UTILITY(U,$J,358.3,23821,2)
- ;;=^268095
- ;;^UTILITY(U,$J,358.3,23822,0)
- ;;=295.00^^127^1436^19
- ;;^UTILITY(U,$J,358.3,23822,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23822,1,2,0)
- ;;=2^295.00
- ;;^UTILITY(U,$J,358.3,23822,1,5,0)
- ;;=5^Simple Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,23822,2)
- ;;=^265175
- ;;^UTILITY(U,$J,358.3,23823,0)
- ;;=295.10^^127^1436^1
- ;;^UTILITY(U,$J,358.3,23823,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23823,1,2,0)
- ;;=2^295.10
- ;;^UTILITY(U,$J,358.3,23823,1,5,0)
- ;;=5^Disorganized Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,23823,2)
- ;;=^108319
- ;;^UTILITY(U,$J,358.3,23824,0)
- ;;=295.30^^127^1436^7
- ;;^UTILITY(U,$J,358.3,23824,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23824,1,2,0)
- ;;=2^295.30
- ;;^UTILITY(U,$J,358.3,23824,1,5,0)
- ;;=5^Paranoid Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,23824,2)
- ;;=^108330
- ;;^UTILITY(U,$J,358.3,23825,0)
- ;;=295.40^^127^1436^16
- ;;^UTILITY(U,$J,358.3,23825,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23825,1,2,0)
- ;;=2^295.40
- ;;^UTILITY(U,$J,358.3,23825,1,5,0)
- ;;=5^Schizophreniform Disorder NOS
- ;;^UTILITY(U,$J,358.3,23825,2)
- ;;=^331845
- ;;^UTILITY(U,$J,358.3,23826,0)
- ;;=295.50^^127^1436^4
- ;;^UTILITY(U,$J,358.3,23826,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23826,1,2,0)
- ;;=2^295.50
- ;;^UTILITY(U,$J,358.3,23826,1,5,0)
- ;;=5^Latent Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,23826,2)
- ;;=^68517
- ;;^UTILITY(U,$J,358.3,23827,0)
- ;;=295.60^^127^1436^22
- ;;^UTILITY(U,$J,358.3,23827,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23827,1,2,0)
- ;;=2^295.60
- ;;^UTILITY(U,$J,358.3,23827,1,5,0)
- ;;=5^Undifferentiated Schizophrenia NOS
- ;;^UTILITY(U,$J,358.3,23827,2)
- ;;=^331851
- ;;^UTILITY(U,$J,358.3,23828,0)
- ;;=295.70^^127^1436^10
- ;;^UTILITY(U,$J,358.3,23828,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23828,1,2,0)
- ;;=2^295.70
- ;;^UTILITY(U,$J,358.3,23828,1,5,0)
- ;;=5^Schizoaffective Disorder NOS
- ;;^UTILITY(U,$J,358.3,23828,2)
- ;;=^331857
- ;;^UTILITY(U,$J,358.3,23829,0)
- ;;=295.90^^127^1436^13
- ;;^UTILITY(U,$J,358.3,23829,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23829,1,2,0)
- ;;=2^295.90
- ;;^UTILITY(U,$J,358.3,23829,1,5,0)
- ;;=5^Schizophrenia NOS,Unspec
- ;;^UTILITY(U,$J,358.3,23829,2)
- ;;=^108287
- ;;^UTILITY(U,$J,358.3,23830,0)
- ;;=300.11^^127^1437^1
- ;;^UTILITY(U,$J,358.3,23830,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23830,1,2,0)
- ;;=2^300.11
- ;;^UTILITY(U,$J,358.3,23830,1,5,0)
- ;;=5^Conversion Disorder
- ;;^UTILITY(U,$J,358.3,23830,2)
- ;;=^28139
+ ;;^UTILITY(U,$J,358.3,22399,1,4,0)
+ ;;=4^S62.032S
+ ;;^UTILITY(U,$J,358.3,22399,2)
+ ;;=^5033170
+ ;;^UTILITY(U,$J,358.3,22400,0)
+ ;;=S62.031S^^101^1040^44
+ ;;^UTILITY(U,$J,358.3,22400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22400,1,3,0)
+ ;;=3^Disp fx of proximal third of navic bone of r wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22400,1,4,0)
+ ;;=4^S62.031S
+ ;;^UTILITY(U,$J,358.3,22400,2)
+ ;;=^5033163
+ ;;^UTILITY(U,$J,358.3,22401,0)
+ ;;=S62.172S^^101^1040^59
+ ;;^UTILITY(U,$J,358.3,22401,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22401,1,3,0)
+ ;;=3^Disp fx of trapezium, left wrist, sequela    
+ ;;^UTILITY(U,$J,358.3,22401,1,4,0)
+ ;;=4^S62.172S
+ ;;^UTILITY(U,$J,358.3,22401,2)
+ ;;=^5033478
+ ;;^UTILITY(U,$J,358.3,22402,0)
+ ;;=S62.171S^^101^1040^60
+ ;;^UTILITY(U,$J,358.3,22402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22402,1,3,0)
+ ;;=3^Disp fx of trapezium, right wrist, sequela   
+ ;;^UTILITY(U,$J,358.3,22402,1,4,0)
+ ;;=4^S62.171S
+ ;;^UTILITY(U,$J,358.3,22402,2)
+ ;;=^5033471
+ ;;^UTILITY(U,$J,358.3,22403,0)
+ ;;=S62.182S^^101^1040^61
+ ;;^UTILITY(U,$J,358.3,22403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22403,1,3,0)
+ ;;=3^Disp fx of trapezoid, left wrist, sequela   
+ ;;^UTILITY(U,$J,358.3,22403,1,4,0)
+ ;;=4^S62.182S
+ ;;^UTILITY(U,$J,358.3,22403,2)
+ ;;=^5033520
+ ;;^UTILITY(U,$J,358.3,22404,0)
+ ;;=S62.181S^^101^1040^62
+ ;;^UTILITY(U,$J,358.3,22404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22404,1,3,0)
+ ;;=3^Disp fx of trapezoid, right wrist, sequela  
+ ;;^UTILITY(U,$J,358.3,22404,1,4,0)
+ ;;=4^S62.181S
+ ;;^UTILITY(U,$J,358.3,22404,2)
+ ;;=^5033513
+ ;;^UTILITY(U,$J,358.3,22405,0)
+ ;;=S62.112S^^101^1040^63
+ ;;^UTILITY(U,$J,358.3,22405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22405,1,3,0)
+ ;;=3^Disp fx of triquetrum bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22405,1,4,0)
+ ;;=4^S62.112S
+ ;;^UTILITY(U,$J,358.3,22405,2)
+ ;;=^5033226
+ ;;^UTILITY(U,$J,358.3,22406,0)
+ ;;=S62.111S^^101^1040^64
+ ;;^UTILITY(U,$J,358.3,22406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22406,1,3,0)
+ ;;=3^Disp fx of triquetrum bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22406,1,4,0)
+ ;;=4^S62.111S
+ ;;^UTILITY(U,$J,358.3,22406,2)
+ ;;=^5033219
+ ;;^UTILITY(U,$J,358.3,22407,0)
+ ;;=S62.145S^^101^1040^73
+ ;;^UTILITY(U,$J,358.3,22407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22407,1,3,0)
+ ;;=3^Nondisp fx of body of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22407,1,4,0)
+ ;;=4^S62.145S
+ ;;^UTILITY(U,$J,358.3,22407,2)
+ ;;=^5033373
+ ;;^UTILITY(U,$J,358.3,22408,0)
+ ;;=S62.144S^^101^1040^74
+ ;;^UTILITY(U,$J,358.3,22408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22408,1,3,0)
+ ;;=3^Nondisp fx of body of hamate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22408,1,4,0)
+ ;;=4^S62.144S
+ ;;^UTILITY(U,$J,358.3,22408,2)
+ ;;=^5033366
+ ;;^UTILITY(U,$J,358.3,22409,0)
+ ;;=S62.135S^^101^1040^75
+ ;;^UTILITY(U,$J,358.3,22409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22409,1,3,0)
+ ;;=3^Nondisp fx of capitate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22409,1,4,0)
+ ;;=4^S62.135S
+ ;;^UTILITY(U,$J,358.3,22409,2)
+ ;;=^5033331
+ ;;^UTILITY(U,$J,358.3,22410,0)
+ ;;=S62.134S^^101^1040^76
+ ;;^UTILITY(U,$J,358.3,22410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22410,1,3,0)
+ ;;=3^Nondisp fx of capitate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,22410,1,4,0)
+ ;;=4^S62.134S
+ ;;^UTILITY(U,$J,358.3,22410,2)
+ ;;=^5033324
+ ;;^UTILITY(U,$J,358.3,22411,0)
+ ;;=S62.015S^^101^1040^83
+ ;;^UTILITY(U,$J,358.3,22411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22411,1,3,0)
+ ;;=3^Nondisp fx of distal pole of navic bone of left wrist, sequela

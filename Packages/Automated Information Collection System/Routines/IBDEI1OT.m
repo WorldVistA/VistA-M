@@ -1,122 +1,140 @@
-IBDEI1OT ; ; 06-AUG-2015
+IBDEI1OT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29945,1,3,0)
- ;;=3^Prem separtn of placenta, unsp, third trimester
- ;;^UTILITY(U,$J,358.3,29945,1,4,0)
- ;;=4^O45.93
- ;;^UTILITY(U,$J,358.3,29945,2)
- ;;=^5017466
- ;;^UTILITY(U,$J,358.3,29946,0)
- ;;=O45.001^^178^1909^28
- ;;^UTILITY(U,$J,358.3,29946,1,0)
+ ;;^UTILITY(U,$J,358.3,28231,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,28231,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,28232,0)
+ ;;=M25.551^^132^1326^95
+ ;;^UTILITY(U,$J,358.3,28232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29946,1,3,0)
- ;;=3^Prem separtn of placenta w coag defect, unsp, first tri
- ;;^UTILITY(U,$J,358.3,29946,1,4,0)
- ;;=4^O45.001
- ;;^UTILITY(U,$J,358.3,29946,2)
- ;;=^5017444
- ;;^UTILITY(U,$J,358.3,29947,0)
- ;;=O45.002^^178^1909^29
- ;;^UTILITY(U,$J,358.3,29947,1,0)
+ ;;^UTILITY(U,$J,358.3,28232,1,3,0)
+ ;;=3^Pain in Right Hip
+ ;;^UTILITY(U,$J,358.3,28232,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,28232,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,28233,0)
+ ;;=M25.552^^132^1326^85
+ ;;^UTILITY(U,$J,358.3,28233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29947,1,3,0)
- ;;=3^Prem separtn of placenta w coag defect, unsp, second tri
- ;;^UTILITY(U,$J,358.3,29947,1,4,0)
- ;;=4^O45.002
- ;;^UTILITY(U,$J,358.3,29947,2)
- ;;=^5017445
- ;;^UTILITY(U,$J,358.3,29948,0)
- ;;=O45.003^^178^1909^30
- ;;^UTILITY(U,$J,358.3,29948,1,0)
+ ;;^UTILITY(U,$J,358.3,28233,1,3,0)
+ ;;=3^Pain in Left Hip
+ ;;^UTILITY(U,$J,358.3,28233,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,28233,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,28234,0)
+ ;;=M25.561^^132^1326^96
+ ;;^UTILITY(U,$J,358.3,28234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29948,1,3,0)
- ;;=3^Prem separtn of placenta w coag defect, unsp, third tri
- ;;^UTILITY(U,$J,358.3,29948,1,4,0)
- ;;=4^O45.003
- ;;^UTILITY(U,$J,358.3,29948,2)
- ;;=^5017446
- ;;^UTILITY(U,$J,358.3,29949,0)
- ;;=O45.011^^178^1909^25
- ;;^UTILITY(U,$J,358.3,29949,1,0)
+ ;;^UTILITY(U,$J,358.3,28234,1,3,0)
+ ;;=3^Pain in Right Knee
+ ;;^UTILITY(U,$J,358.3,28234,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,28234,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,28235,0)
+ ;;=M25.562^^132^1326^86
+ ;;^UTILITY(U,$J,358.3,28235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29949,1,3,0)
- ;;=3^Prem separtn of placenta w afibrinogenemia, first trimester
- ;;^UTILITY(U,$J,358.3,29949,1,4,0)
- ;;=4^O45.011
- ;;^UTILITY(U,$J,358.3,29949,2)
- ;;=^5017448
- ;;^UTILITY(U,$J,358.3,29950,0)
- ;;=O45.012^^178^1909^26
- ;;^UTILITY(U,$J,358.3,29950,1,0)
+ ;;^UTILITY(U,$J,358.3,28235,1,3,0)
+ ;;=3^Pain in Left Knee
+ ;;^UTILITY(U,$J,358.3,28235,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,28235,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,28236,0)
+ ;;=M25.571^^132^1326^90
+ ;;^UTILITY(U,$J,358.3,28236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29950,1,3,0)
- ;;=3^Prem separtn of placenta w afibrinogenemia, second trimester
- ;;^UTILITY(U,$J,358.3,29950,1,4,0)
- ;;=4^O45.012
- ;;^UTILITY(U,$J,358.3,29950,2)
- ;;=^5017449
- ;;^UTILITY(U,$J,358.3,29951,0)
- ;;=O45.013^^178^1909^27
- ;;^UTILITY(U,$J,358.3,29951,1,0)
+ ;;^UTILITY(U,$J,358.3,28236,1,3,0)
+ ;;=3^Pain in Right Ankle
+ ;;^UTILITY(U,$J,358.3,28236,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,28236,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,28237,0)
+ ;;=M25.572^^132^1326^80
+ ;;^UTILITY(U,$J,358.3,28237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29951,1,3,0)
- ;;=3^Prem separtn of placenta w afibrinogenemia, third trimester
- ;;^UTILITY(U,$J,358.3,29951,1,4,0)
- ;;=4^O45.013
- ;;^UTILITY(U,$J,358.3,29951,2)
- ;;=^5017450
- ;;^UTILITY(U,$J,358.3,29952,0)
- ;;=O45.021^^178^1909^31
- ;;^UTILITY(U,$J,358.3,29952,1,0)
+ ;;^UTILITY(U,$J,358.3,28237,1,3,0)
+ ;;=3^Pain in Left Ankle
+ ;;^UTILITY(U,$J,358.3,28237,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,28237,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,28238,0)
+ ;;=M79.601^^132^1326^91
+ ;;^UTILITY(U,$J,358.3,28238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29952,1,3,0)
- ;;=3^Prem separtn of placenta w dissem intravasc coag, first tri
- ;;^UTILITY(U,$J,358.3,29952,1,4,0)
- ;;=4^O45.021
- ;;^UTILITY(U,$J,358.3,29952,2)
- ;;=^5017452
- ;;^UTILITY(U,$J,358.3,29953,0)
- ;;=O45.022^^178^1909^32
- ;;^UTILITY(U,$J,358.3,29953,1,0)
+ ;;^UTILITY(U,$J,358.3,28238,1,3,0)
+ ;;=3^Pain in Right Arm
+ ;;^UTILITY(U,$J,358.3,28238,1,4,0)
+ ;;=4^M79.601
+ ;;^UTILITY(U,$J,358.3,28238,2)
+ ;;=^5013325
+ ;;^UTILITY(U,$J,358.3,28239,0)
+ ;;=M79.602^^132^1326^81
+ ;;^UTILITY(U,$J,358.3,28239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29953,1,3,0)
- ;;=3^Prem separtn of placenta w dissem intravasc coag, second tri
- ;;^UTILITY(U,$J,358.3,29953,1,4,0)
- ;;=4^O45.022
- ;;^UTILITY(U,$J,358.3,29953,2)
- ;;=^5017453
- ;;^UTILITY(U,$J,358.3,29954,0)
- ;;=O45.023^^178^1909^33
- ;;^UTILITY(U,$J,358.3,29954,1,0)
+ ;;^UTILITY(U,$J,358.3,28239,1,3,0)
+ ;;=3^Pain in Left Arm
+ ;;^UTILITY(U,$J,358.3,28239,1,4,0)
+ ;;=4^M79.602
+ ;;^UTILITY(U,$J,358.3,28239,2)
+ ;;=^5013326
+ ;;^UTILITY(U,$J,358.3,28240,0)
+ ;;=M79.604^^132^1326^97
+ ;;^UTILITY(U,$J,358.3,28240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29954,1,3,0)
- ;;=3^Prem separtn of placenta w dissem intravasc coag, third tri
- ;;^UTILITY(U,$J,358.3,29954,1,4,0)
- ;;=4^O45.023
- ;;^UTILITY(U,$J,358.3,29954,2)
- ;;=^5017454
- ;;^UTILITY(U,$J,358.3,29955,0)
- ;;=O45.091^^178^1909^34
- ;;^UTILITY(U,$J,358.3,29955,1,0)
+ ;;^UTILITY(U,$J,358.3,28240,1,3,0)
+ ;;=3^Pain in Right Leg
+ ;;^UTILITY(U,$J,358.3,28240,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,28240,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,28241,0)
+ ;;=M79.605^^132^1326^87
+ ;;^UTILITY(U,$J,358.3,28241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29955,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, first trimester
- ;;^UTILITY(U,$J,358.3,29955,1,4,0)
- ;;=4^O45.091
- ;;^UTILITY(U,$J,358.3,29955,2)
- ;;=^5017456
- ;;^UTILITY(U,$J,358.3,29956,0)
- ;;=O45.092^^178^1909^35
- ;;^UTILITY(U,$J,358.3,29956,1,0)
+ ;;^UTILITY(U,$J,358.3,28241,1,3,0)
+ ;;=3^Pain in Left Leg
+ ;;^UTILITY(U,$J,358.3,28241,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,28241,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,28242,0)
+ ;;=M79.641^^132^1326^94
+ ;;^UTILITY(U,$J,358.3,28242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29956,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, second trimester
- ;;^UTILITY(U,$J,358.3,29956,1,4,0)
- ;;=4^O45.092
- ;;^UTILITY(U,$J,358.3,29956,2)
- ;;=^5017457
- ;;^UTILITY(U,$J,358.3,29957,0)
- ;;=O45.093^^178^1909^36
+ ;;^UTILITY(U,$J,358.3,28242,1,3,0)
+ ;;=3^Pain in Right Hand
+ ;;^UTILITY(U,$J,358.3,28242,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,28242,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,28243,0)
+ ;;=M79.642^^132^1326^84
+ ;;^UTILITY(U,$J,358.3,28243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28243,1,3,0)
+ ;;=3^Pain in Left Hand
+ ;;^UTILITY(U,$J,358.3,28243,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,28243,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,28244,0)
+ ;;=M79.671^^132^1326^93
+ ;;^UTILITY(U,$J,358.3,28244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28244,1,3,0)
+ ;;=3^Pain in Right Foot
+ ;;^UTILITY(U,$J,358.3,28244,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,28244,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,28245,0)
+ ;;=M79.672^^132^1326^83

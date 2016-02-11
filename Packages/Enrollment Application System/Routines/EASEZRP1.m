@@ -1,5 +1,5 @@
-EASEZRP1 ;ALB/AMA - Print 1010EZR ; 8/1/08 1:28pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70**;Mar 15, 2001;Build 26
+EASEZRP1 ;ALB/AMA,TDM - Print 1010EZR ; 3/14/13 10:52am
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70,107**;Mar 15, 2001;Build 32
  ;
 EN(EALNE,EAINFO) ;Entry point for VA 10-10EZR, page 1
  ; Called from EN^EASEZRPF
@@ -10,6 +10,7 @@ EN(EALNE,EAINFO) ;Entry point for VA 10-10EZR, page 1
  D DEM
  D II
  D EI
+ D FD^EASEZRP2
  ;
  D FT^EASEZRPF(.EALNE,.EAINFO)
  S EAINFO("VET")=@EASD@(2),EAINFO("SSN")=@EASD@(5)
@@ -23,35 +24,38 @@ DEM ; Print VA 10-10EZR Section I, Demographic information
  W !?20,"for concealing a material fact or making a materially false statement.  (See 18 U.S.C. 1001)"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"1. VETERAN'S NAME (Last, First, Middle Name)",?66,"|2. OTHER NAMES USED"
- W !?3,@EASD@(2),?66,"|   ",@EASD@(3)
+ W !,"1. VETERAN'S NAME (Last, First, Middle Name)",?95,"|2. OTHER NAMES USED"
+ W !?3,@EASD@(2),?95,"|   ",@EASD@(3)
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"3. GENDER",?20,"|4. SOCIAL SECURITY NUMBER",?55,"|5. DATE OF BIRTH (mm/dd/yyyy)",?95,"|6. CURRENT MARITAL STATUS"
- W !?3,@EASD@(4),?20,"|   ",@EASD@(5),?55,"|   ",@EASD@(7),?95,"|   ",@EASD@(12)
+ W !,"3. GENDER",?20,"|4. SOCIAL SECURITY NUMBER",?95,"|5. DATE OF BIRTH (mm/dd/yyyy)"
+ W !?3,@EASD@(4),?20,"|   ",@EASD@(5),?95,"|   ",@EASD@(7)
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  ;EAS*1.0*70 - CHECK FOR FOREIGN ADDRESS
  I $G(@EASD@("9H"))="UNITED STATES" D  I 1  ;Use domestic address field labels
- . W !,"7. PERMANENT ADDRESS (Street)",?42,"|7A. CITY",?66,"|7B. STATE",?105,"|7C. ZIP"
- . W !?3,@EASD@("9A"),?42,"|    ",@EASD@("9B"),?66,"|    ",@EASD@("9C"),?105,"|    ",@EASD@("9D")
+ . W !,"6. PERMANENT ADDRESS (Street)",?46,"|6A. CITY",?85,"|6B. STATE",?105,"|6C. ZIP"
+ . W !?3,@EASD@("9A"),?46,"|    ",@EASD@("9B"),?85,"|    ",@EASD@("9C"),?105,"|    ",@EASD@("9D")
  . W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  . ;
- . W !,"7D. COUNTY",?34,"|7E. HOME TELEPHONE NUMBER (Include area code)",?82,"|7F. E-MAIL ADDRESS"
- . W !?4,@EASD@("9E"),?34,"|    ",@EASD@(10),?82,"|    ",@EASD@("11A")
+ . W !,"6D. COUNTY",?66,"|6E. HOME TELEPHONE NUMBER (Include area code)"
+ . W !?4,@EASD@("9E"),?66,"|    ",@EASD@(10)
  ;
  E  D  ;Use foreign address field labels
- . W !,"7. PERMANENT ADDRESS (Street)",?42,"|7A. CITY",?66,"|7B. PROVINCE",?105,"|7C. POSTAL CODE"
- . W !?3,@EASD@("9A"),?42,"|    ",@EASD@("9B"),?66,"|    ",@EASD@("9F"),?105,"|    ",@EASD@("9G")
+ . W !,"6. PERMANENT ADDRESS (Street)",?46,"|6A. CITY",?85,"|6B. PROVINCE",?105,"|6C. POSTAL CODE"
+ . W !?3,@EASD@("9A"),?46,"|    ",@EASD@("9B"),?85,"|    ",@EASD@("9F"),?105,"|    ",@EASD@("9G")
  . W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  . ;
- . W !,"7D. COUNTRY",?34,"|7E. HOME TELEPHONE NUMBER (Include area code)",?82,"|7F. E-MAIL ADDRESS"
- . W !?4,@EASD@("9H"),?34,"|    ",@EASD@(10),?82,"|    ",@EASD@("11A")
+ . W !,"6D. COUNTRY",?66,"|6E. HOME TELEPHONE NUMBER (Include area code)"
+ . W !?4,@EASD@("9H"),?34,"|    ",@EASD@(10)
+ W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
+ W !,"6F. E-MAIL ADDRESS",?66,"|6G. CELLULAR TELEPHONE NUMBER (Include area code)"
+ W !,?4,@EASD@("11A"),?66,"|    ",@EASD@("11G")
  ;
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"7G. CELLULAR TELEPHONE NUMBER (Include area code)",?66,"|7H. PAGER NUMBER (Include area code)"
- W !?4,@EASD@("11G"),?66,"|    ",@EASD@("11H")
+ W !,"7. CURRENT MARITAL STATUS"
+ W !,?3,@EASD@(12)
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  W !,"8. NAME, ADDRESS AND RELATIONSHIP OF NEXT OF KIN",?83,"|8A. NEXT OF KIN'S HOME TELEPHONE NUMBER"
@@ -70,9 +74,9 @@ DEM ; Print VA 10-10EZR Section I, Demographic information
  W !?3,$P(@EASD@("20A"),U,3),?83,"|    (Include area code)   ",@EASD@("20C")
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"10. INDIVIDUAL TO RECEIVE POSSESSION OF YOUR PERSONAL PROPERTY LEFT ON PREMISES UNDER VA CONTROL AFTER YOUR DEPARTURE OR AT THE"
- W !?4,"TIME OF DEATH.  Note: This does not constitute a will or transfer of title.   ",@EASD@(21)
- W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
+ ;W !,"10. INDIVIDUAL TO RECEIVE POSSESSION OF YOUR PERSONAL PROPERTY LEFT ON PREMISES UNDER VA CONTROL AFTER YOUR DEPARTURE OR AT THE"
+ ;W !?4,"TIME OF DEATH.  Note: This does not constitute a will or transfer of title.   ",@EASD@(21)
+ ;W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  Q
  ;
 II ; Print VA 10-10EZR SECTION II - INSURANCE INFORMATION
@@ -89,8 +93,8 @@ II ; Print VA 10-10EZR SECTION II - INSURANCE INFORMATION
  W !?3,@EASD@("17B"),?49,"|   ",@EASD@("17I")
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
- W !,"4. POLICY NUMBER",?41,"|5. GROUP CODE",?70,"|6. ARE YOU ELIGIBLE FOR MEDICAID?"
- W !?3,@EASD@("17C"),?41,"|   ",@EASD@("17D"),?70,"|   ",@EASD@("14J")
+ W !,"4. POLICY NUMBER",?41,"|5. GROUP CODE",?70,"|6. ARE YOU ELIGIBLE FOR MEDICAID?",?111,"|6A. EFFECTIVE DATE"
+ W !?3,@EASD@("17C"),?41,"|   ",@EASD@("17D"),?70,"|   ",@EASD@("14J"),?111,"|    "
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
  W !,"7. ARE YOU ENROLLED IN MEDICARE HOSPITAL INSURANCE PART A?",?70,"|7A. EFFECTIVE DATE (mm/dd/yyyy)"

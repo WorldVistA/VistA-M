@@ -1,138 +1,126 @@
-IBDEI1B3 ; ; 06-AUG-2015
+IBDEI1B3 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23136,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23136,1,4,0)
- ;;=4^278.00
- ;;^UTILITY(U,$J,358.3,23136,1,5,0)
- ;;=5^Obesity
- ;;^UTILITY(U,$J,358.3,23136,2)
- ;;=Obesity^84823
- ;;^UTILITY(U,$J,358.3,23137,0)
- ;;=278.01^^125^1402^118
- ;;^UTILITY(U,$J,358.3,23137,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23137,1,4,0)
- ;;=4^278.01
- ;;^UTILITY(U,$J,358.3,23137,1,5,0)
- ;;=5^Obesity, Morbid
- ;;^UTILITY(U,$J,358.3,23137,2)
- ;;=Obesity, Morbid^84844
- ;;^UTILITY(U,$J,358.3,23138,0)
- ;;=783.5^^125^1402^127
- ;;^UTILITY(U,$J,358.3,23138,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23138,1,4,0)
- ;;=4^783.5
- ;;^UTILITY(U,$J,358.3,23138,1,5,0)
- ;;=5^Polydipsia
- ;;^UTILITY(U,$J,358.3,23138,2)
- ;;=Polydipsia^186699
- ;;^UTILITY(U,$J,358.3,23139,0)
- ;;=783.6^^125^1402^128
- ;;^UTILITY(U,$J,358.3,23139,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23139,1,4,0)
- ;;=4^783.6
- ;;^UTILITY(U,$J,358.3,23139,1,5,0)
- ;;=5^Polyphagia
- ;;^UTILITY(U,$J,358.3,23139,2)
- ;;=Polyphagia^60236
- ;;^UTILITY(U,$J,358.3,23140,0)
- ;;=780.2^^125^1402^144
- ;;^UTILITY(U,$J,358.3,23140,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23140,1,4,0)
- ;;=4^780.2
- ;;^UTILITY(U,$J,358.3,23140,1,5,0)
- ;;=5^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,23140,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,23141,0)
- ;;=783.1^^125^1402^156
- ;;^UTILITY(U,$J,358.3,23141,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23141,1,4,0)
- ;;=4^783.1
- ;;^UTILITY(U,$J,358.3,23141,1,5,0)
- ;;=5^Weight gain, abnormal
- ;;^UTILITY(U,$J,358.3,23141,2)
- ;;=^998
- ;;^UTILITY(U,$J,358.3,23142,0)
- ;;=783.21^^125^1402^157
- ;;^UTILITY(U,$J,358.3,23142,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23142,1,4,0)
- ;;=4^783.21
- ;;^UTILITY(U,$J,358.3,23142,1,5,0)
- ;;=5^Weight loss, abnormal
- ;;^UTILITY(U,$J,358.3,23142,2)
- ;;=^322005
- ;;^UTILITY(U,$J,358.3,23143,0)
- ;;=796.2^^125^1402^32
- ;;^UTILITY(U,$J,358.3,23143,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23143,1,4,0)
- ;;=4^796.2
- ;;^UTILITY(U,$J,358.3,23143,1,5,0)
- ;;=5^Blood Pressure Elevated, w/o HTN
- ;;^UTILITY(U,$J,358.3,23143,2)
- ;;=^273464
- ;;^UTILITY(U,$J,358.3,23144,0)
- ;;=790.92^^125^1402^9
- ;;^UTILITY(U,$J,358.3,23144,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23144,1,4,0)
- ;;=4^790.92
- ;;^UTILITY(U,$J,358.3,23144,1,5,0)
- ;;=5^Abnorm Coagulation Profile
- ;;^UTILITY(U,$J,358.3,23144,2)
- ;;=Abnorm Coagulation Profile^295771
- ;;^UTILITY(U,$J,358.3,23145,0)
- ;;=794.31^^125^1402^10
- ;;^UTILITY(U,$J,358.3,23145,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23145,1,4,0)
- ;;=4^794.31
- ;;^UTILITY(U,$J,358.3,23145,1,5,0)
- ;;=5^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,23145,2)
- ;;=Abnormal EKG^83844
- ;;^UTILITY(U,$J,358.3,23146,0)
- ;;=790.1^^125^1402^67
- ;;^UTILITY(U,$J,358.3,23146,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23146,1,4,0)
- ;;=4^790.1
- ;;^UTILITY(U,$J,358.3,23146,1,5,0)
- ;;=5^Elevated Sedimentation Rate
- ;;^UTILITY(U,$J,358.3,23146,2)
- ;;=Elevated Sedimentation Rate^39339
- ;;^UTILITY(U,$J,358.3,23147,0)
- ;;=790.93^^125^1402^66
- ;;^UTILITY(U,$J,358.3,23147,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23147,1,4,0)
- ;;=4^790.93
- ;;^UTILITY(U,$J,358.3,23147,1,5,0)
- ;;=5^Elevated PSA
- ;;^UTILITY(U,$J,358.3,23147,2)
- ;;=Elevated PSA^295772
- ;;^UTILITY(U,$J,358.3,23148,0)
- ;;=791.0^^125^1402^132
- ;;^UTILITY(U,$J,358.3,23148,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23148,1,4,0)
- ;;=4^791.0
- ;;^UTILITY(U,$J,358.3,23148,1,5,0)
- ;;=5^Proteinuria
- ;;^UTILITY(U,$J,358.3,23148,2)
- ;;=Proteinuria^99873
- ;;^UTILITY(U,$J,358.3,23149,0)
- ;;=791.9^^125^1402^14
- ;;^UTILITY(U,$J,358.3,23149,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23149,1,4,0)
- ;;=4^791.9
+ ;;^UTILITY(U,$J,358.3,21804,2)
+ ;;=^5044723
+ ;;^UTILITY(U,$J,358.3,21805,0)
+ ;;=S92.134S^^101^1034^101
+ ;;^UTILITY(U,$J,358.3,21805,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21805,1,3,0)
+ ;;=3^Nondisp posterior process fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,21805,1,4,0)
+ ;;=4^S92.134S
+ ;;^UTILITY(U,$J,358.3,21805,2)
+ ;;=^5044716
+ ;;^UTILITY(U,$J,358.3,21806,0)
+ ;;=S92.064S^^101^1034^89
+ ;;^UTILITY(U,$J,358.3,21806,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21806,1,3,0)
+ ;;=3^Nondisp intraarticular fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,21806,1,4,0)
+ ;;=4^S92.064S
+ ;;^UTILITY(U,$J,358.3,21806,2)
+ ;;=^5044576
+ ;;^UTILITY(U,$J,358.3,21807,0)
+ ;;=S92.065S^^101^1034^88
+ ;;^UTILITY(U,$J,358.3,21807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21807,1,3,0)
+ ;;=3^Nondisp intraarticular fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,21807,1,4,0)
+ ;;=4^S92.065S
+ ;;^UTILITY(U,$J,358.3,21807,2)
+ ;;=^5044583
+ ;;^UTILITY(U,$J,358.3,21808,0)
+ ;;=M84.472S^^101^1034^108
+ ;;^UTILITY(U,$J,358.3,21808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21808,1,3,0)
+ ;;=3^Pathological fracture, left ankle, sequela
+ ;;^UTILITY(U,$J,358.3,21808,1,4,0)
+ ;;=4^M84.472S
+ ;;^UTILITY(U,$J,358.3,21808,2)
+ ;;=^5013973
+ ;;^UTILITY(U,$J,358.3,21809,0)
+ ;;=M84.471S^^101^1034^111
+ ;;^UTILITY(U,$J,358.3,21809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21809,1,3,0)
+ ;;=3^Pathological fracture, right ankle, sequela
+ ;;^UTILITY(U,$J,358.3,21809,1,4,0)
+ ;;=4^M84.471S
+ ;;^UTILITY(U,$J,358.3,21809,2)
+ ;;=^5013967
+ ;;^UTILITY(U,$J,358.3,21810,0)
+ ;;=M84.372S^^101^1034^114
+ ;;^UTILITY(U,$J,358.3,21810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21810,1,3,0)
+ ;;=3^Stress fracture, left ankle, sequela
+ ;;^UTILITY(U,$J,358.3,21810,1,4,0)
+ ;;=4^M84.372S
+ ;;^UTILITY(U,$J,358.3,21810,2)
+ ;;=^5013745
+ ;;^UTILITY(U,$J,358.3,21811,0)
+ ;;=M84.371S^^101^1034^117
+ ;;^UTILITY(U,$J,358.3,21811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21811,1,3,0)
+ ;;=3^Stress fracture, right ankle, sequela
+ ;;^UTILITY(U,$J,358.3,21811,1,4,0)
+ ;;=4^M84.371S
+ ;;^UTILITY(U,$J,358.3,21811,2)
+ ;;=^5013739
+ ;;^UTILITY(U,$J,358.3,21812,0)
+ ;;=S82.855S^^101^1034^106
+ ;;^UTILITY(U,$J,358.3,21812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21812,1,3,0)
+ ;;=3^Nondisp trimalleolar fx of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,21812,1,4,0)
+ ;;=4^S82.855S
+ ;;^UTILITY(U,$J,358.3,21812,2)
+ ;;=^5042654
+ ;;^UTILITY(U,$J,358.3,21813,0)
+ ;;=S82.854S^^101^1034^107
+ ;;^UTILITY(U,$J,358.3,21813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21813,1,3,0)
+ ;;=3^Nondisp trimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,21813,1,4,0)
+ ;;=4^S82.854S
+ ;;^UTILITY(U,$J,358.3,21813,2)
+ ;;=^5042638
+ ;;^UTILITY(U,$J,358.3,21814,0)
+ ;;=S82.842S^^101^1034^17
+ ;;^UTILITY(U,$J,358.3,21814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21814,1,3,0)
+ ;;=3^Disp bimalleolar fx of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,21814,1,4,0)
+ ;;=4^S82.842S
+ ;;^UTILITY(U,$J,358.3,21814,2)
+ ;;=^5042510
+ ;;^UTILITY(U,$J,358.3,21815,0)
+ ;;=S82.841S^^101^1034^18
+ ;;^UTILITY(U,$J,358.3,21815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21815,1,3,0)
+ ;;=3^Disp bimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,21815,1,4,0)
+ ;;=4^S82.841S
+ ;;^UTILITY(U,$J,358.3,21815,2)
+ ;;=^5042494
+ ;;^UTILITY(U,$J,358.3,21816,0)
+ ;;=S82.862S^^101^1034^37
+ ;;^UTILITY(U,$J,358.3,21816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21816,1,3,0)
+ ;;=3^Disp maisonneuve's fx of left leg, sequela
+ ;;^UTILITY(U,$J,358.3,21816,1,4,0)
+ ;;=4^S82.862S
+ ;;^UTILITY(U,$J,358.3,21816,2)
+ ;;=^5042702

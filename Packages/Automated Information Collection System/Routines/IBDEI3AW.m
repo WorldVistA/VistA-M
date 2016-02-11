@@ -1,0 +1,132 @@
+IBDEI3AW ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,55466,0)
+ ;;=M48.57XD^^256^2781^26
+ ;;^UTILITY(U,$J,358.3,55466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55466,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,55466,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,55466,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,55467,0)
+ ;;=M50.30^^256^2781^13
+ ;;^UTILITY(U,$J,358.3,55467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55467,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Region
+ ;;^UTILITY(U,$J,358.3,55467,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,55467,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,55468,0)
+ ;;=M51.14^^256^2781^52
+ ;;^UTILITY(U,$J,358.3,55468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55468,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,55468,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,55468,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,55469,0)
+ ;;=M51.17^^256^2781^51
+ ;;^UTILITY(U,$J,358.3,55469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55469,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,55469,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,55469,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,55470,0)
+ ;;=M51.34^^256^2781^50
+ ;;^UTILITY(U,$J,358.3,55470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55470,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,55470,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,55470,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,55471,0)
+ ;;=M51.37^^256^2781^49
+ ;;^UTILITY(U,$J,358.3,55471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55471,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,55471,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,55471,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,55472,0)
+ ;;=M54.14^^256^2781^123
+ ;;^UTILITY(U,$J,358.3,55472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55472,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,55472,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,55472,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,55473,0)
+ ;;=M54.17^^256^2781^122
+ ;;^UTILITY(U,$J,358.3,55473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55473,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,55473,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,55473,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,55474,0)
+ ;;=M54.2^^256^2781^14
+ ;;^UTILITY(U,$J,358.3,55474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55474,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,55474,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,55474,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,55475,0)
+ ;;=M54.31^^256^2781^146
+ ;;^UTILITY(U,$J,358.3,55475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55475,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,55475,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,55475,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,55476,0)
+ ;;=M54.32^^256^2781^145
+ ;;^UTILITY(U,$J,358.3,55476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55476,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,55476,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,55476,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,55477,0)
+ ;;=M54.5^^256^2781^57
+ ;;^UTILITY(U,$J,358.3,55477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55477,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,55477,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,55477,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,55478,0)
+ ;;=M60.9^^256^2781^62
+ ;;^UTILITY(U,$J,358.3,55478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55478,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,55478,1,4,0)
+ ;;=4^M60.9

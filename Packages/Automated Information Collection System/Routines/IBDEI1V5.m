@@ -1,134 +1,134 @@
-IBDEI1V5 ; ; 06-AUG-2015
+IBDEI1V5 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32793,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,32793,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,32794,0)
- ;;=C79.31^^182^1992^108
- ;;^UTILITY(U,$J,358.3,32794,1,0)
+ ;;^UTILITY(U,$J,358.3,31186,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,31186,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,31187,0)
+ ;;=W54.0XXA^^135^1391^11
+ ;;^UTILITY(U,$J,358.3,31187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32794,1,3,0)
- ;;=3^Malig Neop Brain,Secondary
- ;;^UTILITY(U,$J,358.3,32794,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,32794,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,32795,0)
- ;;=C79.72^^182^1992^124
- ;;^UTILITY(U,$J,358.3,32795,1,0)
+ ;;^UTILITY(U,$J,358.3,31187,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31187,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,31187,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,31188,0)
+ ;;=W54.0XXD^^135^1391^12
+ ;;^UTILITY(U,$J,358.3,31188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32795,1,3,0)
- ;;=3^Malig Neop Left Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,32795,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,32795,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,32796,0)
- ;;=C78.02^^182^1992^128
- ;;^UTILITY(U,$J,358.3,32796,1,0)
+ ;;^UTILITY(U,$J,358.3,31188,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31188,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,31188,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,31189,0)
+ ;;=W55.01XA^^135^1391^9
+ ;;^UTILITY(U,$J,358.3,31189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32796,1,3,0)
- ;;=3^Malig Neop Left Lung,Secondary
- ;;^UTILITY(U,$J,358.3,32796,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,32796,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,32797,0)
- ;;=C78.7^^182^1992^132
- ;;^UTILITY(U,$J,358.3,32797,1,0)
+ ;;^UTILITY(U,$J,358.3,31189,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31189,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,31189,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,31190,0)
+ ;;=W55.01XD^^135^1391^10
+ ;;^UTILITY(U,$J,358.3,31190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32797,1,3,0)
- ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
- ;;^UTILITY(U,$J,358.3,32797,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,32797,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,32798,0)
- ;;=C79.71^^182^1992^145
- ;;^UTILITY(U,$J,358.3,32798,1,0)
+ ;;^UTILITY(U,$J,358.3,31190,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31190,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,31190,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,31191,0)
+ ;;=W55.03XA^^135^1391^101
+ ;;^UTILITY(U,$J,358.3,31191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32798,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,32798,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,32798,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,32799,0)
- ;;=C78.01^^182^1992^148
- ;;^UTILITY(U,$J,358.3,32799,1,0)
+ ;;^UTILITY(U,$J,358.3,31191,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31191,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,31191,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,31192,0)
+ ;;=W55.03XD^^135^1391^102
+ ;;^UTILITY(U,$J,358.3,31192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32799,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,32799,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,32799,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,32800,0)
- ;;=C79.70^^182^1992^101
- ;;^UTILITY(U,$J,358.3,32800,1,0)
+ ;;^UTILITY(U,$J,358.3,31192,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31192,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,31192,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,31193,0)
+ ;;=X00.8XXA^^135^1391^17
+ ;;^UTILITY(U,$J,358.3,31193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32800,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,32800,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,32800,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,32801,0)
- ;;=C78.00^^182^1992^133
- ;;^UTILITY(U,$J,358.3,32801,1,0)
+ ;;^UTILITY(U,$J,358.3,31193,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31193,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,31193,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,31194,0)
+ ;;=X00.8XXD^^135^1391^18
+ ;;^UTILITY(U,$J,358.3,31194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32801,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,32801,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,32801,2)
- ;;=^5001334
- ;;^UTILITY(U,$J,358.3,32802,0)
- ;;=D57.1^^182^1992^171
- ;;^UTILITY(U,$J,358.3,32802,1,0)
+ ;;^UTILITY(U,$J,358.3,31194,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31194,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,31194,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,31195,0)
+ ;;=X32.XXXA^^135^1391^15
+ ;;^UTILITY(U,$J,358.3,31195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32802,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,32802,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,32802,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,32803,0)
- ;;=D75.1^^182^1992^169
- ;;^UTILITY(U,$J,358.3,32803,1,0)
+ ;;^UTILITY(U,$J,358.3,31195,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31195,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,31195,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,31196,0)
+ ;;=X32.XXXD^^135^1391^16
+ ;;^UTILITY(U,$J,358.3,31196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32803,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,32803,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,32803,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,32804,0)
- ;;=C90.30^^182^1992^172
- ;;^UTILITY(U,$J,358.3,32804,1,0)
+ ;;^UTILITY(U,$J,358.3,31196,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31196,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,31196,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,31197,0)
+ ;;=Y04.0XXA^^135^1391^7
+ ;;^UTILITY(U,$J,358.3,31197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32804,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,32804,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,32804,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,32805,0)
- ;;=D56.3^^182^1992^173
- ;;^UTILITY(U,$J,358.3,32805,1,0)
+ ;;^UTILITY(U,$J,358.3,31197,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31197,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,31197,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,31198,0)
+ ;;=Y04.0XXD^^135^1391^8
+ ;;^UTILITY(U,$J,358.3,31198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32805,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,32805,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,32805,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,32806,0)
- ;;=D56.9^^182^1992^174
- ;;^UTILITY(U,$J,358.3,32806,1,0)
+ ;;^UTILITY(U,$J,358.3,31198,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31198,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,31198,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,31199,0)
+ ;;=Y04.1XXA^^135^1391^1
+ ;;^UTILITY(U,$J,358.3,31199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32806,1,3,0)
- ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,31199,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr

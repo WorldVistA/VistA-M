@@ -1,0 +1,130 @@
+IBDEI23K ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,35193,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,35193,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,35194,0)
+ ;;=E11.40^^163^1793^10
+ ;;^UTILITY(U,$J,358.3,35194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35194,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,35194,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,35194,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,35195,0)
+ ;;=E11.41^^163^1793^9
+ ;;^UTILITY(U,$J,358.3,35195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35195,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,35195,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,35195,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,35196,0)
+ ;;=E11.42^^163^1793^13
+ ;;^UTILITY(U,$J,358.3,35196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35196,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,35196,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,35196,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,35197,0)
+ ;;=E11.43^^163^1793^7
+ ;;^UTILITY(U,$J,358.3,35197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35197,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,35197,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,35197,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,35198,0)
+ ;;=E11.51^^163^1793^11
+ ;;^UTILITY(U,$J,358.3,35198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35198,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,35198,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,35198,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,35199,0)
+ ;;=E11.52^^163^1793^12
+ ;;^UTILITY(U,$J,358.3,35199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35199,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,35199,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,35199,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,35200,0)
+ ;;=E11.621^^163^1793^14
+ ;;^UTILITY(U,$J,358.3,35200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35200,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,35200,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,35200,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,35201,0)
+ ;;=E11.641^^163^1793^16
+ ;;^UTILITY(U,$J,358.3,35201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35201,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,35201,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,35201,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,35202,0)
+ ;;=E11.649^^163^1793^17
+ ;;^UTILITY(U,$J,358.3,35202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35202,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,35202,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,35202,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,35203,0)
+ ;;=H40.11X0^^163^1794^8
+ ;;^UTILITY(U,$J,358.3,35203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35203,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,35203,1,4,0)
+ ;;=4^H40.11X0
+ ;;^UTILITY(U,$J,358.3,35203,2)
+ ;;=^5005753
+ ;;^UTILITY(U,$J,358.3,35204,0)
+ ;;=H40.11X1^^163^1794^5
+ ;;^UTILITY(U,$J,358.3,35204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35204,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Mild Stage
+ ;;^UTILITY(U,$J,358.3,35204,1,4,0)
+ ;;=4^H40.11X1
+ ;;^UTILITY(U,$J,358.3,35204,2)
+ ;;=^5005754
+ ;;^UTILITY(U,$J,358.3,35205,0)
+ ;;=H40.11X2^^163^1794^6
+ ;;^UTILITY(U,$J,358.3,35205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35205,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,35205,1,4,0)
+ ;;=4^H40.11X2
+ ;;^UTILITY(U,$J,358.3,35205,2)
+ ;;=^5005755
+ ;;^UTILITY(U,$J,358.3,35206,0)
+ ;;=H40.11X3^^163^1794^7

@@ -1,5 +1,5 @@
 DPTLK4 ;ALB/JFP - MAS Patient Look-up Create stub entry patient file ; 09/01/96
- ;;5.3;Registration;**73,857**;Aug 13, 1993;Build 8
+ ;;5.3;Registration;**73,857,915**;Aug 13, 1993;Build 6
 FILE(FLDARR,DGVIC40) ; -- Creates stub in patient file
  ;Inputs:
  ;   FLDARR   - array of field elements to file
@@ -38,6 +38,6 @@ FILE(FLDARR,DGVIC40) ; -- Creates stub in patient file
  K DIC,DLAYGO,X
  ;
  ; need to update mpi with icn/correlation
- I Y>0,$G(@FLDARR@(991.01)),$G(@FLDARR@(991.02)),$T(VIC40^MPIFAPI)'="" D VIC40^MPIFAPI(+Y,@FLDARR@(991.01),@FLDARR@(991.02))
+ I Y>0,$G(@FLDARR@(991.01)),$G(@FLDARR@(991.02)),$T(VIC40^MPIFAPI)'="" D VIC40^MPIFAPI(+Y,@FLDARR@(991.01)_"V"_@FLDARR@(991.02))
  Q SAVY
  ;

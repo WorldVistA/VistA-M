@@ -1,132 +1,124 @@
-IBDEI19P ; ; 06-AUG-2015
+IBDEI19P ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22458,0)
- ;;=438.21^^125^1392^12
- ;;^UTILITY(U,$J,358.3,22458,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22458,1,4,0)
- ;;=4^438.21
- ;;^UTILITY(U,$J,358.3,22458,1,5,0)
- ;;=5^CVA w/Hemiplegia Dominant Side
- ;;^UTILITY(U,$J,358.3,22458,2)
- ;;=^317911
- ;;^UTILITY(U,$J,358.3,22459,0)
- ;;=438.22^^125^1392^13
- ;;^UTILITY(U,$J,358.3,22459,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22459,1,4,0)
- ;;=4^438.22
- ;;^UTILITY(U,$J,358.3,22459,1,5,0)
- ;;=5^CVA w/Hemiplegia Nondominant Side
- ;;^UTILITY(U,$J,358.3,22459,2)
- ;;=^317912
- ;;^UTILITY(U,$J,358.3,22460,0)
- ;;=342.00^^125^1392^38
- ;;^UTILITY(U,$J,358.3,22460,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22460,1,4,0)
- ;;=4^342.00
- ;;^UTILITY(U,$J,358.3,22460,1,5,0)
- ;;=5^Flaccid Hemiplegia & Hemiparesis,Unspec Side
- ;;^UTILITY(U,$J,358.3,22460,2)
- ;;=^303258
- ;;^UTILITY(U,$J,358.3,22461,0)
- ;;=342.01^^125^1392^36
- ;;^UTILITY(U,$J,358.3,22461,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22461,1,4,0)
- ;;=4^342.01
- ;;^UTILITY(U,$J,358.3,22461,1,5,0)
- ;;=5^Flaccid Hemiplegia & Hemiparesis Dom
- ;;^UTILITY(U,$J,358.3,22461,2)
- ;;=^303259
- ;;^UTILITY(U,$J,358.3,22462,0)
- ;;=342.02^^125^1392^37
- ;;^UTILITY(U,$J,358.3,22462,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22462,1,4,0)
- ;;=4^342.02
- ;;^UTILITY(U,$J,358.3,22462,1,5,0)
- ;;=5^Flaccid Hemiplegia & Hemiparesis Nondom
- ;;^UTILITY(U,$J,358.3,22462,2)
- ;;=^303260
- ;;^UTILITY(U,$J,358.3,22463,0)
- ;;=342.80^^125^1392^68
- ;;^UTILITY(U,$J,358.3,22463,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22463,1,4,0)
- ;;=4^342.80
- ;;^UTILITY(U,$J,358.3,22463,1,5,0)
- ;;=5^Hemiplegia & Hemiparesis NEC,Unspec Side
- ;;^UTILITY(U,$J,358.3,22463,2)
- ;;=^303264
- ;;^UTILITY(U,$J,358.3,22464,0)
- ;;=342.81^^125^1392^66
- ;;^UTILITY(U,$J,358.3,22464,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22464,1,4,0)
- ;;=4^342.81
- ;;^UTILITY(U,$J,358.3,22464,1,5,0)
- ;;=5^Hemiplegia & Hemiparesis NEC Dom Side
- ;;^UTILITY(U,$J,358.3,22464,2)
- ;;=^303265
- ;;^UTILITY(U,$J,358.3,22465,0)
- ;;=342.82^^125^1392^67
- ;;^UTILITY(U,$J,358.3,22465,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22465,1,4,0)
- ;;=4^342.82
- ;;^UTILITY(U,$J,358.3,22465,1,5,0)
- ;;=5^Hemiplegia & Hemiparesis NEC Nondom Side
- ;;^UTILITY(U,$J,358.3,22465,2)
- ;;=^303266
- ;;^UTILITY(U,$J,358.3,22466,0)
- ;;=342.90^^125^1392^71
- ;;^UTILITY(U,$J,358.3,22466,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22466,1,4,0)
- ;;=4^342.90
- ;;^UTILITY(U,$J,358.3,22466,1,5,0)
- ;;=5^Hemiplegia & Hemiparesis Uns,Uns Side
- ;;^UTILITY(U,$J,358.3,22466,2)
- ;;=^303267
- ;;^UTILITY(U,$J,358.3,22467,0)
- ;;=342.91^^125^1392^69
- ;;^UTILITY(U,$J,358.3,22467,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22467,1,4,0)
- ;;=4^342.91
- ;;^UTILITY(U,$J,358.3,22467,1,5,0)
- ;;=5^Hemiplegia & Hemiparesis Uns Dom Side
- ;;^UTILITY(U,$J,358.3,22467,2)
- ;;=^303268
- ;;^UTILITY(U,$J,358.3,22468,0)
- ;;=342.92^^125^1392^70
- ;;^UTILITY(U,$J,358.3,22468,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22468,1,4,0)
- ;;=4^342.92
- ;;^UTILITY(U,$J,358.3,22468,1,5,0)
- ;;=5^Hemiplegia & Hemiparesis Uns Nondom Side
- ;;^UTILITY(U,$J,358.3,22468,2)
- ;;=^303269
- ;;^UTILITY(U,$J,358.3,22469,0)
- ;;=344.01^^125^1392^94
- ;;^UTILITY(U,$J,358.3,22469,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22469,1,4,0)
- ;;=4^344.01
- ;;^UTILITY(U,$J,358.3,22469,1,5,0)
- ;;=5^Quadriplegia C1-C4,Complete
- ;;^UTILITY(U,$J,358.3,22469,2)
- ;;=^303270
- ;;^UTILITY(U,$J,358.3,22470,0)
- ;;=344.02^^125^1392^95
- ;;^UTILITY(U,$J,358.3,22470,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22470,1,4,0)
- ;;=4^344.02
- ;;^UTILITY(U,$J,358.3,22470,1,5,0)
- ;;=5^Quadriplegia C1-C4,Incomplete
+ ;;^UTILITY(U,$J,358.3,21195,1,4,0)
+ ;;=4^I69.854
+ ;;^UTILITY(U,$J,358.3,21195,2)
+ ;;=^5007538
+ ;;^UTILITY(U,$J,358.3,21196,0)
+ ;;=I69.251^^101^1027^54
+ ;;^UTILITY(U,$J,358.3,21196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21196,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,21196,1,4,0)
+ ;;=4^I69.251
+ ;;^UTILITY(U,$J,358.3,21196,2)
+ ;;=^5007473
+ ;;^UTILITY(U,$J,358.3,21197,0)
+ ;;=I69.252^^101^1027^55
+ ;;^UTILITY(U,$J,358.3,21197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21197,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,21197,1,4,0)
+ ;;=4^I69.252
+ ;;^UTILITY(U,$J,358.3,21197,2)
+ ;;=^5007474
+ ;;^UTILITY(U,$J,358.3,21198,0)
+ ;;=I69.253^^101^1027^56
+ ;;^UTILITY(U,$J,358.3,21198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21198,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,21198,1,4,0)
+ ;;=4^I69.253
+ ;;^UTILITY(U,$J,358.3,21198,2)
+ ;;=^5007475
+ ;;^UTILITY(U,$J,358.3,21199,0)
+ ;;=I69.254^^101^1027^57
+ ;;^UTILITY(U,$J,358.3,21199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21199,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,21199,1,4,0)
+ ;;=4^I69.254
+ ;;^UTILITY(U,$J,358.3,21199,2)
+ ;;=^5007476
+ ;;^UTILITY(U,$J,358.3,21200,0)
+ ;;=I69.341^^101^1027^58
+ ;;^UTILITY(U,$J,358.3,21200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21200,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,21200,1,4,0)
+ ;;=4^I69.341
+ ;;^UTILITY(U,$J,358.3,21200,2)
+ ;;=^5007501
+ ;;^UTILITY(U,$J,358.3,21201,0)
+ ;;=I69.342^^101^1027^59
+ ;;^UTILITY(U,$J,358.3,21201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21201,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,21201,1,4,0)
+ ;;=4^I69.342
+ ;;^UTILITY(U,$J,358.3,21201,2)
+ ;;=^5133575
+ ;;^UTILITY(U,$J,358.3,21202,0)
+ ;;=I69.343^^101^1027^60
+ ;;^UTILITY(U,$J,358.3,21202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21202,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,21202,1,4,0)
+ ;;=4^I69.343
+ ;;^UTILITY(U,$J,358.3,21202,2)
+ ;;=^5007502
+ ;;^UTILITY(U,$J,358.3,21203,0)
+ ;;=I69.344^^101^1027^61
+ ;;^UTILITY(U,$J,358.3,21203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21203,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff left nondom side
+ ;;^UTILITY(U,$J,358.3,21203,1,4,0)
+ ;;=4^I69.344
+ ;;^UTILITY(U,$J,358.3,21203,2)
+ ;;=^5133576
+ ;;^UTILITY(U,$J,358.3,21204,0)
+ ;;=I69.141^^101^1027^62
+ ;;^UTILITY(U,$J,358.3,21204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21204,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,21204,1,4,0)
+ ;;=4^I69.141
+ ;;^UTILITY(U,$J,358.3,21204,2)
+ ;;=^5007437
+ ;;^UTILITY(U,$J,358.3,21205,0)
+ ;;=I69.142^^101^1027^63
+ ;;^UTILITY(U,$J,358.3,21205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21205,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,21205,1,4,0)
+ ;;=4^I69.142
+ ;;^UTILITY(U,$J,358.3,21205,2)
+ ;;=^5133573
+ ;;^UTILITY(U,$J,358.3,21206,0)
+ ;;=I69.143^^101^1027^64
+ ;;^UTILITY(U,$J,358.3,21206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21206,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,21206,1,4,0)
+ ;;=4^I69.143
+ ;;^UTILITY(U,$J,358.3,21206,2)
+ ;;=^5007438
+ ;;^UTILITY(U,$J,358.3,21207,0)
+ ;;=I69.144^^101^1027^65
+ ;;^UTILITY(U,$J,358.3,21207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21207,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side

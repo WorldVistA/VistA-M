@@ -1,0 +1,132 @@
+IBDEI35T ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,53045,1,4,0)
+ ;;=4^C44.529
+ ;;^UTILITY(U,$J,358.3,53045,2)
+ ;;=^5001059
+ ;;^UTILITY(U,$J,358.3,53046,0)
+ ;;=C44.622^^243^2659^15
+ ;;^UTILITY(U,$J,358.3,53046,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53046,1,3,0)
+ ;;=3^SCC Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,53046,1,4,0)
+ ;;=4^C44.622
+ ;;^UTILITY(U,$J,358.3,53046,2)
+ ;;=^5001070
+ ;;^UTILITY(U,$J,358.3,53047,0)
+ ;;=C44.629^^243^2659^6
+ ;;^UTILITY(U,$J,358.3,53047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53047,1,3,0)
+ ;;=3^SCC Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,53047,1,4,0)
+ ;;=4^C44.629
+ ;;^UTILITY(U,$J,358.3,53047,2)
+ ;;=^5001071
+ ;;^UTILITY(U,$J,358.3,53048,0)
+ ;;=C44.722^^243^2659^14
+ ;;^UTILITY(U,$J,358.3,53048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53048,1,3,0)
+ ;;=3^SCC Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,53048,1,4,0)
+ ;;=4^C44.722
+ ;;^UTILITY(U,$J,358.3,53048,2)
+ ;;=^5001082
+ ;;^UTILITY(U,$J,358.3,53049,0)
+ ;;=C44.729^^243^2659^5
+ ;;^UTILITY(U,$J,358.3,53049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53049,1,3,0)
+ ;;=3^SCC Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,53049,1,4,0)
+ ;;=4^C44.729
+ ;;^UTILITY(U,$J,358.3,53049,2)
+ ;;=^5001083
+ ;;^UTILITY(U,$J,358.3,53050,0)
+ ;;=C44.82^^243^2659^10
+ ;;^UTILITY(U,$J,358.3,53050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53050,1,3,0)
+ ;;=3^SCC Skin Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,53050,1,4,0)
+ ;;=4^C44.82
+ ;;^UTILITY(U,$J,358.3,53050,2)
+ ;;=^5001089
+ ;;^UTILITY(U,$J,358.3,53051,0)
+ ;;=L57.8^^243^2659^22
+ ;;^UTILITY(U,$J,358.3,53051,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53051,1,3,0)
+ ;;=3^Skin Changes d/t Chr Exposure to Nonionizing Radiation
+ ;;^UTILITY(U,$J,358.3,53051,1,4,0)
+ ;;=4^L57.8
+ ;;^UTILITY(U,$J,358.3,53051,2)
+ ;;=^5009226
+ ;;^UTILITY(U,$J,358.3,53052,0)
+ ;;=L27.0^^243^2659^23
+ ;;^UTILITY(U,$J,358.3,53052,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53052,1,3,0)
+ ;;=3^Skin Eruption,Generalized d/t Drugs/Meds Taken Internally
+ ;;^UTILITY(U,$J,358.3,53052,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,53052,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,53053,0)
+ ;;=L27.1^^243^2659^24
+ ;;^UTILITY(U,$J,358.3,53053,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53053,1,3,0)
+ ;;=3^Skin Eruption,Localized d/t Drugs/Meds Taken Internally
+ ;;^UTILITY(U,$J,358.3,53053,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,53053,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,53054,0)
+ ;;=L51.1^^243^2659^29
+ ;;^UTILITY(U,$J,358.3,53054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53054,1,3,0)
+ ;;=3^Stevens-Johnson Syndrome
+ ;;^UTILITY(U,$J,358.3,53054,1,4,0)
+ ;;=4^L51.1
+ ;;^UTILITY(U,$J,358.3,53054,2)
+ ;;=^336636
+ ;;^UTILITY(U,$J,358.3,53055,0)
+ ;;=L51.3^^243^2659^30
+ ;;^UTILITY(U,$J,358.3,53055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53055,1,3,0)
+ ;;=3^Stevens-Johnson Syndrome-Toxic Epdrml Necrolysis Overlap Syndrome
+ ;;^UTILITY(U,$J,358.3,53055,1,4,0)
+ ;;=4^L51.3
+ ;;^UTILITY(U,$J,358.3,53055,2)
+ ;;=^336637
+ ;;^UTILITY(U,$J,358.3,53056,0)
+ ;;=Z12.83^^243^2659^19
+ ;;^UTILITY(U,$J,358.3,53056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53056,1,3,0)
+ ;;=3^Screening for Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,53056,1,4,0)
+ ;;=4^Z12.83
+ ;;^UTILITY(U,$J,358.3,53056,2)
+ ;;=^5062696
+ ;;^UTILITY(U,$J,358.3,53057,0)
+ ;;=Z48.817^^243^2659^33
+ ;;^UTILITY(U,$J,358.3,53057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53057,1,3,0)
+ ;;=3^Surgical Aftercare Following Skin Surgery
+ ;;^UTILITY(U,$J,358.3,53057,1,4,0)
+ ;;=4^Z48.817
+ ;;^UTILITY(U,$J,358.3,53057,2)
+ ;;=^5063054
+ ;;^UTILITY(U,$J,358.3,53058,0)
+ ;;=L94.0^^243^2659^18
+ ;;^UTILITY(U,$J,358.3,53058,1,0)
+ ;;=^358.31IA^4^2

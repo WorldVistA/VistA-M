@@ -1,128 +1,136 @@
-IBDEI1YV ; ; 06-AUG-2015
+IBDEI1YV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34483,0)
- ;;=M84.478S^^183^2020^110
- ;;^UTILITY(U,$J,358.3,34483,1,0)
+ ;;^UTILITY(U,$J,358.3,32931,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,32932,0)
+ ;;=G21.19^^146^1592^3
+ ;;^UTILITY(U,$J,358.3,32932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34483,1,3,0)
- ;;=3^Pathological fracture, left toe(s), sequela
- ;;^UTILITY(U,$J,358.3,34483,1,4,0)
- ;;=4^M84.478S
- ;;^UTILITY(U,$J,358.3,34483,2)
- ;;=^5014009
- ;;^UTILITY(U,$J,358.3,34484,0)
- ;;=M84.477S^^183^2020^113
- ;;^UTILITY(U,$J,358.3,34484,1,0)
+ ;;^UTILITY(U,$J,358.3,32932,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism NEC
+ ;;^UTILITY(U,$J,358.3,32932,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,32932,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,32933,0)
+ ;;=G21.11^^146^1592^5
+ ;;^UTILITY(U,$J,358.3,32933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34484,1,3,0)
- ;;=3^Pathological fracture, right toe(s), sequela
- ;;^UTILITY(U,$J,358.3,34484,1,4,0)
- ;;=4^M84.477S
- ;;^UTILITY(U,$J,358.3,34484,2)
- ;;=^5014003
- ;;^UTILITY(U,$J,358.3,34485,0)
- ;;=M84.378S^^183^2020^116
- ;;^UTILITY(U,$J,358.3,34485,1,0)
+ ;;^UTILITY(U,$J,358.3,32933,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,32933,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,32933,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,32934,0)
+ ;;=G24.02^^146^1592^1
+ ;;^UTILITY(U,$J,358.3,32934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34485,1,3,0)
- ;;=3^Stress fracture, left toe(s), sequela
- ;;^UTILITY(U,$J,358.3,34485,1,4,0)
- ;;=4^M84.378S
- ;;^UTILITY(U,$J,358.3,34485,2)
- ;;=^5013781
- ;;^UTILITY(U,$J,358.3,34486,0)
- ;;=M84.377S^^183^2020^119
- ;;^UTILITY(U,$J,358.3,34486,1,0)
+ ;;^UTILITY(U,$J,358.3,32934,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,32934,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,32934,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,32935,0)
+ ;;=G24.01^^146^1592^7
+ ;;^UTILITY(U,$J,358.3,32935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34486,1,3,0)
- ;;=3^Stress fracture, right toe(s), sequela
- ;;^UTILITY(U,$J,358.3,34486,1,4,0)
- ;;=4^M84.377S
- ;;^UTILITY(U,$J,358.3,34486,2)
- ;;=^5013775
- ;;^UTILITY(U,$J,358.3,34487,0)
- ;;=S92.212S^^183^2020^23
- ;;^UTILITY(U,$J,358.3,34487,1,0)
+ ;;^UTILITY(U,$J,358.3,32935,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,32935,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,32935,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,32936,0)
+ ;;=G24.09^^146^1592^8
+ ;;^UTILITY(U,$J,358.3,32936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34487,1,3,0)
- ;;=3^Disp cuboid bone of left foot fx, sequela
- ;;^UTILITY(U,$J,358.3,34487,1,4,0)
- ;;=4^S92.212S
- ;;^UTILITY(U,$J,358.3,34487,2)
- ;;=^5044849
- ;;^UTILITY(U,$J,358.3,34488,0)
- ;;=S92.211S^^183^2020^24
- ;;^UTILITY(U,$J,358.3,34488,1,0)
+ ;;^UTILITY(U,$J,358.3,32936,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,32936,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,32936,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,32937,0)
+ ;;=G25.1^^146^1592^4
+ ;;^UTILITY(U,$J,358.3,32937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34488,1,3,0)
- ;;=3^Disp cuboid bone of right foot, sequela
- ;;^UTILITY(U,$J,358.3,34488,1,4,0)
- ;;=4^S92.211S
- ;;^UTILITY(U,$J,358.3,34488,2)
- ;;=^5044842
- ;;^UTILITY(U,$J,358.3,34489,0)
- ;;=S92.352S^^183^2020^9
- ;;^UTILITY(U,$J,358.3,34489,1,0)
+ ;;^UTILITY(U,$J,358.3,32937,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,32937,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,32937,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,32938,0)
+ ;;=G25.71^^146^1592^6
+ ;;^UTILITY(U,$J,358.3,32938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34489,1,3,0)
- ;;=3^Disp 5th metatarsal fx of left foot,sequela
- ;;^UTILITY(U,$J,358.3,34489,1,4,0)
- ;;=4^S92.352S
- ;;^UTILITY(U,$J,358.3,34489,2)
- ;;=^5045241
- ;;^UTILITY(U,$J,358.3,34490,0)
- ;;=S92.351S^^183^2020^10
- ;;^UTILITY(U,$J,358.3,34490,1,0)
+ ;;^UTILITY(U,$J,358.3,32938,1,3,0)
+ ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
+ ;;^UTILITY(U,$J,358.3,32938,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,32938,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,32939,0)
+ ;;=G25.79^^146^1592^2
+ ;;^UTILITY(U,$J,358.3,32939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34490,1,3,0)
- ;;=3^Disp 5th metatarsal fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,34490,1,4,0)
- ;;=4^S92.351S
- ;;^UTILITY(U,$J,358.3,34490,2)
- ;;=^5045234
- ;;^UTILITY(U,$J,358.3,34491,0)
- ;;=S92.312S^^183^2020^1
- ;;^UTILITY(U,$J,358.3,34491,1,0)
+ ;;^UTILITY(U,$J,358.3,32939,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder NEC
+ ;;^UTILITY(U,$J,358.3,32939,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,32939,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,32940,0)
+ ;;=F42.^^146^1593^6
+ ;;^UTILITY(U,$J,358.3,32940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34491,1,3,0)
- ;;=3^Disp 1st metatarsal fx of left foot,sequela
- ;;^UTILITY(U,$J,358.3,34491,1,4,0)
- ;;=4^S92.312S
- ;;^UTILITY(U,$J,358.3,34491,2)
- ;;=^5045073
- ;;^UTILITY(U,$J,358.3,34492,0)
- ;;=S92.311S^^183^2020^2
- ;;^UTILITY(U,$J,358.3,34492,1,0)
+ ;;^UTILITY(U,$J,358.3,32940,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,32940,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,32940,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,32941,0)
+ ;;=F45.22^^146^1593^1
+ ;;^UTILITY(U,$J,358.3,32941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34492,1,3,0)
- ;;=3^Disp 1st metatarsal fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,34492,1,4,0)
- ;;=4^S92.311S
- ;;^UTILITY(U,$J,358.3,34492,2)
- ;;=^5045066
- ;;^UTILITY(U,$J,358.3,34493,0)
- ;;=S92.342S^^183^2020^7
- ;;^UTILITY(U,$J,358.3,34493,1,0)
+ ;;^UTILITY(U,$J,358.3,32941,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,32941,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,32941,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,32942,0)
+ ;;=F63.3^^146^1593^7
+ ;;^UTILITY(U,$J,358.3,32942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34493,1,3,0)
- ;;=3^Disp 4th metatarsal fx of left foot,sequela
- ;;^UTILITY(U,$J,358.3,34493,1,4,0)
- ;;=4^S92.342S
- ;;^UTILITY(U,$J,358.3,34493,2)
- ;;=^5045199
- ;;^UTILITY(U,$J,358.3,34494,0)
- ;;=S92.341S^^183^2020^8
- ;;^UTILITY(U,$J,358.3,34494,1,0)
+ ;;^UTILITY(U,$J,358.3,32942,1,3,0)
+ ;;=3^Trichotillomania
+ ;;^UTILITY(U,$J,358.3,32942,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,32942,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,32943,0)
+ ;;=L98.1^^146^1593^2
+ ;;^UTILITY(U,$J,358.3,32943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34494,1,3,0)
- ;;=3^Disp 4th metatarsal fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,34494,1,4,0)
- ;;=4^S92.341S
- ;;^UTILITY(U,$J,358.3,34494,2)
- ;;=^5045192
- ;;^UTILITY(U,$J,358.3,34495,0)
- ;;=S92.232S^^183^2020^31
- ;;^UTILITY(U,$J,358.3,34495,1,0)
+ ;;^UTILITY(U,$J,358.3,32943,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) Disorder
+ ;;^UTILITY(U,$J,358.3,32943,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,32943,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,32944,0)
+ ;;=F63.0^^146^1593^4
+ ;;^UTILITY(U,$J,358.3,32944,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32944,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,32944,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,32944,2)
+ ;;=^5003640

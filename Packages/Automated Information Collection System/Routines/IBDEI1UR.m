@@ -1,132 +1,136 @@
-IBDEI1UR ; ; 06-AUG-2015
+IBDEI1UR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32614,1,3,0)
- ;;=3^Nonrhematic Mitral Valve Stenosis
- ;;^UTILITY(U,$J,358.3,32614,1,4,0)
- ;;=4^I34.2
- ;;^UTILITY(U,$J,358.3,32614,2)
- ;;=^5007171
- ;;^UTILITY(U,$J,358.3,32615,0)
- ;;=I35.0^^182^1991^10
- ;;^UTILITY(U,$J,358.3,32615,1,0)
+ ;;^UTILITY(U,$J,358.3,31013,0)
+ ;;=N92.0^^135^1388^20
+ ;;^UTILITY(U,$J,358.3,31013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32615,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,32615,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,32615,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,32616,0)
- ;;=I35.1^^182^1991^9
- ;;^UTILITY(U,$J,358.3,32616,1,0)
+ ;;^UTILITY(U,$J,358.3,31013,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,31013,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,31013,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,31014,0)
+ ;;=N92.6^^135^1388^30
+ ;;^UTILITY(U,$J,358.3,31014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32616,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,32616,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,32616,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,32617,0)
- ;;=I35.2^^182^1991^11
- ;;^UTILITY(U,$J,358.3,32617,1,0)
+ ;;^UTILITY(U,$J,358.3,31014,1,3,0)
+ ;;=3^Irregular Menstruation,Unspec
+ ;;^UTILITY(U,$J,358.3,31014,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,31014,2)
+ ;;=^5015913
+ ;;^UTILITY(U,$J,358.3,31015,0)
+ ;;=N92.5^^135^1388^29
+ ;;^UTILITY(U,$J,358.3,31015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32617,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,32617,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,32617,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,32618,0)
- ;;=I35.9^^182^1991^8
- ;;^UTILITY(U,$J,358.3,32618,1,0)
+ ;;^UTILITY(U,$J,358.3,31015,1,3,0)
+ ;;=3^Irregular Menstruation,Other Spec
+ ;;^UTILITY(U,$J,358.3,31015,1,4,0)
+ ;;=4^N92.5
+ ;;^UTILITY(U,$J,358.3,31015,2)
+ ;;=^5015912
+ ;;^UTILITY(U,$J,358.3,31016,0)
+ ;;=N92.3^^135^1388^43
+ ;;^UTILITY(U,$J,358.3,31016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32618,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32618,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,32618,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,32619,0)
- ;;=I38.^^182^1991^4
- ;;^UTILITY(U,$J,358.3,32619,1,0)
+ ;;^UTILITY(U,$J,358.3,31016,1,3,0)
+ ;;=3^Ovulation Bleeding
+ ;;^UTILITY(U,$J,358.3,31016,1,4,0)
+ ;;=4^N92.3
+ ;;^UTILITY(U,$J,358.3,31016,2)
+ ;;=^270570
+ ;;^UTILITY(U,$J,358.3,31017,0)
+ ;;=N89.7^^135^1388^24
+ ;;^UTILITY(U,$J,358.3,31017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32619,1,3,0)
- ;;=3^Endocarditis,Valve Unspec
- ;;^UTILITY(U,$J,358.3,32619,1,4,0)
- ;;=4^I38.
- ;;^UTILITY(U,$J,358.3,32619,2)
- ;;=^40327
- ;;^UTILITY(U,$J,358.3,32620,0)
- ;;=I05.0^^182^1991^17
- ;;^UTILITY(U,$J,358.3,32620,1,0)
+ ;;^UTILITY(U,$J,358.3,31017,1,3,0)
+ ;;=3^Hematocolpos
+ ;;^UTILITY(U,$J,358.3,31017,1,4,0)
+ ;;=4^N89.7
+ ;;^UTILITY(U,$J,358.3,31017,2)
+ ;;=^5015889
+ ;;^UTILITY(U,$J,358.3,31018,0)
+ ;;=N93.8^^135^1388^2
+ ;;^UTILITY(U,$J,358.3,31018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32620,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,32620,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,32620,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,32621,0)
- ;;=I05.8^^182^1991^18
- ;;^UTILITY(U,$J,358.3,32621,1,0)
+ ;;^UTILITY(U,$J,358.3,31018,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
+ ;;^UTILITY(U,$J,358.3,31018,1,4,0)
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,31018,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,31019,0)
+ ;;=N93.9^^135^1388^3
+ ;;^UTILITY(U,$J,358.3,31019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32621,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease NEC
- ;;^UTILITY(U,$J,358.3,32621,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,32621,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,32622,0)
- ;;=I05.9^^182^1991^19
- ;;^UTILITY(U,$J,358.3,32622,1,0)
+ ;;^UTILITY(U,$J,358.3,31019,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,31019,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,31019,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,31020,0)
+ ;;=N92.4^^135^1388^19
+ ;;^UTILITY(U,$J,358.3,31020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32622,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32622,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,32622,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,32623,0)
- ;;=I07.1^^182^1991^20
- ;;^UTILITY(U,$J,358.3,32623,1,0)
+ ;;^UTILITY(U,$J,358.3,31020,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,31020,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,31020,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,31021,0)
+ ;;=N95.0^^135^1388^48
+ ;;^UTILITY(U,$J,358.3,31021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32623,1,3,0)
- ;;=3^Rheumatic Tricuspid Insufficiency
- ;;^UTILITY(U,$J,358.3,32623,1,4,0)
- ;;=4^I07.1
- ;;^UTILITY(U,$J,358.3,32623,2)
- ;;=^5007048
- ;;^UTILITY(U,$J,358.3,32624,0)
- ;;=I07.9^^182^1991^21
- ;;^UTILITY(U,$J,358.3,32624,1,0)
+ ;;^UTILITY(U,$J,358.3,31021,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,31021,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,31021,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,31022,0)
+ ;;=N95.1^^135^1388^35
+ ;;^UTILITY(U,$J,358.3,31022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32624,1,3,0)
- ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32624,1,4,0)
- ;;=4^I07.9
- ;;^UTILITY(U,$J,358.3,32624,2)
- ;;=^5007051
- ;;^UTILITY(U,$J,358.3,32625,0)
- ;;=I08.0^^182^1991^15
- ;;^UTILITY(U,$J,358.3,32625,1,0)
+ ;;^UTILITY(U,$J,358.3,31022,1,3,0)
+ ;;=3^Menopausal/Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,31022,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,31022,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,31023,0)
+ ;;=N97.0^^135^1388^21
+ ;;^UTILITY(U,$J,358.3,31023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32625,1,3,0)
- ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
- ;;^UTILITY(U,$J,358.3,32625,1,4,0)
- ;;=4^I08.0
- ;;^UTILITY(U,$J,358.3,32625,2)
- ;;=^5007052
- ;;^UTILITY(U,$J,358.3,32626,0)
- ;;=I09.89^^182^1991^16
- ;;^UTILITY(U,$J,358.3,32626,1,0)
+ ;;^UTILITY(U,$J,358.3,31023,1,3,0)
+ ;;=3^Female Infertility Associated w/ Anovulation
+ ;;^UTILITY(U,$J,358.3,31023,1,4,0)
+ ;;=4^N97.0
+ ;;^UTILITY(U,$J,358.3,31023,2)
+ ;;=^5015931
+ ;;^UTILITY(U,$J,358.3,31024,0)
+ ;;=N97.9^^135^1388^22
+ ;;^UTILITY(U,$J,358.3,31024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32626,1,3,0)
- ;;=3^Rheumatic Heart Diseases NEC
- ;;^UTILITY(U,$J,358.3,32626,1,4,0)
- ;;=4^I09.89
- ;;^UTILITY(U,$J,358.3,32626,2)
- ;;=^5007060
- ;;^UTILITY(U,$J,358.3,32627,0)
- ;;=I47.1^^182^1991^23
+ ;;^UTILITY(U,$J,358.3,31024,1,3,0)
+ ;;=3^Female Infertility,Unspec
+ ;;^UTILITY(U,$J,358.3,31024,1,4,0)
+ ;;=4^N97.9
+ ;;^UTILITY(U,$J,358.3,31024,2)
+ ;;=^5015935
+ ;;^UTILITY(U,$J,358.3,31025,0)
+ ;;=L29.2^^135^1388^52
+ ;;^UTILITY(U,$J,358.3,31025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31025,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,31025,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,31025,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,31026,0)
+ ;;=R92.8^^135^1388^4

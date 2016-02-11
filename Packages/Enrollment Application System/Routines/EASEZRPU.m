@@ -1,5 +1,5 @@
-EASEZRPU ;ALB/AMA - Print utility for 10-10EZR ; 8/1/08 1:28pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70**;Mar 15, 2001;Build 26
+EASEZRPU ;ALB/AMA,TDM - Print utility for 10-10EZR ; 2/6/13 12:10pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**57,70,107**;Mar 15, 2001;Build 32
  ;
  Q
  ;
@@ -106,6 +106,11 @@ PAGE1 ;This function retrieves and formats the page 1 application data from
  S @ZDATA@("20B")=$$PROCESS("20B.1")          ;EC's home phone
  S @ZDATA@("20C")=$$PROCESS("20C.1")          ;EC's work phone
  S @ZDATA@("21")=$$PROCESS("21.")             ;Who receives property?
+ ;
+ S EZDATA=$NA(^TMP("EZRTEMP",$J,"IIC",1))
+ S @ZDATA@(999)=$$PROCESS(999)                ;Vet income year
+ I $D(@EZDATA@(998)) D
+ . S @ZDATA@(998)=$$PROCESS(998)              ;Vet Declines To Give Inf
  ;
  Q
  ;

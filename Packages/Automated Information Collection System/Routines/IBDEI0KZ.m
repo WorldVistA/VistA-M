@@ -1,134 +1,140 @@
-IBDEI0KZ ; ; 06-AUG-2015
+IBDEI0KZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9942,0)
- ;;=366.20^^44^559^19
- ;;^UTILITY(U,$J,358.3,9942,1,0)
+ ;;^UTILITY(U,$J,358.3,9500,1,3,0)
+ ;;=3^Sleep Disorder Not d/t Substance/Physiological Condition
+ ;;^UTILITY(U,$J,358.3,9500,1,4,0)
+ ;;=4^F51.8
+ ;;^UTILITY(U,$J,358.3,9500,2)
+ ;;=^5003616
+ ;;^UTILITY(U,$J,358.3,9501,0)
+ ;;=F32.9^^63^614^8
+ ;;^UTILITY(U,$J,358.3,9501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9942,1,3,0)
- ;;=3^Cataract, Traumatic
- ;;^UTILITY(U,$J,358.3,9942,1,4,0)
- ;;=4^366.20
- ;;^UTILITY(U,$J,358.3,9942,2)
- ;;=Traumatic Cataract, NOS^268802
- ;;^UTILITY(U,$J,358.3,9943,0)
- ;;=366.52^^44^559^13
- ;;^UTILITY(U,$J,358.3,9943,1,0)
+ ;;^UTILITY(U,$J,358.3,9501,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,9501,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,9501,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,9502,0)
+ ;;=G91.1^^63^614^9
+ ;;^UTILITY(U,$J,358.3,9502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9943,1,3,0)
- ;;=3^Cataract, Post Capsular-not obscuring vision
- ;;^UTILITY(U,$J,358.3,9943,1,4,0)
- ;;=4^366.52
- ;;^UTILITY(U,$J,358.3,9943,2)
- ;;=Posterior Capsular Fibrosis Not Obscuring Vision^268822
- ;;^UTILITY(U,$J,358.3,9944,0)
- ;;=366.53^^44^559^14
- ;;^UTILITY(U,$J,358.3,9944,1,0)
+ ;;^UTILITY(U,$J,358.3,9502,1,3,0)
+ ;;=3^Obstructive Hydrocephalus
+ ;;^UTILITY(U,$J,358.3,9502,1,4,0)
+ ;;=4^G91.1
+ ;;^UTILITY(U,$J,358.3,9502,2)
+ ;;=^84947
+ ;;^UTILITY(U,$J,358.3,9503,0)
+ ;;=I95.1^^63^614^10
+ ;;^UTILITY(U,$J,358.3,9503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9944,1,3,0)
- ;;=3^Cataract, Post Capsular-obscuring vision
- ;;^UTILITY(U,$J,358.3,9944,1,4,0)
- ;;=4^366.53
- ;;^UTILITY(U,$J,358.3,9944,2)
- ;;=Post Capsular Fibrosis, Obscuring Vision^268823
- ;;^UTILITY(U,$J,358.3,9945,0)
- ;;=366.11^^44^559^15
- ;;^UTILITY(U,$J,358.3,9945,1,0)
+ ;;^UTILITY(U,$J,358.3,9503,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,9503,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,9503,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,9504,0)
+ ;;=I95.89^^63^614^7
+ ;;^UTILITY(U,$J,358.3,9504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9945,1,3,0)
- ;;=3^Cataract, Pseudoexfoliation
- ;;^UTILITY(U,$J,358.3,9945,1,4,0)
- ;;=4^366.11
- ;;^UTILITY(U,$J,358.3,9945,2)
- ;;=Pseudoexfoliation^265538
- ;;^UTILITY(U,$J,358.3,9946,0)
- ;;=366.17^^44^559^8
- ;;^UTILITY(U,$J,358.3,9946,1,0)
+ ;;^UTILITY(U,$J,358.3,9504,1,3,0)
+ ;;=3^Hypotension,Other
+ ;;^UTILITY(U,$J,358.3,9504,1,4,0)
+ ;;=4^I95.89
+ ;;^UTILITY(U,$J,358.3,9504,2)
+ ;;=^5008079
+ ;;^UTILITY(U,$J,358.3,9505,0)
+ ;;=R55.^^63^614^13
+ ;;^UTILITY(U,$J,358.3,9505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9946,1,3,0)
- ;;=3^Cataract, Mature
- ;;^UTILITY(U,$J,358.3,9946,1,4,0)
- ;;=4^366.17
- ;;^UTILITY(U,$J,358.3,9946,2)
- ;;=Mature Cataract^265530
- ;;^UTILITY(U,$J,358.3,9947,0)
- ;;=362.53^^44^559^21
- ;;^UTILITY(U,$J,358.3,9947,1,0)
+ ;;^UTILITY(U,$J,358.3,9505,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,9505,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,9505,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,9506,0)
+ ;;=G47.10^^63^614^6
+ ;;^UTILITY(U,$J,358.3,9506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9947,1,3,0)
- ;;=3^Cystoid Macular Edema (CME)
- ;;^UTILITY(U,$J,358.3,9947,1,4,0)
- ;;=4^362.53
- ;;^UTILITY(U,$J,358.3,9947,2)
- ;;=^268638^996.79
- ;;^UTILITY(U,$J,358.3,9948,0)
- ;;=743.30^^44^559^3
- ;;^UTILITY(U,$J,358.3,9948,1,0)
+ ;;^UTILITY(U,$J,358.3,9506,1,3,0)
+ ;;=3^Hypersomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,9506,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,9506,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,9507,0)
+ ;;=G47.30^^63^614^11
+ ;;^UTILITY(U,$J,358.3,9507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9948,1,3,0)
- ;;=3^Cataract, Congenital
- ;;^UTILITY(U,$J,358.3,9948,1,4,0)
- ;;=4^743.30
- ;;^UTILITY(U,$J,358.3,9948,2)
- ;;=Congenital Cataract^27422
- ;;^UTILITY(U,$J,358.3,9949,0)
- ;;=366.9^^44^559^20
- ;;^UTILITY(U,$J,358.3,9949,1,0)
+ ;;^UTILITY(U,$J,358.3,9507,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,9507,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,9507,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,9508,0)
+ ;;=R20.0^^63^614^2
+ ;;^UTILITY(U,$J,358.3,9508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9949,1,3,0)
- ;;=3^Cataract, Unspecified
- ;;^UTILITY(U,$J,358.3,9949,1,4,0)
- ;;=4^366.9
- ;;^UTILITY(U,$J,358.3,9949,2)
- ;;=^20266
- ;;^UTILITY(U,$J,358.3,9950,0)
- ;;=996.69^^44^559^24
- ;;^UTILITY(U,$J,358.3,9950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9950,1,3,0)
- ;;=3^Post Op Endophthalmitis
- ;;^UTILITY(U,$J,358.3,9950,1,4,0)
- ;;=4^996.69
- ;;^UTILITY(U,$J,358.3,9950,2)
- ;;=Post Op Endophthalmitis^276291
- ;;^UTILITY(U,$J,358.3,9951,0)
- ;;=998.82^^44^559^6
- ;;^UTILITY(U,$J,358.3,9951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9951,1,3,0)
- ;;=3^Cataract, Fragment Following Cat Surg
- ;;^UTILITY(U,$J,358.3,9951,1,4,0)
- ;;=4^998.82
- ;;^UTILITY(U,$J,358.3,9951,2)
- ;;=^303364
- ;;^UTILITY(U,$J,358.3,9952,0)
- ;;=366.8^^44^559^11
- ;;^UTILITY(U,$J,358.3,9952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9952,1,3,0)
- ;;=3^Cataract, Other
- ;;^UTILITY(U,$J,358.3,9952,1,4,0)
- ;;=4^366.8
- ;;^UTILITY(U,$J,358.3,9952,2)
- ;;=^87370
- ;;^UTILITY(U,$J,358.3,9953,0)
- ;;=366.41^^44^559^5
- ;;^UTILITY(U,$J,358.3,9953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9953,1,3,0)
- ;;=3^Cataract, Diabetic
- ;;^UTILITY(U,$J,358.3,9953,1,4,0)
- ;;=4^366.41
- ;;^UTILITY(U,$J,358.3,9953,2)
- ;;=^33638^250.00
- ;;^UTILITY(U,$J,358.3,9954,0)
- ;;=366.00^^44^559^9
- ;;^UTILITY(U,$J,358.3,9954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9954,1,3,0)
- ;;=3^Cataract, Nonsenile NOS
- ;;^UTILITY(U,$J,358.3,9954,1,4,0)
- ;;=4^366.00
- ;;^UTILITY(U,$J,358.3,9954,2)
- ;;=^268786
+ ;;^UTILITY(U,$J,358.3,9508,1,3,0)
+ ;;=3^Anesthesia of Skin
+ ;;^UTILITY(U,$J,358.3,9508,1,4,0)
+ ;;=4^R20.0
+ ;;^UTILITY(U,$J,358.3,9508,2)
+ ;;=^5019278
+ ;;^UTILITY(U,$J,358.3,9509,0)
+ ;;=99441^^64^615^1^^^^1
+ ;;^UTILITY(U,$J,358.3,9509,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,9509,1,1,0)
+ ;;=1^99441
+ ;;^UTILITY(U,$J,358.3,9509,1,2,0)
+ ;;=2^PHONE E/M BY PHYS 5-10 MIN
+ ;;^UTILITY(U,$J,358.3,9510,0)
+ ;;=99443^^64^615^3^^^^1
+ ;;^UTILITY(U,$J,358.3,9510,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,9510,1,1,0)
+ ;;=1^99443
+ ;;^UTILITY(U,$J,358.3,9510,1,2,0)
+ ;;=2^PHONE E/M BY PHYS 21-30 MIN
+ ;;^UTILITY(U,$J,358.3,9511,0)
+ ;;=99442^^64^615^2^^^^1
+ ;;^UTILITY(U,$J,358.3,9511,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,9511,1,1,0)
+ ;;=1^99442
+ ;;^UTILITY(U,$J,358.3,9511,1,2,0)
+ ;;=2^PHONE E/M BY PHYS 11-20 MIN
+ ;;^UTILITY(U,$J,358.3,9512,0)
+ ;;=98966^^64^616^1^^^^1
+ ;;^UTILITY(U,$J,358.3,9512,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,9512,1,1,0)
+ ;;=1^98966
+ ;;^UTILITY(U,$J,358.3,9512,1,2,0)
+ ;;=2^HC PRO PHONE CALL 5-10 MIN
+ ;;^UTILITY(U,$J,358.3,9513,0)
+ ;;=98967^^64^616^2^^^^1
+ ;;^UTILITY(U,$J,358.3,9513,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,9513,1,1,0)
+ ;;=1^98967
+ ;;^UTILITY(U,$J,358.3,9513,1,2,0)
+ ;;=2^HC PRO PHONE CALL 11-20 MIN
+ ;;^UTILITY(U,$J,358.3,9514,0)
+ ;;=98968^^64^616^3^^^^1
+ ;;^UTILITY(U,$J,358.3,9514,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,9514,1,1,0)
+ ;;=1^98968
+ ;;^UTILITY(U,$J,358.3,9514,1,2,0)
+ ;;=2^HC PRO PHONE CALL 21-30 MIN
+ ;;^UTILITY(U,$J,358.3,9515,0)
+ ;;=G40.A01^^65^617^3

@@ -1,138 +1,128 @@
-IBDEI0LW ; ; 06-AUG-2015
+IBDEI0LW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10384,0)
- ;;=378.53^^44^564^16
- ;;^UTILITY(U,$J,358.3,10384,1,0)
+ ;;^UTILITY(U,$J,358.3,9992,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,9992,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,9992,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,9993,0)
+ ;;=I25.729^^68^661^4
+ ;;^UTILITY(U,$J,358.3,9993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10384,1,3,0)
- ;;=3^Nerve Palsy,Fourth
- ;;^UTILITY(U,$J,358.3,10384,1,4,0)
- ;;=4^378.53
- ;;^UTILITY(U,$J,358.3,10384,2)
- ;;=^265326
- ;;^UTILITY(U,$J,358.3,10385,0)
- ;;=360.01^^44^565^50
- ;;^UTILITY(U,$J,358.3,10385,1,0)
+ ;;^UTILITY(U,$J,358.3,9993,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,9993,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,9993,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,9994,0)
+ ;;=I25.709^^68^661^11
+ ;;^UTILITY(U,$J,358.3,9994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10385,1,3,0)
- ;;=3^Endophalmitis
- ;;^UTILITY(U,$J,358.3,10385,1,4,0)
- ;;=4^360.01
- ;;^UTILITY(U,$J,358.3,10385,2)
- ;;=Endophalmitis^268545
- ;;^UTILITY(U,$J,358.3,10386,0)
- ;;=V08.^^44^565^53
- ;;^UTILITY(U,$J,358.3,10386,1,0)
+ ;;^UTILITY(U,$J,358.3,9994,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,9994,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,9994,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,9995,0)
+ ;;=I25.10^^68^661^6
+ ;;^UTILITY(U,$J,358.3,9995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10386,1,3,0)
- ;;=3^HIV Status
- ;;^UTILITY(U,$J,358.3,10386,1,4,0)
- ;;=4^V08.
- ;;^UTILITY(U,$J,358.3,10386,2)
- ;;=HIV Status^303392
- ;;^UTILITY(U,$J,358.3,10387,0)
- ;;=130.2^^44^565^87
- ;;^UTILITY(U,$J,358.3,10387,1,0)
+ ;;^UTILITY(U,$J,358.3,9995,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,9995,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,9995,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,9996,0)
+ ;;=I25.810^^68^661^8
+ ;;^UTILITY(U,$J,358.3,9996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10387,1,3,0)
- ;;=3^Toxoplasmosis Retinitis
- ;;^UTILITY(U,$J,358.3,10387,1,4,0)
- ;;=4^130.2
- ;;^UTILITY(U,$J,358.3,10387,2)
- ;;=Toxoplasmosis Retinitis^266947
- ;;^UTILITY(U,$J,358.3,10388,0)
- ;;=128.0^^44^565^86
- ;;^UTILITY(U,$J,358.3,10388,1,0)
+ ;;^UTILITY(U,$J,358.3,9996,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,9996,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,9996,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,9997,0)
+ ;;=I65.29^^68^662^18
+ ;;^UTILITY(U,$J,358.3,9997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10388,1,3,0)
- ;;=3^Toxocariasis
- ;;^UTILITY(U,$J,358.3,10388,1,4,0)
- ;;=4^128.0
- ;;^UTILITY(U,$J,358.3,10388,2)
- ;;=Toxocariasis^120683
- ;;^UTILITY(U,$J,358.3,10389,0)
- ;;=054.42^^44^565^48
- ;;^UTILITY(U,$J,358.3,10389,1,0)
+ ;;^UTILITY(U,$J,358.3,9997,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,9997,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,9997,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,9998,0)
+ ;;=I65.22^^68^662^16
+ ;;^UTILITY(U,$J,358.3,9998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10389,1,3,0)
- ;;=3^Dendritic Keratitis
- ;;^UTILITY(U,$J,358.3,10389,1,4,0)
- ;;=4^054.42
- ;;^UTILITY(U,$J,358.3,10389,2)
- ;;=Dendritic Keratitis^66763
- ;;^UTILITY(U,$J,358.3,10390,0)
- ;;=370.01^^44^565^65
- ;;^UTILITY(U,$J,358.3,10390,1,0)
+ ;;^UTILITY(U,$J,358.3,9998,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,9998,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,9998,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,9999,0)
+ ;;=I65.23^^68^662^15
+ ;;^UTILITY(U,$J,358.3,9999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10390,1,3,0)
- ;;=3^Marginal Corneal Ulcer
- ;;^UTILITY(U,$J,358.3,10390,1,4,0)
- ;;=4^370.01
- ;;^UTILITY(U,$J,358.3,10390,2)
- ;;=Marginal Corneal Ulcer^268908
- ;;^UTILITY(U,$J,358.3,10391,0)
- ;;=375.30^^44^565^47
- ;;^UTILITY(U,$J,358.3,10391,1,0)
+ ;;^UTILITY(U,$J,358.3,9999,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,9999,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,9999,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,10000,0)
+ ;;=I65.21^^68^662^17
+ ;;^UTILITY(U,$J,358.3,10000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10391,1,3,0)
- ;;=3^Dacrocystitis
- ;;^UTILITY(U,$J,358.3,10391,1,4,0)
- ;;=4^375.30
- ;;^UTILITY(U,$J,358.3,10391,2)
- ;;=Dacrocystitis^30880
- ;;^UTILITY(U,$J,358.3,10392,0)
- ;;=376.01^^44^565^69
- ;;^UTILITY(U,$J,358.3,10392,1,0)
+ ;;^UTILITY(U,$J,358.3,10000,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,10000,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,10000,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,10001,0)
+ ;;=I70.219^^68^662^3
+ ;;^UTILITY(U,$J,358.3,10001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10392,1,3,0)
- ;;=3^Orbital Cellulitis
- ;;^UTILITY(U,$J,358.3,10392,1,4,0)
- ;;=4^376.01
- ;;^UTILITY(U,$J,358.3,10392,2)
- ;;=Orbital Cellulitis^259068
- ;;^UTILITY(U,$J,358.3,10393,0)
- ;;=682.0^^44^565^6
- ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;^UTILITY(U,$J,358.3,10001,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,10001,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,10001,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,10002,0)
+ ;;=I70.213^^68^662^4
+ ;;^UTILITY(U,$J,358.3,10002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10393,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,10393,1,4,0)
- ;;=4^682.0
- ;;^UTILITY(U,$J,358.3,10393,2)
- ;;=Cellulitis of Face^271888
- ;;^UTILITY(U,$J,358.3,10394,0)
- ;;=473.9^^44^565^84
- ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;^UTILITY(U,$J,358.3,10002,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,10002,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,10002,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,10003,0)
+ ;;=I70.212^^68^662^5
+ ;;^UTILITY(U,$J,358.3,10003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10394,1,3,0)
- ;;=3^Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,10394,1,4,0)
- ;;=4^473.9
- ;;^UTILITY(U,$J,358.3,10394,2)
- ;;=Sinusitis^123985
- ;;^UTILITY(U,$J,358.3,10395,0)
- ;;=017.30^^44^565^90
- ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;^UTILITY(U,$J,358.3,10003,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,10003,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,10003,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,10004,0)
+ ;;=I70.211^^68^662^6
+ ;;^UTILITY(U,$J,358.3,10004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10395,1,3,0)
- ;;=3^Tuberculosis,Eye
- ;;^UTILITY(U,$J,358.3,10395,1,4,0)
- ;;=4^017.30
- ;;^UTILITY(U,$J,358.3,10395,2)
- ;;=^122722
- ;;^UTILITY(U,$J,358.3,10396,0)
- ;;=076.9^^44^565^88
- ;;^UTILITY(U,$J,358.3,10396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10396,1,3,0)
- ;;=3^Trachoma,Unspec
- ;;^UTILITY(U,$J,358.3,10396,1,4,0)
- ;;=4^076.9
- ;;^UTILITY(U,$J,358.3,10396,2)
- ;;=^120805
- ;;^UTILITY(U,$J,358.3,10397,0)
- ;;=077.0^^44^565^31
- ;;^UTILITY(U,$J,358.3,10397,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10004,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,10004,1,4,0)
+ ;;=4^I70.211

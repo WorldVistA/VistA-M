@@ -1,0 +1,130 @@
+IBDEI29H ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,37985,0)
+ ;;=T50.905A^^175^1910^1
+ ;;^UTILITY(U,$J,358.3,37985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37985,1,3,0)
+ ;;=3^Adverse Effect Drug/Meds/Biol Substance,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37985,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,37985,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,37986,0)
+ ;;=T88.4XXA^^175^1910^10
+ ;;^UTILITY(U,$J,358.3,37986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37986,1,3,0)
+ ;;=3^Failed/Difficult Intubation,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37986,1,4,0)
+ ;;=4^T88.4XXA
+ ;;^UTILITY(U,$J,358.3,37986,2)
+ ;;=^5055796
+ ;;^UTILITY(U,$J,358.3,37987,0)
+ ;;=T88.59XA^^175^1910^5
+ ;;^UTILITY(U,$J,358.3,37987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37987,1,3,0)
+ ;;=3^Anesthesia Complications,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37987,1,4,0)
+ ;;=4^T88.59XA
+ ;;^UTILITY(U,$J,358.3,37987,2)
+ ;;=^5055805
+ ;;^UTILITY(U,$J,358.3,37988,0)
+ ;;=T88.6XXA^^175^1910^3
+ ;;^UTILITY(U,$J,358.3,37988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37988,1,3,0)
+ ;;=3^Anaphylactic Reaction d/t Adverse Eff Drug/Med Prop Admin,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37988,1,4,0)
+ ;;=4^T88.6XXA
+ ;;^UTILITY(U,$J,358.3,37988,2)
+ ;;=^5055808
+ ;;^UTILITY(U,$J,358.3,37989,0)
+ ;;=T81.10XA^^175^1910^16
+ ;;^UTILITY(U,$J,358.3,37989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37989,1,3,0)
+ ;;=3^Postprocedural Shock,Unspec,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37989,1,4,0)
+ ;;=4^T81.10XA
+ ;;^UTILITY(U,$J,358.3,37989,2)
+ ;;=^5054455
+ ;;^UTILITY(U,$J,358.3,37990,0)
+ ;;=T81.12XA^^175^1910^15
+ ;;^UTILITY(U,$J,358.3,37990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37990,1,3,0)
+ ;;=3^Postprocedural Septic Shock,Init Encnt
+ ;;^UTILITY(U,$J,358.3,37990,1,4,0)
+ ;;=4^T81.12XA
+ ;;^UTILITY(U,$J,358.3,37990,2)
+ ;;=^5054461
+ ;;^UTILITY(U,$J,358.3,37991,0)
+ ;;=Z45.2^^175^1910^18
+ ;;^UTILITY(U,$J,358.3,37991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37991,1,3,0)
+ ;;=3^VAD Adjustment & Management Encounter
+ ;;^UTILITY(U,$J,358.3,37991,1,4,0)
+ ;;=4^Z45.2
+ ;;^UTILITY(U,$J,358.3,37991,2)
+ ;;=^5062999
+ ;;^UTILITY(U,$J,358.3,37992,0)
+ ;;=Z71.1^^175^1910^11
+ ;;^UTILITY(U,$J,358.3,37992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37992,1,3,0)
+ ;;=3^Feared Hlth Complaint-No Diagnosis Made
+ ;;^UTILITY(U,$J,358.3,37992,1,4,0)
+ ;;=4^Z71.1
+ ;;^UTILITY(U,$J,358.3,37992,2)
+ ;;=^5063243
+ ;;^UTILITY(U,$J,358.3,37993,0)
+ ;;=Z00.6^^175^1910^9
+ ;;^UTILITY(U,$J,358.3,37993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37993,1,3,0)
+ ;;=3^Exam for Nrml Cmprsn & Ctrl in Clncl Research Prog
+ ;;^UTILITY(U,$J,358.3,37993,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,37993,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,37994,0)
+ ;;=Z00.8^^175^1910^12
+ ;;^UTILITY(U,$J,358.3,37994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37994,1,3,0)
+ ;;=3^General Examination Encounter
+ ;;^UTILITY(U,$J,358.3,37994,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,37994,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,37995,0)
+ ;;=Z01.818^^175^1911^3
+ ;;^UTILITY(U,$J,358.3,37995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37995,1,3,0)
+ ;;=3^Preprocedural Examination
+ ;;^UTILITY(U,$J,358.3,37995,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,37995,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,37996,0)
+ ;;=Z01.810^^175^1911^2
+ ;;^UTILITY(U,$J,358.3,37996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37996,1,3,0)
+ ;;=3^Preprocedural Cardiovascular Examination
+ ;;^UTILITY(U,$J,358.3,37996,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,37996,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,37997,0)
+ ;;=Z01.811^^175^1911^4
+ ;;^UTILITY(U,$J,358.3,37997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37997,1,3,0)
+ ;;=3^Preprocedural Respiratory Examination

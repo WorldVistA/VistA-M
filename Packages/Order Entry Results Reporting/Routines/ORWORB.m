@@ -1,5 +1,5 @@
 ORWORB ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;10:12 am JAN 31, 2001
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334**;Dec 17, 1997;Build 5
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410**;Dec 17, 1997;Build 1
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;DBIA reference section
@@ -33,6 +33,7 @@ FASTUSER(ORY) ;return current user's notifications across all patients
  D REMNONOR^ORQORB(.NONORLST)
  S J=0
  F I=1:1:ORTOT D
+ .S REM=""
  .S ALRTDFN=""
  .S ALRT=^TMP("ORB",$J,I)
  .S PRE=$E(ALRT,1,1)

@@ -1,132 +1,136 @@
-IBDEI0MR ; ; 06-AUG-2015
+IBDEI0MR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10829,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,10829,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,10830,0)
- ;;=301.0^^47^606^12
- ;;^UTILITY(U,$J,358.3,10830,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10830,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,10830,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,10830,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,10831,0)
- ;;=301.9^^47^606^16
- ;;^UTILITY(U,$J,358.3,10831,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10831,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,10831,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,10831,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,10832,0)
- ;;=301.20^^47^606^14
- ;;^UTILITY(U,$J,358.3,10832,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10832,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,10832,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,10832,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,10833,0)
- ;;=301.22^^47^606^15
- ;;^UTILITY(U,$J,358.3,10833,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10833,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,10833,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,10833,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,10834,0)
- ;;=301.4^^47^606^4
- ;;^UTILITY(U,$J,358.3,10834,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10834,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,10834,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,10834,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,10835,0)
- ;;=301.84^^47^606^13
- ;;^UTILITY(U,$J,358.3,10835,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10835,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,10835,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,10835,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,10836,0)
- ;;=301.11^^47^606^9
- ;;^UTILITY(U,$J,358.3,10836,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10836,1,2,0)
- ;;=2^301.11
- ;;^UTILITY(U,$J,358.3,10836,1,5,0)
- ;;=5^Hypomanic Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,10836,2)
- ;;=^268171
- ;;^UTILITY(U,$J,358.3,10837,0)
- ;;=301.12^^47^606^7
- ;;^UTILITY(U,$J,358.3,10837,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10837,1,2,0)
- ;;=2^301.12
- ;;^UTILITY(U,$J,358.3,10837,1,5,0)
- ;;=5^Depressive Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,10837,2)
- ;;=^268173
- ;;^UTILITY(U,$J,358.3,10838,0)
- ;;=301.13^^47^606^5
- ;;^UTILITY(U,$J,358.3,10838,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10838,1,2,0)
- ;;=2^301.13
- ;;^UTILITY(U,$J,358.3,10838,1,5,0)
- ;;=5^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,10838,2)
- ;;=^30028
- ;;^UTILITY(U,$J,358.3,10839,0)
- ;;=301.21^^47^606^10
- ;;^UTILITY(U,$J,358.3,10839,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10839,1,2,0)
- ;;=2^301.21
- ;;^UTILITY(U,$J,358.3,10839,1,5,0)
- ;;=5^Introverted Personality
- ;;^UTILITY(U,$J,358.3,10839,2)
- ;;=^268174
- ;;^UTILITY(U,$J,358.3,10840,0)
- ;;=302.2^^47^607^7
- ;;^UTILITY(U,$J,358.3,10840,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10840,1,2,0)
- ;;=2^302.2
- ;;^UTILITY(U,$J,358.3,10840,1,5,0)
- ;;=5^Pedophilia
- ;;^UTILITY(U,$J,358.3,10840,2)
- ;;=^91008
- ;;^UTILITY(U,$J,358.3,10841,0)
- ;;=302.4^^47^607^2
- ;;^UTILITY(U,$J,358.3,10841,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10841,1,2,0)
- ;;=2^302.4
- ;;^UTILITY(U,$J,358.3,10841,1,5,0)
- ;;=5^Exhibitionism
- ;;^UTILITY(U,$J,358.3,10841,2)
- ;;=^43610
- ;;^UTILITY(U,$J,358.3,10842,0)
- ;;=302.72^^47^607^6
- ;;^UTILITY(U,$J,358.3,10842,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,10390,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,10390,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,10391,0)
+ ;;=E89.0^^68^667^50
+ ;;^UTILITY(U,$J,358.3,10391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10391,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,10391,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,10391,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,10392,0)
+ ;;=E03.2^^68^667^32
+ ;;^UTILITY(U,$J,358.3,10392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10392,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,10392,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,10392,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,10393,0)
+ ;;=E03.9^^68^667^33
+ ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10393,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,10393,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,10393,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,10394,0)
+ ;;=E06.0^^68^667^53
+ ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10394,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,10394,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,10394,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,10395,0)
+ ;;=E06.1^^68^667^54
+ ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10395,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,10395,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,10395,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,10396,0)
+ ;;=C73.^^68^667^37
+ ;;^UTILITY(U,$J,358.3,10396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10396,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,10396,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,10396,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,10397,0)
+ ;;=E10.21^^68^667^8
+ ;;^UTILITY(U,$J,358.3,10397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10397,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,10397,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,10397,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,10398,0)
+ ;;=E10.9^^68^667^12
+ ;;^UTILITY(U,$J,358.3,10398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10398,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,10398,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,10398,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,10399,0)
+ ;;=E11.21^^68^667^17
+ ;;^UTILITY(U,$J,358.3,10399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10399,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,10399,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,10399,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,10400,0)
+ ;;=E11.39^^68^667^18
+ ;;^UTILITY(U,$J,358.3,10400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10400,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
+ ;;^UTILITY(U,$J,358.3,10400,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,10400,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,10401,0)
+ ;;=E11.43^^68^667^15
+ ;;^UTILITY(U,$J,358.3,10401,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10401,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
+ ;;^UTILITY(U,$J,358.3,10401,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,10401,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,10402,0)
+ ;;=E11.59^^68^667^13
+ ;;^UTILITY(U,$J,358.3,10402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10402,1,3,0)
+ ;;=3^DM Type 2 w/ Circulatory Complications NEC
+ ;;^UTILITY(U,$J,358.3,10402,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,10402,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,10403,0)
+ ;;=E11.618^^68^667^14
+ ;;^UTILITY(U,$J,358.3,10403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10403,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
+ ;;^UTILITY(U,$J,358.3,10403,1,4,0)
+ ;;=4^E11.618

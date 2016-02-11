@@ -1,132 +1,136 @@
-IBDEI1XZ ; ; 06-AUG-2015
+IBDEI1XZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34096,1,3,0)
- ;;=3^Patellar tendinitis, left knee
- ;;^UTILITY(U,$J,358.3,34096,1,4,0)
- ;;=4^M76.52
- ;;^UTILITY(U,$J,358.3,34096,2)
- ;;=^5013283
- ;;^UTILITY(U,$J,358.3,34097,0)
- ;;=M72.2^^183^2016^56
- ;;^UTILITY(U,$J,358.3,34097,1,0)
+ ;;^UTILITY(U,$J,358.3,32512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34097,1,3,0)
- ;;=3^Plantar fascial fibromatosis
- ;;^UTILITY(U,$J,358.3,34097,1,4,0)
- ;;=4^M72.2
- ;;^UTILITY(U,$J,358.3,34097,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,34098,0)
- ;;=M15.0^^183^2016^57
- ;;^UTILITY(U,$J,358.3,34098,1,0)
+ ;;^UTILITY(U,$J,358.3,32512,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,32512,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,32512,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,32513,0)
+ ;;=Z63.0^^143^1539^5
+ ;;^UTILITY(U,$J,358.3,32513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34098,1,3,0)
- ;;=3^Primary generalized (osteo)arthritis
- ;;^UTILITY(U,$J,358.3,34098,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,34098,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,34099,0)
- ;;=M19.072^^183^2016^58
- ;;^UTILITY(U,$J,358.3,34099,1,0)
+ ;;^UTILITY(U,$J,358.3,32513,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,32513,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,32513,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,32514,0)
+ ;;=Z63.5^^143^1539^2
+ ;;^UTILITY(U,$J,358.3,32514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34099,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,34099,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,34099,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,34100,0)
- ;;=M19.071^^183^2016^61
- ;;^UTILITY(U,$J,358.3,34100,1,0)
+ ;;^UTILITY(U,$J,358.3,32514,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,32514,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,32514,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,32515,0)
+ ;;=Z63.8^^143^1539^3
+ ;;^UTILITY(U,$J,358.3,32515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34100,1,3,0)
- ;;=3^Primary osteoarthritis, right ankle and foot
- ;;^UTILITY(U,$J,358.3,34100,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,34100,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,34101,0)
- ;;=M19.042^^183^2016^59
- ;;^UTILITY(U,$J,358.3,34101,1,0)
+ ;;^UTILITY(U,$J,358.3,32515,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,32515,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,32515,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,32516,0)
+ ;;=Z63.4^^143^1539^7
+ ;;^UTILITY(U,$J,358.3,32516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34101,1,3,0)
- ;;=3^Primary osteoarthritis, left hand
- ;;^UTILITY(U,$J,358.3,34101,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,34101,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,34102,0)
- ;;=M19.012^^183^2016^60
- ;;^UTILITY(U,$J,358.3,34102,1,0)
+ ;;^UTILITY(U,$J,358.3,32516,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,32516,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,32516,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,32517,0)
+ ;;=F20.9^^143^1540^5
+ ;;^UTILITY(U,$J,358.3,32517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34102,1,3,0)
- ;;=3^Primary osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,34102,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,34102,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,34103,0)
- ;;=M19.041^^183^2016^62
- ;;^UTILITY(U,$J,358.3,34103,1,0)
+ ;;^UTILITY(U,$J,358.3,32517,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,32517,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,32517,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,32518,0)
+ ;;=F20.81^^143^1540^6
+ ;;^UTILITY(U,$J,358.3,32518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34103,1,3,0)
- ;;=3^Primary osteoarthritis, right hand
- ;;^UTILITY(U,$J,358.3,34103,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,34103,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,34104,0)
- ;;=M19.011^^183^2016^63
- ;;^UTILITY(U,$J,358.3,34104,1,0)
+ ;;^UTILITY(U,$J,358.3,32518,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,32518,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,32518,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,32519,0)
+ ;;=F22.^^143^1540^2
+ ;;^UTILITY(U,$J,358.3,32519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34104,1,3,0)
- ;;=3^Primary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,34104,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,34104,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,34105,0)
- ;;=M76.12^^183^2016^64
- ;;^UTILITY(U,$J,358.3,34105,1,0)
+ ;;^UTILITY(U,$J,358.3,32519,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,32519,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,32519,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,32520,0)
+ ;;=F23.^^143^1540^1
+ ;;^UTILITY(U,$J,358.3,32520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34105,1,3,0)
- ;;=3^Psoas tendinitis, left hip
- ;;^UTILITY(U,$J,358.3,34105,1,4,0)
- ;;=4^M76.12
- ;;^UTILITY(U,$J,358.3,34105,2)
- ;;=^5013271
- ;;^UTILITY(U,$J,358.3,34106,0)
- ;;=M76.11^^183^2016^65
- ;;^UTILITY(U,$J,358.3,34106,1,0)
+ ;;^UTILITY(U,$J,358.3,32520,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,32520,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,32520,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,32521,0)
+ ;;=F25.0^^143^1540^3
+ ;;^UTILITY(U,$J,358.3,32521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34106,1,3,0)
- ;;=3^Psoas tendinitis, right hip
- ;;^UTILITY(U,$J,358.3,34106,1,4,0)
- ;;=4^M76.11
- ;;^UTILITY(U,$J,358.3,34106,2)
- ;;=^5013270
- ;;^UTILITY(U,$J,358.3,34107,0)
- ;;=M65.4^^183^2016^66
- ;;^UTILITY(U,$J,358.3,34107,1,0)
+ ;;^UTILITY(U,$J,358.3,32521,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,32521,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,32521,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,32522,0)
+ ;;=F25.1^^143^1540^4
+ ;;^UTILITY(U,$J,358.3,32522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34107,1,3,0)
- ;;=3^Radial styloid tenosynovitis [de Quervain]
- ;;^UTILITY(U,$J,358.3,34107,1,4,0)
- ;;=4^M65.4
- ;;^UTILITY(U,$J,358.3,34107,2)
- ;;=^5012792
- ;;^UTILITY(U,$J,358.3,34108,0)
- ;;=M54.18^^183^2016^67
- ;;^UTILITY(U,$J,358.3,34108,1,0)
+ ;;^UTILITY(U,$J,358.3,32522,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,32522,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,32522,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,32523,0)
+ ;;=F52.32^^143^1541^1
+ ;;^UTILITY(U,$J,358.3,32523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34108,1,3,0)
- ;;=3^Radiculopathy, sacral and sacrococcygeal region
- ;;^UTILITY(U,$J,358.3,34108,1,4,0)
- ;;=4^M54.18
- ;;^UTILITY(U,$J,358.3,34108,2)
- ;;=^5012303
- ;;^UTILITY(U,$J,358.3,34109,0)
- ;;=M05.772^^183^2016^68
+ ;;^UTILITY(U,$J,358.3,32523,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,32523,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,32523,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,32524,0)
+ ;;=F52.21^^143^1541^2
+ ;;^UTILITY(U,$J,358.3,32524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32524,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,32524,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,32524,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,32525,0)
+ ;;=F52.31^^143^1541^3
+ ;;^UTILITY(U,$J,358.3,32525,1,0)
+ ;;=^358.31IA^4^2

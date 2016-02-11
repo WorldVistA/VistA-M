@@ -1,5 +1,5 @@
-EASEZP6U ;ALB/AMA - Print utility for 10-10EZ, Version 6 or greater; 10/23/00
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**51,60,57,70**;Mar 15, 2001;Build 26
+EASEZP6U ;ALB/AMA,LBD - Print utility for 10-10EZ, Version 6 or greater; 10/23/00 ; 9/19/12 11:40am
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**51,60,57,70,107**;Mar 15, 2001;Build 32
  ;
  Q
  ;Parts of this routine were copied from EASEZPU (the other parts are
@@ -36,7 +36,7 @@ PAGE1 ;This function retrieves and formats the page 1 application data from
  S @ZDATA@("1B")=$$PROCESS("1B.")            ;Which facility?
  S @ZDATA@(2)=$$PROCESS(2.1)                 ;Vet's name
  S @ZDATA@(3)=$E($$PROCESS("3."),1,35)       ;Other names used
- S EAX=$E($$PROCESS("3A."),1,35)             ;Mother's maiden name
+ S EAX=$E($$PROCESS("3A."),1,30)             ;Mother's maiden name
  I $E(EAX,$L(EAX))="," S EAX=$E(EAX,1,$L(EAX)-1)
  S @ZDATA@("3A")=EAX
  S @ZDATA@(4)=$$PROCESS("4.")                ;Gender

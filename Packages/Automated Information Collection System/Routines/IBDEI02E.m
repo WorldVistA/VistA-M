@@ -1,134 +1,144 @@
-IBDEI02E ; ; 06-AUG-2015
+IBDEI02E ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,570,1,4,0)
- ;;=4^C93.12
- ;;^UTILITY(U,$J,358.3,570,2)
- ;;=^5001824
- ;;^UTILITY(U,$J,358.3,571,0)
- ;;=C93.90^^2^24^45
- ;;^UTILITY(U,$J,358.3,571,1,0)
+ ;;^UTILITY(U,$J,358.3,353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,571,1,3,0)
- ;;=3^Monocytic leukemia, unsp, not having achieved remission
- ;;^UTILITY(U,$J,358.3,571,1,4,0)
- ;;=4^C93.90
- ;;^UTILITY(U,$J,358.3,571,2)
- ;;=^5001828
- ;;^UTILITY(U,$J,358.3,572,0)
- ;;=C93.91^^2^24^47
- ;;^UTILITY(U,$J,358.3,572,1,0)
+ ;;^UTILITY(U,$J,358.3,353,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,353,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,353,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,354,0)
+ ;;=F20.9^^3^46^5
+ ;;^UTILITY(U,$J,358.3,354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,572,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in remission
- ;;^UTILITY(U,$J,358.3,572,1,4,0)
- ;;=4^C93.91
- ;;^UTILITY(U,$J,358.3,572,2)
- ;;=^5001829
- ;;^UTILITY(U,$J,358.3,573,0)
- ;;=C93.92^^2^24^46
- ;;^UTILITY(U,$J,358.3,573,1,0)
+ ;;^UTILITY(U,$J,358.3,354,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,354,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,354,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,355,0)
+ ;;=F20.81^^3^46^6
+ ;;^UTILITY(U,$J,358.3,355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,573,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in relapse
- ;;^UTILITY(U,$J,358.3,573,1,4,0)
- ;;=4^C93.92
- ;;^UTILITY(U,$J,358.3,573,2)
- ;;=^5001830
- ;;^UTILITY(U,$J,358.3,574,0)
- ;;=C94.00^^2^24^3
- ;;^UTILITY(U,$J,358.3,574,1,0)
+ ;;^UTILITY(U,$J,358.3,355,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,355,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,355,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,356,0)
+ ;;=F22.^^3^46^2
+ ;;^UTILITY(U,$J,358.3,356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,574,1,3,0)
- ;;=3^Acute erythroid leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,574,1,4,0)
- ;;=4^C94.00
- ;;^UTILITY(U,$J,358.3,574,2)
- ;;=^5001834
- ;;^UTILITY(U,$J,358.3,575,0)
- ;;=C94.01^^2^24^2
- ;;^UTILITY(U,$J,358.3,575,1,0)
+ ;;^UTILITY(U,$J,358.3,356,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,356,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,356,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,357,0)
+ ;;=F23.^^3^46^1
+ ;;^UTILITY(U,$J,358.3,357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,575,1,3,0)
- ;;=3^Acute erythroid leukemia, in remission
- ;;^UTILITY(U,$J,358.3,575,1,4,0)
- ;;=4^C94.01
- ;;^UTILITY(U,$J,358.3,575,2)
- ;;=^5001835
- ;;^UTILITY(U,$J,358.3,576,0)
- ;;=C94.02^^2^24^1
- ;;^UTILITY(U,$J,358.3,576,1,0)
+ ;;^UTILITY(U,$J,358.3,357,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,357,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,357,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,358,0)
+ ;;=F25.0^^3^46^3
+ ;;^UTILITY(U,$J,358.3,358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,576,1,3,0)
- ;;=3^Acute erythroid leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,576,1,4,0)
- ;;=4^C94.02
- ;;^UTILITY(U,$J,358.3,576,2)
- ;;=^5001836
- ;;^UTILITY(U,$J,358.3,577,0)
- ;;=C94.20^^2^24^7
- ;;^UTILITY(U,$J,358.3,577,1,0)
+ ;;^UTILITY(U,$J,358.3,358,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,358,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,358,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,359,0)
+ ;;=F25.1^^3^46^4
+ ;;^UTILITY(U,$J,358.3,359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,577,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia not achieve remission
- ;;^UTILITY(U,$J,358.3,577,1,4,0)
- ;;=4^C94.20
- ;;^UTILITY(U,$J,358.3,577,2)
- ;;=^5001837
- ;;^UTILITY(U,$J,358.3,578,0)
- ;;=C94.21^^2^24^9
- ;;^UTILITY(U,$J,358.3,578,1,0)
+ ;;^UTILITY(U,$J,358.3,359,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,359,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,359,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,360,0)
+ ;;=F52.32^^3^47^1
+ ;;^UTILITY(U,$J,358.3,360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,578,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,578,1,4,0)
- ;;=4^C94.21
- ;;^UTILITY(U,$J,358.3,578,2)
- ;;=^5001838
- ;;^UTILITY(U,$J,358.3,579,0)
- ;;=C94.22^^2^24^8
- ;;^UTILITY(U,$J,358.3,579,1,0)
+ ;;^UTILITY(U,$J,358.3,360,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,360,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,360,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,361,0)
+ ;;=F52.21^^3^47^2
+ ;;^UTILITY(U,$J,358.3,361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,579,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,579,1,4,0)
- ;;=4^C94.22
- ;;^UTILITY(U,$J,358.3,579,2)
- ;;=^5001839
- ;;^UTILITY(U,$J,358.3,580,0)
- ;;=C94.30^^2^24^42
- ;;^UTILITY(U,$J,358.3,580,1,0)
+ ;;^UTILITY(U,$J,358.3,361,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,361,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,361,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,362,0)
+ ;;=F52.31^^3^47^3
+ ;;^UTILITY(U,$J,358.3,362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,580,1,3,0)
- ;;=3^Mast cell leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,580,1,4,0)
- ;;=4^C94.30
- ;;^UTILITY(U,$J,358.3,580,2)
- ;;=^5001840
- ;;^UTILITY(U,$J,358.3,581,0)
- ;;=C94.31^^2^24^44
- ;;^UTILITY(U,$J,358.3,581,1,0)
+ ;;^UTILITY(U,$J,358.3,362,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,362,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,362,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,363,0)
+ ;;=F52.22^^3^47^4
+ ;;^UTILITY(U,$J,358.3,363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,581,1,3,0)
- ;;=3^Mast cell leukemia, in remission
- ;;^UTILITY(U,$J,358.3,581,1,4,0)
- ;;=4^C94.31
- ;;^UTILITY(U,$J,358.3,581,2)
- ;;=^5001841
- ;;^UTILITY(U,$J,358.3,582,0)
- ;;=C94.32^^2^24^43
- ;;^UTILITY(U,$J,358.3,582,1,0)
+ ;;^UTILITY(U,$J,358.3,363,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,363,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,363,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,364,0)
+ ;;=F52.6^^3^47^5
+ ;;^UTILITY(U,$J,358.3,364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,582,1,3,0)
- ;;=3^Mast cell leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,582,1,4,0)
- ;;=4^C94.32
- ;;^UTILITY(U,$J,358.3,582,2)
- ;;=^5001842
- ;;^UTILITY(U,$J,358.3,583,0)
- ;;=C95.00^^2^24^4
- ;;^UTILITY(U,$J,358.3,583,1,0)
+ ;;^UTILITY(U,$J,358.3,364,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,364,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,364,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,365,0)
+ ;;=F52.0^^3^47^6
+ ;;^UTILITY(U,$J,358.3,365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,583,1,3,0)
- ;;=3^Acute leukemia of unsp cell type not achieve remission
+ ;;^UTILITY(U,$J,358.3,365,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,365,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,365,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,366,0)
+ ;;=F52.4^^3^47^7
+ ;;^UTILITY(U,$J,358.3,366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,366,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,366,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,366,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,367,0)
+ ;;=F52.8^^3^47^9

@@ -1,144 +1,126 @@
-IBDEI0DT ; ; 06-AUG-2015
+IBDEI0DT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6270,1,5,0)
- ;;=5^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,6270,2)
- ;;=Bell's Palsy^13238
- ;;^UTILITY(U,$J,358.3,6271,0)
- ;;=386.11^^31^408^55
- ;;^UTILITY(U,$J,358.3,6271,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6271,1,4,0)
- ;;=4^386.11
- ;;^UTILITY(U,$J,358.3,6271,1,5,0)
- ;;=5^Vertigo, Benign Positional
- ;;^UTILITY(U,$J,358.3,6271,2)
- ;;=^269480
- ;;^UTILITY(U,$J,358.3,6272,0)
- ;;=784.0^^31^408^26
- ;;^UTILITY(U,$J,358.3,6272,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6272,1,4,0)
- ;;=4^784.0
- ;;^UTILITY(U,$J,358.3,6272,1,5,0)
- ;;=5^Headache
- ;;^UTILITY(U,$J,358.3,6272,2)
- ;;=^54133
- ;;^UTILITY(U,$J,358.3,6273,0)
- ;;=346.20^^31^408^15
- ;;^UTILITY(U,$J,358.3,6273,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6273,1,4,0)
- ;;=4^346.20
- ;;^UTILITY(U,$J,358.3,6273,1,5,0)
- ;;=5^Cluster/Migraine Variant
- ;;^UTILITY(U,$J,358.3,6273,2)
- ;;=^294062
- ;;^UTILITY(U,$J,358.3,6274,0)
- ;;=346.21^^31^408^16
- ;;^UTILITY(U,$J,358.3,6274,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6274,1,4,0)
- ;;=4^346.21
- ;;^UTILITY(U,$J,358.3,6274,1,5,0)
- ;;=5^Cluster/Migraine Variant, Resist to Meds
- ;;^UTILITY(U,$J,358.3,6274,2)
- ;;=^293879
- ;;^UTILITY(U,$J,358.3,6275,0)
- ;;=346.90^^31^408^28
- ;;^UTILITY(U,$J,358.3,6275,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6275,1,4,0)
- ;;=4^346.90
- ;;^UTILITY(U,$J,358.3,6275,1,5,0)
- ;;=5^Migraine Headache
- ;;^UTILITY(U,$J,358.3,6275,2)
- ;;=^293880
- ;;^UTILITY(U,$J,358.3,6276,0)
- ;;=346.91^^31^408^29
- ;;^UTILITY(U,$J,358.3,6276,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6276,1,4,0)
- ;;=4^346.91
- ;;^UTILITY(U,$J,358.3,6276,1,5,0)
- ;;=5^Migraine Headache Resistant To Meds
- ;;^UTILITY(U,$J,358.3,6276,2)
- ;;=^293881
- ;;^UTILITY(U,$J,358.3,6277,0)
- ;;=307.81^^31^408^50
- ;;^UTILITY(U,$J,358.3,6277,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6277,1,4,0)
- ;;=4^307.81
- ;;^UTILITY(U,$J,358.3,6277,1,5,0)
- ;;=5^Tension Headache
- ;;^UTILITY(U,$J,358.3,6277,2)
- ;;=^100405
- ;;^UTILITY(U,$J,358.3,6278,0)
- ;;=333.1^^31^408^2
- ;;^UTILITY(U,$J,358.3,6278,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6278,1,4,0)
- ;;=4^333.1
- ;;^UTILITY(U,$J,358.3,6278,1,5,0)
- ;;=5^Benign Tremor
- ;;^UTILITY(U,$J,358.3,6278,2)
- ;;=^42610
- ;;^UTILITY(U,$J,358.3,6279,0)
- ;;=354.0^^31^408^13
- ;;^UTILITY(U,$J,358.3,6279,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6279,1,4,0)
- ;;=4^354.0
- ;;^UTILITY(U,$J,358.3,6279,1,5,0)
- ;;=5^Carpal Tunnel Syndrome
- ;;^UTILITY(U,$J,358.3,6279,2)
- ;;=^19944
- ;;^UTILITY(U,$J,358.3,6280,0)
- ;;=780.31^^31^408^17
- ;;^UTILITY(U,$J,358.3,6280,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6280,1,4,0)
- ;;=4^780.31
- ;;^UTILITY(U,$J,358.3,6280,1,5,0)
- ;;=5^Convulsions, Febrile
- ;;^UTILITY(U,$J,358.3,6280,2)
- ;;=^28172
- ;;^UTILITY(U,$J,358.3,6281,0)
- ;;=331.0^^31^408^19
- ;;^UTILITY(U,$J,358.3,6281,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6281,1,4,0)
- ;;=4^331.0
- ;;^UTILITY(U,$J,358.3,6281,1,5,0)
- ;;=5^Dementia, Alzheimer'S
- ;;^UTILITY(U,$J,358.3,6281,2)
- ;;=^5679^294.10
- ;;^UTILITY(U,$J,358.3,6282,0)
- ;;=291.2^^31^408^18
- ;;^UTILITY(U,$J,358.3,6282,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6282,1,4,0)
- ;;=4^291.2
- ;;^UTILITY(U,$J,358.3,6282,1,5,0)
- ;;=5^Dementia, Alcoholic
- ;;^UTILITY(U,$J,358.3,6282,2)
- ;;=^268015
- ;;^UTILITY(U,$J,358.3,6283,0)
- ;;=290.40^^31^408^21
- ;;^UTILITY(U,$J,358.3,6283,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6283,1,4,0)
- ;;=4^290.40
- ;;^UTILITY(U,$J,358.3,6283,1,5,0)
- ;;=5^Dementia,Multi-Infarct
- ;;^UTILITY(U,$J,358.3,6283,2)
- ;;=^303487
- ;;^UTILITY(U,$J,358.3,6284,0)
- ;;=290.0^^31^408^47
- ;;^UTILITY(U,$J,358.3,6284,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6284,1,4,0)
- ;;=4^290.0
+ ;;^UTILITY(U,$J,358.3,6023,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,6023,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,6024,0)
+ ;;=I70.434^^40^383^11
+ ;;^UTILITY(U,$J,358.3,6024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6024,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6024,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,6024,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,6025,0)
+ ;;=I70.435^^40^383^12
+ ;;^UTILITY(U,$J,358.3,6025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6025,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6025,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,6025,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,6026,0)
+ ;;=I70.438^^40^383^13
+ ;;^UTILITY(U,$J,358.3,6026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6026,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,6026,1,4,0)
+ ;;=4^I70.438
+ ;;^UTILITY(U,$J,358.3,6026,2)
+ ;;=^5007669
+ ;;^UTILITY(U,$J,358.3,6027,0)
+ ;;=I70.439^^40^383^14
+ ;;^UTILITY(U,$J,358.3,6027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6027,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6027,1,4,0)
+ ;;=4^I70.439
+ ;;^UTILITY(U,$J,358.3,6027,2)
+ ;;=^5007670
+ ;;^UTILITY(U,$J,358.3,6028,0)
+ ;;=I70.441^^40^383^1
+ ;;^UTILITY(U,$J,358.3,6028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6028,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6028,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,6028,2)
+ ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,6029,0)
+ ;;=I70.442^^40^383^2
+ ;;^UTILITY(U,$J,358.3,6029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6029,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6029,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,6029,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,6030,0)
+ ;;=I70.443^^40^383^3
+ ;;^UTILITY(U,$J,358.3,6030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6030,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6030,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,6030,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,6031,0)
+ ;;=I70.444^^40^383^4
+ ;;^UTILITY(U,$J,358.3,6031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6031,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6031,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,6031,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,6032,0)
+ ;;=I70.445^^40^383^5
+ ;;^UTILITY(U,$J,358.3,6032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6032,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6032,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,6032,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,6033,0)
+ ;;=I70.448^^40^383^6
+ ;;^UTILITY(U,$J,358.3,6033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6033,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,6033,1,4,0)
+ ;;=4^I70.448
+ ;;^UTILITY(U,$J,358.3,6033,2)
+ ;;=^5007676
+ ;;^UTILITY(U,$J,358.3,6034,0)
+ ;;=I70.449^^40^383^7
+ ;;^UTILITY(U,$J,358.3,6034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6034,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6034,1,4,0)
+ ;;=4^I70.449
+ ;;^UTILITY(U,$J,358.3,6034,2)
+ ;;=^5007677
+ ;;^UTILITY(U,$J,358.3,6035,0)
+ ;;=I70.531^^40^383^36
+ ;;^UTILITY(U,$J,358.3,6035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6035,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6035,1,4,0)
+ ;;=4^I70.531

@@ -1,128 +1,132 @@
-IBDEI1UT ; ; 06-AUG-2015
+IBDEI1UT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32640,1,0)
+ ;;^UTILITY(U,$J,358.3,31038,2)
+ ;;=^5046377
+ ;;^UTILITY(U,$J,358.3,31039,0)
+ ;;=L08.89^^135^1389^3
+ ;;^UTILITY(U,$J,358.3,31039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32640,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,32640,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,32640,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,32641,0)
- ;;=C92.A1^^182^1992^9
- ;;^UTILITY(U,$J,358.3,32641,1,0)
+ ;;^UTILITY(U,$J,358.3,31039,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,31039,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,31039,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,31040,0)
+ ;;=T14.90^^135^1389^1
+ ;;^UTILITY(U,$J,358.3,31040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32641,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,32641,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,32641,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,32642,0)
- ;;=C92.A0^^182^1992^10
- ;;^UTILITY(U,$J,358.3,32642,1,0)
+ ;;^UTILITY(U,$J,358.3,31040,1,3,0)
+ ;;=3^Injury,Unspec
+ ;;^UTILITY(U,$J,358.3,31040,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,31040,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,31041,0)
+ ;;=S91.002A^^135^1389^6
+ ;;^UTILITY(U,$J,358.3,31041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32642,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
- ;;^UTILITY(U,$J,358.3,32642,1,4,0)
- ;;=4^C92.A0
- ;;^UTILITY(U,$J,358.3,32642,2)
- ;;=^5001813
- ;;^UTILITY(U,$J,358.3,32643,0)
- ;;=C92.51^^182^1992^11
- ;;^UTILITY(U,$J,358.3,32643,1,0)
+ ;;^UTILITY(U,$J,358.3,31041,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,31041,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,31041,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,31042,0)
+ ;;=S91.302A^^135^1389^7
+ ;;^UTILITY(U,$J,358.3,31042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32643,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,32643,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,32643,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,32644,0)
- ;;=C92.50^^182^1992^12
- ;;^UTILITY(U,$J,358.3,32644,1,0)
+ ;;^UTILITY(U,$J,358.3,31042,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,31042,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,31042,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,31043,0)
+ ;;=S51.802A^^135^1389^8
+ ;;^UTILITY(U,$J,358.3,31043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32644,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,32644,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,32644,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,32645,0)
- ;;=C94.40^^182^1992^15
- ;;^UTILITY(U,$J,358.3,32645,1,0)
+ ;;^UTILITY(U,$J,358.3,31043,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,31043,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,31043,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,31044,0)
+ ;;=S91.102A^^135^1389^9
+ ;;^UTILITY(U,$J,358.3,31044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32645,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
- ;;^UTILITY(U,$J,358.3,32645,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,32645,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,32646,0)
- ;;=C94.42^^182^1992^13
- ;;^UTILITY(U,$J,358.3,32646,1,0)
+ ;;^UTILITY(U,$J,358.3,31044,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,31044,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,31044,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,31045,0)
+ ;;=S61.402A^^135^1389^10
+ ;;^UTILITY(U,$J,358.3,31045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32646,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
- ;;^UTILITY(U,$J,358.3,32646,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,32646,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,32647,0)
- ;;=C94.41^^182^1992^14
- ;;^UTILITY(U,$J,358.3,32647,1,0)
+ ;;^UTILITY(U,$J,358.3,31045,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,31045,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,31045,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,31046,0)
+ ;;=S71.002A^^135^1389^11
+ ;;^UTILITY(U,$J,358.3,31046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32647,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
- ;;^UTILITY(U,$J,358.3,32647,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,32647,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,32648,0)
- ;;=D62.^^182^1992^16
- ;;^UTILITY(U,$J,358.3,32648,1,0)
+ ;;^UTILITY(U,$J,358.3,31046,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,31046,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,31046,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,31047,0)
+ ;;=S91.104A^^135^1389^22
+ ;;^UTILITY(U,$J,358.3,31047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32648,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,32648,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,32648,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,32649,0)
- ;;=C92.41^^182^1992^17
- ;;^UTILITY(U,$J,358.3,32649,1,0)
+ ;;^UTILITY(U,$J,358.3,31047,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,31047,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,31047,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,31048,0)
+ ;;=S81.802A^^135^1389^13
+ ;;^UTILITY(U,$J,358.3,31048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32649,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,32649,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,32649,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,32650,0)
- ;;=C92.40^^182^1992^18
- ;;^UTILITY(U,$J,358.3,32650,1,0)
+ ;;^UTILITY(U,$J,358.3,31048,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,31048,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,31048,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,31049,0)
+ ;;=S41.102A^^135^1389^15
+ ;;^UTILITY(U,$J,358.3,31049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32650,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,32650,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,32650,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,32651,0)
- ;;=D56.0^^182^1992^19
- ;;^UTILITY(U,$J,358.3,32651,1,0)
+ ;;^UTILITY(U,$J,358.3,31049,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,31049,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,31049,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,31050,0)
+ ;;=S91.001A^^135^1389^16
+ ;;^UTILITY(U,$J,358.3,31050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32651,1,3,0)
- ;;=3^Alpha Thalassemia
- ;;^UTILITY(U,$J,358.3,32651,1,4,0)
- ;;=4^D56.0
- ;;^UTILITY(U,$J,358.3,32651,2)
- ;;=^340494
- ;;^UTILITY(U,$J,358.3,32652,0)
- ;;=D63.1^^182^1992^21
- ;;^UTILITY(U,$J,358.3,32652,1,0)
+ ;;^UTILITY(U,$J,358.3,31050,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,31050,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,31050,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,31051,0)
+ ;;=S91.301A^^135^1389^17
+ ;;^UTILITY(U,$J,358.3,31051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32652,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,31051,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec

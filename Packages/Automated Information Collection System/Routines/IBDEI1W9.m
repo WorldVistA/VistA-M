@@ -1,136 +1,130 @@
-IBDEI1W9 ; ; 06-AUG-2015
+IBDEI1W9 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33311,1,3,0)
- ;;=3^Alcohol Use Screen
- ;;^UTILITY(U,$J,358.3,33311,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,33311,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,33312,0)
- ;;=Z12.39^^182^2001^3
- ;;^UTILITY(U,$J,358.3,33312,1,0)
+ ;;^UTILITY(U,$J,358.3,31721,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,31721,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,31722,0)
+ ;;=F51.4^^138^1450^15
+ ;;^UTILITY(U,$J,358.3,31722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33312,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,33312,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,33312,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,33313,0)
- ;;=Z12.4^^182^2001^5
- ;;^UTILITY(U,$J,358.3,33313,1,0)
+ ;;^UTILITY(U,$J,358.3,31722,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,31722,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,31722,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,31723,0)
+ ;;=F51.5^^138^1450^13
+ ;;^UTILITY(U,$J,358.3,31723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33313,1,3,0)
- ;;=3^Cervix Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,33313,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,33313,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,33314,0)
- ;;=Z13.5^^182^2001^7
- ;;^UTILITY(U,$J,358.3,33314,1,0)
+ ;;^UTILITY(U,$J,358.3,31723,1,3,0)
+ ;;=3^Nightmare Disorder
+ ;;^UTILITY(U,$J,358.3,31723,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,31723,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,31724,0)
+ ;;=G47.52^^138^1450^17
+ ;;^UTILITY(U,$J,358.3,31724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33314,1,3,0)
- ;;=3^Eye and Ear Disorder Screen
- ;;^UTILITY(U,$J,358.3,33314,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,33314,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,33315,0)
- ;;=Z01.89^^182^2001^6
- ;;^UTILITY(U,$J,358.3,33315,1,0)
+ ;;^UTILITY(U,$J,358.3,31724,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior Disorder
+ ;;^UTILITY(U,$J,358.3,31724,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,31724,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,31725,0)
+ ;;=G25.81^^138^1450^18
+ ;;^UTILITY(U,$J,358.3,31725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33315,1,3,0)
- ;;=3^Diabetic Foot Exam
- ;;^UTILITY(U,$J,358.3,33315,1,4,0)
- ;;=4^Z01.89
- ;;^UTILITY(U,$J,358.3,33315,2)
- ;;=^5062632
- ;;^UTILITY(U,$J,358.3,33316,0)
- ;;=Z11.59^^182^2001^13
- ;;^UTILITY(U,$J,358.3,33316,1,0)
+ ;;^UTILITY(U,$J,358.3,31725,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,31725,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,31725,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,31726,0)
+ ;;=G47.19^^138^1450^8
+ ;;^UTILITY(U,$J,358.3,31726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33316,1,3,0)
- ;;=3^Viral Diseases Screen
- ;;^UTILITY(U,$J,358.3,33316,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,33316,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,33317,0)
- ;;=Z13.6^^182^2001^4
- ;;^UTILITY(U,$J,358.3,33317,1,0)
+ ;;^UTILITY(U,$J,358.3,31726,1,3,0)
+ ;;=3^Hypersomnolence Disorder NEC
+ ;;^UTILITY(U,$J,358.3,31726,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,31726,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,31727,0)
+ ;;=G47.8^^138^1450^19
+ ;;^UTILITY(U,$J,358.3,31727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33317,1,3,0)
- ;;=3^Cardiovascular Disorder Screen
- ;;^UTILITY(U,$J,358.3,33317,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,33317,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,33318,0)
- ;;=Z12.12^^182^2001^12
- ;;^UTILITY(U,$J,358.3,33318,1,0)
+ ;;^UTILITY(U,$J,358.3,31727,1,3,0)
+ ;;=3^Sleep-Wake Disorder NEC
+ ;;^UTILITY(U,$J,358.3,31727,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,31727,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,31728,0)
+ ;;=F10.10^^138^1451^1
+ ;;^UTILITY(U,$J,358.3,31728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33318,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,33318,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,33318,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,33319,0)
- ;;=Z71.89^^182^2001^10
- ;;^UTILITY(U,$J,358.3,33319,1,0)
+ ;;^UTILITY(U,$J,358.3,31728,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,31728,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,31728,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,31729,0)
+ ;;=F10.14^^138^1451^8
+ ;;^UTILITY(U,$J,358.3,31729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33319,1,3,0)
- ;;=3^Other Specified Counseling
- ;;^UTILITY(U,$J,358.3,33319,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,33319,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,33320,0)
- ;;=Z12.5^^182^2001^11
- ;;^UTILITY(U,$J,358.3,33320,1,0)
+ ;;^UTILITY(U,$J,358.3,31729,1,3,0)
+ ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31729,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,31729,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,31730,0)
+ ;;=F10.182^^138^1451^10
+ ;;^UTILITY(U,$J,358.3,31730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33320,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,33320,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,33320,2)
- ;;=^5062688
- ;;^UTILITY(U,$J,358.3,33321,0)
- ;;=Z00.00^^182^2001^8
- ;;^UTILITY(U,$J,358.3,33321,1,0)
+ ;;^UTILITY(U,$J,358.3,31730,1,3,0)
+ ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31730,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,31730,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,31731,0)
+ ;;=F10.20^^138^1451^2
+ ;;^UTILITY(U,$J,358.3,31731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33321,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,33321,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,33321,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,33322,0)
- ;;=Z02.79^^182^2001^9
- ;;^UTILITY(U,$J,358.3,33322,1,0)
+ ;;^UTILITY(U,$J,358.3,31731,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,31731,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,31731,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,31732,0)
+ ;;=F10.21^^138^1451^3
+ ;;^UTILITY(U,$J,358.3,31732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33322,1,3,0)
- ;;=3^Medical Certificate Encounter
- ;;^UTILITY(U,$J,358.3,33322,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,33322,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,33323,0)
- ;;=D86.0^^182^2002^45
- ;;^UTILITY(U,$J,358.3,33323,1,0)
+ ;;^UTILITY(U,$J,358.3,31732,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,31732,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,31732,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,31733,0)
+ ;;=F10.230^^138^1451^4
+ ;;^UTILITY(U,$J,358.3,31733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33323,1,3,0)
- ;;=3^Sarcoidosis of Lung
- ;;^UTILITY(U,$J,358.3,33323,1,4,0)
- ;;=4^D86.0
- ;;^UTILITY(U,$J,358.3,33323,2)
- ;;=^5002442
- ;;^UTILITY(U,$J,358.3,33324,0)
- ;;=D86.1^^182^2002^47
- ;;^UTILITY(U,$J,358.3,33324,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33324,1,3,0)
- ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,31733,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,31733,1,4,0)
+ ;;=4^F10.230
+ ;;^UTILITY(U,$J,358.3,31733,2)
+ ;;=^5003086
+ ;;^UTILITY(U,$J,358.3,31734,0)
+ ;;=F10.231^^138^1451^5

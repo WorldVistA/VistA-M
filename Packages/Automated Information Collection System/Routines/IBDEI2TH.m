@@ -1,0 +1,128 @@
+IBDEI2TH ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47292,1,3,0)
+ ;;=3^Lymphocyte-Rich Classical Hodgkin Lymphoma,Mult Site Nodes
+ ;;^UTILITY(U,$J,358.3,47292,1,4,0)
+ ;;=4^C81.48
+ ;;^UTILITY(U,$J,358.3,47292,2)
+ ;;=^5001439
+ ;;^UTILITY(U,$J,358.3,47293,0)
+ ;;=C81.49^^209^2346^274
+ ;;^UTILITY(U,$J,358.3,47293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47293,1,3,0)
+ ;;=3^Lymphocyte-Rich Classical Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47293,1,4,0)
+ ;;=4^C81.49
+ ;;^UTILITY(U,$J,358.3,47293,2)
+ ;;=^5001440
+ ;;^UTILITY(U,$J,358.3,47294,0)
+ ;;=C81.70^^209^2346^233
+ ;;^UTILITY(U,$J,358.3,47294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47294,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47294,1,4,0)
+ ;;=4^C81.70
+ ;;^UTILITY(U,$J,358.3,47294,2)
+ ;;=^5001441
+ ;;^UTILITY(U,$J,358.3,47295,0)
+ ;;=C81.71^^209^2346^219
+ ;;^UTILITY(U,$J,358.3,47295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47295,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Head/Face/Neck Nodes
+ ;;^UTILITY(U,$J,358.3,47295,1,4,0)
+ ;;=4^C81.71
+ ;;^UTILITY(U,$J,358.3,47295,2)
+ ;;=^5001442
+ ;;^UTILITY(U,$J,358.3,47296,0)
+ ;;=C81.72^^209^2346^227
+ ;;^UTILITY(U,$J,358.3,47296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47296,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Intrathoracic Nodes
+ ;;^UTILITY(U,$J,358.3,47296,1,4,0)
+ ;;=4^C81.72
+ ;;^UTILITY(U,$J,358.3,47296,2)
+ ;;=^5001443
+ ;;^UTILITY(U,$J,358.3,47297,0)
+ ;;=C81.73^^209^2346^223
+ ;;^UTILITY(U,$J,358.3,47297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47297,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Intra-Abdominal Nodes
+ ;;^UTILITY(U,$J,358.3,47297,1,4,0)
+ ;;=4^C81.73
+ ;;^UTILITY(U,$J,358.3,47297,2)
+ ;;=^5001444
+ ;;^UTILITY(U,$J,358.3,47298,0)
+ ;;=C81.74^^209^2346^215
+ ;;^UTILITY(U,$J,358.3,47298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47298,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Axilla/Upper Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47298,1,4,0)
+ ;;=4^C81.74
+ ;;^UTILITY(U,$J,358.3,47298,2)
+ ;;=^5001445
+ ;;^UTILITY(U,$J,358.3,47299,0)
+ ;;=C81.75^^209^2346^221
+ ;;^UTILITY(U,$J,358.3,47299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47299,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Ing Region/Lower Limb Nodes
+ ;;^UTILITY(U,$J,358.3,47299,1,4,0)
+ ;;=4^C81.75
+ ;;^UTILITY(U,$J,358.3,47299,2)
+ ;;=^5001446
+ ;;^UTILITY(U,$J,358.3,47300,0)
+ ;;=C81.76^^209^2346^225
+ ;;^UTILITY(U,$J,358.3,47300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47300,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Intrapelvic Nodes
+ ;;^UTILITY(U,$J,358.3,47300,1,4,0)
+ ;;=4^C81.76
+ ;;^UTILITY(U,$J,358.3,47300,2)
+ ;;=^5001447
+ ;;^UTILITY(U,$J,358.3,47301,0)
+ ;;=C81.77^^209^2346^231
+ ;;^UTILITY(U,$J,358.3,47301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47301,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Spleen
+ ;;^UTILITY(U,$J,358.3,47301,1,4,0)
+ ;;=4^C81.77
+ ;;^UTILITY(U,$J,358.3,47301,2)
+ ;;=^5001448
+ ;;^UTILITY(U,$J,358.3,47302,0)
+ ;;=C81.78^^209^2346^229
+ ;;^UTILITY(U,$J,358.3,47302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47302,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Mult Site Nodes
+ ;;^UTILITY(U,$J,358.3,47302,1,4,0)
+ ;;=4^C81.78
+ ;;^UTILITY(U,$J,358.3,47302,2)
+ ;;=^5001449
+ ;;^UTILITY(U,$J,358.3,47303,0)
+ ;;=C81.79^^209^2346^217
+ ;;^UTILITY(U,$J,358.3,47303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47303,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,47303,1,4,0)
+ ;;=4^C81.79
+ ;;^UTILITY(U,$J,358.3,47303,2)
+ ;;=^5001450
+ ;;^UTILITY(U,$J,358.3,47304,0)
+ ;;=C81.90^^209^2346^234
+ ;;^UTILITY(U,$J,358.3,47304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47304,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47304,1,4,0)
+ ;;=4^C81.90

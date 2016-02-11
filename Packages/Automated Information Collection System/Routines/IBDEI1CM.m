@@ -1,138 +1,122 @@
-IBDEI1CM ; ; 06-AUG-2015
+IBDEI1CM ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23889,1,3,0)
- ;;=3^Other Ortho Aftercare
- ;;^UTILITY(U,$J,358.3,23889,1,4,0)
- ;;=4^V54.89
- ;;^UTILITY(U,$J,358.3,23889,2)
- ;;=Other Ortho Aftercare^1
- ;;^UTILITY(U,$J,358.3,23890,0)
- ;;=V52.8^^130^1448^7
- ;;^UTILITY(U,$J,358.3,23890,1,0)
+ ;;^UTILITY(U,$J,358.3,22459,1,4,0)
+ ;;=4^S52.034S
+ ;;^UTILITY(U,$J,358.3,22459,2)
+ ;;=^5028869
+ ;;^UTILITY(U,$J,358.3,22460,0)
+ ;;=S52.025S^^101^1040^103
+ ;;^UTILITY(U,$J,358.3,22460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23890,1,3,0)
- ;;=3^Fitting/Adj Oth Spec Prosth Device
- ;;^UTILITY(U,$J,358.3,23890,1,4,0)
- ;;=4^V52.8
- ;;^UTILITY(U,$J,358.3,23890,2)
- ;;=^295501
- ;;^UTILITY(U,$J,358.3,23891,0)
- ;;=V45.89^^130^1448^9
- ;;^UTILITY(U,$J,358.3,23891,1,0)
+ ;;^UTILITY(U,$J,358.3,22460,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22460,1,4,0)
+ ;;=4^S52.025S
+ ;;^UTILITY(U,$J,358.3,22460,2)
+ ;;=^5028832
+ ;;^UTILITY(U,$J,358.3,22461,0)
+ ;;=S52.024S^^101^1040^104
+ ;;^UTILITY(U,$J,358.3,22461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23891,1,3,0)
- ;;=3^Oth Post-Procedural States
- ;;^UTILITY(U,$J,358.3,23891,1,4,0)
- ;;=4^V45.89
- ;;^UTILITY(U,$J,358.3,23891,2)
- ;;=^276679
- ;;^UTILITY(U,$J,358.3,23892,0)
- ;;=V53.8^^130^1448^1
- ;;^UTILITY(U,$J,358.3,23892,1,0)
+ ;;^UTILITY(U,$J,358.3,22461,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
+ ;;^UTILITY(U,$J,358.3,22461,1,4,0)
+ ;;=4^S52.024S
+ ;;^UTILITY(U,$J,358.3,22461,2)
+ ;;=^5028816
+ ;;^UTILITY(U,$J,358.3,22462,0)
+ ;;=S52.614S^^101^1040^110
+ ;;^UTILITY(U,$J,358.3,22462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23892,1,3,0)
- ;;=3^Adjustment Of Wheelchair
- ;;^UTILITY(U,$J,358.3,23892,1,4,0)
- ;;=4^V53.8
- ;;^UTILITY(U,$J,358.3,23892,2)
- ;;=^295511
- ;;^UTILITY(U,$J,358.3,23893,0)
- ;;=V65.19^^130^1448^11
- ;;^UTILITY(U,$J,358.3,23893,1,0)
+ ;;^UTILITY(U,$J,358.3,22462,1,3,0)
+ ;;=3^Nondisp fx of right ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,22462,1,4,0)
+ ;;=4^S52.614S
+ ;;^UTILITY(U,$J,358.3,22462,2)
+ ;;=^5031098
+ ;;^UTILITY(U,$J,358.3,22463,0)
+ ;;=S52.235S^^101^1040^98
+ ;;^UTILITY(U,$J,358.3,22463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23893,1,3,0)
- ;;=3^Other Person Consult for Another
- ;;^UTILITY(U,$J,358.3,23893,1,4,0)
- ;;=4^V65.19
- ;;^UTILITY(U,$J,358.3,23893,2)
- ;;=^329985
- ;;^UTILITY(U,$J,358.3,23894,0)
- ;;=V49.76^^130^1449^2
- ;;^UTILITY(U,$J,358.3,23894,1,0)
+ ;;^UTILITY(U,$J,358.3,22463,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22463,1,4,0)
+ ;;=4^S52.235S
+ ;;^UTILITY(U,$J,358.3,22463,2)
+ ;;=^5029490
+ ;;^UTILITY(U,$J,358.3,22464,0)
+ ;;=S52.234S^^101^1040^100
+ ;;^UTILITY(U,$J,358.3,22464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23894,1,3,0)
- ;;=3^Above Knee Amputat Status
- ;;^UTILITY(U,$J,358.3,23894,1,4,0)
- ;;=4^V49.76
- ;;^UTILITY(U,$J,358.3,23894,2)
- ;;=^303444
- ;;^UTILITY(U,$J,358.3,23895,0)
- ;;=V49.74^^130^1449^3
- ;;^UTILITY(U,$J,358.3,23895,1,0)
+ ;;^UTILITY(U,$J,358.3,22464,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22464,1,4,0)
+ ;;=4^S52.234S
+ ;;^UTILITY(U,$J,358.3,22464,2)
+ ;;=^5029474
+ ;;^UTILITY(U,$J,358.3,22465,0)
+ ;;=S52.265S^^101^1040^113
+ ;;^UTILITY(U,$J,358.3,22465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23895,1,3,0)
- ;;=3^Ankle Amputat Status
- ;;^UTILITY(U,$J,358.3,23895,1,4,0)
- ;;=4^V49.74
- ;;^UTILITY(U,$J,358.3,23895,2)
- ;;=^303442
- ;;^UTILITY(U,$J,358.3,23896,0)
- ;;=V49.75^^130^1449^5
- ;;^UTILITY(U,$J,358.3,23896,1,0)
+ ;;^UTILITY(U,$J,358.3,22465,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,22465,1,4,0)
+ ;;=4^S52.265S
+ ;;^UTILITY(U,$J,358.3,22465,2)
+ ;;=^5029778
+ ;;^UTILITY(U,$J,358.3,22466,0)
+ ;;=S52.264S^^101^1040^114
+ ;;^UTILITY(U,$J,358.3,22466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23896,1,3,0)
- ;;=3^Below Knee Amputat Status
- ;;^UTILITY(U,$J,358.3,23896,1,4,0)
- ;;=4^V49.75
- ;;^UTILITY(U,$J,358.3,23896,2)
- ;;=^303443
- ;;^UTILITY(U,$J,358.3,23897,0)
- ;;=V49.73^^130^1449^6
- ;;^UTILITY(U,$J,358.3,23897,1,0)
+ ;;^UTILITY(U,$J,358.3,22466,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,22466,1,4,0)
+ ;;=4^S52.264S
+ ;;^UTILITY(U,$J,358.3,22466,2)
+ ;;=^5029762
+ ;;^UTILITY(U,$J,358.3,22467,0)
+ ;;=S52.245S^^101^1040^117
+ ;;^UTILITY(U,$J,358.3,22467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23897,1,3,0)
- ;;=3^Foot Amputat Status
- ;;^UTILITY(U,$J,358.3,23897,1,4,0)
- ;;=4^V49.73
- ;;^UTILITY(U,$J,358.3,23897,2)
- ;;=^303441
- ;;^UTILITY(U,$J,358.3,23898,0)
- ;;=V49.70^^130^1449^10
- ;;^UTILITY(U,$J,358.3,23898,1,0)
+ ;;^UTILITY(U,$J,358.3,22467,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,22467,1,4,0)
+ ;;=4^S52.245S
+ ;;^UTILITY(U,$J,358.3,22467,2)
+ ;;=^5029586
+ ;;^UTILITY(U,$J,358.3,22468,0)
+ ;;=S52.244S^^101^1040^118
+ ;;^UTILITY(U,$J,358.3,22468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23898,1,3,0)
- ;;=3^Lower Limb Amputat Status
- ;;^UTILITY(U,$J,358.3,23898,1,4,0)
- ;;=4^V49.70
- ;;^UTILITY(U,$J,358.3,23898,2)
- ;;=^303438
- ;;^UTILITY(U,$J,358.3,23899,0)
- ;;=V49.71^^130^1449^7
- ;;^UTILITY(U,$J,358.3,23899,1,0)
+ ;;^UTILITY(U,$J,358.3,22468,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,22468,1,4,0)
+ ;;=4^S52.244S
+ ;;^UTILITY(U,$J,358.3,22468,2)
+ ;;=^5029570
+ ;;^UTILITY(U,$J,358.3,22469,0)
+ ;;=S52.225S^^101^1040^120
+ ;;^UTILITY(U,$J,358.3,22469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23899,1,3,0)
- ;;=3^Great Toe Amputat Status
- ;;^UTILITY(U,$J,358.3,23899,1,4,0)
- ;;=4^V49.71
- ;;^UTILITY(U,$J,358.3,23899,2)
- ;;=^303439
- ;;^UTILITY(U,$J,358.3,23900,0)
- ;;=V49.72^^130^1449^12
- ;;^UTILITY(U,$J,358.3,23900,1,0)
+ ;;^UTILITY(U,$J,358.3,22469,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22469,1,4,0)
+ ;;=4^S52.225S
+ ;;^UTILITY(U,$J,358.3,22469,2)
+ ;;=^5029394
+ ;;^UTILITY(U,$J,358.3,22470,0)
+ ;;=S52.224S^^101^1040^122
+ ;;^UTILITY(U,$J,358.3,22470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23900,1,3,0)
- ;;=3^Oth Toe(S) Amputat Status
- ;;^UTILITY(U,$J,358.3,23900,1,4,0)
- ;;=4^V49.72
- ;;^UTILITY(U,$J,358.3,23900,2)
- ;;=^303440
- ;;^UTILITY(U,$J,358.3,23901,0)
- ;;=V49.60^^130^1449^15
- ;;^UTILITY(U,$J,358.3,23901,1,0)
+ ;;^UTILITY(U,$J,358.3,22470,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22470,1,4,0)
+ ;;=4^S52.224S
+ ;;^UTILITY(U,$J,358.3,22470,2)
+ ;;=^5029378
+ ;;^UTILITY(U,$J,358.3,22471,0)
+ ;;=M84.432S^^101^1040^130
+ ;;^UTILITY(U,$J,358.3,22471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23901,1,3,0)
- ;;=3^Upper Limb Amputat Status
- ;;^UTILITY(U,$J,358.3,23901,1,4,0)
- ;;=4^V49.60
- ;;^UTILITY(U,$J,358.3,23901,2)
- ;;=^303427
- ;;^UTILITY(U,$J,358.3,23902,0)
- ;;=V49.61^^130^1449^14
- ;;^UTILITY(U,$J,358.3,23902,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23902,1,3,0)
- ;;=3^Thumb Amput Status
- ;;^UTILITY(U,$J,358.3,23902,1,4,0)
- ;;=4^V49.61

@@ -1,126 +1,124 @@
-IBDEI1N1 ; ; 06-AUG-2015
+IBDEI1N1 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29088,1,3,0)
- ;;=3^95834
- ;;^UTILITY(U,$J,358.3,29089,0)
- ;;=97014^^173^1858^21^^^^1
- ;;^UTILITY(U,$J,358.3,29089,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29089,1,2,0)
- ;;=2^Electric Stimulation Therapy (Unattended)
- ;;^UTILITY(U,$J,358.3,29089,1,3,0)
- ;;=3^97014
- ;;^UTILITY(U,$J,358.3,29090,0)
- ;;=97032^^173^1858^22^^^^1
- ;;^UTILITY(U,$J,358.3,29090,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29090,1,2,0)
- ;;=2^Electrical Stimulation,Attended,ea 15min
- ;;^UTILITY(U,$J,358.3,29090,1,3,0)
- ;;=3^97032
- ;;^UTILITY(U,$J,358.3,29091,0)
- ;;=97110^^173^1858^54^^^^1
- ;;^UTILITY(U,$J,358.3,29091,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29091,1,2,0)
- ;;=2^Therapeutic Exercises,1 or more Areas,ea 15min
- ;;^UTILITY(U,$J,358.3,29091,1,3,0)
- ;;=3^97110
- ;;^UTILITY(U,$J,358.3,29092,0)
- ;;=97116^^173^1858^23^^^^1
- ;;^UTILITY(U,$J,358.3,29092,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29092,1,2,0)
- ;;=2^Gait Training Therapy,ea 15min
- ;;^UTILITY(U,$J,358.3,29092,1,3,0)
- ;;=3^97116
- ;;^UTILITY(U,$J,358.3,29093,0)
- ;;=97150^^173^1858^24^^^^1
- ;;^UTILITY(U,$J,358.3,29093,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29093,1,2,0)
- ;;=2^Group Therapeutic Procedures
- ;;^UTILITY(U,$J,358.3,29093,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,29094,0)
- ;;=97010^^173^1858^25^^^^1
- ;;^UTILITY(U,$J,358.3,29094,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29094,1,2,0)
- ;;=2^Hot Or Cold Packs Therapy
- ;;^UTILITY(U,$J,358.3,29094,1,3,0)
- ;;=3^97010
- ;;^UTILITY(U,$J,358.3,29095,0)
- ;;=97036^^173^1858^26^^^^1
- ;;^UTILITY(U,$J,358.3,29095,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29095,1,2,0)
- ;;=2^Hydrotherapy (Hubbard Tank),ea 15min
- ;;^UTILITY(U,$J,358.3,29095,1,3,0)
- ;;=3^97036
- ;;^UTILITY(U,$J,358.3,29096,0)
- ;;=97033^^173^1858^20^^^^1
- ;;^UTILITY(U,$J,358.3,29096,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29096,1,2,0)
- ;;=2^Electric Current Therapy,ea 15min
- ;;^UTILITY(U,$J,358.3,29096,1,3,0)
- ;;=3^97033
- ;;^UTILITY(U,$J,358.3,29097,0)
- ;;=97124^^173^1858^31^^^^1
- ;;^UTILITY(U,$J,358.3,29097,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29097,1,2,0)
- ;;=2^Massage Therapy,ea 15min
- ;;^UTILITY(U,$J,358.3,29097,1,3,0)
- ;;=3^97124
- ;;^UTILITY(U,$J,358.3,29098,0)
- ;;=97112^^173^1858^39^^^^1
- ;;^UTILITY(U,$J,358.3,29098,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29098,1,2,0)
- ;;=2^Neuromuscular Reeducation,ea 15min
- ;;^UTILITY(U,$J,358.3,29098,1,3,0)
- ;;=3^97112
- ;;^UTILITY(U,$J,358.3,29099,0)
- ;;=97018^^173^1858^40^^^^1
- ;;^UTILITY(U,$J,358.3,29099,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29099,1,2,0)
- ;;=2^Paraffin Bath Therapy
- ;;^UTILITY(U,$J,358.3,29099,1,3,0)
- ;;=3^97018
- ;;^UTILITY(U,$J,358.3,29100,0)
- ;;=97750^^173^1858^41^^^^1
- ;;^UTILITY(U,$J,358.3,29100,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29100,1,2,0)
- ;;=2^Physical Performance Test
- ;;^UTILITY(U,$J,358.3,29100,1,3,0)
- ;;=3^97750
- ;;^UTILITY(U,$J,358.3,29101,0)
- ;;=97535^^173^1858^45^^^^1
- ;;^UTILITY(U,$J,358.3,29101,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29101,1,2,0)
- ;;=2^Self Care Mngment Training,ea 15min
- ;;^UTILITY(U,$J,358.3,29101,1,3,0)
- ;;=3^97535
- ;;^UTILITY(U,$J,358.3,29102,0)
- ;;=97530^^173^1858^53^^^^1
- ;;^UTILITY(U,$J,358.3,29102,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29102,1,2,0)
- ;;=2^Therapeutic Dynamic Activities,ea 15min
- ;;^UTILITY(U,$J,358.3,29102,1,3,0)
- ;;=3^97530
- ;;^UTILITY(U,$J,358.3,29103,0)
- ;;=97140^^173^1858^30^^^^1
- ;;^UTILITY(U,$J,358.3,29103,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29103,1,2,0)
- ;;=2^Manual Therapy,ea 15min
- ;;^UTILITY(U,$J,358.3,29103,1,3,0)
- ;;=3^97140
+ ;;^UTILITY(U,$J,358.3,27405,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,27405,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,27406,0)
+ ;;=K51.919^^132^1315^79
+ ;;^UTILITY(U,$J,358.3,27406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27406,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,27406,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,27406,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,27407,0)
+ ;;=K51.918^^132^1315^77
+ ;;^UTILITY(U,$J,358.3,27407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27407,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,27407,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,27407,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,27408,0)
+ ;;=K51.914^^132^1315^74
+ ;;^UTILITY(U,$J,358.3,27408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27408,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,27408,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,27408,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,27409,0)
+ ;;=K51.913^^132^1315^75
+ ;;^UTILITY(U,$J,358.3,27409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27409,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,27409,1,4,0)
+ ;;=4^K51.913
+ ;;^UTILITY(U,$J,358.3,27409,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,27410,0)
+ ;;=K51.912^^132^1315^76
+ ;;^UTILITY(U,$J,358.3,27410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27410,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,27410,1,4,0)
+ ;;=4^K51.912
+ ;;^UTILITY(U,$J,358.3,27410,2)
+ ;;=^5008696
+ ;;^UTILITY(U,$J,358.3,27411,0)
+ ;;=K51.911^^132^1315^78
+ ;;^UTILITY(U,$J,358.3,27411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27411,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,27411,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,27411,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,27412,0)
+ ;;=K52.89^^132^1315^54
+ ;;^UTILITY(U,$J,358.3,27412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27412,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,27412,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,27412,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,27413,0)
+ ;;=K52.9^^132^1315^53
+ ;;^UTILITY(U,$J,358.3,27413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27413,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,27413,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,27413,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,27414,0)
+ ;;=K57.30^^132^1315^42
+ ;;^UTILITY(U,$J,358.3,27414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27414,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,27414,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,27414,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,27415,0)
+ ;;=K57.50^^132^1315^43
+ ;;^UTILITY(U,$J,358.3,27415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27415,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,27415,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,27415,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,27416,0)
+ ;;=K57.90^^132^1315^41
+ ;;^UTILITY(U,$J,358.3,27416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27416,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,27416,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,27416,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,27417,0)
+ ;;=K57.20^^132^1315^37
+ ;;^UTILITY(U,$J,358.3,27417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27417,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding

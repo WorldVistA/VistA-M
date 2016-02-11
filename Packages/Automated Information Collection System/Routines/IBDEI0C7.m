@@ -1,124 +1,128 @@
-IBDEI0C7 ; ; 06-AUG-2015
+IBDEI0C7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5416,0)
- ;;=12001^^26^334^1^^^^1
- ;;^UTILITY(U,$J,358.3,5416,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5416,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,5416,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,5417,0)
- ;;=12002^^26^334^2^^^^1
- ;;^UTILITY(U,$J,358.3,5417,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5417,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,5417,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,5418,0)
- ;;=12004^^26^334^3^^^^1
- ;;^UTILITY(U,$J,358.3,5418,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5418,1,2,0)
- ;;=2^12004
- ;;^UTILITY(U,$J,358.3,5418,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,5419,0)
- ;;=12005^^26^334^4^^^^1
- ;;^UTILITY(U,$J,358.3,5419,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5419,1,2,0)
- ;;=2^12005
- ;;^UTILITY(U,$J,358.3,5419,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,5420,0)
- ;;=12006^^26^334^5^^^^1
- ;;^UTILITY(U,$J,358.3,5420,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5420,1,2,0)
- ;;=2^12006
- ;;^UTILITY(U,$J,358.3,5420,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,5421,0)
- ;;=12007^^26^334^6^^^^1
- ;;^UTILITY(U,$J,358.3,5421,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5421,1,2,0)
- ;;=2^12007
- ;;^UTILITY(U,$J,358.3,5421,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; over 30 cm
- ;;^UTILITY(U,$J,358.3,5422,0)
- ;;=12031^^26^335^1^^^^1
- ;;^UTILITY(U,$J,358.3,5422,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5422,1,2,0)
- ;;=2^12031
- ;;^UTILITY(U,$J,358.3,5422,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,5423,0)
- ;;=12032^^26^335^2^^^^1
- ;;^UTILITY(U,$J,358.3,5423,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5423,1,2,0)
- ;;=2^12032
- ;;^UTILITY(U,$J,358.3,5423,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,5424,0)
- ;;=12034^^26^335^3^^^^1
- ;;^UTILITY(U,$J,358.3,5424,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5424,1,2,0)
- ;;=2^12034
- ;;^UTILITY(U,$J,358.3,5424,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,5425,0)
- ;;=12035^^26^335^4^^^^1
- ;;^UTILITY(U,$J,358.3,5425,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5425,1,2,0)
- ;;=2^12035
- ;;^UTILITY(U,$J,358.3,5425,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,5426,0)
- ;;=12036^^26^335^5^^^^1
- ;;^UTILITY(U,$J,358.3,5426,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5426,1,2,0)
- ;;=2^12036
- ;;^UTILITY(U,$J,358.3,5426,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,5427,0)
- ;;=12037^^26^335^6^^^^1
- ;;^UTILITY(U,$J,358.3,5427,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5427,1,2,0)
- ;;=2^12037
- ;;^UTILITY(U,$J,358.3,5427,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; over 30 cm
- ;;^UTILITY(U,$J,358.3,5428,0)
- ;;=17270^^26^336^1^^^^1
- ;;^UTILITY(U,$J,358.3,5428,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5428,1,2,0)
- ;;=2^17270
- ;;^UTILITY(U,$J,358.3,5428,1,3,0)
- ;;=3^Dest Mal Lesion Sclp/NK/Ft/Hd/Gen,0.5cm or <
- ;;^UTILITY(U,$J,358.3,5429,0)
- ;;=17271^^26^336^2^^^^1
- ;;^UTILITY(U,$J,358.3,5429,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5429,1,2,0)
- ;;=2^17271
- ;;^UTILITY(U,$J,358.3,5429,1,3,0)
- ;;=3^Dest Mal Lesion Sclp/NK/Ft/Hd/Gen,0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,5430,0)
- ;;=17272^^26^336^3^^^^1
- ;;^UTILITY(U,$J,358.3,5430,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5430,1,2,0)
- ;;=2^17272
- ;;^UTILITY(U,$J,358.3,5430,1,3,0)
- ;;=3^Dest Mal Lesion Sclp/NK/Ft/Hd/Gen,1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,5263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5263,1,3,0)
+ ;;=3^Crohn's Disease of Small/Large Intestine w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,5263,1,4,0)
+ ;;=4^K50.819
+ ;;^UTILITY(U,$J,358.3,5263,2)
+ ;;=^5008644
+ ;;^UTILITY(U,$J,358.3,5264,0)
+ ;;=K50.912^^40^360^17
+ ;;^UTILITY(U,$J,358.3,5264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5264,1,3,0)
+ ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,5264,1,4,0)
+ ;;=4^K50.912
+ ;;^UTILITY(U,$J,358.3,5264,2)
+ ;;=^5008647
+ ;;^UTILITY(U,$J,358.3,5265,0)
+ ;;=K50.918^^40^360^18
+ ;;^UTILITY(U,$J,358.3,5265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5265,1,3,0)
+ ;;=3^Crohn's Disease w/ Oth Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,5265,1,4,0)
+ ;;=4^K50.918
+ ;;^UTILITY(U,$J,358.3,5265,2)
+ ;;=^5008650
+ ;;^UTILITY(U,$J,358.3,5266,0)
+ ;;=K50.919^^40^360^20
+ ;;^UTILITY(U,$J,358.3,5266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5266,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,5266,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,5266,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,5267,0)
+ ;;=K50.911^^40^360^19
+ ;;^UTILITY(U,$J,358.3,5267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5267,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,5267,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,5267,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,5268,0)
+ ;;=K50.90^^40^360^21
+ ;;^UTILITY(U,$J,358.3,5268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5268,1,3,0)
+ ;;=3^Crohn's Disease w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,5268,1,4,0)
+ ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,5268,2)
+ ;;=^5008645
+ ;;^UTILITY(U,$J,358.3,5269,0)
+ ;;=K50.913^^40^360^16
+ ;;^UTILITY(U,$J,358.3,5269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5269,1,3,0)
+ ;;=3^Crohn's Disease w/ Fistual,Unspec
+ ;;^UTILITY(U,$J,358.3,5269,1,4,0)
+ ;;=4^K50.913
+ ;;^UTILITY(U,$J,358.3,5269,2)
+ ;;=^5008648
+ ;;^UTILITY(U,$J,358.3,5270,0)
+ ;;=K50.914^^40^360^15
+ ;;^UTILITY(U,$J,358.3,5270,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5270,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,5270,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,5270,2)
+ ;;=^5008649
+ ;;^UTILITY(U,$J,358.3,5271,0)
+ ;;=K50.114^^40^360^1
+ ;;^UTILITY(U,$J,358.3,5271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5271,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,5271,1,4,0)
+ ;;=4^K50.114
+ ;;^UTILITY(U,$J,358.3,5271,2)
+ ;;=^5008635
+ ;;^UTILITY(U,$J,358.3,5272,0)
+ ;;=K50.814^^40^360^14
+ ;;^UTILITY(U,$J,358.3,5272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5272,1,3,0)
+ ;;=3^Crohn's Disease of Small/Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,5272,1,4,0)
+ ;;=4^K50.814
+ ;;^UTILITY(U,$J,358.3,5272,2)
+ ;;=^5008642
+ ;;^UTILITY(U,$J,358.3,5273,0)
+ ;;=K50.111^^40^360^2
+ ;;^UTILITY(U,$J,358.3,5273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5273,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Rectal Bleeding
+ ;;^UTILITY(U,$J,358.3,5273,1,4,0)
+ ;;=4^K50.111
+ ;;^UTILITY(U,$J,358.3,5273,2)
+ ;;=^5008632
+ ;;^UTILITY(U,$J,358.3,5274,0)
+ ;;=K50.119^^40^360^3
+ ;;^UTILITY(U,$J,358.3,5274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5274,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,5274,1,4,0)
+ ;;=4^K50.119
+ ;;^UTILITY(U,$J,358.3,5274,2)
+ ;;=^5008637
+ ;;^UTILITY(U,$J,358.3,5275,0)
+ ;;=K57.20^^40^361^3
+ ;;^UTILITY(U,$J,358.3,5275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5275,1,3,0)
+ ;;=3^Diverticulitis of Large Intestine w/ Perforation/Abscess w/o Bleeding

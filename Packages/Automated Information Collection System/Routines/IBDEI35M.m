@@ -1,0 +1,132 @@
+IBDEI35M ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,52952,2)
+ ;;=^5001899
+ ;;^UTILITY(U,$J,358.3,52953,0)
+ ;;=D03.61^^243^2655^56
+ ;;^UTILITY(U,$J,358.3,52953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52953,1,3,0)
+ ;;=3^Melanoma in Situ Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,52953,1,4,0)
+ ;;=4^D03.61
+ ;;^UTILITY(U,$J,358.3,52953,2)
+ ;;=^5001902
+ ;;^UTILITY(U,$J,358.3,52954,0)
+ ;;=D03.62^^243^2655^52
+ ;;^UTILITY(U,$J,358.3,52954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52954,1,3,0)
+ ;;=3^Melanoma in Situ Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,52954,1,4,0)
+ ;;=4^D03.62
+ ;;^UTILITY(U,$J,358.3,52954,2)
+ ;;=^5001903
+ ;;^UTILITY(U,$J,358.3,52955,0)
+ ;;=D03.71^^243^2655^55
+ ;;^UTILITY(U,$J,358.3,52955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52955,1,3,0)
+ ;;=3^Melanoma in Situ Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,52955,1,4,0)
+ ;;=4^D03.71
+ ;;^UTILITY(U,$J,358.3,52955,2)
+ ;;=^5001905
+ ;;^UTILITY(U,$J,358.3,52956,0)
+ ;;=D03.72^^243^2655^51
+ ;;^UTILITY(U,$J,358.3,52956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52956,1,3,0)
+ ;;=3^Melanoma in Situ Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,52956,1,4,0)
+ ;;=4^D03.72
+ ;;^UTILITY(U,$J,358.3,52956,2)
+ ;;=^5001906
+ ;;^UTILITY(U,$J,358.3,52957,0)
+ ;;=D03.8^^243^2655^61
+ ;;^UTILITY(U,$J,358.3,52957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52957,1,3,0)
+ ;;=3^Melanoma in Situ of Other Sites
+ ;;^UTILITY(U,$J,358.3,52957,1,4,0)
+ ;;=4^D03.8
+ ;;^UTILITY(U,$J,358.3,52957,2)
+ ;;=^5001907
+ ;;^UTILITY(U,$J,358.3,52958,0)
+ ;;=D22.0^^243^2655^38
+ ;;^UTILITY(U,$J,358.3,52958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52958,1,3,0)
+ ;;=3^Melanocytic Nevi of Lip
+ ;;^UTILITY(U,$J,358.3,52958,1,4,0)
+ ;;=4^D22.0
+ ;;^UTILITY(U,$J,358.3,52958,2)
+ ;;=^5002041
+ ;;^UTILITY(U,$J,358.3,52959,0)
+ ;;=D22.12^^243^2655^35
+ ;;^UTILITY(U,$J,358.3,52959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52959,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,52959,1,4,0)
+ ;;=4^D22.12
+ ;;^UTILITY(U,$J,358.3,52959,2)
+ ;;=^5002044
+ ;;^UTILITY(U,$J,358.3,52960,0)
+ ;;=D22.11^^243^2655^40
+ ;;^UTILITY(U,$J,358.3,52960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52960,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,52960,1,4,0)
+ ;;=4^D22.11
+ ;;^UTILITY(U,$J,358.3,52960,2)
+ ;;=^5002043
+ ;;^UTILITY(U,$J,358.3,52961,0)
+ ;;=D22.21^^243^2655^39
+ ;;^UTILITY(U,$J,358.3,52961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52961,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,52961,1,4,0)
+ ;;=4^D22.21
+ ;;^UTILITY(U,$J,358.3,52961,2)
+ ;;=^5002046
+ ;;^UTILITY(U,$J,358.3,52962,0)
+ ;;=D22.22^^243^2655^34
+ ;;^UTILITY(U,$J,358.3,52962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52962,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,52962,1,4,0)
+ ;;=4^D22.22
+ ;;^UTILITY(U,$J,358.3,52962,2)
+ ;;=^5002047
+ ;;^UTILITY(U,$J,358.3,52963,0)
+ ;;=D22.30^^243^2655^45
+ ;;^UTILITY(U,$J,358.3,52963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52963,1,3,0)
+ ;;=3^Melanocytic Nevi of Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,52963,1,4,0)
+ ;;=4^D22.30
+ ;;^UTILITY(U,$J,358.3,52963,2)
+ ;;=^5002048
+ ;;^UTILITY(U,$J,358.3,52964,0)
+ ;;=D22.4^^243^2655^43
+ ;;^UTILITY(U,$J,358.3,52964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52964,1,3,0)
+ ;;=3^Melanocytic Nevi of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,52964,1,4,0)
+ ;;=4^D22.4
+ ;;^UTILITY(U,$J,358.3,52964,2)
+ ;;=^5002050
+ ;;^UTILITY(U,$J,358.3,52965,0)
+ ;;=D22.5^^243^2655^44
+ ;;^UTILITY(U,$J,358.3,52965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52965,1,3,0)
+ ;;=3^Melanocytic Nevi of Trunk

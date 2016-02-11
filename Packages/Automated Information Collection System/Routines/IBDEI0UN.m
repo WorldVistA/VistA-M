@@ -1,132 +1,128 @@
-IBDEI0UN ; ; 06-AUG-2015
+IBDEI0UN ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14886,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14886,1,2,0)
- ;;=2^99396
- ;;^UTILITY(U,$J,358.3,14886,1,3,0)
- ;;=3^Preventive Med,Est Pt 40-64
- ;;^UTILITY(U,$J,358.3,14887,0)
- ;;=99397^^80^932^3^^^^1
- ;;^UTILITY(U,$J,358.3,14887,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14887,1,2,0)
- ;;=2^99397
- ;;^UTILITY(U,$J,358.3,14887,1,3,0)
- ;;=3^Preventive Med,Est Pt > 64
- ;;^UTILITY(U,$J,358.3,14888,0)
- ;;=99385^^80^933^1^^^^1
- ;;^UTILITY(U,$J,358.3,14888,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14888,1,2,0)
- ;;=2^99385
- ;;^UTILITY(U,$J,358.3,14888,1,3,0)
- ;;=3^Preventive Med,New Pt 18-39
- ;;^UTILITY(U,$J,358.3,14889,0)
- ;;=99386^^80^933^2^^^^1
- ;;^UTILITY(U,$J,358.3,14889,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14889,1,2,0)
- ;;=2^99386
- ;;^UTILITY(U,$J,358.3,14889,1,3,0)
- ;;=3^Preventive Med,New Pt 40-64
- ;;^UTILITY(U,$J,358.3,14890,0)
- ;;=99387^^80^933^3^^^^1
- ;;^UTILITY(U,$J,358.3,14890,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14890,1,2,0)
- ;;=2^99387
- ;;^UTILITY(U,$J,358.3,14890,1,3,0)
- ;;=3^Preventive Med,New Pt > 64
- ;;^UTILITY(U,$J,358.3,14891,0)
- ;;=99401^^80^934^1^^^^1
- ;;^UTILITY(U,$J,358.3,14891,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14891,1,2,0)
- ;;=2^99401
- ;;^UTILITY(U,$J,358.3,14891,1,3,0)
- ;;=3^Preventive Counseling 15 Min
- ;;^UTILITY(U,$J,358.3,14892,0)
- ;;=99402^^80^934^2^^^^1
- ;;^UTILITY(U,$J,358.3,14892,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14892,1,2,0)
- ;;=2^99402
- ;;^UTILITY(U,$J,358.3,14892,1,3,0)
- ;;=3^Preventive Counseling 30 Min
- ;;^UTILITY(U,$J,358.3,14893,0)
- ;;=99403^^80^934^3^^^^1
- ;;^UTILITY(U,$J,358.3,14893,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14893,1,2,0)
- ;;=2^99403
- ;;^UTILITY(U,$J,358.3,14893,1,3,0)
- ;;=3^Preventive Counseling 45 Min
- ;;^UTILITY(U,$J,358.3,14894,0)
- ;;=99411^^80^935^1^^^^1
- ;;^UTILITY(U,$J,358.3,14894,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14894,1,2,0)
- ;;=2^99411
- ;;^UTILITY(U,$J,358.3,14894,1,3,0)
- ;;=3^Preventive Counseling,Grp 30min
- ;;^UTILITY(U,$J,358.3,14895,0)
- ;;=99412^^80^935^2^^^^1
- ;;^UTILITY(U,$J,358.3,14895,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14895,1,2,0)
- ;;=2^99412
- ;;^UTILITY(U,$J,358.3,14895,1,3,0)
- ;;=3^Preventive Counseling,Grp 60min
- ;;^UTILITY(U,$J,358.3,14896,0)
- ;;=414.01^^81^936^12
- ;;^UTILITY(U,$J,358.3,14896,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14896,1,4,0)
- ;;=4^414.01
- ;;^UTILITY(U,$J,358.3,14896,1,5,0)
- ;;=5^Atherosclerosis, native coronary
- ;;^UTILITY(U,$J,358.3,14896,2)
- ;;=CAD, Native Vessel^303281
- ;;^UTILITY(U,$J,358.3,14897,0)
- ;;=413.9^^81^936^2
- ;;^UTILITY(U,$J,358.3,14897,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14897,1,4,0)
- ;;=4^413.9
- ;;^UTILITY(U,$J,358.3,14897,1,5,0)
- ;;=5^Angina Pectoris
- ;;^UTILITY(U,$J,358.3,14897,2)
- ;;=Angina Pectoris^87258
- ;;^UTILITY(U,$J,358.3,14898,0)
- ;;=413.0^^81^936^3
- ;;^UTILITY(U,$J,358.3,14898,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14898,1,4,0)
- ;;=4^413.0
- ;;^UTILITY(U,$J,358.3,14898,1,5,0)
- ;;=5^Angina at Rest
- ;;^UTILITY(U,$J,358.3,14898,2)
- ;;=Angina at Rest^265313
- ;;^UTILITY(U,$J,358.3,14899,0)
- ;;=411.1^^81^936^5
- ;;^UTILITY(U,$J,358.3,14899,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14899,1,4,0)
- ;;=4^411.1
- ;;^UTILITY(U,$J,358.3,14899,1,5,0)
- ;;=5^Angina, Unstable
- ;;^UTILITY(U,$J,358.3,14899,2)
- ;;=Angina, Unstable^7455
- ;;^UTILITY(U,$J,358.3,14900,0)
- ;;=413.1^^81^936^4
- ;;^UTILITY(U,$J,358.3,14900,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,14900,1,4,0)
- ;;=4^413.1
- ;;^UTILITY(U,$J,358.3,14900,1,5,0)
- ;;=5^Angina, Prinzmetal
- ;;^UTILITY(U,$J,358.3,14900,2)
- ;;=^7448
+ ;;^UTILITY(U,$J,358.3,14103,0)
+ ;;=H40.33X4^^82^770^124
+ ;;^UTILITY(U,$J,358.3,14103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14103,1,3,0)
+ ;;=3^Traumatic Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,14103,1,4,0)
+ ;;=4^H40.33X4
+ ;;^UTILITY(U,$J,358.3,14103,2)
+ ;;=^5005864
+ ;;^UTILITY(U,$J,358.3,14104,0)
+ ;;=H21.233^^82^770^26
+ ;;^UTILITY(U,$J,358.3,14104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14104,1,3,0)
+ ;;=3^Degeneration of Iris,Bilateral
+ ;;^UTILITY(U,$J,358.3,14104,1,4,0)
+ ;;=4^H21.233
+ ;;^UTILITY(U,$J,358.3,14104,2)
+ ;;=^5005189
+ ;;^UTILITY(U,$J,358.3,14105,0)
+ ;;=H40.61X1^^82^770^40
+ ;;^UTILITY(U,$J,358.3,14105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14105,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,14105,1,4,0)
+ ;;=4^H40.61X1
+ ;;^UTILITY(U,$J,358.3,14105,2)
+ ;;=^5005907
+ ;;^UTILITY(U,$J,358.3,14106,0)
+ ;;=H40.013^^82^770^59
+ ;;^UTILITY(U,$J,358.3,14106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14106,1,3,0)
+ ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Bilateral
+ ;;^UTILITY(U,$J,358.3,14106,1,4,0)
+ ;;=4^H40.013
+ ;;^UTILITY(U,$J,358.3,14106,2)
+ ;;=^5005726
+ ;;^UTILITY(U,$J,358.3,14107,0)
+ ;;=H40.012^^82^770^60
+ ;;^UTILITY(U,$J,358.3,14107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14107,1,3,0)
+ ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,14107,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,14107,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,14108,0)
+ ;;=H40.011^^82^770^61
+ ;;^UTILITY(U,$J,358.3,14108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14108,1,3,0)
+ ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,14108,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,14108,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,14109,0)
+ ;;=H40.023^^82^770^84
+ ;;^UTILITY(U,$J,358.3,14109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14109,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Bilateral
+ ;;^UTILITY(U,$J,358.3,14109,1,4,0)
+ ;;=4^H40.023
+ ;;^UTILITY(U,$J,358.3,14109,2)
+ ;;=^5005730
+ ;;^UTILITY(U,$J,358.3,14110,0)
+ ;;=H40.063^^82^770^108
+ ;;^UTILITY(U,$J,358.3,14110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14110,1,3,0)
+ ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Bilateral
+ ;;^UTILITY(U,$J,358.3,14110,1,4,0)
+ ;;=4^H40.063
+ ;;^UTILITY(U,$J,358.3,14110,2)
+ ;;=^5005746
+ ;;^UTILITY(U,$J,358.3,14111,0)
+ ;;=H40.243^^82^770^113
+ ;;^UTILITY(U,$J,358.3,14111,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14111,1,3,0)
+ ;;=3^Residual Stage Angle-Closure Glaucoma,Bilateral
+ ;;^UTILITY(U,$J,358.3,14111,1,4,0)
+ ;;=4^H40.243
+ ;;^UTILITY(U,$J,358.3,14111,2)
+ ;;=^5005845
+ ;;^UTILITY(U,$J,358.3,14112,0)
+ ;;=H40.043^^82^770^121
+ ;;^UTILITY(U,$J,358.3,14112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14112,1,3,0)
+ ;;=3^Steroid Responder,Bilateral
+ ;;^UTILITY(U,$J,358.3,14112,1,4,0)
+ ;;=4^H40.043
+ ;;^UTILITY(U,$J,358.3,14112,2)
+ ;;=^5005738
+ ;;^UTILITY(U,$J,358.3,14113,0)
+ ;;=B02.39^^82^771^10
+ ;;^UTILITY(U,$J,358.3,14113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14113,1,3,0)
+ ;;=3^Herpes Zoster Eye Disease NEC
+ ;;^UTILITY(U,$J,358.3,14113,1,4,0)
+ ;;=4^B02.39
+ ;;^UTILITY(U,$J,358.3,14113,2)
+ ;;=^5000498
+ ;;^UTILITY(U,$J,358.3,14114,0)
+ ;;=B00.59^^82^771^9
+ ;;^UTILITY(U,$J,358.3,14114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14114,1,3,0)
+ ;;=3^Herpes Viral Eye Disease NEC
+ ;;^UTILITY(U,$J,358.3,14114,1,4,0)
+ ;;=4^B00.59
+ ;;^UTILITY(U,$J,358.3,14114,2)
+ ;;=^5000476
+ ;;^UTILITY(U,$J,358.3,14115,0)
+ ;;=B25.9^^82^771^8
+ ;;^UTILITY(U,$J,358.3,14115,1,0)
+ ;;=^358.31IA^4^2

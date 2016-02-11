@@ -1,134 +1,122 @@
-IBDEI1MI ; ; 06-AUG-2015
+IBDEI1MI ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28816,1,1,0)
- ;;=1^77321
- ;;^UTILITY(U,$J,358.3,28816,1,3,0)
- ;;=3^Special Port Planparticles Hemi/Tot
- ;;^UTILITY(U,$J,358.3,28817,0)
- ;;=77306^^165^1834^1^^^^1
- ;;^UTILITY(U,$J,358.3,28817,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28817,1,1,0)
- ;;=1^77306
- ;;^UTILITY(U,$J,358.3,28817,1,3,0)
- ;;=3^Isodose Plan-Simple
- ;;^UTILITY(U,$J,358.3,28818,0)
- ;;=77307^^165^1834^2^^^^1
- ;;^UTILITY(U,$J,358.3,28818,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28818,1,1,0)
- ;;=1^77307
- ;;^UTILITY(U,$J,358.3,28818,1,3,0)
- ;;=3^Isodose Plan-Complex
- ;;^UTILITY(U,$J,358.3,28819,0)
- ;;=77295^^165^1834^3^^^^1
- ;;^UTILITY(U,$J,358.3,28819,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28819,1,1,0)
- ;;=1^77295
- ;;^UTILITY(U,$J,358.3,28819,1,3,0)
- ;;=3^Simulation 3-D
- ;;^UTILITY(U,$J,358.3,28820,0)
- ;;=77427^^165^1835^4^^^^1
- ;;^UTILITY(U,$J,358.3,28820,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28820,1,1,0)
- ;;=1^77427
- ;;^UTILITY(U,$J,358.3,28820,1,3,0)
- ;;=3^Weekly Tx Management
- ;;^UTILITY(U,$J,358.3,28821,0)
- ;;=77431^^165^1835^1^^^^1
- ;;^UTILITY(U,$J,358.3,28821,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,28821,1,1,0)
- ;;=1^77431
- ;;^UTILITY(U,$J,358.3,28821,1,3,0)
- ;;=3^RT Manage/1-2 fx only
- ;;^UTILITY(U,$J,358.3,28821,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,28822,0)
- ;;=77432^^165^1835^3^^^^1
- ;;^UTILITY(U,$J,358.3,28822,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28822,1,1,0)
- ;;=1^77432
- ;;^UTILITY(U,$J,358.3,28822,1,3,0)
- ;;=3^Stereotactic RT Tx/Complete Tx
- ;;^UTILITY(U,$J,358.3,28823,0)
- ;;=77435^^165^1835^2^^^^1
- ;;^UTILITY(U,$J,358.3,28823,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28823,1,1,0)
- ;;=1^77435
- ;;^UTILITY(U,$J,358.3,28823,1,3,0)
- ;;=3^SBRT Management
- ;;^UTILITY(U,$J,358.3,28824,0)
- ;;=77370^^165^1836^2^^^^1
- ;;^UTILITY(U,$J,358.3,28824,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,28824,1,1,0)
- ;;=1^77370
- ;;^UTILITY(U,$J,358.3,28824,1,3,0)
- ;;=3^Special Physics Consult  
- ;;^UTILITY(U,$J,358.3,28824,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,28825,0)
- ;;=77470^^165^1836^3^^^^1
- ;;^UTILITY(U,$J,358.3,28825,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,28825,1,1,0)
- ;;=1^77470
- ;;^UTILITY(U,$J,358.3,28825,1,3,0)
- ;;=3^Special Treatment Procedure 
- ;;^UTILITY(U,$J,358.3,28825,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,28826,0)
- ;;=77469^^165^1836^1^^^^1
- ;;^UTILITY(U,$J,358.3,28826,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28826,1,1,0)
- ;;=1^77469
- ;;^UTILITY(U,$J,358.3,28826,1,3,0)
- ;;=3^Intra-op Radiation Tx Mgmt
- ;;^UTILITY(U,$J,358.3,28827,0)
- ;;=77301^^165^1837^1^^^^1
- ;;^UTILITY(U,$J,358.3,28827,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28827,1,1,0)
- ;;=1^77301
- ;;^UTILITY(U,$J,358.3,28827,1,3,0)
- ;;=3^IMRT Dose Plan
- ;;^UTILITY(U,$J,358.3,28828,0)
- ;;=77417^^165^1838^4^^^^1
- ;;^UTILITY(U,$J,358.3,28828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28828,1,1,0)
- ;;=1^77417
- ;;^UTILITY(U,$J,358.3,28828,1,3,0)
- ;;=3^Radiology Port Films
- ;;^UTILITY(U,$J,358.3,28829,0)
- ;;=77014^^165^1838^1^^^^1
- ;;^UTILITY(U,$J,358.3,28829,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28829,1,1,0)
- ;;=1^77014
- ;;^UTILITY(U,$J,358.3,28829,1,3,0)
- ;;=3^CT Scan for Therapy Guide
- ;;^UTILITY(U,$J,358.3,28830,0)
- ;;=77407^^165^1838^7^^^^1
- ;;^UTILITY(U,$J,358.3,28830,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,28830,1,1,0)
- ;;=1^77407
- ;;^UTILITY(U,$J,358.3,28830,1,3,0)
- ;;=3^Intermediate Tx;>1 MeV
- ;;^UTILITY(U,$J,358.3,28830,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,28831,0)
- ;;=77402^^165^1838^6^^^^1
- ;;^UTILITY(U,$J,358.3,28831,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28831,1,1,0)
- ;;=1^77402
+ ;;^UTILITY(U,$J,358.3,27163,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,27163,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,27163,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,27164,0)
+ ;;=L97.214^^132^1309^209
+ ;;^UTILITY(U,$J,358.3,27164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27164,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,27164,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,27164,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,27165,0)
+ ;;=L97.219^^132^1309^210
+ ;;^UTILITY(U,$J,358.3,27165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27165,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,27165,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,27165,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,27166,0)
+ ;;=L97.221^^132^1309^176
+ ;;^UTILITY(U,$J,358.3,27166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27166,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,27166,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,27166,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,27167,0)
+ ;;=L97.222^^132^1309^177
+ ;;^UTILITY(U,$J,358.3,27167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27167,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,27167,1,4,0)
+ ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,27167,2)
+ ;;=^5009506
+ ;;^UTILITY(U,$J,358.3,27168,0)
+ ;;=L97.223^^132^1309^178
+ ;;^UTILITY(U,$J,358.3,27168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27168,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,27168,1,4,0)
+ ;;=4^L97.223
+ ;;^UTILITY(U,$J,358.3,27168,2)
+ ;;=^5009507
+ ;;^UTILITY(U,$J,358.3,27169,0)
+ ;;=L97.224^^132^1309^179
+ ;;^UTILITY(U,$J,358.3,27169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27169,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,27169,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,27169,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,27170,0)
+ ;;=L97.229^^132^1309^180
+ ;;^UTILITY(U,$J,358.3,27170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27170,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,27170,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,27170,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,27171,0)
+ ;;=L97.311^^132^1309^201
+ ;;^UTILITY(U,$J,358.3,27171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27171,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,27171,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,27171,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,27172,0)
+ ;;=L97.312^^132^1309^202
+ ;;^UTILITY(U,$J,358.3,27172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27172,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,27172,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,27172,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,27173,0)
+ ;;=L97.313^^132^1309^203
+ ;;^UTILITY(U,$J,358.3,27173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27173,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,27173,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,27173,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,27174,0)
+ ;;=L97.314^^132^1309^204
+ ;;^UTILITY(U,$J,358.3,27174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27174,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,27174,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,27174,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,27175,0)
+ ;;=L97.319^^132^1309^205

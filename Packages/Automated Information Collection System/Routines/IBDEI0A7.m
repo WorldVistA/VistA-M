@@ -1,144 +1,132 @@
-IBDEI0A7 ; ; 06-AUG-2015
+IBDEI0A7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4380,1,5,0)
- ;;=5^Neuropathic Pain
- ;;^UTILITY(U,$J,358.3,4380,2)
- ;;=Neuropathic Pain^82605
- ;;^UTILITY(U,$J,358.3,4381,0)
- ;;=721.0^^23^228^4
- ;;^UTILITY(U,$J,358.3,4381,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4381,1,4,0)
- ;;=4^721.0
- ;;^UTILITY(U,$J,358.3,4381,1,5,0)
- ;;=5^Cervical Spondylosis
- ;;^UTILITY(U,$J,358.3,4381,2)
- ;;=^272452
- ;;^UTILITY(U,$J,358.3,4382,0)
- ;;=715.90^^23^228^23
- ;;^UTILITY(U,$J,358.3,4382,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4382,1,4,0)
- ;;=4^715.90
- ;;^UTILITY(U,$J,358.3,4382,1,5,0)
- ;;=5^OA/DJD, Unspecified
- ;;^UTILITY(U,$J,358.3,4382,2)
- ;;=OA/DJD, Unspecified^272161
- ;;^UTILITY(U,$J,358.3,4383,0)
- ;;=720.0^^23^228^1
- ;;^UTILITY(U,$J,358.3,4383,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4383,1,4,0)
- ;;=4^720.0
- ;;^UTILITY(U,$J,358.3,4383,1,5,0)
- ;;=5^Ankylosing Spondylitis
- ;;^UTILITY(U,$J,358.3,4383,2)
- ;;=^113484
- ;;^UTILITY(U,$J,358.3,4384,0)
- ;;=719.00^^23^228^10
- ;;^UTILITY(U,$J,358.3,4384,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4384,1,4,0)
- ;;=4^719.00
- ;;^UTILITY(U,$J,358.3,4384,1,5,0)
- ;;=5^Joint Effusion
- ;;^UTILITY(U,$J,358.3,4384,2)
- ;;=^38674
- ;;^UTILITY(U,$J,358.3,4385,0)
- ;;=274.9^^23^228^7
- ;;^UTILITY(U,$J,358.3,4385,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4385,1,4,0)
- ;;=4^274.9
- ;;^UTILITY(U,$J,358.3,4385,1,5,0)
- ;;=5^Gout, Unspecified
- ;;^UTILITY(U,$J,358.3,4385,2)
- ;;=^52625
- ;;^UTILITY(U,$J,358.3,4386,0)
- ;;=714.9^^23^228^9
- ;;^UTILITY(U,$J,358.3,4386,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4386,1,4,0)
- ;;=4^714.9
- ;;^UTILITY(U,$J,358.3,4386,1,5,0)
- ;;=5^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,4386,2)
- ;;=^272122
- ;;^UTILITY(U,$J,358.3,4387,0)
- ;;=733.00^^23^228^34
- ;;^UTILITY(U,$J,358.3,4387,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4387,1,4,0)
- ;;=4^733.00
- ;;^UTILITY(U,$J,358.3,4387,1,5,0)
- ;;=5^Osteoporosis NOS
- ;;^UTILITY(U,$J,358.3,4387,2)
- ;;=^87159
- ;;^UTILITY(U,$J,358.3,4388,0)
- ;;=696.0^^23^228^37
- ;;^UTILITY(U,$J,358.3,4388,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4388,1,4,0)
- ;;=4^696.0
- ;;^UTILITY(U,$J,358.3,4388,1,5,0)
- ;;=5^Psoriatic Arthritis
- ;;^UTILITY(U,$J,358.3,4388,2)
- ;;=^100320
- ;;^UTILITY(U,$J,358.3,4389,0)
- ;;=099.3^^23^228^38
- ;;^UTILITY(U,$J,358.3,4389,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4389,1,4,0)
- ;;=4^099.3
- ;;^UTILITY(U,$J,358.3,4389,1,5,0)
- ;;=5^Reiter's Disease
- ;;^UTILITY(U,$J,358.3,4389,2)
- ;;=Reiter's Disease^104534^711.10
- ;;^UTILITY(U,$J,358.3,4390,0)
- ;;=714.0^^23^228^39
- ;;^UTILITY(U,$J,358.3,4390,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4390,1,4,0)
- ;;=4^714.0
- ;;^UTILITY(U,$J,358.3,4390,1,5,0)
- ;;=5^Rheumatoid Arthritis
- ;;^UTILITY(U,$J,358.3,4390,2)
- ;;=^10473
- ;;^UTILITY(U,$J,358.3,4391,0)
- ;;=726.10^^23^228^40
- ;;^UTILITY(U,$J,358.3,4391,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4391,1,4,0)
- ;;=4^726.10
- ;;^UTILITY(U,$J,358.3,4391,1,5,0)
- ;;=5^Rotator Cuff Synd
- ;;^UTILITY(U,$J,358.3,4391,2)
- ;;=^272523
- ;;^UTILITY(U,$J,358.3,4392,0)
- ;;=720.2^^23^228^41
- ;;^UTILITY(U,$J,358.3,4392,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4392,1,4,0)
- ;;=4^720.2
- ;;^UTILITY(U,$J,358.3,4392,1,5,0)
- ;;=5^Sacroiliitis Nec
- ;;^UTILITY(U,$J,358.3,4392,2)
- ;;=^259118
- ;;^UTILITY(U,$J,358.3,4393,0)
- ;;=724.3^^23^228^42
- ;;^UTILITY(U,$J,358.3,4393,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4393,1,4,0)
- ;;=4^724.3
- ;;^UTILITY(U,$J,358.3,4393,1,5,0)
- ;;=5^Sciatica
- ;;^UTILITY(U,$J,358.3,4393,2)
- ;;=^108484
- ;;^UTILITY(U,$J,358.3,4394,0)
- ;;=724.00^^23^228^43
- ;;^UTILITY(U,$J,358.3,4394,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4394,1,4,0)
- ;;=4^724.00
+ ;;^UTILITY(U,$J,358.3,4245,2)
+ ;;=^5063167
+ ;;^UTILITY(U,$J,358.3,4246,0)
+ ;;=Z60.3^^28^263^123
+ ;;^UTILITY(U,$J,358.3,4246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4246,1,3,0)
+ ;;=3^Problems Related to Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,4246,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,4246,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,4247,0)
+ ;;=Z74.9^^28^263^128
+ ;;^UTILITY(U,$J,358.3,4247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4247,1,3,0)
+ ;;=3^Problems Related to Care Provider Dependency,Unspec
+ ;;^UTILITY(U,$J,358.3,4247,1,4,0)
+ ;;=4^Z74.9
+ ;;^UTILITY(U,$J,358.3,4247,2)
+ ;;=^5063288
+ ;;^UTILITY(U,$J,358.3,4248,0)
+ ;;=Z63.4^^28^263^127
+ ;;^UTILITY(U,$J,358.3,4248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4248,1,3,0)
+ ;;=3^Problems Related to Bereavement
+ ;;^UTILITY(U,$J,358.3,4248,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,4248,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,4249,0)
+ ;;=Z63.6^^28^263^129
+ ;;^UTILITY(U,$J,358.3,4249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4249,1,3,0)
+ ;;=3^Problems Related to Dependent Relative Needing Care at Home
+ ;;^UTILITY(U,$J,358.3,4249,1,4,0)
+ ;;=4^Z63.6
+ ;;^UTILITY(U,$J,358.3,4249,2)
+ ;;=^5063170
+ ;;^UTILITY(U,$J,358.3,4250,0)
+ ;;=Z59.2^^28^263^131
+ ;;^UTILITY(U,$J,358.3,4250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4250,1,3,0)
+ ;;=3^Problems Related to Discord w/ Neighbors/Lodgers/Landlord
+ ;;^UTILITY(U,$J,358.3,4250,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,4250,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,4251,0)
+ ;;=Z63.5^^28^263^155
+ ;;^UTILITY(U,$J,358.3,4251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4251,1,3,0)
+ ;;=3^Problems Related to Separation/Divorce
+ ;;^UTILITY(U,$J,358.3,4251,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,4251,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,4252,0)
+ ;;=Z55.9^^28^263^132
+ ;;^UTILITY(U,$J,358.3,4252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4252,1,3,0)
+ ;;=3^Problems Related to Education/Literacy,Unspec
+ ;;^UTILITY(U,$J,358.3,4252,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,4252,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,4253,0)
+ ;;=Z56.9^^28^263^133
+ ;;^UTILITY(U,$J,358.3,4253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4253,1,3,0)
+ ;;=3^Problems Related to Employment,Unspec
+ ;;^UTILITY(U,$J,358.3,4253,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,4253,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,4254,0)
+ ;;=Z65.5^^28^263^130
+ ;;^UTILITY(U,$J,358.3,4254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4254,1,3,0)
+ ;;=3^Problems Related to Disaster/War/Other Hostilities
+ ;;^UTILITY(U,$J,358.3,4254,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,4254,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,4255,0)
+ ;;=Z59.5^^28^263^134
+ ;;^UTILITY(U,$J,358.3,4255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4255,1,3,0)
+ ;;=3^Problems Related to Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,4255,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,4255,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,4256,0)
+ ;;=Z59.0^^28^263^136
+ ;;^UTILITY(U,$J,358.3,4256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4256,1,3,0)
+ ;;=3^Problems Related to Homelessness
+ ;;^UTILITY(U,$J,358.3,4256,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,4256,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,4257,0)
+ ;;=Z59.9^^28^263^137
+ ;;^UTILITY(U,$J,358.3,4257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4257,1,3,0)
+ ;;=3^Problems Related to Housing/Economic Circumstances
+ ;;^UTILITY(U,$J,358.3,4257,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,4257,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,4258,0)
+ ;;=Z59.1^^28^263^138
+ ;;^UTILITY(U,$J,358.3,4258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4258,1,3,0)
+ ;;=3^Problems Related to Inadequate Housing

@@ -1,138 +1,130 @@
-IBDEI12M ; ; 06-AUG-2015
+IBDEI12M ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18897,2)
- ;;=COPD with Asthma^269964
- ;;^UTILITY(U,$J,358.3,18898,0)
- ;;=493.91^^105^1224^7
- ;;^UTILITY(U,$J,358.3,18898,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18898,1,4,0)
- ;;=4^493.91
- ;;^UTILITY(U,$J,358.3,18898,1,5,0)
- ;;=5^Asthma, with Status Asthmat
- ;;^UTILITY(U,$J,358.3,18898,2)
- ;;=^269967
- ;;^UTILITY(U,$J,358.3,18899,0)
- ;;=491.21^^105^1224^10
- ;;^UTILITY(U,$J,358.3,18899,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18899,1,4,0)
- ;;=4^491.21
- ;;^UTILITY(U,$J,358.3,18899,1,5,0)
- ;;=5^COPD Exacerbation
- ;;^UTILITY(U,$J,358.3,18899,2)
- ;;=COPD Exacerbation^269954
- ;;^UTILITY(U,$J,358.3,18900,0)
- ;;=494.0^^105^1224^9
- ;;^UTILITY(U,$J,358.3,18900,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18900,1,4,0)
- ;;=4^494.0
- ;;^UTILITY(U,$J,358.3,18900,1,5,0)
- ;;=5^Bronchiectasis, chronic
- ;;^UTILITY(U,$J,358.3,18900,2)
- ;;=^321990
- ;;^UTILITY(U,$J,358.3,18901,0)
- ;;=494.1^^105^1224^8
- ;;^UTILITY(U,$J,358.3,18901,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18901,1,4,0)
- ;;=4^494.1
- ;;^UTILITY(U,$J,358.3,18901,1,5,0)
- ;;=5^Bronchiectasis with exacerb
- ;;^UTILITY(U,$J,358.3,18901,2)
- ;;=^321991
- ;;^UTILITY(U,$J,358.3,18902,0)
- ;;=496.^^105^1224^12
- ;;^UTILITY(U,$J,358.3,18902,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18902,1,4,0)
- ;;=4^496.
- ;;^UTILITY(U,$J,358.3,18902,1,5,0)
- ;;=5^COPD, General
- ;;^UTILITY(U,$J,358.3,18902,2)
- ;;=COPD, General^24355
- ;;^UTILITY(U,$J,358.3,18903,0)
- ;;=491.20^^105^1224^13
- ;;^UTILITY(U,$J,358.3,18903,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18903,1,4,0)
- ;;=4^491.20
- ;;^UTILITY(U,$J,358.3,18903,1,5,0)
- ;;=5^Chronic Asthmatic Bronchitis
- ;;^UTILITY(U,$J,358.3,18903,2)
- ;;=Chronic Asthmatic Bronchitis^269953
- ;;^UTILITY(U,$J,358.3,18904,0)
- ;;=491.9^^105^1224^14
- ;;^UTILITY(U,$J,358.3,18904,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18904,1,4,0)
- ;;=4^491.9
- ;;^UTILITY(U,$J,358.3,18904,1,5,0)
- ;;=5^Chronic Bronchitis
- ;;^UTILITY(U,$J,358.3,18904,2)
- ;;=^24359
- ;;^UTILITY(U,$J,358.3,18905,0)
- ;;=786.2^^105^1224^15
- ;;^UTILITY(U,$J,358.3,18905,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18905,1,4,0)
- ;;=4^786.2
- ;;^UTILITY(U,$J,358.3,18905,1,5,0)
- ;;=5^Cough
- ;;^UTILITY(U,$J,358.3,18905,2)
- ;;=Cough^28905
- ;;^UTILITY(U,$J,358.3,18906,0)
- ;;=786.09^^105^1224^16
- ;;^UTILITY(U,$J,358.3,18906,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18906,1,4,0)
- ;;=4^786.09
- ;;^UTILITY(U,$J,358.3,18906,1,5,0)
- ;;=5^Dyspnea
- ;;^UTILITY(U,$J,358.3,18906,2)
- ;;=Dyspnea^87547
- ;;^UTILITY(U,$J,358.3,18907,0)
- ;;=492.8^^105^1224^17
- ;;^UTILITY(U,$J,358.3,18907,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18907,1,4,0)
- ;;=4^492.8
- ;;^UTILITY(U,$J,358.3,18907,1,5,0)
- ;;=5^Emphysema
- ;;^UTILITY(U,$J,358.3,18907,2)
- ;;=Emphysema^87569
- ;;^UTILITY(U,$J,358.3,18908,0)
- ;;=487.1^^105^1224^24
- ;;^UTILITY(U,$J,358.3,18908,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18908,1,4,0)
- ;;=4^487.1
- ;;^UTILITY(U,$J,358.3,18908,1,5,0)
- ;;=5^Influenza with other Resp Manifest
- ;;^UTILITY(U,$J,358.3,18908,2)
- ;;=^63125
- ;;^UTILITY(U,$J,358.3,18909,0)
- ;;=487.0^^105^1224^23
- ;;^UTILITY(U,$J,358.3,18909,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18909,1,4,0)
- ;;=4^487.0
- ;;^UTILITY(U,$J,358.3,18909,1,5,0)
- ;;=5^Influenza w Pneumonia
- ;;^UTILITY(U,$J,358.3,18909,2)
- ;;=^269942
- ;;^UTILITY(U,$J,358.3,18910,0)
- ;;=515.^^105^1224^25
- ;;^UTILITY(U,$J,358.3,18910,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,18910,1,4,0)
- ;;=4^515.
- ;;^UTILITY(U,$J,358.3,18910,1,5,0)
- ;;=5^Interstitial Lung disease
- ;;^UTILITY(U,$J,358.3,18910,2)
- ;;=^101072
- ;;^UTILITY(U,$J,358.3,18911,0)
- ;;=786.52^^105^1224^26
+ ;;^UTILITY(U,$J,358.3,17862,1,4,0)
+ ;;=4^C25.8
+ ;;^UTILITY(U,$J,358.3,17862,2)
+ ;;=^5000945
+ ;;^UTILITY(U,$J,358.3,17863,0)
+ ;;=E73.0^^91^885^2
+ ;;^UTILITY(U,$J,358.3,17863,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17863,1,3,0)
+ ;;=3^Congenital lactase deficiency
+ ;;^UTILITY(U,$J,358.3,17863,1,4,0)
+ ;;=4^E73.0
+ ;;^UTILITY(U,$J,358.3,17863,2)
+ ;;=^5002911
+ ;;^UTILITY(U,$J,358.3,17864,0)
+ ;;=E73.1^^91^885^13
+ ;;^UTILITY(U,$J,358.3,17864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17864,1,3,0)
+ ;;=3^Secondary lactase deficiency
+ ;;^UTILITY(U,$J,358.3,17864,1,4,0)
+ ;;=4^E73.1
+ ;;^UTILITY(U,$J,358.3,17864,2)
+ ;;=^5002912
+ ;;^UTILITY(U,$J,358.3,17865,0)
+ ;;=E73.8^^91^885^11
+ ;;^UTILITY(U,$J,358.3,17865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17865,1,3,0)
+ ;;=3^Lactose intolerance NEC
+ ;;^UTILITY(U,$J,358.3,17865,1,4,0)
+ ;;=4^E73.8
+ ;;^UTILITY(U,$J,358.3,17865,2)
+ ;;=^5002913
+ ;;^UTILITY(U,$J,358.3,17866,0)
+ ;;=E73.9^^91^885^12
+ ;;^UTILITY(U,$J,358.3,17866,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17866,1,3,0)
+ ;;=3^Lactose intolerance, unspecified
+ ;;^UTILITY(U,$J,358.3,17866,1,4,0)
+ ;;=4^E73.9
+ ;;^UTILITY(U,$J,358.3,17866,2)
+ ;;=^5002914
+ ;;^UTILITY(U,$J,358.3,17867,0)
+ ;;=K50.00^^91^885^4
+ ;;^UTILITY(U,$J,358.3,17867,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17867,1,3,0)
+ ;;=3^Crohn's disease of small intestine without complications
+ ;;^UTILITY(U,$J,358.3,17867,1,4,0)
+ ;;=4^K50.00
+ ;;^UTILITY(U,$J,358.3,17867,2)
+ ;;=^5008624
+ ;;^UTILITY(U,$J,358.3,17868,0)
+ ;;=K50.011^^91^885^5
+ ;;^UTILITY(U,$J,358.3,17868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17868,1,3,0)
+ ;;=3^Crohn's disease of small intestine with rectal bleeding
+ ;;^UTILITY(U,$J,358.3,17868,1,4,0)
+ ;;=4^K50.011
+ ;;^UTILITY(U,$J,358.3,17868,2)
+ ;;=^5008625
+ ;;^UTILITY(U,$J,358.3,17869,0)
+ ;;=K50.012^^91^885^3
+ ;;^UTILITY(U,$J,358.3,17869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17869,1,3,0)
+ ;;=3^Crohn's disease of small intestine w intestinal obstruction
+ ;;^UTILITY(U,$J,358.3,17869,1,4,0)
+ ;;=4^K50.012
+ ;;^UTILITY(U,$J,358.3,17869,2)
+ ;;=^5008626
+ ;;^UTILITY(U,$J,358.3,17870,0)
+ ;;=K50.013^^91^885^6
+ ;;^UTILITY(U,$J,358.3,17870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17870,1,3,0)
+ ;;=3^Crohn's disease of small intestine with fistula
+ ;;^UTILITY(U,$J,358.3,17870,1,4,0)
+ ;;=4^K50.013
+ ;;^UTILITY(U,$J,358.3,17870,2)
+ ;;=^5008627
+ ;;^UTILITY(U,$J,358.3,17871,0)
+ ;;=K50.014^^91^885^7
+ ;;^UTILITY(U,$J,358.3,17871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17871,1,3,0)
+ ;;=3^Crohn's disease of small intestine with abscess
+ ;;^UTILITY(U,$J,358.3,17871,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,17871,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,17872,0)
+ ;;=K50.018^^91^885^8
+ ;;^UTILITY(U,$J,358.3,17872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17872,1,3,0)
+ ;;=3^Crohn's disease of small intestine with other complication
+ ;;^UTILITY(U,$J,358.3,17872,1,4,0)
+ ;;=4^K50.018
+ ;;^UTILITY(U,$J,358.3,17872,2)
+ ;;=^5008629
+ ;;^UTILITY(U,$J,358.3,17873,0)
+ ;;=K50.019^^91^885^9
+ ;;^UTILITY(U,$J,358.3,17873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17873,1,3,0)
+ ;;=3^Crohn's disease of small intestine with unsp complications
+ ;;^UTILITY(U,$J,358.3,17873,1,4,0)
+ ;;=4^K50.019
+ ;;^UTILITY(U,$J,358.3,17873,2)
+ ;;=^5008630
+ ;;^UTILITY(U,$J,358.3,17874,0)
+ ;;=K56.5^^91^885^10
+ ;;^UTILITY(U,$J,358.3,17874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17874,1,3,0)
+ ;;=3^Intestinal adhesions w obst (postprocedural) (postinfection)
+ ;;^UTILITY(U,$J,358.3,17874,1,4,0)
+ ;;=4^K56.5
+ ;;^UTILITY(U,$J,358.3,17874,2)
+ ;;=^5008712
+ ;;^UTILITY(U,$J,358.3,17875,0)
+ ;;=K90.0^^91^885^1

@@ -1,120 +1,132 @@
-IBDEI1SI ; ; 06-AUG-2015
+IBDEI1SI ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31583,1,0)
+ ;;^UTILITY(U,$J,358.3,29967,0)
+ ;;=D58.9^^135^1372^85
+ ;;^UTILITY(U,$J,358.3,29967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31583,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of left knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31583,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,31583,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,31584,0)
- ;;=M05.712^^180^1962^37
- ;;^UTILITY(U,$J,358.3,31584,1,0)
+ ;;^UTILITY(U,$J,358.3,29967,1,3,0)
+ ;;=3^Hereditary Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,29967,1,4,0)
+ ;;=4^D58.9
+ ;;^UTILITY(U,$J,358.3,29967,2)
+ ;;=^5002322
+ ;;^UTILITY(U,$J,358.3,29968,0)
+ ;;=C81.99^^135^1372^86
+ ;;^UTILITY(U,$J,358.3,29968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31584,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of left shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31584,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,31584,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,31585,0)
- ;;=M05.732^^180^1962^38
- ;;^UTILITY(U,$J,358.3,31585,1,0)
+ ;;^UTILITY(U,$J,358.3,29968,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,29968,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,29968,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,29969,0)
+ ;;=C81.90^^135^1372^87
+ ;;^UTILITY(U,$J,358.3,29969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31585,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of left wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31585,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,31585,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,31586,0)
- ;;=M05.79^^180^1962^39
- ;;^UTILITY(U,$J,358.3,31586,1,0)
+ ;;^UTILITY(U,$J,358.3,29969,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,29969,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,29969,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,29970,0)
+ ;;=D89.2^^135^1372^88
+ ;;^UTILITY(U,$J,358.3,29970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31586,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of mult site w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31586,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,31586,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,31587,0)
- ;;=M05.771^^180^1962^40
- ;;^UTILITY(U,$J,358.3,31587,1,0)
+ ;;^UTILITY(U,$J,358.3,29970,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,29970,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,29970,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,29971,0)
+ ;;=D05.12^^135^1372^89
+ ;;^UTILITY(U,$J,358.3,29971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31587,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right ank/ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31587,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,31587,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,31588,0)
- ;;=M05.721^^180^1962^41
- ;;^UTILITY(U,$J,358.3,31588,1,0)
+ ;;^UTILITY(U,$J,358.3,29971,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,29971,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,29971,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,29972,0)
+ ;;=D05.11^^135^1372^90
+ ;;^UTILITY(U,$J,358.3,29972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31588,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right elbowlbow w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31588,1,4,0)
- ;;=4^M05.721
- ;;^UTILITY(U,$J,358.3,31588,2)
- ;;=^5010004
- ;;^UTILITY(U,$J,358.3,31589,0)
- ;;=M05.741^^180^1962^42
- ;;^UTILITY(U,$J,358.3,31589,1,0)
+ ;;^UTILITY(U,$J,358.3,29972,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,29972,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,29972,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,29973,0)
+ ;;=D05.10^^135^1372^91
+ ;;^UTILITY(U,$J,358.3,29973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31589,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right hand w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31589,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,31589,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,31590,0)
- ;;=M05.751^^180^1962^43
- ;;^UTILITY(U,$J,358.3,31590,1,0)
+ ;;^UTILITY(U,$J,358.3,29973,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,29973,1,4,0)
+ ;;=4^D05.10
+ ;;^UTILITY(U,$J,358.3,29973,2)
+ ;;=^5001929
+ ;;^UTILITY(U,$J,358.3,29974,0)
+ ;;=D50.0^^135^1372^92
+ ;;^UTILITY(U,$J,358.3,29974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31590,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right hip w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31590,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,31590,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,31591,0)
- ;;=M05.761^^180^1962^44
- ;;^UTILITY(U,$J,358.3,31591,1,0)
+ ;;^UTILITY(U,$J,358.3,29974,1,3,0)
+ ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,29974,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,29974,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,29975,0)
+ ;;=D50.9^^135^1372^93
+ ;;^UTILITY(U,$J,358.3,29975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31591,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31591,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,31591,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,31592,0)
- ;;=M05.711^^180^1962^45
- ;;^UTILITY(U,$J,358.3,31592,1,0)
+ ;;^UTILITY(U,$J,358.3,29975,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,29975,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,29975,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,29976,0)
+ ;;=C46.9^^135^1372^94
+ ;;^UTILITY(U,$J,358.3,29976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31592,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31592,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,31592,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,31593,0)
- ;;=M05.731^^180^1962^46
- ;;^UTILITY(U,$J,358.3,31593,1,0)
+ ;;^UTILITY(U,$J,358.3,29976,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,29976,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,29976,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,29977,0)
+ ;;=C22.0^^135^1372^95
+ ;;^UTILITY(U,$J,358.3,29977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31593,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,31593,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,31593,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,31594,0)
- ;;=M06.072^^180^1962^47
- ;;^UTILITY(U,$J,358.3,31594,1,0)
+ ;;^UTILITY(U,$J,358.3,29977,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,29977,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,29977,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,29978,0)
+ ;;=D05.02^^135^1372^96
+ ;;^UTILITY(U,$J,358.3,29978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31594,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left ank/ft
- ;;^UTILITY(U,$J,358.3,31594,1,4,0)
- ;;=4^M06.072
+ ;;^UTILITY(U,$J,358.3,29978,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,29978,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,29978,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,29979,0)
+ ;;=D05.01^^135^1372^97
+ ;;^UTILITY(U,$J,358.3,29979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29979,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,29979,1,4,0)
+ ;;=4^D05.01

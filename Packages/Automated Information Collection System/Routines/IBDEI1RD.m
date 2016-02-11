@@ -1,132 +1,130 @@
-IBDEI1RD ; ; 06-AUG-2015
+IBDEI1RD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31069,1,4,0)
- ;;=4^S62.101A
- ;;^UTILITY(U,$J,358.3,31069,2)
- ;;=^5033199
- ;;^UTILITY(U,$J,358.3,31070,0)
- ;;=M67.432^^179^1940^11
- ;;^UTILITY(U,$J,358.3,31070,1,0)
+ ;;^UTILITY(U,$J,358.3,29443,0)
+ ;;=L89.300^^135^1361^242
+ ;;^UTILITY(U,$J,358.3,29443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31070,1,3,0)
- ;;=3^Ganglion, left wrist
- ;;^UTILITY(U,$J,358.3,31070,1,4,0)
- ;;=4^M67.432
- ;;^UTILITY(U,$J,358.3,31070,2)
- ;;=^5012964
- ;;^UTILITY(U,$J,358.3,31071,0)
- ;;=M67.431^^179^1940^12
- ;;^UTILITY(U,$J,358.3,31071,1,0)
+ ;;^UTILITY(U,$J,358.3,29443,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,29443,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,29443,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,29444,0)
+ ;;=L89.301^^135^1361^237
+ ;;^UTILITY(U,$J,358.3,29444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31071,1,3,0)
- ;;=3^Ganglion, right wrist
- ;;^UTILITY(U,$J,358.3,31071,1,4,0)
- ;;=4^M67.431
- ;;^UTILITY(U,$J,358.3,31071,2)
- ;;=^5012963
- ;;^UTILITY(U,$J,358.3,31072,0)
- ;;=M25.532^^179^1940^13
- ;;^UTILITY(U,$J,358.3,31072,1,0)
+ ;;^UTILITY(U,$J,358.3,29444,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,29444,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,29444,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,29445,0)
+ ;;=L89.302^^135^1361^238
+ ;;^UTILITY(U,$J,358.3,29445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31072,1,3,0)
- ;;=3^Pain in left wrist
- ;;^UTILITY(U,$J,358.3,31072,1,4,0)
- ;;=4^M25.532
- ;;^UTILITY(U,$J,358.3,31072,2)
- ;;=^5011609
- ;;^UTILITY(U,$J,358.3,31073,0)
- ;;=M25.531^^179^1940^14
- ;;^UTILITY(U,$J,358.3,31073,1,0)
+ ;;^UTILITY(U,$J,358.3,29445,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,29445,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,29445,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,29446,0)
+ ;;=L89.303^^135^1361^239
+ ;;^UTILITY(U,$J,358.3,29446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31073,1,3,0)
- ;;=3^Pain in right wrist
- ;;^UTILITY(U,$J,358.3,31073,1,4,0)
- ;;=4^M25.531
- ;;^UTILITY(U,$J,358.3,31073,2)
- ;;=^5011608
- ;;^UTILITY(U,$J,358.3,31074,0)
- ;;=M19.032^^179^1940^15
- ;;^UTILITY(U,$J,358.3,31074,1,0)
+ ;;^UTILITY(U,$J,358.3,29446,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,29446,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,29446,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,29447,0)
+ ;;=L89.304^^135^1361^240
+ ;;^UTILITY(U,$J,358.3,29447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31074,1,3,0)
- ;;=3^Primary osteoarthritis, left wrist
- ;;^UTILITY(U,$J,358.3,31074,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,31074,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,31075,0)
- ;;=M19.031^^179^1940^16
- ;;^UTILITY(U,$J,358.3,31075,1,0)
+ ;;^UTILITY(U,$J,358.3,29447,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,29447,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,29447,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,29448,0)
+ ;;=L89.309^^135^1361^241
+ ;;^UTILITY(U,$J,358.3,29448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31075,1,3,0)
- ;;=3^Primary osteoarthritis, right wrist
- ;;^UTILITY(U,$J,358.3,31075,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,31075,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,31076,0)
- ;;=M65.4^^179^1940^17
- ;;^UTILITY(U,$J,358.3,31076,1,0)
+ ;;^UTILITY(U,$J,358.3,29448,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,29448,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,29448,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,29449,0)
+ ;;=L89.90^^135^1361^247
+ ;;^UTILITY(U,$J,358.3,29449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31076,1,3,0)
- ;;=3^Radial styloid tenosynovitis [de Quervain]
- ;;^UTILITY(U,$J,358.3,31076,1,4,0)
- ;;=4^M65.4
- ;;^UTILITY(U,$J,358.3,31076,2)
- ;;=^5012792
- ;;^UTILITY(U,$J,358.3,31077,0)
- ;;=M12.532^^179^1940^20
- ;;^UTILITY(U,$J,358.3,31077,1,0)
+ ;;^UTILITY(U,$J,358.3,29449,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,29449,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,29449,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,29450,0)
+ ;;=L89.91^^135^1361^243
+ ;;^UTILITY(U,$J,358.3,29450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31077,1,3,0)
- ;;=3^Traumatic arthropathy, left wrist
- ;;^UTILITY(U,$J,358.3,31077,1,4,0)
- ;;=4^M12.532
- ;;^UTILITY(U,$J,358.3,31077,2)
- ;;=^5010626
- ;;^UTILITY(U,$J,358.3,31078,0)
- ;;=M12.531^^179^1940^21
- ;;^UTILITY(U,$J,358.3,31078,1,0)
+ ;;^UTILITY(U,$J,358.3,29450,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,29450,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,29450,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,29451,0)
+ ;;=L89.92^^135^1361^244
+ ;;^UTILITY(U,$J,358.3,29451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31078,1,3,0)
- ;;=3^Traumatic arthropathy, right wrist
- ;;^UTILITY(U,$J,358.3,31078,1,4,0)
- ;;=4^M12.531
- ;;^UTILITY(U,$J,358.3,31078,2)
- ;;=^5010625
- ;;^UTILITY(U,$J,358.3,31079,0)
- ;;=S52.502A^^179^1940^7
- ;;^UTILITY(U,$J,358.3,31079,1,0)
+ ;;^UTILITY(U,$J,358.3,29451,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,29451,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,29451,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,29452,0)
+ ;;=L89.93^^135^1361^245
+ ;;^UTILITY(U,$J,358.3,29452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31079,1,3,0)
- ;;=3^Fracture of the lower end of left radius, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31079,1,4,0)
- ;;=4^S52.502A
- ;;^UTILITY(U,$J,358.3,31079,2)
- ;;=^5030603
- ;;^UTILITY(U,$J,358.3,31080,0)
- ;;=S52.501A^^179^1940^8
- ;;^UTILITY(U,$J,358.3,31080,1,0)
+ ;;^UTILITY(U,$J,358.3,29452,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,29452,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,29452,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,29453,0)
+ ;;=L89.94^^135^1361^246
+ ;;^UTILITY(U,$J,358.3,29453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31080,1,3,0)
- ;;=3^Fracture of the lower end of right radius, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31080,1,4,0)
- ;;=4^S52.501A
- ;;^UTILITY(U,$J,358.3,31080,2)
- ;;=^5030587
- ;;^UTILITY(U,$J,358.3,31081,0)
- ;;=S63.502A^^179^1940^18
- ;;^UTILITY(U,$J,358.3,31081,1,0)
+ ;;^UTILITY(U,$J,358.3,29453,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,29453,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,29453,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,29454,0)
+ ;;=L89.95^^135^1361^248
+ ;;^UTILITY(U,$J,358.3,29454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31081,1,3,0)
- ;;=3^Sprain of left wrist, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,31081,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,31081,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,31082,0)
- ;;=S63.501A^^179^1940^19
- ;;^UTILITY(U,$J,358.3,31082,1,0)
+ ;;^UTILITY(U,$J,358.3,29454,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,29454,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,29454,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,29455,0)
+ ;;=L92.0^^135^1361^156
+ ;;^UTILITY(U,$J,358.3,29455,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29455,1,3,0)
+ ;;=3^Granuloma Annulare

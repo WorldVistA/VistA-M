@@ -1,0 +1,134 @@
+IBDEI23S ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,35299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35299,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,35299,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,35299,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,35300,0)
+ ;;=S14.109S^^163^1800^3
+ ;;^UTILITY(U,$J,358.3,35300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35300,1,3,0)
+ ;;=3^Cervical Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,35300,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,35300,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,35301,0)
+ ;;=S24.109S^^163^1800^10
+ ;;^UTILITY(U,$J,358.3,35301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35301,1,3,0)
+ ;;=3^Thoracic Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,35301,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,35301,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,35302,0)
+ ;;=S34.109S^^163^1800^6
+ ;;^UTILITY(U,$J,358.3,35302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35302,1,3,0)
+ ;;=3^Lumbar Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,35302,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,35302,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,35303,0)
+ ;;=S34.139S^^163^1800^9
+ ;;^UTILITY(U,$J,358.3,35303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35303,1,3,0)
+ ;;=3^Sacral Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,35303,1,4,0)
+ ;;=4^S34.139S
+ ;;^UTILITY(U,$J,358.3,35303,2)
+ ;;=^5025249
+ ;;^UTILITY(U,$J,358.3,35304,0)
+ ;;=Z43.0^^163^1801^10
+ ;;^UTILITY(U,$J,358.3,35304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35304,1,3,0)
+ ;;=3^Attention to Tracheostomy
+ ;;^UTILITY(U,$J,358.3,35304,1,4,0)
+ ;;=4^Z43.0
+ ;;^UTILITY(U,$J,358.3,35304,2)
+ ;;=^5062958
+ ;;^UTILITY(U,$J,358.3,35305,0)
+ ;;=Z43.1^^163^1801^8
+ ;;^UTILITY(U,$J,358.3,35305,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35305,1,3,0)
+ ;;=3^Attention to Gastrostomy
+ ;;^UTILITY(U,$J,358.3,35305,1,4,0)
+ ;;=4^Z43.1
+ ;;^UTILITY(U,$J,358.3,35305,2)
+ ;;=^5062959
+ ;;^UTILITY(U,$J,358.3,35306,0)
+ ;;=Z43.2^^163^1801^9
+ ;;^UTILITY(U,$J,358.3,35306,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35306,1,3,0)
+ ;;=3^Attention to Ileostomy
+ ;;^UTILITY(U,$J,358.3,35306,1,4,0)
+ ;;=4^Z43.2
+ ;;^UTILITY(U,$J,358.3,35306,2)
+ ;;=^5062960
+ ;;^UTILITY(U,$J,358.3,35307,0)
+ ;;=Z43.3^^163^1801^6
+ ;;^UTILITY(U,$J,358.3,35307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35307,1,3,0)
+ ;;=3^Attention to Colostomy
+ ;;^UTILITY(U,$J,358.3,35307,1,4,0)
+ ;;=4^Z43.3
+ ;;^UTILITY(U,$J,358.3,35307,2)
+ ;;=^5062961
+ ;;^UTILITY(U,$J,358.3,35308,0)
+ ;;=Z43.4^^163^1801^4
+ ;;^UTILITY(U,$J,358.3,35308,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35308,1,3,0)
+ ;;=3^Attention to Artif Opening of Digestive Tract NEC
+ ;;^UTILITY(U,$J,358.3,35308,1,4,0)
+ ;;=4^Z43.4
+ ;;^UTILITY(U,$J,358.3,35308,2)
+ ;;=^5062962
+ ;;^UTILITY(U,$J,358.3,35309,0)
+ ;;=Z43.5^^163^1801^7
+ ;;^UTILITY(U,$J,358.3,35309,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35309,1,3,0)
+ ;;=3^Attention to Cystostomy
+ ;;^UTILITY(U,$J,358.3,35309,1,4,0)
+ ;;=4^Z43.5
+ ;;^UTILITY(U,$J,358.3,35309,2)
+ ;;=^5062963
+ ;;^UTILITY(U,$J,358.3,35310,0)
+ ;;=Z43.6^^163^1801^5
+ ;;^UTILITY(U,$J,358.3,35310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35310,1,3,0)
+ ;;=3^Attention to Artif Opening of Urinary Tract NEC
+ ;;^UTILITY(U,$J,358.3,35310,1,4,0)
+ ;;=4^Z43.6
+ ;;^UTILITY(U,$J,358.3,35310,2)
+ ;;=^5062964
+ ;;^UTILITY(U,$J,358.3,35311,0)
+ ;;=Z48.00^^163^1801^12
+ ;;^UTILITY(U,$J,358.3,35311,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35311,1,3,0)
+ ;;=3^Change or Removal of Nonsurg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,35311,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,35311,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,35312,0)
+ ;;=Z48.01^^163^1801^13

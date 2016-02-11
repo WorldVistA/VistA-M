@@ -1,5 +1,5 @@
 ORQ13 ;slc/dcm-Get patient orders in context ; 08 May 2002  2:12 PM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,165,411**;Dec 17, 1997;Build 4
  ;
 EN ; -- Event Delayed: 24=All Delayed orders, or
  ;     15=Admission, 16=Discharge, 17=Transfer, 25=OR, 26=Manual
@@ -38,6 +38,7 @@ ADD(IFN,TYPE)        ; -- add EVENT order to list?
  S X0=$G(^OR(100,IFN,0)),X3=$G(^(3)) Q:'$D(ORGRP(+$P(X0,U,11)))
  Q:$P(X3,U,8)  I $P(X3,U,9),'$P($G(^OR(100,$P(X3,U,9),3)),U,8) Q
  I $P(X3,U,3)=12,$P($G(^OR(100,+$P(X3,U,6),0)),U,17)=EVENT Q  ;changed
+ I $G(EVTDCREL)'="TRUE",$P(X3,U,3)'=10 Q
  S CURR=$P(X3,U,7) S:CURR<1 CURR=+$O(^OR(100,IFN,8,"?"),-1) ;current/last
  S DA=0 F  S DA=+$O(^OR(100,IFN,8,DA)) Q:DA<1  S X8=$G(^(DA,0)) D
  . S TM=$P(X8,U) Q:TM<SDATE  Q:TM>EDATE

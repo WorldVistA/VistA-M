@@ -1,140 +1,138 @@
-IBDEI065 ; ; 06-AUG-2015
+IBDEI065 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2348,2)
- ;;=^267131
- ;;^UTILITY(U,$J,358.3,2349,0)
- ;;=C44.212^^5^69^3
- ;;^UTILITY(U,$J,358.3,2349,1,0)
+ ;;^UTILITY(U,$J,358.3,2275,1,4,0)
+ ;;=4^T86.22
+ ;;^UTILITY(U,$J,358.3,2275,2)
+ ;;=^5055715
+ ;;^UTILITY(U,$J,358.3,2276,0)
+ ;;=T86.23^^19^192^24
+ ;;^UTILITY(U,$J,358.3,2276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2349,1,3,0)
- ;;=3^BC CA Skin RIGHT Ear and EAC
- ;;^UTILITY(U,$J,358.3,2349,1,4,0)
- ;;=4^C44.212
- ;;^UTILITY(U,$J,358.3,2349,2)
- ;;=^5001032
- ;;^UTILITY(U,$J,358.3,2350,0)
- ;;=C44.219^^5^69^2
- ;;^UTILITY(U,$J,358.3,2350,1,0)
+ ;;^UTILITY(U,$J,358.3,2276,1,3,0)
+ ;;=3^Heart Transplant Infection
+ ;;^UTILITY(U,$J,358.3,2276,1,4,0)
+ ;;=4^T86.23
+ ;;^UTILITY(U,$J,358.3,2276,2)
+ ;;=^5055716
+ ;;^UTILITY(U,$J,358.3,2277,0)
+ ;;=T86.290^^19^192^5
+ ;;^UTILITY(U,$J,358.3,2277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2350,1,3,0)
- ;;=3^BC CA Skin LEFT Ear and EAC
- ;;^UTILITY(U,$J,358.3,2350,1,4,0)
- ;;=4^C44.219
- ;;^UTILITY(U,$J,358.3,2350,2)
- ;;=^5001033
- ;;^UTILITY(U,$J,358.3,2351,0)
- ;;=C44.222^^5^69^35
- ;;^UTILITY(U,$J,358.3,2351,1,0)
+ ;;^UTILITY(U,$J,358.3,2277,1,3,0)
+ ;;=3^Cardiac Allograft Vasculopathy
+ ;;^UTILITY(U,$J,358.3,2277,1,4,0)
+ ;;=4^T86.290
+ ;;^UTILITY(U,$J,358.3,2277,2)
+ ;;=^5055717
+ ;;^UTILITY(U,$J,358.3,2278,0)
+ ;;=T86.298^^19^192^16
+ ;;^UTILITY(U,$J,358.3,2278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2351,1,3,0)
- ;;=3^SC CA Skin RIGHT Ear and EAC
- ;;^UTILITY(U,$J,358.3,2351,1,4,0)
- ;;=4^C44.222
- ;;^UTILITY(U,$J,358.3,2351,2)
- ;;=^5001035
- ;;^UTILITY(U,$J,358.3,2352,0)
- ;;=C44.229^^5^69^34
- ;;^UTILITY(U,$J,358.3,2352,1,0)
+ ;;^UTILITY(U,$J,358.3,2278,1,3,0)
+ ;;=3^Complications of Heart Transplant NEC
+ ;;^UTILITY(U,$J,358.3,2278,1,4,0)
+ ;;=4^T86.298
+ ;;^UTILITY(U,$J,358.3,2278,2)
+ ;;=^5055718
+ ;;^UTILITY(U,$J,358.3,2279,0)
+ ;;=T86.30^^19^192^12
+ ;;^UTILITY(U,$J,358.3,2279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2352,1,3,0)
- ;;=3^SC CA Skin LEFT Ear and EAC
- ;;^UTILITY(U,$J,358.3,2352,1,4,0)
- ;;=4^C44.229
- ;;^UTILITY(U,$J,358.3,2352,2)
- ;;=^5001036
- ;;^UTILITY(U,$J,358.3,2353,0)
- ;;=C44.310^^5^69^4
- ;;^UTILITY(U,$J,358.3,2353,1,0)
+ ;;^UTILITY(U,$J,358.3,2279,1,3,0)
+ ;;=3^Complication of Heart-Lung Transplant,Unspec
+ ;;^UTILITY(U,$J,358.3,2279,1,4,0)
+ ;;=4^T86.30
+ ;;^UTILITY(U,$J,358.3,2279,2)
+ ;;=^5055719
+ ;;^UTILITY(U,$J,358.3,2280,0)
+ ;;=T86.39^^19^192^17
+ ;;^UTILITY(U,$J,358.3,2280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2353,1,3,0)
- ;;=3^BC CA Skin UNSPEC Parts of Face
- ;;^UTILITY(U,$J,358.3,2353,1,4,0)
- ;;=4^C44.310
- ;;^UTILITY(U,$J,358.3,2353,2)
- ;;=^5001043
- ;;^UTILITY(U,$J,358.3,2354,0)
- ;;=C44.320^^5^69^36
- ;;^UTILITY(U,$J,358.3,2354,1,0)
+ ;;^UTILITY(U,$J,358.3,2280,1,3,0)
+ ;;=3^Complications of Heart-Lung Transplant NEC
+ ;;^UTILITY(U,$J,358.3,2280,1,4,0)
+ ;;=4^T86.39
+ ;;^UTILITY(U,$J,358.3,2280,2)
+ ;;=^5055723
+ ;;^UTILITY(U,$J,358.3,2281,0)
+ ;;=T86.31^^19^192^30
+ ;;^UTILITY(U,$J,358.3,2281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2354,1,3,0)
- ;;=3^SC CA Skin UNSPEC Parts of Face
- ;;^UTILITY(U,$J,358.3,2354,1,4,0)
- ;;=4^C44.320
- ;;^UTILITY(U,$J,358.3,2354,2)
- ;;=^5001046
- ;;^UTILITY(U,$J,358.3,2355,0)
- ;;=C44.41^^5^69^1
- ;;^UTILITY(U,$J,358.3,2355,1,0)
+ ;;^UTILITY(U,$J,358.3,2281,1,3,0)
+ ;;=3^Heart-Lung Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,2281,1,4,0)
+ ;;=4^T86.31
+ ;;^UTILITY(U,$J,358.3,2281,2)
+ ;;=^5055720
+ ;;^UTILITY(U,$J,358.3,2282,0)
+ ;;=T86.32^^19^192^28
+ ;;^UTILITY(U,$J,358.3,2282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2355,1,3,0)
- ;;=3^BC CA SCALP and Skin of Neck
- ;;^UTILITY(U,$J,358.3,2355,1,4,0)
- ;;=4^C44.41
- ;;^UTILITY(U,$J,358.3,2355,2)
- ;;=^340476
- ;;^UTILITY(U,$J,358.3,2356,0)
- ;;=C44.42^^5^69^33
- ;;^UTILITY(U,$J,358.3,2356,1,0)
+ ;;^UTILITY(U,$J,358.3,2282,1,3,0)
+ ;;=3^Heart-Lung Transplant Failure
+ ;;^UTILITY(U,$J,358.3,2282,1,4,0)
+ ;;=4^T86.32
+ ;;^UTILITY(U,$J,358.3,2282,2)
+ ;;=^5055721
+ ;;^UTILITY(U,$J,358.3,2283,0)
+ ;;=T86.33^^19^192^29
+ ;;^UTILITY(U,$J,358.3,2283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2356,1,3,0)
- ;;=3^SC CA SCALP and Skin of Neck
- ;;^UTILITY(U,$J,358.3,2356,1,4,0)
- ;;=4^C44.42
- ;;^UTILITY(U,$J,358.3,2356,2)
- ;;=^340477
- ;;^UTILITY(U,$J,358.3,2357,0)
- ;;=C44.91^^5^69^5
- ;;^UTILITY(U,$J,358.3,2357,1,0)
+ ;;^UTILITY(U,$J,358.3,2283,1,3,0)
+ ;;=3^Heart-Lung Transplant Infection
+ ;;^UTILITY(U,$J,358.3,2283,1,4,0)
+ ;;=4^T86.33
+ ;;^UTILITY(U,$J,358.3,2283,2)
+ ;;=^5055722
+ ;;^UTILITY(U,$J,358.3,2284,0)
+ ;;=T86.810^^19^192^35
+ ;;^UTILITY(U,$J,358.3,2284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2357,1,3,0)
- ;;=3^BC CA Skin,Unspec
- ;;^UTILITY(U,$J,358.3,2357,1,4,0)
- ;;=4^C44.91
- ;;^UTILITY(U,$J,358.3,2357,2)
- ;;=^5001092
- ;;^UTILITY(U,$J,358.3,2358,0)
- ;;=C44.92^^5^69^37
- ;;^UTILITY(U,$J,358.3,2358,1,0)
+ ;;^UTILITY(U,$J,358.3,2284,1,3,0)
+ ;;=3^Lung Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,2284,1,4,0)
+ ;;=4^T86.810
+ ;;^UTILITY(U,$J,358.3,2284,2)
+ ;;=^5055730
+ ;;^UTILITY(U,$J,358.3,2285,0)
+ ;;=T86.811^^19^192^34
+ ;;^UTILITY(U,$J,358.3,2285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2358,1,3,0)
- ;;=3^SC CA Skin,Unspec
- ;;^UTILITY(U,$J,358.3,2358,1,4,0)
- ;;=4^C44.92
- ;;^UTILITY(U,$J,358.3,2358,2)
- ;;=^5001093
- ;;^UTILITY(U,$J,358.3,2359,0)
- ;;=C73.^^5^69^29
- ;;^UTILITY(U,$J,358.3,2359,1,0)
+ ;;^UTILITY(U,$J,358.3,2285,1,3,0)
+ ;;=3^Lung Transplant Failure
+ ;;^UTILITY(U,$J,358.3,2285,1,4,0)
+ ;;=4^T86.811
+ ;;^UTILITY(U,$J,358.3,2285,2)
+ ;;=^5055731
+ ;;^UTILITY(U,$J,358.3,2286,0)
+ ;;=T86.819^^19^192^14
+ ;;^UTILITY(U,$J,358.3,2286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2359,1,3,0)
- ;;=3^Malignant neoplasm of thyroid gland
- ;;^UTILITY(U,$J,358.3,2359,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,2359,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,2360,0)
- ;;=C76.0^^5^69^17
- ;;^UTILITY(U,$J,358.3,2360,1,0)
+ ;;^UTILITY(U,$J,358.3,2286,1,3,0)
+ ;;=3^Complication of Lung Transplant,Unspec
+ ;;^UTILITY(U,$J,358.3,2286,1,4,0)
+ ;;=4^T86.819
+ ;;^UTILITY(U,$J,358.3,2286,2)
+ ;;=^5137975
+ ;;^UTILITY(U,$J,358.3,2287,0)
+ ;;=T86.818^^19^192^13
+ ;;^UTILITY(U,$J,358.3,2287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2360,1,3,0)
- ;;=3^Malignant neoplasm of head, face and neck
- ;;^UTILITY(U,$J,358.3,2360,1,4,0)
- ;;=4^C76.0
- ;;^UTILITY(U,$J,358.3,2360,2)
- ;;=^5001324
- ;;^UTILITY(U,$J,358.3,2361,0)
- ;;=C96.9^^5^69^19
- ;;^UTILITY(U,$J,358.3,2361,1,0)
+ ;;^UTILITY(U,$J,358.3,2287,1,3,0)
+ ;;=3^Complication of Lung Transplant NEC
+ ;;^UTILITY(U,$J,358.3,2287,1,4,0)
+ ;;=4^T86.818
+ ;;^UTILITY(U,$J,358.3,2287,2)
+ ;;=^5055733
+ ;;^UTILITY(U,$J,358.3,2288,0)
+ ;;=Z94.1^^19^192^26
+ ;;^UTILITY(U,$J,358.3,2288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2361,1,3,0)
- ;;=3^Malignant neoplasm of lymphoid, hematpoetc and rel tissue, unsp
- ;;^UTILITY(U,$J,358.3,2361,1,4,0)
- ;;=4^C96.9
- ;;^UTILITY(U,$J,358.3,2361,2)
- ;;=^5001864
- ;;^UTILITY(U,$J,358.3,2362,0)
- ;;=D10.0^^5^69^7
- ;;^UTILITY(U,$J,358.3,2362,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2288,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,2288,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,2288,2)
+ ;;=^5063655

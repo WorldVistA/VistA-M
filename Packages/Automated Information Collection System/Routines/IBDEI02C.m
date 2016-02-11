@@ -1,134 +1,142 @@
-IBDEI02C ; ; 06-AUG-2015
+IBDEI02C ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,544,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,544,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,545,0)
- ;;=C92.50^^2^24^18
- ;;^UTILITY(U,$J,358.3,545,1,0)
+ ;;^UTILITY(U,$J,358.3,326,1,3,0)
+ ;;=3^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,326,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,326,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,327,0)
+ ;;=F60.1^^3^42^11
+ ;;^UTILITY(U,$J,358.3,327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,545,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,545,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,545,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,546,0)
- ;;=C92.00^^2^24^15
- ;;^UTILITY(U,$J,358.3,546,1,0)
+ ;;^UTILITY(U,$J,358.3,327,1,3,0)
+ ;;=3^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,327,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,327,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,328,0)
+ ;;=F21.^^3^42^12
+ ;;^UTILITY(U,$J,358.3,328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,546,1,3,0)
- ;;=3^Acute myeloblastic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,546,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,546,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,547,0)
- ;;=C92.51^^2^24^17
- ;;^UTILITY(U,$J,358.3,547,1,0)
+ ;;^UTILITY(U,$J,358.3,328,1,3,0)
+ ;;=3^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,328,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,328,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,329,0)
+ ;;=F60.5^^3^42^7
+ ;;^UTILITY(U,$J,358.3,329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,547,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,547,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,547,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,548,0)
- ;;=C92.41^^2^24^20
- ;;^UTILITY(U,$J,358.3,548,1,0)
+ ;;^UTILITY(U,$J,358.3,329,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,329,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,329,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,330,0)
+ ;;=F60.4^^3^42^5
+ ;;^UTILITY(U,$J,358.3,330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,548,1,3,0)
- ;;=3^Acute promyelocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,548,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,548,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,549,0)
- ;;=C92.01^^2^24^14
- ;;^UTILITY(U,$J,358.3,549,1,0)
+ ;;^UTILITY(U,$J,358.3,330,1,3,0)
+ ;;=3^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,330,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,330,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,331,0)
+ ;;=F60.7^^3^42^4
+ ;;^UTILITY(U,$J,358.3,331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,549,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,549,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,549,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,550,0)
- ;;=C92.02^^2^24^13
- ;;^UTILITY(U,$J,358.3,550,1,0)
+ ;;^UTILITY(U,$J,358.3,331,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,331,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,331,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,332,0)
+ ;;=F60.2^^3^42^1
+ ;;^UTILITY(U,$J,358.3,332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,550,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,550,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,550,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,551,0)
- ;;=C92.42^^2^24^19
- ;;^UTILITY(U,$J,358.3,551,1,0)
+ ;;^UTILITY(U,$J,358.3,332,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,332,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,332,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,333,0)
+ ;;=F60.81^^3^42^6
+ ;;^UTILITY(U,$J,358.3,333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,551,1,3,0)
- ;;=3^Acute promyelocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,551,1,4,0)
- ;;=4^C92.42
- ;;^UTILITY(U,$J,358.3,551,2)
- ;;=^5001803
- ;;^UTILITY(U,$J,358.3,552,0)
- ;;=C92.52^^2^24^16
- ;;^UTILITY(U,$J,358.3,552,1,0)
+ ;;^UTILITY(U,$J,358.3,333,1,3,0)
+ ;;=3^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,333,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,333,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,334,0)
+ ;;=F60.6^^3^42^2
+ ;;^UTILITY(U,$J,358.3,334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,552,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,552,1,4,0)
- ;;=4^C92.52
- ;;^UTILITY(U,$J,358.3,552,2)
- ;;=^5001806
- ;;^UTILITY(U,$J,358.3,553,0)
- ;;=C92.10^^2^24^28
- ;;^UTILITY(U,$J,358.3,553,1,0)
+ ;;^UTILITY(U,$J,358.3,334,1,3,0)
+ ;;=3^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,334,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,334,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,335,0)
+ ;;=F60.3^^3^42^3
+ ;;^UTILITY(U,$J,358.3,335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,553,1,3,0)
- ;;=3^Chronic myeloid leuk, BCR/ABL-positive, not achieve remis
- ;;^UTILITY(U,$J,358.3,553,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,553,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,554,0)
- ;;=C92.11^^2^24^29
- ;;^UTILITY(U,$J,358.3,554,1,0)
+ ;;^UTILITY(U,$J,358.3,335,1,3,0)
+ ;;=3^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,335,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,335,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,336,0)
+ ;;=F60.89^^3^42^9
+ ;;^UTILITY(U,$J,358.3,336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,554,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in remission
- ;;^UTILITY(U,$J,358.3,554,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,554,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,555,0)
- ;;=C92.12^^2^24^30
- ;;^UTILITY(U,$J,358.3,555,1,0)
+ ;;^UTILITY(U,$J,358.3,336,1,3,0)
+ ;;=3^Personality Disorder NEC
+ ;;^UTILITY(U,$J,358.3,336,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,336,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,337,0)
+ ;;=F60.9^^3^42^10
+ ;;^UTILITY(U,$J,358.3,337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,555,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in relapse
- ;;^UTILITY(U,$J,358.3,555,1,4,0)
- ;;=4^C92.12
- ;;^UTILITY(U,$J,358.3,555,2)
- ;;=^5001794
- ;;^UTILITY(U,$J,358.3,556,0)
- ;;=C92.20^^2^24^22
- ;;^UTILITY(U,$J,358.3,556,1,0)
+ ;;^UTILITY(U,$J,358.3,337,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,337,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,337,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,338,0)
+ ;;=Z65.4^^3^43^4
+ ;;^UTILITY(U,$J,358.3,338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,556,1,3,0)
- ;;=3^Atyp chronic myeloid leuk, BCR/ABL-neg, not achieve remis
- ;;^UTILITY(U,$J,358.3,556,1,4,0)
- ;;=4^C92.20
- ;;^UTILITY(U,$J,358.3,556,2)
- ;;=^5001795
- ;;^UTILITY(U,$J,358.3,557,0)
- ;;=C92.21^^2^24^23
- ;;^UTILITY(U,$J,358.3,557,1,0)
+ ;;^UTILITY(U,$J,358.3,338,1,3,0)
+ ;;=3^Victim of Crime,Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,338,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,338,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,339,0)
+ ;;=Z65.0^^3^43^1
+ ;;^UTILITY(U,$J,358.3,339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,557,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in remission
+ ;;^UTILITY(U,$J,358.3,339,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,339,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,339,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,340,0)
+ ;;=Z65.2^^3^43^3

@@ -1,130 +1,124 @@
-IBDEI1BR ; ; 06-AUG-2015
+IBDEI1BR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23464,1,2,0)
- ;;=2^97546
- ;;^UTILITY(U,$J,358.3,23464,1,3,0)
- ;;=3^Work Ther, addl hrs after 2
- ;;^UTILITY(U,$J,358.3,23465,0)
- ;;=97537^^126^1413^5^^^^1
- ;;^UTILITY(U,$J,358.3,23465,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23465,1,2,0)
- ;;=2^97537
- ;;^UTILITY(U,$J,358.3,23465,1,3,0)
- ;;=3^Community/Work Reintegration per 15 min
- ;;^UTILITY(U,$J,358.3,23466,0)
- ;;=97532^^126^1413^4^^^^1
- ;;^UTILITY(U,$J,358.3,23466,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23466,1,2,0)
- ;;=2^97532
- ;;^UTILITY(U,$J,358.3,23466,1,3,0)
- ;;=3^Cognitive Sk Dev (PhD/OT)per 15min
- ;;^UTILITY(U,$J,358.3,23467,0)
- ;;=97533^^126^1413^22^^^^1
- ;;^UTILITY(U,$J,358.3,23467,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23467,1,2,0)
- ;;=2^97533
- ;;^UTILITY(U,$J,358.3,23467,1,3,0)
- ;;=3^Sensory Integrat per 15 min
- ;;^UTILITY(U,$J,358.3,23468,0)
- ;;=97535^^126^1413^1^^^^1
- ;;^UTILITY(U,$J,358.3,23468,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23468,1,2,0)
- ;;=2^97535
- ;;^UTILITY(U,$J,358.3,23468,1,3,0)
- ;;=3^ADL Train per 15 min
- ;;^UTILITY(U,$J,358.3,23469,0)
- ;;=H0004^^126^1413^25^^^^1
- ;;^UTILITY(U,$J,358.3,23469,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23469,1,2,0)
- ;;=2^H0004
- ;;^UTILITY(U,$J,358.3,23469,1,3,0)
- ;;=3^Subs Abuse Ind Counseling,per 15 min
- ;;^UTILITY(U,$J,358.3,23470,0)
- ;;=H0046^^126^1413^15^^^^1
- ;;^UTILITY(U,$J,358.3,23470,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23470,1,2,0)
- ;;=2^H0046
- ;;^UTILITY(U,$J,358.3,23470,1,3,0)
- ;;=3^PTSD Group
- ;;^UTILITY(U,$J,358.3,23471,0)
- ;;=96119^^126^1413^12^^^^1
- ;;^UTILITY(U,$J,358.3,23471,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23471,1,2,0)
- ;;=2^96119
- ;;^UTILITY(U,$J,358.3,23471,1,3,0)
- ;;=3^Neuropsych Test by tech,per hr
- ;;^UTILITY(U,$J,358.3,23472,0)
- ;;=96102^^126^1413^18^^^^1
- ;;^UTILITY(U,$J,358.3,23472,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23472,1,2,0)
- ;;=2^96102
- ;;^UTILITY(U,$J,358.3,23472,1,3,0)
- ;;=3^Psych Test by Tech,per hr
- ;;^UTILITY(U,$J,358.3,23473,0)
- ;;=96103^^126^1413^19^^^^1
- ;;^UTILITY(U,$J,358.3,23473,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23473,1,2,0)
- ;;=2^96103
- ;;^UTILITY(U,$J,358.3,23473,1,3,0)
- ;;=3^Psych Test by computer
- ;;^UTILITY(U,$J,358.3,23474,0)
- ;;=96120^^126^1413^13^^^^1
- ;;^UTILITY(U,$J,358.3,23474,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23474,1,2,0)
- ;;=2^96120
- ;;^UTILITY(U,$J,358.3,23474,1,3,0)
- ;;=3^Neuropsych Tst Admin w/Comp
- ;;^UTILITY(U,$J,358.3,23475,0)
- ;;=96125^^126^1413^24^^^^1
- ;;^UTILITY(U,$J,358.3,23475,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23475,1,2,0)
- ;;=2^96125
- ;;^UTILITY(U,$J,358.3,23475,1,3,0)
- ;;=3^Stan Cog Perf Tst, per hr
- ;;^UTILITY(U,$J,358.3,23476,0)
- ;;=Q3014^^126^1413^26^^^^1
- ;;^UTILITY(U,$J,358.3,23476,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23476,1,2,0)
- ;;=2^Q3014
- ;;^UTILITY(U,$J,358.3,23476,1,3,0)
- ;;=3^Telehealth Facility Fee
- ;;^UTILITY(U,$J,358.3,23477,0)
- ;;=90887^^126^1413^6^^^^1
- ;;^UTILITY(U,$J,358.3,23477,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23477,1,2,0)
- ;;=2^90887
- ;;^UTILITY(U,$J,358.3,23477,1,3,0)
- ;;=3^Consultation w/Family
- ;;^UTILITY(U,$J,358.3,23478,0)
- ;;=90885^^126^1413^17^^^^1
- ;;^UTILITY(U,$J,358.3,23478,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23478,1,2,0)
- ;;=2^90885
- ;;^UTILITY(U,$J,358.3,23478,1,3,0)
- ;;=3^Psych Eval of Records
- ;;^UTILITY(U,$J,358.3,23479,0)
- ;;=90889^^126^1413^16^^^^1
- ;;^UTILITY(U,$J,358.3,23479,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23479,1,2,0)
- ;;=2^90889
- ;;^UTILITY(U,$J,358.3,23479,1,3,0)
- ;;=3^Preparation of Report
- ;;^UTILITY(U,$J,358.3,23480,0)
- ;;=96118^^126^1413^14^^^^1
+ ;;^UTILITY(U,$J,358.3,22089,1,4,0)
+ ;;=4^S42.111S
+ ;;^UTILITY(U,$J,358.3,22089,2)
+ ;;=^5026550
+ ;;^UTILITY(U,$J,358.3,22090,0)
+ ;;=S42.132S^^101^1037^18
+ ;;^UTILITY(U,$J,358.3,22090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22090,1,3,0)
+ ;;=3^Disp fx of coracoid process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22090,1,4,0)
+ ;;=4^S42.132S
+ ;;^UTILITY(U,$J,358.3,22090,2)
+ ;;=^5026641
+ ;;^UTILITY(U,$J,358.3,22091,0)
+ ;;=S42.131S^^101^1037^19
+ ;;^UTILITY(U,$J,358.3,22091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22091,1,3,0)
+ ;;=3^Disp fx of coracoid process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22091,1,4,0)
+ ;;=4^S42.131S
+ ;;^UTILITY(U,$J,358.3,22091,2)
+ ;;=^5026634
+ ;;^UTILITY(U,$J,358.3,22092,0)
+ ;;=S42.142S^^101^1037^21
+ ;;^UTILITY(U,$J,358.3,22092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22092,1,3,0)
+ ;;=3^Disp fx of glenoid cavity of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22092,1,4,0)
+ ;;=4^S42.142S
+ ;;^UTILITY(U,$J,358.3,22092,2)
+ ;;=^5026683
+ ;;^UTILITY(U,$J,358.3,22093,0)
+ ;;=S42.141S^^101^1037^20
+ ;;^UTILITY(U,$J,358.3,22093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22093,1,3,0)
+ ;;=3^Disp fx of glenoid cav of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22093,1,4,0)
+ ;;=4^S42.141S
+ ;;^UTILITY(U,$J,358.3,22093,2)
+ ;;=^5026676
+ ;;^UTILITY(U,$J,358.3,22094,0)
+ ;;=S42.151S^^101^1037^36
+ ;;^UTILITY(U,$J,358.3,22094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22094,1,3,0)
+ ;;=3^Disp fx of neck of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22094,1,4,0)
+ ;;=4^S42.151S
+ ;;^UTILITY(U,$J,358.3,22094,2)
+ ;;=^5026718
+ ;;^UTILITY(U,$J,358.3,22095,0)
+ ;;=S42.151S^^101^1037^37
+ ;;^UTILITY(U,$J,358.3,22095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22095,1,3,0)
+ ;;=3^Disp fx of neck of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22095,1,4,0)
+ ;;=4^S42.151S
+ ;;^UTILITY(U,$J,358.3,22095,2)
+ ;;=^5026718
+ ;;^UTILITY(U,$J,358.3,22096,0)
+ ;;=S42.125S^^101^1037^57
+ ;;^UTILITY(U,$J,358.3,22096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22096,1,3,0)
+ ;;=3^Nondisp fx of acromial process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22096,1,4,0)
+ ;;=4^S42.125S
+ ;;^UTILITY(U,$J,358.3,22096,2)
+ ;;=^5026620
+ ;;^UTILITY(U,$J,358.3,22097,0)
+ ;;=S42.115S^^101^1037^58
+ ;;^UTILITY(U,$J,358.3,22097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22097,1,3,0)
+ ;;=3^Nondisp fx of body of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22097,1,4,0)
+ ;;=4^S42.115S
+ ;;^UTILITY(U,$J,358.3,22097,2)
+ ;;=^5026578
+ ;;^UTILITY(U,$J,358.3,22098,0)
+ ;;=S42.114S^^101^1037^59
+ ;;^UTILITY(U,$J,358.3,22098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22098,1,3,0)
+ ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22098,1,4,0)
+ ;;=4^S42.114S
+ ;;^UTILITY(U,$J,358.3,22098,2)
+ ;;=^5026571
+ ;;^UTILITY(U,$J,358.3,22099,0)
+ ;;=S42.114S^^101^1037^60
+ ;;^UTILITY(U,$J,358.3,22099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22099,1,3,0)
+ ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22099,1,4,0)
+ ;;=4^S42.114S
+ ;;^UTILITY(U,$J,358.3,22099,2)
+ ;;=^5026571
+ ;;^UTILITY(U,$J,358.3,22100,0)
+ ;;=S42.135S^^101^1037^65
+ ;;^UTILITY(U,$J,358.3,22100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22100,1,3,0)
+ ;;=3^Nondisp fx of coracoid process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,22100,1,4,0)
+ ;;=4^S42.135S
+ ;;^UTILITY(U,$J,358.3,22100,2)
+ ;;=^5026662
+ ;;^UTILITY(U,$J,358.3,22101,0)
+ ;;=S42.134S^^101^1037^66
+ ;;^UTILITY(U,$J,358.3,22101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22101,1,3,0)
+ ;;=3^Nondisp fx of coracoid process, right shoulder, sequela

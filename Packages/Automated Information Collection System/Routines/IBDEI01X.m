@@ -1,144 +1,138 @@
-IBDEI01X ; ; 06-AUG-2015
+IBDEI01X ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,347,0)
- ;;=D69.3^^2^15^18
- ;;^UTILITY(U,$J,358.3,347,1,0)
+ ;;^UTILITY(U,$J,358.3,124,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,125,0)
+ ;;=T74.31XD^^3^23^21
+ ;;^UTILITY(U,$J,358.3,125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,347,1,3,0)
- ;;=3^Immune thrombocytopenic purpura
- ;;^UTILITY(U,$J,358.3,347,1,4,0)
- ;;=4^D69.3
- ;;^UTILITY(U,$J,358.3,347,2)
- ;;=^332746
- ;;^UTILITY(U,$J,358.3,348,0)
- ;;=D69.41^^2^15^9
- ;;^UTILITY(U,$J,358.3,348,1,0)
+ ;;^UTILITY(U,$J,358.3,125,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,125,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,125,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,126,0)
+ ;;=T76.31XA^^3^23^22
+ ;;^UTILITY(U,$J,358.3,126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,348,1,3,0)
- ;;=3^Evans syndrome
- ;;^UTILITY(U,$J,358.3,348,1,4,0)
- ;;=4^D69.41
- ;;^UTILITY(U,$J,358.3,348,2)
- ;;=^332747
- ;;^UTILITY(U,$J,358.3,349,0)
- ;;=D69.51^^2^15^21
- ;;^UTILITY(U,$J,358.3,349,1,0)
+ ;;^UTILITY(U,$J,358.3,126,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
+ ;;^UTILITY(U,$J,358.3,126,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,126,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,127,0)
+ ;;=T76.31XD^^3^23^23
+ ;;^UTILITY(U,$J,358.3,127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,349,1,3,0)
- ;;=3^Posttransfusion purpura
- ;;^UTILITY(U,$J,358.3,349,1,4,0)
- ;;=4^D69.51
- ;;^UTILITY(U,$J,358.3,349,2)
- ;;=^5002368
- ;;^UTILITY(U,$J,358.3,350,0)
- ;;=D69.59^^2^15^23
- ;;^UTILITY(U,$J,358.3,350,1,0)
+ ;;^UTILITY(U,$J,358.3,127,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,127,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,127,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,128,0)
+ ;;=Z91.411^^3^23^6
+ ;;^UTILITY(U,$J,358.3,128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,350,1,3,0)
- ;;=3^Secondary thrombocytopenia NEC
- ;;^UTILITY(U,$J,358.3,350,1,4,0)
- ;;=4^D69.59
- ;;^UTILITY(U,$J,358.3,350,2)
- ;;=^5002369
- ;;^UTILITY(U,$J,358.3,351,0)
- ;;=D69.8^^2^15^10
- ;;^UTILITY(U,$J,358.3,351,1,0)
+ ;;^UTILITY(U,$J,358.3,128,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,128,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,128,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,129,0)
+ ;;=F06.4^^3^24^6
+ ;;^UTILITY(U,$J,358.3,129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,351,1,3,0)
- ;;=3^Hemorrhagic Conditions NEC
- ;;^UTILITY(U,$J,358.3,351,1,4,0)
- ;;=4^D69.8
- ;;^UTILITY(U,$J,358.3,351,2)
- ;;=^88074
- ;;^UTILITY(U,$J,358.3,352,0)
- ;;=D69.6^^2^15^24
- ;;^UTILITY(U,$J,358.3,352,1,0)
+ ;;^UTILITY(U,$J,358.3,129,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,129,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,129,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,130,0)
+ ;;=F41.0^^3^24^14
+ ;;^UTILITY(U,$J,358.3,130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,352,1,3,0)
- ;;=3^Thrombocytopenia, unspecified
- ;;^UTILITY(U,$J,358.3,352,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,352,2)
- ;;=^5002370
- ;;^UTILITY(U,$J,358.3,353,0)
- ;;=M31.1^^2^15^25
- ;;^UTILITY(U,$J,358.3,353,1,0)
+ ;;^UTILITY(U,$J,358.3,130,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,130,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,130,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,131,0)
+ ;;=F41.1^^3^24^12
+ ;;^UTILITY(U,$J,358.3,131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,353,1,3,0)
- ;;=3^Thrombotic microangiopathy
- ;;^UTILITY(U,$J,358.3,353,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,353,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,354,0)
- ;;=D69.9^^2^15^11
- ;;^UTILITY(U,$J,358.3,354,1,0)
+ ;;^UTILITY(U,$J,358.3,131,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,131,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,131,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,132,0)
+ ;;=F41.9^^3^24^5
+ ;;^UTILITY(U,$J,358.3,132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,354,1,3,0)
- ;;=3^Hemorrhagic condition, unspecified
- ;;^UTILITY(U,$J,358.3,354,1,4,0)
- ;;=4^D69.9
- ;;^UTILITY(U,$J,358.3,354,2)
- ;;=^5002371
- ;;^UTILITY(U,$J,358.3,355,0)
- ;;=I80.9^^2^15^20
- ;;^UTILITY(U,$J,358.3,355,1,0)
+ ;;^UTILITY(U,$J,358.3,132,1,3,0)
+ ;;=3^Anxiety Disorder NOS
+ ;;^UTILITY(U,$J,358.3,132,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,132,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,133,0)
+ ;;=F40.02^^3^24^2
+ ;;^UTILITY(U,$J,358.3,133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,355,1,3,0)
- ;;=3^Phlebitis and thrombophlebitis of unspecified site
- ;;^UTILITY(U,$J,358.3,355,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,355,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,356,0)
- ;;=Z31.5^^2^16^4
- ;;^UTILITY(U,$J,358.3,356,1,0)
+ ;;^UTILITY(U,$J,358.3,133,1,3,0)
+ ;;=3^Agoraphobia
+ ;;^UTILITY(U,$J,358.3,133,1,4,0)
+ ;;=4^F40.02
+ ;;^UTILITY(U,$J,358.3,133,2)
+ ;;=^5003543
+ ;;^UTILITY(U,$J,358.3,134,0)
+ ;;=F40.10^^3^24^16
+ ;;^UTILITY(U,$J,358.3,134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,356,1,3,0)
- ;;=3^Genetic Counseling
- ;;^UTILITY(U,$J,358.3,356,1,4,0)
- ;;=4^Z31.5
- ;;^UTILITY(U,$J,358.3,356,2)
- ;;=^5062838
- ;;^UTILITY(U,$J,358.3,357,0)
- ;;=Z51.11^^2^16^2
- ;;^UTILITY(U,$J,358.3,357,1,0)
+ ;;^UTILITY(U,$J,358.3,134,1,3,0)
+ ;;=3^Social Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,134,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,134,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,135,0)
+ ;;=F40.218^^3^24^4
+ ;;^UTILITY(U,$J,358.3,135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,357,1,3,0)
- ;;=3^Antineoplastic Chemotherapy
- ;;^UTILITY(U,$J,358.3,357,1,4,0)
- ;;=4^Z51.11
- ;;^UTILITY(U,$J,358.3,357,2)
- ;;=^5063061
- ;;^UTILITY(U,$J,358.3,358,0)
- ;;=Z71.3^^2^16^3
- ;;^UTILITY(U,$J,358.3,358,1,0)
+ ;;^UTILITY(U,$J,358.3,135,1,3,0)
+ ;;=3^Animal Type Phobias
+ ;;^UTILITY(U,$J,358.3,135,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,135,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,136,0)
+ ;;=F40.228^^3^24^13
+ ;;^UTILITY(U,$J,358.3,136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,358,1,3,0)
- ;;=3^Dietary counseling and surveillance
- ;;^UTILITY(U,$J,358.3,358,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,358,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,359,0)
- ;;=Z71.89^^2^16^8
- ;;^UTILITY(U,$J,358.3,359,1,0)
+ ;;^UTILITY(U,$J,358.3,136,1,3,0)
+ ;;=3^Natural Environment Type Phobia
+ ;;^UTILITY(U,$J,358.3,136,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,136,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,137,0)
+ ;;=F40.230^^3^24^8
+ ;;^UTILITY(U,$J,358.3,137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,359,1,3,0)
- ;;=3^Specified Counseling NEC
- ;;^UTILITY(U,$J,358.3,359,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,359,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,360,0)
- ;;=Z51.89^^2^16^1
- ;;^UTILITY(U,$J,358.3,360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,360,1,3,0)
- ;;=3^Aftercare NEC
- ;;^UTILITY(U,$J,358.3,360,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,360,2)
- ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,137,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,137,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,137,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,138,0)
+ ;;=F40.231^^3^24^9

@@ -1,140 +1,130 @@
-IBDEI14O ; ; 06-AUG-2015
+IBDEI14O ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19900,1,4,0)
- ;;=4^781.6
- ;;^UTILITY(U,$J,358.3,19900,1,5,0)
- ;;=5^Meningismus
- ;;^UTILITY(U,$J,358.3,19900,2)
- ;;=Meningismus^75751
- ;;^UTILITY(U,$J,358.3,19901,0)
- ;;=797.^^105^1237^136
- ;;^UTILITY(U,$J,358.3,19901,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19901,1,4,0)
- ;;=4^797.
- ;;^UTILITY(U,$J,358.3,19901,1,5,0)
- ;;=5^Senility w/o psychosis
- ;;^UTILITY(U,$J,358.3,19901,2)
- ;;=^109215
- ;;^UTILITY(U,$J,358.3,19902,0)
- ;;=305.90^^105^1237^143
- ;;^UTILITY(U,$J,358.3,19902,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19902,1,4,0)
- ;;=4^305.90
- ;;^UTILITY(U,$J,358.3,19902,1,5,0)
- ;;=5^Substance Abuse
- ;;^UTILITY(U,$J,358.3,19902,2)
- ;;=Substance Abuse^268258
- ;;^UTILITY(U,$J,358.3,19903,0)
- ;;=781.7^^105^1237^148
- ;;^UTILITY(U,$J,358.3,19903,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19903,1,4,0)
- ;;=4^781.7
- ;;^UTILITY(U,$J,358.3,19903,1,5,0)
- ;;=5^Tetany/Carpopedl spasm
- ;;^UTILITY(U,$J,358.3,19903,2)
- ;;=^118032
- ;;^UTILITY(U,$J,358.3,19904,0)
- ;;=781.4^^105^1237^151
- ;;^UTILITY(U,$J,358.3,19904,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19904,1,4,0)
- ;;=4^781.4
- ;;^UTILITY(U,$J,358.3,19904,1,5,0)
- ;;=5^Transient Limb Paralysis
- ;;^UTILITY(U,$J,358.3,19904,2)
- ;;=^273353
- ;;^UTILITY(U,$J,358.3,19905,0)
- ;;=368.9^^105^1237^154
- ;;^UTILITY(U,$J,358.3,19905,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19905,1,4,0)
- ;;=4^368.9
- ;;^UTILITY(U,$J,358.3,19905,1,5,0)
- ;;=5^Visual disturbance
- ;;^UTILITY(U,$J,358.3,19905,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,19906,0)
- ;;=782.8^^105^1237^35
- ;;^UTILITY(U,$J,358.3,19906,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19906,1,4,0)
- ;;=4^782.8
- ;;^UTILITY(U,$J,358.3,19906,1,5,0)
- ;;=5^Change in skin texture
- ;;^UTILITY(U,$J,358.3,19906,2)
- ;;=^273360
- ;;^UTILITY(U,$J,358.3,19907,0)
- ;;=782.5^^105^1237^46
- ;;^UTILITY(U,$J,358.3,19907,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19907,1,4,0)
- ;;=4^782.5
- ;;^UTILITY(U,$J,358.3,19907,1,5,0)
- ;;=5^Cyanosis
- ;;^UTILITY(U,$J,358.3,19907,2)
- ;;=Cyanosis^29863
- ;;^UTILITY(U,$J,358.3,19908,0)
- ;;=782.7^^105^1237^62
- ;;^UTILITY(U,$J,358.3,19908,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19908,1,4,0)
- ;;=4^782.7
- ;;^UTILITY(U,$J,358.3,19908,1,5,0)
- ;;=5^Ecchymoses, spontaneous
- ;;^UTILITY(U,$J,358.3,19908,2)
- ;;=^273359
- ;;^UTILITY(U,$J,358.3,19909,0)
- ;;=782.62^^105^1237^76
- ;;^UTILITY(U,$J,358.3,19909,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19909,1,4,0)
- ;;=4^782.62
- ;;^UTILITY(U,$J,358.3,19909,1,5,0)
- ;;=5^Flushing
- ;;^UTILITY(U,$J,358.3,19909,2)
- ;;=Flushing^47184
- ;;^UTILITY(U,$J,358.3,19910,0)
- ;;=703.0^^105^1237^120
- ;;^UTILITY(U,$J,358.3,19910,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19910,1,4,0)
- ;;=4^703.0
- ;;^UTILITY(U,$J,358.3,19910,1,5,0)
- ;;=5^Onychocryptosis
- ;;^UTILITY(U,$J,358.3,19910,2)
- ;;=Onychocryptosis^81221
- ;;^UTILITY(U,$J,358.3,19911,0)
- ;;=782.4^^105^1237^101
- ;;^UTILITY(U,$J,358.3,19911,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19911,1,4,0)
- ;;=4^782.4
- ;;^UTILITY(U,$J,358.3,19911,1,5,0)
- ;;=5^Jaundice
- ;;^UTILITY(U,$J,358.3,19911,2)
- ;;=Jaundice^66155
- ;;^UTILITY(U,$J,358.3,19912,0)
- ;;=782.2^^105^1237^110
- ;;^UTILITY(U,$J,358.3,19912,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19912,1,4,0)
- ;;=4^782.2
- ;;^UTILITY(U,$J,358.3,19912,1,5,0)
- ;;=5^Mass, Lump of skin
- ;;^UTILITY(U,$J,358.3,19912,2)
- ;;=^71690
- ;;^UTILITY(U,$J,358.3,19913,0)
- ;;=703.8^^105^1237^121
- ;;^UTILITY(U,$J,358.3,19913,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,19913,1,4,0)
- ;;=4^703.8
- ;;^UTILITY(U,$J,358.3,19913,1,5,0)
- ;;=5^Onychodystrophy/Onycholysis
- ;;^UTILITY(U,$J,358.3,19913,2)
- ;;=Onychodystrophy/Onycholysis^271926
+ ;;^UTILITY(U,$J,358.3,18839,0)
+ ;;=D06.7^^94^916^39
+ ;;^UTILITY(U,$J,358.3,18839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18839,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,18839,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,18839,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,18840,0)
+ ;;=D04.9^^94^916^42
+ ;;^UTILITY(U,$J,358.3,18840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18840,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,18840,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,18840,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,18841,0)
+ ;;=C91.11^^94^916^45
+ ;;^UTILITY(U,$J,358.3,18841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18841,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,18841,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,18841,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,18842,0)
+ ;;=C91.10^^94^916^46
+ ;;^UTILITY(U,$J,358.3,18842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18842,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18842,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,18842,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,18843,0)
+ ;;=C92.11^^94^916^47
+ ;;^UTILITY(U,$J,358.3,18843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18843,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
+ ;;^UTILITY(U,$J,358.3,18843,1,4,0)
+ ;;=4^C92.11
+ ;;^UTILITY(U,$J,358.3,18843,2)
+ ;;=^5001793
+ ;;^UTILITY(U,$J,358.3,18844,0)
+ ;;=C92.10^^94^916^48
+ ;;^UTILITY(U,$J,358.3,18844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18844,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18844,1,4,0)
+ ;;=4^C92.10
+ ;;^UTILITY(U,$J,358.3,18844,2)
+ ;;=^5001792
+ ;;^UTILITY(U,$J,358.3,18845,0)
+ ;;=D47.1^^94^916^49
+ ;;^UTILITY(U,$J,358.3,18845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18845,1,3,0)
+ ;;=3^Chronic Myeloproliferative Disease
+ ;;^UTILITY(U,$J,358.3,18845,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,18845,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,18846,0)
+ ;;=C82.69^^94^916^50
+ ;;^UTILITY(U,$J,358.3,18846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18846,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,18846,1,4,0)
+ ;;=4^C82.69
+ ;;^UTILITY(U,$J,358.3,18846,2)
+ ;;=^5001530
+ ;;^UTILITY(U,$J,358.3,18847,0)
+ ;;=C82.60^^94^916^51
+ ;;^UTILITY(U,$J,358.3,18847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18847,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,18847,1,4,0)
+ ;;=4^C82.60
+ ;;^UTILITY(U,$J,358.3,18847,2)
+ ;;=^5001521
+ ;;^UTILITY(U,$J,358.3,18848,0)
+ ;;=D56.2^^94^916^52
+ ;;^UTILITY(U,$J,358.3,18848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18848,1,3,0)
+ ;;=3^Delta-Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,18848,1,4,0)
+ ;;=4^D56.2
+ ;;^UTILITY(U,$J,358.3,18848,2)
+ ;;=^340496
+ ;;^UTILITY(U,$J,358.3,18849,0)
+ ;;=D75.9^^94^916^53
+ ;;^UTILITY(U,$J,358.3,18849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18849,1,3,0)
+ ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,18849,1,4,0)
+ ;;=4^D75.9
+ ;;^UTILITY(U,$J,358.3,18849,2)
+ ;;=^5002393
+ ;;^UTILITY(U,$J,358.3,18850,0)
+ ;;=D59.0^^94^916^56
+ ;;^UTILITY(U,$J,358.3,18850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18850,1,3,0)
+ ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,18850,1,4,0)
+ ;;=4^D59.0
+ ;;^UTILITY(U,$J,358.3,18850,2)
+ ;;=^5002323
+ ;;^UTILITY(U,$J,358.3,18851,0)
+ ;;=D59.2^^94^916^57
+ ;;^UTILITY(U,$J,358.3,18851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18851,1,3,0)
+ ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia

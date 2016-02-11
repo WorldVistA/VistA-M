@@ -1,0 +1,134 @@
+IBDEI39C ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,54743,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,54744,0)
+ ;;=K92.1^^256^2770^71
+ ;;^UTILITY(U,$J,358.3,54744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54744,1,3,0)
+ ;;=3^Melena
+ ;;^UTILITY(U,$J,358.3,54744,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,54744,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,54745,0)
+ ;;=R19.5^^256^2770^48
+ ;;^UTILITY(U,$J,358.3,54745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54745,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,54745,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,54745,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,54746,0)
+ ;;=A54.00^^256^2771^47
+ ;;^UTILITY(U,$J,358.3,54746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54746,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,54746,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,54746,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,54747,0)
+ ;;=A54.09^^256^2771^48
+ ;;^UTILITY(U,$J,358.3,54747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54747,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,54747,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,54747,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,54748,0)
+ ;;=A54.02^^256^2771^49
+ ;;^UTILITY(U,$J,358.3,54748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54748,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,54748,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,54748,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,54749,0)
+ ;;=A54.1^^256^2771^46
+ ;;^UTILITY(U,$J,358.3,54749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54749,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,54749,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,54749,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,54750,0)
+ ;;=A54.01^^256^2771^45
+ ;;^UTILITY(U,$J,358.3,54750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54750,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,54750,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,54750,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,54751,0)
+ ;;=B37.49^^256^2771^12
+ ;;^UTILITY(U,$J,358.3,54751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54751,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,54751,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,54751,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,54752,0)
+ ;;=B37.41^^256^2771^11
+ ;;^UTILITY(U,$J,358.3,54752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54752,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,54752,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,54752,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,54753,0)
+ ;;=B37.42^^256^2771^10
+ ;;^UTILITY(U,$J,358.3,54753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54753,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,54753,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,54753,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,54754,0)
+ ;;=A59.03^^256^2771^96
+ ;;^UTILITY(U,$J,358.3,54754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54754,1,3,0)
+ ;;=3^Trichomonal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,54754,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,54754,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,54755,0)
+ ;;=E87.6^^256^2771^57
+ ;;^UTILITY(U,$J,358.3,54755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54755,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,54755,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,54755,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,54756,0)
+ ;;=F52.0^^256^2771^56
+ ;;^UTILITY(U,$J,358.3,54756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,54756,1,3,0)
+ ;;=3^Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,54756,1,4,0)
+ ;;=4^F52.0

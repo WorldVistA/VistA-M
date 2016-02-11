@@ -1,5 +1,5 @@
 RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22**;Feb 17, 2006;Build 17
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26**;Feb 17, 2006;Build 53
  ;
  ; This routine uses the following IAs:
  ;
@@ -38,6 +38,13 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
  ;
  ;ROR*1.5*22   FEB 2014    T KOPP       Added flags for OEF/OIF period of service
  ;                                      selection on reports in PATIENTS XML tag
+ ;
+ ;ROR*1.5*26   JAN 2015    T KOPP       Added flags for SVR ONLY or NO SVR ONLY
+ ;                                      selection on reports in PATIENTS XML tag.
+ ;                                      Suppress FIB4 header on DAA Potential
+ ;                                      Candidates report if FIB-4 parameter not
+ ;                                      selected
+ ;
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -223,6 +230,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . . I $D(BUF("SEX")) S FLAGS=FLAGS_$S(BUF("SEX")="M":"W",BUF("SEX")="F":"M",1:"")
  . . I $D(BUF("OEF")) D
  . . . S FLAGS=FLAGS_$S(BUF("OEF")=1:"I",BUF("OEF")=-1:"E",1:"")
+ . . I $D(BUF("SVR")) S FLAGS=FLAGS_$S(BUF("SVR")=1:"S",BUF("SVR")=0:"V",1:"")
  Q:RC<0 RC
  ;
  ;=== Other Registries
@@ -260,7 +268,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  I $D(RORTSK("PARAMS","LRGRANGES","C"))>1  D  Q:RC<0 RC
  . N TYPE S TYPE=3 ;default = 3 for 'lab by range' report
  . I $G(RORTSK("EP"))["BMIRANGE" S TYPE=5 ;change to 5 if BMI
- . I $G(RORTSK("EP"))["MLDRANGE" S TYPE=6 ;change to 6 if MELD
+ . I $G(RORTSK("EP"))["MLDRANGE"!($G(RORTSK("EP"))["HCVDAA") S TYPE=6 ;change to 6 if MELD
  . I $G(RORTSK("EP"))["RFRANGE" S TYPE=7 ;change to 7 if Renal
  . N GRC,NODE
  . S NODE=$NA(RORTSK("PARAMS","LRGRANGES","C"))
@@ -367,4 +375,5 @@ TBLDEF1(PTAG) ;
  ;
 SELCOL ;selected optional fields and screen criteria is listed here
  ;;ICN^I $$PARAM^RORTSK01("PATIENTS","ICN")
+ ;;FIB4^I $D(RORTSK("PARAMS","LRGRANGES","C",4))
  ;;

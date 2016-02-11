@@ -1,140 +1,140 @@
-IBDEI040 ; ; 06-AUG-2015
+IBDEI040 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1342,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,1342,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,1343,0)
- ;;=Z95.1^^3^40^1
- ;;^UTILITY(U,$J,358.3,1343,1,0)
+ ;;^UTILITY(U,$J,358.3,1172,0)
+ ;;=M79.642^^12^131^6
+ ;;^UTILITY(U,$J,358.3,1172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1343,1,3,0)
- ;;=3^Presence of aortocoronary bypass graft
- ;;^UTILITY(U,$J,358.3,1343,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,1343,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,1344,0)
- ;;=Z95.2^^3^40^3
- ;;^UTILITY(U,$J,358.3,1344,1,0)
+ ;;^UTILITY(U,$J,358.3,1172,1,3,0)
+ ;;=3^Pain Left Hand
+ ;;^UTILITY(U,$J,358.3,1172,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,1172,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,1173,0)
+ ;;=M25.551^^12^131^13
+ ;;^UTILITY(U,$J,358.3,1173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1344,1,3,0)
- ;;=3^Presence of prosthetic heart valve
- ;;^UTILITY(U,$J,358.3,1344,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,1344,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,1345,0)
- ;;=Z95.3^^3^40^4
- ;;^UTILITY(U,$J,358.3,1345,1,0)
+ ;;^UTILITY(U,$J,358.3,1173,1,3,0)
+ ;;=3^Pain Right Hip
+ ;;^UTILITY(U,$J,358.3,1173,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,1173,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,1174,0)
+ ;;=M25.552^^12^131^7
+ ;;^UTILITY(U,$J,358.3,1174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1345,1,3,0)
- ;;=3^Presence of xenogenic heart valve
- ;;^UTILITY(U,$J,358.3,1345,1,4,0)
+ ;;^UTILITY(U,$J,358.3,1174,1,3,0)
+ ;;=3^Pain Left Hip
+ ;;^UTILITY(U,$J,358.3,1174,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,1174,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,1175,0)
+ ;;=M25.561^^12^131^14
+ ;;^UTILITY(U,$J,358.3,1175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1175,1,3,0)
+ ;;=3^Pain Right Knee
+ ;;^UTILITY(U,$J,358.3,1175,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,1175,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,1176,0)
+ ;;=M25.562^^12^131^8
+ ;;^UTILITY(U,$J,358.3,1176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1176,1,3,0)
+ ;;=3^Pain Left Knee
+ ;;^UTILITY(U,$J,358.3,1176,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,1176,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,1177,0)
+ ;;=M25.571^^12^131^10
+ ;;^UTILITY(U,$J,358.3,1177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1177,1,3,0)
+ ;;=3^Pain Right Ankle & Joints Right Foot
+ ;;^UTILITY(U,$J,358.3,1177,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,1177,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,1178,0)
+ ;;=M25.572^^12^131^4
+ ;;^UTILITY(U,$J,358.3,1178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1178,1,3,0)
+ ;;=3^Pain Left Ankle & Joints Left Foot
+ ;;^UTILITY(U,$J,358.3,1178,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,1178,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,1179,0)
+ ;;=R10.2^^12^131^20
+ ;;^UTILITY(U,$J,358.3,1179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1179,1,3,0)
+ ;;=3^Pelvic & Perineal Pain
+ ;;^UTILITY(U,$J,358.3,1179,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,1179,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,1180,0)
+ ;;=Z51.5^^12^131^17
+ ;;^UTILITY(U,$J,358.3,1180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1180,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,1180,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,1180,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,1181,0)
+ ;;=Z95.3^^12^131^36
+ ;;^UTILITY(U,$J,358.3,1181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1181,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,1181,1,4,0)
  ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,1345,2)
+ ;;^UTILITY(U,$J,358.3,1181,2)
  ;;=^5063671
- ;;^UTILITY(U,$J,358.3,1346,0)
- ;;=Z95.0^^3^40^2
- ;;^UTILITY(U,$J,358.3,1346,1,0)
+ ;;^UTILITY(U,$J,358.3,1182,0)
+ ;;=Z95.1^^12^131^35
+ ;;^UTILITY(U,$J,358.3,1182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1346,1,3,0)
- ;;=3^Presence of cardiac pacemaker
- ;;^UTILITY(U,$J,358.3,1346,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,1346,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,1347,0)
- ;;=A15.0^^3^41^103
- ;;^UTILITY(U,$J,358.3,1347,1,0)
+ ;;^UTILITY(U,$J,358.3,1182,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass Graft
+ ;;^UTILITY(U,$J,358.3,1182,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,1182,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,1183,0)
+ ;;=Z98.89^^12^131^34
+ ;;^UTILITY(U,$J,358.3,1183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1347,1,3,0)
- ;;=3^Tuberculosis of lung
- ;;^UTILITY(U,$J,358.3,1347,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,1347,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,1348,0)
- ;;=A31.0^^3^41^92
- ;;^UTILITY(U,$J,358.3,1348,1,0)
+ ;;^UTILITY(U,$J,358.3,1183,1,3,0)
+ ;;=3^Postprocedural States,Other Specified
+ ;;^UTILITY(U,$J,358.3,1183,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,1183,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,1184,0)
+ ;;=I80.201^^12^131^25
+ ;;^UTILITY(U,$J,358.3,1184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1348,1,3,0)
- ;;=3^Pulmonary mycobacterial infection
- ;;^UTILITY(U,$J,358.3,1348,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,1348,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,1349,0)
- ;;=B20.^^3^41^72
- ;;^UTILITY(U,$J,358.3,1349,1,0)
+ ;;^UTILITY(U,$J,358.3,1184,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,1184,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,1184,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,1185,0)
+ ;;=I80.202^^12^131^26
+ ;;^UTILITY(U,$J,358.3,1185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1349,1,3,0)
- ;;=3^Human immunodeficiency virus [HIV] disease
- ;;^UTILITY(U,$J,358.3,1349,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,1349,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,1350,0)
- ;;=B02.9^^3^41^110
- ;;^UTILITY(U,$J,358.3,1350,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1350,1,3,0)
- ;;=3^Zoster without complications
- ;;^UTILITY(U,$J,358.3,1350,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,1350,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,1351,0)
- ;;=A60.9^^3^41^26
- ;;^UTILITY(U,$J,358.3,1351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1351,1,3,0)
- ;;=3^Anogenital herpesviral infection, unspecified
- ;;^UTILITY(U,$J,358.3,1351,1,4,0)
- ;;=4^A60.9
- ;;^UTILITY(U,$J,358.3,1351,2)
- ;;=^5000359
- ;;^UTILITY(U,$J,358.3,1352,0)
- ;;=A60.04^^3^41^71
- ;;^UTILITY(U,$J,358.3,1352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1352,1,3,0)
- ;;=3^Herpesviral vulvovaginitis
- ;;^UTILITY(U,$J,358.3,1352,1,4,0)
- ;;=4^A60.04
- ;;^UTILITY(U,$J,358.3,1352,2)
- ;;=^5000356
- ;;^UTILITY(U,$J,358.3,1353,0)
- ;;=A60.01^^3^41^70
- ;;^UTILITY(U,$J,358.3,1353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1353,1,3,0)
- ;;=3^Herpesviral infection of penis
- ;;^UTILITY(U,$J,358.3,1353,1,4,0)
- ;;=4^A60.01
- ;;^UTILITY(U,$J,358.3,1353,2)
- ;;=^5000353
- ;;^UTILITY(U,$J,358.3,1354,0)
- ;;=B00.81^^3^41^69
- ;;^UTILITY(U,$J,358.3,1354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1354,1,3,0)
- ;;=3^Herpesviral hepatitis
- ;;^UTILITY(U,$J,358.3,1354,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,1354,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,1355,0)
- ;;=B15.9^^3^41^68
- ;;^UTILITY(U,$J,358.3,1355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1355,1,3,0)
- ;;=3^Hepatitis A without hepatic coma
- ;;^UTILITY(U,$J,358.3,1355,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,1355,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,1356,0)
- ;;=B16.9^^3^41^5
+ ;;^UTILITY(U,$J,358.3,1185,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Left Lower Extremity

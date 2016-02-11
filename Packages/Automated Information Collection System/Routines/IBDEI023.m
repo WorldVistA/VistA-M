@@ -1,130 +1,130 @@
-IBDEI023 ; ; 06-AUG-2015
+IBDEI023 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,428,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,428,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,429,0)
- ;;=C83.10^^2^21^45
- ;;^UTILITY(U,$J,358.3,429,1,0)
+ ;;^UTILITY(U,$J,358.3,203,0)
+ ;;=G20.^^3^27^28
+ ;;^UTILITY(U,$J,358.3,203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,429,1,3,0)
- ;;=3^Mantle cell lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,429,1,4,0)
- ;;=4^C83.10
- ;;^UTILITY(U,$J,358.3,429,2)
- ;;=^5001561
- ;;^UTILITY(U,$J,358.3,430,0)
- ;;=C83.19^^2^21^44
- ;;^UTILITY(U,$J,358.3,430,1,0)
+ ;;^UTILITY(U,$J,358.3,203,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,203,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,203,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,204,0)
+ ;;=G20.^^3^27^29
+ ;;^UTILITY(U,$J,358.3,204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,430,1,3,0)
- ;;=3^Mantle cell lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,430,1,4,0)
- ;;=4^C83.19
- ;;^UTILITY(U,$J,358.3,430,2)
- ;;=^5001570
- ;;^UTILITY(U,$J,358.3,431,0)
- ;;=C83.50^^2^21^38
- ;;^UTILITY(U,$J,358.3,431,1,0)
+ ;;^UTILITY(U,$J,358.3,204,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,204,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,204,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,205,0)
+ ;;=G23.1^^3^27^34
+ ;;^UTILITY(U,$J,358.3,205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,431,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,431,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,431,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,432,0)
- ;;=C83.59^^2^21^39
- ;;^UTILITY(U,$J,358.3,432,1,0)
+ ;;^UTILITY(U,$J,358.3,205,1,3,0)
+ ;;=3^Progressive Supranuclear Palsy
+ ;;^UTILITY(U,$J,358.3,205,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,205,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,206,0)
+ ;;=F03.91^^3^27^15
+ ;;^UTILITY(U,$J,358.3,206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,432,1,3,0)
- ;;=3^Lymphoblastic lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,432,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,432,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,433,0)
- ;;=C83.70^^2^21^12
- ;;^UTILITY(U,$J,358.3,433,1,0)
+ ;;^UTILITY(U,$J,358.3,206,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,206,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,206,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,207,0)
+ ;;=F03.90^^3^27^17
+ ;;^UTILITY(U,$J,358.3,207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,433,1,3,0)
- ;;=3^Burkitt lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,433,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,433,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,434,0)
- ;;=C83.79^^2^21^11
- ;;^UTILITY(U,$J,358.3,434,1,0)
+ ;;^UTILITY(U,$J,358.3,207,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,207,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,207,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,208,0)
+ ;;=F06.30^^3^28^2
+ ;;^UTILITY(U,$J,358.3,208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,434,1,3,0)
- ;;=3^Burkitt lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,434,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,434,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,435,0)
- ;;=C81.00^^2^21^54
- ;;^UTILITY(U,$J,358.3,435,1,0)
+ ;;^UTILITY(U,$J,358.3,208,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,208,1,4,0)
+ ;;=4^F06.30
+ ;;^UTILITY(U,$J,358.3,208,2)
+ ;;=^5003056
+ ;;^UTILITY(U,$J,358.3,209,0)
+ ;;=F06.31^^3^28^3
+ ;;^UTILITY(U,$J,358.3,209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,435,1,3,0)
- ;;=3^Nodular lymphocyte predominant Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,435,1,4,0)
- ;;=4^C81.00
- ;;^UTILITY(U,$J,358.3,435,2)
- ;;=^5001391
- ;;^UTILITY(U,$J,358.3,436,0)
- ;;=C83.39^^2^21^19
- ;;^UTILITY(U,$J,358.3,436,1,0)
+ ;;^UTILITY(U,$J,358.3,209,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition w/ Depressive Features
+ ;;^UTILITY(U,$J,358.3,209,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,209,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,210,0)
+ ;;=F06.32^^3^28^4
+ ;;^UTILITY(U,$J,358.3,210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,436,1,3,0)
- ;;=3^Diffuse large B-cell lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,436,1,4,0)
- ;;=4^C83.39
- ;;^UTILITY(U,$J,358.3,436,2)
- ;;=^5001580
- ;;^UTILITY(U,$J,358.3,437,0)
- ;;=C81.09^^2^21^55
- ;;^UTILITY(U,$J,358.3,437,1,0)
+ ;;^UTILITY(U,$J,358.3,210,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition w/ Major Depressive-Like Episode
+ ;;^UTILITY(U,$J,358.3,210,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,210,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,211,0)
+ ;;=F32.9^^3^28^14
+ ;;^UTILITY(U,$J,358.3,211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,437,1,3,0)
- ;;=3^Nodular lymphocyte predominant Hodgkin lymphoma, extrnod & solid org site
- ;;^UTILITY(U,$J,358.3,437,1,4,0)
- ;;=4^C81.09
- ;;^UTILITY(U,$J,358.3,437,2)
- ;;=^5001400
- ;;^UTILITY(U,$J,358.3,438,0)
- ;;=C81.10^^2^21^56
- ;;^UTILITY(U,$J,358.3,438,1,0)
+ ;;^UTILITY(U,$J,358.3,211,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,211,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,211,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,212,0)
+ ;;=F32.0^^3^28^15
+ ;;^UTILITY(U,$J,358.3,212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,438,1,3,0)
- ;;=3^Nodular sclerosis classical Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,438,1,4,0)
- ;;=4^C81.10
- ;;^UTILITY(U,$J,358.3,438,2)
- ;;=^5001401
- ;;^UTILITY(U,$J,358.3,439,0)
- ;;=C81.19^^2^21^57
- ;;^UTILITY(U,$J,358.3,439,1,0)
+ ;;^UTILITY(U,$J,358.3,212,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,212,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,212,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,213,0)
+ ;;=F32.1^^3^28^16
+ ;;^UTILITY(U,$J,358.3,213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,439,1,3,0)
- ;;=3^Nodular sclerosis classical Hodgkin lymphoma,extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,439,1,4,0)
- ;;=4^C81.19
- ;;^UTILITY(U,$J,358.3,439,2)
- ;;=^5001410
- ;;^UTILITY(U,$J,358.3,440,0)
- ;;=C81.20^^2^21^47
- ;;^UTILITY(U,$J,358.3,440,1,0)
+ ;;^UTILITY(U,$J,358.3,213,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,213,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,213,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,214,0)
+ ;;=F32.2^^3^28^17
+ ;;^UTILITY(U,$J,358.3,214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,440,1,3,0)
- ;;=3^Mixed cellularity classical Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,440,1,4,0)
- ;;=4^C81.20
- ;;^UTILITY(U,$J,358.3,440,2)
- ;;=^5001411
- ;;^UTILITY(U,$J,358.3,441,0)
- ;;=C81.29^^2^21^46
+ ;;^UTILITY(U,$J,358.3,214,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,214,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,214,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,215,0)
+ ;;=F32.3^^3^28^18
+ ;;^UTILITY(U,$J,358.3,215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,215,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episode w Psychotic Features

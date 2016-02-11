@@ -1,144 +1,118 @@
-IBDEI16O ; ; 06-AUG-2015
+IBDEI16O ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20899,1,3,0)
- ;;=3^V04.0
- ;;^UTILITY(U,$J,358.3,20899,1,4,0)
- ;;=4^Poliomyelitis Vaccine
- ;;^UTILITY(U,$J,358.3,20899,2)
- ;;=^295183
- ;;^UTILITY(U,$J,358.3,20900,0)
- ;;=V04.1^^112^1295^20
- ;;^UTILITY(U,$J,358.3,20900,1,0)
+ ;;^UTILITY(U,$J,358.3,19781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20900,1,3,0)
- ;;=3^V04.1
- ;;^UTILITY(U,$J,358.3,20900,1,4,0)
- ;;=4^Smallpox Vaccine
- ;;^UTILITY(U,$J,358.3,20900,2)
- ;;=^124895
- ;;^UTILITY(U,$J,358.3,20901,0)
- ;;=V04.2^^112^1295^11
- ;;^UTILITY(U,$J,358.3,20901,1,0)
+ ;;^UTILITY(U,$J,358.3,19781,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19781,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,19781,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,19782,0)
+ ;;=S56.111A^^94^929^43
+ ;;^UTILITY(U,$J,358.3,19782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20901,1,3,0)
- ;;=3^V04.2
- ;;^UTILITY(U,$J,358.3,20901,1,4,0)
- ;;=4^Measles Vaccine
- ;;^UTILITY(U,$J,358.3,20901,2)
- ;;=^124883
- ;;^UTILITY(U,$J,358.3,20902,0)
- ;;=V04.3^^112^1295^19
- ;;^UTILITY(U,$J,358.3,20902,1,0)
+ ;;^UTILITY(U,$J,358.3,19782,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19782,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,19782,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,19783,0)
+ ;;=S56.112A^^94^929^23
+ ;;^UTILITY(U,$J,358.3,19783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20902,1,3,0)
- ;;=3^V04.3
- ;;^UTILITY(U,$J,358.3,20902,1,4,0)
- ;;=4^Rubella Vaccine
- ;;^UTILITY(U,$J,358.3,20902,2)
- ;;=^124893
- ;;^UTILITY(U,$J,358.3,20903,0)
- ;;=V04.5^^112^1295^18
- ;;^UTILITY(U,$J,358.3,20903,1,0)
+ ;;^UTILITY(U,$J,358.3,19783,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19783,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,19783,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,19784,0)
+ ;;=S56.113A^^94^929^51
+ ;;^UTILITY(U,$J,358.3,19784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20903,1,3,0)
- ;;=3^V04.5
- ;;^UTILITY(U,$J,358.3,20903,1,4,0)
- ;;=4^Rabies Vaccine
- ;;^UTILITY(U,$J,358.3,20903,2)
- ;;=^124891
- ;;^UTILITY(U,$J,358.3,20904,0)
- ;;=V04.6^^112^1295^12
- ;;^UTILITY(U,$J,358.3,20904,1,0)
+ ;;^UTILITY(U,$J,358.3,19784,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19784,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,19784,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,19785,0)
+ ;;=S56.114A^^94^929^31
+ ;;^UTILITY(U,$J,358.3,19785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20904,1,3,0)
- ;;=3^V04.6
- ;;^UTILITY(U,$J,358.3,20904,1,4,0)
- ;;=4^Mumps Vaccine
- ;;^UTILITY(U,$J,358.3,20904,2)
- ;;=^124885
- ;;^UTILITY(U,$J,358.3,20905,0)
- ;;=V04.7^^112^1295^1
- ;;^UTILITY(U,$J,358.3,20905,1,0)
+ ;;^UTILITY(U,$J,358.3,19785,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19785,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,19785,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,19786,0)
+ ;;=S56.115A^^94^929^53
+ ;;^UTILITY(U,$J,358.3,19786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20905,1,3,0)
- ;;=3^V04.7
- ;;^UTILITY(U,$J,358.3,20905,1,4,0)
- ;;=4^Common Cold Vaccine
- ;;^UTILITY(U,$J,358.3,20905,2)
- ;;=^295185
- ;;^UTILITY(U,$J,358.3,20906,0)
- ;;=V04.81^^112^1295^6
- ;;^UTILITY(U,$J,358.3,20906,1,0)
+ ;;^UTILITY(U,$J,358.3,19786,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19786,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,19786,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,19787,0)
+ ;;=S56.417A^^94^929^45
+ ;;^UTILITY(U,$J,358.3,19787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20906,1,3,0)
- ;;=3^V04.81
- ;;^UTILITY(U,$J,358.3,20906,1,4,0)
- ;;=4^Flu Vaccine
- ;;^UTILITY(U,$J,358.3,20906,2)
- ;;=^329964
- ;;^UTILITY(U,$J,358.3,20907,0)
- ;;=V04.82^^112^1295^17
- ;;^UTILITY(U,$J,358.3,20907,1,0)
+ ;;^UTILITY(U,$J,358.3,19787,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19787,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,19787,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,19788,0)
+ ;;=S56.418A^^94^929^25
+ ;;^UTILITY(U,$J,358.3,19788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20907,1,3,0)
- ;;=3^V04.82
- ;;^UTILITY(U,$J,358.3,20907,1,4,0)
- ;;=4^RSV Vaccine
- ;;^UTILITY(U,$J,358.3,20907,2)
- ;;=^329965
- ;;^UTILITY(U,$J,358.3,20908,0)
- ;;=V04.89^^112^1295^8
- ;;^UTILITY(U,$J,358.3,20908,1,0)
+ ;;^UTILITY(U,$J,358.3,19788,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19788,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,19788,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,19789,0)
+ ;;=S56.811A^^94^929^41
+ ;;^UTILITY(U,$J,358.3,19789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20908,1,3,0)
- ;;=3^V04.89
- ;;^UTILITY(U,$J,358.3,20908,1,4,0)
- ;;=4^HPV Vaccine
- ;;^UTILITY(U,$J,358.3,20908,2)
- ;;=^329966
- ;;^UTILITY(U,$J,358.3,20909,0)
- ;;=V05.3^^112^1295^9
- ;;^UTILITY(U,$J,358.3,20909,1,0)
+ ;;^UTILITY(U,$J,358.3,19789,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19789,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,19789,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,19790,0)
+ ;;=S56.812A^^94^929^21
+ ;;^UTILITY(U,$J,358.3,19790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20909,1,3,0)
- ;;=3^V05.3
- ;;^UTILITY(U,$J,358.3,20909,1,4,0)
- ;;=4^Hepatitis Vaccine
- ;;^UTILITY(U,$J,358.3,20909,2)
- ;;=^295814
- ;;^UTILITY(U,$J,358.3,20910,0)
- ;;=V05.8^^112^1295^25
- ;;^UTILITY(U,$J,358.3,20910,1,0)
+ ;;^UTILITY(U,$J,358.3,19790,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19790,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,19790,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,19791,0)
+ ;;=S56.116A^^94^929^33
+ ;;^UTILITY(U,$J,358.3,19791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20910,1,3,0)
- ;;=3^V05.8
- ;;^UTILITY(U,$J,358.3,20910,1,4,0)
- ;;=4^Zoster Vaccine
- ;;^UTILITY(U,$J,358.3,20910,2)
- ;;=^295189
- ;;^UTILITY(U,$J,358.3,20911,0)
- ;;=V06.1^^112^1295^4
- ;;^UTILITY(U,$J,358.3,20911,1,0)
+ ;;^UTILITY(U,$J,358.3,19791,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,19791,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,19791,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,19792,0)
+ ;;=S56.117A^^94^929^46
+ ;;^UTILITY(U,$J,358.3,19792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20911,1,3,0)
- ;;=3^V06.1
- ;;^UTILITY(U,$J,358.3,20911,1,4,0)
- ;;=4^DTP/DTAP Vaccine
- ;;^UTILITY(U,$J,358.3,20911,2)
- ;;=^330093
- ;;^UTILITY(U,$J,358.3,20912,0)
- ;;=V06.2^^112^1295^3
- ;;^UTILITY(U,$J,358.3,20912,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20912,1,3,0)
- ;;=3^V06.2
- ;;^UTILITY(U,$J,358.3,20912,1,4,0)
- ;;=4^DTP & TAB Vaccine
- ;;^UTILITY(U,$J,358.3,20912,2)
- ;;=^341503
- ;;^UTILITY(U,$J,358.3,20913,0)
- ;;=V06.3^^112^1295^2
- ;;^UTILITY(U,$J,358.3,20913,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19792,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon

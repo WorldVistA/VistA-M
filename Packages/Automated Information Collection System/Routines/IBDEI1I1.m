@@ -1,136 +1,118 @@
-IBDEI1I1 ; ; 06-AUG-2015
+IBDEI1I1 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26605,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Aphasia
- ;;^UTILITY(U,$J,358.3,26605,1,4,0)
- ;;=4^438.11
- ;;^UTILITY(U,$J,358.3,26605,2)
- ;;=^317907
- ;;^UTILITY(U,$J,358.3,26606,0)
- ;;=438.0^^156^1715^8
- ;;^UTILITY(U,$J,358.3,26606,1,0)
+ ;;^UTILITY(U,$J,358.3,25059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26606,1,3,0)
- ;;=3^Late Eff Cereb/Vasc, Cog Def
- ;;^UTILITY(U,$J,358.3,26606,1,4,0)
- ;;=4^438.0
- ;;^UTILITY(U,$J,358.3,26606,2)
- ;;=^317905
- ;;^UTILITY(U,$J,358.3,26607,0)
- ;;=438.20^^156^1715^13
- ;;^UTILITY(U,$J,358.3,26607,1,0)
+ ;;^UTILITY(U,$J,358.3,25059,1,3,0)
+ ;;=3^Postprocedural Hepatorenal Syndrome
+ ;;^UTILITY(U,$J,358.3,25059,1,4,0)
+ ;;=4^K91.83
+ ;;^UTILITY(U,$J,358.3,25059,2)
+ ;;=^5008909
+ ;;^UTILITY(U,$J,358.3,25060,0)
+ ;;=K91.89^^124^1239^164
+ ;;^UTILITY(U,$J,358.3,25060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26607,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Hemipl,Uns
- ;;^UTILITY(U,$J,358.3,26607,1,4,0)
- ;;=4^438.20
- ;;^UTILITY(U,$J,358.3,26607,2)
- ;;=^317910
- ;;^UTILITY(U,$J,358.3,26608,0)
- ;;=438.40^^156^1715^7
- ;;^UTILITY(U,$J,358.3,26608,1,0)
+ ;;^UTILITY(U,$J,358.3,25060,1,3,0)
+ ;;=3^Postprocedural Complications/Disorders of Digestive System
+ ;;^UTILITY(U,$J,358.3,25060,1,4,0)
+ ;;=4^K91.89
+ ;;^UTILITY(U,$J,358.3,25060,2)
+ ;;=^5008912
+ ;;^UTILITY(U,$J,358.3,25061,0)
+ ;;=N99.89^^124^1239^165
+ ;;^UTILITY(U,$J,358.3,25061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26608,1,3,0)
- ;;=3^Late Eff Cereb Dis, Mon L/L Un
- ;;^UTILITY(U,$J,358.3,26608,1,4,0)
- ;;=4^438.40
- ;;^UTILITY(U,$J,358.3,26608,2)
- ;;=^317916
- ;;^UTILITY(U,$J,358.3,26609,0)
- ;;=438.9^^156^1715^20
- ;;^UTILITY(U,$J,358.3,26609,1,0)
+ ;;^UTILITY(U,$J,358.3,25061,1,3,0)
+ ;;=3^Postprocedural Complications/Disorders of GU System
+ ;;^UTILITY(U,$J,358.3,25061,1,4,0)
+ ;;=4^N99.89
+ ;;^UTILITY(U,$J,358.3,25061,2)
+ ;;=^5015971
+ ;;^UTILITY(U,$J,358.3,25062,0)
+ ;;=N99.81^^124^1239^97
+ ;;^UTILITY(U,$J,358.3,25062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26609,1,3,0)
- ;;=3^Unspec Late Eff Cerebro Diseas
- ;;^UTILITY(U,$J,358.3,26609,1,4,0)
- ;;=4^438.9
- ;;^UTILITY(U,$J,358.3,26609,2)
- ;;=^269757
- ;;^UTILITY(U,$J,358.3,26610,0)
- ;;=907.0^^156^1715^14
- ;;^UTILITY(U,$J,358.3,26610,1,0)
+ ;;^UTILITY(U,$J,358.3,25062,1,3,0)
+ ;;=3^Intraoperative Complications of GU System
+ ;;^UTILITY(U,$J,358.3,25062,1,4,0)
+ ;;=4^N99.81
+ ;;^UTILITY(U,$J,358.3,25062,2)
+ ;;=^5015967
+ ;;^UTILITY(U,$J,358.3,25063,0)
+ ;;=D78.01^^124^1239^125
+ ;;^UTILITY(U,$J,358.3,25063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26610,1,3,0)
- ;;=3^Lt Eff Intracranial Inj w/o skull frac
- ;;^UTILITY(U,$J,358.3,26610,1,4,0)
- ;;=4^907.0
- ;;^UTILITY(U,$J,358.3,26610,2)
- ;;=^68489
- ;;^UTILITY(U,$J,358.3,26611,0)
- ;;=340.^^156^1715^17
- ;;^UTILITY(U,$J,358.3,26611,1,0)
+ ;;^UTILITY(U,$J,358.3,25063,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Spleen Complicating Spleen Procedure
+ ;;^UTILITY(U,$J,358.3,25063,1,4,0)
+ ;;=4^D78.01
+ ;;^UTILITY(U,$J,358.3,25063,2)
+ ;;=^5002397
+ ;;^UTILITY(U,$J,358.3,25064,0)
+ ;;=D78.21^^124^1239^190
+ ;;^UTILITY(U,$J,358.3,25064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26611,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,26611,1,4,0)
- ;;=4^340.
- ;;^UTILITY(U,$J,358.3,26611,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,26612,0)
- ;;=332.0^^156^1715^19
- ;;^UTILITY(U,$J,358.3,26612,1,0)
+ ;;^UTILITY(U,$J,358.3,25064,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Spleen Following Spleen Procedure
+ ;;^UTILITY(U,$J,358.3,25064,1,4,0)
+ ;;=4^D78.21
+ ;;^UTILITY(U,$J,358.3,25064,2)
+ ;;=^5002401
+ ;;^UTILITY(U,$J,358.3,25065,0)
+ ;;=D78.22^^124^1239^191
+ ;;^UTILITY(U,$J,358.3,25065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26612,1,3,0)
- ;;=3^Paralysis Agitans
- ;;^UTILITY(U,$J,358.3,26612,1,4,0)
- ;;=4^332.0
- ;;^UTILITY(U,$J,358.3,26612,2)
- ;;=^304847
- ;;^UTILITY(U,$J,358.3,26613,0)
- ;;=780.39^^156^1715^18
- ;;^UTILITY(U,$J,358.3,26613,1,0)
+ ;;^UTILITY(U,$J,358.3,25065,1,3,0)
+ ;;=3^Postprocedural Hemorrhage/Hematoma of Spleen Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25065,1,4,0)
+ ;;=4^D78.22
+ ;;^UTILITY(U,$J,358.3,25065,2)
+ ;;=^5002402
+ ;;^UTILITY(U,$J,358.3,25066,0)
+ ;;=E36.01^^124^1239^109
+ ;;^UTILITY(U,$J,358.3,25066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26613,1,3,0)
- ;;=3^Other Convulsions
- ;;^UTILITY(U,$J,358.3,26613,1,4,0)
- ;;=4^780.39
- ;;^UTILITY(U,$J,358.3,26613,2)
- ;;=^28162
- ;;^UTILITY(U,$J,358.3,26614,0)
- ;;=438.12^^156^1715^10
- ;;^UTILITY(U,$J,358.3,26614,1,0)
+ ;;^UTILITY(U,$J,358.3,25066,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Endo Sys Complicating Endo Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25066,1,4,0)
+ ;;=4^E36.01
+ ;;^UTILITY(U,$J,358.3,25066,2)
+ ;;=^5002779
+ ;;^UTILITY(U,$J,358.3,25067,0)
+ ;;=E36.02^^124^1239^110
+ ;;^UTILITY(U,$J,358.3,25067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26614,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Dysphasia
- ;;^UTILITY(U,$J,358.3,26614,1,4,0)
- ;;=4^438.12
- ;;^UTILITY(U,$J,358.3,26614,2)
- ;;=^317908
- ;;^UTILITY(U,$J,358.3,26615,0)
- ;;=438.21^^156^1715^11
- ;;^UTILITY(U,$J,358.3,26615,1,0)
+ ;;^UTILITY(U,$J,358.3,25067,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Endo Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25067,1,4,0)
+ ;;=4^E36.02
+ ;;^UTILITY(U,$J,358.3,25067,2)
+ ;;=^5002780
+ ;;^UTILITY(U,$J,358.3,25068,0)
+ ;;=G97.31^^124^1239^117
+ ;;^UTILITY(U,$J,358.3,25068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26615,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Hemipl,Dom
- ;;^UTILITY(U,$J,358.3,26615,1,4,0)
- ;;=4^438.21
- ;;^UTILITY(U,$J,358.3,26615,2)
- ;;=^317911
- ;;^UTILITY(U,$J,358.3,26616,0)
- ;;=438.22^^156^1715^12
- ;;^UTILITY(U,$J,358.3,26616,1,0)
+ ;;^UTILITY(U,$J,358.3,25068,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Nervous Sys Complicating Nervous Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25068,1,4,0)
+ ;;=4^G97.31
+ ;;^UTILITY(U,$J,358.3,25068,2)
+ ;;=^5004204
+ ;;^UTILITY(U,$J,358.3,25069,0)
+ ;;=G97.32^^124^1239^118
+ ;;^UTILITY(U,$J,358.3,25069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26616,1,3,0)
- ;;=3^Late Eff Cereb/Vasc,Hemipl,NonDom
- ;;^UTILITY(U,$J,358.3,26616,1,4,0)
- ;;=4^438.22
- ;;^UTILITY(U,$J,358.3,26616,2)
- ;;=^317912
- ;;^UTILITY(U,$J,358.3,26617,0)
- ;;=438.41^^156^1715^15
- ;;^UTILITY(U,$J,358.3,26617,1,0)
+ ;;^UTILITY(U,$J,358.3,25069,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Nervous Sys Complication Oth Procedure
+ ;;^UTILITY(U,$J,358.3,25069,1,4,0)
+ ;;=4^G97.32
+ ;;^UTILITY(U,$J,358.3,25069,2)
+ ;;=^5004205
+ ;;^UTILITY(U,$J,358.3,25070,0)
+ ;;=H59.111^^124^1239^121
+ ;;^UTILITY(U,$J,358.3,25070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26617,1,3,0)
- ;;=3^Monoplegia of LL, Dom Side
- ;;^UTILITY(U,$J,358.3,26617,1,4,0)
- ;;=4^438.41
- ;;^UTILITY(U,$J,358.3,26617,2)
- ;;=^317917
- ;;^UTILITY(U,$J,358.3,26618,0)
- ;;=438.42^^156^1715^16
- ;;^UTILITY(U,$J,358.3,26618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26618,1,3,0)
- ;;=3^Monoplegia of LL, NonDom Side
+ ;;^UTILITY(U,$J,358.3,25070,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Right Eye/Adnexa Complicating Ophth Procedure

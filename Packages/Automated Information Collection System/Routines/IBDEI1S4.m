@@ -1,130 +1,136 @@
-IBDEI1S4 ; ; 06-AUG-2015
+IBDEI1S4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31406,1,4,0)
- ;;=4^M86.612
- ;;^UTILITY(U,$J,358.3,31406,2)
- ;;=^5014632
- ;;^UTILITY(U,$J,358.3,31407,0)
- ;;=M86.652^^180^1956^14
- ;;^UTILITY(U,$J,358.3,31407,1,0)
+ ;;^UTILITY(U,$J,358.3,29785,1,3,0)
+ ;;=3^Bladder Disorders,Other Spec
+ ;;^UTILITY(U,$J,358.3,29785,1,4,0)
+ ;;=4^N32.89
+ ;;^UTILITY(U,$J,358.3,29785,2)
+ ;;=^87989
+ ;;^UTILITY(U,$J,358.3,29786,0)
+ ;;=N33.^^135^1368^4
+ ;;^UTILITY(U,$J,358.3,29786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31407,1,3,0)
- ;;=3^Chronic osteomyelitis, left thigh NEC
- ;;^UTILITY(U,$J,358.3,31407,1,4,0)
- ;;=4^M86.652
- ;;^UTILITY(U,$J,358.3,31407,2)
- ;;=^5014638
- ;;^UTILITY(U,$J,358.3,31408,0)
- ;;=M86.662^^180^1956^15
- ;;^UTILITY(U,$J,358.3,31408,1,0)
+ ;;^UTILITY(U,$J,358.3,29786,1,3,0)
+ ;;=3^Bladder Disorders,Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,29786,1,4,0)
+ ;;=4^N33.
+ ;;^UTILITY(U,$J,358.3,29786,2)
+ ;;=^5015654
+ ;;^UTILITY(U,$J,358.3,29787,0)
+ ;;=N34.2^^135^1368^99
+ ;;^UTILITY(U,$J,358.3,29787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31408,1,3,0)
- ;;=3^Chronic osteomyelitis, left tibia and Fibula NEC
- ;;^UTILITY(U,$J,358.3,31408,1,4,0)
- ;;=4^M86.662
- ;;^UTILITY(U,$J,358.3,31408,2)
- ;;=^5134076
- ;;^UTILITY(U,$J,358.3,31409,0)
- ;;=M86.671^^180^1956^16
- ;;^UTILITY(U,$J,358.3,31409,1,0)
+ ;;^UTILITY(U,$J,358.3,29787,1,3,0)
+ ;;=3^Urethritis
+ ;;^UTILITY(U,$J,358.3,29787,1,4,0)
+ ;;=4^N34.2
+ ;;^UTILITY(U,$J,358.3,29787,2)
+ ;;=^88231
+ ;;^UTILITY(U,$J,358.3,29788,0)
+ ;;=N34.1^^135^1368^100
+ ;;^UTILITY(U,$J,358.3,29788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31409,1,3,0)
- ;;=3^Chronic osteomyelitis, right ankle and foot NEC
- ;;^UTILITY(U,$J,358.3,31409,1,4,0)
- ;;=4^M86.671
- ;;^UTILITY(U,$J,358.3,31409,2)
- ;;=^5014641
- ;;^UTILITY(U,$J,358.3,31410,0)
- ;;=M86.641^^180^1956^17
- ;;^UTILITY(U,$J,358.3,31410,1,0)
+ ;;^UTILITY(U,$J,358.3,29788,1,3,0)
+ ;;=3^Urethritis,Nonspec
+ ;;^UTILITY(U,$J,358.3,29788,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,29788,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,29789,0)
+ ;;=N39.0^^135^1368^104
+ ;;^UTILITY(U,$J,358.3,29789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31410,1,3,0)
- ;;=3^Chronic osteomyelitis, right hand
- ;;^UTILITY(U,$J,358.3,31410,1,4,0)
- ;;=4^M86.641
- ;;^UTILITY(U,$J,358.3,31410,2)
- ;;=^5014636
- ;;^UTILITY(U,$J,358.3,31411,0)
- ;;=M86.621^^180^1956^18
- ;;^UTILITY(U,$J,358.3,31411,1,0)
+ ;;^UTILITY(U,$J,358.3,29789,1,3,0)
+ ;;=3^Urinary Tract Infection,Site Not Spec
+ ;;^UTILITY(U,$J,358.3,29789,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,29789,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,29790,0)
+ ;;=N31.0^^135^1368^72
+ ;;^UTILITY(U,$J,358.3,29790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31411,1,3,0)
- ;;=3^Chronic osteomyelitis, right humerus NEC
- ;;^UTILITY(U,$J,358.3,31411,1,4,0)
- ;;=4^M86.621
- ;;^UTILITY(U,$J,358.3,31411,2)
- ;;=^5014634
- ;;^UTILITY(U,$J,358.3,31412,0)
- ;;=M86.631^^180^1956^19
- ;;^UTILITY(U,$J,358.3,31412,1,0)
+ ;;^UTILITY(U,$J,358.3,29790,1,3,0)
+ ;;=3^Neuropathic Bladder,Uninhibited NEC
+ ;;^UTILITY(U,$J,358.3,29790,1,4,0)
+ ;;=4^N31.0
+ ;;^UTILITY(U,$J,358.3,29790,2)
+ ;;=^5015644
+ ;;^UTILITY(U,$J,358.3,29791,0)
+ ;;=R31.9^^135^1368^54
+ ;;^UTILITY(U,$J,358.3,29791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31412,1,3,0)
- ;;=3^Chronic osteomyelitis, right radius and ulna
- ;;^UTILITY(U,$J,358.3,31412,1,4,0)
- ;;=4^M86.631
- ;;^UTILITY(U,$J,358.3,31412,2)
- ;;=^5014635
- ;;^UTILITY(U,$J,358.3,31413,0)
- ;;=M86.611^^180^1956^20
- ;;^UTILITY(U,$J,358.3,31413,1,0)
+ ;;^UTILITY(U,$J,358.3,29791,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,29791,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,29791,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,29792,0)
+ ;;=R31.0^^135^1368^52
+ ;;^UTILITY(U,$J,358.3,29792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31413,1,3,0)
- ;;=3^Chronic osteomyelitis, right shoulder NEC
- ;;^UTILITY(U,$J,358.3,31413,1,4,0)
- ;;=4^M86.611
- ;;^UTILITY(U,$J,358.3,31413,2)
- ;;=^5014631
- ;;^UTILITY(U,$J,358.3,31414,0)
- ;;=M86.651^^180^1956^21
- ;;^UTILITY(U,$J,358.3,31414,1,0)
+ ;;^UTILITY(U,$J,358.3,29792,1,3,0)
+ ;;=3^Hematuria,Gross
+ ;;^UTILITY(U,$J,358.3,29792,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,29792,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,29793,0)
+ ;;=R31.2^^135^1368^53
+ ;;^UTILITY(U,$J,358.3,29793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31414,1,3,0)
- ;;=3^Chronic osteomyelitis, right thigh NEC
- ;;^UTILITY(U,$J,358.3,31414,1,4,0)
- ;;=4^M86.651
- ;;^UTILITY(U,$J,358.3,31414,2)
- ;;=^5014637
- ;;^UTILITY(U,$J,358.3,31415,0)
- ;;=M86.661^^180^1956^22
- ;;^UTILITY(U,$J,358.3,31415,1,0)
+ ;;^UTILITY(U,$J,358.3,29793,1,3,0)
+ ;;=3^Hematuria,Microscopic
+ ;;^UTILITY(U,$J,358.3,29793,1,4,0)
+ ;;=4^R31.2
+ ;;^UTILITY(U,$J,358.3,29793,2)
+ ;;=^5019327
+ ;;^UTILITY(U,$J,358.3,29794,0)
+ ;;=R31.1^^135^1368^51
+ ;;^UTILITY(U,$J,358.3,29794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31415,1,3,0)
- ;;=3^Chronic osteomyelitis, right tibia and fibula NEC
- ;;^UTILITY(U,$J,358.3,31415,1,4,0)
- ;;=4^M86.661
- ;;^UTILITY(U,$J,358.3,31415,2)
- ;;=^5014640
- ;;^UTILITY(U,$J,358.3,31416,0)
- ;;=M25.572^^180^1956^31
- ;;^UTILITY(U,$J,358.3,31416,1,0)
+ ;;^UTILITY(U,$J,358.3,29794,1,3,0)
+ ;;=3^Hematuria,Benign Essential Microscopic
+ ;;^UTILITY(U,$J,358.3,29794,1,4,0)
+ ;;=4^R31.1
+ ;;^UTILITY(U,$J,358.3,29794,2)
+ ;;=^5019326
+ ;;^UTILITY(U,$J,358.3,29795,0)
+ ;;=N40.0^^135^1368^30
+ ;;^UTILITY(U,$J,358.3,29795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31416,1,3,0)
- ;;=3^Pain in left ankle and joints of left foot
- ;;^UTILITY(U,$J,358.3,31416,1,4,0)
- ;;=4^M25.572
- ;;^UTILITY(U,$J,358.3,31416,2)
- ;;=^5011618
- ;;^UTILITY(U,$J,358.3,31417,0)
- ;;=M25.522^^180^1956^32
- ;;^UTILITY(U,$J,358.3,31417,1,0)
+ ;;^UTILITY(U,$J,358.3,29795,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,29795,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,29795,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,29796,0)
+ ;;=N40.1^^135^1368^29
+ ;;^UTILITY(U,$J,358.3,29796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31417,1,3,0)
- ;;=3^Pain in left elbow
- ;;^UTILITY(U,$J,358.3,31417,1,4,0)
- ;;=4^M25.522
- ;;^UTILITY(U,$J,358.3,31417,2)
- ;;=^5011606
- ;;^UTILITY(U,$J,358.3,31418,0)
- ;;=M79.642^^180^1956^33
- ;;^UTILITY(U,$J,358.3,31418,1,0)
+ ;;^UTILITY(U,$J,358.3,29796,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,29796,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,29796,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,29797,0)
+ ;;=N41.0^^135^1368^82
+ ;;^UTILITY(U,$J,358.3,29797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31418,1,3,0)
- ;;=3^Pain in left hand
- ;;^UTILITY(U,$J,358.3,31418,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,31418,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,31419,0)
- ;;=M25.552^^180^1956^34
+ ;;^UTILITY(U,$J,358.3,29797,1,3,0)
+ ;;=3^Prostatitis,Acute
+ ;;^UTILITY(U,$J,358.3,29797,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,29797,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,29798,0)
+ ;;=N45.1^^135^1368^31
+ ;;^UTILITY(U,$J,358.3,29798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29798,1,3,0)
+ ;;=3^Epididymitis

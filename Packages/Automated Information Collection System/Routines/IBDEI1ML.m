@@ -1,138 +1,122 @@
-IBDEI1ML ; ; 06-AUG-2015
+IBDEI1ML ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28863,0)
- ;;=96155^^166^1844^2^^^^1
- ;;^UTILITY(U,$J,358.3,28863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,28863,1,2,0)
- ;;=2^Train/Support,Fam Only,ea 15min
- ;;^UTILITY(U,$J,358.3,28863,1,3,0)
- ;;=3^96155
- ;;^UTILITY(U,$J,358.3,28864,0)
- ;;=303.90^^167^1845^3
- ;;^UTILITY(U,$J,358.3,28864,1,0)
+ ;;^UTILITY(U,$J,358.3,27198,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,27198,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,27199,0)
+ ;;=L97.524^^132^1309^184
+ ;;^UTILITY(U,$J,358.3,27199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28864,1,3,0)
- ;;=3^Alcohol Dependence, NEC/NOS
- ;;^UTILITY(U,$J,358.3,28864,1,4,0)
- ;;=4^303.90
- ;;^UTILITY(U,$J,358.3,28864,2)
- ;;=^4648
- ;;^UTILITY(U,$J,358.3,28865,0)
- ;;=296.40^^167^1845^12
- ;;^UTILITY(U,$J,358.3,28865,1,0)
+ ;;^UTILITY(U,$J,358.3,27199,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,27199,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,27199,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,27200,0)
+ ;;=L97.529^^132^1309^185
+ ;;^UTILITY(U,$J,358.3,27200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28865,1,3,0)
- ;;=3^Bipol I Dis, Manic, Unspec
- ;;^UTILITY(U,$J,358.3,28865,1,4,0)
- ;;=4^296.40
- ;;^UTILITY(U,$J,358.3,28865,2)
- ;;=^268123
- ;;^UTILITY(U,$J,358.3,28866,0)
- ;;=294.8^^167^1845^30
- ;;^UTILITY(U,$J,358.3,28866,1,0)
+ ;;^UTILITY(U,$J,358.3,27200,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,27200,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,27200,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,27201,0)
+ ;;=L97.911^^132^1309^221
+ ;;^UTILITY(U,$J,358.3,27201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28866,1,3,0)
- ;;=3^Dementia NOS
- ;;^UTILITY(U,$J,358.3,28866,1,4,0)
- ;;=4^294.8
- ;;^UTILITY(U,$J,358.3,28866,2)
- ;;=^268044
- ;;^UTILITY(U,$J,358.3,28867,0)
- ;;=311.^^167^1845^33
- ;;^UTILITY(U,$J,358.3,28867,1,0)
+ ;;^UTILITY(U,$J,358.3,27201,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,27201,1,4,0)
+ ;;=4^L97.911
+ ;;^UTILITY(U,$J,358.3,27201,2)
+ ;;=^5133679
+ ;;^UTILITY(U,$J,358.3,27202,0)
+ ;;=L97.912^^132^1309^222
+ ;;^UTILITY(U,$J,358.3,27202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28867,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,28867,1,4,0)
- ;;=4^311.
- ;;^UTILITY(U,$J,358.3,28867,2)
- ;;=^35603
- ;;^UTILITY(U,$J,358.3,28868,0)
- ;;=309.9^^167^1845^1
- ;;^UTILITY(U,$J,358.3,28868,1,0)
+ ;;^UTILITY(U,$J,358.3,27202,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,27202,1,4,0)
+ ;;=4^L97.912
+ ;;^UTILITY(U,$J,358.3,27202,2)
+ ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,27203,0)
+ ;;=L97.913^^132^1309^223
+ ;;^UTILITY(U,$J,358.3,27203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28868,1,3,0)
- ;;=3^Adjustment Reaction NOS
- ;;^UTILITY(U,$J,358.3,28868,1,4,0)
- ;;=4^309.9
- ;;^UTILITY(U,$J,358.3,28868,2)
- ;;=^123757
- ;;^UTILITY(U,$J,358.3,28869,0)
- ;;=305.00^^167^1845^2
- ;;^UTILITY(U,$J,358.3,28869,1,0)
+ ;;^UTILITY(U,$J,358.3,27203,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,27203,1,4,0)
+ ;;=4^L97.913
+ ;;^UTILITY(U,$J,358.3,27203,2)
+ ;;=^5133683
+ ;;^UTILITY(U,$J,358.3,27204,0)
+ ;;=L97.914^^132^1309^224
+ ;;^UTILITY(U,$J,358.3,27204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28869,1,3,0)
- ;;=3^Alcohol Abuse, Unspec
- ;;^UTILITY(U,$J,358.3,28869,1,4,0)
- ;;=4^305.00
- ;;^UTILITY(U,$J,358.3,28869,2)
- ;;=^268227
- ;;^UTILITY(U,$J,358.3,28870,0)
- ;;=303.00^^167^1845^4
- ;;^UTILITY(U,$J,358.3,28870,1,0)
+ ;;^UTILITY(U,$J,358.3,27204,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,27204,1,4,0)
+ ;;=4^L97.914
+ ;;^UTILITY(U,$J,358.3,27204,2)
+ ;;=^5133685
+ ;;^UTILITY(U,$J,358.3,27205,0)
+ ;;=L97.919^^132^1309^225
+ ;;^UTILITY(U,$J,358.3,27205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28870,1,3,0)
- ;;=3^Alcohol Intoxication, Acute  NOS
- ;;^UTILITY(U,$J,358.3,28870,1,4,0)
- ;;=4^303.00
- ;;^UTILITY(U,$J,358.3,28870,2)
- ;;=^268183
- ;;^UTILITY(U,$J,358.3,28871,0)
- ;;=300.20^^167^1845^7
- ;;^UTILITY(U,$J,358.3,28871,1,0)
+ ;;^UTILITY(U,$J,358.3,27205,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,27205,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,27205,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,27206,0)
+ ;;=L97.921^^132^1309^191
+ ;;^UTILITY(U,$J,358.3,27206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28871,1,3,0)
- ;;=3^Anxiety Disorder, Gen
- ;;^UTILITY(U,$J,358.3,28871,1,4,0)
- ;;=4^300.20
- ;;^UTILITY(U,$J,358.3,28871,2)
- ;;=^93428
- ;;^UTILITY(U,$J,358.3,28872,0)
- ;;=314.1^^167^1845^10
- ;;^UTILITY(U,$J,358.3,28872,1,0)
+ ;;^UTILITY(U,$J,358.3,27206,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,27206,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,27206,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,27207,0)
+ ;;=L97.922^^132^1309^192
+ ;;^UTILITY(U,$J,358.3,27207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28872,1,3,0)
- ;;=3^Attention Deficit Hyperkinesis
- ;;^UTILITY(U,$J,358.3,28872,1,4,0)
- ;;=4^314.1
- ;;^UTILITY(U,$J,358.3,28872,2)
- ;;=^268353
- ;;^UTILITY(U,$J,358.3,28873,0)
- ;;=296.50^^167^1845^11
- ;;^UTILITY(U,$J,358.3,28873,1,0)
+ ;;^UTILITY(U,$J,358.3,27207,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,27207,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,27207,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,27208,0)
+ ;;=L97.923^^132^1309^193
+ ;;^UTILITY(U,$J,358.3,27208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28873,1,3,0)
- ;;=3^Bipol I Dis, Depr, Unspec
- ;;^UTILITY(U,$J,358.3,28873,1,4,0)
- ;;=4^296.50
- ;;^UTILITY(U,$J,358.3,28873,2)
- ;;=^331877
- ;;^UTILITY(U,$J,358.3,28874,0)
- ;;=296.60^^167^1845^13
- ;;^UTILITY(U,$J,358.3,28874,1,0)
+ ;;^UTILITY(U,$J,358.3,27208,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,27208,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,27208,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,27209,0)
+ ;;=L97.924^^132^1309^194
+ ;;^UTILITY(U,$J,358.3,27209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28874,1,3,0)
- ;;=3^Bipol I Dis, Mixed, Unspec
- ;;^UTILITY(U,$J,358.3,28874,1,4,0)
- ;;=4^296.60
- ;;^UTILITY(U,$J,358.3,28874,2)
- ;;=^331884
- ;;^UTILITY(U,$J,358.3,28875,0)
- ;;=296.7^^167^1845^14
- ;;^UTILITY(U,$J,358.3,28875,1,0)
+ ;;^UTILITY(U,$J,358.3,27209,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,27209,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,27209,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,27210,0)
+ ;;=L97.929^^132^1309^195
+ ;;^UTILITY(U,$J,358.3,27210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28875,1,3,0)
- ;;=3^Bipol II Dis, Unspecified
- ;;^UTILITY(U,$J,358.3,28875,1,4,0)
- ;;=4^296.7
- ;;^UTILITY(U,$J,358.3,28875,2)
- ;;=^331891
- ;;^UTILITY(U,$J,358.3,28876,0)
- ;;=305.20^^167^1845^15
- ;;^UTILITY(U,$J,358.3,28876,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28876,1,3,0)
- ;;=3^Cannabis Abuse

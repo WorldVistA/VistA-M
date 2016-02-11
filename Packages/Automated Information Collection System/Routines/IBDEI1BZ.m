@@ -1,136 +1,122 @@
-IBDEI1BZ ; ; 06-AUG-2015
+IBDEI1BZ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23578,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23578,1,2,0)
- ;;=2^296.55
- ;;^UTILITY(U,$J,358.3,23578,1,5,0)
- ;;=5^Bipolar Depressed, Part or Unspec Remiss
- ;;^UTILITY(U,$J,358.3,23578,2)
- ;;=^303624
- ;;^UTILITY(U,$J,358.3,23579,0)
- ;;=296.56^^127^1425^3
- ;;^UTILITY(U,$J,358.3,23579,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23579,1,2,0)
- ;;=2^296.56
- ;;^UTILITY(U,$J,358.3,23579,1,5,0)
- ;;=5^Bipolar Depressed, Full Remission
- ;;^UTILITY(U,$J,358.3,23579,2)
- ;;=^303625
- ;;^UTILITY(U,$J,358.3,23580,0)
- ;;=296.40^^127^1425^14
- ;;^UTILITY(U,$J,358.3,23580,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23580,1,2,0)
- ;;=2^296.40
- ;;^UTILITY(U,$J,358.3,23580,1,5,0)
- ;;=5^Bipolar Manic, NOS
- ;;^UTILITY(U,$J,358.3,23580,2)
- ;;=^303607
- ;;^UTILITY(U,$J,358.3,23581,0)
- ;;=296.41^^127^1425^12
- ;;^UTILITY(U,$J,358.3,23581,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23581,1,2,0)
- ;;=2^296.41
- ;;^UTILITY(U,$J,358.3,23581,1,5,0)
- ;;=5^Bipolar Manic, Mild
- ;;^UTILITY(U,$J,358.3,23581,2)
- ;;=^303608
- ;;^UTILITY(U,$J,358.3,23582,0)
- ;;=296.42^^127^1425^13
- ;;^UTILITY(U,$J,358.3,23582,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23582,1,2,0)
- ;;=2^296.42
- ;;^UTILITY(U,$J,358.3,23582,1,5,0)
- ;;=5^Bipolar Manic, Mod
- ;;^UTILITY(U,$J,358.3,23582,2)
- ;;=^303609
- ;;^UTILITY(U,$J,358.3,23583,0)
- ;;=296.43^^127^1425^17
- ;;^UTILITY(U,$J,358.3,23583,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23583,1,2,0)
- ;;=2^296.43
- ;;^UTILITY(U,$J,358.3,23583,1,5,0)
- ;;=5^Bipolar Manic, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,23583,2)
- ;;=^303610
- ;;^UTILITY(U,$J,358.3,23584,0)
- ;;=296.44^^127^1425^16
- ;;^UTILITY(U,$J,358.3,23584,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23584,1,2,0)
- ;;=2^296.44
- ;;^UTILITY(U,$J,358.3,23584,1,5,0)
- ;;=5^Bipolar Manic, Sev w/Psychosis
- ;;^UTILITY(U,$J,358.3,23584,2)
- ;;=^303611
- ;;^UTILITY(U,$J,358.3,23585,0)
- ;;=296.45^^127^1425^15
- ;;^UTILITY(U,$J,358.3,23585,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23585,1,2,0)
- ;;=2^296.45
- ;;^UTILITY(U,$J,358.3,23585,1,5,0)
- ;;=5^Bipolar Manic, Part or Unspec Remiss
- ;;^UTILITY(U,$J,358.3,23585,2)
- ;;=^303612
- ;;^UTILITY(U,$J,358.3,23586,0)
- ;;=296.46^^127^1425^11
- ;;^UTILITY(U,$J,358.3,23586,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23586,1,2,0)
- ;;=2^296.46
- ;;^UTILITY(U,$J,358.3,23586,1,5,0)
- ;;=5^Bipolar Manic, Full Remiss
- ;;^UTILITY(U,$J,358.3,23586,2)
- ;;=^303618
- ;;^UTILITY(U,$J,358.3,23587,0)
- ;;=296.60^^127^1425^21
- ;;^UTILITY(U,$J,358.3,23587,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23587,1,2,0)
- ;;=2^296.60
- ;;^UTILITY(U,$J,358.3,23587,1,5,0)
- ;;=5^Bipolar Mixed, NOS
- ;;^UTILITY(U,$J,358.3,23587,2)
- ;;=^303626
- ;;^UTILITY(U,$J,358.3,23588,0)
- ;;=296.61^^127^1425^19
- ;;^UTILITY(U,$J,358.3,23588,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23588,1,2,0)
- ;;=2^296.61
- ;;^UTILITY(U,$J,358.3,23588,1,5,0)
- ;;=5^Bipolar Mixed, Mild
- ;;^UTILITY(U,$J,358.3,23588,2)
- ;;=^303627
- ;;^UTILITY(U,$J,358.3,23589,0)
- ;;=296.62^^127^1425^20
- ;;^UTILITY(U,$J,358.3,23589,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23589,1,2,0)
- ;;=2^296.62
- ;;^UTILITY(U,$J,358.3,23589,1,5,0)
- ;;=5^Bipolar Mixed, Moderate
- ;;^UTILITY(U,$J,358.3,23589,2)
- ;;=Bipolar Mixed, Moderate^303628
- ;;^UTILITY(U,$J,358.3,23590,0)
- ;;=296.63^^127^1425^24
- ;;^UTILITY(U,$J,358.3,23590,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23590,1,2,0)
- ;;=2^296.63
- ;;^UTILITY(U,$J,358.3,23590,1,5,0)
- ;;=5^Bipolar Mixed, Sev w/o Psychosis
- ;;^UTILITY(U,$J,358.3,23590,2)
- ;;=^303629
- ;;^UTILITY(U,$J,358.3,23591,0)
- ;;=296.64^^127^1425^23
- ;;^UTILITY(U,$J,358.3,23591,1,0)
- ;;=^358.31IA^5^2
+ ;;^UTILITY(U,$J,358.3,22185,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx upper end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22185,1,4,0)
+ ;;=4^S89.031S
+ ;;^UTILITY(U,$J,358.3,22185,2)
+ ;;=^5043684
+ ;;^UTILITY(U,$J,358.3,22186,0)
+ ;;=S89.142S^^101^1038^99
+ ;;^UTILITY(U,$J,358.3,22186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22186,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx lower end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22186,1,4,0)
+ ;;=4^S89.142S
+ ;;^UTILITY(U,$J,358.3,22186,2)
+ ;;=^5137312
+ ;;^UTILITY(U,$J,358.3,22187,0)
+ ;;=S89.141S^^101^1038^100
+ ;;^UTILITY(U,$J,358.3,22187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22187,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx lower end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22187,1,4,0)
+ ;;=4^S89.141S
+ ;;^UTILITY(U,$J,358.3,22187,2)
+ ;;=^5043756
+ ;;^UTILITY(U,$J,358.3,22188,0)
+ ;;=S89.041S^^101^1038^101
+ ;;^UTILITY(U,$J,358.3,22188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22188,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx upper end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22188,1,4,0)
+ ;;=4^S89.041S
+ ;;^UTILITY(U,$J,358.3,22188,2)
+ ;;=^5043702
+ ;;^UTILITY(U,$J,358.3,22189,0)
+ ;;=S89.042S^^101^1038^102
+ ;;^UTILITY(U,$J,358.3,22189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22189,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx upper end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22189,1,4,0)
+ ;;=4^S89.042S
+ ;;^UTILITY(U,$J,358.3,22189,2)
+ ;;=^5043708
+ ;;^UTILITY(U,$J,358.3,22190,0)
+ ;;=M84.362S^^101^1038^104
+ ;;^UTILITY(U,$J,358.3,22190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22190,1,3,0)
+ ;;=3^Stress fracture, left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22190,1,4,0)
+ ;;=4^M84.362S
+ ;;^UTILITY(U,$J,358.3,22190,2)
+ ;;=^5013715
+ ;;^UTILITY(U,$J,358.3,22191,0)
+ ;;=M84.361S^^101^1038^106
+ ;;^UTILITY(U,$J,358.3,22191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22191,1,3,0)
+ ;;=3^Stress fracture, right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22191,1,4,0)
+ ;;=4^M84.361S
+ ;;^UTILITY(U,$J,358.3,22191,2)
+ ;;=^5013709
+ ;;^UTILITY(U,$J,358.3,22192,0)
+ ;;=S82.311S^^101^1038^110
+ ;;^UTILITY(U,$J,358.3,22192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22192,1,3,0)
+ ;;=3^Torus fracture of lower end of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22192,1,4,0)
+ ;;=4^S82.311S
+ ;;^UTILITY(U,$J,358.3,22192,2)
+ ;;=^5041671
+ ;;^UTILITY(U,$J,358.3,22193,0)
+ ;;=S82.162S^^101^1038^112
+ ;;^UTILITY(U,$J,358.3,22193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22193,1,3,0)
+ ;;=3^Torus fracture of upper end of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22193,1,4,0)
+ ;;=4^S82.162S
+ ;;^UTILITY(U,$J,358.3,22193,2)
+ ;;=^5041074
+ ;;^UTILITY(U,$J,358.3,22194,0)
+ ;;=S82.312S^^101^1038^108
+ ;;^UTILITY(U,$J,358.3,22194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22194,1,3,0)
+ ;;=3^Torus fracture of lower end of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22194,1,4,0)
+ ;;=4^S82.312S
+ ;;^UTILITY(U,$J,358.3,22194,2)
+ ;;=^5136891
+ ;;^UTILITY(U,$J,358.3,22195,0)
+ ;;=S82.161S^^101^1038^114
+ ;;^UTILITY(U,$J,358.3,22195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22195,1,3,0)
+ ;;=3^Torus fracture of upper end of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22195,1,4,0)
+ ;;=4^S82.161S
+ ;;^UTILITY(U,$J,358.3,22195,2)
+ ;;=^5041068
+ ;;^UTILITY(U,$J,358.3,22196,0)
+ ;;=S82.452S^^101^1038^3
+ ;;^UTILITY(U,$J,358.3,22196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22196,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of left fibula, sequela   
+ ;;^UTILITY(U,$J,358.3,22196,1,4,0)
+ ;;=4^S82.452S
+ ;;^UTILITY(U,$J,358.3,22196,2)
+ ;;=^5042033
+ ;;^UTILITY(U,$J,358.3,22197,0)
+ ;;=S82.451S^^101^1038^5

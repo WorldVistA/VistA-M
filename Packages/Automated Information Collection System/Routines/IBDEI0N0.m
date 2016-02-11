@@ -1,142 +1,120 @@
-IBDEI0N0 ; ; 06-AUG-2015
+IBDEI0N0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10951,2)
- ;;=^303471
- ;;^UTILITY(U,$J,358.3,10952,0)
- ;;=V61.10^^47^611^43
- ;;^UTILITY(U,$J,358.3,10952,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10952,1,2,0)
- ;;=2^V61.10
- ;;^UTILITY(U,$J,358.3,10952,1,5,0)
- ;;=5^Partner Relational Problem
- ;;^UTILITY(U,$J,358.3,10952,2)
- ;;=^74110
- ;;^UTILITY(U,$J,358.3,10953,0)
- ;;=V61.20^^47^611^41
- ;;^UTILITY(U,$J,358.3,10953,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10953,1,2,0)
- ;;=2^V61.20
- ;;^UTILITY(U,$J,358.3,10953,1,5,0)
- ;;=5^Parent-Child Problem NOS
- ;;^UTILITY(U,$J,358.3,10953,2)
- ;;=^304300
- ;;^UTILITY(U,$J,358.3,10954,0)
- ;;=V61.12^^47^611^5
- ;;^UTILITY(U,$J,358.3,10954,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10954,1,2,0)
- ;;=2^V61.12
- ;;^UTILITY(U,$J,358.3,10954,1,5,0)
- ;;=5^Domestic Violence/Perpet
- ;;^UTILITY(U,$J,358.3,10954,2)
- ;;=^304356
- ;;^UTILITY(U,$J,358.3,10955,0)
- ;;=V61.11^^47^611^6
- ;;^UTILITY(U,$J,358.3,10955,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10955,1,2,0)
- ;;=2^V61.11
- ;;^UTILITY(U,$J,358.3,10955,1,5,0)
- ;;=5^Domestic Violence/Victim
- ;;^UTILITY(U,$J,358.3,10955,2)
- ;;=^304357
- ;;^UTILITY(U,$J,358.3,10956,0)
- ;;=V62.0^^47^611^51
- ;;^UTILITY(U,$J,358.3,10956,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10956,1,2,0)
- ;;=2^V62.0
- ;;^UTILITY(U,$J,358.3,10956,1,5,0)
- ;;=5^Unemployment
- ;;^UTILITY(U,$J,358.3,10956,2)
- ;;=^123545
- ;;^UTILITY(U,$J,358.3,10957,0)
- ;;=V69.2^^47^611^17
- ;;^UTILITY(U,$J,358.3,10957,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10957,1,2,0)
- ;;=2^V69.2
- ;;^UTILITY(U,$J,358.3,10957,1,5,0)
- ;;=5^Hi-Risk Sexual Behavior
- ;;^UTILITY(U,$J,358.3,10957,2)
- ;;=^303474
- ;;^UTILITY(U,$J,358.3,10958,0)
- ;;=V62.82^^47^611^2
- ;;^UTILITY(U,$J,358.3,10958,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10958,1,2,0)
- ;;=2^V62.82
- ;;^UTILITY(U,$J,358.3,10958,1,5,0)
- ;;=5^Bereavement/Uncomplicated
- ;;^UTILITY(U,$J,358.3,10958,2)
- ;;=^123500
- ;;^UTILITY(U,$J,358.3,10959,0)
- ;;=V70.1^^47^611^46
- ;;^UTILITY(U,$J,358.3,10959,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10959,1,2,0)
- ;;=2^V70.1
- ;;^UTILITY(U,$J,358.3,10959,1,5,0)
- ;;=5^Psych Exam, Mandated
- ;;^UTILITY(U,$J,358.3,10959,2)
- ;;=^295591
- ;;^UTILITY(U,$J,358.3,10960,0)
- ;;=V60.2^^47^611^7
- ;;^UTILITY(U,$J,358.3,10960,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10960,1,2,0)
- ;;=2^V60.2
- ;;^UTILITY(U,$J,358.3,10960,1,5,0)
- ;;=5^Economic Problem
- ;;^UTILITY(U,$J,358.3,10960,2)
- ;;=^62174
- ;;^UTILITY(U,$J,358.3,10961,0)
- ;;=V62.89^^47^611^47
- ;;^UTILITY(U,$J,358.3,10961,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10961,1,2,0)
- ;;=2^V62.89
- ;;^UTILITY(U,$J,358.3,10961,1,5,0)
- ;;=5^Psychological Stress NEC
- ;;^UTILITY(U,$J,358.3,10961,2)
- ;;=^87822
- ;;^UTILITY(U,$J,358.3,10962,0)
- ;;=V62.9^^47^611^48
- ;;^UTILITY(U,$J,358.3,10962,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10962,1,2,0)
- ;;=2^V62.9
- ;;^UTILITY(U,$J,358.3,10962,1,5,0)
- ;;=5^Psychosocial Circum NOS
- ;;^UTILITY(U,$J,358.3,10962,2)
- ;;=^295551
- ;;^UTILITY(U,$J,358.3,10963,0)
- ;;=V60.0^^47^611^33
- ;;^UTILITY(U,$J,358.3,10963,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10963,1,2,0)
- ;;=2^V60.0
- ;;^UTILITY(U,$J,358.3,10963,1,5,0)
- ;;=5^Lack Of Housing
- ;;^UTILITY(U,$J,358.3,10963,2)
- ;;=^295539
- ;;^UTILITY(U,$J,358.3,10964,0)
- ;;=V62.81^^47^611^23
- ;;^UTILITY(U,$J,358.3,10964,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10964,1,2,0)
- ;;=2^V62.81
- ;;^UTILITY(U,$J,358.3,10964,1,5,0)
- ;;=5^Interpersonal Problem
- ;;^UTILITY(U,$J,358.3,10964,2)
- ;;=^276358
- ;;^UTILITY(U,$J,358.3,10965,0)
- ;;=V71.01^^47^611^36
- ;;^UTILITY(U,$J,358.3,10965,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,10965,1,2,0)
- ;;=2^V71.01
+ ;;^UTILITY(U,$J,358.3,10508,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,10508,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,10508,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,10509,0)
+ ;;=K52.89^^68^670^54
+ ;;^UTILITY(U,$J,358.3,10509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10509,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,10509,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,10509,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,10510,0)
+ ;;=K52.9^^68^670^53
+ ;;^UTILITY(U,$J,358.3,10510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10510,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,10510,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,10510,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,10511,0)
+ ;;=K57.30^^68^670^42
+ ;;^UTILITY(U,$J,358.3,10511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10511,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10511,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,10511,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,10512,0)
+ ;;=K57.50^^68^670^43
+ ;;^UTILITY(U,$J,358.3,10512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10512,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10512,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,10512,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,10513,0)
+ ;;=K57.90^^68^670^41
+ ;;^UTILITY(U,$J,358.3,10513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10513,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10513,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,10513,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,10514,0)
+ ;;=K57.20^^68^670^37
+ ;;^UTILITY(U,$J,358.3,10514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10514,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10514,1,4,0)
+ ;;=4^K57.20
+ ;;^UTILITY(U,$J,358.3,10514,2)
+ ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,10515,0)
+ ;;=K57.92^^68^670^36
+ ;;^UTILITY(U,$J,358.3,10515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10515,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10515,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,10515,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,10516,0)
+ ;;=K57.80^^68^670^35
+ ;;^UTILITY(U,$J,358.3,10516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10516,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10516,1,4,0)
+ ;;=4^K57.80
+ ;;^UTILITY(U,$J,358.3,10516,2)
+ ;;=^5008733
+ ;;^UTILITY(U,$J,358.3,10517,0)
+ ;;=K57.52^^68^670^40
+ ;;^UTILITY(U,$J,358.3,10517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10517,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10517,1,4,0)
+ ;;=4^K57.52
+ ;;^UTILITY(U,$J,358.3,10517,2)
+ ;;=^5008731
+ ;;^UTILITY(U,$J,358.3,10518,0)
+ ;;=K57.40^^68^670^39
+ ;;^UTILITY(U,$J,358.3,10518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10518,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10518,1,4,0)
+ ;;=4^K57.40
+ ;;^UTILITY(U,$J,358.3,10518,2)
+ ;;=^5008727
+ ;;^UTILITY(U,$J,358.3,10519,0)
+ ;;=K57.32^^68^670^38
+ ;;^UTILITY(U,$J,358.3,10519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10519,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,10519,1,4,0)
+ ;;=4^K57.32
+ ;;^UTILITY(U,$J,358.3,10519,2)
+ ;;=^5008725

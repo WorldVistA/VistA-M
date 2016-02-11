@@ -1,140 +1,122 @@
-IBDEI1C7 ; ; 06-AUG-2015
+IBDEI1C7 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23684,1,2,0)
- ;;=2^305.1
- ;;^UTILITY(U,$J,358.3,23684,1,5,0)
- ;;=5^Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,23684,2)
- ;;=^119899
- ;;^UTILITY(U,$J,358.3,23685,0)
- ;;=291.81^^127^1431^14
- ;;^UTILITY(U,$J,358.3,23685,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23685,1,2,0)
- ;;=2^291.81
- ;;^UTILITY(U,$J,358.3,23685,1,5,0)
- ;;=5^Alcohol Withdrawal
- ;;^UTILITY(U,$J,358.3,23685,2)
- ;;=^123498
- ;;^UTILITY(U,$J,358.3,23686,0)
- ;;=291.0^^127^1431^13
- ;;^UTILITY(U,$J,358.3,23686,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23686,1,2,0)
- ;;=2^291.0
- ;;^UTILITY(U,$J,358.3,23686,1,5,0)
- ;;=5^Alcohol Withdraw Delir
- ;;^UTILITY(U,$J,358.3,23686,2)
- ;;=^4589
- ;;^UTILITY(U,$J,358.3,23687,0)
- ;;=303.00^^127^1431^5
- ;;^UTILITY(U,$J,358.3,23687,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23687,1,2,0)
- ;;=2^303.00
- ;;^UTILITY(U,$J,358.3,23687,1,5,0)
- ;;=5^Alc Intox NOS
- ;;^UTILITY(U,$J,358.3,23687,2)
- ;;=^268183
- ;;^UTILITY(U,$J,358.3,23688,0)
- ;;=303.01^^127^1431^6
- ;;^UTILITY(U,$J,358.3,23688,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23688,1,2,0)
- ;;=2^303.01
- ;;^UTILITY(U,$J,358.3,23688,1,5,0)
- ;;=5^Alc Intox, Continuous
- ;;^UTILITY(U,$J,358.3,23688,2)
- ;;=^268184
- ;;^UTILITY(U,$J,358.3,23689,0)
- ;;=303.02^^127^1431^7
- ;;^UTILITY(U,$J,358.3,23689,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23689,1,2,0)
- ;;=2^303.02
- ;;^UTILITY(U,$J,358.3,23689,1,5,0)
- ;;=5^Alc Intox, Episodic
- ;;^UTILITY(U,$J,358.3,23689,2)
- ;;=^268185
- ;;^UTILITY(U,$J,358.3,23690,0)
- ;;=303.03^^127^1431^8
- ;;^UTILITY(U,$J,358.3,23690,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23690,1,2,0)
- ;;=2^303.03
- ;;^UTILITY(U,$J,358.3,23690,1,5,0)
- ;;=5^Alc Intox, Remiss
- ;;^UTILITY(U,$J,358.3,23690,2)
- ;;=^268186
- ;;^UTILITY(U,$J,358.3,23691,0)
- ;;=303.91^^127^1431^3
- ;;^UTILITY(U,$J,358.3,23691,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23691,1,2,0)
- ;;=2^303.91
- ;;^UTILITY(U,$J,358.3,23691,1,5,0)
- ;;=5^Alc Dep, Continuous
- ;;^UTILITY(U,$J,358.3,23691,2)
- ;;=^268188
- ;;^UTILITY(U,$J,358.3,23692,0)
- ;;=303.92^^127^1431^4
- ;;^UTILITY(U,$J,358.3,23692,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23692,1,2,0)
- ;;=2^303.92
- ;;^UTILITY(U,$J,358.3,23692,1,5,0)
- ;;=5^Alc Dep, Episodic
- ;;^UTILITY(U,$J,358.3,23692,2)
- ;;=^268189
- ;;^UTILITY(U,$J,358.3,23693,0)
- ;;=304.01^^127^1431^73
- ;;^UTILITY(U,$J,358.3,23693,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23693,1,2,0)
- ;;=2^304.01
- ;;^UTILITY(U,$J,358.3,23693,1,5,0)
- ;;=5^Opioid Depend, Continuous
- ;;^UTILITY(U,$J,358.3,23693,2)
- ;;=^268191
- ;;^UTILITY(U,$J,358.3,23694,0)
- ;;=304.02^^127^1431^75
- ;;^UTILITY(U,$J,358.3,23694,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23694,1,2,0)
- ;;=2^304.02
- ;;^UTILITY(U,$J,358.3,23694,1,5,0)
- ;;=5^Opioid Dependence, Episodic
- ;;^UTILITY(U,$J,358.3,23694,2)
- ;;=^268192
- ;;^UTILITY(U,$J,358.3,23695,0)
- ;;=304.11^^127^1431^28
- ;;^UTILITY(U,$J,358.3,23695,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23695,1,2,0)
- ;;=2^304.11
- ;;^UTILITY(U,$J,358.3,23695,1,5,0)
- ;;=5^Anxiolytic Depend, Continuous
- ;;^UTILITY(U,$J,358.3,23695,2)
- ;;=^331932
- ;;^UTILITY(U,$J,358.3,23696,0)
- ;;=304.12^^127^1431^29
- ;;^UTILITY(U,$J,358.3,23696,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23696,1,2,0)
- ;;=2^304.12
- ;;^UTILITY(U,$J,358.3,23696,1,5,0)
- ;;=5^Anxiolytic Depend, Episodic
- ;;^UTILITY(U,$J,358.3,23696,2)
- ;;=^331933
- ;;^UTILITY(U,$J,358.3,23697,0)
- ;;=304.21^^127^1431^44
- ;;^UTILITY(U,$J,358.3,23697,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,23697,1,2,0)
- ;;=2^304.21
- ;;^UTILITY(U,$J,358.3,23697,1,5,0)
- ;;=5^Cocaine Depend, Continuous
- ;;^UTILITY(U,$J,358.3,23697,2)
- ;;=^268198
+ ;;^UTILITY(U,$J,358.3,22279,2)
+ ;;=^5021574
+ ;;^UTILITY(U,$J,358.3,22280,0)
+ ;;=M48.42XS^^101^1039^11
+ ;;^UTILITY(U,$J,358.3,22280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22280,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, cervical region, sqla
+ ;;^UTILITY(U,$J,358.3,22280,1,4,0)
+ ;;=4^M48.42XS
+ ;;^UTILITY(U,$J,358.3,22280,2)
+ ;;=^5012134
+ ;;^UTILITY(U,$J,358.3,22281,0)
+ ;;=M48.43XS^^101^1039^12
+ ;;^UTILITY(U,$J,358.3,22281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22281,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, cervicothoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,22281,1,4,0)
+ ;;=4^M48.43XS
+ ;;^UTILITY(U,$J,358.3,22281,2)
+ ;;=^5012138
+ ;;^UTILITY(U,$J,358.3,22282,0)
+ ;;=M48.46XS^^101^1039^13
+ ;;^UTILITY(U,$J,358.3,22282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22282,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, lumbar region, sqla
+ ;;^UTILITY(U,$J,358.3,22282,1,4,0)
+ ;;=4^M48.46XS
+ ;;^UTILITY(U,$J,358.3,22282,2)
+ ;;=^5012150
+ ;;^UTILITY(U,$J,358.3,22283,0)
+ ;;=M48.47XS^^101^1039^14
+ ;;^UTILITY(U,$J,358.3,22283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22283,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, lumbosacral region, sqla
+ ;;^UTILITY(U,$J,358.3,22283,1,4,0)
+ ;;=4^M48.47XS
+ ;;^UTILITY(U,$J,358.3,22283,2)
+ ;;=^5012154
+ ;;^UTILITY(U,$J,358.3,22284,0)
+ ;;=M48.41XS^^101^1039^15
+ ;;^UTILITY(U,$J,358.3,22284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22284,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, occipt-atlan-ax region, sqla
+ ;;^UTILITY(U,$J,358.3,22284,1,4,0)
+ ;;=4^M48.41XS
+ ;;^UTILITY(U,$J,358.3,22284,2)
+ ;;=^5012130
+ ;;^UTILITY(U,$J,358.3,22285,0)
+ ;;=M48.48XS^^101^1039^16
+ ;;^UTILITY(U,$J,358.3,22285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22285,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, sacr/sacrocygl region, sqla
+ ;;^UTILITY(U,$J,358.3,22285,1,4,0)
+ ;;=4^M48.48XS
+ ;;^UTILITY(U,$J,358.3,22285,2)
+ ;;=^5012158
+ ;;^UTILITY(U,$J,358.3,22286,0)
+ ;;=M48.44XS^^101^1039^17
+ ;;^UTILITY(U,$J,358.3,22286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22286,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, thoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,22286,1,4,0)
+ ;;=4^M48.44XS
+ ;;^UTILITY(U,$J,358.3,22286,2)
+ ;;=^5012142
+ ;;^UTILITY(U,$J,358.3,22287,0)
+ ;;=M48.45XS^^101^1039^18
+ ;;^UTILITY(U,$J,358.3,22287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22287,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, thoracolumbar region, sqla
+ ;;^UTILITY(U,$J,358.3,22287,1,4,0)
+ ;;=4^M48.45XS
+ ;;^UTILITY(U,$J,358.3,22287,2)
+ ;;=^5012146
+ ;;^UTILITY(U,$J,358.3,22288,0)
+ ;;=S12.041S^^101^1039^27
+ ;;^UTILITY(U,$J,358.3,22288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22288,1,3,0)
+ ;;=3^Nondisp lateral mass fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22288,1,4,0)
+ ;;=4^S12.041S
+ ;;^UTILITY(U,$J,358.3,22288,2)
+ ;;=^5021592
+ ;;^UTILITY(U,$J,358.3,22289,0)
+ ;;=S12.031S^^101^1039^28
+ ;;^UTILITY(U,$J,358.3,22289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22289,1,3,0)
+ ;;=3^Nondisp posterior arch fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22289,1,4,0)
+ ;;=4^S12.031S
+ ;;^UTILITY(U,$J,358.3,22289,2)
+ ;;=^5021580
+ ;;^UTILITY(U,$J,358.3,22290,0)
+ ;;=S32.051S^^101^1039^37
+ ;;^UTILITY(U,$J,358.3,22290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22290,1,3,0)
+ ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22290,1,4,0)
+ ;;=4^S32.051S
+ ;;^UTILITY(U,$J,358.3,22290,2)
+ ;;=^5024502
+ ;;^UTILITY(U,$J,358.3,22291,0)
+ ;;=S12.01XS^^101^1039^38
+ ;;^UTILITY(U,$J,358.3,22291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22291,1,3,0)
+ ;;=3^Stable burst fracture of first cervical vertebra, sequela

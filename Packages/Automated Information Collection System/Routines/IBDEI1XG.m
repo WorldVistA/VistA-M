@@ -1,124 +1,116 @@
-IBDEI1XG ; ; 06-AUG-2015
+IBDEI1XG ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33861,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,33861,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,33862,0)
- ;;=Y36.200A^^182^2011^113
- ;;^UTILITY(U,$J,358.3,33862,1,0)
+ ;;^UTILITY(U,$J,358.3,32271,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,32271,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,32271,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,32272,0)
+ ;;=T76.11XD^^143^1517^11
+ ;;^UTILITY(U,$J,358.3,32272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33862,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33862,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,33862,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,33863,0)
- ;;=Y36.200D^^182^2011^114
- ;;^UTILITY(U,$J,358.3,33863,1,0)
+ ;;^UTILITY(U,$J,358.3,32272,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,32272,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,32272,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,32273,0)
+ ;;=Z69.11^^143^1517^4
+ ;;^UTILITY(U,$J,358.3,32273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33863,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33863,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,33863,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,33864,0)
- ;;=Y36.300A^^182^2011^115
- ;;^UTILITY(U,$J,358.3,33864,1,0)
+ ;;^UTILITY(U,$J,358.3,32273,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
+ ;;^UTILITY(U,$J,358.3,32273,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,32273,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,32274,0)
+ ;;=Z91.410^^143^1517^5
+ ;;^UTILITY(U,$J,358.3,32274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33864,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33864,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,33864,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,33865,0)
- ;;=Y36.300D^^182^2011^116
- ;;^UTILITY(U,$J,358.3,33865,1,0)
+ ;;^UTILITY(U,$J,358.3,32274,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,32274,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,32274,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,32275,0)
+ ;;=Z69.12^^143^1517^2
+ ;;^UTILITY(U,$J,358.3,32275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33865,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33865,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,33865,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,33866,0)
- ;;=Y36.410A^^182^2011^111
- ;;^UTILITY(U,$J,358.3,33866,1,0)
+ ;;^UTILITY(U,$J,358.3,32275,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,32275,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,32275,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,32276,0)
+ ;;=T74.21XA^^143^1517^12
+ ;;^UTILITY(U,$J,358.3,32276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33866,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33866,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,33866,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,33867,0)
- ;;=Y36.410D^^182^2011^112
- ;;^UTILITY(U,$J,358.3,33867,1,0)
+ ;;^UTILITY(U,$J,358.3,32276,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,32276,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,32276,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,32277,0)
+ ;;=T74.21XD^^143^1517^13
+ ;;^UTILITY(U,$J,358.3,32277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33867,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33867,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,33867,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,33868,0)
- ;;=Y36.6X0A^^182^2011^109
- ;;^UTILITY(U,$J,358.3,33868,1,0)
+ ;;^UTILITY(U,$J,358.3,32277,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,32277,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,32277,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,32278,0)
+ ;;=T76.21XA^^143^1517^14
+ ;;^UTILITY(U,$J,358.3,32278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33868,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33868,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,33868,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,33869,0)
- ;;=Y36.6X0D^^182^2011^110
- ;;^UTILITY(U,$J,358.3,33869,1,0)
+ ;;^UTILITY(U,$J,358.3,32278,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,32278,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,32278,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,32279,0)
+ ;;=T76.21XD^^143^1517^15
+ ;;^UTILITY(U,$J,358.3,32279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33869,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33869,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,33869,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,33870,0)
- ;;=Y36.7X0A^^182^2011^117
- ;;^UTILITY(U,$J,358.3,33870,1,0)
+ ;;^UTILITY(U,$J,358.3,32279,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
+ ;;^UTILITY(U,$J,358.3,32279,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,32279,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,32280,0)
+ ;;=Z69.81^^143^1517^3
+ ;;^UTILITY(U,$J,358.3,32280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33870,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33870,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,33870,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,33871,0)
- ;;=Y36.7X0D^^182^2011^118
- ;;^UTILITY(U,$J,358.3,33871,1,0)
+ ;;^UTILITY(U,$J,358.3,32280,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,32280,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,32280,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,32281,0)
+ ;;=Z69.82^^143^1517^1
+ ;;^UTILITY(U,$J,358.3,32281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33871,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33871,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,33871,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,33872,0)
- ;;=Y36.810A^^182^2011^19
- ;;^UTILITY(U,$J,358.3,33872,1,0)
+ ;;^UTILITY(U,$J,358.3,32281,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,32281,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,32281,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,32282,0)
+ ;;=T74.01XA^^143^1517^16
+ ;;^UTILITY(U,$J,358.3,32282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33872,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,33872,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,33872,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,33873,0)
- ;;=Y36.810D^^182^2011^20
- ;;^UTILITY(U,$J,358.3,33873,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33873,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,32282,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Initial Encnter

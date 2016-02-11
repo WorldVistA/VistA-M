@@ -1,132 +1,128 @@
-IBDEI1NU ; ; 06-AUG-2015
+IBDEI1NU ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29492,1,4,0)
- ;;=4^Q76.2
- ;;^UTILITY(U,$J,358.3,29492,2)
- ;;=^5019003
- ;;^UTILITY(U,$J,358.3,29493,0)
- ;;=M43.10^^176^1885^12
- ;;^UTILITY(U,$J,358.3,29493,1,0)
+ ;;^UTILITY(U,$J,358.3,27779,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,27780,0)
+ ;;=C24.9^^132^1320^108
+ ;;^UTILITY(U,$J,358.3,27780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29493,1,3,0)
- ;;=3^Spondylolisthesis, site unspecified
- ;;^UTILITY(U,$J,358.3,29493,1,4,0)
- ;;=4^M43.10
- ;;^UTILITY(U,$J,358.3,29493,2)
- ;;=^5011921
- ;;^UTILITY(U,$J,358.3,29494,0)
- ;;=G06.1^^176^1885^8
- ;;^UTILITY(U,$J,358.3,29494,1,0)
+ ;;^UTILITY(U,$J,358.3,27780,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,27780,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,27780,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,27781,0)
+ ;;=C50.922^^132^1320^132
+ ;;^UTILITY(U,$J,358.3,27781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29494,1,3,0)
- ;;=3^Intraspinal abscess and granuloma
- ;;^UTILITY(U,$J,358.3,29494,1,4,0)
- ;;=4^G06.1
- ;;^UTILITY(U,$J,358.3,29494,2)
- ;;=^5003746
- ;;^UTILITY(U,$J,358.3,29495,0)
- ;;=G96.0^^176^1885^2
- ;;^UTILITY(U,$J,358.3,29495,1,0)
+ ;;^UTILITY(U,$J,358.3,27781,1,3,0)
+ ;;=3^Malig Neop Left Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,27781,1,4,0)
+ ;;=4^C50.922
+ ;;^UTILITY(U,$J,358.3,27781,2)
+ ;;=^5133340
+ ;;^UTILITY(U,$J,358.3,27782,0)
+ ;;=C34.91^^132^1320^150
+ ;;^UTILITY(U,$J,358.3,27782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29495,1,3,0)
- ;;=3^Cerebrospinal fluid leak
- ;;^UTILITY(U,$J,358.3,29495,1,4,0)
- ;;=4^G96.0
- ;;^UTILITY(U,$J,358.3,29495,2)
- ;;=^5004195
- ;;^UTILITY(U,$J,358.3,29496,0)
- ;;=G96.11^^176^1885^4
- ;;^UTILITY(U,$J,358.3,29496,1,0)
+ ;;^UTILITY(U,$J,358.3,27782,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,27782,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,27782,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,27783,0)
+ ;;=C50.921^^132^1320^154
+ ;;^UTILITY(U,$J,358.3,27783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29496,1,3,0)
- ;;=3^Dural tear
- ;;^UTILITY(U,$J,358.3,29496,1,4,0)
- ;;=4^G96.11
- ;;^UTILITY(U,$J,358.3,29496,2)
- ;;=^5004196
- ;;^UTILITY(U,$J,358.3,29497,0)
- ;;=M54.14^^176^1885^10
- ;;^UTILITY(U,$J,358.3,29497,1,0)
+ ;;^UTILITY(U,$J,358.3,27783,1,3,0)
+ ;;=3^Malig Neop Right Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,27783,1,4,0)
+ ;;=4^C50.921
+ ;;^UTILITY(U,$J,358.3,27783,2)
+ ;;=^5001198
+ ;;^UTILITY(U,$J,358.3,27784,0)
+ ;;=C90.02^^132^1320^163
+ ;;^UTILITY(U,$J,358.3,27784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29497,1,3,0)
- ;;=3^Radiculopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,29497,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,29497,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,29498,0)
- ;;=M45.6^^176^1886^1
- ;;^UTILITY(U,$J,358.3,29498,1,0)
+ ;;^UTILITY(U,$J,358.3,27784,1,3,0)
+ ;;=3^Multiple Myeloma,In Relapse
+ ;;^UTILITY(U,$J,358.3,27784,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,27784,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,27785,0)
+ ;;=Z85.818^^132^1321^92
+ ;;^UTILITY(U,$J,358.3,27785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29498,1,3,0)
- ;;=3^Ankylosing spondylitis lumbar region
- ;;^UTILITY(U,$J,358.3,29498,1,4,0)
- ;;=4^M45.6
- ;;^UTILITY(U,$J,358.3,29498,2)
- ;;=^5011966
- ;;^UTILITY(U,$J,358.3,29499,0)
- ;;=M45.7^^176^1886^2
- ;;^UTILITY(U,$J,358.3,29499,1,0)
+ ;;^UTILITY(U,$J,358.3,27785,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
+ ;;^UTILITY(U,$J,358.3,27785,1,4,0)
+ ;;=4^Z85.818
+ ;;^UTILITY(U,$J,358.3,27785,2)
+ ;;=^5063439
+ ;;^UTILITY(U,$J,358.3,27786,0)
+ ;;=Z85.819^^132^1321^93
+ ;;^UTILITY(U,$J,358.3,27786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29499,1,3,0)
- ;;=3^Ankylosing spondylitis lumbosacral region
- ;;^UTILITY(U,$J,358.3,29499,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,29499,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,29500,0)
- ;;=M47.16^^176^1886^17
- ;;^UTILITY(U,$J,358.3,29500,1,0)
+ ;;^UTILITY(U,$J,358.3,27786,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,27786,1,4,0)
+ ;;=4^Z85.819
+ ;;^UTILITY(U,$J,358.3,27786,2)
+ ;;=^5063440
+ ;;^UTILITY(U,$J,358.3,27787,0)
+ ;;=Z85.01^^132^1321^88
+ ;;^UTILITY(U,$J,358.3,27787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29500,1,3,0)
- ;;=3^Spondylosis w/ myelopathy, lumbar region NEC
- ;;^UTILITY(U,$J,358.3,29500,1,4,0)
- ;;=4^M47.16
- ;;^UTILITY(U,$J,358.3,29500,2)
- ;;=^5012056
- ;;^UTILITY(U,$J,358.3,29501,0)
- ;;=M51.06^^176^1886^10
- ;;^UTILITY(U,$J,358.3,29501,1,0)
+ ;;^UTILITY(U,$J,358.3,27787,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Esophagus
+ ;;^UTILITY(U,$J,358.3,27787,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,27787,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,27788,0)
+ ;;=Z85.028^^132^1321^99
+ ;;^UTILITY(U,$J,358.3,27788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29501,1,3,0)
- ;;=3^Intervertebral disc disorders with myelopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,29501,1,4,0)
- ;;=4^M51.06
- ;;^UTILITY(U,$J,358.3,29501,2)
- ;;=^5012241
- ;;^UTILITY(U,$J,358.3,29502,0)
- ;;=M51.36^^176^1886^9
- ;;^UTILITY(U,$J,358.3,29502,1,0)
+ ;;^UTILITY(U,$J,358.3,27788,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Stomach
+ ;;^UTILITY(U,$J,358.3,27788,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,27788,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,27789,0)
+ ;;=Z85.038^^132^1321^90
+ ;;^UTILITY(U,$J,358.3,27789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29502,1,3,0)
- ;;=3^Intervertebral disc degeneration, lumbar region NEC
- ;;^UTILITY(U,$J,358.3,29502,1,4,0)
- ;;=4^M51.36
- ;;^UTILITY(U,$J,358.3,29502,2)
- ;;=^5012253
- ;;^UTILITY(U,$J,358.3,29503,0)
- ;;=M51.26^^176^1886^11
- ;;^UTILITY(U,$J,358.3,29503,1,0)
+ ;;^UTILITY(U,$J,358.3,27789,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,27789,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,27789,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,27790,0)
+ ;;=Z85.048^^132^1321^97
+ ;;^UTILITY(U,$J,358.3,27790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29503,1,3,0)
- ;;=3^Intervertebral disc displacement, lumbar region NEC
- ;;^UTILITY(U,$J,358.3,29503,1,4,0)
- ;;=4^M51.26
- ;;^UTILITY(U,$J,358.3,29503,2)
- ;;=^5012249
- ;;^UTILITY(U,$J,358.3,29504,0)
- ;;=M54.16^^176^1886^13
- ;;^UTILITY(U,$J,358.3,29504,1,0)
+ ;;^UTILITY(U,$J,358.3,27790,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
+ ;;^UTILITY(U,$J,358.3,27790,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,27790,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,27791,0)
+ ;;=Z85.118^^132^1321^86
+ ;;^UTILITY(U,$J,358.3,27791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29504,1,3,0)
- ;;=3^Radiculopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,29504,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,29504,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,29505,0)
- ;;=M43.27^^176^1886^8
- ;;^UTILITY(U,$J,358.3,29505,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27791,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
+ ;;^UTILITY(U,$J,358.3,27791,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,27791,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,27792,0)
+ ;;=Z85.21^^132^1321^91

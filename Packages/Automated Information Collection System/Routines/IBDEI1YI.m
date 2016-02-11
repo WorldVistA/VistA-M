@@ -1,120 +1,114 @@
-IBDEI1YI ; ; 06-AUG-2015
+IBDEI1YI ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34328,0)
- ;;=S06.359S^^183^2018^88
- ;;^UTILITY(U,$J,358.3,34328,1,0)
+ ;;^UTILITY(U,$J,358.3,32771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34328,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,34328,1,4,0)
- ;;=4^S06.359S
- ;;^UTILITY(U,$J,358.3,34328,2)
- ;;=^5020935
- ;;^UTILITY(U,$J,358.3,34329,0)
- ;;=S06.350S^^183^2018^89
- ;;^UTILITY(U,$J,358.3,34329,1,0)
+ ;;^UTILITY(U,$J,358.3,32771,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,32771,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,32771,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,32772,0)
+ ;;=T76.11XA^^146^1581^10
+ ;;^UTILITY(U,$J,358.3,32772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34329,1,3,0)
- ;;=3^Traum hemor left cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,34329,1,4,0)
- ;;=4^S06.350S
- ;;^UTILITY(U,$J,358.3,34329,2)
- ;;=^5020908
- ;;^UTILITY(U,$J,358.3,34330,0)
- ;;=S06.345S^^183^2018^90
- ;;^UTILITY(U,$J,358.3,34330,1,0)
+ ;;^UTILITY(U,$J,358.3,32772,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,32772,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,32772,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,32773,0)
+ ;;=T76.11XD^^146^1581^11
+ ;;^UTILITY(U,$J,358.3,32773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34330,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,34330,1,4,0)
- ;;=4^S06.345S
- ;;^UTILITY(U,$J,358.3,34330,2)
- ;;=^5020893
- ;;^UTILITY(U,$J,358.3,34331,0)
- ;;=S06.346S^^183^2018^91
- ;;^UTILITY(U,$J,358.3,34331,1,0)
+ ;;^UTILITY(U,$J,358.3,32773,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,32773,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,32773,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,32774,0)
+ ;;=Z69.11^^146^1581^4
+ ;;^UTILITY(U,$J,358.3,32774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34331,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,34331,1,4,0)
- ;;=4^S06.346S
- ;;^UTILITY(U,$J,358.3,34331,2)
- ;;=^5020896
- ;;^UTILITY(U,$J,358.3,34332,0)
- ;;=S06.343S^^183^2018^97
- ;;^UTILITY(U,$J,358.3,34332,1,0)
+ ;;^UTILITY(U,$J,358.3,32774,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
+ ;;^UTILITY(U,$J,358.3,32774,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,32774,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,32775,0)
+ ;;=Z91.410^^146^1581^5
+ ;;^UTILITY(U,$J,358.3,32775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34332,1,3,0)
- ;;=3^Traum hemor right cerebrumb w LOC of 1-5 hrs 59 minutes, sequela
- ;;^UTILITY(U,$J,358.3,34332,1,4,0)
- ;;=4^S06.343S
- ;;^UTILITY(U,$J,358.3,34332,2)
- ;;=^5020887
- ;;^UTILITY(U,$J,358.3,34333,0)
- ;;=S06.341S^^183^2018^92
- ;;^UTILITY(U,$J,358.3,34333,1,0)
+ ;;^UTILITY(U,$J,358.3,32775,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,32775,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,32775,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,32776,0)
+ ;;=Z69.12^^146^1581^2
+ ;;^UTILITY(U,$J,358.3,32776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34333,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,34333,1,4,0)
- ;;=4^S06.341S
- ;;^UTILITY(U,$J,358.3,34333,2)
- ;;=^5020881
- ;;^UTILITY(U,$J,358.3,34334,0)
- ;;=S06.342S^^183^2018^93
- ;;^UTILITY(U,$J,358.3,34334,1,0)
+ ;;^UTILITY(U,$J,358.3,32776,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,32776,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,32776,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,32777,0)
+ ;;=T74.21XA^^146^1581^12
+ ;;^UTILITY(U,$J,358.3,32777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34334,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,34334,1,4,0)
- ;;=4^S06.342S
- ;;^UTILITY(U,$J,358.3,34334,2)
- ;;=^5020884
- ;;^UTILITY(U,$J,358.3,34335,0)
- ;;=S06.344S^^183^2018^94
- ;;^UTILITY(U,$J,358.3,34335,1,0)
+ ;;^UTILITY(U,$J,358.3,32777,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,32777,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,32777,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,32778,0)
+ ;;=T74.21XD^^146^1581^13
+ ;;^UTILITY(U,$J,358.3,32778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34335,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,34335,1,4,0)
- ;;=4^S06.344S
- ;;^UTILITY(U,$J,358.3,34335,2)
- ;;=^5020890
- ;;^UTILITY(U,$J,358.3,34336,0)
- ;;=S06.349S^^183^2018^95
- ;;^UTILITY(U,$J,358.3,34336,1,0)
+ ;;^UTILITY(U,$J,358.3,32778,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
+ ;;^UTILITY(U,$J,358.3,32778,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,32778,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,32779,0)
+ ;;=T76.21XA^^146^1581^14
+ ;;^UTILITY(U,$J,358.3,32779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34336,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,34336,1,4,0)
- ;;=4^S06.349S
- ;;^UTILITY(U,$J,358.3,34336,2)
- ;;=^5020905
- ;;^UTILITY(U,$J,358.3,34337,0)
- ;;=S06.340S^^183^2018^96
- ;;^UTILITY(U,$J,358.3,34337,1,0)
+ ;;^UTILITY(U,$J,358.3,32779,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
+ ;;^UTILITY(U,$J,358.3,32779,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,32779,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,32780,0)
+ ;;=T76.21XD^^146^1581^15
+ ;;^UTILITY(U,$J,358.3,32780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34337,1,3,0)
- ;;=3^Traum hemor right cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,34337,1,4,0)
- ;;=4^S06.340S
- ;;^UTILITY(U,$J,358.3,34337,2)
- ;;=^5020878
- ;;^UTILITY(U,$J,358.3,34338,0)
- ;;=S06.6X5S^^183^2018^106
- ;;^UTILITY(U,$J,358.3,34338,1,0)
+ ;;^UTILITY(U,$J,358.3,32780,1,3,0)
+ ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
+ ;;^UTILITY(U,$J,358.3,32780,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,32780,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,32781,0)
+ ;;=Z69.81^^146^1581^3
+ ;;^UTILITY(U,$J,358.3,32781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34338,1,3,0)
- ;;=3^Traum subrac hem w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,34338,1,4,0)
- ;;=4^S06.6X5S
- ;;^UTILITY(U,$J,358.3,34338,2)
- ;;=^5021103
- ;;^UTILITY(U,$J,358.3,34339,0)
- ;;=S06.6X6S^^183^2018^107
- ;;^UTILITY(U,$J,358.3,34339,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34339,1,3,0)
- ;;=3^Traum subrac hem w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,32781,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,32781,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,32781,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,32782,0)
+ ;;=Z69.82^^146^1581^1

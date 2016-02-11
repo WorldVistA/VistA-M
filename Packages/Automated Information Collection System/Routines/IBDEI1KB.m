@@ -1,142 +1,124 @@
-IBDEI1KB ; ; 06-AUG-2015
+IBDEI1KB ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27733,2)
- ;;=^336551
- ;;^UTILITY(U,$J,358.3,27734,0)
- ;;=339.12^^162^1786^67
- ;;^UTILITY(U,$J,358.3,27734,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27734,1,4,0)
- ;;=4^339.12
- ;;^UTILITY(U,$J,358.3,27734,1,5,0)
- ;;=5^Tension Type Headache, Chronic
- ;;^UTILITY(U,$J,358.3,27734,2)
- ;;=^336552
- ;;^UTILITY(U,$J,358.3,27735,0)
- ;;=305.01^^162^1787^1
- ;;^UTILITY(U,$J,358.3,27735,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27735,1,4,0)
- ;;=4^305.01
- ;;^UTILITY(U,$J,358.3,27735,1,5,0)
- ;;=5^Alcohol Abuse,Continuous
- ;;^UTILITY(U,$J,358.3,27735,2)
- ;;=^268228
- ;;^UTILITY(U,$J,358.3,27736,0)
- ;;=305.02^^162^1787^2
- ;;^UTILITY(U,$J,358.3,27736,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27736,1,4,0)
- ;;=4^305.02
- ;;^UTILITY(U,$J,358.3,27736,1,5,0)
- ;;=5^Alcohol Abuse,Episodic
- ;;^UTILITY(U,$J,358.3,27736,2)
- ;;=^268229
- ;;^UTILITY(U,$J,358.3,27737,0)
- ;;=305.03^^162^1787^3
- ;;^UTILITY(U,$J,358.3,27737,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27737,1,4,0)
- ;;=4^305.03
- ;;^UTILITY(U,$J,358.3,27737,1,5,0)
- ;;=5^Alcohol Abuse,In Remiss
- ;;^UTILITY(U,$J,358.3,27737,2)
- ;;=^268230
- ;;^UTILITY(U,$J,358.3,27738,0)
- ;;=303.90^^162^1787^4
- ;;^UTILITY(U,$J,358.3,27738,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27738,1,4,0)
- ;;=4^303.90
- ;;^UTILITY(U,$J,358.3,27738,1,5,0)
- ;;=5^Alcohol Dependence
- ;;^UTILITY(U,$J,358.3,27738,2)
- ;;=^268187
- ;;^UTILITY(U,$J,358.3,27739,0)
- ;;=300.00^^162^1787^5
- ;;^UTILITY(U,$J,358.3,27739,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27739,1,4,0)
- ;;=4^300.00
- ;;^UTILITY(U,$J,358.3,27739,1,5,0)
- ;;=5^Anxiety
- ;;^UTILITY(U,$J,358.3,27739,2)
- ;;=^1
- ;;^UTILITY(U,$J,358.3,27740,0)
- ;;=296.7^^162^1787^6
- ;;^UTILITY(U,$J,358.3,27740,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27740,1,4,0)
- ;;=4^296.7
- ;;^UTILITY(U,$J,358.3,27740,1,5,0)
- ;;=5^Bipolar Affective Disorder
- ;;^UTILITY(U,$J,358.3,27740,2)
- ;;=^14793
- ;;^UTILITY(U,$J,358.3,27741,0)
- ;;=304.20^^162^1787^7
- ;;^UTILITY(U,$J,358.3,27741,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27741,1,4,0)
- ;;=4^304.20
- ;;^UTILITY(U,$J,358.3,27741,1,5,0)
- ;;=5^Cocaine Dependence
- ;;^UTILITY(U,$J,358.3,27741,2)
- ;;=^25599
- ;;^UTILITY(U,$J,358.3,27742,0)
- ;;=294.11^^162^1787^8
- ;;^UTILITY(U,$J,358.3,27742,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27742,1,4,0)
- ;;=4^294.11
- ;;^UTILITY(U,$J,358.3,27742,1,5,0)
- ;;=5^Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,27742,2)
- ;;=^321982
- ;;^UTILITY(U,$J,358.3,27743,0)
- ;;=294.10^^162^1787^9
- ;;^UTILITY(U,$J,358.3,27743,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27743,1,4,0)
- ;;=4^294.10
- ;;^UTILITY(U,$J,358.3,27743,1,5,0)
- ;;=5^Dementia w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,27743,2)
- ;;=^321980
- ;;^UTILITY(U,$J,358.3,27744,0)
- ;;=311.^^162^1787^10
- ;;^UTILITY(U,$J,358.3,27744,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27744,1,4,0)
- ;;=4^311.
- ;;^UTILITY(U,$J,358.3,27744,1,5,0)
- ;;=5^Depression
- ;;^UTILITY(U,$J,358.3,27744,2)
- ;;=^35603
- ;;^UTILITY(U,$J,358.3,27745,0)
- ;;=309.0^^162^1787^11
- ;;^UTILITY(U,$J,358.3,27745,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27745,1,4,0)
- ;;=4^309.0
- ;;^UTILITY(U,$J,358.3,27745,1,5,0)
- ;;=5^Depressive Reaction, Brief
- ;;^UTILITY(U,$J,358.3,27745,2)
- ;;=^3308
- ;;^UTILITY(U,$J,358.3,27746,0)
- ;;=305.50^^162^1787^15
- ;;^UTILITY(U,$J,358.3,27746,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27746,1,4,0)
- ;;=4^305.50
- ;;^UTILITY(U,$J,358.3,27746,1,5,0)
- ;;=5^IV Drug Use
- ;;^UTILITY(U,$J,358.3,27746,2)
- ;;=^85868
- ;;^UTILITY(U,$J,358.3,27747,0)
- ;;=302.72^^162^1787^16
- ;;^UTILITY(U,$J,358.3,27747,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,27747,1,4,0)
- ;;=4^302.72
+ ;;^UTILITY(U,$J,358.3,26120,1,3,0)
+ ;;=3^Streptococcus in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26120,1,4,0)
+ ;;=4^B95.5
+ ;;^UTILITY(U,$J,358.3,26120,2)
+ ;;=^5000840
+ ;;^UTILITY(U,$J,358.3,26121,0)
+ ;;=B95.0^^127^1272^95
+ ;;^UTILITY(U,$J,358.3,26121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26121,1,3,0)
+ ;;=3^Streptococcus,Group A,in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26121,1,4,0)
+ ;;=4^B95.0
+ ;;^UTILITY(U,$J,358.3,26121,2)
+ ;;=^5000835
+ ;;^UTILITY(U,$J,358.3,26122,0)
+ ;;=B95.1^^127^1272^96
+ ;;^UTILITY(U,$J,358.3,26122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26122,1,3,0)
+ ;;=3^Streptococcus,Group B,in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26122,1,4,0)
+ ;;=4^B95.1
+ ;;^UTILITY(U,$J,358.3,26122,2)
+ ;;=^5000836
+ ;;^UTILITY(U,$J,358.3,26123,0)
+ ;;=B95.4^^127^1272^94
+ ;;^UTILITY(U,$J,358.3,26123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26123,1,3,0)
+ ;;=3^Streptococcus in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,26123,1,4,0)
+ ;;=4^B95.4
+ ;;^UTILITY(U,$J,358.3,26123,2)
+ ;;=^5000839
+ ;;^UTILITY(U,$J,358.3,26124,0)
+ ;;=B95.2^^127^1272^48
+ ;;^UTILITY(U,$J,358.3,26124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26124,1,3,0)
+ ;;=3^Enterococcus in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26124,1,4,0)
+ ;;=4^B95.2
+ ;;^UTILITY(U,$J,358.3,26124,2)
+ ;;=^5000837
+ ;;^UTILITY(U,$J,358.3,26125,0)
+ ;;=B95.8^^127^1272^92
+ ;;^UTILITY(U,$J,358.3,26125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26125,1,3,0)
+ ;;=3^Staphylococcus,Unspec,in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26125,1,4,0)
+ ;;=4^B95.8
+ ;;^UTILITY(U,$J,358.3,26125,2)
+ ;;=^5000844
+ ;;^UTILITY(U,$J,358.3,26126,0)
+ ;;=B95.61^^127^1272^77
+ ;;^UTILITY(U,$J,358.3,26126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26126,1,3,0)
+ ;;=3^Methicillin Suscept Staph Infct in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26126,1,4,0)
+ ;;=4^B95.61
+ ;;^UTILITY(U,$J,358.3,26126,2)
+ ;;=^5000841
+ ;;^UTILITY(U,$J,358.3,26127,0)
+ ;;=B95.62^^127^1272^76
+ ;;^UTILITY(U,$J,358.3,26127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26127,1,3,0)
+ ;;=3^Methicillin Resist Staph Infct in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26127,1,4,0)
+ ;;=4^B95.62
+ ;;^UTILITY(U,$J,358.3,26127,2)
+ ;;=^5000842
+ ;;^UTILITY(U,$J,358.3,26128,0)
+ ;;=B95.7^^127^1272^91
+ ;;^UTILITY(U,$J,358.3,26128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26128,1,3,0)
+ ;;=3^Staphylococcus in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26128,1,4,0)
+ ;;=4^B95.7
+ ;;^UTILITY(U,$J,358.3,26128,2)
+ ;;=^5000843
+ ;;^UTILITY(U,$J,358.3,26129,0)
+ ;;=B96.1^^127^1272^70
+ ;;^UTILITY(U,$J,358.3,26129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26129,1,3,0)
+ ;;=3^Klebsiella Pneumoniae in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,26129,1,4,0)
+ ;;=4^B96.1
+ ;;^UTILITY(U,$J,358.3,26129,2)
+ ;;=^5000846
+ ;;^UTILITY(U,$J,358.3,26130,0)
+ ;;=B96.20^^127^1272^49
+ ;;^UTILITY(U,$J,358.3,26130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26130,1,3,0)
+ ;;=3^Escherichia Coli in Diseases Classified Elsewhere,Unspec
+ ;;^UTILITY(U,$J,358.3,26130,1,4,0)
+ ;;=4^B96.20
+ ;;^UTILITY(U,$J,358.3,26130,2)
+ ;;=^5000847
+ ;;^UTILITY(U,$J,358.3,26131,0)
+ ;;=B96.29^^127^1272^50
+ ;;^UTILITY(U,$J,358.3,26131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26131,1,3,0)
+ ;;=3^Escherichia Coli in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,26131,1,4,0)
+ ;;=4^B96.29
+ ;;^UTILITY(U,$J,358.3,26131,2)
+ ;;=^5000851
+ ;;^UTILITY(U,$J,358.3,26132,0)
+ ;;=B20.^^127^1272^58
+ ;;^UTILITY(U,$J,358.3,26132,1,0)
+ ;;=^358.31IA^4^2

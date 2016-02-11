@@ -1,136 +1,134 @@
-IBDEI1OF ; ; 06-AUG-2015
+IBDEI1OF ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29761,1,0)
+ ;;^UTILITY(U,$J,358.3,28051,1,4,0)
+ ;;=4^K75.89
+ ;;^UTILITY(U,$J,358.3,28051,2)
+ ;;=^5008829
+ ;;^UTILITY(U,$J,358.3,28052,0)
+ ;;=K76.4^^132^1323^21
+ ;;^UTILITY(U,$J,358.3,28052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29761,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,29761,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,29761,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,29762,0)
- ;;=R10.9^^177^1894^1
- ;;^UTILITY(U,$J,358.3,29762,1,0)
+ ;;^UTILITY(U,$J,358.3,28052,1,3,0)
+ ;;=3^Peliosis Hepatis
+ ;;^UTILITY(U,$J,358.3,28052,1,4,0)
+ ;;=4^K76.4
+ ;;^UTILITY(U,$J,358.3,28052,2)
+ ;;=^91041
+ ;;^UTILITY(U,$J,358.3,28053,0)
+ ;;=K71.50^^132^1323^25
+ ;;^UTILITY(U,$J,358.3,28053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29762,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,29762,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,29762,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,29763,0)
- ;;=I05.0^^177^1895^15
- ;;^UTILITY(U,$J,358.3,29763,1,0)
+ ;;^UTILITY(U,$J,358.3,28053,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,28053,1,4,0)
+ ;;=4^K71.50
+ ;;^UTILITY(U,$J,358.3,28053,2)
+ ;;=^5008799
+ ;;^UTILITY(U,$J,358.3,28054,0)
+ ;;=K71.51^^132^1323^26
+ ;;^UTILITY(U,$J,358.3,28054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29763,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,29763,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,29763,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,29764,0)
- ;;=I05.8^^177^1895^16
- ;;^UTILITY(U,$J,358.3,29764,1,0)
+ ;;^UTILITY(U,$J,358.3,28054,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,28054,1,4,0)
+ ;;=4^K71.51
+ ;;^UTILITY(U,$J,358.3,28054,2)
+ ;;=^5008800
+ ;;^UTILITY(U,$J,358.3,28055,0)
+ ;;=K71.7^^132^1323^29
+ ;;^UTILITY(U,$J,358.3,28055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29764,1,3,0)
- ;;=3^Rheumatic Mitral Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,29764,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,29764,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,29765,0)
- ;;=I10.^^177^1895^8
- ;;^UTILITY(U,$J,358.3,29765,1,0)
+ ;;^UTILITY(U,$J,358.3,28055,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
+ ;;^UTILITY(U,$J,358.3,28055,1,4,0)
+ ;;=4^K71.7
+ ;;^UTILITY(U,$J,358.3,28055,2)
+ ;;=^5008802
+ ;;^UTILITY(U,$J,358.3,28056,0)
+ ;;=K71.8^^132^1323^33
+ ;;^UTILITY(U,$J,358.3,28056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29765,1,3,0)
- ;;=3^Hypertension
- ;;^UTILITY(U,$J,358.3,29765,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,29765,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,29766,0)
- ;;=I20.0^^177^1895^17
- ;;^UTILITY(U,$J,358.3,29766,1,0)
+ ;;^UTILITY(U,$J,358.3,28056,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
+ ;;^UTILITY(U,$J,358.3,28056,1,4,0)
+ ;;=4^K71.8
+ ;;^UTILITY(U,$J,358.3,28056,2)
+ ;;=^5008803
+ ;;^UTILITY(U,$J,358.3,28057,0)
+ ;;=K71.9^^132^1323^34
+ ;;^UTILITY(U,$J,358.3,28057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29766,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,29766,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,29766,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,29767,0)
- ;;=I20.9^^177^1895^1
- ;;^UTILITY(U,$J,358.3,29767,1,0)
+ ;;^UTILITY(U,$J,358.3,28057,1,3,0)
+ ;;=3^Toxic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,28057,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,28057,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,28058,0)
+ ;;=K75.2^^132^1323^20
+ ;;^UTILITY(U,$J,358.3,28058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29767,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,29767,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,29767,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,29768,0)
- ;;=I25.10^^177^1895^2
- ;;^UTILITY(U,$J,358.3,29768,1,0)
+ ;;^UTILITY(U,$J,358.3,28058,1,3,0)
+ ;;=3^Nonspecific Reactive Hepatitis
+ ;;^UTILITY(U,$J,358.3,28058,1,4,0)
+ ;;=4^K75.2
+ ;;^UTILITY(U,$J,358.3,28058,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,28059,0)
+ ;;=K75.3^^132^1323^13
+ ;;^UTILITY(U,$J,358.3,28059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29768,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,29768,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,29768,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,29769,0)
- ;;=I25.9^^177^1895^5
- ;;^UTILITY(U,$J,358.3,29769,1,0)
+ ;;^UTILITY(U,$J,358.3,28059,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,28059,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,28059,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,28060,0)
+ ;;=K76.6^^132^1323^22
+ ;;^UTILITY(U,$J,358.3,28060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29769,1,3,0)
- ;;=3^Chronic Ischemic Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,29769,1,4,0)
- ;;=4^I25.9
- ;;^UTILITY(U,$J,358.3,29769,2)
- ;;=^5007144
- ;;^UTILITY(U,$J,358.3,29770,0)
- ;;=I35.0^^177^1895^12
- ;;^UTILITY(U,$J,358.3,29770,1,0)
+ ;;^UTILITY(U,$J,358.3,28060,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,28060,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,28060,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,28061,0)
+ ;;=F20.3^^132^1324^25
+ ;;^UTILITY(U,$J,358.3,28061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29770,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,29770,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,29770,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,29771,0)
- ;;=I35.1^^177^1895^11
- ;;^UTILITY(U,$J,358.3,29771,1,0)
+ ;;^UTILITY(U,$J,358.3,28061,1,3,0)
+ ;;=3^Undifferentiated/Atypical Schizophrenia
+ ;;^UTILITY(U,$J,358.3,28061,1,4,0)
+ ;;=4^F20.3
+ ;;^UTILITY(U,$J,358.3,28061,2)
+ ;;=^5003472
+ ;;^UTILITY(U,$J,358.3,28062,0)
+ ;;=F20.9^^132^1324^21
+ ;;^UTILITY(U,$J,358.3,28062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29771,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,29771,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,29771,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,29772,0)
- ;;=I35.2^^177^1895^13
- ;;^UTILITY(U,$J,358.3,29772,1,0)
+ ;;^UTILITY(U,$J,358.3,28062,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,28062,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,28062,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,28063,0)
+ ;;=F31.9^^132^1324^6
+ ;;^UTILITY(U,$J,358.3,28063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29772,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,29772,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,29772,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,29773,0)
- ;;=I35.8^^177^1895^9
- ;;^UTILITY(U,$J,358.3,29773,1,0)
+ ;;^UTILITY(U,$J,358.3,28063,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,28063,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,28063,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,28064,0)
+ ;;=F31.72^^132^1324^7
+ ;;^UTILITY(U,$J,358.3,28064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29773,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders NEC
- ;;^UTILITY(U,$J,358.3,29773,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,29773,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,29774,0)
- ;;=I35.9^^177^1895^10
- ;;^UTILITY(U,$J,358.3,29774,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28064,1,3,0)
+ ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic

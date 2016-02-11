@@ -1,0 +1,132 @@
+IBDEI34W ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,52598,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,52598,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,52599,0)
+ ;;=F14.14^^237^2622^5
+ ;;^UTILITY(U,$J,358.3,52599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52599,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,52599,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,52599,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,52600,0)
+ ;;=F14.182^^237^2622^6
+ ;;^UTILITY(U,$J,358.3,52600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52600,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,52600,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,52600,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,52601,0)
+ ;;=F14.20^^237^2622^3
+ ;;^UTILITY(U,$J,358.3,52601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52601,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,52601,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,52601,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,52602,0)
+ ;;=F14.21^^237^2622^2
+ ;;^UTILITY(U,$J,358.3,52602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52602,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,52602,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,52602,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,52603,0)
+ ;;=F14.23^^237^2622^4
+ ;;^UTILITY(U,$J,358.3,52603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52603,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,52603,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,52603,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,52604,0)
+ ;;=F43.0^^237^2623^1
+ ;;^UTILITY(U,$J,358.3,52604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52604,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,52604,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,52604,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,52605,0)
+ ;;=F43.21^^237^2623^3
+ ;;^UTILITY(U,$J,358.3,52605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52605,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,52605,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,52605,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,52606,0)
+ ;;=F43.22^^237^2623^2
+ ;;^UTILITY(U,$J,358.3,52606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52606,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,52606,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,52606,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,52607,0)
+ ;;=F43.23^^237^2623^5
+ ;;^UTILITY(U,$J,358.3,52607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52607,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,52607,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,52607,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,52608,0)
+ ;;=F43.24^^237^2623^4
+ ;;^UTILITY(U,$J,358.3,52608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52608,1,3,0)
+ ;;=3^Adjustment Disorder w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,52608,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,52608,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,52609,0)
+ ;;=F43.25^^237^2623^6
+ ;;^UTILITY(U,$J,358.3,52609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52609,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,52609,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,52609,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,52610,0)
+ ;;=F43.10^^237^2623^8
+ ;;^UTILITY(U,$J,358.3,52610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52610,1,3,0)
+ ;;=3^PTSD
+ ;;^UTILITY(U,$J,358.3,52610,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,52610,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,52611,0)
+ ;;=F43.8^^237^2623^15
+ ;;^UTILITY(U,$J,358.3,52611,1,0)
+ ;;=^358.31IA^4^2

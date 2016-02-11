@@ -1,0 +1,132 @@
+IBDEI2UZ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47970,2)
+ ;;=^267122
+ ;;^UTILITY(U,$J,358.3,47971,0)
+ ;;=C31.1^^209^2369^2
+ ;;^UTILITY(U,$J,358.3,47971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47971,1,3,0)
+ ;;=3^Malig Neop of Ethmoidal Sinus
+ ;;^UTILITY(U,$J,358.3,47971,1,4,0)
+ ;;=4^C31.1
+ ;;^UTILITY(U,$J,358.3,47971,2)
+ ;;=^267123
+ ;;^UTILITY(U,$J,358.3,47972,0)
+ ;;=C31.2^^209^2369^3
+ ;;^UTILITY(U,$J,358.3,47972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47972,1,3,0)
+ ;;=3^Malig Neop of Frontal Sinus
+ ;;^UTILITY(U,$J,358.3,47972,1,4,0)
+ ;;=4^C31.2
+ ;;^UTILITY(U,$J,358.3,47972,2)
+ ;;=^267124
+ ;;^UTILITY(U,$J,358.3,47973,0)
+ ;;=C31.3^^209^2369^7
+ ;;^UTILITY(U,$J,358.3,47973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47973,1,3,0)
+ ;;=3^Malig Neop of Sphenoid Sinus
+ ;;^UTILITY(U,$J,358.3,47973,1,4,0)
+ ;;=4^C31.3
+ ;;^UTILITY(U,$J,358.3,47973,2)
+ ;;=^5000951
+ ;;^UTILITY(U,$J,358.3,47974,0)
+ ;;=C31.9^^209^2369^1
+ ;;^UTILITY(U,$J,358.3,47974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47974,1,3,0)
+ ;;=3^Malig Neop of Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,47974,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,47974,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,47975,0)
+ ;;=C38.0^^209^2370^2
+ ;;^UTILITY(U,$J,358.3,47975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47975,1,3,0)
+ ;;=3^Malig Neop of Heart
+ ;;^UTILITY(U,$J,358.3,47975,1,4,0)
+ ;;=4^C38.0
+ ;;^UTILITY(U,$J,358.3,47975,2)
+ ;;=^267146
+ ;;^UTILITY(U,$J,358.3,47976,0)
+ ;;=C38.1^^209^2370^1
+ ;;^UTILITY(U,$J,358.3,47976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47976,1,3,0)
+ ;;=3^Malig Neop of Anterior Mediastinum
+ ;;^UTILITY(U,$J,358.3,47976,1,4,0)
+ ;;=4^C38.1
+ ;;^UTILITY(U,$J,358.3,47976,2)
+ ;;=^267147
+ ;;^UTILITY(U,$J,358.3,47977,0)
+ ;;=C38.2^^209^2370^6
+ ;;^UTILITY(U,$J,358.3,47977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47977,1,3,0)
+ ;;=3^Malig Neop of Posterior Mediastinum
+ ;;^UTILITY(U,$J,358.3,47977,1,4,0)
+ ;;=4^C38.2
+ ;;^UTILITY(U,$J,358.3,47977,2)
+ ;;=^267148
+ ;;^UTILITY(U,$J,358.3,47978,0)
+ ;;=C38.3^^209^2370^3
+ ;;^UTILITY(U,$J,358.3,47978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47978,1,3,0)
+ ;;=3^Malig Neop of Mediastinum,Unspec Part
+ ;;^UTILITY(U,$J,358.3,47978,1,4,0)
+ ;;=4^C38.3
+ ;;^UTILITY(U,$J,358.3,47978,2)
+ ;;=^5000969
+ ;;^UTILITY(U,$J,358.3,47979,0)
+ ;;=C38.4^^209^2370^5
+ ;;^UTILITY(U,$J,358.3,47979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47979,1,3,0)
+ ;;=3^Malig Neop of Pleura
+ ;;^UTILITY(U,$J,358.3,47979,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,47979,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,47980,0)
+ ;;=C38.8^^209^2370^4
+ ;;^UTILITY(U,$J,358.3,47980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47980,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Heart/Mediastinum/Pleura
+ ;;^UTILITY(U,$J,358.3,47980,1,4,0)
+ ;;=4^C38.8
+ ;;^UTILITY(U,$J,358.3,47980,2)
+ ;;=^5000970
+ ;;^UTILITY(U,$J,358.3,47981,0)
+ ;;=C40.01^^209^2371^12
+ ;;^UTILITY(U,$J,358.3,47981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47981,1,3,0)
+ ;;=3^Malig Neop of Scapula/Long Bones of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,47981,1,4,0)
+ ;;=4^C40.01
+ ;;^UTILITY(U,$J,358.3,47981,2)
+ ;;=^5000974
+ ;;^UTILITY(U,$J,358.3,47982,0)
+ ;;=C40.02^^209^2371^11
+ ;;^UTILITY(U,$J,358.3,47982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47982,1,3,0)
+ ;;=3^Malig Neop of Scapula/Long Bones of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,47982,1,4,0)
+ ;;=4^C40.02
+ ;;^UTILITY(U,$J,358.3,47982,2)
+ ;;=^5000975
+ ;;^UTILITY(U,$J,358.3,47983,0)
+ ;;=C40.11^^209^2371^16
+ ;;^UTILITY(U,$J,358.3,47983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47983,1,3,0)
+ ;;=3^Malig Neop of Short Bones of Right Upper Limb

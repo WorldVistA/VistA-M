@@ -1,126 +1,124 @@
-IBDEI1WQ ; ; 06-AUG-2015
+IBDEI1WQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33537,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,33537,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,33538,0)
- ;;=R97.8^^182^2004^20
- ;;^UTILITY(U,$J,358.3,33538,1,0)
+ ;;^UTILITY(U,$J,358.3,31939,0)
+ ;;=A81.00^^141^1478^9
+ ;;^UTILITY(U,$J,358.3,31939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33538,1,3,0)
- ;;=3^Abnormal Tumor Markers NEC
- ;;^UTILITY(U,$J,358.3,33538,1,4,0)
- ;;=4^R97.8
- ;;^UTILITY(U,$J,358.3,33538,2)
- ;;=^5019749
- ;;^UTILITY(U,$J,358.3,33539,0)
- ;;=S43.51XA^^182^2005^12
- ;;^UTILITY(U,$J,358.3,33539,1,0)
+ ;;^UTILITY(U,$J,358.3,31939,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,31939,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,31939,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,31940,0)
+ ;;=A81.01^^141^1478^38
+ ;;^UTILITY(U,$J,358.3,31940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33539,1,3,0)
- ;;=3^Sprain of Right Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,33539,1,4,0)
- ;;=4^S43.51XA
- ;;^UTILITY(U,$J,358.3,33539,2)
- ;;=^5027903
- ;;^UTILITY(U,$J,358.3,33540,0)
- ;;=S43.52XA^^182^2005^1
- ;;^UTILITY(U,$J,358.3,33540,1,0)
+ ;;^UTILITY(U,$J,358.3,31940,1,3,0)
+ ;;=3^Variant Creutzfeldt-Jakob Disease
+ ;;^UTILITY(U,$J,358.3,31940,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,31940,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,31941,0)
+ ;;=A81.09^^141^1478^8
+ ;;^UTILITY(U,$J,358.3,31941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33540,1,3,0)
- ;;=3^Sprain of Left Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,33540,1,4,0)
- ;;=4^S43.52XA
- ;;^UTILITY(U,$J,358.3,33540,2)
- ;;=^5027906
- ;;^UTILITY(U,$J,358.3,33541,0)
- ;;=S43.421A^^182^2005^17
- ;;^UTILITY(U,$J,358.3,33541,1,0)
+ ;;^UTILITY(U,$J,358.3,31941,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,31941,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,31941,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,31942,0)
+ ;;=A81.2^^141^1478^33
+ ;;^UTILITY(U,$J,358.3,31942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33541,1,3,0)
- ;;=3^Sprain of Right Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,33541,1,4,0)
- ;;=4^S43.421A
- ;;^UTILITY(U,$J,358.3,33541,2)
- ;;=^5027879
- ;;^UTILITY(U,$J,358.3,33542,0)
- ;;=S43.422A^^182^2005^6
- ;;^UTILITY(U,$J,358.3,33542,1,0)
+ ;;^UTILITY(U,$J,358.3,31942,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,31942,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,31942,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,31943,0)
+ ;;=F01.50^^141^1478^31
+ ;;^UTILITY(U,$J,358.3,31943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33542,1,3,0)
- ;;=3^Sprain of Left Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,33542,1,4,0)
- ;;=4^S43.422A
- ;;^UTILITY(U,$J,358.3,33542,2)
- ;;=^5027882
- ;;^UTILITY(U,$J,358.3,33543,0)
- ;;=S53.401A^^182^2005^14
- ;;^UTILITY(U,$J,358.3,33543,1,0)
+ ;;^UTILITY(U,$J,358.3,31943,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,31943,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,31943,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,31944,0)
+ ;;=F01.51^^141^1478^32
+ ;;^UTILITY(U,$J,358.3,31944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33543,1,3,0)
- ;;=3^Sprain of Right Elbow
- ;;^UTILITY(U,$J,358.3,33543,1,4,0)
- ;;=4^S53.401A
- ;;^UTILITY(U,$J,358.3,33543,2)
- ;;=^5031361
- ;;^UTILITY(U,$J,358.3,33544,0)
- ;;=S53.402A^^182^2005^3
- ;;^UTILITY(U,$J,358.3,33544,1,0)
+ ;;^UTILITY(U,$J,358.3,31944,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,31944,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,31944,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,31945,0)
+ ;;=F10.27^^141^1478^1
+ ;;^UTILITY(U,$J,358.3,31945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33544,1,3,0)
- ;;=3^Sprain of Left Elbow
- ;;^UTILITY(U,$J,358.3,33544,1,4,0)
- ;;=4^S53.402A
- ;;^UTILITY(U,$J,358.3,33544,2)
- ;;=^5031364
- ;;^UTILITY(U,$J,358.3,33545,0)
- ;;=S56.011A^^182^2005^55
- ;;^UTILITY(U,$J,358.3,33545,1,0)
+ ;;^UTILITY(U,$J,358.3,31945,1,3,0)
+ ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
+ ;;^UTILITY(U,$J,358.3,31945,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,31945,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,31946,0)
+ ;;=F19.97^^141^1478^37
+ ;;^UTILITY(U,$J,358.3,31946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33545,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,33545,1,4,0)
- ;;=4^S56.011A
- ;;^UTILITY(U,$J,358.3,33545,2)
- ;;=^5031568
- ;;^UTILITY(U,$J,358.3,33546,0)
- ;;=S56.012A^^182^2005^36
- ;;^UTILITY(U,$J,358.3,33546,1,0)
+ ;;^UTILITY(U,$J,358.3,31946,1,3,0)
+ ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,31946,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,31946,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,31947,0)
+ ;;=F02.80^^141^1478^13
+ ;;^UTILITY(U,$J,358.3,31947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33546,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,33546,1,4,0)
- ;;=4^S56.012A
- ;;^UTILITY(U,$J,358.3,33546,2)
- ;;=^5031571
- ;;^UTILITY(U,$J,358.3,33547,0)
- ;;=S56.111A^^182^2005^43
- ;;^UTILITY(U,$J,358.3,33547,1,0)
+ ;;^UTILITY(U,$J,358.3,31947,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
+ ;;^UTILITY(U,$J,358.3,31947,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,31947,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,31948,0)
+ ;;=F02.81^^141^1478^14
+ ;;^UTILITY(U,$J,358.3,31948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33547,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,33547,1,4,0)
- ;;=4^S56.111A
- ;;^UTILITY(U,$J,358.3,33547,2)
- ;;=^5031616
- ;;^UTILITY(U,$J,358.3,33548,0)
- ;;=S56.112A^^182^2005^23
- ;;^UTILITY(U,$J,358.3,33548,1,0)
+ ;;^UTILITY(U,$J,358.3,31948,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,31948,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,31948,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,31949,0)
+ ;;=F06.8^^141^1478^24
+ ;;^UTILITY(U,$J,358.3,31949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33548,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,33548,1,4,0)
- ;;=4^S56.112A
- ;;^UTILITY(U,$J,358.3,33548,2)
- ;;=^5031619
- ;;^UTILITY(U,$J,358.3,33549,0)
- ;;=S56.113A^^182^2005^51
- ;;^UTILITY(U,$J,358.3,33549,1,0)
+ ;;^UTILITY(U,$J,358.3,31949,1,3,0)
+ ;;=3^Mental Disorder d/t Another Medical Condition NEC
+ ;;^UTILITY(U,$J,358.3,31949,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,31949,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,31950,0)
+ ;;=G30.9^^141^1478^5
+ ;;^UTILITY(U,$J,358.3,31950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33549,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,33549,1,4,0)
- ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,31950,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,31950,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,31950,2)
+ ;;=^5003808

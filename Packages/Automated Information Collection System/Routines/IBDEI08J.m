@@ -1,132 +1,134 @@
-IBDEI08J ; ; 06-AUG-2015
+IBDEI08J ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3519,2)
- ;;=Histrionic Personality Disorder^57763
- ;;^UTILITY(U,$J,358.3,3520,0)
- ;;=301.81^^11^153^11
- ;;^UTILITY(U,$J,358.3,3520,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3520,1,2,0)
- ;;=2^301.81
- ;;^UTILITY(U,$J,358.3,3520,1,5,0)
- ;;=5^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,3520,2)
- ;;=Narcissistic Personality Disorder^265353
- ;;^UTILITY(U,$J,358.3,3521,0)
- ;;=301.0^^11^153^12
- ;;^UTILITY(U,$J,358.3,3521,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3521,1,2,0)
- ;;=2^301.0
- ;;^UTILITY(U,$J,358.3,3521,1,5,0)
- ;;=5^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,3521,2)
- ;;=Paranoid Personality Disorder^89982
- ;;^UTILITY(U,$J,358.3,3522,0)
- ;;=301.9^^11^153^16
- ;;^UTILITY(U,$J,358.3,3522,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3522,1,2,0)
- ;;=2^301.9
- ;;^UTILITY(U,$J,358.3,3522,1,5,0)
- ;;=5^Unspecified Personality Disorder
- ;;^UTILITY(U,$J,358.3,3522,2)
- ;;=Unspecified Personality Disorder^92451
- ;;^UTILITY(U,$J,358.3,3523,0)
- ;;=301.20^^11^153^14
- ;;^UTILITY(U,$J,358.3,3523,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3523,1,2,0)
- ;;=2^301.20
- ;;^UTILITY(U,$J,358.3,3523,1,5,0)
- ;;=5^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,3523,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,3524,0)
- ;;=301.22^^11^153^15
- ;;^UTILITY(U,$J,358.3,3524,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3524,1,2,0)
- ;;=2^301.22
- ;;^UTILITY(U,$J,358.3,3524,1,5,0)
- ;;=5^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,3524,2)
- ;;=Schizotypal Personality Disorder^108367
- ;;^UTILITY(U,$J,358.3,3525,0)
- ;;=301.4^^11^153^4
- ;;^UTILITY(U,$J,358.3,3525,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3525,1,2,0)
- ;;=2^301.4
- ;;^UTILITY(U,$J,358.3,3525,1,5,0)
- ;;=5^Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,3525,2)
- ;;=Compulsive Personality Disorder^27122
- ;;^UTILITY(U,$J,358.3,3526,0)
- ;;=301.84^^11^153^13
- ;;^UTILITY(U,$J,358.3,3526,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3526,1,2,0)
- ;;=2^301.84
- ;;^UTILITY(U,$J,358.3,3526,1,5,0)
- ;;=5^Passive-Aggressive Personality Dis
- ;;^UTILITY(U,$J,358.3,3526,2)
- ;;=Passive-Aggressive Personality Dis^90602
- ;;^UTILITY(U,$J,358.3,3527,0)
- ;;=301.11^^11^153^9
- ;;^UTILITY(U,$J,358.3,3527,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3527,1,2,0)
- ;;=2^301.11
- ;;^UTILITY(U,$J,358.3,3527,1,5,0)
- ;;=5^Hypomanic Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,3527,2)
- ;;=^268171
- ;;^UTILITY(U,$J,358.3,3528,0)
- ;;=301.12^^11^153^7
- ;;^UTILITY(U,$J,358.3,3528,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3528,1,2,0)
- ;;=2^301.12
- ;;^UTILITY(U,$J,358.3,3528,1,5,0)
- ;;=5^Depressive Personality D/O,Chr
- ;;^UTILITY(U,$J,358.3,3528,2)
- ;;=^268173
- ;;^UTILITY(U,$J,358.3,3529,0)
- ;;=301.13^^11^153^5
- ;;^UTILITY(U,$J,358.3,3529,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3529,1,2,0)
- ;;=2^301.13
- ;;^UTILITY(U,$J,358.3,3529,1,5,0)
- ;;=5^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,3529,2)
- ;;=^30028
- ;;^UTILITY(U,$J,358.3,3530,0)
- ;;=301.21^^11^153^10
- ;;^UTILITY(U,$J,358.3,3530,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3530,1,2,0)
- ;;=2^301.21
- ;;^UTILITY(U,$J,358.3,3530,1,5,0)
- ;;=5^Introverted Personality
- ;;^UTILITY(U,$J,358.3,3530,2)
- ;;=^268174
- ;;^UTILITY(U,$J,358.3,3531,0)
- ;;=302.2^^11^154^7
- ;;^UTILITY(U,$J,358.3,3531,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3531,1,2,0)
- ;;=2^302.2
- ;;^UTILITY(U,$J,358.3,3531,1,5,0)
- ;;=5^Pedophilia
- ;;^UTILITY(U,$J,358.3,3531,2)
- ;;=^91008
- ;;^UTILITY(U,$J,358.3,3532,0)
- ;;=302.4^^11^154^2
- ;;^UTILITY(U,$J,358.3,3532,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,3532,1,2,0)
- ;;=2^302.4
+ ;;^UTILITY(U,$J,358.3,3440,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,3440,1,4,0)
+ ;;=4^H33.002
+ ;;^UTILITY(U,$J,358.3,3440,2)
+ ;;=^5005491
+ ;;^UTILITY(U,$J,358.3,3441,0)
+ ;;=H33.003^^28^253^35
+ ;;^UTILITY(U,$J,358.3,3441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3441,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,3441,1,4,0)
+ ;;=4^H33.003
+ ;;^UTILITY(U,$J,358.3,3441,2)
+ ;;=^5005492
+ ;;^UTILITY(U,$J,358.3,3442,0)
+ ;;=H53.9^^28^253^38
+ ;;^UTILITY(U,$J,358.3,3442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3442,1,3,0)
+ ;;=3^Visual Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,3442,1,4,0)
+ ;;=4^H53.9
+ ;;^UTILITY(U,$J,358.3,3442,2)
+ ;;=^124001
+ ;;^UTILITY(U,$J,358.3,3443,0)
+ ;;=H54.62^^28^253^40
+ ;;^UTILITY(U,$J,358.3,3443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3443,1,3,0)
+ ;;=3^Visual Loss Lt Eye,Normal Vision Rt Eye
+ ;;^UTILITY(U,$J,358.3,3443,1,4,0)
+ ;;=4^H54.62
+ ;;^UTILITY(U,$J,358.3,3443,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,3444,0)
+ ;;=H54.61^^28^253^41
+ ;;^UTILITY(U,$J,358.3,3444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3444,1,3,0)
+ ;;=3^Visual Loss Rt Eye,Normal Vision Lt Eye
+ ;;^UTILITY(U,$J,358.3,3444,1,4,0)
+ ;;=4^H54.61
+ ;;^UTILITY(U,$J,358.3,3444,2)
+ ;;=^5006367
+ ;;^UTILITY(U,$J,358.3,3445,0)
+ ;;=H54.3^^28^253^39
+ ;;^UTILITY(U,$J,358.3,3445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3445,1,3,0)
+ ;;=3^Visual Loss Both Eyes,Unqualified
+ ;;^UTILITY(U,$J,358.3,3445,1,4,0)
+ ;;=4^H54.3
+ ;;^UTILITY(U,$J,358.3,3445,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,3446,0)
+ ;;=W10.9XXA^^28^254^22
+ ;;^UTILITY(U,$J,358.3,3446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3446,1,3,0)
+ ;;=3^Fall,Stairs/Steps,Init Encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,3446,1,4,0)
+ ;;=4^W10.9XXA
+ ;;^UTILITY(U,$J,358.3,3446,2)
+ ;;=^5059592
+ ;;^UTILITY(U,$J,358.3,3447,0)
+ ;;=W10.0XXA^^28^254^19
+ ;;^UTILITY(U,$J,358.3,3447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3447,1,3,0)
+ ;;=3^Fall,Escalator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3447,1,4,0)
+ ;;=4^W10.0XXA
+ ;;^UTILITY(U,$J,358.3,3447,2)
+ ;;=^5059580
+ ;;^UTILITY(U,$J,358.3,3448,0)
+ ;;=W10.2XXA^^28^254^20
+ ;;^UTILITY(U,$J,358.3,3448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3448,1,3,0)
+ ;;=3^Fall,Incline,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3448,1,4,0)
+ ;;=4^W10.2XXA
+ ;;^UTILITY(U,$J,358.3,3448,2)
+ ;;=^5059586
+ ;;^UTILITY(U,$J,358.3,3449,0)
+ ;;=W10.1XXA^^28^254^21
+ ;;^UTILITY(U,$J,358.3,3449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3449,1,3,0)
+ ;;=3^Fall,Sidewalk/Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3449,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,3449,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,3450,0)
+ ;;=W06.XXXA^^28^254^7
+ ;;^UTILITY(U,$J,358.3,3450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3450,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3450,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,3450,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,3451,0)
+ ;;=W07.XXXA^^28^254^8
+ ;;^UTILITY(U,$J,358.3,3451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3451,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3451,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,3451,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,3452,0)
+ ;;=W05.2XXA^^28^254^11
+ ;;^UTILITY(U,$J,358.3,3452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3452,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3452,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,3452,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,3453,0)
+ ;;=W05.1XXA^^28^254^12
+ ;;^UTILITY(U,$J,358.3,3453,1,0)
+ ;;=^358.31IA^4^2

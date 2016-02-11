@@ -1,126 +1,128 @@
-IBDEI05H ; ; 06-AUG-2015
+IBDEI05H ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2045,1,3,0)
- ;;=3^Open bite, left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,2045,1,4,0)
- ;;=4^S51.852A
- ;;^UTILITY(U,$J,358.3,2045,2)
- ;;=^5028692
- ;;^UTILITY(U,$J,358.3,2046,0)
- ;;=S40.861A^^4^62^111
- ;;^UTILITY(U,$J,358.3,2046,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2046,1,3,0)
- ;;=3^Insect bite (nonvenomous) of right upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,2046,1,4,0)
- ;;=4^S40.861A
- ;;^UTILITY(U,$J,358.3,2046,2)
- ;;=^5026261
- ;;^UTILITY(U,$J,358.3,2047,0)
- ;;=S40.862A^^4^62^109
- ;;^UTILITY(U,$J,358.3,2047,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2047,1,3,0)
- ;;=3^Insect bite (nonvenomous) of left upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,2047,1,4,0)
- ;;=4^S40.862A
- ;;^UTILITY(U,$J,358.3,2047,2)
- ;;=^5026264
- ;;^UTILITY(U,$J,358.3,2048,0)
- ;;=S50.861A^^4^62^110
- ;;^UTILITY(U,$J,358.3,2048,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2048,1,3,0)
- ;;=3^Insect bite (nonvenomous) of right forearm, init encntr
- ;;^UTILITY(U,$J,358.3,2048,1,4,0)
- ;;=4^S50.861A
- ;;^UTILITY(U,$J,358.3,2048,2)
- ;;=^5028590
- ;;^UTILITY(U,$J,358.3,2049,0)
- ;;=S50.862A^^4^62^108
- ;;^UTILITY(U,$J,358.3,2049,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2049,1,3,0)
- ;;=3^Insect bite (nonvenomous) of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,2049,1,4,0)
- ;;=4^S50.862A
- ;;^UTILITY(U,$J,358.3,2049,2)
- ;;=^5028593
- ;;^UTILITY(U,$J,358.3,2050,0)
- ;;=S91.351A^^4^62^148
- ;;^UTILITY(U,$J,358.3,2050,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2050,1,3,0)
- ;;=3^Open bite, right foot, initial encounter
- ;;^UTILITY(U,$J,358.3,2050,1,4,0)
- ;;=4^S91.351A
- ;;^UTILITY(U,$J,358.3,2050,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,2051,0)
- ;;=S91.352A^^4^62^140
- ;;^UTILITY(U,$J,358.3,2051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2051,1,3,0)
- ;;=3^Open bite, left foot, initial encounter
- ;;^UTILITY(U,$J,358.3,2051,1,4,0)
- ;;=4^S91.352A
- ;;^UTILITY(U,$J,358.3,2051,2)
- ;;=^5044347
- ;;^UTILITY(U,$J,358.3,2052,0)
- ;;=S61.451A^^4^62^151
- ;;^UTILITY(U,$J,358.3,2052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2052,1,3,0)
- ;;=3^Open bite, right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,2052,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,2052,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,2053,0)
- ;;=S61.452A^^4^62^143
- ;;^UTILITY(U,$J,358.3,2053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2053,1,3,0)
- ;;=3^Open bite, left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,2053,1,4,0)
- ;;=4^S61.452A
- ;;^UTILITY(U,$J,358.3,2053,2)
- ;;=^5033014
- ;;^UTILITY(U,$J,358.3,2054,0)
- ;;=S81.851A^^4^62^153
- ;;^UTILITY(U,$J,358.3,2054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2054,1,3,0)
- ;;=3^Open bite, right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,2054,1,4,0)
- ;;=4^S81.851A
- ;;^UTILITY(U,$J,358.3,2054,2)
- ;;=^5040095
- ;;^UTILITY(U,$J,358.3,2055,0)
- ;;=S81.852A^^4^62^145
- ;;^UTILITY(U,$J,358.3,2055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2055,1,3,0)
- ;;=3^Open bite, left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,2055,1,4,0)
- ;;=4^S81.852A
- ;;^UTILITY(U,$J,358.3,2055,2)
- ;;=^5040098
- ;;^UTILITY(U,$J,358.3,2056,0)
- ;;=S91.151A^^4^62^150
- ;;^UTILITY(U,$J,358.3,2056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2056,1,3,0)
- ;;=3^Open bite, right great toe w/o damage to nail, init encntr
- ;;^UTILITY(U,$J,358.3,2056,1,4,0)
- ;;=4^S91.151A
- ;;^UTILITY(U,$J,358.3,2056,2)
- ;;=^5044243
- ;;^UTILITY(U,$J,358.3,2057,0)
- ;;=S91.152A^^4^62^142
- ;;^UTILITY(U,$J,358.3,2057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2057,1,3,0)
- ;;=3^Open bite, left great toe w/o damage to nail, init encntr
+ ;;^UTILITY(U,$J,358.3,1920,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1920,1,2,0)
+ ;;=2^93451
+ ;;^UTILITY(U,$J,358.3,1920,1,3,0)
+ ;;=3^Right Hrt Cath incl O2 & Cardiac Outpt
+ ;;^UTILITY(U,$J,358.3,1921,0)
+ ;;=93452^^17^175^12^^^^1
+ ;;^UTILITY(U,$J,358.3,1921,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1921,1,2,0)
+ ;;=2^93452
+ ;;^UTILITY(U,$J,358.3,1921,1,3,0)
+ ;;=3^LHC w/V-Gram, incl S&I
+ ;;^UTILITY(U,$J,358.3,1922,0)
+ ;;=93453^^17^175^18^^^^1
+ ;;^UTILITY(U,$J,358.3,1922,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1922,1,2,0)
+ ;;=2^93453
+ ;;^UTILITY(U,$J,358.3,1922,1,3,0)
+ ;;=3^R&L HC w/V-Gram, incl S&I
+ ;;^UTILITY(U,$J,358.3,1923,0)
+ ;;=93454^^17^175^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1923,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1923,1,2,0)
+ ;;=2^93454
+ ;;^UTILITY(U,$J,358.3,1923,1,3,0)
+ ;;=3^Coronary Angiography, incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,1924,0)
+ ;;=93455^^17^175^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1924,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1924,1,2,0)
+ ;;=2^93455
+ ;;^UTILITY(U,$J,358.3,1924,1,3,0)
+ ;;=3^Cor Angio incl inj & S&I, and Bypass angio
+ ;;^UTILITY(U,$J,358.3,1925,0)
+ ;;=93456^^17^175^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1925,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1925,1,2,0)
+ ;;=2^93456
+ ;;^UTILITY(U,$J,358.3,1925,1,3,0)
+ ;;=3^Cor Angio incl inj & S&I, and R Heart Cath
+ ;;^UTILITY(U,$J,358.3,1926,0)
+ ;;=93457^^17^175^21^^^^1
+ ;;^UTILITY(U,$J,358.3,1926,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1926,1,2,0)
+ ;;=2^93457
+ ;;^UTILITY(U,$J,358.3,1926,1,3,0)
+ ;;=3^Rt Hrt Angio,Bypass Grft,incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,1927,0)
+ ;;=93458^^17^175^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1927,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1927,1,2,0)
+ ;;=2^93458
+ ;;^UTILITY(U,$J,358.3,1927,1,3,0)
+ ;;=3^Cor Angio, LHC, V-Gram, incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,1928,0)
+ ;;=93459^^17^175^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1928,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1928,1,2,0)
+ ;;=2^93459
+ ;;^UTILITY(U,$J,358.3,1928,1,3,0)
+ ;;=3^Lt Hrt Angio,V-Gram,Bypass,incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,1929,0)
+ ;;=93460^^17^175^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1929,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1929,1,2,0)
+ ;;=2^93460
+ ;;^UTILITY(U,$J,358.3,1929,1,3,0)
+ ;;=3^Cor Angio, RHC/LHC, V-Gram, incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,1930,0)
+ ;;=93461^^17^175^19^^^^1
+ ;;^UTILITY(U,$J,358.3,1930,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1930,1,2,0)
+ ;;=2^93461
+ ;;^UTILITY(U,$J,358.3,1930,1,3,0)
+ ;;=3^R&L Hrt Angio,V-Gram,Bypass,incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,1931,0)
+ ;;=93462^^17^175^14^^^^1
+ ;;^UTILITY(U,$J,358.3,1931,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1931,1,2,0)
+ ;;=2^93462
+ ;;^UTILITY(U,$J,358.3,1931,1,3,0)
+ ;;=3^Lt Hrt Cath Trnsptl Puncture
+ ;;^UTILITY(U,$J,358.3,1932,0)
+ ;;=93561^^17^175^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1932,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1932,1,2,0)
+ ;;=2^93561
+ ;;^UTILITY(U,$J,358.3,1932,1,3,0)
+ ;;=3^Indicator Dilution Study-Arterial/Ven
+ ;;^UTILITY(U,$J,358.3,1933,0)
+ ;;=93562^^17^175^22^^^^1
+ ;;^UTILITY(U,$J,358.3,1933,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1933,1,2,0)
+ ;;=2^93562
+ ;;^UTILITY(U,$J,358.3,1933,1,3,0)
+ ;;=3^Subsq Measure of Cardiac Output
+ ;;^UTILITY(U,$J,358.3,1934,0)
+ ;;=93463^^17^175^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1934,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1934,1,2,0)
+ ;;=2^93463
+ ;;^UTILITY(U,$J,358.3,1934,1,3,0)
+ ;;=3^Pharm agent admin, when performed
+ ;;^UTILITY(U,$J,358.3,1935,0)
+ ;;=93505^^17^175^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1935,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1935,1,2,0)
+ ;;=2^93505

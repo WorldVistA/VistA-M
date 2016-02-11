@@ -1,130 +1,132 @@
-IBDEI19K ; ; 06-AUG-2015
+IBDEI19K ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22392,0)
- ;;=782.0^^125^1392^87
- ;;^UTILITY(U,$J,358.3,22392,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22392,1,4,0)
- ;;=4^782.0
- ;;^UTILITY(U,$J,358.3,22392,1,5,0)
- ;;=5^Parasthesia
- ;;^UTILITY(U,$J,358.3,22392,2)
- ;;=Parasthesia^35757
- ;;^UTILITY(U,$J,358.3,22393,0)
- ;;=435.9^^125^1392^107
- ;;^UTILITY(U,$J,358.3,22393,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22393,1,4,0)
- ;;=4^435.9
- ;;^UTILITY(U,$J,358.3,22393,1,5,0)
- ;;=5^Transient Ischemic Attack
- ;;^UTILITY(U,$J,358.3,22393,2)
- ;;=^21635
- ;;^UTILITY(U,$J,358.3,22394,0)
- ;;=354.2^^125^1392^109
- ;;^UTILITY(U,$J,358.3,22394,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22394,1,4,0)
- ;;=4^354.2
- ;;^UTILITY(U,$J,358.3,22394,1,5,0)
- ;;=5^Ulnar Nerve Entrapment
- ;;^UTILITY(U,$J,358.3,22394,2)
- ;;=^268506
- ;;^UTILITY(U,$J,358.3,22395,0)
- ;;=729.1^^125^1392^35
- ;;^UTILITY(U,$J,358.3,22395,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22395,1,4,0)
- ;;=4^729.1
- ;;^UTILITY(U,$J,358.3,22395,1,5,0)
- ;;=5^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,22395,2)
- ;;=Fibromyalgia^80160
- ;;^UTILITY(U,$J,358.3,22396,0)
- ;;=438.20^^125^1392^11
- ;;^UTILITY(U,$J,358.3,22396,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22396,1,4,0)
- ;;=4^438.20
- ;;^UTILITY(U,$J,358.3,22396,1,5,0)
- ;;=5^CVA w/Hemiplegia (late effect)
- ;;^UTILITY(U,$J,358.3,22396,2)
- ;;=CVA w/Hemiplegia^317910
- ;;^UTILITY(U,$J,358.3,22397,0)
- ;;=438.12^^125^1392^8
- ;;^UTILITY(U,$J,358.3,22397,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22397,1,4,0)
- ;;=4^438.12
- ;;^UTILITY(U,$J,358.3,22397,1,5,0)
- ;;=5^CVA w/Dysphasia (late effect)
- ;;^UTILITY(U,$J,358.3,22397,2)
- ;;=Stroke w/Dysphasia^317908
- ;;^UTILITY(U,$J,358.3,22398,0)
- ;;=356.8^^125^1392^90
- ;;^UTILITY(U,$J,358.3,22398,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22398,1,4,0)
- ;;=4^356.8
- ;;^UTILITY(U,$J,358.3,22398,1,5,0)
- ;;=5^Peripheral Neuropathy, Idiopathic
- ;;^UTILITY(U,$J,358.3,22398,2)
- ;;=Peripheral Neuropathy, Idio^268525
- ;;^UTILITY(U,$J,358.3,22399,0)
- ;;=337.20^^125^1392^100
- ;;^UTILITY(U,$J,358.3,22399,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22399,1,4,0)
- ;;=4^337.20
- ;;^UTILITY(U,$J,358.3,22399,1,5,0)
- ;;=5^Reflexive Sympathetic Dystrophy
- ;;^UTILITY(U,$J,358.3,22399,2)
- ;;=Reflexive Sympathetic Dystrophy^295799
- ;;^UTILITY(U,$J,358.3,22400,0)
- ;;=294.8^^125^1392^33
- ;;^UTILITY(U,$J,358.3,22400,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22400,1,4,0)
- ;;=4^294.8
- ;;^UTILITY(U,$J,358.3,22400,1,5,0)
- ;;=5^Dementia, Other
- ;;^UTILITY(U,$J,358.3,22400,2)
- ;;=^268044
- ;;^UTILITY(U,$J,358.3,22401,0)
- ;;=438.6^^125^1392^7
- ;;^UTILITY(U,$J,358.3,22401,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22401,1,4,0)
- ;;=4^438.6
- ;;^UTILITY(U,$J,358.3,22401,1,5,0)
- ;;=5^CVA w/Dysesthesia (late effect)
- ;;^UTILITY(U,$J,358.3,22401,2)
- ;;=CVA w/Dysesthesia (late effect)^328503
- ;;^UTILITY(U,$J,358.3,22402,0)
- ;;=438.7^^125^1392^26
- ;;^UTILITY(U,$J,358.3,22402,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22402,1,4,0)
- ;;=4^438.7
- ;;^UTILITY(U,$J,358.3,22402,1,5,0)
- ;;=5^CVA w/Vision Changes (late effect)
- ;;^UTILITY(U,$J,358.3,22402,2)
- ;;=CVA w/Vision Changes (late effect)^328504
- ;;^UTILITY(U,$J,358.3,22403,0)
- ;;=438.84^^125^1392^5
- ;;^UTILITY(U,$J,358.3,22403,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22403,1,4,0)
- ;;=4^438.84
- ;;^UTILITY(U,$J,358.3,22403,1,5,0)
- ;;=5^CVA w/Ataxia (late effect)
- ;;^UTILITY(U,$J,358.3,22403,2)
- ;;=CVA w/Ataxia (late effect)^328507
- ;;^UTILITY(U,$J,358.3,22404,0)
- ;;=434.91^^125^1392^27
- ;;^UTILITY(U,$J,358.3,22404,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,22404,1,4,0)
- ;;=4^434.91
+ ;;^UTILITY(U,$J,358.3,21134,1,3,0)
+ ;;=3^Acquired absence of left great toe
+ ;;^UTILITY(U,$J,358.3,21134,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,21134,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,21135,0)
+ ;;=Z89.422^^101^1026^11
+ ;;^UTILITY(U,$J,358.3,21135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21135,1,3,0)
+ ;;=3^Acquired absence of left toe(s)
+ ;;^UTILITY(U,$J,358.3,21135,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,21135,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,21136,0)
+ ;;=Z89.421^^101^1026^26
+ ;;^UTILITY(U,$J,358.3,21136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21136,1,3,0)
+ ;;=3^Acquired absence of right toe(s)
+ ;;^UTILITY(U,$J,358.3,21136,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,21136,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,21137,0)
+ ;;=Z89.431^^101^1026^17
+ ;;^UTILITY(U,$J,358.3,21137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21137,1,3,0)
+ ;;=3^Acquired absence of right foot
+ ;;^UTILITY(U,$J,358.3,21137,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,21137,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,21138,0)
+ ;;=Z89.432^^101^1026^3
+ ;;^UTILITY(U,$J,358.3,21138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21138,1,3,0)
+ ;;=3^Acquired absence of left foot
+ ;;^UTILITY(U,$J,358.3,21138,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,21138,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,21139,0)
+ ;;=Z89.442^^101^1026^1
+ ;;^UTILITY(U,$J,358.3,21139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21139,1,3,0)
+ ;;=3^Acquired absence of left ankle
+ ;;^UTILITY(U,$J,358.3,21139,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,21139,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,21140,0)
+ ;;=Z89.441^^101^1026^15
+ ;;^UTILITY(U,$J,358.3,21140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21140,1,3,0)
+ ;;=3^Acquired absence of right ankle
+ ;;^UTILITY(U,$J,358.3,21140,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,21140,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,21141,0)
+ ;;=Z89.511^^101^1026^23
+ ;;^UTILITY(U,$J,358.3,21141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21141,1,3,0)
+ ;;=3^Acquired absence of right leg below knee
+ ;;^UTILITY(U,$J,358.3,21141,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,21141,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,21142,0)
+ ;;=Z89.512^^101^1026^8
+ ;;^UTILITY(U,$J,358.3,21142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21142,1,3,0)
+ ;;=3^Acquired absence of left leg below knee
+ ;;^UTILITY(U,$J,358.3,21142,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,21142,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,21143,0)
+ ;;=Z89.611^^101^1026^22
+ ;;^UTILITY(U,$J,358.3,21143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21143,1,3,0)
+ ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,21143,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,21143,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,21144,0)
+ ;;=Z89.612^^101^1026^7
+ ;;^UTILITY(U,$J,358.3,21144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21144,1,3,0)
+ ;;=3^Acquired absence of left leg above knee
+ ;;^UTILITY(U,$J,358.3,21144,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,21144,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,21145,0)
+ ;;=Z89.622^^101^1026^6
+ ;;^UTILITY(U,$J,358.3,21145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21145,1,3,0)
+ ;;=3^Acquired absence of left hip joint
+ ;;^UTILITY(U,$J,358.3,21145,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,21145,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,21146,0)
+ ;;=Z89.621^^101^1026^20
+ ;;^UTILITY(U,$J,358.3,21146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21146,1,3,0)
+ ;;=3^Acquired absence of right hip joint
+ ;;^UTILITY(U,$J,358.3,21146,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,21146,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,21147,0)
+ ;;=R47.01^^101^1027^1

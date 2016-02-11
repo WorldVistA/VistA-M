@@ -1,7 +1,8 @@
-GMRCEDT2 ;SLC/JFR,DCM - RESUBMIT A CANCELLED CONSULT ;01/29/14  11:56
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,46,73**;DEC 27, 1997;Build 22
+GMRCEDT2 ;SLC/JFR,DCM - RESUBMIT A CANCELLED CONSULT ;10/09/15  13:08
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,46,73,85**;DEC 27, 1997;Build 3
  ;
  ;ICRs in use: #2053 (DIE), #2056 (GET1^DIQ), #872 (ORD(101))
+ ;patch 85 removed call to $$PDOK^GMRCEDT4
  ;
 EN(GMRCO,COMNO) ;entry point into the routine
  ;COMNO=CMDA from ^GMRCEDT2=comments array IEN from ^GMR(123,IEN,40,
@@ -14,10 +15,6 @@ EN(GMRCO,COMNO) ;entry point into the routine
  .Q
  N MSG S MSG=$$EDRESOK(GMRCO)
  I '+MSG D EXAC^GMRCADC($P(MSG,U,2)) Q
- I '$$PDOK^GMRCEDT4(GMRCO) D  Q
- . D EXAC^GMRCADC("Can't resubmit!")
- . S GMRCRSUB=1
- . Q
  I '$D(GMRCGUIF) W !,"Resubmitting Consult ... One moment please ..."
  K ^TMP("GMRCSUB",$J) S ^TMP("GMRCSUB",$J)=0
  I $D(GMRCEDT(1)) S ^TMP("GMRCSUB",$J,1)="GMRCSS^"_+GMRCEDT(1)

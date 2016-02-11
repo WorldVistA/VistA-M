@@ -1,128 +1,136 @@
-IBDEI1RT ; ; 06-AUG-2015
+IBDEI1RT ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31267,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,31267,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,31268,0)
- ;;=M45.0^^180^1951^14
- ;;^UTILITY(U,$J,358.3,31268,1,0)
+ ;;^UTILITY(U,$J,358.3,29644,2)
+ ;;=^5002614
+ ;;^UTILITY(U,$J,358.3,29645,0)
+ ;;=E10.621^^135^1364^7
+ ;;^UTILITY(U,$J,358.3,29645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31268,1,3,0)
- ;;=3^Ankylosing spondylitis of multiple sites in spine
- ;;^UTILITY(U,$J,358.3,31268,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,31268,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,31269,0)
- ;;=M45.1^^180^1951^15
- ;;^UTILITY(U,$J,358.3,31269,1,0)
+ ;;^UTILITY(U,$J,358.3,29645,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,29645,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,29645,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,29646,0)
+ ;;=E10.622^^135^1364^11
+ ;;^UTILITY(U,$J,358.3,29646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31269,1,3,0)
- ;;=3^Ankylosing spondylitis of occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,31269,1,4,0)
- ;;=4^M45.1
- ;;^UTILITY(U,$J,358.3,31269,2)
- ;;=^5011961
- ;;^UTILITY(U,$J,358.3,31270,0)
- ;;=M45.8^^180^1951^17
- ;;^UTILITY(U,$J,358.3,31270,1,0)
+ ;;^UTILITY(U,$J,358.3,29646,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,29646,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,29646,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,29647,0)
+ ;;=E10.65^^135^1364^10
+ ;;^UTILITY(U,$J,358.3,29647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31270,1,3,0)
- ;;=3^Ankylosing spondylitis sacral and sacrococcygeal region
- ;;^UTILITY(U,$J,358.3,31270,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,31270,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,31271,0)
- ;;=M45.4^^180^1951^16
- ;;^UTILITY(U,$J,358.3,31271,1,0)
+ ;;^UTILITY(U,$J,358.3,29647,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycermia
+ ;;^UTILITY(U,$J,358.3,29647,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,29647,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,29648,0)
+ ;;=E10.39^^135^1364^9
+ ;;^UTILITY(U,$J,358.3,29648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31271,1,3,0)
- ;;=3^Ankylosing spondylitis of thoracic region
- ;;^UTILITY(U,$J,358.3,31271,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,31271,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,31272,0)
- ;;=M45.6^^180^1951^12
- ;;^UTILITY(U,$J,358.3,31272,1,0)
+ ;;^UTILITY(U,$J,358.3,29648,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complications NEC
+ ;;^UTILITY(U,$J,358.3,29648,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,29648,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,29649,0)
+ ;;=E66.3^^135^1364^45
+ ;;^UTILITY(U,$J,358.3,29649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31272,1,3,0)
- ;;=3^Ankylosing spondylitis of lumbar region
- ;;^UTILITY(U,$J,358.3,31272,1,4,0)
- ;;=4^M45.6
- ;;^UTILITY(U,$J,358.3,31272,2)
- ;;=^5011966
- ;;^UTILITY(U,$J,358.3,31273,0)
- ;;=M50.03^^180^1951^18
- ;;^UTILITY(U,$J,358.3,31273,1,0)
+ ;;^UTILITY(U,$J,358.3,29649,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,29649,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,29649,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,29650,0)
+ ;;=E89.1^^135^1364^49
+ ;;^UTILITY(U,$J,358.3,29650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31273,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,31273,1,4,0)
- ;;=4^M50.03
- ;;^UTILITY(U,$J,358.3,31273,2)
- ;;=^5012218
- ;;^UTILITY(U,$J,358.3,31274,0)
- ;;=M50.02^^180^1951^20
- ;;^UTILITY(U,$J,358.3,31274,1,0)
+ ;;^UTILITY(U,$J,358.3,29650,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,29650,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,29650,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,29651,0)
+ ;;=H40.9^^135^1365^9
+ ;;^UTILITY(U,$J,358.3,29651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31274,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, mid-cervical region
- ;;^UTILITY(U,$J,358.3,31274,1,4,0)
- ;;=4^M50.02
- ;;^UTILITY(U,$J,358.3,31274,2)
- ;;=^5012217
- ;;^UTILITY(U,$J,358.3,31275,0)
- ;;=M50.01^^180^1951^19
- ;;^UTILITY(U,$J,358.3,31275,1,0)
+ ;;^UTILITY(U,$J,358.3,29651,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,29651,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,29651,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,29652,0)
+ ;;=H26.9^^135^1365^5
+ ;;^UTILITY(U,$J,358.3,29652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31275,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, high cervical region
- ;;^UTILITY(U,$J,358.3,31275,1,4,0)
- ;;=4^M50.01
- ;;^UTILITY(U,$J,358.3,31275,2)
- ;;=^5012216
- ;;^UTILITY(U,$J,358.3,31276,0)
- ;;=M54.2^^180^1951^21
- ;;^UTILITY(U,$J,358.3,31276,1,0)
+ ;;^UTILITY(U,$J,358.3,29652,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,29652,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,29652,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,29653,0)
+ ;;=H10.9^^135^1365^8
+ ;;^UTILITY(U,$J,358.3,29653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31276,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,31276,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,31276,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,31277,0)
- ;;=M51.06^^180^1951^22
- ;;^UTILITY(U,$J,358.3,31277,1,0)
+ ;;^UTILITY(U,$J,358.3,29653,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29653,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,29653,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,29654,0)
+ ;;=H11.32^^135^1365^6
+ ;;^UTILITY(U,$J,358.3,29654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31277,1,3,0)
- ;;=3^Intvrt disc disorders w myelopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,31277,1,4,0)
- ;;=4^M51.06
- ;;^UTILITY(U,$J,358.3,31277,2)
- ;;=^5012241
- ;;^UTILITY(U,$J,358.3,31278,0)
- ;;=M51.04^^180^1951^23
- ;;^UTILITY(U,$J,358.3,31278,1,0)
+ ;;^UTILITY(U,$J,358.3,29654,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,29654,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,29654,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,29655,0)
+ ;;=H11.31^^135^1365^7
+ ;;^UTILITY(U,$J,358.3,29655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31278,1,3,0)
- ;;=3^Intvrt disc disorders w myelopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,31278,1,4,0)
- ;;=4^M51.04
- ;;^UTILITY(U,$J,358.3,31278,2)
- ;;=^5012239
- ;;^UTILITY(U,$J,358.3,31279,0)
- ;;=M51.05^^180^1951^24
- ;;^UTILITY(U,$J,358.3,31279,1,0)
+ ;;^UTILITY(U,$J,358.3,29655,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,29655,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,29655,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,29656,0)
+ ;;=H01.002^^135^1365^3
+ ;;^UTILITY(U,$J,358.3,29656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31279,1,3,0)
- ;;=3^Intvrt disc disorders w myelopathy, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,31279,1,4,0)
- ;;=4^M51.05
- ;;^UTILITY(U,$J,358.3,31279,2)
- ;;=^5012240
+ ;;^UTILITY(U,$J,358.3,29656,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,29656,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,29656,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,29657,0)
+ ;;=H01.004^^135^1365^2
+ ;;^UTILITY(U,$J,358.3,29657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29657,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,29657,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,29657,2)
+ ;;=^5004241

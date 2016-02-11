@@ -1,120 +1,136 @@
-IBDEI1Y0 ; ; 06-AUG-2015
+IBDEI1Y0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34109,1,0)
+ ;;^UTILITY(U,$J,358.3,32525,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,32525,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,32525,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,32526,0)
+ ;;=F52.22^^143^1541^4
+ ;;^UTILITY(U,$J,358.3,32526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34109,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of left ank/ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34109,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,34109,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,34110,0)
- ;;=M05.742^^183^2016^69
- ;;^UTILITY(U,$J,358.3,34110,1,0)
+ ;;^UTILITY(U,$J,358.3,32526,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,32526,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,32526,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,32527,0)
+ ;;=F52.6^^143^1541^5
+ ;;^UTILITY(U,$J,358.3,32527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34110,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of left hand w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34110,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,34110,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,34111,0)
- ;;=M05.762^^183^2016^70
- ;;^UTILITY(U,$J,358.3,34111,1,0)
+ ;;^UTILITY(U,$J,358.3,32527,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,32527,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,32527,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,32528,0)
+ ;;=F52.0^^143^1541^6
+ ;;^UTILITY(U,$J,358.3,32528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34111,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of left knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34111,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,34111,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,34112,0)
- ;;=M05.712^^183^2016^71
- ;;^UTILITY(U,$J,358.3,34112,1,0)
+ ;;^UTILITY(U,$J,358.3,32528,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,32528,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,32528,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,32529,0)
+ ;;=F52.4^^143^1541^7
+ ;;^UTILITY(U,$J,358.3,32529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34112,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of left shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34112,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,34112,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,34113,0)
- ;;=M05.732^^183^2016^72
- ;;^UTILITY(U,$J,358.3,34113,1,0)
+ ;;^UTILITY(U,$J,358.3,32529,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,32529,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,32529,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,32530,0)
+ ;;=F52.8^^143^1541^9
+ ;;^UTILITY(U,$J,358.3,32530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34113,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of left wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34113,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,34113,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,34114,0)
- ;;=M05.771^^183^2016^73
- ;;^UTILITY(U,$J,358.3,34114,1,0)
+ ;;^UTILITY(U,$J,358.3,32530,1,3,0)
+ ;;=3^Sexual Dysfuntion NEC
+ ;;^UTILITY(U,$J,358.3,32530,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,32530,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,32531,0)
+ ;;=F52.9^^143^1541^8
+ ;;^UTILITY(U,$J,358.3,32531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34114,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right ank/ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34114,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,34114,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,34115,0)
- ;;=M05.721^^183^2016^74
- ;;^UTILITY(U,$J,358.3,34115,1,0)
+ ;;^UTILITY(U,$J,358.3,32531,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,32531,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,32531,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,32532,0)
+ ;;=G47.09^^143^1542^11
+ ;;^UTILITY(U,$J,358.3,32532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34115,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right elbow w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34115,1,4,0)
- ;;=4^M05.721
- ;;^UTILITY(U,$J,358.3,34115,2)
- ;;=^5010004
- ;;^UTILITY(U,$J,358.3,34116,0)
- ;;=M05.741^^183^2016^75
- ;;^UTILITY(U,$J,358.3,34116,1,0)
+ ;;^UTILITY(U,$J,358.3,32532,1,3,0)
+ ;;=3^Insomnia Disorder NEC
+ ;;^UTILITY(U,$J,358.3,32532,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,32532,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,32533,0)
+ ;;=G47.00^^143^1542^10
+ ;;^UTILITY(U,$J,358.3,32533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34116,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right hand w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34116,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,34116,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,34117,0)
- ;;=M05.751^^183^2016^76
- ;;^UTILITY(U,$J,358.3,34117,1,0)
+ ;;^UTILITY(U,$J,358.3,32533,1,3,0)
+ ;;=3^Insomnia Disorder
+ ;;^UTILITY(U,$J,358.3,32533,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,32533,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,32534,0)
+ ;;=G47.10^^143^1542^9
+ ;;^UTILITY(U,$J,358.3,32534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34117,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right hip w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34117,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,34117,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,34118,0)
- ;;=M05.761^^183^2016^77
- ;;^UTILITY(U,$J,358.3,34118,1,0)
+ ;;^UTILITY(U,$J,358.3,32534,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,32534,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,32534,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,32535,0)
+ ;;=G47.419^^143^1542^12
+ ;;^UTILITY(U,$J,358.3,32535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34118,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34118,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,34118,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,34119,0)
- ;;=M05.711^^183^2016^78
- ;;^UTILITY(U,$J,358.3,34119,1,0)
+ ;;^UTILITY(U,$J,358.3,32535,1,3,0)
+ ;;=3^Narcolepsy
+ ;;^UTILITY(U,$J,358.3,32535,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,32535,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,32536,0)
+ ;;=G47.33^^143^1542^16
+ ;;^UTILITY(U,$J,358.3,32536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34119,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34119,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,34119,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,34120,0)
- ;;=M05.731^^183^2016^79
- ;;^UTILITY(U,$J,358.3,34120,1,0)
+ ;;^UTILITY(U,$J,358.3,32536,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,32536,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,32536,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,32537,0)
+ ;;=G47.31^^143^1542^1
+ ;;^UTILITY(U,$J,358.3,32537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34120,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,34120,1,4,0)
- ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,32537,1,3,0)
+ ;;=3^Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,32537,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,32537,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,32538,0)
+ ;;=G47.21^^143^1542^3
+ ;;^UTILITY(U,$J,358.3,32538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32538,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type

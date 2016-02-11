@@ -1,124 +1,136 @@
-IBDEI082 ; ; 06-AUG-2015
+IBDEI082 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3274,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,3275,0)
- ;;=F11.24^^8^116^8
- ;;^UTILITY(U,$J,358.3,3275,1,0)
+ ;;^UTILITY(U,$J,358.3,3211,1,3,0)
+ ;;=3^Atherosclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3211,1,4,0)
+ ;;=4^I70.90
+ ;;^UTILITY(U,$J,358.3,3211,2)
+ ;;=^5007784
+ ;;^UTILITY(U,$J,358.3,3212,0)
+ ;;=I25.10^^28^249^18
+ ;;^UTILITY(U,$J,358.3,3212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3275,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,3275,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,3275,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,3276,0)
- ;;=F11.29^^8^116^1
- ;;^UTILITY(U,$J,358.3,3276,1,0)
+ ;;^UTILITY(U,$J,358.3,3212,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,3212,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,3212,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,3213,0)
+ ;;=I48.91^^28^249^19
+ ;;^UTILITY(U,$J,358.3,3213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3276,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,3276,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,3276,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,3277,0)
- ;;=F19.10^^8^117^3
- ;;^UTILITY(U,$J,358.3,3277,1,0)
+ ;;^UTILITY(U,$J,358.3,3213,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,3213,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,3213,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,3214,0)
+ ;;=Z95.1^^28^249^21
+ ;;^UTILITY(U,$J,358.3,3214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3277,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,3277,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,3277,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,3278,0)
- ;;=F19.14^^8^117^1
- ;;^UTILITY(U,$J,358.3,3278,1,0)
+ ;;^UTILITY(U,$J,358.3,3214,1,3,0)
+ ;;=3^Bypass Graft,Aortocoronary
+ ;;^UTILITY(U,$J,358.3,3214,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,3214,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,3215,0)
+ ;;=I78.9^^28^249^22
+ ;;^UTILITY(U,$J,358.3,3215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3278,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,3278,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,3278,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,3279,0)
- ;;=F19.182^^8^117^2
- ;;^UTILITY(U,$J,358.3,3279,1,0)
+ ;;^UTILITY(U,$J,358.3,3215,1,3,0)
+ ;;=3^Capillary Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3215,1,4,0)
+ ;;=4^I78.9
+ ;;^UTILITY(U,$J,358.3,3215,2)
+ ;;=^5007816
+ ;;^UTILITY(U,$J,358.3,3216,0)
+ ;;=I51.7^^28^249^23
+ ;;^UTILITY(U,$J,358.3,3216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3279,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,3279,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,3279,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,3280,0)
- ;;=F19.20^^8^117^6
- ;;^UTILITY(U,$J,358.3,3280,1,0)
+ ;;^UTILITY(U,$J,358.3,3216,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,3216,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,3216,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,3217,0)
+ ;;=I42.1^^28^249^24
+ ;;^UTILITY(U,$J,358.3,3217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3280,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,3280,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,3280,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,3281,0)
- ;;=F19.21^^8^117^5
- ;;^UTILITY(U,$J,358.3,3281,1,0)
+ ;;^UTILITY(U,$J,358.3,3217,1,3,0)
+ ;;=3^Cardiomyopathy,Obstructive Hypertrophic
+ ;;^UTILITY(U,$J,358.3,3217,1,4,0)
+ ;;=4^I42.1
+ ;;^UTILITY(U,$J,358.3,3217,2)
+ ;;=^340520
+ ;;^UTILITY(U,$J,358.3,3218,0)
+ ;;=I42.2^^28^249^25
+ ;;^UTILITY(U,$J,358.3,3218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3281,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,3281,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,3281,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,3282,0)
- ;;=F19.24^^8^117^4
- ;;^UTILITY(U,$J,358.3,3282,1,0)
+ ;;^UTILITY(U,$J,358.3,3218,1,3,0)
+ ;;=3^Cardiomyopathy,Other Hypertrophic
+ ;;^UTILITY(U,$J,358.3,3218,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,3218,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,3219,0)
+ ;;=Z13.6^^28^249^26
+ ;;^UTILITY(U,$J,358.3,3219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3282,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,3282,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,3282,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,3283,0)
- ;;=F13.10^^8^118^1
- ;;^UTILITY(U,$J,358.3,3283,1,0)
+ ;;^UTILITY(U,$J,358.3,3219,1,3,0)
+ ;;=3^Cardiovascular Disorder Screening
+ ;;^UTILITY(U,$J,358.3,3219,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,3219,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,3220,0)
+ ;;=G45.1^^28^249^27
+ ;;^UTILITY(U,$J,358.3,3220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3283,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,3283,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,3283,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,3284,0)
- ;;=F13.14^^8^118^7
- ;;^UTILITY(U,$J,358.3,3284,1,0)
+ ;;^UTILITY(U,$J,358.3,3220,1,3,0)
+ ;;=3^Carotid Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,3220,1,4,0)
+ ;;=4^G45.1
+ ;;^UTILITY(U,$J,358.3,3220,2)
+ ;;=^5003956
+ ;;^UTILITY(U,$J,358.3,3221,0)
+ ;;=I65.29^^28^249^28
+ ;;^UTILITY(U,$J,358.3,3221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3284,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
- ;;^UTILITY(U,$J,358.3,3284,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,3284,2)
- ;;=^5003193
- ;;^UTILITY(U,$J,358.3,3285,0)
- ;;=F13.182^^8^118^8
- ;;^UTILITY(U,$J,358.3,3285,1,0)
+ ;;^UTILITY(U,$J,358.3,3221,1,3,0)
+ ;;=3^Carotid Artery,Occlusion & Stenosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3221,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,3221,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,3222,0)
+ ;;=R09.89^^28^249^29
+ ;;^UTILITY(U,$J,358.3,3222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3285,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,3285,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,3285,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,3286,0)
- ;;=F13.20^^8^118^2
- ;;^UTILITY(U,$J,358.3,3286,1,0)
+ ;;^UTILITY(U,$J,358.3,3222,1,3,0)
+ ;;=3^Carotid Bruit
+ ;;^UTILITY(U,$J,358.3,3222,1,4,0)
+ ;;=4^R09.89
+ ;;^UTILITY(U,$J,358.3,3222,2)
+ ;;=^5019204
+ ;;^UTILITY(U,$J,358.3,3223,0)
+ ;;=I63.239^^28^249^30
+ ;;^UTILITY(U,$J,358.3,3223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3286,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,3286,1,4,0)
- ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,3223,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occlusion/Stenosis Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,3223,1,4,0)
+ ;;=4^I63.239
+ ;;^UTILITY(U,$J,358.3,3223,2)
+ ;;=^5133567
+ ;;^UTILITY(U,$J,358.3,3224,0)
+ ;;=I63.20^^28^249^31
+ ;;^UTILITY(U,$J,358.3,3224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3224,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occlusion/Stenosis Percerebral Arteries

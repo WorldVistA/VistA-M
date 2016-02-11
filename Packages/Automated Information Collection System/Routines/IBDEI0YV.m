@@ -1,136 +1,134 @@
-IBDEI0YV ; ; 06-AUG-2015
+IBDEI0YV ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17000,2)
- ;;=^303598
- ;;^UTILITY(U,$J,358.3,17001,0)
- ;;=296.30^^87^1034^6
- ;;^UTILITY(U,$J,358.3,17001,1,0)
+ ;;^UTILITY(U,$J,358.3,16059,1,3,0)
+ ;;=3^Cognitive Decline,Age-Related
+ ;;^UTILITY(U,$J,358.3,16059,1,4,0)
+ ;;=4^R41.81
+ ;;^UTILITY(U,$J,358.3,16059,2)
+ ;;=^5019440
+ ;;^UTILITY(U,$J,358.3,16060,0)
+ ;;=R41.82^^88^841^8
+ ;;^UTILITY(U,$J,358.3,16060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17001,1,3,0)
- ;;=3^296.30
- ;;^UTILITY(U,$J,358.3,17001,1,4,0)
- ;;=4^Major Depressive Disorder,Recurrent
- ;;^UTILITY(U,$J,358.3,17001,2)
- ;;=^303614
- ;;^UTILITY(U,$J,358.3,17002,0)
- ;;=296.80^^87^1034^3
- ;;^UTILITY(U,$J,358.3,17002,1,0)
+ ;;^UTILITY(U,$J,358.3,16060,1,3,0)
+ ;;=3^Cognitive Decline,Altered Mental Status
+ ;;^UTILITY(U,$J,358.3,16060,1,4,0)
+ ;;=4^R41.82
+ ;;^UTILITY(U,$J,358.3,16060,2)
+ ;;=^5019441
+ ;;^UTILITY(U,$J,358.3,16061,0)
+ ;;=R41.841^^88^841^9
+ ;;^UTILITY(U,$J,358.3,16061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17002,1,3,0)
- ;;=3^296.80
- ;;^UTILITY(U,$J,358.3,17002,1,4,0)
- ;;=4^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,17002,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,17003,0)
- ;;=518.89^^87^1035^4
- ;;^UTILITY(U,$J,358.3,17003,1,0)
+ ;;^UTILITY(U,$J,358.3,16061,1,3,0)
+ ;;=3^Cognitive Decline,Communication Deficit
+ ;;^UTILITY(U,$J,358.3,16061,1,4,0)
+ ;;=4^R41.841
+ ;;^UTILITY(U,$J,358.3,16061,2)
+ ;;=^5019444
+ ;;^UTILITY(U,$J,358.3,16062,0)
+ ;;=R41.0^^88^841^10
+ ;;^UTILITY(U,$J,358.3,16062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17003,1,3,0)
- ;;=3^518.89
- ;;^UTILITY(U,$J,358.3,17003,1,4,0)
- ;;=4^Lung Nodule
- ;;^UTILITY(U,$J,358.3,17003,2)
- ;;=Lung Nodule^87486
- ;;^UTILITY(U,$J,358.3,17004,0)
- ;;=518.0^^87^1035^1
- ;;^UTILITY(U,$J,358.3,17004,1,0)
+ ;;^UTILITY(U,$J,358.3,16062,1,3,0)
+ ;;=3^Cognitive Decline,Disorientation,Unspec
+ ;;^UTILITY(U,$J,358.3,16062,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,16062,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,16063,0)
+ ;;=R41.844^^88^841^11
+ ;;^UTILITY(U,$J,358.3,16063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17004,1,3,0)
- ;;=3^518.0
- ;;^UTILITY(U,$J,358.3,17004,1,4,0)
- ;;=4^Lobar Atelectasis
- ;;^UTILITY(U,$J,358.3,17004,2)
- ;;=Lobar Atelectasis^11199
- ;;^UTILITY(U,$J,358.3,17005,0)
- ;;=212.3^^87^1035^6
- ;;^UTILITY(U,$J,358.3,17005,1,0)
+ ;;^UTILITY(U,$J,358.3,16063,1,3,0)
+ ;;=3^Cognitive Decline,Frontal Lobe/Executive Function Deficit
+ ;;^UTILITY(U,$J,358.3,16063,1,4,0)
+ ;;=4^R41.844
+ ;;^UTILITY(U,$J,358.3,16063,2)
+ ;;=^5019447
+ ;;^UTILITY(U,$J,358.3,16064,0)
+ ;;=R41.843^^88^841^12
+ ;;^UTILITY(U,$J,358.3,16064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17005,1,3,0)
- ;;=3^212.3
- ;;^UTILITY(U,$J,358.3,17005,1,4,0)
- ;;=4^Mesothelioma, Benign of Lung
- ;;^UTILITY(U,$J,358.3,17005,2)
- ;;=Mesothelioma, Benign of Lung^267600
- ;;^UTILITY(U,$J,358.3,17006,0)
- ;;=786.6^^87^1035^5
- ;;^UTILITY(U,$J,358.3,17006,1,0)
+ ;;^UTILITY(U,$J,358.3,16064,1,3,0)
+ ;;=3^Cognitive Decline,Psychomotor Deficit
+ ;;^UTILITY(U,$J,358.3,16064,1,4,0)
+ ;;=4^R41.843
+ ;;^UTILITY(U,$J,358.3,16064,2)
+ ;;=^5019446
+ ;;^UTILITY(U,$J,358.3,16065,0)
+ ;;=R41.9^^88^841^13
+ ;;^UTILITY(U,$J,358.3,16065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17006,1,3,0)
- ;;=3^786.6
- ;;^UTILITY(U,$J,358.3,17006,1,4,0)
- ;;=4^Mediastinal/Lung Mass Unspec
- ;;^UTILITY(U,$J,358.3,17006,2)
- ;;=Mediastinal/Lung Mass Unspec^273380
- ;;^UTILITY(U,$J,358.3,17007,0)
- ;;=165.9^^87^1035^8
- ;;^UTILITY(U,$J,358.3,17007,1,0)
+ ;;^UTILITY(U,$J,358.3,16065,1,3,0)
+ ;;=3^Cognitive Decline,Unspec
+ ;;^UTILITY(U,$J,358.3,16065,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,16065,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,16066,0)
+ ;;=R41.842^^88^841^14
+ ;;^UTILITY(U,$J,358.3,16066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17007,1,3,0)
- ;;=3^165.9
- ;;^UTILITY(U,$J,358.3,17007,1,4,0)
- ;;=4^Respiratory Malignancy
- ;;^UTILITY(U,$J,358.3,17007,2)
- ;;=Respiratory Malignancy^267154
- ;;^UTILITY(U,$J,358.3,17008,0)
- ;;=162.9^^87^1035^2
- ;;^UTILITY(U,$J,358.3,17008,1,0)
+ ;;^UTILITY(U,$J,358.3,16066,1,3,0)
+ ;;=3^Cognitive Decline,Visuospatial Deficit
+ ;;^UTILITY(U,$J,358.3,16066,1,4,0)
+ ;;=4^R41.842
+ ;;^UTILITY(U,$J,358.3,16066,2)
+ ;;=^5019445
+ ;;^UTILITY(U,$J,358.3,16067,0)
+ ;;=G31.84^^88^841^15
+ ;;^UTILITY(U,$J,358.3,16067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17008,1,3,0)
- ;;=3^162.9
- ;;^UTILITY(U,$J,358.3,17008,1,4,0)
- ;;=4^Lung Cancer
- ;;^UTILITY(U,$J,358.3,17008,2)
- ;;=Lung Cancer^73521
- ;;^UTILITY(U,$J,358.3,17009,0)
- ;;=239.1^^87^1035^9
- ;;^UTILITY(U,$J,358.3,17009,1,0)
+ ;;^UTILITY(U,$J,358.3,16067,1,3,0)
+ ;;=3^Cognitive Impairment,Mild
+ ;;^UTILITY(U,$J,358.3,16067,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,16067,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,16068,0)
+ ;;=G31.83^^88^841^19
+ ;;^UTILITY(U,$J,358.3,16068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17009,1,3,0)
- ;;=3^239.1
- ;;^UTILITY(U,$J,358.3,17009,1,4,0)
- ;;=4^Respiratory Neoplasm NOS
- ;;^UTILITY(U,$J,358.3,17009,2)
- ;;=^267782
- ;;^UTILITY(U,$J,358.3,17010,0)
- ;;=163.9^^87^1035^7
- ;;^UTILITY(U,$J,358.3,17010,1,0)
+ ;;^UTILITY(U,$J,358.3,16068,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,16068,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,16068,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,16069,0)
+ ;;=G31.2^^88^841^22
+ ;;^UTILITY(U,$J,358.3,16069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17010,1,3,0)
- ;;=3^163.9
- ;;^UTILITY(U,$J,358.3,17010,1,4,0)
- ;;=4^Pleura Malignancy NOS
- ;;^UTILITY(U,$J,358.3,17010,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,17011,0)
- ;;=197.0^^87^1035^3
- ;;^UTILITY(U,$J,358.3,17011,1,0)
+ ;;^UTILITY(U,$J,358.3,16069,1,3,0)
+ ;;=3^Dementia,Alcohol-Related
+ ;;^UTILITY(U,$J,358.3,16069,1,4,0)
+ ;;=4^G31.2
+ ;;^UTILITY(U,$J,358.3,16069,2)
+ ;;=^5003810
+ ;;^UTILITY(U,$J,358.3,16070,0)
+ ;;=A81.09^^88^841^25
+ ;;^UTILITY(U,$J,358.3,16070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17011,1,3,0)
- ;;=3^197.0
- ;;^UTILITY(U,$J,358.3,17011,1,4,0)
- ;;=4^Lung Mets
- ;;^UTILITY(U,$J,358.3,17011,2)
- ;;=^267322
- ;;^UTILITY(U,$J,358.3,17012,0)
- ;;=197.3^^87^1035^10
- ;;^UTILITY(U,$J,358.3,17012,1,0)
+ ;;^UTILITY(U,$J,358.3,16070,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,16070,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,16070,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,16071,0)
+ ;;=A81.00^^88^841^26
+ ;;^UTILITY(U,$J,358.3,16071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17012,1,3,0)
- ;;=3^197.3
- ;;^UTILITY(U,$J,358.3,17012,1,4,0)
- ;;=4^Respiratory Organ Mets NEC
- ;;^UTILITY(U,$J,358.3,17012,2)
- ;;=^267325
- ;;^UTILITY(U,$J,358.3,17013,0)
- ;;=508.1^^87^1036^1
- ;;^UTILITY(U,$J,358.3,17013,1,0)
+ ;;^UTILITY(U,$J,358.3,16071,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16071,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,16071,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,16072,0)
+ ;;=A81.01^^88^841^27
+ ;;^UTILITY(U,$J,358.3,16072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17013,1,3,0)
- ;;=3^508.1
- ;;^UTILITY(U,$J,358.3,17013,1,4,0)
- ;;=4^Radiation Fibrosis
- ;;^UTILITY(U,$J,358.3,17013,2)
- ;;=Radiation Fibrosis^269983

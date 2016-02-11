@@ -1,130 +1,132 @@
-IBDEI1RQ ; ; 06-AUG-2015
+IBDEI1RQ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31230,1,0)
+ ;;^UTILITY(U,$J,358.3,29605,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,29605,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,29605,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,29606,0)
+ ;;=E10.21^^135^1364^8
+ ;;^UTILITY(U,$J,358.3,29606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31230,1,3,0)
- ;;=3^Acquired absence of right foot
- ;;^UTILITY(U,$J,358.3,31230,1,4,0)
- ;;=4^Z89.431
- ;;^UTILITY(U,$J,358.3,31230,2)
- ;;=^5063560
- ;;^UTILITY(U,$J,358.3,31231,0)
- ;;=Z89.411^^180^1949^20
- ;;^UTILITY(U,$J,358.3,31231,1,0)
+ ;;^UTILITY(U,$J,358.3,29606,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,29606,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,29606,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,29607,0)
+ ;;=E10.9^^135^1364^12
+ ;;^UTILITY(U,$J,358.3,29607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31231,1,3,0)
- ;;=3^Acquired absence of right great toe
- ;;^UTILITY(U,$J,358.3,31231,1,4,0)
- ;;=4^Z89.411
- ;;^UTILITY(U,$J,358.3,31231,2)
- ;;=^5063554
- ;;^UTILITY(U,$J,358.3,31232,0)
- ;;=Z89.111^^180^1949^21
- ;;^UTILITY(U,$J,358.3,31232,1,0)
+ ;;^UTILITY(U,$J,358.3,29607,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,29607,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,29607,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,29608,0)
+ ;;=E11.21^^135^1364^17
+ ;;^UTILITY(U,$J,358.3,29608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31232,1,3,0)
- ;;=3^Acquired absence of right hand
- ;;^UTILITY(U,$J,358.3,31232,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,31232,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,31233,0)
- ;;=Z89.621^^180^1949^22
- ;;^UTILITY(U,$J,358.3,31233,1,0)
+ ;;^UTILITY(U,$J,358.3,29608,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,29608,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,29608,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,29609,0)
+ ;;=E11.39^^135^1364^18
+ ;;^UTILITY(U,$J,358.3,29609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31233,1,3,0)
- ;;=3^Acquired absence of right hip joint
- ;;^UTILITY(U,$J,358.3,31233,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,31233,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,31234,0)
- ;;=Z89.611^^180^1949^23
- ;;^UTILITY(U,$J,358.3,31234,1,0)
+ ;;^UTILITY(U,$J,358.3,29609,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
+ ;;^UTILITY(U,$J,358.3,29609,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,29609,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,29610,0)
+ ;;=E11.43^^135^1364^15
+ ;;^UTILITY(U,$J,358.3,29610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31234,1,3,0)
- ;;=3^Acquired absence of right leg above knee
- ;;^UTILITY(U,$J,358.3,31234,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,31234,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,31235,0)
- ;;=Z89.511^^180^1949^24
- ;;^UTILITY(U,$J,358.3,31235,1,0)
+ ;;^UTILITY(U,$J,358.3,29610,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
+ ;;^UTILITY(U,$J,358.3,29610,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,29610,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,29611,0)
+ ;;=E11.59^^135^1364^13
+ ;;^UTILITY(U,$J,358.3,29611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31235,1,3,0)
- ;;=3^Acquired absence of right leg below knee
- ;;^UTILITY(U,$J,358.3,31235,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,31235,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,31236,0)
- ;;=Z89.231^^180^1949^25
- ;;^UTILITY(U,$J,358.3,31236,1,0)
+ ;;^UTILITY(U,$J,358.3,29611,1,3,0)
+ ;;=3^DM Type 2 w/ Circulatory Complications NEC
+ ;;^UTILITY(U,$J,358.3,29611,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,29611,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,29612,0)
+ ;;=E11.618^^135^1364^14
+ ;;^UTILITY(U,$J,358.3,29612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31236,1,3,0)
- ;;=3^Acquired absence of right shoulder
- ;;^UTILITY(U,$J,358.3,31236,1,4,0)
- ;;=4^Z89.231
- ;;^UTILITY(U,$J,358.3,31236,2)
- ;;=^5063551
- ;;^UTILITY(U,$J,358.3,31237,0)
- ;;=Z89.011^^180^1949^26
- ;;^UTILITY(U,$J,358.3,31237,1,0)
+ ;;^UTILITY(U,$J,358.3,29612,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
+ ;;^UTILITY(U,$J,358.3,29612,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,29612,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,29613,0)
+ ;;=E11.621^^135^1364^16
+ ;;^UTILITY(U,$J,358.3,29613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31237,1,3,0)
- ;;=3^Acquired absence of right thumb
- ;;^UTILITY(U,$J,358.3,31237,1,4,0)
- ;;=4^Z89.011
- ;;^UTILITY(U,$J,358.3,31237,2)
- ;;=^5063531
- ;;^UTILITY(U,$J,358.3,31238,0)
- ;;=Z89.221^^180^1949^27
- ;;^UTILITY(U,$J,358.3,31238,1,0)
+ ;;^UTILITY(U,$J,358.3,29613,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,29613,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,29613,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,29614,0)
+ ;;=E11.622^^135^1364^20
+ ;;^UTILITY(U,$J,358.3,29614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31238,1,3,0)
- ;;=3^Acquired absence of right upper limb above elbow
- ;;^UTILITY(U,$J,358.3,31238,1,4,0)
- ;;=4^Z89.221
- ;;^UTILITY(U,$J,358.3,31238,2)
- ;;=^5063548
- ;;^UTILITY(U,$J,358.3,31239,0)
- ;;=Z89.211^^180^1949^28
- ;;^UTILITY(U,$J,358.3,31239,1,0)
+ ;;^UTILITY(U,$J,358.3,29614,1,3,0)
+ ;;=3^DM Type 2 w/ Skin Ulcer NEC
+ ;;^UTILITY(U,$J,358.3,29614,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,29614,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,29615,0)
+ ;;=E11.65^^135^1364^19
+ ;;^UTILITY(U,$J,358.3,29615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31239,1,3,0)
- ;;=3^Acquired absence of right upper limb below elbow
- ;;^UTILITY(U,$J,358.3,31239,1,4,0)
- ;;=4^Z89.211
- ;;^UTILITY(U,$J,358.3,31239,2)
- ;;=^5063545
- ;;^UTILITY(U,$J,358.3,31240,0)
- ;;=Z89.201^^180^1949^29
- ;;^UTILITY(U,$J,358.3,31240,1,0)
+ ;;^UTILITY(U,$J,358.3,29615,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,29615,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,29615,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,29616,0)
+ ;;=E11.9^^135^1364^21
+ ;;^UTILITY(U,$J,358.3,29616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31240,1,3,0)
- ;;=3^Acquired absence of right upper limb, unspecified level
- ;;^UTILITY(U,$J,358.3,31240,1,4,0)
- ;;=4^Z89.201
- ;;^UTILITY(U,$J,358.3,31240,2)
- ;;=^5063543
- ;;^UTILITY(U,$J,358.3,31241,0)
- ;;=Z89.121^^180^1949^30
- ;;^UTILITY(U,$J,358.3,31241,1,0)
+ ;;^UTILITY(U,$J,358.3,29616,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,29616,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,29616,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,29617,0)
+ ;;=E13.9^^135^1364^22
+ ;;^UTILITY(U,$J,358.3,29617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31241,1,3,0)
- ;;=3^Acquired absence of right wrist
- ;;^UTILITY(U,$J,358.3,31241,1,4,0)
- ;;=4^Z89.121
- ;;^UTILITY(U,$J,358.3,31241,2)
- ;;=^5063540
- ;;^UTILITY(U,$J,358.3,31242,0)
- ;;=H61.23^^180^1950^1
- ;;^UTILITY(U,$J,358.3,31242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31242,1,3,0)
- ;;=3^Impacted cerumen, bilateral
- ;;^UTILITY(U,$J,358.3,31242,1,4,0)
- ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,29617,1,3,0)
+ ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
+ ;;^UTILITY(U,$J,358.3,29617,1,4,0)
+ ;;=4^E13.9
+ ;;^UTILITY(U,$J,358.3,29617,2)
+ ;;=^5002704
+ ;;^UTILITY(U,$J,358.3,29618,0)
+ ;;=E16.2^^135^1364^29

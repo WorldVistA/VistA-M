@@ -1,0 +1,132 @@
+IBDEI3BD ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,55688,0)
+ ;;=J94.1^^256^2785^23
+ ;;^UTILITY(U,$J,358.3,55688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55688,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,55688,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,55688,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,55689,0)
+ ;;=G47.33^^256^2785^31
+ ;;^UTILITY(U,$J,358.3,55689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55689,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,55689,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,55689,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,55690,0)
+ ;;=R91.1^^256^2785^55
+ ;;^UTILITY(U,$J,358.3,55690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55690,1,3,0)
+ ;;=3^Solitary Pulmonary Nodule
+ ;;^UTILITY(U,$J,358.3,55690,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,55690,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,55691,0)
+ ;;=T74.21XA^^256^2786^1
+ ;;^UTILITY(U,$J,358.3,55691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55691,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,55691,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,55691,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,55692,0)
+ ;;=T76.21XA^^256^2786^4
+ ;;^UTILITY(U,$J,358.3,55692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55692,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
+ ;;^UTILITY(U,$J,358.3,55692,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,55692,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,55693,0)
+ ;;=Y07.9^^256^2786^9
+ ;;^UTILITY(U,$J,358.3,55693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55693,1,3,0)
+ ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
+ ;;^UTILITY(U,$J,358.3,55693,1,4,0)
+ ;;=4^Y07.9
+ ;;^UTILITY(U,$J,358.3,55693,2)
+ ;;=^5061209
+ ;;^UTILITY(U,$J,358.3,55694,0)
+ ;;=T74.21XD^^256^2786^3
+ ;;^UTILITY(U,$J,358.3,55694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55694,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,55694,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,55694,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,55695,0)
+ ;;=T74.21XS^^256^2786^2
+ ;;^UTILITY(U,$J,358.3,55695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55695,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,55695,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,55695,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,55696,0)
+ ;;=T76.21XD^^256^2786^6
+ ;;^UTILITY(U,$J,358.3,55696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55696,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,55696,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,55696,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,55697,0)
+ ;;=T76.21XS^^256^2786^5
+ ;;^UTILITY(U,$J,358.3,55697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55697,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,55697,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,55697,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,55698,0)
+ ;;=Y07.53^^256^2786^7
+ ;;^UTILITY(U,$J,358.3,55698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55698,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST
+ ;;^UTILITY(U,$J,358.3,55698,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,55698,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,55699,0)
+ ;;=Y07.59^^256^2786^8
+ ;;^UTILITY(U,$J,358.3,55699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55699,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,55699,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,55699,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,55700,0)
+ ;;=E66.01^^256^2787^120
+ ;;^UTILITY(U,$J,358.3,55700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55700,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,55700,1,4,0)
+ ;;=4^E66.01

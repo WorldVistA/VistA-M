@@ -1,128 +1,138 @@
-IBDEI20T ; ; 06-AUG-2015
+IBDEI20T ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35325,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,35325,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,35326,0)
- ;;=F80.0^^186^2032^7
- ;;^UTILITY(U,$J,358.3,35326,1,0)
+ ;;^UTILITY(U,$J,358.3,33859,0)
+ ;;=E87.70^^154^1708^10
+ ;;^UTILITY(U,$J,358.3,33859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35326,1,3,0)
- ;;=3^Phonological disorder
- ;;^UTILITY(U,$J,358.3,35326,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,35326,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,35327,0)
- ;;=F82.^^186^2032^5
- ;;^UTILITY(U,$J,358.3,35327,1,0)
+ ;;^UTILITY(U,$J,358.3,33859,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,33859,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,33859,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,33860,0)
+ ;;=E87.5^^154^1708^13
+ ;;^UTILITY(U,$J,358.3,33860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35327,1,3,0)
- ;;=3^Motor Function Development Disorder NEC
- ;;^UTILITY(U,$J,358.3,35327,1,4,0)
- ;;=4^F82.
- ;;^UTILITY(U,$J,358.3,35327,2)
- ;;=^5003683
- ;;^UTILITY(U,$J,358.3,35328,0)
- ;;=F81.0^^186^2032^9
- ;;^UTILITY(U,$J,358.3,35328,1,0)
+ ;;^UTILITY(U,$J,358.3,33860,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,33860,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,33860,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,33861,0)
+ ;;=E87.6^^154^1708^19
+ ;;^UTILITY(U,$J,358.3,33861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35328,1,3,0)
- ;;=3^Reading Disorder NEC
- ;;^UTILITY(U,$J,358.3,35328,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,35328,2)
- ;;=^5003679
- ;;^UTILITY(U,$J,358.3,35329,0)
- ;;=F80.4^^186^2032^10
- ;;^UTILITY(U,$J,358.3,35329,1,0)
+ ;;^UTILITY(U,$J,358.3,33861,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,33861,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,33861,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,33862,0)
+ ;;=E87.8^^154^1708^8
+ ;;^UTILITY(U,$J,358.3,33862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35329,1,3,0)
- ;;=3^Speech and language development delay due to hearing loss
- ;;^UTILITY(U,$J,358.3,35329,1,4,0)
- ;;=4^F80.4
- ;;^UTILITY(U,$J,358.3,35329,2)
- ;;=^5003675
- ;;^UTILITY(U,$J,358.3,35330,0)
- ;;=I69.020^^186^2033^3
- ;;^UTILITY(U,$J,358.3,35330,1,0)
+ ;;^UTILITY(U,$J,358.3,33862,1,3,0)
+ ;;=3^Electrolyte & Fluid Balance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,33862,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,33862,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,33863,0)
+ ;;=E26.81^^154^1708^5
+ ;;^UTILITY(U,$J,358.3,33863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35330,1,3,0)
- ;;=3^Aphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,35330,1,4,0)
- ;;=4^I69.020
- ;;^UTILITY(U,$J,358.3,35330,2)
- ;;=^5007395
- ;;^UTILITY(U,$J,358.3,35331,0)
- ;;=I69.320^^186^2033^1
- ;;^UTILITY(U,$J,358.3,35331,1,0)
+ ;;^UTILITY(U,$J,358.3,33863,1,3,0)
+ ;;=3^Bartter's Syndrome
+ ;;^UTILITY(U,$J,358.3,33863,1,4,0)
+ ;;=4^E26.81
+ ;;^UTILITY(U,$J,358.3,33863,2)
+ ;;=^329906
+ ;;^UTILITY(U,$J,358.3,33864,0)
+ ;;=E23.2^^154^1708^7
+ ;;^UTILITY(U,$J,358.3,33864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35331,1,3,0)
- ;;=3^Aphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,35331,1,4,0)
- ;;=4^I69.320
- ;;^UTILITY(U,$J,358.3,35331,2)
- ;;=^5007491
- ;;^UTILITY(U,$J,358.3,35332,0)
- ;;=I69.120^^186^2033^2
- ;;^UTILITY(U,$J,358.3,35332,1,0)
+ ;;^UTILITY(U,$J,358.3,33864,1,3,0)
+ ;;=3^Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,33864,1,4,0)
+ ;;=4^E23.2
+ ;;^UTILITY(U,$J,358.3,33864,2)
+ ;;=^33572
+ ;;^UTILITY(U,$J,358.3,33865,0)
+ ;;=E83.41^^154^1708^14
+ ;;^UTILITY(U,$J,358.3,33865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35332,1,3,0)
- ;;=3^Aphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,35332,1,4,0)
- ;;=4^I69.120
- ;;^UTILITY(U,$J,358.3,35332,2)
- ;;=^5007427
- ;;^UTILITY(U,$J,358.3,35333,0)
- ;;=I69.820^^186^2033^4
- ;;^UTILITY(U,$J,358.3,35333,1,0)
+ ;;^UTILITY(U,$J,358.3,33865,1,3,0)
+ ;;=3^Hypermagnesemia
+ ;;^UTILITY(U,$J,358.3,33865,1,4,0)
+ ;;=4^E83.41
+ ;;^UTILITY(U,$J,358.3,33865,2)
+ ;;=^5003002
+ ;;^UTILITY(U,$J,358.3,33866,0)
+ ;;=E21.3^^154^1708^16
+ ;;^UTILITY(U,$J,358.3,33866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35333,1,3,0)
- ;;=3^Aphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,35333,1,4,0)
- ;;=4^I69.820
- ;;^UTILITY(U,$J,358.3,35333,2)
- ;;=^5007522
- ;;^UTILITY(U,$J,358.3,35334,0)
- ;;=I69.220^^186^2033^5
- ;;^UTILITY(U,$J,358.3,35334,1,0)
+ ;;^UTILITY(U,$J,358.3,33866,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,33866,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,33866,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,33867,0)
+ ;;=E83.42^^154^1708^20
+ ;;^UTILITY(U,$J,358.3,33867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35334,1,3,0)
- ;;=3^Aphasia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,35334,1,4,0)
- ;;=4^I69.220
- ;;^UTILITY(U,$J,358.3,35334,2)
- ;;=^5007459
- ;;^UTILITY(U,$J,358.3,35335,0)
- ;;=I69.920^^186^2033^6
- ;;^UTILITY(U,$J,358.3,35335,1,0)
+ ;;^UTILITY(U,$J,358.3,33867,1,3,0)
+ ;;=3^Hypomagnesemia
+ ;;^UTILITY(U,$J,358.3,33867,1,4,0)
+ ;;=4^E83.42
+ ;;^UTILITY(U,$J,358.3,33867,2)
+ ;;=^5003003
+ ;;^UTILITY(U,$J,358.3,33868,0)
+ ;;=N25.1^^154^1708^24
+ ;;^UTILITY(U,$J,358.3,33868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35335,1,3,0)
- ;;=3^Aphasia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,35335,1,4,0)
- ;;=4^I69.920
- ;;^UTILITY(U,$J,358.3,35335,2)
- ;;=^5007553
- ;;^UTILITY(U,$J,358.3,35336,0)
- ;;=I69.390^^186^2033^7
- ;;^UTILITY(U,$J,358.3,35336,1,0)
+ ;;^UTILITY(U,$J,358.3,33868,1,3,0)
+ ;;=3^Nephrogenic Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,33868,1,4,0)
+ ;;=4^N25.1
+ ;;^UTILITY(U,$J,358.3,33868,2)
+ ;;=^5015616
+ ;;^UTILITY(U,$J,358.3,33869,0)
+ ;;=E27.49^^154^1708^2
+ ;;^UTILITY(U,$J,358.3,33869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35336,1,3,0)
- ;;=3^Apraxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,35336,1,4,0)
- ;;=4^I69.390
- ;;^UTILITY(U,$J,358.3,35336,2)
- ;;=^5007515
- ;;^UTILITY(U,$J,358.3,35337,0)
- ;;=I69.190^^186^2033^8
- ;;^UTILITY(U,$J,358.3,35337,1,0)
+ ;;^UTILITY(U,$J,358.3,33869,1,3,0)
+ ;;=3^Adrenocortical Insufficiency,Other
+ ;;^UTILITY(U,$J,358.3,33869,1,4,0)
+ ;;=4^E27.49
+ ;;^UTILITY(U,$J,358.3,33869,2)
+ ;;=^5002743
+ ;;^UTILITY(U,$J,358.3,33870,0)
+ ;;=E72.09^^154^1708^4
+ ;;^UTILITY(U,$J,358.3,33870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35337,1,3,0)
- ;;=3^Apraxia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,35337,1,4,0)
- ;;=4^I69.190
- ;;^UTILITY(U,$J,358.3,35337,2)
- ;;=^5007452
+ ;;^UTILITY(U,$J,358.3,33870,1,3,0)
+ ;;=3^Amino-Acid Transport Disorders,Other
+ ;;^UTILITY(U,$J,358.3,33870,1,4,0)
+ ;;=4^E72.09
+ ;;^UTILITY(U,$J,358.3,33870,2)
+ ;;=^5002895
+ ;;^UTILITY(U,$J,358.3,33871,0)
+ ;;=N25.89^^154^1708^22
+ ;;^UTILITY(U,$J,358.3,33871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33871,1,3,0)
+ ;;=3^Impaired Renal Tubular Function Disorders,Other
+ ;;^UTILITY(U,$J,358.3,33871,1,4,0)
+ ;;=4^N25.89
+ ;;^UTILITY(U,$J,358.3,33871,2)
+ ;;=^5015618
+ ;;^UTILITY(U,$J,358.3,33872,0)
+ ;;=E26.89^^154^1708^11
+ ;;^UTILITY(U,$J,358.3,33872,1,0)
+ ;;=^358.31IA^4^2

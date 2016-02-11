@@ -1,5 +1,5 @@
 SROESNR0 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;11/01/2011
- ;;3.0;Surgery;**100,129,147,153,175,176,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**100,129,147,153,175,176,182,184**;24 Jun 93;Build 35
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -122,3 +122,26 @@ KFBA ;;^Immed Use Steril Emergency Case-130,621^52;3
 KFBB ;;^Immed Use Steril No Better Option-130,622^52;4
 KFBC ;;^Immed Use Steril Loaner or Short Notice Instrument-130,623^52;5
 KFBD ;;^Immed Use Steril Decontamination of Instruments Contaminated During the Case-130,624^52;6
+KFDH ;;^UNOS Identification Number of Donor-130,648^VER1;2
+KFDI ;;^Donor Serology Hepatitis C virus (HCV)-130,649^VER1;3
+KFEJ ;;^Donor Serology Hepatitis B Virus (HBV)-130,650^VER1;4
+KFEA ;;^Donor Serology Cytomegalovirus (CMV)-130,651^VER1;5
+KFEB ;;^Donor Serology HIV-130,652^VER1;6
+KFEC ;;^Donor ABO Type-130,653^VER1;7
+KFED ;;^Recipient ABO Type-130,654^VER1;8
+KFEE ;;^Blood Bank Verification of ABO Type-130,655^VER1;9
+KGDF ;;^Blood Bank Abo Ver Comments-130,746^VER1;18
+KFEF ;;^OR Verification of ABO Type-130,656^VER1;10
+KGDH ;;^OR ABO Verification Comments-130,748^VER1;20
+KFEG ;;^Surgeon Performing UNET Verification-130,657^VER1;11
+KFEH ;;^Organ Verification Prior to Anesthesia-130,658^VER1;12
+KFEI ;;^Surgeon Verifying Organ Prior to Donor Anesthesia-130,659^VER1;13
+KFFJ ;;^Organ Verification Prior to Transplant-130,660^VER1;14
+KFFC ;;^Donor Vessel Usage-130,663^VER1;15
+KFFE ;;^Donor Vessel Disposition if not used-130,665^VER1;16
+KGDG ;;^Date/Time of Blood Bank ABO Verification-130,747^VER1;19
+KGDI ;;^Date/Time OR ABO Verification-130,749^VER1;21
+KGEJ ;;^UNET Verification by Surgeon-130,750^VER1;22
+KGEA ;;^Surgeon Verifying Organ Prior to Anesthesia-130,751^VER1;23
+KGEB ;;^Donor Organ Verification Prior to Anesthesia-130,752^VER1;24
+KGEC ;;^Surgeon Verifying the Organ Prior to Transplant-130,753^VER1;25

@@ -1,134 +1,136 @@
-IBDEI04J ; ; 06-AUG-2015
+IBDEI04J ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1596,1,4,0)
- ;;=4^R25.2
- ;;^UTILITY(U,$J,358.3,1596,2)
- ;;=^5019301
- ;;^UTILITY(U,$J,358.3,1597,0)
- ;;=M88.9^^3^45^53
- ;;^UTILITY(U,$J,358.3,1597,1,0)
+ ;;^UTILITY(U,$J,358.3,1438,1,4,0)
+ ;;=4^T16.1XXA
+ ;;^UTILITY(U,$J,358.3,1438,2)
+ ;;=^5046417
+ ;;^UTILITY(U,$J,358.3,1439,0)
+ ;;=T16.1XXD^^14^152^6
+ ;;^UTILITY(U,$J,358.3,1439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1597,1,3,0)
- ;;=3^Osteitis deformans of unspecified bone
- ;;^UTILITY(U,$J,358.3,1597,1,4,0)
- ;;=4^M88.9
- ;;^UTILITY(U,$J,358.3,1597,2)
- ;;=^5014899
- ;;^UTILITY(U,$J,358.3,1598,0)
- ;;=M81.0^^3^45^6
- ;;^UTILITY(U,$J,358.3,1598,1,0)
+ ;;^UTILITY(U,$J,358.3,1439,1,3,0)
+ ;;=3^Foreign body in right ear, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,1439,1,4,0)
+ ;;=4^T16.1XXD
+ ;;^UTILITY(U,$J,358.3,1439,2)
+ ;;=^5046418
+ ;;^UTILITY(U,$J,358.3,1440,0)
+ ;;=T16.1XXS^^14^152^5
+ ;;^UTILITY(U,$J,358.3,1440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1598,1,3,0)
- ;;=3^Age-related osteoporosis w/o current path fx
- ;;^UTILITY(U,$J,358.3,1598,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,1598,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,1599,0)
- ;;=M80.08XA^^3^45^5
- ;;^UTILITY(U,$J,358.3,1599,1,0)
+ ;;^UTILITY(U,$J,358.3,1440,1,3,0)
+ ;;=3^Foreign body in right ear, sequela
+ ;;^UTILITY(U,$J,358.3,1440,1,4,0)
+ ;;=4^T16.1XXS
+ ;;^UTILITY(U,$J,358.3,1440,2)
+ ;;=^5046419
+ ;;^UTILITY(U,$J,358.3,1441,0)
+ ;;=T16.2XXA^^14^152^1
+ ;;^UTILITY(U,$J,358.3,1441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1599,1,3,0)
- ;;=3^Age-related osteoporosis w/ current path fx,vertebra,init enctr
- ;;^UTILITY(U,$J,358.3,1599,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,1599,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,1600,0)
- ;;=M87.00^^3^45^38
- ;;^UTILITY(U,$J,358.3,1600,1,0)
+ ;;^UTILITY(U,$J,358.3,1441,1,3,0)
+ ;;=3^Foreign body in left ear, initial encounter
+ ;;^UTILITY(U,$J,358.3,1441,1,4,0)
+ ;;=4^T16.2XXA
+ ;;^UTILITY(U,$J,358.3,1441,2)
+ ;;=^5046420
+ ;;^UTILITY(U,$J,358.3,1442,0)
+ ;;=T16.2XXD^^14^152^3
+ ;;^UTILITY(U,$J,358.3,1442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1600,1,3,0)
- ;;=3^Idiopathic aseptic necrosis of unspecified bone
- ;;^UTILITY(U,$J,358.3,1600,1,4,0)
- ;;=4^M87.00
- ;;^UTILITY(U,$J,358.3,1600,2)
- ;;=^5014657
- ;;^UTILITY(U,$J,358.3,1601,0)
- ;;=M87.051^^3^45^37
- ;;^UTILITY(U,$J,358.3,1601,1,0)
+ ;;^UTILITY(U,$J,358.3,1442,1,3,0)
+ ;;=3^Foreign body in left ear, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,1442,1,4,0)
+ ;;=4^T16.2XXD
+ ;;^UTILITY(U,$J,358.3,1442,2)
+ ;;=^5046421
+ ;;^UTILITY(U,$J,358.3,1443,0)
+ ;;=T16.2XXS^^14^152^2
+ ;;^UTILITY(U,$J,358.3,1443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1601,1,3,0)
- ;;=3^Idiopathic aseptic necrosis of right femur
- ;;^UTILITY(U,$J,358.3,1601,1,4,0)
- ;;=4^M87.051
- ;;^UTILITY(U,$J,358.3,1601,2)
- ;;=^5014680
- ;;^UTILITY(U,$J,358.3,1602,0)
- ;;=M87.052^^3^45^36
- ;;^UTILITY(U,$J,358.3,1602,1,0)
+ ;;^UTILITY(U,$J,358.3,1443,1,3,0)
+ ;;=3^Foreign body in left ear, sequela
+ ;;^UTILITY(U,$J,358.3,1443,1,4,0)
+ ;;=4^T16.2XXS
+ ;;^UTILITY(U,$J,358.3,1443,2)
+ ;;=^5046422
+ ;;^UTILITY(U,$J,358.3,1444,0)
+ ;;=H90.0^^14^153^1
+ ;;^UTILITY(U,$J,358.3,1444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1602,1,3,0)
- ;;=3^Idiopathic aseptic necrosis of left femur
- ;;^UTILITY(U,$J,358.3,1602,1,4,0)
- ;;=4^M87.052
- ;;^UTILITY(U,$J,358.3,1602,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,1603,0)
- ;;=M94.0^^3^45^17
- ;;^UTILITY(U,$J,358.3,1603,1,0)
+ ;;^UTILITY(U,$J,358.3,1444,1,3,0)
+ ;;=3^Conductive Hearing Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,1444,1,4,0)
+ ;;=4^H90.0
+ ;;^UTILITY(U,$J,358.3,1444,2)
+ ;;=^335257
+ ;;^UTILITY(U,$J,358.3,1445,0)
+ ;;=H90.12^^14^153^2
+ ;;^UTILITY(U,$J,358.3,1445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1603,1,3,0)
- ;;=3^Chondrocostal junction syndrome [Tietze]
- ;;^UTILITY(U,$J,358.3,1603,1,4,0)
- ;;=4^M94.0
- ;;^UTILITY(U,$J,358.3,1603,2)
- ;;=^5015327
- ;;^UTILITY(U,$J,358.3,1604,0)
- ;;=M89.9^^3^45^10
- ;;^UTILITY(U,$J,358.3,1604,1,0)
+ ;;^UTILITY(U,$J,358.3,1445,1,3,0)
+ ;;=3^Conductive Hearing Loss,Left Ear
+ ;;^UTILITY(U,$J,358.3,1445,1,4,0)
+ ;;=4^H90.12
+ ;;^UTILITY(U,$J,358.3,1445,2)
+ ;;=^5006919
+ ;;^UTILITY(U,$J,358.3,1446,0)
+ ;;=H90.11^^14^153^3
+ ;;^UTILITY(U,$J,358.3,1446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1604,1,3,0)
- ;;=3^Bone Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1604,1,4,0)
- ;;=4^M89.9
- ;;^UTILITY(U,$J,358.3,1604,2)
- ;;=^5015119
- ;;^UTILITY(U,$J,358.3,1605,0)
- ;;=M94.9^^3^45^15
- ;;^UTILITY(U,$J,358.3,1605,1,0)
+ ;;^UTILITY(U,$J,358.3,1446,1,3,0)
+ ;;=3^Conductive Hearing Loss,Right Ear
+ ;;^UTILITY(U,$J,358.3,1446,1,4,0)
+ ;;=4^H90.11
+ ;;^UTILITY(U,$J,358.3,1446,2)
+ ;;=^5006918
+ ;;^UTILITY(U,$J,358.3,1447,0)
+ ;;=H93.223^^14^153^4
+ ;;^UTILITY(U,$J,358.3,1447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1605,1,3,0)
- ;;=3^Cartilage Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1605,1,4,0)
- ;;=4^M94.9
- ;;^UTILITY(U,$J,358.3,1605,2)
- ;;=^5015366
- ;;^UTILITY(U,$J,358.3,1606,0)
- ;;=M94.20^^3^45^18
- ;;^UTILITY(U,$J,358.3,1606,1,0)
+ ;;^UTILITY(U,$J,358.3,1447,1,3,0)
+ ;;=3^Diplacusis, bilateral
+ ;;^UTILITY(U,$J,358.3,1447,1,4,0)
+ ;;=4^H93.223
+ ;;^UTILITY(U,$J,358.3,1447,2)
+ ;;=^5006974
+ ;;^UTILITY(U,$J,358.3,1448,0)
+ ;;=H93.222^^14^153^5
+ ;;^UTILITY(U,$J,358.3,1448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1606,1,3,0)
- ;;=3^Chondromalacia, unspecified site
- ;;^UTILITY(U,$J,358.3,1606,1,4,0)
- ;;=4^M94.20
- ;;^UTILITY(U,$J,358.3,1606,2)
- ;;=^5015329
- ;;^UTILITY(U,$J,358.3,1607,0)
- ;;=R70.0^^3^45^26
- ;;^UTILITY(U,$J,358.3,1607,1,0)
+ ;;^UTILITY(U,$J,358.3,1448,1,3,0)
+ ;;=3^Diplacusis, left ear
+ ;;^UTILITY(U,$J,358.3,1448,1,4,0)
+ ;;=4^H93.222
+ ;;^UTILITY(U,$J,358.3,1448,2)
+ ;;=^5006973
+ ;;^UTILITY(U,$J,358.3,1449,0)
+ ;;=H93.221^^14^153^6
+ ;;^UTILITY(U,$J,358.3,1449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1607,1,3,0)
- ;;=3^Elevated erythrocyte sedimentation rate
- ;;^UTILITY(U,$J,358.3,1607,1,4,0)
- ;;=4^R70.0
- ;;^UTILITY(U,$J,358.3,1607,2)
- ;;=^5019559
- ;;^UTILITY(U,$J,358.3,1608,0)
- ;;=S12.9XXA^^3^45^31
- ;;^UTILITY(U,$J,358.3,1608,1,0)
+ ;;^UTILITY(U,$J,358.3,1449,1,3,0)
+ ;;=3^Diplacusis, right ear
+ ;;^UTILITY(U,$J,358.3,1449,1,4,0)
+ ;;=4^H93.221
+ ;;^UTILITY(U,$J,358.3,1449,2)
+ ;;=^5006972
+ ;;^UTILITY(U,$J,358.3,1450,0)
+ ;;=H91.8X3^^14^153^7
+ ;;^UTILITY(U,$J,358.3,1450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1608,1,3,0)
- ;;=3^Fx of Neck,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,1608,1,4,0)
- ;;=4^S12.9XXA
- ;;^UTILITY(U,$J,358.3,1608,2)
- ;;=^5021962
- ;;^UTILITY(U,$J,358.3,1609,0)
- ;;=S22.009A^^3^45^33
- ;;^UTILITY(U,$J,358.3,1609,1,0)
+ ;;^UTILITY(U,$J,358.3,1450,1,3,0)
+ ;;=3^Hearing Loss,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,1450,1,4,0)
+ ;;=4^H91.8X3
+ ;;^UTILITY(U,$J,358.3,1450,2)
+ ;;=^5006942
+ ;;^UTILITY(U,$J,358.3,1451,0)
+ ;;=H91.8X2^^14^153^9
+ ;;^UTILITY(U,$J,358.3,1451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1609,1,3,0)
- ;;=3^Fx of Thoracic Vertebra,Unspec,Init for Closed Fx
+ ;;^UTILITY(U,$J,358.3,1451,1,3,0)
+ ;;=3^Hearing Loss,Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,1451,1,4,0)
+ ;;=4^H91.8X2

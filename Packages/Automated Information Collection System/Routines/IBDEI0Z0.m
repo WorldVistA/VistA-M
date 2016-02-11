@@ -1,138 +1,128 @@
-IBDEI0Z0 ; ; 06-AUG-2015
+IBDEI0Z0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17068,1,4,0)
- ;;=4^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,17068,2)
- ;;=^37632
- ;;^UTILITY(U,$J,358.3,17069,0)
- ;;=799.1^^87^1042^26
- ;;^UTILITY(U,$J,358.3,17069,1,0)
+ ;;^UTILITY(U,$J,358.3,16123,1,4,0)
+ ;;=4^R46.0
+ ;;^UTILITY(U,$J,358.3,16123,2)
+ ;;=^5019478
+ ;;^UTILITY(U,$J,358.3,16124,0)
+ ;;=F39.^^88^842^14
+ ;;^UTILITY(U,$J,358.3,16124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17069,1,3,0)
- ;;=3^799.1
- ;;^UTILITY(U,$J,358.3,17069,1,4,0)
- ;;=4^Respiratory Arrest
- ;;^UTILITY(U,$J,358.3,17069,2)
- ;;=^276886
- ;;^UTILITY(U,$J,358.3,17070,0)
- ;;=V72.82^^87^1042^20
- ;;^UTILITY(U,$J,358.3,17070,1,0)
+ ;;^UTILITY(U,$J,358.3,16124,1,3,0)
+ ;;=3^Mood Affective Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16124,1,4,0)
+ ;;=4^F39.
+ ;;^UTILITY(U,$J,358.3,16124,2)
+ ;;=^5003541
+ ;;^UTILITY(U,$J,358.3,16125,0)
+ ;;=F06.30^^88^842^15
+ ;;^UTILITY(U,$J,358.3,16125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17070,1,3,0)
- ;;=3^V72.82
- ;;^UTILITY(U,$J,358.3,17070,1,4,0)
- ;;=4^Pre-Op Respiratory Exam
- ;;^UTILITY(U,$J,358.3,17070,2)
- ;;=^321504
- ;;^UTILITY(U,$J,358.3,17071,0)
- ;;=438.11^^87^1043^2
- ;;^UTILITY(U,$J,358.3,17071,1,0)
+ ;;^UTILITY(U,$J,358.3,16125,1,3,0)
+ ;;=3^Mood Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,16125,1,4,0)
+ ;;=4^F06.30
+ ;;^UTILITY(U,$J,358.3,16125,2)
+ ;;=^5003056
+ ;;^UTILITY(U,$J,358.3,16126,0)
+ ;;=F17.221^^88^842^19
+ ;;^UTILITY(U,$J,358.3,16126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17071,1,3,0)
- ;;=3^438.11
- ;;^UTILITY(U,$J,358.3,17071,1,4,0)
- ;;=4^CVA Late Eff,Aphasia
- ;;^UTILITY(U,$J,358.3,17071,2)
- ;;=^317907
- ;;^UTILITY(U,$J,358.3,17072,0)
- ;;=438.13^^87^1043^3
- ;;^UTILITY(U,$J,358.3,17072,1,0)
+ ;;^UTILITY(U,$J,358.3,16126,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,in Remission
+ ;;^UTILITY(U,$J,358.3,16126,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,16126,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,16127,0)
+ ;;=F17.220^^88^842^18
+ ;;^UTILITY(U,$J,358.3,16127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17072,1,3,0)
- ;;=3^438.13
- ;;^UTILITY(U,$J,358.3,17072,1,4,0)
- ;;=4^CVA Late Eff,Dysarthria
- ;;^UTILITY(U,$J,358.3,17072,2)
- ;;=^338239
- ;;^UTILITY(U,$J,358.3,17073,0)
- ;;=438.12^^87^1043^4
- ;;^UTILITY(U,$J,358.3,17073,1,0)
+ ;;^UTILITY(U,$J,358.3,16127,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16127,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,16127,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,16128,0)
+ ;;=F17.229^^88^842^16
+ ;;^UTILITY(U,$J,358.3,16128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17073,1,3,0)
- ;;=3^438.12
- ;;^UTILITY(U,$J,358.3,17073,1,4,0)
- ;;=4^CVA Late Eff,Dysphasia
- ;;^UTILITY(U,$J,358.3,17073,2)
- ;;=^317908
- ;;^UTILITY(U,$J,358.3,17074,0)
- ;;=438.21^^87^1043^5
- ;;^UTILITY(U,$J,358.3,17074,1,0)
+ ;;^UTILITY(U,$J,358.3,16128,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,16128,1,4,0)
+ ;;=4^F17.229
+ ;;^UTILITY(U,$J,358.3,16128,2)
+ ;;=^5003374
+ ;;^UTILITY(U,$J,358.3,16129,0)
+ ;;=F17.223^^88^842^17
+ ;;^UTILITY(U,$J,358.3,16129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17074,1,3,0)
- ;;=3^438.21
- ;;^UTILITY(U,$J,358.3,17074,1,4,0)
- ;;=4^CVA Late Eff,Hemiparesis Dom Side
- ;;^UTILITY(U,$J,358.3,17074,2)
- ;;=^317911
- ;;^UTILITY(U,$J,358.3,17075,0)
- ;;=438.22^^87^1043^6
- ;;^UTILITY(U,$J,358.3,17075,1,0)
+ ;;^UTILITY(U,$J,358.3,16129,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,16129,1,4,0)
+ ;;=4^F17.223
+ ;;^UTILITY(U,$J,358.3,16129,2)
+ ;;=^5003372
+ ;;^UTILITY(U,$J,358.3,16130,0)
+ ;;=F17.211^^88^842^23
+ ;;^UTILITY(U,$J,358.3,16130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17075,1,3,0)
- ;;=3^438.22
- ;;^UTILITY(U,$J,358.3,17075,1,4,0)
- ;;=4^CVA Late Eff,Hemiplegia NonDom Side
- ;;^UTILITY(U,$J,358.3,17075,2)
- ;;=^317912
- ;;^UTILITY(U,$J,358.3,17076,0)
- ;;=438.31^^87^1043^9
- ;;^UTILITY(U,$J,358.3,17076,1,0)
+ ;;^UTILITY(U,$J,358.3,16130,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,in Remission
+ ;;^UTILITY(U,$J,358.3,16130,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,16130,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,16131,0)
+ ;;=F17.210^^88^842^22
+ ;;^UTILITY(U,$J,358.3,16131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17076,1,3,0)
- ;;=3^438.31
- ;;^UTILITY(U,$J,358.3,17076,1,4,0)
- ;;=4^CVA Late Eff,Monoplegia UE Dom Side
- ;;^UTILITY(U,$J,358.3,17076,2)
- ;;=^317914
- ;;^UTILITY(U,$J,358.3,17077,0)
- ;;=438.32^^87^1043^10
- ;;^UTILITY(U,$J,358.3,17077,1,0)
+ ;;^UTILITY(U,$J,358.3,16131,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16131,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,16131,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,16132,0)
+ ;;=F17.219^^88^842^20
+ ;;^UTILITY(U,$J,358.3,16132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17077,1,3,0)
- ;;=3^438.32
- ;;^UTILITY(U,$J,358.3,17077,1,4,0)
- ;;=4^CVA Late Eff,Monoplegia UE NonDom Side
- ;;^UTILITY(U,$J,358.3,17077,2)
- ;;=^317915
- ;;^UTILITY(U,$J,358.3,17078,0)
- ;;=438.41^^87^1043^7
- ;;^UTILITY(U,$J,358.3,17078,1,0)
+ ;;^UTILITY(U,$J,358.3,16132,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,16132,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,16132,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,16133,0)
+ ;;=F17.213^^88^842^21
+ ;;^UTILITY(U,$J,358.3,16133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17078,1,3,0)
- ;;=3^438.41
- ;;^UTILITY(U,$J,358.3,17078,1,4,0)
- ;;=4^CVA Late Eff,Monoplegia LE Dom Side
- ;;^UTILITY(U,$J,358.3,17078,2)
- ;;=^317917
- ;;^UTILITY(U,$J,358.3,17079,0)
- ;;=438.42^^87^1043^8
- ;;^UTILITY(U,$J,358.3,17079,1,0)
+ ;;^UTILITY(U,$J,358.3,16133,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,16133,1,4,0)
+ ;;=4^F17.213
+ ;;^UTILITY(U,$J,358.3,16133,2)
+ ;;=^5003367
+ ;;^UTILITY(U,$J,358.3,16134,0)
+ ;;=F17.291^^88^842^24
+ ;;^UTILITY(U,$J,358.3,16134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17079,1,3,0)
- ;;=3^438.42
- ;;^UTILITY(U,$J,358.3,17079,1,4,0)
- ;;=4^CVA Late Eff,Monoplegia LE NonDom Side
- ;;^UTILITY(U,$J,358.3,17079,2)
- ;;=^317918
- ;;^UTILITY(U,$J,358.3,17080,0)
- ;;=438.84^^87^1043^1
- ;;^UTILITY(U,$J,358.3,17080,1,0)
+ ;;^UTILITY(U,$J,358.3,16134,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,in Remission
+ ;;^UTILITY(U,$J,358.3,16134,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,16134,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,16135,0)
+ ;;=F17.290^^88^842^25
+ ;;^UTILITY(U,$J,358.3,16135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17080,1,3,0)
- ;;=3^438.84
- ;;^UTILITY(U,$J,358.3,17080,1,4,0)
- ;;=4^Ataxia
- ;;^UTILITY(U,$J,358.3,17080,2)
- ;;=^328507
- ;;^UTILITY(U,$J,358.3,17081,0)
- ;;=344.01^^87^1044^7
- ;;^UTILITY(U,$J,358.3,17081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17081,1,3,0)
- ;;=3^344.01
- ;;^UTILITY(U,$J,358.3,17081,1,4,0)
- ;;=4^Quadriplegia C1-C4,Complete
- ;;^UTILITY(U,$J,358.3,17081,2)
- ;;=^303270
+ ;;^UTILITY(U,$J,358.3,16135,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16135,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,16135,2)
+ ;;=^5003375

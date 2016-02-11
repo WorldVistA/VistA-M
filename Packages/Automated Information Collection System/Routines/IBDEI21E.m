@@ -1,122 +1,124 @@
-IBDEI21E ; ; 06-AUG-2015
+IBDEI21E ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35594,1,3,0)
- ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,35594,1,4,0)
- ;;=4^C83.38
- ;;^UTILITY(U,$J,358.3,35594,2)
- ;;=^5001579
- ;;^UTILITY(U,$J,358.3,35595,0)
- ;;=C83.58^^189^2057^29
- ;;^UTILITY(U,$J,358.3,35595,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35595,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, lymph nodes mult site
- ;;^UTILITY(U,$J,358.3,35595,1,4,0)
- ;;=4^C83.58
- ;;^UTILITY(U,$J,358.3,35595,2)
- ;;=^5001589
- ;;^UTILITY(U,$J,358.3,35596,0)
- ;;=C83.78^^189^2057^15
- ;;^UTILITY(U,$J,358.3,35596,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35596,1,3,0)
- ;;=3^Burkitt lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,35596,1,4,0)
- ;;=4^C83.78
- ;;^UTILITY(U,$J,358.3,35596,2)
- ;;=^5001599
- ;;^UTILITY(U,$J,358.3,35597,0)
- ;;=C83.18^^189^2057^35
- ;;^UTILITY(U,$J,358.3,35597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35597,1,3,0)
- ;;=3^Mantle cell lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,35597,1,4,0)
- ;;=4^C83.18
- ;;^UTILITY(U,$J,358.3,35597,2)
- ;;=^5001569
- ;;^UTILITY(U,$J,358.3,35598,0)
- ;;=C83.38^^189^2057^23
- ;;^UTILITY(U,$J,358.3,35598,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35598,1,3,0)
- ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,35598,1,4,0)
- ;;=4^C83.38
- ;;^UTILITY(U,$J,358.3,35598,2)
- ;;=^5001579
- ;;^UTILITY(U,$J,358.3,35599,0)
- ;;=C84.68^^189^2057^12
- ;;^UTILITY(U,$J,358.3,35599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35599,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-pos, nodes mult site
- ;;^UTILITY(U,$J,358.3,35599,1,4,0)
- ;;=4^C84.68
- ;;^UTILITY(U,$J,358.3,35599,2)
- ;;=^5001659
- ;;^UTILITY(U,$J,358.3,35600,0)
- ;;=C84.78^^189^2057^11
- ;;^UTILITY(U,$J,358.3,35600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35600,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-neg, nodes mult site
- ;;^UTILITY(U,$J,358.3,35600,1,4,0)
- ;;=4^C84.78
- ;;^UTILITY(U,$J,358.3,35600,2)
- ;;=^5001669
- ;;^UTILITY(U,$J,358.3,35601,0)
- ;;=C81.08^^189^2057^43
- ;;^UTILITY(U,$J,358.3,35601,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35601,1,3,0)
- ;;=3^Nodular lymphocyte predom Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,35601,1,4,0)
- ;;=4^C81.08
- ;;^UTILITY(U,$J,358.3,35601,2)
- ;;=^5001399
- ;;^UTILITY(U,$J,358.3,35602,0)
- ;;=C81.48^^189^2057^28
- ;;^UTILITY(U,$J,358.3,35602,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35602,1,3,0)
- ;;=3^Lymp-rich classical Hodgkin lymphoma, lymph nodes mult site
- ;;^UTILITY(U,$J,358.3,35602,1,4,0)
- ;;=4^C81.48
- ;;^UTILITY(U,$J,358.3,35602,2)
- ;;=^5001439
- ;;^UTILITY(U,$J,358.3,35603,0)
- ;;=C81.18^^189^2057^44
- ;;^UTILITY(U,$J,358.3,35603,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35603,1,3,0)
- ;;=3^Nodular sclerosis class Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,35603,1,4,0)
- ;;=4^C81.18
- ;;^UTILITY(U,$J,358.3,35603,2)
- ;;=^5001409
- ;;^UTILITY(U,$J,358.3,35604,0)
- ;;=C81.28^^189^2057^36
- ;;^UTILITY(U,$J,358.3,35604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35604,1,3,0)
- ;;=3^Mixed cellular classical Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,35604,1,4,0)
- ;;=4^C81.28
- ;;^UTILITY(U,$J,358.3,35604,2)
- ;;=^5001419
- ;;^UTILITY(U,$J,358.3,35605,0)
- ;;=C81.38^^189^2057^30
- ;;^UTILITY(U,$J,358.3,35605,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35605,1,3,0)
- ;;=3^Lymphocy depleted class Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,35605,1,4,0)
- ;;=4^C81.38
- ;;^UTILITY(U,$J,358.3,35605,2)
- ;;=^5001429
- ;;^UTILITY(U,$J,358.3,35606,0)
- ;;=C82.98^^189^2057^26
+ ;;^UTILITY(U,$J,358.3,34132,1,3,0)
+ ;;=3^Trigger Point, 3 or more muscles
+ ;;^UTILITY(U,$J,358.3,34133,0)
+ ;;=20612^^156^1729^14^^^^1
+ ;;^UTILITY(U,$J,358.3,34133,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34133,1,2,0)
+ ;;=2^20612
+ ;;^UTILITY(U,$J,358.3,34133,1,3,0)
+ ;;=3^Ganglion Cyst Aspriation/Injection
+ ;;^UTILITY(U,$J,358.3,34134,0)
+ ;;=64550^^156^1729^24^^^^1
+ ;;^UTILITY(U,$J,358.3,34134,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34134,1,2,0)
+ ;;=2^64550
+ ;;^UTILITY(U,$J,358.3,34134,1,3,0)
+ ;;=3^TENS Device Training and Issue
+ ;;^UTILITY(U,$J,358.3,34135,0)
+ ;;=64450^^156^1729^16^^^^1
+ ;;^UTILITY(U,$J,358.3,34135,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34135,1,2,0)
+ ;;=2^64450
+ ;;^UTILITY(U,$J,358.3,34135,1,3,0)
+ ;;=3^Nerve Block, peripheral nerve
+ ;;^UTILITY(U,$J,358.3,34136,0)
+ ;;=95990^^156^1729^21^^^^1
+ ;;^UTILITY(U,$J,358.3,34136,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34136,1,2,0)
+ ;;=2^95990
+ ;;^UTILITY(U,$J,358.3,34136,1,3,0)
+ ;;=3^Refill Spinal Implant Pump by RN
+ ;;^UTILITY(U,$J,358.3,34137,0)
+ ;;=96402^^156^1729^15^^^^1
+ ;;^UTILITY(U,$J,358.3,34137,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34137,1,2,0)
+ ;;=2^96402
+ ;;^UTILITY(U,$J,358.3,34137,1,3,0)
+ ;;=3^Injec,IM,anti-neplastic horm
+ ;;^UTILITY(U,$J,358.3,34138,0)
+ ;;=96372^^156^1729^26^^^^1
+ ;;^UTILITY(U,$J,358.3,34138,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34138,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,34138,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj, SC/IM
+ ;;^UTILITY(U,$J,358.3,34139,0)
+ ;;=64616^^156^1729^7^^^^1
+ ;;^UTILITY(U,$J,358.3,34139,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34139,1,2,0)
+ ;;=2^64616
+ ;;^UTILITY(U,$J,358.3,34139,1,3,0)
+ ;;=3^Chemodenervation Neck Muscle,Unilateral            
+ ;;^UTILITY(U,$J,358.3,34140,0)
+ ;;=64642^^156^1729^3^^^^1
+ ;;^UTILITY(U,$J,358.3,34140,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34140,1,2,0)
+ ;;=2^64642
+ ;;^UTILITY(U,$J,358.3,34140,1,3,0)
+ ;;=3^Chemodenervation 1 Ext/1-4 Muscles
+ ;;^UTILITY(U,$J,358.3,34141,0)
+ ;;=64643^^156^1729^11^^^^1
+ ;;^UTILITY(U,$J,358.3,34141,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34141,1,2,0)
+ ;;=2^64643
+ ;;^UTILITY(U,$J,358.3,34141,1,3,0)
+ ;;=3^Chemodenervation,Ea Addl Ext,1-4 Muscle 
+ ;;^UTILITY(U,$J,358.3,34142,0)
+ ;;=64644^^156^1729^2^^^^1
+ ;;^UTILITY(U,$J,358.3,34142,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34142,1,2,0)
+ ;;=2^64644
+ ;;^UTILITY(U,$J,358.3,34142,1,3,0)
+ ;;=3^Chemodenervation 1 Ext 5 or > Muscles
+ ;;^UTILITY(U,$J,358.3,34143,0)
+ ;;=64645^^156^1729^12^^^^1
+ ;;^UTILITY(U,$J,358.3,34143,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34143,1,2,0)
+ ;;=2^64645
+ ;;^UTILITY(U,$J,358.3,34143,1,3,0)
+ ;;=3^Chemodenervation,Ea Addl Ext,5 or > Mu
+ ;;^UTILITY(U,$J,358.3,34144,0)
+ ;;=64646^^156^1729^9^^^^1
+ ;;^UTILITY(U,$J,358.3,34144,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34144,1,2,0)
+ ;;=2^64646
+ ;;^UTILITY(U,$J,358.3,34144,1,3,0)
+ ;;=3^Chemodenervation Trunk,1-5 Muscles
+ ;;^UTILITY(U,$J,358.3,34145,0)
+ ;;=64647^^156^1729^10^^^^1
+ ;;^UTILITY(U,$J,358.3,34145,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34145,1,2,0)
+ ;;=2^64647
+ ;;^UTILITY(U,$J,358.3,34145,1,3,0)
+ ;;=3^Chemodenervation Trunk,6 or > Muscles   
+ ;;^UTILITY(U,$J,358.3,34146,0)
+ ;;=64615^^156^1729^6^^^^1
+ ;;^UTILITY(U,$J,358.3,34146,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34146,1,2,0)
+ ;;=2^64615
+ ;;^UTILITY(U,$J,358.3,34146,1,3,0)
+ ;;=3^Chemodenervation Muscle for Migraine,Bilateral
+ ;;^UTILITY(U,$J,358.3,34147,0)
+ ;;=64617^^156^1729^5^^^^1
+ ;;^UTILITY(U,$J,358.3,34147,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34147,1,2,0)
+ ;;=2^64617

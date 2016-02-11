@@ -1,132 +1,140 @@
-IBDEI04L ; ; 06-AUG-2015
+IBDEI04L ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1622,0)
- ;;=S33.5XXA^^3^45^104
- ;;^UTILITY(U,$J,358.3,1622,1,0)
+ ;;^UTILITY(U,$J,358.3,1465,0)
+ ;;=H91.93^^14^153^8
+ ;;^UTILITY(U,$J,358.3,1465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1622,1,3,0)
- ;;=3^Sprain of ligaments of lumbar spine, initial encounter
- ;;^UTILITY(U,$J,358.3,1622,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,1622,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,1623,0)
- ;;=T14.90^^3^45^41
- ;;^UTILITY(U,$J,358.3,1623,1,0)
+ ;;^UTILITY(U,$J,358.3,1465,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,1465,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,1465,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,1466,0)
+ ;;=H91.91^^14^153^12
+ ;;^UTILITY(U,$J,358.3,1466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1623,1,3,0)
- ;;=3^Injury, unspecified
- ;;^UTILITY(U,$J,358.3,1623,1,4,0)
- ;;=4^T14.90
- ;;^UTILITY(U,$J,358.3,1623,2)
- ;;=^5046379
- ;;^UTILITY(U,$J,358.3,1624,0)
- ;;=Z96.60^^3^45^73
- ;;^UTILITY(U,$J,358.3,1624,1,0)
+ ;;^UTILITY(U,$J,358.3,1466,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,1466,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,1466,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,1467,0)
+ ;;=H91.92^^14^153^10
+ ;;^UTILITY(U,$J,358.3,1467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1624,1,3,0)
- ;;=3^Presence of unspecified orthopedic joint implant
- ;;^UTILITY(U,$J,358.3,1624,1,4,0)
- ;;=4^Z96.60
- ;;^UTILITY(U,$J,358.3,1624,2)
- ;;=^5063691
- ;;^UTILITY(U,$J,358.3,1625,0)
- ;;=Z89.511^^3^45^4
- ;;^UTILITY(U,$J,358.3,1625,1,0)
+ ;;^UTILITY(U,$J,358.3,1467,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,1467,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,1467,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,1468,0)
+ ;;=H83.3X1^^14^154^3
+ ;;^UTILITY(U,$J,358.3,1468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1625,1,3,0)
- ;;=3^Acquired absence of right leg below knee
- ;;^UTILITY(U,$J,358.3,1625,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,1625,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,1626,0)
- ;;=Z89.512^^3^45^2
- ;;^UTILITY(U,$J,358.3,1626,1,0)
+ ;;^UTILITY(U,$J,358.3,1468,1,3,0)
+ ;;=3^Noise effects on right inner ear
+ ;;^UTILITY(U,$J,358.3,1468,1,4,0)
+ ;;=4^H83.3X1
+ ;;^UTILITY(U,$J,358.3,1468,2)
+ ;;=^5006906
+ ;;^UTILITY(U,$J,358.3,1469,0)
+ ;;=H83.3X2^^14^154^2
+ ;;^UTILITY(U,$J,358.3,1469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1626,1,3,0)
- ;;=3^Acquired absence of left leg below knee
- ;;^UTILITY(U,$J,358.3,1626,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,1626,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,1627,0)
- ;;=Z89.611^^3^45^3
- ;;^UTILITY(U,$J,358.3,1627,1,0)
+ ;;^UTILITY(U,$J,358.3,1469,1,3,0)
+ ;;=3^Noise effects on left inner ear
+ ;;^UTILITY(U,$J,358.3,1469,1,4,0)
+ ;;=4^H83.3X2
+ ;;^UTILITY(U,$J,358.3,1469,2)
+ ;;=^5006907
+ ;;^UTILITY(U,$J,358.3,1470,0)
+ ;;=H83.3X3^^14^154^1
+ ;;^UTILITY(U,$J,358.3,1470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1627,1,3,0)
- ;;=3^Acquired absence of right leg above knee
- ;;^UTILITY(U,$J,358.3,1627,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,1627,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,1628,0)
- ;;=Z89.612^^3^45^1
- ;;^UTILITY(U,$J,358.3,1628,1,0)
+ ;;^UTILITY(U,$J,358.3,1470,1,3,0)
+ ;;=3^Noise effects on bilateral inner ear
+ ;;^UTILITY(U,$J,358.3,1470,1,4,0)
+ ;;=4^H83.3X3
+ ;;^UTILITY(U,$J,358.3,1470,2)
+ ;;=^5006908
+ ;;^UTILITY(U,$J,358.3,1471,0)
+ ;;=H55.01^^14^155^1
+ ;;^UTILITY(U,$J,358.3,1471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1628,1,3,0)
- ;;=3^Acquired absence of left leg above knee
- ;;^UTILITY(U,$J,358.3,1628,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,1628,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,1629,0)
- ;;=S83.200A^^3^45^12
- ;;^UTILITY(U,$J,358.3,1629,1,0)
+ ;;^UTILITY(U,$J,358.3,1471,1,3,0)
+ ;;=3^Congenital nystagmus
+ ;;^UTILITY(U,$J,358.3,1471,1,4,0)
+ ;;=4^H55.01
+ ;;^UTILITY(U,$J,358.3,1471,2)
+ ;;=^5006371
+ ;;^UTILITY(U,$J,358.3,1472,0)
+ ;;=H55.04^^14^155^2
+ ;;^UTILITY(U,$J,358.3,1472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1629,1,3,0)
- ;;=3^Bucket-hndl tear of unsp mensc, current injury, r knee, init
- ;;^UTILITY(U,$J,358.3,1629,1,4,0)
- ;;=4^S83.200A
- ;;^UTILITY(U,$J,358.3,1629,2)
- ;;=^5043025
- ;;^UTILITY(U,$J,358.3,1630,0)
- ;;=E11.40^^3^46^24
- ;;^UTILITY(U,$J,358.3,1630,1,0)
+ ;;^UTILITY(U,$J,358.3,1472,1,3,0)
+ ;;=3^Dissociated nystagmus
+ ;;^UTILITY(U,$J,358.3,1472,1,4,0)
+ ;;=4^H55.04
+ ;;^UTILITY(U,$J,358.3,1472,2)
+ ;;=^269325
+ ;;^UTILITY(U,$J,358.3,1473,0)
+ ;;=H55.02^^14^155^3
+ ;;^UTILITY(U,$J,358.3,1473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1630,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,1630,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,1630,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,1631,0)
- ;;=F01.50^^3^46^66
- ;;^UTILITY(U,$J,358.3,1631,1,0)
+ ;;^UTILITY(U,$J,358.3,1473,1,3,0)
+ ;;=3^Latent nystagmus
+ ;;^UTILITY(U,$J,358.3,1473,1,4,0)
+ ;;=4^H55.02
+ ;;^UTILITY(U,$J,358.3,1473,2)
+ ;;=^5006372
+ ;;^UTILITY(U,$J,358.3,1474,0)
+ ;;=H55.09^^14^155^4
+ ;;^UTILITY(U,$J,358.3,1474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1631,1,3,0)
- ;;=3^Vascular dementia without behavioral disturbance
- ;;^UTILITY(U,$J,358.3,1631,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,1631,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,1632,0)
- ;;=F10.27^^3^46^6
- ;;^UTILITY(U,$J,358.3,1632,1,0)
+ ;;^UTILITY(U,$J,358.3,1474,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,1474,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,1474,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,1475,0)
+ ;;=H55.81^^14^155^5
+ ;;^UTILITY(U,$J,358.3,1475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1632,1,3,0)
- ;;=3^Alcohol dependence with alcohol-induced persisting dementia
- ;;^UTILITY(U,$J,358.3,1632,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,1632,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,1633,0)
- ;;=G44.209^^3^46^62
- ;;^UTILITY(U,$J,358.3,1633,1,0)
+ ;;^UTILITY(U,$J,358.3,1475,1,3,0)
+ ;;=3^Saccadic eye movements
+ ;;^UTILITY(U,$J,358.3,1475,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,1475,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,1476,0)
+ ;;=H55.03^^14^155^6
+ ;;^UTILITY(U,$J,358.3,1476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1633,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,1633,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,1633,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,1634,0)
- ;;=G30.9^^3^46^7
- ;;^UTILITY(U,$J,358.3,1634,1,0)
+ ;;^UTILITY(U,$J,358.3,1476,1,3,0)
+ ;;=3^Visual deprivation nystagmus
+ ;;^UTILITY(U,$J,358.3,1476,1,4,0)
+ ;;=4^H55.03
+ ;;^UTILITY(U,$J,358.3,1476,2)
+ ;;=^269322
+ ;;^UTILITY(U,$J,358.3,1477,0)
+ ;;=T36.5X5A^^14^156^1
+ ;;^UTILITY(U,$J,358.3,1477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1634,1,3,0)
- ;;=3^Alzheimer's disease, unspecified
- ;;^UTILITY(U,$J,358.3,1634,1,4,0)
- ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,1477,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, initial encounter
+ ;;^UTILITY(U,$J,358.3,1477,1,4,0)
+ ;;=4^T36.5X5A
+ ;;^UTILITY(U,$J,358.3,1477,2)
+ ;;=^5049358
+ ;;^UTILITY(U,$J,358.3,1478,0)
+ ;;=T36.5X5S^^14^156^2
+ ;;^UTILITY(U,$J,358.3,1478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1478,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, sequela

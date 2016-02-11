@@ -1,120 +1,134 @@
-IBDEI1PA ; ; 06-AUG-2015
+IBDEI1PA ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30151,1,0)
+ ;;^UTILITY(U,$J,358.3,28455,2)
+ ;;=^5019284
+ ;;^UTILITY(U,$J,358.3,28456,0)
+ ;;=R22.1^^132^1332^108
+ ;;^UTILITY(U,$J,358.3,28456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30151,1,3,0)
- ;;=3^Triplet preg, unsp num plcnta & amnio sacs, third trimester
- ;;^UTILITY(U,$J,358.3,30151,1,4,0)
- ;;=4^O30.103
- ;;^UTILITY(U,$J,358.3,30151,2)
- ;;=^5016454
- ;;^UTILITY(U,$J,358.3,30152,0)
- ;;=O30.111^^178^1915^56
- ;;^UTILITY(U,$J,358.3,30152,1,0)
+ ;;^UTILITY(U,$J,358.3,28456,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Neck
+ ;;^UTILITY(U,$J,358.3,28456,1,4,0)
+ ;;=4^R22.1
+ ;;^UTILITY(U,$J,358.3,28456,2)
+ ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,28457,0)
+ ;;=R22.2^^132^1332^111
+ ;;^UTILITY(U,$J,358.3,28457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30152,1,3,0)
- ;;=3^Triplet preg w two or more monochorionic fetuses, first tri
- ;;^UTILITY(U,$J,358.3,30152,1,4,0)
- ;;=4^O30.111
- ;;^UTILITY(U,$J,358.3,30152,2)
- ;;=^5016455
- ;;^UTILITY(U,$J,358.3,30153,0)
- ;;=O30.112^^178^1915^57
- ;;^UTILITY(U,$J,358.3,30153,1,0)
+ ;;^UTILITY(U,$J,358.3,28457,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,28457,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,28457,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,28458,0)
+ ;;=R22.31^^132^1332^110
+ ;;^UTILITY(U,$J,358.3,28458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30153,1,3,0)
- ;;=3^Triplet preg w two or more monochorionic fetuses, second tri
- ;;^UTILITY(U,$J,358.3,30153,1,4,0)
- ;;=4^O30.112
- ;;^UTILITY(U,$J,358.3,30153,2)
- ;;=^5016456
- ;;^UTILITY(U,$J,358.3,30154,0)
- ;;=O30.113^^178^1915^58
- ;;^UTILITY(U,$J,358.3,30154,1,0)
+ ;;^UTILITY(U,$J,358.3,28458,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,28458,1,4,0)
+ ;;=4^R22.31
+ ;;^UTILITY(U,$J,358.3,28458,2)
+ ;;=^5019288
+ ;;^UTILITY(U,$J,358.3,28459,0)
+ ;;=R22.32^^132^1332^107
+ ;;^UTILITY(U,$J,358.3,28459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30154,1,3,0)
- ;;=3^Triplet preg w two or more monochorionic fetuses, third tri
- ;;^UTILITY(U,$J,358.3,30154,1,4,0)
- ;;=4^O30.113
- ;;^UTILITY(U,$J,358.3,30154,2)
- ;;=^5016457
- ;;^UTILITY(U,$J,358.3,30155,0)
- ;;=O30.121^^178^1915^53
- ;;^UTILITY(U,$J,358.3,30155,1,0)
+ ;;^UTILITY(U,$J,358.3,28459,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,28459,1,4,0)
+ ;;=4^R22.32
+ ;;^UTILITY(U,$J,358.3,28459,2)
+ ;;=^5019289
+ ;;^UTILITY(U,$J,358.3,28460,0)
+ ;;=R22.33^^132^1332^103
+ ;;^UTILITY(U,$J,358.3,28460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30155,1,3,0)
- ;;=3^Triplet preg w two or more monoamnio fetuses, first tri
- ;;^UTILITY(U,$J,358.3,30155,1,4,0)
- ;;=4^O30.121
- ;;^UTILITY(U,$J,358.3,30155,2)
- ;;=^5016459
- ;;^UTILITY(U,$J,358.3,30156,0)
- ;;=O30.122^^178^1915^54
- ;;^UTILITY(U,$J,358.3,30156,1,0)
+ ;;^UTILITY(U,$J,358.3,28460,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,28460,1,4,0)
+ ;;=4^R22.33
+ ;;^UTILITY(U,$J,358.3,28460,2)
+ ;;=^5019290
+ ;;^UTILITY(U,$J,358.3,28461,0)
+ ;;=R22.42^^132^1332^106
+ ;;^UTILITY(U,$J,358.3,28461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30156,1,3,0)
- ;;=3^Triplet preg w two or more monoamnio fetuses, second tri
- ;;^UTILITY(U,$J,358.3,30156,1,4,0)
- ;;=4^O30.122
- ;;^UTILITY(U,$J,358.3,30156,2)
- ;;=^5016460
- ;;^UTILITY(U,$J,358.3,30157,0)
- ;;=O30.123^^178^1915^55
- ;;^UTILITY(U,$J,358.3,30157,1,0)
+ ;;^UTILITY(U,$J,358.3,28461,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,28461,1,4,0)
+ ;;=4^R22.42
+ ;;^UTILITY(U,$J,358.3,28461,2)
+ ;;=^5134179
+ ;;^UTILITY(U,$J,358.3,28462,0)
+ ;;=R22.41^^132^1332^109
+ ;;^UTILITY(U,$J,358.3,28462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30157,1,3,0)
- ;;=3^Triplet preg w two or more monoamnio fetuses, third tri
- ;;^UTILITY(U,$J,358.3,30157,1,4,0)
- ;;=4^O30.123
- ;;^UTILITY(U,$J,358.3,30157,2)
- ;;=^5016461
- ;;^UTILITY(U,$J,358.3,30158,0)
- ;;=O30.191^^178^1915^59
- ;;^UTILITY(U,$J,358.3,30158,1,0)
+ ;;^UTILITY(U,$J,358.3,28462,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,28462,1,4,0)
+ ;;=4^R22.41
+ ;;^UTILITY(U,$J,358.3,28462,2)
+ ;;=^5134178
+ ;;^UTILITY(U,$J,358.3,28463,0)
+ ;;=R22.43^^132^1332^104
+ ;;^UTILITY(U,$J,358.3,28463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30158,1,3,0)
- ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, first tri
- ;;^UTILITY(U,$J,358.3,30158,1,4,0)
- ;;=4^O30.191
- ;;^UTILITY(U,$J,358.3,30158,2)
- ;;=^5016463
- ;;^UTILITY(U,$J,358.3,30159,0)
- ;;=O30.192^^178^1915^60
- ;;^UTILITY(U,$J,358.3,30159,1,0)
+ ;;^UTILITY(U,$J,358.3,28463,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
+ ;;^UTILITY(U,$J,358.3,28463,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,28463,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,28464,0)
+ ;;=R22.9^^132^1332^112
+ ;;^UTILITY(U,$J,358.3,28464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30159,1,3,0)
- ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, second tri
- ;;^UTILITY(U,$J,358.3,30159,1,4,0)
- ;;=4^O30.192
- ;;^UTILITY(U,$J,358.3,30159,2)
- ;;=^5016464
- ;;^UTILITY(U,$J,358.3,30160,0)
- ;;=O30.193^^178^1915^61
- ;;^UTILITY(U,$J,358.3,30160,1,0)
+ ;;^UTILITY(U,$J,358.3,28464,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,28464,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,28464,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,28465,0)
+ ;;=R23.0^^132^1332^57
+ ;;^UTILITY(U,$J,358.3,28465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30160,1,3,0)
- ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, third tri
- ;;^UTILITY(U,$J,358.3,30160,1,4,0)
- ;;=4^O30.193
- ;;^UTILITY(U,$J,358.3,30160,2)
- ;;=^5016465
- ;;^UTILITY(U,$J,358.3,30161,0)
- ;;=O30.201^^178^1915^50
- ;;^UTILITY(U,$J,358.3,30161,1,0)
+ ;;^UTILITY(U,$J,358.3,28465,1,3,0)
+ ;;=3^Cyanosis
+ ;;^UTILITY(U,$J,358.3,28465,1,4,0)
+ ;;=4^R23.0
+ ;;^UTILITY(U,$J,358.3,28465,2)
+ ;;=^5019293
+ ;;^UTILITY(U,$J,358.3,28466,0)
+ ;;=R23.1^^132^1332^128
+ ;;^UTILITY(U,$J,358.3,28466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30161,1,3,0)
- ;;=3^Quad preg, unsp num plcnta & amnio sacs, first trimester
- ;;^UTILITY(U,$J,358.3,30161,1,4,0)
- ;;=4^O30.201
- ;;^UTILITY(U,$J,358.3,30161,2)
- ;;=^5016467
- ;;^UTILITY(U,$J,358.3,30162,0)
- ;;=O30.202^^178^1915^51
- ;;^UTILITY(U,$J,358.3,30162,1,0)
+ ;;^UTILITY(U,$J,358.3,28466,1,3,0)
+ ;;=3^Pallor
+ ;;^UTILITY(U,$J,358.3,28466,1,4,0)
+ ;;=4^R23.1
+ ;;^UTILITY(U,$J,358.3,28466,2)
+ ;;=^5019294
+ ;;^UTILITY(U,$J,358.3,28467,0)
+ ;;=R23.2^^132^1332^75
+ ;;^UTILITY(U,$J,358.3,28467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30162,1,3,0)
- ;;=3^Quad preg, unsp num plcnta & amnio sacs, second trimester
- ;;^UTILITY(U,$J,358.3,30162,1,4,0)
- ;;=4^O30.202
+ ;;^UTILITY(U,$J,358.3,28467,1,3,0)
+ ;;=3^Flushing
+ ;;^UTILITY(U,$J,358.3,28467,1,4,0)
+ ;;=4^R23.2
+ ;;^UTILITY(U,$J,358.3,28467,2)
+ ;;=^47184
+ ;;^UTILITY(U,$J,358.3,28468,0)
+ ;;=R23.4^^132^1332^147
+ ;;^UTILITY(U,$J,358.3,28468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28468,1,3,0)
+ ;;=3^Skin Texture Changes
+ ;;^UTILITY(U,$J,358.3,28468,1,4,0)
+ ;;=4^R23.4

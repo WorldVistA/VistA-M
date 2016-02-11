@@ -1,120 +1,132 @@
-IBDEI0TD ; ; 06-AUG-2015
+IBDEI0TD ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14215,0)
- ;;=11305^^75^873^1
- ;;^UTILITY(U,$J,358.3,14215,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14215,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand;0.5cm or less
- ;;^UTILITY(U,$J,358.3,14215,1,3,0)
- ;;=3^11305
- ;;^UTILITY(U,$J,358.3,14216,0)
- ;;=11306^^75^873^2
- ;;^UTILITY(U,$J,358.3,14216,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14216,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand;0.6cm-1.0cm
- ;;^UTILITY(U,$J,358.3,14216,1,3,0)
- ;;=3^11306
- ;;^UTILITY(U,$J,358.3,14217,0)
- ;;=11307^^75^873^3
- ;;^UTILITY(U,$J,358.3,14217,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14217,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand;1.1cm-2.0cm
- ;;^UTILITY(U,$J,358.3,14217,1,3,0)
- ;;=3^11307
- ;;^UTILITY(U,$J,358.3,14218,0)
- ;;=11308^^75^873^4
- ;;^UTILITY(U,$J,358.3,14218,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14218,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Scalp,Neck,Hand > 2.0cm
- ;;^UTILITY(U,$J,358.3,14218,1,3,0)
- ;;=3^11308
- ;;^UTILITY(U,$J,358.3,14219,0)
- ;;=11303^^75^873^8^^^^1
- ;;^UTILITY(U,$J,358.3,14219,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14219,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;> 2.0cm
- ;;^UTILITY(U,$J,358.3,14219,1,3,0)
- ;;=3^11303
- ;;^UTILITY(U,$J,358.3,14220,0)
- ;;=11719^^75^874^10^^^^1
- ;;^UTILITY(U,$J,358.3,14220,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14220,1,2,0)
- ;;=2^Trimming Nondystrophic Nails, any number
- ;;^UTILITY(U,$J,358.3,14220,1,3,0)
- ;;=3^11719
- ;;^UTILITY(U,$J,358.3,14221,0)
- ;;=G0127^^75^874^9^^^^1
- ;;^UTILITY(U,$J,358.3,14221,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14221,1,2,0)
- ;;=2^Trimming Dystrophic Nails, any number
- ;;^UTILITY(U,$J,358.3,14221,1,3,0)
- ;;=3^G0127
- ;;^UTILITY(U,$J,358.3,14222,0)
- ;;=11720^^75^874^4^^^^1
- ;;^UTILITY(U,$J,358.3,14222,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14222,1,2,0)
- ;;=2^Debridement of Nail(s)any method(s); 1-5 
- ;;^UTILITY(U,$J,358.3,14222,1,3,0)
- ;;=3^11720
- ;;^UTILITY(U,$J,358.3,14223,0)
- ;;=11721^^75^874^5^^^^1
- ;;^UTILITY(U,$J,358.3,14223,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14223,1,2,0)
- ;;=2^Debridement of Nails any method; 6 or more
- ;;^UTILITY(U,$J,358.3,14223,1,3,0)
- ;;=3^11721
- ;;^UTILITY(U,$J,358.3,14224,0)
- ;;=11730^^75^874^1^^^^1
- ;;^UTILITY(U,$J,358.3,14224,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14224,1,2,0)
- ;;=2^Avulsion of Nail Plate,part/comp,single
- ;;^UTILITY(U,$J,358.3,14224,1,3,0)
- ;;=3^11730
- ;;^UTILITY(U,$J,358.3,14225,0)
- ;;=11732^^75^874^2^^^^1
- ;;^UTILITY(U,$J,358.3,14225,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14225,1,2,0)
- ;;=2^Avulsion of Nail Plate,part/comp,ea addl nail
- ;;^UTILITY(U,$J,358.3,14225,1,3,0)
- ;;=3^11732
- ;;^UTILITY(U,$J,358.3,14226,0)
- ;;=11740^^75^874^6^^^^1
- ;;^UTILITY(U,$J,358.3,14226,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14226,1,2,0)
- ;;=2^Evacuation Subungual Hematoma
- ;;^UTILITY(U,$J,358.3,14226,1,3,0)
- ;;=3^11740
- ;;^UTILITY(U,$J,358.3,14227,0)
- ;;=11750^^75^874^7^^^^1
- ;;^UTILITY(U,$J,358.3,14227,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14227,1,2,0)
- ;;=2^Excision of Nail and Nail Matrx, partial or complete, for permanent removal
- ;;^UTILITY(U,$J,358.3,14227,1,3,0)
- ;;=3^11750
- ;;^UTILITY(U,$J,358.3,14228,0)
- ;;=11755^^75^874^3^^^^1
- ;;^UTILITY(U,$J,358.3,14228,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14228,1,2,0)
- ;;=2^Biopsy of Nail Unit
- ;;^UTILITY(U,$J,358.3,14228,1,3,0)
- ;;=3^11755
- ;;^UTILITY(U,$J,358.3,14229,0)
- ;;=11760^^75^874^8^^^^1
- ;;^UTILITY(U,$J,358.3,14229,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,13507,1,4,0)
+ ;;=4^C44.109
+ ;;^UTILITY(U,$J,358.3,13507,2)
+ ;;=^5001018
+ ;;^UTILITY(U,$J,358.3,13508,0)
+ ;;=C44.102^^80^761^67
+ ;;^UTILITY(U,$J,358.3,13508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13508,1,3,0)
+ ;;=3^Malig Neop Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,13508,1,4,0)
+ ;;=4^C44.102
+ ;;^UTILITY(U,$J,358.3,13508,2)
+ ;;=^5001017
+ ;;^UTILITY(U,$J,358.3,13509,0)
+ ;;=H02.125^^80^761^69
+ ;;^UTILITY(U,$J,358.3,13509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13509,1,3,0)
+ ;;=3^Mechanical Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13509,1,4,0)
+ ;;=4^H02.125
+ ;;^UTILITY(U,$J,358.3,13509,2)
+ ;;=^5133412
+ ;;^UTILITY(U,$J,358.3,13510,0)
+ ;;=H02.124^^80^761^70
+ ;;^UTILITY(U,$J,358.3,13510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13510,1,3,0)
+ ;;=3^Mechanical Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13510,1,4,0)
+ ;;=4^H02.124
+ ;;^UTILITY(U,$J,358.3,13510,2)
+ ;;=^5004315
+ ;;^UTILITY(U,$J,358.3,13511,0)
+ ;;=H02.121^^80^761^72
+ ;;^UTILITY(U,$J,358.3,13511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13511,1,3,0)
+ ;;=3^Mechanical Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13511,1,4,0)
+ ;;=4^H02.121
+ ;;^UTILITY(U,$J,358.3,13511,2)
+ ;;=^5004312
+ ;;^UTILITY(U,$J,358.3,13512,0)
+ ;;=H02.122^^80^761^71
+ ;;^UTILITY(U,$J,358.3,13512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13512,1,3,0)
+ ;;=3^Mechanical Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13512,1,4,0)
+ ;;=4^H02.122
+ ;;^UTILITY(U,$J,358.3,13512,2)
+ ;;=^5004313
+ ;;^UTILITY(U,$J,358.3,13513,0)
+ ;;=H02.025^^80^761^73
+ ;;^UTILITY(U,$J,358.3,13513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13513,1,3,0)
+ ;;=3^Mechanical Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13513,1,4,0)
+ ;;=4^H02.025
+ ;;^UTILITY(U,$J,358.3,13513,2)
+ ;;=^5133399
+ ;;^UTILITY(U,$J,358.3,13514,0)
+ ;;=H02.024^^80^761^74
+ ;;^UTILITY(U,$J,358.3,13514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13514,1,3,0)
+ ;;=3^Mechanical Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13514,1,4,0)
+ ;;=4^H02.024
+ ;;^UTILITY(U,$J,358.3,13514,2)
+ ;;=^5004286
+ ;;^UTILITY(U,$J,358.3,13515,0)
+ ;;=H02.022^^80^761^75
+ ;;^UTILITY(U,$J,358.3,13515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13515,1,3,0)
+ ;;=3^Mechanical Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13515,1,4,0)
+ ;;=4^H02.022
+ ;;^UTILITY(U,$J,358.3,13515,2)
+ ;;=^5004284
+ ;;^UTILITY(U,$J,358.3,13516,0)
+ ;;=H02.021^^80^761^76
+ ;;^UTILITY(U,$J,358.3,13516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13516,1,3,0)
+ ;;=3^Mechanical Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13516,1,4,0)
+ ;;=4^H02.021
+ ;;^UTILITY(U,$J,358.3,13516,2)
+ ;;=^5004283
+ ;;^UTILITY(U,$J,358.3,13517,0)
+ ;;=S01.152A^^80^761^77
+ ;;^UTILITY(U,$J,358.3,13517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13517,1,3,0)
+ ;;=3^Open Bite Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13517,1,4,0)
+ ;;=4^S01.152A
+ ;;^UTILITY(U,$J,358.3,13517,2)
+ ;;=^5020084
+ ;;^UTILITY(U,$J,358.3,13518,0)
+ ;;=S01.151A^^80^761^78
+ ;;^UTILITY(U,$J,358.3,13518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13518,1,3,0)
+ ;;=3^Open Bite Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13518,1,4,0)
+ ;;=4^S01.151A
+ ;;^UTILITY(U,$J,358.3,13518,2)
+ ;;=^5020081
+ ;;^UTILITY(U,$J,358.3,13519,0)
+ ;;=C44.199^^80^761^66
+ ;;^UTILITY(U,$J,358.3,13519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13519,1,3,0)
+ ;;=3^Malig Neop Skin Left Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,13519,1,4,0)
+ ;;=4^C44.199
+ ;;^UTILITY(U,$J,358.3,13519,2)
+ ;;=^5001027
+ ;;^UTILITY(U,$J,358.3,13520,0)
+ ;;=C44.192^^80^761^68
+ ;;^UTILITY(U,$J,358.3,13520,1,0)
+ ;;=^358.31IA^4^2

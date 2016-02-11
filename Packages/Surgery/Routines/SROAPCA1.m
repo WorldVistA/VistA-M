@@ -1,5 +1,5 @@
 SROAPCA1 ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
- ;;3.0;Surgery;**38,63,71,88,95,125,142,153,166,174,175**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**38,63,71,88,95,125,142,153,166,174,175,184**;24 Jun 93;Build 35
  N SRX F I=200:1:202,206,208,209,202.1 S SRA(I)=$G(^SRF(SRTN,I))
  I $Y+14>IOSL D PAGE^SROAPCA I SRSOUT Q
  D LAB^SROAPCA4
@@ -22,16 +22,16 @@ SROAPCA1 ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
  W !!,"IV. CARDIAC CATHETERIZATION AND ANGIOGRAPHIC DATA"
  S Y=$P($G(^SRF(SRTN,207)),"^",21) I Y>1 D DT S Y=X
  D NS W !,"Cardiac Catheterization Date: ",$E(Y,1,8)
- W !,"Procedure:",?26,$P(SRAO(1),"^"),?41,"Native Coronaries:"
- S SRX=$P(SRAO(2),"^") W !,"LVEDP:",?26,$J(SRX,3) D MMHG
+ W !,"Procedure:",?30,$P(SRAO(1),"^"),?41,"Native Coronaries:"
+ S SRX=$P(SRAO(2),"^") W !,"LVEDP:",?30,SRX D MMHG
  S SRX=$P(SRAO(9),"^") W ?41,"Left Main Stenosis:",?71,$J(SRX,3) I SRX?1.3N W "%"
- S SRX=$P(SRAO(3),"^") W !,"Aortic Systolic Pressure:",?26,$J(SRX,3) D MMHG
+ S SRX=$P(SRAO(3),"^") W !,"Aortic Systolic Pressure:",?26,SRX D MMHG
  S SRX=$P(SRAO(10),"^") W ?41,"LAD Stenosis:",?71,$J(SRX,3) I SRX?1.3N W "%"
  S SRX=$P(SRAO(11),"^") W !,?41,"Right Coronary Stenosis:",?71,$J(SRX,3) I SRX?1.3N W "%"
  W !,"For patients having right heart cath:" S SRX=$P(SRAO(12),"^") W ?41,"Circumflex Stenosis:",?71,$J(SRX,3) I SRX?1.3N W "%"
  ;
- S SRX=$P(SRAO(4),"^") W !,"PA Systolic Pressure:",?26,$J(SRX,3) D MMHG
- S SRX=$P(SRAO(5),"^") W !,"PAW Mean Pressure:",?26,$J(SRX,3) D MMHG
+ S SRX=$P(SRAO(4),"^") W !,"PA Systolic Pressure:",?30,$J(SRX,3) D MMHG
+ S SRX=$P(SRAO(5),"^") W !,"PAW Mean Pressure:",?30,$J(SRX,3) D MMHG
  W ?41,"If a Re-do, indicate stenosis",!,?44," in graft to:"
  S SRX=$P(SRAO(13),"^") W !,?41,"LAD:",?71,$J(SRX,3) I SRX?1.3N W "%"
  S SRX=$P(SRAO(14),"^") W !,?41,"Right coronary (include PDA): ",$J(SRX,3) I SRX?1.3N W "%"
@@ -39,21 +39,17 @@ SROAPCA1 ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
  W !,LN
  W !,"LV Contraction Grade (from contrast or radionuclide angiogram or 2D Echo):",!,?7,"Grade",?17,"Ejection Fraction Range",?51,"Definition"
  W !,?8,$P(SRAO(6),"^")
- W !,LN,!,"Mitral Regurgitation:",?26,$P(SRAO(7),"^")
- W !,"Aortic stenosis:",?26,$P(SRAO(8),"^")
+ W !,LN,!,"Mitral Regurgitation:",?30,$P(SRAO(7),"^")
+ W !,"Aortic stenosis:",?30,$P(SRAO(8),"^")
  I $Y+14>IOSL D PAGE^SROAPCA I SRSOUT Q
- K SRAO S Y=$P(SRA(206),"^",31),SRX=364,SRAO(1)=$$OUT(SRX,Y)_"^"_SRX
- S Y=$P($G(^SRF(SRTN,1.1)),"^",3),SRX=1.13,SRAO(2)=$$OUT(SRX,Y)_"^"_SRX
- S Y=$P(SRA(208),"^",12),SRX=414,SRAO(3)=$$OUT(SRX,Y)_"^"_SRX
- S Y=$P(SRA(206),"^",32),SRX=364.1 D DT S SRAO("1A")=X_"^"_SRX
+ K SRAO
+ S Y=$P($G(^SRF(SRTN,1.1)),"^",3),SRX=1.13,SRAO(1)=$$OUT(SRX,Y)_"^"_SRX
+ S Y=$P(SRA(208),"^",12),SRX=414,SRAO(2)=$$OUT(SRX,Y)_"^"_SRX
  S Y=$P(SRA(208),"^",13),SRX=414.1 D DT S SRAO("3A")=X_"^"_SRX
  S Y=$P($G(^SRF(SRTN,.2)),"^",2),SRX=.22 D DT S SRAO(0)=X_"^"_SRX
  W !!,"V. OPERATIVE RISK SUMMARY DATA"
- W !,?5,"Physician's Preoperative"
- W !,?7,"Estimate of Operative Mortality: "_$P(SRAO(1),"^") I $P(SRAO(1),"^")'=""&($P(SRAO(1),"^")'="NS") W "%"
- S X=$P(SRAO("1A"),"^") I X'="" W ?57,"("_X_")"
- W !,?5,"ASA Classification:",?35,$P(SRAO(2),"^")
- S X=$P(SRAO(3),"^") W !,?5,"Surgical Priority:",?($S($L(X)>10:24,1:35)),X S X=$P(SRAO("3A"),"^") I X'="" W ?57,"("_X_")"
+ W !,?5,"ASA Classification:",?35,$P(SRAO(1),"^")
+ S X=$P(SRAO(2),"^") W !,?5,"Surgical Priority:",?($S($L(X)>10:24,1:35)),X S X=$P(SRAO("3A"),"^") I X'="" W ?57,"("_X_")"
  S X=$P($G(^SRO(136,SRTN,0)),"^",2) I X S Y=$P($$CPT^ICPTCOD(X),"^",2) D SSPRIN^SROCPT0 S X=Y
  S X=$S(X'="":X,1:"CPT Code Missing")
  W !,?5,"Principal CPT Code:",?35,X,!,?5,"Other Procedures CPT Codes: "
@@ -62,12 +58,6 @@ SROAPCA1 ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
  .S:CPT="" CPT="NONE" S CNT=CNT+3
  .I CNT+$L(CPT)'>80 W:CNT>35 ";" W ?(CNT),CPT S CNT=CNT+$L(CPT) Q
  .W !,?35,CPT S CNT=35+$L(CPT)
- W !,?5,"Preoperative Risk Factors: "
- I $G(^SRF(SRTN,206.1))'="" S SRQ=0 S X=$G(^SRF(SRTN,206.1)) W:$L(X)<49 X,! I $L(X)>48 S Z=$L(X) D
- .I X'[" " W ?25,X Q
- .S I=0,LINE=1 F  S SRL=$S(LINE=1:48,1:74) D  Q:SRQ
- ..I $E(X,1,SRL)'[" " W X,! S SRQ=1 Q
- ..S J=SRL-I,Y=$E(X,J),I=I+1 I Y=" " W $E(X,1,J-1),!,?5 S X=$E(X,J+1,Z),Z=$L(X),I=0,LINE=LINE+1 I Z<SRL W X S SRQ=1 Q
  S Y=$P($G(^SRF(SRTN,"1.0")),"^",8),C=$P(^DD(130,1.09,0),"^",2) D:Y'="" Y^DIQ
  W !,?5,"Wound Classification:",?35,Y
  I $Y+20>IOSL D PAGE^SROAPCA I SRSOUT Q

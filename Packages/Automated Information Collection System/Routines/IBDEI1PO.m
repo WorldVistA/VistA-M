@@ -1,122 +1,128 @@
-IBDEI1PO ; ; 06-AUG-2015
+IBDEI1PO ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30315,1,4,0)
- ;;=4^O36.1115
- ;;^UTILITY(U,$J,358.3,30315,2)
- ;;=^5016898
- ;;^UTILITY(U,$J,358.3,30316,0)
- ;;=O36.1120^^178^1916^25
- ;;^UTILITY(U,$J,358.3,30316,1,0)
+ ;;^UTILITY(U,$J,358.3,28633,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,28634,0)
+ ;;=F14.251^^132^1334^10
+ ;;^UTILITY(U,$J,358.3,28634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30316,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, unsp
- ;;^UTILITY(U,$J,358.3,30316,1,4,0)
- ;;=4^O36.1120
- ;;^UTILITY(U,$J,358.3,30316,2)
- ;;=^5016900
- ;;^UTILITY(U,$J,358.3,30317,0)
- ;;=O36.1121^^178^1916^26
- ;;^UTILITY(U,$J,358.3,30317,1,0)
+ ;;^UTILITY(U,$J,358.3,28634,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,28634,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,28634,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,28635,0)
+ ;;=F14.250^^132^1334^9
+ ;;^UTILITY(U,$J,358.3,28635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30317,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30317,1,4,0)
- ;;=4^O36.1121
- ;;^UTILITY(U,$J,358.3,30317,2)
- ;;=^5016901
- ;;^UTILITY(U,$J,358.3,30318,0)
- ;;=O36.1122^^178^1916^27
- ;;^UTILITY(U,$J,358.3,30318,1,0)
+ ;;^UTILITY(U,$J,358.3,28635,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,28635,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,28635,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,28636,0)
+ ;;=F14.24^^132^1334^13
+ ;;^UTILITY(U,$J,358.3,28636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30318,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30318,1,4,0)
- ;;=4^O36.1122
- ;;^UTILITY(U,$J,358.3,30318,2)
- ;;=^5016902
- ;;^UTILITY(U,$J,358.3,30319,0)
- ;;=O36.1123^^178^1916^28
- ;;^UTILITY(U,$J,358.3,30319,1,0)
+ ;;^UTILITY(U,$J,358.3,28636,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,28636,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,28636,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,28637,0)
+ ;;=F14.23^^132^1334^22
+ ;;^UTILITY(U,$J,358.3,28637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30319,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30319,1,4,0)
- ;;=4^O36.1123
- ;;^UTILITY(U,$J,358.3,30319,2)
- ;;=^5016903
- ;;^UTILITY(U,$J,358.3,30320,0)
- ;;=O36.1124^^178^1916^29
- ;;^UTILITY(U,$J,358.3,30320,1,0)
+ ;;^UTILITY(U,$J,358.3,28637,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,28637,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,28637,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,28638,0)
+ ;;=F14.229^^132^1334^19
+ ;;^UTILITY(U,$J,358.3,28638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30320,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30320,1,4,0)
- ;;=4^O36.1124
- ;;^UTILITY(U,$J,358.3,30320,2)
- ;;=^5016904
- ;;^UTILITY(U,$J,358.3,30321,0)
- ;;=O36.1125^^178^1916^30
- ;;^UTILITY(U,$J,358.3,30321,1,0)
+ ;;^UTILITY(U,$J,358.3,28638,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,28638,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,28638,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,28639,0)
+ ;;=F14.222^^132^1334^17
+ ;;^UTILITY(U,$J,358.3,28639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30321,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30321,1,4,0)
- ;;=4^O36.1125
- ;;^UTILITY(U,$J,358.3,30321,2)
- ;;=^5016905
- ;;^UTILITY(U,$J,358.3,30322,0)
- ;;=O36.1130^^178^1916^31
- ;;^UTILITY(U,$J,358.3,30322,1,0)
+ ;;^UTILITY(U,$J,358.3,28639,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,28639,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,28639,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,28640,0)
+ ;;=F14.221^^132^1334^16
+ ;;^UTILITY(U,$J,358.3,28640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30322,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, unsp
- ;;^UTILITY(U,$J,358.3,30322,1,4,0)
- ;;=4^O36.1130
- ;;^UTILITY(U,$J,358.3,30322,2)
- ;;=^5016907
- ;;^UTILITY(U,$J,358.3,30323,0)
- ;;=O36.1131^^178^1916^32
- ;;^UTILITY(U,$J,358.3,30323,1,0)
+ ;;^UTILITY(U,$J,358.3,28640,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,28640,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,28640,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,28641,0)
+ ;;=F14.220^^132^1334^18
+ ;;^UTILITY(U,$J,358.3,28641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30323,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30323,1,4,0)
- ;;=4^O36.1131
- ;;^UTILITY(U,$J,358.3,30323,2)
- ;;=^5016908
- ;;^UTILITY(U,$J,358.3,30324,0)
- ;;=O36.1132^^178^1916^33
- ;;^UTILITY(U,$J,358.3,30324,1,0)
+ ;;^UTILITY(U,$J,358.3,28641,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28641,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,28641,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,28642,0)
+ ;;=F14.20^^132^1334^23
+ ;;^UTILITY(U,$J,358.3,28642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30324,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30324,1,4,0)
- ;;=4^O36.1132
- ;;^UTILITY(U,$J,358.3,30324,2)
- ;;=^5016909
- ;;^UTILITY(U,$J,358.3,30325,0)
- ;;=O36.1133^^178^1916^34
- ;;^UTILITY(U,$J,358.3,30325,1,0)
+ ;;^UTILITY(U,$J,358.3,28642,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,28642,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,28642,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,28643,0)
+ ;;=F10.120^^132^1334^1
+ ;;^UTILITY(U,$J,358.3,28643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30325,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30325,1,4,0)
- ;;=4^O36.1133
- ;;^UTILITY(U,$J,358.3,30325,2)
- ;;=^5016910
- ;;^UTILITY(U,$J,358.3,30326,0)
- ;;=O36.1134^^178^1916^35
- ;;^UTILITY(U,$J,358.3,30326,1,0)
+ ;;^UTILITY(U,$J,358.3,28643,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28643,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,28643,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,28644,0)
+ ;;=F10.10^^132^1334^2
+ ;;^UTILITY(U,$J,358.3,28644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30326,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30326,1,4,0)
- ;;=4^O36.1134
- ;;^UTILITY(U,$J,358.3,30326,2)
- ;;=^5016911
- ;;^UTILITY(U,$J,358.3,30327,0)
- ;;=O36.1135^^178^1916^36
- ;;^UTILITY(U,$J,358.3,30327,1,0)
+ ;;^UTILITY(U,$J,358.3,28644,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28644,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,28644,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,28645,0)
+ ;;=F17.201^^132^1334^28
+ ;;^UTILITY(U,$J,358.3,28645,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28645,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,28645,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,28645,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,28646,0)
+ ;;=F17.210^^132^1334^27

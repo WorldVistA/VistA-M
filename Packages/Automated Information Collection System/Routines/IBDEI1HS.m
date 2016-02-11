@@ -1,130 +1,122 @@
-IBDEI1HS ; ; 06-AUG-2015
+IBDEI1HS ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26472,0)
- ;;=99239^^153^1695^2
- ;;^UTILITY(U,$J,358.3,26472,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26472,1,1,0)
- ;;=1^Discharge Day Mgmt > 30min
- ;;^UTILITY(U,$J,358.3,26472,1,2,0)
- ;;=2^99239
- ;;^UTILITY(U,$J,358.3,26473,0)
- ;;=99224^^153^1696^1
- ;;^UTILITY(U,$J,358.3,26473,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26473,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,26473,1,2,0)
- ;;=2^99224
- ;;^UTILITY(U,$J,358.3,26474,0)
- ;;=99225^^153^1696^2
- ;;^UTILITY(U,$J,358.3,26474,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26474,1,1,0)
- ;;=1^Exp Problem Focused
- ;;^UTILITY(U,$J,358.3,26474,1,2,0)
- ;;=2^99225
- ;;^UTILITY(U,$J,358.3,26475,0)
- ;;=99226^^153^1696^3
- ;;^UTILITY(U,$J,358.3,26475,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26475,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,26475,1,2,0)
- ;;=2^99226
- ;;^UTILITY(U,$J,358.3,26476,0)
- ;;=99217^^153^1697^1
- ;;^UTILITY(U,$J,358.3,26476,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26476,1,1,0)
- ;;=1^Observation D/C Day Mgmt
- ;;^UTILITY(U,$J,358.3,26476,1,2,0)
- ;;=2^99217
- ;;^UTILITY(U,$J,358.3,26477,0)
- ;;=20600^^154^1698^5^^^^1
- ;;^UTILITY(U,$J,358.3,26477,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26477,1,2,0)
- ;;=2^Drain/Inject, Joint/Bursa
- ;;^UTILITY(U,$J,358.3,26477,1,3,0)
- ;;=3^20600
- ;;^UTILITY(U,$J,358.3,26478,0)
- ;;=20605^^154^1698^1^^^^1
- ;;^UTILITY(U,$J,358.3,26478,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26478,1,2,0)
- ;;=2^Asp/Inj Interm Jt(Ac/Wrist/Ankle
- ;;^UTILITY(U,$J,358.3,26478,1,3,0)
- ;;=3^20605
- ;;^UTILITY(U,$J,358.3,26479,0)
- ;;=20610^^154^1698^2^^^^1
- ;;^UTILITY(U,$J,358.3,26479,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26479,1,2,0)
- ;;=2^Asp/Inj Maj Jt (Should/Hip/Knee
- ;;^UTILITY(U,$J,358.3,26479,1,3,0)
- ;;=3^20610
- ;;^UTILITY(U,$J,358.3,26480,0)
- ;;=20550^^154^1698^6^^^^1
- ;;^UTILITY(U,$J,358.3,26480,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26480,1,2,0)
- ;;=2^Inject Tendon/Ligament/Cyst 
- ;;^UTILITY(U,$J,358.3,26480,1,3,0)
- ;;=3^20550
- ;;^UTILITY(U,$J,358.3,26481,0)
- ;;=J1100^^154^1698^4^^^^1
- ;;^UTILITY(U,$J,358.3,26481,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26481,1,2,0)
- ;;=2^Dexamethasone Sodium Phos 1 mg
- ;;^UTILITY(U,$J,358.3,26481,1,3,0)
- ;;=3^J1100
- ;;^UTILITY(U,$J,358.3,26482,0)
- ;;=J0800^^154^1698^3^^^^1
- ;;^UTILITY(U,$J,358.3,26482,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26482,1,2,0)
- ;;=2^Corticotropin Inj up to 40 units
- ;;^UTILITY(U,$J,358.3,26482,1,3,0)
- ;;=3^J0800
- ;;^UTILITY(U,$J,358.3,26483,0)
- ;;=J1040^^154^1698^7^^^^1
- ;;^UTILITY(U,$J,358.3,26483,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26483,1,2,0)
- ;;=2^Methylprednisolone 80 Mg Inj
- ;;^UTILITY(U,$J,358.3,26483,1,3,0)
- ;;=3^J1040
- ;;^UTILITY(U,$J,358.3,26484,0)
- ;;=20552^^154^1698^8^^^^1
- ;;^UTILITY(U,$J,358.3,26484,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26484,1,2,0)
- ;;=2^Trigger Point(s) Inj,1-2 Muscles
- ;;^UTILITY(U,$J,358.3,26484,1,3,0)
- ;;=3^20552
- ;;^UTILITY(U,$J,358.3,26485,0)
- ;;=20553^^154^1698^9^^^^1
- ;;^UTILITY(U,$J,358.3,26485,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26485,1,2,0)
- ;;=2^Trigger Point(s) Inj,=/> 3 Muscles
- ;;^UTILITY(U,$J,358.3,26485,1,3,0)
- ;;=3^20553
- ;;^UTILITY(U,$J,358.3,26486,0)
- ;;=97597^^154^1699^2^^^^1
- ;;^UTILITY(U,$J,358.3,26486,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26486,1,2,0)
- ;;=2^Active Wound Care/20 Cm Or <
- ;;^UTILITY(U,$J,358.3,26486,1,3,0)
- ;;=3^97597
- ;;^UTILITY(U,$J,358.3,26487,0)
- ;;=97598^^154^1699^1^^^^1
- ;;^UTILITY(U,$J,358.3,26487,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26487,1,2,0)
- ;;=2^Active Wound Care each adtl 20 Cm
+ ;;^UTILITY(U,$J,358.3,24955,1,4,0)
+ ;;=4^T82.590A
+ ;;^UTILITY(U,$J,358.3,24955,2)
+ ;;=^5054884
+ ;;^UTILITY(U,$J,358.3,24956,0)
+ ;;=T82.591A^^124^1239^154
+ ;;^UTILITY(U,$J,358.3,24956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24956,1,3,0)
+ ;;=3^Mechanical Compl of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24956,1,4,0)
+ ;;=4^T82.591A
+ ;;^UTILITY(U,$J,358.3,24956,2)
+ ;;=^5054887
+ ;;^UTILITY(U,$J,358.3,24957,0)
+ ;;=T82.593A^^124^1239^138
+ ;;^UTILITY(U,$J,358.3,24957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24957,1,3,0)
+ ;;=3^Mechanical Compl of Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24957,1,4,0)
+ ;;=4^T82.593A
+ ;;^UTILITY(U,$J,358.3,24957,2)
+ ;;=^5054893
+ ;;^UTILITY(U,$J,358.3,24958,0)
+ ;;=T82.595A^^124^1239^155
+ ;;^UTILITY(U,$J,358.3,24958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24958,1,3,0)
+ ;;=3^Mechanical Compl of Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24958,1,4,0)
+ ;;=4^T82.595A
+ ;;^UTILITY(U,$J,358.3,24958,2)
+ ;;=^5054899
+ ;;^UTILITY(U,$J,358.3,24959,0)
+ ;;=T82.599A^^124^1239^140
+ ;;^UTILITY(U,$J,358.3,24959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24959,1,3,0)
+ ;;=3^Mechanical Compl of Cardiac/Vascular Device/Implant Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24959,1,4,0)
+ ;;=4^T82.599A
+ ;;^UTILITY(U,$J,358.3,24959,2)
+ ;;=^5054905
+ ;;^UTILITY(U,$J,358.3,24960,0)
+ ;;=T85.01XA^^124^1239^19
+ ;;^UTILITY(U,$J,358.3,24960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24960,1,3,0)
+ ;;=3^Breakdown of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24960,1,4,0)
+ ;;=4^T85.01XA
+ ;;^UTILITY(U,$J,358.3,24960,2)
+ ;;=^5055478
+ ;;^UTILITY(U,$J,358.3,24961,0)
+ ;;=T85.02XA^^124^1239^48
+ ;;^UTILITY(U,$J,358.3,24961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24961,1,3,0)
+ ;;=3^Displacement of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24961,1,4,0)
+ ;;=4^T85.02XA
+ ;;^UTILITY(U,$J,358.3,24961,2)
+ ;;=^5055481
+ ;;^UTILITY(U,$J,358.3,24962,0)
+ ;;=T85.03XA^^124^1239^136
+ ;;^UTILITY(U,$J,358.3,24962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24962,1,3,0)
+ ;;=3^Leakage of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24962,1,4,0)
+ ;;=4^T85.03XA
+ ;;^UTILITY(U,$J,358.3,24962,2)
+ ;;=^5055484
+ ;;^UTILITY(U,$J,358.3,24963,0)
+ ;;=T85.09XA^^124^1239^157
+ ;;^UTILITY(U,$J,358.3,24963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24963,1,3,0)
+ ;;=3^Mechanical Compl of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24963,1,4,0)
+ ;;=4^T85.09XA
+ ;;^UTILITY(U,$J,358.3,24963,2)
+ ;;=^5055487
+ ;;^UTILITY(U,$J,358.3,24964,0)
+ ;;=T85.110A^^124^1239^9
+ ;;^UTILITY(U,$J,358.3,24964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24964,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Neurostim of Brain,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24964,1,4,0)
+ ;;=4^T85.110A
+ ;;^UTILITY(U,$J,358.3,24964,2)
+ ;;=^5055490
+ ;;^UTILITY(U,$J,358.3,24965,0)
+ ;;=T85.111A^^124^1239^10
+ ;;^UTILITY(U,$J,358.3,24965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24965,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24965,1,4,0)
+ ;;=4^T85.111A
+ ;;^UTILITY(U,$J,358.3,24965,2)
+ ;;=^5055493
+ ;;^UTILITY(U,$J,358.3,24966,0)
+ ;;=T85.112A^^124^1239^11
+ ;;^UTILITY(U,$J,358.3,24966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24966,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24966,1,4,0)
+ ;;=4^T85.112A
+ ;;^UTILITY(U,$J,358.3,24966,2)
+ ;;=^5055496
+ ;;^UTILITY(U,$J,358.3,24967,0)
+ ;;=T85.118A^^124^1239^12
+ ;;^UTILITY(U,$J,358.3,24967,1,0)
+ ;;=^358.31IA^4^2

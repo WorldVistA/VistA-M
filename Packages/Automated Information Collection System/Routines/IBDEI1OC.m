@@ -1,134 +1,136 @@
-IBDEI1OC ; ; 06-AUG-2015
+IBDEI1OC ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29721,1,0)
+ ;;^UTILITY(U,$J,358.3,28012,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,28012,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,28012,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,28013,0)
+ ;;=M86.60^^132^1322^61
+ ;;^UTILITY(U,$J,358.3,28013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29721,1,3,0)
- ;;=3^Lymphangitis Right Finger,Acute
- ;;^UTILITY(U,$J,358.3,29721,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,29721,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,29722,0)
- ;;=L03.022^^177^1893^8
- ;;^UTILITY(U,$J,358.3,29722,1,0)
+ ;;^UTILITY(U,$J,358.3,28013,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,28013,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,28013,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,28014,0)
+ ;;=M86.40^^132^1322^56
+ ;;^UTILITY(U,$J,358.3,28014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29722,1,3,0)
- ;;=3^Lymphangitis Left Finger,Acute
- ;;^UTILITY(U,$J,358.3,29722,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,29722,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,29723,0)
- ;;=L03.031^^177^1893^4
- ;;^UTILITY(U,$J,358.3,29723,1,0)
+ ;;^UTILITY(U,$J,358.3,28014,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,28014,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,28014,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,28015,0)
+ ;;=R50.2^^132^1322^23
+ ;;^UTILITY(U,$J,358.3,28015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29723,1,3,0)
- ;;=3^Cellulitis Right Toe
- ;;^UTILITY(U,$J,358.3,29723,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,29723,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,29724,0)
- ;;=L03.032^^177^1893^2
- ;;^UTILITY(U,$J,358.3,29724,1,0)
+ ;;^UTILITY(U,$J,358.3,28015,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,28015,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,28015,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,28016,0)
+ ;;=R50.9^^132^1322^27
+ ;;^UTILITY(U,$J,358.3,28016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29724,1,3,0)
- ;;=3^Cellulitis Left Toe
- ;;^UTILITY(U,$J,358.3,29724,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,29724,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,29725,0)
- ;;=L03.041^^177^1893^7
- ;;^UTILITY(U,$J,358.3,29725,1,0)
+ ;;^UTILITY(U,$J,358.3,28016,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,28016,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,28016,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,28017,0)
+ ;;=R76.11^^132^1322^1
+ ;;^UTILITY(U,$J,358.3,28017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29725,1,3,0)
- ;;=3^Lymphagnitis Right Toe,Acute
- ;;^UTILITY(U,$J,358.3,29725,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,29725,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,29726,0)
- ;;=L03.042^^177^1893^9
- ;;^UTILITY(U,$J,358.3,29726,1,0)
+ ;;^UTILITY(U,$J,358.3,28017,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,28017,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,28017,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,28018,0)
+ ;;=Z21.^^132^1322^30
+ ;;^UTILITY(U,$J,358.3,28018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29726,1,3,0)
- ;;=3^Lymphangitis Left Toe,Acute
- ;;^UTILITY(U,$J,358.3,29726,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,29726,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,29727,0)
- ;;=L03.90^^177^1893^5
- ;;^UTILITY(U,$J,358.3,29727,1,0)
+ ;;^UTILITY(U,$J,358.3,28018,1,3,0)
+ ;;=3^HIV Asymptomatic,Infection Status
+ ;;^UTILITY(U,$J,358.3,28018,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,28018,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,28019,0)
+ ;;=B37.0^^132^1322^16
+ ;;^UTILITY(U,$J,358.3,28019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29727,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,29727,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,29727,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,29728,0)
- ;;=L25.9^^177^1893^6
- ;;^UTILITY(U,$J,358.3,29728,1,0)
+ ;;^UTILITY(U,$J,358.3,28019,1,3,0)
+ ;;=3^Candidal Stomatitis (Oral Thrush)
+ ;;^UTILITY(U,$J,358.3,28019,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,28019,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,28020,0)
+ ;;=B97.10^^132^1322^22
+ ;;^UTILITY(U,$J,358.3,28020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29728,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,29728,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,29728,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,29729,0)
- ;;=L97.919^^177^1893^21
- ;;^UTILITY(U,$J,358.3,29729,1,0)
+ ;;^UTILITY(U,$J,358.3,28020,1,3,0)
+ ;;=3^Enterovirus,Unspec,as Cause of Disease
+ ;;^UTILITY(U,$J,358.3,28020,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,28020,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,28021,0)
+ ;;=R50.82^^132^1322^24
+ ;;^UTILITY(U,$J,358.3,28021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29729,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Right Lower Leg
- ;;^UTILITY(U,$J,358.3,29729,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,29729,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,29730,0)
- ;;=L97.929^^177^1893^15
- ;;^UTILITY(U,$J,358.3,29730,1,0)
+ ;;^UTILITY(U,$J,358.3,28021,1,3,0)
+ ;;=3^Fever,Postprocedural
+ ;;^UTILITY(U,$J,358.3,28021,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,28021,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,28022,0)
+ ;;=R50.83^^132^1322^26
+ ;;^UTILITY(U,$J,358.3,28022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29730,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Left Lower Leg
- ;;^UTILITY(U,$J,358.3,29730,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,29730,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,29731,0)
- ;;=L97.119^^177^1893^22
- ;;^UTILITY(U,$J,358.3,29731,1,0)
+ ;;^UTILITY(U,$J,358.3,28022,1,3,0)
+ ;;=3^Fever,Postvaccination
+ ;;^UTILITY(U,$J,358.3,28022,1,4,0)
+ ;;=4^R50.83
+ ;;^UTILITY(U,$J,358.3,28022,2)
+ ;;=^5019510
+ ;;^UTILITY(U,$J,358.3,28023,0)
+ ;;=R50.84^^132^1322^25
+ ;;^UTILITY(U,$J,358.3,28023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29731,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Right Thigh
- ;;^UTILITY(U,$J,358.3,29731,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,29731,2)
- ;;=Select Surgery Menu Option: Request Operations^5009489
- ;;^UTILITY(U,$J,358.3,29732,0)
- ;;=L97.129^^177^1893^16
- ;;^UTILITY(U,$J,358.3,29732,1,0)
+ ;;^UTILITY(U,$J,358.3,28023,1,3,0)
+ ;;=3^Fever,Posttransfusion
+ ;;^UTILITY(U,$J,358.3,28023,1,4,0)
+ ;;=4^R50.84
+ ;;^UTILITY(U,$J,358.3,28023,2)
+ ;;=^5019511
+ ;;^UTILITY(U,$J,358.3,28024,0)
+ ;;=B02.23^^132^1322^70
+ ;;^UTILITY(U,$J,358.3,28024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29732,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Left Thigh
- ;;^UTILITY(U,$J,358.3,29732,1,4,0)
- ;;=4^L97.129
- ;;^UTILITY(U,$J,358.3,29732,2)
- ;;=^5009494
- ;;^UTILITY(U,$J,358.3,29733,0)
- ;;=L97.219^^177^1893^18
- ;;^UTILITY(U,$J,358.3,29733,1,0)
+ ;;^UTILITY(U,$J,358.3,28024,1,3,0)
+ ;;=3^Postherpetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,28024,1,4,0)
+ ;;=4^B02.23
+ ;;^UTILITY(U,$J,358.3,28024,2)
+ ;;=^266550
+ ;;^UTILITY(U,$J,358.3,28025,0)
+ ;;=B02.22^^132^1322^71
+ ;;^UTILITY(U,$J,358.3,28025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29733,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Right Calf
- ;;^UTILITY(U,$J,358.3,29733,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,29733,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,29734,0)
- ;;=L97.229^^177^1893^12
+ ;;^UTILITY(U,$J,358.3,28025,1,3,0)
+ ;;=3^Postherpetic Trigeminal Neuralgia

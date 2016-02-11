@@ -1,0 +1,134 @@
+IBDEI372 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,53650,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53650,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,53650,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,53650,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,53651,0)
+ ;;=J61.^^250^2703^8
+ ;;^UTILITY(U,$J,358.3,53651,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53651,1,3,0)
+ ;;=3^Pneumoconiosis d/t asbestos and other mineral fibers
+ ;;^UTILITY(U,$J,358.3,53651,1,4,0)
+ ;;=4^J61.
+ ;;^UTILITY(U,$J,358.3,53651,2)
+ ;;=^5008262
+ ;;^UTILITY(U,$J,358.3,53652,0)
+ ;;=R09.1^^250^2703^7
+ ;;^UTILITY(U,$J,358.3,53652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53652,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,53652,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,53652,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,53653,0)
+ ;;=J84.10^^250^2703^10
+ ;;^UTILITY(U,$J,358.3,53653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53653,1,3,0)
+ ;;=3^Pulmonary fibrosis, unspecified
+ ;;^UTILITY(U,$J,358.3,53653,1,4,0)
+ ;;=4^J84.10
+ ;;^UTILITY(U,$J,358.3,53653,2)
+ ;;=^5008300
+ ;;^UTILITY(U,$J,358.3,53654,0)
+ ;;=R06.02^^250^2703^11
+ ;;^UTILITY(U,$J,358.3,53654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53654,1,3,0)
+ ;;=3^Shortness of breath
+ ;;^UTILITY(U,$J,358.3,53654,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,53654,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,53655,0)
+ ;;=R06.00^^250^2703^6
+ ;;^UTILITY(U,$J,358.3,53655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53655,1,3,0)
+ ;;=3^Dyspnea, unspecified
+ ;;^UTILITY(U,$J,358.3,53655,1,4,0)
+ ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,53655,2)
+ ;;=^5019180
+ ;;^UTILITY(U,$J,358.3,53656,0)
+ ;;=C49.9^^250^2704^1
+ ;;^UTILITY(U,$J,358.3,53656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53656,1,3,0)
+ ;;=3^Malig Neop of Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,53656,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,53656,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,53657,0)
+ ;;=C34.11^^250^2704^8
+ ;;^UTILITY(U,$J,358.3,53657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53657,1,3,0)
+ ;;=3^Malig Neop of Right Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,53657,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,53657,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,53658,0)
+ ;;=C34.12^^250^2704^4
+ ;;^UTILITY(U,$J,358.3,53658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53658,1,3,0)
+ ;;=3^Malig Neop of Left Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,53658,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,53658,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,53659,0)
+ ;;=C34.2^^250^2704^5
+ ;;^UTILITY(U,$J,358.3,53659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53659,1,3,0)
+ ;;=3^Malig Neop of Middle Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,53659,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,53659,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,53660,0)
+ ;;=C34.31^^250^2704^7
+ ;;^UTILITY(U,$J,358.3,53660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53660,1,3,0)
+ ;;=3^Malig Neop of Right Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,53660,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,53660,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,53661,0)
+ ;;=C34.32^^250^2704^3
+ ;;^UTILITY(U,$J,358.3,53661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53661,1,3,0)
+ ;;=3^Malig Neop of Left Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,53661,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,53661,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,53662,0)
+ ;;=C34.81^^250^2704^6
+ ;;^UTILITY(U,$J,358.3,53662,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,53662,1,3,0)
+ ;;=3^Malig Neop of Right Bronchus/Lung,Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,53662,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,53662,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,53663,0)
+ ;;=C34.82^^250^2704^2

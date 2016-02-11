@@ -1,0 +1,130 @@
+IBDEI2PU ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,45572,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45572,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,45572,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,45573,0)
+ ;;=W13.1XXA^^200^2247^31
+ ;;^UTILITY(U,$J,358.3,45573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45573,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45573,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,45573,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,45574,0)
+ ;;=W13.1XXD^^200^2247^32
+ ;;^UTILITY(U,$J,358.3,45574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45574,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45574,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,45574,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,45575,0)
+ ;;=W13.2XXA^^200^2247^69
+ ;;^UTILITY(U,$J,358.3,45575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45575,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45575,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,45575,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,45576,0)
+ ;;=W13.2XXD^^200^2247^70
+ ;;^UTILITY(U,$J,358.3,45576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45576,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45576,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,45576,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,45577,0)
+ ;;=W13.3XXA^^200^2247^83
+ ;;^UTILITY(U,$J,358.3,45577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45577,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45577,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,45577,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,45578,0)
+ ;;=W13.3XXD^^200^2247^84
+ ;;^UTILITY(U,$J,358.3,45578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45578,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45578,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,45578,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,45579,0)
+ ;;=W13.4XXA^^200^2247^71
+ ;;^UTILITY(U,$J,358.3,45579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45579,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45579,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,45579,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,45580,0)
+ ;;=W13.4XXD^^200^2247^72
+ ;;^UTILITY(U,$J,358.3,45580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45580,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45580,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,45580,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,45581,0)
+ ;;=W13.8XXA^^200^2247^35
+ ;;^UTILITY(U,$J,358.3,45581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45581,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45581,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,45581,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,45582,0)
+ ;;=W13.8XXD^^200^2247^36
+ ;;^UTILITY(U,$J,358.3,45582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45582,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45582,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,45582,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,45583,0)
+ ;;=W13.9XXA^^200^2247^33
+ ;;^UTILITY(U,$J,358.3,45583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45583,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,45583,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,45583,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,45584,0)
+ ;;=W13.9XXD^^200^2247^34
+ ;;^UTILITY(U,$J,358.3,45584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45584,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,45584,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,45584,2)
+ ;;=^5059620

@@ -1,136 +1,122 @@
-IBDEI1HR ; ; 06-AUG-2015
+IBDEI1HR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26455,2)
- ;;=^340506
- ;;^UTILITY(U,$J,358.3,26456,0)
- ;;=310.89^^152^1690^2
- ;;^UTILITY(U,$J,358.3,26456,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,26456,1,2,0)
- ;;=2^310.89
- ;;^UTILITY(U,$J,358.3,26456,1,5,0)
- ;;=5^Mental D/O d/t Brain Damage,Oth Spec
- ;;^UTILITY(U,$J,358.3,26456,2)
- ;;=^268320
- ;;^UTILITY(U,$J,358.3,26457,0)
- ;;=99221^^153^1691^1
- ;;^UTILITY(U,$J,358.3,26457,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26457,1,1,0)
- ;;=1^Detailed;Low Complexity
- ;;^UTILITY(U,$J,358.3,26457,1,2,0)
- ;;=2^99221
- ;;^UTILITY(U,$J,358.3,26458,0)
- ;;=99222^^153^1691^2
- ;;^UTILITY(U,$J,358.3,26458,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26458,1,1,0)
- ;;=1^Comp;Mod Complexity
- ;;^UTILITY(U,$J,358.3,26458,1,2,0)
- ;;=2^99222
- ;;^UTILITY(U,$J,358.3,26459,0)
- ;;=99223^^153^1691^3
- ;;^UTILITY(U,$J,358.3,26459,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26459,1,1,0)
- ;;=1^Comp;High Complexity
- ;;^UTILITY(U,$J,358.3,26459,1,2,0)
- ;;=2^99223
- ;;^UTILITY(U,$J,358.3,26460,0)
- ;;=99218^^153^1692^1
- ;;^UTILITY(U,$J,358.3,26460,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26460,1,1,0)
- ;;=1^Detailed;Low Complexity
- ;;^UTILITY(U,$J,358.3,26460,1,2,0)
- ;;=2^99218
- ;;^UTILITY(U,$J,358.3,26461,0)
- ;;=99219^^153^1692^2
- ;;^UTILITY(U,$J,358.3,26461,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26461,1,1,0)
- ;;=1^Comp;Mod Complexity
- ;;^UTILITY(U,$J,358.3,26461,1,2,0)
- ;;=2^99219
- ;;^UTILITY(U,$J,358.3,26462,0)
- ;;=99220^^153^1692^3
- ;;^UTILITY(U,$J,358.3,26462,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26462,1,1,0)
- ;;=1^Comp;High Complexity
- ;;^UTILITY(U,$J,358.3,26462,1,2,0)
- ;;=2^99220
- ;;^UTILITY(U,$J,358.3,26463,0)
- ;;=99251^^153^1693^1
- ;;^UTILITY(U,$J,358.3,26463,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26463,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,26463,1,2,0)
- ;;=2^99251
- ;;^UTILITY(U,$J,358.3,26464,0)
- ;;=99252^^153^1693^2
- ;;^UTILITY(U,$J,358.3,26464,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26464,1,1,0)
- ;;=1^Exp Problem Focused
- ;;^UTILITY(U,$J,358.3,26464,1,2,0)
- ;;=2^99252
- ;;^UTILITY(U,$J,358.3,26465,0)
- ;;=99253^^153^1693^3
- ;;^UTILITY(U,$J,358.3,26465,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26465,1,1,0)
- ;;=1^Detailed;Low Complexity
- ;;^UTILITY(U,$J,358.3,26465,1,2,0)
- ;;=2^99253
- ;;^UTILITY(U,$J,358.3,26466,0)
- ;;=99254^^153^1693^4
- ;;^UTILITY(U,$J,358.3,26466,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26466,1,1,0)
- ;;=1^Comp;Mod Complexity
- ;;^UTILITY(U,$J,358.3,26466,1,2,0)
- ;;=2^99254
- ;;^UTILITY(U,$J,358.3,26467,0)
- ;;=99255^^153^1693^5
- ;;^UTILITY(U,$J,358.3,26467,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26467,1,1,0)
- ;;=1^Comp;High Complexity
- ;;^UTILITY(U,$J,358.3,26467,1,2,0)
- ;;=2^99255
- ;;^UTILITY(U,$J,358.3,26468,0)
- ;;=99231^^153^1694^1
- ;;^UTILITY(U,$J,358.3,26468,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26468,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,26468,1,2,0)
- ;;=2^99231
- ;;^UTILITY(U,$J,358.3,26469,0)
- ;;=99232^^153^1694^2
- ;;^UTILITY(U,$J,358.3,26469,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26469,1,1,0)
- ;;=1^Expanded Problem Focused
- ;;^UTILITY(U,$J,358.3,26469,1,2,0)
- ;;=2^99232
- ;;^UTILITY(U,$J,358.3,26470,0)
- ;;=99233^^153^1694^3
- ;;^UTILITY(U,$J,358.3,26470,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26470,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,26470,1,2,0)
- ;;=2^99233
- ;;^UTILITY(U,$J,358.3,26471,0)
- ;;=99238^^153^1695^1
- ;;^UTILITY(U,$J,358.3,26471,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,26471,1,1,0)
- ;;=1^Discharge Day Mgmt < 30min
- ;;^UTILITY(U,$J,358.3,26471,1,2,0)
- ;;=2^99238
+ ;;^UTILITY(U,$J,358.3,24943,2)
+ ;;=^5054827
+ ;;^UTILITY(U,$J,358.3,24944,0)
+ ;;=T82.519A^^124^1239^6
+ ;;^UTILITY(U,$J,358.3,24944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24944,1,3,0)
+ ;;=3^Breakdown of Cardiac/Vascular Devices/Implants,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24944,1,4,0)
+ ;;=4^T82.519A
+ ;;^UTILITY(U,$J,358.3,24944,2)
+ ;;=^5054833
+ ;;^UTILITY(U,$J,358.3,24945,0)
+ ;;=T82.520A^^124^1239^43
+ ;;^UTILITY(U,$J,358.3,24945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24945,1,3,0)
+ ;;=3^Displacement of Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24945,1,4,0)
+ ;;=4^T82.520A
+ ;;^UTILITY(U,$J,358.3,24945,2)
+ ;;=^5054836
+ ;;^UTILITY(U,$J,358.3,24946,0)
+ ;;=T82.521A^^124^1239^44
+ ;;^UTILITY(U,$J,358.3,24946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24946,1,3,0)
+ ;;=3^Displacement of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24946,1,4,0)
+ ;;=4^T82.521A
+ ;;^UTILITY(U,$J,358.3,24946,2)
+ ;;=^5054839
+ ;;^UTILITY(U,$J,358.3,24947,0)
+ ;;=T82.523A^^124^1239^33
+ ;;^UTILITY(U,$J,358.3,24947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24947,1,3,0)
+ ;;=3^Displacement of Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24947,1,4,0)
+ ;;=4^T82.523A
+ ;;^UTILITY(U,$J,358.3,24947,2)
+ ;;=^5054845
+ ;;^UTILITY(U,$J,358.3,24948,0)
+ ;;=T82.525A^^124^1239^45
+ ;;^UTILITY(U,$J,358.3,24948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24948,1,3,0)
+ ;;=3^Displacement of Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24948,1,4,0)
+ ;;=4^T82.525A
+ ;;^UTILITY(U,$J,358.3,24948,2)
+ ;;=^5054851
+ ;;^UTILITY(U,$J,358.3,24949,0)
+ ;;=T82.529A^^124^1239^36
+ ;;^UTILITY(U,$J,358.3,24949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24949,1,3,0)
+ ;;=3^Displacement of Cardiac/Vascular Devices/Implants Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24949,1,4,0)
+ ;;=4^T82.529A
+ ;;^UTILITY(U,$J,358.3,24949,2)
+ ;;=^5054857
+ ;;^UTILITY(U,$J,358.3,24950,0)
+ ;;=T82.530A^^124^1239^131
+ ;;^UTILITY(U,$J,358.3,24950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24950,1,3,0)
+ ;;=3^Leakage of Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24950,1,4,0)
+ ;;=4^T82.530A
+ ;;^UTILITY(U,$J,358.3,24950,2)
+ ;;=^5054860
+ ;;^UTILITY(U,$J,358.3,24951,0)
+ ;;=T82.531A^^124^1239^132
+ ;;^UTILITY(U,$J,358.3,24951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24951,1,3,0)
+ ;;=3^Leakage of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24951,1,4,0)
+ ;;=4^T82.531A
+ ;;^UTILITY(U,$J,358.3,24951,2)
+ ;;=^5054863
+ ;;^UTILITY(U,$J,358.3,24952,0)
+ ;;=T82.533A^^124^1239^127
+ ;;^UTILITY(U,$J,358.3,24952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24952,1,3,0)
+ ;;=3^Leakage of Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24952,1,4,0)
+ ;;=4^T82.533A
+ ;;^UTILITY(U,$J,358.3,24952,2)
+ ;;=^5054869
+ ;;^UTILITY(U,$J,358.3,24953,0)
+ ;;=T82.535A^^124^1239^133
+ ;;^UTILITY(U,$J,358.3,24953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24953,1,3,0)
+ ;;=3^Leakage of Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24953,1,4,0)
+ ;;=4^T82.535A
+ ;;^UTILITY(U,$J,358.3,24953,2)
+ ;;=^5054875
+ ;;^UTILITY(U,$J,358.3,24954,0)
+ ;;=T82.539A^^124^1239^128
+ ;;^UTILITY(U,$J,358.3,24954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24954,1,3,0)
+ ;;=3^Leakage of Cardiac/Vascular Device/Implant Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24954,1,4,0)
+ ;;=4^T82.539A
+ ;;^UTILITY(U,$J,358.3,24954,2)
+ ;;=^5054881
+ ;;^UTILITY(U,$J,358.3,24955,0)
+ ;;=T82.590A^^124^1239^153
+ ;;^UTILITY(U,$J,358.3,24955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24955,1,3,0)
+ ;;=3^Mechanical Compl of Surgically Created AV Fistula,Init Encntr

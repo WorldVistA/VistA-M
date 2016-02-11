@@ -1,0 +1,132 @@
+IBDEI3A7 ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,55143,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,55143,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,55143,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,55144,0)
+ ;;=Z82.3^^256^2776^49
+ ;;^UTILITY(U,$J,358.3,55144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55144,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,55144,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,55144,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,55145,0)
+ ;;=Z82.49^^256^2776^31
+ ;;^UTILITY(U,$J,358.3,55145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55145,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,55145,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,55145,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,55146,0)
+ ;;=Z82.5^^256^2776^22
+ ;;^UTILITY(U,$J,358.3,55146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55146,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,55146,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,55146,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,55147,0)
+ ;;=Z82.61^^256^2776^21
+ ;;^UTILITY(U,$J,358.3,55147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55147,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,55147,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,55147,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,55148,0)
+ ;;=Z82.69^^256^2776^44
+ ;;^UTILITY(U,$J,358.3,55148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55148,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,55148,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,55148,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,55149,0)
+ ;;=Z83.3^^256^2776^28
+ ;;^UTILITY(U,$J,358.3,55149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55149,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,55149,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,55149,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,55150,0)
+ ;;=Z83.2^^256^2776^24
+ ;;^UTILITY(U,$J,358.3,55150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55150,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,55150,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,55150,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,55151,0)
+ ;;=Z82.71^^256^2776^47
+ ;;^UTILITY(U,$J,358.3,55151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55151,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,55151,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,55151,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,55152,0)
+ ;;=Z82.1^^256^2776^23
+ ;;^UTILITY(U,$J,358.3,55152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55152,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,55152,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,55152,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,55153,0)
+ ;;=Z82.2^^256^2776^27
+ ;;^UTILITY(U,$J,358.3,55153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55153,1,3,0)
+ ;;=3^Family Hx of Deafness/Hearing Loss
+ ;;^UTILITY(U,$J,358.3,55153,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,55153,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,55154,0)
+ ;;=Z84.0^^256^2776^48
+ ;;^UTILITY(U,$J,358.3,55154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55154,1,3,0)
+ ;;=3^Family Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,55154,1,4,0)
+ ;;=4^Z84.0
+ ;;^UTILITY(U,$J,358.3,55154,2)
+ ;;=^5063388
+ ;;^UTILITY(U,$J,358.3,55155,0)
+ ;;=Z82.79^^256^2776^26
+ ;;^UTILITY(U,$J,358.3,55155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,55155,1,3,0)
+ ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
+ ;;^UTILITY(U,$J,358.3,55155,1,4,0)
+ ;;=4^Z82.79
+ ;;^UTILITY(U,$J,358.3,55155,2)
+ ;;=^5063374
+ ;;^UTILITY(U,$J,358.3,55156,0)
+ ;;=Z84.89^^256^2776^46

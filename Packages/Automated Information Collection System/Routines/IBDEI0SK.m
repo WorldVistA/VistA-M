@@ -1,124 +1,124 @@
-IBDEI0SK ; ; 06-AUG-2015
+IBDEI0SK ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13814,0)
- ;;=12020^^72^826^8^^^^1
- ;;^UTILITY(U,$J,358.3,13814,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13814,1,2,0)
- ;;=2^12020
- ;;^UTILITY(U,$J,358.3,13814,1,3,0)
- ;;=3^TX, superficial wound dihiscence simple cl
- ;;^UTILITY(U,$J,358.3,13815,0)
- ;;=12021^^72^826^9^^^^1
- ;;^UTILITY(U,$J,358.3,13815,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13815,1,2,0)
- ;;=2^12021
- ;;^UTILITY(U,$J,358.3,13815,1,3,0)
- ;;=3^TX, superficial wound dihiscenc w/ packing
- ;;^UTILITY(U,$J,358.3,13816,0)
- ;;=12041^^72^827^1^^^^1
- ;;^UTILITY(U,$J,358.3,13816,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13816,1,2,0)
- ;;=2^12041
- ;;^UTILITY(U,$J,358.3,13816,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,13817,0)
- ;;=12042^^72^827^2^^^^1
- ;;^UTILITY(U,$J,358.3,13817,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13817,1,2,0)
- ;;=2^12042
- ;;^UTILITY(U,$J,358.3,13817,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,13818,0)
- ;;=12044^^72^827^3^^^^1
- ;;^UTILITY(U,$J,358.3,13818,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13818,1,2,0)
- ;;=2^12044
- ;;^UTILITY(U,$J,358.3,13818,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,13819,0)
- ;;=12045^^72^827^4^^^^1
- ;;^UTILITY(U,$J,358.3,13819,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13819,1,2,0)
- ;;=2^12045
- ;;^UTILITY(U,$J,358.3,13819,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,13820,0)
- ;;=12046^^72^827^5^^^^1
- ;;^UTILITY(U,$J,358.3,13820,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13820,1,2,0)
- ;;=2^12046
- ;;^UTILITY(U,$J,358.3,13820,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,13821,0)
- ;;=12047^^72^827^6^^^^1
- ;;^UTILITY(U,$J,358.3,13821,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13821,1,2,0)
- ;;=2^12047
- ;;^UTILITY(U,$J,358.3,13821,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; over 30 cm
- ;;^UTILITY(U,$J,358.3,13822,0)
- ;;=12051^^72^828^1^^^^1
- ;;^UTILITY(U,$J,358.3,13822,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13822,1,2,0)
- ;;=2^12051
- ;;^UTILITY(U,$J,358.3,13822,1,3,0)
- ;;=3^Interm Repair Face; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,13823,0)
- ;;=12052^^72^828^2^^^^1
- ;;^UTILITY(U,$J,358.3,13823,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13823,1,2,0)
- ;;=2^12052
- ;;^UTILITY(U,$J,358.3,13823,1,3,0)
- ;;=3^Interm Repair Face; 2.6 cm to 5.0 cm
- ;;^UTILITY(U,$J,358.3,13824,0)
- ;;=12053^^72^828^3^^^^1
- ;;^UTILITY(U,$J,358.3,13824,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13824,1,2,0)
- ;;=2^12053
- ;;^UTILITY(U,$J,358.3,13824,1,3,0)
- ;;=3^Interm Repair Face; 5.1 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,13825,0)
- ;;=12054^^72^828^4^^^^1
- ;;^UTILITY(U,$J,358.3,13825,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13825,1,2,0)
- ;;=2^12054
- ;;^UTILITY(U,$J,358.3,13825,1,3,0)
- ;;=3^Interm Repair Face; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,13826,0)
- ;;=12055^^72^828^5^^^^1
- ;;^UTILITY(U,$J,358.3,13826,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13826,1,2,0)
- ;;=2^12055
- ;;^UTILITY(U,$J,358.3,13826,1,3,0)
- ;;=3^Interm Repair Face; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,13827,0)
- ;;=12056^^72^828^6^^^^1
- ;;^UTILITY(U,$J,358.3,13827,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13827,1,2,0)
- ;;=2^12056
- ;;^UTILITY(U,$J,358.3,13827,1,3,0)
- ;;=3^Interm Repair Face; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,13828,0)
- ;;=12057^^72^828^7^^^^1
- ;;^UTILITY(U,$J,358.3,13828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,13828,1,2,0)
- ;;=2^12057
- ;;^UTILITY(U,$J,358.3,13828,1,3,0)
- ;;=3^Interm Repair Face; over 30 cm
+ ;;^UTILITY(U,$J,358.3,13141,1,4,0)
+ ;;=4^H40.2211
+ ;;^UTILITY(U,$J,358.3,13141,2)
+ ;;=^5005823
+ ;;^UTILITY(U,$J,358.3,13142,0)
+ ;;=H40.2212^^80^754^24
+ ;;^UTILITY(U,$J,358.3,13142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13142,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13142,1,4,0)
+ ;;=4^H40.2212
+ ;;^UTILITY(U,$J,358.3,13142,2)
+ ;;=^5005824
+ ;;^UTILITY(U,$J,358.3,13143,0)
+ ;;=H40.2213^^80^754^25
+ ;;^UTILITY(U,$J,358.3,13143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13143,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,13143,1,4,0)
+ ;;=4^H40.2213
+ ;;^UTILITY(U,$J,358.3,13143,2)
+ ;;=^5005825
+ ;;^UTILITY(U,$J,358.3,13144,0)
+ ;;=H40.2214^^80^754^22
+ ;;^UTILITY(U,$J,358.3,13144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13144,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13144,1,4,0)
+ ;;=4^H40.2214
+ ;;^UTILITY(U,$J,358.3,13144,2)
+ ;;=^5005826
+ ;;^UTILITY(U,$J,358.3,13145,0)
+ ;;=H40.2221^^80^754^19
+ ;;^UTILITY(U,$J,358.3,13145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13145,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13145,1,4,0)
+ ;;=4^H40.2221
+ ;;^UTILITY(U,$J,358.3,13145,2)
+ ;;=^5005828
+ ;;^UTILITY(U,$J,358.3,13146,0)
+ ;;=H40.2222^^80^754^20
+ ;;^UTILITY(U,$J,358.3,13146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13146,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13146,1,4,0)
+ ;;=4^H40.2222
+ ;;^UTILITY(U,$J,358.3,13146,2)
+ ;;=^5005829
+ ;;^UTILITY(U,$J,358.3,13147,0)
+ ;;=H40.2223^^80^754^21
+ ;;^UTILITY(U,$J,358.3,13147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13147,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,13147,1,4,0)
+ ;;=4^H40.2223
+ ;;^UTILITY(U,$J,358.3,13147,2)
+ ;;=^5133501
+ ;;^UTILITY(U,$J,358.3,13148,0)
+ ;;=H40.2224^^80^754^18
+ ;;^UTILITY(U,$J,358.3,13148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13148,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13148,1,4,0)
+ ;;=4^H40.2224
+ ;;^UTILITY(U,$J,358.3,13148,2)
+ ;;=^5005830
+ ;;^UTILITY(U,$J,358.3,13149,0)
+ ;;=H40.2231^^80^754^15
+ ;;^UTILITY(U,$J,358.3,13149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13149,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13149,1,4,0)
+ ;;=4^H40.2231
+ ;;^UTILITY(U,$J,358.3,13149,2)
+ ;;=^5005832
+ ;;^UTILITY(U,$J,358.3,13150,0)
+ ;;=H40.2232^^80^754^16
+ ;;^UTILITY(U,$J,358.3,13150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13150,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13150,1,4,0)
+ ;;=4^H40.2232
+ ;;^UTILITY(U,$J,358.3,13150,2)
+ ;;=^5005833
+ ;;^UTILITY(U,$J,358.3,13151,0)
+ ;;=H40.2233^^80^754^17
+ ;;^UTILITY(U,$J,358.3,13151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13151,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,13151,1,4,0)
+ ;;=4^H40.2233
+ ;;^UTILITY(U,$J,358.3,13151,2)
+ ;;=^5005834
+ ;;^UTILITY(U,$J,358.3,13152,0)
+ ;;=H40.2234^^80^754^14
+ ;;^UTILITY(U,$J,358.3,13152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13152,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13152,1,4,0)
+ ;;=4^H40.2234
+ ;;^UTILITY(U,$J,358.3,13152,2)
+ ;;=^5005835
+ ;;^UTILITY(U,$J,358.3,13153,0)
+ ;;=H40.241^^80^754^115
+ ;;^UTILITY(U,$J,358.3,13153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13153,1,3,0)
+ ;;=3^Residual Stage Angle-Closure Glaucoma,Right Eye

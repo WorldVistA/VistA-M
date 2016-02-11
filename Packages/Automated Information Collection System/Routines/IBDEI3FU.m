@@ -1,0 +1,130 @@
+IBDEI3FU ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,57841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57841,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 1
+ ;;^UTILITY(U,$J,358.3,57841,1,4,0)
+ ;;=4^L89.511
+ ;;^UTILITY(U,$J,358.3,57841,2)
+ ;;=^5009416
+ ;;^UTILITY(U,$J,358.3,57842,0)
+ ;;=L89.512^^270^2897^56
+ ;;^UTILITY(U,$J,358.3,57842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57842,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 2
+ ;;^UTILITY(U,$J,358.3,57842,1,4,0)
+ ;;=4^L89.512
+ ;;^UTILITY(U,$J,358.3,57842,2)
+ ;;=^5009417
+ ;;^UTILITY(U,$J,358.3,57843,0)
+ ;;=L89.513^^270^2897^57
+ ;;^UTILITY(U,$J,358.3,57843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57843,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 3
+ ;;^UTILITY(U,$J,358.3,57843,1,4,0)
+ ;;=4^L89.513
+ ;;^UTILITY(U,$J,358.3,57843,2)
+ ;;=^5009418
+ ;;^UTILITY(U,$J,358.3,57844,0)
+ ;;=L89.514^^270^2897^58
+ ;;^UTILITY(U,$J,358.3,57844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57844,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 4
+ ;;^UTILITY(U,$J,358.3,57844,1,4,0)
+ ;;=4^L89.514
+ ;;^UTILITY(U,$J,358.3,57844,2)
+ ;;=^5009419
+ ;;^UTILITY(U,$J,358.3,57845,0)
+ ;;=L89.519^^270^2897^59
+ ;;^UTILITY(U,$J,358.3,57845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57845,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,57845,1,4,0)
+ ;;=4^L89.519
+ ;;^UTILITY(U,$J,358.3,57845,2)
+ ;;=^5133673
+ ;;^UTILITY(U,$J,358.3,57846,0)
+ ;;=L89.510^^270^2897^60
+ ;;^UTILITY(U,$J,358.3,57846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57846,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Unstageable
+ ;;^UTILITY(U,$J,358.3,57846,1,4,0)
+ ;;=4^L89.510
+ ;;^UTILITY(U,$J,358.3,57846,2)
+ ;;=^5009415
+ ;;^UTILITY(U,$J,358.3,57847,0)
+ ;;=L89.311^^270^2897^61
+ ;;^UTILITY(U,$J,358.3,57847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57847,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,57847,1,4,0)
+ ;;=4^L89.311
+ ;;^UTILITY(U,$J,358.3,57847,2)
+ ;;=^5009395
+ ;;^UTILITY(U,$J,358.3,57848,0)
+ ;;=L89.312^^270^2897^62
+ ;;^UTILITY(U,$J,358.3,57848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57848,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,57848,1,4,0)
+ ;;=4^L89.312
+ ;;^UTILITY(U,$J,358.3,57848,2)
+ ;;=^5009396
+ ;;^UTILITY(U,$J,358.3,57849,0)
+ ;;=L89.313^^270^2897^63
+ ;;^UTILITY(U,$J,358.3,57849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57849,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,57849,1,4,0)
+ ;;=4^L89.313
+ ;;^UTILITY(U,$J,358.3,57849,2)
+ ;;=^5009397
+ ;;^UTILITY(U,$J,358.3,57850,0)
+ ;;=L89.314^^270^2897^64
+ ;;^UTILITY(U,$J,358.3,57850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57850,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,57850,1,4,0)
+ ;;=4^L89.314
+ ;;^UTILITY(U,$J,358.3,57850,2)
+ ;;=^5009398
+ ;;^UTILITY(U,$J,358.3,57851,0)
+ ;;=L89.319^^270^2897^65
+ ;;^UTILITY(U,$J,358.3,57851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57851,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,57851,1,4,0)
+ ;;=4^L89.319
+ ;;^UTILITY(U,$J,358.3,57851,2)
+ ;;=^5133670
+ ;;^UTILITY(U,$J,358.3,57852,0)
+ ;;=L89.310^^270^2897^66
+ ;;^UTILITY(U,$J,358.3,57852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57852,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,57852,1,4,0)
+ ;;=4^L89.310
+ ;;^UTILITY(U,$J,358.3,57852,2)
+ ;;=^5009394
+ ;;^UTILITY(U,$J,358.3,57853,0)
+ ;;=L89.011^^270^2897^67
+ ;;^UTILITY(U,$J,358.3,57853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,57853,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,57853,1,4,0)
+ ;;=4^L89.011

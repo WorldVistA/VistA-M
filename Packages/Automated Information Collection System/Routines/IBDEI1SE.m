@@ -1,134 +1,136 @@
-IBDEI1SE ; ; 06-AUG-2015
+IBDEI1SE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31532,1,3,0)
- ;;=3^Osteoarthritis of first carpometacarpal joint, unspecified
- ;;^UTILITY(U,$J,358.3,31532,1,4,0)
- ;;=4^M18.9
- ;;^UTILITY(U,$J,358.3,31532,2)
- ;;=^5010807
- ;;^UTILITY(U,$J,358.3,31533,0)
- ;;=M16.9^^180^1959^45
- ;;^UTILITY(U,$J,358.3,31533,1,0)
+ ;;^UTILITY(U,$J,358.3,29916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31533,1,3,0)
- ;;=3^Osteoarthritis of hip, unspecified
- ;;^UTILITY(U,$J,358.3,31533,1,4,0)
- ;;=4^M16.9
- ;;^UTILITY(U,$J,358.3,31533,2)
- ;;=^5010783
- ;;^UTILITY(U,$J,358.3,31534,0)
- ;;=M17.9^^180^1959^46
- ;;^UTILITY(U,$J,358.3,31534,1,0)
+ ;;^UTILITY(U,$J,358.3,29916,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,29916,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,29916,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,29917,0)
+ ;;=C92.40^^135^1372^20
+ ;;^UTILITY(U,$J,358.3,29917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31534,1,3,0)
- ;;=3^Osteoarthritis of knee, unspecified
- ;;^UTILITY(U,$J,358.3,31534,1,4,0)
- ;;=4^M17.9
- ;;^UTILITY(U,$J,358.3,31534,2)
- ;;=^5010794
- ;;^UTILITY(U,$J,358.3,31535,0)
- ;;=R20.8^^180^1960^1
- ;;^UTILITY(U,$J,358.3,31535,1,0)
+ ;;^UTILITY(U,$J,358.3,29917,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,29917,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,29917,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,29918,0)
+ ;;=D56.0^^135^1372^21
+ ;;^UTILITY(U,$J,358.3,29918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31535,1,3,0)
- ;;=3^Disturbances of skin sensation NEC
- ;;^UTILITY(U,$J,358.3,31535,1,4,0)
- ;;=4^R20.8
- ;;^UTILITY(U,$J,358.3,31535,2)
- ;;=^5019281
- ;;^UTILITY(U,$J,358.3,31536,0)
- ;;=T79.8XXA^^180^1960^2
- ;;^UTILITY(U,$J,358.3,31536,1,0)
+ ;;^UTILITY(U,$J,358.3,29918,1,3,0)
+ ;;=3^Alpha Thalassemia
+ ;;^UTILITY(U,$J,358.3,29918,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,29918,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,29919,0)
+ ;;=D63.1^^135^1372^23
+ ;;^UTILITY(U,$J,358.3,29919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31536,1,3,0)
- ;;=3^Early complications of trauma, initial encounter
- ;;^UTILITY(U,$J,358.3,31536,1,4,0)
- ;;=4^T79.8XXA
- ;;^UTILITY(U,$J,358.3,31536,2)
- ;;=^5054317
- ;;^UTILITY(U,$J,358.3,31537,0)
- ;;=R53.83^^180^1960^3
- ;;^UTILITY(U,$J,358.3,31537,1,0)
+ ;;^UTILITY(U,$J,358.3,29919,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,29919,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,29919,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,29920,0)
+ ;;=D63.0^^135^1372^24
+ ;;^UTILITY(U,$J,358.3,29920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31537,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,31537,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,31537,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,31538,0)
- ;;=M23.8X2^^180^1960^4
- ;;^UTILITY(U,$J,358.3,31538,1,0)
+ ;;^UTILITY(U,$J,358.3,29920,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease
+ ;;^UTILITY(U,$J,358.3,29920,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,29920,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,29921,0)
+ ;;=D63.8^^135^1372^22
+ ;;^UTILITY(U,$J,358.3,29921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31538,1,3,0)
- ;;=3^Internal derangements of left knee NEC
- ;;^UTILITY(U,$J,358.3,31538,1,4,0)
- ;;=4^M23.8X2
- ;;^UTILITY(U,$J,358.3,31538,2)
- ;;=^5011274
- ;;^UTILITY(U,$J,358.3,31539,0)
- ;;=M23.8X1^^180^1960^5
- ;;^UTILITY(U,$J,358.3,31539,1,0)
+ ;;^UTILITY(U,$J,358.3,29921,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,29921,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,29921,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,29922,0)
+ ;;=C22.3^^135^1372^25
+ ;;^UTILITY(U,$J,358.3,29922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31539,1,3,0)
- ;;=3^Internal derangements of right knee NEC
- ;;^UTILITY(U,$J,358.3,31539,1,4,0)
- ;;=4^M23.8X1
- ;;^UTILITY(U,$J,358.3,31539,2)
- ;;=^5011273
- ;;^UTILITY(U,$J,358.3,31540,0)
- ;;=R53.81^^180^1960^6
- ;;^UTILITY(U,$J,358.3,31540,1,0)
+ ;;^UTILITY(U,$J,358.3,29922,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,29922,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,29922,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,29923,0)
+ ;;=D61.9^^135^1372^26
+ ;;^UTILITY(U,$J,358.3,29923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31540,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,31540,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,31540,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,31541,0)
- ;;=M62.838^^180^1960^7
- ;;^UTILITY(U,$J,358.3,31541,1,0)
+ ;;^UTILITY(U,$J,358.3,29923,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,29923,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,29923,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,29924,0)
+ ;;=D56.1^^135^1372^28
+ ;;^UTILITY(U,$J,358.3,29924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31541,1,3,0)
- ;;=3^Muscle Spasm NEC
- ;;^UTILITY(U,$J,358.3,31541,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,31541,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,31542,0)
- ;;=F45.42^^180^1960^8
- ;;^UTILITY(U,$J,358.3,31542,1,0)
+ ;;^UTILITY(U,$J,358.3,29924,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,29924,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,29924,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,29925,0)
+ ;;=C83.79^^135^1372^29
+ ;;^UTILITY(U,$J,358.3,29925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31542,1,3,0)
- ;;=3^Pain disorder with related psychological factors
- ;;^UTILITY(U,$J,358.3,31542,1,4,0)
- ;;=4^F45.42
- ;;^UTILITY(U,$J,358.3,31542,2)
- ;;=^5003591
- ;;^UTILITY(U,$J,358.3,31543,0)
- ;;=M72.0^^180^1960^9
- ;;^UTILITY(U,$J,358.3,31543,1,0)
+ ;;^UTILITY(U,$J,358.3,29925,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,29925,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,29925,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,29926,0)
+ ;;=C83.70^^135^1372^30
+ ;;^UTILITY(U,$J,358.3,29926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31543,1,3,0)
- ;;=3^Palmar fascial fibromatosis [Dupuytren]
- ;;^UTILITY(U,$J,358.3,31543,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,31543,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,31544,0)
- ;;=R43.2^^180^1960^10
- ;;^UTILITY(U,$J,358.3,31544,1,0)
+ ;;^UTILITY(U,$J,358.3,29926,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,29926,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,29926,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,29927,0)
+ ;;=D09.0^^135^1372^37
+ ;;^UTILITY(U,$J,358.3,29927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31544,1,3,0)
- ;;=3^Parageusia
- ;;^UTILITY(U,$J,358.3,31544,1,4,0)
- ;;=4^R43.2
- ;;^UTILITY(U,$J,358.3,31544,2)
- ;;=^5019452
- ;;^UTILITY(U,$J,358.3,31545,0)
- ;;=G82.20^^180^1960^11
- ;;^UTILITY(U,$J,358.3,31545,1,0)
+ ;;^UTILITY(U,$J,358.3,29927,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,29927,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,29927,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,29928,0)
+ ;;=D06.9^^135^1372^38
+ ;;^UTILITY(U,$J,358.3,29928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29928,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,29928,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,29928,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,29929,0)
+ ;;=D06.0^^135^1372^40
+ ;;^UTILITY(U,$J,358.3,29929,1,0)
  ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
-DGRPV ;ALB/MRL,RTK,PJR,BRM,TMK,AMA,LBD,TDM - REGISTRATION DEFINE VARIABLES ON ENTRY ; 12/15/11 1:47pm
- ;;5.3;Registration;**109,114,247,190,327,365,343,397,415,489,546,545,451,624,677,672,689,716,688,797,842**;Aug 13, 1993;Build 33
+DGRPV ;ALB/MRL,RTK,PJR,BRM,TMK,AMA,LBD,TDM,PWC - REGISTRATION DEFINE VARIABLES ON ENTRY ;12/15/11 1:47pm
+ ;;5.3;Registration;**109,114,247,190,327,365,343,397,415,489,546,545,451,624,677,672,689,716,688,797,842,871**;Aug 13, 1993;Build 84
  ;
  ;
  ;set up variables for registration screen processing
@@ -30,7 +30,7 @@ SC7 S X=$S('$D(^DPT(DFN,"TYPE")):0,1:+^("TYPE")) S:'$D(DGELVER) DGELVER=0
  . S DGRPVV="000001111111111"
  E  D
  . S DGRPVV="000000000000000"
- S X="5^3^5^2^3^10^4^2^3^2^4^5^5^2^1"
+ S X="5^3^5^2^3^10^4^2^3^2^5^5^5^2^1"
  F I=1:1:15 S J=+$P(X,"^",I),DGRPVV(I)=$S((I<12)!(I=15):$E("00000000000000000",1,J),1:$E("11111111111111111",1,J))
  S DGRPVV(1.1)="00"
  S DGRPVV(2)="00010"
@@ -64,6 +64,7 @@ SC7 S X=$S('$D(^DPT(DFN,"TYPE")):0,1:+^("TYPE")) S:'$D(DGELVER) DGELVER=0
  S DGRPVV(10)=11 I $P(DGRP(.361),"^",1)="V" S DGRPVV(7)=111,DGRPVV(1)=1_$E(DGRPVV(1),2,99) ;if elig verified, can't edit elig data, name, ssn, or dob
  I $P(DGRP(.3),"^",6)]"" S DGRPVV(8)=11 ;if monetary ben. verified, can't edit income screening data
  I $P(DGRP(.32),"^",2)]"" S DGRPVV(6)=111111111 ;if service data verified, can't edit service screen
+ S DGRPVV(11)=$E(DGRPVV(11),1,4)_"0"   ; turn on HBP to get to next screen where edit on/off will be controlled
  ;
 ELVER ;set up variables for eligibility verification
  ;if elig ver option, only edit screens 1, 2, and 7 (and 6, 8, 9, 10,
@@ -71,7 +72,7 @@ ELVER ;set up variables for eligibility verification
  ;
  S DGRP(.361)=$G(^DPT(DFN,.361))
  I $P(DGRP(.361),U,3)="H" S DGRPVV(10)=10
- I $P($G(DGRP(.361)),U)="V",($P(DGRP(.361),U,3)="H") S DGRPVV(6)=$E(DGRPVV(6),1,5)_1_$E(DGRPVV(6),7,99),DGRPVV(11)=1000
+ I $P($G(DGRP(.361)),U)="V",($P(DGRP(.361),U,3)="H") S DGRPVV(6)=$E(DGRPVV(6),1,5)_1_$E(DGRPVV(6),7,99),DGRPVV(11)=10000
  S:'DGELVER DGRPLAST=$S($G(DGPRFLG)=1:5,1:15)
  I DGELVER S DGRPVV="00111"_$E(DGRPVV,6,11)_"1111" F I=1:1:11 S J=$E(DGRPVV,I) I 'J S DGRPLAST=I
 Q K DGRPSC,DGRPSCE

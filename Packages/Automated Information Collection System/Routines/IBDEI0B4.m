@@ -1,140 +1,128 @@
-IBDEI0B4 ; ; 06-AUG-2015
+IBDEI0B4 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4860,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4860,1,4,0)
- ;;=4^309.81
- ;;^UTILITY(U,$J,358.3,4860,1,5,0)
- ;;=5^PTSD
- ;;^UTILITY(U,$J,358.3,4861,0)
- ;;=295.70^^23^243^26
- ;;^UTILITY(U,$J,358.3,4861,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4861,1,4,0)
- ;;=4^295.70
- ;;^UTILITY(U,$J,358.3,4861,1,5,0)
- ;;=5^SCHIZOAFFECTIVE-UNSPEC
- ;;^UTILITY(U,$J,358.3,4862,0)
- ;;=295.90^^23^243^28
- ;;^UTILITY(U,$J,358.3,4862,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4862,1,4,0)
- ;;=4^295.90
- ;;^UTILITY(U,$J,358.3,4862,1,5,0)
- ;;=5^SCHIZOPHRENIA-UNDIFF
- ;;^UTILITY(U,$J,358.3,4863,0)
- ;;=295.30^^23^243^27
- ;;^UTILITY(U,$J,358.3,4863,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4863,1,4,0)
- ;;=4^295.30
- ;;^UTILITY(U,$J,358.3,4863,1,5,0)
- ;;=5^SCHIZOPHRENIA-PARANOID
- ;;^UTILITY(U,$J,358.3,4864,0)
- ;;=290.40^^23^243^15
- ;;^UTILITY(U,$J,358.3,4864,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4864,1,4,0)
- ;;=4^290.40
- ;;^UTILITY(U,$J,358.3,4864,1,5,0)
- ;;=5^Dementia Vascular
- ;;^UTILITY(U,$J,358.3,4864,2)
- ;;=^10350
- ;;^UTILITY(U,$J,358.3,4865,0)
- ;;=294.20^^23^243^11
- ;;^UTILITY(U,$J,358.3,4865,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4865,1,4,0)
- ;;=4^294.20
- ;;^UTILITY(U,$J,358.3,4865,1,5,0)
- ;;=5^DEMEN NOS W/O BEHV DSTRB
- ;;^UTILITY(U,$J,358.3,4865,2)
- ;;=^340607
- ;;^UTILITY(U,$J,358.3,4866,0)
- ;;=294.21^^23^243^10
- ;;^UTILITY(U,$J,358.3,4866,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4866,1,4,0)
- ;;=4^294.21
- ;;^UTILITY(U,$J,358.3,4866,1,5,0)
- ;;=5^DEMEN NOS W BEHAV DISTRB
- ;;^UTILITY(U,$J,358.3,4866,2)
- ;;=^340505
- ;;^UTILITY(U,$J,358.3,4867,0)
- ;;=294.8^^23^243^21
- ;;^UTILITY(U,$J,358.3,4867,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4867,1,4,0)
- ;;=4^294.8
- ;;^UTILITY(U,$J,358.3,4867,1,5,0)
- ;;=5^MENTAL DISOR NEC OTH DIS
- ;;^UTILITY(U,$J,358.3,4867,2)
- ;;=^31655
- ;;^UTILITY(U,$J,358.3,4868,0)
- ;;=290.41^^23^243^16
- ;;^UTILITY(U,$J,358.3,4868,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4868,1,4,0)
- ;;=4^290.41
- ;;^UTILITY(U,$J,358.3,4868,1,5,0)
- ;;=5^Dementia Vascular w/ Delirium
- ;;^UTILITY(U,$J,358.3,4868,2)
- ;;=^331820
- ;;^UTILITY(U,$J,358.3,4869,0)
- ;;=290.42^^23^243^17
- ;;^UTILITY(U,$J,358.3,4869,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4869,1,4,0)
- ;;=4^290.42
- ;;^UTILITY(U,$J,358.3,4869,1,5,0)
- ;;=5^Dementia Vascular w/ Delusion
- ;;^UTILITY(U,$J,358.3,4869,2)
- ;;=^331821
- ;;^UTILITY(U,$J,358.3,4870,0)
- ;;=290.43^^23^243^18
- ;;^UTILITY(U,$J,358.3,4870,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4870,1,4,0)
- ;;=4^290.43
- ;;^UTILITY(U,$J,358.3,4870,1,5,0)
- ;;=5^Dementia Vascular w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,4870,2)
- ;;=^331822
- ;;^UTILITY(U,$J,358.3,4871,0)
- ;;=250.01^^23^244^3
- ;;^UTILITY(U,$J,358.3,4871,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4871,1,4,0)
- ;;=4^250.01
- ;;^UTILITY(U,$J,358.3,4871,1,5,0)
- ;;=5^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,4871,2)
- ;;=^331780
- ;;^UTILITY(U,$J,358.3,4872,0)
- ;;=250.91^^23^244^2
- ;;^UTILITY(U,$J,358.3,4872,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4872,1,4,0)
- ;;=4^250.91
- ;;^UTILITY(U,$J,358.3,4872,1,5,0)
- ;;=5^DM Type 1 w/ Complications,Unspec
- ;;^UTILITY(U,$J,358.3,4872,2)
- ;;=^331816
- ;;^UTILITY(U,$J,358.3,4873,0)
- ;;=250.00^^23^244^5
- ;;^UTILITY(U,$J,358.3,4873,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4873,1,4,0)
- ;;=4^250.00
- ;;^UTILITY(U,$J,358.3,4873,1,5,0)
- ;;=5^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,4873,2)
- ;;=^331779
- ;;^UTILITY(U,$J,358.3,4874,0)
- ;;=250.90^^23^244^4
- ;;^UTILITY(U,$J,358.3,4874,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,4874,1,4,0)
- ;;=4^250.90
+ ;;^UTILITY(U,$J,358.3,4716,0)
+ ;;=I63.522^^37^315^5
+ ;;^UTILITY(U,$J,358.3,4716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4716,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Ant Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,4716,1,4,0)
+ ;;=4^I63.522
+ ;;^UTILITY(U,$J,358.3,4716,2)
+ ;;=^5007347
+ ;;^UTILITY(U,$J,358.3,4717,0)
+ ;;=I63.531^^37^315^6
+ ;;^UTILITY(U,$J,358.3,4717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4717,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Post Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,4717,1,4,0)
+ ;;=4^I63.531
+ ;;^UTILITY(U,$J,358.3,4717,2)
+ ;;=^5007348
+ ;;^UTILITY(U,$J,358.3,4718,0)
+ ;;=I63.532^^37^315^7
+ ;;^UTILITY(U,$J,358.3,4718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4718,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Post Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,4718,1,4,0)
+ ;;=4^I63.532
+ ;;^UTILITY(U,$J,358.3,4718,2)
+ ;;=^5007349
+ ;;^UTILITY(U,$J,358.3,4719,0)
+ ;;=I63.541^^37^315^8
+ ;;^UTILITY(U,$J,358.3,4719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4719,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Cereblr Artery
+ ;;^UTILITY(U,$J,358.3,4719,1,4,0)
+ ;;=4^I63.541
+ ;;^UTILITY(U,$J,358.3,4719,2)
+ ;;=^5007350
+ ;;^UTILITY(U,$J,358.3,4720,0)
+ ;;=I63.542^^37^315^9
+ ;;^UTILITY(U,$J,358.3,4720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4720,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Cereblr Artery
+ ;;^UTILITY(U,$J,358.3,4720,1,4,0)
+ ;;=4^I63.542
+ ;;^UTILITY(U,$J,358.3,4720,2)
+ ;;=^5007351
+ ;;^UTILITY(U,$J,358.3,4721,0)
+ ;;=I63.59^^37^315^10
+ ;;^UTILITY(U,$J,358.3,4721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4721,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,4721,1,4,0)
+ ;;=4^I63.59
+ ;;^UTILITY(U,$J,358.3,4721,2)
+ ;;=^5007352
+ ;;^UTILITY(U,$J,358.3,4722,0)
+ ;;=I63.9^^37^315^11
+ ;;^UTILITY(U,$J,358.3,4722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4722,1,3,0)
+ ;;=3^Cerebral Infarction,Unspec
+ ;;^UTILITY(U,$J,358.3,4722,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,4722,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,4723,0)
+ ;;=I61.9^^37^315^13
+ ;;^UTILITY(U,$J,358.3,4723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4723,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,4723,1,4,0)
+ ;;=4^I61.9
+ ;;^UTILITY(U,$J,358.3,4723,2)
+ ;;=^5007288
+ ;;^UTILITY(U,$J,358.3,4724,0)
+ ;;=I65.21^^37^315^17
+ ;;^UTILITY(U,$J,358.3,4724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4724,1,3,0)
+ ;;=3^Occlusion/Stenosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,4724,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,4724,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,4725,0)
+ ;;=I65.22^^37^315^16
+ ;;^UTILITY(U,$J,358.3,4725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4725,1,3,0)
+ ;;=3^Occlusion/Stenosis of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,4725,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,4725,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,4726,0)
+ ;;=I65.23^^37^315^15
+ ;;^UTILITY(U,$J,358.3,4726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4726,1,3,0)
+ ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,4726,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,4726,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,4727,0)
+ ;;=G45.9^^37^315^20
+ ;;^UTILITY(U,$J,358.3,4727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4727,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,4727,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,4727,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,4728,0)
+ ;;=I62.00^^37^315^14
+ ;;^UTILITY(U,$J,358.3,4728,1,0)
+ ;;=^358.31IA^4^2

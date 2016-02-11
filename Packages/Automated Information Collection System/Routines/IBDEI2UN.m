@@ -1,0 +1,134 @@
+IBDEI2UN ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,47815,1,4,0)
+ ;;=4^C04.1
+ ;;^UTILITY(U,$J,358.3,47815,2)
+ ;;=^5000894
+ ;;^UTILITY(U,$J,358.3,47816,0)
+ ;;=C04.8^^209^2355^15
+ ;;^UTILITY(U,$J,358.3,47816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47816,1,3,0)
+ ;;=3^Malig Neop of Overlapping Site of Floor of Mouth
+ ;;^UTILITY(U,$J,358.3,47816,1,4,0)
+ ;;=4^C04.8
+ ;;^UTILITY(U,$J,358.3,47816,2)
+ ;;=^5000895
+ ;;^UTILITY(U,$J,358.3,47817,0)
+ ;;=C14.0^^209^2355^18
+ ;;^UTILITY(U,$J,358.3,47817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47817,1,3,0)
+ ;;=3^Malig Neop of Pharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,47817,1,4,0)
+ ;;=4^C14.0
+ ;;^UTILITY(U,$J,358.3,47817,2)
+ ;;=^5000916
+ ;;^UTILITY(U,$J,358.3,47818,0)
+ ;;=C14.2^^209^2355^23
+ ;;^UTILITY(U,$J,358.3,47818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47818,1,3,0)
+ ;;=3^Malig Neop of Waldeyer's Ring
+ ;;^UTILITY(U,$J,358.3,47818,1,4,0)
+ ;;=4^C14.2
+ ;;^UTILITY(U,$J,358.3,47818,2)
+ ;;=^267052
+ ;;^UTILITY(U,$J,358.3,47819,0)
+ ;;=C14.8^^209^2355^16
+ ;;^UTILITY(U,$J,358.3,47819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47819,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Lip/Oral Cavity/Pharynx
+ ;;^UTILITY(U,$J,358.3,47819,1,4,0)
+ ;;=4^C14.8
+ ;;^UTILITY(U,$J,358.3,47819,2)
+ ;;=^5000917
+ ;;^UTILITY(U,$J,358.3,47820,0)
+ ;;=C04.9^^209^2355^7
+ ;;^UTILITY(U,$J,358.3,47820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47820,1,3,0)
+ ;;=3^Malig Neop of Floor of Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,47820,1,4,0)
+ ;;=4^C04.9
+ ;;^UTILITY(U,$J,358.3,47820,2)
+ ;;=^5000896
+ ;;^UTILITY(U,$J,358.3,47821,0)
+ ;;=Z66.^^209^2356^5
+ ;;^UTILITY(U,$J,358.3,47821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47821,1,3,0)
+ ;;=3^Do Not Resuscitate
+ ;;^UTILITY(U,$J,358.3,47821,1,4,0)
+ ;;=4^Z66.
+ ;;^UTILITY(U,$J,358.3,47821,2)
+ ;;=^5063187
+ ;;^UTILITY(U,$J,358.3,47822,0)
+ ;;=H93.3X1^^209^2356^11
+ ;;^UTILITY(U,$J,358.3,47822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47822,1,3,0)
+ ;;=3^Right Acoustic Nerve Disorders
+ ;;^UTILITY(U,$J,358.3,47822,1,4,0)
+ ;;=4^H93.3X1
+ ;;^UTILITY(U,$J,358.3,47822,2)
+ ;;=^5006989
+ ;;^UTILITY(U,$J,358.3,47823,0)
+ ;;=H93.3X2^^209^2356^7
+ ;;^UTILITY(U,$J,358.3,47823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47823,1,3,0)
+ ;;=3^Left Acoustic Nerve Disorders
+ ;;^UTILITY(U,$J,358.3,47823,1,4,0)
+ ;;=4^H93.3X2
+ ;;^UTILITY(U,$J,358.3,47823,2)
+ ;;=^5006990
+ ;;^UTILITY(U,$J,358.3,47824,0)
+ ;;=H93.3X9^^209^2356^3
+ ;;^UTILITY(U,$J,358.3,47824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47824,1,3,0)
+ ;;=3^Bilateral Acoustic Nerve Disorders
+ ;;^UTILITY(U,$J,358.3,47824,1,4,0)
+ ;;=4^H93.3X9
+ ;;^UTILITY(U,$J,358.3,47824,2)
+ ;;=^5006992
+ ;;^UTILITY(U,$J,358.3,47825,0)
+ ;;=G50.0^^209^2356^12
+ ;;^UTILITY(U,$J,358.3,47825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47825,1,3,0)
+ ;;=3^Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,47825,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,47825,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,47826,0)
+ ;;=I77.0^^209^2356^2
+ ;;^UTILITY(U,$J,358.3,47826,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47826,1,3,0)
+ ;;=3^Arteriovenous Fistula,Acquired
+ ;;^UTILITY(U,$J,358.3,47826,1,4,0)
+ ;;=4^I77.0
+ ;;^UTILITY(U,$J,358.3,47826,2)
+ ;;=^46674
+ ;;^UTILITY(U,$J,358.3,47827,0)
+ ;;=Q28.2^^209^2356^1
+ ;;^UTILITY(U,$J,358.3,47827,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47827,1,3,0)
+ ;;=3^AVM (Brain) congenital
+ ;;^UTILITY(U,$J,358.3,47827,1,4,0)
+ ;;=4^Q28.2
+ ;;^UTILITY(U,$J,358.3,47827,2)
+ ;;=^5018595
+ ;;^UTILITY(U,$J,358.3,47828,0)
+ ;;=M61.40^^209^2356^10
+ ;;^UTILITY(U,$J,358.3,47828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47828,1,3,0)
+ ;;=3^Postoperative Heterotopic Calcification

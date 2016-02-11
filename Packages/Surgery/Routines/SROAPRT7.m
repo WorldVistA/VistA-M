@@ -1,9 +1,11 @@
 SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;08/16/2011
- ;;3.0;Surgery;**38,47,57,60,125,160,176,177,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**38,47,57,60,125,160,176,177,182,184**;24 Jun 93;Build 35
  K SRA,SRAO D EN^SROCCAT S SRA(205)=$G(^SRF(SRTN,205))
  S NYUK=$P(SRA(205),"^",5) D YN S SRAO(1)=SHEMP_"^403",NYUK=$P(SRA(205),"^",6) D YN S SRAO("1A")=SHEMP_"^248",NYUK=$P(SRA(205),"^",7) D YN S SRAO("1B")=SHEMP_"^249"
  S NYUK=$P(SRA(205),"^",37) D YN S SRAO("6E")=SHEMP_"^488",NYUK=$P(SRA(205),"^",8) D YN S SRAO("1C")=SHEMP_"^404",NYUK=$P(SRA(205),"^",39) D YN S SRAO("6F")=SHEMP_"^447"
- S NYUK=$P(SRA(205),"^",9) D YN S SRAO(2)=SHEMP_"^318",NYUK=$P(SRA(205),"^",10) D YN S SRAO("2A")=SHEMP_"^251",NYUK=$P(SRA(205),"^",43) D YN S SRAO("2B")=SHEMP_"^645",NYUK=$P(SRA(205),"^",12) D YN S SRAO("2C")=SHEMP_"^252"
+ S NYUK=$P(SRA(205),"^",9) D YN S SRAO(2)=SHEMP_"^318",NYUK=$P(SRA(205),"^",10) D YN S SRAO("2A")=SHEMP_"^251"
+ S NYUK=$P(SRA(205),"^",44) D YN S SRAO("2B")=SHEMP_"^422"
+ S NYUK=$P(SRA(205),"^",12) D YN S SRAO("2C")=SHEMP_"^252"
  S NYUK=$P(SRA(205),"^",13) D YN S SRAO("2D")=SHEMP_"^285"
  S NYUK=$P(SRA(205),"^",15) D YN S SRAO(3)=SHEMP_"^319",NYUK=$P(SRA(205),"^",16) D YN S SRAO("3A")=SHEMP_"^409",NYUK=$P(SRA(205),"^",17) D YN S SRAO("3B")=SHEMP_"^254",NYUK=$P(SRA(205),"^",42) D YN S SRAO("3C")=SHEMP_"^644"
  S NYUK=$P(SRA(205),"^",20) D YN S SRAO(4)=SHEMP_"^320",NYUK=$P(SRA(205),"^",21) D YN S SRAO("4A")=SHEMP_"^256",NYUK=$P(SRA(205),"^",22) D YN S SRAO("4B")=SHEMP_"^410",NYUK=$P(SRA(205),"^",23) D YN S SRAO("4C")=SHEMP_"^287"
@@ -26,7 +28,7 @@ SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;08/16/2011
  S SRAO("1D")=X_"^489"
  S Y=6 F  S Y=$O(SRAO(Y)) Q:Y=""  D
  .I $E(Y)="1" S SRI=$S(Y="1A":1,Y="1B":2,Y="1C":22,1:"") Q:SRI=""
- .I $E(Y)="2" S SRI=$S(Y="2A":4,Y="2B":41,Y="2C":5,Y="2D":6,1:"")  Q:SRI=""
+ .I $E(Y)="2" S SRI=$S(Y="2A":4,Y="2B":42,Y="2C":5,Y="2D":6,1:"")  Q:SRI=""
  .I $E(Y)="3" S SRI=$S(Y="3A":8,Y="3B":9,Y="3C":40,1:"")  Q:SRI=""
  .I $E(Y)="4" S SRI=$S(Y="4A":12,Y="4B":13,Y="4C":14,1:"")  Q:SRI=""
  .I $E(Y)="5" S SRI=$S(Y="5A":16,Y="5B":17,Y="5C":11,1:"")  Q:SRI=""
@@ -39,22 +41,22 @@ SROAPRT7 ;BIR/MAM - PRINT OCCURRENCES ;08/16/2011
  .S SRSTAR=1 I SROC(SRKO)="       " S SRD="NO DATE"
  .I SROC(SRKO)'="       " S SRD=$E(SROC(SRKO),4,5)_"/"_$E(SROC(SRKO),6,7)_"/"_$E(SROC(SRKO),2,3)
  .S $P(SRAO(SRK),"^")="* "_$P(SRAO(SRK),"^")_$J(SRD,(26-$L($P(SRAO(SRK),"^")))+10)
-DISP W:$E(IOST)'="C" ! W !,?21,"PERIOPERATIVE OCCURRENCE INFORMATION",!!,"WOUND OCCURRENCES:",?33,$P(SRAO(1),"^"),?41,"CNS OCCURRENCES:",?74,$P(SRAO(4),"^")
+DISP W:$E(IOST)'="C" ! W !,?21,"PERIOPERATIVE OCCURRENCE INFORMATION",!!,"WOUND OCCURRENCES:",?30,$P(SRAO(1),"^"),?41,"CNS OCCURRENCES:",?71,$P(SRAO(4),"^")
  W !,"Superficial Incisional SSI:",?30,$P(SRAO("1A"),"^"),?41,"Stroke/CVA:" D
  .I $P(SRAO("4A"),"^")="   NO" W ?68,"NO SYMPTOMS" Q
  .W ?58,$J($P(SRAO("4A"),"^"),21)
  W !,"Deep Incisional SSI:",?30,$P(SRAO("1B"),"^"),?41,"Coma > 24 Hours:",?71,$P(SRAO("4B"),"^")
  W !,"Wound Disruption:",?30,$P(SRAO("1C"),"^"),?41,"Peripheral Nerve Injury:",?71,$P(SRAO("4C"),"^")
  I $P(SRAO("1D"),"^")'=""!($P(SRAO("4D"),"^")'="") W !,$P(SRAO("1D"),"^"),?41,$P(SRAO("4D"),"^")
- W !!,"URINARY TRACT OCCURRENCES: ",?33,$P(SRAO(3),"^"),?41,"CARDIAC OCCURRENCES:",?74,$P(SRAO(5),"^")
+ W !!,"URINARY TRACT OCCURRENCES: ",?30,$P(SRAO(3),"^"),?41,"CARDIAC OCCURRENCES:",?71,$P(SRAO(5),"^")
  W !,"Renal Insufficiency: ",?30,$P(SRAO("3A"),"^"),?41,"Arrest Requiring CPR:",?71,$P(SRAO("5A"),"^")
  W !,"Acute Renal Failure:",?30,$P(SRAO("3B"),"^"),?41,"Myocardial Infarction:",?71,$P(SRAO("5B"),"^")
  W !,"Symptomatic UTI:",?30,$P(SRAO("3C"),"^"),?41,$P(SRAO("5D"),"^")
  I $P(SRAO("3D"),"^")'="" W !,$P(SRAO("3D"),"^")
- W !,?41,"OTHER OCCURRENCES:",?74,$P(SRAO(6),"^")
- W !,"RESPIRATORY OCCURRENCES:",?33,$P(SRAO(2),"^"),?41,"Bleeding/Transfusions:",?71,$P(SRAO("6A"),"^")
+ W !,?41,"OTHER OCCURRENCES:",?71,$P(SRAO(6),"^")
+ W !,"RESPIRATORY OCCURRENCES:",?30,$P(SRAO(2),"^"),?41,"Bleeding/Transfusions:",?71,$P(SRAO("6A"),"^")
  W !,"Pneumonia:",?30,$P(SRAO("2A"),"^"),?41,"Graft/Prosthesis/Flap Failure:",?71,$P(SRAO("6B"),"^")
- W !,"Mechanical Vent W/I 30 Days:",?30,$P(SRAO("2B"),"^"),?41,"DVT/Thrombophlebitis:",?71,$P(SRAO("6C"),"^")
+ W !,"Out Of OR Unplanned Intub:",?30,$P(SRAO("2B"),"^"),?41,"DVT/Thrombophlebitis:",?71,$P(SRAO("6C"),"^")
  W !,"Pulmonary Embolism:",?30,$P(SRAO("2C"),"^"),?41,"Systemic Sepsis: " D
  .I $P(SRAO("6D"),"^")="   NO" W ?71,$P(SRAO("6D"),"^") Q
  .W $J($P(SRAO("6D"),"^"),21)

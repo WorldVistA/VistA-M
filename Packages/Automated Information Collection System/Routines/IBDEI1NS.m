@@ -1,132 +1,134 @@
-IBDEI1NS ; ; 06-AUG-2015
+IBDEI1NS ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29467,0)
- ;;=M54.2^^176^1884^4
- ;;^UTILITY(U,$J,358.3,29467,1,0)
+ ;;^UTILITY(U,$J,358.3,27754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29467,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,29467,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,29467,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,29468,0)
- ;;=I65.21^^176^1884^9
- ;;^UTILITY(U,$J,358.3,29468,1,0)
+ ;;^UTILITY(U,$J,358.3,27754,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,27754,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,27754,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,27755,0)
+ ;;=C78.02^^132^1320^131
+ ;;^UTILITY(U,$J,358.3,27755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29468,1,3,0)
- ;;=3^Occlusion and stenosis of right carotid artery
- ;;^UTILITY(U,$J,358.3,29468,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,29468,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,29469,0)
- ;;=I65.22^^176^1884^8
- ;;^UTILITY(U,$J,358.3,29469,1,0)
+ ;;^UTILITY(U,$J,358.3,27755,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,27755,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,27755,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,27756,0)
+ ;;=C78.7^^132^1320^136
+ ;;^UTILITY(U,$J,358.3,27756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29469,1,3,0)
- ;;=3^Occlusion and stenosis of left carotid artery
- ;;^UTILITY(U,$J,358.3,29469,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,29469,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,29470,0)
- ;;=M47.812^^176^1884^17
- ;;^UTILITY(U,$J,358.3,29470,1,0)
+ ;;^UTILITY(U,$J,358.3,27756,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,27756,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,27756,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,27757,0)
+ ;;=C79.71^^132^1320^149
+ ;;^UTILITY(U,$J,358.3,27757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29470,1,3,0)
- ;;=3^Spondylosis w/o myelopathy or radiculopathy, cervical region
- ;;^UTILITY(U,$J,358.3,29470,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,29470,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,29471,0)
- ;;=M47.12^^176^1884^16
- ;;^UTILITY(U,$J,358.3,29471,1,0)
+ ;;^UTILITY(U,$J,358.3,27757,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,27757,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,27757,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,27758,0)
+ ;;=C78.01^^132^1320^153
+ ;;^UTILITY(U,$J,358.3,27758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29471,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,29471,1,4,0)
- ;;=4^M47.12
- ;;^UTILITY(U,$J,358.3,29471,2)
- ;;=^5012052
- ;;^UTILITY(U,$J,358.3,29472,0)
- ;;=M48.02^^176^1884^14
- ;;^UTILITY(U,$J,358.3,29472,1,0)
+ ;;^UTILITY(U,$J,358.3,27758,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,27758,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,27758,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,27759,0)
+ ;;=C79.70^^132^1320^104
+ ;;^UTILITY(U,$J,358.3,27759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29472,1,3,0)
- ;;=3^Spinal stenosis, cervical region
- ;;^UTILITY(U,$J,358.3,29472,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,29472,2)
- ;;=^5012089
- ;;^UTILITY(U,$J,358.3,29473,0)
- ;;=M45.2^^176^1884^1
- ;;^UTILITY(U,$J,358.3,29473,1,0)
+ ;;^UTILITY(U,$J,358.3,27759,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,27759,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,27759,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,27760,0)
+ ;;=C78.00^^132^1320^137
+ ;;^UTILITY(U,$J,358.3,27760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29473,1,3,0)
- ;;=3^Ankylosing spondylitis of cervical region
- ;;^UTILITY(U,$J,358.3,29473,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,29473,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,29474,0)
- ;;=M45.0^^176^1884^2
- ;;^UTILITY(U,$J,358.3,29474,1,0)
+ ;;^UTILITY(U,$J,358.3,27760,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,27760,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,27760,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,27761,0)
+ ;;=D57.1^^132^1320^178
+ ;;^UTILITY(U,$J,358.3,27761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29474,1,3,0)
- ;;=3^Ankylosing spondylitis of multiple sites in spine
- ;;^UTILITY(U,$J,358.3,29474,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,29474,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,29475,0)
- ;;=Q76.2^^176^1884^5
- ;;^UTILITY(U,$J,358.3,29475,1,0)
+ ;;^UTILITY(U,$J,358.3,27761,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,27761,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,27761,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,27762,0)
+ ;;=D75.1^^132^1320^176
+ ;;^UTILITY(U,$J,358.3,27762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29475,1,3,0)
- ;;=3^Congenital spondylolisthesis
- ;;^UTILITY(U,$J,358.3,29475,1,4,0)
- ;;=4^Q76.2
- ;;^UTILITY(U,$J,358.3,29475,2)
- ;;=^5019003
- ;;^UTILITY(U,$J,358.3,29476,0)
- ;;=M43.10^^176^1884^15
- ;;^UTILITY(U,$J,358.3,29476,1,0)
+ ;;^UTILITY(U,$J,358.3,27762,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,27762,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,27762,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,27763,0)
+ ;;=C90.30^^132^1320^179
+ ;;^UTILITY(U,$J,358.3,27763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29476,1,3,0)
- ;;=3^Spondylolisthesis, site unspecified
- ;;^UTILITY(U,$J,358.3,29476,1,4,0)
- ;;=4^M43.10
- ;;^UTILITY(U,$J,358.3,29476,2)
- ;;=^5011921
- ;;^UTILITY(U,$J,358.3,29477,0)
- ;;=G95.0^^176^1884^18
- ;;^UTILITY(U,$J,358.3,29477,1,0)
+ ;;^UTILITY(U,$J,358.3,27763,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,27763,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,27763,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,27764,0)
+ ;;=D56.3^^132^1320^180
+ ;;^UTILITY(U,$J,358.3,27764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29477,1,3,0)
- ;;=3^Syringomyelia and syringobulbia
- ;;^UTILITY(U,$J,358.3,29477,1,4,0)
- ;;=4^G95.0
- ;;^UTILITY(U,$J,358.3,29477,2)
- ;;=^116874
- ;;^UTILITY(U,$J,358.3,29478,0)
- ;;=G95.20^^176^1884^6
- ;;^UTILITY(U,$J,358.3,29478,1,0)
+ ;;^UTILITY(U,$J,358.3,27764,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,27764,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,27764,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,27765,0)
+ ;;=D56.9^^132^1320^181
+ ;;^UTILITY(U,$J,358.3,27765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29478,1,3,0)
- ;;=3^Cord Compression,Unspec
- ;;^UTILITY(U,$J,358.3,29478,1,4,0)
- ;;=4^G95.20
- ;;^UTILITY(U,$J,358.3,29478,2)
- ;;=^5004190
- ;;^UTILITY(U,$J,358.3,29479,0)
- ;;=G96.0^^176^1884^3
- ;;^UTILITY(U,$J,358.3,29479,1,0)
+ ;;^UTILITY(U,$J,358.3,27765,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,27765,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,27765,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,27766,0)
+ ;;=M31.1^^132^1320^183
+ ;;^UTILITY(U,$J,358.3,27766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29479,1,3,0)
- ;;=3^Cerebrospinal fluid leak
- ;;^UTILITY(U,$J,358.3,29479,1,4,0)
- ;;=4^G96.0
+ ;;^UTILITY(U,$J,358.3,27766,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,27766,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,27766,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,27767,0)
+ ;;=D51.2^^132^1320^184

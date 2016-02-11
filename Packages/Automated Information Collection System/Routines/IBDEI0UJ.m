@@ -1,126 +1,126 @@
-IBDEI0UJ ; ; 06-AUG-2015
+IBDEI0UJ ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14824,0)
- ;;=10061^^80^924^18^^^^1
- ;;^UTILITY(U,$J,358.3,14824,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14824,1,2,0)
- ;;=2^10061
- ;;^UTILITY(U,$J,358.3,14824,1,3,0)
- ;;=3^I&D Complicated Abscess
- ;;^UTILITY(U,$J,358.3,14825,0)
- ;;=12001^^80^924^29^^^^1
- ;;^UTILITY(U,$J,358.3,14825,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14825,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,14825,1,3,0)
- ;;=3^Suture Simple Wound,Trunk/Ext 2.5 cm or <
- ;;^UTILITY(U,$J,358.3,14826,0)
- ;;=12002^^80^924^30^^^^1
- ;;^UTILITY(U,$J,358.3,14826,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14826,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,14826,1,3,0)
- ;;=3^Suture Simple Wound,Trunk/Ext 2.6-7.5 cm
- ;;^UTILITY(U,$J,358.3,14827,0)
- ;;=11042^^80^924^12^^^^1
- ;;^UTILITY(U,$J,358.3,14827,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14827,1,2,0)
- ;;=2^11042
- ;;^UTILITY(U,$J,358.3,14827,1,3,0)
- ;;=3^Debridement, Skin & Subcu. Tissue,1st 20sq cm
- ;;^UTILITY(U,$J,358.3,14828,0)
- ;;=20550^^80^924^21^^^^1
- ;;^UTILITY(U,$J,358.3,14828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14828,1,2,0)
- ;;=2^20550
- ;;^UTILITY(U,$J,358.3,14828,1,3,0)
- ;;=3^Injection, Tendon Sheath, Ligament, Ganglion Cyst
- ;;^UTILITY(U,$J,358.3,14829,0)
- ;;=20551^^80^924^20^^^^1
- ;;^UTILITY(U,$J,358.3,14829,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14829,1,2,0)
- ;;=2^20551
- ;;^UTILITY(U,$J,358.3,14829,1,3,0)
- ;;=3^Injection, Tendon Origin/Insertion
- ;;^UTILITY(U,$J,358.3,14830,0)
- ;;=20552^^80^924^22^^^^1
- ;;^UTILITY(U,$J,358.3,14830,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14830,1,2,0)
- ;;=2^20552
- ;;^UTILITY(U,$J,358.3,14830,1,3,0)
- ;;=3^Injection, Trigger Point, 1 or 2 Muscle groups
- ;;^UTILITY(U,$J,358.3,14831,0)
- ;;=20600^^80^924^2^^^^1
- ;;^UTILITY(U,$J,358.3,14831,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14831,1,2,0)
- ;;=2^20600
- ;;^UTILITY(U,$J,358.3,14831,1,3,0)
- ;;=3^Arthrocentesis,Small Jt w/o US Guidance
- ;;^UTILITY(U,$J,358.3,14832,0)
- ;;=20605^^80^924^4^^^^1
- ;;^UTILITY(U,$J,358.3,14832,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14832,1,2,0)
- ;;=2^20605
- ;;^UTILITY(U,$J,358.3,14832,1,3,0)
- ;;=3^Arthrocentesis,Intermediate Jt w/o US Guidance
- ;;^UTILITY(U,$J,358.3,14833,0)
- ;;=20610^^80^924^6^^^^1
- ;;^UTILITY(U,$J,358.3,14833,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14833,1,2,0)
- ;;=2^20610
- ;;^UTILITY(U,$J,358.3,14833,1,3,0)
- ;;=3^Arthrocentesis,Major Jt w/o US Guidance
- ;;^UTILITY(U,$J,358.3,14834,0)
- ;;=92950^^80^924^9^^^^1
- ;;^UTILITY(U,$J,358.3,14834,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14834,1,2,0)
- ;;=2^92950
- ;;^UTILITY(U,$J,358.3,14834,1,3,0)
- ;;=3^CPR
- ;;^UTILITY(U,$J,358.3,14835,0)
- ;;=11055^^80^924^31^^^^1
- ;;^UTILITY(U,$J,358.3,14835,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14835,1,2,0)
- ;;=2^11055
- ;;^UTILITY(U,$J,358.3,14835,1,3,0)
- ;;=3^Trim Corn/Callous, One
- ;;^UTILITY(U,$J,358.3,14836,0)
- ;;=11056^^80^924^32^^^^1
- ;;^UTILITY(U,$J,358.3,14836,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14836,1,2,0)
- ;;=2^11056
- ;;^UTILITY(U,$J,358.3,14836,1,3,0)
- ;;=3^Trim Corn/Callous, 2 to 4
- ;;^UTILITY(U,$J,358.3,14837,0)
- ;;=11057^^80^924^33^^^^1
- ;;^UTILITY(U,$J,358.3,14837,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14837,1,2,0)
- ;;=2^11057
- ;;^UTILITY(U,$J,358.3,14837,1,3,0)
- ;;=3^Trim Corn/Callous, 5 or more
- ;;^UTILITY(U,$J,358.3,14838,0)
- ;;=12011^^80^924^27^^^^1
- ;;^UTILITY(U,$J,358.3,14838,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,14838,1,2,0)
- ;;=2^12011
- ;;^UTILITY(U,$J,358.3,14838,1,3,0)
- ;;=3^Suture Simple Wound,Face,2.5 cm or <
- ;;^UTILITY(U,$J,358.3,14839,0)
- ;;=97597^^80^924^10^^^^1
+ ;;^UTILITY(U,$J,358.3,14054,2)
+ ;;=^5133509
+ ;;^UTILITY(U,$J,358.3,14055,0)
+ ;;=H40.61X4^^82^770^39
+ ;;^UTILITY(U,$J,358.3,14055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14055,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,14055,1,4,0)
+ ;;=4^H40.61X4
+ ;;^UTILITY(U,$J,358.3,14055,2)
+ ;;=^5005909
+ ;;^UTILITY(U,$J,358.3,14056,0)
+ ;;=H40.62X1^^82^770^35
+ ;;^UTILITY(U,$J,358.3,14056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14056,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,14056,1,4,0)
+ ;;=4^H40.62X1
+ ;;^UTILITY(U,$J,358.3,14056,2)
+ ;;=^5005911
+ ;;^UTILITY(U,$J,358.3,14057,0)
+ ;;=H40.62X0^^82^770^38
+ ;;^UTILITY(U,$J,358.3,14057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14057,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,14057,1,4,0)
+ ;;=4^H40.62X0
+ ;;^UTILITY(U,$J,358.3,14057,2)
+ ;;=^5005910
+ ;;^UTILITY(U,$J,358.3,14058,0)
+ ;;=H40.62X2^^82^770^36
+ ;;^UTILITY(U,$J,358.3,14058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14058,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,14058,1,4,0)
+ ;;=4^H40.62X2
+ ;;^UTILITY(U,$J,358.3,14058,2)
+ ;;=^5005912
+ ;;^UTILITY(U,$J,358.3,14059,0)
+ ;;=H40.62X3^^82^770^37
+ ;;^UTILITY(U,$J,358.3,14059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14059,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,14059,1,4,0)
+ ;;=4^H40.62X3
+ ;;^UTILITY(U,$J,358.3,14059,2)
+ ;;=^5133510
+ ;;^UTILITY(U,$J,358.3,14060,0)
+ ;;=H40.62X4^^82^770^34
+ ;;^UTILITY(U,$J,358.3,14060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14060,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,14060,1,4,0)
+ ;;=4^H40.62X4
+ ;;^UTILITY(U,$J,358.3,14060,2)
+ ;;=^5005913
+ ;;^UTILITY(U,$J,358.3,14061,0)
+ ;;=H40.63X0^^82^770^33
+ ;;^UTILITY(U,$J,358.3,14061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14061,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,14061,1,4,0)
+ ;;=4^H40.63X0
+ ;;^UTILITY(U,$J,358.3,14061,2)
+ ;;=^5005914
+ ;;^UTILITY(U,$J,358.3,14062,0)
+ ;;=H40.63X1^^82^770^30
+ ;;^UTILITY(U,$J,358.3,14062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14062,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,14062,1,4,0)
+ ;;=4^H40.63X1
+ ;;^UTILITY(U,$J,358.3,14062,2)
+ ;;=^5005915
+ ;;^UTILITY(U,$J,358.3,14063,0)
+ ;;=H40.63X2^^82^770^31
+ ;;^UTILITY(U,$J,358.3,14063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14063,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,14063,1,4,0)
+ ;;=4^H40.63X2
+ ;;^UTILITY(U,$J,358.3,14063,2)
+ ;;=^5005916
+ ;;^UTILITY(U,$J,358.3,14064,0)
+ ;;=H40.63X3^^82^770^32
+ ;;^UTILITY(U,$J,358.3,14064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14064,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,14064,1,4,0)
+ ;;=4^H40.63X3
+ ;;^UTILITY(U,$J,358.3,14064,2)
+ ;;=^5005917
+ ;;^UTILITY(U,$J,358.3,14065,0)
+ ;;=H40.63X4^^82^770^29
+ ;;^UTILITY(U,$J,358.3,14065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14065,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,14065,1,4,0)
+ ;;=4^H40.63X4
+ ;;^UTILITY(U,$J,358.3,14065,2)
+ ;;=^5005918
+ ;;^UTILITY(U,$J,358.3,14066,0)
+ ;;=H40.51X0^^82^770^54
+ ;;^UTILITY(U,$J,358.3,14066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14066,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,14066,1,4,0)
+ ;;=4^H40.51X0
+ ;;^UTILITY(U,$J,358.3,14066,2)
+ ;;=^5005888

@@ -1,5 +1,5 @@
 RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22**;Feb 17, 2006;Build 17
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26**;Feb 17, 2006;Build 53
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -10,6 +10,8 @@ RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
  ;ROR*1.5*22   FEB  2014   T KOPP       Added tag SKIPOEF to return the result
  ;                                      if the period of service of patient
  ;                                      matches OEF/OIF selection criteria.
+ ;ROR*1.5*26   JAN  2015   T KOPP       Added check for SVR match in report
+ ;                                      screen logic, flags S and V
  ;****************************************************************************** 
  ; This routine uses the following IAs:
  ;
@@ -106,6 +108,9 @@ RISKS(RORIEN) ;
  ;                 E  Exclude patients with OEF/OIF period of service
  ;                 I  Include only patients with OEF/OIF period of service
  ;
+ ;                 S  Include only patients with SVR
+ ;                 V  Include only patients with No SVR
+ ;
  ; [STDT]        Start date of the report (FileMan).
  ;               Time is ignored and the beginning of the day is
  ;               considered as the boundary (STDT\1).
@@ -150,6 +155,24 @@ SKIP(RORIEN,FLAGS,STDT,ENDT) ;
  I FLAGS["E"!(FLAGS["I") D  Q:SKIP 1
  . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
  . S SKIP=$$SKIPOEF(PTIEN,FLAGS)
+ ;
+ ;--- SVR patients screen
+ I FLAGS["V"!(FLAGS["S") D  Q:SKIP 1
+ . N REGIEN,RC,RORXL,RORLDST,RORXDST
+ . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
+ . S REGIEN=$$GET1^DIQ(798,RORIEN_",",.02,"I")
+ . ;== Lab parameters
+ . S RORLDST("RORCB")="$$LTSCB^RORX023A"
+ . ;== Pharm parameters
+ . S RORXDST("GENERIC")=1  ;only meds with generic name
+ . S RORXDST("RORCB")="$$RXOCB^RORX023A"   ;call back routine
+ . ;--- RX list of HepC registry drugs
+ . S RORXL=$$ALLOC^RORTMP()
+ . S RC=$$DRUGLIST^RORUTL16(RORXL,REGIEN)
+ . S RC=$$SVR^RORX023A(PTIEN,2000101,DT,REGIEN,RORXL,"",$$FMADD^XLFDT(DT,1),.RORLDST,.RORXDST)
+ . D POP^RORTMP(RORXL)
+ . I FLAGS["V" S SKIP=$S(RC=0:0,1:1) Q  ; skip if SVR and not SVR requested
+ . I FLAGS["S" S SKIP=$S(RC=1:0,1:1)    ; skip if not SVR and SVR requested
  ;
  ;--- Confirmed before/during/after the date range
  S ENDT=$S($G(ENDT)>0:ENDT\1,1:9999999)+1

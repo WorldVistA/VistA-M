@@ -1,0 +1,130 @@
+IBDEI3HQ ; ; 19-NOV-2015
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+Q Q
+ ;;^UTILITY(U,$J,358.3,58703,0)
+ ;;=H43.823^^272^2910^113
+ ;;^UTILITY(U,$J,358.3,58703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58703,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Bilateral
+ ;;^UTILITY(U,$J,358.3,58703,1,4,0)
+ ;;=4^H43.823
+ ;;^UTILITY(U,$J,358.3,58703,2)
+ ;;=^5005959
+ ;;^UTILITY(U,$J,358.3,58704,0)
+ ;;=H35.31^^272^2910^63
+ ;;^UTILITY(U,$J,358.3,58704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58704,1,3,0)
+ ;;=3^Nonexudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,58704,1,4,0)
+ ;;=4^H35.31
+ ;;^UTILITY(U,$J,358.3,58704,2)
+ ;;=^5005647
+ ;;^UTILITY(U,$J,358.3,58705,0)
+ ;;=H35.353^^272^2910^31
+ ;;^UTILITY(U,$J,358.3,58705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58705,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,58705,1,4,0)
+ ;;=4^H35.353
+ ;;^UTILITY(U,$J,358.3,58705,2)
+ ;;=^5005656
+ ;;^UTILITY(U,$J,358.3,58706,0)
+ ;;=H35.352^^272^2910^33
+ ;;^UTILITY(U,$J,358.3,58706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58706,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,58706,1,4,0)
+ ;;=4^H35.352
+ ;;^UTILITY(U,$J,358.3,58706,2)
+ ;;=^5005655
+ ;;^UTILITY(U,$J,358.3,58707,0)
+ ;;=H35.351^^272^2910^35
+ ;;^UTILITY(U,$J,358.3,58707,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58707,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,58707,1,4,0)
+ ;;=4^H35.351
+ ;;^UTILITY(U,$J,358.3,58707,2)
+ ;;=^5005654
+ ;;^UTILITY(U,$J,358.3,58708,0)
+ ;;=H31.402^^272^2910^24
+ ;;^UTILITY(U,$J,358.3,58708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58708,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,58708,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,58708,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,58709,0)
+ ;;=H31.401^^272^2910^25
+ ;;^UTILITY(U,$J,358.3,58709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58709,1,3,0)
+ ;;=3^Choroidal Detachment,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,58709,1,4,0)
+ ;;=4^H31.401
+ ;;^UTILITY(U,$J,358.3,58709,2)
+ ;;=^5005476
+ ;;^UTILITY(U,$J,358.3,58710,0)
+ ;;=H35.353^^272^2910^32
+ ;;^UTILITY(U,$J,358.3,58710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58710,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,58710,1,4,0)
+ ;;=4^H35.353
+ ;;^UTILITY(U,$J,358.3,58710,2)
+ ;;=^5005656
+ ;;^UTILITY(U,$J,358.3,58711,0)
+ ;;=H35.352^^272^2910^34
+ ;;^UTILITY(U,$J,358.3,58711,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58711,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,58711,1,4,0)
+ ;;=4^H35.352
+ ;;^UTILITY(U,$J,358.3,58711,2)
+ ;;=^5005655
+ ;;^UTILITY(U,$J,358.3,58712,0)
+ ;;=H35.351^^272^2910^36
+ ;;^UTILITY(U,$J,358.3,58712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58712,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,58712,1,4,0)
+ ;;=4^H35.351
+ ;;^UTILITY(U,$J,358.3,58712,2)
+ ;;=^5005654
+ ;;^UTILITY(U,$J,358.3,58713,0)
+ ;;=H35.32^^272^2910^42
+ ;;^UTILITY(U,$J,358.3,58713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58713,1,3,0)
+ ;;=3^Exudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,58713,1,4,0)
+ ;;=4^H35.32
+ ;;^UTILITY(U,$J,358.3,58713,2)
+ ;;=^5005648
+ ;;^UTILITY(U,$J,358.3,58714,0)
+ ;;=H35.023^^272^2910^43
+ ;;^UTILITY(U,$J,358.3,58714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58714,1,3,0)
+ ;;=3^Exudative Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,58714,1,4,0)
+ ;;=4^H35.023
+ ;;^UTILITY(U,$J,358.3,58714,2)
+ ;;=^5005588
+ ;;^UTILITY(U,$J,358.3,58715,0)
+ ;;=H35.022^^272^2910^44
+ ;;^UTILITY(U,$J,358.3,58715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,58715,1,3,0)
+ ;;=3^Exudative Retinopathy,Left Eye

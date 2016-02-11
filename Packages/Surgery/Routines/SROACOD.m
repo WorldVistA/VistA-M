@@ -1,5 +1,5 @@
 SROACOD ;BIR/SJA - ALERT CODERS OF POTENTIAL CODING ISSUES ;04/18/06
- ;;3.0;Surgery;**146,152,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**146,152,177,184**;24 Jun 93;Build 35
  I '$D(SRTN) K SRNEWOP D ^SROPS G:'$D(SRTN) END S SRTN("KILL")=1
  N I,J,SRCPTP,SRLN,SRNODE0,SRPOST,SRTXT,SRSOUT,SRSUPCPT,X,XX,Y
  S SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
@@ -7,12 +7,12 @@ START G:SRSOUT END K SRAOTH
  D HDR^SROAUTL
  W !,"The following ""final"" codes have been entered for the case.",!!
  S X=$P($G(^SRO(136,SRTN,0)),"^",2) I X S Y=$P($$CPT^ICPTCOD(X),"^",2) D SSPRIN^SROCPT0 S X=Y
- W "Principal CPT Code: ",$S($L(X):X,1:"NOT ENTERED") S SRCPTP=X
+ W "Principal CPT Code: ",?30,$S($L(X):X,1:"NOT ENTERED") S SRCPTP=X
  N SRPROC,K,SRL
- S SRPROC(1)="",SRL=60,K=1 D OTH^SROUTLN W !,"Other CPT Codes: "_$S(SRPROC(1)="":"   NOT ENTERED",1:"")
+ S SRPROC(1)="",SRL=60,K=1 D OTH^SROUTLN W !,"Other CPT Codes: ",?30,$S(SRPROC(1)="":"NOT ENTERED",1:"")
  F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?20,$P(SRPROC(I),", ",2,99),! W:I'=1 ?20,SRPROC(I),!
  S X=$P($G(^SRO(136,SRTN,0)),"^",3) S:X X=$$ICD^SROICD(SRTN,X),X=$P(X,"^",2)_"   "_$P(X,"^",4)
- W "Postop Diagnosis Code "_$$ICDSTR^SROICD(SRTN)_": ",$S(X'="":X,1:"NOT ENTERED"),! S SRPOST=X
+ W "Postop Diagnosis Code "_$$ICDSTR^SROICD(SRTN)_": ",?30,$S(X'="":X,1:"NOT ENTERED"),! S SRPOST=X
  W !!,"If you believe that the information coded is not correct and would like to",!,"alert the coders of the potential issue, enter a brief description of your",!,"concern below.",!
  D ASK G:SRSOUT END
  K ^TMP($J,"SRC")

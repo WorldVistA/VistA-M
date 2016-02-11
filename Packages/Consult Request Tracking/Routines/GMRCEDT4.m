@@ -1,8 +1,8 @@
-GMRCEDT4 ;SLC/DCM,JFR - UTILITIES FOR EDITING FIELDS ;03/27/13  09:21
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,73**;DEC 27, 1997;Build 22
+GMRCEDT4 ;SLC/DCM,JFR - UTILITIES FOR EDITING FIELDS ;10/13/15  07:31
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,73,85**;DEC 27, 1997;Build 3
  ;
- ; This routine invokes IA #5699 (ICDXCODE), #872 (ORD(101)), #10142 (DDIOL), #10006 (DIC)
- ;                         #2051 (FIND1^DIC), #2056 (GET1^DIQ), #10026 (DIR), #10028 (DIWE)
+ ; This routine invokes IA #5747 (ICDEX), #872 (ORD(101)), #10142 (DDIOL), #10006 (DIC)
+ ;                         #2051 (FIND1^DIC), #2056 (GET1^DIQ), #10026 (DIR), #10028 (DIWE), #5679 (LEXU)
  ;                         #1572 (LEX(757.01), #1609 (CONFIG^LEXSET), #10103 (XLFDT), #10104 (XLFSTR), #10140 (XQORM)
  ;
  Q
@@ -14,7 +14,7 @@ EDITFLD(GMRCO)    ;edit field in file 123.
  .S GMRCMSG="This consult is no longer editable." D EXAC^GMRCADC(GMRCMSG)
  S GMRCMSG=$$EDRESOK^GMRCEDT2(GMRCO)
  I '+GMRCMSG D EXAC^GMRCADC($P(GMRCMSG,U,2)) Q
- I $$PDOK(GMRCO)
+ ;patch 85 removed call to $$PDOK(GMRCO)
  S DIR(0)="LAO^1:9",DIR("A")="Select the fields to edit: "
  D ^DIR I $D(DIRUT) Q
  I $P(Y,",")<1 Q
@@ -235,12 +235,13 @@ VALIDUR(URG,REND,PROC) ;urgency still valid?
 NOCHG() ;no changes made
  Q "No Changes made!"
 PDOK(GMRCDA) ;check validity of Prov. DX code for active status
+ ;WAT - as of patch 85 this code no longer called. Leaving here in case biz needs change.
  N MSG,GMRCCPTR,GMRCCSYS,GMRCCODE
  I '$L($G(^GMR(123,GMRCDA,30.1))) Q 1
  S GMRCCODE=$P($G(^GMR(123,+GMRCO,30.1)),"^",1)
  S GMRCCSYS=$P($G(^GMR(123,+GMRCO,30.1)),"^",3)
  S GMRCCPTR=$S(GMRCCSYS="ICD":1,1:30)
- I +$$STATCHK^ICDXCODE(GMRCCPTR,GMRCCODE,DT) Q 1 ;code still active
+ I +$$STATCHK^ICDEX(GMRCCODE,DT,GMRCCPTR) Q 1 ;code still active
  S MSG="The provisional DX code must be edited before this request"
  S MSG=MSG_" may be resubmitted."
  D EN^DDIOL(MSG,,"!!")

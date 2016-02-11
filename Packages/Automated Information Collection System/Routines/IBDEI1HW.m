@@ -1,130 +1,118 @@
-IBDEI1HW ; ; 06-AUG-2015
+IBDEI1HW ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26534,1,2,0)
- ;;=2^Chemodenerv 1 Extremity 1-4 Ea
- ;;^UTILITY(U,$J,358.3,26534,1,3,0)
- ;;=3^64643
- ;;^UTILITY(U,$J,358.3,26535,0)
- ;;=64644^^154^1704^3^^^^1
- ;;^UTILITY(U,$J,358.3,26535,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26535,1,2,0)
- ;;=2^Chemodenerv 1 Extremity 5/> Mus
- ;;^UTILITY(U,$J,358.3,26535,1,3,0)
- ;;=3^64644
- ;;^UTILITY(U,$J,358.3,26536,0)
- ;;=64645^^154^1704^4^^^^1
- ;;^UTILITY(U,$J,358.3,26536,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26536,1,2,0)
- ;;=2^Chemodenerv 1 Extremity 5/> Ea
- ;;^UTILITY(U,$J,358.3,26536,1,3,0)
- ;;=3^64645
- ;;^UTILITY(U,$J,358.3,26537,0)
- ;;=64646^^154^1704^7^^^^1
- ;;^UTILITY(U,$J,358.3,26537,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26537,1,2,0)
- ;;=2^Chemodenerv Trunk Musc 1-5
- ;;^UTILITY(U,$J,358.3,26537,1,3,0)
- ;;=3^64646
- ;;^UTILITY(U,$J,358.3,26538,0)
- ;;=64647^^154^1704^8^^^^1
- ;;^UTILITY(U,$J,358.3,26538,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26538,1,2,0)
- ;;=2^Chemodenerv Trunk Musc 6/>
- ;;^UTILITY(U,$J,358.3,26538,1,3,0)
- ;;=3^64647
- ;;^UTILITY(U,$J,358.3,26539,0)
- ;;=J0585^^154^1704^9^^^^1
- ;;^UTILITY(U,$J,358.3,26539,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26539,1,2,0)
- ;;=2^OnabotulinumtoxinA 1 Unit
- ;;^UTILITY(U,$J,358.3,26539,1,3,0)
- ;;=3^J0585
- ;;^UTILITY(U,$J,358.3,26540,0)
- ;;=J0587^^154^1704^10^^^^1
- ;;^UTILITY(U,$J,358.3,26540,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26540,1,2,0)
- ;;=2^RimabotulinumtoxinB 100 Units
- ;;^UTILITY(U,$J,358.3,26540,1,3,0)
- ;;=3^J0587
- ;;^UTILITY(U,$J,358.3,26541,0)
- ;;=97762^^154^1705^1^^^^1
- ;;^UTILITY(U,$J,358.3,26541,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26541,1,2,0)
- ;;=2^C/O for Orthotic/Prosth Use
- ;;^UTILITY(U,$J,358.3,26541,1,3,0)
- ;;=3^97762
- ;;^UTILITY(U,$J,358.3,26542,0)
- ;;=96116^^154^1705^2^^^^1
- ;;^UTILITY(U,$J,358.3,26542,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26542,1,2,0)
- ;;=2^Neurobehavioral Status Exam,per hour
- ;;^UTILITY(U,$J,358.3,26542,1,3,0)
- ;;=3^96116
- ;;^UTILITY(U,$J,358.3,26543,0)
- ;;=62367^^154^1706^2^^^^1
- ;;^UTILITY(U,$J,358.3,26543,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26543,1,2,0)
- ;;=2^Pump Analysis Only
- ;;^UTILITY(U,$J,358.3,26543,1,3,0)
- ;;=3^62367
- ;;^UTILITY(U,$J,358.3,26544,0)
- ;;=62368^^154^1706^4^^^^1
- ;;^UTILITY(U,$J,358.3,26544,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26544,1,2,0)
- ;;=2^Pump Reprogram
- ;;^UTILITY(U,$J,358.3,26544,1,3,0)
- ;;=3^62368
- ;;^UTILITY(U,$J,358.3,26545,0)
- ;;=62370^^154^1706^3^^^^1
- ;;^UTILITY(U,$J,358.3,26545,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26545,1,2,0)
- ;;=2^Pump Analysis Reprogram Refill
- ;;^UTILITY(U,$J,358.3,26545,1,3,0)
- ;;=3^62370
- ;;^UTILITY(U,$J,358.3,26546,0)
- ;;=61070^^154^1706^1^^^^1
- ;;^UTILITY(U,$J,358.3,26546,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26546,1,2,0)
- ;;=2^Catheter Dye Study
- ;;^UTILITY(U,$J,358.3,26546,1,3,0)
- ;;=3^61070
- ;;^UTILITY(U,$J,358.3,26547,0)
- ;;=95873^^154^1707^2^^^^1
- ;;^UTILITY(U,$J,358.3,26547,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26547,1,2,0)
- ;;=2^Stim Guidance
- ;;^UTILITY(U,$J,358.3,26547,1,3,0)
- ;;=3^95873
- ;;^UTILITY(U,$J,358.3,26548,0)
- ;;=95874^^154^1707^1^^^^1
- ;;^UTILITY(U,$J,358.3,26548,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26548,1,2,0)
- ;;=2^Needle Guidance
- ;;^UTILITY(U,$J,358.3,26548,1,3,0)
- ;;=3^95874
- ;;^UTILITY(U,$J,358.3,26549,0)
- ;;=20526^^154^1708^1^^^^1
- ;;^UTILITY(U,$J,358.3,26549,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26549,1,2,0)
- ;;=2^Therapeutic Injection
- ;;^UTILITY(U,$J,358.3,26549,1,3,0)
- ;;=3^20526
- ;;^UTILITY(U,$J,358.3,26550,0)
- ;;=20611^^154^1709^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25001,1,4,0)
+ ;;=4^T84.623A
+ ;;^UTILITY(U,$J,358.3,25001,2)
+ ;;=^5055433
+ ;;^UTILITY(U,$J,358.3,25002,0)
+ ;;=T84.624A^^124^1239^80
+ ;;^UTILITY(U,$J,358.3,25002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25002,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Fibula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25002,1,4,0)
+ ;;=4^T84.624A
+ ;;^UTILITY(U,$J,358.3,25002,2)
+ ;;=^5055436
+ ;;^UTILITY(U,$J,358.3,25003,0)
+ ;;=T84.625A^^124^1239^81
+ ;;^UTILITY(U,$J,358.3,25003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25003,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Fibula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25003,1,4,0)
+ ;;=4^T84.625A
+ ;;^UTILITY(U,$J,358.3,25003,2)
+ ;;=^5055439
+ ;;^UTILITY(U,$J,358.3,25004,0)
+ ;;=T84.63XA^^124^1239^82
+ ;;^UTILITY(U,$J,358.3,25004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25004,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Spine,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25004,1,4,0)
+ ;;=4^T84.63XA
+ ;;^UTILITY(U,$J,358.3,25004,2)
+ ;;=^5055445
+ ;;^UTILITY(U,$J,358.3,25005,0)
+ ;;=T84.7XXA^^124^1239^85
+ ;;^UTILITY(U,$J,358.3,25005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25005,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25005,1,4,0)
+ ;;=4^T84.7XXA
+ ;;^UTILITY(U,$J,358.3,25005,2)
+ ;;=^5055451
+ ;;^UTILITY(U,$J,358.3,25006,0)
+ ;;=T82.817A^^124^1239^52
+ ;;^UTILITY(U,$J,358.3,25006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25006,1,3,0)
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25006,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,25006,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,25007,0)
+ ;;=T82.827A^^124^1239^58
+ ;;^UTILITY(U,$J,358.3,25007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25007,1,3,0)
+ ;;=3^Fibrosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25007,1,4,0)
+ ;;=4^T82.827A
+ ;;^UTILITY(U,$J,358.3,25007,2)
+ ;;=^5054920
+ ;;^UTILITY(U,$J,358.3,25008,0)
+ ;;=T82.837A^^124^1239^63
+ ;;^UTILITY(U,$J,358.3,25008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25008,1,3,0)
+ ;;=3^Hemorrhage of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25008,1,4,0)
+ ;;=4^T82.837A
+ ;;^UTILITY(U,$J,358.3,25008,2)
+ ;;=^5054926
+ ;;^UTILITY(U,$J,358.3,25009,0)
+ ;;=T82.847A^^124^1239^160
+ ;;^UTILITY(U,$J,358.3,25009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25009,1,3,0)
+ ;;=3^Pain from Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25009,1,4,0)
+ ;;=4^T82.847A
+ ;;^UTILITY(U,$J,358.3,25009,2)
+ ;;=^5054932
+ ;;^UTILITY(U,$J,358.3,25010,0)
+ ;;=T82.857A^^124^1239^209
+ ;;^UTILITY(U,$J,358.3,25010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25010,1,3,0)
+ ;;=3^Stenosis of of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25010,1,4,0)
+ ;;=4^T82.857A
+ ;;^UTILITY(U,$J,358.3,25010,2)
+ ;;=^5054938
+ ;;^UTILITY(U,$J,358.3,25011,0)
+ ;;=T82.867A^^124^1239^212
+ ;;^UTILITY(U,$J,358.3,25011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25011,1,3,0)
+ ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25011,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,25011,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,25012,0)
+ ;;=T82.9XXA^^124^1239^28
+ ;;^UTILITY(U,$J,358.3,25012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25012,1,3,0)
+ ;;=3^Complications of Cardiac/Vascular Prosthetic Device/Implant/Graft Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25012,1,4,0)
+ ;;=4^T82.9XXA
+ ;;^UTILITY(U,$J,358.3,25012,2)
+ ;;=^5054956

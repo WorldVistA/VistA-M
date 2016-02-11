@@ -1,132 +1,130 @@
-IBDEI1O9 ; ; 06-AUG-2015
+IBDEI1O9 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29682,1,4,0)
- ;;=4^L89.519
- ;;^UTILITY(U,$J,358.3,29682,2)
- ;;=^5133673
- ;;^UTILITY(U,$J,358.3,29683,0)
- ;;=L89.520^^177^1892^18
- ;;^UTILITY(U,$J,358.3,29683,1,0)
+ ;;^UTILITY(U,$J,358.3,27973,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,27973,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,27974,0)
+ ;;=J20.6^^132^1322^15
+ ;;^UTILITY(U,$J,358.3,27974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29683,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Unstageable
- ;;^UTILITY(U,$J,358.3,29683,1,4,0)
- ;;=4^L89.520
- ;;^UTILITY(U,$J,358.3,29683,2)
- ;;=^5009420
- ;;^UTILITY(U,$J,358.3,29684,0)
- ;;=L89.521^^177^1892^13
- ;;^UTILITY(U,$J,358.3,29684,1,0)
+ ;;^UTILITY(U,$J,358.3,27974,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,27974,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,27974,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,27975,0)
+ ;;=J18.9^^132^1322^67
+ ;;^UTILITY(U,$J,358.3,27975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29684,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 1
- ;;^UTILITY(U,$J,358.3,29684,1,4,0)
- ;;=4^L89.521
- ;;^UTILITY(U,$J,358.3,29684,2)
- ;;=^5009421
- ;;^UTILITY(U,$J,358.3,29685,0)
- ;;=L89.522^^177^1892^14
- ;;^UTILITY(U,$J,358.3,29685,1,0)
+ ;;^UTILITY(U,$J,358.3,27975,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,27975,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,27975,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,27976,0)
+ ;;=J18.8^^132^1322^68
+ ;;^UTILITY(U,$J,358.3,27976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29685,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 2
- ;;^UTILITY(U,$J,358.3,29685,1,4,0)
- ;;=4^L89.522
- ;;^UTILITY(U,$J,358.3,29685,2)
- ;;=^5009422
- ;;^UTILITY(U,$J,358.3,29686,0)
- ;;=L89.523^^177^1892^15
- ;;^UTILITY(U,$J,358.3,29686,1,0)
+ ;;^UTILITY(U,$J,358.3,27976,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,27976,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,27976,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,27977,0)
+ ;;=J11.00^^132^1322^28
+ ;;^UTILITY(U,$J,358.3,27977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29686,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 3
- ;;^UTILITY(U,$J,358.3,29686,1,4,0)
- ;;=4^L89.523
- ;;^UTILITY(U,$J,358.3,29686,2)
- ;;=^5009423
- ;;^UTILITY(U,$J,358.3,29687,0)
- ;;=L89.524^^177^1892^16
- ;;^UTILITY(U,$J,358.3,29687,1,0)
+ ;;^UTILITY(U,$J,358.3,27977,1,3,0)
+ ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,27977,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,27977,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,27978,0)
+ ;;=J12.9^^132^1322^69
+ ;;^UTILITY(U,$J,358.3,27978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29687,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 4
- ;;^UTILITY(U,$J,358.3,29687,1,4,0)
- ;;=4^L89.524
- ;;^UTILITY(U,$J,358.3,29687,2)
- ;;=^5009424
- ;;^UTILITY(U,$J,358.3,29688,0)
- ;;=L89.529^^177^1892^17
- ;;^UTILITY(U,$J,358.3,29688,1,0)
+ ;;^UTILITY(U,$J,358.3,27978,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,27978,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,27978,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,27979,0)
+ ;;=J10.08^^132^1322^41
+ ;;^UTILITY(U,$J,358.3,27979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29688,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29688,1,4,0)
- ;;=4^L89.529
- ;;^UTILITY(U,$J,358.3,29688,2)
- ;;=^5133674
- ;;^UTILITY(U,$J,358.3,29689,0)
- ;;=L89.610^^177^1892^84
- ;;^UTILITY(U,$J,358.3,29689,1,0)
+ ;;^UTILITY(U,$J,358.3,27979,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,27979,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,27979,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,27980,0)
+ ;;=J10.00^^132^1322^40
+ ;;^UTILITY(U,$J,358.3,27980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29689,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Unstageable
- ;;^UTILITY(U,$J,358.3,29689,1,4,0)
- ;;=4^L89.610
- ;;^UTILITY(U,$J,358.3,29689,2)
- ;;=^5009430
- ;;^UTILITY(U,$J,358.3,29690,0)
- ;;=L89.611^^177^1892^79
- ;;^UTILITY(U,$J,358.3,29690,1,0)
+ ;;^UTILITY(U,$J,358.3,27980,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,27980,1,4,0)
+ ;;=4^J10.00
+ ;;^UTILITY(U,$J,358.3,27980,2)
+ ;;=^5008148
+ ;;^UTILITY(U,$J,358.3,27981,0)
+ ;;=J11.08^^132^1322^43
+ ;;^UTILITY(U,$J,358.3,27981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29690,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 1
- ;;^UTILITY(U,$J,358.3,29690,1,4,0)
- ;;=4^L89.611
- ;;^UTILITY(U,$J,358.3,29690,2)
- ;;=^5009431
- ;;^UTILITY(U,$J,358.3,29691,0)
- ;;=L89.612^^177^1892^80
- ;;^UTILITY(U,$J,358.3,29691,1,0)
+ ;;^UTILITY(U,$J,358.3,27981,1,3,0)
+ ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
+ ;;^UTILITY(U,$J,358.3,27981,1,4,0)
+ ;;=4^J11.08
+ ;;^UTILITY(U,$J,358.3,27981,2)
+ ;;=^5008157
+ ;;^UTILITY(U,$J,358.3,27982,0)
+ ;;=J10.1^^132^1322^42
+ ;;^UTILITY(U,$J,358.3,27982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29691,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 2
- ;;^UTILITY(U,$J,358.3,29691,1,4,0)
- ;;=4^L89.612
- ;;^UTILITY(U,$J,358.3,29691,2)
- ;;=^5009432
- ;;^UTILITY(U,$J,358.3,29692,0)
- ;;=L89.613^^177^1892^81
- ;;^UTILITY(U,$J,358.3,29692,1,0)
+ ;;^UTILITY(U,$J,358.3,27982,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,27982,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,27982,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,27983,0)
+ ;;=J10.01^^132^1322^39
+ ;;^UTILITY(U,$J,358.3,27983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29692,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 3
- ;;^UTILITY(U,$J,358.3,29692,1,4,0)
- ;;=4^L89.613
- ;;^UTILITY(U,$J,358.3,29692,2)
- ;;=^5009433
- ;;^UTILITY(U,$J,358.3,29693,0)
- ;;=L89.614^^177^1892^82
- ;;^UTILITY(U,$J,358.3,29693,1,0)
+ ;;^UTILITY(U,$J,358.3,27983,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,27983,1,4,0)
+ ;;=4^J10.01
+ ;;^UTILITY(U,$J,358.3,27983,2)
+ ;;=^5008149
+ ;;^UTILITY(U,$J,358.3,27984,0)
+ ;;=J11.1^^132^1322^44
+ ;;^UTILITY(U,$J,358.3,27984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29693,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 4
- ;;^UTILITY(U,$J,358.3,29693,1,4,0)
- ;;=4^L89.614
- ;;^UTILITY(U,$J,358.3,29693,2)
- ;;=^5009434
- ;;^UTILITY(U,$J,358.3,29694,0)
- ;;=L89.619^^177^1892^83
- ;;^UTILITY(U,$J,358.3,29694,1,0)
+ ;;^UTILITY(U,$J,358.3,27984,1,3,0)
+ ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,27984,1,4,0)
+ ;;=4^J11.1
+ ;;^UTILITY(U,$J,358.3,27984,2)
+ ;;=^5008158
+ ;;^UTILITY(U,$J,358.3,27985,0)
+ ;;=N12.^^132^1322^85
+ ;;^UTILITY(U,$J,358.3,27985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29694,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage Unspec
- ;;^UTILITY(U,$J,358.3,29694,1,4,0)
- ;;=4^L89.619
- ;;^UTILITY(U,$J,358.3,29694,2)
- ;;=^5133676
- ;;^UTILITY(U,$J,358.3,29695,0)
- ;;=L89.620^^177^1892^36
- ;;^UTILITY(U,$J,358.3,29695,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27985,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,27985,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,27985,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,27986,0)
+ ;;=N11.9^^132^1322^86

@@ -1,124 +1,126 @@
-IBDEI1YE ; ; 06-AUG-2015
+IBDEI1YE ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34280,2)
- ;;=^5020995
- ;;^UTILITY(U,$J,358.3,34281,0)
- ;;=S06.370S^^183^2018^46
- ;;^UTILITY(U,$J,358.3,34281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34281,1,3,0)
- ;;=3^Contus/lac/hem crblm w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,34281,1,4,0)
- ;;=4^S06.370S
- ;;^UTILITY(U,$J,358.3,34281,2)
- ;;=^5020968
- ;;^UTILITY(U,$J,358.3,34282,0)
- ;;=S06.2X5S^^183^2018^47
- ;;^UTILITY(U,$J,358.3,34282,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34282,1,3,0)
- ;;=3^Diffuse TBI w LOC >24 hr w return to consc levels, sequela
- ;;^UTILITY(U,$J,358.3,34282,1,4,0)
- ;;=4^S06.2X5S
- ;;^UTILITY(U,$J,358.3,34282,2)
- ;;=^5020743
- ;;^UTILITY(U,$J,358.3,34283,0)
- ;;=S06.2X6S^^183^2018^48
- ;;^UTILITY(U,$J,358.3,34283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34283,1,3,0)
- ;;=3^Diffuse TBI w LOC >24 hr w/o ret consc w surv, sequela
- ;;^UTILITY(U,$J,358.3,34283,1,4,0)
- ;;=4^S06.2X6S
- ;;^UTILITY(U,$J,358.3,34283,2)
- ;;=^5020746
- ;;^UTILITY(U,$J,358.3,34284,0)
- ;;=S06.2X3S^^183^2018^49
- ;;^UTILITY(U,$J,358.3,34284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34284,1,3,0)
- ;;=3^Diffuse TBI w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,34284,1,4,0)
- ;;=4^S06.2X3S
- ;;^UTILITY(U,$J,358.3,34284,2)
- ;;=^5020737
- ;;^UTILITY(U,$J,358.3,34285,0)
- ;;=S06.2X1S^^183^2018^50
- ;;^UTILITY(U,$J,358.3,34285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34285,1,3,0)
- ;;=3^Diffuse TBI w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,34285,1,4,0)
- ;;=4^S06.2X1S
- ;;^UTILITY(U,$J,358.3,34285,2)
- ;;=^5020731
- ;;^UTILITY(U,$J,358.3,34286,0)
- ;;=S06.2X2S^^183^2018^51
- ;;^UTILITY(U,$J,358.3,34286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34286,1,3,0)
- ;;=3^Diffuse TBI w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,34286,1,4,0)
- ;;=4^S06.2X2S
- ;;^UTILITY(U,$J,358.3,34286,2)
- ;;=^5020734
- ;;^UTILITY(U,$J,358.3,34287,0)
- ;;=S06.2X4S^^183^2018^52
- ;;^UTILITY(U,$J,358.3,34287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34287,1,3,0)
- ;;=3^Diffuse TBI w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,34287,1,4,0)
- ;;=4^S06.2X4S
- ;;^UTILITY(U,$J,358.3,34287,2)
- ;;=^5020740
- ;;^UTILITY(U,$J,358.3,34288,0)
- ;;=S06.2X9S^^183^2018^53
- ;;^UTILITY(U,$J,358.3,34288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34288,1,3,0)
- ;;=3^Diffuse TBI w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,34288,1,4,0)
- ;;=4^S06.2X9S
- ;;^UTILITY(U,$J,358.3,34288,2)
- ;;=^5020755
- ;;^UTILITY(U,$J,358.3,34289,0)
- ;;=S06.2X0S^^183^2018^54
- ;;^UTILITY(U,$J,358.3,34289,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34289,1,3,0)
- ;;=3^Diffuse TBI w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,34289,1,4,0)
- ;;=4^S06.2X0S
- ;;^UTILITY(U,$J,358.3,34289,2)
- ;;=^5020728
- ;;^UTILITY(U,$J,358.3,34290,0)
- ;;=S06.4X5S^^183^2018^55
- ;;^UTILITY(U,$J,358.3,34290,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34290,1,3,0)
- ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,34290,1,4,0)
- ;;=4^S06.4X5S
- ;;^UTILITY(U,$J,358.3,34290,2)
- ;;=^5021043
- ;;^UTILITY(U,$J,358.3,34291,0)
- ;;=S06.4X6S^^183^2018^56
- ;;^UTILITY(U,$J,358.3,34291,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34291,1,3,0)
- ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
- ;;^UTILITY(U,$J,358.3,34291,1,4,0)
- ;;=4^S06.4X6S
- ;;^UTILITY(U,$J,358.3,34291,2)
- ;;=^5021046
- ;;^UTILITY(U,$J,358.3,34292,0)
- ;;=S06.4X3S^^183^2018^57
- ;;^UTILITY(U,$J,358.3,34292,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34292,1,3,0)
- ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,34292,1,4,0)
- ;;=4^S06.4X3S
+ ;;^UTILITY(U,$J,358.3,32710,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32710,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,32710,1,3,0)
+ ;;=3^PROLONGED SVC,OTPT,EA ADDL 30MIN
+ ;;^UTILITY(U,$J,358.3,32711,0)
+ ;;=99356^^144^1565^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32711,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32711,1,2,0)
+ ;;=2^99356
+ ;;^UTILITY(U,$J,358.3,32711,1,3,0)
+ ;;=3^PROLONGED SVC,INPT,1ST HR
+ ;;^UTILITY(U,$J,358.3,32712,0)
+ ;;=99357^^144^1565^4^^^^1
+ ;;^UTILITY(U,$J,358.3,32712,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32712,1,2,0)
+ ;;=2^99357
+ ;;^UTILITY(U,$J,358.3,32712,1,3,0)
+ ;;=3^PROLONGED SVC,INPT,EA ADDL 30MIN
+ ;;^UTILITY(U,$J,358.3,32713,0)
+ ;;=H0001^^144^1566^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32713,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32713,1,2,0)
+ ;;=2^H0001
+ ;;^UTILITY(U,$J,358.3,32713,1,3,0)
+ ;;=3^Addictions Assessment
+ ;;^UTILITY(U,$J,358.3,32714,0)
+ ;;=H0002^^144^1566^9^^^^1
+ ;;^UTILITY(U,$J,358.3,32714,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32714,1,2,0)
+ ;;=2^H0002
+ ;;^UTILITY(U,$J,358.3,32714,1,3,0)
+ ;;=3^Screen for Addictions Admission Eligibility
+ ;;^UTILITY(U,$J,358.3,32715,0)
+ ;;=H0003^^144^1566^6^^^^1
+ ;;^UTILITY(U,$J,358.3,32715,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32715,1,2,0)
+ ;;=2^H0003
+ ;;^UTILITY(U,$J,358.3,32715,1,3,0)
+ ;;=3^Alcohol/Drug Screen;lab analysis
+ ;;^UTILITY(U,$J,358.3,32716,0)
+ ;;=H0004^^144^1566^7^^^^1
+ ;;^UTILITY(U,$J,358.3,32716,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32716,1,2,0)
+ ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,32716,1,3,0)
+ ;;=3^Individual Counseling & Therapy per 15 min
+ ;;^UTILITY(U,$J,358.3,32717,0)
+ ;;=H0005^^144^1566^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32717,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32717,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,32717,1,3,0)
+ ;;=3^Addictions Group Counseling by Clinician
+ ;;^UTILITY(U,$J,358.3,32718,0)
+ ;;=H0006^^144^1566^5^^^^1
+ ;;^UTILITY(U,$J,358.3,32718,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32718,1,2,0)
+ ;;=2^H0006
+ ;;^UTILITY(U,$J,358.3,32718,1,3,0)
+ ;;=3^Alcohol/Drug Case Management
+ ;;^UTILITY(U,$J,358.3,32719,0)
+ ;;=H0020^^144^1566^8^^^^1
+ ;;^UTILITY(U,$J,358.3,32719,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32719,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,32719,1,3,0)
+ ;;=3^Methodone Admin &/or Svc by Licensed Program
+ ;;^UTILITY(U,$J,358.3,32720,0)
+ ;;=H0025^^144^1566^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32720,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32720,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,32720,1,3,0)
+ ;;=3^Addictions Health Prevention Education Service
+ ;;^UTILITY(U,$J,358.3,32721,0)
+ ;;=H0030^^144^1566^4^^^^1
+ ;;^UTILITY(U,$J,358.3,32721,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32721,1,2,0)
+ ;;=2^H0030
+ ;;^UTILITY(U,$J,358.3,32721,1,3,0)
+ ;;=3^Addictions Hotline Services
+ ;;^UTILITY(U,$J,358.3,32722,0)
+ ;;=99401^^144^1567^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32722,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32722,1,2,0)
+ ;;=2^99401
+ ;;^UTILITY(U,$J,358.3,32722,1,3,0)
+ ;;=3^PREVENTIVE COUNSEL,INDIV,APPROX 15 MIN
+ ;;^UTILITY(U,$J,358.3,32723,0)
+ ;;=99402^^144^1567^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32723,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32723,1,2,0)
+ ;;=2^99402
+ ;;^UTILITY(U,$J,358.3,32723,1,3,0)
+ ;;=3^PREVENTIVE COUNSEL,INDIV,APPROX 30 MIN
+ ;;^UTILITY(U,$J,358.3,32724,0)
+ ;;=99212^^145^1568^1
+ ;;^UTILITY(U,$J,358.3,32724,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,32724,1,1,0)
+ ;;=1^PROBLEM FOCUSED HX OR EXAM;SF MDM
+ ;;^UTILITY(U,$J,358.3,32724,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,32725,0)
+ ;;=99213^^145^1568^2
+ ;;^UTILITY(U,$J,358.3,32725,1,0)
+ ;;=^358.31IA^2^2

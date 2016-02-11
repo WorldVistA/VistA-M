@@ -1,124 +1,136 @@
-IBDEI1ZS ; ; 06-AUG-2015
+IBDEI1ZS ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34877,1,4,0)
- ;;=4^S42.025S
- ;;^UTILITY(U,$J,358.3,34877,2)
- ;;=^5026480
- ;;^UTILITY(U,$J,358.3,34878,0)
- ;;=S42.024S^^183^2023^90
- ;;^UTILITY(U,$J,358.3,34878,1,0)
+ ;;^UTILITY(U,$J,358.3,33356,2)
+ ;;=^5063114
+ ;;^UTILITY(U,$J,358.3,33357,0)
+ ;;=Z56.9^^148^1639^8
+ ;;^UTILITY(U,$J,358.3,33357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34878,1,3,0)
- ;;=3^Nondisp fx of shaft of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,34878,1,4,0)
- ;;=4^S42.024S
- ;;^UTILITY(U,$J,358.3,34878,2)
- ;;=^5026473
- ;;^UTILITY(U,$J,358.3,34879,0)
- ;;=S42.018S^^183^2023^95
- ;;^UTILITY(U,$J,358.3,34879,1,0)
+ ;;^UTILITY(U,$J,358.3,33357,1,3,0)
+ ;;=3^Problems Related to Employment NEC
+ ;;^UTILITY(U,$J,358.3,33357,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,33357,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,33358,0)
+ ;;=Z56.82^^148^1639^6
+ ;;^UTILITY(U,$J,358.3,33358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34879,1,3,0)
- ;;=3^Nondisp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,34879,1,4,0)
- ;;=4^S42.018S
- ;;^UTILITY(U,$J,358.3,34879,2)
- ;;=^5026438
- ;;^UTILITY(U,$J,358.3,34880,0)
- ;;=S42.017S^^183^2023^96
- ;;^UTILITY(U,$J,358.3,34880,1,0)
+ ;;^UTILITY(U,$J,358.3,33358,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,33358,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,33358,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,33359,0)
+ ;;=Z56.0^^148^1639^13
+ ;;^UTILITY(U,$J,358.3,33359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34880,1,3,0)
- ;;=3^Nondisp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,34880,1,4,0)
- ;;=4^S42.017S
- ;;^UTILITY(U,$J,358.3,34880,2)
- ;;=^5026431
- ;;^UTILITY(U,$J,358.3,34881,0)
- ;;=S42.015S^^183^2023^105
- ;;^UTILITY(U,$J,358.3,34881,1,0)
+ ;;^UTILITY(U,$J,358.3,33359,1,3,0)
+ ;;=3^Unemployeement,Unspec
+ ;;^UTILITY(U,$J,358.3,33359,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,33359,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,33360,0)
+ ;;=Z56.1^^148^1639^2
+ ;;^UTILITY(U,$J,358.3,33360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34881,1,3,0)
- ;;=3^Posterior disp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,34881,1,4,0)
- ;;=4^S42.015S
- ;;^UTILITY(U,$J,358.3,34881,2)
- ;;=^5026417
- ;;^UTILITY(U,$J,358.3,34882,0)
- ;;=S42.014S^^183^2023^106
- ;;^UTILITY(U,$J,358.3,34882,1,0)
+ ;;^UTILITY(U,$J,358.3,33360,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,33360,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,33360,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,33361,0)
+ ;;=Z56.2^^148^1639^11
+ ;;^UTILITY(U,$J,358.3,33361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34882,1,3,0)
- ;;=3^Posterior disp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,34882,1,4,0)
- ;;=4^S42.014S
- ;;^UTILITY(U,$J,358.3,34882,2)
- ;;=^5026410
- ;;^UTILITY(U,$J,358.3,34883,0)
- ;;=S82.142S^^183^2024^1
- ;;^UTILITY(U,$J,358.3,34883,1,0)
+ ;;^UTILITY(U,$J,358.3,33361,1,3,0)
+ ;;=3^Threat of Job Loss
+ ;;^UTILITY(U,$J,358.3,33361,1,4,0)
+ ;;=4^Z56.2
+ ;;^UTILITY(U,$J,358.3,33361,2)
+ ;;=^5063109
+ ;;^UTILITY(U,$J,358.3,33362,0)
+ ;;=Z56.3^^148^1639^10
+ ;;^UTILITY(U,$J,358.3,33362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34883,1,3,0)
- ;;=3^Disp fx of bicondylar left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,34883,1,4,0)
- ;;=4^S82.142S
- ;;^UTILITY(U,$J,358.3,34883,2)
- ;;=^5040902
- ;;^UTILITY(U,$J,358.3,34884,0)
- ;;=S82.141S^^183^2024^2
- ;;^UTILITY(U,$J,358.3,34884,1,0)
+ ;;^UTILITY(U,$J,358.3,33362,1,3,0)
+ ;;=3^Stressful Work Schedule
+ ;;^UTILITY(U,$J,358.3,33362,1,4,0)
+ ;;=4^Z56.3
+ ;;^UTILITY(U,$J,358.3,33362,2)
+ ;;=^5063110
+ ;;^UTILITY(U,$J,358.3,33363,0)
+ ;;=Z56.4^^148^1639^3
+ ;;^UTILITY(U,$J,358.3,33363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34884,1,3,0)
- ;;=3^Disp fx of bicondylar right tibia, sequela
- ;;^UTILITY(U,$J,358.3,34884,1,4,0)
- ;;=4^S82.141S
- ;;^UTILITY(U,$J,358.3,34884,2)
- ;;=^5040886
- ;;^UTILITY(U,$J,358.3,34885,0)
- ;;=S82.252S^^183^2024^4
- ;;^UTILITY(U,$J,358.3,34885,1,0)
+ ;;^UTILITY(U,$J,358.3,33363,1,3,0)
+ ;;=3^Discord w/ Boss & Workmates
+ ;;^UTILITY(U,$J,358.3,33363,1,4,0)
+ ;;=4^Z56.4
+ ;;^UTILITY(U,$J,358.3,33363,2)
+ ;;=^5063111
+ ;;^UTILITY(U,$J,358.3,33364,0)
+ ;;=Z56.5^^148^1639^12
+ ;;^UTILITY(U,$J,358.3,33364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34885,1,3,0)
- ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
- ;;^UTILITY(U,$J,358.3,34885,1,4,0)
- ;;=4^S82.252S
- ;;^UTILITY(U,$J,358.3,34885,2)
- ;;=^5041458
- ;;^UTILITY(U,$J,358.3,34886,0)
- ;;=S82.251S^^183^2024^6
- ;;^UTILITY(U,$J,358.3,34886,1,0)
+ ;;^UTILITY(U,$J,358.3,33364,1,3,0)
+ ;;=3^Uncongenial Work Environment
+ ;;^UTILITY(U,$J,358.3,33364,1,4,0)
+ ;;=4^Z56.5
+ ;;^UTILITY(U,$J,358.3,33364,2)
+ ;;=^5063112
+ ;;^UTILITY(U,$J,358.3,33365,0)
+ ;;=Z56.6^^148^1639^5
+ ;;^UTILITY(U,$J,358.3,33365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34886,1,3,0)
- ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
- ;;^UTILITY(U,$J,358.3,34886,1,4,0)
- ;;=4^S82.251S
- ;;^UTILITY(U,$J,358.3,34886,2)
- ;;=^5041442
- ;;^UTILITY(U,$J,358.3,34887,0)
- ;;=S82.122S^^183^2024^7
- ;;^UTILITY(U,$J,358.3,34887,1,0)
+ ;;^UTILITY(U,$J,358.3,33365,1,3,0)
+ ;;=3^Physical & Mental Strain Related to Work NEC
+ ;;^UTILITY(U,$J,358.3,33365,1,4,0)
+ ;;=4^Z56.6
+ ;;^UTILITY(U,$J,358.3,33365,2)
+ ;;=^5063113
+ ;;^UTILITY(U,$J,358.3,33366,0)
+ ;;=Z56.82^^148^1639^4
+ ;;^UTILITY(U,$J,358.3,33366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34887,1,3,0)
- ;;=3^Disp fx of lateral condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,34887,1,4,0)
- ;;=4^S82.122S
- ;;^UTILITY(U,$J,358.3,34887,2)
- ;;=^5040710
- ;;^UTILITY(U,$J,358.3,34888,0)
- ;;=S82.112S^^183^2024^11
- ;;^UTILITY(U,$J,358.3,34888,1,0)
+ ;;^UTILITY(U,$J,358.3,33366,1,3,0)
+ ;;=3^Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,33366,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,33366,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,33367,0)
+ ;;=Z56.89^^148^1639^7
+ ;;^UTILITY(U,$J,358.3,33367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34888,1,3,0)
- ;;=3^Disp fx of left tibial spine, sequela        
- ;;^UTILITY(U,$J,358.3,34888,1,4,0)
- ;;=4^S82.112S
- ;;^UTILITY(U,$J,358.3,34888,2)
- ;;=^5040614
- ;;^UTILITY(U,$J,358.3,34889,0)
- ;;=S82.121S^^183^2024^8
- ;;^UTILITY(U,$J,358.3,34889,1,0)
+ ;;^UTILITY(U,$J,358.3,33367,1,3,0)
+ ;;=3^Problems Related to Employment,Other
+ ;;^UTILITY(U,$J,358.3,33367,1,4,0)
+ ;;=4^Z56.89
+ ;;^UTILITY(U,$J,358.3,33367,2)
+ ;;=^5063116
+ ;;^UTILITY(U,$J,358.3,33368,0)
+ ;;=F64.1^^148^1640^2
+ ;;^UTILITY(U,$J,358.3,33368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34889,1,3,0)
- ;;=3^Disp fx of lateral condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,33368,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,33368,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,33368,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,33369,0)
+ ;;=F64.8^^148^1640^1
+ ;;^UTILITY(U,$J,358.3,33369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33369,1,3,0)
+ ;;=3^Gender Dysphoria NEC
+ ;;^UTILITY(U,$J,358.3,33369,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,33369,2)
+ ;;=^5003649

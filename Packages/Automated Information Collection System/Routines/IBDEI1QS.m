@@ -1,122 +1,134 @@
-IBDEI1QS ; ; 06-AUG-2015
+IBDEI1QS ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30807,1,0)
+ ;;^UTILITY(U,$J,358.3,29171,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,29171,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,29172,0)
+ ;;=I25.110^^135^1356^6
+ ;;^UTILITY(U,$J,358.3,29172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30807,1,3,0)
- ;;=3^Displaced comminuted fracture of shaft of right femur, init
- ;;^UTILITY(U,$J,358.3,30807,1,4,0)
- ;;=4^S72.351A
- ;;^UTILITY(U,$J,358.3,30807,2)
- ;;=^5038432
- ;;^UTILITY(U,$J,358.3,30808,0)
- ;;=M61.052^^179^1929^5
- ;;^UTILITY(U,$J,358.3,30808,1,0)
+ ;;^UTILITY(U,$J,358.3,29172,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,29172,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,29172,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,29173,0)
+ ;;=F17.219^^135^1356^39
+ ;;^UTILITY(U,$J,358.3,29173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30808,1,3,0)
- ;;=3^Myositis ossificans traumatica, left thigh
- ;;^UTILITY(U,$J,358.3,30808,1,4,0)
- ;;=4^M61.052
- ;;^UTILITY(U,$J,358.3,30808,2)
- ;;=^5012424
- ;;^UTILITY(U,$J,358.3,30809,0)
- ;;=S72.354A^^179^1929^7
- ;;^UTILITY(U,$J,358.3,30809,1,0)
+ ;;^UTILITY(U,$J,358.3,29173,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,29173,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,29173,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,29174,0)
+ ;;=F17.299^^135^1356^40
+ ;;^UTILITY(U,$J,358.3,29174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30809,1,3,0)
- ;;=3^Nondisp comminuted fracture of shaft of right femur, init
- ;;^UTILITY(U,$J,358.3,30809,1,4,0)
- ;;=4^S72.354A
- ;;^UTILITY(U,$J,358.3,30809,2)
- ;;=^5038480
- ;;^UTILITY(U,$J,358.3,30810,0)
- ;;=M84.552A^^179^1929^9
- ;;^UTILITY(U,$J,358.3,30810,1,0)
+ ;;^UTILITY(U,$J,358.3,29174,1,3,0)
+ ;;=3^Nicotine Dependence,E-Cigarettes
+ ;;^UTILITY(U,$J,358.3,29174,1,4,0)
+ ;;=4^F17.299
+ ;;^UTILITY(U,$J,358.3,29174,2)
+ ;;=^5003379
+ ;;^UTILITY(U,$J,358.3,29175,0)
+ ;;=Z51.81^^135^1357^17
+ ;;^UTILITY(U,$J,358.3,29175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30810,1,3,0)
- ;;=3^Path fracture in neoplastic disease, left femur, init
- ;;^UTILITY(U,$J,358.3,30810,1,4,0)
- ;;=4^M84.552A
- ;;^UTILITY(U,$J,358.3,30810,2)
- ;;=^5014124
- ;;^UTILITY(U,$J,358.3,30811,0)
- ;;=M84.551A^^179^1929^10
- ;;^UTILITY(U,$J,358.3,30811,1,0)
+ ;;^UTILITY(U,$J,358.3,29175,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,29175,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,29175,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,29176,0)
+ ;;=Z02.79^^135^1357^11
+ ;;^UTILITY(U,$J,358.3,29176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30811,1,3,0)
- ;;=3^Path fracture in neoplastic disease, right femur, init
- ;;^UTILITY(U,$J,358.3,30811,1,4,0)
- ;;=4^M84.551A
- ;;^UTILITY(U,$J,358.3,30811,2)
- ;;=^5014118
- ;;^UTILITY(U,$J,358.3,30812,0)
- ;;=M84.652A^^179^1929^11
- ;;^UTILITY(U,$J,358.3,30812,1,0)
+ ;;^UTILITY(U,$J,358.3,29176,1,3,0)
+ ;;=3^Issue of Medical Certificate NEC
+ ;;^UTILITY(U,$J,358.3,29176,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,29176,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,29177,0)
+ ;;=Z76.0^^135^1357^12
+ ;;^UTILITY(U,$J,358.3,29177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30812,1,3,0)
- ;;=3^Pathological fracture in oth disease, left femur, init
- ;;^UTILITY(U,$J,358.3,30812,1,4,0)
- ;;=4^M84.652A
- ;;^UTILITY(U,$J,358.3,30812,2)
- ;;=^5134003
- ;;^UTILITY(U,$J,358.3,30813,0)
- ;;=M61.051^^179^1929^6
- ;;^UTILITY(U,$J,358.3,30813,1,0)
+ ;;^UTILITY(U,$J,358.3,29177,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,29177,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,29177,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,29178,0)
+ ;;=Z04.9^^135^1357^3
+ ;;^UTILITY(U,$J,358.3,29178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30813,1,3,0)
- ;;=3^Myositis ossificans traumatica, right thigh
- ;;^UTILITY(U,$J,358.3,30813,1,4,0)
- ;;=4^M61.051
- ;;^UTILITY(U,$J,358.3,30813,2)
- ;;=^5012423
- ;;^UTILITY(U,$J,358.3,30814,0)
- ;;=S72.355A^^179^1929^8
- ;;^UTILITY(U,$J,358.3,30814,1,0)
+ ;;^UTILITY(U,$J,358.3,29178,1,3,0)
+ ;;=3^Exam & Observation for Unsp Reason
+ ;;^UTILITY(U,$J,358.3,29178,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,29178,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,29179,0)
+ ;;=Z02.2^^135^1357^4
+ ;;^UTILITY(U,$J,358.3,29179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30814,1,3,0)
- ;;=3^Nondisp comminuted fracture of shaft of left femur, init
- ;;^UTILITY(U,$J,358.3,30814,1,4,0)
- ;;=4^S72.355A
- ;;^UTILITY(U,$J,358.3,30814,2)
- ;;=^5038496
- ;;^UTILITY(U,$J,358.3,30815,0)
- ;;=M84.651A^^179^1929^12
- ;;^UTILITY(U,$J,358.3,30815,1,0)
+ ;;^UTILITY(U,$J,358.3,29179,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,29179,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,29179,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,29180,0)
+ ;;=Z02.4^^135^1357^5
+ ;;^UTILITY(U,$J,358.3,29180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30815,1,3,0)
- ;;=3^Pathological fracture in oth disease, right femur, init
- ;;^UTILITY(U,$J,358.3,30815,1,4,0)
- ;;=4^M84.651A
- ;;^UTILITY(U,$J,358.3,30815,2)
- ;;=^5014262
- ;;^UTILITY(U,$J,358.3,30816,0)
- ;;=M84.452A^^179^1929^13
- ;;^UTILITY(U,$J,358.3,30816,1,0)
+ ;;^UTILITY(U,$J,358.3,29180,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,29180,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,29180,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,29181,0)
+ ;;=Z00.5^^135^1357^7
+ ;;^UTILITY(U,$J,358.3,29181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30816,1,3,0)
- ;;=3^Pathological fracture, left femur, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,30816,1,4,0)
- ;;=4^M84.452A
- ;;^UTILITY(U,$J,358.3,30816,2)
- ;;=^5013908
- ;;^UTILITY(U,$J,358.3,30817,0)
- ;;=M84.451A^^179^1929^14
- ;;^UTILITY(U,$J,358.3,30817,1,0)
+ ;;^UTILITY(U,$J,358.3,29181,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,29181,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,29181,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,29182,0)
+ ;;=Z02.3^^135^1357^6
+ ;;^UTILITY(U,$J,358.3,29182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30817,1,3,0)
- ;;=3^Pathological fracture, right femur, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,30817,1,4,0)
- ;;=4^M84.451A
- ;;^UTILITY(U,$J,358.3,30817,2)
- ;;=^5013902
- ;;^UTILITY(U,$J,358.3,30818,0)
- ;;=M84.352A^^179^1929^15
- ;;^UTILITY(U,$J,358.3,30818,1,0)
+ ;;^UTILITY(U,$J,358.3,29182,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,29182,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,29182,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,29183,0)
+ ;;=Z02.89^^135^1357^1
+ ;;^UTILITY(U,$J,358.3,29183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30818,1,3,0)
- ;;=3^Stress fracture, left femur, initial encounter for fracture
- ;;^UTILITY(U,$J,358.3,30818,1,4,0)
- ;;=4^M84.352A
- ;;^UTILITY(U,$J,358.3,30818,2)
- ;;=^5013686
+ ;;^UTILITY(U,$J,358.3,29183,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,29183,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,29183,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,29184,0)
+ ;;=Z00.8^^135^1357^8
+ ;;^UTILITY(U,$J,358.3,29184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29184,1,3,0)
+ ;;=3^General Exam NEC

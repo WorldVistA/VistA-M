@@ -1,146 +1,128 @@
-IBDEI0E9 ; ; 06-AUG-2015
+IBDEI0E9 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6494,1,4,0)
- ;;=4^V13.01
- ;;^UTILITY(U,$J,358.3,6494,1,5,0)
- ;;=5^Hx Of Kidney Stone
- ;;^UTILITY(U,$J,358.3,6494,2)
- ;;=^303403
- ;;^UTILITY(U,$J,358.3,6495,0)
- ;;=302.71^^31^411^33
- ;;^UTILITY(U,$J,358.3,6495,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6495,1,4,0)
- ;;=4^302.71
- ;;^UTILITY(U,$J,358.3,6495,1,5,0)
- ;;=5^Loss Of Libido
- ;;^UTILITY(U,$J,358.3,6495,2)
- ;;=^1
- ;;^UTILITY(U,$J,358.3,6496,0)
- ;;=596.54^^31^411^37
- ;;^UTILITY(U,$J,358.3,6496,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6496,1,4,0)
- ;;=4^596.54
- ;;^UTILITY(U,$J,358.3,6496,1,5,0)
- ;;=5^Neurogenic Bladder 
- ;;^UTILITY(U,$J,358.3,6496,2)
- ;;=^304798
- ;;^UTILITY(U,$J,358.3,6497,0)
- ;;=788.43^^31^411^38
- ;;^UTILITY(U,$J,358.3,6497,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6497,1,4,0)
- ;;=4^788.43
- ;;^UTILITY(U,$J,358.3,6497,1,5,0)
- ;;=5^Nocturia
- ;;^UTILITY(U,$J,358.3,6497,2)
- ;;=^84740
- ;;^UTILITY(U,$J,358.3,6498,0)
- ;;=605.^^31^411^41
- ;;^UTILITY(U,$J,358.3,6498,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6498,1,4,0)
- ;;=4^605.
- ;;^UTILITY(U,$J,358.3,6498,1,5,0)
- ;;=5^Phimosis
- ;;^UTILITY(U,$J,358.3,6498,2)
- ;;=^104159
- ;;^UTILITY(U,$J,358.3,6499,0)
- ;;=601.0^^31^411^43
- ;;^UTILITY(U,$J,358.3,6499,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6499,1,4,0)
- ;;=4^601.0
- ;;^UTILITY(U,$J,358.3,6499,1,5,0)
- ;;=5^Prostatitis, Acute
- ;;^UTILITY(U,$J,358.3,6499,2)
- ;;=^259106
- ;;^UTILITY(U,$J,358.3,6500,0)
- ;;=590.10^^31^411^45
- ;;^UTILITY(U,$J,358.3,6500,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6500,1,4,0)
- ;;=4^590.10
- ;;^UTILITY(U,$J,358.3,6500,1,5,0)
- ;;=5^Pyelonephritis, Acute
- ;;^UTILITY(U,$J,358.3,6500,2)
- ;;=^270369
- ;;^UTILITY(U,$J,358.3,6501,0)
- ;;=590.00^^31^411^46
- ;;^UTILITY(U,$J,358.3,6501,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6501,1,4,0)
- ;;=4^590.00
- ;;^UTILITY(U,$J,358.3,6501,1,5,0)
- ;;=5^Pyelonephritis, Chronic
- ;;^UTILITY(U,$J,358.3,6501,2)
- ;;=^270367
- ;;^UTILITY(U,$J,358.3,6502,0)
- ;;=788.7^^31^411^55
- ;;^UTILITY(U,$J,358.3,6502,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6502,1,4,0)
- ;;=4^788.7
- ;;^UTILITY(U,$J,358.3,6502,1,5,0)
- ;;=5^Urethral Discharge
- ;;^UTILITY(U,$J,358.3,6502,2)
- ;;=^265872
- ;;^UTILITY(U,$J,358.3,6503,0)
- ;;=131.02^^31^411^58
- ;;^UTILITY(U,$J,358.3,6503,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6503,1,4,0)
- ;;=4^131.02
- ;;^UTILITY(U,$J,358.3,6503,1,5,0)
- ;;=5^Urethritis, Trichomonal
- ;;^UTILITY(U,$J,358.3,6503,2)
- ;;=^266955
- ;;^UTILITY(U,$J,358.3,6504,0)
- ;;=597.80^^31^411^57
- ;;^UTILITY(U,$J,358.3,6504,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6504,1,4,0)
- ;;=4^597.80
- ;;^UTILITY(U,$J,358.3,6504,1,5,0)
- ;;=5^Urethritis, NOS
- ;;^UTILITY(U,$J,358.3,6504,2)
- ;;=Urethritis, NOS^124214
- ;;^UTILITY(U,$J,358.3,6505,0)
- ;;=788.41^^31^411^60
- ;;^UTILITY(U,$J,358.3,6505,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6505,1,4,0)
- ;;=4^788.41
- ;;^UTILITY(U,$J,358.3,6505,1,5,0)
- ;;=5^Urinary Frequency
- ;;^UTILITY(U,$J,358.3,6505,2)
- ;;=^124396
- ;;^UTILITY(U,$J,358.3,6506,0)
- ;;=788.31^^31^411^63
- ;;^UTILITY(U,$J,358.3,6506,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6506,1,4,0)
- ;;=4^788.31
- ;;^UTILITY(U,$J,358.3,6506,1,5,0)
- ;;=5^Urinary Incontinence, Urge
- ;;^UTILITY(U,$J,358.3,6506,2)
- ;;=^260046
- ;;^UTILITY(U,$J,358.3,6507,0)
- ;;=788.20^^31^411^64
- ;;^UTILITY(U,$J,358.3,6507,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6507,1,4,0)
- ;;=4^788.20
- ;;^UTILITY(U,$J,358.3,6507,1,5,0)
- ;;=5^Urinary Retention
- ;;^UTILITY(U,$J,358.3,6507,2)
- ;;=^295812
- ;;^UTILITY(U,$J,358.3,6508,0)
- ;;=112.2^^31^411^67
- ;;^UTILITY(U,$J,358.3,6508,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,6508,1,4,0)
- ;;=4^112.2
+ ;;^UTILITY(U,$J,358.3,6222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6222,1,3,0)
+ ;;=3^Intraoperative Complication of the Circulatory System NEC
+ ;;^UTILITY(U,$J,358.3,6222,1,4,0)
+ ;;=4^I97.88
+ ;;^UTILITY(U,$J,358.3,6222,2)
+ ;;=^5008111
+ ;;^UTILITY(U,$J,358.3,6223,0)
+ ;;=K91.81^^40^386^16
+ ;;^UTILITY(U,$J,358.3,6223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6223,1,3,0)
+ ;;=3^Intraoperative Complication of the Digestive System NEC
+ ;;^UTILITY(U,$J,358.3,6223,1,4,0)
+ ;;=4^K91.81
+ ;;^UTILITY(U,$J,358.3,6223,2)
+ ;;=^5008907
+ ;;^UTILITY(U,$J,358.3,6224,0)
+ ;;=H95.88^^40^386^17
+ ;;^UTILITY(U,$J,358.3,6224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6224,1,3,0)
+ ;;=3^Intraoperative Complication of the Ear/Mastoid NEC
+ ;;^UTILITY(U,$J,358.3,6224,1,4,0)
+ ;;=4^H95.88
+ ;;^UTILITY(U,$J,358.3,6224,2)
+ ;;=^5007036
+ ;;^UTILITY(U,$J,358.3,6225,0)
+ ;;=N99.81^^40^386^18
+ ;;^UTILITY(U,$J,358.3,6225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6225,1,3,0)
+ ;;=3^Intraoperative Complication of the GU System NEC
+ ;;^UTILITY(U,$J,358.3,6225,1,4,0)
+ ;;=4^N99.81
+ ;;^UTILITY(U,$J,358.3,6225,2)
+ ;;=^5015967
+ ;;^UTILITY(U,$J,358.3,6226,0)
+ ;;=M96.89^^40^386^19
+ ;;^UTILITY(U,$J,358.3,6226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6226,1,3,0)
+ ;;=3^Intraoperative Complication of the Musculoskeletal System NEC
+ ;;^UTILITY(U,$J,358.3,6226,1,4,0)
+ ;;=4^M96.89
+ ;;^UTILITY(U,$J,358.3,6226,2)
+ ;;=^5015399
+ ;;^UTILITY(U,$J,358.3,6227,0)
+ ;;=G97.81^^40^386^20
+ ;;^UTILITY(U,$J,358.3,6227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6227,1,3,0)
+ ;;=3^Intraoperative Complication of the Nervous System
+ ;;^UTILITY(U,$J,358.3,6227,1,4,0)
+ ;;=4^G97.81
+ ;;^UTILITY(U,$J,358.3,6227,2)
+ ;;=^5004211
+ ;;^UTILITY(U,$J,358.3,6228,0)
+ ;;=J95.88^^40^386^21
+ ;;^UTILITY(U,$J,358.3,6228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6228,1,3,0)
+ ;;=3^Intraoperative Complication of the Respiratory System NEC
+ ;;^UTILITY(U,$J,358.3,6228,1,4,0)
+ ;;=4^J95.88
+ ;;^UTILITY(U,$J,358.3,6228,2)
+ ;;=^5008345
+ ;;^UTILITY(U,$J,358.3,6229,0)
+ ;;=L76.81^^40^386^22
+ ;;^UTILITY(U,$J,358.3,6229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6229,1,3,0)
+ ;;=3^Intraoperative Complication of the Skin NEC
+ ;;^UTILITY(U,$J,358.3,6229,1,4,0)
+ ;;=4^L76.81
+ ;;^UTILITY(U,$J,358.3,6229,2)
+ ;;=^5009308
+ ;;^UTILITY(U,$J,358.3,6230,0)
+ ;;=D78.81^^40^386^23
+ ;;^UTILITY(U,$J,358.3,6230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6230,1,3,0)
+ ;;=3^Intraoperative Complication of the Spleen
+ ;;^UTILITY(U,$J,358.3,6230,1,4,0)
+ ;;=4^D78.81
+ ;;^UTILITY(U,$J,358.3,6230,2)
+ ;;=^5002403
+ ;;^UTILITY(U,$J,358.3,6231,0)
+ ;;=H59.229^^40^386^3
+ ;;^UTILITY(U,$J,358.3,6231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6231,1,3,0)
+ ;;=3^Accidental Puncture/Laceration of Eye/Adnexa,Unspec,During Surgery
+ ;;^UTILITY(U,$J,358.3,6231,1,4,0)
+ ;;=4^H59.229
+ ;;^UTILITY(U,$J,358.3,6231,2)
+ ;;=^5006416
+ ;;^UTILITY(U,$J,358.3,6232,0)
+ ;;=D78.12^^40^386^11
+ ;;^UTILITY(U,$J,358.3,6232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6232,1,3,0)
+ ;;=3^Accidental Puncture/Laceration of Spleen During Surgery
+ ;;^UTILITY(U,$J,358.3,6232,1,4,0)
+ ;;=4^D78.12
+ ;;^UTILITY(U,$J,358.3,6232,2)
+ ;;=^5002400
+ ;;^UTILITY(U,$J,358.3,6233,0)
+ ;;=I97.811^^40^386^14
+ ;;^UTILITY(U,$J,358.3,6233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6233,1,3,0)
+ ;;=3^Intraoperative Cerebrovascular Infarction During Surgery
+ ;;^UTILITY(U,$J,358.3,6233,1,4,0)
+ ;;=4^I97.811
+ ;;^UTILITY(U,$J,358.3,6233,2)
+ ;;=^5008108
+ ;;^UTILITY(U,$J,358.3,6234,0)
+ ;;=S31.154A^^40^387^3
+ ;;^UTILITY(U,$J,358.3,6234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6234,1,3,0)
+ ;;=3^Open Bite of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr

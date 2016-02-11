@@ -1,124 +1,128 @@
-IBDEI1Q0 ; ; 06-AUG-2015
+IBDEI1Q0 ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30457,1,4,0)
- ;;=4^O41.1011
- ;;^UTILITY(U,$J,358.3,30457,2)
- ;;=^5017242
- ;;^UTILITY(U,$J,358.3,30458,0)
- ;;=O41.1012^^178^1917^23
- ;;^UTILITY(U,$J,358.3,30458,1,0)
+ ;;^UTILITY(U,$J,358.3,28786,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,28786,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,28787,0)
+ ;;=R40.2314^^132^1338^11
+ ;;^UTILITY(U,$J,358.3,28787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30458,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30458,1,4,0)
- ;;=4^O41.1012
- ;;^UTILITY(U,$J,358.3,30458,2)
- ;;=^5017243
- ;;^UTILITY(U,$J,358.3,30459,0)
- ;;=O41.1013^^178^1917^24
- ;;^UTILITY(U,$J,358.3,30459,1,0)
+ ;;^UTILITY(U,$J,358.3,28787,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,28787,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,28787,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,28788,0)
+ ;;=R40.2313^^132^1338^14
+ ;;^UTILITY(U,$J,358.3,28788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30459,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30459,1,4,0)
- ;;=4^O41.1013
- ;;^UTILITY(U,$J,358.3,30459,2)
- ;;=^5017244
- ;;^UTILITY(U,$J,358.3,30460,0)
- ;;=O41.1014^^178^1917^25
- ;;^UTILITY(U,$J,358.3,30460,1,0)
+ ;;^UTILITY(U,$J,358.3,28788,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,28788,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,28788,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,28789,0)
+ ;;=R40.2312^^132^1338^12
+ ;;^UTILITY(U,$J,358.3,28789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30460,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30460,1,4,0)
- ;;=4^O41.1014
- ;;^UTILITY(U,$J,358.3,30460,2)
- ;;=^5017245
- ;;^UTILITY(U,$J,358.3,30461,0)
- ;;=O41.1015^^178^1917^26
- ;;^UTILITY(U,$J,358.3,30461,1,0)
+ ;;^UTILITY(U,$J,358.3,28789,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,28789,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,28789,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,28790,0)
+ ;;=R40.2311^^132^1338^15
+ ;;^UTILITY(U,$J,358.3,28790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30461,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30461,1,4,0)
- ;;=4^O41.1015
- ;;^UTILITY(U,$J,358.3,30461,2)
- ;;=^5017246
- ;;^UTILITY(U,$J,358.3,30462,0)
- ;;=O41.1020^^178^1917^27
- ;;^UTILITY(U,$J,358.3,30462,1,0)
+ ;;^UTILITY(U,$J,358.3,28790,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,28790,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,28790,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,28791,0)
+ ;;=R40.2310^^132^1338^13
+ ;;^UTILITY(U,$J,358.3,28791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30462,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, unsp
- ;;^UTILITY(U,$J,358.3,30462,1,4,0)
- ;;=4^O41.1020
- ;;^UTILITY(U,$J,358.3,30462,2)
- ;;=^5017248
- ;;^UTILITY(U,$J,358.3,30463,0)
- ;;=O41.1021^^178^1917^28
- ;;^UTILITY(U,$J,358.3,30463,1,0)
+ ;;^UTILITY(U,$J,358.3,28791,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,28791,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,28791,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,28792,0)
+ ;;=R40.4^^132^1338^38
+ ;;^UTILITY(U,$J,358.3,28792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30463,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,30463,1,4,0)
- ;;=4^O41.1021
- ;;^UTILITY(U,$J,358.3,30463,2)
- ;;=^5017249
- ;;^UTILITY(U,$J,358.3,30464,0)
- ;;=O41.1022^^178^1917^29
- ;;^UTILITY(U,$J,358.3,30464,1,0)
+ ;;^UTILITY(U,$J,358.3,28792,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,28792,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,28792,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,28793,0)
+ ;;=V00.811A^^132^1339^45
+ ;;^UTILITY(U,$J,358.3,28793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30464,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,30464,1,4,0)
- ;;=4^O41.1022
- ;;^UTILITY(U,$J,358.3,30464,2)
- ;;=^5017250
- ;;^UTILITY(U,$J,358.3,30465,0)
- ;;=O41.1023^^178^1917^30
- ;;^UTILITY(U,$J,358.3,30465,1,0)
+ ;;^UTILITY(U,$J,358.3,28793,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,28793,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,28793,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,28794,0)
+ ;;=V00.811D^^132^1339^46
+ ;;^UTILITY(U,$J,358.3,28794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30465,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,30465,1,4,0)
- ;;=4^O41.1023
- ;;^UTILITY(U,$J,358.3,30465,2)
- ;;=^5017251
- ;;^UTILITY(U,$J,358.3,30466,0)
- ;;=O41.1024^^178^1917^31
- ;;^UTILITY(U,$J,358.3,30466,1,0)
+ ;;^UTILITY(U,$J,358.3,28794,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28794,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,28794,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,28795,0)
+ ;;=V00.812A^^132^1339^133
+ ;;^UTILITY(U,$J,358.3,28795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30466,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,30466,1,4,0)
- ;;=4^O41.1024
- ;;^UTILITY(U,$J,358.3,30466,2)
- ;;=^5017252
- ;;^UTILITY(U,$J,358.3,30467,0)
- ;;=O41.1025^^178^1917^32
- ;;^UTILITY(U,$J,358.3,30467,1,0)
+ ;;^UTILITY(U,$J,358.3,28795,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28795,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,28795,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,28796,0)
+ ;;=V00.812D^^132^1339^134
+ ;;^UTILITY(U,$J,358.3,28796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30467,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,30467,1,4,0)
- ;;=4^O41.1025
- ;;^UTILITY(U,$J,358.3,30467,2)
- ;;=^5017253
- ;;^UTILITY(U,$J,358.3,30468,0)
- ;;=O41.1030^^178^1917^33
- ;;^UTILITY(U,$J,358.3,30468,1,0)
+ ;;^UTILITY(U,$J,358.3,28796,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28796,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,28796,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,28797,0)
+ ;;=V00.818A^^132^1339^131
+ ;;^UTILITY(U,$J,358.3,28797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30468,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, unsp
- ;;^UTILITY(U,$J,358.3,30468,1,4,0)
- ;;=4^O41.1030
- ;;^UTILITY(U,$J,358.3,30468,2)
- ;;=^5017255
- ;;^UTILITY(U,$J,358.3,30469,0)
- ;;=O41.1031^^178^1917^34
- ;;^UTILITY(U,$J,358.3,30469,1,0)
+ ;;^UTILITY(U,$J,358.3,28797,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28797,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,28797,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,28798,0)
+ ;;=V00.818D^^132^1339^132
+ ;;^UTILITY(U,$J,358.3,28798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30469,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,28798,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28798,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,28798,2)
+ ;;=^5055944

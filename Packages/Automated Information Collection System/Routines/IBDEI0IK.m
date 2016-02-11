@@ -1,144 +1,134 @@
-IBDEI0IK ; ; 06-AUG-2015
+IBDEI0IK ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8690,1,5,0)
- ;;=5^Incontinence of Feces
- ;;^UTILITY(U,$J,358.3,8690,2)
- ;;=^339670
- ;;^UTILITY(U,$J,358.3,8691,0)
- ;;=780.61^^35^487^72
- ;;^UTILITY(U,$J,358.3,8691,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8691,1,4,0)
- ;;=4^780.61
- ;;^UTILITY(U,$J,358.3,8691,1,5,0)
- ;;=5^Fever in Other Conditions
- ;;^UTILITY(U,$J,358.3,8691,2)
- ;;=^336667
- ;;^UTILITY(U,$J,358.3,8692,0)
- ;;=780.62^^35^487^73
- ;;^UTILITY(U,$J,358.3,8692,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8692,1,4,0)
- ;;=4^780.62
- ;;^UTILITY(U,$J,358.3,8692,1,5,0)
- ;;=5^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,8692,2)
- ;;=^336668
- ;;^UTILITY(U,$J,358.3,8693,0)
- ;;=780.63^^35^487^74
- ;;^UTILITY(U,$J,358.3,8693,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8693,1,4,0)
- ;;=4^780.63
- ;;^UTILITY(U,$J,358.3,8693,1,5,0)
- ;;=5^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,8693,2)
- ;;=^336669
- ;;^UTILITY(U,$J,358.3,8694,0)
- ;;=780.64^^35^487^38
- ;;^UTILITY(U,$J,358.3,8694,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8694,1,4,0)
- ;;=4^780.64
- ;;^UTILITY(U,$J,358.3,8694,1,5,0)
- ;;=5^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,8694,2)
- ;;=^336670
- ;;^UTILITY(U,$J,358.3,8695,0)
- ;;=780.65^^35^487^89
- ;;^UTILITY(U,$J,358.3,8695,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8695,1,4,0)
- ;;=4^780.65
- ;;^UTILITY(U,$J,358.3,8695,1,5,0)
- ;;=5^Hypothermia w/o Low Env Temp
- ;;^UTILITY(U,$J,358.3,8695,2)
- ;;=^336671
- ;;^UTILITY(U,$J,358.3,8696,0)
- ;;=780.99^^35^487^41
- ;;^UTILITY(U,$J,358.3,8696,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8696,1,4,0)
- ;;=4^780.99
- ;;^UTILITY(U,$J,358.3,8696,1,5,0)
- ;;=5^Cold Intolerence
- ;;^UTILITY(U,$J,358.3,8696,2)
- ;;=^328568
- ;;^UTILITY(U,$J,358.3,8697,0)
- ;;=787.21^^35^487^56
- ;;^UTILITY(U,$J,358.3,8697,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8697,1,4,0)
- ;;=4^787.21
- ;;^UTILITY(U,$J,358.3,8697,1,5,0)
- ;;=5^Dysphagia, Oral Phase
- ;;^UTILITY(U,$J,358.3,8697,2)
- ;;=^335276
- ;;^UTILITY(U,$J,358.3,8698,0)
- ;;=787.22^^35^487^57
- ;;^UTILITY(U,$J,358.3,8698,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8698,1,4,0)
- ;;=4^787.22
- ;;^UTILITY(U,$J,358.3,8698,1,5,0)
- ;;=5^Dysphagia, Oropharyngeal
- ;;^UTILITY(U,$J,358.3,8698,2)
- ;;=^335277
- ;;^UTILITY(U,$J,358.3,8699,0)
- ;;=787.23^^35^487^58
- ;;^UTILITY(U,$J,358.3,8699,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8699,1,4,0)
- ;;=4^787.23
- ;;^UTILITY(U,$J,358.3,8699,1,5,0)
- ;;=5^Dysphagia, Pharyngeal
- ;;^UTILITY(U,$J,358.3,8699,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,8700,0)
- ;;=787.24^^35^487^59
- ;;^UTILITY(U,$J,358.3,8700,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8700,1,4,0)
- ;;=4^787.24
- ;;^UTILITY(U,$J,358.3,8700,1,5,0)
- ;;=5^Dysphagia, Pharyngoesoph
- ;;^UTILITY(U,$J,358.3,8700,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,8701,0)
- ;;=995.83^^35^488^2
- ;;^UTILITY(U,$J,358.3,8701,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8701,1,4,0)
- ;;=4^995.83
- ;;^UTILITY(U,$J,358.3,8701,1,5,0)
- ;;=5^Non-Military Sexual Trauma
- ;;^UTILITY(U,$J,358.3,8701,2)
- ;;=^1
- ;;^UTILITY(U,$J,358.3,8702,0)
- ;;=E967.9^^35^488^1
- ;;^UTILITY(U,$J,358.3,8702,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8702,1,4,0)
- ;;=4^E967.9
- ;;^UTILITY(U,$J,358.3,8702,1,5,0)
- ;;=5^Child & Adult Abuse by Unspec Person
- ;;^UTILITY(U,$J,358.3,8702,2)
- ;;=^22623
- ;;^UTILITY(U,$J,358.3,8703,0)
- ;;=784.0^^35^489^18
- ;;^UTILITY(U,$J,358.3,8703,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8703,1,4,0)
- ;;=4^784.0
- ;;^UTILITY(U,$J,358.3,8703,1,5,0)
- ;;=5^Headache
- ;;^UTILITY(U,$J,358.3,8703,2)
- ;;=Headache^54133
- ;;^UTILITY(U,$J,358.3,8704,0)
- ;;=729.5^^35^489^16
- ;;^UTILITY(U,$J,358.3,8704,1,0)
- ;;=^358.31IA^5^2
- ;;^UTILITY(U,$J,358.3,8704,1,4,0)
- ;;=4^729.5
+ ;;^UTILITY(U,$J,358.3,8339,0)
+ ;;=C23.^^55^538^60
+ ;;^UTILITY(U,$J,358.3,8339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8339,1,3,0)
+ ;;=3^Malignant neoplasm of gallbladder
+ ;;^UTILITY(U,$J,358.3,8339,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,8339,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,8340,0)
+ ;;=C24.0^^55^538^59
+ ;;^UTILITY(U,$J,358.3,8340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8340,1,3,0)
+ ;;=3^Malignant neoplasm of extrahepatic bile duct
+ ;;^UTILITY(U,$J,358.3,8340,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,8340,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,8341,0)
+ ;;=C24.1^^55^538^50
+ ;;^UTILITY(U,$J,358.3,8341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8341,1,3,0)
+ ;;=3^Malignant neoplasm of ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,8341,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,8341,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,8342,0)
+ ;;=C25.9^^55^538^70
+ ;;^UTILITY(U,$J,358.3,8342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8342,1,3,0)
+ ;;=3^Malignant neoplasm of pancreas, unspecified
+ ;;^UTILITY(U,$J,358.3,8342,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,8342,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,8343,0)
+ ;;=C31.9^^55^538^49
+ ;;^UTILITY(U,$J,358.3,8343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8343,1,3,0)
+ ;;=3^Malignant neoplasm of accessory sinus, unspecified
+ ;;^UTILITY(U,$J,358.3,8343,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,8343,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,8344,0)
+ ;;=C32.9^^55^538^62
+ ;;^UTILITY(U,$J,358.3,8344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8344,1,3,0)
+ ;;=3^Malignant neoplasm of larynx, unspecified
+ ;;^UTILITY(U,$J,358.3,8344,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,8344,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,8345,0)
+ ;;=C34.91^^55^538^82
+ ;;^UTILITY(U,$J,358.3,8345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8345,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
+ ;;^UTILITY(U,$J,358.3,8345,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,8345,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,8346,0)
+ ;;=C34.92^^55^538^81
+ ;;^UTILITY(U,$J,358.3,8346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8346,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
+ ;;^UTILITY(U,$J,358.3,8346,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,8346,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,8347,0)
+ ;;=C38.4^^55^538^71
+ ;;^UTILITY(U,$J,358.3,8347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8347,1,3,0)
+ ;;=3^Malignant neoplasm of pleura
+ ;;^UTILITY(U,$J,358.3,8347,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,8347,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,8348,0)
+ ;;=C45.0^^55^538^86
+ ;;^UTILITY(U,$J,358.3,8348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8348,1,3,0)
+ ;;=3^Mesothelioma of pleura
+ ;;^UTILITY(U,$J,358.3,8348,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,8348,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,8349,0)
+ ;;=C49.9^^55^538^55
+ ;;^UTILITY(U,$J,358.3,8349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8349,1,3,0)
+ ;;=3^Malignant neoplasm of connective and soft tissue, unsp
+ ;;^UTILITY(U,$J,358.3,8349,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,8349,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,8350,0)
+ ;;=C43.9^^55^538^48
+ ;;^UTILITY(U,$J,358.3,8350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8350,1,3,0)
+ ;;=3^Malignant melanoma of skin, unspecified
+ ;;^UTILITY(U,$J,358.3,8350,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,8350,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,8351,0)
+ ;;=D03.9^^55^538^85
+ ;;^UTILITY(U,$J,358.3,8351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8351,1,3,0)
+ ;;=3^Melanoma in situ, unspecified
+ ;;^UTILITY(U,$J,358.3,8351,1,4,0)
+ ;;=4^D03.9
+ ;;^UTILITY(U,$J,358.3,8351,2)
+ ;;=^5001908

@@ -1,9 +1,13 @@
-EASPREC7 ;ALB/SEK,RTK,GN - ROUTINE TO PROCESS INCOMING (Z06 EVENT TYPE) HL7 MESSAGES ; 6/16/04 9:28am
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**23,30,35,52,42,86**;21-OCT-94;Build 4
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+EASPREC7 ;ALB/SEK,RTK,GN,MNH,LMD - ROUTINE TO PROCESS INCOMING (Z06 EVENT TYPE) HL7 MESSAGES ;6/16/04 9:28am
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**23,30,35,52,42,86,113**;21-OCT-94;Build 53
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;** Warning **  currently only one ZMT seg per Z06 can be processed.
  ;
+ ;;EAS*1*113 Send Bulletin if BTFI is different than what is on files
+ ; - added DGMTYPT and passed down thru all calls that need.
+ ; o DGMTYPT = 1 (Means Test, MT)
+ ; o DGMTYPT = 2 (RX Copay Test, CT)
  ;EAS*1*52 call PARSEZMT within tag ZMT to define all ZMT variables
  ;EAS*1*42 add RX Copay Testing Upload and Delete to this routine.
  ;         - added DGMTYPT and passed down thru all calls that need.
@@ -29,7 +33,8 @@ EASPREC7 ;ALB/SEK,RTK,GN - ROUTINE TO PROCESS INCOMING (Z06 EVENT TYPE) HL7 MESS
 EN ; entry point to validate Means Test messages 
  ;
  N DEPFLG,EDB,CANCFLG,CASEFLG,SEGSTR,SEGMENTS,MISSING,ERRFLG,Z06COM
- N IVM2,IVM3,IVM7,IVM8,IVM10,IVM12,IVM17,IVM18,IVM20,IVM25,IVM26,IVMIY
+ N IVM2,IVM3,IVM7,IVM8,IVM10,IVM12,IVM17,IVM18,IVM20,IVM25,IVM26,IVM32,IVMIY   ;Add BT indicator EAS*1*113
+ N IVM2,IVM3,IVM7,IVM8,IVM10,IVM12,IVM17,IVM18,IVM20,IVM25,IVM26,IVM32,IVMIY  ; Add ivm32 BT indicator
  N IVMDA,IVMPAT,IVMMTSTS,MTFND,UPMTS,MTDATE,TYPE,EASMTDT,EASZ06,EXPIRED
  N IVM5,EASZ06D,DGMTYPT
  S SEGSTR="00000000000"      ;One byte for each segment in message
@@ -90,6 +95,23 @@ PROCESS N DIC,%,%H,%I,IVMDATE
  I $G(IVMMTIEN)]"" D                   ;dgmtp is event driver variable
  . S (IVMMT31,DGMTP)=$G(^DGMT(408.31,IVMMTIEN,0))
  ;
+ ; EAS*1*113
+ ; Send BT Bulletin if Current Means Test Status does not eqaul Previous Means Test Status
+ ;
+ ; Input:
+ ; DFN = IEN of Patient
+ N DT,DGCAT,FININD
+ ; DFN = IEN of Patient
+ ; DT = Today's Date
+ S DT=IVMDATE
+ ; DGCAT = Current Means Test Status
+ S DGCAT=$P($G(^DG(408.32,IVM3,0)),"^",1)
+ ; IVMCEB = Previous Means Test Status
+ ; IVM10 = Date/Time Test Completed
+ S FININD="" I $D(IVMMTIEN) S FININD=$G(^DGMT(408.31,IVMMTIEN,4)) ;financial indicator EAS*1*113
+ ;
+ I IVM32'=FININD D SET^EASBTBUL(DFN,DT,DGCAT,$G(IVMCEB),$G(IVM10))
+ ; EAS*1*113 Only send when BTFI changes
  ; Main loop to process the IVM income test just received.
  ;
  ; No previous 408.31 test on file
@@ -137,7 +159,8 @@ PROCESS N DIC,%,%H,%I,IVMDATE
  . . S DR=".03////^S X=IVM3;.12////^S X=IVM8;.07////^S X=IVM10;"
  . . S DR=DR_".09////^S X=IVM25;.11////^S X=IVM7;.18////^S X=IVM12;"
  . . S DR=DR_".23////^S X=IVM18;.25////^S X=IVM20;"
- . . S DR=DR_"2.02////^S X=IVMDATE;2.03////^S X=IVM26"
+ . . S DR=DR_"2.02////^S X=IVMDATE;2.03////^S X=IVM26;"
+ . . S DR=DR_"4////^S X=IVM32"   ; *EAS*1*113 BT Financial Indicator
  . . D ^DIE K DA,DIE,DR                     ;Update existing Z06
  . . I $G(IVMMTDT)="" S IVMMTDT=EASMTDT
  . . I $$EXPIRED^EASPTRN1(DFN,$G(IVMMTDT)) D
@@ -206,7 +229,8 @@ GET ; get HL7 segment from ^TMP
  ;
  ;Parse ZMT Segment for MT Data
  ;
-PARSEZMT(ZSEG) S IVM2=$$FMDATE^HLFNC($P(ZSEG,"^",3))  ;Means Test Date
+PARSEZMT(ZSEG) ; PARSE THE SEGMEMT
+ S IVM2=$$FMDATE^HLFNC($P(ZSEG,"^",3))  ;Means Test Date
  S IVM3=$O(^DG(408.32,"C",$P(ZSEG,"^",4),""))   ;Means Test Status 
  S IVM7=$S($P(ZSEG,"^",8)="Y":1,1:0)            ;Agrees To Deductible
  S IVM8=$P(ZSEG,"^",9)                          ;Threshold A
@@ -217,4 +241,8 @@ PARSEZMT(ZSEG) S IVM2=$$FMDATE^HLFNC($P(ZSEG,"^",3))  ;Means Test Date
  S IVM20=$$FMDATE^HLFNC($P(ZSEG,"^",21))        ;IVM Verified MT
  S IVM25=$$FMDATE^HLFNC($P(ZSEG,"^",26))        ;D/T Last Changed
  S IVM26=$O(^DG(408.32,"C",$P(ZSEG,"^",27),"")) ;Test Determined Status
+ S IVM32=$P(ZSEG,"^",32)                        ;EAS*1*113 
+ ;S IVM32=$S(IVM32="Y":1,IVM32="N":0,1:IVM32)    ;BT Financial Indicator
+ S IVM32=$S(IVM32["""":"",1:IVM32) ;BT Financial Indicator
  Q
+ ;

@@ -1,128 +1,136 @@
-IBDEI1QR ; ; 06-AUG-2015
+IBDEI1QR ; ; 19-NOV-2015
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30794,2)
- ;;=^5011606
- ;;^UTILITY(U,$J,358.3,30795,0)
- ;;=M25.521^^179^1928^26
- ;;^UTILITY(U,$J,358.3,30795,1,0)
+ ;;^UTILITY(U,$J,358.3,29158,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,29158,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,29158,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,29159,0)
+ ;;=R73.01^^135^1356^30
+ ;;^UTILITY(U,$J,358.3,29159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30795,1,3,0)
- ;;=3^Pain in right elbow
- ;;^UTILITY(U,$J,358.3,30795,1,4,0)
- ;;=4^M25.521
- ;;^UTILITY(U,$J,358.3,30795,2)
- ;;=^5011605
- ;;^UTILITY(U,$J,358.3,30796,0)
- ;;=M19.022^^179^1928^27
- ;;^UTILITY(U,$J,358.3,30796,1,0)
+ ;;^UTILITY(U,$J,358.3,29159,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,29159,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,29159,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,29160,0)
+ ;;=R74.8^^135^1356^1
+ ;;^UTILITY(U,$J,358.3,29160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30796,1,3,0)
- ;;=3^Primary osteoarthritis, left elbow
- ;;^UTILITY(U,$J,358.3,30796,1,4,0)
- ;;=4^M19.022
- ;;^UTILITY(U,$J,358.3,30796,2)
- ;;=^5010812
- ;;^UTILITY(U,$J,358.3,30797,0)
- ;;=M19.021^^179^1928^28
- ;;^UTILITY(U,$J,358.3,30797,1,0)
+ ;;^UTILITY(U,$J,358.3,29160,1,3,0)
+ ;;=3^Abnormal Levels of Serum Enzymes
+ ;;^UTILITY(U,$J,358.3,29160,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,29160,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,29161,0)
+ ;;=R97.2^^135^1356^18
+ ;;^UTILITY(U,$J,358.3,29161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30797,1,3,0)
- ;;=3^Primary osteoarthritis, right elbow
- ;;^UTILITY(U,$J,358.3,30797,1,4,0)
- ;;=4^M19.021
- ;;^UTILITY(U,$J,358.3,30797,2)
- ;;=^5010811
- ;;^UTILITY(U,$J,358.3,30798,0)
- ;;=M12.522^^179^1928^31
- ;;^UTILITY(U,$J,358.3,30798,1,0)
+ ;;^UTILITY(U,$J,358.3,29161,1,3,0)
+ ;;=3^Elevated Prostate Specific Antigen
+ ;;^UTILITY(U,$J,358.3,29161,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,29161,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,29162,0)
+ ;;=R03.0^^135^1356^17
+ ;;^UTILITY(U,$J,358.3,29162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30798,1,3,0)
- ;;=3^Traumatic arthropathy, left elbow
- ;;^UTILITY(U,$J,358.3,30798,1,4,0)
- ;;=4^M12.522
- ;;^UTILITY(U,$J,358.3,30798,2)
- ;;=^5010623
- ;;^UTILITY(U,$J,358.3,30799,0)
- ;;=M12.521^^179^1928^32
- ;;^UTILITY(U,$J,358.3,30799,1,0)
+ ;;^UTILITY(U,$J,358.3,29162,1,3,0)
+ ;;=3^Elevated BP Reading w/o Diagnosis of HTN
+ ;;^UTILITY(U,$J,358.3,29162,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,29162,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,29163,0)
+ ;;=Z91.19^^135^1356^42
+ ;;^UTILITY(U,$J,358.3,29163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30799,1,3,0)
- ;;=3^Traumatic arthropathy, right elbow
- ;;^UTILITY(U,$J,358.3,30799,1,4,0)
- ;;=4^M12.521
- ;;^UTILITY(U,$J,358.3,30799,2)
- ;;=^5010622
- ;;^UTILITY(U,$J,358.3,30800,0)
- ;;=S42.402A^^179^1928^11
- ;;^UTILITY(U,$J,358.3,30800,1,0)
+ ;;^UTILITY(U,$J,358.3,29163,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,29163,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,29163,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,29164,0)
+ ;;=E66.01^^135^1356^43
+ ;;^UTILITY(U,$J,358.3,29164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30800,1,3,0)
- ;;=3^Fracture of lower end of left humerus, init for clos fx,Unspec
- ;;^UTILITY(U,$J,358.3,30800,1,4,0)
- ;;=4^S42.402A
- ;;^UTILITY(U,$J,358.3,30800,2)
- ;;=^5134713
- ;;^UTILITY(U,$J,358.3,30801,0)
- ;;=S42.401A^^179^1928^12
- ;;^UTILITY(U,$J,358.3,30801,1,0)
+ ;;^UTILITY(U,$J,358.3,29164,1,3,0)
+ ;;=3^Obesity,Morbid
+ ;;^UTILITY(U,$J,358.3,29164,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,29164,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,29165,0)
+ ;;=H93.19^^135^1356^54
+ ;;^UTILITY(U,$J,358.3,29165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30801,1,3,0)
- ;;=3^Fracture of lower end of right humerus, init,Unspec
- ;;^UTILITY(U,$J,358.3,30801,1,4,0)
- ;;=4^S42.401A
- ;;^UTILITY(U,$J,358.3,30801,2)
- ;;=^5027294
- ;;^UTILITY(U,$J,358.3,30802,0)
- ;;=S53.402A^^179^1928^29
- ;;^UTILITY(U,$J,358.3,30802,1,0)
+ ;;^UTILITY(U,$J,358.3,29165,1,3,0)
+ ;;=3^Tinnitus,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,29165,1,4,0)
+ ;;=4^H93.19
+ ;;^UTILITY(U,$J,358.3,29165,2)
+ ;;=^5006967
+ ;;^UTILITY(U,$J,358.3,29166,0)
+ ;;=G47.00^^135^1356^31
+ ;;^UTILITY(U,$J,358.3,29166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30802,1,3,0)
- ;;=3^Sprain of left elbow, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,30802,1,4,0)
- ;;=4^S53.402A
- ;;^UTILITY(U,$J,358.3,30802,2)
- ;;=^5031364
- ;;^UTILITY(U,$J,358.3,30803,0)
- ;;=S53.401A^^179^1928^30
- ;;^UTILITY(U,$J,358.3,30803,1,0)
+ ;;^UTILITY(U,$J,358.3,29166,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,29166,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,29166,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,29167,0)
+ ;;=F43.10^^135^1356^47
+ ;;^UTILITY(U,$J,358.3,29167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30803,1,3,0)
- ;;=3^Sprain of right elbow, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,30803,1,4,0)
- ;;=4^S53.401A
- ;;^UTILITY(U,$J,358.3,30803,2)
- ;;=^5031361
- ;;^UTILITY(U,$J,358.3,30804,0)
- ;;=S70.12XA^^179^1929^1
- ;;^UTILITY(U,$J,358.3,30804,1,0)
+ ;;^UTILITY(U,$J,358.3,29167,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,29167,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,29167,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,29168,0)
+ ;;=F43.11^^135^1356^45
+ ;;^UTILITY(U,$J,358.3,29168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30804,1,3,0)
- ;;=3^Contusion of left thigh, initial encounter
- ;;^UTILITY(U,$J,358.3,30804,1,4,0)
- ;;=4^S70.12XA
- ;;^UTILITY(U,$J,358.3,30804,2)
- ;;=^5036846
- ;;^UTILITY(U,$J,358.3,30805,0)
- ;;=S70.11XA^^179^1929^2
- ;;^UTILITY(U,$J,358.3,30805,1,0)
+ ;;^UTILITY(U,$J,358.3,29168,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,29168,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,29168,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,29169,0)
+ ;;=F43.12^^135^1356^46
+ ;;^UTILITY(U,$J,358.3,29169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30805,1,3,0)
- ;;=3^Contusion of right thigh, initial encounter
- ;;^UTILITY(U,$J,358.3,30805,1,4,0)
- ;;=4^S70.11XA
- ;;^UTILITY(U,$J,358.3,30805,2)
- ;;=^5036843
- ;;^UTILITY(U,$J,358.3,30806,0)
- ;;=S72.352A^^179^1929^3
- ;;^UTILITY(U,$J,358.3,30806,1,0)
+ ;;^UTILITY(U,$J,358.3,29169,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,29169,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,29169,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,29170,0)
+ ;;=I25.119^^135^1356^5
+ ;;^UTILITY(U,$J,358.3,29170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30806,1,3,0)
- ;;=3^Displaced comminuted fracture of shaft of left femur, init
- ;;^UTILITY(U,$J,358.3,30806,1,4,0)
- ;;=4^S72.352A
- ;;^UTILITY(U,$J,358.3,30806,2)
- ;;=^5038448
- ;;^UTILITY(U,$J,358.3,30807,0)
- ;;=S72.351A^^179^1929^4
+ ;;^UTILITY(U,$J,358.3,29170,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,29170,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,29170,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,29171,0)
+ ;;=I25.10^^135^1356^7
+ ;;^UTILITY(U,$J,358.3,29171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29171,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
