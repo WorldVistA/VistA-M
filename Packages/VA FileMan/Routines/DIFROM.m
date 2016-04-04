@@ -1,10 +1,13 @@
-DIFROM ;SFISC/XAK-GENERATE INITS ;2/27/99  12:38
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROM ;SFISC/XAK-GENERATE INITS ; 03DEC2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**V22.2**
+ ;
  D Q
  S X=$S('$D(^DD("VERSION"))#2:0,1:^("VERSION")),Y=$P($T(DIFROM+1),";",3) G:X'=Y ERV K X,Y
  I $S('$D(DUZ(0)):1,DUZ(0)'="@":1,1:0) W !,"PROGRAMMER ACCESS REQUIRED",! Q
- D WARN1 G:Y'=1 Q
  D WARN
  S DIR("A")="Enter the Name of the Package (2-4 characters)"
  S DIR(0)="FO^2:4:0^I X'?1U1.NU K X"
@@ -42,7 +45,9 @@ SF G F:$O(^DIC(9.4,DPK,4,DA,1,0))'>0
  F %=0:0 S %=$O(^DIC(9.4,DPK,4,DA,1,%)) Q:%'>0  I $D(^(%,0)) S E=$P(^(0),U),D=$O(^DD(+Y,"B",E,0)) D:D="" ERF I $D(^DD(+Y,D,0)) S F(+Y,+Y,D)="",%C=+$P(^(0),U,2) I %C W "  (",E,")" S F(+Y,%C)=0
  S F(+Y,+Y)=1,E=+Y S:(+Y'=200)!(DTL="XU") F(+Y,+Y,.01)=0 G E
 F S F(+Y,+Y)=0,%=1,E=0 K %A
-E F E=E:0 S E=$O(F(+Y,E)) Q:E'>0  F D=0:0 S D=$O(^DD(E,"SB",D)) Q:D'>0  I Y-E!'$D(%A)!$D(%A(D)) S F(+Y,D)="" S:$D(%A) %A(D)=0
+ ; VEN/SMH 3121029 - Change below to that S F(+Y,D)=0 not "", to conform with KIDS FIA format. 
+ ; IX & KEYS on subfiles don't get exported with KIDS otherwise. For V22.2.
+E F E=E:0 S E=$O(F(+Y,E)) Q:E'>0  F D=0:0 S D=$O(^DD(E,"SB",D)) Q:D'>0  I Y-E!'$D(%A)!$D(%A(D)) S F(+Y,D)=0 S:$D(%A) %A(D)=0
  S F(+Y,0)=^DIC(+Y,0,"GL"),D=$P(@(F(+Y,0)_"0)"),U,4),DPK(1)=+Y S:D<2 D=""
  S DA(1)=DPK,DR="222.1;222.2;223;222.4;222.7;S:""n""[X Y=0;222.8;222.9;"
  S DIE=$S(DPK>0:"^DIC(9.4,",1:"^UTILITY($J,")_DA(1)_",4,"
@@ -54,13 +59,6 @@ E F E=E:0 S E=$O(F(+Y,E)) Q:E'>0  F D=0:0 S D=$O(^DD(E,"SB",D)) Q:D'>0  I Y-E!'$
 ERF S D=-1 W $C(7),!,"  INVALID FIELD LABEL:  "_E,! Q
 ERV W $C(7),!!,"Your FileMan Version number: "_X_"  does not match the version number",!,"on the DIFROM routine: "_Y_" !!",!!,"You must run ^DINIT before you can build an INIT!!",! K X,Y Q
 Q G Q^DIFROM11
-WARN1 N DIR W $C(7),!!,"  **  WARNING  **",!
- W "DIFROM does not support new VA FileMan version 22 data dictionary structures!",!!
- W "If you add new style Indexes or Keys to any file, they will not be",!,"transported by DIFROM.",!!
- W "You should use the Kernel Installation and Distribution System (KIDS)",!,"to transport files with new style Indexes or Keys."
- S DIR("A")="Do you wish to continue",DIR(0)="Y",DIR("B")="NO"
- D ^DIR Q
- ;
 WARN N I F I=1:1 Q:$T(WARN+I)=""  W !,$P($T(WARN+I),";;",2)
  ;;                    * * Please Note * *
  ;;

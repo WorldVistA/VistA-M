@@ -1,13 +1,18 @@
-DIA2 ;SFISC/GFT-SELECT ENTRY TO EDIT, ^LOOP ;22MAR2006
- ;;22.0;VA FileMan;**147**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIA2 ;SFISC/GFT-SELECT ENTRY TO EDIT, ^LOOP ;16MAY2007
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1009,147,1028**
+ ;
  K ^UTILITY("DIT",$J),DA,DRS,DW,DIAP,DI I '$D(DR(1,J(0))) S DR(1,J(0))=".01:99999999"
  I $L(DR(1,J(0)))+$L(DIA)<216,+DR(1,J(0))=.01 S DR(1,J(0))="S:DIA(9) DQ=2,X=$P("_DIA_"DA,0),U,1);"_DR(1,J(0))
 DIC W !! G Q^DIB:$D(DTOUT) D L S DIA(1)=+Y,DIA(9)=$P(Y,U,3) I Y>0 D DIE,^DIA3:'$D(DA) G DIC
  I X'["LOOP",X'["loop" D PTS^DITP:$O(^UTILITY("DIT",$J,0))>0 K ^UTILITY("DIT",$J) G Q^DIB
- S L="EDIT ENTRIES",DHD="@",IOP="HOME",FLDS="",DHIT="D LOOP^DIA2 S:'$D(DCC) DN=0" D EN1^DIP W !!?4,"LOOP ENDED!" Q:$D(DTOUT)  G DIC
+ S L="EDIT ENTRIES",DHD="@",IOP="HOME",FLDS="",DHIT="S DCC="""_$$CONVQQ^DILIBF(DIA)_""" D LOOP^DIA2 S:'$D(DCC) DN=0" D EN1^DIP W !!?4,"LOOP ENDED!" Q:$D(DTOUT)  G DIC
  ;
-L K Y,I,J,F,DIC S (DIC,DIE)=DIA,DIC(0)="QEALM" G ^DIC
+L K Y,I,J,F,DIC S (DIC,DIE)=DIA,DIC(0)="QEALM" D  K DIE S DIE=DIA Q
+ .N DIA,DR D ^DIC ;could go to a custom lookup that deranges these variables
  ;
 DIE S DP=DIA("P"),DA=+Y,DR=DR(1,DP)
  K DIC,Y,C,DB S DIC=DIE,DILK=DIE_DA_")" D LOCK^DILF(DILK) ;**147

@@ -1,6 +1,10 @@
-DINIT00Q ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;2:03 PM  10 Jan 2013
- ;;22.0;VA FileMan;**169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DINIT00Q ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;15JAN2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**169,1044**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9201,2,85,0)
@@ -38,7 +42,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,101,0)
  ;;=     To PAGE DOWN one screen at one time, press the NEXT SCREEN key, PAGE
  ;;^UTILITY(U,$J,.84,9201,2,102,0)
- ;;=     DOWN or PF1 followed by the ARROW DOWN key, depending on what kind of
+ ;;=     DOWN or F1 followed by the ARROW DOWN key, depending on what kind of
  ;;^UTILITY(U,$J,.84,9201,2,103,0)
  ;;=     CRT or workstation that is being used.
  ;;^UTILITY(U,$J,.84,9201,2,104,0)
@@ -46,7 +50,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,105,0)
  ;;=     To PAGE UP one screen at one time, press the PREV SCREEN key, PAGE UP
  ;;^UTILITY(U,$J,.84,9201,2,106,0)
- ;;=     or PF1 followed by the ARROW UP key, depending on what kind of CRT or
+ ;;=     or F1 followed by the ARROW UP key, depending on what kind of CRT or
  ;;^UTILITY(U,$J,.84,9201,2,107,0)
  ;;=     workstation that is being used.
  ;;^UTILITY(U,$J,.84,9201,2,108,0)
@@ -54,17 +58,17 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,109,0)
  ;;=     To return to the TOP, back to the beginning of the document, press
  ;;^UTILITY(U,$J,.84,9201,2,110,0)
- ;;=     the <PF1> key followed by the letter 'T'.
+ ;;=     the <F1> key followed by the letter 'T'.
  ;;^UTILITY(U,$J,.84,9201,2,111,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,112,0)
- ;;=     To go to the BOTTOM, end of the document, press the <PF1> key
+ ;;=     To go to the BOTTOM, end of the document, press the <F1> key
  ;;^UTILITY(U,$J,.84,9201,2,113,0)
  ;;=     followed by the letter 'B'.
  ;;^UTILITY(U,$J,.84,9201,2,114,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,115,0)
- ;;=     To GOTO a specific screen, line or column press the <PF1> key
+ ;;=     To GOTO a specific screen, line or column press the <F1> key
  ;;^UTILITY(U,$J,.84,9201,2,116,0)
  ;;=     followed by the letter 'G'.  This will cause a prompt to be displayed
  ;;^UTILITY(U,$J,.84,9201,2,117,0)
@@ -80,7 +84,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,122,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,123,0)
- ;;=     To FIND a string of characters, on a line, press the <PF1> key
+ ;;=     To FIND a string of characters, on a line, press the <F1> key
  ;;^UTILITY(U,$J,.84,9201,2,124,0)
  ;;=     followed by the letter 'F' or 'FIND' key.  A prompt will appear where
  ;;^UTILITY(U,$J,.84,9201,2,125,0)
@@ -106,7 +110,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,135,0)
  ;;=     To, NEXT FIND, find the next occurrence of the same search string,
  ;;^UTILITY(U,$J,.84,9201,2,136,0)
- ;;=     press the letter 'N' or <PF1> followed by the letter 'N'. The FIND
+ ;;=     press the letter 'N' or <F1> followed by the letter 'N'. The FIND
  ;;^UTILITY(U,$J,.84,9201,2,137,0)
  ;;=     facility keeps track of the last find string including the direction
  ;;^UTILITY(U,$J,.84,9201,2,138,0)
@@ -118,13 +122,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,141,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,142,0)
- ;;=     To rePAINT the screen, press the <PF1> key followed by the letter
+ ;;=     To rePAINT the screen, press the <F1> key followed by the letter
  ;;^UTILITY(U,$J,.84,9201,2,143,0)
  ;;=     'P'.
  ;;^UTILITY(U,$J,.84,9201,2,144,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,145,0)
- ;;=     To PRINT the current document, press <PF1><PF1> followed by the
+ ;;=     To PRINT the current document, press <F1><F1> followed by the
  ;;^UTILITY(U,$J,.84,9201,2,146,0)
  ;;=     letter 'P'. You will be prompted whether to print a header on each
  ;;^UTILITY(U,$J,.84,9201,2,147,0)
@@ -134,7 +138,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9201,2,149,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9201,2,150,0)
- ;;=     To SWITCH to another document press the <PF1> key followed by the
+ ;;=     To SWITCH to another document press the <F1> key followed by the
  ;;^UTILITY(U,$J,.84,9201,2,151,0)
  ;;=     letter 'S'.  This will allow the selection of another file, (wp)field
  ;;^UTILITY(U,$J,.84,9201,2,152,0)

@@ -1,6 +1,10 @@
 DICATT0 ;SFISC/GFT,XAK-DATES, NUMERIC ;1/7/2009
- ;;22.0;VA FileMan;**160**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**160**
+ ;
  G @N
  ;
 DIE K Y S DP=0 F  S DL=1,DP=$O(DQ(DP)) Q:DP=""  S:$D(DE(DP)) DG(DP)=DE(DP)

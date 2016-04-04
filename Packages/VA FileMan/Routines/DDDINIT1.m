@@ -1,0 +1,40 @@
+DDDINIT1 ;SFISC/TKW-META DATA DICTIONARY INIT ;06:44 PM  2 Nov 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ; LOADS AND INDEXES DD'S
+ ;
+ K DIF,DIK,D,DDF,DDT,DTO,D0,DLAYGO,DIC,DIDUZ,DIR,DA,DFR,DTN,DIX,DZ D DT^DICRW S %=1,U="^",DSEC=1
+ S NO=$P("I 0^I $D(@X)#2,X[U",U,%) I %<1 K DIFQ Q
+ASKNOT I %=1,$D(DIFQ(0)) S DSEC=1
+ Q:'$D(DIFQ)  S %=2 W !!,"ARE YOU SURE EVERYTHING'S OK" D YN^DICN I %-1 K DIFQ Q
+ I $D(DIFKEP) F DIDIU=0:0 S DIDIU=$O(DIFKEP(DIDIU)) Q:DIDIU'>0  S DIU=DIDIU,DIU(0)=DIFKEP(DIDIU) D EN^DIU2
+ D DT^DICRW K ^UTILITY(U,$J),^UTILITY("DIK",$J) D WAIT^DICD
+ D ^DDDIN001
+ F  S D=$O(^UTILITY(U,$J,"SBF","")) Q:D'>0  K:'DIFQ(D) ^(D) S D=$O(^(D,"")) I D>0  K ^(D) D IX
+NODATA Q
+ ;
+W S Y=$P($T(@X),";",2) W !,"NOTE: This package also contains "_Y_"S",! Q:'$D(DIFQ(0))
+ S %=1 W ?6,"SHALL I WRITE OVER EXISTING "_Y_"S OF THE SAME NAME" D YN^DICN I '% W !?6,"Answer YES to replace the current "_Y_"S with the incoming ones." G W
+ S:%=2 DIFQ(X)=0 K:%<0 DIFQ
+ Q
+ ;
+OPT ;OPTION
+RTN ;ROUTINE DOCUMENTATION NOTE
+FUN ;FUNCTION
+BUL ;BULLETIN
+KEY ;SECURITY KEY
+HEL ;HELP FRAME
+DIP ;PRINT TEMPLATE
+DIE ;INPUT TEMPLATE
+DIB ;SORT TEMPLATE
+DIS ;FORM
+REM ;REMOTE PROCEDURE
+ ;
+SBF ;FILE AND SUB FILE NUMBERS
+IX W "." S DIK="A" F %=0:0 S DIK=$O(^DD(D,DIK)) Q:DIK=""  K ^(DIK)
+ S DA(1)=D,DIK="^DD("_D_"," D IXALL^DIK
+ I $D(^DIC(D,"%",0)) S DIK="^DIC(D,""%""," G IXALL^DIK
+ Q

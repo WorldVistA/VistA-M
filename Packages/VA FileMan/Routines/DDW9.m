@@ -1,6 +1,9 @@
-DDW9 ;SFISC/MKO-MARK TEXT ;10:10 AM  17 May 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDW9 ;SFISC/MKO-MARK TEXT ;12:20 PM  24 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
  ;
 CHKDEL(DDWY) ;Check that cursor is on block and delete
  N DDWI
@@ -41,7 +44,7 @@ DELABV ;All of the block is above the screen
  . I DDWX]"" S ^TMP("DDW",$J,DDWR1)=DDWX
  . E  D SHIFTA(DDWR1,DDWR1)
  ;
- D:DDWR2-DDWR1>50 MSG^DDW("Deleting selected text.")
+ D:DDWR2-DDWR1>50 MSG^DDW(" ...") ;**
  N DDWFST,DDWLST
  S DDWFST=$E(^TMP("DDW",$J,DDWR1),1,DDWC1-1)
  S DDWLST=$E(^TMP("DDW",$J,DDWR2),DDWC2+1,999)
@@ -72,7 +75,7 @@ DELBEL ;All of the block is below the screen
  . I DDWX]"" S ^TMP("DDW1",$J,DDWS1)=DDWX
  . E  D SHIFTB(DDWS1,DDWS1)
  ;
- D:DDWR2-DDWR1>50 MSG^DDW("Deleting selected text.")
+ D:DDWR2-DDWR1>50 MSG^DDW(" ...") ;**
  N DDWFST,DDWLST
  S DDWFST=$E(^TMP("DDW1",$J,DDWS1),1,DDWC1-1)
  S DDWLST=$E(^TMP("DDW1",$J,DDWS2),DDWC2+1,999)

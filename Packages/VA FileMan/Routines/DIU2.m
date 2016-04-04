@@ -1,16 +1,20 @@
-DIU2 ;SFISC/XAK/GFT-EDIT FILE ;8:03 AM  24 Oct 2001
- ;;22.0;VA FileMan;**82**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIU2 ;SFISC/XAK/GFT-EDIT FILE ;18SEP2010
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**82,1039,1040**
+ ;
  ;
  ;from DIU0
 N S X=$P(^DIC(DA,0),U,1),D=@(DIU_"0)"),^(0)=X_U_$P(D,U,2,9) K ^DD(+$P(D,U,2),0,"NM") S ^("NM",X)="" Q:$D(Y)
  I DUZ(0)]"" F DR=1:1:6 S D=$P("DD^RD^WR^DEL^LAYGO^AUDIT",U,DR),Y=$S($D(^DIC(DA,0,D)):^(D),1:"") D RW G Q:X=U
  S X=$G(^("AUDIT"))
  I X]"",DUZ(0)'="@" G OK:$TR(X,DUZ(0))=X
-DDA K DIR S DIR("A")="DD AUDIT",DIR(0)="YO"
- S:$D(^DD(DA,0,"DDA")) DIR("B")=$S(^("DDA")["Y":"YES",1:"NO")
- S DIR("??")="^W !!?5,""Enter 'Y' (YES) if you want to audit the Data Dictionary changes"",!?5,""for this file."""
- D ^DIR K DIR Q:$D(DTOUT)!$D(DUOUT)  S ^DD(DA,0,"DDA")=$S(Y=1:"Y",1:"N")
+DDA K DIR ;S DIR("A")="DD AUDIT",DIR(0)="YO"
+ ;S:$D(^DD(DA,0,"DDA")) DIR("B")=$S(^("DDA")["Y":"YES",1:"NO")
+ ;S DIR("??")="^W !!?5,""Enter 'Y' (YES) if you want to audit the Data Dictionary changes"",!?5,""for this file."""
+ ;D ^DIR K DIR Q:$D(DTOUT)!$D(DUOUT)  S ^DD(DA,0,"DDA")=$S(Y=1:"Y",1:"N")
 OK S DIU(0)=$P(@(DIU_"0)"),U,2) K DIR
  S %=DIU(0)'["O"+1
  W !,"ASK 'OK' WHEN LOOKING UP AN ENTRY" D YN^DICN
@@ -18,6 +22,12 @@ OK S DIU(0)=$P(@(DIU_"0)"),U,2) K DIR
  I '% W !?5,"Answer YES to cause a lookup into this file to verify the",!?5,"selection by prompting with '...OK? YES//'." G OK
  I DUZ(0)="@",%'<0 D ^DIU21
 Q K DIR,DIRUT,DTOUT,DUOUT,DIROUT Q
+ ;
+CHECKPT ;CALLED BY ^DD(1,.01,"DEL",.5,0)
+ N M,S,P D POINT^DIDH S M=0,P="PT"
+CM S M=$O(^DD(DA,0,P,M)) I M>0 Q:M<DA  G CM:M=DA S S=M F  S S=$G(^DD(M,0,"UP")) Q:'S  G CM:S=DA ;SET $T=0 SWITCH TO SAY THERE'S NO POINTER FILE TO THIS ONE
+ Q:P="PTC"!$T  S P="PTC" G CM ;LOOK AT COMPUTED POINTERS AS WELL AS POINTERS
+ ;
  ;
 K ; CALLED BY ^DD(1,.01,"DEL",1,0)
  N DIKREF,DG,DIR

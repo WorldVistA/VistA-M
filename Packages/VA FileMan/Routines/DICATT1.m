@@ -1,8 +1,12 @@
-DICATT1 ;SFISC/GFT,XAK-NODE AND PIECE, SUBFILE ;2/16/93  17:14
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATT1 ;SFISC/GFT,XAK-NODE AND PIECE, SUBFILE ;21APR2008
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1032**
+ ;
  I DA=.001 S W=" " G 2
- S (DG,W)=$P(O,U,4) G M:W="" S T=0,DP=DA,Y=$P(W,";",1),N=$P(W,";",2) D MX S L=L-T D MAX I T<252 S W=DG G ^DICATT2
+ S (DG,W)=$P(O,U,4) G M:W="" S T=0,DP=DA,Y=$P(W,";"),N=$P(W,";",2) D MX S L=L-T D MAX I T+3<$G(^DD("STRING_LIMIT"),255) S W=DG G ^DICATT2
  D TOO G NO^DICATT2
 M K DE,DG W !,"WILL "_F_" FIELD BE MULTIPLE" S %=2 D YN^DICN I % S V=%=1 G BACK:%<0,SUB
  W !,"FOR A GIVEN ENTRY, WILL THERE BE MORE THAN 1 "_F,!," ON FILE AT ONCE?" G M
@@ -14,7 +18,7 @@ SUB S:$P(DIZ,"^")["K" V=1 S T=0 F Y=0:1 Q:'$D(^DD(A,"GL",Y+1))
  W !!,"SUBSCRIPT: ",Y,"// " R X:DTIME S:'$T X=U,DTOUT=1 S:X="" X=Y
  I X'?.ANP W !?5,$C(7),"Control Characters are not allowed." G SUB
  I +X'=X G BACK:X[U,DICATT1^DIQQQ:X["?" I X?1P.E!(X[",")!(X[":")!(X[S)!(X[Q)!(X["=") G SUB
- I Y'=X S Y=X D MAX I T>250 D TOO G SUB
+ I Y'=X S Y=X D MAX I T+5>$G(^DD("STRING_LIMIT"),255) D TOO G SUB
 SB S W=Y,X=0 G V:V,U:$D(^DD(A,"GL",W,0))
 PIECE S Y=1,P=0
 PC S X=$O(^DD(A,"GL",W,X)) I X'="" S P=$P(X,",",2),Y=$S(Y>P:Y,1:P+1) G PC

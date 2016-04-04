@@ -1,6 +1,9 @@
-DDW2 ;SFISC/MKO-SETTINGS, MODES ;11:32 AM  25 Aug 2000
- ;;22.0;VA FileMan;**18**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDW2 ;SFISC/MKO-SETTINGS, MODES ;07:22 PM  5 Dec 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**18,999**
  ;
 TSET N DDWX
  S DDWX=$E(DDWRUL,DDWC)
@@ -13,11 +16,8 @@ TSET N DDWX
  ;
 TSALL ;Prompt for tab stops
  N DDWHLP,DDWANS,DDWCOD
- S DDWHLP(1)="  Specify in which column(s) you want to set tab stops. To set individual"
- S DDWHLP(2)="  tab stops, type a series of numbers separated by commas, for example:"
- S DDWHLP(3)="  4,7,15,20. To set tab stops at repeated intervals after the last stop,"
- S DDWHLP(4)="  or column 1, type the interval as +n, for example: 10,20,+5."
- D ASK^DDWG(5,"Columns in which to set tab stops: ",30,$G(DDWTAB),"D TSALLVAL^DDW2",.DDWHLP,.DDWANS,.DDWCOD)
+ D BLD^DIALOG(8136,,,"DDWHLP")
+ D ASK^DDWG(5,$$EZBLD^DIALOG(8136.1)_" ",30,$G(DDWTAB),"D TSALLVAL^DDW2",.DDWHLP,.DDWANS,.DDWCOD)
  ;
  Q:DDWCOD="TO"!(DDWANS=U)!(DDWANS=DDWTAB)
  S DDWTAB=DDWANS
@@ -30,7 +30,7 @@ TSALLVAL ;Validate tab stops
  S:DDWX="@" DDWX=""
  I DDWX?1."^"!($P($G(DDWCOD),U)="TO") S DDWX=U Q
  I $TR(DDWX,"+,")?.E1.APC.E D
- . S DDWERR="  Response can contain only commas (,), plus signs (+), and numbers."
+ . S DDWERR=$$EZBLD^DIALOG(8136.2) ;**TAB response rule
  Q
  ;
 RULER(TAB) ;Return the ruler with tab stops
@@ -47,18 +47,18 @@ RULER(TAB) ;Return the ruler with tab stops
  . E  S:POS<256 $E(RUL,POS)="T",LAST=POS
  Q RUL
  ;
-LSET I 'DDWRAP D ERR("Margins cannot be set when wrap is off") Q
- I DDWC>231 D ERR("Left margin cannot be set beyond column 231") Q
- I DDWC'<DDWRMAR D ERR("Left margin must be left of right margin") Q
+LSET I 'DDWRAP D ERR($$EZBLD^DIALOG(8138.1)) Q
+ I DDWC>231 D ERR($$EZBLD^DIALOG(8138.2)) Q
+ I DDWC'<DDWRMAR D ERR($$EZBLD^DIALOG(8138.3)) Q
  I DDWLMAR-DDWOFS'<1,DDWLMAR-DDWOFS'>IOM D
  . D CUP(DDWMR+1,DDWLMAR-DDWOFS) W $E(DDWRUL,DDWLMAR)
  D CUP(DDWMR+1,DDWC-DDWOFS) W "<" D POS(DDWRW,DDWC)
  S DDWLMAR=DDWC
  Q
  ;
-RSET I 'DDWRAP D ERR("Margins cannot be set when wrap is off") Q
- I DDWC>245 D ERR("Right margin cannot be set beyond column 245") Q
- I DDWC'>DDWLMAR D ERR("Right margin must be right of left margin") Q
+RSET I 'DDWRAP D ERR($$EZBLD^DIALOG(8138.1)) Q
+ I DDWC>245 D ERR($$EZBLD^DIALOG(8138.4)) Q
+ I DDWC'>DDWLMAR D ERR($$EZBLD^DIALOG(8138.5)) Q
  I DDWRMAR-DDWOFS'<1,DDWRMAR-DDWOFS'>IOM D
  . D CUP(DDWMR+1,DDWRMAR-DDWOFS) W $E(DDWRUL,DDWRMAR)
  D CUP(DDWMR+1,DDWC-DDWOFS) W ">" D POS(DDWRW,DDWC)
@@ -77,7 +77,7 @@ WRAPM S DDWRAP=DDWRAP+1#2
  Q
  ;
 REPLM S DDWREP=DDWREP+1#2
- D CUP(0,13) W $S(DDWREP:"[ REPLACE ]",1:"[ INSERT ]=")
+ D CUP(0,13) W "[",$$UP^DILIBF($P($$EZBLD^DIALOG(7002),U,$S(DDWREP:2,1:1))),"]" ;**
  D POS(DDWRW,DDWC)
  Q
  ;

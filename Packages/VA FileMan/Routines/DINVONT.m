@@ -1,14 +1,17 @@
-%ZOSV ;SFISC/AC - $View commands for Open M for NT.  ;2:42 PM  1 Oct 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+%ZOSV ;SFISC/AC - $View commands for Open M for NT.  ;2015-01-02  4:31 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 ACTJ() ;# Active jobs
  N Y,% S %=0 F Y=0:1 S %=$ZJ(%) Q:%=""
  Q Y
 AVJ() ;# available jobs
  ;Return fixed value if version < 2.1.6 (e.i. not Cache)
- N v S v=$$VERSION($ZV) I 216>$TR(v,".") Q 15 ;
- N maxpid s maxpid=$v($zu(40,2,118),-2,4) ;from %SS
- Q maxpid-$$ACTJ() ;need ISM to provide maxpid in ^%MACHINE
+ N V S V=$$VERSION($ZV) I 216>$TR(V,".") Q 15 ;
+ N MAXPID S MAXPID=$V($ZU(40,2,118),-2,4) ;from %SS
+ Q MAXPID-$$ACTJ() ;need ISM to provide maxpid in ^%MACHINE
 PRIINQ() ;
  Q 8
 UCI ;Current UCI

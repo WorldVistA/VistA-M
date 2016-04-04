@@ -1,6 +1,9 @@
 DIFROMSB ;SCISC/DCL-SILENT DIFROM/INSTALL BLOCKS ;08:35 AM  22 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 BLKSIN(DIFRNAME,DIFRFLG,DIFRSA,DIFRMSGR) ;
  ;PACKAGE_NAME,FLAGS,SOURCE_ROOT,MSG_ROOT

@@ -1,5 +1,5 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427**;DEC 1997;Build 21
  ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
  ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
  ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
@@ -28,7 +28,7 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ;       (o) RXCOB- Payer Sequence
  ;Output:    RESP - Response from $$EN^BPSNCPDP api
  ;
- N ACT,NDCACT,DA,PSOELIG,ACT1,SMA
+ N ACT,NDCACT,DA,PSOELIG,PSOBYPS,ACT1,SMA
  I '$D(RFL) S RFL=$$LSTRFL(RX)
  ; - ECME is not turned ON for the Rx's Division
  I '$G(IGSW),'$$ECMEON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) S RESP="-1^ECME SWITCH OFF" Q
@@ -71,9 +71,9 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ; Storing eligibility flag
  S PSOELIG=$P(RESP,"^",3) D:PSOELIG'="" ELIG^PSOBPSU2(RX,RFL,PSOELIG)
  ;
- ;7/8/2010; bld ; added for tricare bypass/override audit file
- I $P(RESP,"^",2)="TRICARE INPATIENT/DISCHARGE"!($P(RESP,"^",2)="CHAMPVA INPATIENT/DISCHARGE") D
- .D EN^PSOBORP2(RX,RFL,RESP)
+ ; Check if this is a bypass RX-claim.  If it is, write it to the Bypass-Override Report
+ S PSOBYPS=$$BYPASS(PSOELIG,$P(RESP,"^",2))
+ I PSOBYPS D EN^PSOBORP2(RX,RFL,RESP)
  ;
  ; If from SMA action, split message across multiple log entries
  ; The last entry will be filed in the code that follows this section as we append other data
@@ -122,9 +122,31 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  S ACT=$E(ACT_ACT1,1,75)
  D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  D ELOG^PSOBPSU2(RESP)  ;-Logs an ECME Act Log if Rx Qty is different than Billing Qty
- I PSOELIG="T",$P(RESP,"^",2)'="TRICARE INPATIENT/DISCHARGE" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
- I PSOELIG="C",$P(RESP,"^",2)'="CHAMPVA INPATIENT/DISCHARGE" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
+ ; If not a bypass RX-claim, then call TRICCHK so the user can process
+ I PSOELIG="T"!(PSOELIG="C"),'PSOBYPS D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
  Q
+ ;
+BYPASS(PSOELIG,REASON) ;PSO*427
+ ; Check if this Rx gets bypassed. Bypassed Rx show up on the TRICARE/CHAMPVA
+ ;   Override/Bypass Report and will not get the Reject Notification Screen.
+ ;
+ ; Input:
+ ;    POSELIG: Eligibility (C:CHAMPVA, T:TRICARE, V:VETERAN)
+ ;    REASON: Non billable reason returned by ECME
+ ; Output:
+ ;    0: Not a Bypass Rx
+ ;    1: Bypass Rx
+ ;
+ ; Check Parameters
+ I $G(PSOELIG)="" Q 0
+ I $G(REASON)="" Q 0
+ ;
+ ; Only TRICARE and CHAMPVA are bypassed
+ I PSOELIG'="T",PSOELIG'="C" Q 0
+ ;
+ ; Check for TRICARE/CHAMPVA and EI (Veteran claims would not have gotten this far)
+ I ",AGENT ORANGE,IONIZING RADIATION,SC TREATMENT,SOUTHWEST ASIA,MILITARY SEXUAL TRAUMA,HEAD/NECK CANCER,COMBAT VETERAN,SHAD^PROJECT 112/SHAD,"[(","_REASON_",") Q 1
+ Q 0
  ;
 REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC) ; - Reverse a claim and close all OPEN/UNRESOLVED Rejects
  ;Input: (r) RX   - Rx IEN (#52)

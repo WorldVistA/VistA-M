@@ -1,6 +1,10 @@
 DICM ;SFISC/GFT,XAK,TKW-MULTIPLE LOOKUP FOR FLDS WHICH MUST BE TRANSFORMED ;27OCT2012
- ;;22.0;VA FileMan;**4,20,31,40,149,159,165,169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,20,31,40,149,159,165,169**
+ ;
  I '$D(DICR(1)),DIC(0)'["T" N DICR S DICR=0
  I $A(X)=34,X?.E1"""" G N
  I $G(^DD(+DO(2),0,"LOOK"))]"",^("LOOK")'="SOUNDEX" G @^("LOOK")

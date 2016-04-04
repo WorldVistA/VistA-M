@@ -1,6 +1,9 @@
 DIARR3 ;SFISC/DCM-ARCHIVING FUNCTION, FIGURE OUT FG ;3/15/93  7:55 AM
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q:'DIARFND  U IO(0) W !,"Formatting found records..."
  S (DIARTAB,DIAROREQ,DIAROM,DIAROZ,DIARZZ,DIAROIDF,DIAROFLD,DIAROLVL,DIAROBPT,DIAROBFN)=0,DIAROFLD(DIAROLVL)=0 K ^TMP("DIARO",$J)
  F  S DIAROREQ=$O(^TMP("DIAR",$J,DIAROREQ)) Q:DIAROREQ'>0  F  S DIAROM=$O(^TMP("DIAR",$J,DIAROREQ,DIAROM)) Q:DIAROM'>0  D CLEANUP^DIARR4 F  S DIAROZ=$O(^TMP("DIAR",$J,DIAROREQ,DIAROM,DIAROZ)) Q:DIAROZ'>0  S DIAROX=^(DIAROZ) D EN

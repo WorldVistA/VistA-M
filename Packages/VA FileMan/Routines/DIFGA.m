@@ -1,6 +1,9 @@
 DIFGA ;SFISC/XAK-FILEGRAM TEMPLATES ;3/5/93  1:22 PM
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DIC=DI,(DIPT,DC(0))=DA,DC(1)=0 D INIT^DIFGA1,GET^DIFGB,L S L=1,DE="",DJ=0
  K DNP Q
  ;

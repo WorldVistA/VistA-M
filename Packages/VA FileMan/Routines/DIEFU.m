@@ -1,6 +1,10 @@
-DIEFU ;SF/DPC-FILER UTILITIES ;1:56 PM  25 May 2001
- ;;22.0;VA FileMan;**85**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIEFU ;SF/DPC-FILER UTILITIES ;06:42 PM  9 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**85,999**
+ ;
 INIZE ;
  N %,X,%H,DIE,DICS,DIC,%DT,DIK,%Y,%X,%D,%M,%I
  D DTNOLF^DICRW
@@ -121,13 +125,13 @@ XA(DIEFF,DIEFIEN,DIEFFLD,DIEFNVAL,DIEFOVAL) ;
  ;
 FILENM(F) ;
  N NM
- S NM=$P($G(^DIC($$FNO^DILIBF(F),0)),U)
+ S NM=$$FILENAME^DIALOGZ($$FNO^DILIBF(F)) ;**CCO/NI GET FILE NAME
  ;I NM="" <DO ERROR>
  Q NM
  ;
 FLDNM(F,FLD) ;
  N NM,UP
- S NM=$P($G(^DD(F,FLD,0)),U,1)
+ S NM=$$LABEL^DIALOGZ(F,FLD) ;**CCO/NI GET FIELD LABEL
  F  S UP=$G(^DD(F,0,"UP")) Q:'UP  D
  . S NM=NM_" in "_$P($G(^DD(F,0)),U,1)
  . S F=UP

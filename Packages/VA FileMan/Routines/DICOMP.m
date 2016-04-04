@@ -1,6 +1,10 @@
-DICOMP ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;27FEB2008
- ;;22.0;VA FileMan;**6,76,114,118,157**;;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICOMP ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;2014-12-27  12:56 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**6,76,114,118,157,1034,1039,1048**
+ ;
  S DICOMP=$G(DICOMP) N DLV,K S K=0 F DLV=0:1 G A:'$D(J(DLV+1))
 EN1 ;
  S K=0 F  S DLV=K,K=$O(I(K)) G A:K="",A:$D(J(K))[0!($D(I(K\100*100))[0)
@@ -27,33 +31,38 @@ N ;
  S DBOOL="><]['=!&"[X,Y="[]!&/\_><*="
 NOT I X="'" S %=$E(I,2) I "_"""[% G 0
  G N:Y'[X
-BINOP I ")"'[$E(I_W,M),$G(K(K))]"",'$D(K(K,2)),'$F($TR(DPUNC,")'"),K(K)),$F(Y,W)<2 D:X="_"  G N:K(K)'="'" S K(K)="'"_X,X="" G N:DBOOL
-CONCAT .I $D(DATE(K)) K DATE(K) S X=" S Y=X X ^DD(""DD"") S X=Y_"
+BINOP I ")"'[$E(I_W,M),$G(K(K))]"" I '$D(K(K,2)),'$F($TR(DPUNC,")'"),K(K)),$F(Y,W)<2 D:X="_"  G N:K(K)'="'" S K(K)="'"_X,X="" G N:DBOOL
+CONCAT .I $D(DATE(K)) K DATE(K) S K=K+1,K(K)=" S Y=X X ^DD(""DD"") S X=Y"
 0 G 0^DICOMP1
  ;
-I I $A(I,M+1)=34 S M=$F(I,"""",M+2)-1 G I:M>0 S W=0,M=999,X=U Q
+I ;parse off the next element, as delimited by PUNCtuation
+ I $A(I,M+1)=34 S M=$F(I,"""",M+2)-1 G I:M>0 S W=0,M=999,X=U Q
 MR F M=M+1:1 S W=$E(I,M) Q:DPUNC[W
  S X=$E(I,1,M-1) Q
  ;
-C I $D(DPS($$NEST,"SETDATA")) G 0
+C ;we've encountered a comman or colon(:)
+ I $D(DPS($$NEST,"SETDATA")) G 0
  S DICF=X D DG S K(K+1,2)=0
  I $O(DPS($$NEST,"$"))["$" S DPS($$NEST)=DPS($$NEST)_Y_DICF G N
  G 0:'$D(W($$NEST)) S (W,W($$NEST))=W($$NEST)-1 K:W<2 W($$NEST) S DPS($$NEST)=" S X"_W_"="_Y_DPS($$NEST) G N
  ;
-DPS G 0:'DPS I $D(DPS(DPS,"ST")) D DPS^DICOMPW S:X]"" K=K+1,K(K)=X G DPS
+DPS G 0:'DPS ;WE HAVE ENCOUNTERED A ")", SO WE MUST BOUNCE UP A LEVEL.  BUT IF THERE IS NO HIGHER LEVEL, IT IS AN ERROR
+ I $D(DPS(DPS,"ST")) D DPS^DICOMPW S:X]"" K=K+1,K(K)=X G DPS
  I $D(DPS(DPS,"BETWEEN")) S DPS(DPS,"BOOL")=1
 DUP I $D(DPS(DPS,"DUPLICATED")) D  G 0:'DPS
  .I $G(Y(0))'[U S DPS=0 Q
  .S Y=$O(^DD(J(DLV),"B",$P(Y(0),U),0)) I 'Y S DPS=0 Q
- .F T=0:0 S T=$O(^DD(J(DLV),Y,1,T)) Q:'T  I +$G(^(T,0))=J(0),$P(^(0),U,3,99)="" S Y=$P(^(0),U,2) I Y?1U.AN Q  ;find a regular cross_refs
+ .F T=0:0 S T=$O(^DD(J(DLV),Y,1,T)) Q:'T  I +$G(^(T,0))=J(DLV0),$P(^(0),U,3,99)="" S Y=$P(^(0),U,2) I Y?1U.AN Q  ;find a regular cross_refs
  .I 'T F T=0:0 S T=$O(^DD("IX","F",J(DLV),Y,T)) Q:'T  I $P($G(^DD("IX",T,0)),U,4)="R",$P(^(0),U,6)="F",$P(^(0),U,9)=J(0) S Y=$P(^(0),U,2) Q  ;or find a regular INDEX
  .I 'T S DPS=0 Q
- .D DIMP^DICOMPZ("N Z S Z=X,X="""" I $L(Z) S Z=$O("_I(0)_""""_Y_""",Z,0)) I Z,Z-D0!$O(^(D0)) S X=1") S DPS(DPS)=X_" S X=X",DPS(DPS,"BOOL")=1
+ .D DIMP^DICOMPZ("N Z S Z=X,X="""" I $L(Z) S Z=$O("_I(DLV0)_""""_Y_""",Z,0)) I Z,Z-D0!$O(^(D0)) S X=1") S DPS(DPS)=X_" S X=X",DPS(DPS,"BOOL")=1
  D DPS^DICOMPW G N:'$D(W(DPS+1)),0
  ;
-FUNC S Y=+$O(^DD("FUNC","B",X,0)) I '$D(^DD("FUNC",Y,0)),X'?1N.N2A,X'?1"$"1U G V
+FUNC ;We have encountered a "("
+ S Y=+$O(^DD("FUNC","B",X,0)) I '$D(^DD("FUNC",Y,0)),X'?1N.N2A,X'?1"$"1U G V
  I Y=90!(Y=91)!(Y=92) D PRIOR^DICOMPZ G N:$D(Y),0
- S DICF=X,DBOOL=$G(DBOOL,0) D ST I $G(^DD("FUNC",Y,0))="DUPLICATED" S DPS(1,"INTERNAL")="" D 1 K Y G B
+ S DICF=X,DBOOL=$G(DBOOL,0) D ST
+ I DICF="DUPLICATED"!(DICF="YEAR")!(DICF="MONTH")!(DICF="DATE") S DPS(DPS,"INTERNAL")="" D 1 K Y G B ;SOME FUNCTIONS REQUIRE THEIR ARGUMENTS TO BE IN INTERNAL FORM
  I "Q"'[$G(^DD("FUNC",Y,1)) D 1 G B
  I DICF'?1"$"1U.U D ^DICOMPY S W="" G DPS:DPS,0
  S DPS(DPS,DICF)=DPS(DPS),DPS(DPS)=" S X="_DICF_W
@@ -61,21 +70,24 @@ B S M=M+1,W="" G 0:$E(I,M)=")",N
  ;
 2 ;
  D ST
-1 S DPS(DPS,DICF)="",DPS(DPS)=" "_$G(^(1))_DPS(DPS)_" S X=X" I $D(^(2)) S %=$P(^(2),U) I %]"" S DPS(DPS,%)=""
+1 ;NAKED REFERENCES IN LINE BELOW IS TO 'MUMPS CODE' IN THE FUNCTION FILE 
+ S DPS(DPS,DICF)="",DPS(DPS)=" "_$G(^(1))_DPS(DPS)_" S X=X"
+DV S %=$P($G(^(2)),U) I %]"" S DPS(DPS,%)="" ;'D:YES;X:NO;O:OPTIONAL' IN THE FUNCTION FILE, so there can be a DPS(DPS,"D")
  I DPS=1,$G(^(10))]"" S DPS(^(10))=""
  S %=$G(^(3),0) D:%'?.N
  .S %=1 F %Y=M+1:1 S Y=$E(I,%Y) Q:")"[Y  S:Y="," %=%+1
  .S DPS(DPS)=" K X"_%_DPS(DPS)
  S:%>1 W(DPS)=% Q
  ;
-ST ;
+ST ;push down the stack
  N Y
  S DPS=DPS+1,%="",Y=K I $D(DBOOL) S DPS(DPS,"BOOL")=DBOOL K DBOOL
 S I 'Y S X="",DPS(DPS)=$P(" S X="_%_"X",U,%]"") Q
  I K(Y)="" S Y=Y-1 G S
  I "'"[K(Y)!(K(Y)="+"),$S(Y=1:1,1:K(Y-1)?1P!(K(Y-1)="")) S %=K(Y)_%,K=K-1,Y=Y-1 G S
- D DG S DPS(DPS)="" I K(K)?1P!(K(K)?2P) S DPS(DPS)=" S Y="_%_"X,X="_Y_",X=X",DPS(DPS,U)=K(K)_"Y",K=K-1
- S:$D(DATE(K)) DPS(DPS,"DATE")=1
+ D DG S DPS(DPS)=""
+ I K(K)?1P!(K(K)?2P) S DPS(DPS)=" S Y="_%_"X,X="_Y_",X=X",DPS(DPS,U)=K(K)_"Y",K=K-1
+ I $D(DATE(K)) S DPS(DPS,"DATE")=1 ;REMEMBER THAT WHEN WE GOT TO THIS POINT IN THE EVALUATION, WE HAD DATE VALUE
  S K(K+1,2)=0 Q
  ;
 NEST() N I
@@ -85,6 +97,7 @@ NEST() N I
 DG S Y=$$DGI,X=" S "_Y_"=$G(X)"
  Q
 DGI() S DG(DLV0)=$G(DG(DLV0))+1 Q DQI_DG(DLV0)_")"
+ ;
  ;
 EXPR(FILE,DICOMP,I,SUBS) ;I=input expression; DICOMP=flags
  S X=$G(DUZ),X(2)=$G(DUZ(2)),DICOMP=$G(DICOMP)

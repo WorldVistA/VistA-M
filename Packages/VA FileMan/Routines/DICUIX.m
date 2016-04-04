@@ -1,6 +1,10 @@
-DICUIX ;SEA/TOAD,SF/TKW-FileMan: Lookup Tools, Indexes ;19APR2011
- ;;22.0;VA FileMan;**20,28,67,164,165**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICUIX ;SEA/TOAD,SF/TKW-FileMan: Lookup Tools, Indexes ;8APR2011
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**20,28,67,1035,1041**
+ ;
  ;
 INDEX(DIFILE,DIFLAGS,DINDEX,DIFROM,DIPART,DINUMBER,DISCREEN,DILIST,DIOUT) ;
  ;
@@ -27,7 +31,7 @@ I2 ; in Index file, build list of subscript data
  . S DINODE=$G(^DD("IX",DIXIEN,11.1,S,0))
  . I DIFLAGS["l" N X D  S DINDEX(DISUB,"PROMPT")=X
  . . S X=$P(DINODE,U,8) Q:X]""
- . . I $P(DINODE,U,3),$P(DINODE,U,4) S X=$P($G(^DD($P(DINODE,U,3),$P(DINODE,U,4),0)),U)
+EGP . . I $P(DINODE,U,3),$P(DINODE,U,4) S X=$$LABEL^DIALOGZ($P(DINODE,U,3),$P(DINODE,U,4)) ;**CCO/NI
  . . Q
  . S DINDEX(DISUB,"FIELD")=$P(DINODE,U,4)
  . S DINDEX(DISUB,"FILE")=$P(DINODE,U,3)
@@ -39,7 +43,7 @@ I2 ; in Index file, build list of subscript data
  . . . S DINDEX(DISUB,"TRANOUT")=^DD("IX",DIXIEN,11.1,S,3),DIGET=3 Q
  . . I "KSMU"[DINDEX("IXTYPE") S DIGET=2
  . . Q
- . S DILENGTH=$P(DINODE,U,5) I 'DILENGTH S DILENGTH=30 ;GFT
+ . S DILENGTH=$P(DINODE,U,5) I 'DILENGTH S DILENGTH=30 ;!(DILENGTH>100) ;GETS THE LENGTH FROM THE DEFINITION OF THE INDEX
  . S DIWAY=$S($P(DINODE,U,7)="B":-1,1:1)
  . D COMMON1^DICUIX2
  . Q
@@ -80,7 +84,7 @@ X2 ; Build DINDEX for index in IX nodes.
  . S DIFILE(DIFILE,"NO B")=DITEMP Q
  I DIFLAGS["l" S DINDEX(1,"PROMPT")=""
  I DINDEX(1,"FILE"),DINDEX(1,"FIELD") D  I DINDEX("IXTYPE")="*" K DINDEX S DINDEX="" Q
- . I DIFLAGS["l" S DINDEX(1,"PROMPT")=$P($G(^DD(DINDEX(1,"FILE"),DINDEX(1,"FIELD"),0)),U)
+EGP2 . I DIFLAGS["l" S DINDEX(1,"PROMPT")=$$LABEL^DIALOGZ(DINDEX(1,"FILE"),DINDEX(1,"FIELD")) ;**CCO/NI    FIELD LABEL
  . N I,X,Y
  . F I=0:0 S I=$O(^DD(DINDEX(1,"FILE"),DINDEX(1,"FIELD"),1,I)) Q:'I  S X=$G(^(I,0)) I $P(X,U,2)=DINDEX S Y=$G(^(1)) D  Q
  . . S X=$E($P(X,U,3),1,2)

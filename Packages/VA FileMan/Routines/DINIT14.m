@@ -1,6 +1,10 @@
-DINIT14 ;SFISC/YJK-INITIALIZE VA FILEMAN ;9/9/94  13:05
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT14 ;SFISC/YJK-INITIALIZE VA FILEMAN ;08:33 AM  13 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
  F I=1:2 S X=$T(Q+I) G:X="" ^DINIT2 S Y=$E($T(Q+I+1),5,999),X=$E(X,4,999),@X=Y
 Q Q
  ;;^DIC(.6,0)
@@ -16,7 +20,7 @@ Q Q
  ;;^DD(.6,0)
  ;;=FIELD^^.07^12
  ;;^DD(.6,0,"ID",.03)
- ;;=W "   ",$E($P(^(0),U,3),4,5)_"-"_$E($P(^(0),U,3),6,7)_"-"_$E($P(^(0),U,3),2,3)
+ ;;=W "   ",$$NAKED^DIUTL("$$DATE^DIUTL($P(^(0),U,3))")
  ;;^DD(.6,0,"ID",.04)
  ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^VA(200,+$P(^(0),U,4),0))#2:$P(^(0),U,1),1:""),C=$P($G(^DD(200,.01,0)),U,2) D:C]"" Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
  ;;^DD(.6,0,"NM","DD AUDIT")

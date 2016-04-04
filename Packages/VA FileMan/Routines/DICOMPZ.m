@@ -1,6 +1,11 @@
-DICOMPZ ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;9APR2007
- ;;22.0;VA FileMan;**6,76,114,152**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICOMPZ ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;2014-12-31  9:51 AM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**6,76,114,152,1039,1050**
+ ;
+ ;.
  ;
 PRIOR ;from DICOMP -- PRIOR.. Functions get archived values
  N DIC,DICOMPSP,DICOMPXE,DICOPS
@@ -35,7 +40,7 @@ INSERT N DICOMX S D=DICOMPXE,DICOMX=DICMX D CONTAINS Q:'$D(Y)  I DICOMX=DICMX D
  ;
 WP S DIMW="m"_$E("w",X'["L"),DICOPS="["
 M S X="S X=^(0)"
-FOR N DICOR,DICOT
+FOR N DICOR,DICOT ;These lines build the code for a typical Computed Multiple
  S DICOMPXE=X,DICOT=Y(0) D CONTAINS Q:'$D(Y)
  S Y=T#100+1,D=$P($P(DICOT,U,4),";") I +D'=D S D=""""_D_""""
  S DICOMPXE="D,0))#2 "_DICOMPXE_" "_DICMX_" Q:'$D(D)  S D=D"_Y
@@ -48,7 +53,8 @@ FOR N DICOR,DICOT
  I  S D=D_"D)) Q:D'>0  I $D(^("_DICOMPXE ;We will go thru the muliple by ien
  E  D DIMP(D_"""B"",DICOB,D)) Q:D'>0  I $D("_DICOR_DICOMPXE) S D="N DICOB S DICOB="""" F  S DICOB=$O("_DICOR_"""B"",DICOB)) Q:DICOB=""""  "_X_" Q:'$D(D)" ;We will go thru the multiple using the B X-ref
  D DIMP($$I(Y)_D)
- S (T,DG(DLV0))=DG(DLV0)+1,K(K+1,2)=1,K(K+2,1)=DLV0,DG(DLV0,T)=Y,M(Y,DLV0+Y)=T
+ I DICOPS'?1P S K(K+1,2)=1 ;If it is just a multiple, it can't be followed by an operator (see BINOP^DICOMP)
+ S (T,DG(DLV0))=DG(DLV0)+1,K(K+2,1)=DLV0,DG(DLV0,T)=Y,M(Y,DLV0+Y)=T
  S X=X_":D"_(Y-1)_">0"
 DICOXR S X=X_" S X="_$S(DIMW["m"!'$D(DICOXR):"""""",1:DICOXR)
  Q
@@ -74,7 +80,7 @@ RCR(W) ;Tricky and important!  What we get from this recursion will be inserted 
  S:+W=W W=""""_W_"""" S D="ZXM"_$$DIMC_" S"_DICOMP D  ;Don't allow MUMPS. Remember where to start more nodes in X array.  Allow simple numeric.
  .N X,DICOMP,DLV,DICMXSV,K
  .S X=W,DICOMP=D I $D(DICMX) S DICMXSV=DICMX
-DQI .I $D(DQI) S %=DQI N DQI S DQI=%_$$DIMC_","
+DQI .S %=$G(DQI,"Y(") N DQI S DQI=%_$$DIMC_","
  .D EN1^DICOMP ;Here is the recursion!  I & J, the context, will be preserved by this entry point
  .I '$D(X) K Y Q
  .K W M W=X

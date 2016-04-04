@@ -1,6 +1,10 @@
-DINIT0F8 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;04:54 PM  17 Dec 2002
- ;;22.0;VA FileMan;**8,42,76,118**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT0F8 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;18AUG2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**8,42,76,1003,1043**
+ ;
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0F9 S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q
 ENTRY ;
@@ -78,12 +82,10 @@ ENTRY ;
  ;;=1
  ;;^DIST(.404,.00112,40,2,11)
  ;;=D SUBHELP^DICATTDM
- ;;^DIST(.404,.00112,40,2,14)
- ;;=N % S %=$$CHKSUB^DICATTDM(X) I '% S DDSERROR=1 D HLP^DDSUTL(%)
  ;;^DIST(.404,.00112,40,2,20)
  ;;=F^^1:33
  ;;^DIST(.404,.00112,40,2,22)
- ;;=K:X?1P.E!(X[" ")!(X[",")!(X[":")!(X[";")!(X["""")!(X["=") X
+ ;;=K:X?1P.E!(X[" ")!(X[",")!(X[":")!(X[";")!(X["""")!(X["=")&(+X'=X) X I $D(X) N % S %=$$CHKSUB^DICATTDM(X) I '% K X D HLP^DDSUTL(%)
  ;;^DIST(.404,.00112,40,3,0)
  ;;=17^PIECE-POSITION^2^^PIECE
  ;;^DIST(.404,.00112,40,3,2)
@@ -98,8 +100,8 @@ ENTRY ;
  ;;=D PIECHELP^DICATTDM
  ;;^DIST(.404,.00112,40,3,20)
  ;;=F^^1:8
- ;;^DIST(.404,.00112,40,3,14)
- ;;=N % S %=$$CHKPIEC^DICATTDM(X) I '% S DDSERROR=1 D HLP^DDSUTL(%)
+ ;;^DIST(.404,.00112,40,3,22)
+ ;;=N % S %=$$CHKPIEC^DICATTDM(X) I '% K X D HLP^DDSUTL(%)
  ;;^DIST(.404,.00113,0)
  ;;=DICATT9^1
  ;;^DIST(.404,.00113,40,0)
@@ -140,12 +142,10 @@ ENTRY ;
  ;;=1
  ;;^DIST(.404,.00114,40,1,11)
  ;;=D SUBHELP^DICATTDM
- ;;^DIST(.404,.00114,40,1,14)
- ;;=N % S %=$$CHKSUB^DICATTDM(X) I '% S DDSERROR=1 D HLP^DDSUTL(%)
  ;;^DIST(.404,.00114,40,1,20)
  ;;=F^^1:33
  ;;^DIST(.404,.00114,40,1,22)
- ;;=K:X?1P.E!(X[",")!(X[":")!(X["""")!(X["=") X
+ ;;=K:X?1P.E!(X[",")!(X[":")!(X["""")!(X["=")&(+X'=X) X I $D(X) N % S %=$$CHKSUB^DICATTDM(X) I '% K X D HLP^DDSUTL(%)
  ;;^DIST(.404,.00114,40,1,24)
  ;;=D SUBHELP^DICATTDM
  ;;^DIST(.404,.00114,40,2,0)

@@ -1,13 +1,17 @@
-DDBR1 ;SFISC/DCL-VA FILEMAN BROWSER PROTOCOLS ;NOV 04, 1996@13:47
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBR1 ;SFISC/DCL-VA FILEMAN BROWSER PROTOCOLS ;06:01 PM  31 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
  Q
 GOTO N X
-GTR S X(1)=$G(X(1)),X(2)="GoTo >" W $$WS(.X) D  G:X=""!(X=U) OUT
+GTR S X(1)=$G(X(1)),X(2)=$$EZBLD^DIALOG(1408)_" >" W $$WS(.X) D  G:X=""!(X=U) OUT ;**
  .D EN^DIR0($P(DDBSY,";",3)-1,$L($G(X(2)))+2,30,1,"",100,"","","KPW",.X)
  .K DIR0
  .Q
- I $E(X)="?" S X(1)="* Screen (default), line"_$S('DDBRHTF:" or column",1:"")_" number preceeded by 'S', 'L'"_$S('DDBRHTF:" or 'C'",1:"")_" *" G GTR
+ I $E(X)="?" S X(1)="* "_$$EZBLD^DIALOG($S(DDBRHTF:1409,1:1409.1))_" *" G GTR ;**
  I X S X=X*DDBSRL G LINE
  S $E(X)=$TR($E(X),"bclst","BCLST")
  I X["S",$TR($P(X,"S",2)," ") S X=$TR($P(X,"S",2)," ")*DDBSRL G LINE
@@ -20,12 +24,12 @@ LINE S DDBL=$S(X'>DDBSRL:0,X>DDBTL:DDBTL,1:X) D PSR^DDBR0()
  Q
 NOOF N N
  S N=1 I $D(DDBFNO) N D,X G FNO
- S X(1)="    * [ NO PREVIOUS FIND STRING AVAILABLE ] *"
+ S X(1)="    * ["_$$EZBLD^DIALOG(1406)_"] *" ;**'NO PREVIOUS FIND STRING AVAILABLE'
  N Q S N=0 G BPR
 FIND N D,Q,X
  N N
  S N=0
-BPR S X(1)=$G(X(1)),X(2)="Find What:  " W $$WS(.X) D  G:X="" OUT
+BPR S X(1)=$G(X(1)),X(2)=$$EZBLD^DIALOG(8126) W $$WS(.X) D  G:X="" OUT ;**
  .N Y
  .D EN^DIR0($P(DDBSY,";",3)-1,$L($G(X(2)))+2,30,1,$P($G(DDBFNO),U,3,255),100,"","","KPW",.X,.Y)
  .K DIR0
@@ -35,10 +39,10 @@ BPR S X(1)=$G(X(1)),X(2)="Find What:  " W $$WS(.X) D  G:X="" OUT
  S D=$S(Q="/U":-1,1:1)
  S:D=-1 X=$E(X,1,$L(X)-2)
  Q:X=""
- I $E(X)="?" S X(1)="    * [ Please enter any characters <cr>, '^' <cr> (exit) ] *" G BPR
+ I $E(X)="?" S X(1)="    * [ "_$$EZBLD^DIALOG(1407)_" ] *" G BPR ;**
 FNO N I,MATCHI,MATCHX
  I N S D=$P(DDBFNO,"^",2),X=$P(DDBFNO,"^",3,255)
- S X(1)="",X(2)="    * [ ...Searching "_$S(D=1:"'DOWN'",1:"'UP'")_" for "_X_"... ] *" W $$WS(.X)
+ S X(1)="",X(2)="    * ["_$$EZBLD^DIALOG(1405,X)_"] *" W $$WS(.X) ;**'SEARCHING'
  D  S:I<0 I=0
  .I N&(D=1) S I=DDBL Q
  .I N S I=DDBL-(DDBSRL-1) Q
@@ -68,7 +72,7 @@ FNO N I,MATCHI,MATCHX
  .I DDBTL'>DDBSRL S I=1
  .S DDBL=I-1 D SDLRH(I,X),RCLSI^DDBR0
  .Q
- S X(1)="",X(2)="    * [ NO"_$S(N:" OTHER ",1:" ")_"MATCH FOUND ] *" W $C(7),$$WS(.X) H 3
+NO S X(1)="",X(2)="    * ["_$$EZBLD^DIALOG($S(N:8006.11,1:8006.1))_" ] *" W $C(7),$$WS(.X) H 3  ;**'NO MATCH FOUND'
  D PSRH
  Q
 OUT D PSR^DDBR0()
@@ -101,7 +105,7 @@ HL(X,S,ON,RS,F) S X=$G(X),S=$G(S),F=$G(F)=1
  F I=1:1:C S P=$F(XU,SU,XL),T=T_$E(X,XL,P-SL-1)_ON_$E(X,P-SL,P-1)_RS,XL=P
  S T=T_$E(X,XL,255)
  Q T
-U(X) Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+U(X) Q $$UP^DILIBF(X)  ;**CCO/NI  UPPER-CASE
 CS Q:$L(X,S)'>1 X
  N C,I,P,T
  S T="",C=$L(X,S)
@@ -110,7 +114,7 @@ CS Q:$L(X,S)'>1 X
 HELPS N DDBHELPS
  S DDBHELPS=$S(DDBFLG["A":83,1:71)+DDBSRL
 HELP I $E(DDBSA,1,11)="^DI(.84,920" S DDBL=0 D SDLR^DDBR0(1),RLPIR^DDBR0 Q
- N DDBHA S DDBHA=$S(DDBFLG["A":"^DI(.84,9202,2)",1:"^DI(.84,9201,2)")
+ N DDBHA S DDBHA=$S(DDBFLG["A":9202,1:9201) Q:'$D(^DI(.84,DDBHA,2))  S DDBHA=$NA(^(2)) I $G(DUZ("LANG"))>1,$D(^(4,DUZ("LANG"),1)) S DDBHA=$NA(^(1)) ;**CCO/NI
  I $D(^TMP("DDBLST",$J,"J")) D
  .K ^TMP("DDBLST",$J,"JS")
  .M ^TMP("DDBLST",$J,"JS")=^TMP("DDBLST",$J,"J")

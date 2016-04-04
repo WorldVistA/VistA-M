@@ -1,6 +1,6 @@
 BPSPRRX6 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 RXINFO(BPSRX) ;
@@ -281,15 +281,21 @@ GETOPAP(BPSRESP,BPSDAT) ;
  . I BPSAMNT<0 S BPSAMNT=0
  . I $D(BPSOAP(BPSQUAL)) S BPSOAP(BPSQUAL)=BPSOAP(BPSQUAL)+BPSAMNT
  . I '$D(BPSOAP(BPSQUAL)) S BPSOAP(BPSQUAL)=BPSAMNT
- . ; Subtract Amount if Qualifier is 01,02,03,04 or 09
- . I "0102030409"[BPSQUAL S BPS509=BPS509-BPSAMNT
+ . ; Subtract Amount if Qualifier is 01, 02, 03, 04, 09 or 11
+ . I "010203040911"[BPSQUAL S BPS509=BPS509-BPSAMNT
  I $D(BPSOAP) D
  . S BPSX="" F  S BPSX=$O(BPSOAP(BPSX)) Q:BPSX=""  D
- . . S CNT=CNT+1,BPSDAT(CNT)=BPSOAP(BPSX)_U_BPSX
+ . . S CNT=CNT+1,BPSDAT(CNT)=BPSOAP(BPSX)_U_$$GETPDIEN(BPSX)
  ; Set Drug Benefit Qualifier
  I BPS509<0 S BPS509=0
- S CNT=CNT+1,BPSDAT(CNT)=BPS509_U_"07"
+ S CNT=CNT+1,BPSDAT(CNT)=BPS509_U_$$GETPDIEN("07")
  Q
+ ;
+GETPDIEN(CODE) ;
+ ; Get the Other Payer Amount Paid Qualifier IEN for BPS NCPCP OTHER
+ ;   PAYER AMOUNT PAID QUAL file
+ I $G(CODE)="" Q ""
+ Q $O(^BPS(9002313.2,"B",CODE,""))
  ;
 GETRJCOD(BPRESP,BPARR) ;
  ; Get the first five reject codes w/o getting duplicates

@@ -1,6 +1,10 @@
-DIT0 ;SFISC/GFT,XAK-PREPARE TO XFR ;8AUG2011
- ;;22.0;VA FileMan;**168**;Mar 30, 1999;Build 25
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIT0 ;SFISC/GFT,XAK-PREPARE TO XFR ;15FEB2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**168,1045**
+ ;
  N Y,DIC,DIT0KILL S DIT=DDF(1),DIC=L,DIC(0)="EQLAM",X="DATA INTO WHICH " D LK
  G Q:Y<0 S DFR=+Y,DTO(1)=DIC_+Y_",",DIC(0)="EQAM",X="FROM ",DIC("S")="I Y-"_+Y D LK G Q:Y<0
 S S (D0,DA)=+Y W ! D  G Q:%<0 S (DH,DIT0KILL)=2-% I '% D F^DIT G S
@@ -9,7 +13,7 @@ S S (D0,DA)=+Y W ! D  G Q:%<0 S (DH,DIT0KILL)=2-% I '% D F^DIT G S
  S ^UTILITY("DIT",$J,+Y)=DFR_";"_$E(DIC,2,999)
  S DTO=0,DIK=DIC,DFR(1)=DIC_DA_"," K DIC D WAIT^DICD
 GO D GO^DITR
- S DIT=DH D KL^DIT,^DIK:DIT0KILL S DA=DFR K DFR D IX1^DIK ;DELETE OLD ENTRY, CONDITIONALLY
+ S DIT=DH D KL^DIT,^DIK:$G(DIT0KILL) S DA=DFR K DFR D IX1^DIK ;DELETE OLD ENTRY, CONDITIONALLY
  S DH=DIT D ASK^DITP,PTS^DITP:%=1
 Q G Q^DIT
  ;
@@ -21,6 +25,7 @@ EN ; PROGRAMMER CALL
  ; DA("F")  = ENTRY # IN FILE TO TRANSFER FROM
  ; DA("T")  = ENTRY # IN FILE TO TRANSFER TO
  ;
+ N DIT0KILL
  I '$D(DIT("F"))!'$D(DIT("T"))!'$D(DA("F"))!'$D(DA("T")) G FIN
  S DDF(1)=DIT("F"),DDT(0)=DIT("T")
  I 'DDF(1) S DDF(1)=$S($D(@(DDF(1)_"0)"))#2:+$P(^(0),U,2),1:0) G FIN:'DDF(1) S DFR(1)=DIT("F")
@@ -29,7 +34,7 @@ EN ; PROGRAMMER CALL
  G FIN:'$D(^DIC(+DDT(0),0,"GL")) S DTO(1)=^("GL")
 C S DB=DA("F"),(DB1,DFR)=DA("T"),DIK=DTO(1)
  I $D(DA(1)) F I=1:1 G:'$D(DA(I)) SET S DRF(I)=$P(DA(I),",",1)_",1,",DOT(I)=$P(DA(I),",",2)_",1,"
-DON K DRF,DOT S DFR(1)=DFR(1)_DB_",",DTO(1)=DTO(1)_DB1_",",DKP=1,DMRG=1,DTO=0,DH=0 G GO
+DON K DRF,DOT S DFR(1)=DFR(1)_DB_",",DTO(1)=DTO(1)_DB1_",",DKP=1,DMRG=1,DTO=0,DH=0,DIT0KILL=0 G GO
 SET F I=I-1:-1 G:I'>0 DON S DFR(1)=DFR(1)_DRF(I),DTO(1)=DTO(1)_DOT(I)
 FIN ;
  K DDF,DFR,DDT,DTO

@@ -1,6 +1,10 @@
-DIC11 ;SFISC/TKW-PROMPT USER FOR LOOKUP VALUES ;1:33 PM  26 Dec 2000
- ;;22.0;VA FileMan;**1,13,40,67**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIC11 ;SFISC/TKW-PROMPT USER FOR LOOKUP VALUES ;05:33 PM  11 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,13,40,67,999**
+ ;
 PROMPT N DIOUT S (DIVAL(0),DIOUT)=0
  F DISUB=1:1:DINDEX("#") D PR1 Q:DIOUT
  S X=$G(DIVAL(1))
@@ -35,11 +39,11 @@ GETPRMT(DIC,DO,DINDEX,DIPRMT) ; Build list of prompts for each lookup value
  F DISUB=1:1:DINDEX("#") D
  . I $G(DICA(DISUB))]"" D  I DIPRMT(DISUB)]""
  . . S DIPRMT(DISUB)=""
- . . I DISUB=1,DINDEX("#")>1,DICA(DISUB)="ANOTHER ONE: " Q
+ANOTHER . . I DISUB=1,DINDEX("#")>1,DICA(DISUB)=$$EZBLD^DIALOG(8199) Q  ;**CCO/NI  'ANOTHER ONE:'
  . . S DIPRMT(DISUB)=DICA(DISUB) Q
  . E  D
  . . S P=$S(DISUB=1:$P(DO,U),1:"")
- . . I DISUB=1,$G(DICA(DISUB))="ANOTHER ONE: " S P=$$EZBLD^DIALOG(8050)_P
+ . . I DISUB=1,$G(DICA(DISUB))=$$EZBLD^DIALOG(8199) S P=$$EZBLD^DIALOG(8050)_P
  . . I DINDEX("#")=1,D'="B"&(DIC(0)["M")!(D="B"&(DO(2)'>1.9)) S DIPRMT(DISUB)=$$EZBLD^DIALOG(8042,P) Q
  . . N X S X=DINDEX(DISUB,"PROMPT") I X]"" D
  . . . I DISUB=1 Q:DINDEX("#")=1&(P[X!(X[P))  S P=P_" "

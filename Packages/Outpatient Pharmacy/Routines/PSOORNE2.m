@@ -1,5 +1,5 @@
-PSOORNE2 ;BIR/SAB-display finished orders from backdoor ;9/11/06 10:24am
- ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289,251,379,391,313,282**;DEC 1997;Build 18
+PSOORNE2 ;BIR/SAB - Display finished orders from backdoor ;9/11/06 10:24am
+ ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289,251,379,391,313,282,427**;DEC 1997;Build 21
  ;^PSDRUG( -  221
  ;^YSCL(603.01 - 2697
  ;^PS(50.606 - 2174
@@ -53,8 +53,7 @@ ACT N REF,RPHKEY,PKIND K ^TMP("PSOAO",$J),PCOMX,PDA,PHI,PRC,ACOM,ANS,PSOFDR,CLOZ
  S:NFIO["<DIN>" NFIO=IEN_","_($L(^TMP("PSOAO",$J,IEN,0))-4)
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" ("_$S($P(PSOPAR,"^",3):2,1:"#")_")"_$S($D(^PSDRUG("AQ",$P(RX0,"^",6))):"       CMOP ",1:"            ")_"Drug: "_$P(^PSDRUG($P(RX0,"^",6),0),"^")_NFID
  S:NFID["<DIN>" NFID=IEN_","_($L(^TMP("PSOAO",$J,IEN,0))-4)
- I $$STATUS^PSOBPSUT(RXN,0)'="",$$RXRLDT^PSOBPSUT(RXN,0) D
- . S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" "_$S('$P(PSOPAR,"^",3):"(2)",1:"   ")_"             NDC: "_$$GETNDC^PSONDCUT(RXN,0)
+ S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" "_$S('$P(PSOPAR,"^",3):"(2)",1:"   ")_"             NDC: "_$$GETNDC^PSONDCUT(RXN,0)
  S:$G(^PSRX(RXN,"TN"))]"" IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="          Trade Name: "_$G(^PSRX(RXN,"TN"))
  D DOSE^PSOORNE5
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" (4)Pat Instructions:" D INS^PSOORNE5

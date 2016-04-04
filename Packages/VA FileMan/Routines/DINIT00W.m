@@ -1,6 +1,10 @@
-DINIT00W ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ; 3/30/99  10:41:48
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT00W ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;05:40 PM  21 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9254,2,1,0)
@@ -18,11 +22,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9254,2,7,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,8,0)
- ;;=     <PF3>     Edit caption or data length
+ ;;=     <F3>     Edit caption or data length
  ;;^UTILITY(U,$J,.84,9254,2,9,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,10,0)
- ;;=If you press <PF3> while the cursor is over a caption, you'll be taken
+ ;;=If you press <F3> while the cursor is over a caption, you'll be taken
  ;;^UTILITY(U,$J,.84,9254,2,11,0)
  ;;=into a caption editor.  The editing keys available to you are identical
  ;;^UTILITY(U,$J,.84,9254,2,12,0)
@@ -30,7 +34,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9254,2,13,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,14,0)
- ;;=If you press <PF3> while the cursor is over the data portion of an element,
+ ;;=If you press <F3> while the cursor is over the data portion of an element,
  ;;^UTILITY(U,$J,.84,9254,2,15,0)
  ;;=you can then use the <Right> and <Left> arrow keys to increase and
  ;;^UTILITY(U,$J,.84,9254,2,16,0)
@@ -68,7 +72,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9255,2,10,0)
  ;;=-----------------------------------------------------------
  ;;^UTILITY(U,$J,.84,9255,2,11,0)
- ;;=<PF1>V   Toggle between Block Viewer screen and Main screen
+ ;;=<F1>V   Toggle between Block Viewer screen and Main screen
  ;;^UTILITY(U,$J,.84,9255,2,12,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9255,2,13,0)
@@ -76,7 +80,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9255,2,14,0)
  ;;=page.  From this screen, you can select blocks and edit their properties.
  ;;^UTILITY(U,$J,.84,9255,2,15,0)
- ;;=To return to the Form Editor's main screen, press <PF1>V, <PF1>E, or <PF1>Q.
+ ;;=To return to the Form Editor's main screen, press <F1>V, <F1>E, or <F1>Q.
  ;;^UTILITY(U,$J,.84,9255,2,16,0)
  ;;=If two blocks have the some coordinates, the block names will overlap on
  ;;^UTILITY(U,$J,.84,9255,2,17,0)
@@ -102,15 +106,15 @@ Q Q
  ;;^UTILITY(U,$J,.84,9256,2,5,0)
  ;;=----------------------------------------------------------
  ;;^UTILITY(U,$J,.84,9256,2,6,0)
- ;;=<PF1><PF1><Up>    Previous page
+ ;;=<F1><F1><Up>    Previous page
  ;;^UTILITY(U,$J,.84,9256,2,7,0)
- ;;=<PF1><PF1><Down>  Next page
+ ;;=<F1><F1><Down>  Next page
  ;;^UTILITY(U,$J,.84,9256,2,8,0)
  ;;=<SelectElement>D  Subpage associated with selected element
  ;;^UTILITY(U,$J,.84,9256,2,9,0)
- ;;=<PF1>C            Parent page (Close current pop-up page)
+ ;;=<F1>C            Parent page (Close current pop-up page)
  ;;^UTILITY(U,$J,.84,9256,2,10,0)
- ;;=<PF1>P            A specific page (you are prompted for the page)
+ ;;=<F1>P            A specific page (you are prompted for the page)
  ;;^UTILITY(U,$J,.84,9257,0)
  ;;=9257^3^^5
  ;;^UTILITY(U,$J,.84,9257,1,0)
@@ -130,25 +134,25 @@ Q Q
  ;;^UTILITY(U,$J,.84,9257,2,5,0)
  ;;=----------------------------------------
  ;;^UTILITY(U,$J,.84,9257,2,6,0)
- ;;=<PF1>M  Select another form
+ ;;=<F1>M  Select another form
  ;;^UTILITY(U,$J,.84,9257,2,7,0)
- ;;=<PF1>P  Select another page
+ ;;=<F1>P  Select another page
  ;;^UTILITY(U,$J,.84,9257,2,8,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9257,2,9,0)
- ;;=<PF2>M  Add a new form
+ ;;=<F2>M  Add a new form
  ;;^UTILITY(U,$J,.84,9257,2,10,0)
- ;;=<PF2>P  Add a new page
+ ;;=<F2>P  Add a new page
  ;;^UTILITY(U,$J,.84,9257,2,11,0)
- ;;=<PF2>B  Add a new block
+ ;;=<F2>B  Add a new block
  ;;^UTILITY(U,$J,.84,9257,2,12,0)
- ;;=<PF2>F  Add a new field element
+ ;;=<F2>F  Add a new field element
  ;;^UTILITY(U,$J,.84,9257,2,13,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9257,2,14,0)
- ;;=<PF4>M  Edit properties of current form
+ ;;=<F4>M  Edit properties of current form
  ;;^UTILITY(U,$J,.84,9257,2,15,0)
- ;;=<PF4>P  Edit properties of current page
+ ;;=<F4>P  Edit properties of current page
  ;;^UTILITY(U,$J,.84,9258,0)
  ;;=9258^3^^5
  ;;^UTILITY(U,$J,.84,9258,1,0)
@@ -168,6 +172,6 @@ Q Q
  ;;^UTILITY(U,$J,.84,9258,2,5,0)
  ;;=at-sign (@) at the first field of the ScreenMan form.  For example, to
  ;;^UTILITY(U,$J,.84,9258,2,6,0)
- ;;=delete a field from a block, select the field with <SpaceBar>, press <PF4>
+ ;;=delete a field from a block, select the field with <SpaceBar>, press <F4>
  ;;^UTILITY(U,$J,.84,9258,2,7,0)
  ;;=to invoke the "edit properties" form, and enter @ at the "Field Order:"

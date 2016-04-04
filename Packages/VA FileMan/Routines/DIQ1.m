@@ -1,15 +1,19 @@
-DIQ1 ;SFISC/XAK-INQUIRY WITH COMPUTED FIELDS ;6:09 AM  24 Nov 2003
- ;;22.0;VA FileMan;**19,64,76,133**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIQ1 ;SFISC/XAK-INQUIRY WITH COMPUTED FIELDS ;26JAN2004
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**19,64,76,133,999,1002,1003,1004**
  ;
-A S DIDQ=DD S:'$D(DICMX) DICMX="W !,O,"": "",X"
- N W,DD,D,Z
- F W=0:0 S W=$O(^DD(DIDQ,W)) Q:W'>0  I $D(^(W,0))#2 S Z=^(0),C=$P(Z,U,2),O=$P(Z,U)_" (c)" I C["C" X $P(Z,U,5,99) I X]"" D  Q:'S
- .N Y S Y=X
+A N DIDQ,DICMX,DIQ1W,D,Z,DIQX
+ S DIDQ=DD,DICMX="D LF^DIQ K:'S D I S W O,"": "",X S X="""",O=$J(X,$L(O))"
+ N DD
+ F DIQ1W=0:0 S DIQ1W=$O(^DD(DIDQ,DIQ1W)) Q:DIQ1W'>0  I $D(^(DIQ1W,0))#2 S Z=^(0),C=$P(Z,U,2) I C["C" S X="",O=$$LABEL^DIALOGZ(DIDQ,DIQ1W)_" (c)" X $P(Z,U,5,99) D:X]""&(C'["m")  Q:'S  ;**CCO/NI  LOOP THRU ALL FIELDS TO FIND COMPUTED
+ .N Y,W S Y=X,W=DIQ1W
  .I C["p",Y S Y=$$CP(C,Y)
  .E  I C["D" X ^DD("DD")
  .D W2^DIQ
- K DIDQ,DICMX Q
+ Q
  ;
 CP(C,X) ;
  S:C["p" C=+$P(C,"p",2) I C,$D(^DIC(C,0,"GL")),$D(@(^("GL")_"0)")),$D(^(X,0)) S X=$$EXTERNAL^DIDU(C,.01,"",$P(^(0),U))

@@ -1,6 +1,9 @@
-DICATTD6 ;GFT;09:51 AM  3 Dec 2002;COMPUTED FIELD
- ;;22.0;VA FileMan;**42,118**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATTD6 ;GFT/GFT - Computed Field;12:54 PM  21 Mar 2001
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**42,76**
  ;
  ;78 = COMPUTED EXPRESSION
  ;79 = TYPE OF RESULT

@@ -1,6 +1,6 @@
 BPSNCPDP ;BHAM ISC/LJE/SS - API to submit a claim to ECME ;11/7/07  16:58
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,4,2,5,6,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,4,2,5,6,7,8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$PROD^XUPROD supported by DBIA 4440
  ; Reference to $$GETNDC^PSSNDCUT supported by DBIA 4707
@@ -200,11 +200,11 @@ END ;
  ; Get Site in case we send a Bulletin
  S SITE=$$GETSITE^BPSOSRX8(BRXIEN,BFILL)
  ;if foreground AND we can't schedule request for any reason AND this is not OP - send bulletin
- I BPJOBFLG="F",RESPONSE=4,",AREV,BB,ERES,EREV,P2,P2S,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,$G(SITE),$G(DFN),$G(PNAME),"",$G(CLMSTAT),$G(RESPONSE))
+ I BPJOBFLG="F",RESPONSE=4,",AREV,BB,ERES,EREV,P2,P2S,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,$G(SITE),$G(DFN),$G(PNAME),"",$G(CLMSTAT),$G(RESPONSE),$G(BPSCOB))
  I $G(BPSELIG)="" S BPSELIG=""
  ; Send Bulletin if TRICARE or CHAMPVA is IN PROGRESS and this is not a release process
  S BPSSTAT=$S($G(BRXIEN):$P($$STATUS^BPSOSRX(BRXIEN,BFILL,,,BPSCOB),U),1:"")
- I BPSELIG="T"!(BPSELIG="C"),BPSSTAT="IN PROGRESS",$G(REVREAS)'="RX RELEASE-NDC CHANGE",",CRLB,CRLR,CRLX,CRRL,RRL,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,SITE,$G(DFN),$G(PNAME),BPSELIG)
+ I BPSELIG="T"!(BPSELIG="C"),BPSSTAT="IN PROGRESS",$G(REVREAS)'="RX RELEASE-NDC CHANGE",",CRLB,CRLR,CRLX,CRRL,RRL,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,SITE,$G(DFN),$G(PNAME),BPSELIG,"","",$G(BPSCOB))
  ;
  S:'$D(RESPONSE) RESPONSE=1
  K MOREDATA

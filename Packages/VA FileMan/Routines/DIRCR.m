@@ -1,7 +1,12 @@
-DIRCR ;SFISC/GFT-DELETE THIS LINE AND SAVE AS '%RCR'*** ;12:18 PM  20 Apr 1993
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIRCR ;SFISC/GFT-DELETE THIS LINE AND SAVE AS '%RCR'*** ;13DEC2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**139,1044**
+ ;
 %RCR ;GFT/SF
+ ;
  ;
 STORLIST ;
  D INIT
@@ -15,37 +20,35 @@ G S %D=$O(@(%E_")")) I %D="" K %D,%E,%X,%Y,^($J,^UTILITY("%RCR",$J)+1) Q
  I $D(^(%D))#2 S @%D=^(%D) G G:$D(^(%D))=1
  S %Y=%D_"(" D %XY G G
  ;
- ;
-XY(%X,%Y) ;
-%XY ;
- N %A,%B,%Q,%Z
- S %A=$$R(%X),%Q=""""""
- I $P(%A,"(",2)]"",$E(%A,$L(%A))'="," S:$L($P(%A,"(",2),",")>1 %Q=$P(%A,",",$L(%A,",")),$P(%A,",",$L(%A,","))="" S:%Q="""""" %Q=$P(%A,"(",2),$P(%A,"(",2)=""
- S %Z=%A_%Q_")",%B=$L(%A)+1
- F  S %Z=$Q(@%Z) Q:$P(%Z,%A)]""!(%Z="")  S @(%Y_$E(%Z,%B,255))=@%Z
- Q
-R(%R) ;
- N %C,%F,%G,%I,%R1,%R2
- S %R1=$P(%R,"(")_"(" I $E(%R1)="^" S %R2=$P($Q(@(%R1_""""")")),"(")_"(" S:$P(%R2,"(")]"" %R1=%R2
- S %R2=$P($E(%R,1,($L(%R)-($E(%R,$L(%R))=")"))),"(",2,99)
- S %C=$L(%R2,","),%F=1 F %I=1:1:%C S %G=$P(%R2,",",%F,%I) Q:%G=""  I ($L(%G,"(")=$L(%G,")")&($L(%G,"""")#2))!(($L(%G,"""")#2)&($E(%G)="""")&($E(%G,$L(%G))="""")) S %G=$$S(%G),$P(%R2,",",%F,%I)=%G,%F=%F+$L(%G,","),%I=%F-1
- Q %R1_%R2
-S(%Z) ;
- I $G(%Z)']"" Q ""
- I $E(%Z)'="""",$L(%Z,"E")=2,+$P(%Z,"E")=$P(%Z,"E"),+$P(%Z,"E",2)=$P(%Z,"E",2) Q +%Z
- I +%Z=%Z Q %Z
- I %Z="""""" Q ""
- I $E(%Z)'?1A,"%$+@"'[$E(%Z) Q %Z
- I "+$"[$E(%Z) X "S %Z="_%Z Q $$Q(%Z)
- I $D(@%Z) Q $$Q(@%Z)
- Q %Z
-Q(%Z) ;
- S %Z(%Z)="",%Z=$Q(%Z("")) Q $E(%Z,4,$L(%Z)-1)
- ;
 INIT I $D(^UTILITY("%RCR",$J))[0 S ^UTILITY("%RCR",$J)=0
  S ^($J)=^($J)+1,%D="%Z",%E="^UTILITY(""%RCR"",$J,"_^($J)_",%D",%Y=%E_","
  K ^($J,^($J))
  Q
+ ;
+ ;
+ ;
+ ;
+XY(%X,%Y) ;
+%XY ;NOIS: UNY-0504-10264
+ N %A,%B,%C
+ S %A=%X I $P(%X,"(",2)]"",$E(%X,$L(%X))'="," S %A=%A_",",%C=1
+ S %A=$$NA(%A),%B=$$NA(%Y)
+ I $D(%C) S %C=$QS(%A,$QL(%A)),%A=$NA(@%A,$QL(%A)-1) D  G RE
+ .N A,B S B=$NA(@%B@(%C)),A=$NA(@%A@(%C)) N %A,%B,%C S %A=A,%B=B D M ;a bit of recursion
+M I $D(@%A)[0 M @%B=@%A Q
+ S %C=""
+RE F  S %C=$O(@%A@(%C)) Q:%C=""  D
+ .I $D(@%A@(%C))=1 S @%B@(%C)=@%A@(%C) Q
+ .M @%B@(%C)=@%A@(%C)
+ Q
+ ;
+NA(%X) ;
+ N L S L=$L(%X)
+ I $E(%X,L)="," S %X=$E(%X,1,L-1)_")"
+ E  S %X=$E(%X,1,L-1)
+ Q $NA(@%X)
+ ;
+ ;
 OS ;
  S $P(^%ZOSF("OS"),"^",2)=DITZS
  K DITZS S ZTREQ="@"

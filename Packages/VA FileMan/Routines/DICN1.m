@@ -1,6 +1,9 @@
-DICN1 ;SFISC/GFT,TKW,SEA/TOAD-PROCESS DIC("DR") ;10:54 AM  9 Feb 2001
- ;;22.0;VA FileMan;**4,67**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICN1 ;SFISC/GFT,TKW,SEA/TOAD-PROCESS DIC("DR") ;8MAR2006
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,67,999,1022**
  ;
  K DIDA,DICRS,Y,%RCR
  F Y="DIADD","I","J","X","DO","DC","DA","DE","DG","DIE","DR","DIC","D","D0","D1","D2","D3","D4","D5","D6","DI","DH","DIA","DICR","DK","DIK","DL","DLAYGO","DM","DP","DQ","DU","DW","DIEL","DOV","DIOV","DIEC","DB","DV","DIFLD" S %RCR(Y)=""
@@ -47,7 +50,7 @@ W S A1="T",DST="SORRY!  A VALUE FOR '"_$P(^(0),U,1)_"' MUST BE ENTERED," W:'$D(D
  S %RCR="D^DICN1" D STORLIST^%RCR Q
  ;
 H I $D(DDS) S DDH=$S($D(DDH):DDH+1,1:1),DDH(DDH,A1)=DST K A1,DST Q
- W DST K A1,DST Q
+ W:'$D(ZTQUEUED) DST K A1,DST Q
 RCR ;
  K DR,DIADD,DQ,DG,DE,DO N DISAV0 S DIE=DIC,DR=DD,DIE("W")=DZ,DISAV0=DIC(0) K DIC
  I $D(DIE("NO^")) S %RCR("DIE(""NO^"")")=DIE("NO^")
@@ -60,12 +63,12 @@ RCR ;
  . I $Y<IOSL D CLRMSG^DDS Q
  . D REFRESH^DDSUTL
 A I '$D(DA) S Y(0)=0 Q
- S:'$$INTEG^DIKK(DIE,DA_DIENS,"","","d") Y(0)=0,X="BADKEY"
+ I '$$IHSGL($G(DIFILEI)) S:'$$INTEG^DIKK(DIE,DA_DIENS,"","","d") Y(0)=0,X="BADKEY" ;IHS
  Q:$D(Y)<9&'$D(DTOUT)&'$D(DIC("W"))&($G(X)'="BADKEY")
  I $G(X)="BADKEY",DISAV0["E" W !,"      ",$$EZBLD^DIALOG(741)
  S:'$G(DTOUT)&($D(Y)'<9) DUOUT=1
 ZAP S DIK=DIE
- I DISAV0["E" S A1="T",DST=$C(7)_"   <'"_$P(@(DIK_"DA,0)"),U,1)_"' DELETED>" W:'$D(DDS) !?3 D H D:$D(DDS) LIST^DDSU
+ I DISAV0["E" S A1="T",DST=$C(7)_"   <'"_$P(@(DIK_"DA,0)"),U,1)_"' DELETED>" W:'$D(DDS)&'$D(ZTQUEUED) !?3 D H D:$D(DDS)&'$D(ZTQUEUED) LIST^DDSU
  D ^DIK S Y(0)=0 K DST Q
  ;
 D N DISAV0 S DISAV0=DIC(0),DIE=DIC D ZAP Q
@@ -120,7 +123,7 @@ ASKP001 ; ask user to confirm new record's .001 field value
  ;
  ; for bad response or help request, offer help and try new IEN
  ;
- S DST="" I $D(^DD(+DO(2),.001,3)) S DST="     "_^(3)
+EGP S DST=$$HELP^DIALOGZ(+DO(2),.001) I $D(^DD(+DO(2),.001,0)),DST]"" S DST="     "_DST ;**CCO/NI HELP MESSAGE FOR .001 FIELD WHEN USER IS LAYGO-ING (NOTE NAKED REFERENCES IN FOLLOWING LINES)
  I '$D(DDS) D
  . W:DST]"" !?5,DST X:$D(^(4)) ^(4) K DST ; NAKED
  E  D
@@ -128,6 +131,24 @@ ASKP001 ; ask user to confirm new record's .001 field value
  S X=$P(DO,U,3) D INCR^DICN0
  S Y="TRY NEXT"
  Q
+ ;
+IHSGL(X) ;----- CHECK GL NODE OF TOP LEVEL FILE FOR DUZ(2)
+ ;USED TO ALLOW USE OF "SOFT" GLOBAL REFERENCES, I.E., DUZ(2)
+ ;
+ ;      RETURNS:
+ ;      0 IF THE TOP LEVEL FILE "GL" NODE DOES NOT CONTAIN DUZ(2)
+ ;      1 IF IT DOES
+ ;
+ ;      INPUT:
+ ;      X  =  FILE NUMBER
+ ;
+ N DITOP,Y
+ S Y=0
+ I X D
+ . S DITOP=X
+ . F  Q:'$D(^DD(DITOP,0,"UP"))  S DITOP=^("UP")
+ . S Y=$G(^DIC(DITOP,0,"GL"))["DUZ(2)"
+ Q Y
  ;
 N ; test X as an IEN (apply input transform and numeric restrictions)
  ; USR^DICN, ASKP001

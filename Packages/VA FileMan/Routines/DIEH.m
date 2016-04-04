@@ -1,6 +1,10 @@
-DIEH ;SFISC/DPC-HELP ;11/9/94  14:23
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIEH ;SFISC/STAFF-HELP ;13APR2004
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1004**
+ ;
 GET(DIEHF,DIEHIEN,DIEHFLD,DIEHFLG,DIEHOUT) ;
 GETX ;
  N DIEHZ,DIEHD,DIEHEXIT,DIEHPF,DIEHUFLG
@@ -57,7 +61,7 @@ BN ;Insert blank node.
  ;
 HPROMPT(F,D) ;
  N T
- S T=$G(^DD(F,D,3))
+ S T=$$HELP^DIALOGZ(F,D)
  I $L(T) D
  . D BN
  . S DIHELP=DIHELP+1,^TMP("DIHELP",$J,DIHELP)=T
@@ -125,7 +129,7 @@ SCRNCD(F,D,DIEHZ) ;
  D CODES
  I $D(Y) D
  . N DIEHECNT S DIEHECNT=$G(DIERR)
- . X S
+ . D SETSCR^DIR(F,D)
  . D BLD^DIALOG(9101)
  . F I=1:1:T D
  . . S Y=$P(Y(I),";",1)
@@ -142,7 +146,7 @@ UNSCRNCD(DIEHZ) ;
  Q
  ;
 CODES ;
- S A=$P(DIEHZ,U,3)
+ S A=$P(DIEHZ,U,3) I $G(DUZ("LANG"))>1,A=$P(^DD(DIEHF,DIEHFLD,0),U,3) S A=$$SETIN^DIALOGZ_";" ;NAKED
  I A]"" D
  . S T=$L(A,";")-1
  . F I=1:1:T S Y(I)=$P(A,";",I)

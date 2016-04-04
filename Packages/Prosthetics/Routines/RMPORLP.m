@@ -1,21 +1,24 @@
 RMPORLP ;(NG)/DG/CAP /HINES-CIOFO/HNC- HOME OXY PTS ;7/24/98
- ;;3.0;PROSTHETICS;**29**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**29,179**;Feb 09, 1996;Build 7
+ ;
+ ;RMPR*3.0*179 Flag a deceased patient by adding an '*'
+ ;             in front of SSN. 
  ;
 SITE ;Set up site variables.
  D HOSITE^RMPOUTL0 I '$D(RMPOXITE) Q
  ;
 LI ;List the sought patient. ;DW
  S DIC="^RMPR(665,",BY="[RMPO-RPT-HOPATIENTLIST]",L=0,FR=""
- S PAGE=0
+ S PAGE=0,RMPRDCNT=0
  S DIS(0)="S Z=$G(^RMPR(665,D0,""RMPOA"")) I ($P(Z,U,7)=RMPOXITE),$P(Z,U,3)="""""
  ;S DIS(0)="I $P($G(^RMPR(665,D0,""RMPOA"")),U,7)=RMPOXITE",PAGE=0
  S $P(SPACE," ",80)="",$P(DASH,"-",79)="",(COUNT,RMEND,RMPORPT)=0
  D NOW^%DTC S Y=% X ^DD("DD")
  S RPTDT=$P(Y,"@",1)_"  "_$P($P(Y,"@",2),":",1,2)
  S DHD="W ?0 D RPTHDR^RMPORLP"
- S DIOEND="I $G(Y)'[U S COUNT=$E(""      "",1,(6-$L(COUNT)))_COUNT W !!,?50,""TOTAL PATIENTS: "",COUNT S RMEND=1 S:IOST[""P-"" RMPORPT=1"
- ;S DIOEND="I $G(Y)'[U D DIOEND S RMEND=1 S:IOST[""P-"" RMPORPT=1"
- S FLDS=".01;C1;L22;""PATIENT"",D SSN^RMPORLP W X;C25;L4;""SSN"",D GET^RMPORLP W X;C30;L30;""PRIMARY ITEM"""
+ ;S DIOEND="I $G(Y)'[U S COUNT=$E(""      "",1,(6-$L(COUNT)))_COUNT W !!,?50,""TOTAL PATIENTS: "",COUNT  S RMEND=1 S:IOST[""P-"" RMPORPT=1"
+ S DIOEND="I $G(Y)'[U D DIOEND^RMPORLP S RMEND=1 S:IOST[""P-"" RMPORPT=1"   ;RMPR*3.0*179
+ S FLDS=".01;C1;L22;""PATIENT"",D SSN^RMPORLP W X;C24;L5;""SSN"",D GET^RMPORLP W X;C30;L30;""PRIMARY ITEM"""
  S FLDS(2)="D SDT^RMPORLP W X;C61;L8;""START"",D EDT^RMPORLP W X;C70;""EXPIRE"""
  D EN1^DIP
  I RMPORPT=0,$G(RMEND) K DIR S DIR(0)="E" D ^DIR
@@ -25,7 +28,9 @@ EXIT ;
  Q
 DIOEND ;
  S COUNT=$E("      ",1,(6-$L(COUNT)))_COUNT
- W !!,?50,"Total Patients: ",COUNT
+ W !!,?47,"Total Patients: ",COUNT
+ S RMPRDCNT=$E("      ",1,(6-$L(RMPRDCNT)))_RMPRDCNT   ;RMPR*3.0*179
+ W !,?38,"Total Deceased Patients: ",RMPRDCNT   ;RMPR*3.0*179
  Q
 CNT ;COUNT NAMES
  I X'="" S COUNT=COUNT+1
@@ -43,9 +48,11 @@ GET ;Get the primary item.  ;DW
  Q
  ;
 SSN ;GET SSN
- S X=""
+ N RMPOEXP
+ S X="",RMPOEXP=" "    ;RMPR*3.0*179
+ I +$G(^DPT(D0,.35)) S RMPOEXP="*",RMPRDCNT=RMPRDCNT+1   ;RMPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^DPT(D0,.35) direct read supported by ICR #10035
  K VA,VADM S DFN=D0 D ^VADPT
- S X=$P(VA("PID"),"-",3)
+ S X=RMPOEXP_$P(VA("PID"),"-",3)     ;RMPR*3.0*179
  D CNT
  Q
 SDT ;GET START DATE  (USE INITIAL OXYGEN RX DATE)
@@ -78,6 +85,7 @@ EDTX ;Rx Expiration Date.
 RPTHDR ;Report header
  N RA S RA=RMPO("NAME"),PAGE=PAGE+1
  W RPTDT,?(40-($L(RA)/2)),RA,?68,"Page: "_PAGE
+ W !,"   '*' denotes deceased patient by SSN"
  W !?22,"Alphabetical List Home Oxygen Patients",!?68,"Date Current",!?68,"Prescription"
  W !,"Patient",?25,"SSN",?29,"Primary Item",?61,"Active",?70,"Expires"
  W !,"=======================",?24,"====",?29,"==============================",?60,"======== ==========",!

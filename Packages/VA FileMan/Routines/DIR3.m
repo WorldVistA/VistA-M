@@ -1,7 +1,9 @@
-DIR3 ;SFISC/DCM,RDS-READER-MAID (PROCESS RANGE/LIST) ;6/28/2009
- ;;22.0;VA FileMan;**30,164**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
- ;12364;2913754;3396;
+DIR3 ;SFISC/DCM,RDS-READER-MAID (PROCESS RANGE/LIST) ;3MAY2010
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**5,30,999,164**
  ;
 L ; LIST OR RANGE
  N %I,%I1,%I2,%BA,%X,%C,%1,%2,%3,%4,%
@@ -15,9 +17,10 @@ L ; LIST OR RANGE
  I '%E D @$S(%A["C"&'$D(DIR("S")):"LC",%A["C"&$D(DIR("S")):"LL",1:"LL")
  I '%E,Y(%C)="" S %E=4
  I $G(%E),'%N D
- . S %W=$P($T(@(%E)),";;",2)
- . I %W[";",%E=1 S %W=$P(%W,";")_+%B1_$P(%W,";",2)_" "_%B2
- . I %W[";",%E=2 S %W=$P(%W,";")_+%B3_$P(%W,";",2)_$S(%B3>1:"s",1:"")
+EGP .N I S %W=$P($T(@(%E)),";;",3) ;**CCO/NI  thru next 3 lines GET ERROR MESSAGE
+ .I %E=1 S I(1)=+%B1,I(2)=%B2
+ .I %E=2 S I(1)=+%B3
+ .S %W=$$EZBLD^DIALOG(%W,.I)
  I $G(%E) K Y S Y="" Q  ; Prevent Erroneous Data
  S Y=Y(0)
  Q
@@ -104,7 +107,7 @@ LC1 ; modify ^TMP($J,"DIR") to incorporate a list element, handle overlap
  E  S ^TMP($J,"DIR",%1)=""
  Q
  ;
-1 ;;Response should be no less than ; and no greater than
-2 ;;Response must be no more than ; decimal digit
-3 ;;Response must be a positive number
-4 ;;Invalid number or range
+1 ;;Response should be no less than ; and no greater than;;212;;**CCO/NI thru 4 ERROR MESSAGES
+2 ;;Response must be no more than ; decimal digit;;211
+3 ;;Response must be a positive number;;210
+4 ;;Invalid number or range;;208

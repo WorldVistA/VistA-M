@@ -1,19 +1,21 @@
-DICN0 ;SFISC/GFT,XAK,SEA/TOAD/TKW-ADD NEW ENTRY ;10:39 AM  3 Apr 2006
- ;;22.0;VA FileMan;**31,48,56,147**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICN0 ;SFISC/GFT,XAK,SEA/TOAD/TKW-ADD NEW ENTRY ;22MAR2006
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**31,48,56,1022,147**
  ;
 NEW ; try to add a new record to the file
  ; called from FILE, ^DICN
  ;
  N %,I,DDH,DI,DIE,DIK,DQ,DR,%H,%T,%DT,C,DIG,DIH,DIU,DIV,DISYS
- ;M %=DA N DA M DA=%
  K % M %=X N X M X=% S %=+$G(D0) N D0 S:% D0=% K %
  I '$G(DIFILEI)!($G(DINDEX("#"))="") N DINDEX,DIFILEI,DIENS D
  . S DINDEX("#")=1,(DINDEX,DINDEX("START"))="B"
  . D GETFILE^DIC0(.DIC,.DIFILEI,.DIENS) Q
  G:DIFILEI="" OUT
  I '$D(@(DIC_"0)")),'$D(DIC("P")),$E(DIC,1,6)'="^DOPT(" S DIC("P")=$$GETP^DIC0(DIFILEI)
- D:'$D(DO) GETFA^DIC1(.DIC,.DO) I DO="0^-1" G OUT
+ D:'$D(DO(2)) GETFA^DIC1(.DIC,.DO) I DO="0^-1" G OUT
  S X=$G(X) I X="",DINDEX("#")>1 S X=$G(X(1))
  I X="",(DIC(0)'["E"!(DINDEX("#")'>1)) G OUT
  N DINO01 S DINO01=$S(X="":1,1:0) N DIX,DIY

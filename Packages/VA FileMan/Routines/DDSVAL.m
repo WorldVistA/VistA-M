@@ -1,6 +1,9 @@
-DDSVAL ;SFISC/MKO-GET,PUT FOR DD IELDS ;9:38 AM  29 Aug 1995
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSVAL ;SFISC/MKO-GET,PUT FOR DD IELDS ;2OCT2003
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1003**
  ;
 GET(DDSFILE,DA,DDSFLD,DDSER,DDSPARM) ;Get value for file/field
  N DDP,DIE,DDSANS,DDSTMP,X
@@ -90,8 +93,8 @@ UPDATE(DDP,DDSVDA,DA,FLD,PG,Y) ;Store value, repaint
  ... S PDA=$G(@DDSREFT@(PG,BK)) I 'PDA S DY="" Q
  ... S REP=$P($G(@DDSREFT@(PG,BK,PDA)),U,2,999) I REP="" S DY="" Q
  ... S SN=$G(@DDSREFT@(PG,BK,PDA,"B",DDSVDA)) I 'SN S DY="" Q
- ... S OFS=SN-$P(REP,U,2)
- ... I OFS'<0,OFS<$P(REP,U,5) S DY=DY+OFS
+HITE ... N HITE S HITE=$$HITE^DDSR(BK),OFS=SN-$P(REP,U,2)*HITE ;DJW/GFT
+ ... I OFS'<0,$P(REP,U,5)*HITE>OFS S DY=DY+OFS ;GFT OFFSET CAN'T BE OUTSIDE SCROLLING WINDOW
  ... E  S DY=""
  .. S VAL=$P(DDGLVID,DDGLDEL)_$E(EXT,1,LEN)_$P(DDGLVID,DDGLDEL,10)
  .. X IOXY

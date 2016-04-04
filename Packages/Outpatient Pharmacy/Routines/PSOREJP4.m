@@ -1,5 +1,5 @@
-PSOREJP4 ;BP/CMF - Pharmacy Rejects List Mail message 
- ;;7.0;OUTPATIENT PHARMACY;**289**;DEC 1997;Build 107
+PSOREJP4 ;BP/CMF - Pharmacy Rejects List Mail message ;06/26/08 
+ ;;7.0;OUTPATIENT PHARMACY;**289,427**;DEC 1997;Build 21
  ;; use of ^VADPT supported by IA#10061
  ;@author  - Chris Flegel
  ;@date    - August 18, 2008
@@ -55,7 +55,7 @@ LOAD() ;;
  ;;
 SORT ;;
  N DIVISION,RXIEN,RX,DRUGNAME,PATNAME,PATSSN,PATLAST4,REJECT,DFN,RXSTAT
- N ENTRYNUM,SORT,OUT,I,J,LINE,II,COMM1,COMM2
+ N ENTRYNUM,SORT,OUT,I,J,LINE,II,COMM1,COMM2,SORTA,PSOTRIC,CODE
  K ^UTILITY($J,"W")
  S (DIVISION,ENTRYNUM)=0
  F  S DIVISION=$O(^TMP($J,"PSOREJP4",DIVISION)) Q:+DIVISION=0  D
@@ -93,15 +93,24 @@ SORT ;;
  ...S DETCDATE=$P($$GET1^DIQ(52.25,REJIENS,1,"I"),".")
  ...S DETCDATE=$$FMTE^XLFDT(DETCDATE,2)
  ...S OUT=OUT_$$LJ^XLFSTR(DETCDATE,8)
- ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,0)=RXIEN_U_REJECT
- ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,1)=OUT
+ ...S PSOTRIC=$$TRIC^PSOREJP1(RXIEN,RXFILL)
+ ...S CODE=$$GET1^DIQ(52.25,REJIENS,.01)
+ ...S SORTA=1
+ ...I CODE'=79,CODE'=88 D
+ ....I PSOTRIC=2 S SORTA="3^CHAMPVA - Non-DUR/RTS"
+ ....I PSOTRIC=1 S SORTA="4^TRICARE - Non-DUR/RTS"
+ ....I 'PSOTRIC D
+ .....I $$GET1^DIQ(52.25,REJIENS,30,"I")=1 S SORTA="2^REJECT RESOLUTION REQUIRED" Q
+ .....S SORTA="5^OTHER REJECTS"
+ ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,0)=RXIEN_U_REJECT
+ ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,1)=OUT
  ...S OUT="     Rx Status: "_RXSTAT
- ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,2)=OUT
+ ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,2)=OUT
  ...S RSNCODE=$$GET1^DIQ(52.25,REJIENS,.01)
  ...S OUT="     Reason:  "_RSNCODE
  ...S RSNCODE=$$FIND1^DIC(9002313.93,,,RSNCODE)
  ...S RSNTEXT=$$GET1^DIQ(9002313.93,RSNCODE_",",.02,"E")
- ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,3)=OUT_" :"_RSNTEXT
+ ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,3)=OUT_" :"_RSNTEXT
  ...S LINE=3
  ...D:$D(^PSRX(RXIEN,"REJ",REJECT,"COM"))
  ....N DIWL,DIWR,X
@@ -124,19 +133,21 @@ SORT ;;
  ......S TXT=^UTILITY($J,"W",1,J,0),COMM2=COMM2+1
  ......I COMM1=1 S OUT="   COMMENTS: -"_TXT
  ......E  S OUT="             "_$S(COMM2=1:"-",1:"")_TXT
- ......S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,LINE)=OUT
+ ......S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,LINE)=OUT
  ......S LINE=LINE+1,(COMM2,COMM1)=COMM1+1
  .....K ^UTILITY($J,"W")
- ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,LINE+1)=""
+ ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,LINE+1)=""
  ;derive entry number for message
  S DIVISION=0
  F  S DIVISION=$O(^TMP($J,"PSOREJP4",DIVISION)) Q:+DIVISION=0  D
- .S SORT=""
  .S ENTRYNUM=0
- .F  S SORT=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT)) Q:SORT']""  D
- ..S ENTRYNUM=ENTRYNUM+1
- ..S OUT=^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,1)
- ..S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,1)=$$RJ^XLFSTR(ENTRYNUM,3)_" "_OUT
+ .S SORTA=""
+ .F  S SORTA=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA)) Q:SORTA=""  D
+ ..S SORT=""
+ ..F  S SORT=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT)) Q:SORT']""  D
+ ...S ENTRYNUM=ENTRYNUM+1
+ ...S OUT=^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,1)
+ ...S ^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,1)=$$RJ^XLFSTR(ENTRYNUM,3)_" "_OUT
  ;;
 MAIL() ;;
  N DIVISION,RESULT,COUNT,REJECT,I,SORT,COUNT
@@ -148,24 +159,31 @@ MAIL() ;;
  .S XMTEXT="^TMP($J,""PSOREJP4"",""MESSAGE"","
  .S XMY("G.PSO REJECTS BACKGROUND MESSAGE")=""
  .K ^TMP($J,"PSOREJP4","MESSAGE")
- .S ^TMP($J,"PSOREJP4","MESSAGE",1)="The prescriptions listed below are third party electronically billable and can"
- .S ^TMP($J,"PSOREJP4","MESSAGE",2)="not be filled until the rejection is resolved.  No action to resolve the"
- .S ^TMP($J,"PSOREJP4","MESSAGE",3)="rejection has taken place within the past "_^TMP($J,"PSOREJP4","DIVISION",DIVISION)_" days."
- .S ^TMP($J,"PSOREJP4","MESSAGE",4)=""
- .S ^TMP($J,"PSOREJP4","MESSAGE",5)="Please use the THIRD PARTY PAYER REJECTS WORKLIST option to resolve the"
- .S ^TMP($J,"PSOREJP4","MESSAGE",6)="rejection or add a comment to the rejection."
- .S ^TMP($J,"PSOREJP4","MESSAGE",7)=""
- .S ^TMP($J,"PSOREJP4","MESSAGE",8)="Unresolved rejects will not be sent to CMOP or the local print queue for"
- .S ^TMP($J,"PSOREJP4","MESSAGE",9)="filling.  They will continue to show on the rejects list until acted upon."
- .S ^TMP($J,"PSOREJP4","MESSAGE",10)=""
- .S ^TMP($J,"PSOREJP4","MESSAGE",11)="                                                             FILL      REJECT"
- .S ^TMP($J,"PSOREJP4","MESSAGE",12)="  # RX/FILL      PATIENT(ID)         DRUG                    DATE      DATE"
- .S ^TMP($J,"PSOREJP4","MESSAGE",13)="------------------------------------------------------------------------------"
- .S COUNT=14
- .S SORT=""
- .F  S SORT=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT)) Q:SORT']""  D
- ..S I=0
- ..F  S I=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORT,I)) Q:'I  S COUNT=COUNT+1,^TMP($J,"PSOREJP4","MESSAGE",COUNT)=^(I) D
+ .S ^TMP($J,"PSOREJP4","MESSAGE",1)="No action has been taken within the past "_^TMP($J,"PSOREJP4","DIVISION",DIVISION)_" days to resolve the rejects"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",2)="listed in this message.  They will continue to show on the Third Party"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",3)="Payer Rejects - Worklist until acted upon. Please use the Third Party Payer"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",4)="Rejects - Worklist option to resolve the rejection or add a comment to the"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",5)="rejection."
+ .S ^TMP($J,"PSOREJP4","MESSAGE",6)=""
+ .S ^TMP($J,"PSOREJP4","MESSAGE",7)="Prescriptions will not be filled for Unresolved DUR, RTS, RRR, TRICARE and"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",8)="CHAMPVA rejects."
+ .S ^TMP($J,"PSOREJP4","MESSAGE",9)=""
+ .S ^TMP($J,"PSOREJP4","MESSAGE",10)="                                                             FILL      REJECT"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",11)="  # RX/FILL      PATIENT(ID)         DRUG                    DATE      DATE"
+ .S ^TMP($J,"PSOREJP4","MESSAGE",12)="------------------------------------------------------------------------------"
+ .S COUNT=13
+ .S SORTA=""
+ .F  S SORTA=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA)) Q:SORTA=""  D 
+ ..I SORTA'=1 D
+ ...N X,POS,LBL
+ ...S LBL=$P(SORTA,"^",2)
+ ...S POS=41-($L(LBL)/2+.5\1)
+ ...S X="",$P(X," ",42)="",$E(X,POS,POS-1+$L(LBL))=LBL
+ ...S COUNT=COUNT+1,^TMP($J,"PSOREJP4","MESSAGE",COUNT)=X
+ ..S SORT=""
+ ..F  S SORT=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT)) Q:SORT']""  D
+ ...S I=0
+ ...F  S I=$O(^TMP($J,"PSOREJP4",DIVISION,"SORT",SORTA,SORT,I)) Q:'I  S COUNT=COUNT+1,^TMP($J,"PSOREJP4","MESSAGE",COUNT)=^(I) D
  .D ^XMD
  .S:+$G(XMZ) RESULT=XMZ
  Q RESULT

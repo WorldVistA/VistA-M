@@ -1,6 +1,10 @@
 DIKZ2 ;SFISC/XAK-XREF COMPILER ;1:52 PM  7 Jan 2000
- ;;22.0;VA FileMan;**27**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**27**
+ ;
  S DIKR=DIKR+1
  S DIK1=" I $D("_DIKVR_") K DIKLM S:DIKM1="_A_" DIKLM=1"
  I A>1 D

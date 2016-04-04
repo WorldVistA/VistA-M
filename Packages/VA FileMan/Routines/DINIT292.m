@@ -1,6 +1,10 @@
-DINIT292 ;SFISC/MKO-FORM AND BLOCK FILES ;10:49 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT292 ;SFISC/MKO-FORM AND BLOCK FILES ;11:00 AM  13 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT293
 Q Q
@@ -57,7 +61,7 @@ Q Q
  ;;^DD(.4031,3,21,0)
  ;;=^^9^9^2940908^
  ;;^DD(.4031,3,21,1,0)
- ;;=Enter the page to go to when the user presses <PF1><Down> or selects the
+ ;;=Enter the page to go to when the user presses <F1><Down> or selects the
  ;;^DD(.4031,3,21,2,0)
  ;;=NEXT PAGE command from the Command Line.
  ;;^DD(.4031,3,21,3,0)
@@ -81,7 +85,7 @@ Q Q
  ;;^DD(.4031,4,21,0)
  ;;=^^1^1^2940907^
  ;;^DD(.4031,4,21,1,0)
- ;;=Enter the page to go to when the user presses <PF1><Up>.
+ ;;=Enter the page to go to when the user presses <F1><Up>.
  ;;^DD(.4031,5,0)
  ;;=IS THIS A POP UP PAGE?^S^0:NO;1:YES;^0;6^Q
  ;;^DD(.4031,5,1,0)
@@ -145,9 +149,9 @@ Q Q
  ;;^DD(.4031,7,1,1,0)
  ;;=.4031^C^MUMPS
  ;;^DD(.4031,7,1,1,1)
- ;;=S ^DIST(.403,DA(1),40,"C",$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ"),DA)=""
+ ;;=S ^DIST(.403,DA(1),40,"C",$$UP^DILIBF(X),DA)=""
  ;;^DD(.4031,7,1,1,2)
- ;;=K ^DIST(.403,DA(1),40,"C",$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ"),DA)
+ ;;=K ^DIST(.403,DA(1),40,"C",$$UP^DILIBF(X),DA)
  ;;^DD(.4031,7,1,1,3)
  ;;=Programmer only
  ;;^DD(.4031,7,1,1,"%D",0)

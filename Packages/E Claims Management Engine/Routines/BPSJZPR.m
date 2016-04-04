@@ -1,6 +1,6 @@
 BPSJZPR ;BHAM ISC/CMW/LJF - Process Incoming HL7 ZPR Message ;01-DEC-2003
- ;;1.0;E CLAIMS MGMT ENGINE;**1,10,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,10,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description:
  ; Process incoming HL7 ZPR Messages
@@ -231,4 +231,7 @@ INITZPRS(ZPRS) ;BPSEGID^FLN^FLNSC^FLNPN
  ;BPS*1*15 - Purchaser and Provider segment added for D.1 - D.9 version
  S ZPRS(17)="270^9002313.9227^9002313.92271^9002313.92272"
  S ZPRS(18)="280^9002313.9228^9002313.92281^9002313.92282"
+ ;BPS*1*19 - Intermediary and Last Known 4Rx segments added for E.0 - E.6 version
+ S ZPRS(19)="290^9002313.9229^9002313.92291^9002313.92292"
+ S ZPRS(37)="300^9002313.923^9002313.9231^9002313.9232"
  Q

@@ -1,6 +1,10 @@
-DINIT1 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;7/27/94  10:21
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT1 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;6NOV2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1042,1044**
+ ;
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT11:X?.P S @("^DD(0,"_$E($P(X," ",2),3,99)_")=Y")
  ;;.26,0 COMPUTE ALGORITHM^FJ30^^9.1;E1,245^K:$L(X)>50 X
  ;;.27,0 SUB-FIELDS^CJ1^^ ; ^Q:$D(DIQ(0))  X ^DD(0,.27,9.2) S X="" I $D(Y)#2,Y=U S DN=0
@@ -28,9 +32,10 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT11:X?.P S @("^DD(0,"_$E($P(X," 
  ;;1.1,1,2,2 K ^DD(DA(1),"AUDIT",DA)
  ;;1.2,0 AUDIT CONDITION^K^^AX;E1,245^D ^DIM
  ;;1.2,3 Enter Mumps Code that will set $T to 1 for Audit to take place.
- ;;2,0 OUTPUT TRANSFORM^F^^2;E1,245;D ^DIM
+ ;;2,0 OUTPUT TRANSFORM^F^^2;E1,245^D ^DIM
  ;;3,0 'HELP'-PROMPT^F^^3;E1,245^K:X'?3.E!($L(X)>200) X
  ;;4,0 XECUTABLE 'HELP'^F^^4;E1,245^D ^DIM
+ ;;7.5,0 PRE-LOOKUP TRANSFORM^F^^7.5;E1,245^D ^DIM
  ;;8,0 READ ACCESS (OPTIONAL)^F^^8;E1,245^I DUZ(0)'="@" F I=1:1:$L(X) I DUZ(0)'[$E(X,I) K X Q
  ;;8,3 ENTER A STRING OF CHARACTERS WHICH ARE IN YOUR OWN ACCESS CODE ('DUZ(0)')
  ;;8.5,0 DELETE ACCESS (OPTIONAL)^F^^8.5;E1,245^I DUZ(0)'="@" F I=1:1:$L(X) I DUZ(0)'[$E(X,I) K X Q

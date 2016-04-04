@@ -1,5 +1,5 @@
-PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ; 2/16/12 12:50pm
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390**;DEC 1997;Build 86
+PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;2/16/12 12:50pm
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427**;DEC 1997;Build 21
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(50.7 supported by DBIA 2223
  ;Reference to PSSDIN supported by DBIA 3166
@@ -49,10 +49,16 @@ SELECT ;
 SELECTX K X,Y,DTOUT,DUOUT,PSONEW("OLD VAL")
  Q
  ;
-NDC(RX,RFL,DRG,NDC) ; Editing NDC for ECME Released Rx's
+NDC(RX,RFL,DRG,NDC) ; Editing NDC for Released Rx's or for Unresolved ECME Rejects
  S NDC=$S($G(NDC)'="":$G(NDC),1:$$GETNDC^PSONDCUT(RX,.RFL))
- I $$STATUS^PSOBPSUT(RX,RFL)="" Q
- I '$$RXRLDT^PSOBPSUT(RX,RFL) Q
+ ; Check if we should edit the NDC
+ ; Needs to be released or have unresolved billable rejects (PSO*7*427)
+ ;
+ N PSOCONT S PSOCONT=0                         ; continue flag
+ D  Q:'PSOCONT                                 ; get out if NDC edit not allowed
+ . I $$RXRLDT^PSOBPSUT(RX,RFL) S PSOCONT=1 Q   ; Released - continue and allow edit
+ . I $$FIND^PSOREJUT(RX,RFL),$$STATUS^PSOBPSUT(RX,RFL)'="" S PSOCONT=1 Q    ; unreleased w/unresolved billable rejections
+ . Q
  ;
  S NDC=$S($G(NDC)'="":$G(NDC),1:$$GETNDC^PSONDCUT(RX,.RFL))
  D NDCEDT^PSONDCUT(RX,.RFL,$G(DRG),$G(PSOSITE),.NDC)

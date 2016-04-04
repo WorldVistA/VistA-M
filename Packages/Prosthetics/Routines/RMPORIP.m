@@ -1,8 +1,12 @@
 RMPORIP ;(NG)/DG/CAP/HINES CIOFO/HNC -INACTIVE HOME OXYGEN PATIENTS ; 5/18/00 9:35am
- ;;3.0;PROSTHETICS;**29,49**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**29,49,179**;Feb 09, 1996;Build 7
+ ;
+ ;RMPR*3.0*178 Check for deceased patients. Add to report by
+ ;             displaying asterisk (*) if patient deceased.
  ;
 SITE ;   Initialize site variables
  D HOSITE^RMPOUTL0  Q:'$D(RMPOXITE)
+ S RMPODCNT=0
  ;
 FROM ;   Ask starting date/oldest inactive date
  K DIR  S DIR(0)="D^^^P"
@@ -35,8 +39,8 @@ LI ;   List the sought patients
  S FR=","_$$DATE(FRMDT),TO=","_$$DATE(TODT)
  S DIS(0)="I $P($G(^RMPR(665,D0,""RMPOA"")),U,7)=RMPOXITE"
  S DHD="W ?0 D RPTHDR^RMPORIP"
- S DIOEND="I $G(Y)'[U W !!,?53,""TOTAL PATIENTS: "",$J(COUNT,6) S RMEND=1 S:IOST[""P-"" RMPORPT=1"
- S FLDS=".01;C1;L20;""PATIENT"",D SSN^RMPORIP W X;C22;R4;""SSN"",D SDT^RMPORIP W X;C28;L10;""START"""
+ S DIOEND="I $G(Y)'[U D DIOEND^RMPORIP S RMEND=1 S:IOST[""P-"" RMPORPT=1"
+ S FLDS=".01;C1;L19;""PATIENT"",D SSN^RMPORIP W X;C21;R5;""SSN"",D SDT^RMPORIP W X;C28;L10;""START"""
  S FLDS(2)="D EDT^RMPORIP W X;C40;L10;""INACTIVE"",D IREA^RMPORIP W X;C52;L29;""REASON"""
  D EN1^DIP
  I RMPORPT=0,$G(RMEND)  K DIR  S DIR(0)="E"  D ^DIR
@@ -62,7 +66,7 @@ IREA ;*** INACTIVE REASON
 RPTHDR ;*** REPORT HEADER
  N RA S RA=RMPO("NAME"),PAGE=PAGE+1
  W RPTDT,?(40-($L(RA)/2)),RA,?68,"Page: "_PAGE
- W !?18,"Inactive Home Oxygen Patients",!
+ W !?5,"Inactive Home Oxygen Patients",?50,"'*' denotes deceased patient",!   ;RMPR*3.0*179
  W !?13,"Date Range: ",FDT," to ",TDT,!
  W !,"Patient",?21,"SSN",?28,"Active",?40,"Inactive",?51,"Inactive Reason"
  W !,"===================",?21,"====",?27,"==========",?39,"==========  ========================",!
@@ -73,8 +77,14 @@ SDT ;*** GET START DATE (USE INITIAL OXYGEN RX DATE)
  Q
  ;
 SSN ;*** GET SSN
- K VA,VADM
+ K VA,VADM S RMPOEXP=" ",RMPODCNT=0 I +$G(^DPT(D0,.35)) S RMPOEXP="*"   ;RMPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^DPT(D0,.35) direct read supported by ICR #10035
  S DFN=D0  D ^VADPT
  S X=$P(VA("PID"),"-",3)
- S:X'="" COUNT=COUNT+1
+ I X'="" S COUNT=COUNT+1,X=RMPOEXP_X S:RMPOEXP'=" " RMPODCNT=RMPODCNT+1   ;RMPR*3.0*179
+ Q
+DIOEND ;TOTAL PRINT
+ S COUNT=$E("      ",1,(6-$L(COUNT)))_COUNT
+ W !!,?47,"Total Patients: ",COUNT
+ S RMPODCNT=$E("      ",1,(6-$L(RMPODCNT)))_RMPODCNT         ;RMPR*3.0*179
+ W !,?38,"Total Deceased Patients: ",RMPODCNT               ;RMPR*3.0*179
  Q

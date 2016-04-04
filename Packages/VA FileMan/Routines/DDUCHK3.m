@@ -1,6 +1,10 @@
 DDUCHK3 ;SFISC/RWF-CHECK DD (XREF,COMPUTED) ;12:40 PM  4 Mar 2004
- ;;22.0;VA FileMan;**130**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**130**
+ ;
 XREF F DDUCY=0:0 S DDUCY=$O(^DD(DDUCFI,DDUCFE,1,DDUCY)) Q:DDUCY'>0  S DDUCX=^(DDUCY,0),DDUCRFI=+DDUCX,DDUCX1=$P(DDUCX,U,2) D XREF1
  Q
 XREF1 ;

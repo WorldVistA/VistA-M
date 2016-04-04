@@ -1,5 +1,5 @@
 PSOBORP2 ;ALBANY/BLD - TRICARE-CHAMPVA BYPASS/OVERRIDE AUDIT REPORT ;7/1/2010
- ;;7.0;OUTPATIENT PHARMACY;**358,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**358,385,427**;DEC 1997;Build 21
  ;
  ;
  Q
@@ -9,12 +9,12 @@ EN(RX,RFL,RESP) ;
  ;       Passed In:
  ;       RX =   Prescription file (52) IEN
  ;       RFL =  Prescription refill number
- ;       RESP = response back from ECME billing. (from ECMESN^PSOBPSU1)
+ ;       RESP = response back from ECME billing (from ECMESND^PSOBPSU1)
  ;
  ;
  N REFILNBR,TRITXT
  S TRITXT=$P(RESP,"^",2)
- D AUDIT^PSOTRI(RX,RFL,,TRITXT,"I",$P(RESP,"^",3))
+ D AUDIT^PSOTRI(RX,RFL,,TRITXT,"N",$P(RESP,"^",3))
  ;
  Q
  ;
@@ -54,7 +54,7 @@ PROCESS(PSOSEL,PSOAUD) ;this will process file 52.87, the PSO AUDIT LOG
  ..;quit if audit type not selected or not all
  ..S TCTYPE=$P(^PS(52.87,PSOD0,1),"^",2)
  ..Q:'$D(PSOSEL("REJECT CODES",TCTYPE))
- ..S TCTYPE=$S(TCTYPE="I":"INPATIENT",TCTYPE="N":"NON-BILLABLE PRODUCT",TCTYPE="R":"REJECT OVERRIDE",TCTYPE="P":"PARTIAL FILL",1:"ALL")
+ ..S TCTYPE=$S(TCTYPE="I":"INPATIENT",TCTYPE="N":"NON-BILLABLE",TCTYPE="R":"REJECT OVERRIDE",TCTYPE="P":"PARTIAL FILL",1:"ALL")
  ..S ELTCTYP=ELTYPE_" "_TCTYPE
  ..;
  ..;quit if specific pharmacist not selected or not all

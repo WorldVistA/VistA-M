@@ -1,6 +1,10 @@
-DIU20 ;SFISC/GFT-SCREEN-EDIT FILE ;06:20 PM  2 Apr 2001
- ;;22.0;VA FileMan;**8,82**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIU20 ;SFISC/GFT-SCREEN-EDIT FILE ;11JUN2010
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**8,82,1039**
+ ;
  ;
  ;from DIU0 -- DA=FILE NUMBER
  N DR
@@ -37,8 +41,8 @@ MAYBGONE Q:'$G(DA)
  F I=2:1:7 D  ;handle the 6 ACCESS CODEs
  .S X=$$G(I)
  .S ^DIC(DA,0,$P("^DD^RD^WR^DEL^LAYGO^AUDIT",U,I))=X
- S X=$$G(8) S ^DD(D0,0,"DDA")=$E("NY",X+1)
- S X=$$G(9) S I=$G(^DIC(DA,0,"GL")) I I["(",$D(@(I_"0)")) S I=$P(^(0),U,2),I=$TR(I,"O"),$P(^(0),U,2)=I_$E("O",X)
+ ;S X=$$G(8) S ^DD(D0,0,"DDA")=$E("NY",X+1)
+ S X=$$G(9),SP=$TR(SP,"O")_$E("O",X) ;'ASK OK'?'
  S X=$$G(9.5),^DD(DA,0,"SCR")=X,SP=$TR(SP,"s") I X="" K ^("SCR")
  E  S SP=SP_"s"
  S $P(@ROOT,U,2)=SP

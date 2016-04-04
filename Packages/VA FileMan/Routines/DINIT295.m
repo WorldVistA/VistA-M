@@ -1,6 +1,10 @@
-DINIT295 ;SFISC/MKO-FORM AND BLOCK FILES ;3:33 PM  20 Apr 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT295 ;SFISC/MKO-FORM AND BLOCK FILES ;11:18 AM  20 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**8,999**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT296
 Q Q
@@ -75,7 +79,7 @@ Q Q
  ;;^DD(.404,2,21,2,0)
  ;;=navigation is disabled, user cannot ^-jump to other fields, they cannot
  ;;^DD(.404,2,21,3,0)
- ;;=^-jump to the Command Line, and the <Up>, <Down>, <Tab>, and <PF4> keys
+ ;;=^-jump to the Command Line, and the <Up>, <Down>, <Tab>, and <F4> keys
  ;;^DD(.404,2,21,4,0)
  ;;=traverse the fields in the same order as the <RET> key -- that is, in the
  ;;^DD(.404,2,21,5,0)
@@ -189,9 +193,9 @@ Q Q
  ;;^DD(.4044,1,1,2,0)
  ;;=.4044^C^MUMPS
  ;;^DD(.4044,1,1,2,1)
- ;;=S:X'="!M" ^DIST(.404,DA(1),40,"C",$TR($E($S(X?1"Select "1.E:$P(X,"Select ",2,99),1:X),1,63),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ"),DA)=""
+ ;;=S:X'="!M" ^DIST(.404,DA(1),40,"C",$$UP^DILIBF($E($S(X?1"Select "1.E:$P(X,"Select ",2,99),1:X),1,63)),DA)=""
  ;;^DD(.4044,1,1,2,2)
- ;;=K:X'="!M" ^DIST(.404,DA(1),40,"C",$TR($E($S(X?1"Select "1.E:$P(X,"Select ",2,99),1:X),1,63),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ"),DA)
+ ;;=K:X'="!M" ^DIST(.404,DA(1),40,"C",$$UP^DILIBF($E($S(X?1"Select "1.E:$P(X,"Select ",2,99),1:X),1,63)),DA)
  ;;^DD(.4044,1,1,2,3)
  ;;=Programmer only
  ;;^DD(.4044,1,1,2,"%D",0)

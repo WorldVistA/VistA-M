@@ -1,7 +1,11 @@
-DIDH1 ;SFISC-HDR FOR DD LISTS ;7:34 AM  29 Sep 2003
- ;;22.0;VA FileMan;**76,105,131**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- N DIDHI,DIDHJ,W D  ;*131*
+DIDH1 ; SFISC/ALL - HDR FOR DD LISTS; 16NOV2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,105,999,1003,1020,1024,1025**
+ ;
+ N DIDHI,DIDHJ,DIC,W,M1 D
  .N I,J D IJ^DIUTL(DFF) M DIDHJ=J,DIDHI=I S DIDHJ=$O(J(""),-1)
  S M=1 I DC=1 S (F(1),DA)=DFF,Z=1
  E  I $Y,IOST?1"C".E W $C(7) R M:DTIME I M=U!'$T K DIOEND S M=U,DN=0 Q
@@ -10,8 +14,7 @@ DIDH1 ;SFISC-HDR FOR DD LISTS ;7:34 AM  29 Sep 2003
  W " DATA DICTIONARY #"_DFF_" -- "_$O(^DD(DFF,0,"NM",0))_" "_$S(DIDHJ:"SUB-",1:"")_"FILE   "
  S DIC=^DIC(DUB,0,"GL") D
  .N X,Y
- .X ^DD("FUNC",24,1) S Y=X X ^DD("DD")
- .S W=Y_"  PAGE "_DC W:$L(W)+$X+2>IOM ! W ?(IOM-$L(W)-1),W
+TODAY .S W=$$OUT^DIALOGU(DT,"FMTE","2D")_"    "_$$EZBLD^DIALOG(7095,DC) W ?(IOM-$L(W)-1),W ;**CCO/NI  TODAY'S DATE, 'PAGE'
  S M=IOM\2,S=" ",W="" I $D(^DD("SITE")) S W="SITE: "_^("SITE")_"   "
  I $D(^%ZOSF("UCI"))#2 X ^("UCI") S W=W_"UCI: "_Y
  W ! I DHIT["DIDX" W W,?(IOM-$L(M1)-1),M1 S W="",$P(W,"-",IOM)="" W !,W S W="" G Q^DIDH
@@ -23,6 +26,7 @@ DIDH1 ;SFISC-HDR FOR DD LISTS ;7:34 AM  29 Sep 2003
  .W !!,"DATA",?14,"NAME",?36,"GLOBAL",?50,"DATA",!,"ELEMENT",?14,"TITLE",?36,"LOCATION",?50,"TYPE"
 G W ! F I=1:1:IOM-1 W "-"
  S W="" Q:DC>1!$G(DIDRANGE)
+FIRST F DG=0:0 S DG=$O(^DIC(DA,"ALANG",DG)) Q:'DG  I $D(^(DG,0)) S DIWR=$P(^(0),U) I $D(^DI(.85,DG,0)) W !,$P(^(0),U)," FILE NAME: ",DIWR ;**SHOW FOREIGN FILE NAMES
 PAGE1 I 'DIDHJ,'$$WP^DIUTL($NA(^DIC(DA,"%D"))) S M="^" Q
  I DIDHJ D  I M=U Q
  .S W=DIDHJ(DIDHJ-1),W=$NA(^DD(W,+$O(^DD(W,"SB",DFF,"")))) I '$$WP^DIUTL($NA(@W@(21))) S M=U Q
@@ -38,7 +42,7 @@ PAGE1 I 'DIDHJ,'$$WP^DIUTL($NA(^DIC(DA,"%D"))) S M="^" Q
  W:$P($G(^DD(DA,0,"DI")),U)["Y" !,"THIS IS AN ARCHIVE FILE."
  W:$P($G(^DD(DA,0,"DI")),U,2)["Y" !,"EDITING OF FILE IS NOT ALLOWED."
  F N="DD","RD","WR","DEL","LAYGO","AUDIT" I $D(^DIC(DA,0,N)) W !?(Z+Z+14-$L(N)),N," ACCESS: ",^(N)
- I $D(^VA(200,"AFOF")) W !!?8,"(NOTE: Kernel's File Access Security has been installed in this UCI.)",!
+AFOF I $D(^VA(200,"AFOF",DA)) W !!?8,"(NOTE: Kernel's File Access Security applies to this File.)",!
  I $O(^DD(DA,0,"ID",""))]"" W !,"IDENTIFIED BY: "
  S X=0 F  S X=$O(^DD(DA,0,"ID",X)) Q:X=""  Q:'$D(^DD(DA,X,0))  S I1=$P(^(0),U)_" (#"_X_")"_$S($P(^(0),U,2)["R":"[R]",1:"") W:($L(I1)+$X)+1>IOM ! W ?15,I1 I $O(^DD(DA,0,"ID",X)) W ", "
  S:X="" X=-1
@@ -62,7 +66,8 @@ PAGE1 I 'DIDHJ,'$$WP^DIUTL($NA(^DIC(DA,"%D"))) S M="^" Q
  . N DIDPG
  . S DIDPG("H")="W """" D H^DIDH S:M=U PAGE(U)=1"
  . D LIST^DIKCP(DA,"","C15",.DIDPG)
- S N=$G(^DIC(DA,"%A")),Y=$P(N,U,2) I Y X ^DD("DD") W !!?3,"CREATED ON: "_Y I $S($D(^VA(200,0)):1,1:$D(^DIC(3,0))),^(0)["NEW PERSON"!(^(0)["USER")!(^(0)["EMPLOY"),$D(^(+N,0)) W " by "_$P(^(0),U)
+CREATED W !! S N=$G(^DIC(DA,"%A")),Y=$P(N,U,2) I Y X ^DD("DD") W ?3,"CREATED ON: "_Y I $S($D(^VA(200,0)):1,1:$D(^DIC(3,0))),^(0)["NEW PERSON"!(^(0)["USER")!(^(0)["EMPLOY"),$D(^(+N,0)) W " by "_$P(^(0),U)
+ S Y=+$G(^DIC(DA,"%MSC")) I Y X ^DD("DD") W "    LAST MODIFIED: "_Y
 Q Q
 W W:$X+$L(W)+3>IOM !,?$S(IOM-$L(W)-5<M:IOM-5-$L(W),1:M),S S %Y=$E(W,IOM-$X,999) W $E(W,1,IOM-$X-1),S Q:%Y=""  S W=%Y G W
  Q

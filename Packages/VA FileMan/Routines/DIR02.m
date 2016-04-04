@@ -1,6 +1,10 @@
-DIR02 ;SFISC/MKO-MULTILINE FIELD EDITOR ;3:24 PM  29 Aug 1995
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIR02 ;SFISC/MKO-MULTILINE FIELD EDITOR ;25MAY2004
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999,1004**
+ ;
 EN ;
  N DIR0FL,DIR0LN,DIR0NC,DIR0QU
  X DDGLZOSF("EOFF"),DDGLZOSF("TRMON")
@@ -22,15 +26,9 @@ SM ;ScreenMan's entry point, called from ^DIR01
  ;
  ;Restore command area
  S DY=DIR0R,DX=DIR0S X IOXY
- W $P(DDGLVID,DDGLDEL,10)_$P(DDGLCLR,DDGLDEL,3)
+ W $P(DDGLVID,DDGLDEL,10)_$P(DDGLCLR,DDGLDEL,3) F DY=DY:1:IOSL-1 K DDSMOUSE(DY)
  ;
- S DY=IOSL-1
- I DDO D
- . S DX=0 X IOXY W "COMMAND:"
- . S DX=IOM-35 X IOXY W "Press <PF1>H for help"
- S DX=IOM-8 X IOXY
- W $S('$D(DDGLVAN):$P(DDGLVID,DDGLDEL,6),1:"")_$S($G(DIR0("REP")):"Replace",1:"Insert ")_$P(DDGLVID,DDGLDEL,10)
- ;
+BOT D BOT^DDSCOM
  ;Restore variables
  S (DY,DIR0R)=$P(DIR0,U),(DX,DIR0S)=$P(DIR0,U,2),DIR0L=$P(DIR0,U,3)
  S DIR0F=DIR0S+DIR0L
@@ -49,6 +47,8 @@ SM ;ScreenMan's entry point, called from ^DIR01
  X IOXY
  K DTOUT
  Q
+ ;
+ ;
  ;
 INIT ;Setup
  K DTOUT

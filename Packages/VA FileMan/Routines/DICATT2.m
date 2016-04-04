@@ -1,6 +1,10 @@
-DICATT2 ;SFISC/GFT,XAK-DEFINING MULTIPLES ;9APR2007
- ;;22.0;VA FileMan;**89,152**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICATT2 ;SFISC/GFT,XAK-DEFINING MULTIPLES ;4APR2007
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**89,127,152,1014**
+ ;
  S T=$E(Z) G CHECK^DICATT:$D(DTOUT)
  F P="I","O","L","x" S:$P(O,U,2)[P Z=$P(Z,U)_P_U_$P(Z,U,2)
 1 K DS S:$P(Z,U)'["K" V=W[";0"
@@ -37,7 +41,22 @@ WINDOW S %=2-(Z["x"!'O) W !,"SHALL ""|"" CHARACTERS IN THIS TEXT BE TREATED LIKE
  ;
  ;
 X ;
- W "   (FIELD DEFINITION IS NOT EDITABLE)" S T=$E(^(0)),Z=$P(Y,U,2),Z=$P(Z,"M")_$P(Z,"M",2),Z=$P(Z,"R")_$P(Z,"R",2)_U_$P(Y,U,3),W=$P(Y,U,4),C=$P(Y,U,5,99) S:Z["K" V=0 G N^DICATT:N=6,1
+ W "   (FIELD DEFINITION IS NOT EDITABLE)"
+ I N=4 K DIRUT D LENGTH(A,DA) I $D(DIRUT) K DIRUT G N^DICATT
+ S T=$E(^DOPT("DICATT",N,0)),Y=^DD(A,DA,0),Z=$TR($P(Y,U,2),"MR")_U_$P(Y,U,3),W=$P(Y,U,4),C=$P(Y,U,5,99) S:Z["K" V=0
+ G N^DICATT:N=6,1
+ ;
+LENGTH(DI,DIFIELD) ;
+ N DIR,DICY,Y,X,A0,B0,A1,A2
+ S DICY=$G(^DD(DI,DIFIELD,0)) I $P(DICY,U,2)'["F" Q
+ S A0=250,A1=$P($P($P(DICY,U,4),";",2),"E",2) I A1 S A2=$P(A1,",",2) I A2 S A0=A2-A1+1,DIR("?",1)="Data is stored by '$E"_A1_"'"
+ S DIR("A")="MAXIMUM LENGTH OF '"_$P(DICY,U)_"'",DIR(0)="N^1:"_A0,DIR("B")=$$FL^DIQGDDU(DI,DIFIELD)
+ S DIR("?")="THIS MAXIMUM WILL BE USED FOR OUTPUT PURPOSES, BUT WILL NOT BE PART OF THE INPUT CHECK FOR THE FIELD"
+ D ^DIR Q:'Y
+ N F S X=$P(DICY,U,2),F=$F(X,"J") I F Q:+$E(X,F,99)=Y  F  Q:$E(X,F)'?1N  S X=$E(X,1,F-1)_$E(X,F+1,99)
+ S X=$TR(X,"J")_"J"_Y,$P(^DD(DI,DIFIELD,0),U,2)=X
+ I $D(DDA) S DDA="E",A0="LENGTH^.23",A1=DIR("B"),A2=Y D IT^DICATTA
+ Q
  ;
 NO ;
  W !,$C(7),"  <DATA DEFINITION UNCHANGED>" I $P(Z,U)["K"&(DUZ(0)'="@") G N^DICATT

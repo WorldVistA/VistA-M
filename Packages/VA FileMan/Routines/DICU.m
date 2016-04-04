@@ -1,7 +1,9 @@
-DICU ;SEA/TOAD-VA FileMan: Lookup Utilities ;5/15/97  08:31
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;11961;3150917;2853;
+DICU ;SEA/TOAD-VA FileMan: Lookup Utilities ;12APR2008
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1032**
  ;
 REQIDS(DIFILE,DITARGET) ;
  ; return REQUIRED IDENTIFIERS file attribute
@@ -40,7 +42,7 @@ RECALLX ; input from DILFD
 32 N DIOROOT,DIOUT S DIOUT=0 D  I DIOUT Q
  . I '$D(^DD(DIFILE)) D ERR(401,DIFILE) S DIOUT=1 Q
  . S DIOROOT=$$ROOT^DILFD(DIFILE,DIEN,"Q")
- . I DIOROOT'?1"^"1U.7UN1"(".ANP,DIOROOT'?1"^%".7UN1"(".ANP D  Q
+ . I DIOROOT'?1"^"1.7AN1"(".ANP,DIOROOT'?1"^%".7AN1"(".ANP D  Q  ;JIM SELF --ALLOW LC GLOBAL NAMES
  . . D ERR(402,DIFILE,"","","","","",DIOROOT) S DIOUT=1
  S ^DISV(DIUSER,$E(DIOROOT,1,28))=$E(DIOROOT,29,$L(DIOROOT))_+DIEN
  I DICLERR'=""!$G(DIERR) D

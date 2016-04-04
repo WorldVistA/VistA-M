@@ -1,6 +1,10 @@
-DILIBF ;SFISC/STAFF-LIBRARY OF FUNCTIONS ;1:48 PM  20 Feb 2013
- ;;22.0;VA FileMan;**48,71,169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DILIBF ;SFISC/STAFF-LIBRARY OF FUNCTIONS ;2013-08-09  10:11 AM; 12/1/12 3:12pm
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**48,71,169,1045**
+ ;
 HTFM(%H,%F) ;$H to FM
  N X,%,%Y,%M,%D S:'$D(%F) %F=0
  S:%H[",0" %H=%H-1_",86400"
@@ -89,10 +93,9 @@ GLO(Z) ; gets the file number from a global root
  Q $$FNO(+Y)
  ;
 UP(X) ; convert string X to uppercase
+ I $G(DUZ("LANG"))>1 Q $$OUT^DIALOGU(X,"UC") ;INTERNATIONALIZED for GEKY to use LANGUAGE FILE
  I X?.UNP Q X
- N A,L,B,C S C=""
- F A=1:1:$L(X) S L=$E(X,A),B=$C($A(L)-32) S C=C_$S(L'?1L:L,B?1L:"Z",1:B) ;$C(255) matches lower-case, and so does $C(255-32), so lamely return "Z"
- Q C
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;
 ROUEXIST(X) ; Execute routine existence test
  G:X="" QRER I '$D(DISYS) N DISYS D OS^DII
@@ -142,4 +145,5 @@ FILENUM(DIGREF) ;Return file/subfile number from open global reference
  E  S S=$P($G(@X(X,0)@(0)),U,2),F=+S I S="" Q ""
  F X=X:0 S X=$O(X(X)) Q:X=""  S DIFILE=$O(^DD(F,"GL",X(X),0,"")) Q:DIFILE=""  S (F,DIFILE)=+$P($G(^DD(F,DIFILE,0)),U,2) Q:'F
  Q DIFILE
+ ;
  ;

@@ -1,6 +1,11 @@
-DDBRP ;SFISC/DCL-BROWSER PRINT UTILITY ;NOV 04, 1996@13:54
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRP ;SFISC/DCL-BROWSER PRINT UTILITY ; 30NOV2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
+ ; 
 PRTHELP ; Print Help
  ;
  N DDGLI,DDGLHN1,DDGLHN2
@@ -8,7 +13,7 @@ PRTHELP ; Print Help
  ;
 BRM ;Clear scroll region, title bar and
  N DX,DY,X
- S DX=0,DY=$P(DDBSY,";"),X=$$CTXT^DDBR("PRINT BROWSER HELP",$J("",IOM+1),IOM)
+ S DX=0,DY=$P(DDBSY,";"),X=$$CTXT^DDBR($$EZBLD^DIALOG(7076.4),$J("",IOM+1),IOM) ;**'PRINT BROWSER HELP'
  X IOXY
  W $P(DDGLVID,DDGLDEL,6)  ;rvon
  W $P(DDGLVID,DDGLDEL,4)  ;uon
@@ -24,7 +29,7 @@ BRM ;Clear scroll region, title bar and
  X IOXY
  ;
  ;Reset for Roll/Scroll mode
- S X=$G(IOM,80) X ^%ZOSF("RM")
+ S X=$G(IOM,80) X ^DD("OS",DISYS,"RM")
  W $P(DDGLVID,DDGLDEL,9)
  ;
  N POP,XQH
@@ -33,41 +38,59 @@ BRM ;Clear scroll region, title bar and
  N %P,%S,%T,%W,%X,%Y,%XX,%YY
  N %A0,%D1,%D2,%DT,%J1,%W0
  ;
- S DDBUC="ABCDEFGHIJKLMNOPQRSTUVWXYZ",DDBLC="abcdefghijklmnopqrstuvwxyz"
 DEVICE ;
+ ; Save $R, otherwise, it becomes ^%ZTSK in standalone-FM. Fails in DIALOG which saves ^(0)
+ ; ^(0) doesn't exist, and it fails on both GT.M and Cache.
+ N DINAKED S DINAKED=$NA(^(0))
  S %ZIS=$S($D(^%ZTSK):"Q",1:""),%ZIS("B")=""
- S %ZIS("S")="I $TR($P(^(0),U),DDBLC,DDBUC)'[""BROWSE"",$E($$GET1^DIQ(3.5,Y,""SUBTYPE""))=""P"""
+ S %ZIS("S")="I $$UP^DILIBF($P(^(0),U))'[""BROWSE"",$E($$GET1^DIQ(3.5,Y,""SUBTYPE""))=""P""" ;**
  S IOF="#",IOSL=DDBSRL
  D ^%ZIS
  K %ZIS
  ;
+ ; Restore $R for DIALOG call.
+ D:DINAKED]""
+ .I DINAKED["(" Q:$O(@(DINAKED))  Q
+ .I $D(@(DINAKED))
+ ;
  I POP D
- .W !!,"Report canceled!"
+ .W !!,$$EZBLD^DIALOG(1901) ;**REPORT CANCELLED
  .H 2
  ;
  ;Queue report
+ ;
  E  I $D(IO("Q")),$D(^%ZTSK) D
  .S ZTRTN="PRINTHLP^DDBRP"
  .S ZTDESC="Browser help printout."
  .N I F I="DDGLHN1","DDGLHN2" S ZTSAVE(I)=""
  .D ^%ZTLOAD
- .I $D(ZTSK)#2 W !,"Report queued!",!,"Task number: "_ZTSK,!
- .E  W !,"Report canceled!",!
+ .;
+ .; Restore $R again
+ .D:DINAKED]""
+ ..I DINAKED["(" Q:$O(@(DINAKED))  Q
+ ..I $D(@(DINAKED))
+ .;
+ .; Done with DINAKED
+ .K DINAKED
+ .;
+QUEUED .I $D(ZTSK)#2 W !,$$EZBLD^DIALOG(8161,ZTSK),! ;**
+ .E  W !,$$EZBLD^DIALOG(1901),! ;**REPORT CANCELLED
  .K ZTSK
  .S IOP="HOME" D ^%ZIS
  ;
- E  I $E(IOST,1,2)="C-" D  G DEVICE
- .W !,$C(7)_"You cannot print the Browser help on a CRT.",!
+ E  I $E(IOST,1,2)="C-" D
+ .W !,$C(7)_$$EZBLD^DIALOG(7076.3),! ;**NOT ON CRT
+ .H 2
  ;
  ;Non-queued report
  E  D
- .W !,"Printing ..."
+ .W !,"..." ;**
  .U IO
  .D PRINTHLP
  .X $G(^%ZIS("C"))
  ;
  ;Reset for Screen Mode
- S X=0 X ^%ZOSF("RM")
+ S X=0 X ^DD("OS",DISYS,"RM")
  W $P(DDGLVID,DDGLDEL,8)
  ;
  ;Repaint help screen

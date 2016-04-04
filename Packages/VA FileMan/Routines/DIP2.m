@@ -1,22 +1,26 @@
-DIP2 ;SFISC/GFT-PRINT FLDS OR TEMPLATES ;2/10/94  09:48
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIP2 ;SFISC/GFT-PRINT FLDS OR TEMPLATES ;2015-01-03  8:48 AM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999,1050**
+ ;
  K ^UTILITY("DIP2",$J),DG,K,DISH,DIL,DXS,A,P,I,J S I(0)=DI,(DE,DINS,DV,DNP)="",(DXS,DL,R)=1,(DIPT,DJ,DCL,DIL)=0,DK=+$P(@(DI_"0)"),U,2),J(0)=DK
 EN ;
- ;I $D(DIAR),'$D(DIARP(DIARF)) G DIP2^DIARA:DIAR=1 D DIP2^DIARA
 F S (P,S)=""
-1 ;G B:DC,B:DE'="",B:'$D(FLDS)
- ;S DC=0,(X,DU)=FLDS
- ;G ^DIP21
+1 ;
 B S DU=$P(^DD(DK,0),U) I DL>1 S:DU="FIELD" DU=$O(^(0,"NM",0))_" "_DU I $O(^($O(^DD(DK,0))))'>0,$P(^(.01,0),U,2)["W" S:'DINS&DC DC=DC-2 S Y=.01 D P G N
- K DIC,Y K:$D(DALL)<9 DALL I ('L!($G(DDXP)=4)),$D(FLDS) S X=$P(FLDS,C,R),R=R+1 G LIT
- I DC D ^DIP22:'$D(DC(DC))
-2 W !?DL+DL-2,$S(DE]""!($D(DJ)>9):"THEN",1:"FIRST")_$S($G(DDXP)=2:" EXPORT ",1:" PRINT ")_DU_": "
- I DC W DC(DC) D RW G Q^DIP:X=U!($D(DTOUT)) S DINS=X?1"^"1E.E,X=$S(DINS:$E(X,2,999),X="":DC(DC),1:X) S:DC(DC)=""&$L(X) DINS=1 G XPCK
- I $D(DIRPIPE) X DIRPIPE G LIT
+ K DIC,Y K:$D(DALL)<9 DALL I ('L!($G(DDXP)=4)),$D(FLDS) S X=$P(FLDS,",",R),R=R+1 G LIT ;**CCO/NI
+ I DC D ^DIP22:'$D(DC(DC)) ;DC is non-null if we are editing a Print Template.
+2 W !?DL+DL-2 K X S X(1)=$$EZBLD^DIALOG($S(DE]""!($D(DJ)>9):7066,1:7065)),X(2)=DU W $$EZBLD^DIALOG($S($G(DDXP)=2:7064,1:7063),.X) K X ;'FIRST/THEN PRINT/EXPORT'
+ I DC D RW(DC(DC)) G Q^DIP:X=U!($D(DTOUT)) S DINS=X?1"^"1E.E,X=$S(DINS:$E(X,2,999),X="":DC(DC),1:X) S:DC(DC)=""&$L(X) DINS=1 G XPCK
+ I $D(DIRPIPE) X DIRPIPE G LIT ;XECUTABLE CODE FOR IHS
+ I DL=1,DE="",$D(DJ)<9,'$D(DDXP) S Y=$$FIND^DIUCANON(.4,DK) I Y D  G LIT
+ . N DIUCANON S DIUCANON=1
+ . D RW("["_$P(Y,U,2)_"]")
  R X:DTIME S:'$T X=U G Q^DIP:X=U
  I X="ALL",DE="",$D(DJ)<2 D  G:$D(DIRUT) Q^DIP D:Y&($G(DDXP)=2) VALALL^DDXP2 G N:Y,F:'$D(X) W !?10,X
- . S DIR(0)="YA",DIR("A")="  Do you mean ALL the fields in the file? ",DIR("B")="NO",DIR("?")="Choose YES for every field in the file; NO for a field starting with 'ALL'",%XX=X
+ . S DIR(0)="YA",DIR("A")=$$EZBLD^DIALOG(7067),DIR("B")="NO",DIR("?")=$$EZBLD^DIALOG(7067.1),%XX=X
  . D ^DIR S X=%XX K DIR,%XX S:$D(DIRUT) X=U Q
 XPCK I $G(DDXP)=2 D VAL1^DDXP2 G:'$D(X) F
 LIT I $E(X)="""",$L(X,"""")#2 F A9=3:2:$L(X,Q) Q:$P(X,Q,A9)]""&($E($P(X,Q,A9)'=$C(95)))
@@ -24,7 +28,7 @@ LIT I $E(X)="""",$L(X,"""")#2 F A9=3:2:$L(X,Q) Q:$P(X,Q,A9)]""&($E($P(X,Q,A9)'=$
  S DIC="^DD(DK,",DIC(0)=$E("ZE",1,'$D(FLDS)!''L+1)_$E("O",1,DC>0),DIC("W")="S %=$P(^(0),U,2) I % W $S($P(^DD(+%,.01,0),U,2)[""W"":""  (word-processing)"",1:""  (multiple)"")" S:$D(DICS) DIC("S")=DICS
 DIC G DIC^DIP22
 RTN I DC,X="@" D DC G F
- G DIP2^DIQQ:X?."?",Q^DIP:X=U I $P("NUMBER",X,1)="" W $P("NUMBER",X,2) S S=0_S G S
+NUMBER G DIP2^DIQQ:X?."?",Q^DIP:X=U I $P($$EZBLD^DIALOG(7099),X)="" W $P($$EZBLD^DIALOG(7099),X,2) S S=0_S G S ;**CCO/NI THE WORD 'NUMBER'
  S DIC(0)="EYZ",D="GR" I $D(^DD(DK,D)) D IX^DIC G GF:Y>0 I 'Y F Y=0:0 S Y=$O(Y(Y)) G F:Y="" S X=^DD(DK,Y,0) D Y
  G HARD^DIP22
  ;
@@ -62,7 +66,15 @@ UP K DIC I DL>1 D U,DC:DC G F
  I $D(FLDS)>9 S X=$O(FLDS("")) I X]"" S FLDS=FLDS(X),R=1 K FLDS(X) G F
  G ^DIP3
  ;
-RW I $L(DC(DC))>19 S Y=DC(DC) D RW^DIR2 Q
- W "// " R X:DTIME S:'$T X=U,DTOUT=1 Q
+RW(Y) ;sets X, and maybe DTOUT
+ W Y I $L(Y)>19,'$G(DIUCANON) D RW^DIR2 Q
+ W "// " R X:DTIME E  S X=U,DTOUT=1 W $C(7) Q
+ S:X="" X=Y Q
  ;
-ER S (X,DU)="[CAPTIONED]" G ^DIP21
+ ;
+ ;
+ER S (X,DU)="[CAPTIONED]" G ^DIP21 ;WHAT CALLS THIS??
+ ;7063= PRINT:
+ ;7064= EXPORT:
+ ;7065= FIRST
+ ;7066= THEN

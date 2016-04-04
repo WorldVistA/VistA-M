@@ -1,8 +1,9 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427**;DEC 1997;Build 21
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
+ ;Reference to ^DIC(36 supported by ICR #6142
  ;
  N PSORJSRT,PSOPTFLT,PSODRFLT,PSORXFLT,PSOBYFLD,PSOSTFLT,DIR,DIRUT,DUOUT,DTOUT
  N PSOINFLT,PSODTRNG,PSOINGRP,PSOTRITG,PSOCVATG
@@ -37,16 +38,10 @@ SEL ; - Field Selection (Patient/Drug/Rx)
  . . . W !?40,"Prescription does not have rejects!",$C(7)
  . . S PSORXFLT=+Y,OK=1
  ;
- I PSOBYFLD="I" D  I $O(PSOINFLT(""))="" G SEL
+ ; Insurance Company Lookup - ICR 6142
+ I PSOBYFLD="I" D  I $G(PSOINFLT)="^" G SEL
  . S (PSOPTFLT,PSODRFLT,PSORXFLT)="ALL",PSORJSRT="PA"
- . N DIR,Y,X,OK K PSOINFLT W !
- . S DIR("A",1)="Enter the whole or part of the Insurance Company"
- . S DIR("A",2)="name for which you want to view/process REJECTS."
- . S DIR("A",3)=""
- . S DIR(0)="FO^3:30",DIR("A")="  INSURANCE"
- . F  D ^DIR D  Q:$G(OK) 
- . . I $D(DIRUT)!(X="") S OK=1 Q
- . . S PSOINFLT(X)="" K DIR("A") S DIR("A")="ANOTHER ONE"
+ . D SEL^PSOREJU1("INSURANCE","^DIC(36,",.PSOINFLT)
  ;
  ; - Status Selection (UNRESOLVED or RESOLVED)
  I $G(PSOSTFLT)="" D  I $D(DIRUT) G EXIT

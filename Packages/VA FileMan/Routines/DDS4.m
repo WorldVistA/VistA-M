@@ -1,6 +1,10 @@
-DDS4 ;SFISC/MKO-FILE AND RELOAD ;21SEP2006
- ;;22.0;VA FileMan;**11,151**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DDS4 ;SFISC/MKO-FILE AND RELOAD ;2015-01-02  5:46 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**11,1004,1009**
+ ;
  D ^DDS41 Q:Y'=1
  N DA,DDO,DIE,DDP,DDSDA
  ;
@@ -22,7 +26,7 @@ DDS4 ;SFISC/MKO-FILE AND RELOAD ;21SEP2006
  ... S $P(@DDSREFT@(DDS4P,DDS4B,DDSDA),U)=1,DIE=^(DDSDA,"GL")
  ... Q:$P(@DDSREFT@(DDS4P,DDS4B,DDSDA),U,6)>1
  ... D GDA(DDSDA)
- ... D ^DDS11(DDS4B,1)
+ ... D EN^DDS11(DDS4B,1)
  ;
  I $G(^DIST(.403,+DDS,14))'?."^" D
  . I $G(DDSPTB)_$G(DDSREP)]"" N DIE,DDP,DDSDA,DA,DDSDL D
@@ -37,6 +41,8 @@ DDS4 ;SFISC/MKO-FILE AND RELOAD ;21SEP2006
  K DDSEXT,DDSI,DDSINT,DDSLC,DDSLN,DDSND,DDSOND,DDSOLD,DDSP,DDSPC
  K DDSW,DDSX,DV
  Q
+ ;
+ ;
 REC ;
  G:DDS4FI="F0" FORMONLY
  ;
@@ -58,9 +64,11 @@ FLD ;
  ;
  ;Word processing fields (quit if multiple)
  I $D(@DDSREFT@(DDS4FI,DDS4DA,DDS4FLD,"M"))#2 D:'$P(^("M"),U)  Q
- . N FR,TO
+WP .N FR,TO,DDS4M
+ .S DDS4M=^("M")
  . S FR=$NA(@DDSREFT@(DDS4FI,DDS4DA,DDS4FLD,"D"))
- . S TO=U_$$CREF^DILF($P(@DDSREFT@(DDS4FI,DDS4DA,DDS4FLD,"M"),U,2))
+ . S TO=U_$$CREF^DILF($P(DDS4M,U,2))
+ .I $P($G(^DD(+$P(DDS4M,U,3),.01,0)),U,2)["a" D WP^DIET($E(DDS4FI,2,99),DDS4FLD,DDS4DA,TO) ;AUDIT Word -Processing
  . K @TO
  . M @TO=@FR
  . K @FR,@DDSREFT@(DDS4FI,DDS4DA,DDS4FLD,"F")
@@ -97,7 +105,7 @@ XR ;
  . I $G(^DD(DDP,DDS4FLD,"AUDIT"))["e",DDSOLD="" S DDS4AUD1=0
  ;
  I DDSOLD]"" D
- . S DG=0 F  S DG=$O(^DD(DDP,DDS4FLD,1,DG)) Q:DG<1  D
+ . S DG=0 F  S DG=$O(^DD(DDP,DDS4FLD,1,DG)) Q:DG<1  D  ;YIKES!  GOES THRU ALL CROSS-REFERENCES, EVEN IF NO CHANGE IN THE DATA!
  .. S DIC=DIE,X=DDSOLD
  .. X:$D(^DD(DDP,DDS4FLD,1,DG,2))#2 ^(2)
  . I $G(DDS4AUD2) S DG=1,X=DDSOLD,DIIX="2^"_DDS4FLD D AUDIT^DIET

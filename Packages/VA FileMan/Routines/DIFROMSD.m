@@ -1,6 +1,10 @@
-DIFROMSD ;SFISC/DCL-DIFROM SERVER DD LIST(KIDS/BUILD FILE) ;08:33 AM  6 Sep 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROMSD ;SFISC/DCL-DIFROM SERVER DD LIST(KIDS/BUILD FILE) ;16JAN2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1042**
+ ;
  ;
 DD(DIFRFILE,DIFRFLG,DIFRTA) ;FILENUMBER, TARGET ARRAY ROOT FOR SUB DD NRS
  ;FILE, FLAGS, TARGET ARRAY
@@ -16,7 +20,7 @@ F S @DIFRTA@(DIFRFILE,DIFRFILE)=$O(^DD(DIFRFILE,0,"NM",""))_"  "_$S($D(^DIC(DIFR
 E F  S DIFRFE=$O(@DIFRTA@(DIFRFILE,DIFRFE)) Q:DIFRFE'>0  D
  .S DIFRFD=0
  .F  S DIFRFD=$O(^DD(DIFRFE,"SB",DIFRFD)) Q:DIFRFD'>0  D
- ..I DIFRFW,$P(^DD(DIFRFD,.01,0),"^",2)["W" Q
+ ..I DIFRFW,$P($G(^DD(DIFRFD,.01,0)),"^",2)["W" Q
  ..I DIFRFILE-DIFRFE!'$D(DIFRFA) S @DIFRTA@(DIFRFILE,DIFRFD)=$O(^DD(DIFRFD,0,"NM",""))_"  (sub-file)"
  ..Q
  .Q

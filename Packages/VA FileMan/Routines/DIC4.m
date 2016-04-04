@@ -1,6 +1,10 @@
 DIC4 ;SFISC/TKW-VA FileMan Lookup utilities ;5:59 AM  20 Sep 2002
- ;;22.0;VA FileMan;**4,20,70**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,20,70**
+ ;
 EXACT ; Find next exact match on a compound index
  N DIFLAGS,DIFIELDS,DIWRITE,DIIENS,DIFORCE,DIERR,DISCR,DIQUIET,DIIX
  S DIFLAGS="lX" D GETPAR N DINDEX
@@ -77,8 +81,8 @@ IXCHK(DIFILEI,DINDEX,DIOK,DIALLVAL,DIVAL,DID) ; Build INDEX info, make sure inde
  . N DIFLAGS S DIFLAGS="hql" S:$G(DILONGX)!(DIC(0)["T") DIFLAGS="4l"
  . I +$P(DIVALX,"E")=DIVALX,DIC(0)["E" S DIFLAGS="4l"
  . D INDEX^DICUIX(.DIFILEI,DIFLAGS,.DINDEX)
- . I +$P(DIVALX,"E")=DIVALX,$G(DINDEX(1,"TYPE"))="P" D  Q  ;22*70
- . . I DIC(0)["T",DIC(0)["E" S (DIOK,DIOK("T"))=1 ;22*70
+ . I +$P(DIVALX,"E")=DIVALX,$G(DINDEX(1,"TYPE"))="P" D  Q  ;22*70  IGNORE POINTERS IF YOU ARE LOOKING UP A NUMBER VALUE!!
+ . .I DIC(0)["T",DIC(0)["E" S (DIOK,DIOK("T"))=1 ;22*70
  . S DIOK=1 Q
  D INDEX^DICUIX(.DIFILEI,"4l",.DINDEX,"",.DIVAL)
  S (DIALLVAL,DIOK)=1

@@ -1,5 +1,5 @@
-PSORXEDT ;BIR/SAB-edit rx routine ;10/21/98
- ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313**;DEC 1997;Build 76
+PSORXEDT ;BIR/SAB - edit rx routine ;10/21/98
+ ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427**;DEC 1997;Build 21
  ;Ref. ^PS(55 supp. IA 2228
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) G EOJ Q
@@ -25,6 +25,13 @@ BAD I PSORLST D  I 'Y K Y G PSORXEDT
  K GOOD,END
 EPH ; - Entry for Epharmacy Rx Edit (PSOREJP1)
  F PSOT1=1:1 Q:'$D(PSOLIST(PSOT1))  F PSOLST2=1:1:$L(PSOLIST(PSOT1),",") S ORN=$P(PSOLIST(PSOT1),",",PSOLST2) D:+ORN PT
+ ;
+ ; If variable PSOREJCT is set, this means the EPH entry point was called by the EDIT action in the ePharmacy
+ ;   Reject Info Screen. The variable will hold the RX IEN. If the Fill Date is the current date or in the
+ ;   future (whether it has been edited or not) and the RX is not already suspended, put the Rx on the list
+ ;   to get the QUEUE prompt. Since the EDIT action only sends one RX, we can just set the array and not
+ ;   worry about appending to an exiting list.
+ I $G(PSOREJCT),$$RXFLDT^PSOBPSUT(+PSOREJCT,$P(PSOREJCT,U,2))'<$$DT^XLFDT,$$GET1^DIQ(52,+PSOREJCT_",",100,"I")'=5 S PSORX("PSOL",1)=+PSOREJCT
  ;call to add bingo board data to file 52.11
  K POP,PSOLIST,TM,TM1 G:'$O(PSORX("PSOL",0)) NX
  D:$G(PSORX("PSOL",1))]"" ^PSORXL K PSORX G:$G(NOBG) NX

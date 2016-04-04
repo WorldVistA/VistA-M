@@ -1,6 +1,10 @@
-DIS1 ;SFISC/GFT-BUILD DIS-ARRAY ;20MAR2005
- ;;22.0;VA FileMan;**6,77,97,113,144**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIS1 ;SFISC/GFT-BUILD DIS-ARRAY ; 16 DEC 2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**6,77,97,113,144,1046**
+ ;
  K DIS0 I $D(DL)#2 S DIS0=DL
  S DL(0)="" W ! G 1:$D(DE)>1!$D(DJ) I DL=1 S DL(0)=DL(1),DL=0 K DL(1)
  E  F P=2:1 S Y=$P(DL(1),U,P) Q:Y=""  S Y=U_Y_U,X=2 D 2
@@ -37,7 +41,7 @@ WP S DQ=DQ_"A",DQ(DL)=DQ I DU'["," S DIS(DQ)="I "_$$XFORM("$G(^(D"_D_",0))")_DV 
 N S DU=$P(DU,",",2,99) G LEV
  ;
 M D  S Y=Y_DV D SD G MAKE
-VARPOINT .I $P(^DD(O,+DU,0),U,2)["V" S Y="I "_$$XFORM("$$EXTERNAL^DIDU("_O_","_+DU_","""","_Y_")") Q
+VARPOINT .I $P(^DD(O,+DU,0),U,2)["V" S Y="N DIERR I "_$$XFORM("$$EXTERNAL^DIDU("_O_","_+DU_","""","_Y_")") Q
 OUTX .I $D(^(2)),$P(^(0),U,2)'["D",DV'["=" S M=0,Y="S Y="_Y_" "_$$OVFL(^(2))_" I "_$$XFORM("Y") Q  ;**GFT 144
 SET .I $D(DIS(U,S)) S Y="S Y="_Y_" I $S(Y="""":"""",$D(DIS(U,"_S_",Y)):DIS(U,"_S_",Y),1:"""")" Q
  .S M=Y,Y="I "_$$XFORM(Y)

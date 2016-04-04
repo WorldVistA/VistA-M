@@ -1,6 +1,10 @@
-DDUCHK2 ;SFISC/RWF/SO-CHECK DD (FIELDS) ;11:46 AM  5 Mar 2004
- ;;22.0;VA FileMan;**100,130**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDUCHK2 ;SFISC/RWF/SO-CHECK DD (FIELDS) ;20MAR2014
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**100,130,1049**
+ ;
 CHK6 ;W !?5,"Checking FIELDs"
  F DDUCFE=0:0 S DDUCFE=+$O(^DD(DDUCFI,DDUCFE)) Q:DDUCFE'>0  D FIELD Q:$D(DIRUT)  D FIVE,DXREF^DDUCHK3,XREF^DDUCHK3,COMP^DDUCHK3
  ;D CHKSB,CHKGL
@@ -33,7 +37,7 @@ MULT ;Work subfile
  D PAGE^DDUCHK Q:$D(DIRUT)
  I $D(^DD(+DDUCX2,0))[0 W !?5,"*Field: ",DDUCFE," (",DDUCXN,") missing subfile: ",+DDUCX2 Q
  S DDUCUP=$S($D(^DD(+DDUCX2,0,"UP")):^("UP"),1:"") I DDUCUP'=DDUCFI D WHO W "Bad 'UP' pointer in subfile #",+DDUCX2 I DDUCFIX S ^DD(+DDUCX2,0,"UP")=DDUCFI W !?10,"^DD(",+DDUCX2,",0,""UP"") = ",DDUCFI," was set."
- D PUSH S DDUCFI=+DDUCX2 W !?3,"Checking subfile ",DDUCFI D CHK^DDUCHK,POP W !?3,"Returning to ",$S('DDUCSTK:"main ",1:"sub"),"file",$S('DDUCSTK:" "_DDUCFILE_".",1:" "_DDUCFI)
+ D PUSH S DDUCFI=+DDUCX2 D CHK^DDUCHK,POP ;"Checking subfile" ;W !?3,"Returning to ",$S('DDUCSTK:"main ",1:"sub"),"file",$S('DDUCSTK:" "_DDUCFILE_".",1:" "_DDUCFI)
  Q
 PUSH S DDUCSTK=DDUCSTK+1,DDUCSTK(DDUCSTK,1)=DDUCFI,DDUCSTK(DDUCSTK,2)=DDUCFE Q
 POP S DDUCFI=DDUCSTK(DDUCSTK,1),DDUCFE=DDUCSTK(DDUCSTK,2),DDUCSTK=DDUCSTK-1 Q

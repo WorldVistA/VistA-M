@@ -1,9 +1,14 @@
 RMPOLZ ;EDS/PAK - HOME OXYGEN LETTERS ;7/24/98
- ;;3.0;PROSTHETICS;**29,44,46,55**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**29,44,46,55,179**;Feb 09, 1996;Build 7
  ;
  ; ODJ - patch 55 - Ensure we only include prescriptions which are
  ;                  due to expire after the number of days set up
  ;                  in site params. cf nois UNY-1000-11685
+ ;
+ ; RMPR*3.0*179 - Modify station check to use internal station ien found in node
+ ;                ^RMPR(665,RMPODFN,"RMPOA"), PIECE 7.  Also, mimic include check
+ ;                for original list to be same as new list, by reverse ordering 
+ ;                script lookup so check goes from newest back to oldest scripts.
  ;
 FORGD ; Foreground processing of list
  N JOB,TRXS,LTRX,SITE,LST
@@ -72,10 +77,10 @@ NEWLST ; generate NEW patient letter list
  .S ^RMPR(669.9,RMPOXITE,"RMPOXBAT3",0)="^669.974P^^^"
  S ADT="" F  S ADT=$O(^RMPR(665,"AHO",ADT)) Q:ADT=""  D
  . S RMPODFN=0 F  S RMPODFN=$O(^RMPR(665,"AHO",ADT,RMPODFN)) Q:RMPODFN<1  D
- . . Q:$P(^RMPR(665,RMPODFN,0),U,2)'=RMPO("STA")  ; ignore patient from another station
+ . . Q:$P(^RMPR(665,RMPODFN,"RMPOA"),U,7)'=RMPOXITE  ; ignore patient from another station  RMPR*3.0*179
  . . ;Get patient demographic data
  . . S DFN=RMPODFN K VADM D DEM^VADPT Q:$G(VADM(6))
- . . ;Do not collect patient if expired
+ . . ;Do not collect patient if inactive
  . . S RECA=$G(^RMPR(665,RMPODFN,"RMPOA")),IADT=$P(RECA,U,3) Q:$G(IADT)
  . . D FNDTRX  ; build Xref of transactions (TRX) to letter type
  . . ; get active patient prescription and evaluate letter requirement
@@ -96,7 +101,7 @@ ORGLST ; Generate work file using ORIGINAL patient letter list
  . Q:$G(IADT)
  . S RMPOLCD=$S(RI="RMPOXBAT1":"A",RI="RMPOXBAT2":"B",RI="RMPOXBAT3":"C",1:"") Q:RMPOLCD=""
  . S RMPOLTR=$G(LTRX("C",RMPOLCD)) Q:'$G(RMPOLTR)
- . S STA=$P(^RMPR(665,RMPODFN,0),U,2) Q:STA'=RMPO("STA")  ; ignore patients from another station
+ . S STA=$P(^RMPR(665,RMPODFN,"RMPOA"),U,7) Q:STA'=RMPOXITE  ; ignore patients from another station  RMPR*3.0*179
  . D PRTCHK
  . I '$$INCLUDE(RMPODFN,RMPOLCD,.LTRX,RMDPRT,RMFPRT,.RMPORX,.RMDACT) Q  ;(patch 55)
  . S LTRIEN=$O(^RMPR(669.9,RMPOXITE,"RMPOLET","B",RMPOLTR,0))
@@ -105,7 +110,7 @@ ORGLST ; Generate work file using ORIGINAL patient letter list
  . D EXTRCT^RMPOLZA S ^TMP($J,RMPOXITE,"RMPOLST",RMPOLCD,RMPONAM)=RMPOLTR_"^"_RMPODFN_"^"_RMPO
  Q
  ;
-FNDTRX  ; find letter TRX & hold in local array
+FNDTRX ; find letter TRX & hold in local array
  ; output:  ^TMP($J,DFN,H.O. Letter Code,Prosthetics Letter,Transaction Printed Date)
  N TRX S TRX=0 F  S TRX=$O(^RMPR(665.4,"B",RMPODFN,TRX)) Q:TRX=""  D
  . Q:$P(^RMPR(665.4,TRX,0),U,6)'=RMPO("STA")  ; ignore letters from a different station
@@ -116,15 +121,15 @@ FNDTRX  ; find letter TRX & hold in local array
  ;
  ; calc. if any patient prescription should get letter (patch 55)
 INCLUDE(RMPODFN,RMPOLCD,LTRX,RMDPRT,RMFPRT,RMPORX,RMDACT) ;
- N RMPRINCL,RECB,RMDEXP
- S RMPRINCL=0
- S RMPORX=0
- F  S RMPORX=$O(^RMPR(665,RMPODFN,"RMPOB",RMPORX)) Q:'+RMPORX  D  Q:RMPRINCL
+ N RMPRINCL,RECB,RMDEXP,RMPOX
+ S RMPRINCL=0,RMPOX=0
+ S RMPORX=9999
+ F  S RMPORX=$O(^RMPR(665,RMPODFN,"RMPOB",RMPORX),-1) Q:'+RMPORX  D  Q:RMPRINCL!RMPOX   ;RMPR*3.0*179
  . S RECB=$G(^RMPR(665,RMPODFN,"RMPOB",RMPORX,0))
  . S RMDEXP=+$P(RECB,U,3) ;prescription expiry date
  . Q:'RMDEXP
  . S RMDACT=$P(RECB,U,1)
- . Q:RMDEXP>LTRX("D",RMPOLCD)  ;expiry after include period
+ . I RMDEXP>LTRX("D",RMPOLCD) S RMPOX=1 Q  ;expiry after include period
  . Q:RMDEXP<DT  ;expiry before todays date
  . I $G(RMFPRT)'="",(RMDPRT>RMDACT) Q
  . S RMPRINCL=1

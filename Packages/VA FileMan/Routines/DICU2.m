@@ -1,6 +1,9 @@
-DICU2 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup Tools, Return IDs ;11MAY2011
- ;;22.0;VA FileMan;**165**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICU2 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup Tools, Return IDs ;28APR2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**126,165,1032,1041,GFT,1042**
  ;
 IDS(DIFILE,DIEN,DIFLAGS,DINDEX,DICOUNT,DIDENT,DILIST,DI0NODE) ;
  ;
@@ -44,19 +47,21 @@ I3 . ; output field
  .
  . I DID D  Q:$G(DIERR)
  . . ; process fields that are not computed.
+ . . I DIFLAGS["E" N DIERR ;ERROR IN DATA WILL NOT STOP THE LISTING  --GFT
  . . I $G(DIDENT(DICRSR,DID,0,"TYPE"))'="C" D
  . . . D SET(DICRSR,DID,DISUB,"DIDVAL",.DINDEX,.DIFILE) Q
  . .
 I4 . . ; computed fields
  . . E  D
  . . . N %,%H,%T,A,B,C,D,DFN,I,X,X1,X2,Y,Z,Z0,Z1
- . . . N DA D DA^DILF(DIEN,.DA) ;M DA=DIEN S DA=$P(DIEN,",")
+ . . . N DA D DA^DILF(DIEN,.DA) ;M DA=DIEN S DA=$P(DIEN,",")  PATCH 165 MAY,2011
  . . . N DIARG S DIARG="D0"
  . . . N DIMAX S DIMAX=+$O(DA(""),-1)
  . . . N DIDVAR F DIDVAR=1:1:DIMAX S DIARG=DIARG_",D"_DIDVAR
  . . . N @DIARG F DIDVAR=0:1:DIMAX-1 S @("D"_DIDVAR)=DA(DIMAX-DIDVAR)
  . . . S @("D"_DIMAX)=DA
  . . . X DIDENT(DICRSR,DID,0) S DIDVAL=$G(X)
+COMPDT . . .I $P($G(^DD(DIFILE,DID,0)),U,2)["D" N Y S Y=DIDVAL X:Y ^DD("DD") S DIDVAL=Y
  . .
 I5 . . ; set field into array or pack node
  . .
@@ -83,14 +88,14 @@ I7 . . ; execute the identifier's code
  . . . D ERR^DICF4(120,DIFILE,DIEN,"",DICONTXT)
  . .
 I8 . . ; set output from identifier into output array or pack node
- . . 
- . . N DI,DILINE,DIEND S DI="" S:DIFLAGS'["P" DIEND=$O(@DILIST@("ID","WRITE",DICOUNT,"z"),-1)
+ . . N DIGFT S DIGFT=$NA(@DILIST@("ID","WRITE",DICOUNT)) I DID?1"C"1.2N S DIGFT=$NA(@DILIST@("ID",DICOUNT,DID)) ;**GFT
+ . . N DI,DILINE,DIEND S DI="" S:DIFLAGS'["P" DIEND=$O(@DIGFT@("z"),-1)
  . . I $O(^TMP("DIMSG",$J,""))="" S ^TMP("DIMSG",$J,1)=""
  . . F  D  Q:DI=""!$G(DIERR)
  . . . S DI=$O(^TMP("DIMSG",$J,DI)) Q:DI=""
  . . . S DILINE=$G(^TMP("DIMSG",$J,DI))
  . . . I DIFLAGS["P" D ADD(.DIFLAGS,.DINODE,.DILENGTH,DILINE,DIEN,DILIST,DI) Q
- . . . S DIEND=DIEND+1,@DILIST@("ID","WRITE",DICOUNT,DIEND)=DILINE
+ . . . S DIEND=DIEND+1,@DIGFT@(DIEND)=DILINE
  . . . Q
  . . K DIMSG,^TMP("DIMSG",$J)
  ;
@@ -126,7 +131,7 @@ ADD(DIFLAGS,DINODE,DILENGTH,DINEW,DIEN,DILIST,DILCNT) ;
  ;
 A1 N DINEWLEN,DELIM S DINEWLEN=$L(DINEW),DELIM=$S($G(DILCNT)'>1:"^",1:"~")
  S DILENGTH=DILENGTH+1+DINEWLEN
- I DILENGTH>255 D ERR^DICF4(206,"","","",+DIEN) Q
+ I DILENGTH>$G(^DD("STRING_LIMIT"),255) D ERR^DICF4(206,"","","",+DIEN) Q  ;**HERE IS WHERE A PACKED STRING WAS FORCED TO BE ONLY 255 CHARACTERS LONG
  I DIFLAGS'[2,DINEW[U S DIFLAGS="2^"_DIFLAGS D ENCODE(DILIST,.DINODE)
  I DIFLAGS[2,DINEW[U!(DINEW["&") S DINEW=$$HTML^DILF(DINEW) Q:$G(DIERR)
  S DINODE=DINODE_DELIM_DINEW
@@ -143,3 +148,4 @@ E1 N DILINE,DIRULE S DIRULE(1,"&")="&amp;"
  . S @DILIST@(DIREC,0)=$$TRANSL8^DILF(DILINE,.DIRULE)
  I DINODE["&" S DINODE=$$TRANSL8^DILF(DINODE,.DIRULE)
  Q
+ ;

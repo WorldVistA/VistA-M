@@ -1,8 +1,12 @@
 RMPROPN1 ;PHX/RFM-LISTS OPEN STOCK ISSUES ;8/29/1994
- ;;3.0;PROSTHETICS;**13,77**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**13,77,179**;Feb 09, 1996;Build 7
  ;RVD 3/17/03 patch #77 - allow queing to p-message.  IO to ION
+ ;
+ ;RMPR*3.0*179 Insure work file is killed before processing report
+ ;
  D DIV4^RMPRSIT G:$D(X) EXIT
-START S RMPRCOUN=0 D HOME^%ZIS W !! S %DT("A")="Starting Date: ",%DT="AEPX" D ^%DT S RMPRBDT=Y G:Y<0 EXIT
+START K ^TMP($J)     ;RMPR*3.0*179
+ S RMPRCOUN=0 D HOME^%ZIS W !! S %DT("A")="Starting Date: ",%DT="AEPX" D ^%DT S RMPRBDT=Y G:Y<0 EXIT
  S %DT("A")="Ending Date: ",%DT="AEX" D ^%DT G:Y<0 EXIT I RMPRBDT>Y W !,$C(7),"Invalid Date Range Selection!!" G START
  S RMPREDT=Y,RMPREDT=RMPREDT+1 G:Y<0 EXIT S Y=RMPRBDT D DD^%DT S RMPRX=Y,Y=RMPREDT-1 D DD^%DT S RMPRY=Y
  S %ZIS="MQ" K IOP D ^%ZIS G:POP EXIT

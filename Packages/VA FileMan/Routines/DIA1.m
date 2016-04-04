@@ -1,6 +1,10 @@
-DIA1 ;SFISC/GFT-PROCESS TEMPLATES, RANGES FOR INPUT ;20MAR2006
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIA1 ;SFISC/GFT-PROCESS TEMPLATES, RANGES FOR INPUT ;22JUL2014
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**142,1050**
+ ;
 S D NOW^%DTC S DIADT=+$J(%,0,4) K %,DW G Q:DRS<5 R !,"STORE THESE FIELDS IN TEMPLATE: ",X:DTIME S:'$T DTOUT=1 G Q:X="" S DIC(0)="LZSEQ",DLAYGO=0 D T K DLAYGO,DIC I Y<0 G S:X'[U K DR G Q
  S X=$P(^(0),U,6) I DUZ(0)'["@",X]"" F %=1:1 I DUZ(0)[$E(X,%) Q:%'>$L(X)  W !?7,$C(7),"YOU HAVE NO 'WRITE ACCESS' TO THIS TEMPLATE",! G S
  S DW=$S('$D(^("ROU")):1,^("ROU")'[U:1,$D(^("ROUOLD")):^("ROUOLD"),1:1),%=0,X=$P(Y,U,2)
@@ -41,7 +45,7 @@ GT I $G(^("ROU"))[U S DR(1,DIA("P"))=^("ROU")
  ;
 T K DIC("W") S D="F"_DI,X=$P(X,"]",1),X=$P(X,"[",1)_$P(X,"[",2),DIC="^DIE(",DIC("S")="I $P(^(0),U,4)=DI"_$P(" S %=$P(^(0),U,3) F DW=1:1:$L(%) I DUZ(0)[$E(%,DW) Q",9,DUZ(0)'="@") G IX^DIC
  ;
-ED I Y<1 G GT
+ED I Y<1!$G(^DIE(+Y,"CANONIC")) G GT
  S %=2 W !,"WANT TO EDIT '",$P(Y,U,2),"' INPUT TEMPLATE" D YN^DICN G GT:%-1
  S DIE="^DIE(",DA=+Y,DR=".01;3;6" D ^DIE K DR I '$D(DA) S DB=0 G DB
  S:$D(^DIE(DA,"DR"))#2 ^("DR",1,J(0))=^("DR")

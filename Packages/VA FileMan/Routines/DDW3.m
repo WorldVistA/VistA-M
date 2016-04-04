@@ -1,6 +1,9 @@
-DDW3 ;SFISC/MKO-TOP, BOTTOM, SCROLL ;9:08 AM  13 Feb 1996
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDW3 ;SFISC/MKO-TOP, BOTTOM, SCROLL ;11:57 AM  24 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
  ;
 TOP N DDWI
  I DDWA=0 D POS(1,1,"RN") Q
@@ -10,7 +13,7 @@ TOP N DDWI
 SHFTUP(DDWFL) ;
  N DDWSH,DDWI
  S DDWSH=DDWA+1-DDWFL
- D:DDWSH>DDWMR MSG^DDW("Repositioning ...")
+ D:DDWSH>DDWMR MSG^DDW(" ...") ;**
  ;
  F DDWI=DDWMR:-1:$$MAX(1,DDWMR-DDWSH+1) D:DDWI+DDWA'>DDWCNT
  . S DDWSTB=DDWSTB+1,^TMP("DDW1",$J,DDWSTB)=DDWL(DDWI)
@@ -45,7 +48,7 @@ BOT N DDWI
 SHFTDN(DDWFL,DDWCOL) ;
  N DDWNSTB,DDWSH,DDWI
  S DDWSH=DDWFL-DDWA-1,DDWNSTB=DDWCNT-DDWFL+1
- D:DDWSH>DDWMR MSG^DDW("Repositioning ...")
+ D:DDWSH>DDWMR MSG^DDW(" ...") ;**
  ;
  F DDWI=1:1:$$MIN(DDWSH,DDWMR) D
  . S DDWA=DDWA+1,^TMP("DDW",$J,DDWA)=DDWL(DDWI)

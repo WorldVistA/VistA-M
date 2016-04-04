@@ -1,6 +1,10 @@
 DICD ;SFISC/XAK-DISP,SELECT,DELETE,EDIT XREF ;11:26 AM  18 Aug 2000
- ;;22.0;VA FileMan;**58**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**58**
+ ;
  K DICD S (DA,DL)=+Y D CHIX I 'DQ D ^DICE G Q
  D RD G:$D(DIRUT) Q I Y["C" D ^DICE G Q
  I Y["E" D EDT^DICE G Q

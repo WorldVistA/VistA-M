@@ -1,6 +1,10 @@
-DIEZ1 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;9:27 AM  22 Oct 1999
- ;;22.0;VA FileMan;**4,11**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIEZ1 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;30MAY2007
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,11,999,1004,1022,1028**
+ ;
  D QF^DIEZ2 S L=2,X="DE S DIE="_Q_",DIC=DIE,DP="_DP_",DL="_DL_",DIEL="_DIEZL_",DU="""" K DG,DE,DB Q:$O("_DIE_"DA,""""))=""""",DS=-1 D L S X=""
 DL S DS=$O(^UTILITY($J,U,DS)) S:DS="" DS=-1 I DS<0 K ^UTILITY($J,U) G CN
  S DSN=DS S:+DS'=DS DSN=""""_DSN_"""" S DPP=0,X=X_" I $D(^("_DSN_")) S %Z=^("_DSN_")"
@@ -26,22 +30,23 @@ TEXT ;;
  ;; Q
  ;;O D W W Y W:$X>45 !?9
  ;; I $L(Y)>19,'DV,DV'["I",(DV["F"!(DV["K")) G RW^DIR2
- ;; W:Y]"" "// " I 'DV,DV["I",$D(DE(DQ))#2 S X="" W "  (No Editing)" Q
- ;;TR R X:DTIME E  S (DTOUT,X)=U W $C(7)
+ ;; W:Y]"" "// " I 'DV,DV["I",$D(DE(DQ))#2 K X S X("FIELD")=DIFLD,X("FILE")=DP W "  ("_$$EZBLD^DIALOG(710,.X)_")" K X S X="" Q  ;**
+ ;;TR Q:DV["K"&(DUZ(0)'="@")  R X:DTIME E  S (DTOUT,X)=U W $C(7)
  ;; Q
  ;;A K DQ(DQ) S DQ=DQ+1
  ;;B G @DQ
- ;;RE G PR:$D(DE(DQ)) D W,TR
+ ;;RE G A:DV["K"&(DUZ(0)'["@"),PR:$D(DE(DQ)) D W,TR
  ;;N I X="" G NKEY:$D(^DD("KEY","F",DP,DIFLD)),A:DV'["R",X:'DV,X:D'>0,A
  ;;RD G QS:X?."?" I X["^" D D G ^DIE17
  ;; I X="@" D D G Z^DIE2
  ;; I X=" ",DV["d",DV'["P",$D(^DISV(DUZ,"DIE",DLB)) S X=^(DLB) I DV'["D",DV'["S" W "  "_X
- ;;T G M^DIE17:DV,^DIE3:DV["V",P:DV'["S" X:$D(^DD(DP,DIFLD,12.1)) ^(12.1) I X?.ANP D SET I 'DDER X:$D(DIC("S")) DIC("S") I  W:'$D(DB(DQ)) "  "_% G V
+ ;;T G M^DIE17:DV,^DIE3:DV["V",P:DV'["S" I X?.ANP D SET^DIED I 'DDER G V
  ;; K DDER G X
  ;;P I DV["P" S DIC=U_DU,DIC(0)=$E("EN",$D(DB(DQ))+1)_"M"_$E("L",DV'["'") S:DIC(0)["L" DLAYGO=+$P(DV,"P",2) G:DV["*" AST^DIED D NOSCR^DIED S X=+Y,DIC=DIE G X:X<0
  ;; G V:DV'["N" D D I $L($P(X,"."))>24 K X G Z
  ;; I $P(DQ(DQ),U,5)'["$",X?.1"-".N.1".".N,$P(DQ(DQ),U,5,99)["+X'=X" S X=+X
  ;;V D @("X"_DQ) K YS
+ ;;UNIQ I DV["U",$D(X),DIFLD=.01 K % M %=@(DIE_"""B"",X)") K %(DA) K:$O(%(0)) X
  ;;Z K DIC("S"),DLAYGO I $D(X),X'=U D:$G(DE(DW,"INDEX")) SAVEVALS G:'$$KEYCHK UNIQFERR^DIE17 S DG(DW)=X S:DV["d" ^DISV(DUZ,"DIE",DLB)=X G A
  ;;X W:'$D(ZTQUEUED) $C(7),"??" I $D(DB(DQ)) G Z^DIE17
  ;; S X="?BAD"
@@ -51,14 +56,10 @@ TEXT ;;
  ;;PR S DG=DV,Y=DE(DQ),X=DU I $D(DQ(DQ,2)) X DQ(DQ,2) G RP
  ;;R I DG["P",@("$D(^"_X_"0))") S X=+$P(^(0),U,2) G RP:'$D(^(Y,0)) S Y=$P(^(0),U),X=$P(^DD(X,.01,0),U,3),DG=$P(^(0),U,2) G R
  ;; I DG["V",+Y,$P(Y,";",2)["(",$D(@(U_$P(Y,";",2)_"0)")) S X=+$P(^(0),U,2) G RP:'$D(^(+Y,0)) S Y=$P(^(0),U) I $D(^DD(+X,.01,0)) S DG=$P(^(0),U,2),X=$P(^(0),U,3) G R
- ;; X:DG["D" ^DD("DD") I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";") S:%]"" Y=%
+ ;; X:DG["D" ^DD("DD") I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";") I %]"" S Y=$S($G(DUZ("LANG"))'>1:%,'DIFLD:%,1:$$SET^DIQ(DP,DIFLD,Y))
  ;;RP D O I X="" S X=DE(DQ) G A:'DV,A:DC<2,N^DIE17
  ;;I I DV'["I",DV'["#" G RD
  ;; D E^DIE0 G RD:$D(X),PR
- ;; Q
- ;;SET N DIR S DIR(0)="SV"_$E("o",$D(DB(DQ)))_U_DU,DIR("V")=1
- ;; I $D(DB(DQ)),'$D(DIQUIET) N DIQUIET S DIQUIET=1
- ;; D ^DIR I 'DDER S %=Y(0),X=Y
  ;; Q
  ;;SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$G(DE(DQ))
  ;; I $D(DE(DW,"4/")) S @DIEZTMP@("V",DP,DIIENS,DIFLD,"4/")=""

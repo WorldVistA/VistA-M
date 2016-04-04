@@ -1,6 +1,10 @@
-DINIT293 ;SFISC/MKO-FORM AND BLOCK FILES ;1:31 PM  21 Apr 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT293 ;SFISC/MKO-FORM AND BLOCK FILES ;05:35 PM  21 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**8,999**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT294
 Q Q
@@ -189,7 +193,7 @@ Q Q
  ;;^DD(.4032,1,21,1,0)
  ;;=The Block Order determines the order users traverse fields on a page when
  ;;^DD(.4032,1,21,2,0)
- ;;=they press <PF1><PF4> to go to the next block, or press <RET> to move from
+ ;;=they press <F1><F4> to go to the next block, or press <RET> to move from
  ;;^DD(.4032,1,21,3,0)
  ;;=the last field on one block to the first field on the next.  When the user
  ;;^DD(.4032,1,21,4,0)

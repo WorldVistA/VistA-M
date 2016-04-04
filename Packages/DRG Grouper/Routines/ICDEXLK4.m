@@ -1,5 +1,5 @@
 ICDEXLK4 ;SLC/KER - ICD Extractor - Lookup, Search Text ;12/19/2014
- ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
+ ;;18.0;DRG Grouper;**57,67,82**;Oct 20, 2000;Build 21
  ;               
  ; Global Variables
  ;    ^TMP(SUB,$J         SACC 2.3.2.5.1
@@ -26,14 +26,18 @@ TXT ; Lookup by Text (Requires TXT and ROOT)
  S:'$L($G(SUB)) SUB=$TR(ROOT,"^(,","")
  S LOOK=TXT,PRV=+($G(^TMP(SUB,$J,"SEL",0))),(EXACT,ABBR)=0
  S CNT=0,ORG=$$UP^XLFSTR($G(TXT)) K PARS D TOKEN^ICDTOKN(TXT,ROOT,$G(SYS),.PARS)
- S NUM=$O(PARS(0)),(PRIME,KEY)=$G(PARS(+NUM)) S:+($G(PARS(+NUM,"A")))>0 ABBR=1
+ N I,TMP S NUM=0,(PRIME,KEY,TMP)="",I=0 F  S I=$O(PARS(I)) Q:+I'>0  D
+ . N TX S TX=$G(PARS(I)) S:$L(TX)>$L(TMP) TMP=TX,NUM=I
+ S:+NUM>0&($L(TMP)) (PRIME,KEY)=TMP S:+($G(PARS(+NUM,"A")))>0 ABBR=1
+ I NUM'>0 S NUM=$O(PARS(0)),(PRIME,KEY)=$G(PARS(+NUM)) S:+($G(PARS(+NUM,"A")))>0 ABBR=1
  K:NUM>0 PARS(+NUM) S:NUM>0&($G(PARS(0))>0) PARS(0)=$G(PARS(0))-1 Q:$L(KEY)'>1
  S EROOT=ROOT_"""D""," S:+($G(SYS))>0&($D(@(ROOT_"""AD"","_+($G(SYS))_")"))) EROOT=ROOT_"""AD"","_+($G(SYS))_","
  S EXACT=0 I $O(PARS(0))'>0,$L(PRIME),$D(@(EROOT_""""_PRIME_""")")) S EXACT=1
  I EXACT>0!(ABBR>0) D
  . N ORD,STR,TKN S STR=PRIME F TKN=STR,(STR_"S"),(STR_"ES") D
  . . S ORD=TKN I $D(@(EROOT_""""_ORD_""")")) D TXT2
- I EXACT'>0&(ABBR'>0) D
+ I (EXACT'>0&(ABBR'>0))!('$D(^TMP(SUB,$J,"FND"))) D
+ . N I S I=0 F  S I=$O(PARS(+I)) Q:+I'>0  K PARS(+I,"A")
  . N ORD,STR,TKN S STR=PRIME F TKN=STR,(STR_"S"),(STR_"ES") D
  . . S ORD=$E(TKN,1,($L(TKN)-1))_$C(($A($E(TKN,$L(TKN)))-1))_"~"
  . . F  S ORD=$O(@(EROOT_""""_ORD_""")")) Q:'$$ISORD^ICDEXLK3  D TXT2
@@ -92,19 +96,19 @@ CON(X,Y) ;   Text X Contains String Y
  S TEXT=$$UP^XLFSTR($G(X)),CNTL=$$UP^XLFSTR($G(Y))
  Q:'$L(TEXT) 0  Q:'$L(CNTL) 0  Q:$L(CNTL)>$L(TEXT) 0
  S (X,CONT)=0 I +($G(EXACT))>0 S X=0 D  Q X
- . F TRAIL=" ","-","(","<","{","[","," D  Q:CONT>0
+ . F TRAIL=" ","/","-","(","<","{","[","," D  Q:CONT>0
  . . N STR S STR=CNTL_TRAIL S:$E(TEXT,1,$L(STR))=STR CONT=1 S:CONT>0 X=CONT
- . Q:CONT>0  F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ . Q:CONT>0  F LEAD=" ","/","-","(","<","{","[","," D  Q:CONT>0
  . . N STR S STR=LEAD_CNTL S:$E(TEXT,($L(TEXT)-$L(STR)),$L(TEXT))=STR CONT=1 S:CONT>0 X=CONT
- . Q:CONT>0  F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ . Q:CONT>0  F LEAD=" ","/","-","(","<","{","[","," D  Q:CONT>0
  . . F TRAIL=" ","-",")",">","}","]","," D  Q:CONT>0
  . . . N STR S STR=LEAD_CNTL_TRAIL S:TEXT[STR CONT=1 S:CONT>0 X=CONT
  . S:CONT>0 X=CONT
  S:$E(TEXT,1,$L(CNTL))=CNTL CONT=1
  S:CONT>0 X=CONT Q:CONT>0 X
- F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ F LEAD=" ","/","-","(","<","{","[","," D  Q:CONT>0
  . N STR S STR=LEAD_CNTL S:TEXT[STR CONT=1 S:CONT>0 X=CONT
- Q:CONT>0 X  F LEAD=" ","-","(","<","{","[","," D  Q:CONT>0
+ Q:CONT>0 X  F LEAD=" ","/","-","(","<","{","[","," D  Q:CONT>0
  . N TRAIL F TRAIL=" ","-",")",">","}","]","," D  Q:CONT>0
  . . N STR S STR=LEAD_CNTL_TRAIL S:TEXT[STR CONT=1 S:CONT>0 X=CONT
  S:CONT>0 X=CONT

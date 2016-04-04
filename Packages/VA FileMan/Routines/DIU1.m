@@ -1,6 +1,10 @@
 DIU1 ;SFISC/GFT-REINDEX A FILE ;6NOV2012
- ;;22.0;VA FileMan;**41,167**;Mar 30, 1999;Build 18
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**41,167**
+ ;
 4 ;RE-CROSS-REFERENCING -- UTILITY OPTION 4
  N DIUCNT,DIUTYPE,DV,DU,DW,DINO,DIKJ ;COME IN WITH I,J,N DEFINED
  W !! K ^UTILITY("DIK",$J),X S DIK=DIU,X=0 D DISKIPIN^DIK(.DINO) S DW=0,DIUF=DI ;USED TO CALL D DD^DIK

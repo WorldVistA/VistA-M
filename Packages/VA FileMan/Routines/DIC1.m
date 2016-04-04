@@ -1,6 +1,10 @@
-DIC1 ;SFISC/GFT/TKW-READ X, SHOW CHOICES ;29SEP2010
- ;;22.0;VA FileMan;**1,4,17,20,31,48,78,86,70,122,165**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIC1 ;SFISC/GFT/TKW-READ X, SHOW CHOICES ;29DEC2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,4,17,20,31,48,78,86,999,70,122,165,1003,1022,1046**
+ ;
  K DUOUT,DTOUT N DD,DIY,DISUB,DIPRMT
  D GETFA(.DIC,.DO)
  N DIPRMT D GETPRMT^DIC11(.DIC,.DO,.DINDEX,.DIPRMT)
@@ -36,7 +40,8 @@ GETFA(DIC,DO) ; Get file attributes
 DO ; GET FILE ATTR
  Q:$D(DO(2))  I $D(@(DIC_"0)")) S DO=^(0)
  E  S DO="0^-1" I $D(DIC("P")) S DO=U_DIC("P"),^(0)=DO
-DO2 S DO(2)=$P(DO,U,2) I DO?1"^".E S DO=$O(^DD(+DO(2),0,"NM",0))_DO
+EGP I $P(DO,U,2)>1.9 S $P(DO,U)=$$FILENAME^DIALOGZ(+$P(DO,U,2)) ;**CCO/NI PROMPT FILE NAME and following line
+DO2 S DO(2)=$P(DO,U,2) I DO?1"^".E S $P(DO,U)=$$FILENAME^DIALOGZ(+DO(2))
  I DO(2)["s",$D(^DD(+DO(2),0,"SCR")) S DO("SCR")=^("SCR")
  Q:$D(DIC("W"))  Q:DO(2)'["I"  Q:'$D(^DD(+DO(2),0,"ID"))
  S DIC("W")=""
@@ -62,7 +67,7 @@ RENUM ;
  . S Y=-1 Q
  D F^DIC Q
  ;
-DT S DST=DST_$$FMTE^DILIBF(%,"7S")
+DT S DST=DST_$$DATE^DIUTL(%) ;**CCO/NI DATE FORMAT
  I '$D(DDS) W DST S DST=""
  Q
  ;
@@ -77,13 +82,13 @@ Y ; Display a list of entries
  . I DIC(0)["Y" Q:DD<DS  D
  . . F Y=DS:-1 Q:'$G(DS(Y))  S Y(+DS(Y))=""
  . . Q
- . I DIC(0)'["E"!(DIC(0)["Y") S DS(0)="1^",DIOUT=1,DIY="" Q
+ . I DIC(0)'["E"!(DIC(0)["Y") S DS(0)="1^",DIOUT=1,DIY="" Q  ;IMPORTANT!  STOPS FURTHER LOOKUP
  . I DS>DD Q:DD#5
  . S DIOUT=1
  . I $D(DDS) S DDD=2,DDC=5 D LIST^DDSU K DDD,DDC
  . I '$D(DDS) D
- . . I DS>DD W !,"Press <RETURN> to see more, '^' to exit this list,"_$S(DIC(0)["T":" '^^' to exit all lists,",1:"")_" OR" ;**122**
- . . W !,"CHOOSE "_$O(DS(0))_"-"_DD R ": ",DIY:$S($D(DTIME):DTIME,1:300) S:'$T DTOUT=1 Q
+ . . I DS>DD W !,$$EZBLD^DIALOG(8087,$S(DIC(0)["T":"'^^' to exit all lists,",1:"")) ;**PATCH 122
+ . . N R S R(1)=$O(DS(0)),R(2)=DD W !,$$EZBLD^DIALOG(8088,.R) R DIY:$S($D(DTIME):DTIME,1:300) S:'$T DTOUT=1 Q  ;"CHOOSE 1-5" or whatever
  . I $G(DTOUT) W $C(7) S X="" Q
  . I DIY[U!($G(DUOUT)) S DUOUT=1,X=U D  Q
  . . I DIY?1"^^".E,DIC(0)["T" S DIROUT=1 Q
@@ -102,7 +107,7 @@ Y ; Display a list of entries
  K DIY,DIYX Q
  ;
 E S DST="" D
- . Q:DIC(0)["U"
+ . I DIC(0)["U" ;Q    I DO NOT KNOW WHY THIS 'QUIT' WAS THERE  --GFT
  . I $O(DS(DD,0)) S DST=$$BLDDSP(.DS,DD) Q
  . S %=$S($G(DILONGX):DICR(DILONGX,"ORG"),$G(DINDEX("IXTYPE"))'="S":$P(X,U),1:"")
  . S %=%_$P(DS(DD),U,2,9)_$S($G(DIYX(DD)):DIY(DD),1:"")

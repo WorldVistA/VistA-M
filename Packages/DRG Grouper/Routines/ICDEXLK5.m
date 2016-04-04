@@ -1,5 +1,5 @@
-ICDEXLK5 ;SLC/KER - ICD Extractor - Lookup, EXM/IEN/List ;12/19/2014
- ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
+ICDEXLK5 ;SLC/KER - ICD Extractor - Lookup, EXM/IEN/List ;07/15/2015
+ ;;18.0;DRG Grouper;**57,67,82**;Oct 20, 2000;Build 21
  ;               
  ; Global Variables
  ;    ^ICDS(              N/A
@@ -68,19 +68,20 @@ EXM(TXT,ROOT,Y,CDT,SYS,VER) ; Lookup Exact Match
  . . . Q:VAL'=ORG  S EXM(IEN)="",LOR=1
  ; Exact Match Text
  I $O(EXM(0))'>0 D
+ . N TI,TOK,KI,KEY,PARS,ORD,EROOT,IEN
  . Q:$D(ICDBYCD)  S KEY=$$UP^XLFSTR($G(ORG)) K PARS D TOKEN^ICDEXLK3(KEY,ROOT,SYS,.PARS)
- . S NUM=$O(PARS(0)),SEQ=$O(PARS(+NUM,0)),KEY=$G(PARS(+NUM,+SEQ))
- . K PARS(+NUM,+SEQ)  Q:$L(KEY)'>1
+ . S (KI,TI)=0,(KEY,TOK)="" F  S TI=$O(PARS(TI)) Q:+TI'>0  D
+ . . S TOK=$G(PARS(TI)) S:$E(TOK,1)?1U&($L(TOK)>$L(KEY)) KEY=$G(TOK),KI=TI
+ . K PARS(+($G(KI)))  Q:$L(KEY)'>1
  . S ORD=$E(KEY,1,($L(KEY)-1))_$C(($A($E(KEY,$L(KEY)))-1))_"~"
  . S EROOT=ROOT_"""D""," S:+SYS>0&($D(@(ROOT_"""AD"","_+SYS_")"))) EROOT=ROOT_"""AD"","_+SYS_","
- . F  S ORD=$O(@(EROOT_""""_ORD_""")")) Q:'$$ISORD  D
- . . S IEN=0 I $G(DIC(0))["X",ORD'=KEY Q
- . . F  S IEN=$O(@(EROOT_""""_ORD_""","_+IEN_")")) Q:+IEN'>0  D
- . . . N VAL,STA S STA=1 S:VER>0 STA=$$LS^ICDEXLK3(ROOT,IEN,CDT)
- . . . Q:+($G(VER))>0&(+STA'>0)
- . . . S VAL=$$LD^ICDEXLK3(ROOT,IEN,CDT,VER)
- . . . Q:$$UP^XLFSTR(VAL)'=$$UP^XLFSTR(ORG)
- . . . S EXM(IEN)="",LOR=0
+ . I $G(DIC(0))["X",$O(@(EROOT_""""_ORD_""")"))'=KEY Q
+ . S IEN=0 F  S IEN=$O(@(EROOT_""""_KEY_""","_+IEN_")")) Q:+IEN'>0  D
+ . . N VAL,STA S STA=1 S:VER>0 STA=$$LS^ICDEXLK3(ROOT,IEN,CDT)
+ . . Q:+($G(VER))>0&(+STA'>0)
+ . . S VAL=$$LD^ICDEXLK3(ROOT,IEN,CDT,VER)
+ . . Q:$$UP^XLFSTR(VAL)'=$$UP^XLFSTR(ORG)
+ . . S EXM(IEN)="",LOR=0
  S (X,IEN)=0 F  S IEN=$O(EXM(IEN)) Q:+IEN'>0  D
  . N ICDI S ICDI=$O(Y(" "),-1)+1,Y(ICDI)=IEN,(X,Y(0))=ICDI
  Q X

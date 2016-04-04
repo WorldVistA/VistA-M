@@ -1,6 +1,9 @@
-DICF4 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, (pointer indexes) ;15NOV2012
- ;;22.0;VA FileMan;**4,31,165,169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICF4 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, (pointer indexes) ;2014-12-12  12:14 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,31,165,169**
  ;
 POINT(DIFILE,DIFLAGS,DINDEX,DIDENT,DIEN,DIFIEN,DISCREEN,DIVALUE,DIC,DIFORCE) ;
  ; PREPIX^DICF2--transform value for indexed pointer field
@@ -17,7 +20,8 @@ P1 ; Process regular pointer
  . M DIPVAL(1)=DIVALUE(1),DISCR(1)=DISCREEN(1)
  . I DIFLAGS["l" D DIC(.DIC,.DIEN,.DIFILE,.DINDEX,.DIVALUE,DITARGET)
  . I DIFLAGS'["l" D
-NUM ..;I +$P(DIPVAL(1),"E")=DIPVAL(1),$G(DINDEX)'="B",DIFLAGS["M" Q  ;GFT  PATCH 165   DO NOT LOOK UP POINTERS; DI*22*169 (mko): Commented out this line to allow the use of indexes on the pointed-to file
+NUM ..;I +$P(DIPVAL(1),"E")=DIPVAL(1),$G(DINDEX)'="B",DIFLAGS["M" Q  ;GFT  PATCH 165   DO NOT LOOK UP POINTERS.  IN 1040 DID NOT HAVE ,$G(DINDEX)'="B",DIFLAGS["M"
+ . . ; DI*22*169 (mko): Commented out  line above to allow the use of indexes on the pointed-to file
  . . I $D(DIFORCE("PTRIX")) D SETIX(.DIFORCE,.DINDEX,.DIX,.DIF)
  . . N F S F=DIF N DIF S DIF=F K F M DIFL("CHAIN")=DIFILE("CHAIN")
  . . D BLDSCR(.DISCR,DINEW,DIPRV,.DIFL,.DINDEX,.DISCREEN,.DIFILE)

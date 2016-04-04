@@ -1,6 +1,10 @@
-DINIT291 ;SFISC/MKO-FORM AND BLOCK FILES ;10:49 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT291 ;SFISC/MKO-FORM AND BLOCK FILES ;7APR2005
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999,1013**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT292
 Q Q
@@ -145,19 +149,17 @@ Q Q
  ;;^DD(.403,21,21,8,0)
  ;;=should be set equal to the Page Number of the Record Selection Page.
  ;;^DD(.403,21,21,9,0)
- ;;= 
+ ;;=
  ;;^DD(.403,21,21,10,0)
- ;;=The user can open the Record Selection Page by pressing <PF1>L.  After the
+ ;;=The user can open the Record Selection Page by pressing <F1>L.  After the
  ;;^DD(.403,21,21,11,0)
  ;;=user selects a record and closes the Record Selection Page, the data for
  ;;^DD(.403,21,21,12,0)
  ;;=the selected record is displayed.
- ;;^DD(.403,21,"DT")
- ;;=2930225
  ;;^DD(.403,40,0)
  ;;=PAGE^.4031I^^40;0
- ;;^DD(.403,40,"DT")
- ;;=2930218
+ ;;^DD(.403,21400,0)
+ ;;=BUILD(S)^Cmp9.6^^ ; ^N DISNAME,D S DISNAME=$P($G(^DIST(.403,D0,0)),U)_"    FILE #"_$P($G(^(0)),U,8) F D=0:0 S D=$O(^XPD(9.6,D)) Q:'D  I $D(^(D,"KRN",.403,"NM","B",DISNAME)) N D0 S D0=D,X=$P(^XPD(9.6,D,0),U) X DICMX Q:'$D(D)
  ;;^DD(.4031,0)
  ;;=PAGE SUB-FIELD^^40^13
  ;;^DD(.4031,0,"DT")

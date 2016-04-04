@@ -1,7 +1,10 @@
-DIPKI001 ; ; 30-MAR-1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- Q:'DIFQ(9.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+DIPKI001 ;VEN/TOAD-PACKAGE FILE INIT ; 04-JAN-2015
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ Q:'DIFQ(9.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
  ;;^DIC(9.4,0,"GL")
  ;;=^DIC(9.4,
@@ -46,11 +49,11 @@ Q Q
  ;;^DIC(9.4,"%D",15,0)
  ;;=fields are simply for documentation.
  ;;^DD(9.4,0)
- ;;=FIELD^NL^15007^41
+ ;;=FIELD^NL^15007^31
  ;;^DD(9.4,0,"DDA")
  ;;=N
  ;;^DD(9.4,0,"DT")
- ;;=2941020
+ ;;=3130331
  ;;^DD(9.4,0,"ID",1)
  ;;=W:$D(^("0")) "   ",$P(^("0"),U,2)
  ;;^DD(9.4,0,"IX","AMRG",9.402,.01)
@@ -61,7 +64,7 @@ Q Q
  ;;=
  ;;^DD(9.4,0,"IX","C",9.4,1)
  ;;=
- ;;^DD(9.4,0,"IX","D",9.42,.01)
+ ;;^DD(9.4,0,"IX","C2",9.4014,.01)
  ;;=
  ;;^DD(9.4,0,"IX","E",9.415007,.01)
  ;;=
@@ -69,22 +72,74 @@ Q Q
  ;;=
  ;;^DD(9.4,0,"PT",.84,1.2)
  ;;=
- ;;^DD(9.4,0,"PT",4.01,.01)
- ;;=
- ;;^DD(9.4,0,"PT",4.332,.01)
+ ;;^DD(9.4,0,"PT",3.077,3.1)
  ;;=
  ;;^DD(9.4,0,"PT",9.6,1)
  ;;=
  ;;^DD(9.4,0,"PT",9.7,1)
  ;;=
+ ;;^DD(9.4,0,"PT",15.01101,.01)
+ ;;=
  ;;^DD(9.4,0,"PT",19,12)
+ ;;=
+ ;;^DD(9.4,0,"PT",44,50.02)
+ ;;=
+ ;;^DD(9.4,0,"PT",100,12)
+ ;;=
+ ;;^DD(9.4,0,"PT",100.03,.05)
+ ;;=
+ ;;^DD(9.4,0,"PT",100.1,2)
+ ;;=
+ ;;^DD(9.4,0,"PT",100.22,.07)
+ ;;=
+ ;;^DD(9.4,0,"PT",100.67,.01)
+ ;;=
+ ;;^DD(9.4,0,"PT",100.9901,.01)
+ ;;=
+ ;;^DD(9.4,0,"PT",100.995,.01)
  ;;=
  ;;^DD(9.4,0,"PT",101,12)
  ;;=
+ ;;^DD(9.4,0,"PT",101.41,7)
+ ;;=
+ ;;^DD(9.4,0,"PT",150.93,.01)
+ ;;=
+ ;;^DD(9.4,0,"PT",579.6,.01)
+ ;;=
+ ;;^DD(9.4,0,"PT",776.3,.02)
+ ;;=
+ ;;^DD(9.4,0,"PT",779.2,2)
+ ;;=
+ ;;^DD(9.4,0,"PT",7105.5,3)
+ ;;=
  ;;^DD(9.4,0,"PT",8989.332,.01)
  ;;=
+ ;;^DD(9.4,0,"PT",8989.5,.01)
+ ;;=
+ ;;^DD(9.4,0,"PT",8992.3,.03)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.06,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.07,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.11,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.12,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.13,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.15,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.16,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.18,81202)
+ ;;=
+ ;;^DD(9.4,0,"PT",9000010.23,81202)
+ ;;=
  ;;^DD(9.4,0,"VRPK")
- ;;=KERNEL
+ ;;=KERNEL PUBLIC DOMAIN
  ;;^DD(9.4,.01,0)
  ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<4)!'(X'?1P.E) X
  ;;^DD(9.4,.01,1,0)
@@ -101,8 +156,10 @@ Q Q
  ;;=^^1^1^2940627^^^^
  ;;^DD(9.4,.01,21,1,0)
  ;;=The name of this Package.
+ ;;^DD(9.4,.01,"DT")
+ ;;=3121204
  ;;^DD(9.4,1,0)
- ;;=PREFIX^RFX^^0;2^K:$L(X)>4!(X'?1U1.3NU) X I $D(X) S %=$O(^DIC(9.4,"C",X,0)) K:(%>0)&(%-DA) X
+ ;;=PREFIX^RFX^^0;2^K:$L(X)>4!(X'?1U1.3NU) X I $D(X) N %,%1,%2 S %="^DIC(9.4)" F %1="C","C2" S %2=$O(@%@(%1,X,0)) I %2>0,%2-DA K X Q
  ;;^DD(9.4,1,.1)
  ;;=NAMESPACE
  ;;^DD(9.4,1,1,0)
@@ -128,7 +185,7 @@ Q Q
  ;;^DD(9.4,1,"DT")
  ;;=2890223
  ;;^DD(9.4,2,0)
- ;;=SHORT DESCRIPTION^RF^^0;3^K:$L(X)>60!($L(X)<2) X
+ ;;=SHORT DESCRIPTION^RFI^^0;3^K:$L(X)>60!($L(X)<2) X
  ;;^DD(9.4,2,3)
  ;;=Answer must be 2-60 characters in length.
  ;;^DD(9.4,2,21,0)
@@ -136,7 +193,7 @@ Q Q
  ;;^DD(9.4,2,21,1,0)
  ;;=This is a brief description of this Package's functions.
  ;;^DD(9.4,2,"DT")
- ;;=2890627
+ ;;=3130123
  ;;^DD(9.4,3,0)
  ;;=DESCRIPTION^9.41A^^1;0
  ;;^DD(9.4,3,21,0)
@@ -145,30 +202,8 @@ Q Q
  ;;=This is a complete and detailed description of the Package's functions
  ;;^DD(9.4,3,21,2,0)
  ;;=and capabilities.
- ;;^DD(9.4,4,0)
- ;;=*ROUTINE^9.42A^^2;0
- ;;^DD(9.4,4,21,0)
- ;;=^^3^3^2920513^^^^
- ;;^DD(9.4,4,21,1,0)
- ;;=These are the routines which make up this Package.  This multiple
- ;;^DD(9.4,4,21,2,0)
- ;;=is used for documentation only, and is not used during the INIT
- ;;^DD(9.4,4,21,3,0)
- ;;=process.
- ;;^DD(9.4,4,"DT")
- ;;=2940603
- ;;^DD(9.4,5,0)
- ;;=*GLOBAL^9.43^^3;0
- ;;^DD(9.4,5,21,0)
- ;;=^^2^2^2920513^^^^
- ;;^DD(9.4,5,21,1,0)
- ;;=These are the globals which make up this Package.  This multiple is used
- ;;^DD(9.4,5,21,2,0)
- ;;=for documentation purposes only.
- ;;^DD(9.4,5,"DT")
- ;;=2940603
  ;;^DD(9.4,6,0)
- ;;=*FILE^9.44PA^^4;0
+ ;;=FILE^9.44PA^^4;0
  ;;^DD(9.4,6,21,0)
  ;;=^^3^3^2920513^^^^
  ;;^DD(9.4,6,21,1,0)
@@ -178,9 +213,9 @@ Q Q
  ;;^DD(9.4,6,21,3,0)
  ;;=Data) are sent in an INIT built from this Package entry.
  ;;^DD(9.4,6,"DT")
- ;;=2940603
+ ;;=2990407
  ;;^DD(9.4,7,0)
- ;;=*PRINT TEMPLATE^9.46^^DIPT;0
+ ;;=PRINT TEMPLATE^9.46^^DIPT;0
  ;;^DD(9.4,7,21,0)
  ;;=^^4^4^2921202^^^^
  ;;^DD(9.4,7,21,1,0)
@@ -192,9 +227,9 @@ Q Q
  ;;^DD(9.4,7,21,4,0)
  ;;=separately.
  ;;^DD(9.4,7,"DT")
- ;;=2940603
+ ;;=2990407
  ;;^DD(9.4,8,0)
- ;;=*INPUT TEMPLATE^9.47^^DIE;0
+ ;;=INPUT TEMPLATE^9.47^^DIE;0
  ;;^DD(9.4,8,21,0)
  ;;=^^4^4^2920513^^^
  ;;^DD(9.4,8,21,1,0)
@@ -206,9 +241,9 @@ Q Q
  ;;^DD(9.4,8,21,4,0)
  ;;=separately.
  ;;^DD(9.4,8,"DT")
- ;;=2940603
+ ;;=2990407
  ;;^DD(9.4,9,0)
- ;;=*SORT TEMPLATE^9.48^^DIBT;0
+ ;;=SORT TEMPLATE^9.48^^DIBT;0
  ;;^DD(9.4,9,21,0)
  ;;=^^4^4^2920513^^^
  ;;^DD(9.4,9,21,1,0)
@@ -220,12 +255,80 @@ Q Q
  ;;^DD(9.4,9,21,4,0)
  ;;=separately.
  ;;^DD(9.4,9,"DT")
- ;;=2940603
+ ;;=2990407
  ;;^DD(9.4,9.1,0)
- ;;=*SCREEN TEMPLATE (FORM)^9.485^^DIST;0
+ ;;=SCREEN TEMPLATE (FORM)^9.485^^DIST;0
  ;;^DD(9.4,9.1,21,0)
  ;;=^^2^2^2920513^^^
  ;;^DD(9.4,9.1,21,1,0)
  ;;=The names of Screen Templates (from the FORM file) associated with
  ;;^DD(9.4,9.1,21,2,0)
  ;;=this package.
+ ;;^DD(9.4,9.1,"DT")
+ ;;=2990407
+ ;;^DD(9.4,9.5,0)
+ ;;=*MENU^9.495^^M;0
+ ;;^DD(9.4,9.5,21,0)
+ ;;=^^1^1^2920513^^^
+ ;;^DD(9.4,9.5,21,1,0)
+ ;;=This is the name of a menu-type option in another namespace.
+ ;;^DD(9.4,9.5,"DT")
+ ;;=2940603
+ ;;^DD(9.4,10,0)
+ ;;=DEVELOPER (PERSON/SITE)^F^^DEV;1^K:$L(X)>50!($L(X)<2) X
+ ;;^DD(9.4,10,3)
+ ;;=Please enter the name of the principal Developer and Site (2-50 characters).
+ ;;^DD(9.4,10,21,0)
+ ;;=^^1^1^2920513^^
+ ;;^DD(9.4,10,21,1,0)
+ ;;=The name of the principal Developer and Site for this Package.
+ ;;^DD(9.4,10.6,0)
+ ;;=*LOWEST FILE NUMBER^NJ12,2^^11;1^K:+X'=X!(X>999999999)!(X<0)!(X?.E1"."3N.N) X
+ ;;^DD(9.4,10.6,3)
+ ;;=Type a Number between 0 and 999999999, 2 Decimal Digits
+ ;;^DD(9.4,10.6,21,0)
+ ;;=^^1^1^2920513^^^^
+ ;;^DD(9.4,10.6,21,1,0)
+ ;;=Inclusive lower bound of the range of file numbers allocated to this package.
+ ;;^DD(9.4,10.6,"DT")
+ ;;=2940603
+ ;;^DD(9.4,11,0)
+ ;;=*HIGHEST FILE NUMBER^NJ12,2^^11;2^K:+X'=X!(X>999999999)!(X<0)!(X?.E1"."3N.N) X
+ ;;^DD(9.4,11,3)
+ ;;=Type a Number between 0 and 999999999, 2 Decimal Digits
+ ;;^DD(9.4,11,21,0)
+ ;;=^^1^1^2920513^^^
+ ;;^DD(9.4,11,21,1,0)
+ ;;=Inclusive upper bound of the range of file numbers assigned to this package.
+ ;;^DD(9.4,11,"DT")
+ ;;=2940603
+ ;;^DD(9.4,11.01,0)
+ ;;=DEVELOPMENT ISC^F^^5;1^K:$L(X)>20!($L(X)<3) X
+ ;;^DD(9.4,11.01,3)
+ ;;=Please enter the name of the ISC (3-20 characters).
+ ;;^DD(9.4,11.01,21,0)
+ ;;=^^1^1^2920513^^^
+ ;;^DD(9.4,11.01,21,1,0)
+ ;;=The ISC responsible for the development and management of this Package.
+ ;;^DD(9.4,11.01,"DT")
+ ;;=2840815
+ ;;^DD(9.4,11.3,0)
+ ;;=CLASS^S^I:National;II:Inactive;III:Local;^7;3^Q
+ ;;^DD(9.4,11.3,21,0)
+ ;;=^^1^1^2920513^^
+ ;;^DD(9.4,11.3,21,1,0)
+ ;;=The ranking Class of this software Package.
+ ;;^DD(9.4,11.3,"DT")
+ ;;=2940325
+ ;;^DD(9.4,13,0)
+ ;;=CURRENT VERSION^F^^VERSION;1^K:$L(X)>8!($L(X)<1)!'(X?1N.ANP) X
+ ;;^DD(9.4,13,3)
+ ;;=Enter the version of this package currently running, (1-8 characters).
+ ;;^DD(9.4,13,21,0)
+ ;;=^^5^5^2920702^
+ ;;^DD(9.4,13,21,1,0)
+ ;;=This field holds the version number of the package currently running
+ ;;^DD(9.4,13,21,2,0)
+ ;;=at this site.  When a package initialization has been run, this field
+ ;;^DD(9.4,13,21,3,0)
+ ;;=will be updated with the version number most recently installed.

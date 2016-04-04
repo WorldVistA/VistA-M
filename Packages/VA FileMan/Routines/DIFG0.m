@@ -1,6 +1,9 @@
 DIFG0 ;SFISC/DG(OHPRD)-SETS UP DIC("S"), EVALS 1ST LINE OF A (SUB)FILE ; [ 05/25/93  10:17 AM ]
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 NDPC ;DETERMINE NODE,PIECE FOR DATA FOR THIS FIELD
  S DIFGCT=DIFGCT+1
  S:DIFG("PARAM")["N" DIFGNUMF(DIFGCT)=+$P(DIFGDIX,"^",2),DIFGPC(DIFGCT)=$P(^DD(DIC,DIFGNUMF(DIFGCT),0),"^",4)

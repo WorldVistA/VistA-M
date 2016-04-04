@@ -1,6 +1,10 @@
 DICE ;SFISC/GFT-CREATE AN XREF ;17DEC2010
- ;;22.0;VA FileMan;**26,58,165,167**;Mar 30, 1999;Build 18
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**26,58,165,167**
+ ;
  S %=2,DCOND="CROSS-REFERENCE" W !,"WANT TO CREATE A NEW ",DCOND," FOR THIS FIELD" D YN^DICN G Q:%-1
 N F DQ=1:1 Q:'$D(^DD(DI,DA,1,DQ))
  W !,"CROSS-REFERENCE NUMBER: "_DQ_"// " R X:DTIME S:'$T DTOUT=1 G Q:'$T S:X="" X=DQ G NQ:X'?.N!'X,X:$D(^(X)) S DQ=X
@@ -65,5 +69,5 @@ HLP ; Traditional Cross Reference Help - Called From NQ
  W !,?5,"cross-reference is in.  If you are not the custodian of the file, you"
  W !,?5,"should select a number that corresponds with a numberspace for which you"
  W !,?5,"have custody.  Questions regarding numberspace custody may be referred"
- W !,?5,"to:  DBA@DOMAIN.EXT",!
+ W !,?5,"to:  DBA@FORUM.VA.GOV",!
  Q

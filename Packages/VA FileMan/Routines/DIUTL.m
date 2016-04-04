@@ -1,11 +1,39 @@
-DIUTL ;GFT;01:02 PM  8 Apr 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
+DIUTL ;GFT/GFT - TIMSON'S UTILITIES;24JAN2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,999,1003,1004,1023**
  ;
-WP(DIRF,DIWL,DIWR) ;Write out WP field (if any) stored at DIRF
- N DIWF,Z,A1,D,X,DIW,DIWT,DN,I
+ ;
+NAKED(DIUTLREF) ;The argument is evaluated and returned, while keeping the naked reference as it was!
+ N DIUTLNKD S DIUTLNKD=$NA(^(0))
+ X "S DIUTLREF="_DIUTLREF
+ D  Q DIUTLREF
+ .I $D(@DIUTLNKD)
+ ;
+ ;
+DATE(Y) ;**CCO/NI   RETURN A DATE
+ I Y X ^DD("DD")
+ Q Y
+ ;
+ ;
+NOWINT() ;INTERNAL VERSION OF NOW
+ N %,%I,%H,%M,%D,%Y,X
+ D NOW^%DTC Q %
+ ;
+ ;
+NOW() ;EXTERNAL NOW
+ N X S X=$$NOWINT Q $$DATE(X-(X#.0001))
+ ;
+ ;
+WP(DIRF,DIWL,DIWR,DIWPUT) ;Write out WP field (if any) stored at DIRF, or put it in DIWPUT array
+ N DIWF,Z,A1,D,X,DIW,DIWT,DN,I,DIWI,DIWTC,DIWX
  K ^UTILITY($J,"W")
- S DIWF="W|" S:'$G(IOM) IOM=80 S:'$G(DIWR) DIWR=IOM S:'$G(DIWL) DIWL=1
+ S DIWF=$E("W",'$D(DIWPUT))_"|" S:'$G(IOM) IOM=80 S:'$G(DIWR) DIWR=IOM S:'$G(DIWL) DIWL=1
  S A1=$P($G(@DIRF@(0)),U,3) F D=0:0 S D=$O(@DIRF@(D)) Q:D>A1&A1!'D  S X=^(D,0) D ^DIWP G QWP:$G(DN)=0
+ I $G(DIWPUT)]"" D  Q 1
+ .K @DIWPUT M @DIWPUT=^UTILITY($J,"W")
  D ^DIWW
 QWP I $G(DN)'=0 Q 1
  K DIOEND Q 0
@@ -35,6 +63,6 @@ DIVR(DI,DIFLD) ;verify
  S %=1 D YN^DICN Q:%-1
  ;D ^%ZIS Q:POP
  ;U IO   WON'T WORK BECAUSE Q+3^DIVR ASKS TO STORE IN TEMPLATE
- D ^DIVR
+ D EN^DIVR(DI,DIFLD)
  ;D ^%ZISC
  Q

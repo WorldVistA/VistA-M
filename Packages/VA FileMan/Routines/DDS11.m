@@ -1,6 +1,10 @@
-DDS11(DDSBK,DDSNFO) ;SFISC/MLH,MKO-LOAD DATA ; 04 Jun 2007
- ;;22.0;VA FileMan;**151**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DDS11 ;SFISC/MLH,MKO-LOAD DATA ;2015-01-02  6:19 PM; LOAD DATA TO BE SHOWN ON SCREEN
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1005,151**
+ ;
  ;Input variables:
  ;  DDSBK   = Block #
  ;  DDSPG   = Page # (needed for form-only fields)
@@ -9,6 +13,8 @@ DDS11(DDSBK,DDSNFO) ;SFISC/MLH,MKO-LOAD DATA ; 04 Jun 2007
  ;  DIE     = Global root of block
  ;  DDSDA   = DA,DA(1),...
  ;  DDSNFO  = Flag means don't reload form only fields
+ ;
+EN(DDSBK,DDSNFO) ;replace call to top of routine
  ;
  N X,Y
  S DDS1REFD=$NA(@DDSREFT@("F"_DDP,DDSDA))
@@ -138,5 +144,7 @@ XFORM ;
  I DDS1DV["P",@("$D(^"_X_"0))") S X=+$P(^(0),U,2) Q:'$D(^(Y,0))  S Y=$P(^(0),U),X=$P(^DD(X,.01,0),U,3),DDS1DV=$P(^(0),U,2) G XFORM
  I DDS1DV["V",+$P(Y,"E"),$P(Y,";",2)["(",$D(@(U_$P(Y,";",2)_"0)"))#2 S X=+$P($P(^(0),U,2),"E") Q:$D(^(+$P(Y,"E"),0))[0  S Y=$P(^(0),U) I $D(^DD(+$P(X,"E"),.01,0))#2 S DDS1DV=$P(^(0),U,2),X=$P(^(0),U,3) G XFORM
  I DDS1DV["D" X ^DD("DD")
- I DDS1DV["S" S DDS1N=$P($P(";"_X,";"_Y_":",2),";",1) S:DDS1N]"" Y=DDS1N
+ I DDS1DV["S" D
+ .I +DDS1FLD,$G(^DD(DDP,+DDS1FLD,0))[X S Y=$$SET^DIQ(DDP,+DDS1FLD,Y) ;FOREIGN-LANGUAGE SET VALUE
+ .E  D PARSET^DIQ(X,.Y)
  Q

@@ -1,6 +1,9 @@
 DIKC ;SFISC/MKO-FIRE INDEX FILE CROSS REFERENCES ;24OCT2012
- ;;22.0;VA FileMan;**1,22,11,68,95,146,167**;Mar 30, 1999;Build 18
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,22,11,68,95,146,167**
  ;
 INDEX(DIFILE,DIREC,DIFLD,DIXREF,DICTRL) ;Fire Index file xrefs
  N DA,DIF,DIKACT,DIKCT,DIKERR,DIKLOCK,DIKLOG,DIKON,DIKRFIL

@@ -1,6 +1,10 @@
-DICATT6 ;SFISC/XAK-SETS,FREE TEXT ;5:52 AM  20 Dec 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATT6 ;SFISC/XAK-SETS,FREE TEXT ;2013-01-16  11:41 AM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,127,1014,1044**
+ ;
  G @N
  ;
 3 S Z="",L=1,P=0,Y="INTERNALLY-STORED CODE: "
@@ -17,8 +21,9 @@ C I X["?",P=1 K X W !,"For Example: Internal Code 'M' could stand for 'MALE'",! 
 TOO W $C(7),!,"TOO MUCH!! -- SHOULD BE 'POINTER', NOT 'SET'"
 T W ! G NO^DICATT2:'$D(X) S DTOUT=1 G CHECK^DICATT
  ;
-4 K DG,DE,M S DL=1,L=1,DP=-1,DQ(1)="MINIMUM LENGTH^NR^^1^K:X\1'=X!(X<1) X",DQ(2)="MAXIMUM LENGTH^RN^^2^K:X\1'=X!(X>250)!(DG(1)>X) X"
- S T="",P=" X",DQ(3)="(OPTIONAL) PATTERN MATCH (IN 'X')^^^3^S X=""I ""_X D ^DIM S:$D(X) X=$E(X,3,999) I $D(X) K:X?.NAC X",DQ(3,3)="EXAMPLE: ""X?1A.A"" OR ""X'?.P"""
+4 K DG,DE,M S L=$G(^DD("STRING_LIMIT"),255)-5,P=$P($P($P(^DD(A,DA,0),U,4),";",2),"E",2) I P S M=$P(P,",",2) I M S L=M-P+1
+ S DL=1,DP=-1,DQ(1)="MINIMUM LENGTH^NR^^1^K:X\1'=X!(X<1) X",DQ(2)="MAXIMUM LENGTH^RN^^2^K:X\1'=X!(X>"_L_")!(DG(1)>X) X"
+ S T="",L=1,P=" X",DQ(3)="(OPTIONAL) PATTERN MATCH (IN 'X')^^^3^S X=""I ""_X D ^DIM S:$D(X) X=$E(X,3,999) I $D(X) K:X?.NAC X",DQ(3,3)="EXAMPLE: ""X?1A.A"" OR ""X'?.P"""
  G DIED:'O,DG:C'?.E1"K:$L".E1" X"
  S T=$P(C,"K:$L",1),DE(2)=+$P(C,"$L(X)>",2),DE(1)=+$P(C,"$L(X)<",2)
  S Y=0,I=0,Z=$P(C,")!'(",2,99) I Z="" K:'DE(2) DE(2) G DG
@@ -32,5 +37,5 @@ DIED K Y S DM=0 D DQ^DIED K DQ,DM G CHECK^DICATT:$D(DTOUT)!($D(Y))
  S Z="Answer must be "_X_" character"_$E("s",X'=1)_" in length." I $S($D(M):M'[Z,1:1) S M=Z
  S X=$S('$D(DG(3)):"",DG(3)="":"",1:"!'("_DG(3)_")")
  S C=T_"K:$L(X)>"_L_"!($L(X)<"_Y_")"_X_P
-Z S (DIZ,Z)="F^"
+Z S (DIZ,Z)="FJ"_L_U
 H G ^DICATT1

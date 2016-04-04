@@ -1,6 +1,9 @@
 DIKZ11 ;SFISC/DCM-XREF COMPILER ;9/3/93  13:44
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 OVFL ;
  S ^UTILITY($J,"OVFL",1)=DNM_0_" ; DRIVER FOR COMPILED XREFS FOR FILE !"_DH(1)_" (cont); "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3),^(2)=" ; "
  S ^UTILITY($J,0,7)=" I $D(DIKKS) D:DIKZ1=DH(1) "_$P(DIKGO,",")_" S DA=DIKUP D:DIKZ1=DH(1) "_$P(DIKGO,",",2)_" D:DIKZ1'=DH(1) KILL D:DIKZ1'=DH(1) DA D:DIKZ1'=DH(1) SET"_U_DNM_0_" D DA Q"

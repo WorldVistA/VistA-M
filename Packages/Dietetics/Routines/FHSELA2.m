@@ -1,5 +1,5 @@
 FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
- ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39**;Jan 28, 2005;Build 3
+ ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39,40**;Jan 28, 2005;Build 2
  ;
  ;10/9/2009 SLC/GDU FH*5.5*23
  ;  Remedy 317642 FGH - patient food allergy not mapping to N&FS food preferences
@@ -21,6 +21,8 @@ FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ;3/07/2007
  ;  Remedy 1260817 - PSPO 1380 changes needed due to NTRT
  ;  Adding the following food allergies:
  ;  PAWPAW, MULBERRY, MOLASSES
+ ;10/26/2015 SLC/GDU FH*5.5*40 Adding/Updating the following food allergies:
+ ;  SORBITOL,IODINE
 TMPGL ; Create ^TMP Global
  K ^TMP($J,"FHALG") S FHK=0
  F  S FHK=FHK+1,FHFPS=$T(FPS+FHK),FHZ1=$P(FHFPS,";",3) Q:FHZ1=""  D
@@ -171,7 +173,7 @@ FPS ;;
  ;;HONEY;HONEY
  ;;HONEYDEW;HONEYDEW
  ;;HORSERADISH;HORSERADISH
- ;;IODINE;IODIZED SALT
+ ;;IODINE;IODIZED SALT;IODINE
  ;;JUICE;JUICE
  ;;KIWI;KIWI FRUIT
  ;;LACTOSE;LACTOSE
@@ -355,3 +357,4 @@ FPS ;;
  ;;PAWPAW;PAWPAW
  ;;MULBERRY;MULBERRY
  ;;MOLASSES;MOLASSES
+ ;;SORBITOL;SORBITOL

@@ -1,7 +1,10 @@
-DIM3 ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Commands ;5/6/97  09:10
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;12278;4265731;3363;
+DIM3 ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Commands ;25MAR2010
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1038**
+ ;
  ;
 DG ; DO and GET (D^DIM and G^DIM)
  G GC^DIM:%ARG=""!%ERR D PARS G ER:%ERR
@@ -13,8 +16,8 @@ DG ; DO and GET (D^DIM and G^DIM)
  . I %'?.E1"(".E1")" S %ERR=1 Q
  . S %C=$P(%,"("),%C1=$P(%C,"^",2,999),%I=$F(%,"(")-1
  . I %C=""!(%C?.E1"^") S %ERR=1 Q
- . I %C1]"",%C1'?1U.7AN,%C1'?1"%".7AN S %ERR=1 Q
- . S %C=$P(%C,"^") I %C]"",%C'?1U.7AN,%C'?1"%".7AN,%C'?1.8N S %ERR=1 Q
+ . I %C1]"",%C1'?1U.15AN,%C1'?1"%".15AN S %ERR=1 Q
+ . S %C=$P(%C,"^") I %C]"",%C'?1U.15AN,%C'?1"%".15AN,%C'?1.15N S %ERR=1 Q
  . Q:$E(%,%I,%I+1)="()"
  . S (%(-1,2),%(-1,3))=0,%N=1,%(0,0)="P^",(%(0,1),%(0,2),%(0,3))=0
  . D GG^DIM1
@@ -81,7 +84,7 @@ PARAN1 S %P=1 F %J=0:0 D %INC1 D QT1:%C="""" S %P=%P+$S(%C="(":1,%C=")":-1,1:0) 
 %INC1 S %I=%I+1,%C=$E(%A,%I) Q
  ;
 VV ; variable, label, or routine name (LABEL, KL, and FR)
- I '%ERR,%]"",%'["@",%'?1U.UN,%'?1U.UN1"(".E1")",%'?1"%".UN1"(".E1")",%'?1"%".UN,%'?1"^"1U.UN1"(".E1")",%'?1"^%".UN1"(".E1")",%'?1"^(".E1")",%'?1"^"1U.UN S %ERR=1
+ I '%ERR,%]"",%'["@",%'?1U.15UN,%'?1U.15UN1"(".E1")",%'?1"%".15UN1"(".E1")",%'?1"%".15UN,%'?1"^"1U.15UN1"(".E1")",%'?1"^%".15UN1"(".E1")",%'?1"^(".E1")",%'?1"^"1U.15UN S %ERR=1
  S:%["?@" %ERR=1 Q
  ;
 LNAME(%) ; lname (KL)

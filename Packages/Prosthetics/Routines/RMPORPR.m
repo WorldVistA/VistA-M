@@ -1,15 +1,18 @@
 RMPORPR ;VA-EDS/PAK LIST HOME OXY PTS PRESCRIPTIONS/ITEMS ;7/24/98
- ;;3.0;PROSTHETICS;**29,55**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**29,55,179**;Feb 09, 1996;Build 7
  ;
  ; ODJ - patch 55 - re nois FGH-0800-33046 - make sure that if all
  ;       12/5/00    patients option chosen dont print inactives
+ ;
+ ;RMPR*3.0*179 Flag a deceased patient by adding an '*'
+ ;             in front of SSN. 
  ;
 START ; Compile and print report 
  ;Set up the site.
  D HOSITE^RMPOUTL0 I '$D(RMPOXITE) Q
  ;
  ;Intialize variables.
- K DIR,DIC,DIS,DIRUT,DUOUT,DTOUT,ALL
+ K DIR,DIC,DIS,DIRUT,DUOUT,DTOUT,ALL S RMPODCNT=0
  ;
  ; Choose one or all patients
  S DIR(0)="Y",DIR("A")="Select All Patients",DIR("B")="NO" D ^DIR
@@ -48,7 +51,7 @@ PRINT ; Print report
  ; print patient name
  S FLDS(3)=".01;C1;L22;""PATIENT"""
  ; print SSN
- S FLDS(4)="W $$SSN^RMPORPR;C25;R4;""SSN"""
+ S FLDS(4)="W $$SSN^RMPORPR;C24;R5;""SSN"""
  ; print Rx activation date, expiry date & prescription detail
  S FLDS(5)="19.3,.01;C33,2;C50,3;S;C1"
  S FLDS(6)=""""";C1;S"     ; spacer line
@@ -102,14 +105,18 @@ EXIT ;
  ;
 END ; End the report line
  S COUNT=$E("      ",1,6-$L(COUNT))_COUNT
- W !!,?50,"Total Patients: ",COUNT
+ W !!,?47,"Total Patients: ",COUNT
+ S RMPODCNT=$E("      ",1,(6-$L(RMPODCNT)))_RMPODCNT   ;RMPR*3.0*179
+ W !,?38,"Total Deceased Patients: ",RMPODCNT   ;RMPR*3.0*179
  Q
  ;
-SSN() ; Get SSN
- N X
+SSN() ; Get SSN    ;RNPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^DPT(D0,.35) direct read supported by ICR #10035
+ N X,RMPOEXP
+ S X="",RMPOEXP=" "
+ I +$G(^DPT(D0,.35)) S RMPOEXP="*"
  K VA,VADM S DFN=D0 D ^VADPT
  S X=$P(VA("PID"),"-",3)
- I X'="" S COUNT=COUNT+1
+ I X'="" S X=RMPOEXP_X,COUNT=COUNT+1 S:RMPOEXP="*" RMPODCNT=RMPODCNT+1
  Q X
  ;
 SDT() ; Get Rx activation Date.
@@ -134,5 +141,5 @@ EDT() ; Get the most recently entered Rx.
 RPTHDR ; Report header      
  S PAGE=PAGE+1
  W RPTDT,?(40-($L(RMPO("NAME"))/2)),RMPO("NAME"),?65,"Page: "_PAGE
- W !,?23,"Prescription Report",!
+ W !,?23,"Prescription Report",?52,"* denotes deceased patient",!
  Q

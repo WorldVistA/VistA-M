@@ -1,10 +1,15 @@
-DIOZ ;SFISC/TKW - COMPILED SORT TEMPLATE ;11/29/94  09:53
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIOZ ;SFISC/TKW - COMPILED SORT TEMPLATE ; 30NOV2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 ENCU ;MARK A SORT TEMPLATE FOR ROUTINE COMPILATION
  I $G(DUZ(0))'="@" W !,$C(7),$$EZBLD^DIALOG(101) Q
 EN1 N DDH,DIC,DIR,DIROUT,DIRUT,DUOUT,DTOUT,X,Y,DIOZ
- D OS^DII:'$D(DISYS) I $G(^DD("OS",DISYS,"ZS"))="" W $C(7),!,$$EZBLD^DIALOG(820) Q
+ ; NB: next 2 lines same in ENC. Need to make shared.
+ D OS^DII:'$D(DISYS)
+ I $G(^DD("OS",DISYS,"ZS"))="" D BLD^DIALOG(820) G QSV
  D DIC Q:Y<0  S DIOZ=+Y
  S DIR(0)="Y"
  I $G(^DIBT(+Y,"ROU"))="" D  Q
@@ -24,7 +29,9 @@ DIC S DIC="^DIBT(",DIC(0)="AEIQ",DIC("W")="W ?40,""FILE #"",$P(^(0),U,4) W:$D(^(
  D ^DIC Q
  ;
 ENC ;CREATE COMPILED SORT ROUTINE
- D OS^DII:'$D(DISYS) I $G(^DD("OS",DISYS,"ZS"))="" D BLD^DIALOG(820) G QSV
+ ; NB: next 2 lines same in EN. Need to make shared.
+ D OS^DII:'$D(DISYS)
+ I $G(^DD("OS",DISYS,"ZS"))="" D BLD^DIALOG(820) G QSV
  I $O(^TMP("DIBTC",$J,""))="" D BLD^DIALOG(1501) G QSV
  N %,%H,%I,DIROUT,DIRUT,DTOUT,DUOUT,DRN,I,J,K,X,Y,DIR
  D NEW G:$D(DIERR) QSV
@@ -55,7 +62,7 @@ ENRLS(DRN) ; MAKE ROUTINE NUMBER AVAILABLE FOR REUSE & DELETE ROUTINE
  N DICLEAN,X S DRN=+$G(DRN),DICLEAN='DRN G:DRN R1
 R S DRN=$O(^DI(.83,DRN)) Q:'DRN
 R1 I $G(^DI(.83,DRN,0))]"" S $P(^(0),U,2)="n",^DI(.83,"C","n",DRN)="" K ^DI(.83,"C","y",DRN)
- I $G(^%ZOSF("DEL"))]"" S X="DISZ"_$E("000",1,(4-$L(DRN)))_DRN X ^%ZOSF("DEL")
+ S X="DISZ"_$E("000",1,(4-$L(DRN)))_DRN X $G(^DD("OS",DISYS,"DEL"))
  G:DICLEAN R
  Q
  ;

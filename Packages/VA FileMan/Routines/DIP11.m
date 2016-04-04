@@ -1,9 +1,13 @@
-DIP11 ;SFISC/XAK,TKW-GET SORT TEMPLATE ;29MAR2010
- ;;22.0;VA FileMan;**97,163*;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIP11 ;SFISC/XAK,TKW-GET SORT TEMPLATE ;23JULY2014
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**97,163,1004,1037,1038,1048,1049,150**
+ ;
 SCREENTM(Z,D2) ;Z=ZERO NODE OF SORT TEMPLATE;  D2 = THERE IS SORT-BY LOGIC
  I $P(Z,U,4)-DL Q 0 ;TEMPLATE MUST BE FOR THIS FILE
- I 'D2&'L D  Q $D(Z) ;IN SILENT MODE (L=0), DON'T PICK SEARCH OR INQUIRY TYPE IF THERE'S A SORT TYPE OF SAME NAME
+ I 'D2&'L D  Q $D(Z) ;IN SILENT MODE, DON'T PICK SEARCH OR INQUIRY TYPE IF THERE'S A SORT TYPE OF SAME NAME
  .N NAME,I S NAME=$P(Z,U) F I=0:0 S I=$O(^DIBT("B",NAME,I)) Q:'I  I I-Y,$P($G(^DIBT(I,0)),U,4)=DL,$D(^(2)) K Z Q
  I DUZ(0)="@" Q 1
  I D2 Q:'L 1 Q:$P(Z,U,3)="" 1 Q $TR($P(Z,U,3),DUZ(0))'=$P(Z,U,3) ;IF A SORT TEMPLATE, ACCESS CODES MUST MATCH
@@ -15,19 +19,18 @@ TEM ;
  G B^DIP:DJ-1 K DPP,DIC
  S X=$P($E(X,2,99),"]",1),DIC(0)="ZQS"_$E("E",'($D(BY)#2)!''L),DIC="^DIBT(",D="F"_DL
  S DIC("S")="I $$SCREENTM^DIP11(^(0),$D(^(2)))"
- ;I $P(^(0),U,4)=DL,$S(L=0!(DUZ(0)=""@""):1,'$D(^(1)):$TR(DUZ(0),$P(^(^(0),U,6)'=DUZ(0)&$L(DUZ(0),'$P(^(0),U,5):1,1:$P(^(0),U,5)=DUZ),$D(^(1))!'$D(^(""DIS""))"
  I X?."?" S:X'?1"???" X="??" D IX^DIC S DJ=0 Q
- D ^DIC I Y<0 S DJ=0 Q
-EMPTY I '$D(^DIBT(+Y,2)),'$D(^(1)) W:'$G(DIQUIET) !,"This SEARCH template has no search results!" S DJ=0 Q
- S DPP(DJ)=DL_"^^'"_$P(Y,U,2)_"' NUMBER^@'"_P,(DIBT1,X)=+Y,DIBT2=$P(Y(0),U),D=DIC_X_C K DIC
+ D ^DIC I Y<0 S DJ=0 Q  ;LOOK UP THE SORT TEMPLATE
+EMPTY I '$D(^DIBT(+Y,2)),'$D(^(1)),'$D(^("BY0")) W:'$G(DIQUIET) !,$$EZBLD^DIALOG(1509) S DJ=0 Q  ;SORT TEMPLATE HAS NO VALUES
+ S DPP(DJ)=DL_"^^'"_$P(Y,U,2)_"' "_$$EZBLD^DIALOG(7099)_"^@'"_P,(DIBT1,X)=+Y,DIBT2=$P(Y(0),U),D=DIC_X_"," K DIC ;*CCO/NI   SORT TEMPLATE 'NUMBER'
  I '$D(FLDS),$G(^DIBT(X,"DIPT"))]"" S FLDS="["_^("DIPT")_"]" I L D
- . N %,A S %(1)=^("DIPT") D BLD^DIALOG(8030,.%,"","A") W ! F %=0:0 S %=$O(A(%)) Q:'%  W A(%),!
- . S L=0 Q
+ . ;N %,A S %(1)=^("DIPT") D BLD^DIALOG(8030,.%,"","A") W ! F %=0:0 S %=$O(A(%)) Q:'%  W A(%),!
+ . S L=0 Q  ;??
  I $D(^DIBT(X,1)) S DIC=D_1_C,DPP(DJ,"SER")="998^998" D ENT^DIP10(DJ,DIBT1) I $D(^DIBT(X,1)) S Y=1 D
  .F DY=1:1 S Y=$O(^(Y,-1)) S:Y="" Y=-1 S:$O(^(Y)) Y=$O(^(Y)) I $D(^(Y))<9 S DPP(DJ,"IX")=DIC_DI_U_DY,DIBT=X Q
  .Q
 ENDIPT I $G(^DIBT(X,"BY0"))="",'$D(^DIBT(X,2)) Q
- I $G(^DIBT(X,"BY0"))="",$G(^DIBT(X,2,0))="" S %Y="DPP(",%X=D_2_C D %XY^%RCR S DIBTOLD="" D CNVCM G T0
+ I $G(^DIBT(X,"BY0"))="",$G(^DIBT(X,2,0))="" S %Y="DPP(",%X=D_"2," D %XY^%RCR S DIBTOLD="" D CNVCM G T0
  S D=$G(^DIBT(X,"BY0")) I $P(D,U)]"",$P(D,U,2) D
  . N Y K DISPAR(0) S BY(0)="^"_$P(D,U),L(0)=$P(D,U,2)
  . F D=1:1:(L(0)-1) D
@@ -38,9 +41,9 @@ ENDIPT I $G(^DIBT(X,"BY0"))="",'$D(^DIBT(X,2)) Q
  .. Q
  . N X D EN^DIP10 Q
  ;S DJ=$O(DPP(999),-1)+1
- F D=0:0 S D=$O(^DIBT(X,2,D)) Q:'D  D
+ F D=0:0 S D=$O(^DIBT(X,2,D)) Q:'D  D  ;GO THRU THE SORT LEVELS OF THE STORED TEMPLATE
  .N A,B,C S DPP(DJ)=$G(^DIBT(X,2,D,0))
- .S A="A" F  S A=$O(^DIBT(X,2,D,A)) Q:A=""  I A'="SER" S DPP(DJ,A)=^(A)
+BRINGIN .S A="A" F  S A=$O(^DIBT(X,2,D,A)) Q:A=""  I A'="SER" S DPP(DJ,A)=^(A) I A["COMPUTED" M DPP(DJ,A)=^(A)
  .F B=1,2,3 F A=0:0 S A=$O(^DIBT(X,2,D,B,A)) Q:'A  S C=$G(^(A,0)) D
  ..I B=1 S:$P(C,U)=+C DPP(DJ,+C)=$P(C,U,2) Q
  ..I B=2 S:($P(C,U)=+C)&($P(C,U,2)=+$P(C,U,2)) DPP(DJ,+C,$P(C,U,2))=$P(C,U,3,7)_U_$G(^DIBT(X,2,D,2,A,"RCOD")) Q
@@ -50,12 +53,13 @@ ENDIPT I $G(^DIBT(X,"BY0"))="",'$D(^DIBT(X,2)) Q
 T0 Q:$D(DIBTRPT)
  I $D(DIAR) S DIARU=X ;I '$P(DIARB,U,2) S $P(DIARB,U,2)=DIARU
  F D=0:0 S D=$O(^DIBT(X,3,D)) Q:D=""  S DSC(D)=^(D)
- I 'L!($D(DPP(0))&(DUZ(0)'="@")) G T1
- S %=$P(^DIBT(X,0),U,6)
+ I 'L!($D(DPP(0))&(DUZ(0)'="@"))!$D(^DIBT(X,"CANONIC")) G T1
+ S %=$P(^DIBT(X,0),U,6) ;CHECK WRITE ACCESS TO SORT TEMPLATE
  I %]"" F D=1:1:$L(%) I DUZ(0)[$E(%,D)!(DUZ(0)="@") S %="" Q
  I %="",X'<1 S %=$P(Y(0),U,1) D  G Q:$D(DIRUT) I %=1 K DIBTOLD G EDT^DIP0
  . N X,Y K DIR S DIR(0)="Y",DIR("B")="NO",DIR("A")="WANT TO EDIT '"_%_"' TEMPLATE" D ^DIR K DIR
  . S %=Y Q
+ ;DON'T WANT TO EDIT
 T1 F DJ=$G(DPP(0))+1:1 Q:'$D(DPP(DJ))  D  I '$D(DJ)!($D(DTOUT))!($D(DIRUT)) G Q
  . N DL,DU,DV,X,Y,Z,DIFLD,DIFLDREG K DPP(DJ,"PTRIX") S DL=$P(DPP(DJ),U),Y=$P(DPP(DJ),U,2,3)
  . D DTYP^DIP1,STXT^DIP1(DJ,$G(DPP(DJ,"F")),$G(DPP(DJ,"T")),DITYP)

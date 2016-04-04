@@ -1,6 +1,10 @@
-DINIT0FE ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;06:21 PM  2 Apr 2001
- ;;22.0;VA FileMan;**62,82**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT0FE ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;29JULY2014
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**82,1039,1050**
+ ;
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0FF S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q
 ENTRY ;
@@ -32,6 +36,14 @@ ENTRY ;
  ;;=10
  ;;^DIST(.404,.400011,40,7,2)
  ;;=10,28^1^10,13^1
+ ;;^DIST(.404,.400011,40,21409,0)
+ ;;=9.5^!M^^3
+ ;;^DIST(.404,.400011,40,21409,.1)
+ ;;=S Y=$J("CANONIC FOR FILE "_$P(^DIBT(DA,0),U,4)_":",40)
+ ;;^DIST(.404,.400011,40,21409,1)
+ ;;=21409
+ ;;^DIST(.404,.400011,40,21409,2)
+ ;;=10,71^3^10,30^1 
  ;;^DIST(.404,.400011,40,8,0)
  ;;=12^(Sort Fields on Next Page...)^1
  ;;^DIST(.404,.400011,40,8,2)
@@ -108,6 +120,14 @@ ENTRY ;
  ;;=10
  ;;^DIST(.404,.401011,40,8,2)
  ;;=10,28^1^10,13^1
+ ;;^DIST(.404,.401011,40,21409,0)
+ ;;=9.5^!M^^3
+ ;;^DIST(.404,.401011,40,21409,.1)
+ ;;=S Y=$J("CANONIC FOR FILE "_$P(^DIE(DA,0),U,4)_":",40)
+ ;;^DIST(.404,.401011,40,21409,1)
+ ;;=21409
+ ;;^DIST(.404,.401011,40,21409,2)
+ ;;=10,71^3^10,30^1 
  ;;^DIST(.404,.401011,40,9,0)
  ;;=12^(Edit Fields on Next Page...)^1^^EDIT FIELD
  ;;^DIST(.404,.401011,40,9,2)
@@ -204,20 +224,6 @@ ENTRY ;
  ;;=D ACCVAL^DIU20(X)
  ;;^DIST(.404,.402011,40,7,20)
  ;;=F
- ;;^DIST(.404,.402011,40,8,0)
- ;;=8^DD AUDIT^2^^DD AUDIT
- ;;^DIST(.404,.402011,40,8,2)
- ;;=12,36^3^12,26
- ;;^DIST(.404,.402011,40,8,3)
- ;;=!M
- ;;^DIST(.404,.402011,40,8,3.1)
- ;;=I $D(^DD(DA,0,"DDA")) S Y=$P("NO^YES",U,^("DDA")="Y"+1)
- ;;^DIST(.404,.402011,40,8,20)
- ;;=Y
- ;;^DIST(.404,.402011,40,8,21,0)
- ;;=^^1^1^2981023
- ;;^DIST(.404,.402011,40,8,21,1,0)
- ;;=Enter YES if you want to audit the Data Dictionary changes
  ;;^DIST(.404,.402011,40,9,0)
  ;;=9^ASK 'OK' WHEN LOOKING UP AN ENTRY^2^^ASK OK
  ;;^DIST(.404,.402011,40,9,2)
@@ -233,7 +239,7 @@ ENTRY ;
  ;;^DIST(.404,.402011,40,9,21,1,0)
  ;;=Answer YES to cause a lookup into this file to verify the
  ;;^DIST(.404,.402011,40,9,21,2,0)
- ;;=selection by prompting with
+ ;;=selection by prompting with 
  ;;^DIST(.404,.402011,40,9,21,3,0)
  ;;=   '...OK?  YES//  '
  ;;^DIST(.404,.402011,40,9.5,0)

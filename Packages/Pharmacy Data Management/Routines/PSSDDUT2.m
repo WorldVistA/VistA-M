@@ -1,5 +1,5 @@
-PSSDDUT2 ;BIR/LDT - Pharmacy Data Management DD Utility ; 8/21/07 8:43am
- ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143**;9/30/97;Build 24
+PSSDDUT2 ;BIR/LDT - Pharmacy Data Management DD Utility ;8/21/07 8:43am
+ ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188**;9/30/97;Build 1
  ;
  ;Reference to ^DIC(42 supported by DBIA #10039
  ;Reference to ^DD(59.723 supported by DBIA #2159
@@ -216,7 +216,7 @@ NCPDPDU ;Drug file 50, field 82
  ;
 NCPDPQM ;Drug file 50, field 83
  N ZXX S PSSNQM=0,(PSSNQM2,PSSNQM3)=""
- I $G(X)<.001 K X S PSSNQM3=1 Q
+ I $G(X)<.00001 K X S PSSNQM3=1 Q
  S:$G(X)="" X=1
  I +$G(X)'=1 D NCPDPWRN D
 NCPDPQM1 . ;

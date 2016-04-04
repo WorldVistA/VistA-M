@@ -1,6 +1,10 @@
-DDBRZIS ;SFISC/DCL-BROWSER DEVICE UTILITIES ;4:50 AM  9 Apr 2006
- ;;22.0;VA FileMan;**145,148**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRZIS ;SFISC/DCL-BROWSER DEVICE UTILITIES ; 18NOV2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1032**
+ ;
 OPEN ;
  ;DDBRZIS AND DDBDMSG ARE KILLED IN POST
  S DDBRZIS=1,DDBDMSG=$G(DDBDMSG)
@@ -24,9 +28,9 @@ OPEN ;
 CLOSE ;
  Q:$G(DDBDMSG)="$$DTOUT$$"
  S DDBRZIS=$G(DDBRZIS,1)
- N C,CHAR,DDBROS,EOF,X
+ N C,CHAR,EOF,X
  K ^TMP("DDB",$J)
- S DDBROS=^%ZOSF("OS"),EOF="EOF-End Of File"
+ S EOF="EOF-End Of File"
  S CHAR="" F I=1:1:31 S CHAR=CHAR_$C(I)
  U IO W !,EOF,!
  S DDBRZIS("REWIND")=$$REWIND^%ZIS(IO,IOT,IOPAR)
@@ -37,14 +41,12 @@ CLOSE ;
  .S X=$TR(X,CHAR)
  .S:X']"" X=" "
  .S C=C+1,^TMP("DDB",$J,C)=$E(X,1,255) Q
- .Q
+IHS I C=1,^TMP("DDB",$J,C)=" " S ^TMP("DDB",$J,2)="BROWSER: No display data sent"
  Q
  ;
 POST ;
  I $G(DDBDMSG)="$$DTOUT$$" K DDBDMSG,DDBRZIS W $C(7) Q
  I $G(DDBRZIS) D BROWSE^DDBR("^TMP(""DDB"",$J)","NR",$G(DDBDMSG))
- ; *148* Moved to POST-CLOSE EXECUTE of BROWSER device
- ;I ^%ZOSF("OS")["OpenM",$G(IO("CLOSE"))]"" S DDBRZIS=$ZF(-1,"del "_ IO("CLOSE")_";*")
  K DDBRZIS,DDBDMSG
  Q
  ;

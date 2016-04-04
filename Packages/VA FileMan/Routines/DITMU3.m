@@ -1,6 +1,8 @@
-DITMU3(FILE,FIELD,ROOT) ;SFISC/EDE(OHPRD)-GET XREFS FOR ONE FIELD IN ONE FILE/SUBFILE ;
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DITMU3 ;SFISC/EDE(OHPRD)-GET XREFS FOR ONE FIELD IN ONE FILE/SUBFILE ;2015-01-03  10:14 AM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  ; Given a file/subfile number, a field number, and a variable
  ; from which to assign subscripted values, this routine will
@@ -18,6 +20,7 @@ DITMU3(FILE,FIELD,ROOT) ;SFISC/EDE(OHPRD)-GET XREFS FOR ONE FIELD IN ONE FILE/SU
  ; 2)  FIELD  = field number (call by value)
  ; 3)  ROOT   = array root (call by reference)
  ;
+EN(FILE,FIELD,ROOT) ;
 START ;
  NEW Y
  F Y=0:0 S Y=$O(^DD(FILE,FIELD,1,Y)) Q:Y'=+Y  S ROOT(FIELD,Y)=^(Y,0),ROOT(FIELD,Y,"S")=^(1),ROOT(FIELD,Y,"K")=^(2)

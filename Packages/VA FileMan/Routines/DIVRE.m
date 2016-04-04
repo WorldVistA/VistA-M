@@ -1,12 +1,16 @@
-DIVRE ;SFISC/MWE-REQ FLD(S) CHK ;2:52 PM  10 Jun 1997
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIVRE ;SFISC/MWE-REQ FLD(S) CHK ;06:27 PM  7 Dec 1999
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
 B K ^UTILITY($J),DIBT S (DK,DIC)=DI,DIC(0)="EQM",DIK=0
  W !,"CHECK WHICH ENTRY: " R X:DTIME G QQ:U[X!'$T
  I X="ALL" D ALL G QQ:$D(DIRUT) I Y S DIROOT=DIU G D
  D ^DIC I Y<0 W:X?1."?" !?3,"You may type 'ALL' to select every entry in the file.",! G B
 R S DIK=DIK+1,^UTILITY($J,"DIN",+Y)=""
- S DIC(0)="AEQM",DIC("A")="ANOTHER ONE: " D ^DIC I Y>0 G R
+ S DIC(0)="AEQM",DIC("A")=$$EZBLD^DIALOG(8199)_" " D ^DIC I Y>0 G R ;**CCO/NI 'ANOTHER ONE:'
  Q:'DIK!(X=U)
 D ;
  D S2^DIBT1 K DIRUT,DIROUT G QQ:$D(DTOUT)!($D(DUOUT))

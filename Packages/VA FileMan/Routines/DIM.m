@@ -1,12 +1,15 @@
-DIM ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Main ;5/6/97  08:34
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;12275;2236006;1898;
+DIM ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Main ;22APR2009
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1003,1035**
  ;
  S %X=X,%END="",%ERR=0,%LAST="" G ER:X'?.ANP
  ;
 GC ; get next command on line (*)
- G ER:%ERR,LAST:";"[$E(%X),ER:"BCDEFGHIKLMNOQRSUWXZ"'[$E(%X)
+ G ER:%ERR,LAST:";"[$E(%X) F  Q:$E(%X)'=" "  S %X=$E(%X,2,999)
+ G ER:"BCDEFGHIKLMNOQRSUWXZ"'[$E(%X)
  S %LAST=%X D SEP G ER:%ERR S %COM=$P(%ARG,":") ; command word
  I $L(%COM)>1 D  G ER:%ERR
  . I $T(COMMAND)'[(";"_%COM_";"),%COM'?1"Z"1.U S %ERR=1
@@ -20,7 +23,7 @@ B G GC:%ARG=""&(%COM(1)=""),BK^DIM4
 C G CL^DIM4
 D G DG^DIM3
 E G GC:%ARG=""&(%COM(1)=""),ER
-F G ER:%COM(1)]"",GC:%ARG="",FR^DIM3
+F G ER:%COM(1)]""!(";"[$E(%X)),GC:%ARG="",FR^DIM3 ;GFT-DON'T END WITH 'F'
 G G DG^DIM3
 H G GC:%ARG=""&(%COM(1)="")&(%X]""),HN^DIM3:%ARG]"",ER Q
 I G ER:%COM(1)]"",IX^DIM4

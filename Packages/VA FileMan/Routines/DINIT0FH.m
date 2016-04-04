@@ -1,6 +1,9 @@
 DINIT0FH ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;10:49 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0FI S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q
 ENTRY ;

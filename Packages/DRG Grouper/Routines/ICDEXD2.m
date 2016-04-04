@@ -1,5 +1,5 @@
 ICDEXD2 ;SLC/KER - ICD Extractor - DRG APIs (cont) ;12/19/2014
- ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
+ ;;18.0;DRG Grouper;**57,67,82**;Oct 20, 2000;Build 21
  ;               
  ; Global Variables
  ;    ^ICDS(              N/A
@@ -109,7 +109,7 @@ VMDCDX(IEN,CDT) ; Get versioned MDC for Diagnosis Code
  ;
  N ICDI,ICDD,ICDS,ICDM,ICDY S ICDI=+($G(IEN)) Q:'$D(^ICD9(ICDI,4,"B")) ""
  S ICDS=$P($G(^ICD9(+ICDI,1)),"^",1),ICDD=$$DTBR^ICDEX($G(CDT),0,ICDS)
- S (ICDM,ICDY)="",ICDY=$O(^ICD9(+ICDI,4,"B",+ICDD),-1)
+ S (ICDM,ICDY)="",ICDY=$O(^ICD9(+ICDI,4,"B",(ICDD+.0001)),-1)
  S ICDM=$O(^ICD9(ICDI,4,"B",+ICDY,ICDM))
  Q $P($G(^ICD9(ICDI,4,+ICDM,0)),U,2)
 VMDCOP(IEN,MDC,CDT) ; Get versioned MDC for Op/Pro ICD code from previous years
@@ -134,7 +134,7 @@ VMDCOP(IEN,MDC,CDT) ; Get versioned MDC for Op/Pro ICD code from previous years
  N ICDI,ICDC,ICDD,ICDO,ICDY,ICDM,ICDS S ICDI=+($G(IEN)) Q:'$D(^ICD0(ICDI,2,"B")) ""
  S ICDC=$G(MDC) Q:'$L(MDC) ""  S ICDS=$P($G(^ICD0(+ICDI,1)),"^",1)
  S ICDD=$$DTBR^ICDEX($G(CDT),0,ICDS) S (ICDM,ICDY)=""
- F  S ICDD=$O(^ICD0(ICDI,2,"B",ICDD),-1) Q:'ICDD!(ICDM>0)  D
+ S ICDD=ICDD+.0001 F  S ICDD=$O(^ICD0(ICDI,2,"B",ICDD),-1) Q:'ICDD!(ICDM>0)  D
  . S ICDY=$O(^ICD0(ICDI,2,"B",+$G(ICDD),ICDY)),ICDO=ICDD
  . S ICDM=$O(^ICD0(ICDI,2,+ICDY,1,"B",ICDC,ICDM))
  Q:'$L($G(ICDO)) ""
@@ -265,8 +265,7 @@ ISVALID(FILE,IEN,CDT) ; Is an ICD code Valid
  S ICDF=$$FILE^ICDEX(FILE) Q:"^80^80.1^"'[("^"_FILE_"^") ICDO
  S ICDR=$$ROOT^ICDEX(FILE),ICDI=+($G(IEN)) Q:+ICDI'>0 ICDO
  Q:'$D(@(ICDR_+ICDI_",0)")) ICDO  S ICDX=$$EXC^ICDEX(ICDF,ICDI) Q:ICDX>0 ICDO
- I ICDF=80.1 S ICDT=$$ICDOP^ICDEX(ICDI,ICDD,,"I") I ICDT>0,$P(ICDT,U,10) S ICDO=1
- I ICDF=80 S ICDT=$$ICDDX^ICDEX(ICDI,ICDD,,"I") I ICDT>0,$P(ICDT,U,10) S ICDO=1
+ S ICDT=$$LS^ICDEX(ICDF,ICDI,ICDD) I ICDT>0 S ICDO=1
  Q ICDO
 REF(IEN,CDT) ; Return Reference Table
  ;

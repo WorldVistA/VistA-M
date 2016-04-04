@@ -1,12 +1,14 @@
-DDWG ;SFISC/MKO-GOTO ;3:40 PM  5 Jul 1996
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDWG ;SFISC/MKO-GOTO ;05:49 PM  24 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
 GOTO ;Go to a specific location
  N DDWANS,DDWI,DDWHLP
- S DDWHLP(1)="Examples, to go to a screen:  S21, 21, S+3, +3, -3"
- S DDWHLP(2)="          to go to a line:    L53, L+4, L-5"
- S DDWHLP(3)="          to go to a column:  C40, C+10, C-20"
- D ASK(4,"Go to: ",17,"","D VALGTO",.DDWHLP,.DDWANS)
+ D BLD^DIALOG(8140,,,"DDWHLP") ;**
+ D ASK(4,$$EZBLD^DIALOG(7069)_": ",17,"","D VALGTO",.DDWHLP,.DDWANS) ;**
  I U[DDWANS
  E  I "Ss"[$E(DDWANS)!(DDWANS'?1A.E) D
  . D GOTOS
@@ -89,7 +91,7 @@ PROMPT ;Issue read
 VALGTO ;Validate DDWX
  N DDWCH
  Q:U[DDWX
- S DDWERR="Invalid format.  Enter ? for examples."
+ S DDWERR=$$EZBLD^DIALOG(1401) ;**
  Q:DDWX'?.1A.1P1.15N
  I DDWX?1A.E S DDWCH=$E(DDWX) Q:"SsLlCc"'[DDWCH
  I DDWX?.E1P.E I DDWX'["+",DDWX'["-" Q

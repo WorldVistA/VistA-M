@@ -1,6 +1,9 @@
 DIS3 ;SFISC/SEARCH - PROGRAMMER ENTRY POINT ;12/16/93  13:16
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 EN ;
  N DIQUIET,DIFM S L=$G(L),DIFM=+L D CLEAN^DIEFU,INIT^DIP
  S:$G(DIC) DIC=$G(^DIC(DIC,0,"GL")) G QER1:$G(DIC)="" N DK S DK=+$P($G(@(DIC_"0)")),U,2) G QER1:'DK

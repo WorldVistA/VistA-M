@@ -1,6 +1,9 @@
-DDW1 ;SFISC/PD KELTZ-LOAD, SAVE ;1:31 PM  16 Aug 2000
- ;;22.0;VA FileMan;**18**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDW1 ;SFISC/PD KELTZ-LOAD, SAVE ;06:11 PM  25 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**18,999**
  ;
 LOAD ;Put up "box" and load document
  N DDWI,DDWX
@@ -9,26 +12,26 @@ LOAD ;Put up "box" and load document
  I $D(DWLC)[0 D
  . S DWLC=$S($D(@DDWDIC@(0))#2:+$P(@DDWDIC@(0),U,4),1:$O(@DDWDIC@(""),-1))
  . S:$D(@DDWDIC@(1))#2 $E(DDWBF,4)=1
- S DDWCNT=$S(DWLC:DWLC,1:1)
+ S DDWCNT=$S(DWLC:DWLC,1:1)  ;HOW MANY LINES WE HAVE TOTAL
  ;
- D:DDWCNT>1 MSG^DDW("Loading text ...")
- F DDWI=DDWCNT:-1:DDWMR+1 D
+ D:DDWCNT>1 MSG^DDW("...")
+ F DDWI=DDWCNT:-1:DDWMR+1 D  ;PUT HIDDEN LINES INTO ^TMP
  . S DDWSTB=DDWSTB+1
  . S DDWX=$S('$E(DDWBF,4):$G(@DDWDIC@(DDWI,0)),1:$G(@DDWDIC@(DDWI)))
  . D:DDWX?.E1C.E CTRL
  . S ^TMP("DDW1",$J,DDWSTB)=DDWX
  ;
- F DDWI=1:1:DDWMR D
+ F DDWI=1:1:DDWMR D  ;start writing from line 1 (!)
  . S DDWX=$S(DDWI>DDWCNT:"",'$E(DDWBF,4):$G(@DDWDIC@(DDWI,0)),1:$G(@DDWDIC@(DDWI)))
  . D:DDWX?.E1C.E CTRL
  . S DDWL(DDWI)=DDWX
  . I DDWC'>IOM,DDWRW'>DDWMR,DDWI'>DDWCNT,DDWX'?." " D
- .. D CUP(DDWI,1) W $E(DDWX,1,IOM)
+ .. D CUP(DDWI,1) W $E(DDWX,1,IOM) ;HERE'S WHERE A LINE IS WRITTEN OUT
  ;
  I DDWCNT=1,DDWL(1)?1." " S DDWL(1)=""
  D:DDWCNT>1 MSG^DDW()
  ;
- D:$G(DDWED) MSG^DDW($C(7)_$P(DDGLVID,DDGLDEL,6)_"WARNING: Control characters in the text have been replaced with spaces."_$P(DDGLVID,DDGLDEL,10))
+CTRLREM D:$G(DDWED) MSG^DDW($C(7)_$P(DDGLVID,DDGLDEL,6)_$$EZBLD^DIALOG(8128)_$P(DDGLVID,DDGLDEL,10)) ;**'CONTROL CHARACTERS REPLACED'
  ;
  I DDWRW="B" D
  . D BOT^DDW3
@@ -54,9 +57,9 @@ BOX ;Draw box
  ;
  D CUP(0,1) W $TR($J("",IOM)," ","=")
  I DDWRAP S DX=2 X IOXY W "[ WRAP ]"
- S DX=12 X IOXY W $S(DDWREP:"[ REPLACE ]",1:"[ INSERT ]=")
+ S DX=12 X IOXY W "["_$$UP^DILIBF($P($$EZBLD^DIALOG(7002),U,$S(DDWREP:2,1:1)))_"]" ;**INSERT/REPLACE
  S DX=40-($L(DDWX)\2) X IOXY W "< "_$E(DDWX,1,30)_" >"
- S DX=61 X IOXY W "[ <PF1>H=Help ]"
+ N DDWH S DDWH="["_$$EZBLD^DIALOG(8074)_"]",DX=76-$L(DDWH) X IOXY W DDWH ;**
  ;
  D CUP(DDWMR+1,1) W $E(DDWRUL,1,IOM)
  I DDWLMAR-DDWOFS'<1,DDWLMAR-DDWOFS'>IOM D
@@ -106,7 +109,7 @@ SV ;Called from DDWT1 and AUTOSV
  ;
 SAVE ;Save document
  N DDWI,DDWLMEM,DDWLSTB,DDWX
- D MSG^DDW("Saving text ...") H .5
+ D MSG^DDW($$EZBLD^DIALOG(8075.5)) H .5 ;**'SAVING CHANGES'
  S DDWCNT=0
  K @DDWDIC
  ;
@@ -146,7 +149,7 @@ QUIT ;If any edits were made, issue confirmation prompt.
  S DDWHLP(2)="  Enter 'No' to discard changes and quit."
  S DDWHLP(3)="  Enter '^' to return to the editor without saving or quitting."
  ;
- D ASK^DDWG(5,"Do you want to save changes? ",3,"","D QUITVAL^DDW1",.DDWHLP,.DDWANS,.DDWCOD)
+ D ASK^DDWG(5,$$EZBLD^DIALOG(8075.1),3,"","D QUITVAL^DDW1",.DDWHLP,.DDWANS,.DDWCOD) ;**'DO YOU WANT TO SAVE CHANGES? '
  ;
  I DDWCOD="TO"!(DDWANS=U) K DDWFIN
  E  I DDWANS="Y" D SAVE K DUOUT ;GFT
@@ -155,12 +158,12 @@ QUIT ;If any edits were made, issue confirmation prompt.
 QUITVAL ;Validate responses to the confirmation prompt
  K DDWERR
  I DDWX[U!($P(DDWCOD,U)="TO") S DDWX=U Q
- I DDWX="" S DDWERR="  Response is required.  Enter ? for help." Q
+ I DDWX="" S DDWERR=$$EZBLD^DIALOG(8041) Q  ;**'REQUIRED'
  ;
- S:DDWX?.E1L.E DDWX=$TR(DDWX,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ S:DDWX?.E1L.E DDWX=$$UP^DILIBF(DDWX) ;**
  ;
  I $P("YES",DDWX)]"",$P("NO",DDWX)]"" D  Q
- . S DDWERR="  Not a valid response.  Enter ? for help."
+ . S DDWERR=$$EZBLD^DIALOG(1401) ;**'NOT VALID'
  ;
  S DDWX=$E(DDWX)
  Q

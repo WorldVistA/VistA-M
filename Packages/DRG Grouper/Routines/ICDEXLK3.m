@@ -1,5 +1,5 @@
-ICDEXLK3 ;SLC/KER - ICD Extractor - Lookup, Search ;12/19/2014
- ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
+ICDEXLK3 ;SLC/KER - ICD Extractor - Lookup, Search ;07/15/2015
+ ;;18.0;DRG Grouper;**57,67,82**;Oct 20, 2000;Build 21
  ;               
  ; Global Variables
  ;    ^ICDS(              N/A
@@ -98,6 +98,12 @@ LK2() ; Lookup - Part 2
  S:$D(^ICDS(+SYS,0))&(+VER>0) CDT=$$DTBR^ICDEX(CDT,,+($G(SYS)))
  S OUT=$G(OUT) S:+OUT'>0 OUT=1 S:+OUT>4 OUT=1
  S INP1=$E(TXT,1),INP2=$E($G(TXT),2,245)
+ ;
+ I INP1="`",INP2?1N.N D  Q:+($G(^TMP(SUB,$J,"SEL",0)))>0 +($G(^TMP(SUB,$J,"SEL",0)))
+ . N ICDCDT,IEN1,IEN2 S ICDCDT=$G(CDT) D IEN^ICDEXLK5
+ . I +($G(Y))>0 D FND^ICDEXLK5(ROOT,+($G(Y)),CDT,SYS,VER,+($G(LOR)),OUT)
+ . D:$O(^TMP("ICD9",$J,"FND","IEN",0))>0 SEL^ICDEXLK5(ROOT,1)
+ ;
  Q:$D(^TMP(SUB,$J)) +($G(^TMP(SUB,$J,"SEL",0)))
  ;   Exact Match
  I $L(TXT) D

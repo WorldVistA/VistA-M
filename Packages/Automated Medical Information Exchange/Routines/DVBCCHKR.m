@@ -1,5 +1,5 @@
-DVBCCHKR ;ALB/GTS-557/THM-CHECK C&P REQUEST FOR CRITICAL DATA ; 4/23/91  7:53 AM
- ;;2.7;AMIE;**17**;Apr 10, 1995
+DVBCCHKR ;ALB/GTS-557/THM-CHECK C&P REQUEST FOR CRITICAL DATA ; 2/12/03 9:44am
+ ;;2.7;AMIE;**17,194**;Apr 10, 1995;Build 5
  ;
  ;** Version Changes
  ; 2.7 - GTS/C&P appt links report (Enhc 13)
@@ -8,7 +8,8 @@ DVBCCHKR ;ALB/GTS-557/THM-CHECK C&P REQUEST FOR CRITICAL DATA ; 4/23/91  7:53 AM
  ;
 CHECK N OLDX
  S OLDX=X,DTA=^DVB(396.3,DA,0),DTB=$S($D(^DVB(396.3,DA,1)):^(1),1:"")
- Q:$P(DTA,U,18)["X"  F XI=2,3,4,10,18 I $P(^DVB(396.3,DA,0),U,XI)="" S X=X_XI_U
+ ;RRA DVBA*194 priority of exam no longer populated so remove from validation list
+ Q:$P(DTA,U,18)["X"  F XI=2,3,4,18 I $P(^DVB(396.3,DA,0),U,XI)="" S X=X_XI_U
  I $P(DTB,U,4)="" S X=X_99_U
  I $O(^DVB(396.4,"C",DA,0))="" S X=X_98_U ;no exams selected
  S REQDA=DA,NAME=$P(^DPT(DFN,0),U,1) D:STYLEIND'="4" LINKCK
@@ -45,11 +46,11 @@ PRINT1 I (IOST?1"C-".E),($Y>(IOSL-2)) D TERM^DVBCUTL3 S:$D(GETOUT) DVBCQUIT=""
  ;
 EN D HOME^%ZIS S FF=IOF
  W @FF,!!,"This report will check the 2507 REQUEST file for missing crucial data.",!!,"All requests will be checked and those found missing any of the following",!,"will be reported:",!!
- W "1)  Request date",!,"2)  Regional office number",!,"3)  Requester",!,"4)  Priority of exam",!
- W "5)  Request status",!,"6)  Routing location",!,"7)  No exams selected"
+ W "1)  Request date",!,"2)  Regional office number",!,"3)  Requester",!
+ W "4)  Request status",!,"5)  Routing location",!,"6)  No exams selected"
  D SETSTYLE
  W:STYLEIND=4 !
- W:STYLEIND'="4" !,"8)  Requests older than 3 days without C&P Appt links ",!
+ W:STYLEIND'="4" !,"7)  Requests older than 3 days without C&P Appt links ",!
  W ! K PARAMDA
  ;
 ASK W "Do you want to continue" S %=2 D YN^DICN G:$D(DTOUT) EXIT

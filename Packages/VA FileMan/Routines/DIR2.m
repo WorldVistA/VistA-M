@@ -1,13 +1,19 @@
-DIR2 ;SFISC/XAK-READER (SETUP VARS,REPLACE...WITH) ;5:51 AM  15 Feb 2000
- ;;22.0;VA FileMan;**30**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- ; Check that the inputs to the reader are there and setup variables
+DIR2 ;SFISC/XAK-READER (SETUP VARS,REPLACE...WITH) ;2015-01-02  3:56 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**30,999,1038,1042,1044,1051**
+ ;
  K Y,% S U="^"
+ D DIR("A"),DIR("?"),DIR("L"),DIR("B") ;**
  S %T=$E(DIR(0)),%A=$P(DIR(0),U),%B=$P(DIR(0),U,2),%N=%A'["V"
  K:$D(DIR("A"))=10 DIR("A") K:$D(DIR("?"))=10 DIR("?")
  S %W0=$S($D(DIR("?")):DIR("?"),%T'?.AN:"",'$P($T(@(%T_1)),";",5):"",1:$$EZBLD^DIALOG($P($T(@(%T_1)),";",5)))
  S %A0=$$EZBLD^DIALOG(8041)
- I %A?.NP1",".ANP S %B1=$P(%A,","),%B2=+$P(%A,",",2) G:'$D(^DD(%B1,%B2,0)) EO S %B3=^(0),%B=$P(%B3,U,2) G:%B EO D:'$D(DIR("B")) DA^DIRQ:$D(DA)#2 S:'$D(DIR("A")) %P=$P(%B3,U)_": " S:$P(%B3,U,2)'["R" %A=%A_"O" S %T=1 G NN
+ ;I %T="t" D SETUP^DIRUD Q  ;if this a user-defined data type read
+ ;**CCO/NI (next line) SPECIFICATION OF READ IS 'DATA DICTIONARY', SO GET FIELD LABEL AND PROPERTIES
+ I %A?.NP1",".ANP S %B1=$P(%A,","),%B2=+$P(%A,",",2) G:'$D(^DD(%B1,%B2,0)) EO S %B3=^(0),%B=$P(%B3,U,2) G:%B EO D:'$D(DIR("B")) DA^DIRQ:$D(DA)#2 S:'$D(DIR("A")) %P=$$LABEL^DIALOGZ(%B1,%B2)_": " S:$P(%B3,U,2)'["R" %A=%A_"O" S %T=1 G NN
  I "FSYENDLP"'[%T G EO
  S %B1=$P(%B,":"),%B2=$P(%B,":",2),%B3=$P(%B,":",3)
  S:'$L(%B2) %B2=$S(%T="D":9991231,%T="F":245,1:999999999999)
@@ -21,7 +27,7 @@ NN D:%T="S" S0:%A'["A" Q:$D(%P)
  S %P="" I %A["A" S:$D(DIR("A")) %P=DIR("A") Q
  I '$D(DIR("A")) S %P=$$EZBLD^DIALOG($P($T(@%T),";",4)) I %T="D" S %P=%P_$S(%B3["R":$$EZBLD^DIALOG(8043),%B3["T":$$EZBLD^DIALOG(8044),1:"")
  S:$D(DIR("A")) %P=$S(%T="Y":DIR("A")_"? ",%T="S":$$EZBLD^DIALOG(8045,DIR("A")),1:DIR("A")_": ") I "LND"'[%T Q
- I $L(%B1) S %P=%P_" ("_$S(%T="D":+$E(%B1,4,5)_"/"_+$E(%B1,6,7)_"/"_(1700+$E(%B1,1,3))_" - "_+$E(%B2,4,5)_"/"_+$E(%B2,6,7)_"/"_(1700+$E(%B2,1,3)),1:%B1_"-"_%B2)_")"
+ I $L(%B1) S %P=%P_" ("_$S(%T="D":$$DATE^DIUTL(%B1)_"-"_$$DATE^DIUTL(%B2),1:%B1_"-"_%B2)_")" ;**
  S %P=%P_$S("?: "[$E(%P,$L(%P)):"",1:":")_" "
  Q
 S0 S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIALOG($P($T(@%T),";",4)))
@@ -38,18 +44,33 @@ S0 S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIAL
  Q
 EO S %T="",Y=-1 Q
  ;
-RW ; Replace...With...
- N %,L S DG=Y S:$D(DTIME)[0 DTIME=999
+DIR(DIALA) ;** INSERTS DIALOGS INTO DIR ARRAY
+ N DIALN,DIALP
+ S DIALN=$G(DIR("DIALOG",DIALA))
+ Q:'$D(^DI(.84,0))  Q:+DIALN'=DIALN  Q:'$D(^(DIALN,2))  ;GIVES US A MAKED REFERENCE PRIOR TO CALLING $$EZBLD^DIALOG
+ I $D(DIR("DIALOG",DIALA))>9 M DIALP=DIR("DIALOG",DIALA)
+ K DIR(DIALA) D BLD^DIALOG(DIALN,.DIALP,,"DIR(DIALA)","F")
+ Q
+ ;
+ ;
+RW ; Replace...With..   ENTER WITH 'Y', EXIT WITH 'Y' CHANGED.
+ N %,L,DINAKED S DINAKED=$NA(^(0)),DG=Y S:$D(DTIME)[0 DTIME=999
 A W:$X>50 ! K DTOUT W $$EZBLD^DIALOG(8047) R X:DTIME E  S DTOUT=1,X=""
- G B:X="",Q:X?1."^",Q:$E(X)=U&($D(DIRWP)[0)&(Y'[X),Q:X?."?",Q:X="@",E2:X="END"!(X="end")
+ G B:X="",Q:X?1."^",Q:$E(X)=U&($D(DIRWP)[0)&(Y'[X),Q:X?."?",Q:X="@"
+ I X="END"!(X="end")!(X=$$UP^DILIBF($$EZBLD^DIALOG(7097))) S L=0 D H S:'%&'$D(DTOUT) Y=Y_X G A ;**CCO/NI 'END'
  I Y[X S D=X,L=$L(X) D H S:'%&'$D(DTOUT) Y=$P(Y,D,1)_X_$P(Y,D,2,999) G A
  S D=$P(X,"...",1),DH=$F(Y,D) I DH S X=$P(X,"...",2,99),X=$S(X="":$L(Y)+1,1:$F(Y,X,DH)) I X S DH=DH-$L(D)-1,D=X,L=D-DH-1 D H S:'%&'$D(DTOUT) Y=$E(Y,1,DH)_X_$E(Y,D,999) G A
  W $C(7)," ??" G A
-H W $$EZBLD^DIALOG(8048) R X:DTIME E  S DTOUT=1,X="",%=0 W $C(7)," ??" Q
- S %=$L(Y)-L+$L(X)>245 I % W $C(7),$S($L(Y)-L'>245:$$EZBLD^DIALOG(349,($L(Y)-L+$L(X)-245)),X'=U:$$EZBLD^DIALOG(350),1:" ??") Q:$L(Y)-L>245&(X=U)  G H
- Q:X?.ANP  W $C(7)," ??" G H
-E2 S L=0 D H S:'%&'$D(DTOUT) Y=Y_X G A
+ ;
+H N DIMAX
+WITH W $$EZBLD^DIALOG(8048) R X:DTIME E  S DTOUT=1,X="",%=0 W $C(7)," ??" Q
+ S DIMAX=$G(^DD("STRING_LIMIT"),255)-10,%=$L(Y)-L+$L(X)>DIMAX
+ I % W $C(7),$S($L(Y)-L'>DIMAX:$$EZBLD^DIALOG(349,($L(Y)-L+$L(X)-DIMAX)),X'=U:$$EZBLD^DIALOG(350),1:" ??") Q:$L(Y)-L>DIMAX&(X=U)  G WITH
+ Q:X?.ANP  W $C(7)," ??" G WITH
+ ;
 B W:$D(DTOUT) $C(7) I DG'=Y S X=Y W !?3 W X I X="" S X="@"
+ D:$D(DINAKED)
+ .I $D(@DINAKED)
 Q Q
  ;
 F ;;Enter response: ;8051

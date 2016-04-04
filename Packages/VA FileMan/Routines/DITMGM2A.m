@@ -1,6 +1,9 @@
-DITMGM2A ;SFISC/EDE(OHPRD),TKW-CONTINUATION OF ^DITMGM2 ;4/7/94  08:49
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DITMGM2A ;SFISC/EDE(OHPRD),TKW-CONTINUATION OF ^DITMGM2 ;8MAR2006
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1022**
  ;
 FIELD ; PROCESS ONE FIELD IN ONE FILE/SUBFILE
  S DITMGMPF=^UTILITY("DITMGMRG",$J,DITMGMFL,DITMGMFD)
@@ -39,7 +42,7 @@ M2 I DICNT=DIEND S DITMGMN=DITMGZZZ Q
 NOXREF ; FILES WITH NO REGULAR XREF ON POINTING FIELD
  I DITMGMDI,'DITMGMMU S DITMGMN=$S($D(@(DITMGMG_DITMGMF_")")):DITMGMF,1:"") D:DITMGMN ENTRY Q  ; If DINUM file xref not needed
  I '$D(@(DITMGMG_"0)")) W:'$D(DITMGM2("NOTALK")) !,"No Data Global:  ",DITMGMG Q
- I '$D(^%ZTSK)!($P(@(DITMGMG_"0)"),U,4)<3001) D SEARCH Q  ; If <= 3000 search gbl
+IHS D SEARCH Q  ;WON'T FALL THRU
  W:'$D(DITMGM2("NOTALK")) !,"No REGULAR xref on ",DITMGMFL,",",DITMGMFD," Merging entries for this file will",!,"now occur via Taskman in background!"
  ; SETUP CALL TO TASKMAN
  K DITMGMZT S:$D(ZTSK) DITMGMZT=ZTSK

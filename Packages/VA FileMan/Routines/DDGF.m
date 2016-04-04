@@ -1,6 +1,9 @@
-DDGF ;SFISC/MKO-FORM BUILDING TOOL ;08:38 AM  12 Aug 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDGF ;SFISC/MKO-FORM BUILDING TOOL ;7JAN2003
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1003**
  ;
  ;Program-wide variables
  ; DDGFILE  = File number^File name
@@ -34,11 +37,11 @@ STATUS ;Paint status line
  S DY=IOSL-6 X IOXY
  W "File: "_$P(DDGFFILE,U,2)_" (#"_$P(DDGFFILE,U)_")"
  I $D(DDGFBV)#2 S DX=46 X IOXY W "BLOCK VIEWER"
- W !,"Form: "_$P(DDGFFM,U,2)
+ W !,"Form: "_$P(DDGFFM,U,2)_" (#"_+DDGFFM_")"
  S N=$G(@DDGFREF@("F",+$G(DDGFPG)))
  W !,"Page: "_$S(N]"":$P(N,U,6)_" ("_$P(N,U,5)_")",1:""),!!!
- I $D(DDGFBV)#2 W $P(DDGLVID,DDGLDEL)_"<PF1>V=Main Screen  <PF1>H=Help"_$P(DDGLVID,DDGLDEL,10)
- E  W $P(DDGLVID,DDGLDEL)_"<PF1>Q=Quit  <PF1>E=Exit  <PF1>S=Save  <PF1>V=Block Viewer  <PF1>H=Help"_$P(DDGLVID,DDGLDEL,10)
+ I $D(DDGFBV)#2 W $P(DDGLVID,DDGLDEL)_"<F1>V=Main Screen  <F1>H=Help"_$P(DDGLVID,DDGLDEL,10)
+ E  W $P(DDGLVID,DDGLDEL)_"<F1>Q=Quit  <F1>E=Exit  <F1>S=Save  <F1>V=Block Viewer  <F1>H=Help"_$P(DDGLVID,DDGLDEL,10)
  Q
  ;
 MSG(M) ;Print message

@@ -1,6 +1,11 @@
-DINIT42 ;SFISC-INITIALIZE VA FILEMAN ;10MAR2008
- ;;22.0;VA FileMan;**76,157**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DINIT42 ;SFISC/XAK-INITIALIZE VA FILEMAN ;10MAR2008
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,999,1022,1031**
+ ;
+ I $G(^DD("FUNC",89,0))="DUPLICATED" S DA=89,DIK="^DD(""FUNC""," D ^DIK
  S %=47
 DD F I=1:5 S X=$E($T(DD+I),4,999),%=%+1 G FUNC:X?.P S ^DD("FUNC",%,0)=$P(X,";"),Y=I F DU=1,2,3,9 S Y=Y+1,X=$E($T(DD+Y),4,999) I X]"" S ^(DU)=X
  ;;PARAM

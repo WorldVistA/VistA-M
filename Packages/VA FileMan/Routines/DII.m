@@ -1,38 +1,18 @@
-DII ;SFISC/GFT,XAK,TKW-OPTION RDR, INQUIRY ;5:21 AM  15 Mar 2005
-V ;;22.0;VA FileMan;**64,81,143**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DII ;SFISC/GFT,XAK,TKW-OPTION RDR, INQUIRY ;2015-01-01  10:45 AM
+V ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
- W !!,"VA FileMan "_$P($T(V),";",3),!
- ;
- ;If not Stand Alone make sure DUZ is defined ;22*143
- I '+$G(DUZ),$D(^VA(200,0))#2 D  I '+$G(DUZ) W $C(7),!,$$EZBLD^DIALOG(7005),! Q
- . ;If ASKDUZ^XUP available, use it first
- . I $L($T(ASKDUZ^XUP)) N DIR,DIRUT,DUOUT,DTOUT D  Q:($D(DUOUT)!$D(DTOUT))
- .. N XUEOFF,XUEON,DIDUZ
- .. I '$D(^%ZOSF("EOFF")) Q
- .. I '$D(^%ZOSF("EON")) Q
- .. W !,"Your Identity(DUZ) is 0(zero).",!,"Please identify yourself.",!
- .. S:$G(DUZ(0))]"" DIDUZ=DUZ(0)
- .. S XUEOFF=^%ZOSF("EOFF"),XUEON=^%ZOSF("EON")
- .. D ASKDUZ^XUP ;IA #4596
- .. S:$G(DIDUZ)]"" DUZ(0)=DIDUZ
- .. Q
- . ;If DUZ is still undefined as last resort call DIC
- . I '+$G(DUZ) D  Q
- .. N DIC,DTOUT,DUOUT,DIDUZ
- .. S:$G(DUZ(0))]"" DIDUZ=DUZ(0)
- .. W $C(7),!,"Your Identity(DUZ) is still 0(zero).",!,"You need to identify yourself!",!
- .. S DUZ=0,DIC=200,DIC(0)="AEFNQZ",DIC("A")="New Person?: "
- .. ;Can't be POSTMASTER or SHARED MAIL and have an ACCESS CODE
- .. S DIC("S")="I ((+Y'<1)&($P(^(0),""^"",3)]""""))"
- .. D ^DIC
- .. I +Y'>1 Q
- .. S DUZ=+Y
- .. S DUZ(0)=$P(^VA(200,DUZ,0),U,4)
- .. S:$G(DIDUZ)]"" DUZ(0)=DIDUZ
- .. Q
- . Q
- ;
+ D
+ .N VERSION,X D VERSION^DI W !!,X,!
+ I '$G(DUZ),$D(^VA(200,0))#2 D  I '$G(DUZ) W $C(7),!,$$EZBLD^DIALOG(7005),! Q  ;MUST HAVE DUZ!
+ . N DIC,DTOUT,DUOUT,DIIDUZ0
+ASK . S DUZ=0,DIIDUZ0=$G(DUZ(0)),DIC=200,DIC(0)="AEFNQZ",DIC("A")="Identity = ",DIC("S")="I Y'<1&$L($P(^(0),U,3))"
+ . D ^DIC Q:Y'>0
+ . S DUZ=+Y,DUZ("LANG")=$P($G(^(200)),U,7),DUZ(1)="",DUZ(2)=$O(^VA(200,DUZ,2,0)),DUZ(0)=$S(DIIDUZ0]"":DIIDUZ0,1:$P(Y(0),"^",4)) ;DON'T LET DUZ(0) GET CLOBBERED
+ . S DUZ("AG")=$P($G(^XTV(8989.3,1,0)),"^",8) S:'DUZ(2) DUZ(2)=+$P($G(^("XUS")),U,17)
+ . S:'$G(DUZ("LANG")) DUZ("LANG")=$P($G(^XTV(8989.3,1,"XUS")),U,7)
 NOKL D DT^DICRW,OS S DIK="^DOPT(""DII""," G F:$D(^DOPT("DII",9)) S ^(0)="OPTION^1.01^" F I=1:1 S X=$E($T(F+I),4,99) Q:X=""  S ^DOPT("DII",I,0)=X
  D IXALL^DIK
 F S DIC=DIK,DIC(0)="AEQZ" D ^DIC K DIC,DIK G Q:Y<0 S X=$P(Y(0),U,2,99) K Y D @X W !!! D Q G NOKL
@@ -51,10 +31,12 @@ Q D Q^DIB,Q^DICATT2,Q^DIARB
  K A0,D9,DNP,DCC,DIJ,DP,DM,DQ,DICATT,DIFLD,D0,DIEL,DL,DC,DU,DIP
  K DH,DIYS,DINS,DIPT,DHD,DCL,DPP,DPQ,DALL,DIRUT,DIROUT,DUOUT,DTOUT
  Q
+ ;
+ ;
 INQ ;
  W !! D ^DICRW Q:'$D(DIC)  S DI=DIC,DPP(1)=+Y_"^^^@",DK=+Y I $D(DICS) S DICSS=DICS
 B K ^UTILITY($J),^(U,$J),DIC,DIQ,DISV,DIBT,DICS S DIC=DI,DIC(0)="AEQM",DIK=0
-R D ^DIC I Y>0 S DIK=DIK+1,^UTILITY(U,$J,DIK,+Y)="",DIC("A")="ANOTHER ONE: " G R
+R D ^DIC I Y>0 S DIK=DIK+1,^UTILITY(U,$J,DIK,+Y)="",DIC("A")=$$EZBLD^DIALOG(8199)_" " G R ;**CCO/NI 'ANOTHER ONE:'
 S G Q^DIP:'DIK!(X=U) G:DIK'>3 O
  D  K DIRUT,DIROUT
  . N DIK,DI,DICSS,DX D S2^DIBT1 Q
@@ -62,12 +44,14 @@ S G Q^DIP:'DIK!(X=U) G:DIK'>3 O
  F X=1:1:DIK S ^DIBT(+Y,1,+$O(^UTILITY(U,$J,X,0)))=""
  S ^DIBT(+Y,"QR")=DT_U_DIK
 O K DIC G Q^DIP:$D(DTOUT) S DIC=DI,%=1
- W !,"STANDARD CAPTIONED OUTPUT" D YN^DICN G Q^DIP:%<0
- I '% W !?5,"Answer 'N' to create a formatted display as in the Print Option." G O
- I %=2 S L=1,Q="""",DPP=1,DPP(1,"IX")="^UTILITY(U,$J,"_DI_"^2" S:$D(DICSS) DICS=DICSS G N^DIP1
+ I $$FIND^DIUCANON(.4,DK) S %=2 G ASKFLDS ;there may be a standard PRINT TEMPLATE
+ W !,$$EZBLD^DIALOG(8198) D YN^DICN G Q^DIP:%<0 ;'STANDARD CAPTIONED OUTPUT?'
+ I '% D BLD^DIALOG(9108),MSG^DIALOG("WH") G O ;**CCO/NI 'ANSWER NO ....'
+ASKFLDS I %=2 S L=1,Q="""",DPP=1,DPP(1,"IX")="^UTILITY(U,$J,"_DI_"^2" S:$D(DICSS) DICS=DICSS G N^DIP1 ;GO TO ASKING PRINT FIELDS
  D C G:$D(DIRUT) Q
  S IOP="HOME" D ^%ZIS I $D(DICSS) S DICS=DICSS
-DIQ N S S S=1 F DIK=1:1:DIK S DA=+$O(^UTILITY(U,$J,DIK,0)) W ! D:DIK>1 LF^DIQ Q:'S  D CAPTION^DIQ(DK,DA,DIQ(0)) G:'S Q  S S=S+2
+DIQ N S S S=1,$Y=0 F DIK=1:1:DIK S DA=+$O(^UTILITY(U,$J,DIK,0)) W ! D:DIK>1 LF^DIQ Q:'S  D  G:'S Q  S S=S+2
+ .N DIK D CAPTION^DIQ(DK,DA,DIQ(0))
  W !! Q:$D(DTOUT)  G B
  ;
 P G Q^DI
@@ -88,8 +72,7 @@ C ;called from ^DIP21
  D ^DIR Q:$D(DIRUT)
  F I=1:1 S X=$P($P(DITXT,";",I),":") Q:X=""  I X=Y S DIQ(0)=$S(I=2:"C",I=3:"R",I=4:"CR",1:"") Q
  I X'=Y S DIRUT=1 Q
- I $D(^DIA(DK)) S DIR(0)="Y",DIR("A")="DISPLAY AUDIT TRAIL",DIR("B")="No",DIR("?")="Answer 'Y' to display the audit trail for each Entry." D ^DIR Q:$D(DIRUT)  S:Y=1 DIQ(0)=DIQ(0)_"A"
+A I $D(^DIA(DK)) S DIR(0)="Y",DIR("A")=$$EZBLD^DIALOG(8197),DIR("B")="No",DIR("?")=$$EZBLD^DIALOG(9109) D ^DIR Q:$D(DIRUT)  S:Y=1 DIQ(0)=DIQ(0)_"A" ;**CCO/NI 'AUDIT TRAIL' QUERY & HELP
  Q
  ;7004  N:No;Y:Yes;R:Record Number;B:Both Computed and Number
- ;7005  You must have a valid DUZ! ;22*143
  ;8002  Include COMPUTED fields

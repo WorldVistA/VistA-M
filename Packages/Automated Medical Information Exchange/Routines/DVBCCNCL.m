@@ -1,5 +1,5 @@
 DVBCCNCL ;ALB/GTS - 557/THM-2507 CANCEL REQUESTS, EXAMS ; 9/23/91  9:25 AM
- ;;2.7;AMIE;**102,184**;Apr 10, 1995;Build 10
+ ;;2.7;AMIE;**102,184,194**;Apr 10, 1995;Build 5
  ;
  G EN
 LOOK1 S EXAM=$S($D(^DVB(396.6,$P(^DVB(396.4,JZ,0),U,3),0)):$P(^(0),U,1),1:"Unknown")
@@ -30,6 +30,7 @@ DATA K EXMPTR,NCN
  D HDR^DVBCUTIL
 EXMSEL S REQDA=DA(1),Y=$$EXSRH^DVBCUTL4("Select EXAM TO CANCEL: ","I $D(^DVB(396.4,""ARQ""_REQDA,+Y))") ;*Exam lookup function call
  K DIC("S"),REQDA
+ N DVBACR
  G:$D(DTOUT) EXIT I X=""!(X=U)&($D(CANC)) D BULL^DVBCCNC1 G LOOK
  I $D(X),X=""!(X=U)&('$D(CANC)) G LOOK
  I Y=-1 W *7,"  ??" G EXMSEL  ;DVBA*2.7*102
@@ -41,7 +42,12 @@ EXMSEL S REQDA=DA(1),Y=$$EXSRH^DVBCUTL4("Select EXAM TO CANCEL: ","I $D(^DVB(396
  ;
  ;  ** If selected an exam, enter Cancellation Reason.
  S DVBCMSG=" for this "_EXMNM_" exam:",EXMCNC="" D CODE G:$D(OUT) EXIT
- S DR="52R;.04////"_CCODE_";51////^S X=DUZ;50///NOW",DIE="^DVB(396.4,"
+ ;RRA DVBA*2.7*194 filter out inactive cancelation reasons
+ S DIC="^DVB(396.5,",DIC(0)="QEAZ",DIC("S")="I $P(^(0),U,3)=1"
+ F  D ^DIC Q:X'=""  W " ??",!,"     Enter the response which best describes the reason for the cancellation."
+ I +Y<0 G EXIT
+ S DVBACR=+Y
+ S DR="52////"_DVBACR_";.04////"_CCODE_";51////^S X=DUZ;50///NOW",DIE="^DVB(396.4,"
  S DA=EXMPTR D ^DIE K DR,DIE G:($D(Y))!($D(DTOUT)) EXIT
  S STAT=$P(^DVB(396.4,DA,0),U,4),REASON=+$P(^DVB(396.4,DA,"CAN"),U,3)
  G:REASON=0 LOOK S $P(^TMP($J,EXMNM),U,1)=STAT

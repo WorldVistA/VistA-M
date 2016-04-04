@@ -1,6 +1,9 @@
-DDSDBLK ;SFISC/MKO-DELETE UNUSED BLOCKS ;09:15 AM  18 Aug 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSDBLK ;SFISC/MKO-DELETE UNUSED BLOCKS ;01:25 PM  11 Oct 1999
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
  ;
  N %,D,DIAC,DIC,DIFILE,DIOVRD,X,Y
  D INIT
@@ -58,7 +61,7 @@ FINDALL(DDSBLK) ;Find all unused blocks
 FILE() ;Prompt for form
  ;Select file
  N DIC,Y
- S DDS1="PURGE UNUSED BLOCKS FROM" D W^DICRW K DDS1 G:Y<0 FILEQ
+EGP S DDS1=8108.1 D W^DICRW K DDS1 G:Y<0 FILEQ ;**CCO/NI  'PURGE UNUSED BLOCKS'
  S:'$D(@(DIC_"0)")) Y=-1
 FILEQ Q Y
  ;

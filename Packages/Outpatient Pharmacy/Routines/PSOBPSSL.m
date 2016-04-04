@@ -1,5 +1,5 @@
 PSOBPSSL ;ALB/EWL - ePharmacy Site Parameters Definition ;03/20/2013
- ;;7.0;OUTPATIENT PHARMACY;**421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**421,427**;DEC 1997;Build 21
  ;
  ; This routine is called from PSOBPSSP from the DP - Display Site Parameters 
  ; action item.  That is the only way this routine should be entered.
@@ -131,7 +131,7 @@ GETDATA(IEN,DATA,NXTLINE) ; Adds and formats data from one Pharmacy Division
  ; NXTLINE - output parameter - returns line counter/number of lines in list
  ;
  ; check parameters
- I '$G(IEN) Q 0 ; No parent divison passed
+ I '$G(IEN) Q 0 ; No parent division passed
  I $L($G(DATA))<1 Q 0 ; No array passed to the routine
  I '$D(NXTLINE) Q 0 ; No line number passed must be >= 0
  ;
@@ -145,7 +145,7 @@ GETDATA(IEN,DATA,NXTLINE) ; Adds and formats data from one Pharmacy Division
  ; GETS - array for output from LIST^DIC and processed codes
  ; IORVON & IORVOFF are Kernel Video Variables used for List Manager formatting
  ;
- N PSOI,GETS,WLSTDAYS,CODE,AUTOSEND,REJEXPL,THRESHLD,SITE
+ N PSOI,GETS,WLSTDAYS,PAUSE,CODE,AUTOSEND,REJEXPL,THRESHLD,SITE
  ;
  ; Get the high level site parameters
  S SITE=$$GET1^DIQ(52.86,IEN_",",.01)
@@ -154,11 +154,17 @@ GETDATA(IEN,DATA,NXTLINE) ; Adds and formats data from one Pharmacy Division
  S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="Pharmacy Division: "_$G(SITE)
  D CNTRL^VALM10(NXTLINE,1,80,IORVON,IORVOFF)
  ;
- ; Get the site worklist days
- S WLSTDAYS=$$GET1^DIQ(52.86,IEN_",",4)
+ ; Display General Parameters
  S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="  General Parameters"
  D CNTRL^VALM10(NXTLINE,3,18,IOUON,IOUOFF)
+ ;
+ ; Get the site worklist days
+ S WLSTDAYS=$$GET1^DIQ(52.86,IEN_",",4)
  S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="  Reject Worklist Days: "_$G(WLSTDAYS)
+ ;
+ ; Get the ePharmacy Response Pause
+ S PAUSE=$$GET1^DIQ(52.86,IEN_",",6)
+ S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="  ePharmacy Response Pause: "_$G(PAUSE)
  ;
  ; Process the site transfer reject codes
  ;
@@ -243,4 +249,20 @@ GETDATA(IEN,DATA,NXTLINE) ; Adds and formats data from one Pharmacy Division
  ;
  ; process for no Reject Resolution Required Codes
  I '$D(GETS) S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="  No Reject Resolution Required Codes for this Pharmacy Division."
+ Q
+ ;
+TRCMSG ; Transfer Reject Informational Message (called by PSOBPSSP, which was too big)
+ W !!,"All transfer rejects will automatically be placed on the Third Party Payer"
+ W !,"Rejects - Worklist if the reject code is defined in the site parameter file"
+ W !,"and the AUTO SEND parameter is set to yes. The OPECC must manually transfer"
+ W !,"the reject if the reject code is defined in the site parameter file"
+ W !,"and the AUTO SEND parameter is set to no. (To be used when Pharmacy can"
+ W !,"possibly correct a locally filled Rx.)"
+ Q
+ ;
+RRRMSG ; Reject Resolution Required Informational Message (called by PSOBPSSP, which was too big)
+ W !!,"All Reject Resolution Required reject codes will automatically be placed"
+ W !,"on the Third Party Payer Rejects - Worklist. This parameter applies to"
+ W !,"rejects for original unreleased fills only. Prescriptions will not be filled"
+ W !,"until the rejects identified by the Reject Resolution parameter are resolved."
  Q

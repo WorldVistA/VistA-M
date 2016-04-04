@@ -1,6 +1,10 @@
-DIDT ;SFISC/GFT-DATE/TIME UTILITY ;27JUL2010
- ;;22.0;VA FileMan;**14,35,162,165**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified
+DIDT ;SFISC/GFT-DATE/TIME UTILITY ;2014-12-26  12:32 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**14,35,162,165,1046,1047**
+ ;
 %DT ;
  I $G(DUZ("LANG"))>1,($G(^DI(.85,DUZ("LANG"),20.2))]"") X ^(20.2) Q
 CONT ;
@@ -91,8 +95,10 @@ Z I $P("NOW",%(0))="" S %=Y
  E  D NOW^%DTC
  S:%DT(0)["-" %=-% Q
  ;
-DD I $G(DUZ("LANG"))>1 S Y=$$OUT^DIALOGU(Y,"DD") Q
- Q:'Y  S Y=$S($E(Y,4,5):$E($P($T(M)," ",$E(Y,4,5)+2),1,3)_" ",1:"")_$S($E(Y,6,7):$E(Y,6,7)_", ",1:"")_($E(Y,1,3)+1700)_$S(Y[".":"."_$P(Y,".",2),1:"")
+DD I $G(DUZ("LANG"))>1 S Y=$$OUT^DIALOGU(Y,"DD") Q  ;create writable date from 'Y' to 'Y'
+ Q:'Y
+ N M,MI,COMMA S M=$S($E(Y,4,5):$E($P($T(M)," ",$E(Y,4,5)+2),1,3)_" ",1:""),MI="",COMMA="," I $G(%DT)["I" S MI=M,M="",COMMA="" ;INTERNATIONAL (UK)
+ S Y=M_$S($E(Y,6,7):$E(Y,6,7)_COMMA_" ",1:"")_MI_($E(Y,1,3)+1700)_$S(Y[".":"."_$P(Y,".",2),1:"")
  I Y["." S Y=$P(Y,".")_"@"_$E(Y_0,14,15)_":"_$E(Y_"000",16,17)_$S($E(Y,18,19):":"_$E(Y_0,18,19),1:"")
  I $D(%DT)#2,%DT["S",Y["@",$P(Y,":",3)="" S Y=Y_":00"
  Q

@@ -1,9 +1,15 @@
-SDRPA09 ;BP-OIFO/SWO,ESW - rejection utility ; 12/16/03 8:25am [2/19/04 5:24pm]
- ;;5.3;Scheduling;**333**;Aug 13, 199
+SDRPA09 ;BP-OIFO/SWO,ESW - rejection utility ;12/16/03 8:25am [2/19/04 5:24pm]
+ ;;5.3;Scheduling;**333,639**;Aug 13, 1993;Build 7
  ;Rejection processing of all batches from the first run
  ;
  ;
 SELECT ;Select Batch Control Id  for the rejection process
+ ; SD*639 Disable Manual Batch Reject option
+ D BMES^XPDUTL("This Manual Batch Reject option has been placed Out of Order")
+ D MES^XPDUTL("by SD*5.3*639.")
+ D MES^XPDUTL("")
+ Q
+ ;
  N SDPT,SDAR,DIC,Y,SDBM,SDBS,SDOUT S SDPT=0,SDOUT=1 N % S %=0 F  Q:(%=1!(SDOUT=0))  S DIC="409.6",DIC(0)="QEAMZ",DIC("A")="Select running date:" D ^DIC Q:Y<1  S SDPT=+Y D  Q:SDOUT=0
  .S SDPT=+Y
  .I SDPT>0 W !,"Correct Running Date? " S %=1 D YN^DICN D:(%=1)  Q:Y<1
@@ -16,6 +22,7 @@ SELECT ;Select Batch Control Id  for the rejection process
  Q:'$D(SDAR)
 QUE W !!,"This job has been tasked"
  N ZTSAVE,IOP S IOP=0 F X="SDPT","SDAR(","IOP" S ZTSAVE(X)=""
+ ; IA #1519
  W ! D EN^XUTMDEVQ("STRT^SDRPA09","Whole Batch Rejection Report",.ZTSAVE) S SDOUT=0 Q
  Q
 STRT ;Tasked Entry

@@ -1,6 +1,10 @@
-DIP100 ;SFISC/TKW - PROCESS BY(0) INPUT VARIABLES (CONT.OF DIP10) ;12/8/98  07:56
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIP100 ;SFISC/TKW - PROCESS BY(0) INPUT VARIABLES (CONT.OF DIP10) ;12:27 PM  13 Oct 1999
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
 ENBY0 ; Interactive dialogue to prompt for BY(0) data
  Q:DUZ(0)'["@"  K DPP,BY(0),L(0),FR(0),TO(0),DISPAR(0) N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y
 EDBY W ! S DIR(0)=".401,1622O",DIR("B")=$G(BY(0)) D ^DIR K DIR G:$G(DTOUT)!("^^@"[X) EXBY0 S:$E(Y)="^" Y=$E(Y,2,9999) S BY(0)="^"_$P(Y,U)
@@ -13,7 +17,7 @@ E2 . S DIR("?")="Enter 'YES' to experiment with these settings",DIR("?",1)="This
  . W ! S DIR(0)=".4011624,.01^^K:X>(L(0)-1) X",DIR("B")=1 D ^DIR K DIR,DINUM Q:$G(DIRUT)  S DISUB=$P(Y,U)
 E3 . S DIR(0)=".4011624,1",DIR("B")=$G(FR(0,DISUB)) D ^DIR K DIR Q:$G(DTOUT)  Q:$G(DIROUT)  G:X="^" E2 K FR(0,DISUB) I X'="@",Y]"" S FR(0,DISUB)=$P(Y,U)
  . S DIR(0)=".4011624,2",DIR("B")=$G(TO(0,DISUB)) D ^DIR K DIR Q:$G(DTOUT)  Q:$G(DIROUT)  G:X="^" E2 K TO(0,DISUB) I X'="@",Y]"" S TO(0,DISUB)=$P(Y,U) I $G(FR(0,DISUB))]$P(Y,U) D  G E3
- .. W !,"  START WITH follows GO TO." Q
+EGP .. W !,$$EZBLD^DIALOG(1511) Q  ;**CCO/NI 'START WITH IS GREATER THAN GO TO!'
  . S DIR(0)=".4011624,3.1",DIR("B")=$P($G(DISPAR(0,DISUB)),U,1) D ^DIR K DIR D:X="@"  G:$D(DUOUT)!$D(DTOUT) E2 S:Y]"" $P(DISPAR(0,DISUB),U,1)=Y
  .. I $P($G(DISPAR(0,DISUB)),U,2)]"" S $P(DISPAR(0,DISUB),U,1)="" Q
  .. K DISPAR(0,DISUB) Q

@@ -1,6 +1,10 @@
-DINIT00X ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;5/24/00  13:34
- ;;22.0;VA FileMan;**41**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT00X ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;21APR2003
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**41,125,999**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9258,2,8,0)
@@ -34,17 +38,17 @@ Q Q
  ;;^UTILITY(U,$J,.84,9259,2,7,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9259,2,8,0)
- ;;=     1.  Go to the Block Viewer page (<PF1>V)
+ ;;=     1.  Go to the Block Viewer page (<F1>V)
  ;;^UTILITY(U,$J,.84,9259,2,9,0)
  ;;=     2.  Select the block (<SpaceBar> over the block name)
  ;;^UTILITY(U,$J,.84,9259,2,10,0)
- ;;=     3.  Press <PF1>O
+ ;;=     3.  Press <F1>O
  ;;^UTILITY(U,$J,.84,9259,2,11,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9259,2,12,0)
  ;;=The field order is the order in which the elements on the block are
  ;;^UTILITY(U,$J,.84,9259,2,13,0)
- ;;=traversed when the user presses the <Enter> key.  The <PF1>O key
+ ;;=traversed when the user presses the <Enter> key.  The <F1>O key
  ;;^UTILITY(U,$J,.84,9259,2,14,0)
  ;;=sequence reassigns field order numbers to all the elements on the
  ;;^UTILITY(U,$J,.84,9259,2,15,0)
@@ -80,7 +84,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9503,2,0)
  ;;=^^1^1^2940908^^^^
  ;;^UTILITY(U,$J,.84,9503,2,1,0)
- ;;=Data Dictionary not installed; FIA node is set to "No DD Update"
+ ;;=File will not be installed!  Installation parameter specifies: "No DD Update"
  ;;^UTILITY(U,$J,.84,9504,0)
  ;;=9504^1^^5
  ;;^UTILITY(U,$J,.84,9504,1,0)

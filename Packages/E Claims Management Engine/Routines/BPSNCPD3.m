@@ -1,6 +1,6 @@
 BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Due to space considerations, these comments were moved from BPSNPCPD
  ;   to this routine.
@@ -122,6 +122,7 @@ DUR1(BRXIEN,BFILL,DUR,ERROR,BPRXCOB) ;
  ;
  S DUR(BPRXCOB,"ELIGBLT")=$P($G(^BPST(IEN59,9)),U,4)
  ; Get Insurance Info and set into DUR array
+ S DUR(BPRXCOB,"INSURANCE POINTER")=$$GET1^DIQ(9002313.59902,"1,"_IEN59_",",902.33,"I") ; Insurance Company IEN
  D GETS^DIQ(9002313.59902,"1,"_IEN59_",","902.05;902.06;902.24;902.25;902.26","E","DUR1","ERROR")
  S DUR(BPRXCOB,"INSURANCE NAME")=$G(DUR1(9002313.59902,"1,"_IEN59_",",902.24,"E"))  ; Insurance Company Name
  S DUR(BPRXCOB,"GROUP NUMBER")=$G(DUR1(9002313.59902,"1,"_IEN59_",",902.05,"E"))    ; Insurance Group Number

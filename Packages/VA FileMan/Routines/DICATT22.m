@@ -1,6 +1,10 @@
-DICATT22 ;SFISC/GFT-CREATE A SUBFILE ;7:38 AM  3 Jan 2002
- ;;22.0;VA FileMan;**52,89**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATT22 ;SFISC/GFT-CREATE A SUBFILE ;28MAY2006
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**42,52,89,999,1004,1024**
+ ;
  G M:V I P,$D(^DD(J(N-1),P,0)) S I=A_$E("I",$P(^(0),U,2)["I") D P
  I O,DA=.01,'N S I=$P(@(I(0)_"0)"),U,2) D P
 1 ;
@@ -13,7 +17,7 @@ M S %=$P(A,"."),DE=%_"."_+$P(A,".",2)_DA I +DE'=DE!$D(^DD(DE)) F DE=A+.01:.01:%+
  I DUZ(0)="@" W !,"SUB-DICTIONARY NUMBER: "_DE_"// " R DG:DTIME S:'$T DTOUT=1 G:DG=U!'$T ^DICATT2 S:DG]"" DE=DG G Q:+DE'=DE!(DE<A)
  G Q:%+1'>DE!$D(^DD(DE)) S I=DE,^(I,0)=F_" SUB-FIELD^^.01^1",^(0,"UP")=A,^("NM",F)="",%X="^DD("_A_","_DA_")",@%X@(0)=F_"^^^"_W D P
  S W=$P(W,";") D SDIK S:+W'=W W=""""_W_""""
- S (N,DICL)=N+1,I(N)=W,J(N)=DE,DA=.01,^DD(DE,DA,0)=F_U_Z_"^0;1^"_C,%Y="^DD("_DE_",.01)"
+ S DICATT22=DA,(N,DICL)=N+1,I(N)=W,J(N)=DE,DA=.01,^DD(DE,DA,0)=F_U_Z_"^0;1^"_C,%Y="^DD("_DE_",.01)"
 VARPOINT I T["V" D
  . N I,FI,FD,P
  . S FI=$QS(%X,1),FD=$QS(%X,2)
@@ -25,20 +29,29 @@ POINT I T["P" F %=12,12.1 I $D(@%X@(%)) S @%Y@(%)=@%X@(%) K @%X@(%)
  I T'["W" D
  .S ^DD(DE,DA,1,0)="^.1",^(1,0)=DE_"^B",DIK=W_",""B"",$E(X,1,30),DA)"
  .F %=DICL-1:-1 S DIK=I(%)_$E(",",1,%)_"DA("_(DICL-%)_"),"_DIK I '% S ^(1)="S "_DIK_"=""""",^(2)="K "_DIK S:T["V" ^(3)="Required Index for Variable Pointer" Q
- D SDIK,I S DICL=DICL-1 G N^DICATT
+ D SDIK,I S DICL=DICL-1
+ D AUDIT(DA(1),.01,"N") S DA=DICATT22 K DICATT22 ;AUDIT THE NEW .01 FIELD AT THE LOWER LEVEL
+ G N^DICATT
  ;
-I I $P(O,U,2,99)'=$P(^DD(J(N),DA,0),U,2,99) S:$D(M)#2 ^(3)=M S M(1)=0,^("DT")=DT,^DD(J(N),0,"DT")=DT F DR=J(N):0 Q:'$D(^DD(DR,0,"UP"))  S DR=^("UP"),^DD(DR,0,"DT")=DT
+AUDIT(DIFILE,DIFIELD,DITYPE) ;
+ N DDA,DA,B0,A0
+ S DDA(1)=DIFILE,DA=DIFIELD,DDA=$G(DITYPE,"E")
+ D AUDT^DICATTA
+ Q
+ ;
+ ;
+ ;
+I I $P(O,U,2,99)'=$P(^DD(J(N),DA,0),U,2,99) S:$D(M)#2 ^(3)=M S M(1)=0
  K DR,DG,DB,DQ,DQI,^DD(U,$J),^UTILITY("DIVR",$J)
- S DIE=DIK,DR=$S(DUZ(0)="@":"3;4",1:3)_$P(";21",U,'O) D DIE I T="W" K DE
+EGP ;K ^DD(DA(1),DA,.009) ; GET RID OF FOREIGN-LANGUAGE HELP MESSAGE WHEN THE BASIC ENGLISH ONE IS BEING RE-EDITED??
+ S DIE=DIK,DR=$S(DUZ(0)="@":"3;4",1:3)_$P(";21",U,'O) D  I T="W" K DE
+ .N I,J,T
+ .D ^DIE
  I $D(M)>9,O S V=DICL,DR=$P(Z,U),Z=$P(Z,U,2) D  ;It's not clear that we need these variables set, now we are calling DIVR^DIUTL 12/01
-V .S DI=J(N) D DIPZ^DIU0 Q:$D(DTOUT)!'$D(DIZ)
- .D DIVR^DIUTL(A,D0)
+V .N D0 S DI=J(N) D DIPZ^DIU0 Q:$D(DTOUT)!'$D(DIZ)  ;NEEDS 'DI' & 'DA'
+ .D DIVR^DIUTL(A,DA)
  K DR,M Q
  ;
-DIE ;
- N I,J
- D ^DIE
- Q
  ;
 P F Y="S","D","P","A","V" S:I[Y I=$P(I,Y)_$P(I,Y,2)_$P(I,Y,3) S:T[Y I=I_Y
  S ^(0)=$P(^(0),U)_U_I_U_$P(^(0),U,3,99) Q

@@ -1,6 +1,9 @@
-DICA1 ;SEA/TOAD-VA FileMan: Updater, Pre-Processor ;11:46 AM  11 May 1999
- ;;22.0;VA FileMan;**1**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICA1 ;SEA/TOAD-VA FileMan: Updater, Pre-Processor ;13MAR2014
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,999,1047**
  ;
 CHECK(DIFLAGS,DIFDA,DINUMS,DIRULE,DIOK) ;
  ; ENTRY POINT--check out the FDA
@@ -94,7 +97,7 @@ RID(DIFILE,DIEN,DIFDA,DIRID,DIFLAGS,DIKEYEX) ;
  . . E  I DIFLAGS'["K" D:"@"[$G(@DIFDA@(DIFILE,DIEN,.01))
  . . . S DIOK=0 D ERR^DICA3(351,DIFILE,DIEN)
  . E  I DIP["+" D:"@"[$G(@DIFDA@(DIFILE,DIEN,DIR))
- . . S DIOK=0 D ERR^DICA3(311,DIFILE,DIEN,DIR)
+ . . S DIOK=0 D ERR^DICA3(312,DIFILE) ;"The list of fields is missing a required identifier for FILE #---"
  . E  D:"@"[$G(@DIFDA@(DIFILE,DIEN,DIR),0)
  . . S DIOK=0 D ERR712(DIFILE,DIR)
  ;
@@ -114,7 +117,7 @@ RID(DIFILE,DIEN,DIFDA,DIRID,DIFLAGS,DIKEYEX) ;
  Q DIOK
  ;
 ERR712(DIFILE,DIFIELD) ;
- N DIFILNAM S DIFILNAM=$O(^DD(DIFILE,0,"NM","")) S:DIFILNAM?." " DIFILNAM="#"_DIFILE
+ N DIFILNAM S DIFILNAM=$$FILENAME^DIALOGZ(DIFILE) S:DIFILNAM?." " DIFILNAM="#"_DIFILE ;**CCO/NI
  N DIFLDNAM S DIFLDNAM=$$FLDNM^DIEFU(DIFILE,DIFIELD)
  D ERR^DICA3(712,DIFILE,"",DIFIELD,DIFLDNAM,DIFILNAM)
  Q

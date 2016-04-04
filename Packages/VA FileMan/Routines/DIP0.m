@@ -1,9 +1,13 @@
-DIP0 ;SFISC/XAK-COMPUTED FIELD ON A SORT, EDITING A SORT TEMPLATE ;02:12 PM  10 Nov 1999
- ;;22.0;VA FileMan;**2**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIP0 ;SFISC/XAK-COMPUTED FIELD ON A SORT, EDITING A SORT TEMPLATE ;2015-01-01  2:08 PM
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**2,999,1003,1037,1045,1050**
+ ;
  S P=P_Q,DPP=$P(X,U,1)
 C ;
- S DICOMP=N_$E("?",''L),DM=X,DQI="Y(",DA="DPP("_DJ_",""OVF"_N_""",",DICMX="D M" G COLON:X?.E1":" D EN^DICOMP K DUOUT G X:'$D(X),X:Y["m" ;I Y["m" S X=DM_":" G C
+ S DICOMP=N_$E("?",''L),DM=X,DQI="Y(",DA="DPP("_DJ_",""OVF"_N_""",",DICMX="D M^DIO2" G COLON:X?.E1":" D EN^DICOMP K DUOUT G X:'$D(X),X:Y["m"
  D XA,BB^DIP:Y["B" S:Y["D" R=R_"^^D" S Y=U_DPP,DPP(DJ,"CM")=X_" I D"_(N#100)_">0 S DISX("_DJ_")=X" G S^DIP
  ;
 XA F %=0:0 S %=$O(X(%)) Q:%=""  S @(DA_"%)=X(%)")
@@ -12,7 +16,8 @@ XA F %=0:0 S %=$O(X(%)) Q:%=""  S @(DA_"%)=X(%)")
  ;
 COLON D ^DICOMPW K DUOUT
  I $D(X),$S($D(DIL(+DP)):DIL(+DP)=DL,1:1) S DPP(DJ,DL,+Y)=DP_U_(Y["m")_U_X,DIL(+DP)=DL,N=+Y,DL=+DP,DV=$J("",DJ*2-2)_$O(^DD(DL,0,"NM",0))_" FIELD" S:$D(DIPP(DIJ,+DP))#2 $P(DIPP(DIJ),U,3)=DIPP(DIJ,+DP) D XA,L G Y^DIP
-X I $D(BY)#2,BY]"" S X=DM_C_BY,BY="" G C
+X I $G(BY)]"" S:BY[";" R=BY,BY=$P(BY,";"),R=U_$P(R,BY,2,9) S (X,DPP)=DM_","_BY,BY="" G C ;TRY TACKING ON THE REST OF THE "BY", AFTER THE FIRST COMMA, BOTH TO 'X' AND TO 'DPP'
+ I $G(DIQUIET) G Q^DIP
  G B^DIP
  ;
 EDT ;
@@ -48,10 +53,14 @@ WHO S G=$TR($P($P($P(%,"Y(1)",2),")):^(",2),")"),""""),P=$P(%,"Y(1)",3),P=$P($P(
  I P,$D(^DD(%X,P,0)) S:DIJJ DIPP(DIJ,+%)=DIPP(DIJ,%X),DIPP(DIJ,%X)=$P(^(0),U)_":" S:'DIJJ DIPP(DIJ,+%)=$P(DIPP(DIJ),U,3),$P(DIPP(DIJ),U,3)=$P(^(0),U)_":"
  G E2
  ;
-L I $D(BY)#2 K DIC S DIC="^DD(DL,",DIC(0)="Z",X=$P(BY,C,1),BY=$P(BY,C,2,99) I X'="@" K DV Q
+ ;
+ ;
+L ;FROM DIP: READ SORT-BY VALUE
+ I $D(BY)#2 K DIC S DIC="^DD(DL,",DIC(0)="Z",X=$P(BY,","),BY=$P(BY,",",2,99) I X'="@" K DV Q
  K DIR D
  . N X S DIR(0)="FOU",DIR("A")=DV
  . S X=$P($G(DIPP(DIJ)),U,3) I X]"" S DIR("B")=X
+ . E  I DJ=1 N DICAN S DICAN=$$FIND^DIUCANON(.401,DL) I DICAN S (X,DIR("B"))="["_$P(DICAN,U,2)_"]" ;CANONIC SORT TEMPLATE
  . I X="" S X=$G(DV(1)) I X]"" S DIR(0)="FOAU",DIR("A")=DV_": "_X_"// "
  . S DIR(0)=DIR(0)_"^1:255",DIR("?")="^D DIC^DIP0"
  D ^DIR K DIR,DV,DIRUT,DIROUT S:$D(DTOUT) X="^"
@@ -60,6 +69,8 @@ L I $D(BY)#2 K DIC S DIC="^DD(DL,",DIC(0)="Z",X=$P(BY,C,1),BY=$P(BY,C,2,99) I X'
  D SETDIC Q
  ;
 SETDIC K DIC S DIC="^DD(DL,"
- S DIC("S")="S %=$P(^(0),U,2) I %'[""m"",$S('%:1,1:$P(^DD(+%,.01,0),U,2)'[""W""&$S($D(DIL(+%)):DIL(+%)=DL,1:1))"_$S($D(DICS):" "_DICS,1:""),DIC("W")="W:$P(^(0),U,2) ""  (multiple)""",DIC(0)="ZE"_$E("O",$D(DIPP)#10) Q
+ S DIC("S")="S %=$P(^(0),U,2) I %'[""m"",$S('%:1,1:$P(^DD(+%,.01,0),U,2)'[""W""&$S($D(DIL(+%)):DIL(+%)=DL,1:1))"_$S($D(DICS):" "_DICS,1:"")
+ S DIC("W")="W:$P(^(0),U,2) ""  multiple)""" I $T(DICW^DIALOGZ)]"" D DICW^DIALOGZ(DL)
+ S DIC(0)="ZE"_$E("O",$D(DIPP)#10) Q
  ;
 DIC D SETDIC,^DIC,DIP^DIQQ Q

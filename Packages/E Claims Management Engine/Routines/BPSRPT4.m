@@ -1,6 +1,6 @@
 BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -182,7 +182,7 @@ GETREJ(REJ) ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
  ;
 HEADLN1(BPRTYPE) ;
- I (",1,2,3,4,5,7,8,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID"
+ I (",1,2,3,4,5,7,8,9,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID"
  I (BPRTYPE=1)!(BPRTYPE=4) D  Q
  . W ?35,"ELIG"
  . W ?40,"RX#"
@@ -238,6 +238,13 @@ HEADLN1(BPRTYPE) ;
  . W ?78,$J("$BILLED",10)
  . W ?97,$J("$INS RESPONSE",13)
  . W ?122,$J("$COLLECT",10)
+ ;
+ I BPRTYPE=9 D  Q
+ . W ?35,"ELIG"
+ . W ?40,"RX#"
+ . W ?52,"REF"
+ . W ?64,"DATE"
+ . W ?84,$J("$DRUG COST",10)
  Q
  ;
  ;Print Header 2 Line 2
@@ -297,6 +304,13 @@ HEADLN2(BPRTYPE) ;
  . W ?54,"INS GROUP#"
  . W ?79,"INS GROUP NAME"
  . W ?121,"BILL#"
+ ;
+ I BPRTYPE=9 D  Q
+ . W !,?4,"DRUG"
+ . W ?36,"NDC"
+ . W ?47,"RELEASED ON"
+ . W ?62,"RX INFO"
+ . W ?75,"NON-BILLABLE STATUS"
  Q
  ;
  ;Print Header 2 Line 3

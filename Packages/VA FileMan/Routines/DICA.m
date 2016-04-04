@@ -1,6 +1,9 @@
-DICA ;SEA/TOAD-VA FileMan, Updater, Engine ;1:33 PM  18 Nov 1999
- ;;22.0;VA FileMan;**1,4,17**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICA ;SEA/TOAD-VA FileMan, Updater, Engine ;18APR2009
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,4,17,1034**
  ;
 ADD(DIFLAGS,DIFDA,DIEN,DIMSGA) ;
  ;
@@ -31,7 +34,7 @@ SEQ ;
  . S DINEXT=$O(@DIRULE@("NEXT",DINEXT)) I DINEXT="" S DIOUT1=1 Q
  . X @DIRULE@("NEXT",DINEXT)
 FILES . ;
- . I $P($G(^DD($$FNO^DILIBF(DIFILE),0,"DI")),U,2)["Y" D  Q:DIOUT1
+ . I $P($G(^DD($$FNO^DILIBF(DIFILE),0,"DI")),U,2)["Y" D  Q:DIOUT1  ;Entries in file cannot be edited.
  . . S DIOUT1=DIFLAGS'["Y"&'$D(DIOVRD)
  . . I DIOUT1 D ERR^DICA3(405,DIFILE,"","",DIFILE)
 ENTRIES . ;
@@ -74,8 +77,8 @@ FINDING . ;
  ;
 FILER ; file the data for the new records
  I '$G(DIERR),$D(@DIFDA) D
- . I '$G(DICHECK) D ADDLF Q:$G(DIERR)!'$D(@DIFDA)
- . D FILE^DIEF($E("S",DIFLAGS["S")_"U",DIFDA,"",DIEN)
+ . I '$G(DICHECK) D ADDLF Q:$G(DIERR)!'$D(@DIFDA)  ;QUITS HERE WHEN KEY IS BAD!
+ .K ^TMP("DIKK",$J,"L") D FILE^DIEF($E("S",DIFLAGS["S")_"U",DIFDA,"",DIEN) ;GFT  Artf8720:recursive UPDATE^DIE call would look at KEY
  I '$G(DIERR),DIFLAGS'["S" K @DIFDAO
  I $G(DIERR)!(DIFLAGS["S"),DIFLAGS'["E" D
  . M @DIFDA=@DIRULE@("SAVE")
@@ -99,12 +102,12 @@ A1 S DIENEW=$$IEN(DIENTRY,$G(@DIEN@(DISEQ)),DIRULE)
  . I $L(DIENEW,",")>2 S DIENS=DIENS_" under record: "_DIENEW
  . N DI1 S DI1="LAYGO Node on the new value '"_DIKEY_"'"
  . D ERR^DICA3(120,DIFILE,DIENS,.01,DI1)
- D CREATE^DICA3(DIFILE,.DIENEW,DIROOT,DIKEY)
+ D CREATE^DICA3(DIFILE,.DIENEW,DIROOT,DIKEY) ;THIS SHOULD SET DIERR
  S DIENEW=+DIENEW
  I 'DIENEW S DIOUT1=1 Q
  L -@(DIROOT_"DIENEW)")
- S @DIEN@(DISEQ)=DIENEW
- I DIOP="?+" S @DIEN@(DISEQ,0)="+"
+ S @DIEN@(DISEQ)=DIENEW ;SET RETURN VALUE
+ I DIOP="?+" S @DIEN@(DISEQ,0)="+" ;SET ZERO NODE IN IEN ARRAY
  S @DIRULE@("IEN",DISEQ)=DIENEW
  D SAVE
  Q

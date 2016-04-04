@@ -1,6 +1,6 @@
 BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -14,19 +14,21 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;                          6 = Totals By Date
  ;                          7 = Closed Claims
  ;                          8 = Spending Account Report
+ ;                          9 = ECME RXs with Non-Billable Status
  ;                          
  ; Passed variables - The following local variables are passed around the BPSRPT* routines
  ;                    and are not passed as parameters but are assumed to be defined:
  ;                    BPACREJ,BPAUTREV,BPBEGDT,BPBLINE,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;                    BPINSINF,BPGRPLN,BPMWC,BPNOW,BPPAGE,BPPHARM,BPQ,BPQSTDRG,
- ;                    BPRLNRL,BPRTBCK,BPSDATA,BPSUMDET,BPRTYPE
+ ;                    BPRLNRL,BPRTBCK,BPSDATA,BPSUMDET,BPRTYPE,BPNBSTS,BPALRC,BPELIG1
  ;                          
 EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,BPNOW,BPPHARM,BPINSINF,BPMWC,BPQ,BPQSTDRG
  N BPREJCD,BPRLNRL,BPRPTNAM,BPRTBCK,BPSCR,BPSUMDET,CODE,POS,STAT,X,Y,BPINS,BPARR,BPELIG,BPOPCL
+ N BPNBSTS,BPALRC,BPELIG1
  ;
  ;Verify that a valid report has been requested
- I ",1,2,3,4,5,6,7,8,"'[(","_$G(BPRTYPE)_",") W "<Invalid Menu Definition - Report Undefined>" H 3 Q
- S BPRPTNAM=$P("PAYABLE CLAIMS^REJECTED CLAIMS^SUBMIT,NOT RELEASED CLAIMS^REVERSED CLAIMS^RECENT TRANSACTIONS^TOTALS^CLOSED CLAIMS^SPENDING ACCOUNT REPORT","^",BPRTYPE)
+ I ",1,2,3,4,5,6,7,8,9,"'[(","_$G(BPRTYPE)_",") W "<Invalid Menu Definition - Report Undefined>" H 3 Q
+ S BPRPTNAM=$P("PAYABLE CLAIMS^REJECTED CLAIMS^SUBMIT,NOT RELEASED CLAIMS^REVERSED CLAIMS^RECENT TRANSACTIONS^TOTALS^CLOSED CLAIMS^SPENDING ACCOUNT REPORT^RXS WITH NON-BILLABLE STATUS","^",BPRTYPE)
  ;
  ;Get current Date/Time
  D NOW^%DTC S Y=% D DD^%DT S BPNOW=Y
@@ -50,7 +52,8 @@ EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;
  ;Prompt to Display (R)ealTime Fills or (B)ackbills or (P)RO Option or (A)LL (Default to ALL)
  ;Returns (1-ALL,2-RealTime Fills,3-Backbills,4-PRO Option)
- S BPRTBCK=$$SELRTBCK^BPSRPT3(1) I BPRTBCK="^" G EXIT
+ S BPRTBCK=1
+ I BPRTYPE'=9 S BPRTBCK=$$SELRTBCK^BPSRPT3(1) I BPRTBCK="^" G EXIT
  ;
  ;Prompt to Display Specific (D)rug or Drug (C)lass or (A)ll (Default to ALL)
  ;Returns (1-ALL,2-Drug,3-Drug Class)
@@ -66,14 +69,14 @@ EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;
  ;Prompt to select Date Range
  ;Returns (Start Date^End Date)
- I (",1,2,3,4,5,6,7,8,")[BPRTYPE S BPBEGDT=$$SELDATE^BPSRPT3(BPRTYPE) D  I BPBEGDT="^" G EXIT
+ I (",1,2,3,4,5,6,7,8,9,")[BPRTYPE S BPBEGDT=$$SELDATE^BPSRPT3(BPRTYPE) D  I BPBEGDT="^" G EXIT
  .I BPBEGDT="^" Q
  .S BPENDDT=$P(BPBEGDT,U,2)
  .S BPBEGDT=$P(BPBEGDT,U)
  ;
  ;Prompt to Include (R)ELEASED or (N)OT RELEASED or (A)LL (Default to RELEASED)
  ;Returns (1-ALL,2-RELEASED,3-NOT RELEASED)
- S BPRLNRL=$S(BPRTYPE=3:3,1:1) I (",1,2,4,6,7,8,")[BPRTYPE S BPRLNRL=$$SELRLNRL^BPSRPT4(2) I BPRLNRL="^" G EXIT
+ S BPRLNRL=$S(BPRTYPE=3:3,1:1) I (",1,2,4,6,7,8,9,")[BPRTYPE S BPRLNRL=$$SELRLNRL^BPSRPT4($S(BPRTYPE=9:1,1:2)) I BPRLNRL="^" G EXIT
  ;
  ;Prompt to Include (S)pecific Reject Code or (A)LL (Default to ALL)
  ;Returns (0-ALL,ptr-Pointer to Selected Reject Code in #9002313.93)
@@ -98,6 +101,18 @@ EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;Prompt for Open/Closed/All claims
  ;Returns (1=Closed,2=Open,0=All)
  S BPOPCL=0 I (",2,")[BPRTYPE S BPOPCL=$$SELOPCL^BPSRPT3(2) I BPOPCL="^" G EXIT
+ ;
+ ;Prompt for All or Most Recent (Non-Billable Status Report only)
+ ;Returns A - All, R - Most Recent
+ S BPALRC=0 I (",9,")[BPRTYPE S BPALRC=$$SELALRC^BPSRPT3() I BPALRC="^" G EXIT
+ ;
+ ;Prompt for multiple Eligibility Indicator for Non-Billable Status Report
+ ;Sets up BPELIG1 variable and array, BPELIG1=0 ALL or BPELIG1=1,BPELIG1(xx) for list
+ S BPELIG1=0 I (",9,")[BPRTYPE S BPELIG1=$$SELELIG1^BPSRPT3() I BPELIG1="^" G EXIT
+ ;
+ ;Prompt for Non-Billable Status (Non-Billable Status Report only)
+ ;Sets up BPNBSTS variable and array, BPNBSTS=0 ALL or BPNBSTS=1,BPNBSTS(xx) for list
+ S BPNBSTS=0 I (",9,")[BPRTYPE S BPNBSTS=$$SELNBSTS^BPSRPT3() I BPNBSTS="^" G EXIT
  ;
  ;Prompt for Excel Capture (Detail Only)
  S BPEXCEL=0 I 'BPSUMDET S BPEXCEL=$$SELEXCEL^BPSRPT4() I BPEXCEL="^" G EXIT

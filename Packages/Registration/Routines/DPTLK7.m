@@ -36,7 +36,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  ; call MPI to get data
  W !!,"Searching the MVI..."
  D FORMAT(.DGMPI,.DG20NAME,.DGFLDS)
- D PATIENT^MPIFXMLP(.DGMPIR,.DGMPI)
+ ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ ; Commented out the following line(s)
+ ; D PATIENT^MPIFXMLP(.DGMPIR,.DGMPI)
+ ; end OSEHRA Change
  S DGMCID=$G(DGMPIR("mcid"))
  ;
  ; too many matches found, they need to get the numbers down, re-prompt
@@ -55,7 +58,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
  . S DGMPIR("mcid")=DGMCID
- . D MPIADD(.DGMPIR)
+ . ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ . ; Commented out the following line(s)
+ . ; D MPIADD(.DGMPIR)
+ . ; end OSEHRA Change
  ;
  ; do I have some records that are in autolink threshold? - key required
  S X=0 F  S X=$O(DGMPIR(X)) Q:'X  I $G(DGMPIR(X,"Score"))'<$G(DGMPIR("matchThreshold")) S DGKEYREQ=1
@@ -73,7 +79,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
  . S DGMPIR("mcid")=DGMCID
- . D MPIADD(.DGMPIR)
+ . ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ . ; Commented out the following line(s)
+ . ; D MPIADD(.DGMPIR)
+ . ; end OSEHRA Change
  . W !
  . ;
  . ; if known to ESR, send Z11 and monitor for return data
@@ -108,7 +117,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . S DGMPIR("AddType")=$S(DGKEYREQ:"Explicit",1:"Implicit")
  . S DGMPIR("mcid")=DGMCID
- . D MPIADD(.DGMPIR)
+ . ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ . ; Commented out the following line(s)
+ . ;D MPIADD(.DGMPIR)
+ . ; end OSEHRA Change
  ;
 QUIT Q $S(DGDFN:DGDFN,1:0)
  ;

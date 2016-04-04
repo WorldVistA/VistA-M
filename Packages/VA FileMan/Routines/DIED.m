@@ -1,9 +1,13 @@
-DIED ;SFISC/GFT,XAK-MAJOR INPUT PROCESSOR ;05:43 PM  2 Jan 2002
- ;;22.0;VA FileMan;**4,21,11,59,96**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIED ;SFISC/GFT,XAK-MAJOR INPUT PROCESSOR ;3FEB2006
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,21,11,59,96,999,1004,1022**
+ ;
 O D W W Y W:$X>48 !?9
  I $L(Y)>19,'DV,DV'["I",(DV["F"!(DV["K")) G RW^DIR2
- I Y]"" W "// " I 'DV,DV["I",$D(DE(DQ))#2 S X="" W "  (No Editing)" Q
+ I Y]"" W "// " I 'DV,DV["I",$D(DE(DQ))#2 K X S X("FIELD")=DIFLD,X("FILE")=DP,X="  ("_$$EZBLD^DIALOG(3090,$$LABEL^DIALOGZ(DP,DIFLD))_")" W:$L(X)+$X>78 !?9 W X K X S X="" Q  ;**
 TR Q:$P(DQ(DQ),U,2)["K"&(DUZ(0)'="@")  R X:DTIME E  S (DTOUT,X)=U W $C(7)
  Q
 W I $P(DQ(DQ),U,2)["K"&(DUZ(0)'="@") Q
@@ -20,24 +24,22 @@ RE ;
 N I X="" G NKEY:$D(^DD("KEY","F",DP,DIFLD)),A:DV'["R",X:'DV,X:$P(DC,U,2)-DP(0),A
 RD G ^DIE0:X[U,^DIE2:X="@" I X?."?" G A:$D(DB(DQ)),^DIEQ ;MAC-1201-61253
  I X=" ",DV["d",DV'["P",$D(^DISV(DUZ,"DIE",DIP)) S X=^(DIP) I DV'["D",DV'["S" W "  "_X
-T G M^DIE1:DV,^DIE3:DV["V",P:DV'["S" X:$D(^DD(DP,DIFLD,12.1)) ^(12.1) I X?.ANP D  I 'DDER X:$D(DIC("S")) DIC("S") I  W:'$D(DB(DQ)) "  "_% G V
-SET .N DIR S DIR(0)="SV"_$E("o",$D(DB(DQ)))_U_DU,DIR("V")=1
- .I $D(DB(DQ)),'$D(DIQUIET) N DIQUIET S DIQUIET=1
- .D ^DIR I 'DDER S %=Y(0),X=Y
+T G M^DIE1:DV,^DIE3:DV["V",P:DV'["S" I X?.ANP D SET I 'DDER G V
  K DDER G X
 P I DV["P" S DIC=U_DU,DIC(0)=$E("EN",$D(DB(DQ))+1)_"M"_$E("L",DV'["'") S:DIC(0)["L" DLAYGO=+$P(DV,"P",2) G AST:DV["*" D NOSCR S X=+Y,DIC=DIE G X:X<0
  G V:DV'["N" I $L($P(X,"."))>24 K X G Z
  I $P(DQ(DQ),U,5,99)'["$",X?.1"-".N.1".".N,$P(DQ(DQ),U,5,99)["+X'=X" S X=+X
 V S DIER=1 X $P(DQ(DQ),U,5,99) K DIER,YS
+UNIQ I $P(DQ(DQ),U,2)["U",$D(X),DIFLD=.01 K % M %=@(DIE_"""B"",X)") K %(DA) K:$O(%(0)) X
 Z K DIC("S"),DLAYGO I $D(X),X?.ANP,X'=U D LOADXR G:'$$KEYCHK UNIQFERR S DG($P(DQ(DQ),U,4))=X S:DV["d" ^DISV(DUZ,"DIE",DIP)=X G A
 X W:'$D(ZTQUEUED) $C(7) W:'$D(DDS)&'$D(ZTQUEUED) "??"
  G B^DIE1
  ;
-PR I $D(DE(DQ,0)) S Y=DE(DQ,0) G F:Y?1"/".E I $D(DE(DQ))=10 D Y:$E(Y,1)=U,O G RD:"@"'[X,A:DV'["R"&(X="@"),X:X="@" S X=Y G N
+PR I $D(DE(DQ,0)) S Y=DE(DQ,0) G F:Y?1"/".E I $D(DE(DQ))=10 D Y:$E(Y)=U,O G RD:"@"'[X,A:DV'["R"&(X="@"),X:X="@" S X=Y G N
  S DG=DV,Y=DE(DQ),X=DU I DG["O",$D(^DD(DP,DIFLD,2)) X ^(2) G S
 R I DG["P",@("$D(^"_X_"0))") S X=+$P(^(0),U,2) G S:'$D(^(Y,0)) S Y=$P(^(0),U,1),X=$P(^DD(X,.01,0),U,3),DG=$P(^(0),U,2) G R
  I DG["V",+Y,$P(Y,";",2)["(",$D(@(U_$P(Y,";",2)_"0)")) S X=+$P(^(0),U,2) G S:'$D(^(+Y,0)) S Y=$P(^(0),U,1) I $D(^DD(+X,.01,0)) S DG=$P(^(0),U,2),X=$P(^(0),U,3) G R
- X:DG["D" ^DD("DD") I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";",1) S:%]"" Y=%
+ X:DG["D" ^DD("DD") I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";") I %]"" S Y=$S($G(DUZ("LANG"))'>1:%,'DIFLD:%,1:$$SET^DIQ(DP,DIFLD,Y))
 S D O I $D(DTOUT) K DQ,DG G QY^DIE1
  I X="" S X=DE(DQ) X:$D(DICATTZ) $P(DQ(DQ),U,5,99) G A:'DV,A:DC<2 G N^DIE1
  G RD:DQ(DQ)'["DINUM" D E^DIE0 G RD:$D(X),PR
@@ -50,6 +52,20 @@ F S DB(DQ)=1,X=$E(Y,2,999),DH=$F(DQ(DQ),"%DT=""E") I DH S DQ(DQ)=$E(DQ(DQ),1,DH-
 Y X $E(Y,2,999) S Y=X I DV["D",Y?7N.NP X ^DD("DD")
 Q Q
  ;
+SET ;FROM COMPILED TEMPLATES,TOO
+ N DIR,DILANG
+ I $D(DB(DQ)),'$D(DIQUIET) N DIQUIET S DIQUIET=1
+ I $G(DUZ("LANG"))>1,$D(^DD(DP,+$G(DIFLD),0)) S DILANG=$$SETIN^DIALOGZ D
+ .I DILANG'=DU S DU=DILANG Q
+ .K DILANG
+ S DIR(0)="SV"_$E("o",$D(DB(DQ)))_U_DU,DIR("V")=1 S:$D(DIC("S")) DIR("S")=DIC("S") D ^DIR Q:DDER
+ I $D(DILANG) S %=$F(";"_DILANG,";"_Y) I % S Y=$P($P($P(^DD(DP,DIFLD,0),U,3),";",Y),":") ;Return the 'REAL' internal value
+ S %=Y(0),X=Y
+ I $D(^DD(DP,DIFLD,12.1)) X ^(12.1) I $D(DIC("S")) X DIC("S") E  S DDER=1 Q
+ W:'$D(DB(DQ)) "  "_%
+ Q
+ ;
+ ;
 AST ;G V:DV["'",AST^DIE9
  I DV["'" D
  . D SCRNL(.DICONT)
@@ -58,6 +74,7 @@ AST ;G V:DV["'",AST^DIE9
  I DICONT="X" K DICONT G X:$D(DNM)[0,@("X^"_DNM)
  I DICONT="Z" K DICONT G Z:$D(DNM)[0,@("Z^"_DNM)
  Q
+ ;
 RW G RW^DIR2
  ;
 LOADXR ;Load all index file xrefs for a field
@@ -91,12 +108,12 @@ KEYCHK() ;If this is a key field, return 0 if not unique.
 UNIQFERR ;The field is part of a key and is not unique
  I '$D(ZTQUEUED),'$D(DDS) D
  . W $C(7)_"??"
- . W:'$D(DB(DQ)) !,"     Another entry already exists with this key value."
+ . W:'$D(DB(DQ)) !,"     ",$$EZBLD^DIALOG(3094)
  K DIEFXREF S ^("N")=@DIETMP@("V",DP,DIIENS,DIFLD,"O")
  G B^DIE1
  ;
 NKEY ;No value was assigned to this key field
- I '$D(ZTQUEUED),'$D(DDS) W $C(7)_"??  Required key field"
+ I '$D(ZTQUEUED),'$D(DDS) W $C(7)_"??  ",$$EZBLD^DIALOG(3092.2)
  G B^DIE1
  ;
 NOSCR ;No screen

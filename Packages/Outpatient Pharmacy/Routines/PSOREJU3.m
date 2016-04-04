@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427**;DEC 1997;Build 21
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;
@@ -168,7 +168,7 @@ TRISTA(RX,RFL,RESP,FROM,RVTX) ;called from suspense
  S TRESP=RESP,ESTAT=$P(TRESP,"^",4) S:ESTAT="" ESTAT=$$STATUS^PSOBPSUT(RX,RFL)
  Q:ESTAT["E PAYABLE" 0
  I $$TRIAUD(RX,RFL) Q 0  ;if TRICARE or CHAMPVA Rx is in audit due to override or bypass, allow to print from suspense, cnf
- I +RESP=2,$P(RESP,"^",3)="T"!($P(RESP,"^",3)="C"),$P(RESP,"^",2)=($$ELIGDISP^PSOREJP1(RX,RFL)_" INPATIENT/DISCHARGE") Q 0   ;if TRICARE INPATIENT/DISCHARGE or CHAMPVA INPATIENT/DISCHARGE, allow to print from suspense, cnf 
+ I +RESP=2,$$BYPASS^PSOBPSU1($P(RESP,"^",3),$P(RESP,"^",2)) Q 0   ;if 'Bypass' RX, allow to print from suspense, cnf 
  Q:ESTAT["E REJECTED" 1  ;rejected TRICARE or CHAMPVA is not allowed to print from suspense
  ;if 'in progress' (4) or not billable (2,3) don't allow to print from suspense (IA 4415 Values)
  I '$D(RESP)!($P(RESP,"^",1)="")!($G(RESP)="") D

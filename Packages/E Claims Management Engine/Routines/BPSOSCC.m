@@ -1,6 +1,6 @@
 BPSOSCC ;BHAM ISC/FCS/DRS/DLF - Set up BPS() ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; GETINFO - Create BPS array for non-repeating data
  ;    IEN59  - Pointer to BPS Transactions
@@ -58,6 +58,8 @@ GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  S BPS("Patient","State")=$P($G(VAPA(5)),"^",1)
  I BPS("Patient","State")'="" S BPS("Patient","State")=$P($G(^DIC(5,BPS("Patient","State"),0)),"^",2)
  S BPS("Patient","Street Address")=$G(VAPA(1))
+ S BPS("Patient","Street Address Line 1")=$G(VAPA(1))
+ S BPS("Patient","Street Address Line 2")=$G(VAPA(2))
  S BPS("Patient","City")=$G(VAPA(4))
  S BPS("Patient","Zip")=$G(VAPA(6))
  S BPS("Patient","Phone #")=$TR($P($G(VAPA(8)),"^",1),"()-/*# ")

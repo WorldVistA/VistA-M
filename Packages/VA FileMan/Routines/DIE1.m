@@ -1,6 +1,10 @@
 DIE1 ;SFISC/GFT-FILE DATA, XREF IT, GO UP AND DOWN MULTIPLES ;28MAY2008
- ;;22.0;VA FileMan;**1,4,11,159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,4,11,159**
+ ;
  K DQ,DB G E1:$D(DG)<9 I DP<0 K DG S DQ=0 Q
  S DQ="",DU=-2,DG="$D("_DIE_DA_",DU))"
 Y S DQ=$O(DG(DQ)),DW=$P(DQ,";",2) G DE:$P(DQ,";")=DU

@@ -1,26 +1,27 @@
-DIPKINIT ; ; 30-MAR-1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIPKINIT ;VEN/TOAD-PACKAGE FILE INIT ; 04-JAN-2015
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  K DIF,DIFQ,DIFQR,DIFQN,DIK,DDF,DDT,DTO,D0,DLAYGO,DIC,DIDUZ,DIR,DA,DIFROM,DFR,DTN,DIX,DZ,DIRUT,DTOUT,DUOUT
- S DIOVRD=1,U="^",DIFQ=0,DIFROM="22.0" W !,"This version (#22.0) of 'DIPKINIT' was created on 30-MAR-1999"
- W !?9,"(at FILEMAN 22 DEVELOPMENT AREA, by VA FileMan V.22.0T4)",!
- I $D(^DD("VERSION")),^("VERSION")'<22 G GO
+ S DIOVRD=1,U="^",DIFQ=0,DIFROM="22.2" W !,"This version (#22.2) of 'DIPKINIT' was created on 04-JAN-2015"
+ W !?9,"(at FILEMAN.MUMPS.ORG, by MSC Fileman 22.2)",!
+ I $D(^DD("VERSION")),^("VERSION")'<22.2 G GO
  ;W !,"FIRST, I'LL FRESHEN UP YOUR VA FILEMAN...." D N^DINIT
- I ^DD("VERSION")<22 W !,"but I need version 22 of the VA FileMan!" G Q
+ I ^DD("VERSION")<22.2 W !,"but I need version 22.2 of the VA FileMan!" G Q
 GO ;
 EN ; ENTER HERE TO BYPASS THE PRE-INIT PROGRAM
  S DIFQ=0 K DIRUT,DTOUT,DUOUT
  F DIFRIR=1:1:1 S DIFRRTN="^DIPKINI"_$E("5",DIFRIR) D @DIFRRTN
  W:1 !,"I AM GOING TO SET UP THE FOLLOWING FILES:" F I=1:2:2 S DIF(I)=^UTILITY("DIF",$J,I) D 1 G Q:DIFQ!$D(DIRUT) K DIF(I)
- S DIFROM="22.0" D PKG:'$D(DIFROM(0)),^DIPKINI1 G Q:'$D(DIFQ) S DIK(0)="AB"
+ S DIFROM="22.2" D PKG:'$D(DIFROM(0)),^DIPKINI1 G Q:'$D(DIFQ) S DIK(0)="AB"
  F DIF=1:2:2 S %=^UTILITY("DIF",$J,DIF),DIK=$P(%,";",5),N=$P(%,";",3),D=$P(%,";",4)_U_N D D K DIFQ(N)
  K DIFQR D ^DIPKINI2,^DIPKINI3
  L  S DUZ=DIDUZ W:1 !,$C(7),"OK, I'M DONE.",!,"NO"_$P("TE THAT FILE",U,DSEC)_" SECURITY-CODE PROTECTION HAS BEEN MADE"
  I DIFROM F DIF=1:2:2 S %=^UTILITY("DIF",$J,DIF),N=+$P(%,";",3) I N,$P(%,";",8)="y" S ^DD(N,0,"VR")=DIFROM
  I DIFROM(0)>0 F %="PRE","INI","INIT" S:$D(DIFROM(%)) $P(^DIC(9.4,DIFROM(0),%),U,2)=DIFROM(%)
  I $G(DIFQN) S $P(^(0),U,3,4)=$P(DIFQN,U,2)_U_($P(^DIC(0),U,4)+DIFQN) K DIFQN
- I DIFROM,$D(^%ZTSK) S X="DIPKINIS" X ^%ZOSF("TEST") D:$T PAC^DIPKINIS($T(IXF),.DIFROM)
  S:DIFROM(0)>0 ^DIC(9.4,DIFROM(0),"VERSION")=DIFROM G Q^DIFROM0
 D S:$D(^DIC(+N,0))[0 ^(0)=D S X=$D(@(DIK_"0)")),^(0)=D_U_$S(X#2:$P(^(0),U,3,9),1:U)
  S DIFQR=DIFQR(+N) I ^DD("VERSION")>17.5,$D(^DD(+N,0,"DIK"))#2 S X=^("DIK"),Y=+N,DMAX=^DD("ROU") D EN^DIKZ
@@ -45,4 +46,4 @@ Q W $C(7),!!,"NO UPDATING HAS OCCURRED!" G Q^DIFROM0
 PKG S X=$P($T(IXF),";",3),DIC="^DIC(9.4,",DIC(0)="",DIC("S")="I $P(^(0),U,2)="""_$P(X,U,2)_"""",X=$P(X,U) D ^DIC S DIFROM(0)=+Y K DIC
  Q
  ;
-IXF ;;DIPK (PACKAGE FILE INIT)^DIPK;3
+IXF ;;;38

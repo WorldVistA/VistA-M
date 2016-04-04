@@ -1,6 +1,10 @@
 DIU21 ;SFISC/XAK-EDIT FILE (PGMR PART) ;06:21 PM  2 Apr 2001
- ;;22.0;VA FileMan;**82**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**82**
+ ;
  D:'$D(DISYS) OS^DII Q:$G(^DD("OS",DISYS,18))=""
 SCR K DIR S DIR(0)="FOU^3:250",DIR("A")="FILE SCREEN" S:$D(^DD(DA,0,"SCR")) DIR("B")=^("SCR")
  S DIR("?")="IF MUMPS CODE IS ENTERED HERE, IT IS A PERMANENT 'DIC(""S"")' FOR FILE"

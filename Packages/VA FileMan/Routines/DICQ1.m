@@ -1,6 +1,10 @@
-DICQ1 ;SFISC/GFT,TKW-HELP FOR LOOKUPS ;7/18/00  08:14
- ;;22.0;VA FileMan;**4,3,54**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICQ1 ;SFISC/GFT,TKW-HELP FOR LOOKUPS ;3JUN2004
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,3,54,999,1004**
+ ;
 EN ; Set up parameters for lister call, then display current entries.
  I 'DIRECUR,'$D(DDS) D Z^DDSU
  I DICNT>1,$D(DZ)#2 S DST=" " D:DZ["??"&'$D(DDS) %^DICQ S DST=$$EZBLD^DIALOG(8068) D %^DICQ
@@ -18,10 +22,11 @@ EN ; Set up parameters for lister call, then display current entries.
  . S DIFLAGS="MPQh" K DIFROM S DIFROM="" Q
  I DIUPRITE S DID01=0,DIBEGIX="#"
  S DIIENS=$S(DIC(0)["p":",",1:DIENS)
- S DIFIELDS="@;IX" D
- . I 'DIUPRITE,DID01!(DIC(0)["S") K DID01 Q
- . S DIC("DID01")="W ""   "",$$EXT^DIC2("_DIFILEI_",.01,$P("_DIC_"Y,0),U))"
- . Q
+W S DIFIELDS="@;IX" D
+ .I 'DIUPRITE,DID01!(DIC(0)["S") K DID01 Q
+ .N EXT S EXT="$$EXT^DIC2("_DIFILEI_",.01,$P("_DIC_"Y,0),U))"
+ .I '$D(DDS)!'$D(DDSMOUSY) S DIC("DID01")="W ""   "","_EXT Q
+ .S DIC("DID01")="W ""   "" D WRITMOUS^DDSU("_EXT_")"
 E1 K DDD S DD="",DIY=99,DDD=$S($D(DDS):1,1:5),(DIZ,DILN)=21
  I $D(DDH)>10 D LIST^DDSU Q:$D(DDSQ)
  I DIFROM]"" D  S DIFROM(1)=DIFROM
@@ -37,7 +42,8 @@ L ; List current entries in the file.
  N DICQ
  D LIST^DICL(.DIFILEI,DIIENS,DIFIELDS,DIFLAGS,DDC,.DIFROM,.DIPART,DIBEGIX,.DISCR,"","DICQ","",.DIC)
  K DIC("DID01"),DICQ
- D BK^DIEQ S:'$D(DDS) DDD=3 D LIST^DDSU K DDH Q:$D(DDSQ)!($G(DTOUT))
+ D BK^DIEQ S:'$D(DDS) DDD=3 ;D LIST^DDSU ***
+ K DDH Q:$D(DDSQ)!($G(DTOUT))
  D 0 Q
  ;
 DSP(DINDEX,DICQ,DIC,DIFILE) ; Display entries from DICQ array
@@ -123,7 +129,8 @@ QQ Q:$D(DDH)'>10
  S:$D(DDS) DDC=-1 D LIST^DDSU K DDC Q
  ;
 HP N DG,X,%,DST
- F DG=3,12 I $D(^DD(+DO(2),.01,DG)) S X=^(DG) F %=$L(X," "):-1:1 I $L($P(X," ",1,%))<70 S DST=$P(X," ",1,%) D DS^DIEQ,P1 Q
+EGP S X=$$HELP^DIALOGZ(+DO(2),.01) D  S X=$G(^DD(+DO(2),.01,12)) D  ;**CCO/NI PLUS NEXT LINE   WRITE HELP MESSAGE FOR .01 FIELD
+ .I X]"" F %=$L(X," "):-1:1 I $L($P(X," ",1,%))<70 S DST=$P(X," ",1,%) D DS^DIEQ,P1 Q
  Q
  ;
 P1 I %'=$L(X," ") S DST=$P(X," ",%+1,99) D DS^DIEQ

@@ -1,6 +1,10 @@
-DDBRU ;SFISC/DCL-BROWSER UTILITIES AND EXTRINSIC FUNCTIONS ;2/27/99  11:57
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRU ;SFISC/DCL-BROWSER UTILITIES AND EXTRINSIC FUNCTIONS ; 19JAN2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1045**
+ ;
 CTRLCH() ;Extrinsic function - returns control characters 1-31
  N I,X S X="" N I F I=1:1:31 S X=X_$C(I)
  Q X
@@ -39,10 +43,11 @@ RTNTB(DDBRTOP,DDBRBOT) ;PASS TOP AND BOTTOM MARGINS
 ENDR N DDBENDR S DDBENDR=1
  ;
 DR ;Display Routine(s)
+ D:'$D(DISYS) OS^DII
  N DESC,RN,RSA,RTN,X,Y
  K ^TMP($J,"DDBDR"),^TMP($J,"DDBDRL"),^UTILITY($J)  ;DR LIST
- X ^%ZOSF("RSEL") Q:$O(^UTILITY($J,""))']""
- S RTN="",RN=1 F  S RTN=$O(^UTILITY($J,RTN)) Q:RTN=""  D
+ X ^DD("OS",DISYS,"RSEL") Q:$O(^UTILITY($J,""))']""
+ S RTN=" ",RN=1 F  S RTN=$O(^UTILITY($J,RTN)) Q:RTN=""  D  ; VEN/SMH - Make starting point " " for RTN so it won't crash on Cache
  .S DESC=$P($P($T(+1^@RTN),";",2),"-",2),DESC=$S($L(DESC)>45:$E(DESC,1,45)_"...",1:DESC)
  .S RSA=$NA(^TMP($J,"DDBDR",RN)),RN=RN+1,^TMP($J,"DDBDRL",RTN_$E("        ",1,8-$L(RTN))_": "_DESC)=RSA
  .W !,"...loading ",RTN
@@ -65,11 +70,11 @@ EDIT ;ROUTINE EDIT VIA VA FILEMAN SCREEN EDITOR
  ;RTNEDIT^DDBRU AND BE PROMPTED FOR ROUTINE NAME
  I '$D(^DD("OS",^DD("OS"),"ZS")) W !,"ROUTINE SAVE NODE NOT DEFINED IN MUMPS OPERATING SYSTEM FILE",! Q
  N DDBRI,DDBRX,X,Y,%,%X,%Y
- I $G(DDBRTN)]"" S X=DDBRTN X ^%ZOSF("TEST") I '$T W !,DDBRTN," Invalid",!
- X ^%ZOSF("EON")
+ I $G(DDBRTN)]"" S X=DDBRTN X ^DD("OS",^DD("OS"),18) I '$T W !,DDBRTN," Invalid",!
+ X ^DD("OS",^DD("OS"),"EON")
  R:$G(DDBRTN)="" !,"Enter Routine> ",DDBRTN:DTIME
  I DDBRTN="" W !,"NO ROUTINE SELECTED",! Q
- S X=DDBRTN X ^%ZOSF("TEST")
+ S X=DDBRTN X ^DD("OS",^DD("OS"),18)
  I '$T W !,"NO SUCH ROUTINE",! Q
  K ^TMP("DDBRTN",$J)
  W !,"Loading ",DDBRTN
@@ -81,7 +86,7 @@ EDIT ;ROUTINE EDIT VIA VA FILEMAN SCREEN EDITOR
  S X=DDBRTN
  X ^DD("OS",^DD("OS"),"ZS")
  K ^TMP("DDBRTN",$J),^UTILITY($J,0)
- X ^%ZOSF("EON")
+ X ^DD("OS",^DD("OS"),"EON")
  Q
 TAB(X) ;CONVERT 1ST SPACE TO TAB IF NO TAB
  N E,L,T
@@ -119,8 +124,8 @@ NOW() ;
 MSMCON ;MSM CONSOLE FOR 132/80 MODES
  ;OR VT TERMINALS
 80 W $C(27),"[?",3,$C(108)
- S (IOM,X)=80 X ^%ZOSF("RM")
+ S (IOM,X)=80 X ^DD("OS",^DD("OS"),"RM")
  Q
 132 W $C(27),"[?",3,$C(104)
- S (IOM,X)=132 X ^%ZOSF("RM")
+ S (IOM,X)=132 X ^DD("OS",^DD("OS"),"RM")
  Q

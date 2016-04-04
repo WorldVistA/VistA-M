@@ -1,6 +1,10 @@
-DINIT002 ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ; 3/30/99  10:41:48
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT002 ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;7APR2003
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^DD(.84,6,21,5,0)
@@ -26,9 +30,9 @@ Q Q
  ;;^DD(.84,6,"DT")
  ;;=2940520
  ;;^DD(.84,7,0)
- ;;=TRANSLATION^.847P^^4;0
+ ;;=TRANSLATION^.847PA^^4;0
  ;;^DD(.84,8,0)
- ;;=CALLED FROM ENTRY POINTS^.841^^5;0
+ ;;=CALLED FROM ENTRY POINTS^.841A^^5;0
  ;;^DD(.841,0)
  ;;=CALLED FROM ENTRY POINTS SUB-FIELD^^.05^2
  ;;^DD(.841,0,"DT")
@@ -184,7 +188,7 @@ Q Q
  ;;^DD(.847,0,"UP")
  ;;=.84
  ;;^DD(.847,.01,0)
- ;;=LANGUAGE^M*P.85'X^DI(.85,^0;1^S DIC("S")="I Y>1" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X S:$G(X) DINUM=X
+ ;;=LANGUAGE^*P.85'X^DI(.85,^0;1^S DIC("S")="I Y>1" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X S:$G(X) DINUM=X
  ;;^DD(.847,.01,1,0)
  ;;=^.1
  ;;^DD(.847,.01,1,1,0)

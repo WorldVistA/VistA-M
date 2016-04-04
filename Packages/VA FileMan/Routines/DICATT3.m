@@ -1,6 +1,10 @@
-DICATT3 ;SFISC/COMPUTED FIELDS ;11:27 AM  24 May 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATT3 ;SFISC/COMPUTED FIELDS ;6MAY2009
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,118,1035**
+ ;
  K DIRUT,DTOUT D COMP I $P(^DD(A,DA,0),U,2)["C" G N^DICATT
  S DTOUT=1 G CHECK^DICATT
  ;
@@ -28,8 +32,9 @@ GETTYPE K DIR S DIR(0)="SBA^S:STRING;N:NUMERIC;B:BOOLEAN;D:DATE;m:MULTIPLE;p:POI
  S DISPEC=$TR(Y,"SN") I Y="B"!(Y="D") D P(Y) G END
  I Y["p" D POINT G END
  S DIJ="",DIE=$P($P(O,U,2),"J",2) F J=0:0 S N=$E(DIE) Q:N?.A  S DIE=$E(DIE,2,99),DIJ=DIJ_N
- S DIDEC=$P(DIJ,",",2),DIL=$S(DIJ:+DIJ,1:8)
- I DISPEC'["m" D DEC:Y="N" I '$D(DIRUT) D LEN
+ S DIDEC=$P(DIJ,",",2),DIL=$S(DIJ:+DIJ,1:8) S:Y'="N" DIDEC=""
+ I DISPEC["m" D P(DISPEC) G END
+ D DEC:Y="N" I '$D(DIRUT) D LEN
 END I O S DI=A D PZ^DIU0 Q
  D SDIK^DICATT22
 6 Q  ;leave this here

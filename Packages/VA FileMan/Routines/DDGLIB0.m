@@ -1,6 +1,10 @@
-DDGLIB0 ;SFISC/MKO-SETUP AND CLEANUP FOR WINDOWS ;1:09 PM  19 Jun 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDGLIB0 ;SFISC/MKO-SETUP AND CLEANUP FOR WINDOWS ; 06 MAR 2013
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1003,1004,1029**
+ ;
 INIT() ;Setup required variables
  ;Set margin to 0
  ;Turn autowrap off
@@ -11,14 +15,14 @@ INIT() ;Setup required variables
  ;  DDGLED   = codes for editing
  ;  DDGLCLR  = codes to erase characters
  ;  DDGLGRA  = codes for graphics characters
- ;  DDGLZOSF = array of code from %ZOSF
+ ;  DDGLZOSF = array of code from %ZOSF (as of V22.2 - array comes from OS file)
  ;  DDGLREF  = global where window image is stored
  ;  DDGLKEY  = codes for non-alphanumeric keys
  ;  DDGLSCR  = array containing list of visible windows on screen
  ;
  N X
  I $D(DDGLDEL)[0 D SET Q:$G(DIERR)
- S X=0 X ^%ZOSF("RM"),^("TYPE-AHEAD")
+ S X=0 X DDGLZOSF("RM"),DDGLZOSF("TYPE-AHEAD")
  W $P(DDGLVID,DDGLDEL,8)
  Q
  ;
@@ -26,11 +30,12 @@ SET ;Setup screen handling variables
  K DIERR,DDGLSCR
  S U="^",DDGLDEL=$C(127)
  ;
- F X="EOFF","EON","TRMOFF","TRMON","TRMRD" D  G:$G(DIERR) ABT
- . I $D(^%ZOSF(X))#2 S DDGLZOSF(X)=^(X) Q
- . D BLD^DIALOG(810)
+ ; VEN/SMH - remove reliance on %ZOSF node -- next 3 lines changed v 22.2
+ D:'$D(DISYS) OS^DII ; garb OS from %ZOSF or Fileman in this sequence
+ F X="EOFF","EON","TRMOFF","TRMON","TRMRD","RM","TYPE-AHEAD","NO-TYPE-AHEAD" D  G:$G(DIERR) ABT
+ . S DDGLZOSF(X)=$G(^DD("OS",DISYS,X))
  ;
- S IOP="HOME" D ^%ZIS I POP D BLD^DIALOG(845) G ABT
+ZIS N %ZIS,IOP S IOP="HOME" D ^%ZIS I POP D BLD^DIALOG(845) G ABT
  I $D(^%ZIS(2)),'$O(^%ZIS(2,+$G(IOST(0)),0)) D BLD^DIALOG(840,"#"_+$G(IOST(0))) G ABT
  ;
  D:$G(IOXY)="" TRMERR("Cursor positioning (XY CRT)")
@@ -39,10 +44,17 @@ SET ;Setup screen handling variables
  N @$TR(X,";",",")
  N IOBLC,IOBRC,IOBT,IOG1,IOG0,IOHL,IOLT,IOMT,IORT,IOTLC,IOTRC,IOTT,IOVL
  D ENDR^%ZISS,GSET^%ZISS
- I $G(IOPREVSC)="","^C-VT220^C-VT320^"[(U_IOST_U) D
+ I $G(IOPREVSC)="" D  ;"^C-VT220^C-VT320^"[(U_IOST_U) D   IOST MIGHT BE VT-100
  . S IOPREVSC=$C(27)_"[5~"
  . S IONEXTSC=$C(27)_"[6~"
  ;
+ATT ;tried: S IOINLOW=X_"32m" ;LOW  = GREEN
+ N A,B S A(1)=$C(27,91)_"40m",A(2)=$C(27,91)_"41m",A(3)=$C(27,91)_"45m" ;Defaults 
+ I $G(^XTV(8989.5,0))?1"PARAM".E F X=1,2,3 S A=$$GET^XPAR("ALL","DI SCREENMAN COLORS",X),B=$$GET^XPAR("ALL","DI SCREENMAN COLORS",X+3) S:B]"" A(X)=$C(27,91)_(10+B)_"m" S:A]"" A(X)=A(X)_$C(27,91)_+A_"m"
+ S IOUON=IOINHI_A(1) ;REQ CAPTION BACKGROUND (BLACK)
+ S IOINHI=IOINHI_A(2) ;DATA BACKGROUND (RED)
+ S IORVON=IOINHI_A(3) ;CLICKABLE BACKGROUND (MAGENTA)
+ S (IORVOFF,IOUOFF)=IOINORM
  S DDGLVID=IOINHI_DDGLDEL_IOINLOW_DDGLDEL_IOINORM_DDGLDEL_IOUON_DDGLDEL_IOUOFF_DDGLDEL_IORVON_DDGLDEL_IORVOFF_DDGLDEL_IOAWM0_DDGLDEL_IOAWM1_DDGLDEL_$G(IOSGR0)
  S DDGLED=$G(IORI)_DDGLDEL_$G(IOSTBM)_DDGLDEL_$G(IOIL)_DDGLDEL_$G(IODL)_DDGLDEL_$G(IOICH)_DDGLDEL_$G(IODCH)
  S DDGLCLR=IOELEOL_DDGLDEL_IOEDALL_DDGLDEL_IOEDEOP_DDGLDEL_$G(IOELALL)
@@ -65,13 +77,27 @@ SET ;Setup screen handling variables
  . S $P(DDGLVID,DDGLDEL,10)=IOINORM
  ;
  D:'$D(^%ZTSK)!($D(^%ZOSF("MGR"))[0) KILL^%ZISS
+MOUSEON ;I $G(DDS)>0 W *27,"[?1000h" NOW DONE IN DDS0
  Q
+ ;
+ ;
+ASKIOSL ; not used
+ ;N X
+ ;X ^%ZOSF("EOFF")
+ R X:0 S XX=""
+ W $C(27)_7_$C(27)_"[r"_$C(27)_"[999;999H"_$C(27)_"[6n" R X ; R *X:1 R:$T XX S X=$C(X)_XX
+ ;S X=+$E(X,3,5) I X S IOSL=X
+ Q
+ ;
+ ;
  ;
 TRMERR(DDGLCH) ;Terminal type errors
  N P
  S P(1)=DDGLCH,P(2)=IOST
  D BLD^DIALOG(842,.P)
  Q
+ ;
+ ;
  ;
 KILL(DDGLPARM) ;Cleanup variables
  ;Set margin to IOM
@@ -81,16 +107,18 @@ KILL(DDGLPARM) ;Cleanup variables
  ;Turn echo on
  ;Turn terminators off
  N X
+ D:'$D(DISYS) OS^DII ; garb OS from %ZOSF or Fileman in this sequence
  I $G(DDGLPARM)'["W" D
- . S X=$S($D(IOM)#2:IOM,1:80) X $G(^%ZOSF("RM"))
+ . S X=$S($D(IOM)#2:IOM,1:80) X $G(DDGLZOSF("RM"))
  . I $D(DUZ)#2,$D(^VA(200,DUZ,0))#2,$P($G(^(200)),U,9)'="Y" D
- .. I '$G(DUZ("BUF"),1) X $G(^%ZOSF("NO-TYPE-AHEAD"))
+ .. I '$G(DUZ("BUF"),1) X $G(DDGLZOSF("NO-TYPE-AHEAD"))
  . W $P($G(DDGLVID),$G(DDGLDEL),9),$P($G(DDGLVID),$G(DDGLDEL),10)
  ;
  I $G(DDGLPARM)'["T" D
  . X $G(DDGLZOSF("EON")),$G(DDGLZOSF("TRMOFF"))
  E  X $G(DDGLZOSF("EOFF")),$G(DDGLZOSF("TRMON"))
  ;
+MOUSEOFF ;W *27,"[?1000l"  NOW DONE IN DDS0
 ABT K DX,DY,POP
  I '$G(DIERR),$G(DDGLPARM)["K" Q
  K:$G(DDGLREF)]"" @DDGLREF
@@ -100,4 +128,3 @@ ABT K DX,DY,POP
  K DDGLKEY,DDGLSCR,DDGLVAN,DDGLH
  ;
  K DIR0
- Q

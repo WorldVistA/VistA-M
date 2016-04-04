@@ -1,6 +1,9 @@
-DINIT29P ;SFISC/MKO-SCREENMAN POSTINIT ;11:21 AM  2 Oct 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT29P ;SFISC/MKO-SCREENMAN POSTINIT ;27NOV2010
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  N B,F
  ;
  ;Delete the "AZ" global for each form. Starting in Version 22.0
@@ -20,6 +23,14 @@ DINIT29P ;SFISC/MKO-SCREENMAN POSTINIT ;11:21 AM  2 Oct 1998
  I $P($G(^DIC(19,0)),U)="OPTION" D
  . D:$D(^DIC(19,"B","DDS CREATE FORM")) RENAME("DDS CREATE FORM","DDS EDIT/CREATE A FORM")
  . D:$D(^DIC(19,"B","DDS CREATE BLOCK")) RENAME("DDS CREATE BLOCK","DDS RUN A FORM")
+AUD .;ADD ONE NEW AUDIT OPTION, REMOVE ANOTHER
+ . D:'$D(^DIC(19,"B","DIAUDIT MONITOR USER"))
+ ..N DIC,X,Y,DLAYGO
+ ..S DIC="^DIC(19,",DLAYGO=19,X="DIAUDIT MONITOR USER",DIC(0)="L",DIC("DR")="1///Monitor a User;4///R;11///y;25///2^DIAU"
+ ..D ^DIC Q:Y<0
+ ..S ^DIC(19,+Y,1,0)="^19.06^2^2",^(1,0)="This Option allows tracking of a given user's access to entries in a",^DIC(19,+Y,1,2,0)="given (audited) File.  Display starts with a selected access date."
+ .D:$D(^DIC(19,"B","DIAUDIT DD"))
+ ..N DA,DIE,DR S DA=$O(^("DIAUDIT DD",0)),DIE=19,DR="2////NO LONGER FUNCTIONAL -- ALL DATA DICTIONARIES ARE NOW AUDITED" D ^DIE
  ;
  G ^DINIT2A0
  ;

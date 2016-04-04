@@ -1,12 +1,16 @@
-DIP21 ;SFISC/XAK-PRINT TEMPLATE ;8/6/96  17:23
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIP21 ;SFISC/XAK-PRINT TEMPLATE ;22JULY2014
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999,1050**
+ ;
  D D S DIC(0)=$E("E",'$D(FLDS)!''L)_"QZSI"
  S DIC("S")="I $D(^(""F""))"_$S($G(DIAR)=4:",$D(^(1))",$G(DDXP)=2:",$P(^(0),U,8)=7",$G(DDXP)=4:",$P(^(0),U,8)=3",1:"")_" "_DIC("S") S:$G(DDXP)=4 DIC("W")=""
  D IX^DIC K DIC S:(+Y=.01&(DUZ(0)'="@")) DICSS=$$ACC(8) I Y<0 G Q^DIP:$D(DTOUT),^DIP2:L,^DIP2:'$D(FLDS),Q^DIP
  I L,+Y=.01 K DPQ(DK) S DIQ(0)="" D C^DII G:$D(DIRUT) Q^DIP
- I L,Y'<1,(('$P(^DIPT(+Y,0),U,8))!($G(DDXP)=2&($P(^DIPT(+Y,0),U,8)=7))) D W:DUZ(0)'="@" I  S %=2 W !,"WANT TO EDIT '",$P(Y,U,2),"' TEMPLATE" D YN^DICN G ED^DIP23:%=1
- K:'$D(^("DNP")) DNP S DIPT=+Y,DALL=1,DHD=$S($D(DHD)#2:DHD,$D(^("H")):^("H"),1:""),DC(0)=+Y I $D(^("SUB")),^("SUB") S:'$G(DPP(0)) DISH=1
+EDITQ I L,Y'<1,(('$P(^DIPT(+Y,0),U,8))!($G(DDXP)=2&($P(^DIPT(+Y,0),U,8)=7))),'$G(^("CANONIC")) D W:DUZ(0)'="@" I  S %=2 W !,$$EZBLD^DIALOG(8196,$P(Y,U,2)) D YN^DICN G ED^DIP23:%=1 ;'WANT TO EDIT'?
+ K:'$D(^DIPT(+Y,"DNP")) DNP S DIPT=+Y,DALL=1,DHD=$S($D(DHD)#2:DHD,$D(^("H")):^("H"),1:""),DC(0)=+Y I $D(^("SUB")),^("SUB") S:'$G(DPP(0)) DISH=1
  D F I $G(^DIPT(+Y,"ROU"))[U,$$ROUEXIST^DILIBF($P(^("ROU"),U,2)) S DIPZ=+Y G PAGE^DIP3:DHD="@"
  Q:$D(DTOUT)  G H^DIP3
 F ;
@@ -21,14 +25,17 @@ PUT ;
  D D S DIC(0)="ELZSQ",DIC("S")="I Y'<1,$P(^(0),U,8)'=1,$P(^(0),U,8)'=3 "_DIC("S"),Y=-1,DLAYGO=0 D IX^DIC:X]"" K DIC,DLAYGO G:Y<0 PUT:X'[U,Q^DIP
  S S=$O(^DIPT(+Y,0)),DA=$S('$D(^("ROU")):1,^("ROU")'[U:1,'$D(^("IOM")):1,'$D(^("ROUOLD")):1,1:^("ROUOLD")) S:'DA IOM=^("IOM")
  I S]"" W $C(7),!,"TEMPLATE ALREADY STORED THERE...." D W:DUZ(0)'="@" G PUT:'$T W " OK TO REPLACE" S %=0 D YN^DICN W ! G PUT:%-1 L +^DIPT S %Y="" F %X=0:0 S %Y=$O(^DIPT(+Y,%Y)) Q:%Y=""  K:",%D,ROUOLD,W,"'[(","_%Y_",") ^DIPT(+Y,%Y)
- S ^DIPT("F"_J(0),$P(Y,U,2),+Y)=1,^DIPT(+Y,0)=$P(Y,U,2)_U_DIPDT_U_$S(S!(S=""):DUZ(0),1:$P(Y(0),U,3))_U_J(0)_U_DUZ_U_$S(S!(S=""):DUZ(0),1:$P(Y(0),U,6))_U_DT S:DHD]"" ^("H")=DHD S:$D(DNP) ^("DNP")=1 S X=$D(^("DCL",0)) L -^DIPT K DIPDT,%I
+EGP S ^DIPT("F"_J(0),$P(Y,U,2),+Y)=1,^DIPT(+Y,0)=$P(Y,U,2)_U_DIPDT_U_$S(S!(S=""):DUZ(0),1:$P(Y(0),U,3))_U_J(0)_U_DUZ_U_$S(S!(S=""):DUZ(0),1:$P(Y(0),U,6))_U_DT S:$D(DNP) ^("DNP")=1 ;*CCO/NI PLUS NEXT 3 LINES REMEMBER HEADING LANGUAGE
+ I DHD]"" S ^("H")=DHD I $G(DUZ("LANG")) S ^("HLANG")=DUZ("LANG")
+ S X=$D(^("DCL",0))
+ L -^DIPT K DIPDT,%I
  F S=0:0 S X=$O(DCL(X)) Q:X=""  S ^(X)=DCL(X)
  F S=0:0 S S=$O(DXS(S)) Q:S=""  F %=0:0 S %=$O(DXS(S,%)) Q:%=""  S ^DIPT(+Y,"DXS",S,%)=DXS(S,%)
  F S=1:1:DJ S ^DIPT(+Y,"F",S)=^UTILITY("DIP2",$J,S)
  I DE]"" S ^DIPT(+Y,"F",S+1)=DE
  I $G(DDXP)=2 S DDXPFDTM=+Y G Q^DIP
  I $D(DIAR) S DIARP=+Y
-SUB I DHD="@" W !,"DO YOU ALWAYS WANT TO SUPPRESS SUBHEADERS WHEN PRINTING TEMPLATE" S %=1 D YN^DICN G DIP21^DIQQQ:'%,Q^DIP:%<0 I %=1 S ^DIPT(+Y,"SUB")=1 S:'$G(DPP(0)) DISH=1
+SUB I DHD="@" W !,$$EZBLD^DIALOG(8195) S %=1 D YN^DICN G DIP21^DIQQQ:'%,Q^DIP:%<0 I %=1 S ^DIPT(+Y,"SUB")=1 S:'$G(DPP(0)) DISH=1 ;**CCO/NI  SUBHEADERS QUESTION
  I 'DA,$D(^DD("OS",DISYS,"ZS")) S X=DA,DMAX=^DD("ROU") D ENDIP^DIPZ I $D(^DIPT(DIPZ,"H")) S DHD=^("H")
 OUT G PAGE^DIP3
  ;

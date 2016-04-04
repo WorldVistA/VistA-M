@@ -1,6 +1,10 @@
-DIE ;SFISC/GFT,XAK-PROC.DR-STR ;28MAR2006
- ;;22.0;VA FileMan;**1,4,8,11,59,95,159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIE ;SFISC/GFT,XAK-PROC.DR-STR ;14AUG2006
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**1,4,8,11,95,142,1005,1008,1023**
+ ;
  N DG,DNM,DICRREC K DB I DIE S DIE=^DIC(DIE,0,"GL")
  Q:$D(@(DIE_DA_",-9)"))  Q:'$D(@(DIE_"0)"))  S U="^",DP=+$P(^(0),U,2) Q:$P($G(^DD($$FNO^DILIBF(DP),0,"DI")),U,2)["Y"&'$D(DIOVRD)&'$G(DIFROM)
 GO Q:DIE?1"^DIA(".E  Q:DA'>0  K DE,DOV,DIOV,DIEC,DTOUT N DIEDA D
@@ -15,7 +19,8 @@ GO Q:DIE?1"^DIA(".E  Q:DA'>0  K DE,DOV,DIOV,DIEC,DTOUT N DIEDA D
 MR S DK=DK+1,DH=$P(DR,";",DK) I +DH=DH S (DI,DM)=DH G S:$D(^DD(DP,DI)),MR
  S DI=$P(DH,":",1) I 'DI G K:DI=0,PB
 J I DH["//" S DE(DQ+1,0)=$P(DH,"//",2,9),DI=$P(DI,"//",1),DH=""
- G K:+DI=DI S DM=+DI,Y=$P(DI,DM,2,99),DI=DM G MR:Y=""!'$D(^DD(DP,DI,0)) S DQ=DQ+1,(DZ,DQ(DQ))=^(0),DIFLD(DQ)=DI
+ G K:+DI=DI S DM=+DI,Y=$P(DI,DM,2,99),DI=DM G MR:Y=""!'$D(^DD(DP,DI,0)) S DQ=DQ+1,DZ=^(0),DIFLD(DQ)=DI
+ S $P(DZ,U)=$$LABEL^DIALOGZ(DP,DI) ;PROMPT FIELD NAME
 SPC F %=1:1 S DIESP=$P(Y,$C(126),%) Q:DIESP=""  D
  .I DIESP="d"!(DIESP="R") S $P(DZ,U,2)=$P(DZ,U,2)_DIESP Q
  .I DIESP="T"!(DIESP="t") S:$G(^DD(DP,DI,.1))]"" $P(DZ,U)=^(.1) Q
@@ -25,7 +30,7 @@ SPC F %=1:1 S DIESP=$P(Y,$C(126),%) Q:DIESP=""  D
 K S DM=$P(DH,":",2),DM=$S(DM:DM,1:DI) I DI,$D(^DD(DP,DI)) G S
 NX S DI=$O(^DD(DP,DI)) S:DI="" DI=-1 G MR:DI'>0,MR:DI>DM
 S I DQ'<50,'$D(DE(DQ+1)) G H
- S DQ=DQ+1,DQ(DQ)=^(DI,0),DIFLD(DQ)=DI
+ S DQ=DQ+1,DQ(DQ)=$$LABEL^DIALOGZ(DP,DI)_U_$P(^DD(DP,DI,0),U,2,99),DIFLD(DQ)=DI ;FIELD NAME
 Y S Y=$P(DQ(DQ),"^",4),DG=$P(Y,";",1)
  ;Determine whether field has a xref defined in the Index file
  S DIEXREF=0 F  S DIEXREF=$O(^DD("IX","F",DP,DI,DIEXREF)) Q:'DIEXREF  I $P($G(^DD("IX",DIEXREF,0)),U) S DIEXREF=1 Q
@@ -61,14 +66,14 @@ M S Y=$P(DQ(DQ),U,2)_U_DG G DC:DW<9
  E  S D=$O(^(0)) S:D="" D=-1
 DE I D>0 S Y=Y_U_D I DP(0)-Y!($P(DP(0),U,2)-DK),$D(^(+D,0)) S DE(DQ)=$P(^(0),U) ;Default value if this isn't same multiple we were down in before
 DC S DC=$P(^DD(+Y,0),U,4)_U_Y,%=DQ(DQ),Y=^(.01,0)
-MUL I $P(Y,U,2)'["W" S DQ(DQ)=$P($$EZBLD^DIALOG(8042,$G(DQ(DQ,"CAPTION"),$P(Y,U))),": ")_U_1_$P(Y,U,2,99) D DIE1N G D ;MULTIPLE-FIELD LABEL
+MUL I $P(Y,U,2)'["W" S DQ(DQ)=$P($$EZBLD^DIALOG(8042,$G(DQ(DQ,"CAPTION"),$$LABEL^DIALOGZ(+$P(%,U,2),.01))),": ")_U_1_$P(Y,U,2,99) D DIE1N G D ;MULTIPLE-FIELD LABEL
  I DQ>1 K DQ(DQ) G E:$D(DE(DQ,0)),H
  D
  .Q:DH'[$C(126)
  .N DIEA S DIEA=$P($P(DH,+DH,2),$C(126)) Q:DIEA=""!(DIEA="d")!(DIEA="R")
  .I DIEA="T"!(DIEA="t") S:$D(^DD(+$P(%,U,2),.01,.1)) DQ(DQ,"CAPTION")=^(.1) Q
  .S DQ(DQ,"CAPTION")=DIEA
-DIWE S Y=$G(DQ(DQ,"CAPTION"),$P(%,U))_U_$P(Y,U,2) D DIEN^DIWE K DQ,DG,DE S DQ=0 G QY^DIE1:$D(DTOUT) G MORE ;WORD-PROCESSING FIELD LABEL
+DIWE S Y=$G(DQ(DQ,"CAPTION"),$$LABEL^DIALOGZ(DP,DI))_U_$P(Y,U,2) D DIEN^DIWE K DQ,DG,DE S DQ=0 G QY^DIE1:$D(DTOUT) G MORE ;WORD-PROCESSING FIELD LABEL
  ;
 D1 Q:D'>0  S:'$D(@("D"_D)) @("D"_D)=0 S D=D-1 G D1
  ;
@@ -79,10 +84,10 @@ DIE1N N M,I S DIE1N="" F I=DK,DK+1 S M=$P(DR,";",I) I M?1"^"1.NP S DIE1N=$P(M,U,
 B K DQ(DQ) S DQ=DQ-1,DU=-9 G EQ
  ;
 TEM K:$D(DIETMP)#2 @DIETMP,DIETMP
- S Y=0 F  S Y=$O(^DIE("B",$P($E(DR,2,99),"]",1),Y)) S:Y="" Y=-1 G Q:Y=-1,Q:'$D(^DIE(+Y,0)) Q:$P(^(0),U,4)=DP
+ S Y=0 F  S Y=$O(^DIE("B",$P($E(DR,2,99),"]"),Y)) G Q:Y="",Q:'$D(^DIE(+Y,0)) Q:$P(^(0),U,4)=DP
  S $P(^(0),U,7)=DT I $G(^("ROU"))[U,$$ROUEXIST^DILIBF($P(^("ROU"),U,2)) G @^DIE(+Y,"ROU")
- S:$D(^("W")) DIE("W")=^("W") S %X="^DIE(+Y,""DR"",",%Y="DR(" D %XY^%RCR
- S DIE("^")=DR,DR=$S($D(^DIE(Y,"DR"))#2:^("DR"),1:DR(1,DP)) D DIE K DR S DR=DIE(U)
+ S:$D(^("W")) DIE("W")=^("W") S DIE("^")=DR K DR S %X="^DIE(+Y,""DR"",",%Y="DR(" D %XY^%RCR
+ S DR=$G(^DIE(Y,"DR"),DR(1,DP)) D DIE K DR S DR=DIE(U)
  Q
  ;
  ;Silent call concerning editing and filing of data.

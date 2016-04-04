@@ -1,6 +1,9 @@
-DIDU ;SEA/TOAD-VA FileMan: DD Tools, External Format ;24AUG2009
- ;;22.0;VA FileMan;**31,48,162**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIDU ;SEA/TOAD-VA FileMan: DD Tools, External Format ;21AUG2009
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**31,48,999,1004,1036**
  ;
 EXTERNAL(DIFILE,DIFIELD,DIFLAGS,DINTERNL,DIMSGA) ;
  ;
@@ -127,17 +130,17 @@ E12 ; handle illegal data types (pointers, word processings, and multiples)
 E13 ; handle sets of codes
  ;
  I DITYPE["S" D  Q DIEXTRNL
- . N DICODES S DICODES=";"_$P(DINODE,U,3)
- . N DISTART S DISTART=$F(DICODES,";"_DINTERNL_":")
+ . N DICODES S DICODES=$P(DINODE,U,3)
+ . N DISTART S DISTART=$F(";"_DICODES,";"_DINTERNL_":")
  . I 'DISTART S DIEXTRNL="" D  Q
  . . I 'DICHAIN D ERR(DIMSGA,730,DIFILE,"",DIFIELD,DINTERNL,"code") Q
  . . D ERR(DIMSGA,630,DIFILE,DIFIELD,"",DIEN,DINTERNL,"code")
- . S DIEXTRNL=$P($E(DICODES,DISTART,$L(DICODES)),";")
+SET . S DISTART=DINTERNL D PARSET^DIQ(DICODES,.DISTART) S DIEXTRNL=DISTART
  ;
 E14 ; handle dates, and return all others as they are
  ;
  I DITYPE["D",DINTERNL D  Q DIEXTRNL
- . S DIEXTRNL=$$FMTE^DILIBF(DINTERNL,"1U")
+ . S DIEXTRNL=$$DATE^DIUTL(DINTERNL) ;**CCO/NI
  . I DIEXTRNL'="" Q
  . I 'DICHAIN D ERR(DIMSGA,330,"","","",DINTERNL,"date") Q
  . D ERR(DIMSGA,630,DIFILE,"",DIFIELD,DIEN,DINTERNL,"date")

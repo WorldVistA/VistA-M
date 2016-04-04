@@ -1,6 +1,10 @@
-DICL ;SEA/TOAD,SF/TKW-VA FileMan: Lookup: Lister ;12/14/98  13:55
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICL ;SEA/TOAD,SF/TKW-VA FileMan: Lookup: Lister ;28APR2012
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**GFT,1040,1042**
+ ;
  ;
 LIST(DIFILE,DIFIEN,DIFIELDS,DIFLAGS,DINUMBER,DIFROM,DIPART,DINDEX,DISCREEN,DIWRITE,DILIST,DIMSGA,DIC) ;
  ; ENTRY POINT--return a list of entries from a file
@@ -30,7 +34,8 @@ INPUT ; Validate input parameters
  S DIFROM("IEN")=$G(DIFROM("IEN"))
  S DINDEX("WAY")=1 I DIFLAGS["B" S DINDEX("WAY")=-1
  S DINDEX=$G(DINDEX)
- I '$D(DISCREEN("S")) S DISCREEN("S")=$G(DISCREEN)
+ I '$D(DISCREEN("S")) S DISCREEN("S")=$G(DISCREEN) D:DISCREEN("S")]""
+ .N X S X=DISCREEN D ^DIM I '$D(X) D BLD^DIALOG(202,"SCREEN") ;**GFT  CHECK FOR GOOD MUMPS CODE
  S DIWRITE=$G(DIWRITE)
  ;
 OUTPUT ; Establish output file name, starting output subscript no.
@@ -52,27 +57,31 @@ FILE ; Validate file number and IENS.
  I $G(DIERR) S DIFROM="",DIFROM("IEN")="" D OUT Q
  D SCREEN^DICUF(DIFLAGS,.DIFILE,.DISCREEN)
  ;
-IXNAME ; Set default index name if null.
- I DINDEX'="#",DINDEX'?1U.UNP S DINDEX=$$DINDEX(DIFILE,DIFLAGS)
 CHECKS ;
- I $TR(DIFLAGS,"BIKMPQSUfhu")'="" S DIERN=301,DIPE(1)=DIFLAGS D ERROUT Q
+ I $TR(DIFLAGS,"BIKMPQSUfhuXE")'="" S DIERN=301,DIPE(1)=DIFLAGS D ERROUT Q  ;GFT: "X" and "E" added
  S DIFLAGS=DIFLAGS_3
  I DINUMBER'="*",DINUMBER<1!(DINUMBER\1'=DINUMBER) D  Q
  . S DIERN=202,DIPE(1)="Number" D ERROUT
  ;
 IXANDID ; Gather information about index and field data to be returned.
  N DIOUT S DIOUT=0
+IXNAME ; Set default index name if null.
+ N DIGFT,DIGFTEMP
+ I DIFLAGS["X" D DICL^DICLGFT G BADQ ;NOTE: A CROSS-REF MUST BE 1U.UN (IX^DICE); AN INDEX MUST BE 1A.AN
+ I DINDEX'="#",DINDEX'?1U.UNP S DINDEX=$$DINDEX(DIFILE,DIFLAGS)
  D INDEX^DICUIX(.DIFILE,DIFLAGS,.DINDEX,.DIFROM,.DIPART,DINUMBER,.DISCREEN,DILIST,.DIOUT)
- I DIOUT!($G(DIERR)) D KTMPIX^DICL1 Q
+BADQ I DIOUT!($G(DIERR)) D KTMPIX^DICL1 Q
  I $D(DISCREEN("V")) D VPDATA^DICUF(.DINDEX,.DISCREEN)
  I $O(DIFROM(DINDEX("#")+1))!(DINDEX'="#"&($O(DIPART(DINDEX("#"))))) D BLD^DIALOG(202,"Index"),KTMPIX^DICL1 Q
  D IDENTS^DICU1(DIFLAGS,.DIFILE,DIFIELDS,DIWRITE,.DIDENT,.DINDEX)
  I $G(DIERR) D KTMPIX^DICL1 Q
  ;
 BRANCH ; Continue on to actual search.
- G PREP^DICL1
+ D PREP^DICL1
+ I $G(DIGFTEMP)["^" K @DIGFTEMP ;**
+ Q
  ;
-DINDEX(DIFILE,DIFLAGS) ; Set DINDEX to index name for KEY.
+DINDEX(DIFILE,DIFLAGS) ; Set DINDEX to index name for KEY.   Also called at top of ^DIC & by DICF & DICF2
  N I,X S X=""
  I $G(DIFLAGS)["K" D
  . S I=$O(^DD("KEY","AP",DIFILE,"P",0)) Q:'I

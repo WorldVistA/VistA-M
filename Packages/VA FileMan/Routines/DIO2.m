@@ -1,7 +1,12 @@
-DIO2 ;SFISC/GFT,TKW-PRINT ;9:17 AM  24 Feb 2000
- ;;22.0;VA FileMan;**32**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIO2 ;SFISC/GFT,TKW-PRINT ;15JAN2004
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**32,999,1003**
+ ;
  S (DISTP,DILCT)=0
+ I '$D(DICMX) S DICMX="D M^DIO2"
 XDY I $D(DIBTPGM) D @("EN"_DIBTPGM),ENRLS^DIOZ(+$P(DIBTPGM,"^DISZ",2)) Q
  X DY(DN) G XDY:DN
  Q
@@ -13,6 +18,7 @@ OR S DE=DE+1 I '$D(DIS(DE)) Q
  X DIS(DE) E  G OR
 PASS S:'$D(DPQ) DIPASS=1
 O F DLP=0:1:DX Q:'DN  X $S($D(DPQ):DX(DLP),1:^UTILITY($J,99,DLP))
+TRAIL S:$D(DIOT) DIOT("D0")=$G(D0)
  Q
  ;
 N W !
@@ -23,23 +29,25 @@ T I $X,IOT'="MT" W !
  ;
 CSTP I $G(IOT)="SPL"!($G(IOT)="HFS") I '$D(DPQ),$$ROUEXIST^DILIBF("XUPARAM"),DILCT>$$KSP^XUPARAM("SPOOL LINES") D  Q
  . S DIFMSTOP=1,DN=0 S:$D(ZTQUEUED) ZTSTOP=1
- . W !,"*** JOB STOPPED BECAUSE MAXIMUM SPOOL LINES HAS BEEN EXCEEDED ***",!! Q
+ . W !,$$EZBLD^DIALOG(1519,$$KSP^XUPARAM("SPOOL LINES")),!! ;**CCO/NI SPOOL LINE MESSAGE ON OUTPUT
  I '$D(ZTQUEUED) K DISTOP Q
  Q:$G(DISTOP)=0  S:$G(DISTOP)="" DISTOP=1
  I DISTOP'=1 X DISTOP K:'$T DISTOP S DISTOP=$T Q:'$T
  Q:'$$S^%ZTLOAD
- W:$G(IO)]"" !,"*** TASK "_ZTSK_" STOPPED BY USER - DURING "_$S($D(DPQ):"SORT",1:"PRINT")_" EXECUTION ***",!! S ZTSTOP=1,DN=0 Q
+TASKSTOP W:$G(IO)]"" !,$$EZBLD^DIALOG($D(DPQ)>0+1528,ZTSK),!! S ZTSTOP=1,DN=0 Q  ;**CCO/NI  'TASK HAS BEEN STOPPED'
  ;
 DT I $G(DDXPDATE) D DT^DDXP4 W DDXPY K DDXPY Q
  I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
- I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ X ^DD("DD") ;**CCO/NI
  W Y Q
  ;
 C S DQ(C)=Y
 S S Q(C)=Y*Y+Q(C) S:L(C)>Y L(C)=Y S:H(C)<Y H(C)=Y
 P S N(C)=N(C)+1
 A S S(C)=S(C)+Y Q
-D I Y=DITTO(C) S Y="" Q
+ ;
+DITTO(C,Y) D D Q Y
+D I Y=$G(DITTO(C)) S Y="" Q
  S DITTO(C)=Y Q
  ;
 CP S C="" F  S C=$O(CP(C)) Q:C=""  G DQ:'$D(DQ(C))

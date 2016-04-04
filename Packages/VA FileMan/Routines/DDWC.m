@@ -1,6 +1,10 @@
-DDWC ;SFISC/MKO-CHANGE (REPLACE) ;3:36 PM  5 Jul 1996
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDWC ;SFISC/MKO-CHANGE (REPLACE) ;02:24 PM  14 Aug 2002
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999**
+ ;
 CHG ;Change
  N DDWOPT
  D SETUP^DDWC1
@@ -56,7 +60,7 @@ RS(DDWE) ;Change selected text
  S DDWDIF=$L(DDWCHG)-$P(DDWMARK,U,4)+$P(DDWMARK,U,2)-1
  I $L(DDWN)+DDWDIF>245 D  Q
  . S DDWE=1,DDWOPT=""
- . D MSG($C(7)_"Unable to change text.  Resultant line is too long.")
+ . D MSG($C(7)_$$EZBLD^DIALOG(347)) ;**TOO LONG
  ;
  S DDWE=0,DDWED=1
  S $E(DDWN,$P(DDWMARK,U,2),$P(DDWMARK,U,4))=$S($E(DDWN,$P(DDWMARK,U,2))?1U:$G(DDWCHG(1),DDWCHG),1:DDWCHG)
@@ -68,7 +72,7 @@ RS(DDWE) ;Change selected text
  ;
 A ;Change all
  N DDWE,DDWF,DDWI,DDWND,DDWX
- D MSG^DDW("Changing text ...")
+ D MSG^DDW("...") ;**'CHANGING TEXT'
  I $D(DDWMARK) D RS(.DDWE) G:$G(DDWE) AEND
  ;
  S DDWX=$F($$UC(DDWL(DDWRW)),DDWT,DDWC)
@@ -88,7 +92,7 @@ A ;Change all
  . S:$G(DDWE) DDWE=DDWA+DDWMR+DDWSTB-DDWI+1_U_DDWE
  ;
  I $G(DDWF) D
- . D:$G(DDWE) MSG^DDW($C(7)_"Unable to complete replacement.  A resultant line is too long.") H 2
+TOOLONG . D:$G(DDWE) MSG^DDW($C(7)_$$EZBLD^DIALOG(347)) H 2 ;**
  . F DDWI=1:1:$$MIN(DDWMR,DDWCNT-DDWA) D
  .. D CUP(DDWI,1)
  .. W $P(DDGLCLR,DDGLDEL)_$E(DDWL(DDWI),1+DDWOFS,IOM+DDWOFS)
@@ -140,7 +144,7 @@ FLUSH ;Flush read buffer
  Q
  ;
 UC(X) ;Return uppercase of X
- Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ Q $$UP^DILIBF(X)  ;**
  ;
 MIN(X,Y) ;
  Q $S(X<Y:X,1:Y)

@@ -1,6 +1,10 @@
-DINIT294 ;SFISC/MKO-FORM AND BLOCK FILES ;1:30 PM  21 Apr 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT294 ;SFISC/MKO-FORM AND BLOCK FILES ;1NOV2004
+ ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**8,1003,1004**
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT295
 Q Q
@@ -72,22 +76,22 @@ Q Q
  ;;=If the multiple has no index, or you wish to display the subentries
  ;;^DD(.4032,6,21,7,0)
  ;;=in record number order, enter !IEN.
- ;;^DD(.4032,6,"DT")
- ;;=2940503
+ ;;^DD(.4032,6,21,8,0)
+ ;;=  LEAVE THIS VALUE EMPTY IF YOU WANT TO ENTER 'COMPUTED MULTIPLE' CODE TO DO THE SELECTION
  ;;^DD(.4032,7,0)
- ;;=INITIAL POSITION^S^f:FIRST;l:LAST;n:NEW;^2;3^Q
+ ;;=INITIAL POSITION^S^f:FIRST;l:LAST;n:NEW;u:USER'S LAST^2;3^Q
  ;;^DD(.4032,7,21,0)
  ;;=^^5^5^2940908^
  ;;^DD(.4032,7,21,1,0)
  ;;=This is the position in the list where the cursor should initially rest
  ;;^DD(.4032,7,21,2,0)
- ;;=when the user first navigates to the repeating block.  Possible values are
+ ;;=when the user first navigates to the repeating block.  NEW indicates that
  ;;^DD(.4032,7,21,3,0)
- ;;=FIRST, LAST, and NEW, where NEW indicates that the cursor should initially
+ ;;=the cursor should initially rest on the blank line at the end of the list.  
  ;;^DD(.4032,7,21,4,0)
- ;;=rest on the blank line at the end of the list.  The default INITIAL
+ ;;=USER'S LAST is the last choice that the User has made for this file -- what  
  ;;^DD(.4032,7,21,5,0)
- ;;=POSITION is FIRST.
+ ;;=would be retrieved by the SPACE-BAR.  The default INITIAL POSITION is FIRST.
  ;;^DD(.4032,7,"DT")
  ;;=2940503
  ;;^DD(.4032,8,0)
@@ -176,3 +180,11 @@ Q Q
  ;;=different post-action.
  ;;^DD(.4032,12,"DT")
  ;;=2930610
+ ;;^DD(.4032,98,0)
+ ;;=COMPUTED MULTIPLE^K^^COMP MUL;E1,999^D ^DIM
+ ;;^DD(.4032,98,3)
+ ;;=THIS IS MUMPS CODE THAT XECUTES 'DICMX' WITH DIFFERENT VALUES OF 'D0' AS INTERNAL ENTRY NUMBERS
+ ;;^DD(.4032,98.1,0)
+ ;;=COMPUTED MUL PTR^NJ13,9^^COMP MUL PTR;E1,999^K:+$P(X,"E")'=X X
+ ;;^DD(.4032,98.1,3)
+ ;;=FILE POINTER (USUALLY THE SAME FILE)
